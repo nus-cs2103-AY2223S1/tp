@@ -217,7 +217,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean reminderIsMarked(Reminder reminderToMark) {
-        return reminderToMark.getStatus();
+        return reminderToMark.getCompletionStatus();
     }
 
     @Override

@@ -38,7 +38,7 @@ public class ReminderCard extends UiPart<Region> {
     public ReminderCard(Reminder reminder, int displayedIndex) {
         super(FXML);
         this.reminder = reminder;
-        if (!reminder.getStatus()) {
+        if (!reminder.getCompletionStatus()) {
             id.setText(displayedIndex + ". ");
             statusBar.setFill(Color.ORANGE);
         } else {

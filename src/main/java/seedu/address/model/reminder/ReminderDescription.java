@@ -15,4 +15,16 @@ public class ReminderDescription {
     public String toString() {
         return description.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ReminderDescription // instanceof handles nulls
+                && description.equals(((ReminderDescription) other).description)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return description.hashCode();
+    }
 }

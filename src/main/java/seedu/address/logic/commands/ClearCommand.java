@@ -31,11 +31,11 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS_TUTORIAL = "All tutorials in ModQuik have been cleared!";
     public static final String MESSAGE_SUCCESS_REMINDER = "All reminders in ModQuik have been cleared!";
 
-    private static String[] temp = {"all", "student", "consultation", "tutorial", "reminder"};
-    private static Set<String> possibleFields = new HashSet<>(Arrays.asList(temp));
+    private static final String[] temp = {"all", "student", "consultation", "tutorial", "reminder"};
+    private static final Set<String> possibleFields = new HashSet<>(Arrays.asList(temp));
 
 
-    private String field;
+    private final String field;
     public ClearCommand(String field) {
         this.field = field;
     }
