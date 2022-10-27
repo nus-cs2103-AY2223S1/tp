@@ -1,6 +1,7 @@
 //@@author kangqiao322
 package seedu.intrack.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
@@ -38,9 +39,12 @@ public class SortTimeCommand extends SortCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Internship> lastShownList = model.getSelectedInternship();
+        requireNonNull(model);
+        List<Internship> lastShownList = model.getFilteredInternshipList();
+        System.out.println(lastShownList.size());
         for (int i = 0; i < lastShownList.size(); i++) {
             Internship internship = lastShownList.get(i);
+            System.out.println(internship.getName().toString());
             if (internship.isTaskListEmpty()) {
                 throw new CommandException(MISSING_TASKLIST);
             }

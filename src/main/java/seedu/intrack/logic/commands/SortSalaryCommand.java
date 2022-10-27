@@ -1,5 +1,6 @@
 package seedu.intrack.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import seedu.intrack.logic.commands.exceptions.CommandException;
@@ -32,6 +33,7 @@ public class SortSalaryCommand extends SortCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        //requireNonNull(model);
         if (orderType.equals("a")) {
             model.ascendSortSalary();
             model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
