@@ -119,6 +119,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setStoredIndex(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path[] getAllAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
@@ -130,6 +135,11 @@ public class AddCommandTest {
 
         @Override
         public Path getNextAddressBookPath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void renameAddressBook(String newName) {
             throw new AssertionError("This method should not be called.");
         }
 

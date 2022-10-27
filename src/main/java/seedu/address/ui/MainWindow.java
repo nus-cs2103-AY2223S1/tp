@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -13,8 +14,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.RenameCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
@@ -43,6 +46,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem swapBook;
+
+    @FXML
+    private MenuItem newBook;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -78,6 +87,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(swapBook, KeyCombination.valueOf("Shift+Tab"));
+        setAccelerator(newBook, KeyCombination.valueOf("Ctrl+Shift+N"));
     }
 
     /**
@@ -143,6 +154,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Resets what the status bar shows.
+     */
+    public void refreshStatusBar() {
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().set(0, statusBarFooter.getRoot());
+    }
+
+    /**
      * Opens the help window in a new browser window
      */
     @FXML
@@ -163,8 +182,10 @@ public class MainWindow extends UiPart<Stage> {
         try {
             if (!logic.addAddressBook()) {
                 resultDisplay.setFeedbackToUser("Maximum amount of address book created");
+            } else {
+                refreshStatusBar();
             }
-        } catch (IOException e) {
+        } catch (IOException | DataConversionException e) {
             resultDisplay.setFeedbackToUser("Sorry! Error creating File");
         }
     }
@@ -173,8 +194,23 @@ public class MainWindow extends UiPart<Stage> {
      * Swaps between the Books
      */
     @FXML
-    private void handleSwap() throws CommandException {
+    private void handleRename() {
+        try {
+            Files.delete(logic.getAddressBookFilePath());
+            logic.resetCurrentAddressBook();
+            refreshStatusBar();
+        } catch (IOException e) {
+            resultDisplay.setFeedbackToUser("Sorry! Error deleting File");
+        }
+    }
+
+    /**
+     * Swaps between the Books
+     */
+    @FXML
+    private void handleSwap() {
         logic.swapAddressBook();
+        refreshStatusBar();
     }
 
     /**
@@ -216,6 +252,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isNewBook()) {
                 handleNewBook();
+            }
+
+            if (commandResult.getFeedbackToUser().equals(RenameCommand.MESSAGE_RENAME_SUCCESS)) {
+                handleRename();
             }
 
             if (commandResult.isSwap()) {
