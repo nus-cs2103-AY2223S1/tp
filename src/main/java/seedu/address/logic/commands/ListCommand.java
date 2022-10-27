@@ -12,7 +12,7 @@ import seedu.address.model.Model;
  */
 public class ListCommand extends Command {
 
-    public static final CommandWord COMMAND_WORD = new CommandWord("list", "l");
+    public static final CommandWord COMMAND_WORD = new CommandWord("list", "ls");
 
     public static final String MESSAGE_SUCCESS = "Listed all patients, appointments and bills";
 
