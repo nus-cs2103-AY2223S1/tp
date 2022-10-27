@@ -33,8 +33,16 @@ public class AddTaskCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getTaskPanel(), new UserPrefs());
         expectedModel.addTask(validTask);
 
-        assertCommandSuccess(new AddTaskCommand(validTask), model,
-            String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), expectedModel);
+        assertCommandSuccess(
+            new AddTaskCommand(validTask),
+            model,
+            String.format(AddTaskCommand.MESSAGE_SUCCESS,
+                    validTask.getTitle(),
+                    validTask.getDeadline(),
+                    validTask.getProject(),
+                    validTask.getAssignedContacts()),
+            expectedModel
+        );
     }
 
     @Test

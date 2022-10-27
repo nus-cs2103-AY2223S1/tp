@@ -147,10 +147,7 @@ public class ModelManager implements Model {
     /** Replaces the given new task list {@code newTasks} with {@code editedTasks}. */
     @Override
     public void setFilteredTaskList(ObservableList<Task> newTasks) {
-        int len = filteredTasks.size();
-        for (int i = 0; i < len; i++) {
-            filteredTasks.set(i, newTasks.get(i));
-        }
+        taskPanel.setTasks(newTasks);
     }
 
     @Override

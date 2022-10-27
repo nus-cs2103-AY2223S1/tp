@@ -31,8 +31,8 @@ public class ListTaskProjectsCommand extends TaskCommand {
             .map(Task::getProject)
             .filter(t -> !t.isUnspecified())
             .collect(Collectors.toSet());
-        int counter = 1;
-        projectList.forEach(p -> builder.append("\n").append(counter).append(". ").append(p.projectName));
+        final int[] counter = { 1 };
+        projectList.forEach(p -> builder.append("\n").append(counter[0]++).append(". ").append(p.projectName));
 
         return new CommandResult(MESSAGE_SUCCESS + builder);
     }

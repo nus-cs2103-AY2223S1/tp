@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a deadline for a task.
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
 
     public static final Deadline UNSPECIFIED = new Deadline(LocalDate.ofEpochDay(0));
 
@@ -121,5 +121,15 @@ public class Deadline {
         return date;
     }
 
+    @Override
+    public int compareTo(Deadline other) {
+        if (this.isUnspecified()) {
+            return 1;
+        } else if (other.isUnspecified()) {
+            return -1;
+        } else {
+            return getDate().compareTo(other.getDate());
+        }
+    }
 }
 
