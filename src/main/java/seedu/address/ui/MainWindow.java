@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -53,11 +54,15 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private AnchorPane windowAnchorPaneHolder;
 
+    private final Scene scene;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
+
+        scene = primaryStage.getScene();
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -70,14 +75,6 @@ public class MainWindow extends UiPart<Stage> {
         //setAccelerators();
 
         helpWindow = new HelpWindow();
-
-        primaryStage.heightProperty().addListener((ob, oldVal, newVal) ->
-                windowAnchorPane.resizeElements(primaryStage.getHeight(),
-                        primaryStage.getWidth())
-        );
-        primaryStage.widthProperty().addListener((ob, oldVal, newVal) ->
-                windowAnchorPane.resizeElements(primaryStage.getHeight(), primaryStage.getWidth())
-        );
 
         primaryStage.getScene().setOnMouseClicked(e -> resultDisplayPlaceholder.requestFocus());
     }
@@ -142,7 +139,17 @@ public class MainWindow extends UiPart<Stage> {
                 resultDisplayPlaceholder);
 
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        resultDisplayPlaceholder.prefWidthProperty().bind(primaryStage.widthProperty().subtract(20));
+        resultDisplayPlaceholder.prefWidthProperty().bind(scene.widthProperty());
+
+        scene.heightProperty().addListener((ob, oldVal, newVal) ->
+                windowAnchorPane.resizeElements(scene.getHeight(),
+                        scene.getWidth())
+        );
+        scene.widthProperty().addListener((ob, oldVal, newVal) ->
+                windowAnchorPane.resizeElements(scene.getHeight(), scene.getWidth())
+        );
+
+        windowAnchorPane.resizeElements(scene.getHeight(), scene.getWidth());
     }
 
     /**
@@ -234,8 +241,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void handleShowNotePanel(boolean isVisible) {
-        windowAnchorPane.setNotesPaneVisibility(isVisible, primaryStage.getHeight(), primaryStage.getWidth());
-        windowAnchorPane.resizeElements(primaryStage.getHeight(), primaryStage.getWidth());
+        windowAnchorPane.setNotesPaneVisibility(isVisible, scene.getHeight(), scene.getWidth());
     }
 
     private boolean matches(String currentName, String[] matching) {

@@ -25,8 +25,9 @@ public class WindowAnchorPane extends UiPart<Region> {
     private static final double VERTICAL_DIVIDER_DEFAULT = 0.65;
 
     private static final String FXML = "WindowAnchorPane.fxml";
-    private static final double OFFSET_HEIGHT = 100;
-    private static final double RIGHT_PADDING = 25;
+    private static final double OFFSET_HEIGHT = 60;
+    private static final double RIGHT_PADDING = 10;
+    private static final double OUT_OF_BOUNDS_RIGHT = -400;
     private final Logger logger = LogsCenter.getLogger(WindowAnchorPane.class);
 
     private double verticalDivider = VERTICAL_DIVIDER_DEFAULT;
@@ -85,11 +86,8 @@ public class WindowAnchorPane extends UiPart<Region> {
      * @param stageWidth the width of the stage this anchor pane is one
      */
     public void resizeElements(double stageHeight, double stageWidth) {
-        System.out.println("Width " + stageWidth);
-        System.out.println("Height " + stageHeight);
         //Confine anchor pane container to width of stage
         stageHeight -= OFFSET_HEIGHT;
-        stageWidth -= RIGHT_PADDING;
 
         container.setMaxWidth(stageWidth);
         container.setMaxHeight(stageHeight);
@@ -104,21 +102,18 @@ public class WindowAnchorPane extends UiPart<Region> {
 
         //set anchors of inspectPanel
         AnchorPane.setLeftAnchor(inspectionSection, 0.0);
-        // Strange issue where the stage width is larger than the window width
-        // 9000 is an experimental value, based on minStageWidth (900) * 10, so a
-        // padding of 10 is added when the window is at the smallest
-        // As the window gets wider, this padding decreases
-        AnchorPane.setRightAnchor(inspectionSection,
-                Math.max((1.0 - verticalDivider) * stageWidth, 9000 / stageWidth + 50));
+        AnchorPane.setRightAnchor(inspectionSection, (1.0 - verticalDivider) * stageWidth);
         AnchorPane.setTopAnchor(inspectionSection, HORIZONTAL_DIVIDER * stageHeight);
         AnchorPane.setBottomAnchor(inspectionSection, DISTANCE_BOTTOM);
 
 
         //set anchors of noteListPanel
         AnchorPane.setLeftAnchor(noteList, (verticalDivider) * stageWidth);
-        AnchorPane.setRightAnchor(noteList, 0.0);
+        AnchorPane.setRightAnchor(noteList, stageWidth * (VERTICAL_DIVIDER_DEFAULT - verticalDivider));
         AnchorPane.setTopAnchor(noteList, 10.0);
         AnchorPane.setBottomAnchor(noteList, DISTANCE_BOTTOM);
+
+        container.autosize();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -151,8 +146,7 @@ public class WindowAnchorPane extends UiPart<Region> {
                         return WindowAnchorPane.this.verticalDivider;
                     }
                 },
-                // can't use 1 because the stage width is larger than window width
-                isVisible ? VERTICAL_DIVIDER_DEFAULT : 0.955,
+                isVisible ? VERTICAL_DIVIDER_DEFAULT : 1,
                 Interpolator.LINEAR)));
 
         anim.getKeyFrames().add(new KeyFrame(Duration.millis(300), new KeyValue(

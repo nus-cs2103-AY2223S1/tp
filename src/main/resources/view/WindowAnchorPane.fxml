@@ -25,6 +25,9 @@
   </VBox>
 
   <VBox fx:id="noteList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+    <padding>
+      <Insets right="10" />
+    </padding>
     <StackPane fx:id="noteListPanelPlaceholder" VBox.vgrow="SOMETIMES"/>
   </VBox>
 </AnchorPane>
