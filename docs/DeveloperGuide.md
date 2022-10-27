@@ -301,6 +301,11 @@ The following sequence diagram shows how the filter operation works:
 
 Step 5. After looking through all the tasks that are related to backend, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
 
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![image](https://user-images.githubusercontent.com/88974230/198338142-504a7ed9-1393-4778-82bf-7c80b607390f.png)
+
+
 **Design considerations**
 
 **Aspect: How undo & redo executes:**
