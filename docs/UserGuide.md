@@ -292,7 +292,7 @@ Examples:
 **:information_source: Notes about the switching between Contacts and Calendar Tabs:**
 <br>
 * `CTRL + 1` keys will switch the current tab to the Contacts tab
-* `CTRL + 1` keys will switch the current tab to the Contacts tab
+* `CTRL + 2` keys will switch the current tab to the Calendar tab
 </div>
 
 #### 4.3.1 Calendar Display
