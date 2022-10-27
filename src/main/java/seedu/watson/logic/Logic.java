@@ -7,8 +7,10 @@ import seedu.watson.commons.core.GuiSettings;
 import seedu.watson.logic.commands.CommandResult;
 import seedu.watson.logic.commands.exceptions.CommandException;
 import seedu.watson.logic.parser.exceptions.ParseException;
+import seedu.watson.model.Model;
 import seedu.watson.model.ReadOnlyDatabase;
 import seedu.watson.model.person.Person;
+import seedu.watson.storage.Storage;
 
 /**
  * API of the Logic component
@@ -23,6 +25,16 @@ public interface Logic {
      * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Hacks
+     */
+    Model getModel();
+
+    /**
+     * Hacks
+     */
+    Storage getStorage();
 
     /**
      * Returns the Database.

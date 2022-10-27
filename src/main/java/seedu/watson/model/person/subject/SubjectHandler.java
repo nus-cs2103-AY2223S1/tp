@@ -1,6 +1,7 @@
 package seedu.watson.model.person.subject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -91,10 +92,10 @@ public class SubjectHandler {
         while (!dataString.isEmpty()) {
             String subjectName;
             if (dataString.contains(":")) {
-                subjectName = dataString.substring(0, dataString.indexOf(":"));
+                subjectName = dataString.substring(0, dataString.indexOf(":")).toUpperCase(Locale.ROOT);
                 dataString = dataString.substring(dataString.indexOf(":") + 2); //dataString without the subject name
             } else {
-                subjectName = dataString;
+                subjectName = dataString.toUpperCase(Locale.ROOT);
                 dataString = "";
             }
             //System.out.println(dataString + "after subjectname");

@@ -17,8 +17,8 @@ public class GradeCommandParser implements Parser<GradeCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public GradeCommand parse(String args) throws ParseException {
-        // grade math-CA1-100-0.5-1.0 - format: subject-assessmentName-totalScore-weightage-difficulty
-        //need to check for erroneous input
+        // grade english_CA1_100_0.5_1.0 - format: subject-assessmentName_totalScore_weightage_difficulty
+        // need to check for erroneous input
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -28,5 +28,4 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         return new GradeCommand(subject, args.trim());
 
     }
-
 }

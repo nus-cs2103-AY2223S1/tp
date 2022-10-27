@@ -71,7 +71,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         predictionWindow = new PredictionWindow();
-        gradeWindow = new GradeWindow();
+        gradeWindow = new GradeWindow(logic);
     }
 
     public Stage getPrimaryStage() {

@@ -100,5 +100,5 @@ public interface Model {
     /**
      * Sorts the list of students by grade
      */
-    void sortListByGrade(boolean isInAscending);
+    void sortListByGrade(boolean isInAscending, String subjectName);
 }
