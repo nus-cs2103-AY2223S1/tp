@@ -47,7 +47,6 @@ public class HobbyListParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        System.out.println(ExitCommand.getCommandWord());
 
         if (commandWord.equals(AddCommand.getCommandWord())) {
             return new AddCommandParser().parse(arguments);
