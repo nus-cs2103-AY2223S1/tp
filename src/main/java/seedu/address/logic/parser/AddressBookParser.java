@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DELETE_COMMAND
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EDIT_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +23,6 @@ import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,20 +52,12 @@ public class AddressBookParser {
         final String commandWord = generalMatcher.group("commandWord");
         final String commandArguments = generalMatcher.group("commandArguments");
 
-        NusModulesParser nusModulesParser;
-
-        try {
-            nusModulesParser = new NusModulesParser();
-        } catch (IOException e) {
-            throw new ParseException("NUS Modules not found!");
-        }
-
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(commandArguments);
 
         case AddModuleCommand.COMMAND_WORD:
-            return new AddModuleCommandParser(nusModulesParser).parse(commandArguments);
+            return new AddModuleCommandParser().parse(commandArguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(commandArguments);
@@ -82,7 +72,7 @@ public class AddressBookParser {
             return new EditCommandParser().parse(commandArguments);
 
         case EditModuleCommand.COMMAND_WORD:
-            return new EditModuleCommandParser(nusModulesParser).parse(commandArguments);
+            return new EditModuleCommandParser().parse(commandArguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
