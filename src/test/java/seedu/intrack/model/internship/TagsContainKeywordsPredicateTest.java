@@ -72,7 +72,7 @@ public class TagsContainKeywordsPredicateTest {
         assertFalse(predicate.test(new InternshipBuilder().withTags("Remote").build()));
 
         // Keywords match salary, email and position, but does not match tags
-        predicate = new TagsContainKeywordsPredicate(Arrays.asList("careers@airbnb.com", "Software", "Engineer"));
+        predicate = new TagsContainKeywordsPredicate(Arrays.asList("careers@airbnb.com", "Software", "Engineer", "12345"));
         assertFalse(predicate.test(new InternshipBuilder().withPosition("Software Engineer").withSalary("12345")
                 .withEmail("careers@airbnb.com").build()));
     }
