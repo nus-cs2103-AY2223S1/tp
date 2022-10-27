@@ -83,6 +83,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Sorts the list of students by grades.
+     * @param isInAscending sorts by ascending if true, descending otherwise
+     */
+    public void sortByGrade(boolean isInAscending) {
+        persons.sortByGrade(isInAscending);
+    }
+
     //// util methods
 
     @Override

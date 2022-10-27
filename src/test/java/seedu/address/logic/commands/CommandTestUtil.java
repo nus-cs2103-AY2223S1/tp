@@ -58,6 +58,7 @@ public class CommandTestUtil {
 
     // Remark examples
     public static final String VALID_REMARK_ICE_CREAM = "likes ice cream";
+    public static final String VALID_REMARK_COFFEE = "likes coffee";
     public static final String REMARK_ICE_CREAM = " " + PREFIX_REMARK + VALID_REMARK_ICE_CREAM;
 
     // SubjectHandler examples
