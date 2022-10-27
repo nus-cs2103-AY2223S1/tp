@@ -34,7 +34,8 @@ public class ClientWithoutModel implements Function<Model, Client> {
      * @param projectIdList the list of project ids the client is involved in.
      */
 
-    public ClientWithoutModel(Name name, ClientMobile mobile, ClientEmail email, List<ProjectId> projectIdList, Pin pin) {
+    public ClientWithoutModel(Name name, ClientMobile mobile, ClientEmail email,
+                              List<ProjectId> projectIdList, Pin pin) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;

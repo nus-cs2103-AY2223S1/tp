@@ -19,9 +19,9 @@ import seedu.address.model.Name;
 import seedu.address.model.Pin;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
-import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Title;
+import seedu.address.model.issue.Urgency;
 import seedu.address.model.project.Project;
 import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
@@ -40,7 +40,7 @@ public class PinIssueCommandTest {
         Model actualModel = new ModelManager();
         Project stubProject = new Project(new Name("Stub"));
         Issue stubIssueUnpinned = new Issue(new Title("Test Issue"), new Deadline("2020-02-02"),
-                Priority.LOW, new Status(false), stubProject,
+                Urgency.LOW, new Status(false), stubProject,
                 new IssueId(1), new Pin(false));
         actualModel.addIssue(stubIssueUnpinned);
 
@@ -49,7 +49,7 @@ public class PinIssueCommandTest {
 
         Model expectedModel = new ModelManager();
         Issue stubIssuePinned = new Issue(new Title("Test Issue"), new Deadline("2020-02-02"),
-                Priority.LOW, new Status(false), stubProject,
+                Urgency.LOW, new Status(false), stubProject,
                 new IssueId(1), new Pin(true));
         expectedModel.addIssue(stubIssuePinned);
         IssueId stubIssueId = stubIssuePinned.getIssueId();
@@ -63,7 +63,7 @@ public class PinIssueCommandTest {
         Model actualModel = new ModelManager();
         Project stubProject = new Project(new Name("Stub"));
         Issue stubIssuePinned = new Issue(new Title("Test Issue"), new Deadline("2020-02-02"),
-                Priority.LOW, new Status(false), stubProject,
+                Urgency.LOW, new Status(false), stubProject,
                 new IssueId(1), new Pin(true));
         actualModel.addIssue(stubIssuePinned);
 
@@ -72,7 +72,7 @@ public class PinIssueCommandTest {
 
         Model expectedModel = new ModelManager();
         Issue stubIssueUnpinned = new Issue(new Title("Test Issue"), new Deadline("2020-02-02"),
-                Priority.LOW, new Status(false), stubProject,
+                Urgency.LOW, new Status(false), stubProject,
                 new IssueId(1), new Pin(false));
         expectedModel.addIssue(stubIssueUnpinned);
         IssueId stubIssueId = stubIssueUnpinned.getIssueId();

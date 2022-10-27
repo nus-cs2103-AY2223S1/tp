@@ -43,7 +43,8 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * @param mobile String representing mobile number of the client
      * @param email String representing email address of the client
      */
-    public Client(Name name, ClientMobile mobile, ClientEmail email, List<Project> projects, ClientId clientId, Pin pin) {
+    public Client(Name name, ClientMobile mobile, ClientEmail email, List<Project> projects,
+                  ClientId clientId, Pin pin) {
         requireAllNonNull(name, mobile, email, clientId, pin);
         this.name = name;
         this.mobile = mobile;
