@@ -171,6 +171,10 @@ This section describes some noteworthy details on how certain features are imple
 The sequence diagram is given below.
 ![SortPersonSequence](images/SortPersonSequence.png)
 
+#### Design considerations
+
+The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
+
 ### Find Person
 
 #### Implementation
@@ -190,10 +194,6 @@ The sequence diagram is given below.
 
 The sequence diagram is given below.
 ![FindPersonSequence](images/FindPersonSequence.png)
-
-#### Design considerations
-
-The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
 
 ### \[Proposed\] Undo/redo feature
 
