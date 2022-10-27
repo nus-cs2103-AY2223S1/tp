@@ -128,6 +128,17 @@ public class Attendance {
         return sb.toString();
     }
 
+    public String guiString() {
+        StringBuilder sb = new StringBuilder();
+        if (personAttendance.isEmpty()) {
+            sb.append("0/0");
+            return sb.toString();
+        }
+        int[] attendance = this.getAttendanceDetails();
+        sb.append(attendance[0] + "/" + attendance[1]);
+        return sb.toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
