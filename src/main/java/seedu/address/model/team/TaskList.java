@@ -88,7 +88,7 @@ public class TaskList implements Iterable<Task> {
      *
      * @return Map of person to number of tasks assigned
      */
-    public Map<Person, Integer> getTasksPerPerson() {
+    public Map<Person, Integer> getNumTasksPerPerson() {
         HashMap<Person, Integer> assignments = new HashMap<>();
         for (Task t : internalList) {
             for (Person p : t.getAssigneesList()) {
