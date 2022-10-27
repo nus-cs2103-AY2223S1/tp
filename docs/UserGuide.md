@@ -10,7 +10,7 @@ but it also has a Graphical User Interface for simpler and quicker task.
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
+
 # 1. About the User Guide
 
 This section will explain the parameters and the format of commands.
