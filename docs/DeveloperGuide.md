@@ -374,9 +374,9 @@ The screen upon entering the focus mode consists of components:
 * `ResultDisplay`, showing the sessions and students the user has added to the class;
 * `ResultDisplay` consists of `SessionListPanel`, each row representing a session,sorted based on the time it was added with the most recently added at the top, and `StudentListPanel`, each row representing a student, with their grades related to a particular session (given by user input) shown as well;
 * `CommandBox`, the Command Line Interface (CLI) for user to key in command and
-* `HelpWindow` shown with a help button that redirects users to our User Guide to facilitate their usage; a back button that allow user to leave the focus mode; and a header which should which class the user is currently focused in.
+* `HelpWindow` shown with a help button that redirects users to our User Guide to facilitate their usage; a back button that allow user to leave the focus mode; and a header which shows the class the user is currently focused in.
 
-Whenever users call `scores s/SESSION_NAME`, the grade pertaining to that particular session appear, with ungraded students highlighted to the users.
+Whenever users call `scores s/SESSION_NAME`, the grade pertaining to that particular session appear, with ungraded students highlighted in red to the users.
 
 {another screenshot}
 

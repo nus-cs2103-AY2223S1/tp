@@ -66,9 +66,12 @@ UiManager -right-> Logic
 MainWindow -left-> Logic
 
 StudentListPanel -[hidden]left- HelpWindow
+ModuleClassListPanel -[hidden]right- SessionListPanel
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+StudentCard -[hidden]right- ModuleClassCard
+ModuleClassCard -[hidden]right- SessionCard
 
 MainWindow -[hidden]-|> UiPart
 @enduml
