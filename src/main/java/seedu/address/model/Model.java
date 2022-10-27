@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.group.Group;
-import seedu.address.model.item.AbstractContainerItem;
+import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -110,6 +110,7 @@ public interface Model {
     /**
      * Adds a field to the Fields of each person
      * {@code field name} must not already exist in the address book.
+     *
      * @param fieldName the field name to add
      */
     void addField(String fieldName);
@@ -117,14 +118,19 @@ public interface Model {
     /**
      * Removes a field from the Fields instance of each person
      * {@code field name} must already exist in the address book.
+     *
      * @param fieldName the field name to be removed
      */
     void removeField(String fieldName);
 
-    /** Returns an unmodifiable view of the filtered task list */
+    /**
+     * Returns an unmodifiable view of the filtered task list
+     */
     ObservableList<Task> getFilteredTaskList();
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
@@ -146,12 +152,12 @@ public interface Model {
     /**
      * Updates the current scope to a new container
      */
-    void updateContextContainer(AbstractContainerItem container);
+    void updateContextContainer(AbstractSingleItem container);
 
     /**
      * Receives the current scope
      */
-    AbstractContainerItem getContextContainer();
+    AbstractSingleItem getContextContainer();
 
     boolean hasTeam(Group grp);
 
@@ -179,6 +185,9 @@ public interface Model {
      */
     void updateFilteredTaskList(List<Predicate<Task>> predicates);
 
+    /**
+     * Returns an unmodifiable view of the filtered team list
+     */
     ObservableList<Group> getFilteredTeamList();
 
     void setTask(Task target, Task editedTask);

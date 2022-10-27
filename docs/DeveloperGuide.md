@@ -236,8 +236,8 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The Custom Fields mechanism is facilitated by the creation of a new `Field` that is stored within the `Fields` object 
-that each `Person` object has. 
+The Custom Fields mechanism is facilitated by the creation of a new `Field` that is stored within the `Fields` object
+that each `Person` object has.
 
 To add a custom field, the user should also provide a unique prefix for the `Field`. The prefix is parsed as a `Prefix`
 object by `AddFieldCommandParser`, and then matched with the known `Prefix` objects stored in `FieldPrefixes`.

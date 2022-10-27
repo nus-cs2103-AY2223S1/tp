@@ -76,6 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setGroups(newData.getTeamsList());
+        setTasks(newData.getTasksList());
     }
 
     //// person-level operations
@@ -187,6 +188,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the task list with {@code tasks}. {@code tasks}
+     * must not contain duplicate tasks.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setItems(tasks);
+    }
+
+    /**
      * Removes {@code task} from its group. Task must exist in address book.
      */
     public void removeTask(Task task) {
@@ -243,7 +252,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && persons.equals(((AddressBook) other).persons) && teams.equals(((AddressBook) other).teams));
+                        && persons.equals(((AddressBook) other).persons) && teams.equals(((AddressBook) other).teams)
+                        && tasks.equals(((AddressBook) other).tasks));
     }
 
     @Override

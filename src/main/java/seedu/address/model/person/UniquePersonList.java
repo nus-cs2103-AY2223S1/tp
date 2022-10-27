@@ -39,6 +39,7 @@ public class UniquePersonList extends DisplayItemList<Person> {
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
+    @Override
     public void add(Person toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -99,6 +100,7 @@ public class UniquePersonList extends DisplayItemList<Person> {
 
     /**
      * Adds a Field instance to each person in the Persons list.
+     *
      * @param fieldName the name of the field to be removed.
      */
     public void addField(String fieldName) {
@@ -107,6 +109,7 @@ public class UniquePersonList extends DisplayItemList<Person> {
 
     /**
      * Removes a Field instance from each person in the Persons list.
+     *
      * @param fieldName the name of the field to be removed.
      */
     public void removeField(String fieldName) {

@@ -17,16 +17,14 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemoveFieldCommand;
-import seedu.address.logic.commands.tasks.AddTaskCommand;
-import seedu.address.logic.commands.tasks.MarkCommand;
-import seedu.address.logic.commands.tasks.RmTaskCommand;
-import seedu.address.logic.commands.tasks.UnmarkCommand;
+import seedu.address.logic.commands.tasks.TaskCommand;
 import seedu.address.logic.commands.teams.AddTeamCommand;
 import seedu.address.logic.commands.teams.AddUserToTeamCommand;
 import seedu.address.logic.commands.teams.ChangeTeamCommand;
 import seedu.address.logic.commands.teams.DeleteTeamCommand;
 import seedu.address.logic.commands.teams.RemoveUserFromTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.tasks.TaskCommandParser;
 
 /**
  * Parses user input.
@@ -90,17 +88,8 @@ public class AddressBookParser {
         case ChangeTeamCommand.COMMAND_WORD:
             return new ChangeTeamCommandParser().parse(arguments);
 
-        case MarkCommand.COMMAND_WORD:
-            return new MarkCommandParser().parse(arguments);
-
-        case UnmarkCommand.COMMAND_WORD:
-            return new UnmarkCommandParser().parse(arguments);
-
-        case AddTaskCommand.COMMAND_WORD:
-            return new AddTaskCommandParser().parse(arguments);
-
-        case RmTaskCommand.COMMAND_WORD:
-            return new RmTaskCommandParser().parse(arguments);
+        case TaskCommand.COMMAND_WORD:
+            return new TaskCommandParser().parse(arguments);
 
         case DeleteTeamCommand.COMMAND_WORD:
             return new DeleteTeamCommandParser().parse(arguments);

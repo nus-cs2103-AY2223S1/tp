@@ -22,7 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.group.Group;
-import seedu.address.model.item.AbstractContainerItem;
+import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
@@ -174,7 +174,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateContextContainer(AbstractContainerItem container) {
+        public void updateContextContainer(AbstractSingleItem container) {
             throw new AssertionError("This method should not be called.");
 
         }
@@ -214,7 +214,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public AbstractContainerItem getContextContainer() {
+        public AbstractSingleItem getContextContainer() {
             return null;
         }
 
