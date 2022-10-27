@@ -40,7 +40,7 @@ public class EditCommand extends Command {
     public static final String MODS_PASSED_TO_EDIT = "Use [mod] commands to edit mods.";
     public static final String MESSAGE_USAGE = "Edit a batchmate's information in this manner: "
             +
-            "\nedit INDEX" + PREFIX_NAME + "NAME "
+            "\nedit INDEX " + PREFIX_NAME + "NAME "
             + PREFIX_TELEGRAM + "TELEGRAM "
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_PHONE + "PHONE] "
