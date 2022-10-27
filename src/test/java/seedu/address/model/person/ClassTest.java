@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -92,4 +93,25 @@ public class ClassTest {
         assertTrue(emptyClass.toTimeString().equals(""));
     }
 
+    @Test
+    public void constructor_autoBuildTimeString() {
+        LocalDate validDate = LocalDate.of(2022, 10, 11);
+        LocalTime validStartTime = LocalTime.of(0, 0);
+        LocalTime validEndTime = LocalTime.of(23, 59);
+        Class validClass = new Class(validDate, validStartTime, validEndTime);
+
+        assertEquals("2022-10-11 0000-2359", validClass.classDateTime);
+    }
+
+    @Test
+    public void addDaysToClassTest() {
+        LocalDate validDate = LocalDate.of(2022, 10, 11);
+        LocalTime validStartTime = LocalTime.of(0, 0);
+        LocalTime validEndTime = LocalTime.of(23, 59);
+        Class validClass = new Class(validDate, validStartTime, validEndTime);
+        Class nextClass = validClass.addDays(7);
+        Class expectedNextClass = new Class(LocalDate.of(2022, 10, 18),
+                LocalTime.of(0, 0), LocalTime.of(23, 59));
+        assertEquals(expectedNextClass, nextClass);
+    }
 }
