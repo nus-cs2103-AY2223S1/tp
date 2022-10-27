@@ -2,18 +2,23 @@ package seedu.address.model.person;
 
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class PlanTagContainsKeywordsPredicate implements Predicate<Person> {
+public class PlanTagContainsKeywordsPredicate extends FindPredicate {
     private final List<String> planTags;
-
+    /**
+     * Constructs a {@code PlanTagContainsKeywordsPredicate}.
+     *
+     * @param planTags PlanTags to be tested against.
+     */
     public PlanTagContainsKeywordsPredicate(List<String> planTags) {
-        this.planTags = planTags;
+        super(planTags);
+        this.planTags = planTags.stream().map(x -> x.toUpperCase()).collect(Collectors.toList());
     }
 
     @Override

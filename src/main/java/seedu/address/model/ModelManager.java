@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -16,6 +18,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SamePersonPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -145,6 +148,18 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPersonList(List<? extends Predicate<Person>> predicates) {
+        requireNonNull(predicates);
+        int size = predicates.size();
+        HashSet<Person> newPersons = new HashSet<>();
+        for (int i = 0; i < size; i++) {
+            FilteredList<Person> currentFilteredList = addressBook.getPersonList().filtered(predicates.get(i));
+            currentFilteredList.stream().forEach(newPersons::add);
+        }
+        filteredPersons.setPredicate(new SamePersonPredicate(newPersons));
     }
 
     @Override

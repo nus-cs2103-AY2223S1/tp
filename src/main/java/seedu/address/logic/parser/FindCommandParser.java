@@ -16,15 +16,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.FindPredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.PlanTagContainsKeywordsPredicate;
@@ -37,8 +36,8 @@ import seedu.address.model.tag.RiskTag;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
-    private static final String SPACE_REGEX = " ";
-    private static final String PLAN_REGEX = "(?<=\\s\\S{1,100})\\s";
+    private static final String SPACE_REGEX = "\\s+";
+    private static final String PLAN_REGEX = "(?<!\\G\\S+)\\s";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -46,71 +45,52 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (args.trim().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        List<Predicate<Person>> predicates = new ArrayList<>();
+        List<FindPredicate> predicates = new ArrayList<>();
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_RISKTAG,
                         PREFIX_PLANTAG, PREFIX_TAG);
 
-                String tokenizedArgs = trimmedArgs.substring(2);
-        String[] keywords = tokenizedArgs.split("\\s+");
-
-        if (!argMultimap.getPreamble().isEmpty()
-                || arePrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_INCOME, PREFIX_MONTHLY, PREFIX_EMAIL,
+        if (arePrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_INCOME, PREFIX_MONTHLY, PREFIX_EMAIL,
                 PREFIX_APPOINTMENT_DATE, PREFIX_APPOINTMENT_LOCATION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            List<Name> names = ParserUtil.parseAllSpaceSeparatedNames(argMultimap.getAllValuesSeparatedByRegex(PREFIX_NAME, SPACE_REGEX));
-            predicates.add(new NameContainsKeywordsPredicate(names.stream().map(x -> x.toString()).collect(Collectors.toList())));
+            List<Name> names = ParserUtil.parseAllSpaceSeparatedNames(argMultimap
+                    .getAllValuesSeparatedByRegex(PREFIX_NAME, SPACE_REGEX));
+            predicates.add(new NameContainsKeywordsPredicate(names.stream()
+                    .map(x -> x.toString()).collect(Collectors.toList())));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            List<Phone> phones = ParserUtil.parseAllSpaceSeparatedPhone(argMultimap.getAllValuesSeparatedByRegex(PREFIX_PHONE, SPACE_REGEX));
-            predicates.add(new PhoneContainsKeywordsPredicate(phones.stream().map(x -> x.toString()).collect(Collectors.toList())));
+            List<Phone> phones = ParserUtil.parseAllSpaceSeparatedPhone(argMultimap
+                    .getAllValuesSeparatedByRegex(PREFIX_PHONE, SPACE_REGEX));
+            predicates.add(new PhoneContainsKeywordsPredicate(phones.stream()
+                    .map(x -> x.toString()).collect(Collectors.toList())));
         }
         if (argMultimap.getValue(PREFIX_RISKTAG).isPresent()) {
-            List<RiskTag> riskTags = ParserUtil.parseAllSpaceSeparatedRiskTag(argMultimap.getAllValuesSeparatedByRegex(PREFIX_RISKTAG, SPACE_REGEX));
-            predicates.add(new RiskTagContainsKeywordsPredicate(riskTags.stream().map(x -> x.tagName).collect(Collectors.toList())));
+            List<RiskTag> riskTags = ParserUtil.parseAllSpaceSeparatedRiskTag(argMultimap
+                    .getAllValuesSeparatedByRegex(PREFIX_RISKTAG, SPACE_REGEX));
+            predicates.add(new RiskTagContainsKeywordsPredicate(riskTags.stream()
+                    .map(x -> x.tagName).collect(Collectors.toList())));
         }
         if (argMultimap.getValue(PREFIX_PLANTAG).isPresent()) {
-            List<PlanTag> planTags = ParserUtil.parseAllSpaceSeparatedPlanTags(argMultimap.getAllValuesSeparatedByRegex(PREFIX_PLANTAG, SPACE_REGEX));
-            predicates.add(new PlanTagContainsKeywordsPredicate(planTags.stream().map(x -> x.toString()).collect(Collectors.toList())));
+            List<PlanTag> planTags = ParserUtil.parseAllSpaceSeparatedPlanTags(argMultimap
+                    .getAllValuesSeparatedByRegex(PREFIX_PLANTAG, PLAN_REGEX));
+            predicates.add(new PlanTagContainsKeywordsPredicate(planTags.stream()
+                    .map(x -> x.tagName).collect(Collectors.toList())));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            List<NormalTag> normalTags = ParserUtil.parseAllSpaceSeparatedNormalTags(argMultimap.getAllValuesSeparatedByRegex(PREFIX_TAG, SPACE_REGEX));
-            predicates.add(new NormalTagContainsKeywordsPredicate(normalTags.stream().map(x -> x.toString()).collect(Collectors.toList())));
+            List<NormalTag> normalTags = ParserUtil.parseAllSpaceSeparatedNormalTags(argMultimap
+                    .getAllValuesSeparatedByRegex(PREFIX_TAG, SPACE_REGEX));
+            predicates.add(new NormalTagContainsKeywordsPredicate(normalTags.stream()
+                    .map(x -> x.tagName).collect(Collectors.toList())));
         }
 
         return new FindCommand(predicates);
-
-//        // 2 because all except PREFIX_PLANTAG has a prefix of length 2
-//        String tokenizedArgs = trimmedArgs.substring(2);
-//        String[] keywords = tokenizedArgs.split("\\s+");
-//
-//        if (trimmedArgs.startsWith(PREFIX_RISKTAG.getPrefix())) {
-//            checkIfRiskTag(keywords);
-//            return new FindCommand(new RiskTagContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        } else if (trimmedArgs.startsWith(PREFIX_TAG.getPrefix())) {
-//            return new FindCommand(new NormalTagContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        } else if (trimmedArgs.startsWith(PREFIX_NAME.getPrefix())) {
-//            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        } else if (trimmedArgs.startsWith(PREFIX_PHONE.getPrefix())) {
-//            return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        } else if (trimmedArgs.startsWith(PREFIX_PLANTAG.getPrefix())) {
-//            String planTag = trimmedArgs.substring(3);
-//            // since all planTag has a space and ends with Plan, we split the input every second space.
-//            // planTag - Savings Plan.
-//            String[] tags = planTag.split("(?<=\\s\\S{1,100})\\s");
-//            return new FindCommand(new PlanTagContainsKeywordsPredicate(Arrays.asList(tags)));
-//        } else {
-//            throw new ParseException(
-//                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Please enter a prefix before the KEYWORDs."));
-//        }
     }
 
     private void checkIfRiskTag(String[] tags) throws ParseException {

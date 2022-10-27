@@ -323,7 +323,8 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> planTags} into a {@code List<planTags>}.
      */
-    public static List<NormalTag> parseAllSpaceSeparatedNormalTags(Collection<String> normalTags) throws ParseException {
+    public static List<NormalTag> parseAllSpaceSeparatedNormalTags(Collection<String> normalTags)
+            throws ParseException {
         requireNonNull(normalTags);
         final List<NormalTag> normalTagList = new ArrayList<>();
         for (String normalTag: normalTags) {
