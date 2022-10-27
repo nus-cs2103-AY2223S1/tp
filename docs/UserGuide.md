@@ -20,11 +20,11 @@ internship management tasks done faster than traditional GUI apps.
 
 3. Copy the file to the folder you want to use as the _home folder_ for InTrack.
 
-4. Launch the app by double-clicking the file by using the command java -jar InTrack.jar. The GUI similar to the below 
+4. Launch the app by double-clicking the file by using the command java -jar InTrack.jar. The GUI similar to the below
    should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
@@ -38,7 +38,7 @@ internship management tasks done faster than traditional GUI apps.
    * **`clear`** : Deletes all entries in InTrack.
 
    * **`exit`** : Exits InTrack.
-   
+
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ Format: `clear`
 
 ### Saving the data
 
-InTrack data are saved in the hard disk automatically after any command that changes the data. 
+InTrack data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 ### Adding an internship application: `add`
@@ -103,7 +103,7 @@ Format: `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 
 There is no option to add status when adding an internship application.
 
-By default, an added internship will have the status of in-progress. To change this, you may refer to the 
+By default, an added internship will have the status of in-progress. To change this, you may refer to the
 [`status` command](https://github.com/AY2223S1-CS2103T-T11-2/tp/blob/master/docs/UserGuide.md#updating-status-of-an-internship-application--status).
 
 </div>
@@ -115,7 +115,7 @@ By default, an added internship will have the status of in-progress. To change t
 An internship application can only be added if it does not currently exist in InTrack. Each internship application is
 uniquely identified by its `COMPANY_NAME` and `POSITION` with no regards to case-sensitivity.<br>
 
-Example: If an internship application with the parameters `n/Microsoft p/Software Engineer` already exists in InTrack, 
+Example: If an internship application with the parameters `n/Microsoft p/Software Engineer` already exists in InTrack,
 a new one with `n/MICROSOFT p/Software Engineer` will be treated as a duplicate and will not be added.
 
 </div>
@@ -141,15 +141,15 @@ Expected outcome:
 
 ### Deleting an internship application : `delete`
 
-Deletes the internship application at the specified `INDEX` from InTrack. 
-`INDEX` refers to the index number of the desired entry as shown in the displayed internship list, and **must be a 
+Deletes the internship application at the specified `INDEX` from InTrack.
+`INDEX` refers to the index number of the desired entry as shown in the displayed internship list, and **must be a
 positive unsigned integer**.
 
 Format: `delete INDEX`
 
 Example of usage:
 
-* `delete 1` 
+* `delete 1`
 
 Expected outcome:
 
@@ -157,7 +157,7 @@ Expected outcome:
 
 ### Editing an internship application : `edit`
 
-Edits the details of the currently selected internship application. 
+Edits the details of the currently selected internship application.
 
 <div markdown="block" class="alert alert-info">
 
@@ -188,9 +188,9 @@ Examples of usage:
 
 Expected outcome:
 
-* Edits the fields of the selected entry to match that in the input, such that the name of the company changes to 
-Google, the position changes to Data Analyst, the email changes to google@gmail.com, the website changes to 
-https://google.com, the tags are changed to just URGENT, the remark becomes "Gather study resources" and the salary 
+* Edits the fields of the selected entry to match that in the input, such that the name of the company changes to
+Google, the position changes to Data Analyst, the email changes to google@gmail.com, the website changes to
+https://google.com, the tags are changed to just URGENT, the remark becomes "Gather study resources" and the salary
 becomes $1000.
 * Edits the position field of the selected entry to become SWE. All other details of the entry remain unchanged.
 
@@ -217,7 +217,7 @@ Adds a `remark` to the internship application at the specified `INDEX` from InTr
 
 Format: `remark INDEX [r/REMARK]`
 
-* If the `REMARK` field in the command is empty and there is an existing remark in the internship application, the 
+* If the `REMARK` field in the command is empty and there is an existing remark in the internship application, the
 remark will be cleared.
 
 Example of usage:
@@ -282,7 +282,7 @@ Format: findt KEYWORD [MORE_KEYWORDS]
 * Only full words will be matched. E.g. `Remote` will not match `Remotely`
 * Internship applications with tags matching at least one keyword will be returned.
 
-Example of usage: 
+Example of usage:
 * `findt urgent`
 
 Expected outcome:
@@ -291,7 +291,7 @@ Expected outcome:
 ### Filtering internship applications by status : `filter`
 
 Filters the list of internship applications based on their status, using `p` for "Progress", `r` for "Rejected" and
-`o` for "Offered". 
+`o` for "Offered".
 
 Format: `filter STATUS`, where `STATUS` must be either `p`, `o` or `r`
 
@@ -303,7 +303,7 @@ Expected outcome:
 
 ### Sorting internship applications: `sort`
 
-Sorts the list of internship applications on the left panel by the time of their tasks or by their salaries 
+Sorts the list of internship applications on the left panel by the time of their tasks or by their salaries
 via their `ORDERTYPE` which is either `time` or `salary`, in either ascending or descending `ORDER`.
 Format: `sort ORDERTYPE ORDER`
 
@@ -313,15 +313,15 @@ into consideration.
 as the factor in sorting, if there aren't any, the date of the task with  the
 earliest date will be used instead for that internship.
 * `sort time a`  will sort all internships in an ascending manner, with the
-internship with the task that has the earliest date and time that is on or after the current time at the top. 
-* If an internship only has one task however, only that task's date and time is taken into consideration, so even if 
+internship with the task that has the earliest date and time that is on or after the current time at the top.
+* If an internship only has one task however, only that task's date and time is taken into consideration, so even if
 that task is before the current date but has the earliest date and time, it will still be at the top.
 * `sort time d`  will sort all internships in a descending manner, with the
     internship with the task that has the earliest date and time that is on or after the current time at the bottom.
 * If an internship only has one task however, only that task's date and time is taken into consideration, so even if
   that task is before the current date but has the earliest date and time, it will still be at the bottom.
 * If there is one or more internships without any tasks in the list, the list cannot be sorted.
-* For sorting by of their salaries, internships are just sorted by the value of their salaries. 
+* For sorting by of their salaries, internships are just sorted by the value of their salaries.
 
 
 Example of usage:
@@ -345,7 +345,7 @@ with the internship with the lowest salary at the top.
 
 ### Viewing statistics of internship applications : `stats`
 
-Displays statistics of the current list of internship applications based on the number of offered, in progress and 
+Displays statistics of the current list of internship applications based on the number of offered, in progress and
 rejected applications.
 
 Format: `stats`
@@ -415,7 +415,7 @@ Expected outcome:
 Deletes one or more existing `Tag`s from the internship application at the specified `INDEX` from InTrack.
 `INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
 
-Format: `deltag INDEX TAG [MORE_TAGS]` 
+Format: `deltag INDEX TAG [MORE_TAGS]`
 
 * Apart from the standard format, the user can also input `deltag INDEX clear` to clear all tags in the internship
 application with the selected `INDEX`.

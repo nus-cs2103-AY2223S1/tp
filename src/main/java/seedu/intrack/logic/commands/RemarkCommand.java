@@ -20,11 +20,11 @@ public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "remark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the selected internship application "
+            + ": Edits the remark of the selected internship application. "
             + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive unsigned integer) "
+            + "Parameters: "
             + PREFIX_REMARK + "[REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_REMARK + "Revise Graphs";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to internship application: \n%1$s";

@@ -14,10 +14,10 @@ public class SortTimeCommand extends SortCommand {
             + "\"d\" to denote Descending.";
 
     public static final String MESSAGE_SUCCESS_A =
-            "Sorted all internships applications of by their upcoming tasks in ascending order";
+            "Sorted all internships applications by their upcoming tasks in ascending order.";
 
     public static final String MESSAGE_SUCCESS_D =
-            "Sorted all internships applications of by their upcoming tasks in descending order";
+            "Sorted all internships applications by their upcoming tasks in descending order.";
 
     private final String orderType;
 
