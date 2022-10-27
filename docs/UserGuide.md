@@ -77,7 +77,7 @@ Format: `listo`
 
 ### Locating orders by keyword: `findo`
 
-Finds order with item names containing any of the given keywords.
+Finds an order with item names containing any of the given keywords.
 
 Format: `findo KEYWORD [MORE_KEYWORDS]`
 
@@ -98,14 +98,14 @@ Sorts the displayed list of orders by the time at which they were created.
 
 Format: `sorto new` or `sorto old`
 
-* The keyword `new` and `old` are case-insensitive.
-* `sorto new` sorts the order list such that newest orders are at the top
-* `sorto old` sorts the order list such that oldest orders are at the top
+* The keywords `new` and `old` are case-insensitive.
+* `sorto new` sorts the order list such that the newest orders are at the top.
+* `sorto old` sorts the order list such that the oldest orders are at the top.
 
 Examples:
-* `listo` followed by `sorto old` sorts all orders such that oldest orders are at the top
-* `findo Chair` followed by `sorto new` sorts all orders found using `findo Chair` such that newest orders are at the 
-top
+* `listo` followed by `sorto old` sorts all orders such that oldest orders are at the top.
+* `findo Chair` followed by `sorto new` sorts all orders found using `findo Chair` such that newest orders are at the
+top.
 
 
 ### Deleting an order: `deleteo`
