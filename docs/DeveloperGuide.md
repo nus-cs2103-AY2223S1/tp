@@ -95,8 +95,8 @@ Detailed implementation of the `AddCommandPopupWindow` is written [here](#pop-up
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
-Furthermore, the `MainWindow` has different list panels such as `BuyerListPanel` and `PetListPanel` as shown below.
-List panels are used to fill the `MainWindow` for display. Which list panel is displayed depends on the input `Command`.
+Furthermore, the `MainWindow` can be filled by **one** List panels, such as `BuyerListPanel` and `PetListPanel`, for display. 
+Which list panel is displayed depends on the input `Command`.
 Each list panel can have any number of the corresponding card. For example, `BuyerListPanel` can have any number
 of `BuyerCard`.
 All the list panels and cards inherit from the abstract `UiPart`, but **not shown** in the diagram below to reduce graph
@@ -107,9 +107,9 @@ Detailed implementation of the list panel can be found [here](#display-of-person
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -339,7 +339,7 @@ concatenating. `List` facilitates fast in-place edit of a single `char` at a sin
 
 ### Display of person list
 
-#### Problems with the old UI and areas for improvements
+#### 1. Motivation
 
 Given below is a partial class diagram of the **old UI**.
 
@@ -356,7 +356,7 @@ helpful in helping the user obtain information quickly.
 Therefore, the UI needs to be **optimised for the situation where there is plentiful information** that the user wants
 to know about a single `Person`.
 
-#### Implementation of the new UI
+#### 2. Implementation of the new UI
 
 In the implementation as seen in the diagram below, the `MainWindow` can be filled by any one of the followings
 depending on the `Command` executed:
@@ -396,7 +396,7 @@ height of each card within a reasonable range
 (e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched
 vertically, potentially to an extent that the whole window can only show information of one single buyer).
 
-#### Alternatives considered
+#### 3. Alternatives considered
 
 * **Alternative 1 (current choice):** Has only one display window and displays items (`Order` or `Pet`) together with
   the person.
@@ -408,16 +408,57 @@ vertically, potentially to an extent that the whole window can only show informa
 
 ### Pop-up window for add command
 
+#### 1. Motivation
+
+If the user wants to add a `Buyer` with multiple `Order`, or add a `Supplier` with multiple `Pet`, there will be repetitive entering of a lot of prefixes.
+The user need to memorise the prefixes for each attribute of the person or item, and they may get lost when entering such a long command line.
+
+Therefore, we recognise the need for a pop-up window for adding a `Person` (`Buyer` or `Supplier` for the current version),
+which has text fields that **prompt** the user to enter the required information **without prefixes**.
+
+#### 2. Implementation of the pop-up window
+
+Given below is the partial class diagram of `Ui` component related to `AddCommandPopupWindow`.
+
+<img src="images/PopupWindow.png" width="600" height="600"/>
+
+The `AddCommandPopupWindow` is made up of either `PopupWindowForBuyer` or `PopupWindowForSupplier`, depending on the type of `Person` that the user wants to add.
+`PopupWindowForBuyer` can have any number of `PopupWindowForOrder`, while `PopupWindowForSupplier` can have any number of `PopupWindowForPet`.
+All the pop-up panels inherit from an abstract class `PopupPanel`, which captures the commonalities between classes that represent parts of the content in pop-up window.
+
+Each subclass of `PopupPanel` can generate a `Command` based on the attributes specified in some classes of the `Model` component. Therefore, it has a dependency on the `Model` component.
+The `Command` is then passed to `AddCommandPopupWindow`, which keeps a reference to `Logic` for the execution of the given `Command`, and a reference to `ResultDisplay` for the display of `CommandResult` in the `MainWindow`.
+
+Given below is the sequence diagram showing how the command line `add supplier` is executed with the pop-up window.
+
+(Image placeholder)
+
+To cater to people who can type fast, keyboard shortcuts are included in the pop-up window.
+For example, pressing `ESC` closes the pop-up window without saving, while pressing `CTRL + S` saves the user input and closes the pop-up window.
+This is achieved using `EventHandler`, `EventFilter` and `KeyCodeCombination` of JavaFX.
+
+The following activity diagram summarises how the UI respond to an add command with the pop-up window.
+
+(Image placeholder)
+
+#### 3. Alternatives considered
+* **Alternative 1 (current choice):** Has a separate pop-up window when a `Command` in the form similar to `add supplier` is entered by the user, with multiple text fields that contain prompt text for the user to input.
+  * Pros: Recognition rather than recall, reducing the users' memorisation work
+  * Cons: Hard to implement, less CLI in nature
+* **Alternative 2 (also implemented):** Has a `Command` that can add a `Person` with multiple `Order`/`Pet` by prefixes in the `CommandBox` (single text field, no prompt text) of the `MainWndow`.
+  * Pros: Easy to implement, more CLI in nature.
+  * Cons: Tedious when entering the `Command`, a lot of memorisation work to remember the prefixes.
+
 ### The match function
 
-#### Motivation
+#### 1. Motivation
 
 At times, user needs to find out which pet for sale is the best fit for an order placed by a buyer. Then there comes the
 question, how to measure the similarity between an order request and a pet?
 In an order, the buyer can specify the age of pet he/she wants, the acceptable price interval, and so forth. We
 intentionally set up the same fields in the `Pet` class just to allow comparison between orders and pets.
 
-#### The score system
+#### 2. Implementation of the score system
 
 We use a score to describe how close is a pet to an order. As shown below, the total score `S` is the sum of `n`
 sub-scores.
@@ -440,7 +481,7 @@ On the other hand, we use deviation indicators and low weight for continuous fac
 just falls in the expected price range of an order, then the indicator is 1. Otherwise, the indicator depends on how far
 the pet's price is away from the range.
 
-#### Sample calculation
+#### 3. Sample calculation
 
 | Field         | Pet         | Order       | Indicator        | Weight | Sub-score      |
 |---------------|-------------|-------------|------------------|--------|----------------|
@@ -452,12 +493,12 @@ the pet's price is away from the range.
 
 So the total score for this pet is 0 + 0 + 0 + 80 - 39 = 41.
 
-#### Sorting
+#### 4. Sorting
 
 Next, given an order, we calculate the score of all pets against this order and sort these pets in descending order. The
 pets at the top are likely to be the best fit.
 
-#### Comments and reflection
+#### 5. Comments and reflection
 
 At this stage, the weights are pre-set and fixed, so the formula might not truly reflect how important each field is in
 a buyer's or a sale coordinator's perspective. Different buyers and sale coordinators might have different views as
