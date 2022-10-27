@@ -243,7 +243,7 @@ Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
 * `MODULE` has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed. 
 * `EXAM_DESCRIPTION` should not be empty. Otherwise, an error message will be displayed to the user. 
 * `EXAM_DATE` must be in the format `DD-MM-YYYY`, otherwise an error message will be shown. For example, 2022-12-28, 20-13-2022 are not in `DD-MM-YYYY` format
-* `EXAM_Date` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is a past date if the current date is 26-10-2022.
+* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is a past date if the current date is 26-10-2022.
 
 Examples:
 `e add m/cs2030s ex/midterms ed/20-11-2022` adds the exam with the exam module as 'cs2030s',
@@ -265,7 +265,7 @@ Format: `e edit INDEX (must be a positive integer) [m/MODULE]* [ex/EXAM_DESCRIPT
 * `MODULE` has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
 * `EXAM_DESCRIPTION` should not be empty. Otherwise, an error message will be displayed to the user. 
 * `EXAM_DATE` must be in the format `DD-MM-YYYY`, otherwise an error message will be shown. For example, 2022-12-28, 20-13-2022 are not in `DD-MM-YYYY` format
-* `EXAM_Date` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is a past date if the current date is 26-10-2022.
+* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is a past date if the current date is 26-10-2022.
 Examples:
 
 `e edit 1 ex/finals ed/20-12-2022` changes the exam description of the first exam in the exam list to ‘finals’ and the exam date to ‘20-12-2022’.
