@@ -42,6 +42,30 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 
 ## Modules-related Features
 
+### Listing Modules
+Lists modules stored in module list
+
+Format: `m list`
+* Displays tasks that are stored in the module list
+
+Example:
+
+`m list` displays modules that are stored in the module list
+
+### Finding module(s)
+Finds modules stored in the module list by the module code.
+
+Format: `m find KEYWORD`
+* Finds all modules whose module code contains the keyword inputted by the user partially or fully and displays them as a list.
+* The keyword is case-insensitive. For example, one can find a module with the module code of 'cs2030s' even if the keyword inputted is ‘CS2030S’
+
+Examples:
+
+`m find cs` finds modules whose module code contains the keyword 'cs' such as 'cs2030s', 'cs2040s'
+`m find 30` finds modules whose module code contains the keyword '30' such as 'cs2030s'
+
+
+
 ## Tasks-related Features
 
 ### Adding task functions [Coming Soon in v1.2]
@@ -71,16 +95,6 @@ Examples:
 
 `tag CS2103T Quiz /p low` tags CS2103T Quiz as low priority task to complete
 
-
-### List [Coming Soon in v1.2]
-List tasks stored in task list
-
-Format: `list`
-* Display tasks that are stored in the task list
-
-Examples:
-
-`list` displays tasks that are stored in the task list
 
 ### Editing a task
 Edits the specified task, by updating the existing values to the input values.
@@ -135,6 +149,17 @@ Examples:
 :bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module. 
 </div>
 
+### Listing Tasks
+Lists tasks stored in task list
+
+Format: `t list`
+* Displays tasks that are stored in the task list
+
+Example:
+
+`t list` displays tasks that are stored in the task list
+
+
 ### Deleting task function [Coming Soon in v1.2]
 Deletes the specified task according to the index given
 
@@ -152,19 +177,55 @@ Examples:
 `delete 3` deletes the first task in the task list
 
 
-### Find tasks
-Find tasks stored in the task list by the task's description.
-Format: t find KEYWORD
-- Find all tasks whose task description contains the keyword inputted by the user partially or fully and displays them as a list.
-- The keyword is case insensitive. For example, one can find a task with the task description of 'homework1' even if the keyword inputted is ‘HOMEWORK1’
+### Finding task(s)
+Finds tasks stored in the task list by the task's description.
+
+Format: `t find KEYWORD`
+* Finds all tasks whose task description contains the keyword inputted by the user partially or fully and displays them as a list.
+* The keyword is case-insensitive. For example, one can find a task with the task description of 'homework1' even if the keyword inputted is ‘HOMEWORK1’
 
 Examples:
-t find work displays homework1 homework2 worktodo
-t find do paper displays do paper 1 do paper 2
+
+`t find work` finds tasks that contain the keyword 'work' such as 'homework1', 'homework2', 'worktodo'
+
+`t find do paper` finds tasks that contain the keyword 'do paper', such as 'do paper 1', 'do paper 2'
 
 
 --------------------------------------------------------------------------------------------------------------------
 ## Exams-related Features
+##Adding exam
+Adds exam into exam list. 
+
+Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
+
+* Adds an exam to the exam list.
+- MODULE refers to the module of the exam
+- The exam cannot be added if it is the same exam as an existing exam in the exam list. 
+ Otherwise, an error message will be displayed.
+
+Examples:
+`e add m/cs2030s ex/midterms ed/20-11-2022` adds the exam with the exam module as 'cs2030s',
+exam description as 'midterms', exam date as '20-11-2022' into the exam list. 
+
+
+##Editing Exam
+Edits the specified exam by updating the existing values to the input values.
+   
+Format: `e edit INDEX (must be a positive integer) [m/MODULE] [ex/EXAM DESCRIPTION] [ed/EXAM DATE]`
+- Edits the exam at the specified INDEX in the exam list.
+- The index must be a positive integer 1, 2, 3, …
+- If the index is a non-positive or more than the number of exams in the exam list, an error message will be displayed.
+- The exam cannot be edited if it is the same exam as an existing exam in the exam list. An error message will be displayed to inform the user that the exam already exists in the exam list.
+- At least one field of the exam to edit must be provided. Otherwise, an error message will be shown.
+- If one wants to edit the module of the exam, and the exam is linked to some tasks, the tasks would be unlinked to the exam. 
+  The tasks cannot be linked to the exam as the tasks have a different module code from the exam.
+
+Examples:
+
+`e edit 1 ex/finals ed/20-12-2022` changes the exam description of the first exam in the exam list to ‘finals’ and the exam date to ‘20-12-2022’.
+
+`e edit 2 m/cs2030s ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘cs2030s’ and the exam date as ‘22-12-2022’.
+
 
 ## Other Features
 
