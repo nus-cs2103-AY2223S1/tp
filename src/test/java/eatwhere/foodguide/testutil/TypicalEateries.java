@@ -6,8 +6,8 @@ import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_CUISINE_AM
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_CUISINE_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -25,33 +25,33 @@ public class TypicalEateries {
 
     public static final Eatery ALICE = new EateryBuilder().withName("Alice Pauline")
             .withLocation("123, Jurong West Ave 6, #08-111").withCuisine("aliceexamplecom")
-            .withPhone("94351253")
+            .withPrice("$")
             .withTags("friends").build();
     public static final Eatery BENSON = new EateryBuilder().withName("Benson Meier")
             .withLocation("311, Clementi Ave 2, #02-25")
-            .withCuisine("johndexamplecom").withPhone("98765432")
+            .withCuisine("johndexamplecom").withPrice("$$")
             .withTags("owesMoney", "friends").build();
-    public static final Eatery CARL = new EateryBuilder().withName("Carl Kurz").withPhone("95352563")
+    public static final Eatery CARL = new EateryBuilder().withName("Carl Kurz").withPrice("$$$")
             .withCuisine("heinzexamplecom").withLocation("wall street").build();
-    public static final Eatery DANIEL = new EateryBuilder().withName("Daniel Meier").withPhone("87652533")
+    public static final Eatery DANIEL = new EateryBuilder().withName("Daniel Meier").withPrice("$")
             .withCuisine("corneliaexamplecom").withLocation("10th street").withTags("friends").build();
-    public static final Eatery ELLE = new EateryBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Eatery ELLE = new EateryBuilder().withName("Elle Meyer").withPrice("$$")
             .withCuisine("wernerexamplecom").withLocation("michegan ave").build();
-    public static final Eatery FIONA = new EateryBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Eatery FIONA = new EateryBuilder().withName("Fiona Kunz").withPrice("$$$")
             .withCuisine("lydiaexamplecom").withLocation("little tokyo").build();
-    public static final Eatery GEORGE = new EateryBuilder().withName("George Best").withPhone("9482442")
+    public static final Eatery GEORGE = new EateryBuilder().withName("George Best").withPrice("$")
             .withCuisine("annaexamplecom").withLocation("4th street").build();
 
     // Manually added
-    public static final Eatery HOON = new EateryBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Eatery HOON = new EateryBuilder().withName("Hoon Meier").withPrice("$$")
             .withCuisine("stefanexamplecom").withLocation("little india").build();
-    public static final Eatery IDA = new EateryBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Eatery IDA = new EateryBuilder().withName("Ida Mueller").withPrice("$$$")
             .withCuisine("hansexamplecom").withLocation("chicago ave").build();
 
     // Manually added - Eatery's details found in {@code CommandTestUtil}
-    public static final Eatery AMY = new EateryBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+    public static final Eatery AMY = new EateryBuilder().withName(VALID_NAME_AMY).withPrice(VALID_PRICE_AMY)
             .withCuisine(VALID_CUISINE_AMY).withLocation(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Eatery BOB = new EateryBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Eatery BOB = new EateryBuilder().withName(VALID_NAME_BOB).withPrice(VALID_PRICE_BOB)
             .withCuisine(VALID_CUISINE_BOB).withLocation(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
