@@ -44,7 +44,7 @@ public class Module implements Comparable<Module> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Module // instanceof handles nulls
-                && fullName.equals(((Module) other).fullName)); // state check
+                && fullName.equalsIgnoreCase(((Module) other).fullName)); // state check
     }
 
     @Override

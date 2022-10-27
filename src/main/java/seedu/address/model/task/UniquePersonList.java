@@ -20,7 +20,7 @@ import seedu.address.model.task.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Task#isSamePerson(Task)
+ * @see Task#isSameTask(Task)
  */
 public class UniquePersonList implements Iterable<Task> {
 
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Task> {
      */
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameTask);
     }
 
     /**
@@ -62,7 +62,7 @@ public class UniquePersonList implements Iterable<Task> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedTask) && contains(editedTask)) {
+        if (!target.isSameTask(editedTask) && contains(editedTask)) {
             throw new DuplicatePersonException();
         }
 
@@ -131,7 +131,7 @@ public class UniquePersonList implements Iterable<Task> {
     private boolean personsAreUnique(List<Task> tasks) {
         for (int i = 0; i < tasks.size() - 1; i++) {
             for (int j = i + 1; j < tasks.size(); j++) {
-                if (tasks.get(i).isSamePerson(tasks.get(j))) {
+                if (tasks.get(i).isSameTask(tasks.get(j))) {
                     return false;
                 }
             }

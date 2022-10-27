@@ -78,7 +78,8 @@ Format: `help`
 
 ### Adding a task: `add`
 
-Adds a task to the task list.
+Adds a task to the task list. However, if you try to add in a task with the same name and module as an existing task,
+we will inform you that such a task already exists within the task tracker.
 
 Format: `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
 * `TASK_NAME` can contain spaces
