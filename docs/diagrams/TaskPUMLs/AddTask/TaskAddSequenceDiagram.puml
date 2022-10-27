@@ -4,7 +4,6 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
-participant ":AddTaskCommandParser" as AddTaskCommandParser LOGIC_COLOR
 participant "a:AddTaskCommand" as AddTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 
@@ -18,39 +17,27 @@ participant ":TaskList" as TaskList MODEL_COLOR
 participant ":ModuleList" as ModuleList MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add -t Assignment 1 -c CS2103T")
+[-> LogicManager : execute("add task Assignment 1 -c CS2103T")
 activate LogicManager
 
-LogicManager -> ModtrektParser : parseCommand("add -t Assignment 1 -c CS2103T")
+LogicManager -> ModtrektParser : parseCommand("add task Assignment 1 -c CS2103T")
 activate ModtrektParser
 
-create AddTaskCommandParser
-ModtrektParser -> AddTaskCommandParser
-activate AddTaskCommandParser
-
-AddTaskCommandParser --> ModtrektParser
-
-ModtrektParser -> AddTaskCommandParser : parse("Assignment 1 -c CS2103T")
-
-create Task
-AddTaskCommandParser -> Task : Task()
-activate Task
-
-Task --> AddTaskCommandParser : task
-deactivate Task
-
 create AddTaskCommand
-AddTaskCommandParser -> AddTaskCommand : AddTaskCommand(task)
+ModtrektParser -> AddTaskCommand
 activate AddTaskCommand
 
-AddTaskCommand --> AddTaskCommandParser : a
-deactivate AddTaskCommand
+create Task
+AddTaskCommand -> Task : Task()
+activate Task
 
-AddTaskCommandParser --> ModtrektParser : a
-deactivate AddTaskCommandParser
+Task --> AddTaskCommand : task
+deactivate Task
+
+
+AddTaskCommand --> ModtrektParser : a
+deactivate AddTaskCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddTaskCommandParser -[hidden]-> ModtrektParser
-destroy AddTaskCommandParser
 
 ModtrektParser --> LogicManager : a
 deactivate ModtrektParser
