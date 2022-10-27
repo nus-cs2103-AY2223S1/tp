@@ -34,15 +34,18 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] nameKeywords;
 
         if (argMultimap.getValue(PREFIX_ASSIGNMENT).isPresent()) {
+            nameKeywords = argMultimap.getValue(PREFIX_ASSIGNMENT).get().split("\\s+");
             return new FilterCommand(new AssignmentContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
+            nameKeywords = argMultimap.getValue(PREFIX_MODULE).get().split("\\s+");
             return new FilterCommand(new ModuleContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            nameKeywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
             return new FilterCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
             throw new ParseException(
