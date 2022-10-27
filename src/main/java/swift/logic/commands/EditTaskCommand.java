@@ -37,11 +37,11 @@ public class EditTaskCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-        + "[" + PREFIX_DEADLINE + "DEADLINE] "
+        + "[" + PREFIX_DEADLINE + "DEADLINE] (must be in dd-MM-yyyy HHmm format)\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_NAME + "Finish Assignment "
-        + PREFIX_DESCRIPTION + "Write your name "
-        + PREFIX_DEADLINE + "12/12/2022 1800";
+        + PREFIX_DESCRIPTION + "CS1231 "
+        + PREFIX_DEADLINE + "12-12-2022 1800";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

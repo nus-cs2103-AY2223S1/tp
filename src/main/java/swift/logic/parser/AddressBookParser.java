@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import swift.logic.commands.AddContactCommand;
 import swift.logic.commands.AddTaskCommand;
+import swift.logic.commands.AssignCommand;
 import swift.logic.commands.ClearCommand;
 import swift.logic.commands.Command;
 import swift.logic.commands.DeleteContactCommand;
@@ -83,6 +84,8 @@ public class AddressBookParser {
             return new MarkTaskCommandParser().parse(arguments);
         case UnmarkTaskCommand.COMMAND_WORD:
             return new UnmarkTaskCommandParser().parse(arguments);
+        case AssignCommand.COMMAND_WORD:
+            return new AssignCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:

@@ -39,6 +39,8 @@ public class MainWindow extends UiPart<Stage> {
     private TaskPersonListPanel taskPersonListPanel;
     private HelpWindow helpWindow;
 
+    private boolean isContactTabShown;
+
     @FXML
     private StackPane listPanelPlaceholder;
 
@@ -76,6 +78,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        isContactTabShown = true;
     }
 
     public Stage getPrimaryStage() {
@@ -250,6 +254,17 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Refreshes the current view.
+     */
+    public void refreshTab() {
+        if (isContactTabShown) {
+            showContactTab();
+        } else {
+            showTaskTab();
+        }
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see swift.logic.Logic#execute(String)
@@ -270,9 +285,22 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case CONTACTS:
                 showContactTab();
+                isContactTabShown = true;
                 break;
             case TASKS:
                 showTaskTab();
+                isContactTabShown = false;
+                break;
+            case ASSIGN:
+                refreshTab();
+                break;
+            case SELECT_CONTACT:
+                showContactTab();
+                showAssignedTasks();
+                break;
+            case SELECT_TASK:
+                showTaskTab();
+                showAssignedContacts();
                 break;
             case SELECT_CONTACT:
                 showContactTab();
