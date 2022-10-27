@@ -42,6 +42,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpTable.setImage(getImage(HELP_TABLE));
+        helpTable.setFitHeight(540);
         helpMessage.setText(HELP_MESSAGE);
     }
 
