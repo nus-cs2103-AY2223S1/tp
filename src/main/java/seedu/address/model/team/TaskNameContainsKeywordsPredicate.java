@@ -29,5 +29,4 @@ public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
                 && keywords.equals(((TaskNameContainsKeywordsPredicate) other).keywords)); // state check
     }
 
-
 }

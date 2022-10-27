@@ -286,24 +286,24 @@ Examples:
 
 - `delete link 1`
 
-### Find members : `find_member`
+### Find members : `find member`
 Finds all members in the current team by name or by email and displays them in the member list.
 
 Format:
-* `find_member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
+* `find member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
 
 Examples
-* `find_member -n Alex`
-* `find_member -e alexyeoh`
+* `find member -n Alex`
+* `find member -e alexyeoh`
 
-### Find tasks : `find_task`
+### Find tasks : `find task`
 Find all tasks in the current team by name and displays them in the task list.
 
 Format:
-* `find_task -n TASK_NAME`
+* `find task -n TASK_NAME`
 
 Examples
-* `find_task -n User Guide`
+* `find task -n User Guide`
 
 ### Clearing all entries : `clear`
 

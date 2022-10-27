@@ -26,8 +26,6 @@ public class DisplayList<T> {
         sorted.setComparator(comparator);
     }
 
-
-
     /**
      * Filters the with the given {@code Predicate}.
      *

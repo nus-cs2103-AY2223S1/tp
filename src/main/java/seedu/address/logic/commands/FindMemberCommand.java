@@ -35,10 +35,10 @@ public class FindMemberCommand extends Command {
             + "If names is used, returns all members with names that contain these keywords\n"
             + "If email is used, return all members with emails that contain a substring of these keywords\n"
             + "Parameters: "
-            + "[-" + FLAG_NAME_STR + " NAME] "
-            + "[-" + FLAG_EMAIL_STR + " EMAIL] \n"
+            + "[" + FLAG_NAME_STR + " NAME] "
+            + "[" + FLAG_EMAIL_STR + " EMAIL] \n"
             + "Example: " + COMMAND_WORD + " "
-            + "-" + FLAG_NAME_STR + " Alex ";
+            + FLAG_NAME_STR + " Alex ";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d member(s) containing search string(s)%2$s. \n"
             + "Type `list members` to show all members again.";

@@ -153,8 +153,6 @@ public class Team {
         filteredTasks.setPredicate(predicate);
     }
 
-
-
     /**
      * Returns true if a person with the same identity as {@code person} exists in the team.
      */

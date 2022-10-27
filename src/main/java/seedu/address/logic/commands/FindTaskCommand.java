@@ -30,9 +30,9 @@ public class FindTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + "-" + FLAG_NAME_STR + " NAME \n"
+            + FLAG_NAME_STR + " NAME \n"
             + "Example: " + COMMAND_WORD + " "
-            + "-" + FLAG_NAME_STR + " teams feature ";
+            + FLAG_NAME_STR + " teams feature ";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) containing search string(s)%2$s. \n"
             + "Type `list tasks` to show all tasks again.";
