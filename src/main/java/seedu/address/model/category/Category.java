@@ -68,7 +68,8 @@ public class Category {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.category.Category // instanceof handles nulls
-                && categoryName.equals(((seedu.address.model.category.Category) other).categoryName)); // state check
+                        && categoryName.equals(((seedu.address.model.category.Category) other).categoryName)); // state
+                                                                                                               // check
     }
 
     @Override
@@ -90,5 +91,21 @@ public class Category {
         return other == this
                 || (other instanceof Category)
                         && categoryName.equalsIgnoreCase(((Category) other).categoryName);
+    }
+
+    public boolean isNurse() {
+        return this.categoryName.equals(NURSE_SYMBOL);
+    }
+
+    public boolean isPatient() {
+        return this.categoryName.equals(PATIENT_SYMBOL);
+    }
+
+    public boolean isPhysician() {
+        return this.categoryName.equals(PHYSICIAN_SYMBOL);
+    }
+
+    public boolean isNextOfKin() {
+        return this.categoryName.equals(NEXTOFKIN_SYMBOL);
     }
 }

@@ -91,8 +91,8 @@ public class AssignCommand extends Command {
     }
 
     private Person getPatient(Person person1, Person person2) throws CommandException {
-        Boolean isPerson1Patient = person1.getCategory().categoryName.equals("P");
-        Boolean isPerson2Patient = person2.getCategory().categoryName.equals("P");
+        Boolean isPerson1Patient = person1.isPatient();
+        Boolean isPerson2Patient = person2.isPatient();
 
         if (isPerson1Patient && isPerson2Patient) {
             throw new CommandException(MESSAGE_BOTH_PATIENT);
@@ -106,8 +106,8 @@ public class AssignCommand extends Command {
     }
 
     private Person getNurse(Person person1, Person person2) throws CommandException {
-        Boolean isPerson1Nurse = person1.getCategory().categoryName.equals("N");
-        Boolean isPerson2Nurse = person2.getCategory().categoryName.equals("N");
+        Boolean isPerson1Nurse = person1.isNurse();
+        Boolean isPerson2Nurse = person2.isNurse();
 
         if (isPerson1Nurse && isPerson2Nurse) {
             throw new CommandException(MESSAGE_BOTH_NURSE);

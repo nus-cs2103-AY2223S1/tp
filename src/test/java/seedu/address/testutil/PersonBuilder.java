@@ -89,7 +89,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        if (personToCopy.getCategory().categoryName.equals("P")) {
+        if (personToCopy.getCategory().isPatient()) {
             Patient patientToCopy = (Patient) personToCopy;
             dateSlotList = new ArrayList<>(patientToCopy.getDatesSlots());
             Physician[] physicianArr = new Physician[]{null};
@@ -235,10 +235,10 @@ public class PersonBuilder {
      * Build a person for test.
      */
     public Person build() {
-        if (category.categoryName.equals("N")) {
+        if (category.isNurse()) {
             return new Nurse(uid, name, gender, phone, email, address, tags,
                     unavailableDateList, homeVisitList, fullyScheduledDateList);
-        } else if (this.category.categoryName.equals("P")) {
+        } else if (this.category.isPatient()) {
             return new Patient(uid, name, gender, phone, email, address, tags, dateSlotList, physician, null);
 
         }

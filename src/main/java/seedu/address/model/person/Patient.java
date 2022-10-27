@@ -125,4 +125,8 @@ public class Patient extends Person {
         return "Category: P " + super.toString()
                 + "; Home Visits Date and Time:" + dateSlotList;
     }
+
+    public boolean isPatient() {
+        return true;
+    }
 }

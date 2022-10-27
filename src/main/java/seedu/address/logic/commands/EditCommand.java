@@ -176,7 +176,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        if (personToEdit instanceof Patient && updatedCategory.categoryName.equals("P")) {
+        if (personToEdit instanceof Patient && updatedCategory.isPatient()) {
             Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
                     .orElse(((Patient) personToEdit).getAttendingPhysician());
             Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
@@ -192,7 +192,7 @@ public class EditCommand extends Command {
                         updatedAddress, updatedTags, updatedDateSlot,
                         updatedPhysician, updatedNextOfKin);
 
-        } else if (updatedCategory.categoryName.equals("P")) {
+        } else if (updatedCategory.isPatient()) {
             Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
                     .orElse(((Patient) personToEdit).getAttendingPhysician());
             Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
@@ -203,7 +203,7 @@ public class EditCommand extends Command {
                     updatedAddress, updatedTags, updatedDateSlot,
                     updatedPhysician, updatedNextOfKin);
 
-        } else if (personToEdit instanceof Nurse && updatedCategory.categoryName.equals("N")) {
+        } else if (personToEdit instanceof Nurse && updatedCategory.isNurse()) {
             List<Date> originalDate = ((Nurse) personToEdit).getUnavailableDates();
             Optional<List<Date>> toBeUpdateDate = editPersonDescriptor.getUnavailableDates();
             Optional<List<Index>> toBeUpdateDateIndexes = editPersonDescriptor.getDateIndexes();
@@ -220,7 +220,7 @@ public class EditCommand extends Command {
                     updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
 
 
-        } else if (updatedCategory.categoryName.equals("N")) {
+        } else if (updatedCategory.isNurse()) {
             List<Date> updatedUnavailableDate = editPersonDescriptor.getUnavailableDates().orElse(null);
             List<HomeVisit> updatedHomeVisitList = editPersonDescriptor.getHomeVisits().orElse(null);
             List<Date> updatedFullyScheduledDateList = editPersonDescriptor.getFullyScheduledDates()
