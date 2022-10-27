@@ -33,6 +33,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the whole list of persons */
+    ObservableList<Person> getUnfilteredPersonList();
+
     /**
      * Returns the user prefs' database file path.
      */

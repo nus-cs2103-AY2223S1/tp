@@ -11,6 +11,7 @@ import java.util.Queue;
 import java.util.Set;
 
 import coydir.model.tag.Tag;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -37,6 +38,11 @@ public class Person {
     private ArrayList<Rating> performanceHistory = new ArrayList<>();
     private Rating rating;
 
+    // Rating table requirements
+    private SimpleStringProperty col1;
+    private SimpleStringProperty col2;
+    private SimpleStringProperty col3;
+
     /**
      * Every field must be present and not null.
      */
@@ -54,6 +60,9 @@ public class Person {
         this.totalNumberOfLeaves = numberOfLeaves;
         this.leavesLeft = numberOfLeaves;
         this.rating = rating;
+        this.col1 = new SimpleStringProperty(this.employeeId.toString());
+        this.col2 = new SimpleStringProperty(this.name.toString());
+        this.col3 = new SimpleStringProperty(this.rating.toString());
     }
 
     public Name getName() {
@@ -82,6 +91,18 @@ public class Person {
 
     public Address getAddress() {
         return this.address;
+    }
+
+    public String getCol1() {
+        return this.col1.get();
+    }
+
+    public String getCol2() {
+        return this.col2.get();
+    }
+
+    public String getCol3() {
+        return this.col3.get();
     }
 
     /**
@@ -122,12 +143,18 @@ public class Person {
         this.leavesLeft = leavesLeft;
     }
 
+    /**
+     * Add a rating to the person.
+     * @param toAdd the rating to be added.
+     */
     public void addRating(Rating toAdd) {
         this.performanceHistory.add(toAdd);
+        this.col3 = new SimpleStringProperty(toAdd.toString());
     }
 
     public void setRating(Rating rating) {
         this.rating = rating;
+        this.col3 = new SimpleStringProperty(rating.toString());
     }
 
     public Rating getRating() {
@@ -157,6 +184,19 @@ public class Person {
             }
         }
         return "False";
+    }
+
+    /**
+     * Check whether a person is currently on leave
+     * @return true if the person is currently on leave, false otherwise.
+     */
+    public boolean isOnLeave() {
+        for (Leave leave: leaves) {
+            if (leave.isOnLeave()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
