@@ -45,17 +45,21 @@ public class StatsView {
         final VBox expensiveItems = new VBox(expensiveItemsLabel,
                 linedSeparator,
                 new VBox(buildTopThreeMostExpensiveItemsListFrom(stats)));
-        new Separator();
 
         // Section for Common Tags
         final FlowPane commonTags = new FlowPane(new Label("Top 3 common tags: "));
         commonTags.getChildren().addAll(TagsView.from(stats.getCommonTags()));
         commonTags.setAlignment(Pos.CENTER_LEFT);
         commonTags.setHgap(SPACING_UNIT);
-        commonTags.setVgap(SPACING_UNIT);
 
         // Combine everything
-        final VBox statsView = new VBox(statsHeader, new Separator(), amountWasted, commonTags, expensiveItems);
+        final VBox statsView = new VBox(statsHeader,
+                new Separator(),
+                amountWasted,
+                new Separator(),
+                commonTags,
+                new Separator(),
+                expensiveItems);
 
         return statsView;
     }
