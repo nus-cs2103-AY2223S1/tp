@@ -93,3 +93,12 @@
 #entryList {
     -fx-background-insets: 4px;
 }
+
+.axis-label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.axis {
+    -fx-tick-label-fill: #FFFFFF;
+}
+
