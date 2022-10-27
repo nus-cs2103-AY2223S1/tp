@@ -26,7 +26,7 @@
             </VBox>
             <VBox>
                <children>
-                      <Label fx:id="moduleCode" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$module" wrapText="true">
+                      <Label fx:id="moduleCode" style="-fx-text-fill: black; -fx-font-weight: bold;" styleClass="cell_big_label" text="\$module" wrapText="true">
                      <font>
                         <Font size="16.0" />
                      </font>
