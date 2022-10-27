@@ -61,7 +61,7 @@ public class Book {
             Format formatter = new SimpleDateFormat("yyyy-MM-dd");
             return "Return by: " + formatter.format(returnDate);
         }
-        return null;
+        return "Not on loan";
     }
 
     public Optional<Person> getLoanee() {
