@@ -38,6 +38,7 @@ public class RemoveUserCommand extends RemoveCommand {
         assert !model.getUser().equals(EMPTY_USER) : "user to edit should not be empty";
 
         model.removeLessonToUser(lesson);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_REMOVE_LESSON_SUCCESS, lesson));
     }
 }

@@ -38,6 +38,7 @@ public class LessonUserCommand extends LessonCommand {
         assert !model.getUser().equals(EMPTY_USER) : "user to edit should not be empty";
 
         model.addLessonToUser(lesson);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson));
     }
 }

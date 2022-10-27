@@ -47,6 +47,7 @@ public class RemoveIndexCommand extends RemoveCommand {
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         personToEdit.removeLesson(lesson);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_REMOVE_LESSON_SUCCESS, lesson));
     }
 }

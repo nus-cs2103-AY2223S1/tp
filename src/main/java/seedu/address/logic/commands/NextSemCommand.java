@@ -21,6 +21,7 @@ public class NextSemCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.nextSem();
+        model.commitAddressBook();
         return new CommandResult(MESSAGE_SUCCESS, false, false, false);
     }
 
