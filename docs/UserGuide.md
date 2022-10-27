@@ -75,7 +75,7 @@ We refer to the Tasks shown as task list, Projects shown as project list and Sta
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addproj pn/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `add pn/CS2103T`.
+  e.g. in `addproj pn/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `addProj pn/CS2103T`.
 
 * Items in square brackets are optional.<br>
   e.g `pn/PROJECT_NAME [t/TAG]` can be used as `pn/2101 t/fun` or as `pn/2101`.
@@ -125,7 +125,7 @@ A project can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addproj pn/2103T_TP pb/100000 pd/2022-01-01`
+* `addproj pn/2103T TP pb/100000 pd/2022-01-01`
 * `addproj pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -146,7 +146,7 @@ Note:
 
 Examples:
 * `list` followed by `delproj 2` deletes the 2nd project in Project list.
-* `findproj 2103T_TP` followed by `delproj 1` deletes the 1st project in the results of the `find` command.
+* `findproj 2103T TP` followed by `delproj 1` deletes the 1st project in the results of the `find` command.
 
 --------------------------------------------------------------------------------------------------------------------
 ### [**Listing all Projects and tasks :** `list`](#table-of-contents)
@@ -232,7 +232,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### [**Deleting a Staff member from Project :** `delstaff`](#table-of-contents)
 
-Deletes a staff member and all its info inside a project in the project list.
+Deletes a staff member and all its info inside a project in the currently displayed project list.
 
 Format: `delstaff INDEX pn/PROJECT_NAME`
 
@@ -241,9 +241,9 @@ Note:
 * INDEX refers to staff in displayed staff list. It is the staff to be deleted.
 * PROJECT_NAME refers to the project in displayed project list where the staff is deleted from.
 * Recommended to use the view command on a project before deleting a staff from it.
-* A possible interaction is if you view the staff list of project A and try 
-  to delete staff at index 1 (call this staff Tom) and from project B, it will try to delete 
-  staff Tom from project B. This delstaff command will work if there is an instance of staff Tom in project B.
+* A possible interaction is if you view the staff list of project A then try 
+  to delete staff at index 1 (call this staff Tom) from project B, it will delete 
+  staff Tom from project B if staff Tom is also part of project B.
 * If staff is deleted successfully, it will update the displayed staff list to show the staff list 
   of the project where the staff was deleted from.
 * The index must be a positive integer 1, 2, 3, …​
@@ -270,12 +270,12 @@ Note:
 ```
 Examples:
 * `list` followed by `view 2` displays the staff list of the 2nd project in Project list on the bottom right.
-* `find 2103T_TP` followed by `view 1` display the staff list of the 1st project from the result of the `find` command.
+* `find 2103T TP` followed by `view 1` display the staff list of the 1st project from the result of the `find` command.
 
 --------------------------------------------------------------------------------------------------------------------
 ### [**Editing a Staff member within a Project :** `editstaff`](#table-of-contents)
 
-Edits the staff details of a staff of a specified project in Project list.
+Edits the staff details of a staff of a specified project in the currently displayed Project list.
 
 Format: `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER
 t\TAGS]`
@@ -285,9 +285,9 @@ Note:
 * INDEX refers to staff in displayed staff list. It is the staff to be edited.
 * PROJECT_NAME refers to the project in displayed project list where the staff is to be edited.
 * Recommended to use the view command on a project before editing a staff in its staff list.
-* A possible interaction is if you view the staff list of project A and try
-  to edit staff at index 1 (call this staff Tom) and from project B, it will try to edit
-  staff Tom from project B. This editstaff command will work if there is an instance of staff Tom in project B.
+* A possible interaction is if you view the staff list of project A then try
+  to edit staff at index 1 (call this staff Tom) from project B, it will try to edit
+  staff Tom from project B if staff Tom is also part of project B.
 * If staff is edited successfully, it will update the displayed staff list to show the staff list
   of the project where the staff was deleted from.
 * All fields in the `[]` are optional. 
