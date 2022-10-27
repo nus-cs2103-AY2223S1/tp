@@ -93,6 +93,7 @@ public class EditTaskCommand extends Command {
          */
         Boolean updatedIsDone = taskToEdit.getCompletionStatus();
         Boolean updatedIsArchived = taskToEdit.getArchivalStatus();
+
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         // Id cannot be updated
         Id id = taskToEdit.getId();

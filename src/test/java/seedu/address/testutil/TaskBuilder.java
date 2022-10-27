@@ -47,6 +47,7 @@ public class TaskBuilder {
         deadline = taskToCopy.getDeadline();
         isDone = taskToCopy.getCompletionStatus();
         isArchived = taskToCopy.getArchivalStatus();
+
         tags = new HashSet<>(taskToCopy.getTags());
         id = taskToCopy.getId();
     }

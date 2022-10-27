@@ -23,10 +23,14 @@ public class Task {
     /** {@code Predicate} that returns true for non-archived tasks, false otherwise */
     public static final Predicate<Task> PREDICATE_SHOW_NON_ARCHIVED_TASKS = task -> !task.getArchivalStatus();
 
+    public static final String MESSAGE_TASK_COMPLETED = "Completed";
+    public static final String MESSAGE_TASK_NOT_COMPLETED = "Not Completed";
+
     private final Description description;
     private final Deadline deadline;
     private Boolean isDone;
     private Boolean isArchived;
+
     private final Set<Tag> tags = new HashSet<>();
     private final Id id;
 
@@ -103,7 +107,7 @@ public class Task {
      * @return String representation of a task completion.
      */
     public String getCompletionStatusForDisplay() {
-        return (isDone ? "completed" : "incomplete");
+        return (isDone ? MESSAGE_TASK_COMPLETED : MESSAGE_TASK_NOT_COMPLETED);
     }
 
     /**
@@ -191,7 +195,10 @@ public class Task {
         return otherTask.getDescription().equals(getDescription())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getCompletionStatus().equals(getCompletionStatus())
+<<<<<<< HEAD
                 && otherTask.getArchivalStatus().equals(getArchivalStatus())
+=======
+>>>>>>> master
                 && otherTask.getTags().equals(getTags())
                 && otherTask.getId().equals(getId());
     }
@@ -207,8 +214,13 @@ public class Task {
         builder.append(getDescription())
                 .append("; Deadline: ")
                 .append(getDeadline())
+<<<<<<< HEAD
                 .append("; Completion Status: ")
                 .append(getCompletionStatus());
+=======
+                .append("; Status: ")
+                .append(getCompletionStatusForDisplay());
+>>>>>>> master
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

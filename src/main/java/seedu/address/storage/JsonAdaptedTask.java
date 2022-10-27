@@ -54,6 +54,7 @@ public class JsonAdaptedTask {
         deadline = source.getDeadline().value;
         isDone = source.getCompletionStatus();
         isArchived = source.getArchivalStatus();
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
