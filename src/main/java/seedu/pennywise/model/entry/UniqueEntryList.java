@@ -63,7 +63,8 @@ public class UniqueEntryList implements Iterable<Entry> {
     /**
      * Replaces the entry {@code target} in the list with {@code editedEntry}.
      * {@code target} must exist in the list.
-     * Precondition: The entry identity of {@code editedEntry} must not be the same as another existing entry in the list.
+     * Precondition: The entry identity of {@code editedEntry} must not be the same as another existing entry in the
+     * list.
      */
     public void setEntries(Entry target, Entry editedEntry) {
         requireAllNonNull(target, editedEntry);
