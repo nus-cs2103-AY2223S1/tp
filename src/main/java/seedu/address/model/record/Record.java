@@ -1,6 +1,5 @@
 package seedu.address.model.record;
 
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECORD_DATA_FORMAT;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -13,12 +12,13 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-
 /**
  * Represents a single record in the record list of a Person object.
  */
 public class Record implements Comparable<Record> {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Record dates have to be of format dd-MM-yyyy HHmm!";
+    public static final String MESSAGE_FUTURE_DATE = "Record dates must not be later than the current date!";
     /* Data Fields */
     public final String record;
     private final LocalDateTime recordDate;
@@ -54,18 +54,30 @@ public class Record implements Comparable<Record> {
     }
 
     /**
-     * Returns true if date is valid.
+     * Returns true if the record date is in the valid format.
      *
      * @param testDate Date to be tested.
-     * @return True if valid.
+     * @return True if the record date is in the valid format.
      */
-    public static boolean isValidDate(String testDate) {
+    public static boolean isValidDateFormat(String testDate) {
         try {
             LocalDateTime.parse(testDate, DATE_FORMAT);
         } catch (DateTimeParseException e) {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if the record date is after the current date.
+     *
+     * @param testDate Date to be tested.
+     * @return True if the record date is after the current date.
+     */
+    public static boolean isFutureDate(String testDate) {
+        LocalDateTime recordDate = LocalDateTime.parse(testDate, DATE_FORMAT);
+        LocalDateTime currDate = LocalDateTime.now();
+        return recordDate.isAfter(currDate);
     }
 
     /**

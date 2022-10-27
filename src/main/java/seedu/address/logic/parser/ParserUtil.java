@@ -68,8 +68,11 @@ public class ParserUtil {
     public static Birthdate parseBirthdate(String birthdate) throws ParseException {
         requireNonNull(birthdate);
         String trimmedBirthdate = birthdate.trim();
-        if (!Birthdate.isValidBirthdate(trimmedBirthdate)) {
-            throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
+        if (!Birthdate.isValidDateFormat(trimmedBirthdate)) {
+            throw new ParseException(Birthdate.MESSAGE_INVALID_DATE_FORMAT);
+        }
+        if (Birthdate.isFutureDate(trimmedBirthdate)) {
+            throw new ParseException(Birthdate.MESSAGE_FUTURE_DATE);
         }
         return new Birthdate(trimmedBirthdate);
     }
@@ -167,11 +170,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given inputs is invalid.
      */
-    public static LocalDateTime parseDate(String recordDate) throws ParseException {
+    public static LocalDateTime parseRecordDate(String recordDate) throws ParseException {
         requireNonNull(recordDate);
         String trimmedDate = recordDate.trim();
-        if (!Record.isValidDate(trimmedDate)) {
-            throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
+        if (!Record.isValidDateFormat(trimmedDate)) {
+            throw new ParseException(Record.MESSAGE_INVALID_DATE_FORMAT);
+        }
+        if (Record.isFutureDate(trimmedDate)) {
+            throw new ParseException(Record.MESSAGE_FUTURE_DATE);
         }
         return LocalDateTime.parse(trimmedDate, Record.DATE_FORMAT);
     }

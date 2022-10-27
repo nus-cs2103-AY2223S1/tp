@@ -26,7 +26,7 @@ public class Appointment {
      */
     private Appointment(String appointmentDate) {
         requireNonNull(appointmentDate);
-        checkArgument(isValidDate(appointmentDate), MESSAGE_INVALID_DATE_FORMAT);
+        checkArgument(isValidDateFormat(appointmentDate), MESSAGE_INVALID_DATE_FORMAT);
         checkArgument(isFutureDate(appointmentDate), MESSAGE_DATE_PAST);
         this.appointmentDate = LocalDateTime.parse(appointmentDate, DATE_FORMAT);
     }
@@ -39,12 +39,12 @@ public class Appointment {
     }
 
     /**
-     * Returns true if date is valid.
+     * Returns true if the appointment date is in the valid format.
      *
-     * @param testDate Date to be tested.
-     * @return True if valid.
+     * @param testDate Appointment date to be tested.
+     * @return True if the appointment date is in the valid format.
      */
-    public static boolean isValidDate(String testDate) {
+    public static boolean isValidDateFormat(String testDate) {
         try {
             LocalDateTime.parse(testDate, DATE_FORMAT);
         } catch (DateTimeParseException e) {
@@ -73,7 +73,7 @@ public class Appointment {
      * @return True if valid.
      */
     public static boolean isValidAppointment(String test) {
-        return test.equals(NO_APPOINTMENT_SCHEDULED) || isValidDate(test);
+        return test.equals(NO_APPOINTMENT_SCHEDULED) || isValidDateFormat(test);
     }
 
     /**

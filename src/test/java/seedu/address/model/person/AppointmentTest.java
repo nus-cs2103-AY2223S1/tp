@@ -26,29 +26,29 @@ class AppointmentTest {
 
     @Test
     public void isValidDate() {
-        assertThrows(NullPointerException.class, () -> Appointment.isValidDate(null)); // null date
+        assertThrows(NullPointerException.class, () -> Appointment.isValidDateFormat(null)); // null date
 
         // invalid dates
-        assertFalse(Appointment.isValidDate("")); // empty string
-        assertFalse(Appointment.isValidDate(" ")); // spaces only
-        assertFalse(Appointment.isValidDate("02022002 2222")); // incorrect date format
-        assertFalse(Appointment.isValidDate("11.11.2001 1100")); // incorrect date format
-        assertFalse(Appointment.isValidDate("2009.09.21 0000")); // incorrect date format
-        assertFalse(Appointment.isValidDate("10 Jul 2022 1000")); // incorrect date format
-        assertFalse(Appointment.isValidDate("12 12 2007 1230")); // incorrect date format
-        assertFalse(Appointment.isValidDate("2004-11-11 1300")); // incorrect date format
-        assertFalse(Appointment.isValidDate("01-01-2001")); // missing time
-        assertFalse(Appointment.isValidDate("01-01-2001 3000")); // invalid time
+        assertFalse(Appointment.isValidDateFormat("")); // empty string
+        assertFalse(Appointment.isValidDateFormat(" ")); // spaces only
+        assertFalse(Appointment.isValidDateFormat("02022002 2222")); // incorrect date format
+        assertFalse(Appointment.isValidDateFormat("11.11.2001 1100")); // incorrect date format
+        assertFalse(Appointment.isValidDateFormat("2009.09.21 0000")); // incorrect date format
+        assertFalse(Appointment.isValidDateFormat("10 Jul 2022 1000")); // incorrect date format
+        assertFalse(Appointment.isValidDateFormat("12 12 2007 1230")); // incorrect date format
+        assertFalse(Appointment.isValidDateFormat("2004-11-11 1300")); // incorrect date format
+        assertFalse(Appointment.isValidDateFormat("01-01-2001")); // missing time
+        assertFalse(Appointment.isValidDateFormat("01-01-2001 3000")); // invalid time
 
         // valid dates
-        assertTrue(Appointment.isValidDate("01-01-2001 1200"));
-        assertTrue(Appointment.isValidDate("12-02-1927 1230"));
-        assertTrue(Appointment.isValidDate("31-12-2003 1300"));
+        assertTrue(Appointment.isValidDateFormat("01-01-2001 1200"));
+        assertTrue(Appointment.isValidDateFormat("12-02-1927 1230"));
+        assertTrue(Appointment.isValidDateFormat("31-12-2003 1300"));
     }
 
     @Test
     public void isFutureDate() {
-        assertThrows(NullPointerException.class, () -> Appointment.isValidDate(null)); // null date
+        assertThrows(NullPointerException.class, () -> Appointment.isValidDateFormat(null)); // null date
 
         // invalid dates
         assertFalse(Appointment.isFutureDate(LocalDateTime.now()
