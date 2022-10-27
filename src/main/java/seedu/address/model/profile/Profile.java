@@ -172,6 +172,11 @@ public class Profile implements Comparable<Profile> {
         });
     }
 
+    /**
+     * Adds the specified event {@code eventToAdd} to the profile's list of attending events if it
+     * has not already been added.
+     * @param eventToAdd
+     */
     public void addAttendingEvent(Event eventToAdd) {
         requireNonNull(eventToAdd);
 

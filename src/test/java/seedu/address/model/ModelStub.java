@@ -134,7 +134,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
         throw new AssertionError("This method should not be called.");
     }
 
