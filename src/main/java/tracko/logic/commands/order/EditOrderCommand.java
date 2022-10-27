@@ -38,7 +38,7 @@ public class EditOrderCommand extends Command {
             + "Existing name, phone, email, address values will "
             + "be overwritten by the input values. An item tag ("
             + CliSyntax.PREFIX_ITEM + ") needs to be accompanied by a "
-            + "quantity tag (" + CliSyntax.PREFIX_QUANTITY + ")."
+            + "quantity tag (" + CliSyntax.PREFIX_QUANTITY + "). \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_NAME + "NAME] "
             + "[" + CliSyntax.PREFIX_PHONE + "PHONE] "
