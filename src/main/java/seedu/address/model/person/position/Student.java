@@ -297,8 +297,7 @@ public class Student extends Position {
     @Override
     public String toShow() {
         return "Attendance: " + attendance + "\n"
-                + "Grade: " + overallGrade
-                + "\nAssignments: " + assignmentsList.toString();
+                + "Grade: " + overallGrade;
     }
 
     @Override

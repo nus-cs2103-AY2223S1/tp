@@ -44,7 +44,7 @@
             <Insets bottom="0" left="10" right="10" top="5" />
           </padding>
         </Label>
-        <StackPane fx:id="placeHolder" styleClass="pane-with-border-alt" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" minHeight= "150" maxHeight="300" onMouseClicked="#displayGraph">
+        <StackPane fx:id="placeHolder" styleClass="pane-with-border-alt" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" maxHeight="300" onMouseClicked="#displayGraph">
           <padding>
             <Insets bottom="0" left="10" right="10" top="10" />
           </padding>
