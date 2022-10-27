@@ -37,6 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private GroupWindow groupWindowPlaceHolder;
 
+    private CommandBox commandBox;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -69,7 +71,9 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        groupWindowPlaceHolder = new GroupWindow(new Stage(), new Group("NOGROUP"), logic);
+        commandBox = new CommandBox(this::executeCommand);
+
+        groupWindowPlaceHolder = new GroupWindow(new Stage(), new Group("NOGROUP"), logic, getCommandSetter());
     }
 
     public Stage getPrimaryStage() {
@@ -115,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this.primaryStage);
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this.primaryStage, getCommandSetter());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -124,7 +128,6 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -157,7 +160,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowGroup(Group group) {
-        GroupWindow groupWindow = new GroupWindow(new Stage(), group, logic);
+        GroupWindow groupWindow = new GroupWindow(new Stage(), group, logic, getCommandSetter());
 
         if (!groupWindow.isShowing()) {
             groupWindow.show();
@@ -216,5 +219,13 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Gets the {@code CommandSetter} that sets the {@code CommandBox}.
+     * @return The {@code CommandSetter} that sets the {@code CommandBox}.
+     */
+    public CommandBox.CommandSetter getCommandSetter() {
+        return commandBox.getCommandSetter();
     }
 }

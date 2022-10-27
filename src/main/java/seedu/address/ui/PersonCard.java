@@ -84,7 +84,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex, Stage primaryStage) {
+    public PersonCard(Person person, int displayedIndex, Stage primaryStage, CommandBox.CommandSetter commandSetter) {
         super(FXML);
         this.person = person;
         String s = person.getOccupation().getString();
@@ -222,6 +222,8 @@ public class PersonCard extends UiPart<Region> {
                 }
             }
         });
+
+        cardPane.setOnMouseClicked((click) -> commandSetter.setCommand(person.getEditString(displayedIndex)));
     }
 
     @Override

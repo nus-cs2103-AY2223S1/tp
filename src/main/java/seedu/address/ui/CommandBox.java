@@ -70,6 +70,25 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Fills the command box with a command if it is currently empty.
+     * @param command The command to set to.
+     */
+    private void setCommand(String command) {
+        if (commandTextField.getText().isEmpty()) {
+            commandTextField.setText(command);
+        }
+    }
+
+    /**
+     * Constructs and returns the {@code CommandBox}'s corresponding
+     * {@code CommandSetter}.
+     * @return A {@code CommandSetter} that can set this {@code CommandBox}'s command.
+     */
+    public CommandSetter getCommandSetter() {
+        return new CommandSetter(this);
+    }
+
+    /**
      * Represents a function that can execute commands.
      */
     @FunctionalInterface
@@ -82,4 +101,27 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    /**
+     * Represents a class which can only be used to set the content of the
+     * {@code CommandBox} if it is empty.
+     */
+    public static class CommandSetter {
+        private final CommandBox commandBox;
+
+        /**
+         * Creates a {@code CommandSetter} that can modify the written command.
+         * @param commandBox The parent {@code CommandBox}.
+         */
+        private CommandSetter(CommandBox commandBox) {
+            this.commandBox = commandBox;
+        }
+
+        /**
+         * Sets the command if it is empty.
+         * @param command The command to set.
+         */
+        public void setCommand(String command) {
+            commandBox.setCommand(command);
+        }
+    }
 }
