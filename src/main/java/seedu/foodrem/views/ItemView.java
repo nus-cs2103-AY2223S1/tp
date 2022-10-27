@@ -4,10 +4,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.foodrem.model.item.Item;
 
 /**
@@ -25,15 +28,18 @@ public class ItemView {
      * @return the node to be displayed in the UI.
      */
     public static Node from(Item item) {
+        // Name
         final Label name = new Label(item.getName().toString());
         name.getStyleClass().add("item-detail-name");
         name.prefWidth(Double.MAX_VALUE);
+        name.setWrapText(true);
 
-        // Name and tags at the top left
-        final HBox tags = new HBox(new Label("Tags: "));
+        // Tags
+        final FlowPane tags = new FlowPane(new Label("Tags: "));
         tags.getChildren().addAll(TagsView.from(item.getTagSet()));
         tags.setAlignment(Pos.CENTER_LEFT);
-        tags.setSpacing(SPACING_UNIT);
+        tags.setHgap(SPACING_UNIT);
+        tags.setVgap(SPACING_UNIT);
 
         // Quantity and unit at the top right
         final Label quantityLabel = new Label("Quantity\nRemaining:");
