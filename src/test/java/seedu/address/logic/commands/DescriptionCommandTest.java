@@ -40,7 +40,8 @@ public class DescriptionCommandTest {
         DescriptionCommand descriptionCommand = new DescriptionCommand(INDEX_FIRST_PERSON,
                 new Description(editedPerson.getDescription().value));
 
-        String expectedMessage = String.format(DescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS, editedPerson);
+        String expectedMessage = String.format(DescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS,
+                new Description(editedPerson.getDescription().value), editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -56,7 +57,8 @@ public class DescriptionCommandTest {
         DescriptionCommand descriptionCommand = new DescriptionCommand(INDEX_FIRST_PERSON,
                 new Description(editedPerson.getDescription().toString()));
 
-        String expectedMessage = String.format(DescriptionCommand.MESSAGE_DELETE_DESCRIPTION_SUCCESS, editedPerson);
+        String expectedMessage = String.format(DescriptionCommand.MESSAGE_DELETE_DESCRIPTION_SUCCESS,
+                new Description(editedPerson.getDescription().toString()), editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -75,7 +77,8 @@ public class DescriptionCommandTest {
         DescriptionCommand descriptionCommand = new DescriptionCommand(INDEX_FIRST_PERSON,
                 new Description(editedPerson.getDescription().value));
 
-        String expectedMessage = String.format(DescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS, editedPerson);
+        String expectedMessage = String.format(DescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS,
+                new Description(editedPerson.getDescription().value), editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
