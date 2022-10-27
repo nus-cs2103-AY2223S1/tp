@@ -4,6 +4,7 @@ import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Student's consultations in FRIDAY.
@@ -42,6 +43,11 @@ public class Consultation implements Comparable<Consultation> {
      * Returns if a given string is a valid consultation.
      */
     public static boolean isValidConsultation(String test) {
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

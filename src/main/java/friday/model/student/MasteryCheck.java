@@ -4,6 +4,7 @@ import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Student's desired date for their Mastery Check.
@@ -56,6 +57,11 @@ public class MasteryCheck implements Comparable<MasteryCheck> {
      * Returns true if a given string is a valid Mastery Check.
      */
     public static boolean isValidMasteryCheck(String test) {
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
