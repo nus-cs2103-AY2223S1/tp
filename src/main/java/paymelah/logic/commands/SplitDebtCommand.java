@@ -26,7 +26,7 @@ public class SplitDebtCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Splits a debt among several persons. You can use '0' to represent yourself.\n"
-            + "Parameters: <person index>… (must be a non-negative integer. '0' cannot be the sole index.) "
+            + "Parameters: <person index…> (must be a non-negative integer. '0' cannot be the sole index.) "
             + PREFIX_DESCRIPTION + "<description> "
             + PREFIX_MONEY + "<money> "
             + "[" + PREFIX_DATE + "<date>] "

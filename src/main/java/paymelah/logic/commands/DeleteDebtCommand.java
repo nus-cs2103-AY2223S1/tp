@@ -31,7 +31,7 @@ public class DeleteDebtCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a debt from a person. Multiple debts may be specified.\n"
             + "Parameters: <person index> (must be a positive integer) "
-            + PREFIX_DEBT + "<debt index>… (must be a positive integer)\n"
+            + PREFIX_DEBT + "<debt index…> (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEBT + "2 3";
 
     public static final String MESSAGE_DELETE_DEBT_SUCCESS = "Deleted Debt(s) from: %1$s:\n";
