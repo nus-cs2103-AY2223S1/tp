@@ -49,12 +49,12 @@ Given below are my contributions to the project.
   * Wrote tests in `ModUnmarkCommandTest` for `ModUnmarkCommand`.
   * Added `mod unmark` parser tests in `ModCommandParserTest`.
 
-#### New Feature: Mark all modules of all batchmates as taken
-* What it does: Marks all modules of all batchmates as taken.
+#### New Feature: Mark all modules as taken
+* What it does: Marks all modules of every batchmate as taken.
 * Justification:
-  * It is useful for updating the module status of all modules of all batchmates after each semester.
+  * It is useful for updating the module status of all modules of every batchmate after each semester.
 * Highlights:
-  * Implemented `ModMarkAllCommand` which handles marking all modules of all batchmates as taken.
+  * Implemented `ModMarkAllCommand` which handles marking all modules of every batchmate as taken.
   * Modified `ModCommandParser` to parse `mod mark all` command arguments.
   * Modified `Student` to include a new method `markAllMods` to facilitate the marking of all modules of a batchmate.
   * Wrote tests in `ModMarkAllCommandTest` for `ModMarkAllCommand`.

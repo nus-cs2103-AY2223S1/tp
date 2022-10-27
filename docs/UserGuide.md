@@ -227,7 +227,7 @@ Examples:
 
 ### Mark all modules as taken: `mod mark all`
 
-Marks all current modules of all batchmates as taken. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
+Marks all current modules of every batchmate as taken. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
 
 Format: `mod mark all`
 
