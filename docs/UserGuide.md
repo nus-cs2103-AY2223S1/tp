@@ -87,6 +87,12 @@ Example:
 - `add name/Alex address/22 Clementi phone/86609830 email/alex@gmail.com`
 - `add name/Mike address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123`
 
+Before the command is executed:
+![before adding](images/ug/add_before.png)
+
+After the command is executed:
+![after adding](images/ug/add_after.png)
+
 #### Delete a Person : `delete`
 
 Delete the specified person from the address book.
@@ -97,11 +103,30 @@ Format: `delete INDEX`
 - The index refers to the index number shown in the person list.
 - The index must be **positive integer** 1, 2, 3...
 
+Example:
+- Delete the person at index 1: `delete 1`
+- Delete the person at index 7: `delete 7`
+
+Before the command is executed:
+![before deleting](images/ug/delete_before.png)
+
+After the command is executed:
+![after deleting](images/ug/delete_after.png)
+
 #### Find a Person : `find`
 
 Find person and displays the persons that match the keyword.
 
 Format: `find KEYWORD`
+
+Example:
+- Find all the people named David: `find david`
+
+Before the command is executed:
+![before find](images/ug/find_before.png)
+
+After the command is executed:
+![after find](images/ug/find_after.png)
 
 #### Sort the list of Persons : `sort`
 
@@ -114,6 +139,12 @@ Example:
 - Sort name in descending order: `sort name/desc`
 - Sort role in ascending order: `sort role`
 
+Before the command is executed:
+![before sort](images/ug/sort_before.png)
+
+After the command is executed:
+![after sort](images/ug/sort_after.png)
+
 #### Show a Person's Details : `<ENTER>` or double click
 
 Shows person details in another page.
@@ -122,13 +153,24 @@ There are two ways to show person details
 
 1. Keyboard-friendly way
 
-   1. Use `<TAB>` to navigate to the persons' list.
+   1. Double tap the `<TAB>` button to begin navigating the list of persons.
    
-   2. Press `<ENTER>` to show person details.
+   2. Use the arrow keys to navigate to the desired person.
+   
+   3. Press `<ENTER>` to show the person's details.
    
 2. General usage
 
-   1. Double-click on the person card in persons' list.
+   1. Double-click on the person card in the list of persons.
+   
+Step 1: Enter navigation mode by double tapping the `<TAB>` key.
+![step 1](images/ug/detail_step1.png)
+
+Step 2: Navigate to the person using the arrow keys.
+![step 2](images/ug/detail_step2.png)
+
+Step 3: Press `<ENTER>` to enter the detail page.
+![step 3](images/ug/detail_step3.png)
 
 #### Set a Person's Details : `set`
 
@@ -136,9 +178,19 @@ Set attribute of a person.
 
 Format `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
 
-- You can only run this command in person details page. Please refer to "Show Person Details" to enter person details page.
+- You can only run this command in a person's detail page. Please refer to [Show Person Details](#show-a-persons-details--enter-or-double-click) to enter person details page.
 - At least one optional attribute must be provided.
-- Existing values will be updated to provided values.
+- If an inputted attribute does not exist yet, it will be added.
+- If an inputted attribute already exists, its value will be updated to the given value.
+
+Example:
+- `set name/David Lee telegram/@davidlee123 slack/davidlee123`
+
+Before the command is executed:
+![before set](images/ug/set_before.png)
+
+After the command is executed:
+![after set](images/ug/set_after.png)
 
 #### Delete a Person's Details: `delete`
 
@@ -146,11 +198,11 @@ Delete attribute of a person.
 
 Format: `delete ATTRIBUTE_NAME`
 
-- You can only run this command in person details page. Please refer to "Show Person Details" to enter person details page.
-- `name` and `address` are not able to delete, as they are required attributes.
+- You can only run this command in a person's detail page. Please refer to [Show Person Details](#show-a-persons-details--enter-or-double-click) to enter person details page.
+- `name` and `address` cannot be deleted as they are required attributes.
 - You only can delete one attribute at one time.
 
-Attributes (`ATTRIBUTE_NAME`) that are able to delete:
+Attributes (`ATTRIBUTE_NAME`) that can be deleted:
 - `role`
 - `timezone`
 - `email`
@@ -158,17 +210,56 @@ Attributes (`ATTRIBUTE_NAME`) that are able to delete:
 - `slack`
 - `telegram`
 
+Example:
+- `delete telegram`
+- `delete email`
+
+Before the command is executed, inside a person's contact detail page:
+![before delete attr](images/ug/delete_attr_before.png)
+
+After the command is executed:
+![after delete attr](images/ug/delete_attr_after.png)
+
 #### Return to previous page : `back` or `<ESC>`
 
-Back to previous page
+Returns to the previously selected page.
 
 Format: `back` or `<ESC>`
 
+Example uses:
+- Returning to the main page from the help page.
+- Returning to the main page from the contact detail page.
+- Returning to the contact detail page from the detail help page.
+
+Before the command is executed, in the detail help page:
+![before back](images/ug/back_before.png)
+
+After the command is executed:
+![after back](images/ug/back_after.png)
+
 #### Show help page : `help`
 
-Shows help page or usage instruction of specified command.
+Shows the help page or usage instruction of specified command.
+
+If executed without arguments, for the given page, show:
+- The commands that can be executed at that page
+- The descriptions of each command
+
+If executed with a given command, e.g. `help delete`, show:
+- The description of the command
+- Its parameters
+- An example usage
 
 Format: `help [add|back|clear|delete|exit|find|help|reset|set|sort]`
+
+Main page help:
+![main](images/ug/main_page_help.png)
+
+Detail page help:
+![detail](images/ug/detail_page_help.png)
+
+After executing `help delete`:
+![help](images/ug/help_delete.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
