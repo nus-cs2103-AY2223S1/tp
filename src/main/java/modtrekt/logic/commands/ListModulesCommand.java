@@ -5,7 +5,6 @@ import com.beust.jcommander.Parameters;
 
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.model.Model;
-import modtrekt.model.module.ModCode;
 
 /**
  * Lists all tasks.
