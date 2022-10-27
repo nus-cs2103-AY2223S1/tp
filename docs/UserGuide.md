@@ -36,6 +36,7 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
     - [Showing the tasks of an exam](#showing-the-tasks-of-an-exam)
   - [Other Features](#other-features)
     - [Clearing all the lists](#clearing-all-the-lists)
+    - [Help](#help)
     - [Exiting the program](#exiting-the-program)
 - [Summary Of Commands](#summary-of-commands)
 
@@ -470,6 +471,15 @@ Format: `clearall`
 
 Example:
 `clearall` clears all tasks, exams and modules currently in the respective lists.
+
+### Help
+Views the help window which displays the list of commands
+
+Format: `help`
+* Opens up the help window which shows the list of commands
+
+Example:
+`help` opens up the help window to display the list of commands
 
 ### Exiting the program
 Exits the program
