@@ -152,8 +152,11 @@ Format: `event -a n/TITLE s/START e/END [t/TAG]…`
 * The start date must occur before or on the same day and time as the end date.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An event can have 0 or more profiles. An event can have 0 or more tags.
+An event can have 0 or more tags.<br>
 </div>
+
+Example:
+* `event -a n/Presentation s/22/10/2022 e/23/10/2022 t/CS2103`
 
 #### Viewing upcoming events: `event -u`
 
@@ -186,6 +189,9 @@ Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]…`
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it.
 * The start and end dates can be specified in [various formats](#accepted-date-time-formats).
 
+Example:
+* `event -e 1 n/Formal Dinner t/RC4` Edits the title of the first event in the displayed list to `Formal Dinner` and clears existing tags before adding the tag `RC4`.
+
 #### Finding events by date or title: `event -f KEYWORD_OR_DATE [MORE]…`
 
 Find events whose title contain any of the given keywords or start times contain any of the given start times.
@@ -196,6 +202,10 @@ Find events whose title contain any of the given keywords or start times contain
 * The order of the keywords does not matter. e.g. `one two` will match `two one`.
 * Partial match will also be returned. e.g. `inter` will match `interview`
 * Events matching at least one keyword will be returned (i.e. `OR` search) e.g. `interview meeting` will return `Meeting Tom`, `Job Interview`.
+
+Example:
+* `event -f Presentation` Displays all events with `Presentation` within the event title.
+* `event -f 20/11/2022 05/10/2022` Displays all events that start on either `20/11/2022` or `05/10/2022`.
 
 #### Deleting an event: `event -d`
 
