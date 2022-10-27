@@ -594,11 +594,12 @@ testers are expected to do more *exploratory* testing.
     1. Download the jar file and copy it into an empty folder.
 
     2. Double-click the jar file. <br>
-       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+       Expected: Shows the GUI with a set of sample batchmates. The window size may not be optimum.
 
 2. Saving window preferences.
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
 
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
@@ -608,15 +609,15 @@ testers are expected to do more *exploratory* testing.
 1. Adding a batchmate to the data.
 
     1. Test case: `add n/John t/john`.<br>
-       Expected: A new batchmate with the name John and telegram handle john is added at the bottom of the students pane in MassLinkers.
+       Expected: A new batchmate with the name `John` and telegram handle `john` is added at the bottom of the students pane in Mass Linkers.
        The status message indicates that John has been successfully added.
 
-    2. Prerequisite: A batchmate with the name Tom is already in MassLinkers. <br>
+    2. Prerequisite: A batchmate with the name Tom is already in Mass Linkers. <br>
        Test case: `add n/Tom t/tom`.<br>
-       Expected: No batchmate is added. The status message indicates that the batchmate already exists in MassLinkers.
+       Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers.
 
     3. Test case: `add n/John t/john i/AI g/john`.<br>
-       Expected: A new batchmate with the name John, telegram handle john, interests AI and GitHub john is added at the bottom of the students pane in MassLinkers.
+       Expected: A new batchmate with the name `John`, telegram handle `john`, interests `AI` and GitHub `john` is added at the bottom of the students pane in Mass Linkers.
        The status message indicates that John has been successfully added.
 
     4. Test case: `add n/John`.<br>
@@ -630,10 +631,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a batchmate while all batchmates are being shown.
 
-    1. Prerequisites: List all batchmates using the `list` command. Multiple batchmates in the list.
+    1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
 
     2. Test case: `delete 1`.<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Expected: First batchmate is deleted from the list. Details of the deleted batchmate is shown in the status message.
 
     3. Test case: `delete 0`.<br>
        Expected: No batchmate is deleted. Error details are shown in the status message.
@@ -645,15 +646,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Find batchmates using keyword(s).
 
-    1. Prerequisites: List all batchmates using the `list` command. Multiple batchmates in the list.
+    1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
 
-    2. Prerequisite: There exists a batchmate with telegram handle "charlie".
+    2. Prerequisite: There exists a batchmate with telegram handle `charlie`.
        Test case: `find char`.<br>
-       Expected: The batchmate with telegram handle "charlie" appears in the student panel after executing the command.
+       Expected: The batchmate with telegram handle `charlie` appears in the student panel after executing the command.
    
-    3. Prerequisite: There exists a batchmate with telegram handle "charlie" and a batchmate with name "Tom".
+    3. Prerequisite: There exists a batchmate with telegram handle `charlie` and a batchmate with name `Tom`.
        Test case: `find char Tom`.<br>
-       Expected: The batchmate with telegram handle "charlie" and batchmate named "Tom"
+       Expected: The batchmate with telegram handle `charlie` and batchmate named `Tom`
        appears in the student panel after executing the command.
 
     4. Other incorrect `find` commands to try: `find` (no keywords provided).<br>
@@ -663,10 +664,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Add mods to a batchmate.
 
-    1. Prerequisites: List all batchmates using the `list` command. Multiple batchmates in the list.
+    1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
 
     2. Test case: `mod add 1 cs2103t cs2101`.<br>
-       Expected: The mods CS2103T and CS2101 will be present in the mods pane when the batchmate located at index 1 is selected.
+       Expected: The mods `CS2103T` and `CS2101` will be present in the mods pane when the batchmate located at index 1 is selected.
 
     3. Other incorrect `mod add` commands to try: `mod add cs2103t`, `mod add 1 xxx` (where xxx is any invalid mod name).<br>
        Expected: No mods are added, and the status message will indicate that the command is invalid.
@@ -675,11 +676,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Mark mod(s) for a batchmate.
 
-    1. Prerequisites: List all batchmates using the `list` command. Multiple batchmates in the list.
+    1. Prerequisites: List all batchmates using the `list` command. There are multiple batchmates in the list.
 
     2. Prerequisites: The batchmate at index 1 must have the mods CS2103T and CS2101.<br>
        Test case: `mod mark 1 cs2103t cs2101`.<br>
-       Expected: The mods CS2103T and CS2101 will be marked as taken in the mods pane when the batchmate located at index 1 is selected.
+       Expected: The mods `CS2103T` and `CS2101` will be marked as taken in the mods pane when the batchmate located at index 1 is selected.
 
     3. Other incorrect `mod mark` commands to try: `mod mark cs2103t`, `mod mark 1 xxx`
        (where xxx is any mod name that is not in the list of mods for that batchmate).<br>
@@ -689,16 +690,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files.
 
-    1. Go to the data file located at `data/MassLinkers.json`. If the directory is not present,
-       run MassLinkers, modify the data, and exit. The data file should be present in the directory.
+    1. Go to the data file located at `data/Mass Linkers.json`. If the directory is not present,
+       run Mass Linkers, modify the data, and exit. The data file should be present in the directory.
     2. Attempt to corrupt the data by deleting a closing brace `}` at the end of the file.
-    3. Reopen MassLinkers. <br>
-       Expected: MassLinkers will run and start with an empty data file. (no batchmates will be shown on the student pane)
+    3. Reopen Mass Linkers. <br>
+       Expected: Mass Linkers will run and start with an empty data file. (no batchmates will be shown on the student pane)
 
 2. All data saved.
 
-    1. Add or edit batchmate(s) in MassLinkers.
-    2. Close MassLinkers.
-    3. Reopen MassLinkers. <br>
+    1. Add or edit batchmate(s) in Mass Linkers.
+    2. Close Mass Linkers.
+    3. Reopen Mass Linkers. <br>
        Expected: The data is saved, and the changes you made to the data are still present.
 
