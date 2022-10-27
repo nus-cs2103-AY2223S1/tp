@@ -11,12 +11,9 @@ import seedu.address.model.datetime.DatetimeRange;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Consultation {
-    // Student name
     private final ConsultationName name;
     private final ConsultationModule module;
     private final ConsultationVenue venue;
-
-    //Data fields
     private final DatetimeRange timeslot;
     private final ConsultationDescription description;
 

@@ -267,6 +267,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given consultation {@code target} in the list with {@code editedConsultation}.
+     * {@code target} must exist in the Modquik.
+     * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation
+     * in the Modquik.
+     */
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireNonNull(editedConsultation);
+        consultations.setConsultation(target, editedConsultation);
+    }
+
+    /**
      * Returns an array containing number of specific grade.
      */
     public int[] getGradeData() {
