@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an optional note about a person in the clinkedin book.
- * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
+ * Guarantees: immutable;}
  */
 public class Note {
 
@@ -21,7 +21,7 @@ public class Note {
      */
     public Note(String s) {
         requireNonNull(s);
-        value = s.trim();
+        this.value = s.trim();
     }
 
     @Override
