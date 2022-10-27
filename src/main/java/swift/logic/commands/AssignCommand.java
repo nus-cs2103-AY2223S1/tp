@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_TASK;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
+import swift.logic.parser.Prefix;
 import swift.model.Model;
 import swift.model.person.Person;
 import swift.model.task.Task;
@@ -20,6 +22,8 @@ import swift.model.task.Task;
 public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(
+            List.of(PREFIX_CONTACT, PREFIX_TASK));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns the task to the contact identified by the index numbers used in the displayed contact list.\n"
