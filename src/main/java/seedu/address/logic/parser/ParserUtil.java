@@ -41,8 +41,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String level} into a {@code Progress}.
      * Leading and trailing whitespaces will be trimmed.
-     * @param level
-     * @return
+     *
      * @throws ParseException if the given {@code level} is invalid.
      */
     public static Progress parseProgress(String level) throws ParseException {

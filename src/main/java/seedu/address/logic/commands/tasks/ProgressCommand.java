@@ -2,6 +2,8 @@ package seedu.address.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
@@ -10,7 +12,6 @@ import seedu.address.model.attribute.Progress;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-import java.util.List;
 
 /**
  * Class that represents command for Progress.

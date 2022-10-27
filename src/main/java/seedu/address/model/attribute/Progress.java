@@ -15,6 +15,11 @@ public class Progress extends AbstractAttribute<String> {
         super(TYPE, String.valueOf(level));
     }
 
+    /**
+     * Method to check the input for setting progress.
+     * @param test
+     * @return true if input is valid.
+     */
     public static boolean isValidProgress(String test) {
         if (test == "25%" || test == "50%" || test == "75%" || test == "100%") {
             return true;
