@@ -195,7 +195,7 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 
 [Coming soon]
 
-### Add tag to a student: `addtag`
+### Add tag to a student: `tag`
 
 [Coming soon]
 

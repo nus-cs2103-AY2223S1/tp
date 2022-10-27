@@ -7,19 +7,19 @@ import java.util.Collections;
 import java.util.Set;
 
 import seedu.studmap.commons.core.index.IndexListGenerator;
-import seedu.studmap.logic.commands.AddTagCommand;
 import seedu.studmap.logic.commands.EditStudentCommand;
+import seedu.studmap.logic.commands.UntagCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 import seedu.studmap.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddTagCommand object
+ * Parses input arguments and creates a new UntagCommand object
  */
-public class AddTagCommandParser extends EditStudentCommandParser<AddTagCommand.AddTagCommandStudentEditor> {
+public class UntagCommandParser extends EditStudentCommandParser<UntagCommand.UntagCommandStudentEditor> {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * If {@code tags} contains only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
     private Set<Tag> parseTagsSet(Collection<String> tags) throws ParseException {
@@ -36,21 +36,20 @@ public class AddTagCommandParser extends EditStudentCommandParser<AddTagCommand.
 
     @Override
     public String getUsageMessage() {
-        return AddTagCommand.MESSAGE_USAGE;
+        return UntagCommand.MESSAGE_USAGE;
     }
 
     @Override
-    public EditStudentCommand<AddTagCommand.AddTagCommandStudentEditor> getIndexCommand(
+    public EditStudentCommand<UntagCommand.UntagCommandStudentEditor> getIndexCommand(
             ArgumentMultimap argMultimap, IndexListGenerator indexListGenerator)
             throws ParseException {
 
         Set<Tag> tags;
         tags = parseTagsSet(argMultimap.getAllValues(PREFIX_TAG));
 
-        AddTagCommand.AddTagCommandStudentEditor editor = new AddTagCommand.AddTagCommandStudentEditor();
+        UntagCommand.UntagCommandStudentEditor editor = new UntagCommand.UntagCommandStudentEditor();
         editor.setTags(tags);
 
-        return new AddTagCommand(indexListGenerator, editor);
-
+        return new UntagCommand(indexListGenerator, editor);
     }
 }
