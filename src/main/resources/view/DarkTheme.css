@@ -1,6 +1,6 @@
 .background {
-    -fx-background-color: derive(black, 20%);
-    background-color: darkgey; /* Used in the default.html file */
+    -fx-background-color: derive(black, 50%);
+    background-color: black; /* Used in the default.html file */
 }
 
 .label {
@@ -112,7 +112,7 @@
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91; /* #3e7b91 grayish blue */
+    -fx-border-color: black; /* #3e7b91 grayish blue */
     -fx-border-width: 1;
 }
 
@@ -175,17 +175,17 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(black, 30%); /* #1d1d1d darky gray colour*/
-    -fx-border-color: derive(black, 30%); /* #1d1d1d darky gray colour*/
+    -fx-background-color: derive(black, 20%); /* #1d1d1d darky gray colour*/
+    -fx-border-color: derive(black, 20%); /* #1d1d1d darky gray colour*/
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(black, 30%); /* #1d1d1d darky gray colour*/
+    -fx-background-color: derive(black, 20%); /* #1d1d1d darky gray colour*/
 }
 
 .context-menu {
-    -fx-background-color: derive(black, 50%);/* #1d1d1d darky gray colour*/
+    -fx-background-color: derive(black, 20%);/* #1d1d1d darky gray colour*/
 }
 
 .context-menu .label {
@@ -214,7 +214,7 @@
  */
 .button {
     -fx-padding: 5 22 5 22;
-    -fx-border-color: white; /* #e2e2e2 whiteish gray*/
+    -fx-border-color: black; /* #e2e2e2 whiteish gray*/
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: black; /* #1d1d1d darky gray colour*/
@@ -225,7 +225,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a; /* #3a3a3a darky gray colour*/
+    -fx-background-color: darkgray; /* #3a3a3a darky gray colour*/
 }
 
 .button:pressed, .button:default:hover:pressed {
@@ -271,7 +271,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(black, 25%); /* #1d1d1d */
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -286,7 +286,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(black, 50%); /* #1d1d1d darky gray colour*/
+    -fx-background-color: derive(black, 20%); /* #1d1d1d darky gray colour*/
     -fx-background-insets: 3;
 }
 
@@ -314,13 +314,13 @@
 
 #commandTypeLabel {
     -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
+    -fx-text-fill: black; /* #F70D1A */
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: black black; /* #383838 */
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: black black black black;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Arial UI Light";
@@ -333,7 +333,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, black, transparent, black; /* #383838 */
     -fx-background-radius: 0;
 }
 
@@ -344,7 +344,7 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: black; /* #3e7b91 */
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
