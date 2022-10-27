@@ -128,9 +128,9 @@ public class Book {
     @Override
     public String toString() {
         return getTitle()
-                + "; Author: "
+                + " | Author: "
                 + getAuthor()
-                + "; "
+                + " | "
                 + getReturnDateString();
     }
 }
