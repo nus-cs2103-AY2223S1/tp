@@ -167,6 +167,9 @@ Format: `mark INDEX`
 The index of the student can be seen from the student list.<br>
 </div>
 
+Example after entering `mark 1`:
+![MarkCommandOutcome.png](images/MarkCommandOutcome.png)
+
 ### Unmarking a student's Mastery Check: `unmark`
 
 Unmarks the Mastery Check of a specified student.
@@ -176,6 +179,9 @@ Format: `unmark INDEX`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The index of the student can be seen from the student list.<br>
 </div>
+
+Example after entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
+![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
 
 ### Sorting students: `sort`
 
