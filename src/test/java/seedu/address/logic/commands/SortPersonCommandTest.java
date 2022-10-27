@@ -31,12 +31,14 @@ public class SortPersonCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
         assertCommandSuccess(new SortPersonCommand(SortPersonCommand.Criteria.NAME),
-                model, SortPersonCommand.MESSAGE_SUCCESS, expectedModel);
+                model, String.format(SortPersonCommand.MESSAGE_SUCCESS, SortPersonCommand.Criteria.NAME.getName()),
+                expectedModel);
     }
 
     @Test
     public void execute_listIsSorted_showsEverything() {
         assertCommandSuccess(new SortPersonCommand(SortPersonCommand.Criteria.NAME),
-                model, SortPersonCommand.MESSAGE_SUCCESS, expectedModel);
+                model, String.format(SortPersonCommand.MESSAGE_SUCCESS, SortPersonCommand.Criteria.NAME.getName()),
+                expectedModel);
     }
 }

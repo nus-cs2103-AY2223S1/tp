@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddInternshipCommand;
 import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.BaseCommandUtil;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteInternshipCommand;
@@ -21,6 +22,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LinkCommand;
 import seedu.address.logic.commands.ListInternshipCommand;
 import seedu.address.logic.commands.ListPersonCommand;
+import seedu.address.logic.commands.SortInternshipCommand;
 import seedu.address.logic.commands.SortPersonCommand;
 import seedu.address.logic.commands.UnlinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,7 +36,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<commandWord>\\S+)(?<flag>\\s-\\S+)?(?<arguments>.*)");
+            Pattern.compile("(?<commandWord>^[^-\\s]+)(\\s+)?(?<flag>-\\S+)?(?<arguments>\\s.*)?");
 
     /**
      * Parses user input into command for execution.
@@ -51,9 +53,9 @@ public class AddressBookParser {
 
         final String commandWord;
         final String flag = matcher.group("flag");
-        final String arguments = matcher.group("arguments");
+        final String arguments = matcher.group("arguments") == null ? "" : matcher.group("arguments");
         if (flag != null) {
-            commandWord = matcher.group("commandWord") + flag;
+            commandWord = matcher.group("commandWord") + " " + flag;
         } else {
             commandWord = matcher.group("commandWord");
         }
@@ -106,6 +108,27 @@ public class AddressBookParser {
 
         case SortPersonCommand.COMMAND_WORD:
             return new SortPersonCommandParser().parse(arguments);
+
+        case SortInternshipCommand.COMMAND_WORD:
+            return new SortInternshipCommandParser().parse(arguments);
+
+        case BaseCommandUtil.ADD_COMMAND:
+            throw new ParseException(BaseCommandUtil.getErrorMessage(BaseCommandUtil.ADD_COMMAND));
+
+        case BaseCommandUtil.DELETE_COMMAND:
+            throw new ParseException(BaseCommandUtil.getErrorMessage(BaseCommandUtil.DELETE_COMMAND));
+
+        case BaseCommandUtil.EDIT_COMMAND:
+            throw new ParseException(BaseCommandUtil.getErrorMessage(BaseCommandUtil.EDIT_COMMAND));
+
+        case BaseCommandUtil.FIND_COMMAND:
+            throw new ParseException(BaseCommandUtil.getErrorMessage(BaseCommandUtil.FIND_COMMAND));
+
+        case BaseCommandUtil.LIST_COMMAND:
+            throw new ParseException(BaseCommandUtil.getErrorMessage(BaseCommandUtil.LIST_COMMAND));
+
+        case BaseCommandUtil.SORT_COMMAND:
+            throw new ParseException(BaseCommandUtil.getErrorMessage(BaseCommandUtil.SORT_COMMAND));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
