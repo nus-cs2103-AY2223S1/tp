@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskPanel;
@@ -68,7 +69,7 @@ public class SampleDataUtil {
             new Task(
                 new Title("Add task storage"),
                 false,
-                Deadline.UNSPECIFIED,
+                Deadline.of(TaskParserUtil.convertStringToLocalDate("01 January 2023")),
                 new Project("CS2103T"),
                 getContactSet("Bernice Yu"))
         };
