@@ -293,6 +293,7 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case ASSIGN:
             case UNASSIGN:
+                // Fallthrough
                 refreshTab();
                 break;
             case SELECT_CONTACT:
