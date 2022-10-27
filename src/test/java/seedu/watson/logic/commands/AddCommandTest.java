@@ -14,7 +14,6 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-
 import seedu.watson.commons.core.GuiSettings;
 import seedu.watson.logic.commands.exceptions.CommandException;
 import seedu.watson.model.Database;
