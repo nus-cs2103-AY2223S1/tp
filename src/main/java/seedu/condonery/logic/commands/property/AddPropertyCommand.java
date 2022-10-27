@@ -30,7 +30,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
             + PREFIX_PRICE + "1000000 "
             + PREFIX_TAG + "High-End "
-            + PREFIX_TAG + "Available"
+            + PREFIX_TAG + "Available "
             + PREFIX_PROPERTY_TYPE + "HDB";
 
 
