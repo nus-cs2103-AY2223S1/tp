@@ -1,9 +1,9 @@
 package gim.logic.parser;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static gim.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_RANGE_VARIATION_TWO;
+import static gim.logic.parser.CliSyntax.PREFIX_START_DATE;
 
 import java.util.stream.Stream;
 
@@ -16,7 +16,7 @@ import gim.model.exercise.DateWithinRangePredicate;
  * Parses input arguments and creates a new RangeCommand object
  */
 public class RangeCommandParser implements Parser<RangeCommand> {
-    private enum VARIATION { ONE, TWO }
+    private enum Variation { ONE, TWO }
 
     /**
      * Parses the given {@code String} of arguments in the context of the RangeCommand
@@ -26,18 +26,18 @@ public class RangeCommandParser implements Parser<RangeCommand> {
     public RangeCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_RANGE_VARIATION_TWO);
-        VARIATION variation = parseArguments(argMultimap);
+        Variation variation = parseArguments(argMultimap);
 
-        if (variation.equals(VARIATION.TWO)) {
+        if (variation.equals(Variation.TWO)) {
             return getVariationTwo(argMultimap);
-        } else if (variation.equals(VARIATION.ONE)) {
+        } else if (variation.equals(Variation.ONE)) {
             return getVariationOne(argMultimap);
         }
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
     }
 
-    private VARIATION parseArguments(ArgumentMultimap argMultimap) throws ParseException {
+    private Variation parseArguments(ArgumentMultimap argMultimap) throws ParseException {
         // invalid command format if user inputs all keywords or mixes the keywords
         if (arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_RANGE_VARIATION_TWO)
                 || arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_RANGE_VARIATION_TWO)
@@ -46,13 +46,13 @@ public class RangeCommandParser implements Parser<RangeCommand> {
         }
         if (arePrefixesPresent(argMultimap, PREFIX_RANGE_VARIATION_TWO)
                 && !arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)) {
-            return VARIATION.TWO;
+            return Variation.TWO;
         }
         if (!arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
         }
-        return VARIATION.ONE;
+        return Variation.ONE;
     }
 
     private RangeCommand getVariationOne(ArgumentMultimap argMultimap) throws ParseException {
