@@ -134,26 +134,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void filterStudentListWithPredicate(Predicate<Student> predicate) {
+        requireAllNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredStudents.setPredicate(predicate);
-    }
-
-    @Override
-    public void filterStudentListWithTag(Predicate<Student> predicate) {
-        requireAllNonNull(predicate);
-        filteredStudents.setPredicate(predicate);
-    }
-
-    @Override
-    public void filterStudentListWithModule(Predicate<Student> predicate) {
-        requireAllNonNull(predicate);
-        filteredStudents.setPredicate(predicate);
-    }
-
-    @Override
-    public void filterStudentListWithAssignment(Predicate<Student> predicate) {
-        requireAllNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
 

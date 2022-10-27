@@ -102,21 +102,12 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-
-    /**
-     * Updates the filter of the filtered student list to filter by the given {@code predicate}
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void filterStudentListWithTag(Predicate<Student> predicate);
-
     /**
      * Sorts filteredList by specified comparator and order.
      */
     void sortFilteredStudentList(Comparator<Student> comparator, Order order);
 
-    void filterStudentListWithModule(Predicate<Student> predicate);
 
-    void filterStudentListWithAssignment(Predicate<Student> predicate);
+    void filterStudentListWithPredicate(Predicate<Student> predicate);
 
 }

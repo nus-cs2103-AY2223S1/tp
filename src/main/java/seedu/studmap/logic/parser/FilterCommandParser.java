@@ -1,6 +1,9 @@
 package seedu.studmap.logic.parser;
 
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
@@ -25,23 +28,25 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     @Override
     public FilterCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_ASSIGNMENT, PREFIX_TAG);
         if (trimmedArgs.length() == 2 || trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
-        String prefix = trimmedArgs.substring(0, 2);
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        if (prefix.equals("t/")) {
-            return new FilterCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
-                    null, null);
-        } else if (prefix.equals("m/")) {
-            return new FilterCommand(null,
-                    new ModuleContainsKeywordsPredicate(Arrays.asList(nameKeywords)), null);
+        if (argMultimap.getValue(PREFIX_ASSIGNMENT).isPresent()) {
+            return new FilterCommand(new AssignmentContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
-        return new FilterCommand(null, null,
-                new AssignmentContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-
+        if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
+            return new FilterCommand(new ModuleContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()){
+            return new FilterCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        }
     }
 }

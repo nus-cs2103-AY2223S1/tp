@@ -1,12 +1,13 @@
 package seedu.studmap.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.studmap.commons.core.Messages;
 import seedu.studmap.model.Model;
-import seedu.studmap.model.student.AssignmentContainsKeywordsPredicate;
-import seedu.studmap.model.student.ModuleContainsKeywordsPredicate;
-import seedu.studmap.model.student.TagContainsKeywordsPredicate;
+import seedu.studmap.model.student.Student;
+
+import java.util.function.Predicate;
 
 
 /**
@@ -20,39 +21,22 @@ public class FilterCommand extends Command {
             + "that contain any of "
             + "the specified alphabets (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "t/" + " friends";
+            + "Example: " + COMMAND_WORD + PREFIX_TAG + " friends";
 
-    private final TagContainsKeywordsPredicate tPredicate;
-
-    private final ModuleContainsKeywordsPredicate mPredicate;
-
-    private final AssignmentContainsKeywordsPredicate aPredicate;
+    private final Predicate<Student> predicate;
 
     /**
      * Constructor for FilterCommand
-     * @param tPredicate
-     * @param mPredicate
-     * @param aPredicate
+     * @param predicate
      */
-    public FilterCommand(TagContainsKeywordsPredicate tPredicate, ModuleContainsKeywordsPredicate mPredicate,
-                         AssignmentContainsKeywordsPredicate aPredicate) {
-        this.tPredicate = tPredicate;
-        this.mPredicate = mPredicate;
-        this.aPredicate = aPredicate;
+    public FilterCommand(Predicate<Student> predicate) {
+        this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
-        if (tPredicate == null && aPredicate == null) {
-            requireNonNull(mPredicate);
-            model.filterStudentListWithModule(mPredicate);
-        } else if (mPredicate == null && aPredicate == null) {
-            requireNonNull(tPredicate);
-            model.filterStudentListWithTag(tPredicate);
-        } else {
-            requireNonNull(aPredicate);
-            model.filterStudentListWithAssignment(aPredicate);
-        }
+        requireNonNull(model);
+        model.filterStudentListWithPredicate(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
