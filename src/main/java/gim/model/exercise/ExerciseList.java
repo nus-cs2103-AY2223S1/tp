@@ -39,7 +39,7 @@ public class ExerciseList implements Iterable<Exercise> {
      */
     public void add(Exercise toAdd) {
         requireNonNull(toAdd);
-        internalList.add(toAdd);
+        internalList.add(0, toAdd);
         displayedList.setAll(internalUnmodifiableList);
     }
 
