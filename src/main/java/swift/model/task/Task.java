@@ -9,7 +9,7 @@ import java.util.UUID;
 /**
  * Represents a Task in the address book.
  */
-public class Task {
+public class Task implements Comparable<Task> {
     private final UUID id;
 
     private final TaskName name;
@@ -74,6 +74,24 @@ public class Task {
 
     public boolean isDone() {
         return isDone;
+    }
+
+    @Override
+    public int compareTo(Task other) {
+        // Compare by name lexicographically if both tasks do not have deadlines
+        if (deadline.isEmpty() && other.deadline.isEmpty()) {
+            return name.compareTo(other.name);
+        }
+
+        if (deadline.isEmpty()) {
+            return 1;
+        }
+        if (other.deadline.isEmpty()) {
+            return -1;
+        }
+
+        // Compare by deadline if both tasks have deadlines
+        return deadline.get().compareTo(other.deadline.get());
     }
 
     @Override
