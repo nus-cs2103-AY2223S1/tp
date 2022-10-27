@@ -22,6 +22,7 @@ import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
 import seedu.travelr.model.ReadOnlyUserPrefs;
+import seedu.travelr.model.SummaryVariables;
 import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.ObservableTrip;
@@ -253,6 +254,15 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public SummaryVariables getSummaryVariables() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshSummaryVariables() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
