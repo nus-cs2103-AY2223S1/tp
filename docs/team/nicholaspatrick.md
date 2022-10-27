@@ -18,11 +18,13 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * A person can be added to the address book knowing only their occupation and name.
+  * Editing can be made easier by clicking a person card.
 
 * **Documentation**:
   * User Guide:
-    * Created the undo command
-    * Removed some criteria when adding a person to the address book 
+    * The undo command
+    * Possibility of adding a person with missing information 
+    * Quick edit by clicking a person card.
   * Developer Guide:
     * to be added soon
 
