@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditPersonCommand;
@@ -29,7 +28,7 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_DOB, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_GENDER);
+                PREFIX_ADDRESS, PREFIX_GENDER, PREFIX_DOB);
 
         Index index;
 
