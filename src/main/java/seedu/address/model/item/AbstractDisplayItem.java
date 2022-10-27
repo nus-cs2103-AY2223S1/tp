@@ -31,7 +31,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
 
     protected AbstractDisplayItem(Name name, int typeFlag, int parentTypeFlag) {
         requireAllNonNull(name, typeFlag);
-        this.name = new Name(name);
+        this.name = name;
         this.typeFlag = typeFlag;
         this.parentTypeFlag = parentTypeFlag;
         attributes = new ArrayList<>();

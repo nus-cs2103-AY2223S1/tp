@@ -106,7 +106,7 @@ public class EditCommand extends Command {
 
         // return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
         // updatedTags, updatedFields);
-        Person person = new Person(updatedName.fullName, updatedFields);
+        Person person = new Person(new Name(updatedName.fullName), updatedFields);
         person.setTags(updatedTags);
         return person;
     }
