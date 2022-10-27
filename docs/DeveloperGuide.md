@@ -173,7 +173,7 @@ as a `TaskCard` object, presented in the form of `ListView`.
 The `ProfileSidePanel` class contains the user's profile. The following information is displayed in on the object:
 * `Course` name
 * Inspiring quote
-* Modular Credit completed by user
+* Modular Credits completed by user
 * Number of Active Tasks
 
 Here is how the `ProfileSidePanel` works:
@@ -442,17 +442,18 @@ In the diagram, the predicates `modulePredicate` and `taskPredicate` are the cus
 
 Section by : [Marciano](https://github.com/midnightfeverrr)
 
-Marking modules as done allows users to selectively hide modules that they have completed.
+Allows users to mark their modules as done,
+and alternate between viewing all modules and viewing undone modules via the list command.
 
 Every module in the module list will be in either the done or undone state.
-New tag/label will be created to mark a module as `done`.
+New tag will be created to mark a module as `done`.
 
 In this section, we will discuss the management of done/undone state, as well as the
 interactions between the commands and the UI.
 
 The relevant commands for this section are:
-* **`done module <module code>`**  marks the module visible in the UI with the specified module code as done.
-* **`undone module <module code>`** marks the module visible in the UI with the specified module code as undone.
+* **`done module <module code>`**  marks the module with a done tag in the UI
+* **`undone module <module code>`** removes the done tag from a module (if present) in the UI
 
 #### Design considerations
 
@@ -462,10 +463,15 @@ There was an alternative we considered for users to select the module to mark as
     * Pro: Users do not have to search for a module code.
     * Con: Users have to type a significant amount to disambiguate modules by their name.
 
-* **Alternative 2:** Using the module code (current implementation):
-    * Pro: Users can mark modules as done by their module code easily without much typing.
+* **Alternative 2:** Using the module index:
+    * Pro: Users can mark modules as done without much typing.
+    * Con: Module index is not visible in UI. It is quite tedious to count the index manually if user has a lot of modules.
 
-Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users.
+* **Alternative 3:** Using the module code (current implementation):
+    * Pro: Users can mark modules as done by their module code easily without much typing.
+    * Con: Users still have to type more than if they were to specify via index.
+
+To optimize the amount of typing a user has to do, we decided to choose the second option.
 
 #### Current implementation
 
