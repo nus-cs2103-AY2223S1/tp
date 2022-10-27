@@ -35,7 +35,6 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
-        System.out.println(args);
 
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
@@ -57,9 +56,7 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         for (int i = 0; i < prefixes.length; i++) {
             Prefix currPrefix = prefixes[i];
-            System.out.println(currPrefix);
             if (argMultimap.getValue(currPrefix).isPresent()) {
-                System.out.println("have" + currPrefix);
                 predicates.add(getPredicate(currPrefix, argMultimap.getValue(currPrefix).get()));
             }
         }
@@ -80,7 +77,6 @@ public class ListCommandParser implements Parser<ListCommand> {
         case ListDeadlineCommand.COMMAND_WORD:
             return new ListDeadlineCommandParser().getPredicate(keyword);
         case ListTagCommand.COMMAND_WORD:
-            System.out.println("Reach list tag switch in parser");
             return new ListTagCommandParser().getPredicate(keyword);
         default:
             return PREDICATE_SHOW_ALL_PERSONS;
