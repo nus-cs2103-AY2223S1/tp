@@ -15,7 +15,8 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false,
-                false, false, false, false, false)));
+                false, false, false, false,
+                false, false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -31,27 +32,33 @@ public class CommandResultTest {
 
         // different showHelp value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", true,
-                false, false, false, false, false)));
+                false, false, false,
+                false, false, false, false)));
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false,
-                true, false, false, false, false)));
+                true, false, false,
+                false, false, false, false)));
 
         // different showModuleList value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false,
-                false, true, false, false, false)));
+                false, true, false,
+                false, false, false, false)));
 
         // different showStudentList value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
-                false, true, false, false)));
+                false, true,
+                false, false, false, false)));
 
         // different showModule value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
-                false, false, true, false)));
+                false, false,
+                true, false, false, false)));
 
         // different showScheduleList value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false,
-                false, false, false, true)));
+                false, false,
+                false, true, false, false)));
     }
 
     @Test
@@ -67,31 +74,37 @@ public class CommandResultTest {
         // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true,
                 false, false,
+                false, false,
                 false, false, false).hashCode());
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
                 true, false,
-                false, false, false).hashCode());
+                false, false, false,
+                false, false).hashCode());
 
         // different showModuleList value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
                 false, true,
-                false, false, false).hashCode());
+                false, false, false,
+                false, false).hashCode());
 
         // different showStudentList value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
                 false, false,
-                true, false, false).hashCode());
+                true, false, false,
+                false, false).hashCode());
 
         // different showModule value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
                 false, false,
-                false, true, false).hashCode());
+                false, true, false,
+                false, false).hashCode());
 
         // different showScheduleList value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
                 false, false,
-                false, false, true).hashCode());
+                false, false, true,
+                false, false).hashCode());
     }
 }

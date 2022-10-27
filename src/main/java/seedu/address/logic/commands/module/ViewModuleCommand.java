@@ -64,7 +64,7 @@ public class ViewModuleCommand extends Command {
         model.updateFilteredStudentList(new StudentContainsModulePredicate(moduleToView.getCode()));
         model.updateFilteredTutorList(new TutorContainsModulePredicate(moduleToView.getCode()));
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToView), false, false,
-                false, false, true, false);
+                false, false, true, false, false, false);
     }
 
     @Override
