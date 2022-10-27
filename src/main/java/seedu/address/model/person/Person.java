@@ -16,6 +16,9 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    // Empty field value
+    public static final String EMPTY_FIELD_VALUE = "";
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -59,10 +62,9 @@ public class Person {
         this.description = description;
         this.netWorth = netWorth;
         this.meetingTimes.addAll(meetingTimes);
-        this.filePath = new FilePath("");
+        this.filePath = new FilePath(Person.EMPTY_FIELD_VALUE);
         this.tags.addAll(tags);
     }
-
 
     public Name getName() {
         return name;

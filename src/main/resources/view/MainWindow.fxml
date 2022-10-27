@@ -31,6 +31,10 @@
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
+          <Menu mnemonicParsing="false" text="Meetings">
+            <MenuItem fx:id="meetingsMenuItem" mnemonicParsing="false" onAction="#handleMeetings"
+                      text="Upcoming Meetings" />
+          </Menu>
         </MenuBar>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
@@ -47,7 +51,7 @@
         </StackPane>
 
         <HBox VBox.vgrow= "ALWAYS">
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="250" prefWidth="250" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
+          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="300" prefWidth="300" HBox.hgrow="NEVER" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

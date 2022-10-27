@@ -9,7 +9,6 @@ import seedu.address.ui.PersonProfile;
  * Guarantees: immutable; is always valid
  */
 public class Description {
-    public static final String EMPTY_DESCRIPTION = "";
     public final String value;
 
     /**
@@ -33,7 +32,14 @@ public class Description {
      * Returns value of description if not null else, EMPTY_DISPLAY_VALUE.
      */
     public String getDisplayValue() {
-        return value == EMPTY_DESCRIPTION ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+        return value.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+    }
+
+    /**
+     * Returns true if value is empty.
+     */
+    public boolean isEmpty() {
+        return value.equals(Person.EMPTY_FIELD_VALUE);
     }
 
     @Override

@@ -11,7 +11,6 @@ import seedu.address.ui.PersonProfile;
  */
 public class Name {
 
-    public static final String EMPTY_NAME = "";
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -20,8 +19,6 @@ public class Name {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
-    private static final String EMPTY_VALUE = "-";
 
     private final String fullName;
 
@@ -54,7 +51,14 @@ public class Name {
      * Returns fullName if not null else, EMPTY_DISPLAY_VALUE.
      */
     public String getFullDisplayName() {
-        return fullName == EMPTY_NAME ? PersonProfile.EMPTY_DISPLAY_VALUE : fullName;
+        return fullName.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : fullName;
+    }
+
+    /**
+     * Returns true if fullName is empty.
+     */
+    public boolean isEmpty() {
+        return fullName.equals(Person.EMPTY_FIELD_VALUE);
     }
 
     @Override

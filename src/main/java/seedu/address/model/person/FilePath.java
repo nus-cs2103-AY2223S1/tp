@@ -11,7 +11,6 @@ import seedu.address.ui.PersonProfile;
  */
 public class FilePath {
 
-    public static final String EMPTY_FILEPATH = "";
     public static final String VALIDATION_REGEX = ".+\\.pdf$";
 
     public static final String MESSAGE_EMPTY_FILEPATH = "File Path has not been initiated\n"
@@ -39,8 +38,11 @@ public class FilePath {
         this.value = filePath;
     }
 
+    /**
+     * Returns true if value is empty.
+     */
     public boolean isEmpty() {
-        return value.isEmpty();
+        return value.equals(Person.EMPTY_FIELD_VALUE);
     }
 
     /**
@@ -54,7 +56,7 @@ public class FilePath {
      * Returns value of filePath if not null else, EMPTY_DISPLAY_VALUE.
      */
     public String getDisplayValue() {
-        return value == EMPTY_FILEPATH ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+        return value.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     @Override

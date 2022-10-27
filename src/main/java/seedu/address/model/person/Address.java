@@ -11,7 +11,6 @@ import seedu.address.ui.PersonProfile;
  */
 public class Address {
 
-    public static final String EMPTY_ADDRESS = "";
     public static final String MESSAGE_CONSTRAINTS =
             "Addresses can take any values, but there should be no leading space";
 
@@ -36,7 +35,7 @@ public class Address {
      * Returns true if a given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
-        return test.equals(EMPTY_ADDRESS) || test.matches(VALIDATION_REGEX);
+        return test.equals(Person.EMPTY_FIELD_VALUE) || test.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -50,7 +49,14 @@ public class Address {
      * Returns value of address if not null else, EMPTY_DISPLAY_VALUE.
      */
     public String getDisplayValue() {
-        return value == EMPTY_ADDRESS ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+        return value.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+    }
+
+    /**
+     * Returns true if value is empty.
+     */
+    public boolean isEmpty() {
+        return value.equals(Person.EMPTY_FIELD_VALUE);
     }
 
     @Override

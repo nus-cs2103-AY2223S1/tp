@@ -11,7 +11,6 @@ import seedu.address.ui.PersonProfile;
  */
 public class Phone {
 
-    public static final String EMPTY_PHONE = "";
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
@@ -46,7 +45,14 @@ public class Phone {
      * Returns value of phone number if not null else, EMPTY_VALUE.
      */
     public String getDisplayValue() {
-        return value == EMPTY_PHONE ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+        return value.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+    }
+
+    /**
+     * Returns true if value is empty.
+     */
+    public boolean isEmpty() {
+        return value.equals(Person.EMPTY_FIELD_VALUE);
     }
 
     @Override
