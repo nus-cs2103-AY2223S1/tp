@@ -6,19 +6,19 @@ import java.util.regex.Pattern;
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.Command;
-import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
-import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
-import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
+import seedu.foodrem.logic.parser.generalcommandparser.ExitCommandParser;
 import seedu.foodrem.logic.parser.generalcommandparser.HelpCommandParser;
+import seedu.foodrem.logic.parser.generalcommandparser.ResetCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.DecrementCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.DeleteCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.EditCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.FilterTagCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.IncrementCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.ListCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.NewCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.RemarkCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.SortCommandParser;
@@ -80,15 +80,15 @@ public class FoodRemParser {
         case DELETE_TAG_COMMAND:
             return new DeleteTagCommandParser().parse(arguments);
         case RESET_COMMAND:
-            return new ResetCommand();
+            return new ResetCommandParser().parse(arguments);
         case FIND_COMMAND:
             return new FindCommandParser().parse(arguments);
         case LIST_COMMAND:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
         case SORT_COMMAND:
             return new SortCommandParser().parse(arguments);
         case EXIT_COMMAND:
-            return new ExitCommand();
+            return new ExitCommandParser().parse(arguments);
         case HELP_COMMAND:
             return new HelpCommandParser().parse(arguments);
         case TAG_COMMAND:
