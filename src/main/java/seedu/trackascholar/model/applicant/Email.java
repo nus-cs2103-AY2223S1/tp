@@ -45,7 +45,7 @@ public class Email {
     }
 
     /**
-     * Return email address of applicant.
+     * Returns the email address of applicant.
      */
     public String getEmailAddress() {
         return value;

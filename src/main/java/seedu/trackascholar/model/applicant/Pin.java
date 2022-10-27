@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
  * Represents an Applicant's pin status in TrackAScholar.
  */
 public class Pin {
+
     private final boolean hasPinned;
 
     /**
@@ -19,8 +20,7 @@ public class Pin {
     }
 
     /**
-     * Returns value for hasPinned
-     *
+     * Returns true if the applicant is pinned, false otherwise.
      */
     public boolean getHasPinned() {
         return this.hasPinned;

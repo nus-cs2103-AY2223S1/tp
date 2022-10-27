@@ -39,7 +39,7 @@ public class Scholarship implements Comparable<Scholarship> {
     }
 
     /**
-     * Returns name of scholarship that applicant has applied for.
+     * Returns the name of scholarship that applicant has applied for.
      */
     public String getScholarshipName() {
         return scholarship;
