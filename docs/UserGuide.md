@@ -92,9 +92,25 @@ Beyond individual products, you can also:
 
 { replace with a diagram of MyInsuRec and arrows and notes describing the different components of MyInsuRec }
 
-### 2.5 Quick Start
+--------------------------------------------------------------------------------------------------------------------
 
-1. Ensure you have Java `11` or above installed in your Computer.
+## 3. Installation Guide
+
+### 3.1 System Requirements
+
+Here is everything you need to install and set up *MyInsuRec*. For the best possible experience, we recommend that you use *MyInsuRec* on the following supported operating systems:
+
+* Windows
+* macOS
+* Linux
+
+You will also require Java 11 or above to run *MyInsuRec*. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/).
+
+### 3.2 Installation Instructions
+
+To install *MyInsuRec*, simply follow the steps below:
+
+1. Ensure that your system meets the [system requirements](#31-system-requirements).
 
 1. Download the latest `MyInsuRec.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-4/tp/releases).
 
@@ -103,14 +119,55 @@ Beyond individual products, you can also:
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+Ta-da! *MyInsuRec* is now installed on your system.
 
-    1. `viewClient`: View a particular client
-    2. `addClient`: Add a client
-    3. `delClient`: Delete client
+--------------------------------------------------------------------------------------------------------------------
 
-1. Refer to the [Features](#3-features) below for details of each command.
+## 4. Quick start
+
+Are you new to *MyInsuRec*? This section is the place to start! 
+
+Here, we will be guiding you on the basic features of *MyInsuRec* and help you get familiarized with it.
+
+1. When we first launch *MyInsuRec*, *MyInsuRec* will have already been preloaded with some sample data. We will be using this sample data to get familiar with *MyInsuRec*! The image below shows a freshly launched *MyInsuRec*.
+![SampleData](images/SampleData.png)
+
+2. Type in `addClient n/Tommy Tan p/81234567` to add a client named 'Tommy Tan' and has a contact number '81234567'. We will see the list of clients update to include this newly added client, with his phone number!
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Both client name and their phone number are needed to add the client into *MyInsuRec*.
+</div>
+
+3. Tommy has also given us his email address, his address as well as his birthday, and we would like to add that into *MyInsuRec*. To do that, we first need to get Tommy's index from the list of clients, which is 7. Type in `editClient i/7 e/tommytan21@gmail.com a/167 Canning Road bd/25081982` and hit enter. Tommy's record in the list of clients will update with the newly inputted details.
+
+4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com bd/09091973` also adds in the client's email and birthday directly.
+
+<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+See [addClient](#311-adding-a-client-addclient) for more variety of optional fields!
+</div>
+
+5. Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review plan` (You can replace `d/27102022` with today's date)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added.
+
+6. To view the meeting in greater detail, we can call `viewMeeting i/1`. This brings up a more detailed view of the meeting.
+
+7. Now, to go back to the list of clients, simply type in `listClient`. This brings us back to the list of clients.
+
+8. We would like to define and add more products! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product.
+
+9. Now, we want to add a client named who has already purchased 'MyInsureCare'. To do that, we can once again type in `addClient n/Ng Jun Yi p/81230987 pd/MyInsureCare` to add a client and indicate that he has bought 'MyInsureCare'.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+Only products added already via `addProduct` can be used! This is to help ensure the cleanliness of *MyInsuRec*. So, add your product via `addProduct` before using it to add a client with that product! See [addProduct](#331-adding-a-product-addproduct).
+</div>
+
+10. We want to delete the client 'Alex Yeoh' from our records! To do that, type in `delClient i/1`.
+
+And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#3-features) where all the commands and their details can be found.
+
+To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*. 
+
+Welcome to your new and organized life, and happy advising!
+
 
 --------------------------------------------------------------------------------------------------------------------
 
