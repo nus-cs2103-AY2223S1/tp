@@ -211,15 +211,15 @@ There are two ways to show person details
 1. Keyboard-friendly way
 
    1. Double tap the `<TAB>` button to begin navigating the list of persons.
-   
+
    2. Use the arrow keys to navigate to the desired person.
-   
+
    3. Press `<ENTER>` to show the person's details.
-   
+
 2. General usage
 
    1. Double-click on the person card in the list of persons.
-   
+
 Keyboard usage example:
 
 Step 1: Enter navigation mode by double tapping the `<TAB>` key.
