@@ -23,7 +23,6 @@ public class ScoresCommandParserTest {
 
     @Test
     public void parse_emptyUserInput_failure() {
-        System.out.println(MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, PREAMBLE_WHITESPACE, MESSAGE_INVALID_FORMAT);
     }
 

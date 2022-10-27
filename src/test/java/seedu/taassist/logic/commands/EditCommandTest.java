@@ -36,7 +36,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
-        Student realStudent = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student realStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder().withModuleData(realStudent.getModuleDataList()).build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT, descriptor);
