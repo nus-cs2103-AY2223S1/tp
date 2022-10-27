@@ -10,8 +10,8 @@ import seedu.nutrigoals.model.Model;
 public class SuggestCommand extends Command {
 
     public static final String COMMAND_WORD = "suggest";
-    public static final String MESSAGE_SUGGEST_DETAILS = "Your suggested daily calorie intake to achieve "
-            + "your ideal weight is: %1$s";
+    public static final String MESSAGE_SUGGEST_DETAILS = "You should take in %1$s to achieve "
+            + "your ideal weight!";
     public static final String MESSAGE_NO_PROFILE_CREATED = "Please set up your profile before proceeding!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Suggests an estimated daily calorie intake."
             + "\nExample: suggest";
