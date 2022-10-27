@@ -18,7 +18,7 @@ import seedu.address.model.person.user.ExistingUser;
  */
 public class ModulesLeftCommand extends Command {
 
-    public final static String COMMAND_WORD = "mods left";
+    public static final String COMMAND_WORD = "mods left";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the user what modules they have yet to clear "
             + "in order to fulfill core requirements or focus area requirements.\n"
@@ -34,10 +34,12 @@ public class ModulesLeftCommand extends Command {
     public static final String MESSAGE_INVALID_INDEX = "The focus area index provided is invalid.";
 
     private static int focusAreaIndex;
+    private static Set<Module> modulesChecker;
     private final EmptyUser emptyUser = new EmptyUser();
 
-    public static Set<Module> modulesChecker;
-
+    /**
+     * @param index of the focus area to check against
+     */
     public ModulesLeftCommand(Index index) {
         requireNonNull(index);
 
@@ -88,12 +90,16 @@ public class ModulesLeftCommand extends Command {
         }
     }
 
+    public static Set<Module> getModulesChecker() {
+        return modulesChecker;
+    }
+
     /**
      * Creates a set of core modules that CS students must clear to graduate
      */
     public static void createCoreModules() {
         String[] modStringArray = {"CS1101S", "CS1231S", "IS1103", "MA1521", "MA2001", "GEA1000", "ES2660", "ST2334",
-                "CS2030S", "CS2040S", "CS2100", "CS2101", "CS2103T", "CS2106", "CS2109S", "CS3230"};
+                                   "CS2030S", "CS2040S", "CS2100", "CS2101", "CS2103T", "CS2106", "CS2109S", "CS3230"};
         for (String modString : modStringArray) {
             modulesChecker.add(new Module(modString));
         }
@@ -114,7 +120,7 @@ public class ModulesLeftCommand extends Command {
      */
     public static void createAiModules() {
         String[] modStringArray = {"CS2109S", "CS3243", "CS3244", "CS3263", "CS3264", "CS4243", "CS4244", "CS4246",
-                "CS4248"};
+                                   "CS4248"};
         for (String modString : modStringArray) {
             modulesChecker.add(new Module(modString));
         }

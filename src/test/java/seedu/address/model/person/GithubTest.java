@@ -14,7 +14,7 @@ public class GithubTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
+    public void constructor_invalidGithub_throwsIllegalArgumentException() {
         String invalidGithub = "_";
         assertThrows(IllegalArgumentException.class, () -> new Github(invalidGithub));
     }
