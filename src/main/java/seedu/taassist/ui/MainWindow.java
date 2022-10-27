@@ -6,8 +6,9 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -48,13 +49,13 @@ public class MainWindow extends UiPart<Stage> {
     private Button helpButton;
 
     @FXML
-    private Button classTitle;
+    private Label classTitle;
 
     @FXML
     private Button unfocusButton;
 
     @FXML
-    private ButtonBar buttonBar;
+    private HBox buttonBar;
 
     @FXML
     private TextArea sessionClassText;
@@ -175,6 +176,7 @@ public class MainWindow extends UiPart<Stage> {
         content.setStyle("-fx-background-color:#f5d58b");
         buttonBar.setStyle("-fx-background-color: derive(#a5dff0, 20%);");
         moduleClassListPanelPlaceholder.getChildren().remove(moduleClassListPanel.getRoot());
+        moduleClassListPanelPlaceholder.getChildren().remove(sessionListPanel.getRoot());
         moduleClassListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
     }
 
