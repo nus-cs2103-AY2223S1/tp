@@ -155,7 +155,7 @@ public class DateSlot {
     private String getAssignCheck() {
         String assignCheck = DEFAULT_CHECK;
 
-        if (this.hasAssigned == true) {
+        if (this.hasAssigned) {
             assignCheck = SUCCESS_ASSIGNED_CHECK;
         }
 
@@ -165,10 +165,10 @@ public class DateSlot {
     private String getVisitCheck() {
         String visitCheck = DEFAULT_CHECK;
 
-        if (this.hasVisited == true && this.isSuccessVisit == true) {
+        if (this.hasVisited && this.isSuccessVisit) {
             visitCheck = SUCCESS_VISIT_CHECK;
 
-        } else if (this.hasVisited == true && this.isSuccessVisit == false) {
+        } else if (this.hasVisited && !this.isSuccessVisit) {
             visitCheck = FAIL_VISIT_CHECK;
 
         }

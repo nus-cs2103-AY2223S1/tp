@@ -93,7 +93,7 @@ public class UnmarkCommand extends Command {
 
         DateSlot dateToBeUnmark = updatedDateSlotList.get(dateSlotIndex.getZeroBased());
 
-        if (dateToBeUnmark.getHasVisited() == false) {
+        if (!dateToBeUnmark.getHasVisited()) {
             throw new CommandException(MESSAGE_INVALID_DATE_AND_SLOT_INDEX);
         }
 

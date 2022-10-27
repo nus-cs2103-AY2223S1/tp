@@ -151,13 +151,13 @@ public class AssignCommand extends Command {
     }
 
     private void checkInvalid(DateSlot dateSlot) throws CommandException {
-        if (dateSlot.getHasVisited() == true) {
+        if (dateSlot.getHasVisited()) {
             throw new CommandException(String.format(MESSAGE_INVALID_DATESLOT, dateSlot.getDateSlotFormatted()));
         }
     }
 
     private void checkAssigned(DateSlot dateSlot) throws CommandException {
-        if (dateSlot.getHasAssigned() == true) {
+        if (dateSlot.getHasAssigned()) {
             throw new CommandException(String.format(MESSAGE_ASSIGNED_DATESLOT, dateSlot.getDateSlotFormatted()));
         }
     }

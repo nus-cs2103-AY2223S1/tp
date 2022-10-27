@@ -153,14 +153,14 @@ public class DeassignCommand extends Command {
     }
 
     private void checkInvalid(DateSlot dateSlot) throws CommandException {
-        if (dateSlot.getHasVisited() == true) {
+        if (dateSlot.getHasVisited()) {
             throw new CommandException(String.format(MESSAGE_INVALID_DATESLOT_OR_HOMEVISIT,
                     dateSlot.getDateSlotFormatted()));
         }
     }
 
     private void checkNotAssigned(DateSlot dateSlot) throws CommandException {
-        if (dateSlot.getHasAssigned() == false) {
+        if (!dateSlot.getHasAssigned()) {
             throw new CommandException(String.format(MESSAGE_NOT_ASSIGNED_DATESLOT,
                     dateSlot.getDateSlotFormatted()));
         }

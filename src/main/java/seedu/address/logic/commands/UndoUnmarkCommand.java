@@ -97,11 +97,11 @@ public class UndoUnmarkCommand extends Command {
 
         DateSlot dateToBeUndoUnmark = updatedDateSlotList.get(dateSlotIndex.getZeroBased());
 
-        if (dateToBeUndoUnmark.getHasVisited() == false) {
+        if (!dateToBeUndoUnmark.getHasVisited()) {
             throw new CommandException(MESSAGE_INVALID_DATE_AND_SLOT_INDEX);
         }
 
-        if (dateToBeUndoUnmark.getIsSuccessVisit() == true) {
+        if (dateToBeUndoUnmark.getIsSuccessVisit()) {
             throw new CommandException(MESSAGE_INVALID_DATE_AND_SLOT_INDEX_TWO);
         }
 
