@@ -11,10 +11,6 @@
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "tagged": [
         "friends"
-      ],
-      "subjects": [
-        "Maths",
-        "Science"
       ]
     },
     {
@@ -28,10 +24,6 @@
       "tagged": [
         "owesMoney",
         "friends"
-      ],
-      "subjects": [
-        "Maths",
-        "Science"
       ]
     },
     {
@@ -41,10 +33,7 @@
       "address": "wall street",
       "studentClass": "1A",
       "attendance": "",
-      "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
-      "subjects": [
-        "English"
-      ]
+      "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]"
     },
     {
       "name": "Daniel Meier",
@@ -59,9 +48,6 @@
       ],
       "tagged": [
         "friends"
-      ],
-      "subjects": [
-        "English"
       ]
     },
     {
@@ -73,10 +59,7 @@
       "attendance": "",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "remarks": [],
-      "tagged": [],
-      "subjects": [
-        "English"
-      ]
+      "tagged": []
     },
     {
       "name": "Fiona Kunz",
@@ -87,10 +70,7 @@
       "attendance": "",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "remarks": [],
-      "tagged": [],
-      "subjects": [
-        "English"
-      ]
+      "tagged": []
     },
     {
       "name": "George Best",
@@ -101,10 +81,7 @@
       "attendance": "",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "remarks": [],
-      "tagged": [],
-      "subjects": [
-        "English"
-      ]
+      "tagged": []
     }
   ]
 }
