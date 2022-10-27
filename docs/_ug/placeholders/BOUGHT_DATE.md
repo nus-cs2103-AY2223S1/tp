@@ -14,6 +14,8 @@ The BOUGHT_DATE is the date indicating when an item was bought.
 
 **Invalid Examples:**
 
+* 11-11-2400
+* 11-11-1899
 * 1-1-2022
 * 01-1-2022
 * 1-01-2022

@@ -39,7 +39,7 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
 
 ### Placeholders
 
-Placeholders are words in UPPER_CASE to show you what parameters you can supply to a command.
+Placeholders are words in uppercase to show you what type of parameters you can supply to a command.
 
 {% include_relative _ug/Placeholders.md %}
 

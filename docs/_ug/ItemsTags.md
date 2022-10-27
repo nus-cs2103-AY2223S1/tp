@@ -14,9 +14,7 @@ The following are the attributes stored for each item:
 * Item remark
 * Item tags
 
-FoodRem items are unique by name and case-sensitive. 
-
-This means you cannot add two items on the same name.
+FoodRem Items are unique by name and case-sensitive. This means you cannot add two or more items of the same name.
 
 Restrictions for all attributes can be found in the [Placeholders](#placeholders) section.
 
@@ -33,3 +31,5 @@ Feel free to add tags as you see fit to organize your inventory. Examples of how
 * Noting its perishability, e.g. `Perishable`, `Non-Perishable`
 
 Tags can be renamed and these changes would be reflected on all items immediately.
+
+FoodRem Tags are unique by name and case-sensitive. This means you cannot add two or more tags of the same name.
