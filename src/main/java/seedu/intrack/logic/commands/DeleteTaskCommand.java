@@ -23,7 +23,7 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the task identified by the index number used "
             + "in the displayed task list of the selected internship application.\n"
-            + "Parameters: INDEX (must be a positive unsigned integer)\n"
+            + "Parameters: TASK_INDEX (must be a positive unsigned integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS =
