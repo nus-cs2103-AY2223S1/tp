@@ -12,6 +12,12 @@ public class ReminderComplexComparator implements Comparator<Reminder> {
     private final Comparator<Reminder> reminderComparatorOne;
     private final Comparator<Reminder> reminderComparatorTwo;
 
+    /**
+     * Constructs a {@code ReminderComplexComparator}.
+     *
+     * @param reminderComparatorOne The first Reminder Comparator
+     * @param reminderComparatorTwo The second Reminder Comparator
+     */
     public ReminderComplexComparator(Comparator<Reminder> reminderComparatorOne,
                                      Comparator<Reminder> reminderComparatorTwo) {
         this.reminderComparatorOne = reminderComparatorOne;

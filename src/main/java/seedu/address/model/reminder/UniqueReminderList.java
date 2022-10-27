@@ -38,16 +38,18 @@ public class UniqueReminderList implements Iterable<Reminder> {
     }
 
     /**
-     * Adds a reminder to the list. The reminder list will then be sorted by priority, from "HIGH" to "MEDIUM" to "LOW".
-     * The reminder must not already exist in the list.
+     * Adds a reminder to the list. The reminder list will then be sorted by the same custom ordering as defined in
+     * {@code sortRemindersByPriority}.
      */
     public void add(Reminder toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateReminderException();
         }
+
         internalList.add(toAdd);
-        internalList.sort(new ReminderComplexComparator(new ReminderPriorityComparator(), new ReminderDeadlineComparator()));
+        internalList.sort(new ReminderComplexComparator(new ReminderPriorityComparator(),
+                new ReminderDeadlineComparator()));
     }
 
     /**
@@ -82,11 +84,13 @@ public class UniqueReminderList implements Iterable<Reminder> {
     }
 
     /**
-     * Sorts reminder by priority in the list. Reminders with the same priority will be sorted lexicographically by
-     * their names.
+     * Sorts reminder by priority in the list. Reminders with the same priority will be sorted by deadline
+     * chronologically.
+     * Reminders with same priority and deadline will then be sorted lexicographically.
      */
     public void sortRemindersByPriority() {
-        internalList.sort(new ReminderComplexComparator(new ReminderPriorityComparator(), new ReminderDeadlineComparator()));
+        internalList.sort(new ReminderComplexComparator(new ReminderPriorityComparator(),
+                new ReminderDeadlineComparator()));
     }
 
     /**
@@ -95,7 +99,8 @@ public class UniqueReminderList implements Iterable<Reminder> {
      * Reminders with same deadline and priority will then be sorted lexicographically.
      */
     public void sortRemindersByDeadline() {
-        internalList.sort(new ReminderComplexComparator(new ReminderDeadlineComparator(), new ReminderPriorityComparator()));
+        internalList.sort(new ReminderComplexComparator(new ReminderDeadlineComparator(),
+                new ReminderPriorityComparator()));
     }
 
     /**
