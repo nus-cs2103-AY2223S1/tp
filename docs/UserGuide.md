@@ -128,7 +128,9 @@ at your specified `INDEX`.
 More information such as name of the module and module description,
 as well as any tags given to the module will be displayed.
 
-Format: `vtarget 3`
+Format: `vtarget INDEX`
+
+Examples: `vtarget 3`
 
 ### Viewing module details : `mview`
 
