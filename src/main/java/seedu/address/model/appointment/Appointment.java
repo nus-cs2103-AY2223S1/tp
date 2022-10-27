@@ -20,6 +20,22 @@ public abstract class Appointment {
     }
 
     /**
+     * Constructs an {@code Appointment} for a {@code Patient}.
+     * @param dateString string representation of date of the appointment
+     */
+    public Appointment(String dateString) {
+        if (dateString.equals("")) {
+            this.date = null;
+        } else {
+            try {
+                this.date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            } catch (DateTimeParseException e) {
+                throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+            }
+        }
+    }
+
+    /**
      * Returns date of {@code Appointment}.
      * @return the date of the appointment
      */

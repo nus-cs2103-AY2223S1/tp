@@ -1,10 +1,15 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.appointment.PastAppointment;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
@@ -46,6 +51,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setFloorNumber(person.getFloorNumber().orElse(null));
         descriptor.setWardNumber(person.getWardNumber().orElse(null));
         descriptor.setMedications(person.getMedications());
+        descriptor.setPastAppointments(person.getPastAppointments());
+        descriptor.setUpcomingAppointment(person.getUpcomingAppointment().orElse(null));
     }
 
     /**
@@ -119,6 +126,28 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withMedication(String... tags) {
         Set<Medication> tagSet = Stream.of(tags).map(Medication::new).collect(Collectors.toSet());
         descriptor.setMedications(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code PastAppointments} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPastAppointments(List<PastAppointment> pastAppointments) {
+        descriptor.setPastAppointments(pastAppointments);
+        return this;
+    }
+
+    /**
+     * Parses the {@code dateString} into a {@code UpcomingAppointment}
+     * and sets it to the {@code Person} that we are building.
+     */
+    public EditPersonDescriptorBuilder withUpcomingAppointment(String dateString) {
+        if (dateString == null) {
+            descriptor.setUpcomingAppointment(new UpcomingAppointment((LocalDate) null));
+        } else {
+            descriptor.setUpcomingAppointment(new UpcomingAppointment(LocalDate.parse(dateString,
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
+        }
         return this;
     }
 

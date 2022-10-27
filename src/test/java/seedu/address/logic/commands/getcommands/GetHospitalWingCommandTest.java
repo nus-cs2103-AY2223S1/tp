@@ -77,7 +77,7 @@ public class GetHospitalWingCommandTest {
      */
     private HospitalWingContainsKeywordsPredicate preparePredicate(String userInput) {
         String[] st = userInput.split("\\s+");
-        List<String> hospitalWings = new ArrayList<String>();
+        List<String> hospitalWings = new ArrayList<>();
         for (String i : st) {
             hospitalWings.add(i);
         }

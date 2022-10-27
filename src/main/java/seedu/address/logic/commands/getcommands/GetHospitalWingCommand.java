@@ -48,6 +48,7 @@ public class GetHospitalWingCommand extends GetCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
         PatientTypePredicate inPatientPredicate = new PatientTypePredicate(PatientType.PatientTypes.INPATIENT);
         Predicate<Person> hospitalWingPredicate = inPatientPredicate.and(predicate);
         model.updateFilteredPersonList(hospitalWingPredicate);
