@@ -162,6 +162,11 @@ public class Team {
         taskList.remove(task);
     }
 
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+        taskList.setTask(target, editedTask);
+    }
+
     /**
      * Sets a specified team member as the assignee for the task.
      *

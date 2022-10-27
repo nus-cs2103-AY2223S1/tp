@@ -13,6 +13,7 @@ import seedu.address.model.Model;
     EditTeamCommand.class,
     EditLinkCommand.class,
     EditPersonCommand.class,
+    EditTaskCommand.class,
 })
 public class EditCommand extends Command {
     @Override

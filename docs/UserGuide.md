@@ -27,9 +27,9 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
    open the help window.<br>
    Some example commands you can try:
 
-   - `list_members`
-   - `list_tasks`
-   - `add_task My First Task`
+   - `list members`
+   - `list tasks`
+   - `add task "My First Task"`
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -71,7 +71,7 @@ Examples:
 - `add team -n CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
   as description
 
-### Set a new team `set_team`
+### Set a new team `set team`
 
 Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
 
@@ -113,13 +113,13 @@ Add a new team member to the user’s currently selected team. Will throw an err
 
 Format:
 
-- `add_member TASK_INDEX`
+- `add member TASK_INDEX`
 
 Examples:
 
 - `add member 1` will add the first person in the list of people as a member of the current team.
 
-### Delete a member from team `delete_member`
+### Delete a member from team `delete member`
 
 Delete a team member from the user’s team. Will throw an error if no member with that name is found. Take note that
 names are case-sensitive.
@@ -140,18 +140,31 @@ Format:
 
 - `list members`
 
-### Add task to team : `add_task`
+### Add task to team : `add task`
 
-Add a new task to the current team.
+Add a new task to the current team. The task name is compulsory, while the other fields are optional.
 
 Format:
-
-- `add task TASK_NAME`
+* `add task -n TASK_NAME -a ASSIGNEES -d DEADLINE`
 
 Examples:
 
-- `add task "bake with butter"` will add a task with the name "bake with butter" to the current team's task list.
-- `add task fry` will add a task with the name "fry" to the current team's task list.
+* `add task -n "Merge PR" -a "Alex Yeoh" -d "2023-12-12 23:59""` will add a task with the name "Merge PR", assignee
+"Alex Yeoh" and deadline "2023-12-12 23:59" to the current team's task list.
+
+### Edit task in team : `edit task`
+
+Edits a specified task in the current team. The task index is compulsory, while the other fields are optional and
+will be overwritten accordingly.
+
+Format:
+
+- `edit task TASK_INDEX -n TASK_NAME -a ASSIGNEES -d DEADLINE`
+
+Examples:
+
+* `edit task 1 -n "Merge PR" -a "Alex Yeoh" -d "2023-12-12 23:59""` will edit the first task in the current team's task
+list, setting the name as "Merge PR", assignee as "Alex Yeoh" and deadline as "2023-12-12 23:59".
 
 ### Assign task to team member: `assign task`
 

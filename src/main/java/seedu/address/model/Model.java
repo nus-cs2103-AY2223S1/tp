@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 
 /**
@@ -109,4 +110,6 @@ public interface Model {
     ObservableList<Link> getFilteredLinkList();
 
     void updateFilteredLinkList(Predicate<Link> predicate);
+
+    void setTask(Task target, Task editedTask);
 }
