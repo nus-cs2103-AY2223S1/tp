@@ -130,7 +130,7 @@ public class StringUtil {
         }
 
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedArgument)) {
-            throw new ParseException("The index should be a non-negative number.");
+            throw new ParseException("The index of an item should be a positive number.");
         }
 
         Index index;
