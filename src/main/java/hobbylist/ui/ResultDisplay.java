@@ -2,12 +2,13 @@ package hobbylist.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.ScrollPane;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 
-import java.awt.*;
+
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
