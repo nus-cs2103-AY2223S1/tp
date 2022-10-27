@@ -304,5 +304,4 @@ public class ModelManager implements Model {
     public AbstractSingleItem getContextContainer() {
         return currentContext.orElse(null);
     }
-
 }

@@ -32,7 +32,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         String name = argMultimap.getValue(PREFIX_TITLE).get();
         String address = argMultimap.getValue(PREFIX_DESCRIPTION).get();
 
-        Task task = new Task(name, address);
+        Task task = new Task(name, "0%", address);
 
         return new AddTaskCommand(task);
     }

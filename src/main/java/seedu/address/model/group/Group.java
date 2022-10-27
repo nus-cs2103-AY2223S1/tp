@@ -3,11 +3,14 @@ package seedu.address.model.group;
 
 import seedu.address.model.attribute.Name;
 
+import static seedu.address.model.AccessDisplayFlags.GROUP;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 import seedu.address.model.item.AbstractSingleItem;
+import seedu.address.model.item.DisplayItem;
+import seedu.address.model.item.EntryType;
 
 
 /**
@@ -19,13 +22,12 @@ public class Group extends AbstractSingleItem {
     public static final String MESSAGE_CONSTRAINTS = "A group name should only consist "
             + "of alphanumeric characters, underscores and hyphens only.\n";
 
-    public Group(Name groupName) {
-        this(groupName, null);
-    }
-
-    public Group(Name groupName, Group parent) {
-        super(groupName, parent.getTypeFlag(), parent);
-
+    /**
+     * Constructor to create a group object
+     */
+    public Group(String groupName) {
+        super(groupName, GROUP, GROUP);
+        assert isValidGroupName(groupName);
     }
 
     /*
@@ -35,12 +37,66 @@ public class Group extends AbstractSingleItem {
      * @param groupName for a specific team.
      * @return true if the group name is valid, false otherwise.
      */
-    //public static boolean isValidGroupName(Name groupName) {
-    //    return groupName.matches(VALIDATION_REGEX);
-    //}
+
+    public static boolean isValidGroupName(String groupName) {
+        return groupName.matches(VALIDATION_REGEX);
+    }
+
+
+    public EntryType getEntryType() {
+        return EntryType.TEAM;
+    }
 
     @Override
-    public UUID getUid() {
+    public boolean stronglyEqual(DisplayItem o) {
+        if (!weaklyEqual(o)) {
+            return false;
+        }
+        Group g = (Group) o;
+        if (parent != null) {
+            return parent.equals(g.parent);
+        }
+        return g.parent == null;
+    }
+
+    @Override
+    public boolean weaklyEqual(DisplayItem o) {
+        if (!(o instanceof Group)) {
+            return false;
+        }
+        return ((Group) o).name.equals(name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Group)) {
+            return false;
+        }
+        return stronglyEqual((Group) obj);
+    }
+
+    @Override
+    public boolean isPartOfContext(DisplayItem o) {
+        if (o == null) {
+            return true;
+        }
+
+        AbstractSingleItem tmp = parent;
+        while (tmp != null) {
+            if (tmp.equals(o)) {
+                return true;
+            }
+            tmp = tmp.getParent();
+        }
+        return false;
+    }
+
+
+    @Override
+    public UUID getUuid() {
         return UUID.nameUUIDFromBytes(("Group: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
     }
 

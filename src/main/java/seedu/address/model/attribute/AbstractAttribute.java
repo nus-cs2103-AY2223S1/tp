@@ -188,7 +188,8 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
         if (isAllStyleMatch(RIGHT_JUSTIFY)) {
             sb.append(" -fx-text-alignment: right;");
         }
-
         return sb.toString();
     }
+
+
 }

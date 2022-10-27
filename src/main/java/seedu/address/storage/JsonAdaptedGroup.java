@@ -30,7 +30,7 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
     }
 
     public JsonAdaptedGroup(Group source) {
-        super(source.getName().fullName, source.getUid().toString(),
+        super(source.getName().fullName, source.getUuid().toString(),
                 source.getAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),

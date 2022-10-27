@@ -14,7 +14,7 @@ public abstract class  AbstractSingleItem extends AbstractDisplayItem {
 
     protected AbstractSingleItem parent = null;
 
-    protected AbstractSingleItem(seedu.address.model.attribute.Name name, int typeFlag, seedu.address.model.group.Group parentFlag) {
+    protected AbstractSingleItem(seedu.address.model.attribute.Name name, int typeFlag, int parentFlag) {
         super(name, typeFlag, parentFlag);
         parent = null;
     }

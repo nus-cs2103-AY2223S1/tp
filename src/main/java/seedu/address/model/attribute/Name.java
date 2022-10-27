@@ -25,7 +25,7 @@ public class Name extends AbstractAttribute<String> {
      *
      * @param name A valid name.
      */
-    public Name(String name) {
+    public Name(seedu.address.model.attribute.Name name) {
         super(TYPE, name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;

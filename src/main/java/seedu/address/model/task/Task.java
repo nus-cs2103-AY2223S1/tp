@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.model.attribute.Description;
+import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
-
 import seedu.address.model.attribute.Name;
 import seedu.address.model.person.Person;
 
@@ -28,6 +28,7 @@ public class Task extends AbstractSingleItem {
 
     private final Description description;
     private final LocalDateTime completedTime;
+    private String progress;
     private Set<Person> assignedParents = new HashSet<>();
 
     /**
@@ -36,8 +37,8 @@ public class Task extends AbstractSingleItem {
      * @param title       The title of the task.
      * @param description The description of the task.
      */
-    public Task(String title, String description) {
-        this(title, description, null);
+    public Task(Name title, String description, String progress) {
+        this(title, description, "0%", null);
     }
 
     /**
@@ -47,9 +48,10 @@ public class Task extends AbstractSingleItem {
      * @param description   The description of the task.
      * @param completedTime The completed_time of the task.
      */
-    public Task(String title, String description, LocalDateTime completedTime) {
+    public Task(Name title, String description, String progress, LocalDateTime completedTime) {
         super(title, TASK, GROUP | PERSON);
         this.description = new Description(description);
+        this.progress = progress;
         this.completedTime = completedTime;
     }
 
@@ -60,7 +62,7 @@ public class Task extends AbstractSingleItem {
         if (this.completedTime != null) {
             return this;
         }
-        Task ret = new Task(name.fullName, description.getAttributeContent(), LocalDateTime.now());
+        Task ret = new Task(name, description.getAttributeContent(), "100%", LocalDateTime.now());
         ret.parent = parent;
         return ret;
     }
@@ -72,7 +74,7 @@ public class Task extends AbstractSingleItem {
         if (this.completedTime == null) {
             return this;
         }
-        Task ret = new Task(name.fullName, description.getAttributeContent());
+        Task ret = new Task(name, this.progress, description.getAttributeContent());
         ret.parent = parent;
         return ret;
     }
@@ -122,6 +124,15 @@ public class Task extends AbstractSingleItem {
         return false;
     }
 
+    public Task setProgress(String level) {
+        if (this.completedTime != null) {
+            return this;
+        }
+
+        Task editedTask = new Task(name, description.getAttributeContent(), level, LocalDateTime.now());
+        return editedTask;
+    }
+
     /**
      * Make the current item to belong under {@code DisplayItem o}
      *
@@ -166,17 +177,22 @@ public class Task extends AbstractSingleItem {
             throw new ItemCannotBeParentException(o);
         }
 
+
         assignedParents.add(o);
     }
 
     @Override
-
     public Name getName() {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return name.toString();
+    }
 
-    public UUID getUid() {
+    @Override
+    public UUID getUuid() {
         return UUID.nameUUIDFromBytes(("Task: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
     }
 

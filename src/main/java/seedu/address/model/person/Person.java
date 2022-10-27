@@ -128,7 +128,7 @@ public class Person extends AbstractDisplayItem {
     }
 
     @Override
-    public UUID getUid() {
+    public UUID getUuid() {
         return UUID.nameUUIDFromBytes(("Person: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
     }
 }

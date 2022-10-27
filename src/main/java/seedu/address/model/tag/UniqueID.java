@@ -1,17 +1,23 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.item.AbstractContainerItem;
-
 import static java.util.Objects.requireNonNull;
-import static java.util.UUID.randomUUID;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.item.AbstractDisplayItem;
+
+/**
+ * A class for an unique ID for each item.
+ */
 public class UniqueID {
     public static final String MESSAGE_CONSTRAINTS = "UUID must be unique.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public String id;
+    private String id;
 
+    /**
+     * A constructor to create an UUID object.
+     * @param id is the ID generated when instantiating an item object.
+     */
     public UniqueID(String id) {
         this.id = id;
         requireNonNull(id);
@@ -41,7 +47,7 @@ public class UniqueID {
         return '[' + id + ']';
     }
 
-    public void generateUniqueID(AbstractContainerItem item) {
-        this.id = String.valueOf(randomUUID());
+    public void generateUniqueID(AbstractDisplayItem item) {
+        this.id = String.valueOf(item);
     }
 }

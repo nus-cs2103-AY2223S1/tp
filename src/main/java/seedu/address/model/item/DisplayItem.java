@@ -1,13 +1,11 @@
 package seedu.address.model.item;
 
-
-import seedu.address.model.attribute.Name;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
+import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.tag.Tag;
 
@@ -109,5 +107,7 @@ public interface DisplayItem {
     /**
      * Returns unique uid for this displayItem.
      */
-    UUID getUid();
+
+    UUID getUuid();
+
 }
