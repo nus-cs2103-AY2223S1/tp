@@ -294,18 +294,22 @@ Sort reminders by their deadline, with the earliest deadline on top of the list.
 
 Format: `sort reminder deadline`
 
-### 3.5 Switch Features
+### 3.5 Switch tabs : `switch`
 
-Shows a pie chart representing proportions of students' grade.
+Switch the tabs displayed.
 
-Format: `show grade`
+Format: `switch f/FIELD`
 
+* `FIELD` includes: `student`, `tutorial`, `consultation`, `grade`
 
+Examples:
+* `switch f/tutorial` will switch tabs and display the tutorial list.
+* `switch f/grade` with switch tabs and display a pie chart showing an overview of the number of students in each grade category.
 
+![Grade Chart Tab](images/SwitchGrade.png)
+_Figure 2. Grade Chart Tab_
 
-
-
-### Clearing all data: `clear`
+### 3.6 Clearing all data: `clear`
 
 Clears all data in a specific fields or the entire app.
 
@@ -315,7 +319,7 @@ Format: `clear f/FIELD`
 Examples:
 * `clear all`
 
-### Exiting the program: `exit`
+### 3.7 Exiting the program: `exit`
 
 Exits the program.
 
@@ -323,11 +327,11 @@ Format: `exit`
 
 ### Saving the data
 
-ModQuik data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+All data in ModQuik is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-ModQuik data are saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
+All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ModQuik will discard all data and start with an empty data file at the next run.
