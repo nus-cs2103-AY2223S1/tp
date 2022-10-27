@@ -5,11 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.AMY;
 import static seedu.address.testutil.TypicalClients.BOB;
 import static seedu.address.testutil.TypicalRemark.BAD_BUYER;
 import static seedu.address.testutil.TypicalRemark.BAD_SELLER;
@@ -85,14 +87,18 @@ public class ClientTest {
         editedAlice = new ClientBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameClient(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Client editedBob = new ClientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameClient(editedBob));
+        assertTrue(BOB.isSameClient(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name differs in spacing between words, all other attributes same -> returns true
+        Client editedAmy = new ClientBuilder(AMY).withName(VALID_NAME_AMY.replace(" ", "   ")).build();
+        assertTrue(AMY.isSameClient(editedAmy));
+
+        // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new ClientBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameClient(editedBob));
+        assertTrue(BOB.isSameClient(editedBob));
     }
 
     @Test
@@ -182,6 +188,6 @@ public class ClientTest {
 
         assertEquals(client.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
                 + "#02-25; Phone: 12112121; Email: ben@gmail.com; "
-                + "Tags: [owesMoney][friends]; Remarks: Bad Buyer; Total transactions: -$423");
+                + "Tags: [owesMoney][friends]; Total transactions: -$423");
     }
 }
