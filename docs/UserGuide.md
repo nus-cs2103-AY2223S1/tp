@@ -404,11 +404,11 @@ Format:
 Examples:
 * ```sortpatient c/name o/asc``` returns patients sorted by name in ascending order.
 
-<img src="images/sortpatient1.png" width="800px" height ="400px">
+<img src="images/sortpatient1.PNG" width="800px" height ="400px">
 
 * ```sortpatient c/phone o/desc``` returns patients sorted by phone number in descending order.
 
-<img src="images/sortpatient2.png" width="800px" height ="400px">
+<img src="images/sortpatient2.PNG" width="800px" height ="400px">
 
 ### 1.5.2 Sorting appointments `sortappointment`
 
@@ -427,11 +427,11 @@ Format:
 Examples:
 * ```sortappointment c/test o/asc``` returns appointments sorted by medical test in ascending order.
 
-<img src="images/sortappointment1.png" width="800px" height ="400px">
+<img src="images/sortappointment1.PNG" width="800px" height ="400px">
 
 * ```sortappointment c/doctor o/desc``` returns appointments sorted by doctor in descending order.
 
-<img src="images/sortappointment2.png" width="800px" height ="400px">
+<img src="images/sortappointment2.PNG" width="800px" height ="400px">
 
 ### 1.5.3 Sorting bills `sortbill`
 
@@ -452,11 +452,11 @@ Format:
 Examples:
 * ```sortbill c/amount o/asc``` returns bills sorted by amount in ascending order.
 
-<img src="images/sortbill1.png" width="800px" height ="400px">
+<img src="images/sortbill1.PNG" width="800px" height ="400px">
 
 * ```sortbill c/status o/desc``` returns bills sorted by payment status in descending order.
 
-<img src="images/sortbill2.png" width="800px" height ="400px">
+<img src="images/sortbill2.PNG" width="800px" height ="400px">
 
 ## 1.6 Select
 
@@ -593,7 +593,7 @@ Format:
 Examples:
 * ```undo``` undoes the most recent command.
 
-<img src="images/undo1.png" width="800px" height ="400px">
+<img src="images/undo1.PNG" width="800px" height ="400px">
 
 ## 1.10 Redo `redo`
 
@@ -609,7 +609,7 @@ Format:
 Examples:
 * ```redo``` redoes the most recent undo command.
 
-<img src="images/redo1.png" width="800px" height ="400px">
+<img src="images/redo1.PNG" width="800px" height ="400px">
 
 
 
