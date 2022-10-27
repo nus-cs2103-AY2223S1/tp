@@ -94,13 +94,13 @@ Examples:
 
 ### Rating an activity: `rate`
 
-Adds rating and writes review for an activity in the HobbyList.
+Adds rating and/or writes review for an activity in the HobbyList.
 
 Format: `rate INDEX r/RATING [re/REVIEW]`
 
 * The `INDEX` refers to the index number shown in the displayed activity list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
-* `RATING` only accepts integer numbers from 0 to 5 (inclusive).
+* `RATING` only accepts integer numbers from 1 to 5 (inclusive).
 
 Example:
 * `rate 1 r/2`
@@ -172,30 +172,30 @@ Format: `r/above VALUE`
 
 Example: `r/above 1`
 
-### Finding activities with tags : `filterTag`
+### Finding activities with tags : `findTag`
 
 Shows a list of all hobby activities whose tags match the one specified in the command.
 
-Format: `filterTag KEYWORDS`
+Format: `findTag KEYWORDS`
 
 * The `KEYWORDS` are case-insensitive.
 
 Example:
-* `filterTag book`
-* `filterTag ANIME`
+* `findTag book`
+* `findTag ANIME`
 
-### Finding activities with status: `filterStatus`
+### Finding activities with status: `findStatus`
 
 Shows a list of all hobby activities whose status match the status specified in the command.
 
-Format: `filterStatus STATUS`
+Format: `findStatus STATUS`
 
 * The feature only works with the `STATUS` being **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive).
 * If `STATUS` is different from the three statuses above, it is treated as **NONE**.
 
 Example: 
-* `filterStatus COMPLETED`
-* `filterStatus ongoing`
+* `findStatus COMPLETED`
+* `findStatus ongoing`
 
 ### Editing an activity : `edit`
 
@@ -276,18 +276,18 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 ## Command summary
 
-| Action           | Format                                                                                                                                             |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                |
-| **Clear**        | `clear`                                                                                                                                            |
-| **Delete**       | `delete INDEX`                                                                                                                                     |
-| **Edit**         | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
-| **Exit**         | `exit`                                                                                                                                             |
-| **FilterStatus** | `filterStatus STATUS`                                                                                                                              |
-| **FilterTag**    | `filterTag KEYWORD`                                                                                                                                |
-| **Find**         | `find KEYWORDS` <br/> `find yyyy-mm-dd` `find yyyy-mm` `find yyyy` <br/> `find rate/value`                                                         |
-| **Help**         | `help`                                                                                                                                             |
-| **List**         | `list`                                                                                                                                             |
-| **Rate above**   | `r/above VALUE`                                                                                                                                    |
-| **Rate**         | `rate INDEX r/RATING [re/REVIEW]`                                                                                                                  |
-| **Select**       | `select INDEX  `                                                                                                                                   |
+| Action         | Format                                                                                                                                             |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                |
+| **Clear**      | `clear`                                                                                                                                            |
+| **Delete**     | `delete INDEX`                                                                                                                                     |
+| **Edit**       | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
+| **Exit**       | `exit`                                                                                                                                             |
+| **Find**       | `find KEYWORDS` <br/> `find yyyy-mm-dd` `find yyyy-mm` `find yyyy` <br/> `find rate/value`                                                         |
+| **FindStatus** | `findStatus STATUS`                                                                                                                                |
+| **FindTag**    | `findTag KEYWORD`                                                                                                                                  |
+| **Help**       | `help`                                                                                                                                             |
+| **List**       | `list`                                                                                                                                             |
+| **Rate above** | `r/above VALUE`                                                                                                                                    |
+| **Rate**       | `rate INDEX r/RATING [re/REVIEW]`                                                                                                                  |
+| **Select**     | `select INDEX  `                                                                                                                                   |

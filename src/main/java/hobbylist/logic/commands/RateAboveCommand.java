@@ -17,7 +17,7 @@ public class RateAboveCommand extends Command {
     private static String commandWord = "r/above";
 
     public static final String MESSAGE_USAGE = commandWord
-            + ": List all activities whose rate is above certain value\n"
+            + ": List all activities whose rate is above or equal to a certain value\n"
             + "Parameters: int rateBound...\n"
             + "Example: " + commandWord + " 3";
     private final RatePredicate predicate;

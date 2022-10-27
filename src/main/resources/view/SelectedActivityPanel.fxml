@@ -102,7 +102,7 @@
                             <Insets left="10.0" top="5.0" />
                         </padding>
                     </Label>
-                    <Label id="review" fx:id="review" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="select">
+                    <Label id="review" fx:id="review" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="select" wrapText="true">
                         <padding>
                             <Insets top="5.0" />
                         </padding>
