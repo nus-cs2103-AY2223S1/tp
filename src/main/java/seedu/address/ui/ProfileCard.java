@@ -77,9 +77,7 @@ public class ProfileCard extends UiPart<Region> {
         }
         profile.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> {
-                    tags.getChildren().add(new Label(tag.tagName));
-                });
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
