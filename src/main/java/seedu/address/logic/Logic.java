@@ -1,8 +1,10 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,6 +34,11 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Customer> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the list of promotion images*/
+    ObservableList<Image> getPromotionList();
+
+    void parseAllPromotion(String filePath) throws IOException;
 
     /**
      * Returns the user prefs' address book file path.

@@ -1,9 +1,11 @@
 package seedu.address.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -125,6 +127,10 @@ public interface Model {
      * @return the current Reward points of a Customer
      */
     Reward getCurrentReward(Email email);
+
+    ObservableList<Image> getPromotionList();
+
+    void parseAllPromotion(String filePath) throws IOException;
 
     void commitAddressBook();
 
