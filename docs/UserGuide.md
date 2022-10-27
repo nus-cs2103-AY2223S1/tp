@@ -30,9 +30,14 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by Next of Kin's contact number](#)
       * [Find by class date](#find-by-class-date)
       * [Find by tag](#)
-    * [Deleting a student: `delete`](#deleting-students-delete)
+    * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
+      * [Sort by Name](#sort-by-name)
+      * [Sort by Class](#sort-by-class)
+      * [Sort by Money_Owed](#sort-by-money_owed)
+    * [Deleting student(s): `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
-    * [Exiting the program: `exit`](#exiting-the-program-exit)
+    * [Undo a command: `undo`](#undo-the-last-command-undo)
+    * [Exiting the program : `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
@@ -263,12 +268,12 @@ The student's next class will be set a week later at the same time, provided if 
 
 Format: `mark INDEX-s`
 
-- Marks the person as present at the specified `INDEX-s`.
+- Marks the student as present at the specified `INDEX-s`.
 - The index refers to the index number shown in the Schedule panel (bottom right).
 - The index must be a positive integer. e.g. `1, 2, 3, ...`.
 
 Example:
-- `mark 2` marks the 2nd person in the Schedule panel.
+- `mark 2` marks the 2nd student in the Schedule panel.
 
 ![UiMark](images/UG-screenshots/UiMark.png)
 
@@ -288,13 +293,13 @@ The application will reduce the student's owed amount by the amount paid.
 
 Format: `pay INDEX-s AMOUNT_PAID`
 
-- Marks the person as present at the specified `INDEX-s`.
+- Marks the student as present at the specified `INDEX-s`.
 - The index refers to the index number shown in the Schedule panel (bottom right).
 - The index must be a positive integer. e.g. `1, 2, 3, ...`.
 - The amount paid must be an integer and cannot be negative. e.g. `0, 1, 2, ...`.
 
 Example:
-- `pay 2 40` indicates that the 2nd person in the Schedule panel has paid $40.
+- `pay 2 40` indicates that the 2nd student in the Schedule panel has paid $40.
 
 ![UiPay](images/UG-screenshots/UiPay.png)
 
@@ -396,7 +401,64 @@ Examples:
 
 ---
 
-### Deleting students: 'delete'
+### Sort the displayed students: 'sort'
+
+Sort the displayed list of students (in the Student's Details panel) by the given `type` and `order`.
+
+Format: `sort TYPE [ORDER]`
+
+- `TYPE` must be followed by either one of the below options:
+  - `NAME`
+  - `CLASS`
+  - `OWED`
+- `ORDER`, if present, must be from 
+  - `ASC`
+  - `DESC`
+  - If it is left as blank, it will follow the default order for the type.
+- Default order for `NAME` and `CLASS` is `ASC` while default order for `OWED` is `DESC`.
+- The two parameters `TYPE` and `ORDER` can be non-capitalized such as `name`, `nAMe` and so on.
+
+[Back to top](#table-of-contents)
+
+#### Sort by NAME
+
+Sort the displayed list of students (in the Students' Details panel) by `NAME` and given `order`.
+
+When `order` is left blank, it will be `ASC` by default.
+
+Examples:
+
+- `list` followed by `sort NAME` will list all the students according to their names in ascending order.
+- `list` followed by `sort NAME ASC` will list all the students according to their names in ascending order.
+- `list` followed by `sort NAME DESC` will list all the students according to their names in descending order.
+
+#### Sort by CLASS
+
+Sort the displayed list of students (in the Students' Details panel) by `CLASS` and given `order`.
+
+When `order` is left blank, it will be `ASC` by default.
+
+Examples:
+
+- `list` followed by `sort CLASS` will list all the students according to their upcoming classes in ascending order.
+- `list` followed by `sort CLASS ASC` will list all the students according to their upcoming classes in ascending order.
+- `list` followed by `sort CLASS DESC` will list all the students according to their upcoming classes in descending order.
+
+
+#### Sort by MONEY_OWED
+
+Sort the displayed list of students (in the Students' Details panel) by `OWED`(Amount of Money Owed) and given `order`.
+
+When `order` is left blank, it will be `DESC` by default.
+
+Examples:
+
+- `list` followed by `sort OWED` will list all the students according to how much money they owe in **descending** order.
+- `list` followed by `sort OWED ASC` will list all the students according to how much money they owe in ascending order.
+- `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
+---
+
+### Deleting student(s): 'delete'
 
 Deletes the specified student(s) from the student list.
 
@@ -411,7 +473,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student is irreversible! Please input the correct index number(s).
+❗ Caution: Deleting a student by mistake can be reversed by "undo" command.
 ```
 
 [Back to top](#table-of-contents)
@@ -425,8 +487,18 @@ Clears all students and their details from the list.
 Format: `clear`
 
 ```yaml
-❗ Caution: Clearing all students is irreversible!
+❗ Caution: Clearing all students by mistake can be reversed by "undo" command!
 ```
+
+[Back to top](#table-of-contents)
+
+---
+
+### Undo the last command: 'undo'
+
+Undoes the last command executed and restores the Teacher's Pet to the previous state.
+
+Format: `undo`
 
 [Back to top](#table-of-contents)
 
@@ -492,7 +564,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Receive money from a student | pay INDEX-s AMOUNT_PAID `e.g., pay 2 300`                                                                                                                                                                                         |
 | Delete a student             | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
 | Clear all students           | `clear`                                                                                                                                                                                                                           |
+| Undo a command               | `undo`                                                                                                                                                                                                                            |
 | Exit the application         | `exit`                                                                                                                                                                                                                            |
-
 
 [Back to top](#table-of-contents)
