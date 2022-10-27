@@ -157,16 +157,17 @@ public class Tutor {
                 .append(getYear())
                 .append("; Student ID: ")
                 .append(getStudentId())
-                .append(" Teaching nominations: ")
+                .append("; Teaching nominations: ")
                 .append(getTeachingNomination())
-                .append(" Rating: ")
+                .append("; Rating: ")
                 .append(getRating())
-                .append(" Comment: ")
+                .append("; Comment: ")
                 .append(getComment());
 
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+            builder.append(";");
         }
         return builder.toString();
     }
