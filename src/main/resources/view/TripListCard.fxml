@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -29,10 +31,11 @@
       </HBox>
          <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
       <Label fx:id="eventCount" styleClass="cell_small_label" text="\$eventCount" />
-         <HBox alignment="CENTER_LEFT" spacing="5">
+        <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
             <Label fx:id="tripLocation" styleClass="cell_small_label" text="\$tripLocation" />
                <Label fx:id="tripDate" layoutX="15.0" layoutY="10.0" styleClass="cell_small_label" text="\$tripDate" />
+
             </children>
          </HBox>
     </VBox>
