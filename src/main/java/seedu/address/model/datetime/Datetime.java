@@ -70,24 +70,6 @@ public class Datetime {
     }
 
     /**
-     * Returns a new Datetime with the date changed.
-     * @return
-     */
-    public Datetime withDate(LocalDate date) {
-        LocalTime time = this.datetime.toLocalTime();
-        return new Datetime(time.atDate(date));
-    }
-
-    /**
-     * Returns a new Datetime with the time changed.
-     * @return
-     */
-    public Datetime withTime(LocalTime time) {
-        LocalDate date = this.datetime.toLocalDate();
-        return new Datetime(date.atTime(time));
-    }
-
-    /**
      * Converts this Datetime into a human-readable form.
      *
      * @return Human-readable representation of the Datetime
