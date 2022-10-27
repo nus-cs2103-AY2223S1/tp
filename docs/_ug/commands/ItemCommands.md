@@ -128,8 +128,8 @@ Item List Box:
 > Sorts the list of currently displayed items by the provided criteria
 
 ```warning
-You should only provide one sorting criteria. 
-The sort can only be done in an ascending order.
+* You should only provide one sorting criteria. 
+* The sort can only be done in an ascending order.
 ```
 
 **Example Input:**
