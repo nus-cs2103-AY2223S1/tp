@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -16,8 +17,8 @@ import seedu.address.model.person.Person;
  * Controller for a meetings page
  */
 public class MeetingsWindow extends UiPart<Stage> {
-    public static final String MEETINGS_MESSAGE = "These are the meetings you have";
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    public static final String MEETINGS_MESSAGE = "These are the meetings you have for the week.";
+    private static final Logger logger = LogsCenter.getLogger(MeetingsWindow.class);
     private static final String FXML = "MeetingsWindow.fxml";
     private MeetingListPanel meetingListPanel;
     private final Logic logic;
