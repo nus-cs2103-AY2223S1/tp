@@ -51,13 +51,16 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code name} is invalid or too long.
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!longtimenosee.model.person.Name.isValidName(trimmedName)) {
-            throw new ParseException(longtimenosee.model.person.Name.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        if (!Name.isValidLength(trimmedName)) {
+            throw new ParseException(Name.LENGTH_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -144,7 +147,10 @@ public class ParserUtil {
         if (!Birthday.isValidFormat(trimmedBirthday)) {
             throw new ParseException(Birthday.MESSAGE_FORMAT_CONSTRAINTS);
         }
-        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+        if (!Birthday.isValidDate(trimmedBirthday)) {
+            throw new ParseException(Birthday.RANGE_FORMAT_CONSTRAINTS);
+        }
+        if (!Birthday.isReasonableBirthday(trimmedBirthday)) {
             throw new ParseException(Birthday.MESSAGE_DATE_CONSTRAINTS);
         }
         return new Birthday(birthday);
@@ -280,6 +286,10 @@ public class ParserUtil {
         if (!Date.isValidRange(strippedDate)) {
             throw new ParseException(Date.RANGE_FORMAT_CONSTRAINTS);
         }
+
+        if (!Date.isValidYear(strippedDate)) {
+            throw new ParseException(Date.YEAR_RANGE_CONSTRAINTS);
+        }
         return new Date(strippedDate);
     }
     /**
@@ -308,6 +318,9 @@ public class ParserUtil {
         String strippedDescription = description.strip();
         if (!Description.isValidDescription(strippedDescription)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        if (!Description.isValidLength(strippedDescription)) {
+            throw new ParseException(Description.LENGTH_CONSTRAINTS);
         }
         return new Description(strippedDescription);
     }

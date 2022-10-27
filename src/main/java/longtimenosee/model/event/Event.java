@@ -113,13 +113,13 @@ public class Event {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("; Description: ")
-                .append(getDescription())
-                .append("; Attendees : ")
-                .append(getPersonName())
-                .append(", Date: ")
-                .append(getDate())
-                .append(", Duration: ")
+        builder.append("\n" + "Description: ")
+                .append(getDescription() + "\n")
+                .append("Attendees: ")
+                .append(getPersonName() + "\n")
+                .append("Date: ")
+                .append(getDate() + "\n")
+                .append("Duration: ")
                 .append(getDuration());
 
         return builder.toString();

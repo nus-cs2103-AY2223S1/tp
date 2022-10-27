@@ -10,10 +10,12 @@ import java.util.Comparator;
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
-
+    public static final int MAXIMUM_NAME_LENGTH = 100;
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
-
+    public static final String LENGTH_CONSTRAINTS =
+            "Names should not be more than " + MAXIMUM_NAME_LENGTH
+                   + " characters in length";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -39,6 +41,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidLength(name), LENGTH_CONSTRAINTS);
         fullName = name;
     }
 
@@ -47,6 +50,15 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is of a valid length.
+     * Presumes that the string is a valid name
+     * This accounts for the case where the string is empty.
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= MAXIMUM_NAME_LENGTH;
     }
 
 
