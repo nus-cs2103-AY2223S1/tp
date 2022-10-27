@@ -310,9 +310,10 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getModule())
-                .append("; Description: ")
-                .append(getDescription());
+        builder.append("Description: ")
+                .append(getDescription())
+                .append("; Module: ")
+                .append(getModule());
         return builder.toString();
     }
 }
