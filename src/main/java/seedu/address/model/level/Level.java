@@ -6,13 +6,18 @@ import seedu.address.model.level.exceptions.InvalidLevelException;
  * Represents the level of education.
  */
 public enum Level {
-    PRIMARY1("primary1"), PRIMARY2("primary2"), PRIMARY3("primary3"), PRIMARY4("primary4"), PRIMARY5("primary5"),
-    PRIMARY6("primary6"), SECONDARY1("secondary1"), SECONDARY2("secondary2"), SECONDARY3("secondary3"),
-    SECONDARY4("secondary4");
+    PRIMARY1("Primary 1"), PRIMARY2("Primary 2"), PRIMARY3("Primary 3"), PRIMARY4("Primary 4"), PRIMARY5("Primary 5"),
+    PRIMARY6("Primary 6"), SECONDARY1("Secondary 1"), SECONDARY2("Secondary 2"), SECONDARY3("Secondary 3"),
+    SECONDARY4("Secondary 4");
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Levels should only contain alphanumeric characters and spaces, and it should not be blank";
-    public static final String VALIDATION_REGEX = "(?i)primary[1-6]|secondary[1-4]";
+            "Academic level should be one of the valid academic levels.\n"
+                    + "The valid academic levels are:\n"
+                    + "1. Primary 1 to 6\n"
+                    + "2. Secondary 1 to 4\n";
+    public static final String MESSAGE_DID_YOU_MEAN_PRIMARY = "Did you mean \"primary\"? ";
+    public static final String MESSAGE_DID_YOU_MEAN_SECONDARY = "Did you mean \"secondary\"? ";
+    public static final String VALIDATION_REGEX = "(?i)(primary|pri|p)\\s*[1-6]|(secondary|sec|s)\\s*[1-4]";
     public final String level;
 
     Level(String level) {
