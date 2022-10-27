@@ -36,7 +36,7 @@ public class HelpWindow extends UiPart<Stage> {
             + " parameters and example usages will appear "
             + "in the result box on the top right.\n"
             + "- Other commands function without parameter inputs.\n"
-            + "- Gen, find and pr commands support one or multiple exercises\n"
+            + "- Gen, Find and PR commands support one or multiple exercises\n"
             + "If you have any more questions, feel free to visit our user guide below.";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";

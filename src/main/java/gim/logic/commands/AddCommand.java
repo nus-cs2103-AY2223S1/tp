@@ -25,8 +25,8 @@ public class AddCommand extends Command {
                     + "NAME " + PREFIX_WEIGHT
                     + "WEIGHT " + PREFIX_SETS
                     + "SETS " + PREFIX_REPS
-                    + "REPS " + PREFIX_DATE
-                    + "DATE\n"
+                    + "REPS [" + PREFIX_DATE
+                    + "DATE]\n"
                     + "Example usage:\n" + COMMAND_WORD + " "
                     + PREFIX_NAME + "Squat " + PREFIX_WEIGHT + "60 " + PREFIX_SETS + "1 "
                     + PREFIX_REPS + "5 " + PREFIX_DATE + "25/01/2022";

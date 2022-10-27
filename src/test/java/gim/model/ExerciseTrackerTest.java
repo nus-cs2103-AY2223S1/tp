@@ -3,7 +3,7 @@ package gim.model;
 import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.testutil.Assert.assertThrows;
-import static gim.testutil.TypicalExercises.ALICE;
+import static gim.testutil.TypicalExercises.ABDUCTION;
 import static gim.testutil.TypicalExercises.getTypicalExerciseTracker;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -47,19 +47,19 @@ public class ExerciseTrackerTest {
 
     @Test
     public void hasExercise_exerciseNotInExerciseTracker_returnsFalse() {
-        assertFalse(exerciseTracker.hasExercise(ALICE));
+        assertFalse(exerciseTracker.hasExercise(ABDUCTION));
     }
 
     @Test
     public void hasExercise_exerciseInExerciseTracker_returnsTrue() {
-        exerciseTracker.addExercise(ALICE);
-        assertTrue(exerciseTracker.hasExercise(ALICE));
+        exerciseTracker.addExercise(ABDUCTION);
+        assertTrue(exerciseTracker.hasExercise(ABDUCTION));
     }
 
     @Test
     public void hasExercise_exerciseWithSameIdentityFieldsInExerciseTracker_returnsTrue() {
-        exerciseTracker.addExercise(ALICE);
-        Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
+        exerciseTracker.addExercise(ABDUCTION);
+        Exercise editedAlice = new ExerciseBuilder(ABDUCTION).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
                 .build();
         assertTrue(exerciseTracker.hasExercise(editedAlice));
     }

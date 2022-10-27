@@ -6,15 +6,18 @@ import static gim.commons.core.Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX
 import static gim.commons.core.Messages.MESSAGE_INVALID_LEVEL;
 import static gim.commons.core.Messages.MESSAGE_MISSING_LEVEL;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
+import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.stream.Stream;
 
 import gim.commons.core.index.Index;
 import gim.commons.exceptions.IllegalValueException;
 import gim.logic.commands.GenerateCommand;
 import gim.logic.generators.ValidLevel;
 import gim.logic.parser.exceptions.ParseException;
-
+import gim.model.exercise.Name;
 
 
 /**
@@ -38,12 +41,30 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GenerateCommand.MESSAGE_USAGE));
         }
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LEVEL);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_LEVEL);
+        // parse names
+        if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            return getGenerateCommandWithNames(argMultimap);
+        }
+        // parse indices
+        return getGenerateCommandWithIndices(argMultimap);
+    }
+
+    // return a GenerateCommand with a list of indices
+    private GenerateCommand getGenerateCommandWithIndices(ArgumentMultimap argMultimap) throws ParseException {
         String indicesAsString = argMultimap.getPreamble();
         String level = argMultimap.getValue(PREFIX_LEVEL).orElse("");
         ArrayList<Index> indices = validateIndices(indicesAsString);
         ValidLevel validLevel = validateLevel(level);
         return new GenerateCommand(indices, validLevel);
+    }
+
+    // return a GenerateCommand with a set of names
+    private GenerateCommand getGenerateCommandWithNames(ArgumentMultimap argMultimap) throws ParseException {
+        Set<Name> nameSet = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
+        String level = argMultimap.getValue(PREFIX_LEVEL).orElse("");
+        ValidLevel validLevel = validateLevel(level);
+        return new GenerateCommand(nameSet, validLevel);
     }
 
     // validate and return ArrayList of indices if all indices are valid
@@ -79,6 +100,14 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 GenerateCommand.MESSAGE_USAGE + "\n\n" + MESSAGE_INVALID_LEVEL));
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

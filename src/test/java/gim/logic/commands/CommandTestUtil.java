@@ -1,6 +1,7 @@
 package gim.logic.commands;
 
 import static gim.logic.parser.CliSyntax.PREFIX_ALL;
+import static gim.logic.parser.CliSyntax.PREFIX_CONFIRM;
 import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
@@ -23,8 +24,6 @@ import gim.model.ExerciseTracker;
 import gim.model.Model;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.NameContainsKeywordsPredicate;
-import gim.testutil.EditExerciseDescriptorBuilder;
-
 
 
 /**
@@ -70,21 +69,11 @@ public class CommandTestUtil {
     // date can be empty, it will default to today's date
 
     public static final String DESC_PREFIX_ALL = " " + PREFIX_ALL;
+    public static final String DESC_PREFIX_CONFIRM = " " + PREFIX_CONFIRM;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditExerciseDescriptor DESC_ARM_CURLS;
-    public static final EditCommand.EditExerciseDescriptor DESC_BENCH_PRESS;
-
-    static {
-        DESC_ARM_CURLS = new EditExerciseDescriptorBuilder().withName(VALID_NAME_ARM_CURLS)
-                .withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS).withRep(VALID_REPS_ARM_CURLS)
-                .withDates(VALID_DATE).build();
-        DESC_BENCH_PRESS = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BENCH_PRESS)
-                .withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS).withRep(VALID_REPS_BENCH_PRESS)
-                .withDates(VALID_DATE).build();
-    }
 
     /**
      * Executes the given {@code command}, confirms that <br>

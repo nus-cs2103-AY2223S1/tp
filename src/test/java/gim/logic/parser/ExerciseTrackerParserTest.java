@@ -3,6 +3,7 @@ package gim.logic.parser;
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static gim.logic.commands.CommandTestUtil.VALID_LEVEL_EASY;
+import static gim.logic.parser.CliSyntax.PREFIX_CONFIRM;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalIndexes.INDEX_FIRST_EXERCISE;
@@ -19,8 +20,6 @@ import org.junit.jupiter.api.Test;
 import gim.logic.commands.AddCommand;
 import gim.logic.commands.ClearCommand;
 import gim.logic.commands.DeleteCommand;
-import gim.logic.commands.EditCommand;
-import gim.logic.commands.EditCommand.EditExerciseDescriptor;
 import gim.logic.commands.ExitCommand;
 import gim.logic.commands.FilterCommand;
 import gim.logic.commands.GenerateCommand;
@@ -29,7 +28,6 @@ import gim.logic.commands.ListCommand;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.NameContainsKeywordsPredicate;
-import gim.testutil.EditExerciseDescriptorBuilder;
 import gim.testutil.ExerciseBuilder;
 import gim.testutil.ExerciseUtil;
 
@@ -46,8 +44,11 @@ public class ExerciseTrackerParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " " + PREFIX_CONFIRM) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(
+                ClearCommand.COMMAND_WORD + " " + PREFIX_CONFIRM + "placeholder") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(
+                ClearCommand.COMMAND_WORD + " placeholder " + PREFIX_CONFIRM) instanceof ClearCommand);
     }
 
     @Test
@@ -55,15 +56,6 @@ public class ExerciseTrackerParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_EXERCISE.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_EXERCISE), command);
-    }
-
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Exercise exercise = new ExerciseBuilder().build();
-        EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder(exercise).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_EXERCISE.getOneBased() + " " + ExerciseUtil.getEditExerciseDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_EXERCISE, descriptor), command);
     }
 
     @Test
