@@ -20,7 +20,7 @@ import seedu.address.model.task.Task;
  */
 public class EditTagCommand extends Command {
     public static final String COMMAND_WORD = "tagedit";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": edits the tags of a task "
+    public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": edits the tags of a task "
             + "in the task list.\n"
             + "Parameters: INDEX " + "[" + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS]* "
             + "[" + PREFIX_DEADLINE + "DEADLINE]*";
