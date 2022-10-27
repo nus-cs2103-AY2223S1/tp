@@ -63,8 +63,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_CLASS_DESC = " " + PREFIX_MODULE_CLASS + "CS1101S*"; // '*' not allowed
     public static final String INVALID_INDEX = "-1"; // non-positive indices not allowed
-    public static final String INVALID_SESSION_COMMA_DESC = " " + PREFIX_SESSION + "foo,bar"; // ',' not allowed
-    public static final String INVALID_SESSION_EQUAL_DESC = " " + PREFIX_SESSION + "foo=bar"; // '=' not allowed
+    public static final String INVALID_SESSION_NAME = " " + PREFIX_SESSION + "foo,bar"; // ',' not allowed
     public static final String INVALID_DATE = "2022/01/01";
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + INVALID_DATE;
     public static final String INVALID_GRADE_VALUE_DESC = " " + PREFIX_GRADE + "foo"; // strings not allowed

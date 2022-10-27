@@ -3,8 +3,7 @@ package seedu.taassist.logic.parser;
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taassist.logic.commands.CommandTestUtil.DATE_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_SESSION_COMMA_DESC;
-import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_SESSION_EQUAL_DESC;
+import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_SESSION_NAME;
 import static seedu.taassist.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.taassist.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.taassist.logic.commands.CommandTestUtil.SESSION_DESC_LAB1;
@@ -42,8 +41,7 @@ public class SessionCommandParserTest {
     @Test
     public void parse_invalidSessionName_failure() {
         assertParseFailure(parser, " " + PREFIX_SESSION + PREAMBLE_WHITESPACE, Session.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, INVALID_SESSION_COMMA_DESC, Session.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, INVALID_SESSION_EQUAL_DESC, Session.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_SESSION_NAME, Session.MESSAGE_CONSTRAINTS);
     }
 
     @Test

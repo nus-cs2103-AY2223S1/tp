@@ -14,8 +14,8 @@ import seedu.taassist.model.uniquelist.Identity;
  * Guarantees: immutable; name is valid as declared in {@link #isValidSessionName(String)}
  */
 public class Session implements Identity<Session> {
-    public static final String MESSAGE_CONSTRAINTS = "Session names should contain only letters, digits, whitespace " +
-            "or underscores and should not be empty.";
+    public static final String MESSAGE_CONSTRAINTS = "Session names should contain only letters, digits, whitespace "
+            + "or underscores and should not be empty.";
 
     /*
      * The first character of the session must not be a whitespace,
