@@ -28,6 +28,7 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added: %1$s";
     // public static final String MESSAGE_MISSING_DESCRIPTION = "A task must have a description";
     // To be implemented later.
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
 
     private final Task newTask;
 
@@ -42,6 +43,10 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasTask(newTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
 
         model.addTask(newTask);
         model.commitAddressBook();
