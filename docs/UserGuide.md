@@ -196,18 +196,16 @@ The default date is the current date on your computer!
 1. Summary of all entries in the currently shown list
    * Examples: `summary`
      * Expected: <br/>
-       Financials Summarized <br/>
-       Total Expenditure: 154.49 <br/>
-       Total Income: 250.00 <br/>
-       Total Balance: 95.51 <br/>
+       Total Expenditure: $154.49 <br/>
+       Total Income: $250.00 <br/>
+       Total Balance: $95.51 <br/>
      ![SummaryCommand1](images/SummaryCommand1.png)
 2. Summary of all entries the specified month
     * Examples: `summary mo/2022-10`
     * Expected: <br/>
-      Financials Summarized <br/>
-      Total Expenditure: 4.20 <br/>
-      Total Income: 250.00 <br/>
-      Total Balance: 245.80 <br/>
+      Total Expenditure: $4.20 <br/>
+      Total Income: $250.00 <br/>
+      Total Balance: $245.80 <br/>
     ![SummaryCommand2](images/SummaryCommand2.png)
 * Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the summary for all entries.

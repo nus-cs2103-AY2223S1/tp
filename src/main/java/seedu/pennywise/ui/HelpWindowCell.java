@@ -14,6 +14,9 @@ public class HelpWindowCell {
         this("", "", "");
     }
 
+    /**
+     * Constructor for HelpWindowCell
+     */
     public HelpWindowCell(String action, String format, String example) {
         setAction(action);
         setFormat(format);
