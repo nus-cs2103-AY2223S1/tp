@@ -214,6 +214,22 @@ The command will be used as such:
 - sort by grade in ascending order - e.g.`sort asc`
 - sort by grade in descending order - e.g. `sort desc`
 
+### \[Implemented\] Grade feature
+
+#### current Implementation
+
+The Grade command consists of these following classes:
+
+- `GradeCommand` which extends `Command`
+- `GradeCommandParser` which extends `Parser<SortCommand>`
+
+As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It opens a new GUI window to start the grading process
+
+The command will be used as such:
+- entering grades for an `Assignment` using the follow command format - grade <subject_assignment_totalScore_weightage_difficulty>
+e.g.`grade math_CA1_100_0.4_0.1`
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
