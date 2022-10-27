@@ -175,6 +175,18 @@ Clears all Customers from the bobaBot.
 
 Format: `clear`
 
+### Undo the last edit : `undo`
+
+Revert the data to the version prior the last edit.
+
+Format: `undo`
+
+### Redo the last edit : `redo`
+
+Redo the last edit.
+
+Format: `redo`
+
 ### Exiting the program : `exit`
 
 Exits the program.
