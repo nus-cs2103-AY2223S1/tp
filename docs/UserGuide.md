@@ -58,20 +58,20 @@ Mass Linkers is a powerful Desktop application tool that provides a centralised 
 
 </div>
 
-### Viewing help: `help`
+### View help: `help`
 
 Shows a brief summary of commands with their syntax and a link to the user guide. You can also click the `Open User Guide` button which will redirect you to the user guide in your browser.
 
 Format: `help`
 
-### Viewing a batchmate
+### View a batchmate
 Views the list of modules taken by a batchmate. 
 
 Left-click the row with the batchmate's name in the Students panel. 
 
 - The selected row would turn blue and the Modules panel would display all the modules taken by the batchmate. 
 
-### Adding a batchmate: `add`
+### Add a batchmate: `add`
 
 Adds a batchmate to the application.
 
@@ -84,13 +84,13 @@ Examples:
 * `add n/John Doe t/johnxyz g/john_doe p/98765432 e/johnd@example.com i/baking i/tennis`
 * `add n/John Doe t/johnxyz m/cs2103t m/cs2101`
 
-### Listing all batchmates: `list`
+### List all batchmates: `list`
 
 Shows a list of all batchmates.
 
 Format: `list`
 
-### Editing a batchmate: `edit`
+### Edit a batchmate: `edit`
 
 Edits the information of a specified batchmate.
 
@@ -106,7 +106,7 @@ Examples:
 *  `edit 1 g/john_doe p/91234567 e/johndoe@example.com` Edits the github username, phone number and email address of the 1st batchmate in the currently displayed list to be `john_doe`, `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Bob Tan i/` Edits the name of the 2nd batchmate in the currently displayed list to be `Bob Tan` and clears all existing interests.
 
-### Finding a batchmate: `find`
+### Find a batchmate: `find`
 
 Finds batchmates whose details contain __any__ of the given keywords.
 
@@ -152,7 +152,7 @@ Examples:
 * `deleteInt 1 baking` deletes the interest `baking` from the 1st batchmate in the currently displayed list.
 * `deleteInt 3 baking tennis` deletes the interests `baking` and `tennis` from the 3rd batchmate in the currently displayed list.
 
-### Finding batchmates by interests: `findInt`
+### Find batchmates by interests: `findInt`
 
 Finds batchmates whose interests contain __all__ the specified interests.
 
@@ -165,7 +165,7 @@ Examples:
 * `findInt AI` returns all batchmates whose interests contain `AI`.
 * `findInt swe security` returns all batchmates whose interests contain both `SWE` and `security`.
 
-### Deleting a batchmate: `delete`
+### Delete a batchmate: `delete`
 
 Deletes a batchmate of a specific index.
 
@@ -177,7 +177,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd batchmate in the full list of batchmates you have in Mass Linkers.
 * `find Betsy` followed by `delete 1` deletes the 1st batchmate in the currently displayed list of the `find` command.
 
-### Adding module to a batchmate: `mod add`
+### Add module to a batchmate: `mod add`
 
 Adds module(s) to a batchmate.
 
@@ -189,7 +189,7 @@ Examples:
 * `mod add 1 cs2103t` adds the module `CS2103T` to the 1st batchmate in the currently displayed list.
 * `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` to the 3rd batchmate in the currently displayed list.
 
-### Deleting module from a batchmate: `mod delete`
+### Delete module from a batchmate: `mod delete`
 
 Deletes module(s) from a batchmate.
 
@@ -201,7 +201,7 @@ Examples:
 * `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
 * `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
 
-### Marking module as taken: `mod mark`
+### Mark module as taken: `mod mark`
 
 Marks module(s) of a batchmate as `taken`, which means the batchmate has taken the module(s) before.
 
@@ -213,7 +213,7 @@ Examples:
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
 * `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `taken`.
 
-### Unmarking module as not taken: `mod unmark`
+### Unmark module as not taken: `mod unmark`
 
 Unmarks module(s) of a batchmate as not taken, which means the batchmate is currently taking the module(s).
 
@@ -225,13 +225,13 @@ Examples:
 * `mod unmark 1 cs2103t` unmarks the module `CS2103T` of the 1st batchmate in the currently displayed list as `not taken`.
 * `mod unmark 3 cs2100 cs2103t cs2101 cs2105` unmarks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `not taken`.
 
-### Marking module of all as taken: `mod mark all`
+### Mark all modules as taken: `mod mark all`
 
-Marks all modules of all batchmates as taken. This is useful for updating the module status of all modules of all batchmates after each semester.
+Marks all current modules of every batchmate as taken. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
 
 Format: `mod mark all`
 
-### Find modules: `mod find`
+### Find batchmates taking specified modules: `mod find`
 
 Finds batchmates with modules matching __all__ the specified modules.
 
@@ -259,13 +259,13 @@ Examples:
 * `mod find taking cs2100` returns batchmates who are taking `CS2100`.
 * `mod find taking cs2101 cs2103t` returns batchmates who are taking both `CS2101` and `CS2103T`.
 
-### Exiting the program : `exit`
+### Exit the program : `exit`
 
 Exits the application.
 
 Format: `exit`
 
-### Saving the data
+### Save the data
 
 Data in Mass Linkers is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
 
