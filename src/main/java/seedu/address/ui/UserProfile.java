@@ -79,10 +79,11 @@ public class UserProfile extends UiPart<Region> {
             user.getPlanModules().stream()
                     .sorted(Comparator.comparing(mod -> mod.moduleName))
                     .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
+            githubUrl = "https://github.com/" + user.getGithub().value;
         } else {
             userLabel.setText("User details have not been added.");
+            githubUrl = "";
         }
-        githubUrl = "https://github.com/" + user.getGithub().value;
     }
 
     /**
