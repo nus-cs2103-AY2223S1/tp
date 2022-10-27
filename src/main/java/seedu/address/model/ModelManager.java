@@ -114,21 +114,17 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        // Ensures that adding the first patient in the address book updates the currently viewed person
-        if (filteredPersons.size() == 1) {
-            currentlyViewedPerson = generateFirstPerson();
-        }
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        Index index = Index.fromZeroBased(filteredPersons.indexOf(person));
+        currentlyViewedPerson = new CurrentlyViewedPerson(person, index);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
-        if (target.equals(currentlyViewedPerson.getPerson())) {
-            currentlyViewedPerson = new CurrentlyViewedPerson(editedPerson, currentlyViewedPerson.getIndex());
-        }
+        Index index = Index.fromZeroBased(filteredPersons.indexOf(editedPerson));
+        currentlyViewedPerson = new CurrentlyViewedPerson(editedPerson, index);
     }
 
     //=========== Filtered Person List Accessors =============================================================
