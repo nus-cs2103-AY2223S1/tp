@@ -67,16 +67,17 @@ public class MatchPropertyCommand extends Command {
                     new FilterBuyerContainingAnyCharacteristicPredicate(propertyToMatch.getCharacteristics().get()));
         }
 
-        Optional<Predicate<Buyer>> combinedPredicate;
+        // predicatesList must not be empty, since at least FilterBuyerByPricePredicate should be added
+        assert(!predicatesList.isEmpty());
+
+        Predicate<Buyer> combinedPredicate;
         if (isMatchingAll) {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::and);
+            combinedPredicate = predicatesList.stream().reduce(Predicate::and).get();
         } else {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::or);
+            combinedPredicate = predicatesList.stream().reduce(Predicate::or).get();
         }
 
-        // combinedPredicate must exist, since predicatesList should contain at least one predicate
-        assert(combinedPredicate.isPresent());
-        new FilterBuyersCommand(combinedPredicate.get()).execute(model);
+        new FilterBuyersCommand(combinedPredicate).execute(model);
 
         return new CommandResult(String.format(MESSAGE_MATCHED_PROPERTY_SUCCESS, propertyToMatch));
     }

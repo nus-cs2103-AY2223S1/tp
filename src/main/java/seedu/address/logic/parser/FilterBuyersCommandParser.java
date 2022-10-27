@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FilterBuyersCommand;
@@ -70,15 +69,15 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
             predicatesList.add(new FilterBuyerByPriorityPredicate(priority));
         }
 
-        Optional<Predicate<Buyer>> combinedPredicate;
-        if (arePrefixesPresent(argMultimap, PREFIX_FUZZY)) {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::or);
-        } else {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::and);
-        }
+        // predicatesList must not be empty, since at least 1 prefix should be present
+        assert(!predicatesList.isEmpty());
 
-        // combinedPredicate must exist, since predicatesList should contain at least one predicate
-        assert(combinedPredicate.isPresent());
-        return new FilterBuyersCommand(combinedPredicate.get());
+        Predicate<Buyer> combinedPredicate;
+        if (arePrefixesPresent(argMultimap, PREFIX_FUZZY)) {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::or).get();
+        } else {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::and).get();
+        }
+        return new FilterBuyersCommand(combinedPredicate);
     }
 }

@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FilterPropertiesCommand;
@@ -68,15 +67,15 @@ public class FilterPropertiesCommandParser extends Parser<FilterPropertiesComman
             predicatesList.add(new FilterPropsByOwnerNamePredicate(ownerName));
         }
 
-        Optional<Predicate<Property>> combinedPredicate;
-        if (arePrefixesPresent(argMultimap, PREFIX_FUZZY)) {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::or);
-        } else {
-            combinedPredicate = predicatesList.stream().reduce(Predicate::and);
-        }
+        // predicatesList must not be empty, since at least 1 prefix should be present
+        assert(!predicatesList.isEmpty());
 
-        // combinedPredicate must exist, since predicatesList should contain at least one predicate
-        assert(combinedPredicate.isPresent());
-        return new FilterPropertiesCommand(combinedPredicate.get());
+        Predicate<Property> combinedPredicate;
+        if (arePrefixesPresent(argMultimap, PREFIX_FUZZY)) {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::or).get();
+        } else {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::and).get();
+        }
+        return new FilterPropertiesCommand(combinedPredicate);
     }
 }
