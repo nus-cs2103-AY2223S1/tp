@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_SEARCH_KEYWORDS_DESCRIPTION;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
@@ -24,7 +25,7 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    @CommandLine.Parameters(arity = "1", paramLabel = "keywords")
+    @CommandLine.Parameters(arity = "1", paramLabel = "keywords", description = FLAG_SEARCH_KEYWORDS_DESCRIPTION)
     private NameContainsKeywordsPredicate predicate;
 
     @CommandLine.Spec

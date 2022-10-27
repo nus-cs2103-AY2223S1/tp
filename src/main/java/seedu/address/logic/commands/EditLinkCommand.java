@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_LINK_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_LINK_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_LINK_URL_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
@@ -40,7 +43,7 @@ public class EditLinkCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
 
-    @CommandLine.Parameters(arity = "1", index = "0")
+    @CommandLine.Parameters(arity = "1", index = "0", description = FLAG_LINK_INDEX_DESCRIPTION)
     private Index index;
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
@@ -122,10 +125,10 @@ public class EditLinkCommand extends Command {
     }
 
     private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG})
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_LINK_NAME_DESCRIPTION)
         private Name name;
 
-        @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG})
+        @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, description = FLAG_LINK_URL_DESCRIPTION)
         private Url url;
     }
 

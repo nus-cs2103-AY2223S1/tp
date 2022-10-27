@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
 
 import java.util.List;
 
@@ -30,9 +31,8 @@ public class DeleteMemberCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Member: %1$s";
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)
     private Index targetIndex;
-
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)

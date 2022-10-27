@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class DeleteTeamCommand extends Command {
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to delete does not exist!";
     private Team targetTeam;
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
     private String targetTeamName;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,

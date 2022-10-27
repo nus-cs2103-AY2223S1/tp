@@ -10,6 +10,12 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_ADDRESS_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_EMAIL_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_PHONE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_TAGS_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
@@ -61,12 +67,11 @@ public class EditPersonCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_PERSON_INDEX_DESCRIPTION)
     private Index index;
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
-
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -154,19 +159,20 @@ public class EditPersonCommand extends Command {
     }
 
     private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = "Name of person")
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_PERSON_NAME_DESCRIPTION)
         private Name name;
 
-        @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, description = "Phone of person")
+        @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, description = FLAG_PERSON_PHONE_DESCRIPTION)
         private Phone phone;
 
-        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, description = "Email of person")
+        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, description = FLAG_PERSON_EMAIL_DESCRIPTION)
         private Email email;
 
-        @CommandLine.Option(names = {FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG}, description = "Address of person")
+        @CommandLine.Option(names = {FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG},
+                description = FLAG_PERSON_ADDRESS_DESCRIPTION)
         private Address address;
 
-        @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = "Tags of person",
+        @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = FLAG_PERSON_TAGS_DESCRIPTION,
                 parameterConsumer = TagsConverter.class, arity = "*")
         private Set<Tag> tags;
     }

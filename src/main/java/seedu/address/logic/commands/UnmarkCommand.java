@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class UnmarkCommand extends Command {
             + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_ALREADY_UNMARKED = "This task has not been marked as done.";
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index taskIndex;
 
     @CommandLine.Spec

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_NAME_DESCRIPTION;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";
     public static final String MESSAGE_PERSON_NOT_EXISTS = "The person you are trying to add does not exist";
 
-    @CommandLine.Parameters(arity = "1")
+    @CommandLine.Parameters(arity = "1", description = FLAG_PERSON_NAME_DESCRIPTION)
     private Name targetPersonName;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
