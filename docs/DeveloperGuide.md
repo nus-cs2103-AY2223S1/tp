@@ -141,6 +141,7 @@ The `Person` component,
 
 * is composed of `Name`, `Phone`, `Email`, `Address` mandatory attributes
 * references any number of `Tags` from the `UniqueTagList` in `Addressbook`. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.
+* references any number of `Assignments` stored in a `Hashmap<GroupName, Assignment>`. This enables keeping track of a `Person`'s assignments under a specific `Group`.
 
 **Group** : [`Group.java`](https://github.com/Tan-Jin-Waye/tp/blob/master/src/main/java/seedu/address/model/group/Group.java)
 
@@ -152,8 +153,12 @@ The `Group` component,
 * is composed of `GroupName` mandatory attribute
 * references any number of `Persons` from the `UniquePersonList` in Addressbook. This allows `AddressBook` to only require one `Person` object per unique person, instead of each `Group` needing their own `Person` objects.
 
+**Assignment** : [`Assignment.java`](https://github.com/AY2223S1-CS2103T-W10-1/tp/blob/master/src/main/java/seedu/address/model/assignment/Assignment.java)
 
-
+The `Assignment` component,
+* is composed of `Task` mandatory attribute, which is a string description of the `Assignment`.
+* is composed of `Workload` mandatory attribute, coded as an enum of `High`, `Medium` or `Low`.
+* has an optional `Deadline` attribute which is a `LocalDateTime` object.
 
 ### Storage component
 
@@ -181,8 +186,8 @@ This section describes some noteworthy details on how certain features are imple
 This feature allows groups to be added to and deleted from TABS, facilitated by the `UniqueGroupList`.
 It is achieved by the following operations:
 
-- `Model#addGroup(GroupName)` - Adds a group to TABS with the input name.
-- `Model#deleteGroup(GroupName)` - Deletes the group with the input name, and removes any members and assignments associated.
+- `Model#addGroup(GroupName)` - Adds a group to TABS with the input groupname.
+- `Model#deleteGroup(GroupName)` - Deletes the group with the input groupname, and removes any members and assignments associated.
 
 Given below is an example usage scenario and how groups are added/deleted at each stage.
 
@@ -235,8 +240,8 @@ For simplicity, only the `deletegroup` command sequence diagram is shown below. 
 This feature allows members to be added to and deleted from a group. It is
 achieved by the following operations:
 
-- Model#addMember(Name, GroupName) - Adds the person with the input name to the group with input group name.
-- Model#deleteMember(Name, GroupName) - Removes the person with the input name from the group with the input group name.
+- Model#addMember(Name, GroupName) - Adds the person with the input name to the group with input groupname.
+- Model#deleteMember(Name, GroupName) - Removes the person with the input name from the group with the input groupname.
 
 Given below is an example usage scenario and how groups are added/deleted at each stage.
 
@@ -293,7 +298,7 @@ For simplicity, only the `deletemember` command sequence diagram is shown below.
 This feature allows a single group to be listed, or displays all groups. It is facilitated
 by the following operations:
 
-- `Model#displayGroup(GroupName)` - Finds and lists the group with the input name.
+- `Model#displayGroup(GroupName)` - Finds and lists the group with the input groupname.
 - `Model#listGroups()` - Displays all groups in TABS
 
 Given below is an example usage scenario and how groups can be individually displayed/displayed altogether in TABS.
@@ -323,88 +328,73 @@ For simplicity, only the `displaygroup` command sequence diagram is shown below.
 
 ----
 
-### **\[Developed\] Assign Task feature**
+### **\[Developed\] Assign/Delete Task feature**
 
 #### **Implementation**
+This feature allows the user to assign a task to a member, or remove a task from a member. It is facilitated
+by the following operations:
 
-This feature allows the user to assign task to a member in an existing group, using the `assigntask` command. This is facilitated by the `AssignTaskCommand` and `AssignTaskCommandParser` classes.
+- `Model#assignTask(GroupName, Name, Task, Workload, [Deadline])` - Creates an `Assignment` with `Task` (description),
+`Workload` and optional `Deadline`. This `Assignment` will be added to the person with the input name, under the group
+with the input groupname (a person can hold multiple `Assignments` of the same `Task`, but under different groups).
+- `Model#deleteTask(GroupName, Name, Task)`. Deletes the `Assignment` with description `Task` from the person with the input name,
+under the group with the input groupname.
 
-The `AssignTaskCommandParser` class parses the input entered by the user, which are the username, the group name, and the task name that the user wants to assign.
+Given below is an example usage scenario and how tasks are assigned/deleted at each stage.
 
-The validity of the group name and person name input by the user will be checked with the help of an ObservableList for each field.
+**Step 1.**
+Starting from the default persons, the user has executed `addgroup g/CS2103T` to add a group with
+`GroupName` "CS2103T", then `addmember g/CS2103T n/Alice` to add `Alice` to
+the group `CS2103T`. The `AddressBook` model is reflected below:
 
-`AssignTaskCommandParser` will also check if the person exists in the specified group.
+<img src="images/AddDeleteMemberState1.png" width="300" />
 
-The task name should not be empty.
+**Step 2.**
+User executes `assigntask Alice g/CS2103T task/Task w/High`. This:
+- Constructs an Assignment with `Task` "Task" and `Workload` "High".
+- Constructs an `editedPerson` to replace `Alice` with a copy which
+includes this Assignment, and an `editedGroup` containing the edited
+`Alice`.
+- Calls `Model#setPerson()` and `Model#setGroup()` with the respective
+edits to change `Alice` and `CS2103T` in the `AddressBook`.
 
-If all the inputs are valid, the specified task will be assigned to the specified user in a specified group with the help of `Model#setPerson`.
+The `AddressBook` model is reflected below:
 
-The specified task will then be displayed under that user with the help of `Model#updateFilteredPersonList(predicate)`.
+<img src="images/AddDeleteMemberState2.png" width="300" />
 
-Given below is an example of how `AssignTaskCommand` is being executed.
-
-**Steps**
-
-Step 1. The user enters `assigntask [NAME OF GROUP]` command
-
-Step 2. The  `AssignTaskCommandParser` class parses the group name input and returns a `AssignTaskCommand` object, encapsulating the user, group name and task.
-
-Step 3. The `AssignTaskCommand` object is executed. If the user and group exists in the application, the existing user and group can be retrieved by calling `ObservableList#get()` method.
-
-Step 4. The assigned task will be added to the specified user under that specified group.
-
-Step 5. CommandResult is then returned, which provides a feedback to user that the task has been assigned to the specified user.
-
-**Activity Diagram**
+**Note:** `AssignTaskCommandParser` will check if the assignment's parameters are parsed properly,
+such as `Task` being non-empty, `Deadline` being a valid date, etc. 
+`AssignTaskCommand` further checks if both the person and group with the specified name and groupname respectively
+exist in the app, that the person is a member of the group, and the person doesn't already have a similar task under
+the group.
 
 The user flow of Assign Task can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/AssignTaskActivityDiagram-AssignTaskCommand.png" width="800" />
+<!-- UPDATE THIS!! -->
+
+**Step 3.**
+User executes `deletetask Alice g/CS2103T task/Task`. This constructs an `editedPerson`
+to replace `Alice` with a copy which removes the Assignment whose `Task` matches input,
+and an `editedGroup` containing the edited `Alice`. This also calls `Model#setPerson()` and `Model#setGroup()` with the respective
+edits to change `Alice` and `CS2103T` in the `AddressBook`.
+
+The `AddressBook` model is reflected below:
+
+<img src="images/AddDeleteMemberState2.png" width="300" />
+
+**Note:** `AssignTaskCommand` checks if both the person and group with the specified name and groupname respectively
+exist in the app, that the person is a member of the group, and the person has the specified task under
+the group.
+
+For simplicity, only the `deletetask` command sequence diagram is shown below. Both commands operate via a similar sequence:
 
 ----
 
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
-All members in a group can be assigned a task via the `assigntaskall` command,
-and similarly deleted via the `deletetaskall` command. The commands accept a group
-to affect, and the task to be added or deleted. In any cases where a member
-will have a duplicate task upon assignment/does not have the task to delete, they
-are skipped over.
 
-Below is an activity diagram reflecting the operation of the `assigntaskall` command.
-`deletetaskall` operates similarly.
+#### **Implementation** 
 
-![AssignTaskAllDiagram](images/AssignTaskAllDiagram.png)
-![AssignTaskAllDiagramAddendum](images/AssignTaskAllDiagramAddendum.png)
-
-#### Implementation Details
-1. User input is parsed in the context of `assigntaskall` and `deletetaskall` commands
-   using the `AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively.
-   Erroneous inputs trigger a ParseException indicating to the user of invalid input.
-2. The correct command is then generated and executed. During execution, several
-   conditions are checked to ensure proper operation of the instruction, failing which
-   the user is notified. These are:
-  1. The group specified exists in the app;
-  2. The group has members to operate on, and;
-  3. At least one member is modified following the instruction.
-3. The instruction iterates over each member and assigns/deletes the task respectively.
-   As mentioned prior, members which already have/do not have the task respectively are
-   skipped over.
-4. The model is invoked to update its displayed person list.
-5. Successfully modified members are told to user via feedback.
-
-#### Implementation Rationale
-The above-mentioned flow follows closely with pre-existing instruction `edit`.
-In doing so, some rationales are carried forward:
-1. Follows in line with other commands by having an "XYZParser", in this case
-   `AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively, which
-   return an executable command to be executed by the `Logic` (and by extension `Model`)
-   class.
-2. Upon execution, performs several checks which upon failure throw CommandExceptions
-   to indicate to the user when the command is not successful.
-3. Modification of each person by adding/deleting assignment follows that of `edit`
-   in that the given Person is treated as immutable, and an edited copy is created before
-   `Model` is invoked to set the Person, thus adhering to defensive programming standards
-   previously established.
 
 ----
 
