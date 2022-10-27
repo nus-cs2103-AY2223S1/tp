@@ -19,15 +19,15 @@ import seedu.address.model.task.Task;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private Name name;
+    private Phone phone;
+    private Email email;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private Address address;
+    private Set<Tag> tags = new HashSet<>();
 
-    private final List<Task> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -39,6 +39,18 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.tasks.addAll(tasks);
+    }
+
+    public void editPerson(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Task> tasks) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags = new HashSet<>();
+        this.tags.addAll(tags);
+        this.tasks = new ArrayList<>();
         this.tasks.addAll(tasks);
     }
 
@@ -102,6 +114,7 @@ public class Person {
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
     }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.

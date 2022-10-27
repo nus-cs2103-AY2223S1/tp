@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.FilterInfo;
 import seedu.address.logic.commands.FilterTaskCategoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.TaskCategory;
@@ -18,6 +19,7 @@ public class FilterTaskCategoryParser implements Parser<FilterTaskCategoryComman
     /**
      * Parses the given {@code String} of arguments in the context of the FilterTaskCategory
      * and return a FilterTaskCategoryCommand object for execution.
+     *
      * @param args String of arguments to be parsed
      * @return a FilterTaskCategoryCommand object for execution
      * @throws ParseException if the user input does not conform the expected format
@@ -32,7 +34,8 @@ public class FilterTaskCategoryParser implements Parser<FilterTaskCategoryComman
 
         TaskCategory category = ParserUtil.parseTaskCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
 
-        return new FilterTaskCategoryCommand(new TaskContainsCategoryPredicate(category));
+        return new FilterTaskCategoryCommand(new TaskContainsCategoryPredicate(category),
+                new FilterInfo("category " + category.getCategoryName()));
     }
 
     /**

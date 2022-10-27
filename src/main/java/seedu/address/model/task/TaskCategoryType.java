@@ -46,5 +46,10 @@ public enum TaskCategoryType {
                 .findFirst();
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }
 

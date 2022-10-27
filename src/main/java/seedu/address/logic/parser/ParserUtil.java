@@ -200,7 +200,7 @@ public class ParserUtil {
         if (categoryEnum.isEmpty()) {
             throw new ParseException(TaskCategory.MESSAGE_CONSTRAINTS);
         }
-        return new TaskCategory(1, categoryEnum.get()); // TODO: remove hardcoded category level
+        return new TaskCategory(categoryEnum.get()); // TODO: remove hardcoded category level
     }
 
     /**

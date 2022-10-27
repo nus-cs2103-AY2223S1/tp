@@ -54,6 +54,28 @@ public class Task {
         isDone = status;
     }
 
+    /** A method used to update the value of the task/
+     *
+     * @param name               Name of task
+     * @param category           Category of task
+     * @param desc               Description of task
+     * @param priority           Priority of task
+     * @param deadline           Deadline of task
+     * @param person             Person assigned to this task
+     * @param status             status of task
+     */
+    public void editTask(TaskName name, Description desc, Priority priority, TaskCategory category,
+                TaskDeadline deadline, Person person, boolean status) {
+        requireAllNonNull(name, category, desc, priority, deadline, status);
+        this.name = name;
+        this.category = category;
+        description = desc;
+        this.priority = priority;
+        this.deadline = deadline;
+        this.person = person;
+        isDone = status;
+    }
+
     /**
      * Returns the String representation of isDone.
      *
@@ -292,7 +314,7 @@ public class Task {
      */
     public Task copy() {
         TaskName copyName = new TaskName(this.name.toString());
-        TaskCategory copyCat = new TaskCategory(this.category.getLevel(), this.category.getTaskCategoryType());
+        TaskCategory copyCat = new TaskCategory(this.category.getTaskCategoryType());
         Description copyDescription = new Description(this.description.toString());
         Priority copyPrioirty = new Priority(this.getPriority().getPriority());
         TaskDeadline copyDeadline = new TaskDeadline(this.deadline.getDeadline());

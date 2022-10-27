@@ -82,7 +82,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditTaskCommand.EditTaskDescriptor DESC_ONE;
     public static final EditTaskCommand.EditTaskDescriptor DESC_TWO;
-    private static final TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private static final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
     private static final Description testDisc = new Description("Test");
     private static final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private static final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());

@@ -7,17 +7,18 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-
-
 
 
 /**
@@ -29,7 +30,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> filteredTasks;
+    private final SortedList<Task> sortedTasks;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,7 +45,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        sortedTasks = new SortedList<>(this.addressBook.getTaskList());
+        filteredTasks = new FilteredList<>(sortedTasks);
     }
 
     public ModelManager() {
@@ -133,7 +137,6 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         addressBook.addTask(task);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS); // check this
     }
 
     @Override
@@ -186,6 +189,12 @@ public class ModelManager implements Model {
     }
 
 
+
+    @Override
+    public void updateSortingCriteria(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        sortedTasks.setComparator(comparator);
+    }
 
     @Override
     public boolean equals(Object obj) {

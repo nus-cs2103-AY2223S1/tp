@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -26,6 +27,10 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalTasks;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 16bdbba170c44da1432c5a263d6d9a480e71e215
 public class AddCommandTest {
 
     @Test
@@ -185,6 +190,11 @@ public class AddCommandTest {
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateSortingCriteria(Comparator<Task> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -281,8 +291,5 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
-
-
     }
-
 }

@@ -5,7 +5,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.util.Comparator;
+>>>>>>> 16bdbba170c44da1432c5a263d6d9a480e71e215
 import java.util.HashSet;
 import java.util.function.Predicate;
 
@@ -39,7 +43,7 @@ import seedu.address.model.task.TaskName;
 public class AddTaskCommandTest {
     private final TaskList testList = new TaskList();
     private final TaskName testName = new TaskName("Test");
-    private final TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
     private final Description testDisc = new Description("Test");
     private final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
@@ -172,6 +176,11 @@ public class AddTaskCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortingCriteria(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

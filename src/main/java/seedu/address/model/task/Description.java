@@ -13,7 +13,7 @@ public class Description {
             "Task Descriptions can take any values, and it should not be blank";
 
     /*
-     * The first character of the taskname must not be a whitespace,
+     * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     private static final String VALIDATION_REGEX = "[^\\s].*";
