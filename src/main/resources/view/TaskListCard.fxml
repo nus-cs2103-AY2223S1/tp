@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
@@ -85,7 +84,7 @@
             </HBox>
          </children>
         </VBox>
-          <CheckBox fx:id="isComplete" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="3.0" prefWidth="18.0" style="-fx-border-color: black; -fx-border-radius: 2; -fx-border-width: 1.5;" GridPane.columnIndex="1">
+          <CheckBox fx:id="isComplete" alignment="CENTER_RIGHT" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="3.0" prefWidth="18.0" style="-fx-border-color: black; -fx-border-radius: 2; -fx-border-width: 1.5;" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
