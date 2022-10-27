@@ -162,7 +162,6 @@ public class Student extends Position {
      * @return whether the given index is valid
      */
     public boolean isValidAssignmentIndex(Index indexOfAssignment) {
-        assert false;
         return indexOfAssignment.getZeroBased() >= 0
                 && indexOfAssignment.getZeroBased() < assignmentsList.size();
     }
