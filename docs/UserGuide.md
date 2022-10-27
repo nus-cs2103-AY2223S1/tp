@@ -24,15 +24,15 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all students.
+   * **`list`**: Lists all students.
 
-   * **`add student`**`n/John Doe i/A0232123X p/98765432 e/johnd@example.com h/john_fu m/CS2103 l/T23` : Adds a student named `John Doe` to CS2103T module.
+   * **`add student`**`n/John Doe i/A0232123X p/98765432 e/johnd@example.com h/john_fu m/CS2103 l/T23`: Adds a student named `John Doe` to CS2103T module.
 
-   * **`delete student`**`3` : Deletes the 3rd student shown in the current list.
+   * **`delete student`**`3`: Deletes the 3rd student shown in the current list.
 
-   * **`clear reminders`** : Deletes all reminders.
+   * **`clear reminders`**: Deletes all reminders.
 
-   * **`exit`** : Exits the app.
+   * **`exit`**: Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -48,10 +48,10 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
@@ -70,7 +70,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
 Adds a student to the specified module.
 
-Format: `add student n/NAME i/STUDENT_ID p/PHONE e/EMAIL h/TELEGRAM_HANDLE m/MODULE l/TUTORIAL [g/GRADE] [a/ATTENDANCE] [c/PARTICIPATION] [t/TAG]…​`
+Format: `add student n/NAME i/STUDENT_ID p/PHONE e/EMAIL h/TELEGRAM_HANDLE m/MODULE l/TUTORIAL [g/GRADE] [a/ATTENDANCE] [c/PARTICIPATION] [t/TAG]…`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
@@ -81,7 +81,7 @@ Examples:
 * `add student n/John Doe i/A0000000J p/98765432 e/johnd@example.com h/johnDoe m/CS2103T l/W17`
 * `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com p/91234567 h/betsy_crowe m/CS2105 l/G03 a/3 c/1 g/C t/quiet`
 
-#### 3.1.2 Deleting a student : `delete student`
+#### 3.1.2 Deleting a student: `delete student`
 
 Deletes the specified student from the list of people.
 
@@ -96,7 +96,7 @@ Examples:
 * `find n/Betsy` followed by `delete student 1` deletes the 1st student in the results of the `find` command.
 * `find m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the `find` command.
 
-#### 3.1.3 Editing a student : `edit student`
+#### 3.1.3 Editing a student: `edit student`
 
 Edits an existing student in a specified module.
 
@@ -114,20 +114,20 @@ Examples:
 * `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 * `find m/CS2103T` followed by `edit student 2 n/Betsy Crower` Edits the name of the 2nd student to be `Betsy Crower` in the results of the `find` command.
 
-#### 3.1.4 Listing all students : `list`
+#### 3.1.4 Listing all students: `list`
 
 Shows a list of all students.
 
 Format: `list`
 
 
-#### 3.1.5 Locating students by their attributes : `find`
+#### 3.1.5 Locating students by their attributes: `find`
 
 Finds students by names, student ID, module or tutorial, by checking if respective attribute contains any of the given keywords.
 
 Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [l/TUTORIAL]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
@@ -152,6 +152,7 @@ Examples:
 
 
 ### 3.2 Tutorial Features
+
 #### 3.2.1 Adding a tutorial : `add tutorial`
 
 Adds a tutorial to the tutorial database.
@@ -164,7 +165,7 @@ Day should take in a number from 1 (Monday) to 7 (Sunday).
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`
 
-#### 3.2.2 Deleting a tutorial : `delete tutorial`
+#### 3.2.2 Deleting a tutorial: `delete tutorial`
 
 Deletes a specified tutorial from the tutorial database.
 
@@ -177,7 +178,7 @@ Format: `delete tutorial INDEX`
 Examples:
 * `delete tutorial 3`
 
-#### 3.2.3 Editing a tutorial : `edit tutorial`
+#### 3.2.3 Editing a tutorial: `edit tutorial`
 
 Edits an existing student in a specified module.
 
@@ -194,7 +195,7 @@ Examples:
 
 ### 3.3 Consultation Features
 
-#### 3.3.1 Adding a consultation : `add consultation`
+#### 3.3.1 Adding a consultation: `add consultation`
 
 Adds a consultation to the consultation database.
 
@@ -203,7 +204,7 @@ Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTIO
 Examples:
 * `add consultation n/JakeKim m/CS2103T D/2022-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
 
-#### 3.3.2 Deleting a consultation : `delete consultation`
+#### 3.3.2 Deleting a consultation: `delete consultation`
 
 Deletes a specified consultation from the consultation database.
 
@@ -216,7 +217,7 @@ Format: `delete consultation INDEX`
 Examples:
 * `delete consultation 3`
 
-#### 3.3.3 Editing a consultation : `edit consultation`
+#### 3.3.3 Editing a consultation: `edit consultation`
 
 Edits an existing student in a specified module.
 
@@ -257,6 +258,7 @@ Format: `delete reminder INDEX`
 
 Examples:
 * `delete reminder 3`
+
 
 #### 3.4.3 Mark a reminder : `mark reminder`
 
@@ -339,7 +341,7 @@ If your changes to the data file makes its format invalid, ModQuik will discard 
 
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+_Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -371,3 +373,20 @@ _Details coming soon ..._
 | **Clear**               | `clear f/FIELD` <br> e.g., `clear student`                                                                                                                                                                |
 | **Exit**                | `exit`                                                                                                                                                                                                    |
 | **Help**                | `help`                                                                                                                                                                                                    |
+
+## Prefix summary
+| Prefix | Symbolise       |
+|--------|-----------------|
+| **d/** | description     |
+| **D/** | date or day     |
+| **e/** | email           |
+| **f/** | field           |
+| **h/** | Telegram handle |
+| **i/** | id              |
+| **l/** | tutorial        |
+| **m/** | module          |
+| **n/** | name            |
+| **p/** | phone           |
+| **t/** | tag             |
+| **T/** | time            |
+| **v/** | venue           |
