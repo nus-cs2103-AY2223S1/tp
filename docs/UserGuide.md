@@ -136,9 +136,19 @@ Format: `:ls`
 
 ### Sorting all exercises : `:sort`
 
-Sorts the list of exercises according to their date of completion, with the latest exercise completed displayed at the top of the list.
+Sorts the list of exercises displayed according to their date of completion, with the latest exercise completed displayed at the top of the list.
 
 Format: `:sort`
+
+Example usage: 
+
+`:list` shows the list of exercises user has completed
+
+![ListBeforeSortCommand](images/ListBeforeSortCommand.png)
+
+`:sort` shows the list of exercises after sort command has been executed
+
+![ListAfterSortCommand](images/ListAfterSortCommand.png)
 
 ### Viewing all exercises within a time period : `:range`
 
