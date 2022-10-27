@@ -5,10 +5,11 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ],
+    "tags": [ [ "Skills", "friends" ] ],
     "status": "Accepted",
     "note" : "",
-    "rating": "5"
+    "rating": "5",
+    "links" : [ ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -16,6 +17,8 @@
     "address": "4th street",
     "status": "Accepted",
     "note" : "",
-    "rating": "5"
+    "rating": "5",
+    "tags" : [ [ "Skills", "colleagues", "friends" ] ],
+    "links" : [ ]
   } ]
 }
