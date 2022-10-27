@@ -82,17 +82,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code githubUser} is invalid.
      */
-    public static User parseGithubUser(String githubUser) throws ParseException {
+    public static User parseGithubUser(String githubUser)
+        throws ParseException, UserInvalidException, NetworkConnectionException {
         requireNonNull(githubUser);
         String trimmedUser = githubUser.trim();
-        if (User.isValidUsername(trimmedUser)) {
-            throw new ParseException(Timezone.MESSAGE_CONSTRAINTS);
+        if (!User.isValidUsername(trimmedUser)) {
+            throw new ParseException(User.MESSAGE_CONSTRAINTS);
         }
-        try {
-            return githubApi.getUser(trimmedUser);
-        } catch (UserInvalidException | NetworkConnectionException e) {
-            throw new ParseException(e.getMessage());
-        }
+        return githubApi.getUser(trimmedUser);
     }
 
     /**

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.github.exceptions.NetworkConnectionException;
 import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,13 +32,12 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-    public static final String INVALID_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
     private final String address;
     private final String role;
     private final String timezone;
-    private final String githubUser;
+    private final JsonAdaptedGithubUser githubUser;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedContact> contacts = new ArrayList<>();
 
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("contacts") List<JsonAdaptedContact> contacts,
                              @JsonProperty("role") String role, @JsonProperty("timezone") String timezone,
-                             @JsonProperty("github") String githubUser) {
+                             @JsonProperty("github") JsonAdaptedGithubUser githubUser) {
         this.name = name;
         this.address = address;
         this.role = role;
@@ -74,7 +74,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().map(r -> r.value).orElse(null);
         role = source.getRole().map(r -> r.role).orElse(null);
         timezone = source.getTimezone().map(t -> t.timezone).orElse(null);
-        githubUser = source.getGithubUser().map(User::getUsername).orElse(null);
+        githubUser = source.getGithubUser().map(JsonAdaptedGithubUser::new).orElse(null);
 
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -127,19 +127,19 @@ class JsonAdaptedPerson {
         }
         final Timezone modelTimezone = timezone != null ? new Timezone(timezone) : null;
 
-        if (githubUser != null && User.isValidUsername(githubUser)) {
-            throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, User.class.getSimpleName()));
-        }
-
-        User modelGithubUser;
-
-        try {
-            modelGithubUser = githubUser != null ? ParserUtil.parseGithubUser(githubUser) : null;
-        } catch (UserInvalidException | ParseException e) {
-            throw new IllegalValueException(
-                String.format(INVALID_FIELD_MESSAGE_FORMAT, User.class.getSimpleName())
-            );
+        User modelGithubUser = null;
+        if (githubUser != null) {
+            modelGithubUser = githubUser.toModelType();
+            try {
+                modelGithubUser = ParserUtil.parseGithubUser(modelGithubUser.getUsername());
+            } catch (UserInvalidException | ParseException e) {
+                throw new IllegalValueException(
+                    String.format("GitHub username %s is invalid! Please provide a valid username.",
+                        modelGithubUser.getUsername()));
+            } catch (NetworkConnectionException ignored) {
+                // Ignore if there is a network error, use information stored in cache
+            }
+            System.out.println(modelGithubUser.getAddress());
         }
 
         return new Person(modelName, modelAddress, modelTags, modelContacts, modelRole, modelTimezone, modelGithubUser);

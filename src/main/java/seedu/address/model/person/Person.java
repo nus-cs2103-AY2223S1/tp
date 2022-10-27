@@ -40,12 +40,16 @@ public class Person implements Comparable<Person> {
         requireAllNonNull(tags);
         assert (name != null || githubUser != null);
 
-        this.name = name == null ? githubUser.getName() : name;
+        this.name = (name == null) ? githubUser.getName() : name;
         this.address = address;
         this.role = role;
         this.timezone = timezone;
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
+        if (!this.contacts.containsKey(ContactType.EMAIL) &&
+            (githubUser != null && githubUser.getEmail().isPresent())) {
+            this.contacts.put(ContactType.EMAIL, githubUser.getEmail().get());
+        }
         this.gitHubUser = githubUser;
     }
 
@@ -95,7 +99,7 @@ public class Person implements Comparable<Person> {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     @Override
@@ -119,12 +123,12 @@ public class Person implements Comparable<Person> {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getContacts().equals(getContacts())
-                && otherPerson.getRole().equals(getRole())
-                && otherPerson.getTimezone().equals(getTimezone())
-                && otherPerson.getGithubUser().equals(getGithubUser());
+            && otherPerson.getAddress().equals(getAddress())
+            && otherPerson.getTags().equals(getTags())
+            && otherPerson.getContacts().equals(getContacts())
+            && otherPerson.getRole().equals(getRole())
+            && otherPerson.getTimezone().equals(getTimezone())
+            && otherPerson.getGithubUser().equals(getGithubUser());
     }
 
     @Override
@@ -157,7 +161,7 @@ public class Person implements Comparable<Person> {
         getTimezone().ifPresent(t -> builder.append("; Timezone: " + t));
 
         builder.append("; Github: ")
-                .append(getGithubUser());
+            .append(getGithubUser());
         return builder.toString();
     }
 

@@ -25,7 +25,7 @@ public class User {
         + "2. Username cannot have multiple consecutive hyphens\n"
         + "3. Username cannot begin or end with a hyphen\n"
         + "4. Username can have a maximum of 39 characters";
-    private static final String GITHUB_PREFIX = "https://github.com/";
+    private static final String BASE_GITHUB_URL = "https://github.com/";
     private static final String VALIDATION_REGEX = "^[a-zA-Z\\d](?:[a-zA-Z\\d]|-(?=[a-zA-Z\\d])){0,38}$";
     private final String username;
     private final String url;
@@ -40,7 +40,7 @@ public class User {
      * @param username Username corresponding to user to be added
      */
     public User(String username, UserInfoWrapper userInfoWrapper, UserReposWrapper userReposWrapper) {
-        requireAllNonNull(username);
+        requireAllNonNull(username, userInfoWrapper, userReposWrapper);
         this.username = userInfoWrapper.getUsername();
         this.url = userInfoWrapper.getUrl();
         this.name = new Name(userInfoWrapper.getName().orElse(this.username));
@@ -51,11 +51,21 @@ public class User {
         this.repoList = getUpdatedRepoList(userReposWrapper);
     }
 
+    public User(String username, RepoList repoList) {
+        requireAllNonNull(username, repoList);
+        this.username = username;
+        this.name = new Name(username);
+        this.url = BASE_GITHUB_URL + username;
+        this.repoList = repoList;
+        this.email = null;
+        this.address = null;
+    }
+
     /**
      * Returns true if a given string is a valid GitHub's username
      */
     public static boolean isValidUsername(String test) {
-        return !test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     public Name getName() {
@@ -101,7 +111,7 @@ public class User {
 
     @Override
     public String toString() {
-        return GITHUB_PREFIX + username;
+        return BASE_GITHUB_URL + username;
     }
 
     @Override
