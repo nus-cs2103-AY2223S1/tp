@@ -2,15 +2,15 @@
 layout: page
 title: User Guide
 ---
-
-ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command Line Interface(CLI). It allows the professors to keep track of their students, teaching assistants and timetable for their courses.
+## 1. Introduction
+ModQuik is a desktop app that allows Teaching Assistants to keep track of their responsibilities, students’ progress and schedules for the ongoing semester.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -24,21 +24,21 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all students.
+   * **`list`**: Lists all students.
 
-   * **`add student`**`n/John Doe i/A0232123X p/98765432 e/johnd@example.com h/john_fu m/CS2103 l/T23` : Adds a student named `John Doe` to CS2103T module.
+   * **`add student`**`n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/john_fu m/CS2103 tut/T23`: Adds a student named `John Doe` to CS2103T module.
 
-   * **`delete student`**`3` : Deletes the 3rd student shown in the current list.
+   * **`delete student`**`3`: Deletes the 3rd student shown in the current list.
 
-   * **`clear reminders`** : Deletes all reminders.
+   * **`clear reminders`**: Deletes all reminders.
 
-   * **`exit`** : Exits the app.
+   * **`exit`**: Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -48,26 +48,29 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME ph/PHONE`, `ph/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-### Adding a student: `add student`
+
+### 3.1 Student Features
+
+#### 3.1.1 Adding a student: `add student`
 
 Adds a student to the specified module.
 
-Format: `add student n/NAME i/STUDENT_ID p/PHONE e/EMAIL h/TELEGRAM_HANDLE m/MODULE l/TUTORIAL [g/GRADE] [a/ATTENDANCE] [c/PARTICIPATION] [t/TAG]…​`
+Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
@@ -75,79 +78,95 @@ A student can have any number of tags (including 0)
 * The `ROLE` of the person can only be either student or TA.
 
 Examples:
-* `add student n/John Doe i/A0000000J p/98765432 e/johnd@example.com h/johnDoe m/CS2103T l/W17`
-* `add student n/Betsy Crowe i/A0000000B t/friend e/betsycrowe@example.com p/91234567 h/betsy_crowe m/CS2105 l/G03 g/C a/3 c/1 t/criminal`
+* `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
+* `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
 
-### Listing all students : `list student`
-
-Shows a list of all students.
-
-Format: `list`
-
-### Editing a student : `edit student`
-
-Edits an existing student in a specified module.
-
-Format: `edit student INDEX [n/NAME] [m/MODULE] [p/PHONE] [e/EMAIL] [t/TAG]…`
-
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit student 1 p/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
-*  `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
-
-### Locating students by name and other attributes : `find student`
-
-Finds students by names, student ID, module or tutorial. by checking if respective attribute contains any of the given keywords.
-
-Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [l/TUTORIAL]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-
-### Deleting a student : `delete student`
+#### 3.1.2 Deleting a student: `delete student`
 
 Deletes the specified student from the list of people.
 
-Format: `delete student INDEX [m/MODULE]`
+Format: `delete student INDEX`
 
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the list of people.
-* `list m/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T module.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `list` followed by `delete student 2` deletes the 2nd student in the list of people.
+* `find n/Betsy` followed by `delete student 1` deletes the 1st student in the results of the `find` command.
+* `find m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the `find` command.
 
-### Showing grades
+#### 3.1.3 Editing a student: `edit student`
 
-Shows a pie chart representing proportions of students' grade.
+Edits an existing student in a specified module.
 
-Format: `show grade`
+Format: `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`
 
-### Adding a tutorial : `add tutorial`
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the student will be removed i.e. adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+* `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
+* `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+* `find m/CS2103T` followed by `edit student 2 n/Betsy Crower` Edits the name of the 2nd student to be `Betsy Crower` in the results of the `find` command.
+
+#### 3.1.4 Listing all students: `list`
+
+Shows a list of all students.
+
+Format: `list`
+
+
+#### 3.1.5 Locating students by their attributes: `find`
+
+Finds students by names, student ID, module or tutorial, by checking if respective attribute contains any of the given keywords.
+
+Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
+
+* At least one of the optional fields must be provided.
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find n/John` returns `john` and `John Doe`
+* `find m/CS2103T` returns list of students in CS2103T<br>
+
+#### 3.1.6 Extracting student's emails : `extract emails`
+
+Copies all emails in the displayed student list onto the clipboard.
+
+Format: `extract emails`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Paste the link in the address bar of a browser and a pop-up will appear, prompting you to open up your email apps e.g. Outlook !
+</div>
+
+Examples:
+* `find m/CS2103T` followed by `extract emails` copies all the emails of the students in the results of the `find` command.
+
+
+### 3.2 Tutorial Features
+
+#### 3.2.1 Adding a tutorial : `add tutorial`
 
 Adds a tutorial to the tutorial database.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Day should take in a number from 1 (Monday) to 7 (Sunday).
+</div>
 
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`
 
-### Deleting a tutorial : `delete tutorial`
+#### 3.2.2 Deleting a tutorial: `delete tutorial`
 
 Deletes a specified tutorial from the tutorial database.
 
@@ -160,7 +179,24 @@ Format: `delete tutorial INDEX`
 Examples:
 * `delete tutorial 3`
 
-### Adding a consultation : `add consultation`
+#### 3.2.3 Editing a tutorial: `edit tutorial`
+
+Edits an existing student in a specified module.
+
+Format: `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`
+
+* Edits the tutorial at the specified `INDEX`. The index refers to the index number shown in the displayed tutorial list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing the timeslot or the day, both fields must be given.
+
+Examples:
+* `edit tutorial 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
+* `edit tutorial 2 T/14:00-16:00 D/2` Edits the timeslot of the 2nd tutorial to be `14:00 to 16:00` and sets tutorial day to `Tue`.
+
+### 3.3 Consultation Features
+
+#### 3.3.1 Adding a consultation: `add consultation`
 
 Adds a consultation to the consultation database.
 
@@ -169,7 +205,7 @@ Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTIO
 Examples:
 * `add consultation n/JakeKim m/CS2103T D/2022-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
 
-### Deleting a consultation : `delete consultation`
+#### 3.3.2 Deleting a consultation: `delete consultation`
 
 Deletes a specified consultation from the consultation database.
 
@@ -182,13 +218,36 @@ Format: `delete consultation INDEX`
 Examples:
 * `delete consultation 3`
 
-### Adding a reminder : `add reminder`
+#### 3.3.3 Editing a consultation: `edit consultation`
+
+Edits an existing student in a specified module.
+
+Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DATE] [d/description]`
+
+* Edits the consultation at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing the timeslot or the date, both fields must be given.
+
+Examples:
+* `edit consultation 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
+* `edit consultation 2 T/14:00-16:00 D/2022-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2022 Oct 10`.
+
+### 3.4 Reminder Features
+
+#### 3.4.1 Adding a reminder : `add reminder`
 
 Adds a reminder to the list of reminders.
 
 Format: `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION`
 
-### Deleting a reminder : `delete reminder`
+* Adds a reminder with either `HIGH`, `MEDIUM` or `LOW` priority.
+
+Examples:
+* `add reminder n/mark midterms T/2022-10-26 20:00 p/high d/300 papers to mark`
+
+
+#### 3.4.2 Deleting a reminder : `delete reminder`
 
 Deletes the specified reminder from the list of reminders.
 
@@ -201,31 +260,60 @@ Format: `delete reminder INDEX`
 Examples:
 * `delete reminder 3`
 
-### Mark a reminder : `mark reminder`
 
-Marks a reminder as completed.
+#### 3.4.3 Mark a reminder : `mark reminder`
+
+Marks a reminder as complete.
 
 Format: `mark reminder INDEX`
 
 Examples:
-* `mark reminder 3`
+* `mark reminder 1`
 
-### Unmark a reminder : `unmark reminder`
+![Before marking reminder](images/UnmarkedReminder.png)
+_Figure 1. Before executing command: `mark reminder 1`_
 
-Unmarks a reminder as not completed.
+![After marking reminder](images/MarkedReminder.png)
+_Figure 1.2. After executing command: `mark reminder 1`_
+
+#### 3.4.4 Unmark a reminder : `unmark reminder`
+
+Unmarks a reminder as incomplete.
 
 Format: `unmark reminder INDEX`
 
 Examples:
 * `unmark reminder 3`
- 
-### Sort reminders by priority : `sort reminder`
 
-Sort reminders by their priority.
+#### 3.4.5 Sort reminders: `sort reminder`
 
-Format: `sort reminder`
+Sort reminders by a chosen criteria.
 
-### Clearing all data: `clear`
+Format: `sort reminder by/SORT_CRITERIA`
+
+* `SORT_CRITERIA` must either be `priority` or `deadline`.
+* Specifying `priority` will sort reminders by their priority, with `HIGH` on top of the list, followed by `MEDIUM` and `LOW`.
+* Specifying `deadline` will sort reminders by their deadline, with the earliest deadline on top of the list.
+
+Examples:
+* `sort reminder by/priority`
+
+### 3.5 Switch tabs: `switch`
+
+Switch the tabs displayed.
+
+Format: `switch f/FIELD`
+
+* `FIELD` includes: `student`, `tutorial`, `consultation`, `grade`
+
+Examples:
+* `switch f/tutorial` will switch tabs and display the tutorial list.
+* `switch f/grade` with switch tabs and display a pie chart showing an overview of the number of students in each grade category.
+
+![Grade Chart Tab](images/SwitchGrade.png)
+_Figure 2. Grade Chart Tab_
+
+### 3.6 Clearing all data: `clear`
 
 Clears all data in a specific fields or the entire app.
 
@@ -233,57 +321,84 @@ Format: `clear f/FIELD`
 * `FIELD` including `all`, `student`, `tutorial`, `consultation`, `reminder`
 
 Examples:
-* `clear all`
+* `clear f/all`
 
-### Exiting the program: `exit`
+### 3.7 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### 3.8 Saving the data
 
-ModQuik data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+All data in ModQuik is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 3.9 Editing the data file
 
-ModQuik data are saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
+All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ModQuik will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### 3.10 Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+_Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModQuik home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 5. Command summary
 
-| Action                  | Format, Examples                                                                                                                                                                                          |
-|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Student**         | `add student n/NAME i/STUDENT_ID p/PHONE e/EMAIL h/TELEGRAM_HANDLE m/MODULE l/TUTORIAL [t/TAG]…` <br> e.g., `add student n/John Doe i/A0000000J p/98765432 e/johnd@example.com h/johnDoe m/CS2103T l/W17` |
-| **List All Students**   | `list`<br> e.g., `list`                                                                                                                                                                                   |
-| **Edit Student**        | `edit student INDEX [n/NAME] [m/MODULE] [p/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g.,`edit student 1 p/91234567 e/jameslee@example.com`                                                                         |
-| **Find Student**        | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [l/TUTORIAL]`<br> e.g., `find student n/john m/CS2103T`                                                                                                          |
-| **Delete Student**      | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                  |
-| **Show grade**          | `show grade`<br> e.g., `show grade`                                                                                                                                                                       |
-| **Add Tutorial**        | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY` <br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                             |
-| **Delete Tutorial**     | `delete tutorial INDEX` <br> e.g., `delete tutorial 3`                                                                                                                                                    |
-| **Add Consultation**    | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION` <br> e.g., `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                    |
-| **Delete Consultation** | `delete consultation INDEX` <br> e.g., `delete consultation 3`                                                                                                                                            |
-| **Add Reminder**        | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION` <br> e.g., `add reminder n/mark T/2022-03-21 p/HIGH d/300 papers to mark`                                                                       |
-| **Delete Reminder**     | `delete reminder INDEX` <br> e.g., `delete reminder 3`                                                                                                                                                    |
-| **Mark Reminder**       | `mark reminder INDEX` <br> e.g., `mark reminder 3`                                                                                                                                                        |
-| **Unmark Reminder**     | `unmark reminder INDEX` <br> e.g., `unmark reminder 3`                                                                                                                                                    |
-| **Clear**               | `clear f/FIELD` <br> e.g., `clear student`                                                                                                                                                                |
-| **Exit**                | `exit`                                                                                                                                                                                                    |
-| **Help**                | `help`                                                                                                                                                                                                    |
+| Action                     | Format, Examples                                                                                                                                                                                                     |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Student**            | `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [t/TAG]…`<br> e.g., `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17` |
+| **Delete Student**         | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                             |
+| **Edit Student**           | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`                                                                                 |
+| **List All Students**      | `list`                                                                                                                                                                                                               |
+| **Find Student**           | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`<br> e.g., `find n/john m/CS2103T`                                                                                                                           |
+| **Extract Student Emails** | `extract emails`                                                                                                                                                                                                     |
+| **Add Tutorial**           | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                         |
+| **Delete Tutorial**        | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                |
+| **Edit Tutorial**          | `edit tutorial INDEX`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                                    |
+| **Add Consultation**       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                |
+| **Delete Consultation**    | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                        |
+| **Edit Consultation**      | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                   |
+| **Add Reminder**           | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark T/2022-03-21 p/HIGH d/300 papers to mark`                                                                                   |
+| **Delete Reminder**        | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                |
+| **Edit Reminder**          | `edit reminder INDEX`<br> e.g., `delete reminder 1 T/2022-01-01 14:00`                                                                                                                                               |
+| **Mark Reminder**          | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                    |
+| **Unmark Reminder**        | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                |
+| **Sort Reminder**          | `sort reminder by/SORT_CRITERIA`<br> e.g., `sort reminder by/priority`                                                                                                                                               |
+| **Switch Tabs**            | `switch f/FIELD`<br> e.g., `switch f/tutorial`                                                                                                                                                                       |
+| **Clear**                  | `clear f/FIELD`<br> e.g., `clear f/student`                                                                                                                                                                          |
+| **Exit**                   | `exit`                                                                                                                                                                                                               |
+| **Help**                   | `help`                                                                                                                                                                                                               |
+
+## 6. Prefix summary
+| Prefix    | Symbolise        |
+|-----------|------------------|
+| **att/**  | attendance       |
+| **by/**   | sorting criteria |
+| **d/**    | description      |
+| **D/**    | date or day      |
+| **e/**    | email            |
+| **f/**    | field            |
+| **g/**    | grade            |
+| **i/**    | id               |
+| **m/**    | module           |
+| **n/**    | name             |
+| **p/**    | priority         |
+| **ph/**   | phone            |
+| **part/** | participation    |
+| **t/**    | tag              |
+| **T/**    | time             |
+| **tut/**  | tutorial         |
+| **tele/** | Telegram handle  |
+| **v/**    | venue            |
