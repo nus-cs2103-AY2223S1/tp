@@ -71,7 +71,9 @@ public class TagCommand extends Command {
 
         model.setTask(taskToTag, taggedTask);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, taggedTask));
+        CommandResult result = new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS, taggedTask));
+        System.out.println(taggedTask);
+        return result;
     }
 
     /**
@@ -84,7 +86,12 @@ public class TagCommand extends Command {
         Name updatedName = taskToEdit.getName();
         Module updatedModule = taskToEdit.getModule();
         Deadline updatedDeadline = taskToEdit.getDeadline();
-        Set<Tag> updatedTags = editPersonTags.getTags().orElse(taskToEdit.getTags());
+
+        Set<Tag> updatedTags = new HashSet<>();
+        if (editPersonTags.getTags().isPresent()) {
+            updatedTags.addAll(editPersonTags.getTags().get());
+        }
+        updatedTags.addAll(taskToEdit.getTags());
 
         return new Task(updatedName, updatedModule, updatedDeadline, updatedTags, taskToEdit.isDone());
     }

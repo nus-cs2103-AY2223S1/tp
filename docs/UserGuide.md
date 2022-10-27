@@ -111,11 +111,11 @@ Example: `unmark 2`
 
 Allows you to tag a task.
 
-Format : `tag TASK_NUMBER TAG_NAME`
+Format : `tag TASK_NUMBER -t TAG_NAME`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
-Example: `tag 2 optional`
+Example: `tag 2 -t optional`
 
 ## List and Find
 

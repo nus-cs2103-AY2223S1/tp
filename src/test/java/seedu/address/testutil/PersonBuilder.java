@@ -63,6 +63,14 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder addTags(Set<Tag> tags) {
+        Set<Tag> newTags = new HashSet<>();
+        newTags.addAll(this.tags);
+        newTags.addAll(tags);
+        this.tags = newTags;
+        return this;
+    }
+
     /**
      * Sets the {@code module} of the {@code Task} that we are building.
      */
