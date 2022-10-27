@@ -24,6 +24,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.getcommands.GetNextOfKinCommand;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.ModelManager;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -193,11 +195,15 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the detailed person view panel with the newest info.
      */
     public void handleView() {
-        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getCurrentlyViewedPerson(),
-                this::handlePersonViewClick);
-        personViewPanelPlaceholder.getChildren().clear();
-        personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
-
+        Person person = logic.getCurrentlyViewedPerson();
+        if (person == null) {
+            personViewPanelPlaceholder.setVisible(false);
+        } else {
+            PersonViewPanel personViewPanel = new PersonViewPanel(person, this::handlePersonViewClick);
+            personViewPanelPlaceholder.getChildren().clear();
+            personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+            personViewPanelPlaceholder.setVisible(true);
+        }
     }
 
     /**
