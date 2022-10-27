@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Task validTask = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addPerson(validTask);
 
         assertCommandSuccess(new AddCommand(validTask), model,

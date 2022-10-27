@@ -40,7 +40,6 @@ public class Task implements Comparable<Task> {
         this.deadline = deadline;
         this.tags.addAll(tags);
         this.isDone = isDone;
-
     }
 
     public Name getName() {
@@ -66,8 +65,6 @@ public class Task implements Comparable<Task> {
     public Boolean isDone() {
         return isDone;
     }
-
-
 
     /**
      * Returns true if both tasks have the same name and module.

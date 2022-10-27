@@ -22,7 +22,7 @@ import seedu.address.model.UserPrefs;
  */
 public class MarkCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
