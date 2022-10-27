@@ -22,8 +22,6 @@ import gim.model.ExerciseTracker;
 import gim.model.Model;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.NameContainsKeywordsPredicate;
-import gim.testutil.EditExerciseDescriptorBuilder;
-
 
 
 /**
@@ -73,17 +71,6 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditExerciseDescriptor DESC_ARM_CURLS;
-    public static final EditCommand.EditExerciseDescriptor DESC_BENCH_PRESS;
-
-    static {
-        DESC_ARM_CURLS = new EditExerciseDescriptorBuilder().withName(VALID_NAME_ARM_CURLS)
-                .withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS).withRep(VALID_REPS_ARM_CURLS)
-                .withDates(VALID_DATE).build();
-        DESC_BENCH_PRESS = new EditExerciseDescriptorBuilder().withName(VALID_NAME_BENCH_PRESS)
-                .withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS).withRep(VALID_REPS_BENCH_PRESS)
-                .withDates(VALID_DATE).build();
-    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
