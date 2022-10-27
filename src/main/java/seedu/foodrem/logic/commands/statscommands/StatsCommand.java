@@ -59,11 +59,7 @@ public class StatsCommand extends Command {
             Tag tag = tagList.get(i);
             for (int j = 0; j < itemList.size(); j++) {
                 if (itemList.get(j).getTagSet().contains(tag)) {
-                    if (tagToFrequencyMap.containsKey(tag)) {
-                        tagToFrequencyMap.put(tag, tagToFrequencyMap.get(tag) + 1);
-                    } else {
-                        tagToFrequencyMap.put(tag, 1);
-                    }
+                    tagToFrequencyMap.put(tag, tagToFrequencyMap.getOrDefault(tag, 0) + 1);
                 }
             }
         }
