@@ -19,7 +19,8 @@ title: User Guide
     * [Removing an interview: `remove-i`](#removing-an-interview-remove-i)
     * [Archiving an internship application: `archive`](#archiving-an-internship-application-archive)
     * [Retrieving an internship application from archives: `retrieve`](#retrieving-an-internship-application-from-archives-retrieve)
-    * [Viewing a list of upcoming interviews: `remind`](#viewing-a-list-of-upcoming-interviews)
+    * [Viewing a list of upcoming interviews: `remind`](#viewing-a-list-of-upcoming-interviews-remind)
+    * [Showing the statistics of application: `stats`](#showing-the-statistics-of-application)
     * [Undoing the previous command: `undo`](#undoing-the-previous-command-undo)
     * [Redoing the previously undone command: `redo`](#redoing-the-previously-undone-command-redo)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
@@ -308,6 +309,10 @@ Format: `remind`
 * If there are no upcoming interviews, a blank window will be displayed.
 * `remind` can only be used on the main application list page (i.e. not to be used on list-archive page).
 
+### Showing the statistics of application: `stats`
+
+Shows the statistics of applications (e.g. number of each application status, interviews, archived applications etc.)
+
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
 
@@ -344,24 +349,25 @@ We will assist you as soon as possible.
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                            |
-|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**        | `help`                                                                                                                                                                                      |
-| **Add**         | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
-| **List**        | `list`                                                                                                                                                                                      |
-| **ListArchive** | `list-archive`                                                                                                                                                                              |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
-| **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
-| **Sort**        | `sort [o/ORDER] [r/]`<br> e.g., `sort o/date r/`                                                                                                                                            |
-| **Interview**   | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`        |
-| **Remove-i**    | `remove-i INDEX`<br/> e.g., `remove-i 3`                                                                                                                                                    |
-| **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                       |
-| **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                     |
-| **Remind**      | `remind`                                                                                                                                                                                    |
-| **Undo**        | `undo`                                                                                                                                                                                      |
-| **Redo**        | `redo`                                                                                                                                                                                      |
-| **Clear**       | `clear`                                                                                                                                                                                     |
-| **Exit**        | `exit`                                                                                                                                                                                      |
+| Action          | Format, Examples                                                                                                                                                                                          |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**        | `help`                                                                                                                                                                                                    |
+| **Add**         | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred`               |
+| **List**        | `list`                                                                                                                                                                                                    |
+| **ListArchive** | `list-archive`                                                                                                                                                                                            |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                                       |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                                  |
+| **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                                           |
+| **Sort**        | `sort [o/ORDER] [r/]`<br> e.g., `sort o/date r/`                                                                                                                                                          |
+| **Interview**   | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`                      |
+| **Remove-i**    | `remove-i INDEX`<br/> e.g., `remove-i 3`                                                                                                                                                                  |
+| **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                                     |
+| **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                                   |
+| **Remind**      | `remind`                                                                                                                                                                                                  |
+| **Undo**        | `undo`                                                                                                                                                                                                    |
+| **Redo**        | `redo`                                                                                                                                                                                                    |
+| **Statistics**  | `stats`                                                                                                                                                                                                   |
+| **Clear**       | `clear`                                                                                                                                                                                                   |
+| **Exit**        | `exit`                                                                                                                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
