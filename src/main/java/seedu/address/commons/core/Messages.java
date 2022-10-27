@@ -6,7 +6,7 @@ package seedu.address.commons.core;
 public class Messages {
 
     /* Failure messages */
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNKNOWN_COMMAND_TEMPLATE = "\"%s\" is not a recognised command!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_MISSING_PREFIXES_ALL =
             "This command is missing all of the following prefixes: %s\n%s";

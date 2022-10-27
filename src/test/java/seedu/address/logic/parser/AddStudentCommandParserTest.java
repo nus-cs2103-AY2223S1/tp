@@ -107,26 +107,29 @@ public class AddStudentCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + ID_DESC_BOB
-                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
-                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_NAME}), ""));
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
+                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_NAME}),
+                AddCommand.MESSAGE_USAGE));
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + ID_DESC_BOB
-                        + VALID_PHONE_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
-                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_PHONE}), ""));
+                + VALID_PHONE_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
+                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_PHONE}),
+                AddCommand.MESSAGE_USAGE));
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + ID_DESC_BOB
-                        + PHONE_DESC_BOB + VALID_EMAIL_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
-                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_EMAIL}), ""));
+                + PHONE_DESC_BOB + VALID_EMAIL_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
+                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_EMAIL}),
+                AddCommand.MESSAGE_USAGE));
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_ID_BOB
-                        + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_TELEGRAM_BOB + VALID_MODULE_TUT1 + VALID_NAME_TUT1,
+                + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_TELEGRAM_BOB + VALID_MODULE_TUT1 + VALID_NAME_TUT1,
                 String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{
                     CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ID, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
-                    CliSyntax.PREFIX_TELEGRAM, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_TUTORIAL
-                }), ""));
+                    CliSyntax.PREFIX_TELEGRAM, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_TUTORIAL}),
+                    AddCommand.MESSAGE_USAGE));
     }
 
     @Test
