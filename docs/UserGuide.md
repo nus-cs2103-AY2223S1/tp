@@ -258,7 +258,7 @@ Example:
 
 Opens a help window displaying all the recognised commands, and a link to access the user guide.
 
-![help message](images/helpMessage.png)
+![help window](images/helpWindow.png)
 
 Format: `help`
 
