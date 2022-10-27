@@ -34,6 +34,6 @@ public class RedoCommand extends Command {
             throw new CommandException(e.getMessage());
         }
 
-        return new CommandResult(MESSAGE_REDO_SUCCESS, false, false, false, true);
+        return new CommandResult(MESSAGE_REDO_SUCCESS, false, false, false, true, false);
     }
 }

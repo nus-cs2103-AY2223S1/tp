@@ -9,7 +9,7 @@ public class CalculatorGuiCommand extends Command {
 
     public static final String COMMAND_WORD = "calc-gui";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows calculator in GUI.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_CALC_MESSAGE = "Opened calculator.";

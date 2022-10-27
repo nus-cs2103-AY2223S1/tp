@@ -62,6 +62,10 @@ public class CommandResult {
         return isRedo;
     }
 
+    public boolean isShowCalculator() {
+        return isShowCalculator;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
