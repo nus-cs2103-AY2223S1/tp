@@ -140,7 +140,7 @@ public class CommandTestUtil {
             new HashSet<>(List.of(FIRST_VALID_MULTI_INDEX, SECOND_VALID_MULTI_INDEX, THIRD_VALID_MULTI_INDEX));
     public static final String MULTI_VALID_INDEX_STRING = FIRST_VALID_MULTI_INDEX.getOneBased()
             + " " + SECOND_VALID_MULTI_INDEX.getOneBased() + " " + THIRD_VALID_MULTI_INDEX.getOneBased();
-    
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
