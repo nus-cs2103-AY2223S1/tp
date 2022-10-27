@@ -20,7 +20,6 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_DOB = "10.2.2024";
-    private static final String INVALID_TAG = "#friend";
 
     private static final String INVALID_GENDER = "unknown";
 
