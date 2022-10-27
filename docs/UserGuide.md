@@ -203,8 +203,7 @@ Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
 * MODULE refers to the module of the exam
 * EXAMDESCRIPTION refers to the description of the exam
 * EXAMDATE refers to the date of the exam
-* The exam cannot be added if it is the same exam as an existing
-* exam in the exam list. Otherwise, an error message will be displayed.
+* The exam cannot be added if it is the same exam as an existing exam in the exam list. Otherwise, an error message will be displayed.
 * MODULE has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed. 
 * EXAMDESCRIPTION should not be empty. Otherwise, an error message will be displayed to the user. 
 * EXAMDATE should be in dd-mm-yyyy format, a valid date and not a past date. Otherwise, an error message will be displayed to the user.
