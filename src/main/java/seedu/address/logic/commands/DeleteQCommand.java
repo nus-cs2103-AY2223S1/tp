@@ -17,10 +17,9 @@ public class DeleteQCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteq";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the question identified by the index number used in the displayed question list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = "The question index provided is invalid. "
+            + "Please use a valid index.\nFor example, if you have 3 questions in the question list, the index can be "
+            + "1, 2 or 3.\nExample: deleteq 3";
 
     public static final String MESSAGE_DELETE_QUESTION_SUCCESS = "Deleted Question: %1$s";
 

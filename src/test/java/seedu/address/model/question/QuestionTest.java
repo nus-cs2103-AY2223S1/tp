@@ -35,7 +35,7 @@ public class QuestionTest {
         // description has trailing spaces, important tags same -> returns false
         String descriptionWithTrailingSpaces = VALID_DESCRIPTION_Q2 + " ";
         editedQ2 = new QuestionBuilder(Q2).withDescription(descriptionWithTrailingSpaces).build();
-        assertTrue(Q2.isSameQuestion(editedQ2));
+        assertFalse(Q2.isSameQuestion(editedQ2));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class QuestionTest {
         // different description -> returns false
         assertFalse(Q1.equals(Q2));
 
-        // different description -> returns false
+        // different description after edit -> returns false
         Question editedQ1 = new QuestionBuilder(Q1).withDescription(VALID_DESCRIPTION_Q2).build();
         assertFalse(Q1.equals(editedQ1));
 

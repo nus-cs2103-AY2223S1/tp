@@ -22,7 +22,7 @@ public class DeleteQCommandParser implements Parser<DeleteQCommand> {
             return new DeleteQCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteQCommand.MESSAGE_USAGE), pe);
+                    String.format(DeleteQCommand.MESSAGE_USAGE), pe);
         }
     }
 }

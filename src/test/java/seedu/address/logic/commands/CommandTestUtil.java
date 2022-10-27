@@ -42,8 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DESCRIPTION_Q1 = "What's the difference between composition and aggregation?";
-    public static final String VALID_DESCRIPTION_Q2 = "What's the difference between association roles and labels in "
-            + "UML diagrams?";
+    public static final String VALID_DESCRIPTION_Q2 = "Why are association roles used?";
     public static final String VALID_TUTORIAL = "T08";
     public static final String VALID_CONTENT = "UML";
     public static final String VALID_TIME = "2022-10-01T08:00:00";
@@ -179,7 +178,7 @@ public class CommandTestUtil {
 
         Question question = model.getFilteredQuestionList().get(targetIndex.getZeroBased());
         final String[] splitName = question.getDescription().descriptionString.split("\\s+");
-        model.updateFilteredQuestionList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredQuestionList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitName)));
 
         assertEquals(1, model.getFilteredQuestionList().size());
     }

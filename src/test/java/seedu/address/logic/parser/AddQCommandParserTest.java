@@ -37,10 +37,4 @@ public class AddQCommandParserTest {
                 expectedMessage);
     }
 
-    @Test
-    public void parse_invalidValue_failure() {
-        // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + DESCRIPTION_Q1,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddQCommand.MESSAGE_USAGE));
-    }
 }
