@@ -1,11 +1,13 @@
 ---
-layout: page title: User Guide
+layout: page
+title: User Guide
 ---
 
 TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface**
 (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TruthTable can get your task management done faster than traditional GUI apps.
 
-- Table of Contents {:toc}
+- Table of Contents
+  {:toc}
 
 ---
 
