@@ -20,7 +20,8 @@ public class ExportPdfCommand extends Command {
             + ": export current itinerary to PDF\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_EXPORT_SUCCESS = "PDF created! Find your document in the data folder.";
+    public static final String MESSAGE_EXPORT_SUCCESS =
+            "Created a pdf for %1$s! Find it under Waddle in your Documents folder!";
     public static final String MESSAGE_EXPORT_FAILURE = "Failed to export!";
 
     public static final String MESSAGE_EXPORT_WRONG_STAGE = "Please select an itinerary before exporting.";
@@ -42,7 +43,7 @@ public class ExportPdfCommand extends Command {
         } catch (IOException e) {
             return new CommandResult(MESSAGE_EXPORT_FAILURE);
         }
-        return new CommandResult(MESSAGE_EXPORT_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_EXPORT_SUCCESS, itinerary.getDescription()));
     }
 
     @Override
