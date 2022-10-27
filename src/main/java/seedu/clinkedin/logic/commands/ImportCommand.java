@@ -6,17 +6,24 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PATH;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import seedu.clinkedin.commons.exceptions.DataConversionException;
 import seedu.clinkedin.commons.exceptions.EmptyFileException;
+import seedu.clinkedin.commons.exceptions.IllegalValueException;
+import seedu.clinkedin.commons.util.JsonUtil;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.logic.parser.ParserUtil;
 import seedu.clinkedin.logic.parser.ParserUtil.FileType;
 import seedu.clinkedin.logic.parser.exceptions.InvalidPersonException;
+import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Person;
-
+import seedu.clinkedin.storage.JsonSerializableAddressBook;
 
 
 /**
@@ -64,21 +71,17 @@ public class ImportCommand extends Command {
         if (onlyCommand) {
             return new CommandResult(MESSAGE_WINDOW, false, false, false, true);
         }
-        ArrayList<ArrayList<String[]>> content;
-        try {
-            content = importFromCsvFile(filePath);
-        } catch (FileNotFoundException e) {
-            throw new CommandException(e.getMessage());
-        } catch (EmptyFileException e) {
-            throw new CommandException(e.getMessage());
-        } catch (IOException e) {
-            throw new CommandException("Couldn't import file!");
+        List<Person> personList;
+        switch (fileType) {
+        case CSV:
+            personList = fromCsv();
+            break;
+        case JSON:
+            personList = fromJson();
+            break;
+        default:
+            throw new CommandException("File format invalid or not compatible!");
         }
-
-        if (content.size() == 0) {
-            throw new CommandException(String.format(MESSAGE_EMPTY_FILE, filePath));
-        }
-        List<Person> personList = getPersonList(content);
 
         boolean isUpdated = false;
         boolean isSomeExisting = false;
@@ -113,4 +116,51 @@ public class ImportCommand extends Command {
         return personList;
     }
 
+    /**
+     * Reads from JSON file.
+     */
+    public List<Person> fromJson() throws CommandException {
+        Optional<JsonSerializableAddressBook> jsonAddressBook;
+        try {
+            Path path = Paths.get(filePath);
+            jsonAddressBook = JsonUtil.readJsonFile(
+                    path, JsonSerializableAddressBook.class);
+        } catch (DataConversionException | IllegalArgumentException e) {
+            throw new CommandException("Couldn't read file properly. Check your file again!");
+        }
+        if (!jsonAddressBook.isPresent()) {
+            throw new CommandException("Couldn't read file properly. Check your file again!");
+        }
+        Optional<AddressBook> addressBook;
+        try {
+            addressBook = Optional.of(jsonAddressBook.get().toModelType());
+        } catch (IllegalValueException ive) {
+            throw new CommandException("Incompatible file format. Check your file again!");
+        }
+        if (addressBook.isPresent()) {
+            return addressBook.get().getPersonList();
+        }
+        throw new CommandException("Incompatible file format. Check your file again!");
+    }
+    /**
+     * Reads from CSV file.
+     */
+    public List<Person> fromCsv() throws CommandException {
+        ArrayList<ArrayList<String[]>> content;
+        try {
+            content = importFromCsvFile(filePath);
+        } catch (FileNotFoundException e) {
+            throw new CommandException(e.getMessage());
+        } catch (EmptyFileException e) {
+            throw new CommandException(e.getMessage());
+        } catch (IOException e) {
+            throw new CommandException("Couldn't import file!");
+        }
+
+        if (content.size() == 0) {
+            throw new CommandException(String.format(MESSAGE_EMPTY_FILE, filePath));
+        }
+        List<Person> personList = getPersonList(content);
+        return personList;
+    }
 }
