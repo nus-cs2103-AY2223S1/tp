@@ -24,7 +24,7 @@ public class StatsCommand extends Command {
         requireNonNull(model);
         ObservableList<Item> itemList = model.getFoodRem().getItemList();
         List<Item> expensiveItems = getTopThreeExpensiveItems(itemList);
-        double amountWasted = getAmountWastedFromWastage(itemList);
+        double amountWasted = getAmountWasted(itemList);
         return CommandResult.from(new Stats(amountWasted, expensiveItems));
     }
 
@@ -40,7 +40,7 @@ public class StatsCommand extends Command {
                 .collect(Collectors.toList());
     }
 
-    private double getAmountWastedFromWastage(List<Item> itemList) {
+    private double getAmountWasted(List<Item> itemList) {
         return itemList.stream()
                 .filter(i -> !i.getQuantity().isZero() && i.getExpiryDate().isAfterExpiryDate(LocalDate.now()))
                 .map(i -> i.getPrice().getItemPrice()).reduce(0.0, Double::sum);
