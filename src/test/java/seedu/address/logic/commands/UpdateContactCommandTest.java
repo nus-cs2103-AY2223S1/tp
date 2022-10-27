@@ -44,8 +44,8 @@ class UpdateContactCommandTest {
                 new Email(DEFAULT_CONTACT_EMAIL));
         Patient expectedPatientEdited = new Patient(expectedPerson.getUid(), expectedPerson.getName(),
                 expectedPerson.getGender(), expectedPerson.getPhone(), expectedPerson.getEmail(),
-                expectedPerson.getAddress(), expectedPerson.getTags(), expectedPerson.getDatesTimes(),
-                expectedPerson.getVisitStatus(), Optional.of(physicianToAssign), Optional.empty());
+                expectedPerson.getAddress(), expectedPerson.getTags(), expectedPerson.getDatesSlots(),
+                Optional.of(physicianToAssign), Optional.empty());
         expectedModel.setPerson(expectedPerson, expectedPatientEdited);
 
         Command setPhysCommand = new UpdateContactCommand(new Uid(3L), new Name(DEFAULT_CONTACT_NAME),
@@ -85,8 +85,8 @@ class UpdateContactCommandTest {
                 new Email(DEFAULT_CONTACT_EMAIL));
         Patient expectedPatientEdited = new Patient(expectedPatient.getUid(), expectedPatient.getName(),
                 expectedPatient.getGender(), expectedPatient.getPhone(), expectedPatient.getEmail(),
-                expectedPatient.getAddress(), expectedPatient.getTags(), expectedPatient.getDatesTimes(),
-                expectedPatient.getVisitStatus(), expectedPatient.getAttendingPhysician(), Optional.of(nextOfKin));
+                expectedPatient.getAddress(), expectedPatient.getTags(), expectedPatient.getDatesSlots(),
+                expectedPatient.getAttendingPhysician(), Optional.of(nextOfKin));
         expectedModel.setPerson(expectedPatient, expectedPatientEdited);
 
         Command command = new UpdateContactCommand(new Uid(3L), new Name(DEFAULT_CONTACT_NAME),

@@ -2,21 +2,20 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_STATUS;
 
 import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -49,9 +48,8 @@ public class PersonUtil {
 
         if (person instanceof Patient) {
             Patient patient = (Patient) person;
-            patient.getDatesTimes().stream().forEach(
-                    s -> sb.append(PREFIX_DATE_AND_TIME + s.getString() + " "));
-            sb.append(PREFIX_VISIT_STATUS + ((Patient) person).getVisitStatus().getVisitStatusString() + " ");
+            patient.getDatesSlots().stream().forEach(
+                    s -> sb.append(PREFIX_DATE_AND_SLOT + s.getString() + " "));
         }
         return sb.toString();
     }
@@ -78,12 +76,12 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        if (descriptor.getDatesTimes().isPresent()) {
-            List<DateTime> dateTimeList = descriptor.getDatesTimes().get();
+        if (descriptor.getDatesSlots().isPresent()) {
+            List<DateSlot> dateTimeList = descriptor.getDatesSlots().get();
             if (dateTimeList.isEmpty()) {
-                sb.append(PREFIX_DATE_AND_TIME);
+                sb.append(PREFIX_DATE_AND_SLOT);
             } else {
-                dateTimeList.forEach(s -> sb.append(PREFIX_DATE_AND_TIME).append(s.getString()).append(" "));
+                dateTimeList.forEach(s -> sb.append(PREFIX_DATE_AND_SLOT).append(s.getString()).append(" "));
             }
         }
         return sb.toString();

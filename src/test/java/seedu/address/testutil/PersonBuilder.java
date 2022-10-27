@@ -7,9 +7,11 @@ import java.util.Set;
 
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.Date;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.HomeVisit;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
@@ -17,7 +19,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
-import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -32,11 +33,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_DATE_AND_TIME = "2022-06-14T13:00";
+    public static final String DEFAULT_DATE_AND_SLOT = "2022-06-14,4";
     public static final String DEFAULT_VISIT_STATUS = "false";
+    public static final String DEFAULT_HOME_VISITS = "2022-11-10,4:2";
     public static final String DEFAULT_CONTACT_NAME = "John Doe";
     public static final String DEFAULT_CONTACT_EMAIL = "johndoe@example.com";
     public static final String DEFAULT_CONTACT_PHONE = "81234567";
+
 
     private Category category;
     private Uid uid;
@@ -46,9 +49,12 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private List<DateTime> dateTimeList;
-    private VisitStatus visitStatus;
+    private List<DateSlot> dateSlotList;
+    private List<HomeVisit> homeVisitList;
     private Physician physician;
+    private List<Date> unavailableDateList;
+    private List<Date> fullyScheduledDateList;
+
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -62,11 +68,13 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        dateTimeList = new ArrayList<>();
-        dateTimeList.add(new DateTime(DEFAULT_DATE_AND_TIME));
-        visitStatus = new VisitStatus(DEFAULT_VISIT_STATUS);
+        dateSlotList = new ArrayList<>();
+        homeVisitList = new ArrayList<>();
         physician = new Physician(new Name(DEFAULT_CONTACT_NAME), new Phone(DEFAULT_CONTACT_PHONE),
                 new Email(DEFAULT_CONTACT_EMAIL));
+        unavailableDateList = new ArrayList<>();
+        fullyScheduledDateList = new ArrayList<>();
+
     }
 
     /**
@@ -83,14 +91,18 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         if (personToCopy.getCategory().categoryName.equals("P")) {
             Patient patientToCopy = (Patient) personToCopy;
-            dateTimeList = new ArrayList<>(patientToCopy.getDatesTimes());
-            visitStatus = patientToCopy.getVisitStatus();
+            dateSlotList = new ArrayList<>(patientToCopy.getDatesSlots());
             Physician[] physicianArr = new Physician[]{null};
             patientToCopy.getAttendingPhysician().ifPresent(
                     x -> physicianArr[0] = new Physician(x.getName(), x.getPhone(), x.getEmail()));
             physician = physicianArr[0];
         } else {
+            homeVisitList = new ArrayList<>(((Nurse) personToCopy).getHomeVisits());
             physician = null;
+            homeVisitList = new ArrayList<>(((Nurse) personToCopy).getHomeVisits());
+            unavailableDateList = new ArrayList<>(((Nurse) personToCopy).getUnavailableDates());
+            fullyScheduledDateList = new ArrayList<>(((Nurse) personToCopy).getFullyScheduledDates());
+
         }
     }
 
@@ -160,22 +172,26 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code datesTimes} into a {@code Set<DateTime>} and
+     * Parses the {@code datesSlots} into a {@code List<DateSlot>} and
      * set it to the {@code Person} that we are building.
      * Applies only to Patient.
      */
-    public PersonBuilder withDatesTimes(String... datesTimes) {
-        this.dateTimeList = SampleDataUtil.getDatesTimesList(datesTimes);
+    public PersonBuilder withDatesSlots(String... datesSlots) {
+        this.dateSlotList = SampleDataUtil.getDatesSlotsList(datesSlots);
         return this;
     }
 
+
     /**
-     * Sets the {@code VisitStatus} of the {@code Person} that we are building.
+     * Parses the {@code homeVisit} into a {@code List<HomeVisit>} and
+     * set it to the {@code Person} that we are building.
+     * Applies only to Nurse.
      */
-    public PersonBuilder withVisitStatus(String visitStatus) {
-        this.visitStatus = new VisitStatus(visitStatus);
+    public PersonBuilder withHomeVisits(String... homeVisit) {
+        this.homeVisitList = SampleDataUtil.getHomeVisitsList(homeVisit);
         return this;
     }
+
 
     /**
      * Sets the {@code Uid} of the {@code Person} that we are building to the
@@ -196,14 +212,35 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code unavailableDate} into a {@code List<Date>} and
+     * set it to the {@code Person} that we are building.
+     * Applies only to Nurse.
+     */
+    public PersonBuilder withUnavailableDateList(String... unavailableDates) {
+        this.unavailableDateList = SampleDataUtil.getUnavailableDateList(unavailableDates);
+        return this;
+    }
+
+    /**
+     * Parses the {@code fullyScheduledDate} into a {@code List<Date>} and
+     * set it to the {@code Person} that we are building.
+     * Applies only to Nurse.
+     */
+    public PersonBuilder withFullyScheduledDateList(String... fullyScheduledDate) {
+        this.fullyScheduledDateList = SampleDataUtil.getFullyScheduledDateList(fullyScheduledDate);
+        return this;
+    }
+
+    /**
      * Build a person for test.
      */
     public Person build() {
         if (category.categoryName.equals("N")) {
-            return new Nurse(uid, name, gender, phone, email, address, tags);
+            return new Nurse(uid, name, gender, phone, email, address, tags,
+                    unavailableDateList, homeVisitList, fullyScheduledDateList);
         } else if (this.category.categoryName.equals("P")) {
-            return new Patient(uid, name, gender, phone, email, address, tags, dateTimeList, visitStatus,
-                    physician, null);
+            return new Patient(uid, name, gender, phone, email, address, tags, dateSlotList, physician, null);
+
         }
         return new Person(uid, name, gender, phone, email, address, tags);
 

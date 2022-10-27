@@ -9,6 +9,8 @@
     "address": "4th street",
     "dateTimes": [ ],
     "tagged": [ ],
-    "visit status" : " 1"
+    "homeVisits" : [ ],
+    "unavailableDates" : [ ],
+    "fullyAssignedDates" : [ ]
   } ]
 }

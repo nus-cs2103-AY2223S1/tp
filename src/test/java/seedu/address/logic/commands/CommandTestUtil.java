@@ -4,14 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -32,8 +31,8 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_CATEGORY_AMY = "P";
-    public static final String VALID_CATEGORY_BOB = "N";
-    public static final String VALID_MISSPELT_CATEGORY_BOB = "Nurse";
+    public static final String VALID_CATEGORY_BOB = "P";
+    public static final String VALID_MISSPELT_CATEGORY_BOB = "Patient";
     public static final String INVALID_MISSPELT_CATEGORY_BOB = "Nursey";
     public static final String VALID_UID_AMY = "10";
     public static final String VALID_UID_BOB = "11";
@@ -49,21 +48,21 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_DATETIME_AMY = "2022-11-11T15:30";
-    public static final String VALID_DATETIME_BOB = "2022-10-24T09:00";
+    public static final String VALID_DATESLOT_AMY = "2022-11-11,1";
+    public static final String VALID_DATESLOT_BOB = "2022-10-24,4";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_VISITED_STATUS = "true";
     public static final String VALID_NOT_VISITED_STATUS = "false";
 
-    public static final String OTHER_DATE_TIME = "2022-11-10T18:00";
-    public static final String OTHER_DATE_TIME_TWO = "2022-12-04T17:35";
-    public static final String OTHER_DATE_TIME_THREE = "2023-01-14T18:40";
-    public static final String OTHER_DATE_TIME_FOUR = "2022-11-17T13:45";
-    public static final String OTHER_DATE_TIME_FIVE = "2022-12-15T09:25";
-    public static final String OTHER_DATE_TIME_INDEX = "1";
-    public static final String OTHER_DATE_TIME_INDEX_TWO = "2";
-    public static final String OTHER_DATE_TIME_INDEX_THREE = "3";
+    public static final String OTHER_DATE_SLOT = "2022-11-10,2";
+    public static final String OTHER_DATE_SLOT_TWO = "2022-12-04,3";
+    public static final String OTHER_DATE_SLOT_THREE = "2023-01-14,1";
+    public static final String OTHER_DATE_SLOT_FOUR = "2022-11-17,3";
+    public static final String OTHER_DATE_SLOT_FIVE = "2022-12-15,4";
+    public static final String OTHER_DATE_SLOT_INDEX = "1";
+    public static final String OTHER_DATE_SLOT_INDEX_TWO = "2";
+    public static final String OTHER_DATE_SLOT_INDEX_THREE = "3";
 
     public static final String CATEGORY_DESC_AMY = " " + PREFIX_CATEGORY + VALID_CATEGORY_AMY;
     public static final String CATEGORY_DESC_BOB = " " + PREFIX_CATEGORY + VALID_CATEGORY_BOB;
@@ -85,12 +84,10 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String DATETIME_DESC_AMY = " " + PREFIX_DATE_AND_TIME + VALID_DATETIME_AMY;
-    public static final String DATETIME_DESC_BOB = " " + PREFIX_DATE_AND_TIME + VALID_DATETIME_BOB;
+    public static final String DATESLOT_DESC_AMY = " " + PREFIX_DATE_AND_SLOT + VALID_DATESLOT_AMY;
+    public static final String DATESLOT_DESC_BOB = " " + PREFIX_DATE_AND_SLOT + VALID_DATESLOT_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String VISIT_STATUS_DESC_AMY = " " + PREFIX_VISIT_STATUS + VALID_VISITED_STATUS;
-
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "NP"; // only N or P is allowed.
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "FM"; // only allowed F or M, either one
@@ -98,10 +95,9 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATE_AND_TIME
-            + "2022/11/11 12.00PM"; // wrong format for date and time
+    public static final String INVALID_DATESLOT_DESC = " " + PREFIX_DATE_AND_SLOT
+            + "2022/11/11 12.00PM"; // wrong format for date and slot
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_VISIT_STATUS = " " + PREFIX_VISIT_STATUS + "1"; // only allow "true" or "false"
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -112,8 +108,7 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withCategory(VALID_CATEGORY_AMY).withName(VALID_NAME_AMY)
                 .withGender(VALID_GENDER_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withVisitStatus(VALID_NOT_VISITED_STATUS)
-                .build();
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withCategory(VALID_CATEGORY_BOB).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
