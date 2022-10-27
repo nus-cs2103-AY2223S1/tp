@@ -114,8 +114,10 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 - For **ALL** entries, 2 entries are considered duplicates <ins>IF</ins> both entries have exactly the same:
   `description`, `date` `amount` and `category`. We do not want PennyWise to be managing entries which are a repeat,
   of one another, as it would be easier to simply use the [edit](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category) 
-  command to alter the original entry's specifications.
+  command to alter the original entry's specifications. <br> <br>
   For example, when executing the following 2 commands one after another, PennyWise will recognise (2), which is the second `Teh Beng` added as a duplicate entry. 
+  Having multiple duplicate entries will make it difficult for users to track their expenses later on, and could clutter the list. Having them differentiated will make
+  it easier for you to recall what you spent your money on!
   <pre>
     <code>
         1. add t/e d/Teh Beng a/1.50 da/22-10-2022 c/Food
@@ -129,7 +131,12 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
         2. add t/e d/Teh Beng 4pm a/1.50 da/22-10-2022 c/Food 
     </code>
   </pre>
-
+  OR we could even edit the original entry directly to reflect 2 cups of `Teh Beng` consumed.
+  <pre>
+    <code>
+        1. edit 1 t/e d/2 Teh Beng 11am a/3.00 da/22-10-2022 c/Food
+    </code>
+  </pre>
 </div>
 
 ### Adding entries : `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`
