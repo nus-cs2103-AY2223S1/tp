@@ -6,14 +6,14 @@ title: User Guide
 Gim is a **desktop app for managing and tracking gym exercises, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Gim commands are inspired by those of Vim. If you are an avid Vim user and can type fast, Gim can help you keep track of your workouts and personal records for each exercise. Gim can also help you to craft a workout based on your personal records.
 
 ### Table of Contents
-#### Getting Started
-#### GUI Orientation
+#### [Getting Started](#quick-start)
+#### [GUI Orientation](#gui-orientation)
 * Command Box
 * Exercise List 
 * Result Display 
 * Recognised Exercise Names List
 
-#### Commands
+#### [Commands](#commands)
 * Adding an exercise **:add**
 * Deleting an exercise **:del**
 * Listing all exercises **:list**
@@ -26,8 +26,8 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 * Displaying the help menu **:help**
 * Exiting the application **:wq**
 
-#### Command Summary
-#### Glossary of Terminologies
+#### [Command Summary](#command-summary)
+#### [Glossary of Terminologies](#glossary-of-terminologies)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`:help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,7 +94,7 @@ you have input. Choose wisely!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
