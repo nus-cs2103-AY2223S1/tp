@@ -1,18 +1,24 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.list.ListNameCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Module;
 import seedu.address.model.task.Name;
+
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -104,5 +110,22 @@ public class ParserUtil {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses keywords to return a list of all keywords.
+     * @param keywords String of all keywords to be searched.
+     * @return List of all keywords to be searched.
+     * @throws ParseException if the given {@code keyowrds} is invalid.
+     */
+    public static List<String> parseKeywords(String keywords) throws ParseException {
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListNameCommand.MESSAGE_USAGE));
+        }
+
+        String[] nameKeywords = trimmedKeywords.split("\\s+");
+        return Arrays.asList(nameKeywords);
     }
 }

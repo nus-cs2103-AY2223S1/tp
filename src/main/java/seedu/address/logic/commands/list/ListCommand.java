@@ -35,7 +35,6 @@ public class ListCommand extends Command {
     public ListCommand(List<Predicate<Task>> predicates) {
         this.predicates = predicates;
     };
-
     public ListCommand() {
         this.predicates = List.of(PREDICATE_SHOW_ALL_PERSONS);
     };

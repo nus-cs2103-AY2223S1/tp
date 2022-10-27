@@ -15,33 +15,34 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.list.ListNameCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.NameOrTagContainsKeywordsPredicate;
+import seedu.address.model.task.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code ListNameCommand}.
  */
-public class FindCommandTest {
+public class ListNameCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
-        NameOrTagContainsKeywordsPredicate firstPredicate =
-                new NameOrTagContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameOrTagContainsKeywordsPredicate secondPredicate =
-                new NameOrTagContainsKeywordsPredicate(Collections.singletonList("second"));
+        NameContainsKeywordsPredicate firstPredicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+        NameContainsKeywordsPredicate secondPredicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        ListNameCommand findFirstCommand = new ListNameCommand(firstPredicate);
+        ListNameCommand findSecondCommand = new ListNameCommand(secondPredicate);
 
         // Same object -> returns true
         assertEquals(findFirstCommand, findFirstCommand);
 
         // Same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        ListNameCommand findFirstCommandCopy = new ListNameCommand(firstPredicate);
         assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // Different types -> returns false
@@ -57,8 +58,8 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameOrTagContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        ListNameCommand command = new ListNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -67,8 +68,8 @@ public class FindCommandTest {
     @Test
     public void execute_singleKeyword_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameOrTagContainsKeywordsPredicate predicate = preparePredicate("Tutorial");
-        FindCommand command = new FindCommand(predicate);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Tutorial");
+        ListNameCommand command = new ListNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ELLE, FIONA, GEORGE), model.getFilteredPersonList());
@@ -76,17 +77,17 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
-        NameOrTagContainsKeywordsPredicate predicate = preparePredicate("Tutorial revision");
-        FindCommand command = new FindCommand(predicate);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Tutorial revision");
+        ListNameCommand command = new ListNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ELLE, FIONA, GEORGE, CARL), model.getFilteredPersonList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameOrTagContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameOrTagContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameOrTagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
