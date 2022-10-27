@@ -21,10 +21,10 @@
       } ],
     "tasks" : [ {
       "taskDescription" : "Insert urinary catheter",
-      "dateTime" : "16-12-2022 1245"
+      "dateTime" : "16-12-22 1245"
     }, {
       "taskDescription" : "Check vitals",
-      "dateTime" : "16-10-2022 1015"
+      "dateTime" : "16-10-22 1015"
     } ],
     "remarks" : [ "Allergic to Amoxicillin" ],
     "tagged" : [ "high-risk", "2A nursing home" ]
@@ -37,7 +37,7 @@
     "medications" : [ ],
     "tasks" : [ {
       "taskDescription" : "Update health records",
-      "dateTime": "28-10-2022 1730"
+      "dateTime": "28-10-22 1730"
     } ],
     "remarks" : [ "Requires wheelchair to move around" ],
     "tagged" : [ "high-risk" ]

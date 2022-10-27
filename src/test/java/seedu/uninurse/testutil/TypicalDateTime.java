@@ -7,6 +7,6 @@ import seedu.uninurse.model.task.DateTime;
  */
 public class TypicalDateTime {
 
-    public static final DateTime DATE_TIME_ONE = new DateTime("24-10-2022 1330");
-    public static final String DATE_TIME_STRING = "22-10-2022 1445";
+    public static final DateTime DATE_TIME_ONE = new DateTime("24-10-22 1330");
+    public static final String DATE_TIME_STRING = "22-10-22 1445";
 }
