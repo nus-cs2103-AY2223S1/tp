@@ -129,16 +129,19 @@ Are you new to *MyInsuRec*? This section is the place to start!
 
 Here, we will be guiding you on the basic features of *MyInsuRec* and help you get familiarized with it.
 
-1. When we first launch *MyInsuRec*, *MyInsuRec* will have already been preloaded with some sample data. We will be using this sample data to get familiar with *MyInsuRec*! The image below shows a freshly launched *MyInsuRec*.
-![SampleData](images/SampleData.png)
+1. When we first launch *MyInsuRec*, *MyInsuRec* will have already been preloaded with some sample data. We will be using this sample data to get familiar with *MyInsuRec*!
 
-2. Type in `addClient n/Tommy Tan p/81234567` to add a client named 'Tommy Tan' and has a contact number '81234567'. We will see the list of clients update to include this newly added client, with his phone number!
+2. Type in `addClient n/Tommy Tan p/81234567` to add a client named 'Tommy Tan' and has a contact number '81234567'. We will see the list of clients update to include this newly added client, with his phone number! The image below shows *MyInsuRec* after adding Tommy.
+
+![AddClientTommy](images/quick-start/AddClientTommy.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Both client name and their phone number are needed to add the client into *MyInsuRec*.
 </div>
 
-3. Tommy has also given us his email address, his address as well as his birthday, and we would like to add that into *MyInsuRec*. To do that, we first need to get Tommy's index from the list of clients, which is 7. Type in `editClient i/7 e/tommytan21@gmail.com a/167 Canning Road bd/25081982` and hit enter. Tommy's record in the list of clients will update with the newly inputted details.
+3. Tommy has also given us his email address, his address as well as his birthday, and we would like to add that into *MyInsuRec*. To do that, we first need to get Tommy's index from the list of clients, which is 7. Type in `editClient i/7 e/tommytan21@gmail.com a/167 Canning Road bd/25081982` and hit enter. Tommy's record in the list of clients will update with the newly inputted details. The image below shows *MyInsuRec* after updating Tommy with the additional details.
+
+![EditClientTommy](images/quick-start/EditClientTommy.png)
 
 4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com bd/09091973` also adds in the client's email and birthday directly.
 
@@ -146,28 +149,37 @@ Both client name and their phone number are needed to add the client into *MyIns
 See [addClient](#311-adding-a-client-addclient) for more variety of optional fields!
 </div>
 
-5. Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review plan` (You can replace `d/27102022` with today's date)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added.
+5. Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review plan` (You can replace `d/27102022` with today's date in the DDMMYYYY format)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added. The image below shows *MyInsuRec* after adding the meeting with Bernice.
 
-6. To view the meeting in greater detail, we can call `viewMeeting i/1`. This brings up a more detailed view of the meeting.
+![AddMeetingBernice](images/quick-start/AddMeetingBernice.png)
+
+6. To view the meeting (with index number of 1) in greater detail, we can call `viewMeeting i/1`. This brings up a more detailed view of the meeting, with information such as description and Bernice's contact number. The image below shows *MyInsuRec* after using the `viewMeeting` command.
+
+![ViewMeetingBernice](images/quick-start/ViewMeetingBernice.png)
 
 7. Now, to go back to the list of clients, simply type in `listClient`. This brings us back to the list of clients.
 
-8. We would like to define and add more products! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product.
+8. We would like to define and add more products! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product. The image below shows *MyInsuRec* adding the product.
 
-9. Now, we want to add a client named who has already purchased 'MyInsureCare'. To do that, we can once again type in `addClient n/Ng Jun Yi p/81230987 pd/MyInsureCare` to add a client and indicate that he has bought 'MyInsureCare'.
+![AddProductMyInsureCare](images/quick-start/AddProductMyInsureCare.png)
+
+9. Now, we want to add a client named who has already purchased 'MyInsureCare'. To do that, we can once again type in `addClient n/Ng Jun Yi p/81230987 pd/MyInsureCare` to add a client and indicate that he has bought 'MyInsureCare'. The image below shows *MyInsuRec* after adding the client with the product.
+
+![AddClientJunYiWithProduct](images/quick-start/AddClientJunYiWithProduct.png)
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 Only products added already via `addProduct` can be used! This is to help ensure the cleanliness of *MyInsuRec*. So, add your product via `addProduct` before using it to add a client with that product! See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
-10. We want to delete the client 'Alex Yeoh' from our records! To do that, type in `delClient i/1`.
+10. We want to delete the client 'Alex Yeoh' from our records! To do that, type in `delClient i/1`. The image below shows *MyInsuRec* after deleting the client.
+
+![DelClientAlex](images/quick-start/DelClientAlex.png)
 
 And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#3-features) where all the commands and their details can be found.
 
 To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*. 
 
-Welcome to your new and organized life, and happy advising!
-
+Welcome to your new and organized life, and happy (financial) advising!
 
 --------------------------------------------------------------------------------------------------------------------
 
