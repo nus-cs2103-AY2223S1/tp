@@ -133,8 +133,13 @@ public class Task {
         return name.hashCode();
     }
 
-    public void assignTo(Person assignee) {
+    public Task assignTo(Person assignee) {
+        String name = getName();
         assignees.add(assignee);
+        List<Person> newAssignees = getAssigneesList();
+        boolean completionStatus = isComplete();
+        LocalDateTime date = this.deadline;
+        return new Task(name, newAssignees, completionStatus, date);
     }
 
     /**

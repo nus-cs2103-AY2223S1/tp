@@ -66,7 +66,12 @@ public class AssignTaskCommand extends Command {
         if (taskList.get(taskIndex.getZeroBased()).checkAssignee(currentPerson)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_ASSIGNMENT, currentPerson.getName()));
         }
-        model.getTeam().assignTask(taskList.get(taskIndex.getZeroBased()), currentPerson);
+
+        Task originalTask = taskList.get(taskIndex.getZeroBased());
+        Task newTask = originalTask.assignTo(currentPerson);
+
+        model.getTeam().setTask(originalTask, newTask);
+
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
                 taskList.get(taskIndex.getZeroBased()).getName(), memberName));
     }

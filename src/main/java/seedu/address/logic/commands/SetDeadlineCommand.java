@@ -45,7 +45,12 @@ public class SetDeadlineCommand extends Command {
         if (taskIndex.getZeroBased() >= taskList.size()) {
             throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
         }
-        taskList.get(taskIndex.getZeroBased()).setDeadline(deadline);
+
+        Task originalTask = taskList.get(taskIndex.getZeroBased());
+        Task newTask = originalTask.setDeadline(deadline);
+
+        model.getTeam().setTask(originalTask, newTask);
+
         return new CommandResult(String.format(MESSAGE_SET_DEADLINE_SUCCESS,
                 taskList.get(taskIndex.getZeroBased()).getName(),
                 taskList.get(taskIndex.getZeroBased()).getDeadlineAsString()));
