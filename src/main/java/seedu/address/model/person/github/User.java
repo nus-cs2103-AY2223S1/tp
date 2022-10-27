@@ -1,5 +1,17 @@
 package seedu.address.model.person.github;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
+
+import seedu.address.github.UserInfoWrapper;
+import seedu.address.github.UserReposWrapper;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.contact.Email;
+import seedu.address.model.person.github.repo.Repo;
 import seedu.address.model.person.github.repo.RepoList;
 
 /**
@@ -7,31 +19,36 @@ import seedu.address.model.person.github.repo.RepoList;
  */
 public class User {
 
-    private static final String GITHUB_PREFIX = "https://github.com/";
-    private static final String VALIDATION_REGEX = "^@(?=.{5,32}$)(?!.*__)[A-Za-z][A-Za-z0-9_]*[A-Za-z0-9]$";
-    private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
+    public static final String MESSAGE_CONSTRAINTS = "GitHub usernames should be of the format @username "
             + "and adhere to the following constraints:\n"
-            + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
-            + "characters.\n"
-            + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels "
-            + "separated by periods.\n"
-            + "The domain name must:\n"
-            + "    - end with a domain label at least 2 characters long\n"
-            + "    - have each domain label start and end with alphanumeric characters\n"
-            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
-
-    private String username = "";
-    private RepoList repoList = new RepoList();
+            + "1. Username may only contain alphanumeric characters or hyphens\n"
+            + "2. Username cannot have multiple consecutive hyphens\n"
+            + "3. Username cannot begin or end with a hyphen\n"
+            + "4. Username can have a maximum of 39 characters";
+    private static final String GITHUB_PREFIX = "https://github.com/";
+    private static final String VALIDATION_REGEX = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
+    private final String username;
+    private final String url;
+    private final Name name;
+    private final Email email;
+    private final Address address;
+    private final RepoList repoList;
 
     /**
      * Constructs a GitHub's user
      *
-     * @param username
+     * @param username Username corresponding to user to be added
      */
-    public User(String username) {
-        this.username = username;
+    public User(String username, UserInfoWrapper userInfoWrapper, UserReposWrapper userReposWrapper) {
+        requireAllNonNull(username);
+        this.username = userInfoWrapper.getUsername();
+        this.url = userInfoWrapper.getUrl();
+        this.name = new Name(userInfoWrapper.getName().orElse(this.username));
+        this.email = userInfoWrapper.getEmail().isPresent() ? new Email(userInfoWrapper.getEmail().get()) : null;
+        this.address =
+                userInfoWrapper.getLocation().isPresent() ? new Address(userInfoWrapper.getLocation().get()) : null;
+        userInfoWrapper.downloadAvatar();
+        this.repoList = getUpdatedRepoList(userReposWrapper);
     }
 
     /**
@@ -39,6 +56,47 @@ public class User {
      */
     public static boolean isValidUsername(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public Name getName() {
+        return this.name;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public String getUrl() {
+        return this.url;
+    }
+
+    public Optional<Email> getEmail() {
+        return Optional.ofNullable(this.email);
+    }
+
+    public Optional<Address> getAddress() {
+        return Optional.ofNullable(this.address);
+    }
+
+    public RepoList getRepoList() {
+        return this.repoList;
+    }
+
+    private RepoList getUpdatedRepoList(UserReposWrapper userReposWrapper) {
+        RepoList repoList = new RepoList();
+        for (int repoId : getRepoIds(userReposWrapper)) {
+            repoList.add(new Repo(
+                    userReposWrapper.getRepoName(repoId),
+                    userReposWrapper.getRepoUrl(repoId),
+                    userReposWrapper.getRepoForkCount(repoId),
+                    userReposWrapper.getLastUpdated(repoId)
+            ));
+        }
+        return repoList;
+    }
+
+    public ArrayList<Integer> getRepoIds(UserReposWrapper userReposWrapper) {
+        return userReposWrapper.getIDs();
     }
 
     @Override
@@ -50,11 +108,16 @@ public class User {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof User)
-                && username.equals(((User) other).username);
+                && username.equals(((User) other).username)
+                && url.equals(((User) other).url)
+                && name.equals(((User) other).name)
+                && email.equals(((User) other).email)
+                && address.equals(((User) other).address)
+                && repoList.equals(((User) other).repoList);
     }
 
     @Override
     public int hashCode() {
-        return username.hashCode();
+        return Objects.hash(username, url, name, email, address);
     }
 }
