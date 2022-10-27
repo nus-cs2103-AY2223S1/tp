@@ -95,9 +95,8 @@ public class PennyWiseParserTest {
                 ViewCommand.COMMAND_WORD
                         + " "
                         + CliSyntax.PREFIX_TYPE
-                        + EntryType.ENTRY_TYPE_EXPENDITURE
-                        + " " + CliSyntax.PREFIX_GRAPH
-                        + GraphType.GRAPH_TYPE_CATEGORY), viewCommand);
+                        + EntryType.ENTRY_TYPE_EXPENDITURE),
+                viewCommand);
     }
 
     @Test

@@ -7,7 +7,6 @@ import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_GRAPH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_MONTH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.INVALID_TYPE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_EXPENDITURE;
-import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_GRAPH_CATEGORY;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_GRAPH_MONTH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_INCOME;
 import static seedu.pennywise.logic.commands.CommandTestUtil.TYPE_MONTH;
@@ -26,13 +25,13 @@ public class ViewCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsViewCommand() {
-        String validUserInputForExpenditureMonth = TYPE_EXPENDITURE + TYPE_MONTH + TYPE_GRAPH_MONTH;
+        String validUserInputForExpenditureMonth = TYPE_EXPENDITURE + TYPE_MONTH;
         assertParseSuccess(parser, validUserInputForExpenditureMonth, new ViewCommand(EXPENDITURE_BY_MONTH));
 
-        String validUserInputForExpenditureCategory = TYPE_EXPENDITURE + TYPE_GRAPH_CATEGORY;
+        String validUserInputForExpenditureCategory = TYPE_EXPENDITURE;
         assertParseSuccess(parser, validUserInputForExpenditureCategory, new ViewCommand(EXPENDITURE_BY_CATEGORY));
 
-        String validUserInputForExpenditureCategoryWithMonth = TYPE_EXPENDITURE + TYPE_GRAPH_CATEGORY + TYPE_MONTH;
+        String validUserInputForExpenditureCategoryWithMonth = TYPE_EXPENDITURE;
         ViewEntriesDescriptor expenditureCategoryWithMonthDescriptor = new ViewEntriesDescriptorBuilder(
                 EXPENDITURE_BY_CATEGORY
         ).build();
@@ -71,11 +70,6 @@ public class ViewCommandParserTest {
                 invalidUserInputForMonthGraphType,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
 
-        // Missing graph type
-        assertParseFailure(
-                parser,
-                TYPE_INCOME,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
 
         // Missing entry type
         assertParseFailure(
