@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.viewmodels.Stats;
@@ -17,7 +19,6 @@ import seedu.foodrem.viewmodels.Stats;
  * @author Mai Ting Kai
  */
 public class StatsView {
-
     private static final double SPACING_UNIT = 8;
 
     /**
@@ -30,45 +31,46 @@ public class StatsView {
 
         // Statistics header on top left
         final Label statsHeader = new Label("Statistics");
-        statsHeader.getStyleClass().add("stats-header");
+        statsHeader.setWrapText(true);
+        statsHeader.getStyleClass().addAll("stats-header", "bold");
 
         // Section for amount wasted due to expired food
-        final Label amountWasted = new Label("Total cost incurred due to food wastage: $" + stats.getAmountWasted());
-        amountWasted.setWrapText(true);
+        final Label amountWastedLabel = new Label("Total cost incurred due to food wastage:");
+        final Label amountWastedValue = new Label("$" + stats.getAmountWasted());
+        amountWastedValue.getStyleClass().add("bold");
+        amountWastedLabel.setWrapText(true);
 
         // Section for top 3 most expensive items
-        final Label expensiveItemsLabel =
-                new Label("Your top 3 most expensive items are: \n");
-        final Separator linedSeparator = new Separator();
-        linedSeparator.getStyleClass().add("lined-separator");
-        expensiveItemsLabel.setLineSpacing(SPACING_UNIT);
-        final VBox expensiveItems = new VBox(expensiveItemsLabel,
-                linedSeparator,
-                new VBox(buildTopThreeMostExpensiveItemsListFrom(stats)));
+        final Label expensiveItemsLabel = new Label("Your top 3 items with highest value are as follows:");
+        expensiveItemsLabel.setWrapText(true);
 
         // Section for Common Tags
-        final FlowPane commonTags = new FlowPane(new Label("Top 3 common tags: "));
-        commonTags.getChildren().addAll(TagsView.from(stats.getCommonTags()));
-        commonTags.setAlignment(Pos.CENTER_LEFT);
-        commonTags.setHgap(SPACING_UNIT);
+        final Label commonTagsLabel = new Label("Top 3 common tags:");
+        final FlowPane commonTagsValue = new FlowPane(TagsView.from(stats.getCommonTags()));
+        commonTagsValue.setAlignment(Pos.CENTER_LEFT);
+        commonTagsValue.setHgap(SPACING_UNIT);
+        commonTagsValue.setVgap(SPACING_UNIT);
 
         // Combine everything
         final VBox statsView = new VBox(statsHeader,
-                new Separator(),
-                amountWasted,
-                new Separator(),
-                commonTags,
-                new Separator(),
-                expensiveItems);
-
+                amountWastedLabel,
+                amountWastedValue,
+                commonTagsLabel,
+                commonTagsValue,
+                expensiveItemsLabel,
+                new Separator());
+        statsView.getChildren().addAll(buildTopThreeMostExpensiveItemsListFrom(stats));
+        statsView.setSpacing(SPACING_UNIT);
+        HBox.setHgrow(statsView, Priority.ALWAYS);
         return statsView;
     }
 
     private static Node[] buildTopThreeMostExpensiveItemsListFrom(Stats stats) {
         List<Item> expensiveItems = stats.getTopThreeMostExpensiveItems();
-        return expensiveItems.stream()
-                .map(ItemView::from)
-                .toArray(Node[]::new);
+        Node[] nodes = expensiveItems.stream().map(ItemView::from)
+                .peek(node -> node.setStyle("-fx-padding: 20 0 0 0")).toArray(Node[]::new);
+        nodes[0].setStyle("-fx-padding: 0");
+        return nodes;
     }
 
 }
