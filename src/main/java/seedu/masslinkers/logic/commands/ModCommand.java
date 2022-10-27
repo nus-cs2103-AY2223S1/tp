@@ -10,7 +10,7 @@ public abstract class ModCommand extends Command {
     // TODO: Add the other mod commands
     public static final String MESSAGE_USAGE = "Enter a mod command such as mod add, "
             +
-        "mod delete, mod mark and mod find. \n ";
+        "mod delete, mod mark, mod unmark and mod find. \n ";
     public static final String MESSAGE_MODS_EMPTY = "Mods cannot be empty! Specify mods to be modified.";
     public static final String MESSAGE_INDEX_EMPTY = "Index cannot be empty! "
             +
