@@ -14,10 +14,12 @@ title: User Guide
     * [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
     * [Finding an internship application: `find`](#finding-an-internship-application-find)
     * [Editing an internship application: `edit`](#editing-an-internship-application-edit)
+    * [Sorting the internship applications: `sort`](#sorting-the-internship-applications-sort)
     * [Adding or editing an interview: `interview`](#adding--editing-an-interview-interview)
     * [Removing an interview: `remove-i`](#removing-an-interview-remove-i)
     * [Archiving an internship application: `archive`](#archiving-an-internship-application-archive)
     * [Retrieving an internship application from archives: `retrieve`](#retrieving-an-internship-application-from-archives-retrieve)
+    * [Viewing a list of upcoming interviews: `remind`](#viewing-a-list-of-upcoming-interviews)
     * [Undoing the previous command: `undo`](#undoing-the-previous-command-undo)
     * [Redoing the previously undone command: `redo`](#redoing-the-previously-undone-command-redo)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
@@ -63,6 +65,8 @@ title: User Guide
    
     * **`retrieve`**`1`: Retrieves the 1st application shown in the current list. The application must be archived.
     
+    * **`remind`**: Shows a list of all upcoming interviews within the next 1 week.
+
     * **`undo`**: Undoes the previous command.
     
     * **`redo`**: Redoes the previously undone command.
@@ -190,6 +194,21 @@ Examples:
 * `edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
 * `edit 2 c/Garena t/` edits the company of the 2nd application and the corresponding interview to be `Garena` and clears all existing tags.
 
+### Sorting the internship applications: `sort`
+
+Sorts the internship application list according to the specified order. The order can be by company, position, application date, or interview date. The sort order persists even after closing and reopening CinternS.
+
+Format: `sort [o/ORDER] [r/]`
+
+* `ORDER` can be `company`, `position`, `date` (for application date), or `interview` (for interview date).
+* Including `r/` causes the sort order to be reversed (to become reverse alphabetical or reverse chronological).
+* When sorting by interview dates, any applications with no associated interview will always get sorted to the bottom of the list.
+
+Examples:
+* `sort o/company` sorts the application list in alphabetical order of company.
+* `sort o/interview r/` sorts the application list in reverse chronological order of interview dates.
+* `sort` sorts the application list in chronological order of application dates as the default.
+
 ### Adding / Editing an interview: `interview`
 Adds an interview to an existing application or edits an existing interview in an application.
 
@@ -279,6 +298,16 @@ Format: `redo`
 Example:
 * `delete 1` followed by `undo` then `redo` deletes the first application in the list (and its interview in the interview list).
 
+### Viewing a list of upcoming interviews: `remind`
+
+Shows a list of all upcoming interviews within the next 1 week, sorted by interview date and time.
+
+Format: `remind`
+
+* Archived interviews will not be displayed even if they fall within the next week.
+* If there are no upcoming interviews, a blank window will be displayed.
+* `remind` can only be used on the main application list page (i.e. not to be used on list-archive page).
+
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
 
@@ -324,12 +353,14 @@ We will assist you as soon as possible.
 | **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
 | **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
+| **Sort**        | `sort [o/ORDER] [r/]`<br> e.g., `sort o/date r/`                                                                                                                                            |
 | **Interview**   | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`        |
 | **Remove-i**    | `remove-i INDEX`<br/> e.g., `remove-i 3`                                                                                                                                                    |
 | **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                       |
 | **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                     |
-| **Undo**        | `undo`                                                                                                                                                                                       |
-| **Redo**        | `redo`                                                                                                                                                                                       |
+| **Remind**      | `remind`                                                                                                                                                                                    |
+| **Undo**        | `undo`                                                                                                                                                                                      |
+| **Redo**        | `redo`                                                                                                                                                                                      |
 | **Clear**       | `clear`                                                                                                                                                                                     |
 | **Exit**        | `exit`                                                                                                                                                                                      |
 
