@@ -18,6 +18,8 @@ public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "add-s";
 
+    public static final String ALTERNATIVE_COMMAND_WORD = "add";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the FYP manager. "
             + "Parameters: "
             + PREFIX_STUDENT_ID + "STUDENT_ID (should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G) "

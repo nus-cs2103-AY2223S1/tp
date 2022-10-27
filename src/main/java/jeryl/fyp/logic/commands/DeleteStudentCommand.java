@@ -19,6 +19,8 @@ public class DeleteStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-s";
 
+    public static final String ALTERNATIVE_COMMAND_WORD = "delete";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the student identified by it's unique student id.\n"
             + "Parameters: "
