@@ -72,10 +72,10 @@ title: User Guide
 There are 2 types of Add Commands. 
 1. `add -s`: Adds a new FYP of a student to the FYP manager.
 
-    Format: `add -s id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​`
+    Format: `add -s id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
 2. `add -d`: Adds a new deadline task to a student specified by ID.
 
-    Format: `add -d id/STUDENT_ID dn/DEADLINE_NAME dd/DEADLINE_DATETIME`
+    Format: `add -d id/STUDENT_ID nDEADLINE_NAME d/DEADLINE_DATETIME`
 
 * `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 letter)**, e.g. `A0123456G`
 * `FYP_NAME` and `DEADLINE_NAME` should only include alphanumeric characters and space but **cannot start with a space**, e.g. `Support vector machine: some improvements` is invalid
@@ -86,9 +86,9 @@ A student can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add -s id/A0123456G n/Jane Doe proj/Neural Network e/e0123456@u.nus.edu t/NN`
-* `add -s id/A0987654X n/Alex Yeoh proj/Data Caching e/e09876567@u.nus.edu`
-* `add -d id/A0123456G dn/Random Task dd/2022-10-23 23:59`
+* student with tags: `add -s id/A0123456G n/Jane Doe p/Neural Network e/e0123456@u.nus.edu t/NN`
+* student without tags: `add -s id/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
+* deadline for a student`add -d id/A0123456G nRandom Task d/2022-10-23 23:59`, note that the keyword for deadline name is `n`
 
 ### Removing students FYP: `delete`
 
@@ -100,13 +100,13 @@ There are 2 types of Delete Commands.
     Format: `delete -s id/STUDENT_ID`
     * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 
-2. `delete -d`: Removes a deadline assigned to a student specified by ID.
+2. `delete -d`: Removes a deadline assigned to a student specified by ID & a priority rank.
 
     Format: `delete -d id/STUDENT_ID r/DEADLINE_RANK`
 
 Example:
 * `delete -s id/A0123456G`
-* `delete -d id/A0123456G num/1`
+* `delete -d id/A0123456G r/1`
 
 ### Marking project status: `mark`
 
@@ -144,7 +144,7 @@ Format for:
 * Partial keywords will also be matched, e.g. `Ne` will match `neural network` and `Genetic Algorithm`
 * Leading and trailing spaces are ignored, e.g. ` neural network  ` will match `neural network`
 * Projects matching at least one keyword will be returned (i.e. `OR` search), 
-  e.g. `find -t neural network/tree` will match project titles with `neural network` or `decision tree`
+  e.g. `find -t neural network/tree` will match project tags with `neural network` or `decision tree`
 
 Examples:
 * `find -t Neural Network` searches for all projects with the tag `Neural Network`.
@@ -158,7 +158,7 @@ Format: `help [COMMAND]`
 
 Examples:
 * `help add` - This shows a detailed help message on the `add` command
-* `help` - This shows only the list of commands
+* `help` - This shows the help window which leads the user to UserGuide web: https://ay2223s1-cs2103-f09-1.github.io/tp/UserGuide.html
 
 ### List of FYPs: `list`
 
@@ -183,12 +183,12 @@ Format: `exit`
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                    |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add id/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu` |
-| **Delete** | `delete id` <br> e.g., `delete id/A0987654X`                                                                                                        |
-| **Mark**   | `mark id/STUDENT_ID s/STATUS`<br> e.g.,`mark id/A0123456G s/IP`                                                                                     |
-| **Find**   | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                                                           |
-| **Help**   | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                                                       |
-| **List**   | `list`                                                                                                                                              |
-| **Exit**   | `exit`                                                                                                                                              |
+| Action     | Format, Examples                                                                                                                                                                                                                                                             |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add -s id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​` OR `add -d id/STUDENT_ID nDEADLINE_NAME d/DEADLINE_DATETIME` <br> e.g., `add -s id/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu` <br/> `add -d id/A0123456G nRandom Task d/2022-10-23 23:59` |   
+| **Delete** | `delete id` OR `delete -d id/STUDENT_ID r/DEADLINE_RANK` <br> e.g., `delete id/A0987654X`<br/> `delete id/A0987654X r/1`                                                                                                                                                     |
+| **Mark**   | `mark id/STUDENT_ID s/STATUS`<br> e.g.,`mark id/A0123456G s/IP`                                                                                                                                                                                                              |
+| **Find**   | `find -id KEYWORD/[KEYWORD2/KEYWORD3/…]` OR<br/>`find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`OR<br/>`find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`OR<br/>`find -p KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                                     |
+| **Help**   | `help [COMMAND]`<br> e.g., `help add`, `help find -t`, `help`                                                                                                                                                                                                                |
+| **List**   | `list`                                                                                                                                                                                                                                                                       |
+| **Exit**   | `exit`                                                                                                                                                                                                                                                                       |
