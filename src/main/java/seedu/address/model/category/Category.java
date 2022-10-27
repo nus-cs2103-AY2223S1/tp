@@ -91,4 +91,20 @@ public class Category {
                 || (other instanceof Category)
                         && categoryName.equalsIgnoreCase(((Category) other).categoryName);
     }
+
+    public boolean isNurse() {
+        return this.categoryName.equals(NURSE_SYMBOL);
+    }
+
+    public boolean isPatient() {
+        return this.categoryName.equals(PATIENT_SYMBOL);
+    }
+
+    public boolean isPhysician() {
+        return this.categoryName.equals(PHYSICIAN_SYMBOL);
+    }
+
+    public boolean isNextOfKin() {
+        return this.categoryName.equals(NEXTOFKIN_SYMBOL);
+    }
 }

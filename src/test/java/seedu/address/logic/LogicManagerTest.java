@@ -39,7 +39,7 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
     private Logic logic;
 
     @BeforeEach
@@ -56,12 +56,6 @@ public class LogicManagerTest {
         String invalidCommand = "uicfhmowqewca";
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
-
-    // @Test
-    // public void execute_commandExecutionError_throwsCommandException() {
-    // String deleteCommand = "delete id/9";
-    // assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_UID);
-    // }
 
     @Test
     public void execute_validCommand_success() throws Exception {

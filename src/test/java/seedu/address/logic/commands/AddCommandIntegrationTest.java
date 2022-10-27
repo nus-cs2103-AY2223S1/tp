@@ -16,7 +16,8 @@ import seedu.address.model.person.PersonType;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for
+ * {@code AddCommand}.
  */
 public class AddCommandIntegrationTest {
 
@@ -35,7 +36,7 @@ public class AddCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, PersonType.PATIENT.toString() , validPerson), expectedModel);
+                String.format(AddCommand.MESSAGE_SUCCESS, PersonType.PATIENT, validPerson), expectedModel);
     }
 
     @Test

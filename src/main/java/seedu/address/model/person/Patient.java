@@ -27,7 +27,7 @@ public class Patient extends Person {
      * Initialise patient with no attending physician and no next of kin.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-                   Set<Tag> tags, List<DateSlot> dateTimeSlot) {
+            Set<Tag> tags, List<DateSlot> dateTimeSlot) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTimeSlot);
         this.dateSlots.addAll(dateTimeSlot);
@@ -37,10 +37,11 @@ public class Patient extends Person {
     }
 
     /**
-     * Every field, except attending physician and next of kin, must be present and not null.
+     * Every field, except attending physician and next of kin, must be present and
+     * not null.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-                   Set<Tag> tags, List<DateSlot> dateTime, Physician p, NextOfKin n) {
+            Set<Tag> tags, List<DateSlot> dateTime, Physician p, NextOfKin n) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTime);
         this.dateSlots.addAll(dateTime);
@@ -52,8 +53,8 @@ public class Patient extends Person {
      * Initialise patient with given attending physician and next of kin.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-                   Set<Tag> tags, List<DateSlot> dateSlot,
-                   Optional<Physician> p, Optional<NextOfKin> n) {
+            Set<Tag> tags, List<DateSlot> dateSlot,
+            Optional<Physician> p, Optional<NextOfKin> n) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateSlot);
         this.dateSlots.addAll(dateSlot);
@@ -70,13 +71,13 @@ public class Patient extends Person {
     }
 
     public String getNextOfKinDetails() {
-        String[] output = new String[]{NO_NEXTOFKIN_SET};
+        String[] output = new String[] { NO_NEXTOFKIN_SET };
         nextOfKin.ifPresent(x -> output[0] = x.toString());
         return output[0];
     }
 
     public String getPhysicianDetails() {
-        String[] output = new String[]{NO_PHYSICIAN_SET};
+        String[] output = new String[] { NO_PHYSICIAN_SET };
         attendingPhysician.ifPresent(x -> output[0] = x.toString());
         return output[0];
     }
@@ -124,5 +125,9 @@ public class Patient extends Person {
         String dateSlotList = getDatesSlotsInString();
         return "Category: P " + super.toString()
                 + "; Home Visits Date and Time:" + dateSlotList;
+    }
+
+    public boolean isPatient() {
+        return true;
     }
 }

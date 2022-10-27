@@ -6,9 +6,9 @@ package seedu.address.model.person;
 public enum PersonType {
     PATIENT("Patient"), NURSE("Nurse");
 
-    private String personTypeName;
+    private final String personTypeName;
 
-    private PersonType(String name) {
+    PersonType(String name) {
         this.personTypeName = name;
     }
 

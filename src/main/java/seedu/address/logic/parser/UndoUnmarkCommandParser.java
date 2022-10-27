@@ -12,14 +12,23 @@ import seedu.address.logic.commands.UndoUnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Uid;
 
-
 /**
  * Parses input arguments and creates a new MarkCommand object
  */
 public class UndoUnmarkCommandParser implements Parser<UndoUnmarkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the UndoUnmarkCommand
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the
+     * UndoUnmarkCommand
      * and returns an UndoUnmarkCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
@@ -37,15 +46,4 @@ public class UndoUnmarkCommandParser implements Parser<UndoUnmarkCommand> {
 
         return new UndoUnmarkCommand(uid, dateSlotIndex);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 }
-
-
-

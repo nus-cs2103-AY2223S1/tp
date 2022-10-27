@@ -211,27 +211,27 @@ public class HelpWindow extends UiPart<Stage> {
      * Initialize dictionary.
      */
     public void initDictionary() {
-        dictionary.put(PATIENT_SEARCH_TEXT, new String[]{ADD_DEMO_INPUT_PATIENT, ADD_DEMO_OUTPUT_PATIENT});
-        dictionary.put(NURSE_SEARCH_TEXT, new String[]{ADD_DEMO_INPUT_NURSE, ADD_DEMO_OUTPUT_NURSE});
-        dictionary.put(CLEAR_SEARCH_TEXT, new String[]{CLEAR_DEMO_INPUT, CLEAR_DEMO_OUTPUT});
-        dictionary.put(DELETE_SEARCH_TEXT, new String[]{DELETE_DEMO_INPUT, DELETE_DEMO_OUTPUT});
-        dictionary.put(EDIT_NAME_SEARCH_TEXT, new String[]{EDIT_NAME_DEMO_INPUT, EDIT_NAME_DEMO_OUTPUT});
-        dictionary.put(EDIT_GENDER_SEARCH_TEXT, new String[]{EDIT_GENDER_DEMO_INPUT, EDIT_GENDER_DEMO_OUTPUT});
-        dictionary.put(EDIT_PHONE_SEARCH_TEXT, new String[]{EDIT_PHONE_DEMO_INPUT, EDIT_PHONE_DEMO_OUTPUT});
-        dictionary.put(EDIT_EMAIL_SEARCH_TEXT, new String[]{EDIT_EMAIL_DEMO_INPUT, EDIT_EMAIL_DEMO_OUTPUT});
-        dictionary.put(EDIT_ADDRESS_SEARCH_TEXT, new String[]{EDIT_ADDRESS_DEMO_INPUT, EDIT_ADDRESS_DEMO_OUTPUT});
-        dictionary.put(EDIT_TAG_SEARCH_TEXT, new String[]{EDIT_TAG_DEMO_INPUT, EDIT_TAG_DEMO_OUTPUT});
-        dictionary.put(EDIT_MIX_SEARCH_TEXT, new String[]{EDIT_MIX_DEMO_INPUT, EDIT_MIX_DEMO_OUTPUT});
-        dictionary.put(EXIT_SEARCH_TEXT, new String[]{EXIT_DEMO_INPUT, EXIT_DEMO_OUTPUT});
-        dictionary.put(FIND_SEARCH_TEXT, new String[]{FIND_DEMO_INPUT, FIND_DEMO_OUTPUT});
-        dictionary.put(HELP_SEARCH_TEXT, new String[]{HELP_DEMO_INPUT, HELP_DEMO_OUTPUT});
-        dictionary.put(LIST_NTH_SEARCH_TEXT, new String[]{LIST_NTH_DEMO_INPUT, LIST_NTH_DEMO_OUTPUT});
-        dictionary.put(LIST_ADDRESS_SEARCH_TEXT, new String[]{LIST_ADDRESS_DEMO_INPUT, LIST_ADDRESS_DEMO_OUTPUT});
-        dictionary.put(LIST_CATEGORY_SEARCH_TEXT, new String[]{LIST_CATEGORY_DEMO_INPUT, LIST_CATEGORY_DEMO_OUTPUT});
-        dictionary.put(LIST_GENDER_SEARCH_TEXT, new String[]{LIST_GENDER_DEMO_INPUT, LIST_GENDER_DEMO_OUTPUT});
-        dictionary.put(LIST_TAG_SEARCH_TEXT, new String[]{LIST_TAG_DEMO_INPUT, LIST_TAG_DEMO_OUTPUT});
-        dictionary.put(LIST_MIX_SEARCH_TEXT, new String[]{LIST_MIX_DEMO_INPUT, LIST_MIX_DEMO_OUTPUT});
-        dictionary.put(MARK_SEARCH_TEXT, new String[]{MARK_DEMO_INPUT, MARK_DEMO_OUTPUT});
+        dictionary.put(PATIENT_SEARCH_TEXT, new String[] { ADD_DEMO_INPUT_PATIENT, ADD_DEMO_OUTPUT_PATIENT });
+        dictionary.put(NURSE_SEARCH_TEXT, new String[] { ADD_DEMO_INPUT_NURSE, ADD_DEMO_OUTPUT_NURSE });
+        dictionary.put(CLEAR_SEARCH_TEXT, new String[] { CLEAR_DEMO_INPUT, CLEAR_DEMO_OUTPUT });
+        dictionary.put(DELETE_SEARCH_TEXT, new String[] { DELETE_DEMO_INPUT, DELETE_DEMO_OUTPUT });
+        dictionary.put(EDIT_NAME_SEARCH_TEXT, new String[] { EDIT_NAME_DEMO_INPUT, EDIT_NAME_DEMO_OUTPUT });
+        dictionary.put(EDIT_GENDER_SEARCH_TEXT, new String[] { EDIT_GENDER_DEMO_INPUT, EDIT_GENDER_DEMO_OUTPUT });
+        dictionary.put(EDIT_PHONE_SEARCH_TEXT, new String[] { EDIT_PHONE_DEMO_INPUT, EDIT_PHONE_DEMO_OUTPUT });
+        dictionary.put(EDIT_EMAIL_SEARCH_TEXT, new String[] { EDIT_EMAIL_DEMO_INPUT, EDIT_EMAIL_DEMO_OUTPUT });
+        dictionary.put(EDIT_ADDRESS_SEARCH_TEXT, new String[] { EDIT_ADDRESS_DEMO_INPUT, EDIT_ADDRESS_DEMO_OUTPUT });
+        dictionary.put(EDIT_TAG_SEARCH_TEXT, new String[] { EDIT_TAG_DEMO_INPUT, EDIT_TAG_DEMO_OUTPUT });
+        dictionary.put(EDIT_MIX_SEARCH_TEXT, new String[] { EDIT_MIX_DEMO_INPUT, EDIT_MIX_DEMO_OUTPUT });
+        dictionary.put(EXIT_SEARCH_TEXT, new String[] { EXIT_DEMO_INPUT, EXIT_DEMO_OUTPUT });
+        dictionary.put(FIND_SEARCH_TEXT, new String[] { FIND_DEMO_INPUT, FIND_DEMO_OUTPUT });
+        dictionary.put(HELP_SEARCH_TEXT, new String[] { HELP_DEMO_INPUT, HELP_DEMO_OUTPUT });
+        dictionary.put(LIST_NTH_SEARCH_TEXT, new String[] { LIST_NTH_DEMO_INPUT, LIST_NTH_DEMO_OUTPUT });
+        dictionary.put(LIST_ADDRESS_SEARCH_TEXT, new String[] { LIST_ADDRESS_DEMO_INPUT, LIST_ADDRESS_DEMO_OUTPUT });
+        dictionary.put(LIST_CATEGORY_SEARCH_TEXT, new String[] { LIST_CATEGORY_DEMO_INPUT, LIST_CATEGORY_DEMO_OUTPUT });
+        dictionary.put(LIST_GENDER_SEARCH_TEXT, new String[] { LIST_GENDER_DEMO_INPUT, LIST_GENDER_DEMO_OUTPUT });
+        dictionary.put(LIST_TAG_SEARCH_TEXT, new String[] { LIST_TAG_DEMO_INPUT, LIST_TAG_DEMO_OUTPUT });
+        dictionary.put(LIST_MIX_SEARCH_TEXT, new String[] { LIST_MIX_DEMO_INPUT, LIST_MIX_DEMO_OUTPUT });
+        dictionary.put(MARK_SEARCH_TEXT, new String[] { MARK_DEMO_INPUT, MARK_DEMO_OUTPUT });
     }
 
     /**
@@ -263,21 +263,24 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
+     *
      * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *                               <ul>
+     *                               <li>
+     *                               if this method is called on a thread other than
+     *                               the JavaFX Application Thread.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called during animation or
+     *                               layout processing.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called on the primary stage.
+     *                               </li>
+     *                               <li>
+     *                               if {@code dialogStage} is already showing.
+     *                               </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
@@ -308,6 +311,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Searches the command list with keyword str.
+     *
      * @param str Keyword.
      * @return An array of strings that fits the criteria.
      */
@@ -317,6 +321,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Populates the display in HelpWindow.
+     *
      * @param input An ObservableList of Strings.
      */
     public void fillResultDisplay(ObservableList<String> input) {
@@ -326,6 +331,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Converts String array to ObservableList.
+     *
      * @param strArr String array to be converted.
      * @return An Observable List.
      */
@@ -334,7 +340,8 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Adds listener to ListView to detect changes. If changes is detected, plays the corresponding animation.
+     * Adds listener to ListView to detect changes. If changes is detected, plays
+     * the corresponding animation.
      */
     public void addListenerToListView() {
         ListView<String> listView = commandNameListPanel.getCommandNameListView();
@@ -362,9 +369,10 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Animates text in textfield.
+     *
      * @param inputOutput A String array containing the input and output result.
-     * @param txtField The javafx textfield to be animated on.
-     * @param isOutput Check if it is on input's or on output's textfield.
+     * @param txtField    The javafx textfield to be animated on.
+     * @param isOutput    Check if it is on input's or on output's textfield.
      */
     public void animateTextInTextField(String[] inputOutput, TextField txtField, boolean isOutput) {
         String str = inputOutput[isOutput ? 1 : 0];
@@ -391,7 +399,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     *  Sends user to GitHub page.
+     * Sends user to GitHub page.
      */
     @FXML
     public void visitGitHubButtonAction() {
@@ -403,7 +411,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     *  Sends user to user guide page.
+     * Sends user to user guide page.
      */
     @FXML
     public void visitHelpButtonAction() {
