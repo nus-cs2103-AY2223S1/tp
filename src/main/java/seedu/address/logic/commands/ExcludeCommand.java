@@ -31,7 +31,8 @@ public class ExcludeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 s/TELEGRAM";
 
     public static final String MESSAGE_SUCCESS = "Link deleted";
-    public static final String MESSAGE_WRONG_SOCIAL = "No such Social media";
+    public static final String MESSAGE_WRONG_SOCIAL = "No such Social media.\n"
+            + "Valid Social media includes: WHATSAPP, TELEGRAM, EMAIL, INSTAGRAM";
 
     private final Index index;
     private final String social;
@@ -52,9 +53,8 @@ public class ExcludeCommand extends Command {
      * Finds the Social Media of the person to be edited
      * @param social To be edited
      * @return Socials to be edited
-     * @throws CommandException
      */
-    public Socials findSocial(String social) throws CommandException {
+    public Socials findSocial(String social) {
         for (Socials s : Socials.values()) {
             if (social.equalsIgnoreCase(s.name())) {
                 return s;
@@ -70,6 +70,10 @@ public class ExcludeCommand extends Command {
      * @throws CommandException
      */
     public void exclude(Person p, Socials s) throws CommandException {
+        if (s == null) {
+            throw new CommandException(MESSAGE_WRONG_SOCIAL);
+        }
+
         switch(s) {
 
         case WHATSAPP:

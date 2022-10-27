@@ -28,10 +28,14 @@ public class IncludeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Includes a Social media link to a specified entry in uNivUSal.\n"
-            + "Example: " + COMMAND_WORD + " 1 s/TELEGRAM #/t.me/JohnDoe321";
+            + "Example: " + COMMAND_WORD + " 1 s/WHATSAPP #/87654321.\n"
+            + "Example: " + COMMAND_WORD + " 1 s/TELEGRAM #/JohnDoe321.\n"
+            + "Example: " + COMMAND_WORD + " 1 s/EMAIL #/johnd@example.com.\n"
+            + "Example: " + COMMAND_WORD + " 1 s/INSTAGRAM #/johndoe";
 
     public static final String MESSAGE_SUCCESS = "New link added";
-    public static final String MESSAGE_WRONG_SOCIAL = "No such Social media";
+    public static final String MESSAGE_WRONG_SOCIAL = "No such Social media.\n"
+            + "Valid Social media includes: WHATSAPP, TELEGRAM, EMAIL, INSTAGRAM";
 
     private final Index index;
     private final String social;
@@ -56,9 +60,8 @@ public class IncludeCommand extends Command {
      * Finds the Social Media of the person to be edited
      * @param social To be edited
      * @return Socials to be edited
-     * @throws CommandException
      */
-    public Socials findSocial(String social) throws CommandException {
+    public Socials findSocial(String social) {
         for (Socials s : Socials.values()) {
             if (social.equalsIgnoreCase(s.name())) {
                 return s;
@@ -74,6 +77,10 @@ public class IncludeCommand extends Command {
      * @throws CommandException
      */
     public void include(Person p, Socials s) throws CommandException {
+        if (s == null) {
+            throw new CommandException(MESSAGE_WRONG_SOCIAL);
+        }
+
         switch(s) {
 
         case WHATSAPP:
