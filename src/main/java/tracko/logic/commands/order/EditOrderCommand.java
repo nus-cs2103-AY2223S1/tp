@@ -55,6 +55,7 @@ public class EditOrderCommand extends Command {
             + "not exist in the inventory list.";
     public static final String MESSAGE_ONE_ORDERED_ITEM = "An order list cannot have 0 items. "
             + "Perhaps you want to delete the order instead?";
+    public static final String MESSAGE_ORDER_ALREADY_COMPLETED = "A completed order cannot be edited!";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -74,13 +75,18 @@ public class EditOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Order> lastShownList = model.getFilteredOrderList();
+        List<Order> lastShownList = model.getSortedOrderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
+
+        if (orderToEdit.isCompleted()) {
+            throw new CommandException(MESSAGE_ORDER_ALREADY_COMPLETED);
+        }
+
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
 
         model.setOrder(orderToEdit, editedOrder);
