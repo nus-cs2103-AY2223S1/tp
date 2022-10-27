@@ -10,6 +10,7 @@ import java.time.format.ResolverStyle;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -26,7 +27,6 @@ import seedu.address.ui.CalendarEventListPanel;
 import seedu.address.ui.JumpText;
 import seedu.address.ui.NextButton;
 import seedu.address.ui.PreviousButton;
-import seedu.address.ui.RefreshButton;
 import seedu.address.ui.TextValidation;
 
 /**
@@ -49,7 +49,6 @@ public class CalendarLogic {
             + "-fx-background-color: #fff";
     private PreviousButton prevButton = new PreviousButton("Prev", this);
     private NextButton nextButton = new NextButton("Next", this);
-    private RefreshButton refreshButton = new RefreshButton("Refresh", this);
     private JumpText jumpText = new JumpText(this);
     private TextValidation textValidation = new TextValidation();
 
@@ -61,6 +60,7 @@ public class CalendarLogic {
     private Logic logic;
     private Calendar currentMonth;
     private CalendarMonth calendarMonth;
+    private ObservableList<CalendarEvent> filteredCalendarEventList;
 
     /**
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
@@ -72,13 +72,19 @@ public class CalendarLogic {
         this.topCalendar = topCalendar;
         this.logic = logic;
         this.primaryStage = primaryStage;
+        ListChangeListener<CalendarEvent> temp = (x) -> {
+            x.next();
+            refresh();
+        };
+        this.filteredCalendarEventList = logic.getFilteredCalendarEventList();
+        filteredCalendarEventList.addListener(temp);
     }
 
     /**
      * Initialises the logic components for the Calendar.
      */
     public void initialiseLogic() {
-        calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
     }
@@ -94,7 +100,7 @@ public class CalendarLogic {
     private void drawHeader() {
         Text textHeader = getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(),
-                refreshButton.getRoot(), jumpText.getRoot(), textValidation.getRoot());
+                jumpText.getRoot(), textValidation.getRoot());
         topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
@@ -151,6 +157,7 @@ public class CalendarLogic {
      */
     public void refresh() {
         resetGridPane();
+        this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         textValidation.setTextValidation(EMPTY_MESSAGE);
         drawCalendar();
@@ -160,7 +167,7 @@ public class CalendarLogic {
      * Displays the CalendarEvents in the previous month.
      */
     public void previous() {
-        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getPreviousMonth(currentMonth);
         textValidation.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
@@ -170,7 +177,7 @@ public class CalendarLogic {
      * Displays the CalendarEvents in the next month.
      */
     public void next() {
-        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getNextMonth(currentMonth);
         textValidation.setTextValidation("");
         updateCalendarMonth();

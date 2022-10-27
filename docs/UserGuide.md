@@ -19,7 +19,8 @@ This section aims to help you navigate the user guide.
 
 1. The next subsection [Section 2.2, Tips for reading the User Guide](#22-tips-for-reading-the-user-guide), provides some tips on reading this document.
 2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up **Financial Advisor Planner**.
-3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented. 
+3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented.
+4. [Section 7, Glossary](#7-glossary) has been provided where certain terms that are used in this document are defined.
 
 ### 2.2 Tips for reading the User Guide
 
@@ -46,14 +47,14 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `financialadvisorplanner.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-2/tp/releases).
+2. Download the latest `financialadvisorplanner.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FinancialAdvisorPlanner.
+3. Copy the file to the folder you want to use as the _home folder_ for your FinancialAdvisorPlanner.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -72,7 +73,12 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#4-features) below for details of each command.
+6. Refer to the [Features](#4-features) below for details of each command.
+
+<br>
+<div markdown="span" class="alert alert-primary">
+            :bulb: **Tip:** Use the `clear` command to delete the sample data when using the application for the first time.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -129,10 +135,13 @@ Adds a client to the list of clients.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0) </div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** RISK_APPETITE can only have the values ‘High’, ‘Medium’ or ‘Low’
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<br>
+RISK_APPETITE can only have the values ‘High’, ‘Medium’ or ‘Low’
+<br>
+<br>
+<br>
+A client can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -182,7 +191,6 @@ Examples:
 * `find n/ John` returns `john` and `John Doe`
 * `find n/ alex david` returns `Alex Yeoh`, `David Li`
 * `find r/ high` returns `john` and `Alex Yeoh`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 #### 4.1.6 Deleting a client : `delete`
 
@@ -205,11 +213,10 @@ You can sort the contacts in descending order by adding `desc` behind the `KEYWO
 
 Format: sort `KEYWORD` / sort `KEYWORD desc`
 
-Types of `KEYWORD`: `name`, `appt`, `risk`, `income`
+Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`
 
 * Returns all the contacts sorted by the given `KEYWORD`
 
-  ![result for 'sort name'](images/sortAlphabetResult.png)
 
 #### 4.1.8 Clearing all entries : `clear`
 
@@ -227,14 +234,24 @@ Format: `exit`
 
 #### 4.2.1 Adding an appointment : `aa`
 
-Adds an appointment at the input DATE_AND_TIME for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
+Adds an appointment with inputs DATE_AND_TIME and LOCATION for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
-Format: `aa [INDEX] [d/DATE_AND_TIME] [l/LOCATION]`
+Format: `aa INDEX d/DATE_AND_TIME l/LOCATION`
+
+Example: `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+
+The appointment details will be added to the specified client's information.
+
+![Add Appointment Calendar Change](images/AddAppointmentContactsChange.png)
+<br>
+Also, the appointment details will be added to the calendar.
+![Add Appointment Contacts Change](images/AddAppointmentCalendarChange.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
+<br>
 <br>Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments.
 </div>
 
@@ -242,15 +259,105 @@ Examples:
 
 * `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 
+#### 4.2.2 Editing an appointment : `ea`
+Edits an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
+
+Format: `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]`
+* Edits the client's appointment using specified PERSON_INDEX and APPOINTMENT_INDEX. 
+* The PERSON_INDEX refers to the index number shown in the displayed client list. The index must be a positive integer 1, 2, 3,…​
+* The APPOINTMENT_INDEX refers to the index number shown in the displayed client's appointment list. The index can only be 1, 2, or 3.
+* At least one of the optional fields must be provided. 
+* Existing values will be updated to the input values.
+
+Examples:
+
+* `ea 1.1 d/21-Jan-2023 12:30 PM l/West Mall, Starbucks` Edits both the date and location of the 1st client's 1st appointment to be `21-Jan-2023 12:30 PM` and `West Mall, Starbucks` respectively.
+* `ea 2.3 l/NUS, TechnoEdge` Edits the location of the 2nd client's 3rd appointment to be `NUS, TechnoEdge`
+
+#### 4.2.3 Deleting an appointment : `da`
+Deletes an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
+
+Format: `da PERSON_INDEX.APPOINTMENT_INDEX`
+* Deletes the client's appointment using specified PERSON_INDEX and APPOINTMENT_INDEX.
+* The PERSON_INDEX refers to the index number shown in the displayed client list. The index must be a positive integer 1, 2, 3,…​
+* The APPOINTMENT_INDEX refers to the index number shown in the displayed client's appointment list. The index can only be 1, 2, or 3.
+
+Examples:
+
+* `da 1.1` Deletes the 1st client's 1st appointment 
+ 
 ### 4.3 Calendar features
 
-### 4.4 Miscellaneous commands
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the switching between Contacts and Calendar Tabs:**
+<br>
+* `CTRL + 1` keys will switch the current tab to the Contacts tab
+* `CTRL + 2` keys will switch the current tab to the Calendar tab
+</div>
 
-#### 4.4.1 Saving the data
+#### 4.3.1 Calendar Display
+Displays a calendar format for the current month which shows all the appointments separated into their matching dates for that month. The appointments that are displayed for each day are also sorted in ascending order, which follows the time convention.
+
+The following figure shows an empty Calendar Display:
+
+![empty calendar display](images/EmptyCalendar.png)
+
+The Calendar Display can be filled by adding appointments. [View Section 4.2.1 for information on how to add appointments](#421-adding-an-appointment--aa)
+
+The following figure shows the Calendar Display with several appointments:
+
+
+![calendar display with appointments](images/CalendarWithAppointments.png)
+#### 4.3.2 Calendar Navigation
+There are 3 ways to ease navigation between months that are displayed.
+
+##### 4.3.2.1 Next Button
+Clicking the Next button or pressing the "N" key will display the next month.
+Examples:
+
+![next button](images/NextButton.png)
+
+##### 4.3.2.2 Prev Button
+Clicking the Prev button or pressing the "B" key will display the previous month.
+Examples:
+
+![previous button](images/PreviousButton.png)
+
+##### 4.3.2.1 Jump Box
+Typing in the desired date in the provided text field followed by pressing the "ENTER" key will show the given calendar of the month and year.
+Format: DATE
+Examples: `1-Oct-2022`
+
+![jump box](images/JumpBox.png)
+
+#### 4.3.3 Calendar Pop-ups
+Displays more detailed information of the selected appointment on the calendar which includes the name of the client, date, time and location of the scheduled appointment.
+
+There are 3 ways to activate the Calendar Popup:
+1. Clicking on the client's appointment button.
+2. Pressing TAB/SHIFT + TAB key within the Calendar View to focus on the desired client's appointment button.
+3. Pressing UP/DOWN/LEFT/RIGHT key within the Calendar View to focus on the desired client's appointment button.
+
+The following figure shows the Calendar Popup being activated within the Calendar View:
+
+![result for 'calendar popup'](images/CalendarPopupExample.png)
+
+### 4.4 Command Line tools
+#### 4.4.1 Parameter hints
+After typing in the command word, the command's parameters and their respective prefixes are shown. An example of a valid command will also be shown.
+![result for 'parameter_hints'](images/ParameterHintsExample.png)
+#### 4.4.2 Command history
+Use the up and down keys to navigate through previously typed commands. Users can edit the command first or press enter to execute the command. 
+* Only valid commands will be saved in the command history
+* Command history will only save up to 20 previously typed valid commands
+
+### 4.5 Miscellaneous commands
+
+#### 4.5.1 Saving the data
 
 FinancialAdvisorPlanner data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 4.4.2 Editing the data file
+#### 4.5.2 Editing the data file
 
 FinancialAdvisorPlanner data are saved as a JSON file `[JAR file location]/data/FinancialAdvisorPlanner.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -258,9 +365,9 @@ FinancialAdvisorPlanner data are saved as a JSON file `[JAR file location]/data/
 If your changes to the data file makes its format invalid, FinancialAdvisorPlanner will discard all data and start with an empty data file at the next run.
 </div>
 
-### 4.5 Future features
+### 4.6 Future features
 
-#### 4.5.1 Archiving data files `[coming in v2.0]`
+#### 4.6.1 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -277,8 +384,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
-**Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `e.g., aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+**Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
+**Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+**Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-Jan-2023 12:30 PM l/NUS, TechnoEdge`
+**Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
@@ -292,8 +401,8 @@ Action | Format, Examples
 
 Term | Meaning 
 --------|------------------
-**Command Line Interface (CLI)** | `A CLI is a text-based user interface that allows users to input commands in the form of text.`
-**Graphical User Interface (GUI)** | `A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.`
-**Command** | `An instruction given by the user that is to be executed.` 
-**Parameter** | `Variables that have been typed by the user that is to be provided to the command to be executed. `
-**Prefix** | `Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)`
+**Command Line Interface (CLI)** | A CLI is a text-based user interface that allows users to input commands in the form of text.
+**Graphical User Interface (GUI)** | A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.
+**Command** | An instruction given by the user that is to be executed. 
+**Parameter** | Variables that have been typed by the user that is to be provided to the command to be executed.
+**Prefix** | Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)

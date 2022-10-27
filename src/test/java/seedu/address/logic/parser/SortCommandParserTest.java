@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.sort.SortByAppointment;
 import seedu.address.logic.parser.sort.SortByIncome;
+import seedu.address.logic.parser.sort.SortByMonthly;
 import seedu.address.logic.parser.sort.SortByName;
 import seedu.address.logic.parser.sort.SortByRiskTag;
 
@@ -49,11 +50,16 @@ public class SortCommandParserTest {
                 new SortCommand(new SortByIncome("asc"), "income");
         assertParseSuccess(parser, "income", expectedSortCommandIncome);
 
+        SortCommand expectedSortCommandMonthly =
+                new SortCommand(new SortByMonthly("asc"), "monthly");
+        assertParseSuccess(parser, "monthly", expectedSortCommandMonthly);
+
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n name \n", expectedSortCommandName);
         assertParseSuccess(parser, " \t appt \n", expectedSortCommandAppt);
         assertParseSuccess(parser, " \t risk \n", expectedSortCommandRisk);
         assertParseSuccess(parser, " \t income \n", expectedSortCommandIncome);
+        assertParseSuccess(parser, " \t monthly \n", expectedSortCommandMonthly);
     }
 
     @Test
@@ -74,11 +80,16 @@ public class SortCommandParserTest {
                 new SortCommand(new SortByIncome("desc"), "income in descending order");
         assertParseSuccess(parser, "income desc", expectedSortCommandIncome);
 
+        SortCommand expectedSortCommandMonthly =
+                new SortCommand(new SortByMonthly("desc"), "monthly in descending order");
+        assertParseSuccess(parser, "monthly desc", expectedSortCommandMonthly);
+
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n name desc \n", expectedSortCommandName);
         assertParseSuccess(parser, " \t appt desc \n", expectedSortCommandAppt);
         assertParseSuccess(parser, " \t risk desc \n", expectedSortCommandRisk);
         assertParseSuccess(parser, " \t income desc \n", expectedSortCommandIncome);
+        assertParseSuccess(parser, " \t monthly desc \n", expectedSortCommandMonthly);
     }
 }
 
