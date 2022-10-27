@@ -10,8 +10,8 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.person.Buyer;
-import seedu.address.ui.displaycards.BuyerCard;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.displaycards.BuyerCard;
 
 
 /**

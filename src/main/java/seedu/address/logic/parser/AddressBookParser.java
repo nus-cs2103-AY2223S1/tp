@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.addcommandparser;
+package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -6,15 +6,19 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.CheckCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.addcommands.AddCommandWithPopup;
 import seedu.address.logic.commands.addcommands.AddDelivererCommand;
 import seedu.address.logic.commands.addcommands.AddOrderCommand;
 import seedu.address.logic.commands.addcommands.AddPetCommand;
 import seedu.address.logic.commands.addcommands.AddSupplierCommand;
-import seedu.address.logic.commands.CheckCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
 import seedu.address.logic.commands.deletecommands.DeleteDelivererCommand;
 import seedu.address.logic.commands.deletecommands.DeleteOrderCommand;
@@ -23,17 +27,18 @@ import seedu.address.logic.commands.deletecommands.DeleteSupplierCommand;
 import seedu.address.logic.commands.editcommands.EditBuyerCommand;
 import seedu.address.logic.commands.editcommands.EditDelivererCommand;
 import seedu.address.logic.commands.editcommands.EditSupplierCommand;
-import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.filtercommands.FilterLocCommand;
 import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
 import seedu.address.logic.commands.filtercommands.FilterPetCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
 import seedu.address.logic.commands.findcommands.FindPetCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.sortcommands.SortCommand;
-import seedu.address.logic.parser.CheckCommandParser;
+import seedu.address.logic.parser.addcommandparser.AddBuyerCommandParser;
+import seedu.address.logic.parser.addcommandparser.AddCommandWithPopupParser;
+import seedu.address.logic.parser.addcommandparser.AddDelivererCommandParser;
+import seedu.address.logic.parser.addcommandparser.AddOrderCommandParser;
+import seedu.address.logic.parser.addcommandparser.AddPetCommandParser;
+import seedu.address.logic.parser.addcommandparser.AddSupplierCommandParser;
 import seedu.address.logic.parser.deletecommandparser.DeleteBuyerCommandParser;
 import seedu.address.logic.parser.deletecommandparser.DeleteDelivererCommandParser;
 import seedu.address.logic.parser.deletecommandparser.DeleteOrderCommandParser;
@@ -42,6 +47,7 @@ import seedu.address.logic.parser.deletecommandparser.DeleteSupplierCommandParse
 import seedu.address.logic.parser.editcommandparser.EditBuyerCommandParser;
 import seedu.address.logic.parser.editcommandparser.EditDelivererCommandParser;
 import seedu.address.logic.parser.editcommandparser.EditSupplierCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.filtercommandparser.FilterLocCommandParser;
 import seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser;
 import seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser;
@@ -50,10 +56,6 @@ import seedu.address.logic.parser.findcommandparser.FindCommandParser;
 import seedu.address.logic.parser.findcommandparser.FindDelivererCommandParser;
 import seedu.address.logic.parser.findcommandparser.FindPetCommandParser;
 import seedu.address.logic.parser.findcommandparser.FindSupplierCommandParser;
-import seedu.address.logic.parser.ListCommandParser;
-import seedu.address.logic.parser.MatchCommandParser;
-import seedu.address.logic.parser.SortCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
