@@ -2,8 +2,8 @@ package seedu.address.model.group;
 
 import static seedu.address.model.AccessDisplayFlags.GROUP;
 
-import java.util.UUID;
 import java.nio.charset.StandardCharsets;
+import java.util.UUID;
 
 import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractSingleItem;
