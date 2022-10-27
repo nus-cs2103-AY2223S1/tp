@@ -78,7 +78,7 @@ of the exercises you have input.
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
 * The `Recognised Exercises Count` provides the number of unique exercises registered in the system. 
-* The `Exercise List Entries Count` provides the total number of exercise entries in the system. 
+* The `System Exercise Entries Count` provides the total number of exercise entries in the system. 
 <br>
 
 #### Adding and Deleting from the Exercise Name List
