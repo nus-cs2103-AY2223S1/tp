@@ -22,14 +22,30 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args);
 
-        Index index;
+        String[] arguments = argMultimap.getPreamble().split(" ", 2);
+        if (!isValidInput(arguments)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        }
 
+        Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage() + "\n" + ViewCommand.MESSAGE_USAGE, pe);
         }
 
         return new ViewCommand(index);
+    }
+
+    private boolean isValidInput(String[] input) {
+        if (input.length != 1) {
+            return false;
+        }
+        try {
+            int index = Integer.parseInt(input[0]);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 }

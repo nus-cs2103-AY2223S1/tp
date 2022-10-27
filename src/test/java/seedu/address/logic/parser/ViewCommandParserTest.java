@@ -22,4 +22,14 @@ public class ViewCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
     }
+    @Test
+    public void parse_invalidIndex_throwsParseException() {
+        assertParseFailure(parser, "-2", ParserUtil.MESSAGE_INVALID_INDEX + "\n"
+                + ViewCommand.MESSAGE_USAGE);
+    }
+    @Test
+    public void parse_multipleArgs_throwsParseException() {
+        assertParseFailure(parser, "1 extraArgument",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+    }
 }
