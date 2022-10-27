@@ -7,7 +7,6 @@ import java.util.Stack;
 import picocli.CommandLine;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.tag.Tag;
 
 /**
  * Converter from {@code String} to {@code NameContainsKeywordsPredicate}.
