@@ -10,6 +10,9 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <fx:root resizable="false" title="Export" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
@@ -47,6 +50,14 @@
                                 <Insets top="10.0" />
                             </HBox.margin>
                         </Button>
+                        <ComboBox fx:id="fileFormat">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="csv" />
+                                    <String fx:value="json" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
                     </children>
                 </HBox>
             </VBox>

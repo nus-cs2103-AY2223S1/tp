@@ -28,6 +28,7 @@ import seedu.clinkedin.logic.commands.RedoCommand;
 import seedu.clinkedin.logic.commands.SortCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
 import seedu.clinkedin.logic.commands.UndoCommand;
+import seedu.clinkedin.logic.commands.ViewCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 
 /**
@@ -113,10 +114,16 @@ public class AddressBookParser {
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommandParser().parse(arguments);
+
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
+
         case RateCommand.COMMAND_WORD:
             return new RateCommandParser().parse(arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

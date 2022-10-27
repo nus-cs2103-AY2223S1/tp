@@ -26,6 +26,7 @@ import seedu.clinkedin.logic.commands.ListCommand;
 import seedu.clinkedin.logic.commands.NoteCommand;
 import seedu.clinkedin.logic.commands.RateCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
+import seedu.clinkedin.logic.commands.ViewCommand;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
 
@@ -43,7 +44,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_NOTE = new Prefix("note/");
-
     public static final Prefix PREFIX_LINK = new Prefix(("l/"));
     public static final Prefix PREFIX_SKILLTAG = new Prefix(("st/"));
     public static final Prefix PREFIX_DEGREETAG = new Prefix(("dt/"));
@@ -79,7 +79,11 @@ public class CliSyntax {
             ListCommand.class,
             NoteCommand.class,
             RateCommand.class,
-            StatsCommand.class);
+            StatsCommand.class,
+            ExportCommand.class,
+            ImportCommand.class,
+            ViewCommand.class
+        );
 
     /**
      * Adds a tag prefix to the list of prefixes.

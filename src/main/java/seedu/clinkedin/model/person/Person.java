@@ -211,33 +211,36 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\n\nContact Information: ")
+                .append("\n- Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\n- Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\n- Address: ")
                 .append(getAddress());
 
         ObservableMap<TagType, UniqueTagList> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach((tagType, tagList) -> builder.append(String.format("%s: %s", tagType.toString(),
+            builder.append("\n\nTags:\n");
+            tags.forEach((tagType, tagList) -> builder.append(String.format("- %s: %s\n", tagType.toString(),
                     tagList.toString())));
         }
 
-        builder.append("; Status: ")
-                .append(getStatus());
-
-        builder.append("; Note: ")
-                .append(getNote());
-
-        builder.append("; Rating: ")
-                .append(getRating());
-
         Set<Link> links = getLinks();
         if (!links.isEmpty()) {
-            builder.append("; Links: ");
+            builder.append("\nLinks: ");
             links.forEach(builder::append);
+        }
+
+        builder.append("\n\nStatus: ")
+                .append(getStatus());
+
+        builder.append("\n\nRating: ")
+                .append(getRating().value > 0 ? getRating() : "No rating given");
+
+        if (!getNote().value.equals("")) {
+            builder.append("\n\nNote: ")
+                    .append(getNote());
         }
 
         return builder.toString();

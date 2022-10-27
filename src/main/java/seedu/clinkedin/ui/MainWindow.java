@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import seedu.clinkedin.commons.core.GuiSettings;
 import seedu.clinkedin.commons.core.LogsCenter;
 import seedu.clinkedin.logic.Logic;
+import seedu.clinkedin.logic.commands.Command;
 import seedu.clinkedin.logic.commands.CommandResult;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
@@ -116,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         personCountDisplay = new PersonCountDisplay(logic.getFilteredPersonList(), logic.getAddressBook());
@@ -241,9 +242,47 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Executes the command and returns the result.
+     * @param command The command to be executed.
+     * @return The result of the command execution.
+     * @throws CommandException If an error occurs during command execution.
+     * @throws ParseException If an error occurs during parsing.
+     */
+    public CommandResult executeCommand(Command command) throws CommandException, ParseException {
+        try {
+            CommandResult commandResult = logic.execute(command);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
+
+            if (commandResult.isShowHelp()) {
+                handleHelp();
+            }
+
+            if (commandResult.isExit()) {
+                handleExit();
+            }
+            if (commandResult.isExport()) {
+                handleExport();
+            }
+            if (commandResult.isImport()) {
+                handleImport();
+            }
+
+            return commandResult;
+        } catch (CommandException e) {
+            logger.info("Invalid command: " + command);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
+            throw e;
+        }
+    }
+
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         return executeCommand(commandText, true);
     }
+
     public CommandResult executeFromWindow(String command) throws CommandException, ParseException {
         return this.executeCommand(command, false);
     }

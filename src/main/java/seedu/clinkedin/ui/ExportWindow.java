@@ -3,9 +3,11 @@ package seedu.clinkedin.ui;
 import java.io.File;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
@@ -20,6 +22,7 @@ import seedu.clinkedin.logic.parser.exceptions.ParseException;
 public class ExportWindow extends UiPart<Stage> {
     public static final String CHOOSE_PATH = "Choose Location";
     public static final String CHOOSE_NAME = "Name";
+    public static final String[] FORMATS = {"csv", "json"};
     private static final Logger logger = LogsCenter.getLogger(ExportWindow.class);
     private static final String FXML = "ExportWindow.fxml";
 
@@ -45,6 +48,9 @@ public class ExportWindow extends UiPart<Stage> {
     @FXML
     private Button exportButton;
 
+    @FXML
+    private ComboBox<String> fileFormat;
+
 
     /**
      * Creates a new ExportWindow.
@@ -58,7 +64,9 @@ public class ExportWindow extends UiPart<Stage> {
         directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Choose Location");
         fileName.setText(CHOOSE_NAME);
-
+        fileFormat = new ComboBox<>();
+        fileFormat.setItems(FXCollections.observableArrayList(FORMATS));
+        fileFormat.setValue("csv");
     }
 
     /**

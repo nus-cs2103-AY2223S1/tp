@@ -35,12 +35,12 @@ public class NoteCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsNoteCommand() {
         // no leading and trailing whitespaces
-        NoteCommand expectedFindCommand = new NoteCommand(Index.fromOneBased(1), new Note("Test"));
-        assertParseSuccess(parser, "1 note/Test", expectedFindCommand);
+        NoteCommand expectedNoteCommand = new NoteCommand(Index.fromOneBased(1), new Note("Test"));
+        assertParseSuccess(parser, "1 note/Test", expectedNoteCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n \t1 note/Test\t", expectedFindCommand);
+        assertParseSuccess(parser, " \n \t1 note/Test\t", expectedNoteCommand);
     }
 }
