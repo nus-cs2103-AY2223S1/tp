@@ -438,6 +438,62 @@ In the diagram, the predicates `modulePredicate` and `taskPredicate` are the cus
 
 <img src="images/CdSequenceDiagram.png" width="1000" />
 
+### Marking modules as done
+
+Section by : [Marciano](https://github.com/midnightfeverrr)
+
+Marking modules as done allows users to selectively hide modules that they have completed.
+
+Every module in the module list will be in either the done or undone state.
+New tag/label will be created to mark a module as `done`.
+
+In this section, we will discuss the management of done/undone state, as well as the
+interactions between the commands and the UI.
+
+The relevant commands for this section are:
+* **`done module <module code>`**  marks the module visible in the UI with the specified module code as done.
+* **`undone module <module code>`** marks the module visible in the UI with the specified module code as undone.
+
+#### Design considerations
+
+There was an alternative we considered for users to select the module to mark as done:
+
+* **Alternative 1:** Using the module name:
+    * Pro: Users do not have to search for a module code.
+    * Con: Users have to type a significant amount to disambiguate modules by their name.
+
+* **Alternative 2:** Using the module code (current implementation):
+    * Pro: Users can mark modules as done by their module code easily without much typing.
+
+Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users.
+
+#### Current implementation
+
+The done/undone state is handled in the `Module` class via a boolean flag `isDone`.
+Because `Module` is immutable, the methods `Module::done` and `Module::undone` return a new `Module`
+with the done/undone state changed instead of mutating the `isDone` variable directly.
+
+The following activity diagram shows the execution and control flow of the `done` command.
+
+<img src="images/ModuleDoneDiagram.png" width="1000" />
+
+Notice how we explicitly prevent a done module from being marked as done again. Even though marking a done module as 
+done again is inconsequential from a data perspective (nothing in a `Module` changes other than the creation of a new
+instance), it is still a user error that should be handled:
+
+> Suppose that a user intended to mark a module as undone, but accidentally entered the `done` command instead.
+By displaying an error instead of silently accepting the erroneous command, the user is notified and
+can enter the correct command next—this results in better UX!
+
+The classes directly involved in setting the done/undone state from user input are:
+* `DoneModuleCommand` and `UndoneModuleCommand` which are the commands that when executed, mark tasks as done or undone respectively.
+* `ModtrektParser` which parses the command word and delegates the parsing to JCommander.
+* `LogicManager` which executes the commands.
+
+For brevity, we omit the diagrams and explanations for marking modules as undone—it is the direct inverse of marking tasks as done,
+such that the control flow is exactly the same: just replace "done" and its derivatives
+with "undone", and vice versa.
+
 ### Tasks
 
 ### Task/Deadline Features
