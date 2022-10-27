@@ -24,9 +24,9 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add appointment/s with a specific client "
             + "by the index number used in the displayed person list \n"
-            + "Parameters: [INDEX] "
-            + "[" + PREFIX_APPOINTMENT_DATE + "DATE AND TIME] "
-            + "[" + PREFIX_APPOINTMENT_LOCATION + "LOCATION]\n"
+            + "Parameters: INDEX "
+            + PREFIX_APPOINTMENT_DATE + "DATE_AND_TIME "
+            + PREFIX_APPOINTMENT_LOCATION + "LOCATION\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_APPOINTMENT_DATE + "21-Jan-2023 12:30 PM "
             + PREFIX_APPOINTMENT_LOCATION + "Jurong Point, Starbucks";
