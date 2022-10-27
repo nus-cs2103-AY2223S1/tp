@@ -1,11 +1,15 @@
 package seedu.rc4hdb.ui;
 
+import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -17,6 +21,7 @@ import seedu.rc4hdb.logic.Logic;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
+import seedu.rc4hdb.model.venues.booking.Booking;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,8 +39,11 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
 
     private ResidentTableView residentTableView;
+    private BookingTableView bookingTableView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBoxRegion;
+    private CurrentWorkingFileFooter statusBarFooter;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -44,7 +52,22 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem commandBoxRedirect;
+
+    @FXML
+    private TabPane tableViewPane;
+
+    @FXML
+    private Tab residentTab;
+
+    @FXML
+    private Tab venueTab;
+
+    @FXML
     private StackPane residentTableViewPlaceholder;
+
+    @FXML
+    private StackPane bookingTableViewPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -61,11 +84,17 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.logic.getObservableFields().addListener(getListChangeListener());
+
+        // Add listeners to fields to be listened to
+        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
+        this.logic.getObservableBookings().addListener(getBookingChangeListener());
+        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
+        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
+        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
+        setTabLabels();
         setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -77,6 +106,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(commandBoxRedirect, KeyCombination.valueOf("F3"));
     }
 
     /**
@@ -113,16 +143,27 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        residentTableView = new ResidentTableView(logic.getFilteredResidentList(), logic.getObservableFields());
+        residentTableView = new ResidentTableView(logic.getFilteredResidentList(),
+                logic.getVisibleFields(),
+                logic.getHiddenFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
+
+        bookingTableView = new BookingTableView(logic.getObservableBookings());
+        bookingTableViewPlaceholder.getChildren().add(bookingTableView.getRoot());
+
+        residentTab.setContent(residentTableViewPlaceholder);
+        venueTab.setContent(bookingTableViewPlaceholder);
+
+        tableViewPane.getTabs().addAll(residentTab, venueTab);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getResidentBookFilePath());
+        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableFolderPath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxRegion = commandBox;
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -148,6 +189,13 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Redirects the focus onto the text field of the command box.
+     */
+    public void handleRedirect() {
+        commandBoxRegion.focus();
     }
 
     void show() {
@@ -197,8 +245,35 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private ListChangeListener<String> getListChangeListener() {
-        // Update the observable field list within the logic attribute
-        return c -> residentTableView.setObservableFields(logic.getObservableFields());
+    /**
+     * Returns a listener which propagates the changes in the visibleFields list in Model
+     * (and hence Logic) to the corresponding observable list in ResidentTableView.
+     */
+    private ListChangeListener<String> updateVisibleFieldsOnChange() {
+        return c -> residentTableView.setVisibleFields(logic.getVisibleFields());
     }
+
+    /**
+     * Returns a listener which propagates the changes in the hiddenFields list in Model
+     * (and hence Logic) to the corresponding observable list in ResidentTableView.
+     */
+    private ListChangeListener<String> updateHiddenFieldsOnChange() {
+        // Update the observable field list within the logic attribute
+        return c -> residentTableView.setHiddenFields(logic.getHiddenFields());
+    }
+
+    private ChangeListener<Path> getFileChangeListener() {
+        return (observableValue, oldValue, newValue) ->
+                statusBarFooter.updateFilePath(newValue);
+    }
+
+    private ListChangeListener<Booking> getBookingChangeListener() {
+        return c -> bookingTableView.updateTable(logic.getObservableBookings());
+    }
+
+    private void setTabLabels() {
+        this.residentTab.setText("Residents");
+        this.venueTab.setText("Bookings");
+    }
+
 }

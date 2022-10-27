@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ResidentBookParser" as ResidentBookParser LOGIC_COLOR
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant "d:FilterCommand" as FilterCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":AttributesMatchAllKeywordsPredicate" as AttributesMatchAllKeywordsPredicate LOGIC_COLOR
+participant ":FilterSpecifier" as FilterSpecifier LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete 1")
+activate LogicManager
+
+LogicManager -> ResidentBookParser : parseCommand("delete 1")
+activate ResidentBookParser
+
+create FilterCommandParser
+ResidentBookParser -> FilterCommandParser
+activate FilterCommandParser
+
+FilterCommandParser -> ResidentBookParser
+deactivate FilterCommandParser
+
+ResidentBookParser -> FilterCommandParser : parse("1")
+activate FilterCommandParser
+create FilterSpecifier
+FilterCommandParser -> FilterSpecifier
+activate FilterSpecifier
+create FilterCommand
+FilterCommandParser -> FilterCommand
+activate FilterCommand
+
+FilterCommand --> FilterCommandParser : d
+deactivate FilterCommand
+
+FilterCommandParser -> ResidentBookParser : d
+deactivate FilterCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommandParser -[hidden]-> ResidentBookParser
+destroy FilterCommandParser
+
+ResidentBookParser --> LogicManager : d
+deactivate ResidentBookParser
+LogicManager -> FilterCommand : execute(model)
+activate FilterCommand
+
+create AttributesMatchAllKeywordsPredicate
+FilterCommand -> AttributesMatchAllKeywordsPredicate
+activate AttributesMatchAllKeywordsPredicate
+
+
+deactivate FilterSpecifier
+
+FilterCommand -> Model : FilterResident(residentToFilter)
+activate Model
+Model --> FilterCommand
+deactivate Model
+
+AttributesMatchAllKeywordsPredicate --> FilterCommand
+deactivate AttributesMatchAllKeywordsPredicate
+
+create CommandResult
+FilterCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterCommand
+deactivate CommandResult
+
+FilterCommand --> LogicManager
+deactivate FilterCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
