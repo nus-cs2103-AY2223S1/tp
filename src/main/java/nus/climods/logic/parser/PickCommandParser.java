@@ -1,7 +1,5 @@
 package nus.climods.logic.parser;
 
-import java.util.Arrays;
-
 import nus.climods.logic.commands.PickCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.LessonTypeParameter;
@@ -25,8 +23,6 @@ public class PickCommandParser implements Parser<PickCommand> {
         if (arg.length != 4) {
             throw new ParseException("You need 3 arguments: <module-code> <lesson-type> <classNo>");
         }
-
-        System.out.println(Arrays.toString(arg));
 
         ModuleCodeParameter mcp = new ModuleCodeParameter(args);
         String mc = mcp.getArgValue();

@@ -24,22 +24,22 @@ public class PickCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
     public static final String MESSAGE_MODULE_MISSING = "This module is not in your module list";
-    public static final String MESSAGE_INVALID_LESSONTYPE = "This lesson type is not offered in this module";
-    public static final String MESSAGE_INVALID_CLASSNO = "This class is not offered or an invalid one";
-    public static final String MESSAGE_DUPLICATE_CLASSNO = "This class already exist in your current module";
+    public static final String MESSAGE_INVALID_LESSON_TYPE = "This lesson type is not offered in this module";
+    public static final String MESSAGE_INVALID_LESSON_ID = "This class is not offered or an invalid one";
+    public static final String MESSAGE_DUPLICATE_LESSON_ID = "This class already exist in your current module";
 
     private final String toPick;
     private final LessonTypeEnum lessonType;
-    private final String classNo;
+    private final String lessonId;
 
     /**
      * Creates an PickCommand to add the specified lesson in Module
      */
-    public PickCommand(String toPick, LessonTypeEnum lessonType, String classNo) {
+    public PickCommand(String toPick, LessonTypeEnum lessonType, String lessonId) {
         requireNonNull(toPick);
         this.toPick = toPick.toUpperCase();
         this.lessonType = lessonType;
-        this.classNo = classNo;
+        this.lessonId = lessonId;
     }
 
     @Override
@@ -64,20 +64,19 @@ public class PickCommand extends Command {
 
         //check if lesson type is offered
         if (!module.isLessonTypeEnumSelectable(lessonType, curr.getSelectedSemester())) {
-            throw new CommandException(MESSAGE_INVALID_LESSONTYPE);
+            throw new CommandException(MESSAGE_INVALID_LESSON_TYPE);
         }
 
         //check if lesson class code is offered
-        if (!module.hasLessonId(classNo, curr.getSelectedSemester(), lessonType)) {
-            throw new CommandException(MESSAGE_INVALID_CLASSNO);
+        if (!module.hasLessonId(lessonId, curr.getSelectedSemester(), lessonType)) {
+            throw new CommandException(MESSAGE_INVALID_LESSON_ID);
         }
 
         // if everything correct then set accordingly in hashmap in UserModule
-        curr.setLessons(lessonType, classNo);
+        curr.addLessons(lessonType, lessonId);
 
-        String addedDetails = String.format("%s %s %s", toPick, lessonType.name(), classNo);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()),
-                COMMAND_WORD, model);
+        String addedDetails = String.format("%s %s %s", toPick, lessonType.name(), lessonId);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()), COMMAND_WORD);
     }
 
     @Override
