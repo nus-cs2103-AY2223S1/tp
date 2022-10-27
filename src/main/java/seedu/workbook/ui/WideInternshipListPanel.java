@@ -28,7 +28,7 @@ public class WideInternshipListPanel extends UiPart<Region> {
     private ListView<Internship> wideInternshipListView;
 
     /**
-     * Creates a {@code InternshipListPanel} with the given {@code ObservableList}.
+     * Creates a {@code WideInternshipListPanel} with the given {@code ObservableList}.
      */
     public WideInternshipListPanel(ObservableList<Internship> internshipList) {
         super(FXML);
@@ -54,15 +54,28 @@ public class WideInternshipListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Add listener to when an internship card is selected.
+     */
     private void setInternshipSelectedEventHandlers() {
-        this.wideInternshipListView.getSelectionModel().selectedItemProperty().addListener((observable, oldVal, newVal) -> {
-            Internship selectedInternship = wideInternshipListView.getSelectionModel().getSelectedItem();
-            TipsPanel tipsPanel = tipPanelBuilder(selectedInternship.getStage());
-            tipsPanelContainer.getChildren().clear();
-            tipsPanelContainer.getChildren().add(tipsPanel.getRoot());
-        });
+        this.wideInternshipListView
+                .getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldVal, newVal) -> {
+
+                    Internship selectedInternship = wideInternshipListView.getSelectionModel().getSelectedItem();
+                    TipsPanel tipsPanel = tipPanelBuilder(selectedInternship.getStage());
+                    tipsPanelContainer.getChildren().clear();
+                    tipsPanelContainer.getChildren().add(tipsPanel.getRoot());
+
+                });
     }
 
+    /**
+     * Builds a {@code TipsPanel} from the given internship {@code internshipStage}.
+     * @param internshipStage
+     * @return
+     */
     private TipsPanel tipPanelBuilder(Stage internshipStage) {
 
         TipsPanel tipsPanel = new TipsPanel();

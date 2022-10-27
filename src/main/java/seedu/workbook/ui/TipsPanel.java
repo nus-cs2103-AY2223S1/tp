@@ -2,10 +2,10 @@ package seedu.workbook.ui;
 
 import java.util.List;
 import java.util.logging.Logger;
-import javafx.geometry.Pos;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -16,7 +16,7 @@ import seedu.workbook.commons.core.LogsCenter;
 
 
 /**
- * Controller for a tips page
+ * Controller for a tips panel
  */
 public class TipsPanel extends UiPart<Region> {
 
@@ -79,6 +79,9 @@ public class TipsPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Populates the tip panel for an internship that does not yet have customised tips.
+     */
     public void noTipsPopulate() {
         Label messageLabel = new Label("Sorry, there are no tips for this stage yet.");
         messageLabel.setMinWidth(500);
