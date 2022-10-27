@@ -18,8 +18,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.LockCommand;
-import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.PasswordCommand;
+import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

@@ -21,6 +21,9 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new RemoveCommand object
+ */
 public class RemoveCommandParser implements Parser<RemoveCommand> {
 
     /**

@@ -71,7 +71,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the FinBook.";
 
     private final Index index;
-    final EditPersonDescriptor editPersonDescriptor;
+    private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param index                of the person in the filtered person list to edit

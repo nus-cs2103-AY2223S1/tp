@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREAMBLE;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
