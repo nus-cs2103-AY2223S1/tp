@@ -199,7 +199,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 ## Exams-related Features
-##Adding an exam
+### Adding an exam
 Adds exam into exam list. 
 
 Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
@@ -220,7 +220,7 @@ Examples:
 exam description as 'midterms', exam date as '20-11-2022' into the exam list. 
 
 
-##Editing an exam
+### Editing an exam
 Edits the specified exam by updating the existing values to the input values.
    
 Format: `e edit INDEX (must be a positive integer) [m/MODULE] [ex/EXAM DESCRIPTION] [ed/EXAM DATE]`
