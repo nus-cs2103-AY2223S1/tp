@@ -138,9 +138,8 @@ public class CommandTestUtil {
     public static final Set<Index> THIRD_VALID_MULTI_INDEX_SET = new HashSet<>(List.of(THIRD_VALID_MULTI_INDEX));
     public static final Set<Index> MULTI_VALID_INDEX_SET =
             new HashSet<>(List.of(FIRST_VALID_MULTI_INDEX, SECOND_VALID_MULTI_INDEX, THIRD_VALID_MULTI_INDEX));
-    public static final String MULTI_VALID_INDEX_STRING = String.valueOf(FIRST_VALID_MULTI_INDEX.getOneBased())
-            + " " + String.valueOf(SECOND_VALID_MULTI_INDEX.getOneBased())
-            + " " + String.valueOf(THIRD_VALID_MULTI_INDEX.getOneBased());
+    public static final String MULTI_VALID_INDEX_STRING = FIRST_VALID_MULTI_INDEX.getOneBased()
+            + " " + SECOND_VALID_MULTI_INDEX.getOneBased() + " " + THIRD_VALID_MULTI_INDEX.getOneBased();
     
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
