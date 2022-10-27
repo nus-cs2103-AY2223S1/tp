@@ -15,6 +15,8 @@ import seedu.address.model.module.Module;
  */
 public class ModuleListPanel extends UiPart<Region> {
     private static final String FXML = "ModuleListPanel.fxml";
+    // Value 0 corresponding to the index of home status in observable list.
+    private static final int INDEX_OF_HOME_STATUS = 0;
     private final Logger logger = LogsCenter.getLogger(ModuleListPanel.class);
     private ObservableList<Boolean> isHomeStatus;
 
@@ -47,7 +49,7 @@ public class ModuleListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new ModuleCard(module, getIndex() + 1,
-                        isHomeStatus.get(0))
+                        isHomeStatus.get(INDEX_OF_HOME_STATUS))
                                 .getRoot());
             }
         }

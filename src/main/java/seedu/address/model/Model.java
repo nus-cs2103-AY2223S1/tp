@@ -178,6 +178,12 @@ public interface Model {
     ObservableList<Boolean> getHomeStatus();
 
     /**
+     * Returns Boolean that is true if Plannit is at the home
+     * page, false otherwise.
+     */
+    Boolean getHomeStatusAsBoolean();
+
+    /**
      * Replaces home status with {@code isHome}.
      * @param isHome The current status of Plannit
      */

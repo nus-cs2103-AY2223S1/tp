@@ -24,6 +24,8 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+    // Value 0 corresponding to the index of home status in observable list.
+    private static final int INDEX_OF_HOME_STATUS = 0;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     // Single observable boolean with ObservableList as wrapper.
@@ -285,6 +287,12 @@ public class ModelManager implements Model {
         assert isHome.size() == 1;
         // Return an unmodifiable copy.
         return unmodifiableObservableList(isHome);
+    }
+
+    @Override
+    public Boolean getHomeStatusAsBoolean() {
+        assert isHome.size() == 1;
+        return isHome.get(INDEX_OF_HOME_STATUS);
     }
 
     @Override
