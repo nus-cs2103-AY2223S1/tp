@@ -196,13 +196,13 @@ The `DebtGreaterEqualAmountPredicate` constructor takes in a `Money` object, and
 
 As an example, suppose the user requests to list debtors who owe more than $10. The object diagram below shows the relationships between the noteworthy objects.
 
-**(Insert object diagram here)**
+<img src="images/listdebtors_object.png" width="450" />
 
 To cater to a common use case where the user might want to simply list all debtors regardless of the amount they owe, `ListDebtorsCommandParser` can also handle requests without an amount specified. In such a case, it will create a predicate that simply checks whether a Person's DebtList is empty.
 
 The activity diagram below details the behaviour of PayMeLah when a user requests to list debtors. Note the difference in behaviour depending on whether the user specifies an amount.
 
-**(Insert activity diagram here)**
+<img src="images/listdebtors_activity.png" width="450" />
 
 * **Alternative for listing all debtors:** use a `DebtGreaterEqualAmountPredicate` with $0 as the amount
     * Pros: More consistent behaviour: every `ListDebtorsCommand` will have an associated `DebtGreaterEqualAmountPredicate`.
