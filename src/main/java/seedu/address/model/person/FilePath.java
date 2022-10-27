@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.SetPersonFileCommand;
-import seedu.address.ui.PersonProfile;
 
 /**
  * Represents a Person's pdf file in the address book.
@@ -50,13 +49,6 @@ public class FilePath {
      */
     public String getValue() {
         return value;
-    }
-
-    /**
-     * Returns value of filePath if not null else, EMPTY_DISPLAY_VALUE.
-     */
-    public String getDisplayValue() {
-        return value.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     @Override
