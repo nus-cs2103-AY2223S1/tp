@@ -257,7 +257,7 @@ The add order feature allows the user to add an `Order` to be tracked by the sys
 
 ##### Implementation
 
-This feature is facilitated by the `AddOrderCommand`, which extends from the `MultiLevelCommand` class.
+The add order feature is supported by the `AddOrderCommand`, which extends from the `MultiLevelCommand` class.
 The user will enter multiple rounds of input before an `Order` is successfully added to the system.
 
 Before giving an example usage scenario, lets assume that the user has already added some inventory items to be tracked by the system, but has not added any orders yet.
@@ -310,8 +310,17 @@ The built up `Order` object is finally added to the model's `OrderList`.
 
 ![AddOrderState4](images/developer-guide/AddOrderState4.png)
 
-The following sequence diagram shows how the add order feature works for a user entering an order with only one ordered item:
-![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram.png)
+The following sequence diagrams show how the add order feature works for a user entering an order with only one ordered item. Take note that
+the sequences occurring in the following diagrams are meant to occur in one full sequence (under one diagram) but for readability, have been separated into 3 smaller diagrams.
+
+* Initiating the add order command (Step 1)
+![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram1.png)
+
+* Adding item details (Step 2a, 2b, 3)
+* ![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram2.png)
+
+* Adding item details (Step 4)
+* ![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram3.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for the objects with the
 <i>destroy marker</i> (X) should end at the <i>destroy marker</i> itself but due to a limitation of PlantUML, the lifeline
