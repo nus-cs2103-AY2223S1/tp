@@ -9,8 +9,7 @@ import static seedu.address.testutil.TypicalCommissions.DOG_PRODUCER;
 import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-
-import java.util.ArrayList;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,14 +26,7 @@ import seedu.address.ui.GuiTab;
  * {@code OpenCommissionCommand}.
  */
 class OpenCommissionCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @Test
-    public void execute_noSelectedCustomer_throwsCommandException() {
-        // initialise an empty model manager since ModelManager#selectCustomer does not allow me to select null
-        model = new ModelManager();
-        assertCommandFailure(new OpenCommissionCommand(INDEX_FIRST), model, Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
-    }
+    private final Model model = new ModelManager(new AddressBook(getTypicalAddressBook()), new UserPrefs());
 
     @Test
     public void execute_noIndex_switchesTab() {

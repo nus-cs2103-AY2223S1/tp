@@ -143,6 +143,28 @@ public interface Model {
      */
     void updateSortedCustomerList(Comparator<Customer> comparator);
 
+
+
+    /**
+     * Adds commission to specified customer.
+     */
+    void addCommission(Customer customer, Commission commission);
+
+    /**
+     * Replaces the given commission {@code target} in the customer's commission list with {@code editedCommission}.
+     * {@code target} must exist in the address book.
+     * The commission identity of {@code editedCommission} must not be the same as another existing commission in the
+     * customer's commission list.
+     */
+    void setCommission(Customer customer, Commission target, Commission editedCommission);
+
+
+    /**
+     * Removes {@code key} from this {@code Customer}.
+     * {@code key} must exist in the customer's commission list.
+     */
+    void removeCommission(Customer customer, Commission key);
+
     /**
      * Returns an unmodifiable view of the list of {@code Commission} backed by the internal list of
      * {@code versionedAddressBook}

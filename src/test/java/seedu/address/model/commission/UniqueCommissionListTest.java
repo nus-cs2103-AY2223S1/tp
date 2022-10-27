@@ -2,6 +2,7 @@ package seedu.address.model.commission;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DOG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ANIMAL;
@@ -150,7 +151,7 @@ public class UniqueCommissionListTest {
 
     @Test
     public void getLastDate_check() {
-        assertEquals(uniqueCommissionList.getLastDate(), null);
+        assertNull(uniqueCommissionList.getLastDate());
         uniqueCommissionList.add(ALICE_CAT);
         uniqueCommissionList.add(BENSON_DOG);
         uniqueCommissionList.add(CARL_ELEPHANT);
@@ -160,7 +161,7 @@ public class UniqueCommissionListTest {
     @Test
     public void setCommissions_nullUniqueCommissionList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                uniqueCommissionList.setCommissions((UniqueCommissionList) null));
+                uniqueCommissionList.setCommissions(null));
     }
 
     @Test
@@ -168,7 +169,7 @@ public class UniqueCommissionListTest {
         uniqueCommissionList.add(ALICE_CAT);
         UniqueCommissionList expectedUniqueCommissionList = new UniqueCommissionList();
         expectedUniqueCommissionList.add(BENSON_DOG);
-        uniqueCommissionList.setCommissions(expectedUniqueCommissionList);
+        uniqueCommissionList.setCommissions(expectedUniqueCommissionList.asUnmodifiableObservableList());
         assertEquals(expectedUniqueCommissionList, uniqueCommissionList);
     }
 
