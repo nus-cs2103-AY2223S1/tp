@@ -1,14 +1,18 @@
 package seedu.waddle.logic;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.filechooser.FileSystemView;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.apache.commons.lang3.SystemUtils;
 
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
@@ -119,8 +123,23 @@ public class PdfFiller {
             PDPage page = pdf.getPage(0);
             this.finalPdf.addPage(page);
         }
-        finalPdf.save("./data/" + this.itinerary.getDescriptionString(Text.INDENT_NONE) + ".pdf");
+
+        // create a waddle directory and get the path
+        String defaultPath = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
+        File waddleFolder;
+        if (SystemUtils.IS_OS_MAC) {
+            waddleFolder = new File(defaultPath + "/Documents/Waddle");
+
+        } else {
+            waddleFolder = new File(defaultPath + "/Waddle");
+        }
+        if (!waddleFolder.exists()) {
+            waddleFolder.mkdirs();
+        }
+
+        finalPdf.save( waddleFolder + "/" + this.itinerary.getDescriptionString(Text.INDENT_NONE) + ".pdf");
         finalPdf.close();
+
         // only can close when all operations are done
         for (PDDocument pdf : this.pdfList) {
             pdf.close();
