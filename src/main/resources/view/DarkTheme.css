@@ -91,6 +91,7 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
     -fx-background-color: derive(#1d1d1d, 20%);
+
 }
 
 .list-cell {
@@ -99,11 +100,26 @@
     -fx-padding: 0 0 0 0;
 }
 
+#meetingListView .list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: #383838;
+}
+
 .list-cell:filled:even {
     -fx-background-color: #3c3e3f;
 }
 
+#meetingListView .list-cell:filled:even {
+    -fx-background-color: #3c3e3f;
+}
+
 .list-cell:filled:odd {
+    -fx-background-color: #515658;
+}
+
+#meetingListView .list-cell:filled:odd {
     -fx-background-color: #515658;
 }
 
@@ -130,6 +146,7 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+}
 }
 
 .display_header {

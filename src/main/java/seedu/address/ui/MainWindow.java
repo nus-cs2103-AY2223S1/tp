@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+//    private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private MainDisplay mainDisplay;
     private final HelpWindow helpWindow;
@@ -48,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+//    @FXML
+//    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -73,7 +77,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        meetingsWindow = new MeetingsWindow();
+        meetingsWindow = new MeetingsWindow(this.logic);
 
         helpWindow = new HelpWindow();
     }
@@ -168,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleMeetings() {
         if (!meetingsWindow.isShowing()) {
-            // meetingsWindow.getMeetings();
+            meetingsWindow.getMeetings();
             meetingsWindow.show();
         } else {
             meetingsWindow.focus();

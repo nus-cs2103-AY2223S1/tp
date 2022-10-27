@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -20,6 +21,7 @@ public class MeetingTime {
             "^([0][1-9]|([12][0-9])|(3[01]))\\-([0][1-9]|1[012])\\-\\d\\d\\d\\d\\-([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
     public final String value;
     public final String displayValue;
+    private final LocalDateTime date;
 
     /**
      * Constructs a {@code MeetingTime}.
@@ -30,7 +32,7 @@ public class MeetingTime {
         requireNonNull(meetingTimeString);
         checkArgument(isValidMeetingTime(meetingTimeString), MESSAGE_CONSTRAINTS);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm");
-        LocalDateTime date = LocalDateTime.parse(meetingTimeString, formatter);
+        date = LocalDateTime.parse(meetingTimeString, formatter);
         value = meetingTimeString;
         int day = date.getDayOfMonth();
         String month = date.getMonth().toString();
@@ -44,6 +46,14 @@ public class MeetingTime {
      */
     public static boolean isValidMeetingTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Gets a LocalDateTime Object
+     * @return LocalDateTime object
+     */
+    public LocalDateTime getDate() {
+        return this.date;
     }
 
     @Override

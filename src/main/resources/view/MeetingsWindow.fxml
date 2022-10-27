@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 
 <fx:root resizable="true" title="Upcoming Meetings" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
          xmlns:fx="http://javafx.com/fxml/1" minWidth="500" minHeight="400">
@@ -18,9 +19,10 @@
         <Scene>
             <stylesheets>
                 <URL value="@MeetingsWindow.css" />
+                <URL value="@DarkTheme.css" />
             </stylesheets>
 
-            <VBox alignment="CENTER" fx:id="meetingsMessageContainer">
+            <VBox alignment="CENTER" fx:id="meetingsMessageContainer" VBox.vgrow="ALWAYS">
                 <children>
                     <Label fx:id="meetingsMessage" text="Label">
                         <HBox.margin>
@@ -28,6 +30,13 @@
                         </HBox.margin>
                     </Label>
                 </children>
+
+                <StackPane VBox.vgrow="ALWAYS" fx:id="meetingListPanelPlaceholder">
+<!--                    <padding>-->
+<!--                        <Insets top="5" right="10" bottom="5" left="10" />-->
+<!--                    </padding>-->
+                </StackPane>
+
                 <opaqueInsets>
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                 </opaqueInsets>
