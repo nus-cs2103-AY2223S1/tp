@@ -38,17 +38,22 @@ public class AddTaskCommand extends TaskCommand {
             + "Example: " + COMMAND_WORD_FULL + " "
             + "New task "
             + PREFIX_DEADLINE + "14 December 2000 "
-            + PREFIX_PROJECT + "CS2103t tp "
+            + PREFIX_PROJECT + "CS2103T tP "
             + PREFIX_CONTACT + "1 "
             + PREFIX_CONTACT + "2 ";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Successfully added new task:\n"
+            + "Title: %s\n"
+            + "Deadline: %s\n"
+            + "Project: %s\n"
+            + "Assigned Contacts: %s\n";
     public static final String MESSAGE_DUPLICATE_TASK = "Task with the name '%s' already exists.";
 
     private final Title title;
     private final Deadline deadline;
     private final Project project;
     private final Set<Index> contactIndexes;
+    private final Set<Contact> assignedContacts = new HashSet<>();
 
     /**
      * Creates an AddTaskCommand to add the specified {@code Task}
@@ -75,7 +80,6 @@ public class AddTaskCommand extends TaskCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Set<Contact> assignedContacts = new HashSet<>();
         List<Person> lastShownPersonList = model.getFilteredPersonList();
 
         for (Index index : contactIndexes) {
@@ -90,7 +94,8 @@ public class AddTaskCommand extends TaskCommand {
         }
 
         model.addTask(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, title, deadline, project, assignedContacts));
     }
 
     @Override
@@ -99,4 +104,5 @@ public class AddTaskCommand extends TaskCommand {
                 || (other instanceof AddTaskCommand // instanceof handles nulls
                 && title.equals(((AddTaskCommand) other).title));
     }
+
 }

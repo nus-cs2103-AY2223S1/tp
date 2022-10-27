@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -34,9 +36,11 @@ public class EditTaskCommand extends TaskCommand {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_PROJECT + "PROJECT NAME]\n"
             + "Example: " + COMMAND_WORD_FULL + " 1 "
             + PREFIX_TITLE + "Add tasks functionality "
+            + PREFIX_DEADLINE + "next Friday"
             + PREFIX_PROJECT + "CS2103T tp ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
@@ -52,8 +56,7 @@ public class EditTaskCommand extends TaskCommand {
      * @param editTaskDescriptor details to edit the task with
      */
     public EditTaskCommand(Index targetIndex, EditTaskDescriptor editTaskDescriptor) {
-        requireNonNull(targetIndex);
-        requireNonNull(editTaskDescriptor);
+        requireAllNonNull(targetIndex, editTaskDescriptor);
 
         this.targetIndex = targetIndex;
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
@@ -63,13 +66,13 @@ public class EditTaskCommand extends TaskCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Task> taskList = model.getFilteredTaskList();
+        List<Task> lastShownTaskList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= taskList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
-        Task taskToEdit = taskList.get(targetIndex.getZeroBased());
 
+        Task taskToEdit = lastShownTaskList.get(targetIndex.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
@@ -91,10 +94,13 @@ public class EditTaskCommand extends TaskCommand {
         assert taskToEdit != null;
 
         Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Project updatedProject = editTaskDescriptor.getProject().orElse(taskToEdit.getProject());
+        Set<Contact> updatedAssignedContacts =
+            editTaskDescriptor.getAssignedContacts().orElse(taskToEdit.getAssignedContacts());
 
-        return new Task(updatedTitle, taskToEdit.getCompleted(), taskToEdit.getDeadline(), updatedProject,
-                taskToEdit.getAssignedContacts());
+        return new Task(updatedTitle, taskToEdit.getCompleted(), updatedDeadline, updatedProject,
+                updatedAssignedContacts);
     }
 
     @Override
@@ -135,14 +141,17 @@ public class EditTaskCommand extends TaskCommand {
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
+            setCompleted(toCopy.isCompleted);
+            setDeadline(toCopy.deadline);
             setProject(toCopy.project);
+            setAssignedContacts(toCopy.assignedContacts);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, project);
+            return CollectionUtil.isAnyNonNull(title, deadline, project, assignedContacts);
         }
 
         public void setTitle(Title title) {
@@ -165,7 +174,7 @@ public class EditTaskCommand extends TaskCommand {
             this.isCompleted = isCompleted;
         }
 
-        public boolean getCompleted() {
+        public boolean getIsCompleted() {
             return isCompleted;
         }
 
@@ -208,7 +217,7 @@ public class EditTaskCommand extends TaskCommand {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getTitle().equals(e.getTitle())
-                    && getCompleted() == e.getCompleted()
+                    && getIsCompleted() == e.getIsCompleted()
                     && getDeadline() == e.getDeadline()
                     && getProject() == e.getProject()
                     && getAssignedContacts().equals(e.getAssignedContacts());
