@@ -22,7 +22,7 @@ public class Pin {
      * Returns value for hasPinned
      *
      */
-    public boolean isPinned() {
+    public boolean getHasPinned() {
         return this.hasPinned;
     }
 

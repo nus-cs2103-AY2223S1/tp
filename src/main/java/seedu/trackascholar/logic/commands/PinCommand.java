@@ -46,7 +46,7 @@ public class PinCommand extends Command {
         }
 
         Applicant applicantToPin = lastShownList.get(index.getZeroBased());
-        if (applicantToPin.getPin().isPinned()) {
+        if (applicantToPin.getPin().getHasPinned()) {
             throw new CommandException(MESSAGE_APPLICANT_ALREADY_PINNED);
         }
         Applicant pinnedApplicant = createPinnedApplicant(applicantToPin);

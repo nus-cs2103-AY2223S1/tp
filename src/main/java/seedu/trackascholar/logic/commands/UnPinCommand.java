@@ -43,7 +43,7 @@ public class UnPinCommand extends Command {
         int indexOfApplicant = getApplicantIndex(lastShownList, name);
 
         Applicant applicantToUnPin = lastShownList.get(indexOfApplicant);
-        if (!applicantToUnPin.getPin().isPinned()) {
+        if (!applicantToUnPin.getPin().getHasPinned()) {
             throw new CommandException(MESSAGE_APPLICANT_ALREADY_UNPINNED);
         }
         Applicant unPinnedApplicant = createUnPinnedApplicant(applicantToUnPin);

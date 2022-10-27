@@ -70,7 +70,7 @@ class JsonAdaptedApplicant {
         email = source.getEmail().value;
         scholarship = source.getScholarship().scholarship;
         applicationStatus = source.getApplicationStatus().applicationStatus;
-        hasPinned = source.getPin().isPinned();
+        hasPinned = source.getPin().getHasPinned();
         tagged.addAll(source.getMajors().stream()
                 .map(JsonAdaptedMajor::new)
                 .collect(Collectors.toList()));
