@@ -7,13 +7,9 @@ import seedu.foodrem.commons.util.StringUtil;
 
 /**
  * Represents a Tag's name in the FoodRem.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Guarantees: immutable; is valid as declared in {@link StringUtil#isValidString(String)}
  */
 public class TagName {
-    public static final String MESSAGE_CONSTRAINTS =
-            "The tag name should only contain alphanumeric characters, spaces and the following symbols "
-                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
-
     private final String fullName;
 
     /**
@@ -23,15 +19,8 @@ public class TagName {
      */
     public TagName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(StringUtil.isValidString(name), StringUtil.getInvalidCharactersMessage("tag name"));
         fullName = name;
-    }
-
-    /**
-     * Returns {@code true} if a given string is a valid name.
-     */
-    public static boolean isValidName(String test) {
-        return test.matches(StringUtil.VALIDATION_REGEX);
     }
 
     @Override

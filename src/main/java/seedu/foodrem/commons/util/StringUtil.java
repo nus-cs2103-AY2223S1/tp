@@ -15,7 +15,28 @@ public class StringUtil {
     /*
      * Alphanumeric characters, whitespaces and the following symbols []{}()-+*=.,_'"^$?@!#%&:;
      */
-    public static final String VALIDATION_REGEX = "[A-Za-z0-9()\\[\\]{}\\-+*=.,_'\"^$?@!#%&:; ]*";
+    private static final String VALIDATION_REGEX = "[A-Za-z0-9()\\[\\]{}\\-+*=.,_'\"^$?@!#%&:; ]*";
+
+    private static final String SYMBOLS = "[]{}()-+*=.,_'\"^$?@!#%&:;";
+    private static final String MESSAGE_FOR_INVALID_CHARACTERS =
+            "The %s should only contain alphanumeric characters, spaces and the following symbols ";
+
+    /**
+     * Returns {@code true} if a given string is a contains only valid characters.
+     */
+    public static boolean isValidString(String string) {
+        return string.matches(StringUtil.VALIDATION_REGEX);
+    }
+
+    /*
+     * Returns a message to a user if a certain field fails the validation check for valid characters.
+     */
+    public static String getInvalidCharactersMessage(String field) {
+        if (field.isBlank()) {
+            field = "field";
+        }
+        return String.format(MESSAGE_FOR_INVALID_CHARACTERS, field) + SYMBOLS;
+    }
 
     /**
      * Returns {@code true} if the {@code sentence} contains the {@code word}.
