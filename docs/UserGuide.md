@@ -21,7 +21,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
    7. [Locating applicants by field](#37-locating-applicants-by-field-find)
    8. [Importing applicants from an external text file](#38-importing-applicants-from-an-external-text-file-import)
    9. [Exporting displayed list](#39-exporting-displayed-list-export)
-   10. [Check-out a new or existing list](#310-check-out-a-new-or-existing-list-checkout)
+   10. [Check-out a new or existing list](#310-checking-out-a-new-or-existing-list-checkout)
    11. [Clearing all entries](#311-clearing-all-entries-clear)
    12. [Exiting the program](#312-exiting-the-program-exit)
    13. [Saving the data](#313-saving-the-data)
@@ -62,32 +62,50 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the fields:**<br>
+**:information_source: Notes about the field format:**<br>
+
+* * Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
+    e.g., in `CURRENT_CAP`, `CURRENT_CAP` is a parameter which can be used as `3.5`.
+* None of the fields inserted into the command should be blank, except when removing `Tag` through the `edit` command
 
 * Identity fields and Data fields are mandatory
 
 * Tag fields are optional
 
+* Length of fields are in characters, excluding the spaces
+
 </div>
 
 
 ### 2.1 Identity Fields
-1. Email
-   Parameter: 
-   Constraints:
-   Length Limit: 
-   
-2. ...
+| Field       | Parameter | Length Limit | Constraints                                                    |
+|-------------|-----------|--------------|----------------------------------------------------------------|
+| **Email**   | `e`       | 50           | Can only be of the format `LOCAL_PART@DOMAIN`                  |
+| **Job ID**  | `ji`      | 10           | Can only contain upper case alphanumeric characters and spaces |
+* `LOCAL_PART` can only contain alphanumeric characters and any of `+` `_` `.` `-`, but must not start or end with these special characters
+* `DOMAIN` can be made up of numerous `DOMAIN_LABEL` separated by `.`, with the last `DOMAIN_LABEL` being at least 2 characters long
+* `DOMAIN_LABEL` can only contain alphanumeric characters separated by `-`, but must start and end with alphanumeric characters
 
 
 ### 2.2 Data Fields
-1. Name
-   ...
+| Field               | Parameter | Length Limit | Constraints                                                                   |
+|---------------------|-----------|--------------|-------------------------------------------------------------------------------|
+| **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                           |
+| **Phone**           | `p`       | 20           | Can only contain numbers, at least 3 digits long                              |
+| **Address**         | `a`       | 100          | Can take any values, but not blank                                            |
+| **CAP**             | `c`       | None         | Can only consist of 2 decimal values in the form of `CURRENT_CAP/MAX_CAP`     |
+| **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                          |
+| **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                           |
+| **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of mm-YYYY, starting from the year 0000 |                           
+| **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                           |
+| **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces     |
+* Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
 
 
 ### 2.3 Tag Fields
-1. Tags
-   ...
+| Field   | Parameter | Length Limit | Constraints                                     |
+|---------|-----------|--------------|-------------------------------------------------|
+| **Tag** | `t`       | 30           | Can only contain alphabet characters and spaces |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -200,7 +218,7 @@ Examples:
 
 Finds applicants whose names contain any of the given keywords.
 
-Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]...`
+Format: `find parameter/KEYWORD [parameter/MORE_KEYWORDS]...`
 
 * The search is case-insensitive. E.g., `bobby` will match `Bobby`.
 * The order of the keywords does not matter. E.g., `Bobby cortez` will match `Cortez bobby`.
@@ -242,7 +260,7 @@ Examples:
 * `find university/NUS` followed by `export` exports the result of the `find` command to a JSON file.
 
 
-### 3.10 Check-out a new or existing list: `checkout`
+### 3.10 Checking-out a new or existing list: `checkout`
 
 Switches between different lists in InternConnect.
 
