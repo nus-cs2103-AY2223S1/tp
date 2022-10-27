@@ -7,6 +7,8 @@ import seedu.foodrem.ui.ResultDisplay;
 import seedu.foodrem.viewmodels.FilterByTag;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 import seedu.foodrem.viewmodels.Stats;
+import seedu.foodrem.viewmodels.TagToRename;
+import seedu.foodrem.viewmodels.TagsWithMessage;
 
 /**
  * A UI view manager to handle view updates to a result display.
