@@ -37,6 +37,7 @@ public class ExportCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Class [ %1$s ] successfully exported to [ %2$s ].";
     public static final String MESSAGE_EXPORT_FAILED = "Failed to export [ %1$s ].";
 
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
