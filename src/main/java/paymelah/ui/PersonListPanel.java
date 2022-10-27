@@ -9,9 +9,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.TitledPane;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -48,15 +48,6 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.getPanes().addAll(titledPanes);
     }
 
-    // private void resetIndices(List<TitledPane> titledPanes) {        
-    //     for (int i = 1; i <= titledPanes.size(); ++i) {
-    //         Label label = (Label) ((HBox) titledPanes.get(i - 1).getGraphic())
-    //                 .getChildren().get(0);
-    //         String labelText = label.getText();
-    //         label.setText(i + labelText.substring(labelText.indexOf('.')));
-    //     }
-    // }
-
     private TitledPane createTitledPane(Person person, ObservableList<? extends Person> observableList) {
         int oneBasedIndex = observableList.indexOf(person) + 1;
         if (oneBasedIndex == 0) {
@@ -81,7 +72,7 @@ public class PersonListPanel extends UiPart<Region> {
         HBox region = new HBox();
         region.setMaxWidth(Double.MAX_VALUE);
         HBox.setHgrow(region, Priority.ALWAYS);
-        
+
         Label name = new Label(oneBasedIndex + ". " + person.getName().fullName);
         name.setMaxWidth(250);
 

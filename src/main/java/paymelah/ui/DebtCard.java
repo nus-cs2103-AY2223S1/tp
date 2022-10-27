@@ -55,13 +55,14 @@ public class DebtCard extends UiPart<Region> {
         money.setText("$" + debt.getMoney().toString());
         dateTime.setText(debt.getDate().toString() + " " + debt.getTime().toString());
         if (debt.isPaid()) {
-          isPaid.setText("PAID");
-          isPaid.setBackground(new Background(new BackgroundFill(Color.GREEN, new CornerRadii(2), Insets.EMPTY)));
+            isPaid.setText("PAID");
+            isPaid.setBackground(new Background(new BackgroundFill(Color.GREEN, new CornerRadii(2), Insets.EMPTY)));
         } else {
-          isPaid.setText("UNPAID");
-          isPaid.setBackground(new Background(new BackgroundFill(Color.RED, new CornerRadii(2), Insets.EMPTY)));
+            isPaid.setText("UNPAID");
+            isPaid.setBackground(new Background(new BackgroundFill(Color.RED, new CornerRadii(2), Insets.EMPTY)));
         }
-        isPaid.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(2), BorderStroke.THIN)));
+        isPaid.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID,
+                new CornerRadii(2), BorderStroke.THIN)));
     }
 
     @Override
