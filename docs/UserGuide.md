@@ -168,7 +168,7 @@ An event must contain the following information:
 
 * Title, limited to 40 alphanumeric characters including spaces
 * Start date
-* End date
+* End date, which must be on the same day or after the start date
 
 A event may also contain:
 
