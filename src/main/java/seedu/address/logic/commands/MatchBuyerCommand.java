@@ -12,38 +12,38 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.FilterBuyerByPricePredicate;
-import seedu.address.model.buyer.FilterBuyerContainingAnyCharacteristicPredicate;
+import seedu.address.model.property.FilterPropsByPricePredicate;
+import seedu.address.model.property.FilterPropsContainingAnyCharacteristicPredicate;
 import seedu.address.model.property.Property;
 
 /**
  * Matches {@code properties} to {@code buyers} that either has a price within the buyer's price range,
  * or has at least 1 characteristic that the buyer has as well.
  */
-public class MatchPropertyCommand extends Command {
+public class MatchBuyerCommand extends Command {
 
-    public static final String COMMAND_WORD = "matchprop";
+    public static final String COMMAND_WORD = "matchbuyer";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             // TODO: Change description?
-            + ": Matches a property with all buyers who are most suitable to purchase the property.\n"
+            + ": Intelligently matches a buyer with all properties who are most suitable.\n"
             + "Pass in " + PREFIX_STRICT + " after the index for a stricter but possibly less matches."
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_STRICT;
 
-    public static final String MESSAGE_MATCHED_PROPERTY_SUCCESS = "%s matched buyers for the property:\n%s";
+    public static final String MESSAGE_MATCHED_BUYER_SUCCESS = "%s matched properties for the buyer:\n%s";
 
     private final Index targetIndex;
     private final boolean isMatchingAll;
 
     /**
-     * Constructor for MatchPropertyCommand.
+     * Constructor for MatchBuyerCommand.
      *
      * @param targetIndex the index of the property to be matched.
      * @param isMatchingAll whether all the conditions specified must be satisfied in each of the resulting buyers.
      */
-    public MatchPropertyCommand(Index targetIndex, boolean isMatchingAll) {
+    public MatchBuyerCommand(Index targetIndex, boolean isMatchingAll) {
         this.targetIndex = targetIndex;
         this.isMatchingAll = isMatchingAll;
     }
@@ -51,40 +51,47 @@ public class MatchPropertyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Property> lastShownList = model.getFilteredPropertyList();
+        List<Buyer> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_BUYER_DISPLAYED_INDEX);
         }
 
-        Property propertyToMatch = lastShownList.get(targetIndex.getZeroBased());
+        Buyer buyerToMatch = lastShownList.get(targetIndex.getZeroBased());
 
-        ArrayList<Predicate<Buyer>> predicatesList = new ArrayList<>();
-        predicatesList.add(new FilterBuyerByPricePredicate(propertyToMatch.getPrice()));
-        if (propertyToMatch.getCharacteristics().isPresent()) {
-            predicatesList.add(
-                    new FilterBuyerContainingAnyCharacteristicPredicate(propertyToMatch.getCharacteristics().get()));
+        ArrayList<Predicate<Property>> predicatesList = new ArrayList<>();
+
+        if (buyerToMatch.getDesiredCharacteristics().isEmpty() && buyerToMatch.getPriceRange().isEmpty()) {
+            throw new CommandException("Cannot match Buyer who has no desired characteristics or price range indicated!");
+        } else {
+            if (buyerToMatch.getPriceRange().isPresent()) {
+                predicatesList.add(new FilterPropsByPricePredicate(buyerToMatch.getPriceRange().get()));
+            }
+
+            if (buyerToMatch.getDesiredCharacteristics().isPresent()) {
+                predicatesList.add(new FilterPropsContainingAnyCharacteristicPredicate(
+                        buyerToMatch.getDesiredCharacteristics().get()));
+            }
         }
 
-        // predicatesList must not be empty, since at least FilterBuyerByPricePredicate should be added
         assert(!predicatesList.isEmpty());
 
-        Predicate<Buyer> combinedPredicate;
+        Predicate<Property> combinedPredicate;
         if (isMatchingAll) {
             combinedPredicate = predicatesList.stream().reduce(Predicate::and).get();
         } else {
             combinedPredicate = predicatesList.stream().reduce(Predicate::or).get();
         }
 
-        new FilterBuyersCommand(combinedPredicate).execute(model);
+        new FilterPropertiesCommand(combinedPredicate).execute(model);
 
-        return new CommandResult(String.format(MESSAGE_MATCHED_PROPERTY_SUCCESS, model.getFilteredPersonList().size(), propertyToMatch));
+        return new CommandResult(String.format(MESSAGE_MATCHED_BUYER_SUCCESS, model.getFilteredPropertyList().size(), buyerToMatch));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MatchPropertyCommand // instanceof handles nulls
-                && targetIndex.equals(((MatchPropertyCommand) other).targetIndex)); // state check
+                || (other instanceof MatchBuyerCommand // instanceof handles nulls
+                && targetIndex.equals(((MatchBuyerCommand) other).targetIndex)); // state check
     }
 }
