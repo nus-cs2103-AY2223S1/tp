@@ -184,18 +184,17 @@ Examples:
 
 #### 4.2.1 Finding a student record : `find`
 
-Shows a full record, including all stored details, using the input student's name or student's id. Search for multiple
-students by including more keywords
+Shows a list of students whose name contains the specified name keywords, or whose Id matches the given Id.
 
-Format: `view nm/[name]` or `view id/[id]`
+Format: `find nm/[name]` or `find id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only the name or the id is searched, depending on the given input.
 * Only full names / full ids will be matched e.g. `Han` will not match `Hans`
 
 Examples:
-* `view nm/John` returns the record for the student named `john`
-* `view nm/john alice` returns the records for the students named `John` and the student named `Alice`.
+* `find nm/John` returns the record for the student named `john`
+* `find nm/john alice` returns the records for the students named `John` and the student named `Alice`.
 
 #### 4.2.2 Toggling view : `toggleView`
 
@@ -232,7 +231,24 @@ Examples:
 
 #### 4.3.1 Getting exam statistics: `viewStats`
 
-*To be updated* 
+Shows a list of students in the specified class, and displays the mean of the specified exam for that class. If filter 
+is set to "ON", only students whose score for the specified exam falls below the mean will be displayed.
+
+The list of students displayed will be arranged in ascending grades, using the grade for the specified exam.
+
+Format: `viewStats class/CLASS exam/EXAM filter/FILTER`
+
+* Class name can only contain alphanumeric characters.
+* Class name is case-insensitive.
+* Exam name should be either "CA1", "CA2", "SA1" or "SA2".
+* Exam name is case-insensitive
+* Filter is either "ON" or "OFF", and is case-insensitive.
+
+Examples:
+* `viewStats class/4a exam/sa1 filter/off` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
+all the students in the class '4A', arranged in ascending grades for "SA1".
+* `viewStats class/4A exam/sa1 filter/on` Displays the mean obtained by class "4A" for "SA1", as well as the list of 
+students in class "4A" whose grade for "SA1" falls below the mean, arranged in ascending grades for "SA1".
 
 ### 4.4 Miscellaneous
 
