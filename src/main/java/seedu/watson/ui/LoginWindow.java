@@ -7,8 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.watson.auth.AuthHandler;
 import seedu.watson.commons.core.GuiSettings;
@@ -36,25 +43,46 @@ public class LoginWindow extends UiPart<Stage> {
         this.logic = logic;
         this.loginErrorWindow = new LoginErrorWindow();
 
+
+        //Welcome Header
+        Text welcomeHeader = new Text("Welcome to Watson!");
+        welcomeHeader.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 30));
+
+        //Description Header
+        Text descriptionHeader = new Text("Your friendly teaching assistant");
+        descriptionHeader.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 15));
+
+        //prompt text
+        Text promptLogin = new Text("For testing purposes, use username:admin, password:admin");
+        promptLogin.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.REGULAR, 15));
+        promptLogin.setFill(Color.RED);
+        // Logo
+        Image logo = new Image("images/teachings.png");
+        ImageView imageView = new ImageView(logo);
+        imageView.setFitWidth(150);
+        imageView.setFitHeight(150);
+
         // Holder for text fields
         VBox vb = new VBox();
         HBox nameHolder = new HBox();
         HBox passwordHolder = new HBox();
 
         // Name field
-        Label nameLabel = new Label("Name:");
+        Label nameLabel = new Label("Username:");
+        nameLabel.setMinWidth(70);
         final TextField nameField = new TextField();
         nameHolder.getChildren().addAll(nameLabel, nameField);
         nameHolder.setAlignment(Pos.CENTER);
 
         // Password field
         Label passwordLabel = new Label("Password:");
+        passwordLabel.setMinWidth(70);
         final TextField passwordField = new TextField();
         passwordHolder.getChildren().addAll(passwordLabel, passwordField);
         passwordHolder.setAlignment(Pos.CENTER);
 
         // Submit button
-        Button submit = new Button("Submit");
+        Button submit = new Button("Login");
 
         // Textfield event handler
         // Setting an action for the Submit button
@@ -89,7 +117,8 @@ public class LoginWindow extends UiPart<Stage> {
         );
 
         // Combining all components
-        vb.getChildren().addAll(nameHolder, passwordHolder, submit);
+        vb.getChildren().addAll(welcomeHeader, descriptionHeader, imageView,
+                nameHolder, passwordHolder, submit, promptLogin);
         vb.setSpacing(10);
         vb.setAlignment(Pos.CENTER);
         Scene scene1 = new Scene(vb, 400, 250);
