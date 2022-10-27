@@ -2,7 +2,6 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
-import static paymelah.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +93,6 @@ public class DeleteDebtCommand extends Command {
         model.saveAddressBook();
         model.saveCommandMessage(builder.toString());
         model.setPerson(debtorToUpdate, updatedDebtor);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(builder.toString());
     }
 

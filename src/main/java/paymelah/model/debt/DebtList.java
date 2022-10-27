@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 import paymelah.model.debt.exceptions.DebtNotFoundException;
+import paymelah.model.debt.exceptions.DuplicateDebtException;
 
 /**
  * Represents a list of a person's {@link Debt} in the address book.
@@ -61,13 +62,16 @@ public class DebtList {
     }
 
     /**
-     * Adds a debt to the list.
+     * Adds a debt to the list if it is not already in the list.
      *
      * @param toAdd The debt to add to the list.
      * @return The modified debt list.
      */
     public DebtList addDebt(Debt toAdd) {
         requireNonNull(toAdd);
+        if (this.contains(toAdd)) {
+            throw new DuplicateDebtException();
+        }
         DebtList edited = new DebtList(this);
 
         int index = 0;

@@ -17,9 +17,11 @@ import paymelah.model.debt.Money;
 @JsonIgnoreProperties(ignoreUnknown = true)
 class JsonAdaptedDebt {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Debt's %s field is missing!";
+
     private final String description;
     private final String money;
-    private final boolean isPaid;
+    private final Boolean isPaid;
     private final String date;
     private final String time;
 
@@ -29,7 +31,7 @@ class JsonAdaptedDebt {
     @JsonCreator
     public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money,
             @JsonProperty("date") String date, @JsonProperty("time") String time,
-            @JsonProperty("isPaid") boolean isPaid) {
+            @JsonProperty("isPaid") Boolean isPaid) {
         this.description = description;
         this.money = money;
         this.date = date;
@@ -64,7 +66,7 @@ class JsonAdaptedDebt {
         return time;
     }
 
-    public boolean isPaid() {
+    public Boolean isPaid() {
         return isPaid;
     }
 
@@ -74,17 +76,41 @@ class JsonAdaptedDebt {
      * @throws IllegalValueException if there were any data constraints violated in the adapted debt.
      */
     public Debt toModelType() throws IllegalValueException {
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Description.class.getSimpleName()));
+        }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+
+        if (money == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Money.class.getSimpleName()));
         }
         if (!Money.isValidMoney(money)) {
             throw new IllegalValueException(Money.MESSAGE_CONSTRAINTS);
         }
+
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DebtDate.class.getSimpleName()));
+        }
         if (!DebtDate.isValidDate(date)) {
             throw new IllegalValueException(DebtDate.MESSAGE_CONSTRAINTS);
         }
+
+        if (time == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DebtTime.class.getSimpleName()));
+        }
         if (!DebtTime.isValidTime(time)) {
             throw new IllegalValueException(DebtTime.MESSAGE_CONSTRAINTS);
+        }
+
+        if (isPaid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    "isPaid"));
         }
 
         return new Debt(new Description(description), new Money(money), new DebtDate(date), new DebtTime(time), isPaid);
