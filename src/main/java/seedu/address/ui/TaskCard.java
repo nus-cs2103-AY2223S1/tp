@@ -1,8 +1,6 @@
 package seedu.address.ui;
 
 import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -48,9 +46,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    private Path checkedPngPath = Paths.get("src/main/resources/images/checkbox_checked.png");
-
-    private Path uncheckedPngPath = Paths.get("src/main/resources/images/checkbox_unchecked.png");
+    private Image checkedPng = new Image(this.getClass().getResourceAsStream("/images/checkbox_checked.png"));
+    private Image uncheckedPng = new Image(this.getClass().getResourceAsStream("/images/checkbox_unchecked.png"));
 
     /**
      * Creates a {@code PersonCode} with the given {@code Task} and index to display.
@@ -62,8 +59,7 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         deadline.setText(task.getDeadline().toDisplayString());
         module.setText(task.getModule().fullName);
-        Image checkBoxImage = new Image(task.isDone() ? checkedPngPath.toUri().toURL().toExternalForm()
-                : uncheckedPngPath.toUri().toURL().toExternalForm());
+        Image checkBoxImage = task.isDone() ? checkedPng : uncheckedPng;
         checkbox.setImage(checkBoxImage);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
