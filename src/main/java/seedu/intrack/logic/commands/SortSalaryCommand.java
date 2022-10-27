@@ -11,7 +11,7 @@ import seedu.intrack.model.Model;
 public class SortSalaryCommand extends SortCommand {
 
     public static final String SORT_COMMAND_CONSTRAINTS = "SORT_ORDER must be either \"a\" to denote Ascending or "
-            +"\"d\" to denote Descending.";
+            + "\"d\" to denote Descending.";
 
     public static final String MESSAGE_SUCCESS_A = "Sorted all internship applications by salary in ascending order.";
 
@@ -19,6 +19,9 @@ public class SortSalaryCommand extends SortCommand {
 
     private final String orderType;
 
+    /**
+     * @param orderType Order to sort the list by.
+     */
     public SortSalaryCommand(String orderType) {
         requireNonNull(orderType);
         this.orderType = orderType;

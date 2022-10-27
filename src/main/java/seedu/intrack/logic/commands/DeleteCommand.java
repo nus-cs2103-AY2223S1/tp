@@ -27,6 +27,9 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex Index of the internship application to be deleted.
+     */
     public DeleteCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;

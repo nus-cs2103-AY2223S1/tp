@@ -24,6 +24,9 @@ public class FilterCommand extends Command {
 
     private final StatusIsKeywordPredicate predicate;
 
+    /**
+     * @param predicate Predicate to filter the list with.
+     */
     public FilterCommand(StatusIsKeywordPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;

@@ -1,7 +1,6 @@
 package seedu.intrack.logic.commands;
 
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
