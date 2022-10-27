@@ -12,8 +12,8 @@ import seedu.address.model.commons.Criteria;
  */
 public class SortTaskCommand extends Command {
     public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": sorts the task list.\n"
-            + COMMAND_WORD + " " + PREFIX_CRITERIA + "CRITERIA";
+    public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": sorts the task list.\n"
+            + "Parameters: " + PREFIX_CRITERIA + "CRITERIA";
     public static final String TASK_SORTED_SUCCESSFULLY =
             "Task list has been successfully sorted";
     public static final String NO_TASK_TO_SORT =
