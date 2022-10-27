@@ -59,15 +59,17 @@ public class ParserUtil {
      * Parses a {@code String phone} into a {@code ClientPhone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static ClientPhone parseClientPhone(String phone) throws ParseException {
+    public static ClientPhone parseClientPhone(String phone) {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
+
+        ClientPhone newPhone = new ClientPhone(trimmedPhone);
         if (!ClientPhone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(ClientPhone.MESSAGE_CONSTRAINTS);
+            newPhone.setWarning();
         }
-        return new ClientPhone(trimmedPhone);
+
+        return newPhone;
     }
 
     /**
@@ -104,15 +106,17 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code ClientEmail}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
      */
-    public static ClientEmail parseClientEmail(String email) throws ParseException {
+    public static ClientEmail parseClientEmail(String email) {
         requireNonNull(email);
         String trimmedEmail = email.trim();
+
+        ClientEmail newEmail = new ClientEmail(trimmedEmail);
         if (!ClientEmail.isValidEmail(trimmedEmail)) {
-            throw new ParseException(ClientEmail.MESSAGE_CONSTRAINTS);
+            newEmail.setWarning();
         }
-        return new ClientEmail(trimmedEmail);
+
+        return newEmail;
     }
 
     /**

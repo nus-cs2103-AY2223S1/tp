@@ -102,17 +102,11 @@ class JsonAdaptedClient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ClientPhone.class.getSimpleName()));
         }
-        if (!ClientPhone.isValidPhone(phone)) {
-            throw new IllegalValueException(ClientPhone.MESSAGE_CONSTRAINTS);
-        }
         final ClientPhone modelPhone = new ClientPhone(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ClientEmail.class.getSimpleName()));
-        }
-        if (!ClientEmail.isValidEmail(email)) {
-            throw new IllegalValueException(ClientEmail.MESSAGE_CONSTRAINTS);
         }
         final ClientEmail modelEmail = new ClientEmail(email);
 

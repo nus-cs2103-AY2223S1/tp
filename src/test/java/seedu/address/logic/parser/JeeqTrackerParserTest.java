@@ -58,7 +58,7 @@ public class JeeqTrackerParserTest {
     public void parseCommand_add() throws Exception {
         Client client = new ClientBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
-        assertEquals(new AddCommand(client), command);
+        assertEquals(new AddCommand(client, ""), command);
     }
 
     @Test
