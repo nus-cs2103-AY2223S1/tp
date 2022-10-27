@@ -55,10 +55,11 @@
 }
 
 .command-box > TextField,
-.result-box > TextArea {
+.result-box > * {
   -fx-text-fill: black;
   -fx-highlight-fill: brown; // TODO
   -fx-highlight-text-fill: pink; // TODO
+  -fx-font-family: "Montserrat";
 
   -fx-padding: 0;
 }
@@ -92,6 +93,7 @@
   -fx-font-size: 10pt;
   -fx-background-color: #f3d3b5;
   -fx-background-radius: 8;
+  -fx-font-family: "Epilogue";
 
   -fx-label-padding: 4 6 4 6;
 }
@@ -128,6 +130,7 @@
 .list-view .list-cell:even,
 .list-view .list-cell:odd {
   -fx-background-radius: 8;
+  -fx-padding: 8 10 8 10;
 }
 
 .tags-overflow-label {
