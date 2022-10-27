@@ -8,7 +8,7 @@ title: SoConnect
 
 ![Ui](images/Ui.png)
 
-SoConnect is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SoConnect can get your contact management tasks done faster than traditional GUI apps.
+SoConnect is a **desktop app for managing contacts and tasks**. It aims to help NUS SoC students stay better connected to their school life, in terms of social connections and school tasks. SoConnect is also **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SoConnect can **get your contact and task management done faster than traditional GUI apps.**
 
 * If you are interested in using SoConnect, head over to the [_Quick Start_ section of the **User Guide**](https://ay2223s1-cs2103t-w15-1.github.io/tp/UserGuide.html#quick-start).
 * If you are interested about developing SoConnect, the [**Developer Guide**](https://ay2223s1-cs2103t-w15-1.github.io/tp/DeveloperGuide.html) is a good place to start.

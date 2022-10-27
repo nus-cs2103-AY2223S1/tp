@@ -30,6 +30,7 @@ import soconnect.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new CustomiseCommand object.
  */
 public class CustomiseCommandParser implements Parser<CustomiseCommand> {
+
     /**
      * Used for initial separation of command word and args.
      */

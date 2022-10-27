@@ -1,0 +1,102 @@
+@startuml
+!include style.puml
+scale 1600*561
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SoConnectParser" as SoConnectParser LOGIC_COLOR
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
+participant ":TagAddCommandParser" as TagAddCommandParser LOGIC_COLOR
+participant "ta:TagAddCommand" as TagAddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tag add 1 t/friend")
+activate LogicManager
+
+LogicManager -> SoConnectParser : parseCommand("tag add 1 t/friend")
+activate SoConnectParser
+
+create TagCommandParser
+SoConnectParser -> TagCommandParser
+activate TagCommandParser
+
+
+
+TagCommandParser --> SoConnectParser
+deactivate TagCommandParser
+
+SoConnectParser -> TagCommandParser : parse("("add 1 t/friend")
+activate TagCommandParser
+
+create TagAddCommandParser
+TagCommandParser --> TagAddCommandParser
+activate TagAddCommandParser
+
+TagAddCommandParser --> TagCommandParser
+deactivate TagAddCommandParser
+
+TagCommandParser -> TagAddCommandParser : parse("1 t/friend")
+activate TagAddCommandParser
+
+create TagAddCommand
+TagAddCommandParser -> TagAddCommand
+activate TagAddCommand
+
+TagAddCommand --> TagAddCommandParser : ta
+deactivate TagAddCommand
+
+TagAddCommandParser --> TagCommandParser : ta
+deactivate TagAddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagAddCommandParser -[hidden]-> TagCommandParser
+destroy TagAddCommandParser
+
+TagCommandParser --> SoConnectParser : ta
+deactivate TagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagCommandParser -[hidden]-> SoConnectParser
+destroy TagCommandParser
+
+SoConnectParser --> LogicManager : ta
+deactivate SoConnectParser
+
+LogicManager -> TagAddCommand : execute()
+activate TagAddCommand
+
+TagAddCommand --> Model : getFilteredPersonList()
+activate Model
+
+Model --> TagAddCommand
+deactivate Model
+
+TagAddCommand -> TagAddCommand : createEditedPerson(1, friend)
+activate TagAddCommand
+
+TagAddCommand -> TagAddCommand
+deactivate TagAddCommand
+
+
+TagAddCommand -> Model : setPersons(1, 1)
+activate Model
+
+Model --> TagAddCommand
+deactivate Model
+
+create CommandResult
+TagAddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagAddCommand
+deactivate CommandResult
+
+TagAddCommand --> LogicManager : result
+deactivate TagAddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

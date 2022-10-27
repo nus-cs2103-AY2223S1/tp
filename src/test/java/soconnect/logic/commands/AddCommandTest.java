@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import soconnect.commons.core.GuiSettings;
 import soconnect.logic.commands.exceptions.CommandException;
@@ -275,6 +276,15 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public SimpleStringProperty getTodoListHeader() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateTodoListHeader(String header) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

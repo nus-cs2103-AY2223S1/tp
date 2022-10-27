@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <HBox id="todoCardPane" fx:id="todoCardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -33,16 +35,21 @@
                         <Insets left="1" />
                     </padding>
                 </HBox>
-                <VBox>
+                <VBox spacing="2">
                     <Label fx:id="description" styleClass="cell_big_label_todo" text="\$first" />
-                    <HBox alignment="CENTER_LEFT" spacing="20">
-                        <Region id="calendarIcon" styleClass="calendar-icon" />
-                        <Label fx:id="datetime" styleClass="cell_small_label_todo" text="\$second" />
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <ImageView>
+                            <Image url="@/images/date_icon.png" requestedWidth="23" requestedHeight="24" />
+                        </ImageView>
+                        <Label fx:id="date" styleClass="cell_small_label_todo" text="\$second" />
                     </HBox>
-                    <HBox alignment="CENTER_LEFT" spacing="20">
-                        <Region id="priorityIcon" styleClass="priority-icon" />
-                        <Label fx:id="priority" styleClass="cell_small_label_todo" text="\$third" />
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <ImageView>
+                            <Image url="@/images/priority_icon.png" requestedWidth="23" requestedHeight="24" />
+                        </ImageView>
+                        <Label fx:id="priority" styleClass="cell_small_label_todo" />
                     </HBox>
+                    <FlowPane fx:id="todoTags"/>
                 </VBox>
             </HBox>
         </VBox>

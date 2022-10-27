@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import soconnect.commons.core.GuiSettings;
@@ -14,6 +15,7 @@ import soconnect.commons.core.LogsCenter;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
 import soconnect.model.todo.Todo;
+import soconnect.ui.TodoListPanel;
 
 /**
  * Represents the in-memory model of the SoConnect data.
@@ -26,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Todo> filteredTodos;
+    private final SimpleStringProperty todoListHeader;
 
     /**
      * Initializes a ModelManager with the given {@code soConnect}, {@code todoList}, and {@code userPrefs}.
@@ -40,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.soConnect.getPersonList());
         filteredTodos = new FilteredList<>(this.todoList.getTodoList());
+        this.todoListHeader = new SimpleStringProperty("");
     }
 
     public ModelManager() {
@@ -231,7 +235,6 @@ public class ModelManager implements Model {
     @Override
     public void addTodo(Todo todo) {
         todoList.addTodo(todo);
-        updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
     }
 
     @Override
@@ -277,6 +280,16 @@ public class ModelManager implements Model {
     public void updateFilteredTodoList(Predicate<Todo> predicate) {
         requireNonNull(predicate);
         filteredTodos.setPredicate(predicate);
+    }
+
+    @Override
+    public SimpleStringProperty getTodoListHeader() {
+        return this.todoListHeader;
+    }
+
+    @Override
+    public void updateTodoListHeader(String header) {
+        this.todoListHeader.set(TodoListPanel.formatTodoHeader(header));
     }
 
     @Override

@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+scale 1600*561
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SoConnectParser" as SoConnectParser LOGIC_COLOR
+participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
+participant ":TagEditCommandParser" as TagEditCommandParser LOGIC_COLOR
+participant "te:TagEditCommand" as TagEditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tag edit t/friend t/bestFriend")
+activate LogicManager
+
+LogicManager -> SoConnectParser : parseCommand("tag edit t/friend t/bestFriend")
+activate SoConnectParser
+
+create TagCommandParser
+SoConnectParser -> TagCommandParser
+activate TagCommandParser
+
+TagCommandParser --> SoConnectParser
+deactivate TagCommandParser
+
+SoConnectParser -> TagCommandParser : parse("("edit t/friend t/bestFriend")
+activate TagCommandParser
+
+create TagEditCommandParser
+TagCommandParser -> TagEditCommandParser
+activate TagEditCommandParser
+
+TagEditCommandParser --> TagCommandParser
+deactivate TagEditCommandParser
+
+TagCommandParser -> TagEditCommandParser : parse("t/friend t/bestFriend")
+activate TagEditCommandParser
+
+create TagEditCommand
+TagEditCommandParser -> TagEditCommand
+activate TagEditCommand
+
+TagEditCommand --> TagEditCommandParser : te
+deactivate TagEditCommand
+
+TagEditCommandParser --> TagCommandParser : te
+deactivate TagEditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagEditCommandParser -[hidden]-> TagCommandParser
+destroy TagEditCommandParser
+
+TagCommandParser --> SoConnectParser : te
+deactivate TagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagCommandParser -[hidden]-> SoConnectParser
+destroy TagCommandParser
+
+SoConnectParser --> LogicManager : te
+deactivate SoConnectParser
+
+LogicManager -> TagEditCommand : execute()
+activate TagEditCommand
+
+TagEditCommand -> Model : editTag(friend, bestFriend)
+activate Model
+
+Model --> TagEditCommand
+deactivate Model
+
+create CommandResult
+TagEditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagEditCommand
+deactivate CommandResult
+
+TagEditCommand --> LogicManager : result
+deactivate TagEditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
