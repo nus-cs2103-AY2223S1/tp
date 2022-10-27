@@ -16,7 +16,6 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
-
     @FXML
     private ListView<Person> personListView;
 
@@ -36,7 +35,6 @@ public class PersonListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
-
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
