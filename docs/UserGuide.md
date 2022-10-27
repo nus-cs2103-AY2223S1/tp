@@ -50,13 +50,16 @@ For teachers who are teaching more than one module, please use one TAB for each 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+* Items in square brackets are optional.<br>
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T-T12`, `t/CS2103T-T12 t/CS2103T-15` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -124,7 +127,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [pos/POSITION] [t/TAGS]`
 Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -140,7 +143,7 @@ Format: `remark INDEX r/REMARK`
 
 Modifies a remark of a person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * A person can have at most 1 remark.
-* When editing remark, the existing remark of the person will be removed i.e adding of remarks is not cumulative.
+* When editing remark, the existing remark of the person will be removed i.e. adding of remarks is not cumulative.
 * You can remove the person's remark field by typing `r/` without
   specifying any message after it.
 
@@ -262,9 +265,21 @@ Clears all entries from the TAB.
 
 Format: `clear`
 
+### Saving the data
+
+TAB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+TAB data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, TAB will discard all data and start with an empty data file at the next run.
+</div>
+
 ### Creating new TAB : `new`
 
-Creates a new TAB and automatically swaps to the newly created TAB.
+Creates a new TAB and automatically swaps to the newly created data file.
 
 Format: `new`
 
@@ -280,28 +295,6 @@ Format: `swap`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 This can also be done by clicking `File` - `Swap Book` or using keyboard shortcut `shift + tab`
-</div> 
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This can also be done by clicking File - Exit.
-</div>
-
-### Saving the data
-
-TAB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-TAB data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, TAB will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Renaming the data file : `rename`
@@ -316,6 +309,17 @@ Renames the current data file as the `NEW_NAME`
 Example:
 * `rename {CS2103T}` renames the current data file as `CS2103T.json`
 
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This can also be done by clicking File - Exit.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -329,14 +333,22 @@ Example:
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS pos/ POSITION [t/TAG]…​` <br> e.g., `add n/Alex Yeoh p/87438807 e/alexyeoh@example.com pos/Student a/Blk 30 Geylang Street 29, #06-40 t/CS2103T-T17`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**List** | `list`
+**Show** | `show INDEX`<br> e.g., `show 2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [pos/POSITION] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 1 r/Interested to be a TA`
 **Attendance** | `attendance INDEX attendance/ATTENDANCE` <br> e.g., `attendance 1 attendance/10/13`
-**Grade** | `grade INDEX grade/GRADE` <br> e.g., `grade 2 grade/68/80`
+**Assignments** | `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`<br> e.g., `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40`
+**Grade** | `grade INDEX assignment/INDEX grade/GRADE` <br> e.g., `grade 2 assignment/1 grade/68/80`
 **Availability** | `avail INDEX avail/AVAILABILITY` <br> e.g., `avail 1 avail/Available`
 **Roles** | `roles INDEX roles/ROLE1, ROLE2,...` <br> e.g., `roles 1 roles/Coordinator, Lecturer, Advisor`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Filter** | `filter TAG`<br> e.g., `filter CS2103T-T17`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear** | `clear`
+**New** | `new`
+**Swap** | `swap`
+**Rename** | `rename {NEW_NAME}`<br> e.g., `rename {CS2103T}`
+**Exit** | `exit`
