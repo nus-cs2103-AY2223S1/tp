@@ -14,6 +14,7 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
   * [Removing events from trips: `delete-et`](#removing-events-from-trips-delete-et)
   * [View all completed trips and events: `completed`](#view-all-completed-trips-and-events-completed)
   * [View all trips and events: `view`](#view-all-trips-and-events-view)
+  * [View lifetime summary: `summary`](#view-lifetime-summary-summary)
   * [Saving data](#saving-data)
   * [Exiting the program: `bye`](#exiting-the-program-bye)
 
@@ -183,6 +184,16 @@ Displays all completed trips and events
 Format: `view`
 
 Format: `completed`
+
+### View lifetime summary: `summary`
+- Displays a summary window.
+- Includes list of completed trips.
+- Total number of completed trips and events.
+- Progress indicator for trips and events.
+- Command must be used again to view updates to the summary.
+
+Format: `summary`
+
 ### Saving data
 Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
 
