@@ -19,7 +19,6 @@ import eatwhere.foodguide.model.tag.Tag;
 public class SampleDataUtil {
     public static Eatery[] getSamplePersons() {
         return new Eatery[] {
-<<<<<<< HEAD
             new Eatery(new Name("Vegetarian (Frontier, Non-Aircon)"), new Price(""),
                         new Cuisine("Chinese"), new Location("Frontier, Faculty of Science"),
                         getTagSet("vegetarian")),
