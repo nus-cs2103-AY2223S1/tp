@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":EditInternshipDescriptor" as Descriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":InternshipBook" as InternshipBook MODEL_COLOR
+end box
+[-> LogicManager : execute("edit 2 n/HRT p/SWE")
+activate LogicManager
+
+LogicManager -> InternshipBookParser : parseCommand("edit 2 n/HRT p/SWE")
+activate InternshipBookParser
+
+create EditCommandParser
+InternshipBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> InternshipBookParser
+deactivate EditCommandParser
+
+InternshipBookParser -> EditCommandParser : parse("2 n/HRT p/SWE")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+create Descriptor
+EditCommand -> Descriptor
+activate Descriptor
+Descriptor --> EditCommand
+deactivate Descriptor
+EditCommand --> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser --> InternshipBookParser
+deactivate EditCommandParser
+
+InternshipBookParser --> LogicManager
+deactivate InternshipBookParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Descriptor
+activate Descriptor
+Descriptor --> EditCommand : edited
+deactivate Descriptor
+
+EditCommand -> Model : setInternship(toEdit, edited)
+activate Model
+
+'ADD MORE HERE
+Model -> InternshipBook : setInternship(toEdit, edited)
+activate InternshipBook
+InternshipBook --> Model
+deactivate InternshipBook
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand --> LogicManager
+deactivate EditCommand
+
+[<--LogicManager
+@enduml

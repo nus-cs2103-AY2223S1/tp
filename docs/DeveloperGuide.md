@@ -191,6 +191,38 @@ The following sequence diagram shows how the add command works.
     * Pros: Easier to implement
     * Cons: Lengthy command
 
+### Edit feature
+
+#### Proposed Implementation
+The proposed edit mechanism involves creating a new `Internship` object and replacing the previous `Internship` object to be edited. It's mainly implemented using the help of `EditInternshipDescriptor` class, which can create a new Internship given the edited fields.
+
+Similar to add command, the edit command has the following fields:
+- `INDEX` which represents the position of the internship to be edited
+- `n/` prefix followed by the edited name of the company (Optional)
+- `p/` prefix followed by the edited name of the position (Optional)
+- `pr/` prefix followed by the edited application status (Optional)
+- `d/` prefix followed by the edited important dates to be taken note of (Optional)
+- `ph/` prefix followed by the edited phone number of the HR (Optional)
+- `e/` prefix followed by the edited email of the HR (Optional)
+- `web/` prefix followed by the edited website link for more internship details (Optional)
+- `r/` prefix followed by the edited additional remarks (Optional)
+- `t/` prefix followed by edited tags (Optional)
+
+Although the nine prefixes shown above are all optional, the system still require user to edit at least one prefix. Similar to the add command, the system will also validate the parameters supplied by the user.
+
+The following sequence diagram shows how the edit command works
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+#### Design Considerations
+**Whether editing an internship will create a new internship**:
+* **Alternative 1(Current choice)**: Edit command will create a new internship
+    * Pros: Help maintains the immutability of `Internship` class
+    * Cons: Not the most efficient way
+* **Alternative 2**: Edit command will not create a new internship. It will directly edit the selected internship
+    * Pros: More efficient, both time and space wise, than the previous alternative
+    * Cons: `Internship` class won't be immutable, which reduces the defensiveness of the program
+  
 ### List feature
 
 #### Proposed Implementation
