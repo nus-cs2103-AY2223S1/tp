@@ -47,7 +47,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
             throw new DuplicateReminderException();
         }
         internalList.add(toAdd);
-        internalList.sort(new ReminderPriorityDeadlineComparator(new ReminderPriorityComparator(), new ReminderDeadlineComparator()));
+        internalList.sort(new ReminderComplexComparator(new ReminderPriorityComparator(), new ReminderDeadlineComparator()));
     }
 
     /**
@@ -86,7 +86,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
      * their names.
      */
     public void sortRemindersByPriority() {
-        internalList.sort(new ReminderPriorityDeadlineComparator(new ReminderPriorityComparator(), new ReminderDeadlineComparator()));
+        internalList.sort(new ReminderComplexComparator(new ReminderPriorityComparator(), new ReminderDeadlineComparator()));
     }
 
     /**
@@ -95,7 +95,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
      * Reminders with same deadline and priority will then be sorted lexicographically.
      */
     public void sortRemindersByDeadline() {
-        internalList.sort(new ReminderPriorityDeadlineComparator(new ReminderDeadlineComparator(), new ReminderPriorityComparator()));
+        internalList.sort(new ReminderComplexComparator(new ReminderDeadlineComparator(), new ReminderPriorityComparator()));
     }
 
     /**

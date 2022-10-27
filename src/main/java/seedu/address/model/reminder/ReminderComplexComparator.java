@@ -8,21 +8,21 @@ import java.util.Comparator;
  * second comparator. If it is still 0, the String value of ReminderName would be used which will be by the default
  * lexicographical order.
  */
-public class ReminderPriorityDeadlineComparator implements Comparator<Reminder> {
+public class ReminderComplexComparator implements Comparator<Reminder> {
     private final Comparator<Reminder> reminderComparatorOne;
     private final Comparator<Reminder> reminderComparatorTwo;
 
-    public ReminderPriorityDeadlineComparator(Comparator<Reminder> reminderComparatorOne,
-                                              Comparator<Reminder> reminderComparatorTwo) {
+    public ReminderComplexComparator(Comparator<Reminder> reminderComparatorOne,
+                                     Comparator<Reminder> reminderComparatorTwo) {
         this.reminderComparatorOne = reminderComparatorOne;
         this.reminderComparatorTwo = reminderComparatorTwo;
-        
+
     }
 
     @Override
     public int compare(Reminder r1, Reminder r2) {
         int compareValueOne = reminderComparatorOne.compare(r1, r2);
-        
+
         if (compareValueOne == 0) {
             int compareValueTwo = reminderComparatorTwo.compare(r1, r2);
 
