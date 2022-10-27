@@ -55,9 +55,9 @@ public class AddNoteCommand extends Command {
         Note updatedNote = personToUpdate.mergeNote(note);
         UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         tagMap.setTagTypeMap(personToUpdate.getTags());
-        Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(), personToUpdate.getEmail(),
-                personToUpdate.getAddress(), tagMap, personToUpdate.getStatus(), updatedNote, personToUpdate.getRating(),
-                personToUpdate.getLinks());
+        Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(),
+                personToUpdate.getEmail(), personToUpdate.getAddress(), tagMap, personToUpdate.getStatus(),
+                updatedNote, personToUpdate.getRating(), personToUpdate.getLinks());
 
         if (!personToUpdate.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

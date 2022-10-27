@@ -1,13 +1,13 @@
 package seedu.clinkedin.storage;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
 import seedu.clinkedin.model.link.Link;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * Jackson-friendly version of {@link Link}.
@@ -48,8 +48,5 @@ class JsonAdaptedLink {
         } catch (MalformedURLException m) {
             throw new IllegalValueException(m.getMessage());
         }
-//      if (!Link.isValidLink(link)) {
-//          throw new IllegalValueException(Link.MESSAGE_CONSTRAINTS);
-//      }
     }
 }

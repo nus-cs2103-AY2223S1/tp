@@ -19,7 +19,10 @@ import seedu.clinkedin.commons.util.CollectionUtil;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.link.Link;
-import seedu.clinkedin.model.person.*;
+import seedu.clinkedin.model.person.Note;
+import seedu.clinkedin.model.person.Person;
+import seedu.clinkedin.model.person.Rating;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.person.exceptions.RatingAlreadyExistsException;
 import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
@@ -34,8 +37,8 @@ public class AddToCommand extends Command {
 
     public static final String COMMAND_WORD = "addto";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD +
-            ": Add additional attributes to an existing person in the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Add additional attributes to an existing person in the address book.\n"
             + "Parameters: "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_NOTE + "NOTE]"
@@ -86,7 +89,8 @@ public class AddToCommand extends Command {
             model.setPerson(personToBeUpdated, updatedPerson);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, updatedPerson));
-        } catch (TagTypeNotFoundException | TagNotFoundException | DuplicateTagException | RatingAlreadyExistsException e) {
+        } catch (TagTypeNotFoundException | TagNotFoundException | DuplicateTagException
+                 | RatingAlreadyExistsException e) {
             throw new CommandException(e.getMessage());
         }
     }
@@ -103,7 +107,8 @@ public class AddToCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createUpdatedPerson(Person personToUpdate, AddToCommand.UpdatePersonDescriptor updatePersonDescriptor)
+    private static Person createUpdatedPerson(Person personToUpdate,
+                                              AddToCommand.UpdatePersonDescriptor updatePersonDescriptor)
             throws TagTypeNotFoundException, TagNotFoundException, DuplicateTagException, RatingAlreadyExistsException {
         assert personToUpdate != null;
 
@@ -230,7 +235,7 @@ public class AddToCommand extends Command {
             // state check
             AddToCommand.UpdatePersonDescriptor u = (AddToCommand.UpdatePersonDescriptor) other;
 
-            return  getTagTypeMap().equals(u.getTagTypeMap())
+            return getTagTypeMap().equals(u.getTagTypeMap())
                     && getNote().equals(u.getNote())
                     && getRating().equals(u.getRating())
                     && getLinks().equals(u.getLinks());

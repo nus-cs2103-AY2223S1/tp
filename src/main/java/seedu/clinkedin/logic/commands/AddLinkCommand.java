@@ -2,9 +2,7 @@ package seedu.clinkedin.logic.commands;
 
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.clinkedin.commons.core.Messages;
@@ -12,7 +10,6 @@ import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.link.Link;
-import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
@@ -61,9 +58,9 @@ public class AddLinkCommand extends Command {
         tagMap.setTagTypeMap(personToUpdate.getTags());
         Set<Link> updatedLinks = personToUpdate.mergeLinks(links);
 
-        Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(), personToUpdate.getEmail(),
-                personToUpdate.getAddress(), tagMap, personToUpdate.getStatus(), personToUpdate.getNote(),
-                personToUpdate.getRating(), updatedLinks);
+        Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(),
+                personToUpdate.getEmail(), personToUpdate.getAddress(), tagMap, personToUpdate.getStatus(),
+                personToUpdate.getNote(), personToUpdate.getRating(), updatedLinks);
 
         if (!personToUpdate.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

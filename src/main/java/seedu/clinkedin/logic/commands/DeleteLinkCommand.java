@@ -14,6 +14,9 @@ import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
 
+/**
+ * Deletes links of a person.
+ */
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "deletelink";
 

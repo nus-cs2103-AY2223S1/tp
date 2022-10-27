@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 
+import java.util.function.BinaryOperator;
+
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
 import seedu.clinkedin.logic.commands.AddNoteCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.Note;
-
-import java.util.function.BinaryOperator;
 
 /**
  * Parses input arguments and creates a new AddNoteCommand object

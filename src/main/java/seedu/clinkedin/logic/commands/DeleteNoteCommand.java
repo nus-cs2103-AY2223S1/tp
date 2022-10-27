@@ -1,5 +1,9 @@
 package seedu.clinkedin.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.clinkedin.commons.core.Messages;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
@@ -10,10 +14,9 @@ import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.exceptions.TagNotFoundException;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Deletes notes for a person.
+ */
 public class DeleteNoteCommand extends Command {
     public static final String COMMAND_WORD = "deletenote";
 

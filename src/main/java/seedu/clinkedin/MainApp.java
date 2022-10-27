@@ -1,7 +1,6 @@
 package seedu.clinkedin;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;

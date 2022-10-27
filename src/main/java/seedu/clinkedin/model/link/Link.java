@@ -1,8 +1,8 @@
 package seedu.clinkedin.model.link;
 
-import java.net.URL;
-
 import static java.util.Objects.requireNonNull;
+
+import java.net.URL;
 
 /**
  * Represents an optional note about a person in the clinkedin book.

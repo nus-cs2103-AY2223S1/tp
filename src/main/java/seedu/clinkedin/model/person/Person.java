@@ -264,6 +264,11 @@ public class Person {
         this.tagTypeMap.setTagTypeMap(tagTypeMap);
     }
 
+    /**
+     * Adds new links to existing links of a person.
+     * @param linksToAdd Links to be added to the person.
+     * @return Set of links after adding new links to existing links.
+     */
     public Set<Link> mergeLinks(Set<Link> linksToAdd) {
         Set<Link> mergedLinks = new HashSet<>(links);
         for (Link l: linksToAdd) {
@@ -276,6 +281,12 @@ public class Person {
         return mergedLinks;
     }
 
+    /**
+     * Adds new notes to existing notes of a person.
+     * @param note Notes to be added.
+     * @return Note after adding new note to the existing note.
+     * @throws DuplicateNoteException
+     */
     public Note mergeNote(Note note) throws DuplicateNoteException {
         if (this.note.value.equals(note.value)) {
             throw new DuplicateNoteException(note.value);

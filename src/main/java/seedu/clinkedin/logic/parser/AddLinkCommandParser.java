@@ -3,7 +3,6 @@ package seedu.clinkedin.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_LINK;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 
 import java.util.Set;
 

@@ -1,7 +1,6 @@
 package seedu.clinkedin.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -13,7 +12,6 @@ import seedu.clinkedin.model.UserPrefs;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
-import seedu.clinkedin.testutil.PersonBuilder;
 
 public class AddNoteCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

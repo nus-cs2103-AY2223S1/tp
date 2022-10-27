@@ -1,12 +1,10 @@
 package seedu.clinkedin.model.person;
 
-import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
-
 import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an optional note about a person in the clinkedin book.
- * Guarantees: immutable; is valid as declared in {@link #isValidNote(String)}
+ * Guarantees: immutable;}
  */
 public class Note {
 

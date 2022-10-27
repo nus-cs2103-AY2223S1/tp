@@ -2,8 +2,9 @@ package seedu.clinkedin.model.util;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Array;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.clinkedin.logic.parser.Prefix;
@@ -81,6 +82,12 @@ public class SampleDataUtil {
         return tags;
     }
 
+    /**
+     * Returns a set of links objects instantiated with the provided URLs.
+     * @param strings URLs needed to instantiate Set of Links.
+     * @return Set of links.
+     * @throws MalformedURLException
+     */
     public static URL[] generateUrls(String... strings) throws MalformedURLException {
         try {
             URL[] urls = new URL[strings.length];
