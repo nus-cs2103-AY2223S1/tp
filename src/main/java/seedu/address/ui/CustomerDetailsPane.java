@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -182,6 +183,10 @@ public class CustomerDetailsPane extends UiPart<Region> {
         completed.getNode().setStyle(PIE_CHART_DATA_STYLE + PIE_CHART_DATA_COMPLETED_BACKGROUND_COLOR);
         inProgress.getNode().setStyle(PIE_CHART_DATA_STYLE + PIE_CHART_DATA_IN_PROGRESS_BACKGROUND_COLOR);
         notStarted.getNode().setStyle(PIE_CHART_DATA_STYLE + PIE_CHART_DATA_NOT_STARTED_BACKGROUND_COLOR);
+
+        for (PieChart.Data data : pieChartData) {
+            Tooltip.install(data.getNode(), new Tooltip(data.getName()));
+        }
 
         // set the placeholder to the generated pie chart
         pieChartPlaceholder.getChildren().setAll(pieChart);

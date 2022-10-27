@@ -95,15 +95,7 @@
                 <HBox GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="3" spacing="8">
                     <VBox spacing="12" minWidth="100" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
                           id="commissionCountCard" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-                        <Label fx:id="commissionCount" id="commissionCount" text="\$commissionCount">
-                            <minHeight>
-                                <!-- Ensures that the label text is never truncated -->
-                                <Region fx:constant="USE_PREF_SIZE"/>
-                            </minHeight>
-                            <VBox.margin>
-                                <Insets bottom="4.0" />
-                            </VBox.margin>
-                        </Label>
+                        <Label fx:id="commissionCount" id="commissionCount" text="\$commissionCount"/>
                         <Label fx:id="commissionLabel" text="Commissions" minHeight="26"/>
                     </VBox>
 
