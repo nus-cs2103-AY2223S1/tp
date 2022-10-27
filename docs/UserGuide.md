@@ -243,6 +243,9 @@ Format (1) : `:range start/START_DATE end/END_DATE`
 
 Format (2) : `:range last/NUMBER_OF_DAYS`
 
+##### Parameter constraints:
+* Number of days can only take positive integer values, up to 6 digits
+
 ##### Example:
 `:range last/3` Shows the exercises done today and the last 3 days.
 
