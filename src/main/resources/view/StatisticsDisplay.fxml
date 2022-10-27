@@ -9,7 +9,7 @@
 
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <VBox prefHeight="200.0" prefWidth="100.0">
-      <HBox spacing="5" alignment="CENTER_LEFT" styleClass="statistics_box">
+      <HBox spacing="5" alignment="CENTER_LEFT" styleClass="header_box">
          <padding>
             <Insets right="5" left="15" />
          </padding>

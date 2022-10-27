@@ -191,7 +191,7 @@ Adds a student to the Teacher’s Pet.
         2. Have each domain label start and end with alphanumeric characters.
         3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
-4. Tags:
+6. Tags:
     - Tags are optional.
     - A student can have any number of tags (including 0).
     - Tags must only contain alphanumeric characters.

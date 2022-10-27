@@ -3,7 +3,12 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
+<?import javafx.geometry.Insets?>
+
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
+           xmlns:fx="http://javafx.com/fxml/1">
+  <padding>
+    <Insets bottom="20" left="23" right="23" top="20" />
+  </padding>
   <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" wrapText="true" />
 </StackPane>
