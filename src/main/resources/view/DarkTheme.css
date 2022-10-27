@@ -350,3 +350,9 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#taskListPane {
+     -fx-background-color: transparent;
+     -fx-border-color: transparent;
+     -fx-border-top-width: 1px;
+}
