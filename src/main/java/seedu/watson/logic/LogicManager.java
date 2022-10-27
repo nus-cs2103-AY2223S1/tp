@@ -54,6 +54,22 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    /**
+     * Hacks
+     * @return the model
+     */
+    public Model getModel() {
+        return model;
+    }
+
+    /**
+     * Hacks
+     * @return the storage
+     */
+    public Storage getStorage() {
+        return storage;
+    }
+
     @Override
     public ReadOnlyDatabase getAddressBook() {
         return model.getDatabase();

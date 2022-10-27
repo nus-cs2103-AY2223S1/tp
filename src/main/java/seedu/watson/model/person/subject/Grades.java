@@ -53,7 +53,7 @@ public class Grades {
     }
 
     public double getCurrentPercentage() {
-        return this.currentPercentageObtained;
+        return getCurrentPercentageObtained(assessmentMarks);
     }
 
     public double getCurrentPercentageObtained(HashMap<String, double[]> subjectMarks) {
