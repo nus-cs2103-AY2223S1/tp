@@ -56,7 +56,7 @@ public class TripCard extends UiPart<Region> {
         }
         description.setText(trip.getDescription().value);
         eventCount.setText("Events: " + trip.getEvents().size());
-        
+
         // location is a reserved keyword in FXML
         tripLocation.setText(trip.getLocation().isDefaultValue()
                 ? "No location set"
