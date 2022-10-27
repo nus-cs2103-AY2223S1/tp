@@ -7,13 +7,13 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 ### Table of Contents
 #### [Getting Started](#quick-start)
-#### [GUI Orientation](#gui-orientation)
+#### [Orientating the GUI](#gui-orientation)
 * Command Box
 * Exercise List 
 * Result Display 
 * Recognised Exercise Names List
 
-#### [Commands](#commands)
+#### [Features](#commands)
 * Adding an exercise **:add**
 * Deleting an exercise **:del**
 * Listing all exercises **:list**
@@ -26,8 +26,8 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 * Displaying the help menu **:help**
 * Exiting the application **:wq**
 
-#### [Command Summary](#command-summary)
-#### [Glossary of Terminologies](#glossary-of-terminologies)
+#### [Command Summary](#summary-of-commands)
+#### [Glossary](#glossary-of-terminologies)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`:help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the [Commands](#commands) below for details of each command.
+6. Refer to the [Commands Section](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -169,7 +169,7 @@ Format: `:del INDEX`
 ##### Example:
 * `:del 9` Deletes an exercise at index 9 of the list
 
-![DeleteCmomand](images/DeleteCommand.png)
+![DeleteCommand](images/DeleteCommand.png)
 
 
 ### Listing all exercises : `:list`
@@ -184,7 +184,7 @@ Format: `:list`
 
 ### Filtering exercises by their name(s) : `:filter`
 
-Filters exercises from the displayed list with names containing any of the given keywords.
+Filters exercises in the displayed list with names containing any of the given keywords.
 
 Format: `:filter KEYWORD [KEYWORD]...`
 
@@ -372,7 +372,7 @@ Format: `:wq`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Summary
+## Summary of Commands
 
 | Action                          | Format                                         | Examples                                |
 |---------------------------------|------------------------------------------------|-----------------------------------------|
