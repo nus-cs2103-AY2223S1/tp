@@ -29,6 +29,12 @@
         <Label fx:id="title" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+                <Label fx:id="tripLocation" styleClass="cell_small_label" text="\$tripLocation" />
+                <Label fx:id="tripDate" layoutX="15.0" layoutY="10.0" styleClass="cell_small_label" text="\$tripDate" />
+            </children>
+        </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />

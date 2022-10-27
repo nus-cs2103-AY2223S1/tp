@@ -35,7 +35,6 @@
             <children>
             <Label fx:id="tripLocation" styleClass="cell_small_label" text="\$tripLocation" />
                <Label fx:id="tripDate" layoutX="15.0" layoutY="10.0" styleClass="cell_small_label" text="\$tripDate" />
-
             </children>
          </HBox>
     </VBox>

@@ -35,7 +35,7 @@ public class TripListPanel extends UiPart<Region> {
         super(FXML);
         tripListView.setItems(tripList);
         tripListView.setCellFactory(listView -> new TripListViewCell());
-        selectedTripCardPlaceholder.getChildren().add(new SelectedTripCard(selectedTrip).getRoot());
+        selectedTripCardPlaceholder.getChildren().add(new SelectedTripCard(selectedTrip, completed).getRoot());
         this.completed = completed;
     }
 
