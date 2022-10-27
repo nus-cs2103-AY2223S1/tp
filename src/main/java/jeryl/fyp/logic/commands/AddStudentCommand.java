@@ -27,7 +27,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_PROJECT_NAME + "FYP_NAME "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "(STUDENT_ID should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G)\n"
+            + "(STUDENT_ID should be in format  \"A\" + (7 digits) + (1 uppercase letter), e.g. A0123456G)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_STUDENT_NAME + "John Doe "

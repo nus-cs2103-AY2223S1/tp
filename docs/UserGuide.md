@@ -14,14 +14,14 @@ title: User Guide
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `JerylFypManager.jar` from [here](https://github.com/AY2223S1-CS2103-F09-1/tp/releases).
+1. Download the latest `JerylFypManager.jar` from [here](https://github.com/AY2223S1-CS2103-F09-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your FypManager.
+1. Copy the file to the folder you want to use as the _home folder_ for your FypManager.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it.<br>
+1. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
    * **`list`** - lists all FYP projects the professor is supervising
@@ -32,15 +32,15 @@ title: User Guide
 
    * **`mark id/A0123456G s/IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
 
-   * **`find machine`** - searches any FYP project names that has “machine” in its name, for example it will output the FYP project with “Machine Learning” in its name
+   * **`find machine`** - searches any FYP project names that has “machine” in its name, for example it will include the FYP project named “Machine Learning”.
 
-   * **`help add`** - shows a message on how to use the `add` command
+   * **`help add -s`** - shows a message on how to use the `add -s` command
 
    * **`help`** - shows the list of all commands available
 
    * **`exit`** - exits the application
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ title: User Guide
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/FYP_NAME`, `FYP_NAME` is a parameter which can be used as `add n/Neural Network`.
+  e.g. in `add -s n/FYP_NAME`, `FYP_NAME` is a parameter which can be used as `add -s n/Neural Network`.
 
 * Items in square brackets are optional.<br>
   e.g `n/FYP_NAME [t/TAG]` can be used as `n/Neural Network t/SOC` or as `n/Data Caching`.
@@ -65,11 +65,11 @@ title: User Guide
 * Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `list 456`, it will be interpreted as `list`.
 
-* `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 letter)**, e.g. `A0123456G`
+* `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 uppercase letter)**, e.g. `A0123456G`
 
 * `FYP_NAME` and `DEADLINE_NAME` should only include alphanumeric characters and space but **cannot start with a space**, e.g. `Support vector machine: some improvements` is invalid
 
-* `DEADLINE_DATETIME` should be in the format of "DD-MM-YYYY HH:mm"
+* `DEADLINE_DATETIME` can be in the format of "DD-MM-YYYY HH:mm" or "YYYY-MM-DD HH:mm"
 
 </div>
 
@@ -101,7 +101,7 @@ There are 2 types of Delete Commands.
     * Student finished the FYP
 
     Format: `delete -s id/STUDENT_ID`
-    * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
+    * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 uppercase letter), e.g. `A0123456G`
 
 2. `delete -d`: Removes a deadline assigned to a student specified by ID & a priority rank.
 
