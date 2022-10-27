@@ -36,6 +36,12 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
+    public void rename(String newName) {
+        assert Name.isValidName(newName);
+        this.name = new Name(newName);
+    }
+
+    @Override
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }

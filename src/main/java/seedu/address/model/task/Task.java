@@ -59,7 +59,9 @@ public class Task extends AbstractSingleItem {
             return this;
         }
         Task ret = new Task(name.fullName, description.getAttributeContent(), LocalDateTime.now());
-        ret.parent = parent;
+        for (DisplayItem item : getParents()) {
+            ret.setParent(item);
+        }
         return ret;
     }
 
@@ -71,7 +73,23 @@ public class Task extends AbstractSingleItem {
             return this;
         }
         Task ret = new Task(name.fullName, description.getAttributeContent());
-        ret.parent = parent;
+        for (DisplayItem item : getParents()) {
+            ret.setParent(item);
+        }
+        return ret;
+    }
+
+    /**
+     * Sets the completion date of task
+     */
+    public Task setCompletionTime(LocalDateTime dt) {
+        if (this.completedTime == null) {
+            return this;
+        }
+        Task ret = new Task(name.fullName, description.getAttributeContent(), dt);
+        for (DisplayItem item : getParents()) {
+            ret.setParent(item);
+        }
         return ret;
     }
 

@@ -17,6 +17,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemoveFieldCommand;
+import seedu.address.logic.commands.RenameCommand;
 import seedu.address.logic.commands.logicalcommand.CheckTaskCompleteCommand;
 import seedu.address.logic.commands.logicalcommand.ContainsAttributeCommand;
 import seedu.address.logic.commands.logicalcommand.IfCommand;
@@ -117,6 +118,9 @@ public class AddressBookParser {
 
             case UnmarkTaskCommand.SUBCOMMAND_WORD:
                 return new UnmarkTaskCommandParser().parse(arguments);
+
+            case RenameCommand.COMMAND_WORD:
+                return new RenameCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

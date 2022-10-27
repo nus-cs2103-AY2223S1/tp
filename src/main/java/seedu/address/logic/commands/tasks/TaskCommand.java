@@ -14,7 +14,8 @@ public abstract class TaskCommand extends Command {
     protected Task task = null;
 
     /**
-     * Returns the complete command phrase for the task command with given subCommand
+     * Returns the complete command phrase for the task command with given
+     * subCommand
      *
      * @param subcommand The subcommand to be added
      * @return The complete command phrase
