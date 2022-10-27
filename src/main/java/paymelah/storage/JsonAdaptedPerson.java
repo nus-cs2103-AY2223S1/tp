@@ -1,5 +1,9 @@
 package paymelah.storage;
 
+import static paymelah.model.person.Address.EMPTY_ADDRESS_STRING;
+import static paymelah.model.person.Phone.EMPTY_PHONE_STRING;
+import static paymelah.model.person.Telegram.EMPTY_TELEGRAM_STRING;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -96,27 +100,39 @@ class JsonAdaptedPerson {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
+        final Phone modelPhone;
+        if (phone.equals(EMPTY_PHONE_STRING)) {
+            modelPhone = Phone.EMPTY_PHONE;
+        } else if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        } else {
+            modelPhone = new Phone(phone);
         }
-        final Phone modelPhone = new Phone(phone);
 
         if (telegram == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Telegram.class.getSimpleName()));
         }
-        if (!Telegram.isValidHandle(telegram)) {
+        final Telegram modelTelegram;
+        if (telegram.equals(EMPTY_TELEGRAM_STRING)) {
+            modelTelegram = Telegram.EMPTY_TELEGRAM;
+        } else if (!Telegram.isValidHandle(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
+        } else {
+            modelTelegram = new Telegram(telegram);
         }
-        final Telegram modelTelegram = new Telegram(telegram);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
+        final Address modelAddress;
+        if (address.equals(EMPTY_ADDRESS_STRING)) {
+            modelAddress = Address.EMPTY_ADDRESS;
+        } else if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        } else {
+            modelAddress = new Address(address);
         }
-        final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
