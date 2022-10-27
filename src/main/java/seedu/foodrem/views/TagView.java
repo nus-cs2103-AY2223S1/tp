@@ -17,8 +17,18 @@ public class TagView {
      * @return the node to be displayed in the UI.
      */
     public static Node from(Tag tag) {
+        return from(tag, false);
+    }
+
+    /**
+     * Creates a new view of the given string.
+     * @param tag the tag to be displayed.
+     * @param isSmall whether the tag is small.
+     * @return the node to be displayed in the UI.
+     */
+    public static Node from(Tag tag, boolean isSmall) {
         final Label label = new Label(tag.getName());
-        label.getStyleClass().add("item-detail-tag");
+        label.getStyleClass().add(isSmall ? "item-listview-tag" : "item-detail-tag");
         return label;
     }
 }
