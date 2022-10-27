@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="680.0" minWidth="530.0" onCloseRequest="#handleExit" title="JeeqTracker" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="680.0" minWidth="530.0" onCloseRequest="#handleExit" title="JeeqTracker" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -62,7 +62,7 @@
                            <Insets bottom="15.0" />
                         </VBox.margin>
                      </Label>
-                <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="clientListPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
               </VBox>
                   <VBox prefWidth="100.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <children>
@@ -90,7 +90,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <VBox fx:id="remarkList" maxHeight="200.0" minHeight="100.0" prefWidth="100.0" style="-fx-border-style: solid hidden solid hidden;" VBox.vgrow="ALWAYS">
+                        <VBox fx:id="remarkList" maxHeight="200.0" minHeight="100.0" prefWidth="100.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                            <children>
                               <StackPane fx:id="remarkListPanelPlaceholder" />
                            </children>
