@@ -124,9 +124,9 @@ public class MainWindow extends UiPart<Stage> {
         });
         btnHide.setOnMouseClicked(event -> {
             int hidden = pref.getInt("hidden", 0);
-            if (hidden == 0) { //dark change to light
+            if (hidden == 0) { //hide sensitive data
                 hide(pref);
-            } else { //light change to dark
+            } else { //show sensitive data
                 show(pref);
             }
         });
@@ -296,7 +296,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Hides FinBook data by blurring portfolioWindow and PersonListPanel data.
+     * Hides FinBook data by censoring portfolioWindow and PersonListPanel data.
      * @param pref Stored preference of hidden attribute.
      */
     void hide(Preferences pref) {

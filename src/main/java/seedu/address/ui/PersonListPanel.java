@@ -60,7 +60,7 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code HiddenPersonCard}.
      */
     class HiddenPersonListViewCell extends ListCell<Person> {
         @Override
@@ -71,8 +71,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                PersonCard hiddenPersonCard = new PersonCard(person, getIndex() + 1);
-                hiddenPersonCard.hide();
+                PersonCard hiddenPersonCard = new PersonCard(person, getIndex() + 1, true);
                 setGraphic(hiddenPersonCard.getRoot());
             }
         }

@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -70,15 +69,40 @@ public class PersonCard extends UiPart<Region> {
     }
 
     /**
-     * Blurs sensitive data.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public void hide() {
-        BoxBlur boxBlur = new BoxBlur(10, 0, 10);
-        phone.setEffect(boxBlur);
-        address.setEffect(boxBlur);
-        email.setEffect(boxBlur);
-        income.setEffect(boxBlur);
-        meetingDate.setEffect(boxBlur);
+    public PersonCard(Person person, int displayedIndex, Boolean hidden) {
+        super(FXML);
+        this.person = person;
+        id.setText(displayedIndex + ". ");
+        name.setText(person.getName().fullName);
+        phone.setText(mask(person.getPhone().value));
+        address.setText(mask(person.getAddress().value));
+        email.setText(mask(person.getEmail().value));
+        income.setText(mask(person.getIncome().value));
+        if (person.getMeetingDate().value != null && person.getMeetingDate().value != "") {
+            meetingDate.setText(person.getMeetingDate().value);
+        } else {
+            meetingDate.setText("TBC");
+        }
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(mask(tag.tagName))));
+
+    }
+
+    /**
+     * Masks sensitive client data.
+     *
+     * @param clientData
+     * @return String of censored client data.
+     */
+    public String mask(String clientData) {
+        StringBuilder strBuilder = new StringBuilder();
+        for (int i = 0; i < clientData.length(); i++) {
+            strBuilder.append("*");
+        }
+        return strBuilder.toString();
     }
 
     @Override
