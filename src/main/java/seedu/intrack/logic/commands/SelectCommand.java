@@ -1,7 +1,6 @@
 package seedu.intrack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -21,10 +20,10 @@ public class SelectCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Selects and shows the details of the internship application identified by the index number"
             + " used in the displayed list"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive unsigned integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SELECT_INTERNSHIP_SUCCESS = "Selected internship: %1$s";
+    public static final String MESSAGE_SELECT_INTERNSHIP_SUCCESS = "Selected internship application: \n%1$s";
 
     private final Index targetIndex;
 
@@ -33,8 +32,7 @@ public class SelectCommand extends Command {
      * @param targetIndex Index of the Internship to be selected.
      */
     public SelectCommand(Index targetIndex) {
-        requireAllNonNull(targetIndex);
-
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -49,6 +47,7 @@ public class SelectCommand extends Command {
 
         Internship internshipToView = lastShownList.get(targetIndex.getZeroBased());
         model.updateSelectedInternship(a -> a.isSameInternship(internshipToView));
+
         return new CommandResult(String.format(MESSAGE_SELECT_INTERNSHIP_SUCCESS, internshipToView));
     }
 

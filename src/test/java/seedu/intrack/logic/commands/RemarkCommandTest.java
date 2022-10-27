@@ -83,6 +83,7 @@ public class RemarkCommandTest {
                 editedInternship);
 
         Model expectedModel = new ModelManager(new InTrack(model.getInTrack()), new UserPrefs());
+        expectedModel.updateFilteredInternshipList(a -> a.isSameInternship(firstInternship));
         expectedModel.setInternship(firstInternship, editedInternship);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);

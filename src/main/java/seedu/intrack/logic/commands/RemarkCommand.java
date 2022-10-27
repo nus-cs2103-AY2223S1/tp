@@ -1,8 +1,8 @@
 package seedu.intrack.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
@@ -14,22 +14,22 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Remark;
 
 /**
- * Changes the remark of an existing internship in the tracker.
+ * Edits the remark of the internship application identified by the index number used in the displayed list.
  */
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the internship identified "
-            + "by the index number used in the last internship listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the internship application "
+            + "identified by the index number used in the displayed list. "
             + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive unsigned integer) "
             + PREFIX_REMARK + "[REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_REMARK + "Passed with flying colors";
+            + PREFIX_REMARK + "Revise Graphs";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to internship: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from internship: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to internship application: \n%1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from internship application: \n%1$s";
 
     private final Index index;
     private final Remark remark;
@@ -40,12 +40,13 @@ public class RemarkCommand extends Command {
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
-
         this.index = index;
         this.remark = remark;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
         List<Internship> lastShownList = model.getFilteredInternshipList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -58,7 +59,6 @@ public class RemarkCommand extends Command {
                 internshipToEdit.getTasks(), internshipToEdit.getSalary(), internshipToEdit.getTags(), remark);
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         return new CommandResult(generateSuccessMessage(editedInternship));
     }
