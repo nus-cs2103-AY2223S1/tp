@@ -25,6 +25,8 @@ public class TaskListCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label time;
+    @FXML
+    private Label recurrence;
 
     /**
      * Creates a {@code TaskListCard} with the given {@code TaskList} to display.
@@ -41,6 +43,7 @@ public class TaskListCard extends UiPart<Region> {
         DateTime dateTime = task.getDateTime();
         date.setText(getDateString(dateTime));
         time.setText(String.format("%s", dateTime.getTime()));
+        recurrence.setText(task.getRecurrenceString());
     }
 
     /**
