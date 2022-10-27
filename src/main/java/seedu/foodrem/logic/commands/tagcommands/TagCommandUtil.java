@@ -14,7 +14,6 @@ import seedu.foodrem.model.tag.Tag;
  * Handles validation for tag commands
  */
 public class TagCommandUtil {
-
     private TagCommandUtil() {}
 
     /**
