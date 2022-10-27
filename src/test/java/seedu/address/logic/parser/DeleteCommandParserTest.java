@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
@@ -62,6 +63,6 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidIndexWithMode_throwsParseException() {
-        assertParseFailure(parser, "-1 m/transaction", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "-1 m/transaction", MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
     }
 }

@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REMARK_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
 
 import seedu.address.commons.core.index.Index;
@@ -23,26 +26,34 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODE);
 
+        Index index = null;
         String[] arguments = argMultimap.getPreamble().split(" ", 2);
         if (!isValidInput(arguments)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(ParserUtil.MESSAGE_INVALID_INDEX, pe);
-        }
-
         String mode = argMultimap.getValue(PREFIX_MODE).orElse("");
 
         switch (mode) {
         case "client":
+            try {
+                index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            } catch (ParseException pe) {
+                new ParseException(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX, pe);
+            }
             return new DeleteClientCommand(index);
         case "transaction":
+            try {
+                index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            } catch (ParseException pe) {
+                throw new ParseException(MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX, pe);
+            }
             return new DeleteTransactionCommand(index);
         case "remark":
+            try {
+                index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            } catch (ParseException pe) {
+                throw new ParseException(MESSAGE_INVALID_REMARK_DISPLAYED_INDEX, pe);
+            }
             return new DeleteRemarkCommand(index);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
