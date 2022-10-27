@@ -46,6 +46,8 @@ public class PropertyCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private ImageView displayPicture;
+    @FXML
+    private Label propertyType;
 
     /**
      * Creates a {@code PropertyCode} with the given {@code Property} and index to display.
@@ -61,6 +63,7 @@ public class PropertyCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         displayPicture.setClip(new Circle(40, 40, 40));
+        propertyType.setText(property.getPropertyTypeEnum().toString());
         Path imagePath = property.getImagePath();
         if (imagePath != null) {
             File file = new File(property.getImagePath().toString());

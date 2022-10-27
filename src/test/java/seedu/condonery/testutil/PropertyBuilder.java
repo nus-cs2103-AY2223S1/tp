@@ -7,6 +7,7 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 import seedu.condonery.model.util.SampleDataUtil;
 
@@ -18,11 +19,15 @@ public class PropertyBuilder {
     public static final String DEFAULT_NAME = "Bishan";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_PRICE = "100000";
+    public static final Set<Tag> DEFAULT_TAGS = new HashSet<Tag>() {{
+        }};
+    public static final PropertyTypeEnum DEFAULT_PROPERTY_TYPE = PropertyTypeEnum.CONDO;
 
     private Name name;
     private Address address;
     private Price price;
     private Set<Tag> tags;
+    private PropertyTypeEnum propertyTypeEnum;
 
     /**
      * Creates a {@code PropertyBuilder} with the default details.
@@ -31,7 +36,8 @@ public class PropertyBuilder {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
         price = new Price(DEFAULT_PRICE);
-        tags = new HashSet<>();
+        tags = DEFAULT_TAGS;
+        propertyTypeEnum = DEFAULT_PROPERTY_TYPE;
     }
 
     /**
@@ -42,6 +48,7 @@ public class PropertyBuilder {
         address = propertyToCopy.getAddress();
         price = propertyToCopy.getPrice();
         tags = new HashSet<>(propertyToCopy.getTags());
+        propertyTypeEnum = propertyToCopy.getPropertyTypeEnum();
     }
 
     /**
@@ -76,8 +83,16 @@ public class PropertyBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code PropertyType} of the {@code Property} that we are building.
+     */
+    public PropertyBuilder withPropertyType(String propertyType) {
+        this.propertyTypeEnum = PropertyTypeEnum.valueOf(propertyType);
+        return this;
+    }
+
     public Property build() {
-        return new Property(name, address, price, tags);
+        return new Property(name, address, price, tags, propertyTypeEnum);
     }
 
 }

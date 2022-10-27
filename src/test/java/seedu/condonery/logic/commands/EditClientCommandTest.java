@@ -2,6 +2,8 @@ package seedu.condonery.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_DESC_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_DESC_BOB;
 import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND;
@@ -157,10 +159,10 @@ public class EditClientCommandTest {
     @Test
     public void equals() {
         final EditClientCommand standardCommand =
-                new EditClientCommand(INDEX_FIRST, CommandTestUtil.CLIENT_DESC_AMY);
+                new EditClientCommand(INDEX_FIRST, CLIENT_DESC_AMY);
 
         // same values -> returns true
-        EditClientDescriptor copyDescriptor = new EditClientDescriptor(CommandTestUtil.CLIENT_DESC_AMY);
+        EditClientDescriptor copyDescriptor = new EditClientDescriptor(CLIENT_DESC_AMY);
         EditClientCommand commandWithSameValues =
                 new EditClientCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.getEditClientDescriptor()
@@ -176,10 +178,10 @@ public class EditClientCommandTest {
         assertFalse(standardCommand.equals(new ClearPropertyCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditClientCommand(INDEX_SECOND, CommandTestUtil.CLIENT_DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditClientCommand(INDEX_SECOND, CLIENT_DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditClientCommand(INDEX_FIRST, CommandTestUtil.CLIENT_DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditClientCommand(INDEX_FIRST, CLIENT_DESC_BOB)));
     }
 
 }
