@@ -13,7 +13,7 @@ public class AliasSettings implements Serializable {
     private static final String DEFAULT_DELETE = "delete";
     private static final String DEFAULT_EDIT = "edit";
     private static final String DEFAULT_EXIT = "exit";
-    private static final String DEFAULT_FILTER_TAG = "filterTag";
+    private static final String DEFAULT_FIND_TAG = "findTag";
     private static final String DEFAULT_FILTER_STATUS = "filterStatus";
     private static final String DEFAULT_FIND = "find";
     private static final String DEFAULT_LIST = "list";
@@ -27,7 +27,7 @@ public class AliasSettings implements Serializable {
     private String delete;
     private String edit;
     private String exit;
-    private String filterTag;
+    private String findTag;
     private String filterStatus;
     private String find;
     private String list;
@@ -45,7 +45,7 @@ public class AliasSettings implements Serializable {
         delete = DEFAULT_DELETE;
         edit = DEFAULT_EDIT;
         exit = DEFAULT_EXIT;
-        filterTag = DEFAULT_FILTER_TAG;
+        findTag = DEFAULT_FIND_TAG;
         filterStatus = DEFAULT_FILTER_STATUS;
         find = DEFAULT_FIND;
         list = DEFAULT_LIST;
@@ -58,7 +58,7 @@ public class AliasSettings implements Serializable {
     /**
      * Constructs a {@code AliasSettings} with the specified command words.
      */
-    public AliasSettings(String add, String clear, String delete, String edit, String exit, String filterTag,
+    public AliasSettings(String add, String clear, String delete, String edit, String exit, String findTag,
                          String find, String list, String help, String rate, String filterStatus, String rateAbove,
                          String select) {
         this.add = add;
@@ -66,7 +66,7 @@ public class AliasSettings implements Serializable {
         this.delete = delete;
         this.edit = edit;
         this.exit = exit;
-        this.filterTag = filterTag;
+        this.findTag = findTag;
         this.filterStatus = filterStatus;
         this.find = find;
         this.list = list;
@@ -96,8 +96,8 @@ public class AliasSettings implements Serializable {
         return exit;
     }
 
-    public String getFilterTag() {
-        return filterTag;
+    public String getFindTag() {
+        return findTag;
     }
 
     public String getFilterStatus() {
@@ -144,7 +144,7 @@ public class AliasSettings implements Serializable {
                 && delete.equals(o.delete)
                 && edit.equals(o.edit)
                 && exit.equals(o.exit)
-                && filterTag.equals(o.filterTag)
+                && findTag.equals(o.findTag)
                 && filterStatus.equals(o.filterStatus)
                 && find.equals(o.find)
                 && list.equals(o.list)
@@ -156,7 +156,7 @@ public class AliasSettings implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(add, clear, delete, edit, exit, filterTag, find, list, help, rate, filterStatus, rateAbove,
+        return Objects.hash(add, clear, delete, edit, exit, findTag, find, list, help, rate, filterStatus, rateAbove,
                 select);
     }
 
@@ -169,7 +169,7 @@ public class AliasSettings implements Serializable {
         sb.append("edit : " + edit + "\n");
         sb.append("exit : " + exit + "\n");
         sb.append("filterStatus : " + filterStatus + "\n");
-        sb.append("filterTag : " + filterTag + "\n");
+        sb.append("findTag : " + findTag + "\n");
         sb.append("find : " + find + "\n");
         sb.append("list : " + list + "\n");
         sb.append("help : " + help + "\n");

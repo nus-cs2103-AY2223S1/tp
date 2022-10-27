@@ -55,7 +55,7 @@
                         <Label text="Edit" GridPane.rowIndex="3" />
                         <Label text="Exit" GridPane.rowIndex="4" />
                         <Label text="FilterStatus" GridPane.rowIndex="5" />
-                        <Label text="FilterTag" GridPane.rowIndex="6" />
+                        <Label text="FindTag" GridPane.rowIndex="6" />
                         <Label text="Find" GridPane.rowIndex="7" />
                         <Label text="List" GridPane.rowIndex="8" />
                         <Label text="Help" GridPane.rowIndex="9" />
@@ -68,7 +68,7 @@
                         <TextField fx:id="edit" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="exit" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <TextField fx:id="filterStatus" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField fx:id="filterTag" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="findTag" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <TextField fx:id="find" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <TextField fx:id="list" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <TextField fx:id="help" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
