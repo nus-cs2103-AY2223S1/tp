@@ -18,6 +18,7 @@ import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.FilterBuyerByPricePredicate;
 import seedu.address.model.buyer.FilterBuyerByPriorityPredicate;
 import seedu.address.model.buyer.FilterBuyerContainingAllCharacteristicsPredicate;
+import seedu.address.model.buyer.FilterBuyerContainingAnyCharacteristicPredicate;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Price;
@@ -56,7 +57,11 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             Characteristics characteristics = ParserUtil.parseCharacteristics(
                     argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
-            predicatesList.add(new FilterBuyerContainingAllCharacteristicsPredicate(characteristics));
+            if (argMultimap.getValue(PREFIX_FUZZY).isPresent()) {
+                predicatesList.add(new FilterBuyerContainingAnyCharacteristicPredicate(characteristics));
+            } else {
+                predicatesList.add(new FilterBuyerContainingAllCharacteristicsPredicate(characteristics));
+            }
         }
 
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
