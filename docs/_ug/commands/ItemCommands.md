@@ -11,11 +11,11 @@ Example of an [Item](#item):
 
 ```info
 * All fields apart from `ITEM_NAME` are optional.
-* The `BOUGHT_DATE` ideally should not be after the `EXPIRY_DATE` but we will allow that. 
+* The `BOUGHT_DATE` ideally should not be after the `EXPIRY_DATE` but we will allow that.
 * The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
   * dd: Day of the month. For example, "10" would represent the 10th day of the month.
   * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
-  * yyyy: The current year. For example, "2019" would represent the year 2019.  
+  * yyyy: The current year. For example, "2019" would represent the year 2019.
 * The default values for `QUANTITY` and `PRICE` is `0`.
 * The default values for `UNIT` is blank.
 * The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
@@ -128,7 +128,7 @@ Item List Box:
 > Sorts the list of currently displayed items by the provided criteria
 
 ```warning
-* You should only provide one sorting criteria. 
+* You should only provide one sorting criteria.
 * The sort can only be done in an ascending order.
 ```
 
