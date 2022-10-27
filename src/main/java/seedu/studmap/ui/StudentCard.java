@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextFlow;
 import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Student;
 
@@ -17,6 +18,8 @@ public class StudentCard extends UiPart<Region> {
 
     private static final String FXML = "StudentListCard.fxml";
 
+    private static final float ATTENDANCE_THRESHOLD = 50;
+    private static final float MARK_THRESHOLD = 2;
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -42,6 +45,10 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label studentId;
     @FXML
+    private Label attendanceRate;
+    @FXML
+    private Label assignmentRate;
+    @FXML
     private Label gitName;
     @FXML
     private Label handle;
@@ -64,8 +71,43 @@ public class StudentCard extends UiPart<Region> {
         email.setText(student.getEmail().toString());
         module.setText(student.getModule().toString());
         studentId.setText(student.getId().toString());
-        gitName.setText(student.getGitName().toString());
-        handle.setText(student.getTeleHandle().toString());
+        gitName.setText(student.getGitName().getDisplayString());
+        handle.setText(student.getTeleHandle().getDisplayString());
+
+        Label attendanceRateName = new Label("Attendance: ");
+        attendanceRateName.setId("info");
+        Label attendanceRateLabel = new Label(String.format("%.0f%%", student.getAttendancePercentage()));
+
+        if (Float.isNaN(student.getAttendancePercentage())) {
+            attendanceRateLabel.setStyle("-fx-text-fill: lightgrey;");
+            attendanceRateLabel.setText("No Records");
+        } else if (student.getAttendancePercentage() >= ATTENDANCE_THRESHOLD) {
+            attendanceRateLabel.setId("success");
+        } else {
+            attendanceRateLabel.setId("fail");
+        }
+
+        TextFlow attTextFlow = new TextFlow(attendanceRateName, attendanceRateLabel);
+        attendanceRate.setGraphic(attTextFlow);
+
+        Label assignmentRateName = new Label("Unmarked: ");
+        attendanceRateName.setId("info");
+        Label assignmentRateLabel = new Label(String.format("%d",
+                student.getAssignmentUnmarkedCount()));
+
+        if (student.getAssignmentCount() == 0) {
+            assignmentRateLabel.setStyle("-fx-text-fill: lightgrey;");
+            assignmentRateLabel.setText("No Records");
+        } else if (student.getAssignmentUnmarkedCount() >= MARK_THRESHOLD) {
+            assignmentRateLabel.setId("fail");
+        } else if (student.getAssignmentUnmarkedCount() > 0) {
+            assignmentRateLabel.setId("caution");
+        } else {
+            assignmentRateLabel.setId("fail");
+        }
+
+        TextFlow assTextFlow = new TextFlow(assignmentRateName, assignmentRateLabel);
+        assignmentRate.setGraphic(assTextFlow);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
