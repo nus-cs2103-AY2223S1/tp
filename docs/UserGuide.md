@@ -255,7 +255,7 @@ Example: `mark 1 s/Shopping survey`, `unmark 3 s/Environmental survey`
 
 These shortcut keys will add texts to the command box, this helps the users to enter the commands faster.
 
-- `CTRL + A` adds `add n/ p/ e/ a/ g/ b/ ra/ re/ s/ t/` to the command box.
+- `CTRL + N` adds `add n/ p/ e/ a/ g/ b/ ra/ re/ s/ t/` to the command box.
 - `CTRL + E` adds `edit` to the command box.
 - `CTRL + D` adds `delete` to the command box.
 - `CTRL + M` adds `mark` to the command box.
@@ -263,6 +263,7 @@ These shortcut keys will add texts to the command box, this helps the users to e
 - `CTRL + Z` adds `undo` to the command box.
 - `CTRL + L` adds `clone` to the command box.
 - `CTRL + I` adds `view` to the command box.
+- `CTRL + R` clears all texts in the command box.
 
 ### Clearing all entries : `clear`
 
