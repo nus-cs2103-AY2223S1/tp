@@ -25,8 +25,7 @@ public class PrCommand extends Command {
             + " -> Find the personal record of each inputted exercise.\n"
             + "Parameters: " + PREFIX_NAME
             + "NAME " + "[" + PREFIX_NAME
-            + "NAME2" + " + " + PREFIX_NAME
-            + "NAME3 ... ]" + "\n"
+            + "NAME]..." + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "squat " + PREFIX_NAME + "bench press\n"
             + "OR \n"
             + "List personal records for all exercises.\n"

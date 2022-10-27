@@ -16,8 +16,8 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " -> Filters all exercises whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]\n"
-            + "Example usage:\n" + COMMAND_WORD + " Bench press Squat Deadlift";
+            + "Parameters: KEYWORD [KEYWORD]\n"
+            + "Example usage:\n" + COMMAND_WORD + " Squat Deadlift";
 
     private final NameContainsKeywordsPredicate predicate;
 
