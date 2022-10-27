@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.animation.PauseTransition;
@@ -138,10 +137,10 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        creeperImageView = new ImageView(new Image(
-                    new File("src/main/resources/images/creeper_mob.png").toURI().toString()));
-        explosionImageView = new ImageView(new Image(
-                new File("src/main/resources/images/explosion2.png").toURI().toString()));
+        creeperImageView = new ImageView(
+                new Image(getClass().getResource("/images/creeper_mob.png").toString()));
+        explosionImageView = new ImageView(
+                new Image(getClass().getResource("/images/explosion2.png").toString()));
         creeperPlaceHolder.getChildren().add(creeperImageView);
         creeperPlaceHolder.getChildren().add(explosionImageView);
         explosionImageView.setVisible(false);
@@ -250,12 +249,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private MediaPlayer loadSound(String soundFile) {
-        Media sound = new Media(new File(soundFile).toURI().toString());
+        Media sound = new Media(getClass().getResource(soundFile).toString());
         return new MediaPlayer(sound);
     }
 
     private void playSound() {
-        MediaPlayer explosionSound = loadSound("src/main/resources/audio/explosion_sound.mp3");
+        MediaPlayer explosionSound = loadSound("/audio/explosion_sound.mp3");
         explosionSound.play();
     }
 }
