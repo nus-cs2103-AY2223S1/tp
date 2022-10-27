@@ -54,7 +54,7 @@ public class TasksOfCommand extends Command {
             return new CommandResult(commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Person> members = model.getTeam().getTeamMembers();
+        List<Person> members = model.getFilteredMemberList();
         if (memberIndex.getZeroBased() >= members.size()) {
             throw new CommandException(
                     String.format(MESSAGE_MEMBER_INDEX_TOO_LARGE, memberIndex.getOneBased()));
