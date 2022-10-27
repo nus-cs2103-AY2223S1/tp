@@ -314,9 +314,24 @@ Design considerations:
 
 #### 4.2.6 ViewClass command
 
+<u>**Description**</u>
+
+The `ViewClassCommand` allows users to view the list of students in a given class.
+
+<u>**Implementation**</u>
 Current Implementation:
-The `ViewClass` Command displays the list of Students in a particular class by updating the `FilteredStudentList` with a `ClassPredicate`.
+The `ViewClassCommand` displays the list of Students in a particular class by updating the `FilteredStudentList` with a `ClassPredicate`.
 The ClassPredicate checks that a Student's Class matches the user input(ignoring case-sensitivity).
+
+**Step 1: Parsing the command**
+
+The delete command is first parsed.
+
+1. The `execute` method of `LogicManager` is called to execute the user’s command, `delete id/123A`.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a delete command and creates a new `DeleteCommandParser` instance to parse the user’s command.
+3. Once the command is successfully parsed, `DeleteCommandParser` creates a new `DeleteCommand` instance which will be executed by the `LogicManager`.
+
+**Step 2: Executing the command**
 
 *Insert Basic Class Diagram*
 
@@ -342,9 +357,8 @@ The following sequence diagram shows how the ViewClass Command works:
 
 Design Considerations:
 1. Predicate logic for filtering students by their class
-2. Command name
+2. Limitations to a class name
 
-*To be further updated*
 
 #### 4.2.7 Toggle View command
 Implementation: 
