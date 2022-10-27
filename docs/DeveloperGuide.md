@@ -394,7 +394,7 @@ Given below is an example success scenario and how the `find` mechanism behaves 
 
 The following sequence diagram shows how the `find` command works:
 
-![ExportSequenceDiagram](images/lulucopter.png)
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 #### Design Considerations
 
@@ -414,6 +414,14 @@ The following sequence diagram shows how the `find` command works:
         * Harder to implement since a flag is a brand-new functionality which other commands do not have. Coupled classes have to be modified accordingly, such as the relevant parser classes and argumentTokenizer/Multimap
         * Flags introduce the possibility for more input types to consider, and these affects the inputs that users can use in all commands
         * Requires restructuring old code, which will increase testing time and possibility of introducing bugs into existing code
+*  **Alternative 3**: Choose a search type for each field type
+  * Pros:
+    * Allow for multiple field searches where the search within each field is curated to best search the available field values
+    * Intuitive and easy for Users to use
+    * Less syntax and user input required in comparison to _alternative 2_
+  * Cons:
+    * Limits User's freedom in how they want to search
+    * Search type for the field may not be how the User wants to search
 
 --------------------------------------------------------------------------------------------------------------------
 
