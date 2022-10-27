@@ -61,7 +61,7 @@ NUScheduler is a desktop app for **managing contacts, optimised for use via a Co
 
 
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Opens a help window displaying all the recognised commands, and a link to access the user guide.
 
@@ -94,7 +94,7 @@ Shows a list of all profiles in the NUScheduler.
 
 Format: `profile -v`
 
-### Editing a profile : `profile -e`
+### Editing a profile: `profile -e`
 
 Edits an existing profile in NUScheduler.
 
@@ -173,7 +173,7 @@ Shows a list of all events in the NUScheduler.
 
 Format: `event -v`
 
-### Editing a event : `event -e`
+### Editing a event: `event -e`
 
 Edits an existing event in NUScheduler.
 
