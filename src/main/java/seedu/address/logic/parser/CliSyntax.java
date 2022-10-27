@@ -11,16 +11,18 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_DOB = new Prefix("d/"); //Added in "d/" prefix for DOB
+    public static final Prefix PREFIX_DOB = new Prefix("d/"); //same as PREFIX_START_DATE
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_SORT = new Prefix("s/");
     public static final Prefix PREFIX_GENDER = new Prefix("g/");
 
     // Prefix associated with Event
     public static final Prefix PREFIX_START_DATE = new Prefix("d/");
-    public static final Prefix PREFIX_START_TIME = new Prefix("t/"); //same as PREFIX_TAG
+    public static final Prefix PREFIX_START_TIME = new Prefix("t/"); //same as PREFIX_TYPE
     public static final Prefix PREFIX_PURPOSE = new Prefix("p/"); //same as PREFIX_PHONE
     public static final Prefix PREFIX_EVENT_TITLE = new Prefix("e/");
     public static final Prefix PREFIX_PERSONS = new Prefix("p/");
+
+    //Prefix associated with statistics
+    public static final Prefix PREFIX_TYPE = new Prefix("t/");
 }

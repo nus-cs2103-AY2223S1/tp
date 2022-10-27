@@ -2,12 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.date.Date;
 
 /**
  * Represents a Person in the address book.
@@ -15,30 +12,28 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private static final int AGE_GROUP_SIZE = 5;
+
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
     private final Address address;
     private final Gender gender;
-    private final DateOfBirth dob;
-    private final Set<Tag> tags = new HashSet<>();
-
+    private final Date dob;
     private final Uid uid;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Gender gender, DateOfBirth dob,
-                  Set<Tag> tags, Uid uid) {
-        requireAllNonNull(name, phone, email, address, tags, gender, uid);
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, Date dob, Uid uid) {
+        requireAllNonNull(name, phone, email, address, gender, uid);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.dob = dob;
         this.gender = gender;
-        this.tags.addAll(tags);
         this.uid = uid;
     }
 
@@ -61,18 +56,18 @@ public class Person {
     public Gender getGender() {
         return gender;
     }
-    public DateOfBirth getDob() {
+    public Date getDob() {
         return dob;
     }
     public Uid getUid() {
         return uid;
     }
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+
+    public String getAgeGroup() {
+        int minAgeInGroup = dob.toAge();
+        minAgeInGroup = (int) (Math.floor(minAgeInGroup / AGE_GROUP_SIZE) * AGE_GROUP_SIZE);
+        int maxAgeInGroup = minAgeInGroup + AGE_GROUP_SIZE;
+        return String.format("%d-%dyo", minAgeInGroup, maxAgeInGroup);
     }
 
     /**
@@ -109,14 +104,12 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getDob().equals(getDob())
-                && otherPerson.getGender().equals(getGender())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getGender().equals(getGender());
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, gender); //add gender field
+        return Objects.hash(name, phone, email, address, gender);
     }
 
     @Override
@@ -133,11 +126,6 @@ public class Person {
                 .append(getGender())
                 .append("; Date of birth: ")
                 .append(getDob());
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
 
         return builder.toString();
     }

@@ -5,7 +5,9 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -27,14 +29,9 @@ public class StatsWindow extends UiPart<Stage> {
      */
     public StatsWindow(Stage root) {
         super(FXML, root);
-        ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
-                new PieChart.Data("Grapefruit", 13),
-                new PieChart.Data("Oranges", 25),
-                new PieChart.Data("Plums", 10),
-                new PieChart.Data("Pears", 22),
-                new PieChart.Data("Apples", 30));
+        ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
         chart.setData(data);
-        chart.setTitle("Fruits");
+        chart.setTitle("Statistics");
     }
 
     /**
@@ -42,6 +39,22 @@ public class StatsWindow extends UiPart<Stage> {
      */
     public StatsWindow() {
         this(new Stage());
+    }
+
+    /**
+     * Replaces the current data used to generate the {@code PieChart} with the new data specified.
+     */
+    //Solution adapted from: https://stackoverflow.com/questions/36276805/how-to-wrap-text-of-a-javafx-chart-legend
+    public void setPieChart(ObservableList<PieChart.Data> newData) {
+        chart.setData(newData);
+        for (Node node : chart.lookupAll(".chart-legend-item")) {
+            if (node instanceof Label) {
+                Label legendElement = (Label) node;
+                legendElement.setWrapText(true);
+                legendElement.setManaged(true);
+                legendElement.setPrefWidth(100);
+            }
+        }
     }
 
     /**
