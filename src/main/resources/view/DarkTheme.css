@@ -417,3 +417,34 @@
     -fx-font-size: 15pt;
     -fx-text-fill: white;
 }
+
+#examListView .list-cell {
+    -fx-background-color: derive(#2A61EF, 20%);
+}
+
+#examListView {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: derive(#2A61EF, 20%);
+}
+
+#moduleListView .list-cell {
+    -fx-background-color: derive(#329BFF, 20%);
+}
+
+#moduleListView {
+    -fx-background-color: derive(#329BFF, 20%);
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+#taskListView .list-cell {
+    -fx-background-color: derive(#303EBD, 20%);
+}
+
+#taskListView {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: derive(#303EBD, 20%);
+}
+

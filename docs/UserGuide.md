@@ -361,13 +361,14 @@ Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
 
 * Adds an exam to the exam list.
 * MODULE refers to the module of the exam
-* EXAMDESCRIPTION refers to the description of the exam
-* EXAMDATE refers to the date of the exam
+* EXAM_DESCRIPTION refers to the description of the exam
+* EXAM_DATE refers to the date of the exam
 * The exam cannot be added if it is the same exam as an existing exam in the exam list. Otherwise, an error message will be displayed.
 * MODULE has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed. 
-* EXAMDESCRIPTION should not be empty. Otherwise, an error message will be displayed to the user. 
-* EXAMDATE should be in dd-mm-yyyy format, a valid date and not a past date. Otherwise, an error message will be displayed to the user.
-  For example, 2022-12-28, 20-13-2022 are not in dd-mm-yyyy format, 30-02-2022 is an invalid date, and 20-08-2022 is a past date if the current date is 26-10-2022.
+* EXAM_DESCRIPTION should not be empty. Otherwise, an error message will be displayed to the user. 
+* EXAM_DATE should be in DD-MM-YYYY format, a valid date, and a date that is not earlier than today's date.
+  DD should be between 1 and 31(both inclusive) and MM should be between 1 and 12(both inclusive). Otherwise, an error message will be displayed to the user.
+  For example, 2022-12-28, 20-13-2022 are not in DD-MM-YYYY format, 30-02-2022 is an invalid date, and 20-08-2022 is a past date if the current date is 26-10-2022.
 
 
 Examples:
@@ -378,27 +379,31 @@ exam description as 'midterms', exam date as '20-11-2022' into the exam list.
 ### Editing an exam
 Edits the specified exam by updating the existing values to the input values.
    
-Format: `e edit INDEX (must be a positive integer) [m/MODULE]* [ex/EXAM DESCRIPTION]* [ed/EXAM DATE]*`
+Format: `e edit INDEX (must be a positive integer) [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`
 * Edits the exam at the specified INDEX in the exam list.
 * MODULE refers to the module of the exam
-* EXAMDESCRIPTION refers to the description of the exam
-* EXAMDATE refers to the date of the exam
+* EXAM_DESCRIPTION refers to the description of the exam
+* EXAM_DATE refers to the date of the exam
 * The index must be a positive integer 1, 2, 3, … 
 * If the index is a non-positive or more than the number of exams in the exam list, an error message will be displayed. 
 * The exam cannot be edited if it is the same exam as an existing exam in the exam list. An error message will be displayed to inform the user that the exam already exists in the exam list. 
-* At least one field of the exam to edit must be provided. Otherwise, an error message will be shown. 
-* If one wants to edit the module of the exam, and the exam is linked to some tasks, the tasks would be unlinked to the exam. 
-  The tasks cannot be linked to the exam as the tasks have a different module code from the exam.
+* At least one optional field of the exam to edit must be provided. Otherwise, an error message will be shown.
 * MODULE has to exist in the module list and be a valid module with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
-* EXAMDESCRIPTION should not be empty. Otherwise, an error message will be displayed to the user.
-* EXAMDATE should be in dd-mm-yyyy format, a valid date and not a past date. Otherwise, an error message will be displayed to the user.
-  For example, 2022-12-28, 20-13-2022 are not in dd-mm-yyyy format, 30-02-2022 is an invalid date, and 20-08-2022 is a past date if the current date is 26-10-2022.
+* EXAM_DESCRIPTION should not be empty. Otherwise, an error message will be displayed to the user.
+* EXAM_DATE should be in DD-MM-YYYY format, a valid date, and a date that is not earlier than today's date.
+DD should be between 1 and 31(both inclusive) and MM should be between 1 and 12(both inclusive). Otherwise, an error message will be displayed to the user.
+  For example, 2022-12-28, 20-13-2022 are not in DD-MM-YYYY format, 30-02-2022 is an invalid date, and 20-08-2022 is a past date if the current date is 26-10-2022.
 
 Examples:
 
 `e edit 1 ex/finals ed/20-12-2022` changes the exam description of the first exam in the exam list to ‘finals’ and the exam date to ‘20-12-2022’.
 
 `e edit 2 m/cs2030s ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘cs2030s’ and the exam date as ‘22-12-2022’.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the module of the exam is edited, and the exam is linked to some tasks, the tasks would be unlinked to the exam.
+The tasks cannot be linked to the exam as the tasks have a different module code from the exam.
+</div>
 
 
 ### Deleting an exam
