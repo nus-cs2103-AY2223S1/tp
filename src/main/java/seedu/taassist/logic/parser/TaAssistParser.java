@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.taassist.logic.commands.AddCommand;
 import seedu.taassist.logic.commands.AddcCommand;
+import seedu.taassist.logic.commands.AddsCommand;
 import seedu.taassist.logic.commands.AssignCommand;
 import seedu.taassist.logic.commands.ClearCommand;
 import seedu.taassist.logic.commands.Command;
@@ -25,7 +26,6 @@ import seedu.taassist.logic.commands.ListCommand;
 import seedu.taassist.logic.commands.ListcCommand;
 import seedu.taassist.logic.commands.ListsCommand;
 import seedu.taassist.logic.commands.ScoresCommand;
-import seedu.taassist.logic.commands.SessionCommand;
 import seedu.taassist.logic.commands.UnassignCommand;
 import seedu.taassist.logic.commands.UnfocusCommand;
 import seedu.taassist.logic.commands.ViewCommand;
@@ -88,8 +88,8 @@ public class TaAssistParser {
         case UnassignCommand.COMMAND_WORD:
             return new UnassignCommandParser().parse(arguments);
 
-        case SessionCommand.COMMAND_WORD:
-            return new SessionCommandParser().parse(arguments);
+        case AddsCommand.COMMAND_WORD:
+            return new AddsCommandParser().parse(arguments);
 
         case DeletesCommand.COMMAND_WORD:
             return new DeletesCommandParser().parse(arguments);
