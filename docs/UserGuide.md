@@ -425,8 +425,6 @@ Format:
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 * If the criteria is Payment status, Ascending will show bills which are paid first and Descending will show bills which are unpaid first.
-* If there are no prefixes keyed in, an error message will be shown with the correct command format.
-* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 
 Examples:
