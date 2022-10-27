@@ -368,6 +368,7 @@ After typing in the command word, the command's parameters and their respective 
 Use the up and down keys to navigate through previously typed commands. Users can edit the command first or press enter to execute the command. 
 * Only valid commands will be saved in the command history
 * Command history will only save up to 20 previously typed valid commands
+* Consecutive duplicate commands will not be saved (e.g entering "list" 3 times in a row will only add "list" to command history once)
 
 ### 5.5 Miscellaneous commands
 

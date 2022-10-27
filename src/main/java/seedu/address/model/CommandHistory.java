@@ -44,6 +44,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
         int size = commandHistoryList.size();
         int latestIndex = size - 1;
 
+        resetCurrentIndexToBeyondMaxIndex();
         // prevent saving of consecutive duplicate commands
         if (!commandHistoryList.isEmpty()
                 && commandHistoryList.get(latestIndex).equals(commandInput)) {
@@ -53,7 +54,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
             commandHistoryList.remove(0);
         }
         commandHistoryList.add(commandInput);
-        resetCurrentIndexToBeyondMaxIndex();
+
     }
 
     public String getPrevCommand() {
