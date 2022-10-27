@@ -1,12 +1,10 @@
 package seedu.address.ui;
 
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
