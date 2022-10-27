@@ -2,7 +2,6 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
-import static paymelah.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
