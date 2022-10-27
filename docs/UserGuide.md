@@ -120,21 +120,17 @@ Examples:
 
 ### Adding student's attendance : `attendance`
 
-Increases or decreases the number of times a student attended tutorials.
+Increases student's attendance by 1.
 
-Format: `attendance INDEX s/SIGN v/VALUE`
+Format: `attendance INDEX`
 
-* Adds attendance to the student at the specified INDEX.
+* Increment attendance to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
 * The index must be a positive integer 1, 2. 3, ….
-* decrease attendance value if `SIGN` is '-' and increase attendance value if `SIGN` is '+'.
-* increase or decrease the specific student's attendance by `VALUE`.
 
 Examples:
 
-* `attendance 1 s/- v/2`
-* `attendance 1 s/+ v/1`
-
+* `attendance 1 
 
 ### Adding student's response: `addresponse`
 
@@ -142,7 +138,7 @@ Adds the number of messages a specified student sent during tutorial.
 
 Format: `addresponse n\NAME m\MESSAGE_COUNT`
 
-Examples:
+Example:
 
 * `addresponse n\John Doe m\7`
 
@@ -150,12 +146,15 @@ Examples:
 
 Adds a help tag to an existing student.
 
-Format: `helpstu NAME`
+Format: `helpstu INDEX`
+
+* Adds a help tag to the student at the specified INDEX.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3, ….
 
 Example:
 
-* `helpstu John Lim Jun Jie`
-
+* `helpstu 2`
 
 ### Deleting a student: `deletestu`
 
