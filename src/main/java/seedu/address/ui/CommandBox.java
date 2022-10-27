@@ -164,13 +164,10 @@ public class CommandBox extends UiPart<Region> {
 
         public void previousCommand() {
             pointer = (pointer - 1) < 0 ? pointer : (pointer - 1);
-            System.out.println(pointer);
-            System.out.println(previousCommands);
         }
 
         public void nextCommand() {
             pointer = (pointer + 1) > previousCommands.size() ? pointer : (pointer + 1);
-            System.out.println(pointer);
         }
 
         private void setPointerToEnd() {
