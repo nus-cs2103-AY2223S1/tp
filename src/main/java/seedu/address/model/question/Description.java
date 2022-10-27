@@ -13,7 +13,7 @@ public class Description {
 
 
     /*
-     * The first character of the description must not be a whitespace,
+     * The description must contain at least 1 non-space character,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^(?=\\s*\\S).*$";
