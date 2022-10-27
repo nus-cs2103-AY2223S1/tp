@@ -3,7 +3,6 @@ package seedu.foodrem.logic.commands.tagcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.TAG_COMMAND;
 
-import java.util.List;
 import java.util.Set;
 
 import seedu.foodrem.commons.core.index.Index;
@@ -19,6 +18,8 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Tags an item with a Tag.
  */
 public class TagCommand extends Command {
+    private static final String MESSAGE_SUCCESS = "Item tagged successfully. Updated item:";
+
     private final Index index;
     private final Tag tag;
 
@@ -43,27 +44,13 @@ public class TagCommand extends Command {
         if (itemTags.contains(tag)) {
             throw new CommandException("This item has already been tagged with this tag");
         }
+
         itemTags.add(tag);
         Item newTagSetItem = Item.createItemWithTags(itemToTag, itemTags);
         model.setItem(itemToTag, newTagSetItem);
+        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
-        return CommandResult.from(
-                new ItemWithMessage(newTagSetItem, "Item tagged successfully. View updated item below:"));
-    }
-
-    static Item validateAndGetTargetItem(Model model, Tag tag, Index index) throws CommandException {
-        requireNonNull(model);
-
-        if (!model.hasTag(tag)) {
-            throw new CommandException("This tag does not exist");
-        }
-
-        List<Item> lastShownList = model.getCurrentList();
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException("The item index does not exist");
-        }
-
-        return lastShownList.get(index.getZeroBased());
+        return CommandResult.from(new ItemWithMessage(newTagSetItem, MESSAGE_SUCCESS));
     }
 
     public static String getUsage() {
