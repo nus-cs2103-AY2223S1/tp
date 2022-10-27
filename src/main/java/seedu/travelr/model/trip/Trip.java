@@ -58,7 +58,7 @@ public class Trip {
     }
 
     /**
-     * Main constructor, used in Add Command
+     * Constructs trip
      * Every field must be present and not null.
      */
     public Trip(Title title, Description description, Set<Event> events, Location location, DateField dateField) {
@@ -66,6 +66,19 @@ public class Trip {
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
+        this.location = location;
+        this.done = false;
+        this.dateField = dateField;
+    }
+
+    /**
+     * Constructs a trip. used in Add Command
+     * Every field must be present and not null.
+     */
+    public Trip(Title title, Description description, Location location, DateField dateField) {
+        requireAllNonNull(title, description, location, dateField);
+        this.title = title;
+        this.description = description;
         this.location = location;
         this.done = false;
         this.dateField = dateField;
@@ -95,7 +108,7 @@ public class Trip {
         events.remove(event);
     }
 
-    public boolean contains(Event event) {
+    public boolean containsEvent(Event event) {
         return events.contains(event);
     }
 
@@ -172,15 +185,16 @@ public class Trip {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
+        builder.append("Title: ")
+                .append(getTitle())
                 .append("; Description: ")
                 .append(getDescription());
 
-        Set<Event> tags = getEvents();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
+        //        Set<Event> events = getEvents();
+        //        if (!events.isEmpty()) {
+        //            builder.append("; Events: ");
+        //            events.forEach(builder::append);
+        //        }
 
         if (!getLocation().isDefaultValue()) {
             builder.append("; Location: ");
@@ -199,4 +213,24 @@ public class Trip {
         return title.compareTo(trip.title);
     }
 
+    public int compareTime(Trip trip) {
+        return dateField.compareTo(trip.dateField);
+    }
+
+    public int compareLocation(Trip trip) {
+        return location.compareTo(trip.location);
+    }
+
+    public int compareNumberOfEvents(Trip trip) {
+        return events.getAmountOfEvents() - trip.events.getAmountOfEvents();
+    }
+
+    /**
+     * Compares this trip against another trip based on whether they are completed.
+     */
+    public int compareCompletion(Trip trip) {
+        int thisCompletion = done ? 1 : 0;
+        int otherCompletion = trip.done ? 1 : 0;
+        return thisCompletion - otherCompletion;
+    }
 }

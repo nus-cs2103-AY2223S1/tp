@@ -1,5 +1,16 @@
-#copyButton, #helpMessage {
+#copyButton, #userGuideMessage, #welcomeMessage, #commandSummary, #message, #commandSummaryIntro {
     -fx-text-fill: white;
+    -fx-font-size: 13;
+}
+
+#message, #welcomeMessage {
+    fx-text-fill: white;
+    -fx-font-size: 20;
+}
+
+#commandSummary {
+    -fx-font-family: monospace;
+    -fx-font-size: 12;
 }
 
 #copyButton {
@@ -14,6 +25,33 @@
     -fx-background-color: darkgray;
 }
 
-#helpMessageContainer {
+#helpMessageContainer, #helpResultContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
 }
+
+.scroll-bar {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 8 1 8 1;
+}
+

@@ -21,6 +21,7 @@ import seedu.travelr.model.trip.Trip;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_TRIP = "Trips list contains duplicate trip(s).";
+    public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
     private final List<JsonAdaptedTrip> trips = new ArrayList<>();
     private final List<JsonAdaptedEvent> bucketList = new ArrayList<>();
@@ -59,14 +60,17 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
             }
             addressBook.addTrip(trip);
-            for (Event e : trip.getEvents()) {
-                addressBook.addEventToAllEventsList(e);
+            for (Event event : trip.getEvents()) {
+                if (addressBook.hasEvent(event)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
+                }
+                addressBook.addEventToAllEventsList(event);
             }
         }
         for (JsonAdaptedEvent jsonAdaptedEvent : bucketList) {
             Event event = jsonAdaptedEvent.toModelType();
             if (addressBook.hasEvent(event)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
             addressBook.addEventToBucketListAndAllEventsList(event);
         }

@@ -75,6 +75,12 @@ public interface Model {
      */
     boolean hasEvent(Event event);
 
+
+    /**
+     * Returns true if the bucketlist has event in Travelr.
+     */
+    boolean bucketlistHasEvent(Event event);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -142,6 +148,11 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
 
     /**
+     * Returns an unmodifiable view of the bucket list
+     */
+    ObservableList<Event> getBucketList();
+
+    /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -155,9 +166,24 @@ public interface Model {
      */
     void updateFilteredEventList(Predicate<Event> predicate);
 
+    /**
+     * Resets the filtered event list to buckets and filtered trips to show all events {@code predicate}.
+     */
+    void resetView();
+
+
     ObservableTrip getSelectedTrip();
 
     void resetSelectedTrip();
 
     void sortTripsByComparator(Comparator<Trip> comp);
+
+    SummaryVariables getSummaryVariables();
+
+    void refreshSummaryVariables();
+
+    void sortBucketList(Comparator<Event> comparator);
+
+    boolean hasEventInBucketList(Event event);
+
 }

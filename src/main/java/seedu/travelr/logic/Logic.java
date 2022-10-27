@@ -9,6 +9,7 @@ import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.SummaryVariables;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
@@ -55,4 +56,8 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    SummaryVariables getSummaryVariables();
+
+    void refreshSummaryVariables();
 }

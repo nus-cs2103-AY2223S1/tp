@@ -14,15 +14,17 @@ import seedu.travelr.logic.commands.Command;
 import seedu.travelr.logic.commands.DeleteCommand;
 import seedu.travelr.logic.commands.DeleteEventCommand;
 import seedu.travelr.logic.commands.DeleteEventFromTripCommand;
-import seedu.travelr.logic.commands.EditCommand;
+import seedu.travelr.logic.commands.DisplayEventCommand;
+import seedu.travelr.logic.commands.DisplayTripCommand;
 import seedu.travelr.logic.commands.EventListCommand;
 import seedu.travelr.logic.commands.ExitCommand;
-import seedu.travelr.logic.commands.FindCommand;
 import seedu.travelr.logic.commands.HelpCommand;
 import seedu.travelr.logic.commands.ListCommand;
 import seedu.travelr.logic.commands.MarkTripDoneCommand;
 import seedu.travelr.logic.commands.SelectCommand;
+import seedu.travelr.logic.commands.SortEventsCommand;
 import seedu.travelr.logic.commands.SortTripsCommand;
+import seedu.travelr.logic.commands.SummaryCommand;
 import seedu.travelr.logic.commands.UnmarkDoneTripCommand;
 import seedu.travelr.logic.commands.ViewAllCommand;
 import seedu.travelr.logic.commands.ViewCompletedCommand;
@@ -73,20 +75,20 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case DisplayTripCommand.COMMAND_WORD:
+            return new DisplayTripCommandParser().parse(arguments);
+
+        case DisplayEventCommand.COMMAND_WORD:
+            return new DisplayEventCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
 
         case EventListCommand.COMMAND_WORD:
             return new EventListCommand();
@@ -111,6 +113,12 @@ public class AddressBookParser {
 
         case SortTripsCommand.COMMAND_WORD:
             return new SortTripsCommandParser().parse(arguments);
+
+        case SummaryCommand.COMMAND_WORD:
+            return new SummaryCommand();
+
+        case SortEventsCommand.COMMAND_WORD:
+            return new SortEventsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

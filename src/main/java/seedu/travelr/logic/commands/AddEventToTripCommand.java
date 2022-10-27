@@ -1,6 +1,7 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.travelr.commons.core.Messages.MESSAGE_RESET_VIEW;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
 
@@ -29,8 +30,10 @@ public class AddEventToTripCommand extends Command {
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event added to trip: %1$s";
-    public static final String MESSAGE_DUPLICATE_TRIP = "This event already exists in the specified trip";
+    public static final String MESSAGE_SUCCESS = "Event %s added to Trip %s."
+            + "\nThe specified event has been removed "
+            + "from the bucket list.";
+    public static final String MESSAGE_DUPLICATE_EVENT_IN_TRIP = "This event already exists in the specified trip";
 
     private final Title eventToAdd;
     private final Title tripToAddInto;
@@ -49,7 +52,7 @@ public class AddEventToTripCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasEvent(new Event(eventToAdd))) {
+        if (!model.bucketlistHasEvent(new Event(eventToAdd))) {
             throw new CommandException("Please enter a valid event");
         }
 
@@ -57,11 +60,22 @@ public class AddEventToTripCommand extends Command {
             throw new CommandException("Please enter a valid Trip");
         }
 
+        if (!model.hasEventInBucketList(new Event(eventToAdd))) {
+            throw new CommandException("This event is no longer in the bucket list!");
+        }
+
         Event event = model.getEvent(new Event(eventToAdd));
         Trip toAddInto = model.getTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()));
+
+        if (toAddInto.containsEvent(event)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT_IN_TRIP);
+        }
+
         model.removeFromBucketList(event);
         toAddInto.addEvent(event);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, event));
+        model.resetView();
+        return new CommandResult(String.format(
+                MESSAGE_SUCCESS + "\n" + MESSAGE_RESET_VIEW, event.getTitle(), toAddInto.getTitle()));
     }
 
     @Override

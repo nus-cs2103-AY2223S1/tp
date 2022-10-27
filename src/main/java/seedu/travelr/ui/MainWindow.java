@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -35,12 +36,20 @@ public class MainWindow extends UiPart<Stage> {
     private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SummaryWindow summaryWindow;
+
+    private Image completed = new Image("/images/completed.png");
+    private Image tripsIcon = new Image("/images/trips.png");
+    private Image eventsIcon = new Image("/images/events.png");
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem summaryMenuItem;
 
     @FXML
     private StackPane tripsTextField;
@@ -78,6 +87,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        summaryWindow = new SummaryWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -123,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip());
+        tripListPanel = new TripListPanel(logic.getFilteredTripList(), logic.getSelectedTrip(), completed);
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         tripListPanelPlaceholder.getChildren().add(tripListPanel.getRoot());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
@@ -133,15 +143,16 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        TripsLabeler tripsLabel = new TripsLabeler();
+        TripsLabeler tripsLabel = new TripsLabeler(tripsIcon);
         tripsTextField.getChildren().add(tripsLabel.getRoot());
 
-        EventsLabeler eventsLabel = new EventsLabeler();
+        EventsLabeler eventsLabel = new EventsLabeler(eventsIcon);
         eventsTextField.getChildren().add(eventsLabel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        summaryWindow.init(logic.getFilteredTripList(), logic.getSummaryVariables(), completed);
     }
 
     /**
@@ -168,6 +179,31 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the summary window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSummary() {
+        if (!summaryWindow.isShowing()) {
+            summaryWindow.show();
+        } else {
+            summaryWindow.focus();
+        }
+    }
+
+    /**
+     * Opens and refreshes the summary window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAndRefreshSummary() {
+        logic.refreshSummaryVariables();
+        handleSummary();
+    }
+
+    public void exitSummary() {
+        summaryWindow.hide();
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -180,6 +216,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        summaryWindow.hide();
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -206,10 +243,16 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            } else {
+                exitSummary();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowSummary()) {
+                handleSummary();
             }
 
             return commandResult;

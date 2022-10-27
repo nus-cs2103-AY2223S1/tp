@@ -1,5 +1,10 @@
 package seedu.travelr.ui;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 
 /**
@@ -9,13 +14,21 @@ public class EventsLabeler extends UiPart<Region> {
 
     private static final String FXML = "EventsLabeler.fxml";
 
+    @FXML
+    private Label eventsTextField;
+
+
     /**
      * Labels event.
      */
-    public EventsLabeler() {
+    public EventsLabeler(Image icon) {
         super(FXML);
+        ImageView eventsIcon = new ImageView(icon);
+        eventsIcon.setFitWidth(25);
+        eventsIcon.setFitHeight(25);
+        eventsTextField.setGraphic(eventsIcon);
+        eventsTextField.setContentDisplay(ContentDisplay.RIGHT);
     }
-
 
 
 }

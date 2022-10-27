@@ -22,7 +22,9 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TRIP_SUCCESS = "Deleted Trip: %1$s";
+    public static final String MESSAGE_DELETE_TRIP_SUCCESS = "Deleted Trip: %1$s "
+            + "\nEvents in this trip have been returned "
+            + "to the bucket list. Current bucket list: ";
 
     private final Index targetIndex;
 
@@ -41,6 +43,7 @@ public class DeleteCommand extends Command {
 
         Trip tripToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTrip(tripToDelete);
+        model.updateFilteredEventList(model.getBucketPredicate());
         return new CommandResult(String.format(MESSAGE_DELETE_TRIP_SUCCESS, tripToDelete));
     }
 
