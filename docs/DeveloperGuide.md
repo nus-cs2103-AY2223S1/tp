@@ -316,11 +316,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Unique ID Mechanism
 
+#### Motivation
 Initially, `Buyer` has reference to `Order` and `Order` also has reference to `Buyer`. The same applied to the
 cross-reference between `Supplier` and `Pet`. This kind of bidirectional navigation makes it difficult to implement some
 JSON-related classes and methods, since the JSON-adapted date models will infinitely recursively write the references
 into the `.json` file.
 
+#### Solution
 Our solution to this problem is to give each `Order` and `Pet` a unique ID that does not change throughout the life
 cycle of the object.
 
@@ -405,6 +407,61 @@ vertically, potentially to an extent that the whole window can only show informa
     * Cons: Hard to implement and need one more command such as `display INDEX` to display the information of the item.
 
 ### Pop-up window for add command
+
+### The match function
+
+#### Motivation
+
+At times, user needs to find out which pet for sale is the best fit for an order placed by a buyer. Then there comes the
+question, how to measure the similarity between an order request and a pet?
+In an order, the buyer can specify the age of pet he/she wants, the acceptable price interval, and so forth. We
+intentionally set up the same fields in the `Pet` class just to allow comparison between orders and pets.
+
+#### The score system
+
+We use a score to describe how close is a pet to an order. As shown below, the total score `S` is the sum of `n`
+sub-scores.
+Every sub-score is the product of an indicator variable `s_i` and a weight `w_i`. Every indicator-weight pair
+corresponds to a field that both `Pet` and `Order` have.
+
+![img.png](images/matchScoreCalculationFormula.png)
+
+Every indicator variable depends on the field it corresponds to. We basically have two types of indicators:
+
+1. Cut-off indicators. They are 1 if the field in `Pet` is exactly the same as that in `Order`, otherwise 0.
+2. Deviation indicators. They are 1 if the field in `Pet` is within the expected range of value. How close they are to 1
+   indicates the deviation from the field in `Pet` to the expected value.
+
+We use cut-off indicators and high weight for decisive factors. For example, if the species of the pet is just what the
+buyer wants, then we give this pet a high score. The rationale behind is that a buyer certainly prioritises what kind of
+pets she/he wants, even other factors are slightly different from what is expected.
+
+On the other hand, we use deviation indicators and low weight for continuous factors. For example, if the price of a pet
+just falls in the expected price range of an order, then the indicator is 1. Otherwise, the indicator depends on how far
+the pet's price is away from the range.
+
+#### Sample calculation
+
+| Field         | Pet         | Order       | Indicator        | Weight | Sub-score      |
+|---------------|-------------|-------------|------------------|--------|----------------|
+| Age           | 4           | 5           | 1 - abs(4 - 5)   | 5      | 0 * 5 = 0      |
+| Color         | Red         | Blue        | 0                | 50     | 0 * 50 = 0     |
+| Color pattern | Dotted      | None        | 0                | 40     | 0 * 40 = 0     |
+| Species       | Persian cat | Persian cat | 1                | 80     | 1 * 80 = 80    |
+| Price (range) | 50          | 90, 100     | 1 - abs(90 - 50) | 1      | -39 * 1 = - 39 |
+
+So the total score for this pet is 0 + 0 + 0 + 80 - 39 = 41.
+
+#### Sorting
+
+Next, given an order, we calculate the score of all pets against this order and sort these pets in descending order. The
+pets at the top are likely to be the best fit.
+
+#### Comments and reflection
+
+At this stage, the weights are pre-set and fixed, so the formula might not truly reflect how important each field is in
+a buyer's or a sale coordinator's perspective. Different buyers and sale coordinators might have different views as
+well. In the future, we might allow users to configure custom weights, if they don't want to use the default weights.
 
 --------------------------------------------------------------------------------------------------------------------
 
