@@ -16,7 +16,7 @@ import seedu.watson.model.tag.Tag;
  * Represents a Person in the watson book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person implements Comparable<Person> {
+public class Person {
 
     // Identity fields
     private final Name name;
@@ -200,14 +200,18 @@ public class Person implements Comparable<Person> {
      * @throws ClassCastException   if the specified object's type prevents it
      *                              from being compared to this object.
      */
-    public int compareTo(Person p) {
-        requireNonNull(p);
-        Double curr = this.getSubjectsTaken()
-                .stream()
-                .map(Subject::getTotalPercentage).mapToDouble(Double::doubleValue).sum();
-        Double comp = p.getSubjectsTaken()
-                .stream()
-                .map(Subject::getTotalPercentage).mapToDouble(Double::doubleValue).sum();
-        return curr.compareTo(comp);
+    public int compareTo(Person p, String subjectName) {
+        requireNonNull(p, subjectName);
+        double thisScore = 0;
+        double otherScore = 0;
+        Subject thisSubject = this.getSubjectHandler().getSubject(subjectName);
+        Subject otherSubject = p.getSubjectHandler().getSubject(subjectName);
+        if (thisSubject != null) {
+            thisScore = thisSubject.getTotalPercentage();
+        }
+        if (otherSubject != null) {
+            otherScore = otherSubject.getTotalPercentage();
+        }
+        return thisScore - otherScore > 0 ? 1 : -1;
     }
 }

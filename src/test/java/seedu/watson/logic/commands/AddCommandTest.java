@@ -160,7 +160,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortListByGrade(boolean isInAscending) {
+        public void sortListByGrade(boolean isInAscending, String subjectName) {
             throw new AssertionError("This method should not be called.");
         }
     }

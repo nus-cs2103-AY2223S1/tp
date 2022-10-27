@@ -90,7 +90,7 @@ public class Subject {
      */
     public String dataString() {
         String str = "";
-        str += subjectName + ": ";
+        str += subjectName.toUpperCase(Locale.ROOT) + ": ";
         str += grades.dataString() + " %%";
         return str;
     }
