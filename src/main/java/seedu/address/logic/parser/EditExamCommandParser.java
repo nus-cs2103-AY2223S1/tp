@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EXAM_INDEX;
 import static seedu.address.logic.commands.EditExamCommand.MESSAGE_NO_FIELDS_PROVIDED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditExamCommand;
@@ -25,7 +25,7 @@ public class EditExamCommandParser implements Parser<EditExamCommand> {
     public EditExamCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MOD_NAME, PREFIX_EXAM_DESCRIPTION, PREFIX_EXAM_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_EXAM_DESCRIPTION, PREFIX_EXAM_DATE);
 
         Index index;
 
@@ -46,9 +46,9 @@ public class EditExamCommandParser implements Parser<EditExamCommand> {
             editExamDescriptor.setDescription(ParserUtil
                     .parseExamDescription(argMultimap.getValue(PREFIX_EXAM_DESCRIPTION).get()));
         }
-        if (argMultimap.getValue(PREFIX_MOD_NAME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             editExamDescriptor.setModule(new Module(ParserUtil
-                    .parseModuleCode(argMultimap.getValue(PREFIX_MOD_NAME).get())));
+                    .parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get())));
         }
         if (argMultimap.getValue(PREFIX_EXAM_DATE).isPresent()) {
             editExamDescriptor.setExamDate(ParserUtil
