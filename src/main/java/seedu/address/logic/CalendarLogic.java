@@ -26,7 +26,6 @@ import seedu.address.ui.CalendarEventListPanel;
 import seedu.address.ui.JumpText;
 import seedu.address.ui.NextButton;
 import seedu.address.ui.PreviousButton;
-import seedu.address.ui.RefreshButton;
 import seedu.address.ui.TextValidation;
 
 /**
@@ -49,7 +48,6 @@ public class CalendarLogic {
             + "-fx-background-color: #fff";
     private PreviousButton prevButton = new PreviousButton("Prev", this);
     private NextButton nextButton = new NextButton("Next", this);
-    private RefreshButton refreshButton = new RefreshButton("Refresh", this);
     private JumpText jumpText = new JumpText(this);
     private TextValidation textValidation = new TextValidation();
 
@@ -94,7 +92,7 @@ public class CalendarLogic {
     private void drawHeader() {
         Text textHeader = getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(),
-                refreshButton.getRoot(), jumpText.getRoot(), textValidation.getRoot());
+                jumpText.getRoot(), textValidation.getRoot());
         topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
