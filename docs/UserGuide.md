@@ -35,6 +35,9 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
       8. [`copy` Copying to clipboard](#copying-to-clipboard--copy)
       9. [`pdf` Exporting to PDF file](#exporting-to-pdf-file--pdf)
    3. [`exit` Exiting Waddle](#exiting-waddle--exit)<br><br>
+   4. [**Advanced**](#advanced)
+      1. [Saving the data](#saving-the-data)
+      2. [Editing the data file](#editing-the-data-file)
 3. [**FAQ**](#faq)
 4. [**Command summary**](#command-summary)
    1. [**Home page commands**](#home-page-commands)
@@ -299,6 +302,8 @@ Format: `exit`
 
 * This command can be used both in the home page and the item planning page.
 
+### Advanced
+
 ### Saving the data
 
 Waddle data is saved in the hard disk automatically upon any change in the data. There is no need to save manually.
@@ -345,7 +350,6 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Unschedule Item**](#unscheduling-an-item--unplan)         | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
 | [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
 | [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
-| [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`
-      |
-| [**Export to PDF**](#exporting-to-pdf-file--pdf)          | `pdf`                                                                                                 |
+| [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`|
+| [**Export to PDF**](#exporting-to-pdf-file--pdf)          | `pdf`|
 | [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |
