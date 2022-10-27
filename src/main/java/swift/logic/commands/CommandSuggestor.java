@@ -4,6 +4,7 @@ import static swift.logic.parser.CliSyntax.PREFIX_KEYWORD;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.ArgumentMultimap;
 import swift.logic.parser.ArgumentTokenizer;
@@ -129,9 +130,8 @@ public class CommandSuggestor {
         String suggestedCommand = commandSuggestion.substring(userInput.length());
         boolean isCommandComplete = userInput.contains(" ");
         int autocompleteUptoIndex;
-        if(isCommandComplete) {
+        if (isCommandComplete) {
             autocompleteUptoIndex = suggestedCommand.indexOf(isCommandComplete ? "/" : " ") + 1;
-
         } else {
             return getLongestMatchingPrefixSuggestion(userInput);
         }
@@ -200,7 +200,6 @@ public class CommandSuggestor {
         return argumentSuggestion;
     }
 
-    
     /**
      * Gets the longest matching prefix from all possible command suggestions depending on the user
      * input.
@@ -229,7 +228,7 @@ public class CommandSuggestor {
 
     /**
      * Gets longest matching prefix from list of strings.
-     * 
+     *
      * @param matchingCommands List of strings.
      * @return Longest matching prefix.
      */
