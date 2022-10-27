@@ -272,7 +272,7 @@ public class Person {
     public int compareByRating(Person other) {
         return this.rating.compare(other.rating);
     }
-    
+
     /**
      * Adds new links to existing links of a person.
      * @param linksToAdd Links to be added to the person.
