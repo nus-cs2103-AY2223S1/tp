@@ -12,8 +12,8 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
     - [Features](#features)
         - [Add book](#adding-a-book-add-book)
         - [Add user](#adding-a-user-add-user)
-        - [Remove book](#removing-a-book--delete-book)
-        - [Remove user](#removing-a-user-delete-user)
+        - [Delete book](#deleting-a-book--delete-book)
+        - [Delete user](#deleting-a-user-delete-user)
         - [Return book](#returning-a-book-return)
         - [Loan book](#loaning-a-book--loan)
         - [Find book](#finding-books--find-book)
@@ -115,7 +115,7 @@ Format: `add user n/<name> p/<phone number> e/<email>`
 Examples:
 * `add user n/Jenny Brown p/12345678 e/foo@gmail.com`
 
-### Removing a book : `delete book`
+### Deleting a book : `delete book`
 
 Deletes a book from the library.
 
@@ -126,7 +126,7 @@ Format: `delete book <book index>`
 Examples:
 * `delete book 99`
 
-### Removing a user: `delete user`
+### Deleting a user: `delete user`
 
 Deletes a user from the library.
 
@@ -212,6 +212,28 @@ Format: `find user <keywords>`
 Examples:
 * `find user wa` will find `Mohammad Rizwan` and `Wallace Andrew`.
 * `find user John Sim` will find `John Goh` and `Sim Chee Ming`.
+
+### Editing a user: `edit user`
+
+Edits a user who is registered with the library.
+
+Format: `edit user INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
+
+* The name itself cannot have a “p/” and a "e/".
+
+Examples:
+* `edit user 1 p/91234567 e/johndoe@example.com`
+
+### Editing a book: `edit book`
+
+Edits a book in the library.
+
+Format: `edit user INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]...`
+
+* The title itself cannot contain “a/”, as “a/” marks the start of the author field.
+
+Examples:
+* `edit book t/The Broken House`
 
 ### List all users : `list users`
 
