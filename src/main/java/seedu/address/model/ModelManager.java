@@ -118,12 +118,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
-        requireAllNonNull(target, eventsToEdit);
-        addressBook.removeProfileFromEventsAttending(target, eventsToEdit);
-    }
-
-    @Override
     public void addProfile(Profile profile) {
         addressBook.addProfile(profile);
         updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
@@ -132,14 +126,7 @@ public class ModelManager implements Model {
     @Override
     public void setProfile(Profile target, Profile editedProfile) {
         requireAllNonNull(target, editedProfile);
-        //setProfileForAttendingEvents(target, editedProfile, target.getEventsToAttend().getEventsList());
         addressBook.setProfile(target, editedProfile);
-    }
-
-    @Override
-    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
-        requireAllNonNull(target, editedProfile, eventsToSet);
-        addressBook.setProfileForEventsAttending(target, editedProfile, eventsToSet);
     }
 
     //========== Events ======================================================================================
@@ -176,9 +163,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
-        requireAllNonNull(target, editedEvent, profilesToEdit);
-        addressBook.setEventForAttendees(target, editedEvent, profilesToEdit);
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        addressBook.setEventForAttendees(target, editedEvent);
     }
 
     @Override

@@ -89,6 +89,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteEvent(Event target) {
         throw new AssertionError("This method should not be called.");
     }
@@ -110,21 +115,6 @@ public class ModelStub implements Model {
 
     @Override
     public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -3,13 +3,11 @@ package seedu.address.model.profile;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.event.Event;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 import seedu.address.model.profile.exceptions.SimilarProfileException;
 
@@ -34,13 +32,7 @@ public class UniqueProfileList implements Iterable<Profile> {
     private final ObservableList<Profile> internalList = FXCollections.observableArrayList();
     private final ObservableList<Profile> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final ObservableList<Profile> unmodifiableSortedList = internalUnmodifiableList.sorted(
-            new Comparator<Profile>() {
-                @Override
-                public int compare(Profile p1, Profile p2) {
-                    return p1.compareTo(p2);
-                }
-            });
+    private final ObservableList<Profile> unmodifiableSortedList = internalUnmodifiableList.sorted(Profile::compareTo);
     /**
      * Returns true if the list contains a profile with an equivalent email as the given argument.
      */
@@ -117,39 +109,6 @@ public class UniqueProfileList implements Iterable<Profile> {
         if (!internalList.remove(toRemove)) {
             throw new ProfileNotFoundException();
         }
-    }
-
-    /**
-     * Updates the profile {@code target} in each event in {@code eventsToSet} to the new edited profile
-     * {@code editedProfile}.
-     * The profile {@code target} must exist in the list.
-     */
-    public void setProfileForAttendingEvents(Profile target, Profile editedProfile, List<Event> eventsToSet) {
-        requireAllNonNull(target, editedProfile, eventsToSet);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new ProfileNotFoundException();
-        }
-
-        target.removeAttendingEvents(eventsToSet);
-        editedProfile.addToAllEvents(eventsToSet);
-    }
-
-    /**
-     * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
-     * Events in {@code eventsToEdit} must exist in the address book.
-     * The profile {@code target} must exist in the list.
-     */
-    public void removeProfileFromAttendingEvents(Profile target, List<Event> eventsToEdit) {
-        requireAllNonNull(target, eventsToEdit);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new ProfileNotFoundException();
-        }
-
-        internalList.get(index).removeAttendingEvents(eventsToEdit);
     }
 
     public void setProfiles(UniqueProfileList replacement) {

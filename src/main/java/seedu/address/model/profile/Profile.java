@@ -109,6 +109,13 @@ public class Profile implements Comparable<Profile> {
         return eventsToAttend.hasEvent(event);
     }
 
+    /**
+     * Removes the profile from each event in its own list of events to attend {@code eventsToAttend}.
+     */
+    public void removeFromAttendingEvents() {
+        eventsToAttend.removeAttendeeFromEvents(this);
+    }
+
     // event operations
 
     /**
@@ -118,6 +125,14 @@ public class Profile implements Comparable<Profile> {
     public void removeAttendingEvents(List<Event> eventsToRemove) {
         requireNonNull(eventsToRemove);
         eventsToRemove.forEach(this::removeAttendingEvent);
+    }
+
+    /**
+     * Adds the profile to the list of attendees of each event in its own list of events to attend
+     * if it has not already been added.
+     */
+    public void addToAllEvents() {
+        eventsToAttend.addAttendeeToEvents(this);
     }
 
     /**

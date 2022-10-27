@@ -111,13 +111,6 @@ public class Event implements Comparable<Event> {
         attendees.removeAttendees(attendeesToRemove);
     }
 
-    /**
-     * Removes the event from each attendee in its own list of attendees {@code attendees}.
-     */
-    public void removeFromAttendees() {
-        attendees.removeEventFromAttendees(this);
-    }
-
     public int numberOfAttendees() {
         return attendees.size();
     }
@@ -133,16 +126,14 @@ public class Event implements Comparable<Event> {
         return attendees.hasAttendee(profile);
     }
 
-    // profile operations
-
     /**
-     * Adds the event to the list of eventsAttending of each profile in {@code profilesToAddEventTo} if
-     * it has not already been added.
+     * Removes the event from each attendee in its own list of attendees {@code attendees}.
      */
-    public void addToAllAttendees(List<Profile> profilesToAddEventTo) {
-        requireNonNull(profilesToAddEventTo);
-        profilesToAddEventTo.forEach(profile -> profile.addAttendingEvent(this));
+    public void removeFromAttendees() {
+        attendees.removeEventFromAttendees(this);
     }
+
+    // profile operations
 
     /**
      * Removes the event from the list of eventsAttending of each attendee in {@code attendeesToRemoveFrom}
@@ -151,6 +142,32 @@ public class Event implements Comparable<Event> {
     public void removeFromAttendees(List<Profile> attendeesToRemoveFrom) {
         requireNonNull(attendeesToRemoveFrom);
         attendeesToRemoveFrom.forEach(attendee -> attendee.removeAttendingEvent(this));
+    }
+
+    /**
+     * Adds the event to the list of eventsAttending of each profile in its own list of attendees
+     * if it has not already been added.
+     */
+    public void addToAllAttendees() {
+        attendees.addEventToAttendees(this);
+    }
+
+    /**
+     * Adds the event to the list of eventsAttending of each profile in {@code profilesToAddEventTo} if
+     * it has not already been added.
+     */
+    public void addToAllAttendees(Attendees profilesToAddEventTo) {
+        requireNonNull(profilesToAddEventTo);
+        profilesToAddEventTo.addEventToAttendees(this);
+    }
+
+    /**
+     * Adds the event to the list of eventsAttending of each profile in {@code profilesToAddEventTo} if
+     * it has not already been added.
+     */
+    public void addToAllAttendees(List<Profile> profilesToAddEventTo) {
+        requireNonNull(profilesToAddEventTo);
+        profilesToAddEventTo.forEach(profile -> profile.addAttendingEvent(this));
     }
 
     // equality checks

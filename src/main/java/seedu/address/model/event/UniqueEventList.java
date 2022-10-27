@@ -3,7 +3,6 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,14 +29,7 @@ public class UniqueEventList implements Iterable<Event> {
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final SortedList<Event> unmodifiableSortedList = internalUnmodifiableList.sorted(
-            new Comparator<Event>() {
-                @Override
-                public int compare(Event e1, Event e2) {
-                    return e1.compareTo(e2);
-                }
-            }
-    );
+    private final SortedList<Event> unmodifiableSortedList = internalUnmodifiableList.sorted(Event::compareTo);
 
     /**
      * Returns true if the list contains an equivalent event as the given argument.
@@ -140,16 +132,17 @@ public class UniqueEventList implements Iterable<Event> {
      * {@code editedEvent}.
      * The event {@code target} must exist in the list.
      */
-    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
-        requireAllNonNull(target, editedEvent, profilesToEdit);
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new EventNotFoundException();
         }
 
-        target.removeFromAttendees(profilesToEdit);
-        editedEvent.addToAllAttendees(profilesToEdit);
+        target.removeFromAttendees();
+        editedEvent.addToAllAttendees();
+        internalList.set(index, editedEvent);
     }
 
     /**

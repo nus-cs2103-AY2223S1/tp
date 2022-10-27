@@ -82,18 +82,7 @@ public interface Model {
      * Updates the target event {@code target} in the given list of profiles {@code profilesToEdit} to the new
      * edited event {@code editedEvent}
      */
-    void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit);
-
-    /**
-     * Updates the target profile {@code target} in the given list of events {@code eventsToSet} to the new
-     * edited profile {@code editedProfile}
-     */
-    void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet);
-
-    /**
-     * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
-     */
-    void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit);
+    void setEventForAttendees(Event target, Event editedEvent);
 
     /**
      * Adds the given profile.

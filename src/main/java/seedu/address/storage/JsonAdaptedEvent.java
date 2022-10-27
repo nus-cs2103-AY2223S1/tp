@@ -60,7 +60,7 @@ class JsonAdaptedEvent {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        attendees.addAll(source.getAttendees().getAttendeesList().stream()
+        attendees.addAll(source.getAttendees().stream()
                 .map(JsonAdaptedProfile::new)
                 .collect(Collectors.toList()));
     }

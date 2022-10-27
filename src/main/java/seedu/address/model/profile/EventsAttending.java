@@ -69,6 +69,22 @@ public class EventsAttending {
         return this.eventsAttending.contains(event);
     }
 
+    /**
+     * Adds the given profile to each event in the list of events.
+     */
+    public void addAttendeeToEvents(Profile attendeeToAdd) {
+        requireNonNull(attendeeToAdd);
+        eventsAttending.forEach(event -> event.addAttendee(attendeeToAdd));
+    }
+
+    /**
+     * Removes the given attendee from each event in the list of events.
+     */
+    public void removeAttendeeFromEvents(Profile attendeeToRemove) {
+        requireNonNull(attendeeToRemove);
+        eventsAttending.forEach(event -> event.removeAttendee(attendeeToRemove));
+    }
+
     public boolean isEmpty() {
         return this.eventsAttending.isEmpty();
     }

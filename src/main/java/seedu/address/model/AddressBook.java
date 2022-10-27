@@ -123,27 +123,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Updates the profiles {@code target} in list of events {@code eventsToSet} to the new edited profile
-     * {@code editedProfile}.
-     * {@code target} must exist in the address book.
-     * Events in {@code eventsToEdit} must also exist in the address book.
-     */
-    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
-        requireAllNonNull(target, editedProfile, eventsToSet);
-        profiles.setProfileForAttendingEvents(target, editedProfile, eventsToSet);
-    }
-
-    /**
-     * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
-     * {@code target} must exist in the address book.
-     * Events in {@code eventsToEdit} must also exist in the address book.
-     */
-    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
-        requireAllNonNull(target, eventsToEdit);
-        profiles.removeProfileFromAttendingEvents(target, eventsToEdit);
-    }
-
-    /**
      * Returns true if a profile with the same identity as {@code profile} exists in the address book.
      */
     public boolean hasProfile(Profile profile) {
@@ -210,7 +189,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
      * {@code event} must exist in the address book.
-     * Profiles in {@profilesToAddEventTo} must also exist in the address book.
+     * Profiles in {@code profilesToAddEventTo} must also exist in the address book.
      */
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
@@ -223,9 +202,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code target} must exist in the address book.
      * The profiles in list of profiles {@code profilesToEdit} must also exist in the address book.
      */
-    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
-        requireAllNonNull(target, editedEvent, profilesToEdit);
-        events.setEventForAttendees(target, editedEvent, profilesToEdit);
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        events.setEventForAttendees(target, editedEvent);
     }
 
     /**

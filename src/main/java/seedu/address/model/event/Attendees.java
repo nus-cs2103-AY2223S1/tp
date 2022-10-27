@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.address.model.profile.Profile;
 
@@ -81,6 +82,14 @@ public class Attendees {
     }
 
     /**
+     * Adds the given event to each profile in the list of profiles.
+     */
+    public void addEventToAttendees(Event eventToAdd) {
+        requireNonNull(eventToAdd);
+        attendees.forEach(attendee -> attendee.addAttendingEvent(eventToAdd));
+    }
+
+    /**
      * Removes the given event from each profile in the list of profiles.
      */
     public void removeEventFromAttendees(Event eventToRemove) {
@@ -98,6 +107,10 @@ public class Attendees {
 
     public boolean isEmpty() {
         return this.attendees.isEmpty();
+    }
+
+    public Stream<Profile> stream() {
+        return attendees.stream();
     }
 
     @Override
