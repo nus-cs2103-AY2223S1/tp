@@ -74,10 +74,10 @@ public class ListDeadlineCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TaskByDeadlinePredicate}.
      * @return
      */
     private TaskByDeadlinePredicate preparePredicate(String userInput) {
-        return new TaskByDeadlinePredicate(Arrays.asList(userInput.split("\\s+")));
+        return new TaskByDeadlinePredicate(Collections.singletonList(userInput));
     }
 }
