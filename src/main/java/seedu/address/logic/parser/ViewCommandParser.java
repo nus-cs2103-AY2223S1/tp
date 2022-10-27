@@ -32,7 +32,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX + ViewCommand.MESSAGE_USAGE,
+            throw new ParseException(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX + "\n" + ViewCommand.MESSAGE_USAGE,
                     pe);
         }
 
