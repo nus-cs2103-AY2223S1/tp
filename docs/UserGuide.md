@@ -77,17 +77,18 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a contact: `add`
+### Adding a contact: `addPerson`
 
 Adds a contact to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
+Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
+- Date format accepted is: dd/mm/yyyy.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
-* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 g/f d/14/12/1998`
+* `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
+* `addPerson n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 g/f d/14/12/1998`
 
 __Additional Parameter 1: Gender__
 
@@ -95,11 +96,6 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER`
 
 - Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
-
-__Additional Parameter 2: Date of Birth__
-
-- Adds date of birth to a person in the contact list. Date format accepted is: DD/MM/YYYY.
-
 
 ### Listing all persons : `listPersons`
 
@@ -135,8 +131,9 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
 
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
-- At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
+- At least one of the optional fields must be provided.
+- Date format accepted is: dd/mm/yyyy.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
@@ -158,22 +155,7 @@ Examples:
 * `edit 2 g/f`
 * `edit 3 g/F`
 
-__Optional Parameter 2: Date of Birth__
-
-Format: `edit INDEX [d/DOB]`
-
-- Edits the date of birth of a person in the contact list. Date format accepted is: DD/MM/YYYY.
-- `INDEX` must be **a positive integer** (i.e 1,2,3…)
-- `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
-
-Examples:
-*  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
-   `91234567` and `johndoe@example.com` respectively.
-*  `editPerson 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
-*  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`, 
-edits gender to be `Female` and edits date of birth to be `3.4.1998`.
-
-### Locating persons by name: `findPersons`
+### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -325,18 +307,20 @@ Example:
 * `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list
 * `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list
 
-### Create mailing list for an event : `mailEvent`
+### Generating pie charts of statistics of the people tagged to an event in the event list : `makeStats`
 
-Format: `mailEvent EVENT_INDEX`
+Format: `makeStats EVENT_INDEX t/STATISTIC_TYPE`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
 * The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
-* The mailing list is saved as a CSV file `[JAR file location]/data/EVENT_TITLE.csv`, where EVENT_TITLE refers to the chosen event's title. The CSV file has 2 columns:
-`Name` and `Email`, representing the name and email for a person in the event.
+* The `STATISTIC_TYPE` refers to the type of statistical data being generated.
+* The `STATISTIC_TYPE` must be either `a` or `g`, where `a` stands for age and is specified to generate a pie chart showcasing
+the distribution of ages across age groups, while `g` stands for gender and is specified to generate a pie chart showcasing
+the distribution of genders.
 
 Example:
-* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event in the events list.
-* `mailEvent 4` creates mailing list as a CSV file, the name of the csv file is the same as the title of 4th event in the events list.
+* `makeStats 1 t/g` generates gender statistics of the persons tagged to the 1st event in the event list
+* `makeStats 3 t/a` generates age statistics of the persons tagged to the 3rd event in the event list
 
 ### Clearing all entries : `clear`
 
