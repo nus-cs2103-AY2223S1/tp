@@ -219,6 +219,17 @@ public interface Model {
     public Meeting getMeeting(Name name, Address address);
 
     /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the address
+     * book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
+
+    /** Returns an unmodifiable view of the filtered meeting list */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
      * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */

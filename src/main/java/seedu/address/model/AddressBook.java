@@ -322,6 +322,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         return meetings.getMeeting(name, address);
     }
 
+    /**
+     * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing offer in the address book.
+     */
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
+
+        meetings.setMeeting(target, editedMeeting);
+    }
+
     //// util methods
 
     @Override

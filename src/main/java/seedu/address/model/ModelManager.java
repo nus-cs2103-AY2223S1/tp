@@ -245,6 +245,13 @@ public class ModelManager implements Model {
         return addressBook.getMeeting(name, address);
     }
 
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        addressBook.setMeeting(target, editedMeeting);
+    }
+
     //=========== Filtered List Accessors =============================================================
 
     /**
@@ -294,6 +301,11 @@ public class ModelManager implements Model {
     public void updateFilteredOfferList(Predicate<Offer> predicate) {
         requireNonNull(predicate);
         filteredOffers.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
     }
 
     @Override
