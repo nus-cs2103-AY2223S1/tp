@@ -3,22 +3,19 @@ package seedu.pennywise.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
-//import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_TAG_DINNER;
-import static seedu.pennywise.logic.commands.CommandTestUtil.*;
+import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
+import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_AMT_INVESTMENT;
+import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_TAG_DINNER;
+import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_TAG_INVESTMENT;
 import static seedu.pennywise.testutil.Assert.assertThrows;
 import static seedu.pennywise.testutil.TypicalEntry.ALLOWANCE;
 import static seedu.pennywise.testutil.TypicalEntry.LUNCH;
 import static seedu.pennywise.testutil.TypicalEntry.getTypicalPennyWise;
 
-//import java.util.Arrays;
-//import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-//import java.util.List;
-//import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,22 +50,22 @@ public class PennyWiseTest {
         assertEquals(newData, pennyWise);
     }
 
-     @Test
-     public void resetData_withDuplicateExpenditure_throwsDuplicateEntryException() {
-         // Two entries with the same identity fields
-         Entry editedLunch = new ExpenditureBuilder(LUNCH)
-                 .withAmount(VALID_AMT_DINNER)
-                 .withTag(VALID_TAG_DINNER)
-                 .build();
-         Entry editedAllowance = new IncomeBuilder(ALLOWANCE)
-                 .withAmount(VALID_AMT_INVESTMENT)
-                 .withTag(VALID_TAG_INVESTMENT)
-                 .build();
-         List<Entry> newExpenditures = Arrays.asList(LUNCH, editedLunch);
-         List<Entry> newIncomes = Arrays.asList(ALLOWANCE, editedAllowance);
-         PennyWiseStub newData = new PennyWiseStub(newExpenditures, newIncomes);
-         assertThrows(DuplicateEntryException.class, () -> pennyWise.resetData(newData));
-     }
+    @Test
+    public void resetData_withDuplicateExpenditure_throwsDuplicateEntryException() {
+        // Two entries with the same identity fields
+        Entry editedLunch = new ExpenditureBuilder(LUNCH)
+                .withAmount(VALID_AMT_DINNER)
+                .withTag(VALID_TAG_DINNER)
+                .build();
+        Entry editedAllowance = new IncomeBuilder(ALLOWANCE)
+                .withAmount(VALID_AMT_INVESTMENT)
+                .withTag(VALID_TAG_INVESTMENT)
+                .build();
+        List<Entry> newExpenditures = Arrays.asList(LUNCH, editedLunch);
+        List<Entry> newIncomes = Arrays.asList(ALLOWANCE, editedAllowance);
+        PennyWiseStub newData = new PennyWiseStub(newExpenditures, newIncomes);
+        assertThrows(DuplicateEntryException.class, () -> pennyWise.resetData(newData));
+    }
 
     @Test
     public void hasExpenditure_nullExpenditure_throwsNullPointerException() {
