@@ -8,7 +8,6 @@ import bookface.model.Model;
 /**
  * Lists all users with loans and books that are loaned out
  */
-
 public class ListLoansCommand extends ListCommand {
     public static final String COMMAND_WORD = "loans";
     public static final String MESSAGE_USAGE = ListCommand.generateMessage(COMMAND_WORD, COMMAND_WORD, COMMAND_WORD);

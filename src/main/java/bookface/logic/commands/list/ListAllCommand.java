@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import bookface.logic.commands.CommandResult;
 import bookface.model.Model;
 
+/**
+ * Lists all users and books
+ */
 public class ListAllCommand extends ListCommand {
     public static final String COMMAND_WORD = "loans";
     public static final String MESSAGE_USAGE = ListCommand.generateMessage(COMMAND_WORD, COMMAND_WORD, COMMAND_WORD);
