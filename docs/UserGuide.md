@@ -64,17 +64,6 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
 
 </div>
 
-### Next session : `no command needed`
-
-Pupilist helps to organise your session timings automatically, no need for commands for this feature!<br>
-It will show you this feature on launch of the application and when you use the [`list`](#listing-all-persons--list) command.
-
-Pupilist takes your current device time and sees the sessions that are upcoming if you have any,<br>
-then shows you the name of the person and the session timing. If you don't have any sessions with anyone, <br>
-it will also tell you that there are no next session timing.
-
-![next session feature](images/next_session.png)
-
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page, and a list of basic commands.
@@ -282,6 +271,17 @@ Examples:
 Exits the program.
 
 Format: `exit`
+
+### Next session
+
+Pupilist helps to organise your session timings automatically, no need for commands for this feature!<br>
+It will show you this feature on launch of the application and when you use the [`list`](#listing-all-persons--list) command.
+
+Pupilist takes your current device time and sees the sessions that are upcoming if you have any,<br>
+then shows you the name of the person and the session timing. If you don't have any sessions with anyone, <br>
+it will also tell you that there are no next session timing.
+
+![next session feature](images/next_session.png)
 
 ### Saving the data
 
