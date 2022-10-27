@@ -41,7 +41,7 @@ public class FindCommand extends Command {
             + "NOTE: If repeated prefixes are specified, only the latest one will be taken.";
 
     public static final String FEEDBACK_MESSAGE = "Valid find command format:\n"
-            + "find KEYWORD [MORE_KEYWORDS]...\n";
+            + "find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...\n";
 
 
     private final HashMap<Prefix, String> keywords;
