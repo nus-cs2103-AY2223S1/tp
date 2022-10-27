@@ -19,8 +19,9 @@ This section aims to help you navigate the user guide.
 
 1. The next subsection [Section 2.2, Tips for reading the User Guide](#22-tips-for-reading-the-user-guide), provides some tips on reading this document.
 2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up **Financial Advisor Planner**.
-3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented.
-4. [Section 7, Glossary](#7-glossary) has been provided where certain terms that are used in this document are defined.
+3. [Section 4, Prefixes](#4-prefixes) has been provided where the prefixes are documented.
+4. [Section 5, Features](#5-features) has been provided where the main features and their commands are documented.
+5. [Section 8, Glossary](#8-glossary) has been provided where certain terms that are used in this document are defined.
 
 ### 2.2 Tips for reading the User Guide
 
@@ -73,7 +74,7 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#4-features) below for details of each command.
+6. Refer to the [Features](#5-features) below for details of each command.
 
 <br>
 <div markdown="span" class="alert alert-primary">
@@ -81,8 +82,21 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+## 4. Prefixes
 
-## 4. Features
+1. n/NAME
+2. p/PHONE
+3. e/EMAIL
+4. a/ADDRESS
+5. i/YEARLY_INCOME
+6. m/MONTHLY_CONTRIBUTIONS
+7. r/RISK_APPETITE
+8. ip/INVESTMENT_PLAN
+9. t/TAG
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Features
 
 This section contains all the information pertaining to the features of **Financial Advisor Planner**
 
@@ -118,9 +132,9 @@ This section contains all the information pertaining to the features of **Financ
 Other crucial files will be created and stored in the same folder that contains **FinancialAdvisorPlanner.jar**. These files are responsible for storing your data, hence it is advised to not delete or modify these files.
 </div>
 
-### 4.1 General command features
+### 5.1 General command features
 
-#### 4.1.1 Viewing help : `help`
+#### 5.1.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -129,11 +143,13 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-#### 4.1.2 Adding a client: `add`
+#### 5.1.2 Adding a client: `add`
 
 Adds a client to the list of clients.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​`
+Do note that t/TAG is an optional field, the rest are compulsory. 
+
+Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT PLAN [t/TAG]…​`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
 <br>
@@ -145,23 +161,22 @@ A client can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/200000 r/Medium s/5000`
-* `Add n/Betsy Crowe t/friend i/0 r/High e/betsycrow@example.com a/Newgate Prison p/1234567 s/0`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$200000 m/$5000 r/Medium ip/Savings Plan`
 
-#### 4.1.3 Listing all clients : `list`
+#### 5.1.3 Listing all clients : `list`
 
 Shows a list of all clients in the client list.
 
 Format: `list`
 
-#### 4.1.4 Editing a client : `edit`
+#### 5.1.4 Editing a client : `edit`
 
 Edits an existing client in the list of clients.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [m/MONTHLY_CONTRIBUTIONS] [r/RISK_APPETITE] [ip/INVESTMENT PLAN] [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3,…​
-* At least one of the optional fields must be provided.
+* At least one of the fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
@@ -171,7 +186,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-#### 4.1.5 Filtering persons by keyword: `find`
+#### 5.1.5 Filtering persons by keyword: `find`
 
 Finds clients whose names contain any of the given keywords.
 
@@ -188,11 +203,14 @@ Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
   * E.g find [Mobile] 87438807 will return John Doe
 
 Examples:
+
+john - `HIGH`, Alex Yeoh - `HIGH`, David Li - `MEDIUM`, John Doe - `LOW` 
+
 * `find n/ John` returns `john` and `John Doe`
 * `find n/ alex david` returns `Alex Yeoh`, `David Li`
 * `find r/ high` returns `john` and `Alex Yeoh`<br>
 
-#### 4.1.6 Deleting a client : `delete`
+#### 5.1.6 Deleting a client : `delete`
 
 Deletes the specified client from the list of clients.
 
@@ -206,7 +224,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the list of clients.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-#### 4.1.7 Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
+#### 5.1.7 Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
 
 Sorts the contacts shown in the list of clients by alphabetical order. It is ascending by default.
 You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
@@ -218,21 +236,21 @@ Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`
 * Returns all the contacts sorted by the given `KEYWORD`
 
 
-#### 4.1.8 Clearing all entries : `clear`
+#### 5.1.8 Clearing all entries : `clear`
 
 Clears all entries from the list of clients.
 
 Format: `clear`
 
-#### 4.1.9 Exiting the program : `exit`
+#### 5.1.9 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
  
-### 4.2 Appointment command features
+### 5.2 Appointment command features
 
-#### 4.2.1 Adding an appointment : `aa`
+#### 5.2.1 Adding an appointment : `aa`
 
 Adds an appointment with inputs DATE_AND_TIME and LOCATION for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
@@ -259,7 +277,7 @@ Examples:
 
 * `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 
-#### 4.2.2 Editing an appointment : `ea`
+#### 5.2.2 Editing an appointment : `ea`
 Edits an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
 Format: `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]`
@@ -274,7 +292,7 @@ Examples:
 * `ea 1.1 d/21-Jan-2023 12:30 PM l/West Mall, Starbucks` Edits both the date and location of the 1st client's 1st appointment to be `21-Jan-2023 12:30 PM` and `West Mall, Starbucks` respectively.
 * `ea 2.3 l/NUS, TechnoEdge` Edits the location of the 2nd client's 3rd appointment to be `NUS, TechnoEdge`
 
-#### 4.2.3 Deleting an appointment : `da`
+#### 5.2.3 Deleting an appointment : `da`
 Deletes an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
 Format: `da PERSON_INDEX.APPOINTMENT_INDEX`
@@ -286,24 +304,78 @@ Examples:
 
 * `da 1.1` Deletes the 1st client's 1st appointment 
  
-### 4.3 Calendar features
+### 5.3 Calendar features
 
-### 4.4 Command Line tools
-#### 4.4.1 Parameter hints
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the switching between Contacts and Calendar Tabs:**
+<br>
+* `CTRL + 1` keys will switch the current tab to the Contacts tab
+* `CTRL + 2` keys will switch the current tab to the Calendar tab
+</div>
+
+#### 5.3.1 Calendar Display
+Displays a calendar format for the current month which shows all the appointments separated into their matching dates for that month. The appointments that are displayed for each day are also sorted in ascending order, which follows the time convention.
+
+The following figure shows an empty Calendar Display:
+
+![empty calendar display](images/EmptyCalendar.png)
+
+The Calendar Display can be filled by adding appointments. [View Section 4.2.1 for information on how to add appointments](#421-adding-an-appointment--aa)
+
+The following figure shows the Calendar Display with several appointments:
+
+
+![calendar display with appointments](images/CalendarWithAppointments.png)
+#### 5.3.2 Calendar Navigation
+There are 3 ways to ease navigation between months that are displayed.
+
+##### 5.3.2.1 Next Button
+Clicking the Next button or pressing the "N" key will display the next month.
+Examples:
+
+![next button](images/NextButton.png)
+
+##### 5.3.2.2 Prev Button
+Clicking the Prev button or pressing the "B" key will display the previous month.
+Examples:
+
+![previous button](images/PreviousButton.png)
+
+##### 5.3.2.1 Jump Box
+Typing in the desired date in the provided text field followed by pressing the "ENTER" key will show the given calendar of the month and year.
+Format: DATE
+Examples: `1-Oct-2022`
+
+![jump box](images/JumpBox.png)
+
+#### 5.3.3 Calendar Pop-ups
+Displays more detailed information of the selected appointment on the calendar which includes the name of the client, date, time and location of the scheduled appointment.
+
+There are 3 ways to activate the Calendar Popup:
+1. Clicking on the client's appointment button.
+2. Pressing TAB/SHIFT + TAB key within the Calendar View to focus on the desired client's appointment button.
+3. Pressing UP/DOWN/LEFT/RIGHT key within the Calendar View to focus on the desired client's appointment button.
+
+The following figure shows the Calendar Popup being activated within the Calendar View:
+
+![result for 'calendar popup'](images/CalendarPopupExample.png)
+
+### 5.4 Command Line tools
+#### 5.4.1 Parameter hints
 After typing in the command word, the command's parameters and their respective prefixes are shown. An example of a valid command will also be shown.
 ![result for 'parameter_hints'](images/ParameterHintsExample.png)
-#### 4.4.2 Command history
+#### 5.4.2 Command history
 Use the up and down keys to navigate through previously typed commands. Users can edit the command first or press enter to execute the command. 
 * Only valid commands will be saved in the command history
 * Command history will only save up to 20 previously typed valid commands
 
-### 4.5 Miscellaneous commands
+### 5.5 Miscellaneous commands
 
-#### 4.5.1 Saving the data
+#### 5.5.1 Saving the data
 
 FinancialAdvisorPlanner data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 4.5.2 Editing the data file
+#### 5.5.2 Editing the data file
 
 FinancialAdvisorPlanner data are saved as a JSON file `[JAR file location]/data/FinancialAdvisorPlanner.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -311,22 +383,22 @@ FinancialAdvisorPlanner data are saved as a JSON file `[JAR file location]/data/
 If your changes to the data file makes its format invalid, FinancialAdvisorPlanner will discard all data and start with an empty data file at the next run.
 </div>
 
-### 4.6 Future features
+### 5.6 Future features
 
-#### 4.6.1 Archiving data files `[coming in v2.0]`
+#### 5.6.1 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinancialAdvisorPlanner home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 7. Command summary
 
 Action | Format, Examples
 --------|------------------
@@ -338,12 +410,12 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
-**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find [CATEGORY] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS]` e.g., `find n/James Jake`
 **List** | `list`
 **Help** | `help`
 **Sort** | `sort KEYWORD, sort KEYWORD desc` 
 
-## 7. Glossary
+## 8. Glossary
 
 Term | Meaning 
 --------|------------------

@@ -20,7 +20,6 @@ Class "{abstract}\nCalendarButton" as CalendarButton
 Class EventButton
 Class NextButton
 Class PreviousButton
-Class RefreshButton
 }
 
 package Model <<Rectangle>> {
@@ -59,7 +58,6 @@ CalendarButton --|> UiPart
 EventButton -up|> CalendarButton
 NextButton -up-|> CalendarButton
 PreviousButton -up-|> CalendarButton
-RefreshButton -up-|> CalendarButton
 
 CalendarButton ..> Model
 PersonCard ..> Model

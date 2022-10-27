@@ -13,7 +13,7 @@ import seedu.address.model.person.Name;
  * Represents a CalendarEvent in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class CalendarEvent {
+public class CalendarEvent implements Comparable<CalendarEvent> {
 
     private final Name name;
     private final Appointment appointment;
@@ -78,6 +78,11 @@ public class CalendarEvent {
     @Override
     public int hashCode() {
         return Objects.hash(name, appointment);
+    }
+
+    @Override
+    public int compareTo(CalendarEvent other) {
+        return appointment.compareTo(other.appointment);
     }
 
 

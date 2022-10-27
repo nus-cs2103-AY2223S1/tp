@@ -41,8 +41,8 @@ public class IncomeLevel {
      * Returns an int from the String of income without the $.
      * @return an int converted from the String.
      */
-    public int convertIncomeToInt() {
-        return Integer.parseInt(this.value.substring(1));
+    public long convertIncomeToLong() {
+        return Long.parseLong(this.value.substring(1));
     }
 
     @Override
