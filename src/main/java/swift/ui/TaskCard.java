@@ -44,6 +44,10 @@ public class TaskCard extends UiPart<Region> {
     private Label deadline;
     @FXML
     private Label description;
+    @FXML
+    private Label checkBox;
+    @FXML
+    private Label uncheckBox;
 
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
@@ -87,6 +91,16 @@ public class TaskCard extends UiPart<Region> {
                     + "-fx-border-insets: 3; -fx-border-radius: 4px; -fx-border-width: 2px;"
                     + "-fx-border-color: derive(#6D28D9, 50%); -fx-background-insets: 4; -fx-label-padding: 1;");
         }
+    }
+
+    /**
+     * Sets the check box icon for the task based on its completion.
+     *
+     * @param isCompleted true if the task is completed.
+     */
+    private void setCheckbox(boolean isCompleted) {
+        checkBox.setVisible(isCompleted);
+        uncheckBox.setVisible(!isCompleted);
     }
 
     @Override
