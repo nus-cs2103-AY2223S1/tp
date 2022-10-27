@@ -33,11 +33,10 @@ public class AddCommand extends Command {
             + PREFIX_COMPANY + "ByteDance "
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_POSITION + "Software Engineer (Front-End) "
-            + PREFIX_DATE + "2022-10-09"
+            + PREFIX_POSITION + "Software Engineer "
+            + PREFIX_DATE + "2022-10-09 "
             + PREFIX_STATUS + "pending "
-            + PREFIX_TAG + "IT company "
-            + PREFIX_TAG + "parent company of TikTok";
+            + PREFIX_TAG + "tiktokParentCompany";
 
     public static final String MESSAGE_SUCCESS = "New application added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPLICATION = "This application already exists in CinternS";
