@@ -17,7 +17,7 @@
 <?import javafx.scene.image.Image?>
 
 <?import javafx.scene.control.Label?>
-<fx:root minHeight="650" minWidth="920" onCloseRequest="#handleExit" title="PleaseHireUs"
+<fx:root minHeight="675" minWidth="920" onCloseRequest="#handleExit" title="PleaseHireUs"
          type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/pleasehireus_icon.png" />
@@ -45,7 +45,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="150" minHeight="150" prefHeight="200"
                    styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
