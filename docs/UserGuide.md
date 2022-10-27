@@ -2,7 +2,8 @@
 layout: page
 title: User Guide
 ---
-#Welcome to TaskBook!
+
+## Welcome to TaskBook!
 
 TaskBook is a **desktop app for managing contacts and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskBook can get your contact and task management tasks done faster than traditional GUI apps.
 
