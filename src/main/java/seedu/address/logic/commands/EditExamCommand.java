@@ -28,7 +28,7 @@ import seedu.address.model.module.Module;
  */
 public class EditExamCommand extends Command {
 
-    public static final String COMMAND_WORD = "editexam";
+    public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the exam identified "
             + "by the index number used in the displayed exam list. "

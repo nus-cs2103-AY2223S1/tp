@@ -15,7 +15,7 @@ import seedu.address.model.task.Task;
  */
 public class ClearTasksCommand extends Command {
 
-    public static final String COMMAND_WORD = "cleartasks";
+    public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESSS = "Task list has been cleared!";
     public static final String MESSAGE_TASK_LIST_ALREADY_EMPTY = "The task list is already empty!";
 

@@ -26,7 +26,7 @@ import seedu.address.model.module.exceptions.DuplicateModuleException;
  */
 public class EditModuleCommand extends Command {
 
-    public static final String COMMAND_WORD = "editmodule";
+    public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the module code, module name and module credit of the module identified "

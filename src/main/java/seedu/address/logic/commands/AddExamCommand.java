@@ -16,7 +16,7 @@ import seedu.address.model.exam.Exam;
  */
 public class AddExamCommand extends Command {
 
-    public static final String COMMAND_WORD = "addexam";
+    public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exam to the exam list. "
             + "\n"
