@@ -20,8 +20,9 @@ Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via 
   * Delete contact from meeting
   * Edit meeting details
   * Listing all meetings
-  * Searching meetings
+  * Finding meetings
   * Filtering meetings
+  * Sorting meetings
   * Exiting the program
   * Saving the data
 * FAQ
@@ -33,12 +34,12 @@ Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `yellowpages.jar` from [here](to-be-added).
+1. Download the latest `.jar` from [here](https://github.com/AY2223S1-CS2103-F13-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiUpdate.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -220,24 +221,58 @@ Examples:
 
 Shows a list of all meetings in the address book and console.
 
-### Searching a meeting: `searchmeeting`
+### Searching a meeting: `findmeeting`
 
-Searches a meeting by the meeting's title.
+Finds a meeting by the meeting's description, location or people 
 
-Format `searchmeeting MEETING_TITLE`
+Three Formats: 
+- Find by description: `findmeeting /named MEETING_TITLE` 
+- Find by people: `findmeeting /with PERSON_NAME` 
+- Find by location: `findmeeting /at LOCATION`
 
-* The search is case-insensitive. e.g `project` will match `Project`
-* Only the Meeting Title is searched.
+For all three formats:
+* Only **one** format can be used at a time e.g. they **cannot** be chained like: `findmeeting /named abc /at abc`
+* The search is case-insensitive. e.g. `project` will match `Project`
 * Only full words will be matched e.g. `Project` will not match `Projects`
+* The order of the keywords does not matter. e.g. `Project CS2103` will match `CS2103 Project`
+* Only the field specified by the format (description/people/location) is searched.
+* Meeting fields matching at least one keyword will be returned (i.e. `OR` search). 
+  e.g. `CS2100 CS2103` will return meetings with `CS2100 Project`, `CS2103 Project` and
+  `Project` will also return meetings with  `CS2100 Project`, `CS2103 Project`
 
-### Filtering Meetings: `filtermeeting`
+Examples: 
+* `findmeeting /at UTown Com1`
+* `findmeeting /with Jane John Simon`
+* `findmeeting /named CS2103`
 
-Format: `filtermeeting [/after DATE] [/before DATE] [/between DATE1 DATE2]`
+### Filtering Meetings: `filtermeetingsbetween`
 
-* Only one of the `/after`, `/before`, `/between` arguments needs to be added
-* `/after` lists all meetings that are after `DATE`
-* `/before` lists all meetings that are before `DATE`
-* `/between` lists all meetings that are between `DATE1` & `DATE2`
+Format: `filtermeetingsbetween AFTER_DATE ;;; BEFORE_DATE`
+
+**Note** - all date formats must follow the `dd-MM-yyyy HHmm` format 
+
+Can be split into three cases:
+1. `AFTER_DATE` < `BEFORE_DATE` - Lists out all meetings with dates between `AFTER_DATE` and `BEFORE_DATE` not inclusive 
+2. `AFTER_DATE` = `BEFORE_DATE` - Lists out all meetings with dates **matching** `AFTER_DATE` which equals to `BEFORE_DATE` 
+3. `AFTER_DATE` > `BEFORE_DATE` - Error
+
+Examples: 
+* `findmeetingsbetween 10-10-2022 1050 ;;; 12-10-2022 1200`
+* `findmeetingsbetween 10-11-2022 0000 ;;; 12-11-2022 0000`
+* `findmeetingsbetween 10-11-2022 1000 ;;; 10-11-2022 1000`
+
+### Sort Meetings: `sortmeetings`
+
+Format: `sortmeetings asc` or `sortmeetings desc`
+
+- Sorts the list of meetings by ascending or descending date order 
+- Has two parameter types `asc` and `desc` which sorts the list by ascending order or descending order
+- Is case-insensitive, parameters can be `ASC` or `aSc` etc...
+
+Examples:
+- `sortmeetings ASC`
+- `sortmeetings DESC`
+- `sortmeetings asc`
 
 ### Exiting the program : `exit`
 
@@ -272,17 +307,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Find Tag** | `find TAG [MORE_TAGS]`<br> e.g., `find friend CS2100`
-**Add Meeting** | `addmeeting MEETING_TITLE /at MEETING_DATE [/description MEETING_DESCRIPTION] [/contact INDEX]` <br> e.g., `addmeeting Project Meeting /at 29 Jan 2022`
-**Search Meeting** | `searchmeeting MEETING_TITLE` <br> e.g., searchmeeting Project Meeting
-**Filter Meeting** | `filtermeeting [/after DATE] [/before DATE] [/between DATE1 DATE2]` <br> e.g., filtermeeting /after 29 Jan 2022
-**List** | `list`
-**Help** | `help`
+| Action             | Format, Examples                                                                                                                                                      |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**          | `clear`                                                                                                                                                               |
+| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Find Tag**       | `find TAG [MORE_TAGS]`<br> e.g., `find friend CS2100`                                                                                                                 |
+| **Add Meeting**    | `addmeeting MEETING_TITLE /at MEETING_DATE [/description MEETING_DESCRIPTION] [/contact INDEX]` <br> e.g., `addmeeting Project Meeting /at 29 Jan 2022`               |
+| **Find Meeting**   | `findmeeting /named MEETING_TITLE` <br> e.g., findmeeting /named CS2103                                                                                               |
+| **Filter Meeting** | `filtermeetingsbetween AFTER_DATE ;;; BEFORE_DATE` <br> e.g., filtermeetingsbetween 10-10-2022 1010 ;;; 11-10-2022 1010                                               |
+| **Sort Meetings**  | `sortmeetings asc` or `sortmeetings desc`                                                                                                                             |
+| **List**           | `list`                                                                                                                                                                |
+| **Help**           | `help`                                                                                                                                                                |
 
