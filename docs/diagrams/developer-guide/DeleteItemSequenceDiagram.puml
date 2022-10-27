@@ -63,6 +63,9 @@ deactivate CommandResult
 
 DeleteItemCommand --> LogicManager : result
 deactivate DeleteItemCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteItemCommand -[hidden]-> TrackOParser
+destroy DeleteItemCommand
 
 [<--LogicManager
 deactivate LogicManager
