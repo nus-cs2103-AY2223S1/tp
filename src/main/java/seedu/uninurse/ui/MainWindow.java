@@ -246,6 +246,10 @@ public class MainWindow extends UiPart<Stage> {
                 outputPanel.handleRedo(logic.getSavedPatientListTracker());
             }
 
+            if (commandResult.isFind()) {
+                outputPanel.handleFind(logic.getFilteredPersonList());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

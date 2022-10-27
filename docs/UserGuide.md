@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 **UniNurse** is a desktop app tailored for you, a **private duty nurse**, to:
-- Manage your patients' contacts.
+- Manage your patients' contact details.
 - Organize your patient-related tasks.
 - Keep track of your patients' medical conditions.
 
@@ -18,11 +18,23 @@ experience.
 
 </div>
 
+
+In UniNurse, every patient has the following details:
+- Name
+- Contact Number
+- Address
+- Email Address 
+- Medical Conditions
+- Medications
+- List of Tasks
+- Remarks
+- Tags
+
 UniNurse offers the following features:
-- Add details such as phone numbers, addresses and more.
-- Find any patient by name _(more to be added later...)_.
-- Add tasks to a patient.
-- Categorize patients using tags.
+- Add and edit patient details (as shown above).
+- Find any patient by their details.
+- List all tasks of patients.
+- Show the tasks needed to be done on a specific day. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -223,7 +235,7 @@ Examples:
 
 Finds patients whose names contain any of the given keywords.
 
-Format: `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… [t/TAG]… [c/CONDITION]… [d/TASK_DESCRIPTION]… [m/MEDICATION]…`
+Format: `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… [t/TAG]… [c/CONDITION]… [d/TASK_DESCRIPTION]… [m/MEDICATION]… [r/REMARK]…`
 
 * There should be at least one parameter for the command.
 * The search is case-insensitive. e.g `hans` will match `Hans`.
@@ -238,12 +250,13 @@ Format: `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… 
   * The patient's tag must match at least one `TAG` parameter.
   * The patient's condition must match at least one `CONDITION` parameter.
   * The patient's medication must match at least one `MEDICATION` parameter.
+  * The patient's remarks must match at least one `REMARK` parameter.
 
 Examples:
 * `find jo` returns patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
-* `find alex david` returns `Alex Yeoh` & `David Li`.
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-  _Contact list displayed after running the `find alex david` command_
+* `find alice meier` returns `Alice Tan` & `Benson Meier`.
+  ![result for 'find alice meier'](images/findAliceMeierResult.png)
+  _Patient list displayed after running the `find alice meier` command_
 * `find key n/John n/Betsy n/Charlie e/@example.com` returns patients who fulfill all conditions below:
   * The patient's name contains either `John` or `Betsy` or `Charlie`.
   * The patient's email address must contain `@example.com`.
@@ -460,28 +473,28 @@ the data of your previous UniNurse home folder.
 
 ## Command summary
 
-| Action                          | Format                                                                                                                       |
-|---------------------------------|------------------------------------------------------------------------------------------------------------------------------|
-| **Help**                        | `help`                                                                                                                       |
-| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]… [c/CONDITION]… [t/TAG]…`                                              |
-| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                                                              |
-| **Delete patient**              | `delete -p INDEX`                                                                                                            |
-| **List all patients**           | `list`                                                                                                                       |
-| **List all patients today**     | `patientsToday`                                                                                                              |
-| **Find patient**                | `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… [t/TAG]… [c/CONDITION]… [d/TASK_DESCRIPTION]… [m/MEDICATION]…` |
-| **Add task**                    | `add -p PATIENT_INDEX d/TASK`                                                                                                |
-| **Edit task**                   | `edit -p PATIENT_INDEX -d TASK_INDEX d/TASK`                                                                                 |
-| **Delete task**                 | `delete -p PATIENT_INDEX -d TASK_INDEX`                                                                                      |
-| **List all tasks**              | `listTask`                                                                                                                   |
-| **View all tasks of a patient** | `viewTask INDEX`                                                                                                             |
-| **Add condition**               | `addCondition PATIENT_INDEX c/CONDITION`                                                                                     |
-| **Edit condition**              | `editCondition PATIENT_INDEX CONDITION_INDEX c/CONDITION`                                                                    |
-| **Delete condition**            | `deleteCondition PATIENT_INDEX CONDITION_INDEX`                                                                              |
-| **Add tag**                     | `addTag PATIENT_INDEX t/TAG`                                                                                                 |
-| **Edit tag**                    | `editTag PATIENT_INDEX TAG_INDEX t/TAG`                                                                                      |                                                                                                                     
-| **Delete tag**                  | `deleteTag PATIENT_INDEX TAG_INDEX`                                                                                          |
-| **Clear all patients**          | `clear`                                                                                                                      |
-| **Undo last command**           | `undo`                                                                                                                       |
-| **Reverse undo command**        | `redo`                                                                                                                       |
-| **Exit**                        | `exit`                                                                                                                       |
+| Action                          | Format                                                                                                                                   |
+|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                        | `help`                                                                                                                                   |
+| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]… [c/CONDITION]… [t/TAG]…`                                                          |
+| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                                                                          |
+| **Delete patient**              | `delete -p INDEX`                                                                                                                        |
+| **List all patients**           | `list`                                                                                                                                   |
+| **List all patients today**     | `patientsToday`                                                                                                                          |
+| **Find patient**                | `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… [t/TAG]… [c/CONDITION]… [d/TASK_DESCRIPTION]… [m/MEDICATION]… [r/REMARK]…` |
+| **Add task**                    | `add -p PATIENT_INDEX d/TASK`                                                                                                            |
+| **Edit task**                   | `edit -p PATIENT_INDEX -d TASK_INDEX d/TASK`                                                                                             |
+| **Delete task**                 | `delete -p PATIENT_INDEX -d TASK_INDEX`                                                                                                  |
+| **List all tasks**              | `listTask`                                                                                                                               |
+| **View all tasks of a patient** | `viewTask INDEX`                                                                                                                         |
+| **Add condition**               | `addCondition PATIENT_INDEX c/CONDITION`                                                                                                 |
+| **Edit condition**              | `editCondition PATIENT_INDEX CONDITION_INDEX c/CONDITION`                                                                                |
+| **Delete condition**            | `deleteCondition PATIENT_INDEX CONDITION_INDEX`                                                                                          |
+| **Add tag**                     | `addTag PATIENT_INDEX t/TAG`                                                                                                             |
+| **Edit tag**                    | `editTag PATIENT_INDEX TAG_INDEX t/TAG`                                                                                                  |                                                                                                                     
+| **Delete tag**                  | `deleteTag PATIENT_INDEX TAG_INDEX`                                                                                                      |
+| **Clear all patients**          | `clear`                                                                                                                                  |
+| **Undo last command**           | `undo`                                                                                                                                   |
+| **Reverse undo command**        | `redo`                                                                                                                                   |
+| **Exit**                        | `exit`                                                                                                                                   |
 
