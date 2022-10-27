@@ -165,4 +165,8 @@ public interface Model {
     void resetSelectedTrip();
 
     void sortTripsByComparator(Comparator<Trip> comp);
+
+    void sortBucketList(Comparator<Event> comparator);
+
+    boolean hasEventInBucketList(Event event);
 }
