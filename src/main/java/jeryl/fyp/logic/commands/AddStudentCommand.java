@@ -16,17 +16,18 @@ import jeryl.fyp.model.student.Student;
  */
 public class AddStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "add-s";
+    public static final String COMMAND_WORD = "add -s";
 
     public static final String ALTERNATIVE_COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the FYP manager.\n"
             + "Parameters: "
-            + PREFIX_STUDENT_ID + "STUDENT_ID (should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G) "
+            + PREFIX_STUDENT_ID + "STUDENT_ID "
             + PREFIX_STUDENT_NAME + "STUDENT_NAME "
             + PREFIX_PROJECT_NAME + "FYP_NAME "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "(STUDENT_ID should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_STUDENT_NAME + "John Doe "
@@ -66,4 +67,5 @@ public class AddStudentCommand extends Command {
                 || (other instanceof AddStudentCommand // instanceof handles nulls
                 && toAdd.equals(((AddStudentCommand) other).toAdd));
     }
+
 }

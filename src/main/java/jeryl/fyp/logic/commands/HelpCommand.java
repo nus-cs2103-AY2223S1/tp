@@ -50,4 +50,5 @@ public class HelpCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult(helpMessage, showHelp, false, false , false);
     }
+
 }

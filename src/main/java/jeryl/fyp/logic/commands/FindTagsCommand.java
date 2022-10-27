@@ -8,7 +8,7 @@ import jeryl.fyp.model.student.TagsContainKeywordsPredicate;
  */
 public class FindTagsCommand extends FindCommand {
 
-    public static final String COMMAND_WORD = "find-t";
+    public static final String COMMAND_WORD = "find -t";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -22,4 +22,5 @@ public class FindTagsCommand extends FindCommand {
     public FindTagsCommand(TagsContainKeywordsPredicate tagsPredicate) {
         super(tagsPredicate);
     }
+
 }

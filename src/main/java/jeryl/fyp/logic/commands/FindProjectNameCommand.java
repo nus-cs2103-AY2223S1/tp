@@ -8,7 +8,9 @@ import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
  */
 public class FindProjectNameCommand extends FindCommand {
 
-    public static final String COMMAND_WORD = "find-proj";
+    public static final String COMMAND_WORD = "find -p";
+
+    public static final String ALTERNATIVE_COMMAND_WORD = "find";
 
     public static final String ALTERNATIVE_COMMAND_WORD = "find";
 
@@ -24,4 +26,5 @@ public class FindProjectNameCommand extends FindCommand {
     public FindProjectNameCommand(ProjectNameContainsKeywordsPredicate projectNamePredicate) {
         super(projectNamePredicate);
     }
+
 }
