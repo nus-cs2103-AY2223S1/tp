@@ -55,7 +55,7 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             Person person = model.getPerson(toAdd).orElseThrow(() -> new CommandException(MESSAGE_DUPLICATE_PERSON));
-            if (person.getSurveys().equals(toAdd.getSurveys())) {
+            if (person.getSurveys().containsAll(toAdd.getSurveys())) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
             Set<Survey> surveySet = new HashSet<>();

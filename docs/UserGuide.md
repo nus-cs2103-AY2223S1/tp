@@ -72,7 +72,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a person : `add`
+### Adding a person: `add`
 
 Adds a person to the app.
 
@@ -88,7 +88,7 @@ A person can have any number of surveys and tags (including 0)
 Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/male b/1989-10-1 ra/White American re/Christian s/Environment Survey` Adds a person with the descriptions as stated.
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal g/female b/1991-11-31 ra/Chinese re/Buddhist` 
+- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal g/female b/1991-11-31 ra/Chinese re/Buddhist`
 
 ### Listing all persons : `list`
 
@@ -106,14 +106,15 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTH
 - At least one of the optional fields has to be provided.
 - Existing value in specified field will be updated to the new value.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-- You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+- You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
 
 Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name : `find`
+### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -136,11 +137,9 @@ Examples:
 
 Delete an existing person in Survin by index or delete all persons satisfying the specified attributes.
 
-Format: `delete INDEX`
+Format: `delete INDEX` OR `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`
 
-Format: delete INDEX, delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]
-
-- Delete surveyee(s) satisfying the conditions specified.
+- Delete surveyee(s) satisfying the conditions specified. (the conditions cannot be all empty)
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …
 - Fields must be non-empty if deleting by attributes
@@ -153,7 +152,7 @@ Example:
 
 ### Clone a person : `clone`
 
-Creates a new person with updated details based on an existing person in Survin, the new person created will be added to end of existing address book.
+Creates a new person with updated details based on an existing person in Survin, the new person created will be added to end of existing app.
 
 Format: `clone INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEY] [t/TAG]…`
 
@@ -180,7 +179,7 @@ Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/R
 - For all attributes except `email` and `birthdate`, only full words will be matched e.g. `Ale` will not match `Alex`
 - Use quotes (") to `view` persons whose attributes contain an exact phrase.
 - For phrases not in quotes, `view` lists all persons whose attributes contain any of the words specified.
-    e.g. `view n/Jane Doe "Alex Tan"` lists all persons whose names contain any of the following: `Jane`, `Doe` or `Alex Tan`.
+  e.g. `view n/Jane Doe "Alex Tan"` lists all persons whose names contain any of the following: `Jane`, `Doe` or `Alex Tan`.
 - When using `view` on an attribute with multiple objects (e.g. `Survey` or `Tag`), `view` performs the search on each object.
 - When using `view` on any attribute, only the last prefix is parsed. e.g. `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
 
@@ -220,7 +219,16 @@ Compacted Mode:<br>
 
 Format: `toggle-list-mode`
 
-### Shortcut keys 
+### Mark or unmark a survey as done or not done: `mark/unmark`
+
+Changes the status of the survey to done or not done. More specifically, mark changes the status of the specified survey to done while unmark changes the status of the specified survey to not done.
+
+Format: `mark INDEX s/NAME OF SURVEY`, `unmark INDEX s/NAME OF SURVEY`
+
+Example: `mark 1 s/Shopping survey`, `unmark 3 s/Environmental survey`
+
+### Shortcut keys
+
 These shortcut keys will add texts to the command box, this helps the users to enter the commands faster.
 
 - `CTRL + A` adds `add n/ p/ e/ a/ g/ b/ ra/ re/ s/ t/` to the command box.
@@ -231,7 +239,6 @@ These shortcut keys will add texts to the command box, this helps the users to e
 - `CTRL + Z` adds `undo` to the command box.
 - `CTRL + L` adds `clone` to the command box.
 - `CTRL + I` adds `view` to the command box.
-
 
 ### Clearing all entries : `clear`
 
@@ -272,14 +279,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                  | Format, Examples                                                                                                                                                   |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action                  | Format, Examples                                                                                                                                                    |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**               | `clear`                                                                                                                                                            |
-| **Delete**              | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
-| **Delete by attribute** | `delete [ra/RACE] [re/RELIGION]`<br> e.g. `delete ra/Chinese`,                                                                                                     |
-| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
-| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                         |
+| **Clear**               | `clear`                                                                                                                                                             |
+| **Delete**              | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                  |
+| **Delete by attribute** | `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`<br> e.g. `delete ra/Chinese`                  |
+| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                          |
 | **Clone**               | `clone INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `clone 1 n/James Lee p/91234567 e/jameslee@example.com`                                                |
-| **List**                | `list`                                                                                                                                                             |
-| **Help**                | `help`                                                                                                                                                             |
+| **List**                | `list`                                                                                                                                                              |
+| **Help**                | `help`                                                                                                                                                              |

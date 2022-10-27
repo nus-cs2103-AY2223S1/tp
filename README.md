@@ -4,8 +4,8 @@
 
 - This is **brownfield project for Software Engineering (SE) students**.<br>
   Example usages:
-  - as a addressbook for surveyors
-- The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
+  - as a surveyee manager for surveyors
+- The project simulates an ongoing software project for a desktop application (called _Survin_) used for managing contact details.
   - It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   - It comes with a **reasonable level of user and developer documentation**.
 - It is named `Survin`
