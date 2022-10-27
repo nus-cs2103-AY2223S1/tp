@@ -108,17 +108,17 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
+     * Replaces the given reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in ModQuik.
+     * The reminder identity of {@code editedReminder} must not be the same as another existing reminder in ModQuik.
+     */
+    void setReminder(Reminder target, Reminder editedReminder);
+
+    /**
      * Deletes the given reminder.
      * The reminder must exist in the ModQuik.
      */
     void deleteReminder(Reminder reminder);
-
-    /**
-     * Replaces the given reminder {@code target} with {@code editedReminder}.
-     * {@code target} must exist in ModQuik.
-     * The reminder identity of {@code editedReminder} must not be the same as another existing person in tModQuik.
-     */
-    void setPerson(Reminder target, Reminder editedReminder);
 
     /**
      * Sort reminders by priority. Reminders with the same priority will be sorted lexicographically by their names.

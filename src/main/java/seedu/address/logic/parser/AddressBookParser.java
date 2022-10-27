@@ -15,6 +15,7 @@ import seedu.address.logic.commands.consultation.AddConsultationCommand;
 import seedu.address.logic.commands.consultation.DeleteConsultationCommand;
 import seedu.address.logic.commands.reminder.AddReminderCommand;
 import seedu.address.logic.commands.reminder.DeleteReminderCommand;
+import seedu.address.logic.commands.reminder.EditReminderCommand;
 import seedu.address.logic.commands.reminder.MarkReminderCommand;
 import seedu.address.logic.commands.reminder.SortReminderByDeadlineCommand;
 import seedu.address.logic.commands.reminder.SortReminderByPriorityCommand;
@@ -32,6 +33,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.UnknownPreambleException;
 import seedu.address.logic.parser.reminder.AddReminderCommandParser;
 import seedu.address.logic.parser.reminder.DeleteReminderCommandParser;
+import seedu.address.logic.parser.reminder.EditReminderCommandParser;
 import seedu.address.logic.parser.reminder.MarkReminderCommandParser;
 import seedu.address.logic.parser.reminder.UnmarkReminderCommandParser;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
@@ -99,6 +101,9 @@ public class AddressBookParser {
 
         case DeleteReminderCommand.COMMAND_WORD:
             return new DeleteReminderCommandParser().parse(arguments);
+
+        case EditReminderCommand.COMMAND_WORD:
+            return new EditReminderCommandParser().parse(arguments);
 
         case MarkReminderCommand.COMMAND_WORD:
             return new MarkReminderCommandParser().parse(arguments);
