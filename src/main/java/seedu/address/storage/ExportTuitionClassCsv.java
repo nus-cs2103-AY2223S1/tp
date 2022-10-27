@@ -1,8 +1,8 @@
 package seedu.address.storage;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,26 +11,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SequenceWriter;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 
+import seedu.address.commons.util.FileUtil;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * A class to export {@link TuitionClass} to a csv-readable format.
  */
 public class ExportTuitionClassCsv {
-    private final Path filePath;
+    private final Path jsonFilePath;
+    private final Path csvFilePath = Paths.get("data", "tuitionClasses.csv");
 
-    public ExportTuitionClassCsv(Path filePath) {
-        this.filePath = filePath;
+    public ExportTuitionClassCsv(Path jsonFilePath) {
+        this.jsonFilePath = jsonFilePath;
     }
 
     /**
-     * Reads tuitionClassAddressBook.json and converts it into .csv.
-     * @throws IOException if unable to write to csv file.
+     * Reads the .json file and generates a new .csv file.
+     * @throws IOException if an error occurred when creating new .csv file,
+     *      reading .json file, or writing to .csv file.
      */
-    public void readJson() throws IOException {
-        JsonNode jsonTree = new ObjectMapper().readTree(new File(this.filePath.toUri()));
+    public void generateCsv() throws IOException {
+        FileUtil.createFile(this.csvFilePath);
+        JsonNode jsonTree = new ObjectMapper().readTree(this.jsonFilePath.toFile());
+        createNewCsv(jsonTree);
+    }
+
+    /**
+     * Creates a .csv file from the {@code JsonNode} object.
+     * @param jsonTree {@code JsonNode} object of the .json file.
+     * @throws IOException if an error occurred when writing to .csv file.
+     */
+    private void createNewCsv(JsonNode jsonTree) throws IOException {
         CsvMapper csvMapper = new CsvMapper();
-        SequenceWriter seqW = csvMapper.writer().writeValues(new File("data/tuitionClasses.csv"));
+        SequenceWriter seqW = csvMapper.writer().writeValues(this.csvFilePath.toFile());
         seqW.write(Arrays.asList("name", "subject", "level", "day", "startTime", "endTime", "tagged"));
         if (jsonTree.isEmpty()) {
             seqW.close();

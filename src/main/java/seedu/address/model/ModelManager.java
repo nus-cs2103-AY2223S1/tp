@@ -199,9 +199,9 @@ public class ModelManager implements Model {
         ExportTutorCsv tutorCsv = new ExportTutorCsv(getTutorAddressBookFilePath());
         ExportTuitionClassCsv tuitionClassCsv = new ExportTuitionClassCsv(getTuitionClassAddressBookFilePath());
         try {
-            studentCsv.readJson();
-            tutorCsv.readJson();
-            tuitionClassCsv.readJson();
+            studentCsv.generateCsv();
+            tutorCsv.generateCsv();
+            tuitionClassCsv.generateCsv();
             logger.info("All files converted to csv");
         } catch (IOException e) {
             logger.warning("An error occurred while converting the files to csv format :\n\t" + e.getMessage());
