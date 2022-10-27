@@ -32,7 +32,7 @@ public class UnarchiveTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Archived Task: %1$s";
-    public static final String MESSAGE_ALREADY_ARCHIVED = "This task is already unarchived.";
+    public static final String MESSAGE_ALREADY_UNARCHIVED = "This task is already unarchived.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -63,7 +63,7 @@ public class UnarchiveTaskCommand extends Command {
         Task unarchivedTask = createEditedTask(taskToArchive, editTaskDescriptor);
 
         if (taskToArchive.equals(unarchivedTask)) {
-            throw new CommandException(MESSAGE_ALREADY_ARCHIVED);
+            throw new CommandException(MESSAGE_ALREADY_UNARCHIVED);
         }
 
         model.setTask(taskToArchive, unarchivedTask);
