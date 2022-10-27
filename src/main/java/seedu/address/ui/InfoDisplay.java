@@ -80,6 +80,7 @@ public class InfoDisplay extends UiPart<Region> {
             this.chart = chart;
             placeHolder.getChildren().add(chart);
         } else {
+            this.chart = null;
             placeHolder.getChildren().clear();
         }
     }
@@ -88,12 +89,14 @@ public class InfoDisplay extends UiPart<Region> {
      * Displays a Graph in a new window.
      */
     public void displayGraph() {
-        Stage stage = new Stage();
-        stage.setTitle("Grades of " + name.getText());
-        Group root = new Group(chart);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if (chart != null && name != null) {
+            Stage stage = new Stage();
+            stage.setTitle("Grades of " + name.getText());
+            Group root = new Group(chart);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     /**
