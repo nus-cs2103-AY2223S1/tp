@@ -22,7 +22,7 @@ public class StaffUtil {
      * Returns an add staff command string for adding the {@code staff}.
      */
     public static String getAddCommand(Staff staff) {
-        return AddStaffCommand.COMMAND_WORD + " pn/CS2103T TP " + getStaffDetails(staff);
+        return AddStaffCommand.COMMAND_WORD + " 1 " + getStaffDetails(staff);
     }
 
     /**

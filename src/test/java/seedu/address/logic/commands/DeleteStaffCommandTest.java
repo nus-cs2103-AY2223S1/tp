@@ -3,21 +3,21 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_JAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
-import static seedu.address.testutil.TypicalStaff.STAFF_ANDY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STAFF;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STAFF;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,6 +25,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffName;
+import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.StaffBuilder;
 
 public class DeleteStaffCommandTest {
@@ -33,46 +34,61 @@ public class DeleteStaffCommandTest {
 
     @Test
     public void execute_validInput_success() {
-        cleanUpModel();
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        Staff staff = new StaffBuilder(STAFF_ANDY).build();
+        ProjectName projectName = project.getProjectName();
+        Staff staff = new StaffBuilder().build();
         StaffName staffName = staff.getStaffName();
-        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(staffName, project.getProjectName());
-
         String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS,
-                staff.getStaffName().staffName, project.getProjectName().toString());
+                staffName, projectName);
+        project.getStaffList().add(staff);
+        Index index = Index.fromOneBased(1);
+        model.setFilteredStaffList(project);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased()).getStaffList().add(staff);
+
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(index, projectName);
+
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), model.getUserPrefs());
+        Project tempProject = new ProjectBuilder(project).build();
+        tempProject.getStaffList().remove(staff);
+        expectedModel.setProject(project, tempProject);
+        expectedModel.setFilteredStaffList(tempProject);
+        // expectedModel.getFilteredProjectList().get(0).getStaffList().remove(staff);
+        // expectedModel.setFilteredStaffList(project);
+        expectedModel.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
 
         assertCommandSuccess(deleteStaffCommand, model, expectedMessage, expectedModel);
     }
 
     //Test to check that command throw exception when trying to delete a staff not in project
     @Test
-    public void execute_invalidStaff_throwCommandException() {
-        cleanUpModel();
-        StaffName staffName = new StaffName(VALID_NAME_AMY);
+    public void execute_invalidProject_throwCommandException() {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        ProjectName projectName = project.getProjectName();
-        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(staffName, projectName);
+        Staff staff = new StaffBuilder().withStaffName(VALID_NAME_AMY).build();
+        project.getStaffList().add(staff);
+        model.setFilteredStaffList(project);
+        ProjectName projectName = new ProjectName("WRONG PROJECT NAME");
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_STAFF, projectName);
 
-        String expectedMessage = String.format(MESSAGE_INVALID_STAFF, staffName);
+        String expectedMessage = String.format(MESSAGE_INVALID_PROJECT, projectName);
 
         assertCommandFailure(deleteStaffCommand, model, expectedMessage);
+
+        model.getFilteredProjectList().get(0).getStaffList().remove(staff);
     }
 
     //Test to check that command throw exception when trying to
     //delete a staff from project not inside HR Pro Max++
     @Test
-    public void execute_invalidProject_throwCommandException() {
+    public void execute_invalidIndex_throwCommandException() {
         cleanUpModel();
-        Staff staff = new StaffBuilder(STAFF_ANDY).build();
-        StaffName staffName = staff.getStaffName();
-        ProjectName projectName = new ProjectName(VALID_NAME_BOB);
-        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(staffName, projectName);
+        Project project = model.getAddressBook().getProjectList().get(0);
+        ProjectName projectName = project.getProjectName();
+        model.setFilteredStaffList(project);
+        int len = model.getFilteredStaffList().size();
+        Index index = Index.fromZeroBased(len + 1);
+        DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(index, projectName);
 
-        String expectedMessage = String.format(MESSAGE_INVALID_PROJECT, projectName);
+        String expectedMessage = MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
 
         assertCommandFailure(deleteStaffCommand, model, expectedMessage);
     }
@@ -80,18 +96,16 @@ public class DeleteStaffCommandTest {
     @Test
     public void equals() {
         cleanUpModel();
-        StaffName staffNameFirst = new StaffName(VALID_STAFFNAME_ANDY);
-        StaffName staffNameSecond = new StaffName(VALID_STAFFCONTACT_JAY);
         ProjectName projectNameFirst = new ProjectName(VALID_NAME_AMY);
         ProjectName projectNameSecond = new ProjectName(VALID_NAME_BOB);
-        DeleteStaffCommand deleteFirstCommand = new DeleteStaffCommand(staffNameFirst, projectNameFirst);
-        DeleteStaffCommand deleteSecondCommand = new DeleteStaffCommand(staffNameSecond, projectNameSecond);
+        DeleteStaffCommand deleteFirstCommand = new DeleteStaffCommand(INDEX_FIRST_STAFF, projectNameFirst);
+        DeleteStaffCommand deleteSecondCommand = new DeleteStaffCommand(INDEX_SECOND_STAFF, projectNameSecond);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteStaffCommand deleteFirstCommandCopy = new DeleteStaffCommand(staffNameFirst, projectNameFirst);
+        DeleteStaffCommand deleteFirstCommandCopy = new DeleteStaffCommand(INDEX_FIRST_STAFF, projectNameFirst);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

@@ -3,11 +3,12 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
@@ -23,33 +24,45 @@ public class DeleteStaffCommand extends Command {
     public static final String COMMAND_WORD = "delstaff";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the staff from the specified project.\n"
+            + ": The project name refers to the project whose staff will be deleted. The command "
+            + "looks for the staff identified by the INDEX\nwithin the displayed staff list and deletes the "
+            + "staff if its in the project. Make sure you view the correct staff list before deleting a staff.\n"
             + "Parameters: "
-            + PREFIX_PROJECT_NAME + "PROJECT_NAME "
-            + PREFIX_STAFF_NAME + "STAFF_NAME\n"
-            + "Example: " + COMMAND_WORD + " pn/CS2103T TP sn/Andy Lee";
+            + "INDEX (must be a positive integer) "
+            + PREFIX_PROJECT_NAME + "PROJECT_NAME\n"
+            + "Example: " + COMMAND_WORD + " 1" + " pn/CS2103T TP";
 
     public static final String MESSAGE_DELETE_STAFF_SUCCESS = "Deleted Staff from %2$s: %1$s\n"
             + "Displaying all staff in project: %2$s ";
 
     private String projectName;
 
-    private String staffName;
+    private Index index;
 
     /**
      * Creates a DeleteStaffCommand.
-     * @param staffName the staff name to check for
+     * @param index the staff name to check for
      * @param projectName the project name to check for
      */
-    public DeleteStaffCommand(StaffName staffName, ProjectName projectName) {
-        this.staffName = staffName.staffName;
+    public DeleteStaffCommand(Index index, ProjectName projectName) {
+        this.index = index;
         this.projectName = projectName.fullName;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Project> projectList = model.getFilteredProjectList();
+        List<Staff> lastShownStaffList = model.getFilteredStaffList();
+
+        if (index.getZeroBased() >= lastShownStaffList.size()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_STAFF_DISPLAYED_INDEX));
+        }
+
+        Staff staffToDelete = lastShownStaffList.get(index.getZeroBased());
+        StaffName staffName = staffToDelete.getStaffName();
+
         int len = projectList.size();
         Project project = null;
         for (int x = 0; x < len; x++) {
@@ -59,13 +72,15 @@ public class DeleteStaffCommand extends Command {
                 break;
             }
         }
+
         if (project == null) {
             throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName));
         }
+
         UniqueStaffList staffList = project.getStaffList();
         Staff staff = null;
         for (Staff tempStaff : staffList) {
-            if (tempStaff.getStaffName().staffName.equalsIgnoreCase(staffName)) {
+            if (tempStaff.getStaffName().staffName.equalsIgnoreCase(staffName.toString())) {
                 staff = tempStaff;
                 break;
             }
@@ -84,6 +99,6 @@ public class DeleteStaffCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteStaffCommand // instanceof handles nulls
                 && projectName.equals(((DeleteStaffCommand) other).projectName)
-                && staffName.equals(((DeleteStaffCommand) other).staffName));
+                && index.equals(((DeleteStaffCommand) other).index));
     }
 }

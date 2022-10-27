@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the format YYYY-MM-DD and is a valid date. Also it should not be blank.";
+            "Date should be in the format YYYY-MM-DD and must be a valid date. Also it should not be blank.";
 
     public final String deadline;
 

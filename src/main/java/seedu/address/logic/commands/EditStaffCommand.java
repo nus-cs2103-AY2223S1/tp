@@ -39,9 +39,10 @@ public class EditStaffCommand extends Command {
 
     public static final String COMMAND_WORD = "editstaff";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the staff within a project "
-            + "currently displayed, identifying it with the project name. \nThe index identifies the staff to edit "
-            + "based on the index of the displayed staff list."
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": The project name refers to the project whose staff is to be edited. The command "
+            + "looks for the staff identified by the INDEX\nwithin the displayed staff list and edits the "
+            + "staff if its in the project. Make sure you view the correct staff list before editing a staff.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + "STAFF_INDEX (must be a positive integer) "
@@ -85,6 +86,7 @@ public class EditStaffCommand extends Command {
         requireNonNull(model);
 
         List<Project> lastShownList = model.getFilteredProjectList();
+        List<Staff> lastShownStaffList = model.getFilteredStaffList();
         int projectIndex = 0;
 
         if (lastShownList.size() == 0) {
@@ -106,15 +108,20 @@ public class EditStaffCommand extends Command {
 
         Project toFindIn = lastShownList.get(index.getZeroBased());
 
-        if (staffIndex.getZeroBased() >= toFindIn.getStaffList().size()) {
+        if (staffIndex.getZeroBased() >= lastShownStaffList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
         }
 
-        Staff toEdit = toFindIn.getStaffList().getStaff(staffIndex);
+        Staff toEdit = lastShownStaffList.get(staffIndex.getZeroBased());
         Staff editedStaff = createEditedStaff(toEdit, editStaffDescriptor);
 
         if (!toEdit.isSameStaff(editedStaff) && toFindIn.getStaffList().contains(editedStaff)) {
             throw new CommandException(MESSAGE_DUPLICATE_STAFF);
+        }
+
+        if (!toFindIn.getStaffList().contains(toEdit)) {
+            throw new CommandException(String.format("Staff %1$s not found in specified project: %2$s!",
+                    toEdit.getStaffName(), projectName));
         }
 
         toFindIn.getStaffList().setStaff(toEdit, editedStaff);

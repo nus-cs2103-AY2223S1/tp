@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STAFFCONTACT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STAFFDEPARTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STAFFLEAVE_DESC;
@@ -31,6 +30,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalProjects.BOB;
 import static seedu.address.testutil.TypicalStaff.STAFF_JAY;
 
@@ -38,7 +38,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffContact;
 import seedu.address.model.staff.StaffDepartment;
@@ -58,42 +57,42 @@ public class AddStaffCommandParserTest {
         Project projectStud = new ProjectBuilder(BOB).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
-                        + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY + NAME_DESC_BOB
-                        + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, projectStud.getProjectName()));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+                        + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
+                        + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, INDEX_FIRST_PROJECT));
 
         // multiple staff names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + STAFFNAME_DESC_ANDY + STAFFNAME_DESC_JAY
+        assertParseSuccess(parser, " 1 " + STAFFNAME_DESC_ANDY + STAFFNAME_DESC_JAY
                 + STAFFCONTACT_DESC_JAY + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
-                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, projectStud.getProjectName()));
+                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, INDEX_FIRST_PROJECT));
 
         // multiple contacts - last contact accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_ANDY
+        assertParseSuccess(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_ANDY
                 + STAFFCONTACT_DESC_JAY + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
-                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, projectStud.getProjectName()));
+                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, INDEX_FIRST_PROJECT));
 
         // multiple titles - last title accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+        assertParseSuccess(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
                 + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_ANDY + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
-                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, projectStud.getProjectName()));
+                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, INDEX_FIRST_PROJECT));
 
         // multiple department - last department accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+        assertParseSuccess(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
                 + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_ANDY + STAFFDEPARTMENT_DESC_JAY
-                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, projectStud.getProjectName()));
+                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, INDEX_FIRST_PROJECT));
 
         // multiple leave status - last leave status accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+        assertParseSuccess(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
                 + STAFFLEAVE_DESC_ANDY + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
-                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, projectStud.getProjectName()));
+                + TAG_DESC_FRIEND, new AddStaffCommand(expectedStaff, INDEX_FIRST_PROJECT));
 
         //multiple tag ok
         Staff expectedStaffWithMultipleTags =
                 new StaffBuilder(STAFF_JAY).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
-        assertParseSuccess(parser, NAME_DESC_BOB + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+        assertParseSuccess(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
                 + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
                 + TAG_DESC_FRIEND + TAG_DESC_HUSBAND ,
-                new AddStaffCommand(expectedStaffWithMultipleTags, projectStud.getProjectName()));
+                new AddStaffCommand(expectedStaffWithMultipleTags, INDEX_FIRST_PROJECT));
 
     }
 
@@ -103,78 +102,73 @@ public class AddStaffCommandParserTest {
         Project projectStud = new ProjectBuilder(BOB).build();
 
         //no tags ok
-        assertParseSuccess(parser, NAME_DESC_BOB + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+        assertParseSuccess(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
                         + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY ,
-                new AddStaffCommand(expectedStaffWithNoTags, projectStud.getProjectName()));
+                new AddStaffCommand(expectedStaffWithNoTags, INDEX_FIRST_PROJECT));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE);
 
-        //Missing project name field
+        //Missing index field
         assertParseFailure(parser, STAFFCONTACT_DESC_JAY + STAFFLEAVE_DESC_JAY
                         + STAFFTITLE_DESC_JAY + STAFFNAME_DESC_JAY
                         + STAFFDEPARTMENT_DESC_JAY, expectedMessage);
 
         //Missing staff name
-        assertParseFailure(parser, STAFFCONTACT_DESC_JAY + STAFFLEAVE_DESC_JAY
-                + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
-                + NAME_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, " 1 " + STAFFCONTACT_DESC_JAY + STAFFLEAVE_DESC_JAY
+                + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY, expectedMessage);
 
         //Missing staff contact
-        assertParseFailure(parser, STAFFNAME_DESC_JAY + STAFFLEAVE_DESC_JAY
-                        + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
-                        + NAME_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFLEAVE_DESC_JAY
+                        + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY, expectedMessage);
 
         //Missing staff department
-        assertParseFailure(parser, STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
-                        + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY
-                        + NAME_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+                        + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY, expectedMessage);
 
         //Missing staff title
-        assertParseFailure(parser, STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
-                        + STAFFLEAVE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
-                        + NAME_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+                        + STAFFLEAVE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY, expectedMessage);
 
         //Missing staff leave
-        assertParseFailure(parser, STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
-                        + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
-                        + NAME_DESC_BOB, expectedMessage);
+        assertParseFailure(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+                        + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY, expectedMessage);
 
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        //Invalid project name field
-        assertParseFailure(parser, STAFFCONTACT_DESC_JAY + STAFFLEAVE_DESC_JAY
-                + STAFFTITLE_DESC_JAY + INVALID_NAME_DESC + STAFFNAME_DESC_JAY
-                + STAFFDEPARTMENT_DESC_JAY, ProjectName.MESSAGE_CONSTRAINTS);
+        //Invalid index
+        assertParseFailure(parser, " 0 " + STAFFCONTACT_DESC_JAY + STAFFLEAVE_DESC_JAY
+                + STAFFTITLE_DESC_JAY + STAFFNAME_DESC_JAY + STAFFDEPARTMENT_DESC_JAY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE));
 
         //Invalid staff name
-        assertParseFailure(parser, STAFFCONTACT_DESC_JAY + STAFFLEAVE_DESC_JAY
-                + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY + INVALID_STAFFNAME_DESC
-                + NAME_DESC_BOB, StaffName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " 1 " + STAFFCONTACT_DESC_JAY + STAFFLEAVE_DESC_JAY
+                + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
+                + INVALID_STAFFNAME_DESC, StaffName.MESSAGE_CONSTRAINTS);
 
         //Invalid staff contact
-        assertParseFailure(parser, STAFFNAME_DESC_JAY + STAFFLEAVE_DESC_JAY
-                + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY + INVALID_STAFFCONTACT_DESC
-                + NAME_DESC_BOB, StaffContact.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFLEAVE_DESC_JAY
+                + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
+                + INVALID_STAFFCONTACT_DESC, StaffContact.MESSAGE_CONSTRAINTS);
 
         //Invalid staff department
-        assertParseFailure(parser, STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
-                + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY + INVALID_STAFFDEPARTMENT_DESC
-                + NAME_DESC_BOB, StaffDepartment.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+                + STAFFLEAVE_DESC_JAY + STAFFTITLE_DESC_JAY
+                + INVALID_STAFFDEPARTMENT_DESC, StaffDepartment.MESSAGE_CONSTRAINTS);
 
         //Invalid staff title
-        assertParseFailure(parser, STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
-                + STAFFLEAVE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY + INVALID_STAFFTITLE_DESC
-                + NAME_DESC_BOB, StaffTitle.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+                + STAFFLEAVE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
+                + INVALID_STAFFTITLE_DESC, StaffTitle.MESSAGE_CONSTRAINTS);
 
         //Invalid staff LEAVE
-        assertParseFailure(parser, STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
-                + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY + INVALID_STAFFLEAVE_DESC
-                + NAME_DESC_BOB, StaffLeave.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " 1 " + STAFFNAME_DESC_JAY + STAFFCONTACT_DESC_JAY
+                + STAFFTITLE_DESC_JAY + STAFFDEPARTMENT_DESC_JAY
+                + INVALID_STAFFLEAVE_DESC, StaffLeave.MESSAGE_CONSTRAINTS);
     }
 
     @Test
