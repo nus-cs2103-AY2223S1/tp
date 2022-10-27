@@ -10,7 +10,7 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -35,7 +35,7 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -58,6 +58,8 @@ DevEnable is a **desktop app for managing developer projects, optimized for use 
 
 </div>
 
+## General Commands
+
 ### Viewing help : `help`
 
 Displays a list of commands and functionalities.
@@ -70,6 +72,9 @@ Clears all entries from the list.
 
 Format: `clear`
 
+## Project Commands
+
+> NOTE: Clicking the Repository Link of a project will copy it to the clipboard
 ### Adding a project: `project -a`
 
 Adds a project to the AddressBook. A unique project ID will be automatically generated.
@@ -194,6 +199,8 @@ Sets list of projects to be the default view when application is re-opened.
 
 Format: `project -v`
 
+## Client Commands
+
 ### Adding a client : `client -a`
 
 Adds a client to the AddressBook. A unique client ID will be automatically generated. 
@@ -311,6 +318,8 @@ Examples:
 Sets list of clients to be the default view when application is re-opened.
 
 Format: `client -v`
+
+## Issue Commands
 
 ### Adding an issue : `issue -a`
 
@@ -453,6 +462,8 @@ Sets list of issues to be the default view when application is re-opened.
 
 Format: `issue -v`
 
+## Others
+
 ### Saving the data
 
 DevEnable data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -467,14 +478,14 @@ If your changes to the data file makes its format invalid, DevEnable will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the data file it creates with the file that contains the data of your previous DevEnable home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 | Action                         | Format, Examples |
 |--------------------------------|------------------|
