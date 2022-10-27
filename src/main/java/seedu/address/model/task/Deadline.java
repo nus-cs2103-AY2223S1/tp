@@ -14,7 +14,7 @@ import java.util.Optional;
 public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be of the form YYYY-MM-DD, eg 2022-10-07";
+            "The date provided should be a valid date of the form YYYY-MM-DD, eg 2022-10-07";
 
     // Original value passed into constructor - used for storage in JSON
     public final String value;
