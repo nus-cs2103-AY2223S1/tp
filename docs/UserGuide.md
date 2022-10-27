@@ -8,21 +8,23 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
 * Table of Contents
   {:toc}
-  - [Quick Start](#quickstart)
-  - [Features](#features)
-    - [Add book](#adding-a-book-add-book)
-    - [Add user](#adding-a-user-add-user)
-    - [Remove book](#removing-a-book--delete-book)
-    - [Remove user](#remove-a-user-delete-user)
-    - [Return book](#returning-a-book-return)
-    - [Loan book](#loaning-a-book--loan)
-    - [List all users](#list-all-users--list-users)
-    - [List all books](#list-all-books--list-books)
-    - [List all loans](#show-all-books-that-are-loaned--list-loans)
-    - [Clear](#clearing-all-entries--clear-all)
-    - [Exit](#exit-bookface-exit)
-  - [FAQ](#faq)
-  - [Command Summary](#commandsummary)
+    - [Quick Start](#quickstart)
+    - [Features](#features)
+        - [Add book](#adding-a-book-add-book)
+        - [Add user](#adding-a-user-add-user)
+        - [Remove book](#removing-a-book--delete-book)
+        - [Remove user](#removing-a-user-delete-user)
+        - [Return book](#returning-a-book-return)
+        - [Loan book](#loaning-a-book--loan)
+        - [Find book](#finding-books--find-book)
+        - [Find user](#finding-users--find-user)
+        - [List all users](#list-all-users--list-users)
+        - [List all books](#list-all-books--list-books)
+        - [List all loans](#show-all-books-that-are-loaned--list-loans)
+        - [Clear](#clearing-all-entries--clear-all)
+        - [Exit](#exit-bookface-exit)
+    - [FAQ](#faq)
+    - [Command Summary](#commandsummary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,8 +80,12 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list users`, `exit` and `clear all`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* Note that indexes always refer to the currently displayed user/book list and not the original user/book list. <br>
+  e.g. if your user list has 5 users, and you enter `find user Alex` and get 1 user displayed under the user list, `delete user 1` will always
+delete the user that is currently displayed.
 
 </div>
 
@@ -120,7 +126,7 @@ Format: `delete book <book index>`
 Examples:
 * `delete book 99`
 
-### Remove a user: `delete user`
+### Removing a user: `delete user`
 
 Deletes a user from the library.
 
@@ -135,29 +141,77 @@ Examples:
 
 Returns the book which is loaned by some user.
 
-Format: `return <user index> <book index>`
+Format: `return <book index>`
 
-* Returns the book which is loaned by some user at their respective specified `INDEXES`.
-* The indexes refer to the index number shown in the displayed user and book list respectively.
-* The indexes **must be a positive integer** 1, 2, 3, …​
+* Returns the book which is loaned by some user at the book's specified `INDEX`.
+* The index refers to the index number shown in the displayed book list respectively.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `return 3 2` returns book number two which is loaned by user number three.
+* `return 2` returns book number two (which has been previously loaned).
 
 ### Loaning a book : `loan`
 
-Loans a book to some user
+Loans a book to some user, which has a due date.
 
-Format: `loan <user index> <book index>`
+Format: `loan <user index> <book index>` or `loan <user index> <book index> <due date>`
 
 * Loans the book to some user at their respective specified `INDEXES`.
 * The indexes refer to the index number shown in the displayed user and book list respectively.
 * The indexes **must be a positive integer** 1, 2, 3, …​
 * The respective specified `INDEXES` **must be present in their lists**.
 * The books that are loaned out will appear at the top of the book list.
+* The first `loan` format without specifying a due date sets a default due date of 14 days from today when the book is loaned out.
+* The second `loan` format allows for specification of due dates, and date formats such as
+  `dd/MM/yyyy`, `yyyy-MM-dd` or even text such as `next sunday` or `tomorrow` would work. Only the
+  first date entered would be set as the due date and subsequent dates entered would be ignored.
+* For the second `loan` format, some invalid inputs in February may be assumed to be correct. Refer to example below.
 
 Examples:
-* `loan 3 2` loans the second book in the book list to the third user in the user list.
+* `loan 3 2` loans the second book in the book list to the third user in the user list. The due date is set to
+  14 days from today.
+* `loan 3 2 2018-08-08` loans the second book in the book list to the third user in the user list. The due date is set to
+  2018-08-08.
+* `loan 3 2 tomorrow` loans the second book in the book list to the third user in the user list. The due date is set to
+  tomorrow (with respect to system time).
+* `loan 3 2 31/02/2022` loans the second book in the book list to the third user in the user list. The due date is set to
+  2022-02-28 as it is reasonably assumed that the last day in February is meant for the due date.
+
+### Finding books : `find book`
+
+Finds a book using keywords. 
+
+Format: `find book <keywords>`
+
+* Finds books that matches the searched keywords for either title or author.
+* The search is case-insensitive. <br>
+e.g. `computer` will find `Computer`
+* The keywords do not need to be an exact match of the title or author. <br>
+e.g. `rith` will find `algorithms`
+* The search will return all books that match at least one keyword. <br>
+e.g. `Introduction to` will find `Introduction for dummies` and `How to Cook`   
+
+Examples:
+* `find book ss` will find `Ulysses` and `Darkness within`.
+* `find book under the` will find `Undercover` and `The Grapes of Wrath`.
+
+### Finding users : `find user`
+
+Finds a user using keywords.
+
+Format: `find user <keywords>`
+
+* Finds users that matches the searched keywords for name.
+* The search is case-insensitive. <br>
+  e.g. `john` will find `John`
+* The keywords do not need to be an exact match of the name. <br>
+  e.g. `enc` will find `spencer`
+* The search will return all books that match at least one keyword. <br>
+  e.g. `Steven Koh` will find `Steven Low` and `Koh Yew Ying`
+
+Examples:
+* `find user wa` will find `Mohammad Rizwan` and `Wallace Andrew`.
+* `find user John Sim` will find `John Goh` and `Sim Chee Ming`.
 
 ### List all users : `list users`
 
@@ -217,17 +271,17 @@ If your changes to the data file makes its format invalid, BookFace will discard
 
 <div markdown="block" class="alert alert-info" name="commandsummary">
 
-| Action          | Format, Examples                                                                                          |
-|-----------------|-----------------------------------------------------------------------------------------------------------|
-| **Add book**    | `add book t/TITLE a/AUTHOR` <br> E.g: `add n/James and The Giant Peach  a/Roald Dahl`                     |
-| **Add user**    | `add user n/NAME p/PHONE_NUMBER e/EMAIL` <br> E.g: `add user n/John Doe p/91234567 e/johndoe@outlook.com` |
-| **Clear**       | `clear all`                                                                                               |
-| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                         |
-| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                         |
-| **Return book** | `return USER_INDEX BOOK_INDEX`<br> E.g: `return 1 1`                                                      |
-| **Loan book**   | `loan USER_INDEX BOOK_INDEX`<br> E.g: `loan 1 1`                                                          |
-| **List users**  | `list users`                                                                                              |
-| **List books**  | `list books`                                                                                              |
-| **List loans**  | `list loans`                                                                                              |
-| **Exit**        | `exit`                                                                                                    |
+| Action          | Format, Examples                                                                                                          |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Add book**    | `add book t/TITLE a/AUTHOR` <br> E.g: `add t/James and The Giant Peach  a/Roald Dahl`                                     |
+| **Add user**    | `add user n/NAME p/PHONE_NUMBER e/EMAIL` <br> E.g: `add user n/John Doe p/91234567 e/johndoe@outlook.com`                 |
+| **Clear**       | `clear all`                                                                                                               |
+| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                                         |
+| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                                         |
+| **Return book** | `return BOOK_INDEX`<br> E.g: `return 1`                                                                                   |
+| **Loan book**   | `loan USER_INDEX BOOK_INDEX` or `loan <user index> <book index> <due date>` <br> E.g: `loan 1 1` or `loan 1 1 2022-12-28` |
+| **List users**  | `list users`                                                                                                              |
+| **List books**  | `list books`                                                                                                              |
+| **List loans**  | `list loans`                                                                                                              |
+| **Exit**        | `exit`                                                                                                                    |
 </div>

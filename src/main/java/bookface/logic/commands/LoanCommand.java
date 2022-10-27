@@ -2,6 +2,8 @@ package bookface.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +26,7 @@ public class LoanCommand extends Command {
             + " list", "USER_INDEX (must be a positive integer), BOOK_INDEX (must be a "
             + "positive integer)", COMMAND_WORD + " 3 2");
 
-    public static final String MESSAGE_LOAN_SUCCESS = "User %1$s loaned book %2$s.";
+    public static final String MESSAGE_LOAN_SUCCESS = "User %1$s loaned book %2$s. (Due date: %3$s)";
 
     public static final String ALREADY_LOANED = "Book is already loaned out.";
 
@@ -33,6 +35,8 @@ public class LoanCommand extends Command {
     private final Index targetBookIndex;
 
     private final Date returnDate;
+
+    private final String parsedDate;
 
 
     /**
@@ -43,6 +47,8 @@ public class LoanCommand extends Command {
         this.targetUserIndex = userIndex;
         this.targetBookIndex = bookIndex;
         this.returnDate = returnDate;
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        this.parsedDate = formatter.format(returnDate);
     }
 
     /**
@@ -55,6 +61,8 @@ public class LoanCommand extends Command {
         // Code below is effectively borrowed from
         // https://stackoverflow.com/questions/12087419/adding-days-to-a-date-in-java
         this.returnDate = new Date(new Date().getTime() + TimeUnit.DAYS.toMillis(14));
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        this.parsedDate = formatter.format(returnDate);
     }
 
     @Override
@@ -81,7 +89,8 @@ public class LoanCommand extends Command {
         model.loan(personToLoan, bookToLoan, returnDate);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredBookList(Model.PREDICATE_SHOW_ALL_BOOKS);
-        return new CommandResult(String.format(MESSAGE_LOAN_SUCCESS, personToLoan.getName(), bookToLoan.getTitle()));
+        return new CommandResult(String.format(MESSAGE_LOAN_SUCCESS, personToLoan.getName(),
+                bookToLoan.getTitle(), parsedDate));
     }
 }
 
