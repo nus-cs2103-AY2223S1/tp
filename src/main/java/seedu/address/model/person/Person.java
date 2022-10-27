@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
@@ -28,6 +31,7 @@ public class Person {
     private final Set<GameType> gameTypes;
     private final Set<Tag> tags;
     private final Set<ITimesAvailable> timeIntervals;
+    private final Image avatar;
 
     /**
      * Every field must be present and not null.
@@ -50,6 +54,7 @@ public class Person {
         this.country = country == null ? new Country("") : country;
         this.gameTypes = gameTypes == null ? new HashSet<>() : gameTypes;
         this.timeIntervals = timeIntervals == null ? new HashSet<>() : timeIntervals;
+        this.avatar = AvatarList.getRandomImage();
     }
 
     public Name getName() {
@@ -99,6 +104,10 @@ public class Person {
     public Set<ITimesAvailable> getTimesAvailable() {
         // TODO: Remove placeholder and implement TimesAvailable
         return Collections.unmodifiableSet(timeIntervals);
+    }
+
+    public Image getAvatar() {
+        return avatar;
     }
 
     /**
