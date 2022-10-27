@@ -203,7 +203,7 @@ Examples:
 *  `edit 1 p/91234567 tele/johndoe` Edits the phone number and telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by fields: `find`
 
 Finds persons who match all the given conditions.
 
