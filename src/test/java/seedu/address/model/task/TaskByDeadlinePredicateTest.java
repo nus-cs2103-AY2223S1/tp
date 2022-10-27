@@ -80,8 +80,8 @@ public class TaskByDeadlinePredicateTest {
 
     @Test
     public void toString_validInputs_correctResult() {
-        // Zero keyword predicate
-        TaskByDeadlinePredicate predicate = new TaskByDeadlinePredicate(Collections.emptyList());
+        // Empty keyword predicate
+        TaskByDeadlinePredicate predicate = new TaskByDeadlinePredicate(Collections.singletonList(""));
         assertEquals("Tasks with no deadline", predicate.toString());
         // Regular test case
         predicate = new TaskByDeadlinePredicate(List.of("2022-10-07"));

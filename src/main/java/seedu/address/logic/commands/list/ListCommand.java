@@ -28,14 +28,15 @@ public class ListCommand extends Command {
             + "To list all task with <tag>: \n"
             + "EXAMPLE: ls -t urgent \n"
             + "To list all tasks with deadline on or after <date>: \n"
-            + "EXAMPLE: ls -d 2022-10-28";
+            + "EXAMPLE: ls -d 2022-10-28"
+            + "To list all tasks with matching keywords: ls -n KEYWORD [MORE_KEYWORD] \n"
+            + "EXAMPLE: ls -n task task1";
 
     public final List<Predicate<Task>> predicates;
 
     public ListCommand(List<Predicate<Task>> predicates) {
         this.predicates = predicates;
     };
-
     public ListCommand() {
         this.predicates = List.of(PREDICATE_SHOW_ALL_PERSONS);
     };

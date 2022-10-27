@@ -35,8 +35,8 @@ public class ListCommandParserTest {
     @Test
     public void parseCommand_listAll() throws Exception {
         String str = ListCommand.COMMAND_WORD + " " + ListAllCommand.COMMAND_WORD;
-        assertTrue(parser.parse(ListAllCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parse(ListAllCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parse(str) instanceof ListCommand);
+        assertTrue(parser.parse(str + " 3") instanceof ListCommand);
     }
 
     @Test

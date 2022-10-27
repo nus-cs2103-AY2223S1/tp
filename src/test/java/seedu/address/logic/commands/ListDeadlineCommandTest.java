@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -74,10 +73,10 @@ public class ListDeadlineCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TaskByDeadlinePredicate}.
      * @return
      */
     private TaskByDeadlinePredicate preparePredicate(String userInput) {
-        return new TaskByDeadlinePredicate(Arrays.asList(userInput.split("\\s+")));
+        return new TaskByDeadlinePredicate(Collections.singletonList(userInput));
     }
 }
