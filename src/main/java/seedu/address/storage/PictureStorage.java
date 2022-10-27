@@ -43,7 +43,7 @@ public class PictureStorage {
         JSONObject data = (JSONObject) parser.parse(reader);
         JSONArray data2 = (JSONArray) data.get("persons");
         JSONObject data3 = (JSONObject) data2.get(displayedIndex - 1);
-        data3.put("social", social.toString() + " " + newImageUrl);
+        data3.put("social", social.toString());
         @SuppressWarnings("resource")
         FileWriter file2 = new FileWriter("data/addressbook.json");
         file2.write(data.toJSONString());
