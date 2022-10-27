@@ -2,6 +2,11 @@
 layout: page
 title: User Guide
 ---
+<p align="center">
+
+<img src="images/titile_big_logo.png"/>
+
+</p>
 
 myStudents is **a desktop app for managing students of a tuition center, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, myStudents can get your student management tasks done faster than traditional GUI apps.
 
@@ -9,56 +14,83 @@ myStudents is **a desktop app for managing students of a tuition center, optimiz
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Layout 
+## Layout
 
+<p align="center">
 
-###Command Box
+<img src="images/Ui_annotated.png"/>
+
+</p>
+
+### 1.Command Box
 
 This is where you key in commands. After typing the commands, simply press `return` on your keyboard to execute them. 
 
-###Feedback Box
+### 2.Feedback Box
 
 This is where the feedback information would be displayed after you execute a command. For example, after you keyed in an invalid command, the feedback “Invalid format” would be shown in the box for your reference.
 
-###List Display Panel
-
+### 3.List Display Panel
 
 This is where the current list of entities is shown. Only one of the three entities, student, tutor and class will be shown at one time.
+In student and tutor lists, you could click at the student or tutor cards to show their description in the description panel.
 
-###List Tabs
+### 4.List Tabs
 
-There would be three tabs, student, tutor and class indicating the current displayed list shown in the list display panel.
+<p align="center">
 
+<img src="images/list_tabs.png"/>
 
-### Description Panel
+</p>
+
+There are three list tabs: Student, Tutor and Class indicating the current displayed list showing in the list display panel.
+You could click at the list tabs to switch to different lists.
+
+### 5.Description Panel
+
+<p align="center">
+
+<img src="images/description_difference.png"/>
+
+</p>
 
 This is where the description of a specified student or tutor is shown. When there is no person on display, the line “No Person Displayed” would be shown.
 
 
-### Toolbar 
+### 6. Toolbar 
 
 #### File 
-
 The ` File`  menu contains `Export` and Exit`. 
 `Export` allows you to export your data into a `.csv` file. 
  `Exit` allows the software to exit after three seconds of pause.
 
 #### Help
-
 `Help` allows you to view the help information regarding the software.
 
 #### Theme
-
  `Theme` allows you to change the color scheme of the software. There are four themes provided: `Light Theme`, `Dark Theme`,  `Green Theme` and `Pink Theme`.
 
 ## Features
 
-### Viewing help : `help`
+### Viewing help: `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to execute a valid command. 
 
-Format: `help`
+Format:
 
+`help [command]`
+
+Examples:
+* `help add`
+* `help edit`
+
+To view all the` [commands]`, key in `help` and press `return`.
+
+### Exiting the software: `exit`
+
+Exits the software after playing the exit animation.
+
+Format: `exit`
 
 ### Adding a person: `add`
 
@@ -227,7 +259,7 @@ Format: Click on the "*File*" tab at the top left hand corner of `myStudents` an
 
 * The csv files will be saved in the same location as the json files specified in `preference.json`.
 
-###FAQs
+### FAQs
 **Q:** Does myStudent need an Internet connection?
 
 **A:** No, myStudent is an offline software that does not need Internet connection to use.
