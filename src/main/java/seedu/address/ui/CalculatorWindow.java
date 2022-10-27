@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
+/**
+ * Controller for a calculator page
+ */
 public class CalculatorWindow extends UiPart<Stage> {
 
     private static final String FXML = "CalculatorWindow.fxml";
@@ -21,7 +24,11 @@ public class CalculatorWindow extends UiPart<Stage> {
     @FXML
     private TextField display;
 
-
+    /**
+     * Creates a new CalculatorWindow.
+     *
+     * @param root Stage to use as the root of the CalculatorWindow.
+     */
     public CalculatorWindow(Stage root) {
         super(FXML, root);
         this.left = BigDecimal.ZERO;
@@ -30,14 +37,14 @@ public class CalculatorWindow extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new CalculatorWindow.
      */
     public CalculatorWindow() {
         this(new Stage());
     }
 
     /**
-     * Shows the help window.
+     * Shows the calculator window.
      * @throws IllegalStateException
      *     <ul>
      *         <li>
@@ -55,27 +62,27 @@ public class CalculatorWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing calculator.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the calculator window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the calculator window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the calculator window.
      */
     public void focus() {
         getRoot().requestFocus();
@@ -89,7 +96,7 @@ public class CalculatorWindow extends UiPart<Stage> {
      */
     @FXML
     protected void handleOnAnyButtonClicked(ActionEvent evt) {
-        Button button = (Button)evt.getSource();
+        Button button = (Button) evt.getSource();
         final String buttonText = button.getText();
         if (buttonText.equals("C") || buttonText.equals("AC")) {
             if (buttonText.equals("AC")) {
@@ -124,15 +131,15 @@ public class CalculatorWindow extends UiPart<Stage> {
 
     static BigDecimal calculate(String operator, BigDecimal left, BigDecimal right) {
         switch (operator) {
-            case "＋":
-                return left.add(right);
-            case "－":
-                return left.subtract(right);
-            case "×":
-                return left.multiply(right);
-            case "÷":
-                return left.divide(right);
-            default:
+        case "＋":
+            return left.add(right);
+        case "－":
+            return left.subtract(right);
+        case "×":
+            return left.multiply(right);
+        case "÷":
+            return left.divide(right);
+        default:
         }
         return right;
     }

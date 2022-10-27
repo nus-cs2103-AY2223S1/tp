@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if(commandResult.isShowCalculator()) {
+            if (commandResult.isShowCalculator()) {
                 handleCalculator();
             }
 
