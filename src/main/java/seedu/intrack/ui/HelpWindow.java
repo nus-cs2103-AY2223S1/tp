@@ -24,13 +24,13 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t11-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: ";
-    public static final String HELP_COMMANDS = "Stuck? Here are a few commands that might help you out!\n" +
-            "1. List out all your added internships: " + ListCommand.COMMAND_WORD +
-            "\n\n2. Clear the default list of applications: " + ClearCommand.COMMAND_WORD +
-            "\n\n3. Add a new application: " + AddCommand.COMMAND_WORD + "\n\n4. To edit an application: " +
-            "\n4a. Select the desired entry: " + SelectCommand.COMMAND_WORD + "\n4b. Then edit said entry: " +
-            EditCommand.COMMAND_WORD + "\n\n5. Delete an entry: " + DeleteCommand.COMMAND_WORD +
-            "\n\nFor more commands, check out our user guide!";
+    public static final String HELP_COMMANDS = "Stuck? Here are a few commands that might help you out!\n"
+            + "1. List out all your added internships: " + ListCommand.COMMAND_WORD
+            + "\n\n2. Clear the default list of applications: " + ClearCommand.COMMAND_WORD
+            + "\n\n3. Add a new application: " + AddCommand.COMMAND_WORD + "\n\n4. To edit an application: "
+            + "\n4a. Select the desired entry: " + SelectCommand.COMMAND_WORD + "\n4b. Then edit said entry: "
+            + EditCommand.COMMAND_WORD + "\n\n5. Delete an entry: " + DeleteCommand.COMMAND_WORD
+            + "\n\nFor more commands, check out our user guide!";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
