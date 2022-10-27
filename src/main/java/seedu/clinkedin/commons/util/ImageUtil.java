@@ -14,6 +14,17 @@ public class ImageUtil {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
+    public static Image getStar(String starType) {
+        String imageFile;
+        if (starType.equals("emptystar")) {
+            imageFile = "emptystar.png";
+        } else if (starType.equals("halfstar")) {
+            imageFile = "halfstar.png";
+        } else {
+            imageFile = "fullstar.png";
+        }
+        return getImage(IMAGE_RESOURCE_PATH + "rating/" + imageFile);
+    }
     /**
      * Returns a social platform icon given a platform.
      */
