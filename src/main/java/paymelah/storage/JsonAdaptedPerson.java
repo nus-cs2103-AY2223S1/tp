@@ -1,5 +1,9 @@
 package paymelah.storage;
 
+import static paymelah.model.person.Address.EMPTY_ADDRESS_STRING;
+import static paymelah.model.person.Phone.EMPTY_PHONE_STRING;
+import static paymelah.model.person.Telegram.EMPTY_TELEGRAM_STRING;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,10 +22,6 @@ import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
 import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
-
-import static paymelah.model.person.Address.EMPTY_ADDRESS_STRING;
-import static paymelah.model.person.Phone.EMPTY_PHONE_STRING;
-import static paymelah.model.person.Telegram.EMPTY_TELEGRAM_STRING;
 
 /**
  * Jackson-friendly version of {@link Person}.
