@@ -11,36 +11,42 @@ import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
 
 /**
- * Deletes an internship identified using its displayed index from the internship tracker.
+ * Deletes the internship application identified by the index number used in the displayed list from InTrack.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the internship identified by the index number used in the displayed list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the internship application identified by the index number used in the displayed list "
+            + "from InTrack.\n"
+            + "Parameters: INDEX (must be a positive unsigned integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "Deleted internship: %1$s";
+    public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "Deleted internship application: \n%1$s";
 
     private final Index targetIndex;
 
+    /**
+     * @param targetIndex Index of the internship application to be deleted.
+     */
     public DeleteCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Internship> lastShownList = model.getFilteredInternshipList();
 
+        List<Internship> lastShownList = model.getFilteredInternshipList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
 
         Internship internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteInternship(internshipToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete));
     }
 

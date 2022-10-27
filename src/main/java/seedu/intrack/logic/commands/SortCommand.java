@@ -10,12 +10,12 @@ public abstract class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all the internships by a "
-            + "SORTTYPE that can be either \"salary\" or \"time\"\n"
-            + "and ORDERTYPE that can be either \"a\" or \"d\"\n"
-            + "\"a\" will sort in ascending order and "
-            + "\"d\" will sort in descending order \n"
-            + "Example: " + SortCommand.COMMAND_WORD + " SORTTYPE a";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all internships applications by "
+            + "the specified SORT_TYPE and SORT_ORDER.\n"
+            + "Parameters: SORT_TYPE (must be either \"salary\" or \"time\") "
+            + "SORT_ORDER (must be either \"a\" or \"d\")\n"
+            + "\"a\" and \"d\" will sort the list in ascending and descending order respectively.\n"
+            + "Example: " + SortCommand.COMMAND_WORD + " time a";
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;

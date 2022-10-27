@@ -1,6 +1,6 @@
 package seedu.intrack.logic.commands;
 
-import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.ArrayList;
@@ -14,18 +14,20 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Task;
 
 /**
- * Deletes a Task from the selected Internship.
+ * Deletes the task identified by the index number used in the displayed task list of the selected internship
+ * application.
  */
 public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "deltask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the task identified by the index number used "
-            + "in the displayed list of the selected internship application.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "in the displayed task list of the selected internship application.\n"
+            + "Parameters: INDEX (must be a positive unsigned integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS =
+            "Deleted a task from the selected internship application: \n%1$s";
 
     private final Index index;
 
@@ -33,13 +35,14 @@ public class DeleteTaskCommand extends Command {
      * @param index Index of the task to be deleted
      */
     public DeleteTaskCommand(Index index) {
-        requireAllNonNull(index);
-
+        requireNonNull(index);
         this.index = index;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
         List<Internship> lastShownList = model.getSelectedInternship();
         if (lastShownList.size() != 1) {
             throw new CommandException(Messages.MESSAGE_NO_INTERNSHIP_SELECTED);

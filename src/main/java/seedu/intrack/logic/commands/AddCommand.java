@@ -13,15 +13,15 @@ import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
 
 /**
- * Adds an internship to the tracker.
+ * Adds an internship application to InTrack.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an internship to the tracker.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an internship application to InTrack.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
+            + PREFIX_NAME + "COMPANY "
             + PREFIX_POSITION + "POSITION "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_WEBSITE + "WEBSITE "
@@ -30,14 +30,15 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Google "
             + PREFIX_POSITION + "SWE "
-            + PREFIX_EMAIL + "support@google.com "
+            + PREFIX_EMAIL + "hr@google.com "
             + PREFIX_WEBSITE + "https://careers.google.com/ "
-            + PREFIX_SALARY + "150000"
+            + PREFIX_SALARY + "5000 "
             + PREFIX_TAG + "Urgent";
 
-    public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Added new internship application: \n%1$s";
 
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the tracker.";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP =
+            "This internship application already exists in the tracker.";
 
     private final Internship toAdd;
 
@@ -58,6 +59,7 @@ public class AddCommand extends Command {
         }
 
         model.addInternship(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -1,7 +1,6 @@
 package seedu.intrack.logic.commands;
 
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
@@ -13,23 +12,23 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Status;
 
 /**
- * Updates the status of the internship specified by the given index.
+ * Updates the status of the internship application identified by the index number used in the displayed list.
  */
 public class StatusCommand extends Command {
 
     public static final String COMMAND_WORD = "status";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the status of the internship identified by "
-            + "the index number used in the displayed list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + " STATUS\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the status of the internship application "
+            + "identified by the index number used in the displayed list.\n"
+            + "Parameters: INDEX (must be a positive unsigned integer) "
+            + "STATUS (must be either \"o\", \"p\" or \"r\")\n"
             + "Example: " + COMMAND_WORD + " 1 o";
 
     public static final String STATUS_COMMAND_CONSTRAINTS = "STATUS must be either \"o\" to denote Offered, "
             + "\"p\" to denote in Progress, "
             + "or \"r\" to denote Rejected.";
 
-    public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "Updated status of internship: %1$s";
+    public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "Updated status of internship application: \n%1$s";
 
     private final Index index;
 
@@ -41,7 +40,6 @@ public class StatusCommand extends Command {
      */
     public StatusCommand(Index index, Status status) {
         requireAllNonNull(index, status);
-
         this.index = index;
         this.status = status;
     }
@@ -61,7 +59,6 @@ public class StatusCommand extends Command {
                 internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, editedInternship));
     }

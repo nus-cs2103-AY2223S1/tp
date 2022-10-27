@@ -66,6 +66,7 @@ class StatusCommandTest {
         String expectedMessage = String.format(statusCommand.MESSAGE_UPDATE_STATUS_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new InTrack(model.getInTrack()), new UserPrefs());
+        expectedModel.updateFilteredInternshipList(a -> a.isSameInternship(firstInternship));
         expectedModel.setInternship(firstInternship, editedInternship);
 
         assertCommandSuccess(statusCommand, model, expectedMessage, expectedModel);

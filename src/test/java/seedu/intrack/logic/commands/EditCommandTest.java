@@ -33,7 +33,6 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
 
-    // Uncomment after updating Task
     /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -51,6 +50,7 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
     */
+
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
@@ -108,6 +108,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new InTrack(model.getInTrack()), new UserPrefs());
+        expectedModel.updateFilteredInternshipList(a -> a.isSameInternship(selectedInternship));
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

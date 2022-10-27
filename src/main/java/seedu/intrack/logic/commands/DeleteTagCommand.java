@@ -2,7 +2,6 @@ package seedu.intrack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 import java.util.Set;
@@ -15,48 +14,37 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.tag.Tag;
 
 /**
- * Deletes a Tag from the selected Internship.
+ * Deletes one or more tags from the internship application identified by the index number used in the displayed list.
  */
 public class DeleteTagCommand extends Command {
     public static final String COMMAND_WORD = "deltag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes one or more tags of the internship"
-            + " with the selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n"
-            + " or to delete all tags, use the Parameters: clear\n"
-            + "Example 1: " + COMMAND_WORD + " 1 URGENT\n"
-            + "Example 2: " + COMMAND_WORD + " 1 clear.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes one or more tags from the internship "
+            + "application identified by the index number used in the displayed list.\n"
+            + "Parameters: INDEX (must be a positive unsigned integer) TAG [MORE_TAGS]...\n"
+            + "Example: " + COMMAND_WORD + " 1 Urgent";
 
-    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag/tags of internship successfully";
-    public static final String MESSAGE_CLEAR_TAGS_SUCCESS = "Cleared tag/tags of internship successfully";
+    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag(s) from internship application: \n%1$s";
 
-    public static final String DELETED_TAG_NOT_PRESENT = "There are one or more tags listed that are not in the list"
-            + " of tags!";
-
-    public static final String DELETE_TAG_CONSTRAINTS = "No tag detected, please include a tag to delete from the "
-            + "indicated internship";
+    public static final String DELETED_TAG_NOT_PRESENT =
+            "One or more tags provided are not present in the specified internship application.";
 
     private final Index index;
     private final List<Tag> tags;
-    private final String command;
 
     /**
      * Creates an DeleteTagCommand to delete one or more existing tags from the specified {@code Internship}
      */
-    public DeleteTagCommand(Index index, List<Tag> tags, String command) {
+    public DeleteTagCommand(Index index, List<Tag> tags) {
         requireAllNonNull(index, tags);
-
         this.index = index;
         this.tags = tags;
-        this.command = command;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        final String deleteSuccess = "deleted tag/tags of internship at INDEX "
-                + index.toString() + " successfully";
-        final String clearSuccess = "cleared tag/tags of internship at INDEX "
-                + index.toString() + " successfully";
         requireNonNull(model);
+
         List<Internship> lastShownList = model.getFilteredInternshipList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
@@ -64,20 +52,14 @@ public class DeleteTagCommand extends Command {
 
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
 
-        if (!internshipToEdit.getTags().containsAll(tags) && !command.equals("CLEAR")) {
+        if (!internshipToEdit.getTags().containsAll(tags)) {
             throw new CommandException(DELETED_TAG_NOT_PRESENT);
         }
 
-        if (command.equals("CLEAR")) {
-            //if is clear, delete all
-            internshipToEdit.clearTag();
-        } else {
-            //else just delete tags by normal
-            for (int i = 0; i < tags.size(); i++) {
-                Tag tagToAdd = tags.get(i);
-                internshipToEdit.deleteTag(tagToAdd);
-            }
+        for (Tag tagToDelete : tags) {
+            internshipToEdit.deleteTag(tagToDelete);
         }
+
         Set<Tag> newTagList = internshipToEdit.getTags();
         Internship editedInternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(),
                 internshipToEdit.getStatus(), internshipToEdit.getEmail(),
@@ -85,13 +67,8 @@ public class DeleteTagCommand extends Command {
                 newTagList, internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
-        if (command.equals("CLEAR")) {
-            return new CommandResult(clearSuccess);
-        } else {
-            return new CommandResult(deleteSuccess);
-        }
+        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, editedInternship));
     }
 
     @Override
@@ -109,7 +86,6 @@ public class DeleteTagCommand extends Command {
         // state check
         DeleteTagCommand e = (DeleteTagCommand) other;
         return index.equals(e.index)
-                && tags.equals(e.tags)
-                && command.equals((e.command));
+                && tags.equals(e.tags);
     }
 }
