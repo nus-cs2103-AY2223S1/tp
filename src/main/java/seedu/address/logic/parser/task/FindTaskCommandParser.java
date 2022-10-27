@@ -1,9 +1,9 @@
 package seedu.address.logic.parser.task;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_COMPLETION_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import java.util.ArrayList;
 import java.util.List;

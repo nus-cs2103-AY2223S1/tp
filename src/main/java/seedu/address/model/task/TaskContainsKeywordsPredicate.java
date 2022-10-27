@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.hash;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -7,8 +9,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
-
-import static java.util.Objects.hash;
 
 /**
  * Tests that a {@code task}'s {@code Description} and/or {@code Deadline}
