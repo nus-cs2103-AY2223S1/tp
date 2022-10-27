@@ -150,6 +150,9 @@ public class ParserUtil {
         for (String major : majors) {
             majorSet.add(parseMajor(major));
         }
+        if (majorSet.size() > Major.MAXIMUM_NUMBER_OF_MAJORS) {
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
+        }
         return majorSet;
     }
 }

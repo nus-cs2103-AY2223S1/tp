@@ -35,7 +35,7 @@ class JsonAdaptedApplicant {
 
     private final boolean hasPinned;
 
-    private final List<JsonAdaptedMajor> tagged = new ArrayList<>();
+    private final List<JsonAdaptedMajor> majors = new ArrayList<>();
 
 
     /**
@@ -47,7 +47,7 @@ class JsonAdaptedApplicant {
                                 @JsonProperty("email") String email,
                                 @JsonProperty("scholarship") String scholarship,
                                 @JsonProperty("applicationStatus") String applicationStatus,
-                                @JsonProperty("tagged") List<JsonAdaptedMajor> tagged,
+                                @JsonProperty("majors") List<JsonAdaptedMajor> majors,
                                 @JsonProperty("hasPinned") boolean hasPinned) {
         this.name = name;
         this.phone = phone;
@@ -56,8 +56,8 @@ class JsonAdaptedApplicant {
         this.applicationStatus = applicationStatus;
         this.hasPinned = hasPinned;
 
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (majors != null) {
+            this.majors.addAll(majors);
         }
     }
 
@@ -65,13 +65,13 @@ class JsonAdaptedApplicant {
      * Converts a given {@code Applicant} into this class for Jackson use.
      */
     public JsonAdaptedApplicant(Applicant source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        scholarship = source.getScholarship().scholarship;
-        applicationStatus = source.getApplicationStatus().applicationStatus;
+        name = source.getFullName();
+        phone = source.getPhoneNumber();
+        email = source.getEmailAddress();
+        scholarship = source.getScholarshipName();
+        applicationStatus = source.getStatusOfApplication();
         hasPinned = source.getHasPinned();
-        tagged.addAll(source.getMajors().stream()
+        majors.addAll(source.getMajors().stream()
                 .map(JsonAdaptedMajor::new)
                 .collect(Collectors.toList()));
     }
@@ -83,7 +83,7 @@ class JsonAdaptedApplicant {
      */
     public Applicant toModelType() throws IllegalValueException {
         final List<Major> applicantMajors = new ArrayList<>();
-        for (JsonAdaptedMajor major : tagged) {
+        for (JsonAdaptedMajor major : majors) {
             applicantMajors.add(major.toModelType());
         }
 
@@ -128,6 +128,10 @@ class JsonAdaptedApplicant {
             throw new IllegalValueException(ApplicationStatus.MESSAGE_CONSTRAINTS);
         }
         final ApplicationStatus modelApplicationStatus = new ApplicationStatus(applicationStatus);
+
+        if (applicantMajors.size() > Major.MAXIMUM_NUMBER_OF_MAJORS) {
+            throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
+        }
         final Set<Major> modelMajors = new HashSet<>(applicantMajors);
         final Pin modelPin = new Pin(hasPinned);
         return new Applicant(modelName, modelPhone, modelEmail, modelScholarship,
