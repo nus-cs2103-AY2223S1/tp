@@ -43,7 +43,12 @@ public class TypicalApplications {
     public static final Application INTEL = new ApplicationBuilder().withCompany("Intel")
             .withContact("84893063").withDate("2022-05-06").withEmail("intel@recruitment.com")
             .withPosition("Software Developer").withStatus("rejected")
-            .withArchiveStatus(true).build();
+            .withArchiveStatus(true).withStatus("pending").build();
+
+    public static final Application WISE = new ApplicationBuilder().withCompany("Wise")
+            .withContact("88228822").withDate("2022-08-28")
+            .withEmail("wise@example.com").withPosition("Software Engineer").withTags("financialService")
+            .withInterview(new InterviewBuilder().withInterviewDate("2022-10-28").build()).build();
 
     // Manually added - Application's details found in {@code CommandTestUtil}
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
@@ -70,6 +75,14 @@ public class TypicalApplications {
         return ab;
     }
 
+    public static ApplicationBook getTypicalApplicationBookWithUpcomingInterview() {
+        ApplicationBook ab = new ApplicationBook();
+        for (Application application : getTypicalApplicationsWithUpcomingInterview()) {
+            ab.addApplication(application);
+        }
+        return ab;
+    }
+
     public static ApplicationBook getTypicalApplicationBookWithArchive() {
         ApplicationBook ab = new ApplicationBook();
         for (Application application : getTypicalApplicationsWithArchive()) {
@@ -78,8 +91,18 @@ public class TypicalApplications {
         return ab;
     }
 
+    public static ApplicationBook getApplicationBookWithOneApplication() {
+        ApplicationBook ab = new ApplicationBook();
+        ab.addApplication(INTEL);
+        return ab;
+    }
+
     public static List<Application> getTypicalApplications() {
         return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET));
+    }
+
+    public static List<Application> getTypicalApplicationsWithUpcomingInterview() {
+        return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET, WISE));
     }
 
     public static List<Application> getTypicalApplicationsWithArchive() {

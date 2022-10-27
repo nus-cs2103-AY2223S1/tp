@@ -254,6 +254,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Application> getAllApplicationsInBook() {
+        return versionedApplicationBook.getApplicationList();
+    }
+
+    @Override
     public void updateFilteredApplicationsWithUpcomingInterviewList(Predicate<Application> predicate) {
         requireNonNull(predicate);
         filteredApplicationsWithUpcomingInterviews.setPredicate(predicate);

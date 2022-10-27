@@ -112,14 +112,25 @@ public interface Model {
      */
     void setApplication(Application target, Application editedApplication);
 
-    /** Returns an unmodifiable view of the filtered application list */
+    /**
+     * Returns an unmodifiable view of the filtered application list
+     */
     ObservableList<Application> getFilteredApplicationList();
 
-    /** Returns an unmodifiable view of the filtered applications with upcoming interviews list */
+    /**
+     * Returns an unmodifiable view of the filtered applications with upcoming interviews list
+     */
     ObservableList<Application> getFilteredApplicationsWithUpcomingInterviewList();
 
-    /** Returns an unmodifiable view of the filtered application list with existing interview*/
+    /**
+     * Returns an unmodifiable view of the filtered application list with existing interview
+     */
     ObservableList<Application> getApplicationListWithInterview();
+
+    /**
+     * Returns an unmodifiable view of the all applications in the application book.
+     */
+    ObservableList<Application> getAllApplicationsInBook();
 
     /**
      * Updates the filter of the filtered application list to filter by the given {@code predicate}.

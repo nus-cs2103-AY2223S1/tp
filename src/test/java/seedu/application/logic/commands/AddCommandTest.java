@@ -117,6 +117,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Application> getAllApplicationsInBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addApplication(Application application) {
             throw new AssertionError("This method should not be called.");
         }
