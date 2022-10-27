@@ -23,12 +23,12 @@ public class FindCommand extends Command {
 
     /** Help message to execute the find command */
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all internships either by Company, Role or Stage using their respective prefix and"
+            + ": Finds all internships either by Company, Role or Stage using their respective prefix and "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters:" + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_STAGE + "STAGE] "
-            + "Example: " + COMMAND_WORD + PREFIX_COMPANY + "Meta";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_COMPANY + "Meta";
 
     /** Keyword to search for */
     private final Predicate<Internship> predicate;

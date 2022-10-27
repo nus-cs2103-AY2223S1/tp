@@ -64,24 +64,15 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    @Test
-    public void execute_zeroKeywords_noInternshipFound() {
-        String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 0);
-        Predicate<Internship> predicate = preparePredicateForCompany(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredInternshipList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredInternshipList());
-    }
 
     @Test
     public void execute_multipleKeywords_multipleInternshipsFoundForCompany() {
-        String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 3);
-        Predicate<Internship> predicate = preparePredicateForCompany("Kurz Elle Kunz");
+        String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 1);
+        Predicate<Internship> predicate = preparePredicateForCompany("Carl Kurz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        List<Internship> expectedInternshipList = Arrays.asList(CARL, ELLE, FIONA);
+        List<Internship> expectedInternshipList = Arrays.asList(CARL);
         Collections.sort(expectedInternshipList, new InternshipComparator());
         assertEquals(expectedInternshipList, model.getFilteredInternshipList());
     }
@@ -100,12 +91,12 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleInternshipsFoundForStage() {
-        String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 4);
+        String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 2);
         Predicate<Internship> predicate = preparePredicateForStage("Technical Interview");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        List<Internship> expectedInternshipList = Arrays.asList(ALICE, BENSON, DANIEL, GEORGE);
+        List<Internship> expectedInternshipList = Arrays.asList(ALICE, DANIEL);
         Collections.sort(expectedInternshipList, new InternshipComparator());
         assertEquals(expectedInternshipList, model.getFilteredInternshipList());
     }
