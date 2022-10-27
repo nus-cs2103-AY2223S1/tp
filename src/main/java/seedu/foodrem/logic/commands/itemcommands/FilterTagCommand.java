@@ -32,7 +32,7 @@ public class FilterTagCommand extends Command {
     public CommandResult<FilterByTag> execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasTag(pred.getTag())) {
+        if (!model.hasTag(tag)) {
             throw new CommandException("This tag does not exist in the FoodRem");
         }
 
