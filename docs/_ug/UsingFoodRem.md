@@ -1,5 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-Here is an overview of what FoodRem consists of and how you can perform a command.
+
+This section covers all you should know about FoodRem, as well as a [guided tutorial](#trying-your-first-command). Of special note is the [Key Definitions](#key-definitions) and [Command Format](#command-format) sections, which covers essential knowledge to using FoodRem's features.  
 
 ### Layout
 
