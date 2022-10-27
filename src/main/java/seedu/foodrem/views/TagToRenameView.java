@@ -30,10 +30,8 @@ public class TagToRenameView {
         final Separator separator = new Separator();
         separator.getStyleClass().add("lined-separator");
 
-        final HBox originalTag = new HBox(new Label("Original Tag:"));
-        originalTag.getChildren().addAll(TagsView.from(tagToRename.getOriginalTag()));
-        final HBox renamedTag = new HBox(new Label("Renamed Tag:"));
-        renamedTag.getChildren().addAll(TagsView.from(tagToRename.getRenamedTag()));
+        final HBox originalTag = new HBox(new Label("Original Tag:"), TagView.from(tagToRename.getOriginalTag()));
+        final HBox renamedTag = new HBox(new Label("Renamed Tag:"), TagView.from(tagToRename.getRenamedTag()));
 
         originalTag.setSpacing(SPACING_UNIT);
         renamedTag.setSpacing(SPACING_UNIT);
