@@ -125,7 +125,7 @@ public class ParserUtil {
             throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
         String[] args = trimmedExam.split("\\s+");
-        String name = args[0];
+        String name = args[0].toUpperCase();
         String score = args[1];
         if (!Exam.isValidName(name)) {
             throw new ParseException(Exam.MESSAGE_NAME_CONSTRAINTS);
