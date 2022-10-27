@@ -16,7 +16,6 @@ import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ClientDirectory;
 import seedu.condonery.model.client.ReadOnlyClientDirectory;
-import seedu.condonery.model.client.exceptions.UniqueClientNotFoundException;
 import seedu.condonery.model.property.Property;
 
 /**

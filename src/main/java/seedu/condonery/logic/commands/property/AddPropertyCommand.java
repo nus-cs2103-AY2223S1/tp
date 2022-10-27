@@ -7,8 +7,6 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.condonery.logic.commands.Command;
@@ -17,7 +15,6 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.utils.ParsePropertyInterestedClients;
-import seedu.condonery.model.client.Client;
 
 /**
  * Adds a property to Condonery.
@@ -66,25 +63,25 @@ public class AddPropertyCommand extends Command {
     }
 
     private String getUpdatedSuccessMessage(ArrayList<String> missingClients, ArrayList<String> duplicateClients) {
-       String newSuccessMessage = MESSAGE_SUCCESS + ". ";
+        String newSuccessMessage = MESSAGE_SUCCESS + ". ";
 
-       if (missingClients.isEmpty() && duplicateClients.isEmpty()) {
-           newSuccessMessage = newSuccessMessage + " No rejected client names.";
-       } else {
-           if (!missingClients.isEmpty()) {
-               newSuccessMessage = newSuccessMessage + "Missing clients: " + missingClients
-                       .stream()
-                       .collect(Collectors.joining(" "))
-                       + ". ";
-           }
-           if (!duplicateClients.isEmpty()) {
-               newSuccessMessage = newSuccessMessage + "Duplicate clients: " + duplicateClients
-                       .stream()
-                       .collect(Collectors.joining(" "))
-                       + ". ";
-           }
-       }
-       return newSuccessMessage;
+        if (missingClients.isEmpty() && duplicateClients.isEmpty()) {
+            newSuccessMessage = newSuccessMessage + " No rejected client names.";
+        } else {
+            if (!missingClients.isEmpty()) {
+                newSuccessMessage = newSuccessMessage + "Missing clients: " + missingClients
+                        .stream()
+                        .collect(Collectors.joining(" "))
+                        + ". ";
+            }
+            if (!duplicateClients.isEmpty()) {
+                newSuccessMessage = newSuccessMessage + "Duplicate clients: " + duplicateClients
+                        .stream()
+                        .collect(Collectors.joining(" "))
+                        + ". ";
+            }
+        }
+        return newSuccessMessage;
     }
 
     @Override
@@ -102,7 +99,7 @@ public class AddPropertyCommand extends Command {
         Property newPropertyToAdd = parser.getNewProperty();
 
         String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingClients(), parser.getDuplicateClients());
-        
+
         model.addProperty(newPropertyToAdd);
         if (this.hasImage) {
             return new CommandResult(
