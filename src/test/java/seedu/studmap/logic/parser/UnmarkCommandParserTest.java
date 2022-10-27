@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.studmap.commons.core.index.SingleIndexGenerator;
 import seedu.studmap.logic.commands.UnmarkCommand;
-import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 
 public class UnmarkCommandParserTest {
@@ -22,15 +21,6 @@ public class UnmarkCommandParserTest {
         assertParseSuccess(parser, "1 c/   " + className,
                 new UnmarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
                         new UnmarkCommand.UnmarkCommandStudentEditor(new Attendance(className, true))));
-    }
-
-    @Test
-    public void parse_validArgsAssignment_returnUnmarkCommand() {
-        String className = "A01";
-        assertParseSuccess(parser, "1 a/   " + className,
-                new UnmarkCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT),
-                        new UnmarkCommand.UnmarkCommandStudentEditor(
-                                new Assignment(className, Assignment.Status.NEW))));
     }
 
     @Test

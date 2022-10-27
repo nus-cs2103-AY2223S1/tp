@@ -9,11 +9,22 @@ import static seedu.studmap.commons.util.AppUtil.checkArgument;
  */
 public class TeleHandle {
 
+    public static final String NO_TELEHANDLE_STRING = "No Telegram handle";
+
+    public static final String TELEHANDLE_DISPLAY_PREFIX = "Telegram: ";
+
     public static final String MESSAGE_CONSTRAINTS = "Telegram handle should be in the format @handle";
 
     public static final String VALIDATION_REGEX = "^[@][\\p{all}]*";
 
     public final String value;
+
+    /**
+     * Constructs an empty {@code TeleHandle}.
+     */
+    public TeleHandle() {
+        this.value = "";
+    }
 
     /**
      * Constructs a {@code TeleHandle}.
@@ -27,15 +38,28 @@ public class TeleHandle {
     }
 
     /**
+     * Returns string used for display in UI.
+     *
+     * @return String to be displayed
+     */
+    public String getDisplayString() {
+        return this.value.isEmpty()
+                ? NO_TELEHANDLE_STRING
+                : TELEHANDLE_DISPLAY_PREFIX + value;
+    }
+
+    /**
      * Returns true if a given string is a valid telegram handle.
      */
     public static boolean isValidTeleHandle(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.isBlank() || test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return this.value;
+        return this.value.isEmpty()
+                ? NO_TELEHANDLE_STRING
+                : value;
     }
 
     @Override

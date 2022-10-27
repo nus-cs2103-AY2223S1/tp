@@ -16,10 +16,12 @@ import seedu.studmap.logic.commands.EditCommand;
 import seedu.studmap.logic.commands.ExitCommand;
 import seedu.studmap.logic.commands.FilterCommand;
 import seedu.studmap.logic.commands.FindCommand;
+import seedu.studmap.logic.commands.GradeCommand;
 import seedu.studmap.logic.commands.HelpCommand;
 import seedu.studmap.logic.commands.ListCommand;
 import seedu.studmap.logic.commands.MarkCommand;
 import seedu.studmap.logic.commands.SortCommand;
+import seedu.studmap.logic.commands.UngradeCommand;
 import seedu.studmap.logic.commands.UnmarkCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 
@@ -91,6 +93,12 @@ public class StudMapParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case GradeCommand.COMMAND_WORD:
+            return new GradeCommandParser().parse(arguments);
+
+        case UngradeCommand.COMMAND_WORD:
+            return new UngradeCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
