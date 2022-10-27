@@ -144,6 +144,7 @@ public class ModuleCard extends UiPart<Region> {
     private FlowPane addLessonSlot(Module.ModuleLessonIdMap slots) {
         FlowPane fc = new FlowPane();
         fc.getChildren().addAll(slots.entrySet().stream()
+                .sorted((e1, e2) -> e1.getKey().compareTo(e2.getKey()))
                 .map(entry -> addSlot(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList()));
         fc.setHgap(4);
