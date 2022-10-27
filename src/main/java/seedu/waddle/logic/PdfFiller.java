@@ -5,14 +5,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.filechooser.FileSystemView;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
-import org.apache.commons.lang3.SystemUtils;
 
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
@@ -25,15 +24,16 @@ import seedu.waddle.model.text.Text;
  */
 public class PdfFiller {
     public static final int MAX_DISPLAY = 15;
-    private Itinerary itinerary;
-    private String pdfTemplate;
-    private List<PDDocument> pdfList;
-    private PDDocument finalPdf;
+    private final Itinerary itinerary;
+    private final String pdfTemplate;
+    private final List<PDDocument> pdfList;
+    private final PDDocument finalPdf;
 
 
     /**
      * Constructor for a PdfFiller
-     * @param itinerary Itinerary to export.
+     *
+     * @param itinerary   Itinerary to export.
      * @param pdfTemplate Default template for export.
      * @throws IOException When fail to export itinerary information.
      */
@@ -72,6 +72,7 @@ public class PdfFiller {
 
     /**
      * Export a day into PDF
+     *
      * @param day The day containing items to export.
      * @throws IOException When export fails.
      */
@@ -113,6 +114,7 @@ public class PdfFiller {
 
     /**
      * Export an itinerary into PDF.
+     *
      * @throws IOException When export fails.
      */
     public void fillItinerary() throws IOException {
@@ -137,7 +139,7 @@ public class PdfFiller {
             waddleFolder.mkdirs();
         }
 
-        finalPdf.save( waddleFolder + "/" + this.itinerary.getDescriptionString(Text.INDENT_NONE) + ".pdf");
+        finalPdf.save(waddleFolder + "/" + this.itinerary.getDescriptionString(Text.INDENT_NONE) + ".pdf");
         finalPdf.close();
 
         // only can close when all operations are done

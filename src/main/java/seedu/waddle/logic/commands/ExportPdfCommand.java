@@ -20,7 +20,8 @@ public class ExportPdfCommand extends Command {
             + ": export current itinerary to PDF\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_EXPORT_SUCCESS = "Created a pdf for %1$s! Find it under Waddle in your Documents folder!";
+    public static final String MESSAGE_EXPORT_SUCCESS =
+            "Created a pdf for %1$s! Find it under Waddle in your Documents folder!";
     public static final String MESSAGE_EXPORT_FAILURE = "Failed to export!";
 
     public static final String MESSAGE_EXPORT_WRONG_STAGE = "Please select an itinerary before exporting.";
