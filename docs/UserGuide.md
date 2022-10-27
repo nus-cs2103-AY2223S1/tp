@@ -106,7 +106,7 @@ Format: `:del <index>`
 ##### Parameter constraints:
 * The index must be a positive integer 1, 2, 3, ...
 
-##### Examples:
+##### Example:
 * `:del 3` Deletes an exercise at index 3 of the list
 
 
@@ -140,6 +140,26 @@ Format (2) : `:range last/<number of days>`
 Example: `:range last/3` shows the exercises done today and the last 3 days
 
 ![RangeCommandTwo](images/RangeCommandTwoSample.png)
+
+### Listing Personal Records : `:pr`
+
+Finds the personal record of certain exercises in the exercise tracker.
+
+Format (1): `:pr n/NAME [n/NAME]...`
+
+##### Parameter constraints:
+* Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**
+  * Examples: Squat, Bench press, deadlift...
+
+##### Examples:
+* `:pr n/Squat` Lists the personal record for the 'Squat' exercise (if any).
+* `:pr n/Deadlift n/Bench press n/Squat` Lists the personal records for the 'Deadlift', 'Bench press' and 'Squat' exercises (if any).
+
+Format (2): `:pr all/`
+
+##### Parameter constraints:
+* Extraneous parameters (before and after the `all/` flag) will be ignored. </br>
+  e.g. if the command specifies `:pr abc all/ 123`, it will be interpreted as `:pr all/`.
 
 ### Exiting the program : `:wq`
 
