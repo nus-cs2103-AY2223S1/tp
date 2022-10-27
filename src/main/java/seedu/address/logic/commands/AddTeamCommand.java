@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class AddTeamCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a new team \n"
             + "Parameters: "
-            + FLAG_NAME_STR + " TEAM_NAME "
+            + " TEAM_NAME "
             + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
             + "Example:\n"
             + "1. " + COMMAND_WORD + " "
