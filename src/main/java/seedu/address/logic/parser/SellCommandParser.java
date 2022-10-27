@@ -47,7 +47,8 @@ public class SellCommandParser implements Parser<SellCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX, SellCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX,
+                    SellCommand.MESSAGE_USAGE), ive);
         }
 
         Goods goods = ParserUtil.parseGoods(argMultimap.getValue(PREFIX_GOODS).orElse(""));
