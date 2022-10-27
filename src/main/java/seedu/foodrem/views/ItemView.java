@@ -13,15 +13,18 @@ import seedu.foodrem.model.item.Item;
 
 /**
  * A view of an {@code Item}. This can be displayed.
+ *
  * @author Richard Dominick
  */
 public class ItemView {
     private static final double SPACING_UNIT = 8;
 
-    private ItemView() {} // Prevents instantiation
+    private ItemView() {
+    } // Prevents instantiation
 
     /**
      * Creates a new detailed view of the given item.
+     *
      * @param item the item to be displayed.
      * @return the node to be displayed in the UI.
      */
@@ -42,10 +45,11 @@ public class ItemView {
         // Quantity/unit and price row
         final Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-        final HBox quantityAndPrice = new HBox(
+        final HBox quantityPriceAndCost = new HBox(
                 new Label("Quantity: " + buildItemQuantityAndUnitStringFrom(item)),
                 spacer,
-                new Label("Price: $" + item.getPrice().toString()));
+                new VBox(new Label("Price: $" + item.getPrice().toString()),
+                        new Label("Total Cost: $" + item.getItemCost())));
 
         final Label remarks = new Label(item.getRemarks().toString().isBlank() ? "-" : item.getRemarks().toString());
         remarks.setWrapText(true);
@@ -55,7 +59,7 @@ public class ItemView {
         linedSeparator.getStyleClass().add("lined-separator");
         final VBox itemView = new VBox(
                 name,
-                quantityAndPrice,
+                quantityPriceAndCost,
                 new Separator(),
                 new Label("Bought Date: " + buildBoughtDateStringFrom(item)),
                 new Label("Expiry Date: " + buildExpiryDateStringFrom(item)),
@@ -70,6 +74,7 @@ public class ItemView {
 
     /**
      * Builds the string representation of the item's quantity attached to its units.
+     *
      * @param item the item whose quantity is to be formatted.
      * @return the string representation of the item's quantity and units.
      */
@@ -80,6 +85,7 @@ public class ItemView {
 
     /**
      * Builds the string representation of the item's bought date.
+     *
      * @param item the item whose bought date is to be formatted.
      * @return the string representation of the item's bought date.
      */
@@ -89,6 +95,7 @@ public class ItemView {
 
     /**
      * Builds the string representation of the item's expiry date.
+     *
      * @param item the item whose expiry date is to be formatted.
      * @return the string representation of the item's expiry date.
      */
