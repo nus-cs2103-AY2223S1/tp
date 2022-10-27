@@ -106,6 +106,15 @@ public class Item {
         return remarks;
     }
 
+    // TODO: Possibly refactor to avoid using getter methods in ItemPrice and ItemQuantity fields
+
+    /**
+     * @return The total cost of purchasing the specified units of the item.
+     */
+    public double getItemCost() {
+        return price.getItemPrice() * quantity.getItemQuantity();
+    }
+
     // Instantiate new set to preserve immutability of item.
     public Set<Tag> getTagSet() {
         return new HashSet<>(tagSet);
