@@ -64,6 +64,8 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## Basic features
 This section contains basic features of JARVIS.
 
@@ -119,6 +121,8 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 ## Student features
 This section contains features for managing students.
@@ -211,6 +215,8 @@ Format: `mc INDEX num/MC_NUM r/MC_RESULT`
 Examples:
 * `mc 1 num/1 r/PASS` sets the mastery check result for the 1st student to PASS.
 
+<div style="page-break-after: always;"></div>
+
 ## Task features
 This section contains features for managing tasks.
 
@@ -262,6 +268,8 @@ Format: `unmarktask INDEX`
 
 Example:
 * `unmarktask 2` marks the 2nd task as not done.
+
+<div style="page-break-after: always;"></div>
 
 ## Lesson features
 This section contains features for managing lessons.
@@ -418,6 +426,8 @@ Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 Example:
 * `addpart p/100 li/1 si/2` sets participation for the 2nd student from the 1st lesson to be 100.
 
+<div style="page-break-after: always;"></div>
+
 ## Saving the data
 
 JARVIS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -443,6 +453,8 @@ If your changes to the data file makes its format invalid, JARVIS will discard a
 **A**: Install the app in the other computer and overwrite the empty data files it creates with the files that contains the data of your previous JARVIS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
