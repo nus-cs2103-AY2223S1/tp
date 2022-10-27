@@ -80,7 +80,7 @@ Format: `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
 * Adds the project to the list of projects.
 * `PROJECT_NAME` must only contain alphanumeric characters (cannot be empty or start with a space).
 * `REPOSITORY` must be in the format USERNAME/REPO_NAME.
-* `CLIENT_ID` must be a positive integer (1, 2, 3 ...​).
+* `CLIENT_ID` must exist and be a positive integer (1, 2, 3 ...​).
 * `DEADLINE` must be in the format yyyy-mm-dd.
 
 Examples:
@@ -102,7 +102,7 @@ Edits a specified existing project.
 Format: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
 
 * Edits the project with the specified `PROJECT_ID`. The ID refers to the unique ID generated upon adding a project.
-  The ID **must be a positive integer** 1, 2, 3, …​
+  The ID **must exist and be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -123,7 +123,7 @@ Removes the specified existing project.
 Format: `project -d PROJECT_ID`
 
 * Deletes the project with the specified `PROJECT_ID`.
-* The ID **must be a positive integer** 1, 2, 3, …​
+* The ID **must exist and be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `project -d 1` Deletes project with `PROJECT_ID` 1.
@@ -172,18 +172,17 @@ Sorts all projects based on a specified key.
 
 Format: `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`
 
-* Exactly one optional value (sorting key) to be provided.
+* Exactly one optional value (the prefix/the sorting key) is to be provided.
 * Input 0/1 for each Prefix (e.g. p/0):
   * For `PROJECT_ID`, 0 for ascending and 1 for descending.
   * For `DEADLINE`, 0 for chronological and 1 for reverse chronological.
-  * For `ISSUE_COUNT`, 0 for completed and 1 for incomplete (in descending order).
+  * For `ISSUE_COUNT`, 0 for incomplete issues and 1 for completed issues.
   * For `PROJECT_NAME`, 0 for alphabetical and 1 for reverse alphabetical.
 
 Examples:
 * `project -s p/1` Sorts list of projects based on `PROJECT_ID` from highest to lowest.
 * `project -s d/0` Sorts list of projects based on `DEADLINE` from earliest to latest.
-* `project -s i/1` Sorts list of projects based on `ISSUE_COUNT` from highest incomplete issue count to lowest incomplete 
-issue count.
+* `project -s i/0` Sorts list of projects based on `ISSUE_COUNT` from the highest incomplete issue count to the lowest.
 * `project -s n/0` Sorts list of projects based on `PROJECT_NAME` in alphabetical order.
 
 
@@ -201,7 +200,7 @@ Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]
 
 * Adds the client to the list of clients and to the project with the specified `PROJECT_ID`.
 * `CLIENT_NAME` must only contain alphanumeric characters (cannot be empty or start with a space).
-* `PROJECT_ID` must be a positive integer (1, 2, 3 ...​).
+* `PROJECT_ID` must exist and be a positive integer (1, 2, 3 ...​).
 * `CLIENT_MOBILE` must only contain numbers and must be more than 3 digits long.
 * `CLIENT_EMAIL` must be in the format LOCAL_NAME@DOMAIN_NAME.com (local name must be longer than 3 characters).
 
@@ -222,7 +221,7 @@ Edits the specified existing client.
 Format: `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
 
 * Edits the client with the specified `CLIENT_ID`. The ID refers to the unique ID generated upon adding a client. The ID
-**must be a positive integer** 1, 2, 3, ...
+**must exist and be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -242,7 +241,7 @@ Removes the specified existing client.
 Format: `client -d CLIENT_ID`
 
 * Deletes the client with the specified `CLIENT_ID`.
-* The ID **must be a positive integer** 1, 2, 3, …​
+* The ID **must exist and be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `client -d 1` Deletes client with `CLIENT_ID` 1.
@@ -317,7 +316,7 @@ Adds an issue to the AddressBook. A unique issue ID will be automatically genera
 Format: `issue -a p/PROJECT_ID t/TITLE [d/DEADLINE] [u/URGENCY]`
 
 * Adds the issue to the overall list of issues and to the list of issues of the project with the specified `PROJECT_ID`.
-* `PROJECT_ID` must be a positive integer (1, 2, 3 ...​)
+* `PROJECT_ID` must exist and be a positive integer (1, 2, 3 ...​)
 * `TITLE` cannot be empty or start with a space
 * `DEADLINE` must be in the format yyyy-mm-dd
 * `URGENCY` must be an integer from 0 to 3, 0 for NONE, 1 for LOW, 2 for MEDIUM and 3 for HIGH
@@ -337,7 +336,7 @@ Edits the specified existing issue.
 Format: `issue -e i/ISSUE_ID [t/TITLE] [d/DEADLINE] [u/URGENCY]`
 
 * Edits the issue with the specified `ISSUE_ID` The ID refers to the unique ID generated upon adding an issue. The ID 
-**must be a positive integer** 1, 2, 3, ...
+**must exist in issue list and be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input value.
 * `PROJECT_ID` cannot be edited as each issue is created for a specific project
@@ -358,7 +357,7 @@ Removes the specified existing issue.
 Format: `issue -d ISSUE_ID`
 
 * Deletes the issue with the specified `ISSUE_ID`.
-* The ID **must be a positive integer** 1, 2, 3, …​
+* The ID **must exist and be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `issue -d 1` Deletes issue with `ISSUE_ID` 1.
@@ -422,7 +421,8 @@ Marks specified existing issue as completed.
 Format: `issue -m ISSUE_ID`
 
 * Marks the issue with the specified `ISSUE_ID`, changing its `STATUS` to completed.
-* The ID **must be a positive integer** 1, 2, 3, …​
+* If issue is already marked completed, it remains completed.
+* The ID **must exist and be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `issue -m 1` Changes the `STATUS` of the issue with `ISSUE_ID` 1 to completed.
@@ -435,7 +435,8 @@ Marks specified existing issue as incomplete.
 Format: `issue -u ISSUE_ID`
 
 * Unmarks the issue with the specified `ISSUE_ID`, changing its `STATUS` to incomplete.
-* The ID **must be a positive integer** 1, 2, 3, …​
+* If issue is already marked incomplete, it remains incomplete.
+* The ID **must exist and be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `issue -m 1` Changes the `STATUS` of the issue with `ISSUE_ID` 1 to incomplete.
