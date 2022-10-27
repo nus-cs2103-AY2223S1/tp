@@ -355,6 +355,11 @@ public class AddCommandTest {
         public void sortList(ListType type, SortCommand.SortBy method) {
             throw new AssertionError("This method should not be called");
         }
+
+        @Override
+        public void export() {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**

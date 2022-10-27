@@ -64,6 +64,11 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
+     * Exports the address books to csv
+     */
+    void export();
+
+    /**
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
