@@ -22,7 +22,7 @@ public class AddModuleCommand extends Command {
     public static final String MODULE_ADDED_SUCCESS = "Module has been added successfully!";
 
     public static final String DUPLICATE_MODULE_DETECTED = "This module already exists! "
-            + "Try to input a different module name or module code.";
+            + "Try to input a different module code along with your initial module name and module credit fields.";
     private final Module moduleAdded;
 
     /**

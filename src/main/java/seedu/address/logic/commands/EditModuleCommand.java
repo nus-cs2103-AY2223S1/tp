@@ -44,7 +44,9 @@ public class EditModuleCommand extends Command {
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s, Edited Name: %2$s, "
             + "Edited Credit: %3$s";
     public static final String MESSAGE_MODULE_NOT_EDITED = "The provided fields are the same as the current module";
-    public static final String MESSAGE_NO_FIELDS_PROVIDED = "The module name to edit must be provided.";
+    public static final String MESSAGE_NO_FIELDS_PROVIDED =
+            String.format("Please provide at least one of the fields to edit: %1$sMODULE CODE, "
+                    + "%2$sMODULE NAME, %3$sMODULE CREDIT", PREFIX_MOD_CODE, PREFIX_MOD_NAME, PREFIX_MOD_CREDIT);
 
     private final Index index;
     private final EditModuleDescriptor editModuleDescriptor;
@@ -66,7 +68,8 @@ public class EditModuleCommand extends Command {
         List<Module> lastShownList = model.getFilteredModuleList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_MODULE_INDEX_TOO_LARGE, lastShownList.size() + 1));
         }
 
         Module moduleToEdit = lastShownList.get(index.getZeroBased());
