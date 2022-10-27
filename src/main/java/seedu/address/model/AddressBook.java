@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.UniqueCustomerList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.customer.UniqueCustomerList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueCustomerList customers;
+    private final UniqueCommissionList allCommissions;
 
 
     /*
@@ -26,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         customers = new UniqueCustomerList();
+        allCommissions = new UniqueCommissionList();
     }
 
     public AddressBook() {
@@ -92,6 +96,34 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeCustomer(Customer key) {
         customers.remove(key);
+    }
+
+    public UniqueCommissionList getAllCommissions() {
+        return allCommissions;
+    }
+
+    public void addCommissionToUniverse(Commission commission) {
+        allCommissions.add(commission);
+    }
+
+    public void removeCommissionFromUniverse(Commission key) {
+        allCommissions.remove(key);
+    }
+
+    public void setCommissionInUniverse(Commission oldCommission, Commission editedCommission) {
+        allCommissions.setCommission(oldCommission, editedCommission);
+    }
+
+    /**
+     * Populates @code allCommissions with all commissions in the data storage
+     * when the application initializes.
+     */
+    public void initCommissionUniverse() {
+        for (Customer customer : customers) {
+            for (Commission commission : customer.getCommissions()) {
+                allCommissions.add(commission);
+            }
+        }
     }
 
 

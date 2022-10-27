@@ -168,6 +168,10 @@ public interface Model {
 
     void addCommissionToUniverse(Commission commission);
 
+    void removeCommissionFromUniverse(Commission commission);
+
+    void setCommissionInUniverse(Commission oldCommission, Commission editedCommission);
+
     void initCommissionUniverse();
 
     void specialUpdateCommissionList();
