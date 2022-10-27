@@ -42,7 +42,7 @@ public class EditTeamCommand extends Command {
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    public static final String MESSAGE_DUPLICATE_TEAM = "This team ame already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the address book.";
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
 
