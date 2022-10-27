@@ -25,7 +25,7 @@ html {
   right: 16px;
   display: flex;
   align-items: center;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .toc-button:hover {
@@ -151,4 +151,10 @@ h6:before {
 .no-num:before {
   content : "";
   counter-increment : none;
+}
+
+@media print {
+  .hidden-print {
+    display: none !important;
+  }
 }
