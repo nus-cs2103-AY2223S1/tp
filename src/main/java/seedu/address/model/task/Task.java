@@ -18,7 +18,6 @@ import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
-import seedu.address.model.attribute.Name;
 import seedu.address.model.person.Person;
 
 /**

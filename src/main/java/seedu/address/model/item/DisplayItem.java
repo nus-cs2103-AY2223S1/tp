@@ -5,8 +5,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.Name;
 import seedu.address.model.tag.Tag;
 
 /**

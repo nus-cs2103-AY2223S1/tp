@@ -9,7 +9,6 @@ import java.util.List;
 
 import seedu.address.model.attribute.Name;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
-import seedu.address.model.attribute.Name;
 import seedu.address.model.tag.UniqueID;
 
 /**

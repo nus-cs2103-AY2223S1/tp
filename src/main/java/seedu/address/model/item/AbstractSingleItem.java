@@ -10,7 +10,7 @@ import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 /**
  * Abstract class to represent an item can only have a single parent.
  */
-public abstract class  AbstractSingleItem extends AbstractDisplayItem {
+public abstract class AbstractSingleItem extends AbstractDisplayItem {
 
     protected AbstractSingleItem parent = null;
 

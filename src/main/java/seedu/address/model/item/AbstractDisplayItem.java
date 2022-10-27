@@ -15,7 +15,6 @@ import seedu.address.model.attribute.Name;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueID;
-import seedu.address.model.group.Group;
 
 /**
  * Abstract class to represent an item that can contain other items.
