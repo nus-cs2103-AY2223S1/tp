@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.PersonComparators.DEFAULT_COMPARATOR;
 
 import seedu.address.model.Model;
 import seedu.address.ui.MainPanelName;
@@ -19,6 +20,7 @@ public class ResetCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.updateSortedFilteredPersonList(DEFAULT_COMPARATOR);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
