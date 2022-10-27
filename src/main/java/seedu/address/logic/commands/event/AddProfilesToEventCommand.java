@@ -80,8 +80,8 @@ public class AddProfilesToEventCommand extends EventCommand {
 
         Event eventCopy = new Event(event.getTitle(), event.getStartDateTime(), event.getEndDateTime(),
                 event.getTags(), event.getAttendees());
-        eventCopy.addAttendees(profilesToAdd);
 
+        model.addEventAttendees(eventCopy, profilesToAdd);
         model.setEvent(event, eventCopy);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_ATTENDEES_SUCCESS, event));
