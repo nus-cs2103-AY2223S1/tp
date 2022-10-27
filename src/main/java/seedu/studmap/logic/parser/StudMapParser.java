@@ -7,10 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.studmap.logic.commands.AddCommand;
-import seedu.studmap.logic.commands.AddTagCommand;
 import seedu.studmap.logic.commands.ClearCommand;
 import seedu.studmap.logic.commands.Command;
-import seedu.studmap.logic.commands.DelTagCommand;
 import seedu.studmap.logic.commands.DeleteCommand;
 import seedu.studmap.logic.commands.EditCommand;
 import seedu.studmap.logic.commands.ExitCommand;
@@ -22,9 +20,11 @@ import seedu.studmap.logic.commands.ListCommand;
 import seedu.studmap.logic.commands.MarkCommand;
 import seedu.studmap.logic.commands.ParticipateCommand;
 import seedu.studmap.logic.commands.SortCommand;
+import seedu.studmap.logic.commands.TagCommand;
 import seedu.studmap.logic.commands.UngradeCommand;
 import seedu.studmap.logic.commands.UnmarkCommand;
 import seedu.studmap.logic.commands.UnparticipateCommand;
+import seedu.studmap.logic.commands.UntagCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 
 /**
@@ -75,11 +75,11 @@ public class StudMapParser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-        case AddTagCommand.COMMAND_WORD:
-            return new AddTagCommandParser().parse(arguments);
+        case TagCommand.COMMAND_WORD:
+            return new TagCommandParser().parse(arguments);
 
-        case DelTagCommand.COMMAND_WORD:
-            return new DelTagCommandParser().parse(arguments);
+        case UntagCommand.COMMAND_WORD:
+            return new UntagCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();

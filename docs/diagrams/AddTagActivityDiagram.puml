@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes addtag command;
+:User executes tag command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
