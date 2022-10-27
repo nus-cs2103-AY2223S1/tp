@@ -110,15 +110,6 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         requireNonNull(editedClient);
 
         clients.setClient(target, editedClient);
-
-        // update meetings associated with the client
-        // by removing all meetings associated with target client
-        // and adding new meetings stored by editedClient
-        target.getMeetings().forEach(meeting -> {
-            meetings.remove(meeting);
-        });
-        editedClient.getMeetings().forEach(meeting ->
-                meetings.add(meeting));
     }
 
     /**
