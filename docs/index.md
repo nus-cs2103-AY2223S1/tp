@@ -11,7 +11,7 @@ With MineFriends, you can:
 
 - Maintain a list of all your online friends
 - Access your friends' information easily, such as their emails and social handles
-- Keep track of which servers and timezones your friends are playing on
+- Keep track of which servers and game modes your friends are playing on
 
 
 ### Note:
@@ -21,7 +21,7 @@ MineFriends is optimized for use via a Command Line Interface (CLI), while also 
 **Download MineFriends and run it now! (- link or jar file to be added -)**
 
 Sample interface:
-![Ui](docs/images/Ui.png)
+![Ui](images/Ui.png)
 
 
 **Acknowledgements**
