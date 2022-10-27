@@ -11,7 +11,4 @@ public class SessionCommandTest {
     public void constructor_nullSession_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new SessionCommand(null));
     }
-
-
-
 }
