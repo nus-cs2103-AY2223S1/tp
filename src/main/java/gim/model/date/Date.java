@@ -41,9 +41,9 @@ public class Date {
      */
     public Date(String date) {
         requireNonNull(date);
-        date = standardizeDate(date);
-        checkArgument(isValidDateByRegex(date), MESSAGE_CONSTRAINTS_FORMAT);
-        LocalDate parsedDate = FORMATTER_LIST.validateDateWithFormatters(date);
+        String standardDate = standardizeDate(date);
+        checkArgument(isValidDateByRegex(standardDate), MESSAGE_CONSTRAINTS_FORMAT);
+        LocalDate parsedDate = FORMATTER_LIST.validateDateWithFormatters(standardDate);
         if (parsedDate == null) {
             // may change to DateTimeParseException
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS_FORMAT);
