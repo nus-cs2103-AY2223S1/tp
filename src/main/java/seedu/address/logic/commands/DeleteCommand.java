@@ -114,11 +114,9 @@ public class DeleteCommand extends Command {
         Long nurseUidNo = dateSlot.getNurseUidNo();
         Person nurse = personList.stream().filter(p -> p.getUid().getUid().equals(nurseUidNo)).findFirst().get();
         List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>();
         List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
-        List<Date> updatedFullyScheduledList = new ArrayList<>();
-        updatedHomeVisitList.addAll(nurseHomeVisitList);
-        updatedFullyScheduledList.addAll(nurseFullyScheduledList);
+        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(nurseHomeVisitList);
+        List<Date> updatedFullyScheduledList = new ArrayList<>(nurseFullyScheduledList);
 
         HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
                 h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst().get();
@@ -141,8 +139,7 @@ public class DeleteCommand extends Command {
         Person patient = personList.stream().filter(
                 p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
         List<DateSlot> dateSlotList = ((Patient) patient).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>();
-        updatedDateSlotList.addAll(dateSlotList);
+        List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
         DateSlot dateSlotToBeUnmarked = updatedDateSlotList.stream().filter(
                 d -> d.getDateTime().equals(dateslot.getDateTime())).findFirst().get();
         dateSlotToBeUnmarked.unmark();

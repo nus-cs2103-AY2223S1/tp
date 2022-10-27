@@ -86,8 +86,7 @@ public class DeassignCommand extends Command {
 
     private void unmarkAssignedPatient(Model model, Person person, List<Person> personList) throws CommandException {
         List<DateSlot> patientDateSlotList = ((Patient) person).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>();
-        updatedDateSlotList.addAll(patientDateSlotList);
+        List<DateSlot> updatedDateSlotList = new ArrayList<>(patientDateSlotList);
         if (dateslotOrHomevisitIndex.isEmpty()) {
             for (DateSlot dateslot : updatedDateSlotList) {
                 unmarkActionForPatient(model, dateslot, personList);
@@ -106,11 +105,9 @@ public class DeassignCommand extends Command {
 
     private void unmarkAssignedNurse(Model model, Person person, List<Person> personList) throws CommandException {
         List<HomeVisit> homeVisitsList = ((Nurse) person).getHomeVisits();
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>();
-        updatedHomeVisitList.addAll(homeVisitsList);
+        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(homeVisitsList);
         List<Date> fullyScheduledList = ((Nurse) person).getFullyScheduledDates();
-        List<Date> updatedFullyScheduledDatesList = new ArrayList<>();
-        updatedFullyScheduledDatesList.addAll(fullyScheduledList);
+        List<Date> updatedFullyScheduledDatesList = new ArrayList<>(fullyScheduledList);
 
         if (dateslotOrHomevisitIndex.isEmpty()) {
             for (HomeVisit homeVisit : updatedHomeVisitList) {
@@ -170,11 +167,9 @@ public class DeassignCommand extends Command {
         Long nurseUidNo = dateSlot.getNurseUidNo();
         Person nurse = personList.stream().filter(p -> p.getUid().getUid().equals(nurseUidNo)).findFirst().get();
         List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>();
         List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
-        List<Date> updatedFullyScheduledList = new ArrayList<>();
-        updatedHomeVisitList.addAll(nurseHomeVisitList);
-        updatedFullyScheduledList.addAll(nurseFullyScheduledList);
+        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(nurseHomeVisitList);
+        List<Date> updatedFullyScheduledList = new ArrayList<>(nurseFullyScheduledList);
 
         HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
                 h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst().get();
@@ -222,8 +217,7 @@ public class DeassignCommand extends Command {
         Person patient = personList.stream().filter(
                 p -> p.getUid().getUid().equals(patientUidNo)).findFirst().get();
         List<DateSlot> dateSlotList = ((Patient) patient).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>();
-        updatedDateSlotList.addAll(dateSlotList);
+        List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
         DateSlot dateSlotToBeUnmarked = updatedDateSlotList.stream().filter(
                 d -> d.getDateTime().equals(dateslot.getDateTime())).findFirst().get();
         dateSlotToBeUnmarked.unmark();

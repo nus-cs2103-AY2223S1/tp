@@ -26,7 +26,7 @@ public class Uid implements Comparable<Uid> {
      * @param uid
      */
     public Uid(String uid) {
-        Long parsedUid = Long.parseLong(uid);
+        long parsedUid = Long.parseLong(uid);
         this.uid = parsedUid;
         NEXT_UID.set(parsedUid + 1);
     }

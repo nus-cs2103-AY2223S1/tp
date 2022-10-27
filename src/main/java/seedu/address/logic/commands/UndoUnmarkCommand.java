@@ -88,8 +88,7 @@ public class UndoUnmarkCommand extends Command {
     private void undounmarkAction(Person personToUndoUnmark, Model model) throws CommandException {
 
         List<DateSlot> dateSlotList = ((Patient) personToUndoUnmark).getDatesSlots();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>();
-        updatedDateSlotList.addAll(dateSlotList);
+        List<DateSlot> updatedDateSlotList = new ArrayList<>(dateSlotList);
 
         if (dateSlotIndex.getZeroBased() >= dateSlotList.size()) {
             throw new CommandException(MESSAGE_OUT_OF_BOUND_DATE_AND_SLOT_INDEX);

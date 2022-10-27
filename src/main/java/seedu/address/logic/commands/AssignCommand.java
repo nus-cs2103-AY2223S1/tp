@@ -123,15 +123,12 @@ public class AssignCommand extends Command {
     private void markAssign(Model model, Person patient, Person nurse) throws CommandException {
         List<DateSlot> patientDateSlotList = ((Patient) patient).getDatesSlots();
         Long nurseUidNo = nurse.getUid().getUid();
-        List<DateSlot> updatedDateSlotList = new ArrayList<>();
         List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<HomeVisit> updatedHomeVisitList = new ArrayList<>();
         List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
-        List<Date> updatedFullyScheduledList = new ArrayList<>();
 
-        updatedDateSlotList.addAll(patientDateSlotList);
-        updatedHomeVisitList.addAll(nurseHomeVisitList);
-        updatedFullyScheduledList.addAll(nurseFullyScheduledList);
+        List<DateSlot> updatedDateSlotList = new ArrayList<>(patientDateSlotList);
+        List<HomeVisit> updatedHomeVisitList = new ArrayList<>(nurseHomeVisitList);
+        List<Date> updatedFullyScheduledList = new ArrayList<>(nurseFullyScheduledList);
         if (dateslotIndex.isEmpty()) {
             for (DateSlot dateslot : updatedDateSlotList) {
                 executeChecksAndActions(dateslot, updatedHomeVisitList, updatedFullyScheduledList,
