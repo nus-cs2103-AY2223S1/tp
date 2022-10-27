@@ -367,3 +367,4 @@ _Details coming soon ..._
 | **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                               |
 | **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                           |
 | **Help**         | `help`                                                                                                                                                                                |
+
