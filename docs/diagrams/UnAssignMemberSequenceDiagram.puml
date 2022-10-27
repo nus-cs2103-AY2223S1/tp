@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UnAssignMemberParser" as UnAssignMemberParser LOGIC_COLOR
+participant "u:UnAssignMemberCommand" as UnAssignMemberCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "person:Person" as Person MODEL_COLOR
+participant "team:Team" as Team MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unassign m/1 t/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("unassign m/1 t/1")
+activate AddressBookParser
+
+create UnAssignMemberParser
+AddressBookParser -> UnAssignMemberParser
+activate UnAssignMemberParser
+
+UnAssignMemberParser --> AddressBookParser
+deactivate UnAssignMemberParser
+
+AddressBookParser -> UnAssignMemberParser : parse("m/1 t/1")
+activate UnAssignMemberParser
+
+create UnAssignMemberCommand
+UnAssignMemberParser -> UnAssignMemberCommand
+activate UnAssignMemberCommand
+
+UnAssignMemberCommand --> UnAssignMemberParser : u
+deactivate UnAssignMemberCommand
+
+UnAssignMemberParser --> AddressBookParser : u
+deactivate UnAssignMemberParser
+
+UnAssignMemberParser -[hidden]-> AddressBookParser
+destroy UnAssignMemberParser
+
+AddressBookParser --> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager --> UnAssignMemberCommand : execute()
+activate UnAssignMemberCommand
+
+create Team
+UnAssignMemberCommand -> Team
+activate Team
+
+create Person
+UnAssignMemberCommand -> Person
+activate Person
+
+Team --> UnAssignMemberCommand : team
+deactivate Team
+
+Person --> UnAssignMemberCommand : person
+deactivate Person
+
+UnAssignMemberCommand --> Model : removePersonFromTeam(person, team)
+activate Model
+
+Model --> UnAssignMemberCommand
+deactivate Model
+
+create CommandResult
+UnAssignMemberCommand -> CommandResult
+activate CommandResult
+
+
+CommandResult --> UnAssignMemberCommand : result
+deactivate CommandResult
+
+UnAssignMemberCommand --> LogicManager : result
+deactivate UnAssignMemberCommand
+
+UnAssignMemberCommand -[hidden]-> LogicManager
+destroy UnAssignMemberCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
+

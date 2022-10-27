@@ -3,6 +3,7 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -117,9 +118,9 @@ public class UniqueTeamList implements Iterable<Team> {
      * Edits the {@code Task} into the {@code Team} at the specified index.
      *
      */
-    public void editTask(int teamIndex, int taskIndex, seedu.address.model.task.Name newName) {
+    public void editTask(int teamIndex, int taskIndex, seedu.address.model.task.Name newName, LocalDate newDeadline) {
         requireNonNull(newName);
-        internalList.get(teamIndex).editTask(taskIndex, newName);
+        internalList.get(teamIndex).editTask(taskIndex, newName, newDeadline);
     }
 
     /**

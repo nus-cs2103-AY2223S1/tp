@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -184,8 +185,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         teams.deleteTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
     }
 
-    public void editTask(Index teamIndex, Index taskIndex, Name newName) {
-        teams.editTask(teamIndex.getZeroBased(), taskIndex.getZeroBased(), newName);
+    public void editTask(Index teamIndex, Index taskIndex, Name newName, LocalDate newDeadline) {
+        teams.editTask(teamIndex.getZeroBased(), taskIndex.getZeroBased(), newName, newDeadline);
     }
 
     //// util methods

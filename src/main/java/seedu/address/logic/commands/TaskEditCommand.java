@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -25,13 +27,17 @@ public class TaskEditCommand extends Command {
             + "Parameters: " + PREFIX_TEAM_INDEX + "TEAM-INDEX (must be a positive integer), "
             + PREFIX_TASK_INDEX + "TASK-INDEX (must be a positive integer) "
             + PREFIX_TASK_NAME + "NEW-TASK-NAME \n"
+            + " [" + PREFIX_TASK_DEADLINE + "dd-MM-yyyy]"
+            + " (It's optional to include deadline for a task!) \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_TEAM_INDEX + "1 "
-            + PREFIX_TASK_INDEX + "3 " + PREFIX_TASK_NAME + "Design UI";
-    public static final String MESSAGE_SUCCESS = "Task edited: %1$s";
+            + PREFIX_TASK_INDEX + "3 " + PREFIX_TASK_NAME + "Design UI "
+            + PREFIX_TASK_DEADLINE + "12-12-2023";
+    public static final String MESSAGE_SUCCESS = "Task edited: %1$s %2$s";
 
     private final Index taskIndex;
     private final Index teamIndex;
     private final Name newName;
+    private final LocalDate newDeadline;
 
     /**
      * Creates a TaskEditCommand to edit the specified {@code Task}
@@ -40,7 +46,7 @@ public class TaskEditCommand extends Command {
      * @param taskIndex index of the task to be edited.
      * @param newName name of the new task name.
      */
-    public TaskEditCommand(Index teamIndex, Index taskIndex, Name newName) {
+    public TaskEditCommand(Index teamIndex, Index taskIndex, Name newName, LocalDate newDeadline) {
         requireNonNull(taskIndex);
         requireNonNull(teamIndex);
         requireNonNull(newName);
@@ -48,6 +54,7 @@ public class TaskEditCommand extends Command {
         this.teamIndex = teamIndex;
         this.taskIndex = taskIndex;
         this.newName = newName;
+        this.newDeadline = newDeadline;
     }
 
     @Override
@@ -63,8 +70,9 @@ public class TaskEditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        model.editTask(teamIndex, taskIndex, newName);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newName));
+        model.editTask(teamIndex, taskIndex, newName, newDeadline);
+        String val = newDeadline == null ? "" : newDeadline.toString();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newName, val));
     }
 
     @Override
@@ -73,6 +81,7 @@ public class TaskEditCommand extends Command {
                 || (other instanceof TaskEditCommand // instanceof handles nulls
                 && taskIndex.equals(((TaskEditCommand) other).taskIndex)
                 && teamIndex.equals(((TaskEditCommand) other).teamIndex)
-                && newName.equals(((TaskEditCommand) other).newName));
+                && newName.equals(((TaskEditCommand) other).newName))
+                && newDeadline.equals(((TaskEditCommand) other).newDeadline);
     }
 }
