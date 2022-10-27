@@ -63,6 +63,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Adds the {@code Set<Tag>} to the {@code Task} that we are building.
+     */
     public PersonBuilder addTags(Set<Tag> tags) {
         Set<Tag> newTags = new HashSet<>();
         newTags.addAll(this.tags);
