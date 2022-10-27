@@ -33,7 +33,7 @@ public class Team {
     /**
      * Constructs a {@code Team}.
      *
-     * @param teamName    A valid team name.
+     * @param teamName A valid team name.
      */
     public Team(String teamName) {
         requireNonNull(teamName);
@@ -216,7 +216,7 @@ public class Team {
             return true;
         } else {
             return otherTeam != null
-                && otherTeam.getTeamName().equals(this.getTeamName());
+                    && otherTeam.getTeamName().equals(this.getTeamName());
         }
     }
 

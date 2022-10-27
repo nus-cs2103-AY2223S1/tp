@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -47,16 +45,13 @@ public class LinkCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
 
         linkName.setText(link.getDisplayedName().toString());
-        linkName.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                final Clipboard clipboard = Clipboard.getSystemClipboard();
-                final ClipboardContent content = new ClipboardContent();
-                content.putString(link.getUrl().toString());
-                clipboard.setContent(content);
-                linkName.setVisited(false);
-                resultDisplay.setFeedbackToUser("Copied URL to clipboard: " + link.getUrl().toString());
-            }
+        linkName.setOnAction(event -> {
+            final Clipboard clipboard = Clipboard.getSystemClipboard();
+            final ClipboardContent content = new ClipboardContent();
+            content.putString(link.getUrl().toString());
+            clipboard.setContent(content);
+            linkName.setVisited(false);
+            resultDisplay.setFeedbackToUser("Copied URL to clipboard: " + link.getUrl().toString());
         });
         linkName.setVisited(false);
         linkName.setWrapText(true);
@@ -77,6 +72,6 @@ public class LinkCard extends UiPart<Region> {
         // state check
         LinkCard card = (LinkCard) other;
         return id.getText().equals(card.id.getText())
-            && link.equals(card.link);
+                && link.equals(card.link);
     }
 }

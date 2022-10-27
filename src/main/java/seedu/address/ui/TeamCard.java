@@ -48,7 +48,7 @@ public class TeamCard extends UiPart<Region> {
         // state check
         TeamCard card = (TeamCard) other;
         return id.getText().equals(card.id.getText())
-            && team.equals(card.team);
+                && team.equals(card.team);
     }
 
 }

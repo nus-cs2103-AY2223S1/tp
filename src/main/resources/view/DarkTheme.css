@@ -128,7 +128,7 @@
 }
 
 .cell_small_label {
-    -fx-font-family: "Courier New", Monospace;
+    -fx-font-family: "Segue UI", Helvetica;
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
