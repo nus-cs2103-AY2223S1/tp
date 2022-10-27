@@ -1,6 +1,7 @@
 package seedu.address.model.person.predicates;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
             addTagListPredicate(appointmentPredicates);
         }
 
-        return appointmentPredicates.stream().reduce(HiddenPredicateSingleton.getCurrApptPredicate(), Predicate::and);
+        return appointmentPredicates.stream().reduce(PREDICATE_SHOW_ALL_APPOINTMENTS, Predicate::and);
     }
 
     private void addReasonPredicate(List<Predicate<Appointment>> appointmentPredicates) {
