@@ -216,11 +216,12 @@ The following is a more detailed explanation on how ```AttendanceAddCommand``` w
 2. Following which, ```AttendanceAddCommand#execute(Model model)``` method is called which validates the attendance list.
 3. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the format of adding attendance contains error(s), GREWZ will display either an unknown command or wrong formatting error message.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the format of adding attendance contains error(s), GREWZ will display either an unknown command or wrong formatting error message.</div>
 
 4. The method `Model#setStudent(studentToEdit, editedStudent)` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
 **Mark Attendance command**
+
 Implementation:
 
 The following is a more detailed explanation on how `AttendanceMarkCommand` works.
@@ -231,6 +232,7 @@ The following is a more detailed explanation on how `AttendanceMarkCommand` work
 4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message.
 
 **Delete Attendance command**
+
 Implementation:
 
 The following is a more detailed explanation on how `AttendanceDeleteCommand` works.
@@ -241,9 +243,9 @@ The following is a more detailed explanation on how `AttendanceDeleteCommand` wo
 4. The method ```Model#setStudent(studentToEdit, editedStudent)``` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
 ![attendance delete activity](images/AttendanceDeleteActivityDiagram.png)
-Figure No. Activity diagram for AttendanceDeleteCommand
+Activity diagram for AttendanceDeleteCommand
 ![attendance delete sequence](images/AttendanceDeleteSequenceDiagram.png)
-Figure No. Sequence diagram for AttendanceDeleteCommand
+Sequence diagram for AttendanceDeleteCommand
 #### Design considerations:
 
 **Aspect: Command Syntax**
@@ -272,9 +274,9 @@ The following is a more detailed explanation of how the `UploadPictureCommand` w
 5. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
 
 ![picture upload activity](images/PictureUploadActivityDiagram.png)
-Figure No. Activity diagram for PictureUploadCommand
+Activity diagram for PictureUploadCommand
 ![picture upload sequence](images/PictureUploadSequenceDiagram.png)
-Figure No. Sequence diagram for PictureUploadCommand
+Sequence diagram for PictureUploadCommand
 
 
 #### Design considerations:
@@ -321,11 +323,11 @@ The following is a more detailed explanation on how the `TaskCommand` works.
 
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
-Figure No. Sequence diagram for TaskCommand
+Sequence diagram for TaskCommand
 
 ![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
-Figure No. Activity diagram for TaskCommand
+Activity diagram for TaskCommand
 
 The following is a more detailed explanation on how the `RemoveTaskCommand` works.
 1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
@@ -448,9 +450,9 @@ The following is a more detailed explanation on how the new `add` feature works.
 4. If the student's data is already there, the input will throw an error saying "This student already exists."
 
 ![AddCommand Sequence Diagram](images/AddCommandSequenceDiagram.png)
-Figure No. Sequence Diagram for Improved AddCommand Feature
+Sequence Diagram for Improved AddCommand Feature
 ![AddCommand Activity Diagram](images/AddCommandActivityDiagram.png)
-Figure No. Activity Diagram for Improved AddCommand Feature
+Activity Diagram for Improved AddCommand Feature
 
 #### Design considerations
 
