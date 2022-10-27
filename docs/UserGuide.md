@@ -331,59 +331,65 @@ Examples:
 
 ### Sort the displayed students: 'sort'
 
-Sort the displayed list of students (in the Student's Details panel) by the given `type` and `order`.
+Sort the displayed list of students (in the Student's Details panel) by the given `TYPE` and `ORDER`.
 
 Format: `sort TYPE [ORDER]`
 
 - `TYPE` must be followed by either one of the below options:
-  - `NAME`
-  - `CLASS`
-  - `OWED`
+  - `name`
+  - `class`
+  - `owed`
 - `ORDER`, if present, must be from 
-  - `ASC`
-  - `DESC`
+  - `asc`
+  - `desc`
   - If it is left as blank, it will follow the default order for the type.
-- Default order for `NAME` and `CLASS` is `ASC` while default order for `OWED` is `DESC`.
+- Default order for `name` and `class` is `asc` while default order for `owed` is `desc`.
 - The two parameters `TYPE` and `ORDER` can be non-capitalized such as `name`, `nAMe` and so on.
 
 [Back to top](#table-of-contents)
 
 #### Sort by NAME
 
-Sort the displayed list of students (in the Students' Details panel) by `NAME` and given `order`.
+Sort the displayed list of students (in the Students' Details panel) by `name` and given `ORDER`.
 
-When `order` is left blank, it will be `ASC` by default.
+When `ORDER` is left blank, it will be `asc` by default.
 
 Examples:
 
-- `list` followed by `sort NAME` will list all the students according to their names in ascending order.
-- `list` followed by `sort NAME ASC` will list all the students according to their names in ascending order.
-- `list` followed by `sort NAME DESC` will list all the students according to their names in descending order.
+- `list` followed by `sort name` will list all the students according to their names in ascending order.
+- `list` followed by `sort name asc` will list all the students according to their names in ascending order.
+- `list` followed by `sort name desc` will list all the students according to their names in descending order.
+
+[Back to top](#table-of-contents)
 
 #### Sort by CLASS
 
-Sort the displayed list of students (in the Students' Details panel) by `CLASS` and given `order`.
+Sort the displayed list of students (in the Students' Details panel) by `class` and given `ORDER`.
 
-When `order` is left blank, it will be `ASC` by default.
+When `ORDER` is left blank, it will be `asc` by default.
 
 Examples:
 
-- `list` followed by `sort CLASS` will list all the students according to their upcoming classes in ascending order.
-- `list` followed by `sort CLASS ASC` will list all the students according to their upcoming classes in ascending order.
-- `list` followed by `sort CLASS DESC` will list all the students according to their upcoming classes in descending order.
+- `list` followed by `sort class` will list all the students according to their upcoming classes in ascending order.
+- `list` followed by `sort class asc` will list all the students according to their upcoming classes in ascending order.
+- `list` followed by `sort class desc` will list all the students according to their upcoming classes in descending order.
 
+[Back to top](#table-of-contents)
 
 #### Sort by MONEY_OWED
 
-Sort the displayed list of students (in the Students' Details panel) by `OWED`(Amount of Money Owed) and given `order`.
+Sort the displayed list of students (in the Students' Details panel) by `owed`(Amount of Money Owed) and given `ORDER`.
 
-When `order` is left blank, it will be `DESC` by default.
+When `ORDER` is left blank, it will be `desc` by default.
 
 Examples:
 
-- `list` followed by `sort OWED` will list all the students according to how much money they owe in **descending** order.
-- `list` followed by `sort OWED ASC` will list all the students according to how much money they owe in ascending order.
-- `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
+- `list` followed by `sort owed` will list all the students according to how much money they owe in **descending** order.
+- `list` followed by `sort owed asc` will list all the students according to how much money they owe in ascending order.
+- `list` followed by `sort owed desc` will list all the students according to how much money they owe in descending order.
+
+[Back to top](#table-of-contents)
+
 ---
 
 ### Deleting student(s): 'delete'
