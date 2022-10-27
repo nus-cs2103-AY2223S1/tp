@@ -100,6 +100,10 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 
 * Tags are optional.
 * Multiple tags can be tagged to the client.
+* No restrictions on the phone input field and email input field, but a warning will be given if it deviates from the standard convention.
+    * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
+
+> :warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or white spaces!
 
 Examples:
 * `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com`
@@ -358,15 +362,15 @@ _Details coming soon ..._
 
 ## Prefix Summary
 
-| Prefix     | Meaning                                        | Restrictions                                                | Example                       |
-|------------|------------------------------------------------|-------------------------------------------------------------|-------------------------------|
-| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required                | `n/Alice`                     |
-| **a/**     | Address of the client                          | Required                                                    | `a/321 Clementi Road, #02-22` |
-| **p/**     | Phone number of the client                     | Should only contain numbers, required                       | `n/98765432`                  |
-| **e/**     | Email of the client                            | Should comply to the normal standards of an email, required | `e/alice@gmail.com`           |
-| **g/**     | Goods name of the transaction                  | Alphanumeric characters and spaces, required                | `g/Apples`                    |
-| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                                  | `q/10`                        |
-| **price/** | Price per quantity of goods in the transaction | Positive number, required                                   | `price/1.50`                  |
-| **m/**     | Mode of the command                            | Must be either `client`, `transaction`, or `remark`         | `m/client`                    |
-| **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`                                  | `d/07/11/2022`                |
-| **t/**     | Tag applied on clients                         | Alphanumeric, single word                                   | `t/friends`                   |
+| Prefix     | Meaning                                        | Restrictions                                        | Example                       |
+|------------|------------------------------------------------|-----------------------------------------------------|-------------------------------|
+| **n/**     | Name of the client                             | Alphanumeric characters and spaces, required        | `n/Alice`                     |
+| **a/**     | Address of the client                          | Required                                            | `a/321 Clementi Road, #02-22` |
+| **p/**     | Phone number of the client                     | Required                                            | `n/98765432`                  |
+| **e/**     | Email of the client                            | Required                                            | `e/alice@gmail.com`           |
+| **g/**     | Goods name of the transaction                  | Alphanumeric characters and spaces, required        | `g/Apples`                    |
+| **q/**     | Quantity of goods involved in the transaction  | Positive integer, required                          | `q/10`                        |
+| **price/** | Price per quantity of goods in the transaction | Positive number, required                           | `price/1.50`                  |
+| **m/**     | Mode of the command                            | Must be either `client`, `transaction`, or `remark` | `m/client`                    |
+| **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`                          | `d/07/11/2022`                |
+| **t/**     | Tag applied on clients                         | Alphanumeric, single word                           | `t/friends`                   |
