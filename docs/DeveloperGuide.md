@@ -394,9 +394,9 @@ Given below is an example of the usage scenario and how the User's PreviousModul
 
 Step 1. The User wants to update his ConnnectNUS app details as a new AY has started. He inputs the `shift` command.
 
-Step 2. The LogicManager will parse the User's input and execute a `ShiftCommand`.
+Step 2. The LogicManager will parse the User's input and execute a `NextSemCommand`.
 
-Step 3. When `ShiftCommand` is called, it will call on `Person#updatePrevMods` and `User#updatePrevMods`, updating both the User and all the Person's in the User's contact list.
+Step 3. When `NextSemCommand` is called, it will call on `Person#updatePrevMods` and `User#updatePrevMods`, updating both the User and all the Person's in the User's contact list.
 
 Step 4. The changes will be reflected in the PersonCard and UserProfile Uis.
 
