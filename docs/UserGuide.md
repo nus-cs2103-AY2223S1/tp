@@ -99,6 +99,17 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the application:**<br>
+- To familiarise yourself with our user interface, please refer to the following diagram and table to understand how to use our application.
+
+|      `Component`      |                                                       `Explaination`                                                       |
+|:---------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+|   **List Display**    |            where you view your entry lists (Expenditure or Income) <br> - can be modifed by the `view` command             |
+|   **Graph Display**   | where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> - can be modified by the `view` command |
+| **Command Input Box** |                                       where you enter your commands to use PennyWise                                       |
+|     **Education**     |                                  where you see the output of your commands from PennyWise                                  |
+
+![UserInterfaceExplaination](images/UserInterfaceExplaination.png)
+
 - For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. 
   The following table shows the`Expenditure` and `Income` entries categories. The category names are <ins>case sensitive</ins>.
 
