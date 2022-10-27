@@ -35,7 +35,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_PRIORITY + "medium "
             + PREFIX_CATEGORY + "uiux "
             + PREFIX_DEADLINE + "2023-01-01 "
-            + PREFIX_PERSON + "johnd@example.com ";
+            + PREFIX_PERSON + "alexyeoh@example.com ";
 
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
     private static final String MESSAGE_NO_PERSON_WITH_EMAIL = "There is no person with that email";
