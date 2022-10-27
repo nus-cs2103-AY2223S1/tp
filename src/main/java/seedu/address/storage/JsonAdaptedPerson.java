@@ -97,11 +97,22 @@ class JsonAdaptedPerson {
         String instagram = socialArray[3];
         String preferred = socialArray[4];
         String imageUrl = socialArray[5];
-        modelSocial.addWhatsapp(whatsapp);
-        modelSocial.addTelegram(telegram);
-        modelSocial.addEmail(email);
-        modelSocial.addInstagram(instagram);
-        modelSocial.prefer(preferred);
+        if (!whatsapp.equals("<none>")) {
+            modelSocial.addWhatsapp(whatsapp);
+        }
+        if (!telegram.equals("<none>")) {
+            modelSocial.addTelegram(telegram);
+        }
+        if (!email.equals("<none>")) {
+            modelSocial.addEmail(email);
+        }
+        if (!instagram.equals("<none>")) {
+            modelSocial.addInstagram(instagram);
+        }
+        if (!preferred.equals("<none>")) {
+            modelSocial.prefer(preferred);
+        }
+
         modelSocial.addUrl(imageUrl);
 
         return modelSocial;

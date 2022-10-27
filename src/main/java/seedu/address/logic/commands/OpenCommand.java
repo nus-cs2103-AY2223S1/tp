@@ -3,10 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.awt.Desktop;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -15,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.social.exceptions.SocialException;
 
 /**
  * Goes to a Social media link of an existing person in uNivUSal.
@@ -36,13 +34,21 @@ public class OpenCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 s/TELEGRAM";
 
     public static final String MESSAGE_SUCCESS = "Opening link";
-    public static final String MESSAGE_WRONG_SOCIAL = "No such Social media";
+    public static final String MESSAGE_WRONG_SOCIAL = "No such Social media.\n"
+            + "Valid Social media includes: WHATSAPP, TELEGRAM, EMAIL, INSTAGRAM, PREFERRED";
     public static final String MESSAGE_MISSING_LINK = "There is no link at the specified entry";
     public static final String MESSAGE_BAD_LINK =
             "The link at the specified location does not work, try entering a new link";
 
     private static final String SCHEME = "http://";
-    private static final String SCHEMES = "https://";
+
+    private static final String WHATSAPP_DOMAIN = "wa.me/";
+
+    private static final String TELEGRAM_DOMAIN = "t.me/";
+
+    private static final String EMAIL_DOMAIN = "mailto:";
+
+    private static final String INSTAGRAM_DOMAIN = "instagram.com/";
 
     private final Index index;
     private final String social;
@@ -66,7 +72,7 @@ public class OpenCommand extends Command {
      * @return Socials to be edited
      * @throws CommandException
      */
-    public Socials findSocial(String social) throws CommandException {
+    public Socials findSocial(String social) {
         for (Socials s : Socials.values()) {
             if (social.equalsIgnoreCase(s.name())) {
                 return s;
@@ -76,103 +82,50 @@ public class OpenCommand extends Command {
     }
 
     /**
-     * Converts the string link to the URL to be ran.
-     * @param link To be converted
-     * @throws CommandException
-     */
-    public void convert(String link) throws CommandException {
-        try {
-            URI uri = new URI(link);
-            this.uri = uri;
-        } catch (URISyntaxException e) {
-            throw new CommandException(MESSAGE_BAD_LINK);
-        }
-    }
-
-    /**
-     * Gets the link of the Social s of the Person p
+     * Opens the link of the Social s of the Person p
      * @param p Person to get
      * @param s Socials to get
-     * @return link of the Social s of the Person p
      * @throws CommandException
      */
-    public String getLink(Person p, Socials s) throws CommandException {
-        switch(s) {
-
-        case WHATSAPP: {
-            String link = p.getSocial().getWhatsapp();
-            if (link.startsWith(SCHEME) || link.startsWith(SCHEMES)) {
-                return link;
-            } else {
-                System.out.println(SCHEME + link);
-                return SCHEME + link;
-            }
-        }
-
-        case TELEGRAM: {
-            String link = p.getSocial().getTelegram();
-            if (link.startsWith(SCHEME) || link.startsWith(SCHEMES)) {
-                return link;
-            } else {
-                System.out.println(SCHEME + link);
-                return SCHEME + link;
-            }
-        }
-
-        case EMAIL:
-            return p.getSocial().getEmail();
-
-        case INSTAGRAM: {
-            String link = p.getSocial().getInstagram();
-            if (link.startsWith(SCHEME) || link.startsWith(SCHEMES)) {
-                return link;
-            } else {
-                System.out.println(SCHEME + link);
-                return SCHEME + link;
-            }
-        }
-
-        case PREFERRED: {
-            String link = p.getSocial().getPreferredLink();
-            if (link.startsWith(SCHEME) || link.startsWith(SCHEMES)) {
-                return link;
-            } else {
-                System.out.println(SCHEME + link);
-                return SCHEME + link;
-            }
-        }
-        default:
+    public void open(Person p, Socials s) throws CommandException {
+        if (s == null) {
             throw new CommandException(MESSAGE_WRONG_SOCIAL);
-        }
-    }
+        } else {
+            try {
+                switch(s) {
 
-    /**
-     * Opens the URI
-     * @param uri to be opened
-     * @throws CommandException
-     */
-    public void open(URI uri) throws CommandException {
-        Desktop desktop = java.awt.Desktop.getDesktop();
-        try {
-            desktop.browse(uri);
-        } catch (IOException e) {
-            throw new CommandException(MESSAGE_BAD_LINK);
-        }
-    }
+                case WHATSAPP: {
+                    p.getSocial().openWhatsapp();
+                    break;
+                }
 
-    /**
-     * Runs the command after we get the Person p and Socials s
-     * @param p Person p
-     * @param s Socials s
-     * @throws CommandException
-     */
-    public void run(Person p, Socials s) throws CommandException {
-        String link = getLink(p, s);
-        if (link == null || link == "null") {
-            throw new CommandException(MESSAGE_MISSING_LINK);
+                case TELEGRAM: {
+                    p.getSocial().openTelegram();
+                    break;
+                }
+
+                case EMAIL:
+                    p.getSocial().openEmail();
+                    break;
+
+                case INSTAGRAM: {
+                    p.getSocial().openInstagram();
+                    break;
+                }
+
+                case PREFERRED: {
+                    p.getSocial().openPreferred();
+                    break;
+                }
+                default:
+                    throw new CommandException(MESSAGE_WRONG_SOCIAL);
+                }
+            } catch (CommandException e) {
+                throw new CommandException(MESSAGE_WRONG_SOCIAL);
+            } catch (SocialException e) {
+                throw new CommandException(e.getMessage());
+            }
         }
-        convert(link);
-        open(this.uri);
     }
 
     @Override
@@ -187,7 +140,7 @@ public class OpenCommand extends Command {
         Person personToOpen = lastShownList.get(index.getZeroBased());
         Socials socialToOpen = findSocial(social);
 
-        run(personToOpen, socialToOpen);
+        open(personToOpen, socialToOpen);
 
         ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

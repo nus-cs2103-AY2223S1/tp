@@ -33,7 +33,13 @@ public class Social {
 
     private static final String SCHEME = "http://";
 
-    private static final String SCHEMES = "https://";
+    private static final String WHATSAPP_DOMAIN = "wa.me/";
+
+    private static final String TELEGRAM_DOMAIN = "t.me/";
+
+    private static final String EMAIL_DOMAIN = "mailto:";
+
+    private static final String INSTAGRAM_DOMAIN = "instagram.com/";
 
     //links array holds the links for the socials of the person.
     //The index of the links in the array corresponds with the enum declared.
@@ -42,18 +48,12 @@ public class Social {
 
     private Socials preferred;
 
-    private String imageUrl;
-
 
     /**
      * Constructs a {@code Social}.
      */
     public Social() {
         this.links = new String[5];
-        links[0] = "null";
-        links[1] = "null";
-        links[2] = "null";
-        links[3] = "null";
         links[4] = "file:src/main/resources/images/profile_pic.png";
     }
 
@@ -134,12 +134,17 @@ public class Social {
      * @return Whatsapp link of the person.
      */
     public String getWhatsapp() {
-        return links[0].trim();
+        if (links[0] == null) {
+            return "<none>";
+        } else {
+            return links[0];
+        }
     }
 
     public void addUrl(String imageUrl) {
         links[4] = imageUrl;
     }
+
     /**
      * Returns ImageURL of the person, defaults to default picture if there is none.
      *
@@ -155,7 +160,11 @@ public class Social {
      * @return Telegram link of the person.
      */
     public String getTelegram() {
-        return links[1];
+        if (links[1] == null) {
+            return "<none>";
+        } else {
+            return links[1];
+        }
     }
 
     /**
@@ -164,7 +173,11 @@ public class Social {
      * @return Email link of the person.
      */
     public String getEmail() {
-        return links[2];
+        if (links[2] == null) {
+            return "<none>";
+        } else {
+            return links[2];
+        }
     }
 
     /**
@@ -173,7 +186,11 @@ public class Social {
      * @return Instagram link of the person.
      */
     public String getInstagram() {
-        return links[3];
+        if (links[3] == null) {
+            return "<none>";
+        } else {
+            return links[3];
+        }
     }
 
     /**
@@ -194,7 +211,7 @@ public class Social {
      */
     public String getPreferred() {
         if (this.preferred == null) {
-            return "NO PREFERENCE SET";
+            return "<none>";
         } else {
             return this.preferred.toString();
         }
@@ -228,17 +245,12 @@ public class Social {
      */
     public void openWhatsapp() throws SocialException {
         try {
-            if (getWhatsapp().equals(null) || getWhatsapp().equals("null")) {
+            if (getWhatsapp() == null || getWhatsapp().equals("<none>")) {
                 throw new SocialException("No Whatsapp Link");
-            } else if (getWhatsapp().startsWith(SCHEME) || getWhatsapp().startsWith(SCHEMES)) {
-                URI uri = new URI(getWhatsapp());
-                Desktop desktop = java.awt.Desktop.getDesktop();
-                desktop.browse(uri);
-            } else {
-                URI uri = new URI(SCHEME + getWhatsapp());
-                Desktop desktop = java.awt.Desktop.getDesktop();
-                desktop.browse(uri);
             }
+            URI uri = new URI(SCHEME + WHATSAPP_DOMAIN + getWhatsapp());
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.browse(uri);
         } catch (URISyntaxException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
@@ -253,18 +265,12 @@ public class Social {
      */
     public void openTelegram() throws SocialException {
         try {
-            if (getTelegram().equals(null) || getTelegram().equals("null")) {
+            if (getTelegram() == null || getTelegram().equals("<none>")) {
                 throw new SocialException("No Telegram Link");
             }
-            if (getTelegram().startsWith(SCHEME) || getTelegram().startsWith(SCHEMES)) {
-                URI uri = new URI(getTelegram());
-                Desktop desktop = java.awt.Desktop.getDesktop();
-                desktop.browse(uri);
-            } else {
-                URI uri = new URI(SCHEME + getTelegram());
-                Desktop desktop = java.awt.Desktop.getDesktop();
-                desktop.browse(uri);
-            }
+            URI uri = new URI(SCHEME + TELEGRAM_DOMAIN + getTelegram());
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.browse(uri);
         } catch (URISyntaxException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
@@ -279,10 +285,10 @@ public class Social {
      */
     public void openEmail() throws SocialException {
         try {
-            if (getEmail().equals(null) || getEmail().equals("null")) {
+            if (getEmail() == null || getEmail().equals("<none>")) {
                 throw new SocialException("No Email Link");
             }
-            URI uri = new URI(getEmail());
+            URI uri = new URI(EMAIL_DOMAIN + getEmail());
             Desktop desktop = java.awt.Desktop.getDesktop();
             desktop.browse(uri);
         } catch (URISyntaxException e) {
@@ -299,18 +305,12 @@ public class Social {
      */
     public void openInstagram() throws SocialException {
         try {
-            if (getInstagram().equals(null) || getInstagram().equals("null")) {
+            if (getInstagram() == null || getInstagram().equals("<none>")) {
                 throw new SocialException("No Instagram Link");
             }
-            if (getInstagram().startsWith(SCHEME) || getInstagram().startsWith(SCHEMES)) {
-                URI uri = new URI(getInstagram());
-                Desktop desktop = java.awt.Desktop.getDesktop();
-                desktop.browse(uri);
-            } else {
-                URI uri = new URI(SCHEME + getInstagram());
-                Desktop desktop = java.awt.Desktop.getDesktop();
-                desktop.browse(uri);
-            }
+            URI uri = new URI(SCHEME + INSTAGRAM_DOMAIN + getInstagram());
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.browse(uri);
         } catch (URISyntaxException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
@@ -325,22 +325,29 @@ public class Social {
      */
     public void openPreferred() throws SocialException {
         try {
-            if (getPreferredLink().equals(null) || getPreferredLink().equals("null")) {
+            if (getPreferredLink() == null || getPreferredLink().equals("<none>")) {
                 throw new SocialException("No Preferred Link");
             }
-            if (getPreferredLink().startsWith(SCHEME) || getPreferredLink().startsWith(SCHEMES)) {
-                URI uri = new URI(getPreferredLink());
-                Desktop desktop = java.awt.Desktop.getDesktop();
-                desktop.browse(uri);
-            } else {
-                URI uri = new URI(SCHEME + getPreferredLink());
-                Desktop desktop = java.awt.Desktop.getDesktop();
-                desktop.browse(uri);
+            switch(preferred) {
+            case WHATSAPP:
+                openWhatsapp();
+                break;
+
+            case TELEGRAM:
+                openTelegram();
+                break;
+
+            case EMAIL:
+                openEmail();
+                break;
+
+            case INSTAGRAM:
+                openInstagram();
+                break;
+
+            default:
+                throw new SocialException("No Preferred Link");
             }
-        } catch (URISyntaxException e) {
-            throw new SocialException(MESSAGE_BAD_LINK);
-        } catch (IOException e) {
-            throw new SocialException(MESSAGE_BAD_LINK);
         } catch (SocialException e) {
             throw new SocialException("No Preferred Link");
         }
@@ -357,10 +364,18 @@ public class Social {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         for (int i = 1; i < 5; i++) {
-            builder.append(links[i - 1]);
-            builder.append(" ");
+            if (links[i - 1] == null) {
+                builder.append("<none> ");
+            } else {
+                builder.append(links[i - 1]);
+                builder.append(" ");
+            }
         }
-        builder.append(preferred);
+        if (preferred == null) {
+            builder.append("<none>");
+        } else {
+            builder.append(preferred);
+        }
         builder.append(" ");
         builder.append(links[4]);
         return builder.toString();
