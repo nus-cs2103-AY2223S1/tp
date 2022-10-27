@@ -3,10 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Stack;
 import java.util.EmptyStackException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -56,9 +56,9 @@ public class CalculateCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CalculateCommand
-                        // instanceof handles nulls
+                // instanceof handles nulls
                 && expression.equals(((CalculateCommand) other).expression));
-                        // state check
+                // state check
     }
 
     /**
@@ -94,9 +94,9 @@ public class CalculateCommand extends Command {
         }
 
         // Convert infix expression format into Reverse Polish notation
-        public static String[] expressionToRPN(String[] inputTokens) {
-            // Reverse Polish notation, small r to make checkstyle happy
-            ArrayList<String> rPN = new ArrayList<>();
+        public static String[] expressionToRpn(String[] inputTokens) {
+            // Reverse Polish notation
+            ArrayList<String> Rpn = new ArrayList<>();
             Stack<String> stack = new Stack<>();
 
             // For each token
@@ -108,7 +108,7 @@ public class CalculateCommand extends Command {
                     while (!stack.empty()
                             && isOperator(stack.peek())
                             && comparePrecedence(token, stack.peek()) <= 0) {
-                        rPN.add(stack.pop());
+                        Rpn.add(stack.pop());
                     }
                     // Push the new operator on the stack
                     stack.push(token);
@@ -118,22 +118,22 @@ public class CalculateCommand extends Command {
                 } else if (token.equals(")")) {
                     // If token is a right parenthesis
                     while (!stack.empty() && !stack.peek().equals("(")) {
-                        rPN.add(stack.pop());
+                        Rpn.add(stack.pop());
                     }
                     stack.pop();
                 } else {
                     // If token is a number
-                    rPN.add(token);
+                    Rpn.add(token);
                 }
             }
             while (!stack.empty()) {
-                rPN.add(stack.pop());
+                Rpn.add(stack.pop());
             }
-            String[] rPNStrArr = new String[rPN.size()];
-            return rPN.toArray(rPNStrArr);
+            String[] RpnStrArr = new String[Rpn.size()];
+            return Rpn.toArray(RpnStrArr);
         }
 
-        public static double RPNtoDouble(String[] tokens) {
+        public static double rpntoDouble(String[] tokens) {
             Stack<String> stack = new Stack<>();
 
             for (String token : tokens) {
@@ -171,11 +171,11 @@ public class CalculateCommand extends Command {
             String resultStr;
             System.out.println(userInput);
             try {
-                String[] input =  userInput.split(regex);
-                String[] output = expressionToRPN(input);
+                String[] input = userInput.split(regex);
+                String[] output = expressionToRpn(input);
                 System.out.println(" ");
-                // Feed the RPN string to RPNtoDouble to give result
-                Double result = RPNtoDouble(output);
+                // Feed the Rpn string to RpntoDouble to give result
+                Double result = rpntoDouble(output);
                 resultStr = String.format("%.2f", result);
             } catch (NumberFormatException | EmptyStackException nfe) {
                 resultStr = "INVALID EXPRESSION";
