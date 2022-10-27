@@ -141,10 +141,12 @@ public class SupplyItemCard extends UiPart<Region> {
             if (parsedAmount >= 0) {
                 amountInput.setText(String.valueOf(parsedAmount));
                 changeIncDecHandler.accept(parsedAmount);
+                increaseHandler.accept(parsedAmount);
+                executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
+            } else {
+                // When text field is empty, nothing is executed / accepted
+                amountInput.setText("");
             }
-
-            increaseHandler.accept(parsedAmount);
-            executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
         } catch (NumberFormatException nfe) {
             logger.info(EMPTY_INPUT_MESSAGE);
         }
@@ -167,10 +169,12 @@ public class SupplyItemCard extends UiPart<Region> {
             if (parsedAmount >= 0) {
                 amountInput.setText(String.valueOf(parsedAmount));
                 changeIncDecHandler.accept(parsedAmount);
+                decreaseHandler.accept(parsedAmount);
+                executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
+            } else {
+                // When input is empty, nothing is executed / accepted
+                amountInput.setText("");
             }
-
-            decreaseHandler.accept(parsedAmount);
-            executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
         } catch (NumberFormatException nfe) {
             logger.info(EMPTY_INPUT_MESSAGE);
         }
