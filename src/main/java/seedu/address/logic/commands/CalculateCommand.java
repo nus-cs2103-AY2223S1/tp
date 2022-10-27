@@ -95,7 +95,7 @@ public class CalculateCommand extends Command {
         }
 
         // Convert infix expression format into Reverse Polish notation
-        public static String[] expressionTorpn(String[] inputTokens) {
+        public static String[] expressionToRpn(String[] inputTokens) {
             // Reverse Polish notation
             ArrayList<String> rpn = new ArrayList<>();
             Stack<String> stack = new Stack<>();
@@ -130,11 +130,14 @@ public class CalculateCommand extends Command {
             while (!stack.empty()) {
                 rpn.add(stack.pop());
             }
+
+            assert stack.empty(): "Stack is not empty at the end";
+
             String[] rpnStrArr = new String[rpn.size()];
             return rpn.toArray(rpnStrArr);
         }
 
-        public static double rpntoDouble(String[] tokens) {
+        public static double rpnToDouble(String[] tokens) {
             Stack<String> stack = new Stack<>();
 
             for (String token : tokens) {
@@ -171,12 +174,16 @@ public class CalculateCommand extends Command {
             String regex = "((?<=[(|)|\\+|\\*|\\-|/])|(?=[(|)|\\+|\\*|\\-|/]))";
             String resultStr;
             System.out.println(userInput);
+            assert OPERATORS.containsKey("+"): "Don't have addition";
+            assert OPERATORS.containsKey("-"): "Don't have subtraction";
+            assert OPERATORS.containsKey("*"): "Don't have multiplication";
+            assert OPERATORS.containsKey("/"): "Don't have division";
             try {
                 String[] input = userInput.split(regex);
-                String[] output = expressionTorpn(input);
+                String[] output = expressionToRpn(input);
                 System.out.println(" ");
                 // Feed the rpn string to rpntoDouble to give result
-                Double result = rpntoDouble(output);
+                Double result = rpnToDouble(output);
                 resultStr = String.format("%.2f", result);
             } catch (NumberFormatException | EmptyStackException nfe) {
                 resultStr = "INVALID EXPRESSION";
