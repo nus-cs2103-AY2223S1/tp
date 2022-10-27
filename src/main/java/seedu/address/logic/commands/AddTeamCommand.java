@@ -36,7 +36,7 @@ public class AddTeamCommand extends Command {
 
     public static final String MESSAGE_TEAM_EXISTS = "There is already an existing team with the same name!";
 
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
+    @CommandLine.Parameters(arity = "1")
     private String teamName;
 
     @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG}, defaultValue = Team.DEFAULT_DESCRIPTION)

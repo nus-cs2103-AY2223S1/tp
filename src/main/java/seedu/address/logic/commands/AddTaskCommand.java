@@ -46,7 +46,7 @@ public class AddTaskCommand extends Command {
     @CommandLine.Parameters(arity = "1")
     private String taskName;
 
-    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "")
+    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "", arity = "*")
     private String[] assignees;
 
     @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG}, defaultValue = "")

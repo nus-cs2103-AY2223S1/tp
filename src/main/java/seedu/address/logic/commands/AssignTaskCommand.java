@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INDEX_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INDEX_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +39,7 @@ public class AssignTaskCommand extends Command {
     @CommandLine.Option(names = {FLAG_INDEX_STR, FLAG_INDEX_STR_LONG}, required = true)
     private Index taskIndex;
 
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
+    @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, required = true, arity = "1..*")
     private String[] assignees;
 
     public AssignTaskCommand() {
