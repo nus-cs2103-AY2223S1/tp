@@ -1,11 +1,13 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 import seedu.address.testutil.PersonBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PhoneContainsNumberPredicateTest {
 
@@ -37,12 +39,12 @@ public class PhoneContainsNumberPredicateTest {
     }
 
     @Test
-    public void test_PhoneContainsNumber_returnsTrue() {
+    public void test_phoneContainsNumber_returnsTrue() {
         assertTrue(predicate.test(new PersonBuilder().withPhone("81234567").build()));
     }
 
     @Test
-    public void test_PhoneDoesNotContainNumber_returnsFalse() {
+    public void test_phoneDoesNotContainNumber_returnsFalse() {
         assertFalse(predicate.test(new PersonBuilder().withPhone("67891234").build()));
     }
 }
