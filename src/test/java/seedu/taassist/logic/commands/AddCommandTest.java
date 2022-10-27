@@ -13,10 +13,10 @@ import java.util.Collection;
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.model.ModelStub;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.stubs.ModelStub;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
 

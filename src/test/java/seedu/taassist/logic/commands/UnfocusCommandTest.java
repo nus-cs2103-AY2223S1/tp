@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.model.ModelStub;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.stubs.ModelStub;
 
 class UnfocusCommandTest {
 

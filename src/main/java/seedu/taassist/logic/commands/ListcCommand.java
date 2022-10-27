@@ -21,8 +21,9 @@ public class ListcCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         ObservableList<ModuleClass> moduleClasses = model.getModuleClassList();
+        if (moduleClasses.isEmpty()) {
+            return new CommandResult(MESSAGE_EMPTY_CLASS_LIST);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleClasses));
     }
-
-
 }
