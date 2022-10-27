@@ -450,8 +450,12 @@
     -fx-border-radius: 7;
 }
 
-#risk, #plan, #plans .label {
+#risk, #plan, #plans .label, #notes, #note{
     -fx-text-fill: -contrast-background;
+}
+
+#note {
+    -fx-padding: 16px;
 }
 
 

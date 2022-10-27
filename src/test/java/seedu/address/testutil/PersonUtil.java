@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
@@ -50,6 +51,7 @@ public class PersonUtil {
         portfolio.getPlans().stream().forEach(
                 s -> sb.append(PREFIX_PLAN + s.value + " ")
         );
+        sb.append(PREFIX_NOTE + portfolio.getNote().value + " ");
         return sb.toString();
     }
 
@@ -84,6 +86,9 @@ public class PersonUtil {
                 plans.forEach(s -> sb.append(PREFIX_PLAN).append(s.value).append(" "));
             }
         }
+
+        descriptor.getNote().ifPresent(note -> sb.append(PREFIX_NOTE).append(note.value).append(" "));
+
         return sb.toString();
     }
 }
