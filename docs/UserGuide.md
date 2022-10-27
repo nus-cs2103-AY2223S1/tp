@@ -227,7 +227,7 @@ Adds a formatted description of dates students attended class in address book.
 
 Format: `attendance INDEX h/ATTENDACE`
 
-*Adds grade progress to student with the specified `INDEX`.</br>
+*Adds grade progress to student with the specified `INDEX`.<br>
 *Attendance must be in `YYYY-MM-DD` format
 
 Examples:
@@ -239,7 +239,7 @@ Adds a formatted session timing to student, expected to repeat weekly.
 
 Format: `session INDEX s/TUITION_TIME`
 
-*Adds tuition time to student with the specified `INDEX`.</br>
+*Adds tuition time to student with the specified `INDEX`.<br>
 *Tuition time must be in `DDD HH-MM` format
 
 Examples:
@@ -251,7 +251,7 @@ Updates a student's lesson plan by overwriting the current one. Can only be used
 
 Format: `lesson INDEX lp/LESSON_PLAN`
 
-*Updates lesson plan of student with the specified `INDEX`.</br>
+*Updates lesson plan of student with the specified `INDEX`.<br>
 
 Examples:
 *`lesson 1 lp/science` changes lesson plan of first student to science.
