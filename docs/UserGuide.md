@@ -8,7 +8,12 @@ Interface (CLI) while still providing the benefits of a Graphical User Interface
 of the command line/terminal will be able to plan and manage their modules much faster than doing it
 on [nusmods.com](https://www.nusmods.com).
 
+Developed with love by: 
+Linus, Cheng Yi, Yihong, Huzaifa, Hong Jin
+
 * Table of Contents {:toc}
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
