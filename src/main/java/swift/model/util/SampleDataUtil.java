@@ -59,19 +59,23 @@ public class SampleDataUtil {
                 new Task(UUID.fromString("08a458c9-4f0e-4819-a716-1876ff57356f"),
                         new TaskName("Discuss user requirements"),
                         Optional.of(new Description("Draw diagrams")),
-                        Optional.of(new Deadline("12-12-2022 1400"))),
+                        Optional.of(new Deadline("12-12-2022 1400")),
+                        false),
                 new Task(UUID.fromString("9f1d7d61-e75b-41f2-b66b-1ce95ec251e3"),
                         new TaskName("Update developer guide"),
                         Optional.of(new Description("Include UML diagram")),
-                        Optional.empty()),
+                        Optional.empty(),
+                        true),
                 new Task(UUID.fromString("990b1561-ea5f-498d-96e6-eab5381b609e"),
                         new TaskName("Review PR"),
                         Optional.empty(),
-                        Optional.of(new Deadline("14-12-2022 1800"))),
+                        Optional.of(new Deadline("14-12-2022 1800")),
+                        false),
                 new Task(UUID.fromString("f2b134b4-d505-463c-bc10-0e72c4566002"),
                         new TaskName("Brainstorm user stories"),
                         Optional.of(new Description("Meeting link: https://www.meeting.com")),
-                        Optional.of(new Deadline("14-12-2022 1800")))
+                        Optional.of(new Deadline("14-12-2022 1800")),
+                        true)
         ));
     }
 

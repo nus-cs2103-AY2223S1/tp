@@ -34,7 +34,7 @@ public class AddTaskCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T Tutorial "
-            + PREFIX_DESCRIPTION + "Finish questions"
+            + PREFIX_DESCRIPTION + "Finish questions "
             + PREFIX_DEADLINE + "12-12-2022 1200 "
             + PREFIX_CONTACT + "1 "
             + PREFIX_CONTACT + "2";
