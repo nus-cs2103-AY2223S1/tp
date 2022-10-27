@@ -1,15 +1,19 @@
 package eatwhere.foodguide.logic.parser;
 
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_RANDOM;
 import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.Messages;
+import eatwhere.foodguide.logic.commands.FindCommand;
 import eatwhere.foodguide.logic.commands.FindCuisineCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.eatery.CuisineContainsKeywordsPredicate;
+import eatwhere.foodguide.model.eatery.Eatery;
 
 /**
  * Parses input arguments and creates a new FindLocationCommand object
@@ -23,11 +27,6 @@ public class FindCuisineCommandParser implements Parser<FindCuisineCommand> {
      * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
     public FindCuisineCommand parse(String args) throws ParseException, DisplayCommandHelpException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP);
-
-        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
-            throw new DisplayCommandHelpException(FindCuisineCommand.MESSAGE_USAGE);
-        }
 
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
@@ -35,9 +34,36 @@ public class FindCuisineCommandParser implements Parser<FindCuisineCommand> {
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCuisineCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP, PREFIX_RANDOM);
 
-        return new FindCuisineCommand(new CuisineContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
+            throw new DisplayCommandHelpException(FindCuisineCommand.MESSAGE_USAGE);
+        }
+
+        Predicate<Eatery> predicate;
+        if (argMultimap.getPreamble().isEmpty()) {
+            predicate = eatery -> true;
+        } else {
+            String[] nameKeywords = argMultimap.getPreamble().split("\\s+");
+            predicate = new CuisineContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+        }
+
+        if (argMultimap.getValue(PREFIX_RANDOM).isEmpty()) {
+            return new FindCuisineCommand(predicate);
+        }
+
+        try {
+            int numRandPicks = Integer.parseInt(argMultimap.getValue(PREFIX_RANDOM).get());
+            if (numRandPicks <= 0) {
+                throw new NumberFormatException();
+            }
+            return new FindCuisineCommand(predicate, numRandPicks);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_INVALID_NUMTOSHOW),
+                    nfe);
+        }
+
     }
 
 }
