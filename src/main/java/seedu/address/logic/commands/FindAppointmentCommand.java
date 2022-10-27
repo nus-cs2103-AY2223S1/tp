@@ -30,7 +30,7 @@ public class FindAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " t/x-ray \n"
             + "Example: " + COMMAND_WORD + " s/2022 \n"
             + "Example: " + COMMAND_WORD + " d/Dr. Tan\n"
-            + "Example: " + COMMAND_WORD + " n/alice t/x-ray s/2022 d/Dr. Tan";
+            + "Example: " + COMMAND_WORD + " n/alice t/x-ray s/2022 d/Dr Tan";
 
     private final Predicate<Appointment> predicate;
 
