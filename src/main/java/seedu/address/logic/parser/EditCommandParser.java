@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REMARK_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -47,21 +50,13 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                         PREFIX_GOODS, PREFIX_QUANTITY, PREFIX_PRICE, PREFIX_DATE);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditClientCommand.MESSAGE_USAGE), pe);
-        }
         String mode = argMultimap.getValue(PREFIX_MODE).orElse("").split(" ", 2)[0];
 
         switch (mode) {
         case "client":
-            return parseEditClientCommand(argMultimap, index);
+            return parseEditClientCommand(argMultimap);
         case "transaction":
-            return parseEditTransactionCommand(argMultimap, index);
+            return parseEditTransactionCommand(argMultimap);
         case "remark":
             return parseEditRemarkCommand(args);
         default:
@@ -90,10 +85,18 @@ public class EditCommandParser implements Parser<EditCommand> {
      * and returns an EditClientCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    protected EditClientCommand parseEditClientCommand(ArgumentMultimap argMultimap, Index index)
+    protected EditClientCommand parseEditClientCommand(ArgumentMultimap argMultimap)
             throws ParseException {
 
         StringBuilder warningMessage = new StringBuilder();
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX, pe);
+        }
+
         EditClientCommand.EditClientDescriptor editClientDescriptor = new EditClientCommand.EditClientDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editClientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -129,8 +132,17 @@ public class EditCommandParser implements Parser<EditCommand> {
      * and returns an EditTransactionCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    protected EditTransactionCommand parseEditTransactionCommand(ArgumentMultimap argMultimap,
-                                                              Index index) throws ParseException {
+    protected EditTransactionCommand parseEditTransactionCommand(ArgumentMultimap argMultimap)
+            throws ParseException {
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX, pe);
+        }
+
         EditTransactionCommand.EditTransactionDescriptor editTransactionDescriptor =
                 new EditTransactionCommand.EditTransactionDescriptor();
         if (argMultimap.getValue(PREFIX_GOODS).isPresent()) {
@@ -162,7 +174,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODE, PREFIX_TAG);
 
         String [] arguments = args.split(" m/remark ");
-        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_REMARK_DISPLAYED_INDEX, pe);
+        }
 
         if (arguments.length < 2 || arguments[1].isEmpty()) {
             throw new ParseException(EditRemarkCommand.MESSAGE_NOT_EDITED);

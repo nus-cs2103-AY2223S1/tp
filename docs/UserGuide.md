@@ -98,8 +98,8 @@ Adds a client to the list.
 
 Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 
-* Tags are optional.
-* Multiple tags can be tagged to the client.
+* `TAG` is optional.
+* Multiple `TAG` can be tagged to the client.
 * No restrictions on the phone input field and email input field, but a warning will be given if it deviates from the standard convention.
     * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
 
@@ -153,15 +153,18 @@ Example:
 
 Creates a new remark for the specified client.
 
-Format: `remark INDEX REMARK`
+Format: `remark INDEX REMARK [t/TAG]...`
 
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `TAG` is optional.
+* Multiple `TAG` can be tagged to the client.
 * The parameter `REMARK` cannot be empty.
 
 Examples:
 * `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
-* `remark 5 fast and decisive` adds the remark `fast and decisive` to the client at index 5.
+* `remark 5 fast and decisive t/favourite` adds the remark `fast and decisive` to the client at index 5. The remark 
+also has a tag `favourite`. 
 
 ### Deleting a client / transaction / remark : `delete`
 
@@ -226,6 +229,7 @@ Format: `filter TYPE`
 * The `TYPE` refers to the type of transactions to be displayed. 
 It can only be `buy` or `sell`.
 * If no clients made any transactions, the transaction section will be blank.
+* After calling the `filter` command, the client list panel will display all clients.
 
 Examples:
 * `filter buy` displays all buy transactions.
@@ -358,7 +362,7 @@ _Details coming soon ..._
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find John`                                                                                                |
 | **Help**       | `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                         |
 | **List**       | `list`                                                                                                                                                 |
-| **Remark**     | `remark INDEX REMARK`<br> e.g., `remark 3 Punctual Buyer`                                                                                              |                                                                     |
+| **Remark**     | `remark INDEX REMARK [t/TAG]...`<br> e.g., `remark 3 Punctual Buyer` or `remark 5 Fast and Decisive Buyer t/favourite`                                 |                                                                     |
 | **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                          |
 | **Sort**       | `sort INDEX ORDER` <br> e.g.,`sort 1 latest` or `sort 3 oldest`                                                                                        | 
 | **User Guide** | `user_guide`                                                                                                                                           |
