@@ -51,6 +51,8 @@ User Interface (GUI) will help you slowly adjust to using our CLI.
 
 So what are you waiting for? Start using FinBook today!
 
+---
+
 # 2. How to Use this User Guide?
 
 1. To get familiar with this user guide you can continue reading [How to Use this User Guide](#how-to-use-this-user-guide)
@@ -173,8 +175,6 @@ Examples:
   r/high pl/Prudential Health note/Client is currently having COVID`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
 
----
-
 ### 4.1.2. Editing a client : `edit`
 
 Edits an existing client in the FinBook.
@@ -194,7 +194,6 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower`.
 
----
 
 ### 4.1.3. Deleting a client : `delete`
 
@@ -255,7 +254,6 @@ Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
 
----
 
 ### 4.1.4. Listing all clients : `list`
 
@@ -263,13 +261,11 @@ Shows a list of all clients in the FinBook.
 
 Format: `list`
 
----
 
 ### 4.1.5. Finding a client : `find`
 
 (toc)
 
----
 
 ### 4.1.6. Viewing Portfolio of a specific client: `view`
 
@@ -331,7 +327,6 @@ Examples:
 Financial book data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
----
 
 ### 4.3.2. Editing the data file
 
@@ -342,7 +337,6 @@ update data directly by editing that data file.
 If your changes to the data file makes its format invalid, FinBook will discard all data and start with an empty data file at the next run.
 </div>
 
----
 
 ### 4.3.3. Importing data : `import`
 
@@ -375,7 +369,6 @@ Examples:
 * `import ./data.json` imports data from the file `data.json` which is located in the same directory as the FinBook executable
 * `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the FinBook executable
 
----
 
 ### 4.3.4. Exporting data : `export`
 
@@ -392,7 +385,6 @@ Examples:
 * `export ./data.csv` exports data to the file `data.csv` which is located in the same directory as the FinBook executable
 * `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the FinBook executable
 
----
 
 ### 4.3.5. Copying a client's data : `copy`
 
@@ -414,7 +406,6 @@ Tags: friends
 
 * Press `Ctrl-V` to paste the copied text.
 
----
 
 ### Sorting clients : `sort`
 
@@ -460,7 +451,6 @@ Toggle the visibility of FinBook by clicking on the `open eye` or `close eye` ic
 **:information_source: Your mode preference will be automatically saved ** 
 </div>
 
----
 
 ### 4.3.7. Exiting the application : `exit`
 
