@@ -42,17 +42,17 @@ public class StageUtil {
     // 'STAR': https://www.themuse.com/advice/star-interview-method
     // 'online mock interviews': https://interviewing.io/?urc=DMCa
     private static final List<String> technicalInterviewTips = Arrays.asList(
-            "Mainly looking at your soft-skills and your ability to adapt and navigate about scenarios presented in the workplace.",
-            "Prepare relevant-to-the-role experiences beforehand, especially if it’s from school projects because you’re still a student! ;)",
-            "Try out the STAR framework to keep your answers concise and relevant to the question.",
-            "Be yourself! Be natural and confident. If it helps, practice with a friend and let them evaluate you. You can also try scheduling online mock interviews to put your skills to the test."
-    );
-
-    private static final List<String> behavioralInterviewTips = Arrays.asList(
             "Do not jump into coding right away. Coding questions tend to be vague and underspecified on purpose to gauge your attention to detail and carefulness. Ask at least 2-3 clarifying questions!",
             "Before starting, go through the different ways you could solve this question, discussing the time and space complexity tradeoffs!",
             "Explain what you are trying to achieve as you are coding to your interviewer, so he knows exactly what you are doing at each step!",
             "Once finished, remember to ALWAYS check that your code compiles and works for edge cases as well!"
+    );
+
+    private static final List<String> behavioralInterviewTips = Arrays.asList(
+            "Mainly looking at your soft-skills and your ability to adapt and navigate about scenarios presented in the workplace.",
+            "Prepare relevant-to-the-role experiences beforehand, especially if it’s from school projects because you’re still a student! ;)",
+            "Try out the STAR framework to keep your answers concise and relevant to the question.",
+            "Be yourself! Be natural and confident. If it helps, practice with a friend and let them evaluate you. You can also try scheduling online mock interviews to put your skills to the test."
     );
 
     private static final List<String> phoneInterviewTips = Arrays.asList(
