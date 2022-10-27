@@ -1,11 +1,13 @@
 {
-  "persons": [ {
+  "foods": [ {
     "name": "Bread",
     "tagged": "Breakfast",
+    "dateTime" : "2022-10-20T15:22:02.886911",
     "calorie": "200"
   }, {
     "name": "Food With Invalid meal type",
     "tagged": "Brunch",
+    "dateTime" : "2022-10-20T15:21:02.886911",
     "calorie": "200"
   } ],
   "calorieTarget" : {

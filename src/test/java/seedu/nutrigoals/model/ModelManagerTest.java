@@ -9,12 +9,16 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_EARLIER_TIME;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
 import static seedu.nutrigoals.testutil.TypicalFoods.BREAD;
+import static seedu.nutrigoals.testutil.TypicalFoods.MAX_CALORIE_FOOD;
+import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
@@ -25,6 +29,7 @@ import seedu.nutrigoals.testutil.UserBuilder;
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
+    private ModelManager typicalModelManager = new ModelManager(getTypicalNutriGoals(), new UserPrefs());
 
     @Test
     public void constructor() {
@@ -128,8 +133,55 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getCalorieDifference() {
+        assertEquals(-12000, typicalModelManager.getCalorieDifference());
+    }
+
+    @Test
+    public void getTotalCalorie() {
+        assertEquals(new Calorie("14000"), typicalModelManager.getTotalCalorie());
+    }
+
+    @Test
+    public void isAddedTotalCalorieTooLarge_notTooLarge_returnFalse() {
+        assertFalse(typicalModelManager.isAddedTotalCalorieTooLarge(APPLE));
+    }
+
+    @Test
+    public void isAddedTotalCalorieTooLarge_tooLarge_returnTrue() {
+        assertTrue(typicalModelManager.isAddedTotalCalorieTooLarge(MAX_CALORIE_FOOD));
+    }
+
+    @Test
+    public void isEditedTotalCalorieTooLarge_notTooLarge_returnFalse() {
+        assertFalse(typicalModelManager.isEditedTotalCalorieTooLarge(APPLE, BREAD));
+    }
+
+    @Test
+    public void isEditedTotalCalorieTooLarge_tooLarge_returnTrue() {
+        assertTrue(typicalModelManager.isEditedTotalCalorieTooLarge(MAX_CALORIE_FOOD, APPLE));
+    }
+
+    @Test
     public void getFoodCalorieList() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFoodCalorieList().clear());
+    }
+
+    @Test
+    public void calculateCalorieIntakeProgress() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.addFood(APPLE);
+        modelManager.setCalorieTarget(new Calorie("2500"));
+        assertEquals(0.8, modelManager.calculateCalorieIntakeProgress());
+    }
+
+    @Test
+    public void getCalorieIntakeProgress() {
+        DoubleProperty expectedProgress = new SimpleDoubleProperty(2.0);
+        ModelManager modelManager = new ModelManager();
+        modelManager.addFood(APPLE);
+        modelManager.setCalorieTarget(new Calorie("1000"));
+        assertEquals(expectedProgress.get(), modelManager.getCalorieIntakeProgress().get());
     }
 
     @Test
@@ -172,5 +224,4 @@ public class ModelManagerTest {
         modelManager.updateFilteredFoodList(new IsFoodAddedOnThisDatePredicate(dateTime));
         assertFalse(modelManager.equals(new ModelManager(nutriGoals, userPrefs)));
     }
-
 }

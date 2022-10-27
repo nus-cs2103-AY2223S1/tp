@@ -15,7 +15,7 @@ public class Calorie {
      * Initialises a Calorie object.
      */
     public Calorie() {
-        this.value = "2000";
+        value = "2000";
     }
 
     /**
@@ -56,11 +56,9 @@ public class Calorie {
      * @return Caloric difference
      */
     public int calculateDifference(Calorie other) {
-        int operand1 = this.getCalorieValue();
+        int operand1 = getCalorieValue();
         int operand2 = other.getCalorieValue();
-        int diff = operand1 - operand2;
-
-        return diff;
+        return operand1 - operand2;
     }
 
     /**
@@ -69,11 +67,41 @@ public class Calorie {
      * @return Sum of two calorie
      */
     public Calorie addCalorie(Calorie other) {
-        int operand1 = this.getCalorieValue();
+        int operand1 = getCalorieValue();
         int operand2 = other.getCalorieValue();
         int sum = operand1 + operand2;
 
         return new Calorie(Integer.toString(sum));
+    }
+
+    /**
+     * Checks if the sum of the values of two {@code Calorie} objects will result in integer overflow.
+     * @param other {@code Calorie} to add.
+     * @return True if the calorie sum results in integer overflow.
+     */
+    public boolean isCalorieSumTooLarge(Calorie other) {
+        int operand1 = getCalorieValue();
+        int operand2 = other.getCalorieValue();
+        try {
+            Math.addExact(operand1, operand2);
+            return false;
+        } catch (ArithmeticException e) {
+            return true;
+        }
+    }
+
+    /**
+     * Calculates the proportion of this {@code Calorie} to the given {@code Calorie}.
+     * @param other The {@code Calorie} to calculate the proportion with respect to.
+     * @return The proportion of this {@code Calorie} to the given {@code Calorie}.
+     */
+    public double calculateProportion(Calorie other) {
+        int numerator = getCalorieValue();
+        int denominator = other.getCalorieValue();
+        if (denominator == 0) {
+            return 1.0;
+        }
+        return (double) numerator / denominator;
     }
 
     @Override

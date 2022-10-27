@@ -10,13 +10,13 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Food names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Food names should only contain alphanumeric characters and spaces, and it should not be blank or too long";
 
     /*
      * The first character of the Name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]{0,26}";
 
     public final String fullName;
 
@@ -48,7 +48,7 @@ public class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                && fullName.equalsIgnoreCase(((Name) other).fullName)); // state check
     }
 
     @Override

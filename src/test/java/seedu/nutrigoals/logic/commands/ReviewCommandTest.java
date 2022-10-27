@@ -34,9 +34,10 @@ public class ReviewCommandTest {
     @Test
     public void execute_calorieDeficiency_success() {
         ReviewCommand reviewCommand = new ReviewCommand();
-        String expectedMessage = String.format(ReviewCommand.MESSAGE_REVIEW_DETAILS, ACTUAL_CALORIE_COUNT,
-                HIGHER_CALORIE_COUNT, String.format(ReviewCommand.MESSAGE_CALORIE_DEFICIENCY,
-                        HIGHER_CALORIE_COUNT - ACTUAL_CALORIE_COUNT));
+        String calorieDeficiencyStatus = String.format(ReviewCommand.MESSAGE_CALORIE_DEFICIENCY,
+                HIGHER_CALORIE_COUNT - ACTUAL_CALORIE_COUNT);
+        String expectedMessage = String.format(ReviewCommand.MESSAGE_REVIEW_DETAILS, EXACT_CALORIE_TARGET,
+                HIGHER_CALORIE_TARGET, calorieDeficiencyStatus);
 
         model.setCalorieTarget(HIGHER_CALORIE_TARGET);
         expectedModel.setCalorieTarget(HIGHER_CALORIE_TARGET);
@@ -46,9 +47,10 @@ public class ReviewCommandTest {
     @Test
     public void execute_calorieExcess_success() {
         ReviewCommand reviewCommand = new ReviewCommand();
-        String expectedMessage = String.format(ReviewCommand.MESSAGE_REVIEW_DETAILS, ACTUAL_CALORIE_COUNT,
-                LOWER_CALORIE_COUNT, String.format(ReviewCommand.MESSAGE_CALORIE_EXCESS,
-                        ACTUAL_CALORIE_COUNT - LOWER_CALORIE_COUNT));
+        String calorieExcessStatus = String.format(ReviewCommand.MESSAGE_CALORIE_EXCESS,
+                ACTUAL_CALORIE_COUNT - LOWER_CALORIE_COUNT);
+        String expectedMessage = String.format(ReviewCommand.MESSAGE_REVIEW_DETAILS, EXACT_CALORIE_TARGET,
+                LOWER_CALORIE_TARGET, calorieExcessStatus);
 
         model.setCalorieTarget(LOWER_CALORIE_TARGET);
         expectedModel.setCalorieTarget(LOWER_CALORIE_TARGET);
@@ -59,8 +61,8 @@ public class ReviewCommandTest {
     @Test
     public void execute_calorieSufficiency_success() {
         ReviewCommand reviewCommand = new ReviewCommand();
-        String expectedMessage = String.format(ReviewCommand.MESSAGE_REVIEW_DETAILS, ACTUAL_CALORIE_COUNT,
-                ACTUAL_CALORIE_COUNT, ReviewCommand.MESSAGE_CALORIE_SUFFICIENCY);
+        String expectedMessage = String.format(ReviewCommand.MESSAGE_REVIEW_DETAILS, EXACT_CALORIE_TARGET,
+                EXACT_CALORIE_TARGET, ReviewCommand.MESSAGE_CALORIE_SUFFICIENCY);
 
         model.setCalorieTarget(EXACT_CALORIE_TARGET);
         expectedModel.setCalorieTarget(EXACT_CALORIE_TARGET);

@@ -125,6 +125,15 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_editedFoodWithLargeCalorie_failure() {
+        EditFoodDescriptor descriptor =
+                new EditFoodDescriptorBuilder().withCalorie(Integer.toString(Integer.MAX_VALUE)).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_MEAL, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_EDITED_CALORIE_TOO_LARGE);
+    }
+
+    @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_MEAL, DESC_BREAKFAST);
 

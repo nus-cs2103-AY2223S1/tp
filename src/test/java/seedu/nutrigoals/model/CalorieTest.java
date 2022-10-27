@@ -11,6 +11,11 @@ import seedu.nutrigoals.model.tag.Tag;
 
 class CalorieTest {
 
+    private static final Calorie DEFAULT_CALORIE = new Calorie();
+    private static final Calorie ZERO_CALORIE = new Calorie("0");
+    private static final Calorie SMALL_CALORIE = new Calorie("1");
+    private static final Calorie LARGE_CALORIE = new Calorie(Integer.toString(Integer.MAX_VALUE));
+
     @Test
     public void isValidCalorie() {
         assertTrue(Calorie.isValidCalorie("0"));
@@ -23,8 +28,8 @@ class CalorieTest {
 
     @Test
     public void getCalorieValue() {
-        assertEquals(new Calorie("2000").getCalorieValue(), 2000);
-        assertEquals(new Calorie("0").getCalorieValue(), 0);
+        assertEquals(DEFAULT_CALORIE.getCalorieValue(), 2000);
+        assertEquals(ZERO_CALORIE.getCalorieValue(), 0);
     }
 
     @Test
@@ -53,5 +58,25 @@ class CalorieTest {
         Calorie calorie1 = new Calorie("160");
         Calorie calorie2 = new Calorie("140");
         assertEquals(expectedCalorie, calorie1.addCalorie(calorie2));
+    }
+
+    @Test
+    public void isCalorieSumTooLarge_largeSum_returnTrue() {
+        assertTrue(SMALL_CALORIE.isCalorieSumTooLarge(LARGE_CALORIE));
+    }
+
+    @Test
+    public void isCalorieSumTooLarge_smallSum_returnFalse() {
+        assertFalse(SMALL_CALORIE.isCalorieSumTooLarge(SMALL_CALORIE));
+    }
+
+    @Test
+    public void calculateProportion_nonZeroDenominator_success() {
+        assertEquals(2000, DEFAULT_CALORIE.calculateProportion(SMALL_CALORIE));
+    }
+
+    @Test
+    public void calculateProportion_zeroDenominator_success() {
+        assertEquals(1, DEFAULT_CALORIE.calculateProportion(ZERO_CALORIE));
     }
 }

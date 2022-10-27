@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.NutriGoals;
 import seedu.nutrigoals.model.meal.Food;
 
@@ -29,14 +28,13 @@ public class TypicalFoods {
             .withTag("dinner").build();
 
     // Manually added
-    public static final Food SUSHI = new FoodBuilder().withName("Sushi")
-            .withTag("dinner").build();
+    public static final Food SUSHI = new FoodBuilder().withName("sushi")
+            .withTag("dinner").withCalorie("200").build();
     public static final Food PANCAKE = new FoodBuilder().withName("Pancake")
             .withTag("lunch").build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
-    public static final Calorie TARGET_CALORIE = new Calorie();
+    public static final Food MAX_CALORIE_FOOD =
+            new FoodBuilder().withCalorie(Integer.toString(Integer.MAX_VALUE)).build();
 
     private TypicalFoods() {} // prevents instantiation
 

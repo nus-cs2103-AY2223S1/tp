@@ -19,6 +19,7 @@ public class Food {
     private final Tag tag;
     private final DateTime dateTime;
 
+
     /**
      * Every field must be present and not null.
      */
@@ -112,10 +113,11 @@ public class Food {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Calories: ")
+        builder.append("Food name: ")
+                .append(getName())
+                .append("\nCalorie content: ")
                 .append(getCalorie())
-                .append("; Tag")
+                .append("\nMeal type: ")
                 .append(getTag());
 
         return builder.toString();

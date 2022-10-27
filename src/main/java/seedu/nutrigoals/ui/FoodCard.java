@@ -43,7 +43,7 @@ public class FoodCard extends UiPart<Region> {
         this.food = food;
         id.setText(displayedIndex + ". ");
         name.setText(food.getName().fullName);
-        calorie.setText(food.getCalorie().value);
+        calorie.setText(food.getCalorie().value + " calories");
         tags.getChildren().add(new Label(food.getTag().getTagName()));
     }
 
