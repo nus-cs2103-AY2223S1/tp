@@ -13,7 +13,7 @@ public class SortProjectStatusCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the FYP projects "
             + "by the current project status, in the order YTS, IP followed by DONE"
-            + "Note that the format is fixed, hence only " + COMMAND_WORD + " is accepted"
+            + "Note that the format is fixed, hence only " + COMMAND_WORD + " is accepted\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Projects sorted by project status!";

@@ -471,7 +471,7 @@ The following sequence diagram shows how the FindCommand operation works:
     * Cons: Much harder to implement, as it requires a field-less search.
 
 
-### \[Proposed\] `Sort` Feature
+### `Sort` Feature
 #### Proposed Implementation
 
 This feature allows professors to sort the FYP projects by their specialisation, or by
