@@ -10,7 +10,6 @@ import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 
 
 
-
 /**
  * Parses input arguments and creates a new FindModulesCommand object
  */
@@ -21,7 +20,7 @@ public class FindModulesCommandParser implements Parser<FindModulesCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindModulesCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+        String trimmedArgs = args.trim().toLowerCase();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModulesCommand.MESSAGE_USAGE));

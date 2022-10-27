@@ -350,6 +350,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if {@code examToEdit} is linked to any task, otherwise false.
+     */
+    public boolean isExamLinkedToTask(Exam examToEdit) {
+        requireNonNull(examToEdit);
+        return tasks.isExamLinkedToTask(examToEdit);
+    }
+    /**
      * Replaces task by changing its given module field from {@code previousModule}
      * to {@code newModule} for tasks that have their module field as {@code previousModule}.
      * @param previousModule The module in the task's module field.
@@ -370,6 +377,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireAllNonNull(previousModule, newModule);
         exams.updateModuleFieldForExam(previousModule, newModule);
     }
+
 
     @Override
     public boolean equals(Object other) {
