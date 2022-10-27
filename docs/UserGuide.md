@@ -7,7 +7,9 @@ title: User Guide
 
 ![Ui](images/ug/Ui.png)
 
-GithubContact is an address book **integrated with Github's Public API**, targeted at programmers to help them communicate and collaborate smoothly.
+GithubContact is an address book **integrated with Github's Public API**, targeted at collaborative software engineers to help them communicate and collaborate smoothly.
+
+This guide contains all you need to get started on working with GithubContact.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
@@ -55,7 +57,7 @@ GithubContact is an address book **integrated with Github's Public API**, target
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add name/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add name/NAME`, `NAME` is a parameter which can be used as `add name/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `name/NAME [tag/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
