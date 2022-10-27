@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Gim is a **desktop app for managing gym exercises, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Gim commands are inspired by those of Vim. If you are an avid Vim user and can type fast, Gim can help you manage your exercise routines with greater efficiency than traditional GUI apps.
+Gim is a **desktop app for managing and tracking gym exercises, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Gim commands are inspired by those of Vim. If you are an avid Vim user and can type fast, Gim can help you keep track of your workouts and personal records for each exercise. Gim can also help you to craft a workout based on your personal records.
 
 ### Table of Contents
 #### Getting Started
@@ -12,7 +12,7 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 * Result Display 
 * Recognised Exercise Names List
 
-#### Features
+#### Commands
 * Adding an exercise **:add**
 * Deleting an exercise **:delete**
 * Listing all exercises **:list**
@@ -176,7 +176,7 @@ such as Find or Range has been executed.
 **Q**: How do I change the way an exercise is stored and displayed?
 <br>
 **A**: The way you format the exercise name when you first add it will be the way it is displayed in the system. After that,
-all exercises added that have the [same defined name](#Adding and Deleting from the Exercise Name List) will be grouped under the same exercise and generate the same exercise card. 
+all exercises added that have the [same defined name](#Adding-and-Deleting-from-the-Exercise-Name-List) will be grouped under the same exercise and generate the same exercise card. 
 To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises. 
 
 **Q**: Can I edit an exercise?
