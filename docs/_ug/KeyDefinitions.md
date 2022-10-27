@@ -33,3 +33,23 @@ Feel free to add tags as you see fit to organize your inventory. Examples of how
 Tags can be renamed and these changes would be reflected on all items immediately.
 
 FoodRem Tags are unique by name and case-sensitive. This means you cannot add two or more tags of the same name.
+
+#### Flags
+
+Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
+
+| Flags | Related Placeholder   |
+|-------|-----------------------|
+| n/    | ITEM_NAME<br>TAG_NAME |
+| qty/  | QUANTITY              |
+| u/    | UNIT                  |
+| buy/  | BOUGHT_DATE           |
+| exp/  | EXPIRY_DATE           |
+| p/    | PRICE                 |
+| r/    | REMARKS               |
+
+#### Placeholders
+
+Placeholders are words in uppercase to show you what type of parameters you can supply to a command.
+
+{% include_relative _ug/Placeholders.md %}
