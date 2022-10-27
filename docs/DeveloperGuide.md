@@ -302,12 +302,13 @@ Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Orde
 ![AddOrderState2Final](images/developer-guide/AddOrderState3.png);
 
 Step 4. The user then enters `done` after inputting all the required order item details. On the following `AddOrderCommand#execute()` method call,
-the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`. The built up `Order` object is finally added to the model's `OrderList`.
+the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`. 
+The built up `Order` object is finally added to the model's `OrderList`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'. The model will then be unaffected.
 </div>
 
-**_Object diagram to be added here_**
+![AddOrderState2Final](images/developer-guide/AddOrderState4.png);
 
 The following sequence diagram shows how the add order operation works:
 

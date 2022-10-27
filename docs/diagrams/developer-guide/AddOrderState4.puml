@@ -6,7 +6,7 @@ skinparam classBackgroundColor ORDER_MODEL_COLOR
 skinparam objectBackgroundColor ORDER_MODEL_COLOR
 hide empty members
 
-title "TrackO Application State After Step 2b"
+title "TrackO Application State After Step 4"
 
 package "Model" {
     package Inventory {
@@ -24,62 +24,50 @@ package "Model" {
             quantity = 243
         }
 
-        InventoryList --right> Item1
-        InventoryList --> Item2
+        InventoryList --up> Item1
+        InventoryList --up> Item2
     }
 
     package Orders {
         Object "__:OrderList__" as OrderList ORDER_MODEL_COLOR_T4 {
         }
+
+        Object "__:Quantity__" as Quantity1 ORDER_MODEL_COLOR {
+            value = 3
+        }
+
+        Object "__:Quantity__" as Quantity2 ORDER_MODEL_COLOR {
+            value = 2
+        }
+
+        Object "__:ItemQuantityPair__" as ItemQuantityPair1 ORDER_MODEL_COLOR {
+        }
+
+        Object "__:ItemQuantityPair__" as ItemQuantityPair2 ORDER_MODEL_COLOR {
+        }
+
+        Object "__toAdd:Order__" as OrderToAdd ORDER_MODEL_COLOR {
+            name = "John Doe"
+            phone = 98765432
+            email = "johnd@example.com"
+            address = "311, Clementi Ave 2, #02-25"
+        }
     }
+
+    OrderList --> OrderToAdd
+
+    OrderToAdd --> ItemQuantityPair1
+    OrderToAdd --> ItemQuantityPair2
+
+    ItemQuantityPair1 --up> Quantity1
+    ItemQuantityPair1 --> Item2
+    ItemQuantityPair2 --up> Quantity2
+    ItemQuantityPair2 --> Item1
 }
+
 
 package Logic {
-Object "__:LogicManager__" as LogicManager LOGIC_COLOR_T4 {
-
-}
-
-Object "__:AddOrderCommand__" as AddOrderCommand LOGIC_COLOR_T4 {
-    isAwaitingInput = true
-}
-
-LogicManager -> AddOrderCommand :inProgressCommand >
-
-
-Object "__:Quantity__" as Quantity1 ORDER_MODEL_COLOR {
-    value = 3
-}
-
-Object "__:Quantity__" as Quantity2 ORDER_MODEL_COLOR {
-    value = 2
-}
-
-Object "__:ItemQuantityPair__" as ItemQuantityPair1 ORDER_MODEL_COLOR {
-
-}
-
-Object "__:ItemQuantityPair__" as ItemQuantityPair2 ORDER_MODEL_COLOR {
-
-}
-
-Object "__toAdd:Order__" as OrderToAdd ORDER_MODEL_COLOR {
-    name = "John Doe"
-    phone = 98765432
-    email = "johnd@example.com"
-    address = "311, Clementi Ave 2, #02-25"
-}
-
-AddOrderCommand --down> OrderToAdd
-
-OrderToAdd --up> ItemQuantityPair2
-OrderToAdd --left> ItemQuantityPair1
-
-ItemQuantityPair1 -up> Quantity1
-ItemQuantityPair1 -right> Item2
-
-ItemQuantityPair2 -up> Quantity2
-ItemQuantityPair2 -up> Item1
-
+Object "__:LogicManager__" as LogicManager LOGIC_COLOR_T4
 }
 
 
