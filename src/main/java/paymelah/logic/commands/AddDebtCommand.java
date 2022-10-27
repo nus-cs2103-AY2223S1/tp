@@ -16,6 +16,7 @@ import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.exceptions.CommandException;
 import paymelah.model.Model;
 import paymelah.model.debt.Debt;
+import paymelah.model.debt.exceptions.DuplicateDebtException;
 import paymelah.model.person.Person;
 
 /**
@@ -37,6 +38,7 @@ public class AddDebtCommand extends Command {
             + PREFIX_TIME + "09:00";
 
     public static final String MESSAGE_ADD_DEBT_SUCCESS = "Added debt %1$s to %2$s";
+    public static final String MESSAGE_DUPLICATE_DEBT = "Debt %1$s already exists under %2$s";
 
     private final Set<Index> indices;
     private final Debt debt;
@@ -74,10 +76,15 @@ public class AddDebtCommand extends Command {
 
         for (int i = 0; i < size; i++) {
             Person personToEdit = debtors.get(i);
-            Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
-                    personToEdit.getTelegram(), personToEdit.getAddress(), personToEdit.getTags(),
-                    personToEdit.getDebts().addDebt(debt.copyDebt()));
-            model.setPerson(personToEdit, editedPerson);
+            try {
+                Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
+                        personToEdit.getTelegram(), personToEdit.getAddress(), personToEdit.getTags(),
+                        personToEdit.getDebts().addDebt(debt.copyDebt()));
+                model.setPerson(personToEdit, editedPerson);
+            } catch (DuplicateDebtException e) {
+                model.undoAddressBook();
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_DEBT, debt, personToEdit.getName()));
+            }
 
             if (i == 0) {
                 nameList.append(personToEdit.getName());

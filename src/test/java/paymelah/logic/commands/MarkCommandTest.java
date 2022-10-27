@@ -53,7 +53,7 @@ public class MarkCommandTest {
 
         String mainMessage = String.format(MarkCommand.MESSAGE_MARK_DEBT_SUCCESS, editedDebtor.getName());
         StringBuilder expectedMessage = new StringBuilder(mainMessage);
-        expectedMessage.append("1. ").append(toMark.toString()).append("\n");
+        expectedMessage.append("1. ").append(toMark.setPaid(true).toString()).append("\n");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedDebtor);
@@ -75,9 +75,10 @@ public class MarkCommandTest {
 
         String mainMessage = String.format(MarkCommand.MESSAGE_MARK_DEBT_SUCCESS, editedDebtor.getName());
         StringBuilder expectedMessage = new StringBuilder(mainMessage);
-        expectedMessage.append("1. ").append(toMark.toString()).append("\n");
+        expectedMessage.append("1. ").append(toMark.setPaid(true).toString()).append("\n");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        showDebtors(expectedModel);
         expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedDebtor);
 
         assertCommandSuccess(markCommand, model, expectedMessage.toString(), expectedModel);
@@ -97,8 +98,8 @@ public class MarkCommandTest {
 
         String mainMessage = String.format(MarkCommand.MESSAGE_MARK_DEBT_SUCCESS, editedDebtor.getName());
         StringBuilder expectedMessage = new StringBuilder(mainMessage);
-        expectedMessage.append("1. ").append(toMarkOne.toString()).append("\n");
-        expectedMessage.append("2. ").append(toMarkTwo.toString()).append("\n");
+        expectedMessage.append("1. ").append(toMarkOne.setPaid(true).toString()).append("\n");
+        expectedMessage.append("2. ").append(toMarkTwo.setPaid(true).toString()).append("\n");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_SEVENTH_PERSON.getZeroBased()), editedDebtor);
@@ -122,10 +123,11 @@ public class MarkCommandTest {
 
         String mainMessage = String.format(MarkCommand.MESSAGE_MARK_DEBT_SUCCESS, editedDebtor.getName());
         StringBuilder expectedMessage = new StringBuilder(mainMessage);
-        expectedMessage.append("1. ").append(toMarkOne.toString()).append("\n");
-        expectedMessage.append("2. ").append(toMarkTwo.toString()).append("\n");
+        expectedMessage.append("1. ").append(toMarkOne.setPaid(true).toString()).append("\n");
+        expectedMessage.append("2. ").append(toMarkTwo.setPaid(true).toString()).append("\n");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        showDebtors(expectedModel);
         expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIFTH_PERSON.getZeroBased()), editedDebtor);
 
         assertCommandSuccess(markCommand, model, expectedMessage.toString(), expectedModel);

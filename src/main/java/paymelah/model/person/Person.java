@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import paymelah.logic.parser.ParserUtil.PersonDescriptor;
 import paymelah.model.debt.DebtList;
 import paymelah.model.debt.Money;
 import paymelah.model.tag.Tag;
@@ -38,6 +39,20 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.debts = debts;
+    }
+
+    /**
+     * Constructs a new {@code Person} based off a given {@code PersonDescriptor}.
+     * @param descriptor the {@code PersonDescriptor} to base off of
+     */
+    public Person(PersonDescriptor descriptor) {
+        assert descriptor.getName().isPresent();
+        this.name = descriptor.getName().get();
+        this.phone = descriptor.getPhone().orElse(Phone.EMPTY_PHONE);
+        this.telegram = descriptor.getTelegram().orElse(Telegram.EMPTY_TELEGRAM);
+        this.address = descriptor.getAddress().orElse(Address.EMPTY_ADDRESS);
+        descriptor.getTags().ifPresent(this.tags::addAll);
+        this.debts = new DebtList();
     }
 
     public Name getName() {

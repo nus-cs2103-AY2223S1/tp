@@ -2,7 +2,6 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
-import static paymelah.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -65,6 +64,8 @@ public class UnmarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        model.saveAddressBook();
+        // Command message is saved to undo history after string is built below.
         Person debtorToUpdate = lastShownList.get(debtorIndex.getZeroBased());
         List<Debt> initialDebts = debtorToUpdate.getDebts().asList();
         Set<Debt> debtsToUnmark = new HashSet<>();
@@ -80,7 +81,6 @@ public class UnmarkCommand extends Command {
         Person updatedDebtor = createUpdatedDebtor(debtorToUpdate, debtsToUnmark);
 
         model.setPerson(debtorToUpdate, updatedDebtor);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         String result = String.format(MESSAGE_UNMARK_DEBT_SUCCESS, updatedDebtor.getName());
         StringBuilder builder = new StringBuilder(result);
@@ -88,11 +88,12 @@ public class UnmarkCommand extends Command {
         int i = 1;
         for (Debt debt : debtsToUnmark) {
             builder.append(i + ". ")
-                    .append(debt)
+                    .append(debt.setPaid(false))
                     .append("\n");
             i++;
         }
 
+        model.saveCommandMessage(builder.toString());
         return new CommandResult(builder.toString());
     }
 
