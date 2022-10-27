@@ -9,7 +9,47 @@ myStudents is **a desktop app for managing students of a tuition center, optimiz
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Layout 
 
+
+###Command Box
+
+This is where you key in commands. After typing the commands, simply press `return` on your keyboard to execute them. 
+
+###Feedback Box
+
+This is where the feedback information would be displayed after you execute a command. For example, after you keyed in an invalid command, the feedback “Invalid format” would be shown in the box for your reference.
+
+###List Display Panel
+
+
+This is where the current list of entities is shown. Only one of the three entities, student, tutor and class will be shown at one time.
+
+###List Tabs
+
+There would be three tabs, student, tutor and class indicating the current displayed list shown in the list display panel.
+
+
+### Description Panel
+
+This is where the description of a specified student or tutor is shown. When there is no person on display, the line “No Person Displayed” would be shown.
+
+
+### Toolbar 
+
+#### File 
+
+The ` File`  menu contains `Export` and Exit`. 
+`Export` allows you to export your data into a `.csv` file. 
+ `Exit` allows the software to exit after three seconds of pause.
+
+#### Help
+
+`Help` allows you to view the help information regarding the software.
+
+#### Theme
+
+ `Theme` allows you to change the color scheme of the software. There are four themes provided: `Light Theme`, `Dark Theme`,  `Green Theme` and `Pink Theme`.
 
 ## Features
 
@@ -105,6 +145,17 @@ student/tutor beforehand.
 
 Examples:
 * `unassign 1 n/P3 maths`
+
+### Showing the details of a person: `show`
+
+In the student and tutor list, the details of the persons are hidden due to security concerns. You could access the person’s details by executing the show command.
+
+Format: `show [index]` 
+*`show 1` shows the description of the first student in the list
+
+Note that `show` is an invalid command for class list since the details of classes are already in the class list, thus when you are in the class list.
+*`show 2` is an invalid command 
+
 
 ### Exporting address books to csv
 
