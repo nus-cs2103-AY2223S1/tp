@@ -63,8 +63,7 @@ public class ViewStatsCommand extends Command {
                 return new CommandResult(String.format(Messages.MESSAGE_CLASS_SORTED_BY_GRADE, className)
                         + String.format(Messages.MESSAGE_DISPLAY_MEAN, exam, className, mean));
             } catch (ExamNotFoundException e) {
-                throw new CommandException(e.getMessage()
-                        + "\nMean cannot be calculated, class will be sorted by alphabetical order");
+                return new CommandResult(e.getMessage() + "\nMean cannot be calculated.");
             }
         }
     }

@@ -158,14 +158,16 @@ public class Student {
                 .append("\nId: ")
                 .append(getId())
                 .append("\nClass: ")
-                .append(getClassName())
-                .append("\nParent Name: ")
-                .append(getParentName())
-                .append("\nParent Phone: ")
-                .append(getPhone())
-                .append("\nParent Email: ")
-                .append(getEmail());
-
+                .append(getClassName());
+        if(!getParentName().isEmpty()) {
+            builder.append("\nParent Name: ").append(getParentName());
+        }
+        if(!getPhone().isEmpty()) {
+            builder.append("\nParent Phone: ").append(getPhone());
+        }
+        if(!getEmail().isEmpty()) {
+            builder.append("\nParent Email: ").append(getEmail());;
+        }
         Set<Exam> examSet = getExams();
         if (!examSet.isEmpty()) {
             builder.append("\nExams: ");

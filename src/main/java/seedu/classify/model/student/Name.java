@@ -47,6 +47,13 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if current fullName is empty.
+     */
+    public boolean isEmpty() {
+        return this.fullName == "";
+    }
+
     @Override
     public String toString() {
         return fullName;
