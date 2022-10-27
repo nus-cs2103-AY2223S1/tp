@@ -10,21 +10,29 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 
 * [Quick start](#quick-start)
 * [Features](#features)
-   * Viewing help : [`help`](#viewing-help--help)
-   * Adding a person: [`add`](#adding-a-person-add)
-   * Listing all persons : [`list`](#listing-all-persons--list)
-   * Editing a person : [`edit`](#editing-a-person--edit)
-   * Deleting a person : [`delete`](#deleting-a-person--delete)
-   * Find a person: [`find`](#find-entries-by-keywords-of-fields--find-keyword-eg-find-john)
-   * Clearing all entries : [`clear`](#clearing-all-entries--clear)
-   * Undoing last command : [`undo`](#undo-last-modification--undo)
-   * Sorting entries by field : [`sort`](#sort-entries-by-field--sort-prefix-eg-sort-n)
-   * Add a person to a group: [`addtogroup`](#adding-a-person-to-a-group--addtogroup)
-   * Remove a person from a group: [`ungroup`](#removing-a-person-from-a-group--ungroup)
-   * Open a group window: [`group`](#opening-a-group-window--group)
-   * Email all persons in a group: [`emailall`](#email-all-persons-in-a-group--emailall)
-   * Add a person to favorite : [`fav`](#add-a-person-to-favorite--fav)
-   * Find persons with a preferred social media : [`social`](#find-persons-with-a-preferred-social-media--social)
+  * [Basic Features](#basic-features):
+    1. Adding a person : [`add`](#adding-a-person-add)
+    2. Editing a person : [`edit`](#editing-a-person--edit)
+    3. Deleting a person : [`delete`](#deleting-a-person--delete)
+    4. Listing all persons : [`list`](#listing-all-persons--list)
+    5. Clearing all entries : [`clear`](#clearing-all-entries--clear)
+    6. Find a person: [`find`](#find-entries-by-keywords-of-fields--find-keyword-eg-find-john)
+    7. Sorting entries by field : [`sort`](#sort-entries-by-field--sort-prefix-eg-sort-n)
+  * Enhanced Features:
+    1. Add a person's occupation : 
+    2. Add a person's tutorial :
+    3. Add a person's social medias :
+    4. Add a person's preferred social media :
+    5. Add a person to favorite : [`fav`](#add-a-person-to-favorite--fav)
+    6. Add a person to a group: [`addtogroup`](#adding-a-person-to-a-group--addtogroup)
+    7. Remove a person from a group: [`ungroup`](#removing-a-person-from-a-group--ungroup)
+    8. Open a group window: [`group`](#opening-a-group-window--group)
+    9. Email all persons in a group: [`emailall`](#email-all-persons-in-a-group--emailall)
+    10. Find persons with a preferred social media : [`social`](#find-persons-with-a-preferred-social-media--social)
+  * General App Features:
+      1. Viewing help : [`help`](#viewing-help--help)
+      2. Undoing last command : [`undo`](#undo-last-modification--undo)
+      3. Exiting the app : [`exit`](#c-exiting-the-program--exit)
 * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -41,24 +49,8 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all CS2103T personnels.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to uNivUSal.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`undo`** : Undoes last modifying command.
-
-   * **`sort`** : Sorts entries.
-
-   * **`find`** : Finds a contact based on partial name/phone number
-
-  * **`exit`** : Exits the app.
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+open the help window.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -90,22 +82,13 @@ Note how the app contains some sample data.<br>
 
 </div>
 
-### Viewing help : `help`
+## Basic Features
 
-Shows a message explaining the basic features of the app and also provides a link to the website.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
+### a. Adding a person: `add`
 
 Adds a person to uNivUSal.
 
-
 Format: `add o/OCCUPATION n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -115,13 +98,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the CS2103T module.
-
-Format: `list`
-
-### Editing a person : `edit`
+### b. Editing a person : `edit`
 
 Edits an existing person in uNivUSal.
 
@@ -135,10 +112,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `janedoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and **clears** all existing tags.
+* `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `janedoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and **clears** all existing tags.
 
-### Deleting a person : `delete`
+### c. Deleting a person : `delete`
 
 Deletes the specified person from uNivUSal.
 
@@ -152,7 +129,21 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in uNivUSal.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Find entries by keywords of fields : `find KEYWORD` e.g. `find John`
+### d. Listing all persons : `list`
+
+Shows a list of all persons in uNivUSal.
+
+Format: `list`
+
+### e. Clearing all entries : `clear`
+
+Clears all entries from uNivUSal.
+
+Format: `clear`
+* Deletes every person in uNivUSal.
+* Only a blank uNivUSal will remain.
+
+### f. Find entries by keywords of fields : `find KEYWORD` e.g. `find John`
 
 Finds entries in uNivUSal that match or contain case-insensitive keyword. Current fields searchable are:
 1. Name
@@ -167,24 +158,7 @@ Examples:
 * `find J` displays the entries filtered by names that contain the case-insensitive KEYWORD `J`.
 * `find 123456` displays the entries filtered by phone numbers that contain the case-insensitive KEYWORD `123456`.
 
-### Clearing all entries : `clear`
-
-Clears all entries from uNivUSal.
-
-Format: `clear`
-* Deletes every person in uNivUSal.
-* Only a blank uNivUSal will remain.
-
-### Undo last modification : `undo`
-
-Undoes the last command that modifies the address book.
-
-Format: `undo`
-* Undoes the last modifying command.
-* Ignores modifying commands if they don't modify the address book.
-* Will cancel out when trying to undo an undo command.
-
-### Sort entries by field : `sort PREFIX/` e.g. `sort n/`
+### g. Sort entries by field : `sort PREFIX/` e.g. `sort n/`
 
 Sorts entries in uNivUSal by specific field prefix in an ascending manner. Current fields implemented are:
 1. Name `n/`
@@ -200,7 +174,28 @@ Examples:
 * `sort e/` displays the entries sorted by email address alphabetically.
 * `sort p/` displays the entries sorted by phone number in an ascending manner.
 
-### Adding a person to a group : `addtogroup`
+## Enhanced Features
+
+### a. Add a person's occupation
+
+### b. Add a person's tutorial
+
+### c. Add a person's social medias
+
+### d. Add a person's preferred social media
+
+### e. Add a person to favorite : `fav`
+
+Adds the specified person to `favorite` group.
+
+Format: `fav INDEX`
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `fav 1` will add 1st person in the current list to `favorite`.
+
+### f. Adding a person to a group : `addtogroup`
 
 Adds the specified person to the specified group.
 
@@ -214,7 +209,7 @@ Examples:
 * `addtogroup 1 friends` adds the 1st person in the current list to the group `friends`.
 
 
-### Removing a person from a group : `ungroup`
+### g. Removing a person from a group : `ungroup`
 
 Removes the specified person from the specified group.
 
@@ -227,7 +222,7 @@ Format: `ungroup INDEX GROUP`
 Examples:
 * `ungroup 1 friends` ungroups the 1st person in the current list from the group `friends`.
 
-### Opening a group window : `group`
+### h. Opening a group window : `group`
 
 Open a new window containing the persons in the group.
 
@@ -239,7 +234,7 @@ Format: `group GROUPNAME`
 Examples:
 * `group friends` opens a group window containing persons in the group `friends`.
 
-### Email all persons in a group : `emailall`
+### i. Email all persons in a group : `emailall`
 
 Open an email link to all persons in the specified group.
 
@@ -251,18 +246,7 @@ Format: `emailall GROUPNAME`
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
-### Add a person to favorite : `fav`
-
-Adds the specified person to `favorite` group.
-
-Format: `fav INDEX`
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `fav 1` will add 1st person in the current list to `favorite`. 
-
-### Find persons with a preferred social media : `social`
+### j. Find persons with a preferred social media : `social`
 
 Filters the current list to people who set their preferred social media to the input.
 
@@ -277,7 +261,26 @@ Format: `social SOCIAL`
 Examples:
 * `social telegram` will display a filtered list of persons with `telegram` as their preferred social media.
 
-### Exiting the program : `exit`
+## General App Features
+
+### a. Viewing help : `help`
+
+Shows a message explaining the basic features of the app and also provides a link to the website.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### b. Undo last modification : `undo`
+
+Undoes the last command that modifies the address book.
+
+Format: `undo`
+* Undoes the last modifying command.
+* Ignores modifying commands if they don't modify the address book.
+* Will cancel out when trying to undo an undo command.
+
+### c. Exiting the program : `exit`
 
 Exits the program.
 
