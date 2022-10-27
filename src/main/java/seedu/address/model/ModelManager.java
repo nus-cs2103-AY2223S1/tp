@@ -149,6 +149,8 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        selectedCustomer.setValue(null);
+        selectedCommission.setValue(null);
     }
 
     @Override

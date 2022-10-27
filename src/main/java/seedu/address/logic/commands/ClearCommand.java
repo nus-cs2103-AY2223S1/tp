@@ -8,12 +8,12 @@ import seedu.address.storage.Storage;
 import seedu.address.ui.GuiTab;
 
 /**
- * Clears the address book.
+ * Clears ArtBuddy.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "ArtBuddy has been cleared!";
 
 
     @Override
