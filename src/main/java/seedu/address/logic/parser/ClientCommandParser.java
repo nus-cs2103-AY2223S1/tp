@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ParserUtil.parseEmail;
 import static seedu.address.logic.parser.ParserUtil.parseEmailValidity;
+import static seedu.address.logic.parser.ParserUtil.parseIndexValidity;
 import static seedu.address.logic.parser.ParserUtil.parseName;
 import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
 import static seedu.address.logic.parser.ParserUtil.parsePhone;
@@ -206,7 +207,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
     private FindClientCommand parseFindClientCommand(String arguments) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE, PREFIX_CLIENT_ID);
 
         if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -228,10 +229,15 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             parseEmailValidity(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
+        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
+            parseIndexValidity(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+        }
+
         ClientContainsKeywordsPredicate predicate =
                 new ClientContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME),
                         argMultimap.getAllValues(PREFIX_EMAIL),
-                        argMultimap.getAllValues(PREFIX_MOBILE));
+                        argMultimap.getAllValues(PREFIX_MOBILE),
+                        argMultimap.getAllValues(PREFIX_CLIENT_ID));
 
         return new FindClientCommand(predicate);
     }

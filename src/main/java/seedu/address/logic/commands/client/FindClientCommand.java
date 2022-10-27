@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
@@ -24,11 +25,13 @@ public class FindClientCommand extends ClientCommand {
             + ": Finds clients by keyword.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + PREFIX_CLIENT_ID + "CLIENT ID "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_MOBILE + "MOBILE \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John "
+            + PREFIX_CLIENT_ID + "1 "
             + PREFIX_EMAIL + "john@gmail.com "
             + PREFIX_MOBILE + "12345678 ";
 
