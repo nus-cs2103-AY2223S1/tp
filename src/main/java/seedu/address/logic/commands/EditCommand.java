@@ -518,7 +518,7 @@ public class EditCommand extends Command {
         editPatient(model, patient, updatedDateSlotList);
     }
 
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
+    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
 
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -543,8 +543,7 @@ public class EditCommand extends Command {
         editCommand1.execute(model);
     }
 
-    private void editNurseForUnavailableDate(List<HomeVisit> homeVisitList, List<Date> fullyScheduledDateList)
-            throws CommandException {
+    private void editNurseForUnavailableDate(List<HomeVisit> homeVisitList, List<Date> fullyScheduledDateList) {
         this.editPersonDescriptor.setHomeVisits(homeVisitList);
         this.editPersonDescriptor.setFullyScheduledDates(fullyScheduledDateList);
     }

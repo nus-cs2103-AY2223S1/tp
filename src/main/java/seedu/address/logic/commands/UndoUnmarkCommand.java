@@ -109,7 +109,7 @@ public class UndoUnmarkCommand extends Command {
         editPatient(model, personToUndoUnmark, updatedDateSlotList);
     }
 
-    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) throws CommandException {
+    private void editPatient(Model model, Person patient, List<DateSlot> dateSlotList) {
         Uid uid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
         Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
