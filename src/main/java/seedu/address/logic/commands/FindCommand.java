@@ -12,10 +12,12 @@ import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
  */
 public class FindCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findproj";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all projects whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the exact specified keywords (but can be case-insensitive) and displays them as a "
+            + "list with index numbers.\n"
+            + "A Project called CS2103 TP can be found using these keywords: tp, TP, cs2103\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T";
 

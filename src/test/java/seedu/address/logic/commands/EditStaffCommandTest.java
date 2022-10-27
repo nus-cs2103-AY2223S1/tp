@@ -86,6 +86,7 @@ public class EditStaffCommandTest {
                 outOfBoundsIndex,
                 new EditStaffDescriptor(new EditStaffDescriptorBuilder().withName(VALID_STAFFNAME_ANDY).build()));
 
+        model.setFilteredStaffList(model.getFilteredProjectList().get(0));
         assertCommandFailure(command, model, EditStaffCommand.MESSAGE_DUPLICATE_STAFF);
 
     }
@@ -113,6 +114,7 @@ public class EditStaffCommandTest {
         Project expectedProject = new ProjectBuilder(validProject).build();
         expectedProject.getStaffList().setStaff(validStaff, validStaffTwo);
         expectedModel.addProject(expectedProject);
+        model.setFilteredStaffList(validProject);
         expectedModel.setFilteredStaffList(expectedProject);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
@@ -143,6 +145,7 @@ public class EditStaffCommandTest {
         Project expectedProject = new ProjectBuilder(validProject).build();
         expectedProject.getStaffList().setStaff(validStaff, validStaffTwo);
         expectedModel.addProject(expectedProject);
+        model.setFilteredStaffList(validProject);
         expectedModel.setFilteredStaffList(expectedProject);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
@@ -169,6 +172,7 @@ public class EditStaffCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Project expectedProject = new ProjectBuilder(validProject).build();
         expectedProject.getStaffList().setStaff(validStaff, validStaff);
+        model.setFilteredStaffList(validProject);
         expectedModel.addProject(expectedProject);
         expectedModel.setFilteredStaffList(expectedProject);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

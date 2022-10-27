@@ -3,16 +3,18 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -30,12 +32,13 @@ public class AddStaffCommandTest {
     }
 
     @Test
-    public void execute_validProjectValidStaff_success() {
+    public void execute_validIndexValidStaff_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Project validProject = new ProjectBuilder().build();
         model.addProject(validProject);
         Staff validStaff = new StaffBuilder().build();
-        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, validProject.getProjectName());
+        int len = model.getAddressBook().getProjectList().size() - 1;
+        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, Index.fromZeroBased(len));
 
         String expectedMessage = String.format(
                 AddStaffCommand.MESSAGE_ADD_STAFF_SUCCESS, validStaff, validProject.getProjectName().toString());
@@ -50,27 +53,29 @@ public class AddStaffCommandTest {
     }
 
     @Test
-    public void execute_validProjectInvalidStaff_throwsException() {
+    public void execute_validIndexInvalidStaff_throwsException() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Staff validStaff = new StaffBuilder().build();
         Project validProject = new ProjectBuilder().withStaff(validStaff).build();
         model.addProject(validProject);
-        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, validProject.getProjectName());
+        int len = model.getAddressBook().getProjectList().size() - 1;
+        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, Index.fromZeroBased(len));
 
-        String expectedMesage = String.format(AddStaffCommand.MESSAGE_DUPLICATE_STAFF,
+        String expectedMessage = String.format(AddStaffCommand.MESSAGE_DUPLICATE_STAFF,
                 validProject.getProjectName().toString());
 
-        assertCommandFailure(addStaffCommand, model, expectedMesage);
+        assertCommandFailure(addStaffCommand, model, expectedMessage);
     }
 
     @Test
-    public void execute_invalidProjectValidStaff_throwsException() {
+    public void execute_invalidIndexValidStaff_throwsException() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Staff validStaff = new StaffBuilder().build();
-        Project invalidProject = new ProjectBuilder().build();
-        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, invalidProject.getProjectName());
+        Index len = Index.fromZeroBased(model.getAddressBook().getProjectList().size() + 1);
 
-        String errorMessage = String.format(Messages.MESSAGE_INVALID_PROJECT, invalidProject.getProjectName());
+        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, len);
+
+        String errorMessage = Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 
         assertCommandFailure(addStaffCommand, model, errorMessage);
     }
@@ -79,13 +84,13 @@ public class AddStaffCommandTest {
     public void equals() {
         final Staff staff = new StaffBuilder().build();
         final ProjectName projectName = new ProjectName(VALID_NAME_AMY);
-        final AddStaffCommand addStaffCommand = new AddStaffCommand(staff, projectName);
+        final AddStaffCommand addStaffCommand = new AddStaffCommand(staff, INDEX_FIRST_PROJECT);
 
         // same object -> returns true
         assertTrue(addStaffCommand.equals(addStaffCommand));
 
         // same values -> returns true
-        assertTrue(addStaffCommand.equals(new AddStaffCommand(staff, new ProjectName(VALID_NAME_AMY))));
+        assertTrue(addStaffCommand.equals(new AddStaffCommand(staff, INDEX_FIRST_PROJECT)));
 
         // null -> returns false
         assertFalse(addStaffCommand.equals(null));
@@ -94,10 +99,10 @@ public class AddStaffCommandTest {
         assertFalse(addStaffCommand.equals(new ClearCommand()));
 
         // different project name -> returns false
-        assertFalse(addStaffCommand.equals(new AddStaffCommand(staff, new ProjectName(VALID_NAME_BOB))));
+        assertFalse(addStaffCommand.equals(new AddStaffCommand(staff, INDEX_SECOND_PROJECT)));
 
         // different staff -> returns false
         assertFalse(addStaffCommand.equals(new AddStaffCommand(
-                new StaffBuilder().withStaffName(VALID_STAFFNAME_ANDY).build(), projectName)));
+                new StaffBuilder().withStaffName(VALID_STAFFNAME_ANDY).build(), INDEX_FIRST_PROJECT)));
     }
 }

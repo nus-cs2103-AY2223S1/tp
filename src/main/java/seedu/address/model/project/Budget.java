@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Budget {
     public static final String MESSAGE_CONSTRAINTS =
-            "Budget should only contain numbers, and it should not be blank";
+            "Budget should only contain numbers, and it should not be blank. It also only allows for whole numbers";
 
     public static final String VALIDATION_REGEX = "\\d+";
 
