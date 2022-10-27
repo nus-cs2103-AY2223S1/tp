@@ -25,12 +25,12 @@ public class Group extends AbstractSingleItem {
     /**
      * Constructor to create a group object
      */
-    public Group(String groupName) {
+    public Group(Name groupName) {
         super(groupName, GROUP, GROUP);
-        assert isValidGroupName(groupName);
+        assert isValidGroupName(String.valueOf(groupName));
     }
 
-    /*
+    /**
      * Checks if the group name is valid. A group name is valid
      * if the group name is fully alphanumeric.
      *

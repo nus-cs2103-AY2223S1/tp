@@ -13,6 +13,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
+import seedu.address.model.attribute.Name;
 
 //@@author connlim
 /**
@@ -29,7 +30,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        String name = argMultimap.getValue(PREFIX_TITLE).get();
+        Name name = new Name(argMultimap.getValue(PREFIX_TITLE).get());
         String address = argMultimap.getValue(PREFIX_DESCRIPTION).get();
 
         Task task = new Task(name, "0%", address);

@@ -102,8 +102,8 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
             throw new IllegalValueException(String.format(INVALID_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
         }
-
-        Task task = new Task(modelName.getAttributeContent(), description, progress, modelLocalDateTime);
+        Name taskName = new Name(modelName.getAttributeContent());
+        Task task = new Task(taskName, description, progress, modelLocalDateTime);
         task.setTags(modelTags);
         modelAttributes.forEach(attribute -> task.addAttribute(attribute));
         return task;

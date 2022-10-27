@@ -76,7 +76,8 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
         final Name modelName = new Name(name);
         final Set<Tag> modelTags = new HashSet<>(groupTags);
 
-        Group group = new Group(modelName.fullName);
+        Name groupName = new Name(modelName.fullName);
+        Group group = new Group(groupName);
         group.setTags(modelTags);
         modelAttributes.forEach(attribute -> group.addAttribute(attribute));
         return group;

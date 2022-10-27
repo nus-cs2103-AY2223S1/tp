@@ -29,7 +29,7 @@ public class Person extends AbstractDisplayItem {
     /**
      * Every field must be present and not null.
      */
-    public Person(String name) {
+    public Person(Name name) {
         super(name, PERSON, GROUP);
         requireAllNonNull(name, fields);
     }
@@ -37,7 +37,7 @@ public class Person extends AbstractDisplayItem {
     /**
      * Every field must be present and not null.
      */
-    public Person(String name, Fields fields) {
+    public Person(Name name, Fields fields) {
         super(name, PERSON, GROUP);
         requireAllNonNull(name, fields);
         this.fields = fields;

@@ -175,7 +175,7 @@ public class ParserUtil {
             throw new ParseException(Group.MESSAGE_CONSTRAINTS);
         }
 
-        return new Group(group);
+        return new Group(new Name(group));
     }
 
     /**

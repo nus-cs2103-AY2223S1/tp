@@ -82,7 +82,8 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
         final Fields modelFields = fields.toModelType();
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Person p = new Person(modelName.fullName, modelFields);
+        Name personName = new Name(modelName.fullName);
+        Person p = new Person(personName, modelFields);
         p.setTags(modelTags);
         modelAttributes.stream().forEach(attribute -> p.addAttribute(attribute));
         return p;
