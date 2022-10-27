@@ -8,6 +8,7 @@ import java.util.function.Predicate;
  */
 public class TaskByDeadlinePredicate implements Predicate<Task> {
 
+    // TODO: Change to use a Deadline object instead
     private final List<String> dates;
 
     public TaskByDeadlinePredicate(List<String> dates) {
@@ -31,9 +32,10 @@ public class TaskByDeadlinePredicate implements Predicate<Task> {
 
     @Override
     public String toString() {
-        return this.dates.size() == 1
-                ? "Tasks due on or after '" + dates.get(0) + "'"
-                : "Tasks with no deadline";
+        assert this.dates.size() == 1 : "There should only be one date";
+        return dates.get(0).equals("")
+                ? "Tasks with no deadline"
+                : "Tasks due on or after '" + dates.get(0) + "'";
     }
 
 }
