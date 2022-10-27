@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -10,11 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS">
-<!--  <GridPane HBox.hgrow="NEVER">-->
-<!--    <columnConstraints>-->
-<!--      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />-->
-<!--    </columnConstraints>-->
-<!--    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">-->
       <GridPane minHeight="60" VBox.vgrow="ALWAYS" >
         <padding>
           <Insets top="5" right="5" bottom="5" left="15" />
@@ -30,7 +24,5 @@
         </HBox>
         <FlowPane fx:id="meetingTimes" alignment="CENTER_RIGHT" />
       </GridPane>
-<!--    </VBox>-->
-<!--  </GridPane>-->
 </HBox>
 
