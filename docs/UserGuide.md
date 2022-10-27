@@ -78,7 +78,7 @@ Format: `help`
 
 Adds a person to PayMeLah.
 
-Format: `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…`
+Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -86,7 +86,7 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend tele/betsycrowe a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal`
 
 ### Adding a debt: `adddebt`
 
