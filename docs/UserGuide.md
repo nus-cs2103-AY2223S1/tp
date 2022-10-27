@@ -3,18 +3,24 @@ layout: page
 title: User Guide
 ---
 
-Gim is a **desktop app for managing gym exercises, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Gim commands are inspired by those of Vim. If you are an avid Vim user and can type fast, Gim can help you manage your exercise routines with greater efficiency than traditional GUI apps.
+Gim is a **desktop app for managing and tracking gym exercises, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Gim commands are inspired by those of Vim. If you are an avid Vim user and can type fast, Gim can help you keep track of your workouts and personal records for each exercise. Gim can also help you to craft a workout based on your personal records.
 
 ### Table of Contents
 #### Getting Started
-#### Features
-* Adding an exercise **:a**
-* Deleting an exercise **:d**
-* Listing all exercises **:ls**
+#### GUI Orientation
+* Exercise List 
+* Result Display 
+* Recognised Exercise Names List
+
+#### Commands
+* Adding an exercise **:add**
+* Deleting an exercise **:delete**
+* Listing all exercises **:list**
 * Sorting all exercises **:sort**
 * Viewing all exercises within a time period **:range**
 * Viewing help **:help**
 * Exiting the program **:wq**
+
 #### Command Summary
 #### Glossary of Terminologies
 
@@ -38,6 +44,47 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 
 --------------------------------------------------------------------------------------------------------------------
 
+## GUI Orientation 
+
+![GUI](images/GUIOrientation.png)
+
+
+### Exercise List
+
+The `Exercise List Window` displays the latest input exercise (by the user) at the top of the list by default. All exercises
+added will be displayed in the list. The list may morph or reorder depending on the command issued by the user.
+
+### Result Display 
+
+The `Result Display Window` displays feedback after executing a command. It gives feedback to the user on the command executed.
+
+### Recognised Exercise Name List
+
+The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered 
+with the system. 
+<br><br>This list updates in real time and allows you to quickly keep track of the exercises you have input in the 
+past. Hence, even if the exercise list is populated, the `Recognised Exercise Name List Window` helps you in keeping track of 
+what you named your exercises so that your entries are consistent. It also helps you to identify any wrong spellings in the name 
+of the exercises you have input.
+
+![RecognisedList](images/RecognisedExercisesOrientation.png)
+
+* The Recognised Exercises count provides the number of unique exercises registered with the system. 
+* The Exercise List Entries count provide the number of entries in the `Exercise List Window`. 
+<br><br>
+#### Adding and Deleting from the Exercise Name List
+
+The `Recognised Exercise Name List Window` is generated based on the state of the Exercise List. Hence, by adding and deleting 
+to the Exercise List, the Recognised Exercise Name List is automatically updated.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+Exercise names are recognised as equal if their lower-cased, white-spaces removed forms are the same.<br><br> 
+I.E. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
+However, the first time you add an exercise with a unrecognised name, the Recognised Exercise Name List will save the form 
+you have input. Choose wisely!
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 
@@ -121,9 +168,21 @@ Format: `:wq`
 
 ## FAQ
 
-**Q**: Coming soon...
+**Q**: What is the use of the :list command? 
 <br>
-**A**:
+**A**: The List command is used to make the Exercise List display all exercises after a Exercise List morphing command 
+such as Find or Range has been executed. 
+
+**Q**: How do I change the way an exercise is stored and displayed?
+<br>
+**A**: The way you format the exercise name when you first add it will be the way it is displayed in the system. After that,
+all exercises added that have the [same defined name](#Adding-and-Deleting-from-the-Exercise-Name-List) will be grouped under the same exercise and generate the same exercise card. 
+To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises. 
+
+**Q**: Can I edit an exercise?
+<br>
+**A**: You can do so by deleting the entry and adding a new entry. 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -139,6 +198,7 @@ Format: `:wq`
 | **View range (2)**  | :range last/<number_of_days>                     | :range last/3                    |
 | **Help menu**       | :help                                            | :help                            |
 | **Exit program**    | :wq                                              | :wq                              |
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of Terminologies
