@@ -103,8 +103,7 @@ public class PersonCard extends UiPart<Region> {
     public void setTagStyle(Tag firstTag) {
         if (firstTag.isPotential()) {
             tags.setId("potentialTags");
-        }
-        else if(firstTag.isSecured()) {
+        } else if (firstTag.isSecured()) {
             tags.setId("securedTags");
         }
     }
