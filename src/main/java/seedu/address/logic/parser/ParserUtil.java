@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,10 +25,13 @@ import seedu.address.model.team.Url;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATETIME = "DateTime should have the following format yyyy-MM-dd HH:mm"
+            + " (e.g. 2022-01-01 10:01)";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -140,6 +146,18 @@ public class ParserUtil {
             throw new ParseException(Url.MESSAGE_CONSTRAINTS);
         }
         return new Url(trimmedUrlWithHttps);
+    }
+
+    /**
+     * Parses {@code String datetime} into a {@code LocalDateTime}
+     */
+    public static LocalDateTime parseLocalDateTime(String datetime) throws ParseException {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            return LocalDateTime.parse(datetime, formatter);
+        } catch (DateTimeParseException | NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_DATETIME);
+        }
     }
 
 }

@@ -45,9 +45,9 @@
   } ],
   "teams" : [ {
     "teamName" : "first",
-    "description" : "first group"
+    "description": "empty description"
   }, {
     "teamName" : "second",
-    "description" : "second group"
+    "description": "empty description"
   } ]
 }

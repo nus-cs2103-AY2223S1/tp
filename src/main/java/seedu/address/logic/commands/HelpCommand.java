@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
+import picocli.CommandLine;
 import seedu.address.model.Model;
 
 /**
  * Format full help instructions for every command for display.
  */
+@CommandLine.Command(name = "help")
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
@@ -18,4 +20,5 @@ public class HelpCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
+
 }

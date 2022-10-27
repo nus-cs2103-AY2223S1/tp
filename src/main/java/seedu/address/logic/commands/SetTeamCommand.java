@@ -6,6 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
+import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Team;
@@ -13,8 +14,9 @@ import seedu.address.model.team.Team;
 /**
  * Sets the current team to an existing team.
  */
+@CommandLine.Command(name = "team")
 public class SetTeamCommand extends Command {
-    public static final String COMMAND_WORD = "set_team";
+    public static final String COMMAND_WORD = "set team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets the current team to an existing team. \n"
@@ -27,10 +29,10 @@ public class SetTeamCommand extends Command {
 
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to set does not exist!";
 
-    private final Team targetTeam;
+    @CommandLine.Parameters(arity = "1")
+    private String targetTeamName;
 
-    public SetTeamCommand(Team targetTeam) {
-        this.targetTeam = targetTeam;
+    public SetTeamCommand() {
     }
 
     @Override
@@ -38,6 +40,7 @@ public class SetTeamCommand extends Command {
         requireNonNull(model);
         List<Team> teamList = model.getTeamList();
         Team currentTeam = model.getTeam();
+        Team targetTeam = new Team(targetTeamName);
         int teamIndex = teamList.indexOf(targetTeam);
 
         if (teamIndex == -1) {
@@ -58,6 +61,7 @@ public class SetTeamCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SetTeamCommand // instanceof handles nulls
-                && targetTeam.equals(((SetTeamCommand) other).targetTeam)); // state check
+                && targetTeamName.equals(((SetTeamCommand) other).targetTeamName)); // state check
     }
+
 }

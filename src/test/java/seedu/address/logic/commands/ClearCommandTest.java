@@ -10,6 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
+// TODO: Add implementation for tests
 public class ClearCommandTest {
 
     @Test
