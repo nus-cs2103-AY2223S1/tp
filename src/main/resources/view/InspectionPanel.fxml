@@ -97,7 +97,19 @@
           <ImageView fx:id="loanIndicator" fitWidth="20" fitHeight="20"/>
         </HBox>
         <StackPane HBox.hgrow="ALWAYS">
-          <ListView fx:id="historyListView" HBox.hgrow="ALWAYS"/>
+          <VBox styleClass="history-panel">
+            <padding>
+              <Insets top="5" bottom="5"/>
+            </padding>
+            <ListView fx:id="historyListView" HBox.hgrow="ALWAYS"/>
+            <HBox alignment="CENTER_RIGHT">
+              <Label id="normalScheme" fx:id="summaryText" text="summary" styleClass="cell_small_label">
+                <padding>
+                  <Insets topRightBottomLeft="5"/>
+                </padding>
+              </Label>
+            </HBox>
+          </VBox>
           <ImageView fx:id="noRecordsImage" fitHeight="120" preserveRatio="true"/>
         </StackPane>
       </HBox>

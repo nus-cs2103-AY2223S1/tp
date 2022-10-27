@@ -70,6 +70,9 @@ public class InspectionPanel extends UiPart<Region> {
     @FXML
     private ImageView noRecordsImage;
 
+    @FXML
+    private Label summaryText;
+
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
@@ -77,32 +80,42 @@ public class InspectionPanel extends UiPart<Region> {
     public InspectionPanel(ListView<Person> personListView) {
         super(FXML);
         setImageViews();
-        personListView.getSelectionModel().selectedItemProperty().addListener(
-                //CHECKSTYLE.OFF: SeparatorWrap
-                (obs, o, n) -> {
-                    name.setText(n.getName().fullName);
-                    email.setText(n.getEmail().value);
-                    phone.setText(n.getPhone().value);
-                    address.setText(n.getAddress().value);
-                    birthday.setText(n.getBirthday().value);
-
-                    historyListView.setItems(FXCollections.observableList(n.getHistoryWithTotal()));
-                    historyListView.setCellFactory(listView -> new HistoryListViewCell());
-
-                    if (historyListView.getItems().size() == 0) {
-                        noRecordsImage.setOpacity(1);
-                        loanIndicator.setOpacity(0);
-                    } else {
-                        noRecordsImage.setOpacity(0);
-                        loanIndicator.setOpacity(1);
-                    }
-
-                });
+        personListView.getSelectionModel().selectedItemProperty()
+                .addListener((obs, o, n) -> setInspectParameters(n));
 
         basicInformation.maxWidthProperty().bind(getRoot().widthProperty().multiply(0.33));
         basicInformation.prefWidthProperty().bind(basicInformation.maxWidthProperty());
 
         personListView.getSelectionModel().select(0);
+    }
+
+    private void setInspectParameters(Person n) {
+        String fullName = n.getName().fullName;
+        name.setText(fullName);
+        email.setText(n.getEmail().value);
+        phone.setText(n.getPhone().value);
+        address.setText(n.getAddress().value);
+        birthday.setText(n.getBirthday().value);
+
+        double loanAmount = n.getLoan().getAmount();
+        if (loanAmount >= 0) {
+            summaryText.setText(String.format("%s is due to pay $%.2f", fullName, loanAmount));
+        } else {
+            summaryText.setText(String.format("%s is to be paid $%.2f", fullName, -loanAmount));
+        }
+
+        historyListView.setItems(FXCollections.observableList(n.getHistoryWithTotal()));
+        historyListView.setCellFactory(listView -> new HistoryListViewCell());
+
+        if (historyListView.getItems().size() == 0) {
+            noRecordsImage.setOpacity(1);
+            loanIndicator.setOpacity(0);
+            summaryText.setOpacity(0);
+        } else {
+            noRecordsImage.setOpacity(0);
+            loanIndicator.setOpacity(1);
+            summaryText.setOpacity(1);
+        }
     }
 
     private void setImageViews() {
