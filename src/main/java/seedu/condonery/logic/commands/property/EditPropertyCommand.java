@@ -120,7 +120,7 @@ public class EditPropertyCommand extends Command {
         updatedProperty.setImageDirectoryPath(imageDirectoryPath);
         return updatedProperty;
     }
-    
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
