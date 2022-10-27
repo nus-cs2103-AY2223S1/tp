@@ -201,7 +201,8 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                         |                                                                                                                                   
+| Action       | Format, Examples                                                                                                                         |   
+
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold` |               
 | **Edit**     | `edit p/PHONE_NUMBER` or `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`edit p/91234567 r/1000`       |
