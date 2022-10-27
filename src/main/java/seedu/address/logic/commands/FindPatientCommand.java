@@ -26,17 +26,20 @@ public class FindPatientCommand extends Command {
             new CommandWord("findpatient", "fp");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients whose name/phone/email/address"
-            + "/tag/remark (according to prefix input) contains any of the specified keywords and displays them as "
+            + "/tag/remark (according to prefix input) contains any of the specified inputs and displays them as "
             + "a list with index numbers.\n"
-            + "Multiple prefixes can be used at once to filter patients.\n"
-            + "Parameters: prefix(s), KEYWORD [MORE_KEYWORDS]...\n"
+            + "Multiple prefixes can be used at once to filter patients, but only the tag prefix (t/) can be used "
+            + "more than once in one command.\n"
+            + "Inputs can have letters, numbers and/or special characters depending on constraints of a field.\n"
+            + "Parameters: prefix(s), INPUT [MORE_INPUTS]...\n"
             + "Example: " + COMMAND_WORD + " n/alex \n"
             + "Example: " + COMMAND_WORD + " p/91234567 \n"
             + "Example: " + COMMAND_WORD + " e/example \n"
             + "Example: " + COMMAND_WORD + " a/Blk 123 \n"
             + "Example: " + COMMAND_WORD + " t/friends \n"
             + "Example: " + COMMAND_WORD + " t/friends t/colleagues \n"
-            + "Example: " + COMMAND_WORD + " r/swim";
+            + "Example: " + COMMAND_WORD + " r/swim \n"
+            + "Example: " + COMMAND_WORD + " n/alex p/91234567 e/example a/Blk 123 t/friends r/swim";
 
     private final Predicate<Patient> predicate;
 
