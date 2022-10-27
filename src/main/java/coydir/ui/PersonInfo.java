@@ -87,7 +87,7 @@ public class PersonInfo extends UiPart<Region> {
      */
     public void update(Person person) {
         name.setText(person.getName().fullName);
-        employeeId.setText("Employee ID:  " + String.format("%6s", person.getEmployeeId().value).replace(' ', '0'));
+        employeeId.setText("Employee ID:  " + person.getEmployeeId().value);
         phone.setText("Phone number:  " + person.getPhone().value);
         email.setText("Email address:  " + person.getEmail().value);
         position.setText("Position:  " + person.getPosition().value);

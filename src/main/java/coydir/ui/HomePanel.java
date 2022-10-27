@@ -38,7 +38,7 @@ public class HomePanel extends UiPart<Region> {
     }
 
     private void initialize() {
-        Image logoImage = new Image(this.getClass().getResourceAsStream("/images/Coydir_logo.png"));
+        Image logoImage = new Image(this.getClass().getResourceAsStream("/images/Coydir_Logo.png"));
         logo.setImage(logoImage);
         message.setText(MESSAGE);
     }

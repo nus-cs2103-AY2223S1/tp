@@ -47,7 +47,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        employeeId.setText("Employee ID:  " + String.format("%6s", person.getEmployeeId().value).replace(' ', '0'));
+        employeeId.setText("Employee ID:  " + person.getEmployeeId().value);
         position.setText("Position:  " + person.getPosition().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
