@@ -22,9 +22,9 @@ public class SortCommand extends Command {
             + "Example: " + COMMAND_WORD + " NAME ASC";
     public static final String MESSAGE_UNKNOWN_ORDER_KEYWORD =
             "The order of Sort Command should be 'ASC' or 'DESC' or left empty.";
-    public static final String MESSAGE_UNKNOWN_TYPE_KEYWORD =
-            "You may sort by 'name', 'class' or 'owed' amount, followed by 'asc' or 'desc' order.\n" +
-                    "Example: sort owed asc";
+    public static final String MESSAGE_UNKNOWN_TYPE_KEYWORD = "You may sort by 'name', 'class' or 'owed' amount, "
+            + "followed by 'asc' or 'desc' order.\n"
+            + "Example: sort owed asc";
 
     /**
      * {@code TYPE} specifies what possible types {@code SortCommand} can accept.
