@@ -158,8 +158,9 @@ These are the specifications for the fields of 'Person' and 'Task'.
 
 Each field is implemented by a class with the same name, except for `Id` which is implemented using Java UUID class.
 
-Id is unique and automatically generated when person is added. Persons with the same fields are allowed as the Id distinguishes between Person objects.
-This is similar to mainstream contact applications that allow contacts with same details.
+Id is unique and automatically generated when person is added. 
+Persons with the same fields for email, phone or ID are not allowed.
+This is because these field would always be unique for each individual, so there should not be a situation where two individuals have the same data in any of these fields.
 
 | Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |------------|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -175,7 +176,10 @@ This is similar to mainstream contact applications that allow contacts with same
 
 Each Task is implemented by a class with the same name, except for `Status` which is implemented using a boolean.
 
-Id is unique and automatically generated when task is added. Tasks with the same fields are allowed as the Id distinguishes between Task objects.
+Id is unique and automatically generated when task is added. 
+Tasks with the same fields in all of description, deadline and tag are not allowed.
+This is because two tasks would be considered the same if they were the same task with the same deadline and labels.
+As we are maintaining a unique task list in our app, this is disallowed.
 
 | Field Name  | Description                                                                        | Constraints                                                     |
 |-------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
@@ -192,6 +196,10 @@ Each Tag is implemented by the class "Tag". Tags are non-empty strings and can b
 Tags must be unique, tags with same characters but in different cases are considered distinct. (e.g. Tag `cs2103t` and `CS2103T` are considered different and hence allowed )
 
 Tags, unlike Persons and Tasks, do not have an Id. This is because Tags should not have the same names and hence the name itself is sufficient to identify a Tag.
+
+Tags also include a count field. Each tag keeps track of the total number of times it is applied to either a contact or a task.
+This count updates dynamically in response to user input.
+For example, if a contact with multiple tags is deleted, the count in each of these tags will be decremented by one.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -237,6 +245,7 @@ The following sequence diagram shows how the add tag operation works:
 ![AddTagSequenceDiagram](images/AddTagSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design considerations:
 
@@ -787,7 +796,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
