@@ -119,4 +119,19 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
         }
         return true;
     }
+
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+        requireAllNonNull(target, editedTutorial);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TutorialNotFoundException();
+        }
+
+        if (!target.isSameTutorial(editedTutorial) && contains(editedTutorial)) {
+            throw new DuplicateTutorialException();
+        }
+
+        internalList.set(index, editedTutorial);
+    }
 }

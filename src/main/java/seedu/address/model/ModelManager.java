@@ -267,6 +267,12 @@ public class ModelManager implements Model {
         addressBook.removeTutorial(target);
     }
 
+    @Override
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
+        requireAllNonNull(target, editedTutorial);
+        addressBook.setTutorial(target, editedTutorial);
+    }
+
     //=========== Filtered Tutorial List Accessors =============================================================
 
     /**
