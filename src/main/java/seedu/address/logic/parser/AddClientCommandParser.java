@@ -55,8 +55,8 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
                 ? Optional.of(new Birthday(ParserUtil.parseDate(
                         argMultimap.getValue(PREFIX_BIRTHDAY).get(), "birthday")))
                 : Optional.empty();
-        Set<Product> product = ParserUtil.parseProducts(argMultimap.getAllValues(PREFIX_PRODUCT));
-        Client client = new Client(name, phone, email, address, birthday, product);
+        Set<Product> products = ParserUtil.parseProducts(argMultimap.getAllValues(PREFIX_PRODUCT));
+        Client client = new Client(name, phone, email, address, birthday, products);
         return new AddClientCommand(client);
     }
 
