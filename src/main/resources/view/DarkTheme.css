@@ -363,3 +363,17 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#books {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#books .label{
+    -fx-text-fill: white;
+    -fx-background-color: #e47200;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
