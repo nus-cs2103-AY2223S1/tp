@@ -25,11 +25,11 @@ package seedu.address.logic.commands;
 //import seedu.address.model.person.Person;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
 //import seedu.address.testutil.PersonBuilder;
-
-/**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
- */
-public class EditCommandTest {
+//
+///**
+// * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+// */
+//public class EditCommandTest {
 //
 //    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 //
@@ -168,5 +168,5 @@ public class EditCommandTest {
 //        // different descriptor -> returns false
 //        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
 //    }
-
-}
+//
+//}
