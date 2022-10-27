@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -18,7 +19,7 @@ import seedu.address.model.person.user.ExistingUser;
  */
 public class ModulesLeftCommand extends Command {
 
-    public static final String COMMAND_WORD = "mods left";
+    public static final String COMMAND_WORD = "modsleft";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the user what modules they have yet to clear "
             + "in order to fulfill core requirements or focus area requirements.\n"
@@ -27,14 +28,14 @@ public class ModulesLeftCommand extends Command {
             + "4. Computer Graphics and Games 5. Computer Security 6. Database Systems "
             + "7. Multimedia Information Retrieval 8. Networking and Distributed Systems 9. Parallel Computing "
             + "10. Programming Languages 11. Software Engineering\n"
-            + "Example: mods left 1";
+            + "Example: modsleft 1";
 
     public static final String MESSAGE_SUCCESS = "These are the modules you have yet to clear: %1$s";
     public static final String MESSAGE_NO_USER = "No user to check modules left!";
     public static final String MESSAGE_INVALID_INDEX = "The focus area index provided is invalid.";
 
     private static int focusAreaIndex;
-    private static Set<Module> modulesChecker;
+    private static Set<Module> modulesChecker = new HashSet<>();
     private final EmptyUser emptyUser = new EmptyUser();
 
     /**
@@ -219,6 +220,7 @@ public class ModulesLeftCommand extends Command {
         ExistingUser userToCheck = (ExistingUser) model.getUser();
         Set<CurrentModule> userCurrMods = userToCheck.getCurrModules();
         Set<PreviousModule> userPrevMods = userToCheck.getPrevModules();
+        modulesChecker.clear();
         chooseFocusArea();
         Set<Module> modulesLeft = modulesChecker;
         modulesLeft.removeAll(userPrevMods);
