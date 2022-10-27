@@ -17,8 +17,8 @@ public class Messages {
     public static final String MESSAGE_CONFLICTING_ITEMS = "Quack, there is a time clash!"
             + "\nThe provided time clashes with:\n%1$sPlease change the start time and/or the duration.";
     public static final String MESSAGE_ITEM_PAST_MIDNIGHT =
-            "%1$s extends past midnight which is not currently supported.\n" +
-                    "Please split %1$s into 2 parts and plan the second part at the start of the next day.";
+            "%1$s extends past midnight which is not currently supported.\n"
+                    + "Please split %1$s into 2 parts and plan the second part at the start of the next day.";
     // not meant for users to see
     public static final String MESSAGE_UNKNOWN_STAGE = "Unknown stage, something went wrong with the StateManager.";
 }
