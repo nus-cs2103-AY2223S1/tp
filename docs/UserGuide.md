@@ -45,7 +45,7 @@ DevEnable is a **desktop app for managing contacts, optimized for use via a Comm
   e.g. in `project -a n/PROJECT_NAME`, `PROJECT_NAME` is a parameter which can be used as `project -a n/PROJECT_NAME`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/PROJECT_NAME [r/USERNAME/REPO_NAME]` can be used as `project -a n/ProjectY r/AgentX/ProjectY`.
+  e.g. `n/PROJECT_NAME [r/REPOSITORY]` can be used as `project -a n/ProjectY r/AgentX/ProjectY`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `client -a p/PROJECT_ID n/CLIENT_NAME [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`, `client -a p/PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [m/CLIENT_MOBILE]` are both acceptable.
@@ -53,7 +53,7 @@ DevEnable is a **desktop app for managing contacts, optimized for use via a Comm
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `m/12341234 m/56785678`, only `m/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -72,45 +72,47 @@ Format: `clear`
 
 ### Adding a project: `project -a`
 
-Adds a project to the list of projects. A unique project ID will be automatically generated.
+Adds a project to the AddressBook. A unique project ID will be automatically generated.
 
-Format: `project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME] [c/CLIENT_ID] [d/DEADLINE]`
+Format: `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
 
-* Adds the project to the `ProjectList`.
-* * `DEADLINE` must be in the format yyyy-mm-dd
+* Adds the project to the list of projects.
+* `PROJECT_NAME` must only contain alphanumeric characters (cannot be empty or start with a space).
+* `REPOSITORY` must be in the format USERNAME/REPO_NAME.
+* `CLIENT_ID` must be a positive integer (1, 2, 3 ...​).
+* `DEADLINE` must be in the format yyyy-mm-dd.
 
 Examples:
 * `project -a n/Coding101` Adds a project with `PROJECT_NAME` Coding101 to the `ProjectList`.
 * `project -a n/MyFavProject r/Jeff/MyFavProject` Adds a project with `PROJECT_NAME` MyFavProject and 
-`USERNAME/REPO_NAME` Jeff/MyFavProject to the `ProjectList`.
+`REPOSITORY` Jeff/MyFavProject to the `ProjectList`.
 * `project -a n/AnotherProject c/1` Adds a project with `PROJECT_NAME` AnotherProject to the `ProjectList` and adds a
 client with `CLIENT_ID` 1 to the project.
 * `project -a n/OneMoreProject c/1 d/2022-03-07` Adds a project with `PROJECT_NAME` OneMoreProject and `PROJECT_DEADLINE`
 2022-03-07 to the `ProjectList` and adds a client with `CLIENT_ID` 1 to the project.
 * `project -a n/LastProject d/2023-10-01 r/Dave/LastProject c/2` Adds a project with `PROJECT_NAME` LastProject and 
-`DEADLINE` 2023-10-01 and `USERNAME/REPO_NAME` Dave/LastProject to the `ProjectList` and adds a client with `CLIENT_ID` 2 
+`DEADLINE` 2023-10-01 and `REPOSITORY` Dave/LastProject to the `ProjectList` and adds a client with `CLIENT_ID` 2 
 to the project.
 
 ### Editing a project : `project -e`
 
 Edits a specified existing project.
 
-Format: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/USERNAME/REPO_NAME] [c/CLIENT_ID] [d/DEADLINE]`
+Format: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
 
 * Edits the project with the specified `PROJECT_ID`. The ID refers to the unique ID generated upon adding a project.
   The ID **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* * `DEADLINE` must be in the format yyyy-mm-dd
 
 Examples:
 * `project -e p/1 n/FirstProject` Edits the project with `PROJECT_ID` 1 to have the new `PROJECT_NAME` FirstProject.
-* `project -e p/2 r/James/SecondProject` Edits the project with `PROJECT_ID` 2 to have the new `USERNAME/REPO_NAME` 
+* `project -e p/2 r/James/SecondProject` Edits the project with `PROJECT_ID` 2 to have the new `REPOSITORY` 
 James/SecondProject.
 * `project -e p/3 c/1 d/2021-12-03` Edits the project with `PROJECT_ID` 3 to have the new client with `CLIENT_ID` 1 
 and new `DEADLINE` 2021-12-03.
 * `project -e p/4 n/ThirdProject d/2022-02-02 r/Jackson/ThirdProject c/2` Edits the project with `PROJECT_ID` 4 to 
-have the new `PROJECT_NAME` ThirdProject, new `DEADLINE` 2022-02-02, new `USERNAME/REPO_NAME` Jackson/ThirdProject and new 
+have the new `PROJECT_NAME` ThirdProject, new `DEADLINE` 2022-02-02, new `REPOSITORY` Jackson/ThirdProject and new 
 client with `CLIENT_ID` 2.
 
 ### Deleting a project : `project -d`
@@ -136,9 +138,9 @@ Format: `project -l`
 
 Finds and lists all the projects matching the search criteria.
 
-Format: `project -f [n/PROJECT_NAME] [r/USERNAME/REPO_NAME]`
+Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY]`
 
-* Finds all the projects with the specified `PROJECT_NAME` and `USERNAME/REPO_NAME`.
+* Finds all the projects with the specified `PROJECT_NAME` and `REPOSITORY`.
 * Finds all the projects such that the fields under the project contain at least one word from the keywords provided
   after each search criteria.
 * The keywords provided must be valid arguments for their respective search criteria.
@@ -146,13 +148,13 @@ Format: `project -f [n/PROJECT_NAME] [r/USERNAME/REPO_NAME]`
 Examples:
 * `project -f n/DevEnable` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable.
 * `project -f n/DevEnable AB3` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable or AB3.
-* `project -f r/tp/F13` Finds and lists all the projects with `USERNAME/REPO_NAME` tp/F13.
+* `project -f r/tp/F13` Finds and lists all the projects with `REPOSITORY` tp/F13.
 * `project -f n/AB4 AB3 r/tp/F13` Finds and lists all the projects whose `PROJECT_NAME` contains the word AB4 or AB3 
-  and with `USERNAME/REPO_NAME` tp/F13.
+  and with `REPOSITORY` tp/F13.
 
 ### Sorting all projects: `project -s`
 
-Sorts all projects in `ProjectList` based on a specified key.
+Sorts all projects based on a specified key.
 
 Format: `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`
 
@@ -173,18 +175,21 @@ issue count.
 
 ### Setting project list as default view: `project -v`
 
-Sets `ProjectList` to be the default view when application is re-opened.
+Sets list of projects to be the default view when application is re-opened.
 
 Format: `project -v`
 
 ### Adding a client : `client -a`
 
-Adds a client to the list of clients and to the specified existing project. A unique client ID will be automatically 
-generated. 
+Adds a client to the AddressBook. A unique client ID will be automatically generated. 
 
 Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
 
-* Adds the client to `ClientList` and to the project with the specified `PROJECT_ID`.
+* Adds the client to the list of clients and to the project with the specified `PROJECT_ID`.
+* `CLIENT_NAME` must only contain alphanumeric characters (cannot be empty or start with a space).
+* `PROJECT_ID` must be a positive integer (1, 2, 3 ...​).
+* `CLIENT_MOBILE` must only contain numbers and must be more than 3 digits long.
+* `CLIENT_EMAIL` must be in the format LOCAL_NAME@DOMAIN_NAME.com (local name must be longer than 3 characters).
 
 Examples:
 *  `client -a n/Amy p/1` Adds a client with `CLIENT_NAME` Amy to the `ClientList` and to the project with 
@@ -259,7 +264,7 @@ Examples:
 
 ### Sorting all clients: `client -s`
 
-Sorts all clients in `ClientList` based on a specified key.
+Sorts all clients based on a specified key.
 
 Format: `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`
 
@@ -274,18 +279,19 @@ Examples:
 
 ### Setting client list as default view: `client -v`
 
-Sets `ClientList` to be the default view when application is re-opened.
+Sets list of clients to be the default view when application is re-opened.
 
 Format: `client -v`
 
 ### Adding an issue : `issue -a`
 
-Adds an issue to the list of issues and to the issue list in the specified existing project. A unique issue ID will be 
-automatically generated. 
+Adds an issue to the AddressBook. A unique issue ID will be automatically generated. 
 
 Format: `issue -a p/PROJECT_ID t/TITLE [d/DEADLINE] [u/URGENCY]`
 
-* Adds the issue to the overall `IssueList` and to the `IssueList`of the project with the specified `PROJECT_ID`.
+* Adds the issue to the overall list of issues and to the list of issues of the project with the specified `PROJECT_ID`.
+* `PROJECT_ID` must be a positive integer (1, 2, 3 ...​)
+* `TITLE` cannot be empty or start with a space
 * `DEADLINE` must be in the format yyyy-mm-dd
 * `URGENCY` must be an integer from 0 to 3, 0 for NONE, 1 for LOW, 2 for MEDIUM and 3 for HIGH
 
@@ -354,7 +360,7 @@ Examples:
 
 ### Sorting all issues: `issue -s`
 
-Sorts all issues in `IssueList` based on a specified key.
+Sorts all issues based on a specified key.
 
 Format: `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`
 
@@ -386,7 +392,7 @@ Examples:
 
 Marks specified existing issue as incomplete.
 
-Format: `issue -U ISSUE_ID`
+Format: `issue -u ISSUE_ID`
 
 * Unmarks the issue with the specified `ISSUE_ID`, changing its `STATUS` to incomplete.
 * The ID **must be a positive integer** 1, 2, 3, …​
@@ -397,7 +403,7 @@ Examples:
 
 ### Setting issue list as default view: `issue -v`
  
-Sets `IssueList` to be the default view when application is re-opened.
+Sets list of issues to be the default view when application is re-opened.
 
 Format: `issue -v`
 
