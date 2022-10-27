@@ -182,6 +182,12 @@ Example:
 
 * `locate S17` returns a list of gyms sorted from nearest to furthest from S17.
 
+### Suggesting a healthy-lifestyle tip: `tip`
+
+Suggests a random tip to help the user adopt a healthier lifestyle.
+
+Format: `tip`
+
 ### Clearing all entries: `clear`
 
 Clears all entries from NutriGoals.
@@ -225,5 +231,6 @@ _Details coming soon ..._
 | **Setup**   | `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE` | `setup g/m w/70 h/175 i/70 a/20` |
 | **Profile** | `profile`                                               | `profile`                        |
 | **Suggest** | `suggest`                                               | `suggest`                        |
+| **Tip**     | `tip`                                                   | `tip`                            |
 | **Clear**   | `clear`                                                 | `clear`                          |
 | **Exit**    | `exit`                                                  | `exit`                           |
