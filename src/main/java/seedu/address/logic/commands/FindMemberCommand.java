@@ -1,13 +1,19 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_SEARCH_KEYWORDS_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,7 +25,7 @@ import seedu.address.model.person.Person;
 /**
  * Finds and lists all members on the current team based on argument keywords.
  */
-@CommandLine.Command(name = "member", aliases = {"m"})
+@CommandLine.Command(name = "member", aliases = {"m"}, mixinStandardHelpOptions = true)
 public class FindMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "find member";
@@ -39,36 +45,24 @@ public class FindMemberCommand extends Command {
 
     public static final String MESSAGE_ONE_FLAG = "Please supply only 1 flag by selecting name or email only.";
 
-    @CommandLine.ArgGroup(exclusive = true, multiplicity = "1")
+    @CommandLine.ArgGroup(multiplicity = "1")
     private Exclusive predicate;
 
-    static class Exclusive {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
-                required = true, arity = "1..*")
-        private String[] nameKeywords;
+    @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
+            description = FLAG_HELP_DESCRIPTION)
+    private boolean help;
 
-        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG},
-                required = true, arity = "1..*")
-        private String[] emailKeywords;
-
-        Predicate<Person> getPredicate() {
-            return nameKeywords == null
-                    ? new EmailContainsKeywordsPredicate(List.of(emailKeywords))
-                    : new NameContainsKeywordsPredicate(List.of(nameKeywords));
-        }
-
-        String keywordsToString() {
-            return nameKeywords == null
-                    ? List.of(emailKeywords).stream().reduce("", (a, b) -> a + " " + b)
-                    : List.of(nameKeywords).stream().reduce("", (a, b) -> a + " " + b);
-        }
-    }
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
 
     public FindMemberCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (commandSpec.commandLine().isUsageHelpRequested()) {
+            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+        }
         requireNonNull(model);
         model.updateFilteredMembersList(predicate.getPredicate());
         return new CommandResult(
@@ -80,5 +74,27 @@ public class FindMemberCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof FindMemberCommand // instanceof handles nulls
                 && predicate.equals(((FindMemberCommand) other).predicate)); // state check
+    }
+
+    private static class Exclusive {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, arity = "1..*",
+                description = FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION)
+        private String[] nameKeywords;
+
+        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true, arity = "1..*",
+                description = FLAG_EMAIL_SEARCH_KEYWORDS_DESCRIPTION)
+        private String[] emailKeywords;
+
+        Predicate<Person> getPredicate() {
+            return nameKeywords == null
+                    ? new EmailContainsKeywordsPredicate(List.of(emailKeywords))
+                    : new NameContainsKeywordsPredicate(List.of(nameKeywords));
+        }
+
+        String keywordsToString() {
+            return nameKeywords == null
+                    ? Stream.of(emailKeywords).reduce("", (a, b) -> a + " " + b)
+                    : Stream.of(nameKeywords).reduce("", (a, b) -> a + " " + b);
+        }
     }
 }
