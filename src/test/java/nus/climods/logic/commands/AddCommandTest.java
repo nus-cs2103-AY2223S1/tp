@@ -44,19 +44,4 @@ public class AddCommandTest {
 
         assertThrows(CommandException.class, () -> addCommand.execute(model));
     }
-
-    /**
-     * CS2100 has recitation
-     * @throws CommandException
-     */
-    @Test
-    public void execute_addModuleWithUnselectableLessons() throws CommandException {
-        String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, "CS2100\nRecitation 1\nLecture 1\n");
-
-        AddCommand addCommand = new AddCommand("CS2100", SemestersEnum.S1);
-        CommandResult commandResult = addCommand.execute(model);
-
-        assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
-    }
 }
-
