@@ -17,16 +17,17 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.Date;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.HomeVisit;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
-import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,13 +44,14 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedDateTime> dateTimes = new ArrayList<>();
+    private final List<JsonAdaptedHomeVisit> homeVisits = new ArrayList<>();
+    private final List<JsonAdaptedDate> unavailableDates = new ArrayList<>();
+    private final List<JsonAdaptedDate> fullyAssignedDates = new ArrayList<>();
+    private final List<JsonAdaptedDateSlot> dateSlots = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final String visitStatus;
     private final String pName;
     private final String pPhone;
     private final String pEmail;
-
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -58,12 +60,15 @@ class JsonAdaptedPerson {
             @JsonProperty("category") String category,
             @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTime,
+            @JsonProperty("dateSlots") List<JsonAdaptedDateSlot> dateSlot,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("homeVisits") List<JsonAdaptedHomeVisit> homeVisit,
+            @JsonProperty("unavailableDates") List<JsonAdaptedDate> unavailableDateList,
+            @JsonProperty("fullyAssignedDates") List<JsonAdaptedDate> fullyAssignedDateList,
             @JsonProperty("phys name") String pName,
             @JsonProperty("phys phone") String pPhone,
-            @JsonProperty("phys email") String pEmail,
-            @JsonProperty("visit status") String visitStatus) {
+            @JsonProperty("phys email") String pEmail) {
+
         this.uid = uid;
         this.name = name;
         this.category = category;
@@ -72,19 +77,29 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
 
+        if (dateSlot != null) {
+            this.dateSlots.addAll(dateSlot);
+        }
         this.pName = Objects.requireNonNullElse(pName, "NA");
         this.pPhone = Objects.requireNonNullElse(pPhone, "NA");
         this.pEmail = Objects.requireNonNullElse(pEmail, "NA");
-
-        if (dateTime != null) {
-            this.dateTimes.addAll(dateTime);
-        }
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
 
-        this.visitStatus = visitStatus;
+        if (homeVisits != null) {
+            this.homeVisits.addAll(homeVisit);
+        }
+
+        if (unavailableDateList != null) {
+            this.unavailableDates.addAll(unavailableDateList);
+        }
+
+        if (fullyAssignedDateList != null) {
+            this.fullyAssignedDates.addAll(fullyAssignedDateList);
+        }
+
     }
 
     /**
@@ -96,11 +111,9 @@ class JsonAdaptedPerson {
 
         if (isPatient) {
             Patient sourcePatient = (Patient) source;
-            dateTimes.addAll(sourcePatient.getDatesTimes().stream()
-                    .map(JsonAdaptedDateTime::new)
+            dateSlots.addAll(sourcePatient.getDatesSlots().stream()
+                    .map(JsonAdaptedDateSlot::new)
                     .collect(Collectors.toList()));
-            visitStatus = (sourcePatient.getVisitStatus().getVisitStatusString());
-
             String[] physNameArr = new String[]{"NA"};
             sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] = x.getName().fullName);
             pName = physNameArr[0];
@@ -111,7 +124,15 @@ class JsonAdaptedPerson {
             sourcePatient.getAttendingPhysician().ifPresent(x -> physPhoneArr[0] = x.getPhone().value);
             pPhone = physPhoneArr[0];
         } else {
-            visitStatus = null;
+            homeVisits.addAll(((Nurse) source).getHomeVisits().stream()
+                    .map(JsonAdaptedHomeVisit::new)
+                    .collect(Collectors.toList()));
+            unavailableDates.addAll(((Nurse) source).getUnavailableDates().stream()
+                    .map(JsonAdaptedDate::new)
+                    .collect(Collectors.toList()));
+            fullyAssignedDates.addAll(((Nurse) source).getFullyScheduledDates().stream()
+                    .map(JsonAdaptedDate::new)
+                    .collect(Collectors.toList()));
             pName = "NA";
             pPhone = "NA";
             pEmail = "NA";
@@ -141,10 +162,24 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
+        final List<HomeVisit> nurseHomeVisitList = new ArrayList<>();
+        for (JsonAdaptedHomeVisit homeVisit : homeVisits) {
+            nurseHomeVisitList.add(homeVisit.toModelType());
+        }
 
-        final List<DateTime> patientHomeVisitDatesTimes = new ArrayList<>();
-        for (JsonAdaptedDateTime dateTime : dateTimes) {
-            patientHomeVisitDatesTimes.add(dateTime.toModelType());
+        final List<Date> nurseUnavailableDate = new ArrayList<>();
+        for (JsonAdaptedDate date : unavailableDates) {
+            nurseUnavailableDate.add(date.toModelType());
+        }
+
+        final List<Date> nurseFullySchedulledDates = new ArrayList<>();
+        for (JsonAdaptedDate date : fullyAssignedDates) {
+            nurseFullySchedulledDates.add(date.toModelType());
+        }
+
+        final List<DateSlot> patientHomeVisitDatesSlots = new ArrayList<>();
+        for (JsonAdaptedDateSlot dateSlot : dateSlots) {
+            patientHomeVisitDatesSlots.add(dateSlot.toModelType());
         }
 
         if (uid == null) {
@@ -195,30 +230,31 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final List<DateTime> modelDatesTimes = patientHomeVisitDatesTimes;
+        final List<DateSlot> modelDatesSlots = patientHomeVisitDatesSlots;
+
+        final List<HomeVisit> modelHomeVisits = nurseHomeVisitList;
+        final List<Date> modelUnavailableDates = nurseUnavailableDate;
+        final List<Date> modelFullyScheduledDates = nurseFullySchedulledDates;
 
         if (category == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Category.class.getSimpleName()));
         }
+
         if (category.equals(NURSE_SYMBOL)) {
-            return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
+            return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags,
+                    modelUnavailableDates, modelHomeVisits, modelFullyScheduledDates);
+
         } else if (category.equals(PATIENT_SYMBOL)) {
-            if (visitStatus == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                                VisitStatus.class.getSimpleName()));
-            }
-            if (!VisitStatus.isValidVisitStatus(visitStatus)) {
-                throw new IllegalValueException(VisitStatus.MESSAGE_CONSTRAINTS);
-            }
-            final VisitStatus modelVisitStatus = new VisitStatus(visitStatus);
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
-                    modelAddress, modelTags, modelDatesTimes, modelVisitStatus);
+                    modelAddress, modelTags, modelDatesSlots);
+
         } else {
             throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
+
         }
 
     }
 
 }
+

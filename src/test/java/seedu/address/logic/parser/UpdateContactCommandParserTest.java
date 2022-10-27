@@ -22,14 +22,14 @@ class UpdateContactCommandParserTest {
 
     @Test
     void parse_noArgumentsSupplied_displaysHelp() {
-        assertParseFailure(new SetPhysicianCommandParser(), UpdateContactCommand.COMMAND_WORD,
+        assertParseFailure(new UpdateContactCommandParser(), UpdateContactCommand.COMMAND_WORD,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateContactCommand.MESSAGE_USAGE));
     }
 
     @Test
     void parse_noUidSupplied_displaysHelp() {
         String input = UpdateContactCommand.COMMAND_WORD + " n/J e/jd@example.com p/81234567";
-        assertParseFailure(new SetPhysicianCommandParser(), input,
+        assertParseFailure(new UpdateContactCommandParser(), input,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateContactCommand.MESSAGE_USAGE));
     }
 
@@ -40,7 +40,7 @@ class UpdateContactCommandParserTest {
                 new Category(Category.NURSE_SYMBOL));
         String input = UpdateContactCommand.COMMAND_WORD + " id/3 n/" + DEFAULT_CONTACT_NAME
                 + " e/" + DEFAULT_CONTACT_EMAIL + " p/" + DEFAULT_CONTACT_PHONE + " c/" + Category.NURSE_SYMBOL;
-        assertParseSuccess(new SetPhysicianCommandParser(), input, setPhysCommand);
+        assertParseSuccess(new UpdateContactCommandParser(), input, setPhysCommand);
     }
 
     @Test
@@ -50,16 +50,16 @@ class UpdateContactCommandParserTest {
                 new Category(Category.PHYSICIAN_SYMBOL));
         String input = UpdateContactCommand.COMMAND_WORD + " id/3 n/" + DEFAULT_CONTACT_NAME
                 + " e/" + DEFAULT_CONTACT_EMAIL + " p/" + DEFAULT_CONTACT_PHONE + " c/" + Category.PHYSICIAN_SYMBOL;
-        assertParseSuccess(new SetPhysicianCommandParser(), input, setPhysCommand);
+        assertParseSuccess(new UpdateContactCommandParser(), input, setPhysCommand);
     }
 
     @Test
     void parse_assignJohnDoeNokToPatient_success() {
         Command setPhysCommand = new UpdateContactCommand(new Uid(3L), new Name(DEFAULT_CONTACT_NAME),
                 new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL),
-                new Category(Category.PHYSICIAN_SYMBOL));
+                new Category(Category.NEXTOFKIN_SYMBOL));
         String input = UpdateContactCommand.COMMAND_WORD + " id/3 n/" + DEFAULT_CONTACT_NAME
                 + " e/" + DEFAULT_CONTACT_EMAIL + " p/" + DEFAULT_CONTACT_PHONE + " c/" + Category.NEXTOFKIN_SYMBOL;
-        assertParseSuccess(new SetPhysicianCommandParser(), input, setPhysCommand);
+        assertParseSuccess(new UpdateContactCommandParser(), input, setPhysCommand);
     }
 }

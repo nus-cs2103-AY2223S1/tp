@@ -40,9 +40,10 @@ public class DeleteCommandTest {
         if (personToDelete instanceof Patient) {
             expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                     PersonType.PATIENT.toString(),
-                    personToDelete);
+                    personToDelete) + " ";
         } else {
-            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete);
+            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete)
+                    + " ";
         }
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -69,9 +70,10 @@ public class DeleteCommandTest {
         String expectedMessage = "";
         if (personToDelete instanceof Patient) {
             expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, PersonType.PATIENT.toString(),
-                    personToDelete);
+                    personToDelete) + " ";
         } else {
-            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete);
+            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete)
+                    + " ";
         }
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());

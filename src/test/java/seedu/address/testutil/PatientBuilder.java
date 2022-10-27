@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -14,7 +14,6 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
-import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -30,7 +29,6 @@ public class PatientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_VISITSTATUS = "false";
 
     private Uid uid;
     private String category;
@@ -39,9 +37,8 @@ public class PatientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private List<DateTime> dateTimes;
+    private List<DateSlot> dateSlots;
     private Set<Tag> tags;
-    private VisitStatus visitStatus;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -54,9 +51,8 @@ public class PatientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        dateTimes = new ArrayList<>();
+        dateSlots = new ArrayList<>();
         tags = new HashSet<>();
-        visitStatus = new VisitStatus(DEFAULT_VISITSTATUS);
     }
 
     /**
@@ -70,9 +66,8 @@ public class PatientBuilder {
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
-        dateTimes = new ArrayList<>(((Patient) patientToCopy).getDatesTimes());
+        dateSlots = new ArrayList<>(((Patient) patientToCopy).getDatesSlots());
         tags = new HashSet<>(patientToCopy.getTags());
-        visitStatus = ((Patient) patientToCopy).getVisitStatus();
     }
 
     /**
@@ -132,19 +127,11 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code datesTimes} into a {@code Set<DateTime>} and
+     * Parses the {@code datesSlots} into a {@code Set<DateSlot>} and
      * set it to the {@code Patient} that we are building.
      */
-    public PatientBuilder withDatesTimes(String ... datesTimes) {
-        this.dateTimes = SampleDataUtil.getDatesTimesList(datesTimes);
-        return this;
-    }
-
-    /**
-     * Sets the {@code visited} of the {@code Patient} that we are building.
-     */
-    public PatientBuilder withVisitStatus(String visitStatus) {
-        this.visitStatus = new VisitStatus(visitStatus);
+    public PatientBuilder withDatesSlots(String ... datesSlots) {
+        this.dateSlots = SampleDataUtil.getDatesSlotsList(datesSlots);
         return this;
     }
 
@@ -152,6 +139,6 @@ public class PatientBuilder {
      * Build a patient.
      */
     public Patient build() {
-        return new Patient(uid, name, gender, phone, email, address, tags, dateTimes, visitStatus);
+        return new Patient(uid, name, gender, phone, email, address, tags, dateSlots);
     }
 }

@@ -19,7 +19,7 @@ import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
 
 /**
- * Represents the command to assign an attending physician to a patient.
+ * Represents the command to add contact details of attending physician or next of kin to a patient.
  */
 public class UpdateContactCommand extends Command {
     public static final String COMMAND_WORD = "updatecontact";
@@ -80,14 +80,14 @@ public class UpdateContactCommand extends Command {
             Physician physician = new Physician(name, phone, email);
             editedPatient = new Patient(personToEdit.getUid(),
                     personToEdit.getName(), personToEdit.getGender(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesTimes(),
-                    patientToEdit.getVisitStatus(), Optional.of(physician), patientToEdit.getNextOfKin());
+                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesSlots(),
+                    Optional.of(physician), patientToEdit.getNextOfKin());
         } else if (category.equals(new Category(Category.NEXTOFKIN_SYMBOL))) {
             NextOfKin nextOfKin = new NextOfKin(name, phone, email);
             editedPatient = new Patient(personToEdit.getUid(),
                     personToEdit.getName(), personToEdit.getGender(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesTimes(),
-                    patientToEdit.getVisitStatus(), patientToEdit.getAttendingPhysician(), Optional.of(nextOfKin));
+                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesSlots(),
+                    patientToEdit.getAttendingPhysician(), Optional.of(nextOfKin));
         } else {
             throw new CommandException(Messages.MESSAGE_UPDATECONTACT_INVALID_CONTACT_CATEGORY);
         }
@@ -114,6 +114,7 @@ public class UpdateContactCommand extends Command {
         return uid.equals(e.uid)
                 && name.equals(e.name)
                 && phone.equals(e.phone)
-                && email.equals(e.email);
+                && email.equals(e.email)
+                && category.equals(e.category);
     }
 }
