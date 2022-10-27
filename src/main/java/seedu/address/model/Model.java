@@ -79,8 +79,11 @@ public interface Model {
     void deleteProfile(Profile target);
 
     /**
-     * Updates the target event {@code target} in the given list of profiles {@code profilesToEdit} to the new
-     * edited event {@code editedEvent}
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The event identity of {@code editedEvent} must not be the same as another existing
+     * event in the address book.
+     * Ensures the change is updated for all event attendees.
      */
     void setEventForAttendees(Event target, Event editedEvent);
 
@@ -144,7 +147,6 @@ public interface Model {
      * {@code event} must exist in the address book.
      * Profiles in {@code profilesToDelete} must also exist in the address book.
      */
-
     void deleteEventAttendees(Event event, List<Profile> profilesToDelete);
 
     /**
@@ -156,6 +158,8 @@ public interface Model {
 
     /**
      * Deletes the event {@code target} from list of profiles {@code profilesToEdit}.
+     * {@code target} must exist in the address book.
+     * Profiles in {@code profilesToEdit} must also exist in the address book.
      */
     void removeEventFromAttendees(Event target, List<Profile> profilesToEdit);
 
