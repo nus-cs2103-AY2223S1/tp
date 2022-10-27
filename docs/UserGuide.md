@@ -167,6 +167,7 @@ Examples:
 also has a tag `favourite`. 
 
 ### Deleting a client / transaction / remark : `delete`
+> :warning: **If you delete a client/transaction/remark, it will be gone forever**: Be very careful here!
 
 Deletes the specified `client`, `transaction` or `remark` from JeeqTracker.
 
@@ -196,8 +197,9 @@ Format: `edit INDEX m/MODE FIELDS [MORE_FIELDS]...`
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 * The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
-* The `FIELDS` refers to the parameters to be changed for the entity. E.g. client has `[n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]`, 
-transaction has `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`.
+* The `FIELDS` refers to the parameters to be changed for the entity. E.g:
+  * client has `[n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]`
+  * transaction has `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`.
 * `view` command must be used before editing `remark` or `transaction` as the edit can only happen when they are visible in the application.
 
 Examples:
@@ -216,6 +218,7 @@ Exits the program.
 Format: `exit`
 
 * All entries will not be deleted.
+* All information edited will be saved.
 
 Examples:
 * `exit` closes the program.
@@ -242,6 +245,7 @@ Returns the url to this user guide.
 Format: `user_guide`
 
 * Displays a pop-up that contains the url to this user guide.
+* You can click on the `Copy URL` button to copy this url to your clipboard.
 
 Examples:
 * `user_guide` returns the url of this user guide.
