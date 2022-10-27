@@ -160,6 +160,25 @@ Example:
 
 ### Events
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about events:**<br>
+
+An event must contain the following information:
+
+* Title, limited to 40 alphanumeric characters including spaces
+* Start date
+* End date
+
+A event may also contain:
+
+* Start time
+* End time
+* Attendees of the event
+* Tags to categorise your events, limited to 24 alphanumeric characters, with no spaces allowed
+
+</div>
+
 #### Adding an event: `event -a`
 
 Adds an event with a name, a start timing and end timing.
