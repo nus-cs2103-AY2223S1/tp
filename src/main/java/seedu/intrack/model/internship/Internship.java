@@ -226,21 +226,26 @@ public class Internship {
                 .append("; Website: ")
                 .append(getWebsite())
                 .append("; Salary: ")
-                .append(getSalary());
+                .append(getSalary())
+                .append("; ");
 
         List<Task> tasks = getTasks();
         if (!tasks.isEmpty()) {
-            builder.append("; Tasks: ");
-            tasks.forEach(builder::append);
+            builder.append("Tasks: ");
+            for (Task task : tasks) {
+                builder.append(task + "; ");
+            }
         }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            builder.append("Tags: ");
+            for (Tag tag : tags) {
+                builder.append(tag + "; ");
+            }
         }
 
-        builder.append("; Remark: ")
+        builder.append("Remark: ")
                 .append(getRemark());
 
         return builder.toString();

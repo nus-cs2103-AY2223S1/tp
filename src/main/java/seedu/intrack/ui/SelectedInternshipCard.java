@@ -53,6 +53,8 @@ public class SelectedInternshipCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label remark;
+    @FXML
+    private Label title;
 
     /**
      * Creates a {@code InternshipCode} with the given {@code Internship} to display.
@@ -72,7 +74,8 @@ public class SelectedInternshipCard extends UiPart<Region> {
         status.getChildren().add(lab);
 
         email.setText(internship.getEmail().value);
-        salary.setText("$" + internship.getSalary().value);
+        salary.setText(internship.getSalary().toString());
+
 
         Hyperlink hyperlink = new Hyperlink(internship.getWebsite().value);
         website.getChildren().add(hyperlink);
@@ -83,6 +86,8 @@ public class SelectedInternshipCard extends UiPart<Region> {
                 System.out.println(ex.getMessage());
             }
         });
+
+        title.setText("Tasks:");
 
         tasks.setMaxWidth(0);
         AtomicInteger count = new AtomicInteger();
@@ -98,7 +103,7 @@ public class SelectedInternshipCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        remark.setText(internship.getRemark().value);
+        remark.setText("Remark: " + internship.getRemark().value);
         remark.setWrapText(true);
     }
 

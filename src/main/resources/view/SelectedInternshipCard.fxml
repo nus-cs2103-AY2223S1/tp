@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.control.ScrollPane?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
@@ -21,23 +21,24 @@
             </padding>
 
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" >
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>/>
-                </Label>
+                <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" />
 
-                <FlowPane fx:id="status"/>
             </HBox>
-
+            <FlowPane fx:id="status"/>
             <FlowPane fx:id="tags" />
-            <Label fx:id="position" styleClass="cell_small_label" text="\$position" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-            <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
-            <TextFlow fx:id="website" />
-            <FlowPane fx:id="tasks" styleClass="cell_small_label"/>
-            <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+            <Label fx:id="position" styleClass="cell_big_label" text="\$position" wrapText="true"/>
+            <Label fx:id="email" styleClass="cell_big_label" text="\$email" wrapText="true"/>
+            <TextFlow fx:id="website" styleClass="cell_big_label" />
+            <Label fx:id="salary" styleClass="cell_big_label" text="\$salary" wrapText="true"/>
+
+            <Label fx:id="remark" styleClass="cell_big_label" text="\$remark" wrapText="true"/>
+
+            <Label fx:id="title" styleClass="cell_big_label"/>
+
+            <ScrollPane fx:id="taskContainer" fitToWidth="true" HBox.hgrow="ALWAYS">
+                <FlowPane fx:id="tasks" orientation="VERTICAL" prefWrapLength="1000"/>
+            </ScrollPane>
+
         </VBox>
     </GridPane>
 </HBox>

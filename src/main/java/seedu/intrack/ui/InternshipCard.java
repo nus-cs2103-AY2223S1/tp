@@ -1,7 +1,5 @@
 package seedu.intrack.ui;
 
-import java.awt.Desktop;
-import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
@@ -9,8 +7,9 @@ import java.util.stream.Collectors;
 
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -63,6 +62,7 @@ public class InternshipCard extends UiPart<Region> {
         this.internship = internship;
         id.setText(displayedIndex + ". ");
         name.setText(internship.getName().fullName);
+        name.setWrapText(true);
         position.setText(internship.getPosition().positionName);
 
         Label lab = new Label(internship.getStatus().toString());
@@ -71,24 +71,16 @@ public class InternshipCard extends UiPart<Region> {
         PseudoClass offered = PseudoClass.getPseudoClass("offered");
         lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         status.getChildren().add(lab);
-        upcomingTask.setWrapText(true);
+
         List<Task> taskList = internship.getTasks().stream()
                 .filter(task -> task.getTaskTime().isAfter(LocalDateTime.now()))
                 .collect(Collectors.toList());
         if (taskList.size() == 0) {
-            upcomingTask.setText("Currently no upcoming tasks!");
+            upcomingTask.setText("No upcoming tasks");
         } else if (taskList.size() > 0) {
-            upcomingTask.setText("Upcoming Task: " + taskList.get(0));
+            upcomingTask.setText(taskList.get(0).toString());
+            upcomingTask.setGraphic(new ImageView(new Image("images/calendar.png")));
         }
-        Hyperlink hyperlink = new Hyperlink(internship.getWebsite().value);
-        website.getChildren().add(hyperlink);
-        hyperlink.setOnAction(e -> {
-            try {
-                Desktop.getDesktop().browse(new URI(internship.getWebsite().value));
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-        });
 
         salary.setText(internship.getSalary().toString());
 
