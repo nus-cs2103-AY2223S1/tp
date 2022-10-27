@@ -186,10 +186,6 @@ public class Team {
         taskList.add(task);
     }
 
-    public void setTask(Task oldTask, Task newTask) {
-        taskList.setTask(oldTask, newTask);
-    }
-
     public boolean hasTask(Task task) {
         return taskList.contains(task);
     }
@@ -200,6 +196,21 @@ public class Team {
      */
     public void removeTask(Task task) {
         taskList.remove(task);
+    }
+
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+        taskList.setTask(target, editedTask);
+    }
+
+    /**
+     * Sets a specified team member as the assignee for the task.
+     *
+     * @param task   The specified task to be assigned
+     * @param person The specified member that task is assigned to
+     */
+    public void assignTask(Task task, Person person) {
+        task.assignTo(person);
     }
 
     //// link related operations

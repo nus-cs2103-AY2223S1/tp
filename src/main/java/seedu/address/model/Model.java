@@ -116,4 +116,6 @@ public interface Model {
     ObservableList<Link> getFilteredLinkList();
 
     void updateFilteredLinkList(Predicate<Link> predicate);
+
+    void setTask(Task target, Task editedTask);
 }

@@ -172,6 +172,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setTask(Task target, Task editedTask) {
+        addressBook.setTask(target, editedTask);
+    }
+
+    @Override
     public void deleteLink(Link link) {
         addressBook.deleteLink(link);
     }
