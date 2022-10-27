@@ -15,7 +15,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path archivedTaskBookFilePath = Paths.get("data" , "archivedTaskBook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -52,18 +51,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
-    public Path getArchivedTaskBookFilePath() {
-        return archivedTaskBookFilePath;
-    }
-
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
-    }
-
-    public void setArchivedTaskBookFilePath(Path archivedTaskBookFilePath) {
-        requireNonNull(archivedTaskBookFilePath);
-        this.addressBookFilePath = archivedTaskBookFilePath;
     }
 
     @Override

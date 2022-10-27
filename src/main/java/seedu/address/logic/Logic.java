@@ -30,14 +30,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    ReadOnlyAddressBook getArchivedAddressBook();
-
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Task> getFilteredPersonList();
-
-    ObservableList<Task> getFilteredArchivedTaskList();
-
-    ObservableList<Task> getArchivedTaskList();
 
     /**
      * Returns the current filter of the list view.
