@@ -1,7 +1,6 @@
 package seedu.address.model.person.predicates;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
