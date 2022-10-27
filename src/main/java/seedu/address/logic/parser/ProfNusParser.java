@@ -11,6 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DarkModeCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 import seedu.address.logic.commands.DeleteTaCommand;
 import seedu.address.logic.commands.EditStuCommand;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.EditTeachingAssistantCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LightModeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.module.AddModuleCommand;
 import seedu.address.logic.commands.module.DeleteModuleCommand;
@@ -129,6 +131,12 @@ public class ProfNusParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case LightModeCommand.COMMAND_WORD:
+            return new LightModeCommand();
+
+        case DarkModeCommand.COMMAND_WORD:
+            return new DarkModeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

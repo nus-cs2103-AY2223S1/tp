@@ -49,7 +49,7 @@ public class ViewTargetModuleCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_VIEW_TARGET_MODULE_SUCCESS, targetModule),
                 false, false, true,
-                false, false, false);
+                false, false, false, false, false);
     }
 
     @Override

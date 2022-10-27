@@ -410,6 +410,14 @@ public class MainWindow extends UiPart<Stage> {
                 handleShowTabScheduleGrid();
             }
 
+            if (commandResult.isShowLight()) {
+                applyLightTheme();
+            }
+
+            if (commandResult.isShowDark()) {
+                applyDarkTheme();
+            }
+
             return commandResult;
 
         } catch (CommandException | ParseException e) {

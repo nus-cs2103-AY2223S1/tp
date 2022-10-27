@@ -14,6 +14,12 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Light mode should be shown to the user. */
+    private final boolean showLight;
+
+    /** Dark mode should be shown to the user. */
+    private final boolean showDark;
+
     /** The application should exit. */
     private final boolean exit;
 
@@ -27,13 +33,12 @@ public class CommandResult {
     private final boolean showModule;
 
     /** Schedule information should be shown to the user. */
-
     private final boolean showScheduleList;
 
     /** Horizontal Timetable information should be shown to the user. */
     private final boolean showHorizontalTimeTable;
-    /** Vertical Timetable information should be shown to the user. */
 
+    /** Vertical Timetable information should be shown to the user. */
     private final boolean showVerticalTimeTable;
 
     /**
@@ -42,7 +47,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
                          boolean showModuleList, boolean showStudentList,
                          boolean showModule, boolean showScheduleList, boolean showHorizontalTimeTable,
-                         boolean showVerticalTimeTable) {
+                         boolean showVerticalTimeTable, boolean showLight, boolean showDark) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -52,6 +57,8 @@ public class CommandResult {
         this.showScheduleList = showScheduleList;
         this.showHorizontalTimeTable = showHorizontalTimeTable;
         this.showVerticalTimeTable = showVerticalTimeTable;
+        this.showLight = showLight;
+        this.showDark = showDark;
     }
 
     /**
@@ -61,7 +68,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false,
                 false, false, false,
-                false, false);
+                false, false, false, false);
     }
 
     /**
@@ -70,11 +77,10 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
                          boolean showModuleList, boolean showStudentList,
-                         boolean showModule, boolean showScheduleList) {
+                         boolean showModule, boolean showScheduleList, boolean showLight, boolean showDark) {
         this(feedbackToUser, showHelp, exit, showModuleList,
                 showStudentList, showModule, showScheduleList,
-                false, false);
-
+                false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -108,8 +114,17 @@ public class CommandResult {
     public boolean isShowHorizontalTimeTable() {
         return showHorizontalTimeTable;
     }
+
     public boolean isShowVerticalTimeTable() {
         return showVerticalTimeTable;
+    }
+
+    public boolean isShowLight() {
+        return showLight;
+    }
+
+    public boolean isShowDark() {
+        return showDark;
     }
 
     @Override
@@ -132,13 +147,16 @@ public class CommandResult {
                 && showModule == otherCommandResult.showModule
                 && showScheduleList == otherCommandResult.showScheduleList
                 && showHorizontalTimeTable == otherCommandResult.showHorizontalTimeTable
-                && showVerticalTimeTable == otherCommandResult.showVerticalTimeTable;
+                && showVerticalTimeTable == otherCommandResult.showVerticalTimeTable
+                && showLight == otherCommandResult.showLight
+                && showDark == otherCommandResult.showDark;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit, showModuleList,
-                showStudentList, showModule, showScheduleList, showHorizontalTimeTable, showVerticalTimeTable);
+                showStudentList, showModule, showScheduleList, showHorizontalTimeTable,
+                showVerticalTimeTable, showLight, showDark);
     }
 
 }
