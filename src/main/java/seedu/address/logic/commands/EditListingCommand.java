@@ -17,8 +17,8 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -89,11 +89,11 @@ public class EditListingCommand extends Command {
 
         ListingId updatedId = editListingDescriptor.getId().orElse(listingToEdit.getId());
         Name updatedName = editListingDescriptor.getName().orElse(listingToEdit.getName());
-        Person updatedPerson = model.getPerson(updatedName);
+        Client updatedClient = model.getClient(updatedName);
         Address updatedAddress = editListingDescriptor.getAddress().orElse(listingToEdit.getAddress());
         Price updatedAskingPrice = editListingDescriptor.getAskingPrice().orElse(listingToEdit.getAskingPrice());
 
-        return new Listing(updatedId, updatedAddress, updatedPerson, updatedAskingPrice);
+        return new Listing(updatedId, updatedAddress, updatedClient, updatedAskingPrice);
     }
 
     @Override

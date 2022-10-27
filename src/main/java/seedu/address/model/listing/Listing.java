@@ -8,8 +8,8 @@ import java.util.Set;
 
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,11 +20,11 @@ public class Listing implements Comparable<Listing> {
     // Identity fields
     private final ListingId id;
     private final Address address;
-    private final Person owner;
+    private final Client owner;
     private final Price askingPrice;
 
     // Data fields
-    private final List<Person> interestedClients;
+    private final List<Client> interestedClients;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -33,7 +33,7 @@ public class Listing implements Comparable<Listing> {
      * @param owner Person
      * @param askingPrice int
      */
-    public Listing(ListingId id, Address address, Person owner, Price askingPrice) {
+    public Listing(ListingId id, Address address, Client owner, Price askingPrice) {
         this.id = id;
         this.address = address;
         this.owner = owner;
@@ -61,7 +61,7 @@ public class Listing implements Comparable<Listing> {
      * Gets the owner.
      * @return owner
      */
-    public Person getOwner() {
+    public Client getOwner() {
         return this.owner;
     }
 
@@ -85,7 +85,7 @@ public class Listing implements Comparable<Listing> {
      * Getter for a list of interested clients.
      * @return List(Person)
      */
-    public List<Person> getInterestedClients() {
+    public List<Client> getInterestedClients() {
         return interestedClients;
     }
 
@@ -93,7 +93,7 @@ public class Listing implements Comparable<Listing> {
      * Adds prospective client to the interestedClients list.
      * @param client the interested client
      */
-    public void addInterestedClient(Person client) {
+    public void addInterestedClient(Client client) {
         this.interestedClients.add(client);
     }
 
@@ -165,10 +165,10 @@ public class Listing implements Comparable<Listing> {
                 .append("; Asking Price: ")
                 .append(this.askingPrice);
 
-        List<Person> interestedClients = getInterestedClients();
+        List<Client> interestedClients = getInterestedClients();
         if (!interestedClients.isEmpty()) {
             builder.append("; Interested Clients: ");
-            for (Person client : interestedClients) {
+            for (Client client : interestedClients) {
                 builder.append(client).append("\n");
             }
         }

@@ -236,6 +236,11 @@ public interface Model {
     void deleteClient(Client target);
 
     /**
+     * Deletes all the listings owned by the given client.
+     */
+    void deleteListingsOwnedBy(Client target);
+
+    /**
      * Adds the given client.
      * {@code client} must not already exist in the address book.
      */

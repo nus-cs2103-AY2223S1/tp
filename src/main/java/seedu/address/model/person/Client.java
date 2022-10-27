@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.listing.Listing;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,6 +45,13 @@ public class Client extends Person implements Comparable<Client> {
 
         return otherClient != null
                 && otherClient.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if this Listing is not owned by toCheck.
+     */
+    public boolean doNotOwn(Listing toCheck) {
+        return !this.equals(toCheck.getOwner());
     }
 
     @Override

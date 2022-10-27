@@ -148,6 +148,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes all listings owned by {@code key} from this {@code AddressBook}
+     */
+    public void removeAllListingOwnedBy(Client key) {
+        listings.deleteListingsofClient(key);
+    }
+
 
     //// client-level operations
 

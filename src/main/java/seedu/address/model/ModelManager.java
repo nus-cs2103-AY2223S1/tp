@@ -144,6 +144,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteListingsOwnedBy(Client target) {
+        addressBook.removeAllListingOwnedBy(target);
+    }
+
+    @Override
     public void addClient(Client client) {
         addressBook.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
