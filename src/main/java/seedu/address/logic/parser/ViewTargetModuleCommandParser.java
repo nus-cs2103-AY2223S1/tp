@@ -7,13 +7,13 @@ import seedu.address.logic.commands.module.ViewTargetModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteTaCommand object
+ * Parses input arguments and creates a new ViewTargetModuleCommand object
  */
 public class ViewTargetModuleCommandParser implements Parser<ViewTargetModuleCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteTaCommand
-     * and returns a DeleteTaCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ViewTargetModuleCommand
+     * and returns a ViewTargetModuleCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewTargetModuleCommand parse(String args) throws ParseException {

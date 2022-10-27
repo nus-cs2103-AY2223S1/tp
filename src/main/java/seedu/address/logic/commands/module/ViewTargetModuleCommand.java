@@ -14,7 +14,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
 /**
- * Deletes a person identified using it's displayed index from profNus.
+ * Views more details about a module identified using it's displayed index from profNus module list view.
  */
 public class ViewTargetModuleCommand extends Command {
 
