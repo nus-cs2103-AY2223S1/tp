@@ -20,7 +20,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
 
 /**
- * Unmarks a patient's dateslot using their unique id and dateslot index when fail to visit.
+ * Unmarks a patient's dateslot using their unique id and dateslot index when
+ * fail to visit.
  */
 public class UnmarkCommand extends Command {
 
@@ -44,7 +45,8 @@ public class UnmarkCommand extends Command {
     private final Index dateSlotIndex;
 
     /**
-     * Initialises the MarkCommand with a valid and non-null {@code Uid} of the target patient.
+     * Initialises the MarkCommand with a valid and non-null {@code Uid} of the
+     * target patient.
      */
     public UnmarkCommand(Uid uid, Index dateSlotIndex) {
         requireNonNull(uid);
@@ -78,8 +80,8 @@ public class UnmarkCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UnmarkCommand// instanceof handles nulls
-                && this.uid.equals(((UnmarkCommand) other).uid) // state check
-                && this.dateSlotIndex.equals(((UnmarkCommand) other).dateSlotIndex));
+                        && this.uid.equals(((UnmarkCommand) other).uid) // state check
+                        && this.dateSlotIndex.equals(((UnmarkCommand) other).dateSlotIndex));
     }
 
     private void unmarkAction(Person personToUnmark, Model model) throws CommandException {

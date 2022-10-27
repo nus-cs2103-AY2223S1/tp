@@ -12,14 +12,14 @@ import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Uid;
 
-
 /**
  * Parses input arguments and creates a new MarkCommand object
  */
 public class UnmarkCommandParser implements Parser<UnmarkCommand> {
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
@@ -27,7 +27,8 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the UnmarkCommand
+     * Parses the given {@code String} of arguments in the context of the
+     * UnmarkCommand
      * and returns an UnmarkCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format

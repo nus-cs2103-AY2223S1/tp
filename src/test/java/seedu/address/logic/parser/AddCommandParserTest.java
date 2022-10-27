@@ -124,13 +124,13 @@ public class AddCommandParserTest {
         // zero dateTimes
         Person expectedPersonNoDatesTimes = new PersonBuilder(AMY).withDatesSlots().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
-                        + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND,
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonNoDatesTimes));
 
         // zero tags
         Person expectedPersonNoTag = new PersonBuilder(AMY).withTags().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
-                        + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATESLOT_DESC_AMY,
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATESLOT_DESC_AMY,
                 new AddCommand(expectedPersonNoTag));
     }
 
@@ -212,13 +212,13 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, CATEGORY_DESC_BOB + INVALID_NAME_DESC + GENDER_DESC_BOB
-                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + DATESLOT_DESC_BOB,
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + DATESLOT_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + CATEGORY_DESC_BOB + NAME_DESC_BOB
-                        + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
 
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }

@@ -20,7 +20,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
 
 /**
- * Undo unmarks a patient's dateslot using their unique id and dateslot index when unmark fail to visit wrongly.
+ * Undo unmarks a patient's dateslot using their unique id and dateslot index
+ * when unmark fail to visit wrongly.
  */
 public class UndoUnmarkCommand extends Command {
 
@@ -46,7 +47,8 @@ public class UndoUnmarkCommand extends Command {
     private final Index dateSlotIndex;
 
     /**
-     * Initialises the UndoUnmarkCommand with a valid and non-null {@code Uid} of the target patient and
+     * Initialises the UndoUnmarkCommand with a valid and non-null {@code Uid} of
+     * the target patient and
      * a valid and non-null {@code Index} of the target DateSlot index.
      */
     public UndoUnmarkCommand(Uid uid, Index dateSlotIndex) {
@@ -81,8 +83,8 @@ public class UndoUnmarkCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UndoUnmarkCommand// instanceof handles nulls
-                && this.uid.equals(((UndoUnmarkCommand) other).uid) // state check
-                && this.dateSlotIndex.equals(((UndoUnmarkCommand) other).dateSlotIndex));
+                        && this.uid.equals(((UndoUnmarkCommand) other).uid) // state check
+                        && this.dateSlotIndex.equals(((UndoUnmarkCommand) other).dateSlotIndex));
     }
 
     private void undounmarkAction(Person personToUndoUnmark, Model model) throws CommandException {
@@ -120,4 +122,3 @@ public class UndoUnmarkCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 }
-

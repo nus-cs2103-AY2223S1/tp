@@ -100,12 +100,12 @@ public class EditCommand extends Command {
             + "given is out of bound of the existing list."
             + "Please retype another index that is within the range or left it empty.";
 
-
     private final Uid targetUid;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param targetUid            Uid of the person in the filtered person list to edit
+     * @param targetUid            Uid of the person in the filtered person list to
+     *                             edit
      * @param editPersonDescriptor Details to edit the person with
      */
     public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
@@ -163,7 +163,7 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     public Person createEditedPerson(Model model, List<Person> personList,
-                                     Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            Person personToEdit, EditPersonDescriptor editPersonDescriptor)
             throws CommandException {
         assert personToEdit != null;
 
@@ -219,7 +219,6 @@ public class EditCommand extends Command {
             return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                     updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
 
-
         } else if (updatedCategory.isNurse()) {
             List<Date> updatedUnavailableDate = editPersonDescriptor.getUnavailableDates().orElse(null);
             List<HomeVisit> updatedHomeVisitList = editPersonDescriptor.getHomeVisits().orElse(null);
@@ -234,9 +233,9 @@ public class EditCommand extends Command {
     }
 
     private List<DateSlot> createEditedDateSlotList(List<DateSlot> originalDateSlot,
-                                                    Optional<List<DateSlot>> toBeUpdateDateSlots,
-                                                    Optional<List<Index>> toBeUpdateDateSlotsIndexes,
-                                                    Model model, List<Person> personList)
+            Optional<List<DateSlot>> toBeUpdateDateSlots,
+            Optional<List<Index>> toBeUpdateDateSlotsIndexes,
+            Model model, List<Person> personList)
             throws CommandException {
         List<DateSlot> updatedDateSlot = new ArrayList<>();
 
@@ -251,7 +250,7 @@ public class EditCommand extends Command {
         if (!isDateSlotIndexesNull) {
             toBeUpdateDateSlotIndexes = new ArrayList<>(toBeUpdateDateSlotsIndexes.get());
 
-            //If the indexNo given is out of bound of the existing list -> throw exception
+            // If the indexNo given is out of bound of the existing list -> throw exception
             for (Index indexNo : toBeUpdateDateSlotIndexes) {
 
                 if (indexNo.getZeroBased() >= originalDateSlot.size()) {
@@ -291,16 +290,17 @@ public class EditCommand extends Command {
 
             updatedDateSlot = new ArrayList<>(originalDateSlot);
 
-
             // Add the given dateTime to the existing list
         } else if (!isDateSlotEmpty && (isDateSlotIndexesNull || isDateSlotIndexesEmpty)) {
 
             updatedDateSlot = new ArrayList<>(originalDateSlot);
             updatedDateSlot.addAll(toBeUpdateDateSlot);
 
-            // Change the dateTime at the specific index in the existing list to the given dateTime
-            // If index given more than date time given  -> throws exception
-            // If date time given more than index given -> the extra date time will be added to the existing list
+            // Change the dateTime at the specific index in the existing list to the given
+            // dateTime
+            // If index given more than date time given -> throws exception
+            // If date time given more than index given -> the extra date time will be added
+            // to the existing list
         } else if (!isDateSlotEmpty && !isDateSlotIndexesEmpty) {
 
             updatedDateSlot = new ArrayList<>(originalDateSlot);
@@ -330,9 +330,9 @@ public class EditCommand extends Command {
     }
 
     private List<Date> createEditedUnavailableDateList(List<Date> originalDate,
-                                                       Optional<List<Date>> toBeUpdateDates,
-                                                       Optional<List<Index>> toBeUpdateDateIndexes,
-                                                       Model model, List<Person> personList, Person nurse)
+            Optional<List<Date>> toBeUpdateDates,
+            Optional<List<Index>> toBeUpdateDateIndexes,
+            Model model, List<Person> personList, Person nurse)
             throws CommandException {
         List<Date> updatedDate = new ArrayList<>();
 
@@ -347,7 +347,7 @@ public class EditCommand extends Command {
         if (!isDateIndexesNull) {
             toBeUpdateDateIndex = new ArrayList<>(toBeUpdateDateIndexes.get());
 
-            //If the indexNo given is out of bound of the existing list -> throw exception
+            // If the indexNo given is out of bound of the existing list -> throw exception
             for (Index indexNo : toBeUpdateDateIndex) {
 
                 if (indexNo.getZeroBased() >= originalDate.size()) {
@@ -390,10 +390,10 @@ public class EditCommand extends Command {
                 updatedDate.add(date);
             }
 
-
             // Change the date at the specific index in the existing list to the given date
-            // If index given more than date given  -> throws exception
-            // If date given more than index given -> the extra date will be added to the existing list
+            // If index given more than date given -> throws exception
+            // If date given more than index given -> the extra date will be added to the
+            // existing list
         } else if (!isDateEmpty && !isDateIndexesEmpty) {
 
             updatedDate = new ArrayList<>(originalDate);
@@ -452,7 +452,7 @@ public class EditCommand extends Command {
     }
 
     private void removeAndUnmarkRepectiveHomeVisitAndDateSlot(Model model, Person nurse,
-                                                              Date unavailableDate, List<Person> personList)
+            Date unavailableDate, List<Person> personList)
             throws CommandException {
 
         List<HomeVisit> homeVisitList = ((Nurse) nurse).getHomeVisits();
@@ -464,7 +464,7 @@ public class EditCommand extends Command {
                 Long patientUid = homeVisit.getHomeVisitPatientUidNo();
                 unmarkDateSlot(model, homeVisit.getDateSlot(), patientUid, personList);
                 HomeVisit homeVisitToBeDeleted = updatedHomeVisitList.stream().filter(
-                                h -> h.getDateSlot().getDateTime().equals(homeVisit.getDateSlot().getDateTime()))
+                        h -> h.getDateSlot().getDateTime().equals(homeVisit.getDateSlot().getDateTime()))
                         .findFirst().get();
                 updatedHomeVisitList.remove(homeVisitToBeDeleted);
             }
@@ -495,7 +495,6 @@ public class EditCommand extends Command {
             updatedFullyScheduledList.remove(dateToBeDeleted.get());
         }
 
-
         editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
@@ -525,9 +524,8 @@ public class EditCommand extends Command {
 
     }
 
-
     private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-                           List<Date> fullyScheduledDateList) throws CommandException {
+            List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor1 = new EditCommand.EditPersonDescriptor();
         editPersonDescriptor1.setHomeVisits(homeVisitList);
@@ -559,7 +557,6 @@ public class EditCommand extends Command {
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
-
     /**
      * Stores the details to edit the person with. Each non-empty field value will
      * replace the
@@ -582,7 +579,6 @@ public class EditCommand extends Command {
         private List<Date> fullyScheduledDates;
         private Optional<Physician> physician;
         private Optional<NextOfKin> nextOfKin;
-
 
         public EditPersonDescriptor() {
         }

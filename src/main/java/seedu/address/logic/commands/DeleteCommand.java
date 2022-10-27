@@ -20,7 +20,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
 
 /**
- * Deletes a patient/nurse identified using it's displayed index from the address book.
+ * Deletes a patient/nurse identified using it's displayed index from the
+ * address book.
  */
 public class DeleteCommand extends Command {
 
@@ -73,7 +74,7 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetUid.equals(((DeleteCommand) other).targetUid)); // state check
+                        && targetUid.equals(((DeleteCommand) other).targetUid)); // state check
     }
 
     private Boolean deleteRespectiveHomeVisit(Model model, Person person, List<Person> personList)
@@ -130,7 +131,6 @@ public class DeleteCommand extends Command {
             updatedFullyScheduledList.remove(dateToBeDeleted.get());
         }
 
-
         editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
@@ -159,9 +159,8 @@ public class DeleteCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-
     private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-                           List<Date> fullyScheduledDateList) throws CommandException {
+            List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         editPersonDescriptor.setHomeVisits(homeVisitList);

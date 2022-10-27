@@ -18,7 +18,8 @@ public class FileUtil {
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)},
+     * Returns true if {@code path} can be converted into a {@code Path} via
+     * {@link Paths#get(String)},
      * otherwise returns false.
      *
      * @param path A string representing the file path. Cannot be null.
@@ -33,7 +34,8 @@ public class FileUtil {
     }
 
     /**
-     * Creates a file if it does not exist along with its missing parent directories.
+     * Creates a file if it does not exist along with its missing parent
+     * directories.
      *
      * @throws IOException if the file or directory cannot be created.
      */
@@ -44,7 +46,8 @@ public class FileUtil {
     }
 
     /**
-     * Creates a file if it does not exist along with its missing parent directories.
+     * Creates a file if it does not exist along with its missing parent
+     * directories.
      */
     public static void createFile(Path file) throws IOException {
         if (Files.exists(file)) {

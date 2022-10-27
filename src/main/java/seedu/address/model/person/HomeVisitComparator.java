@@ -29,4 +29,3 @@ public class HomeVisitComparator implements Comparator<HomeVisit> {
     }
 
 }
-

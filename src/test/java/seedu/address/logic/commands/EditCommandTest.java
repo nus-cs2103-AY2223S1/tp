@@ -85,7 +85,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_dateTimeFieldSpecifiedUnfilteredList_success() {
-        //Case 1 (null dateSlot only)
+        // Case 1 (null dateSlot only)
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         PersonBuilder personToBeEdited = new PersonBuilder(firstPerson);
         Person editedPerson = personToBeEdited.withDatesSlots().build();
@@ -100,7 +100,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
-        //Case 4 (non-null dateSlot and not empty dateSlot and null dateSlotIndex)
+        // Case 4 (non-null dateSlot and not empty dateSlot and null dateSlotIndex)
         editedPerson = personToBeEdited.withDatesSlots(OTHER_DATE_SLOT, OTHER_DATE_SLOT_TWO,
                 OTHER_DATE_SLOT_THREE).build();
         descriptor = new EditPersonDescriptorBuilder().withDatesSlots(OTHER_DATE_SLOT, OTHER_DATE_SLOT_TWO,
@@ -114,7 +114,8 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
-        //Case 5 (non-null dateSlot and not empty dateSlot and non-null dateSlotIndex and not empty dateSlotIndex)
+        // Case 5 (non-null dateSlot and not empty dateSlot and non-null dateSlotIndex
+        // and not empty dateSlotIndex)
         editedPerson = personToBeEdited.withDatesSlots(OTHER_DATE_SLOT_FOUR, OTHER_DATE_SLOT_FIVE,
                 OTHER_DATE_SLOT_THREE).build();
         descriptor = new EditPersonDescriptorBuilder().withDatesSlots(OTHER_DATE_SLOT_FOUR, OTHER_DATE_SLOT_FIVE)
@@ -128,7 +129,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
-        //Case 2 (non-null dateSlotIndex and not empty and null dateSlot)
+        // Case 2 (non-null dateSlotIndex and not empty and null dateSlot)
         editedPerson = personToBeEdited.withDatesSlots(OTHER_DATE_SLOT_FIVE).build();
         descriptor = new EditPersonDescriptorBuilder().withDateSlotIndexes(OTHER_DATE_SLOT_INDEX,
                 OTHER_DATE_SLOT_INDEX_THREE).build();
@@ -141,7 +142,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
-        //Case 1 (null dateSlotIndex only)
+        // Case 1 (null dateSlotIndex only)
         editedPerson = personToBeEdited.withDatesSlots().build();
         descriptor = new EditPersonDescriptorBuilder().withDateSlotIndexes().build();
         editCommand = new EditCommand(firstPerson.getUid(), descriptor);
@@ -153,7 +154,8 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
-        //Case 4 (non-null dateSlot and not empty dateSlot and non-null dateSlotIndex but empty)
+        // Case 4 (non-null dateSlot and not empty dateSlot and non-null dateSlotIndex
+        // but empty)
         editedPerson = personToBeEdited.withDatesSlots(OTHER_DATE_SLOT,
                 OTHER_DATE_SLOT_TWO, OTHER_DATE_SLOT_THREE).build();
         descriptor = new EditPersonDescriptorBuilder().withDateSlotIndexes()
@@ -167,7 +169,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
-        //Case 2 (non-null dateSlotIndex and not empty and non-null dateSlot but empty)
+        // Case 2 (non-null dateSlotIndex and not empty and non-null dateSlot but empty)
         editedPerson = personToBeEdited.withDatesSlots(OTHER_DATE_SLOT_TWO).build();
         descriptor = new EditPersonDescriptorBuilder().withDateSlotIndexes(OTHER_DATE_SLOT_INDEX,
                 OTHER_DATE_SLOT_INDEX_THREE).withDatesSlots().build();
@@ -180,7 +182,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
-        //Case 1 (non-null dateSlot but empty and non-null dateSlotIndex but empty)
+        // Case 1 (non-null dateSlot but empty and non-null dateSlotIndex but empty)
         editedPerson = personToBeEdited.withDatesSlots().build();
         descriptor = new EditPersonDescriptorBuilder().withDateSlotIndexes().withDatesSlots().build();
         editCommand = new EditCommand(firstPerson.getUid(), descriptor);
@@ -287,7 +289,7 @@ public class EditCommandTest {
                 .withDateSlotIndexes(OTHER_DATE_SLOT_INDEX, OTHER_DATE_SLOT_INDEX_TWO)
                 .build();
 
-        editCommand = new EditCommand(new Uid("3"), descriptor); //the uid 3 is from TypicalPersons.java [Carl]
+        editCommand = new EditCommand(new Uid("3"), descriptor); // the uid 3 is from TypicalPersons.java [Carl]
 
         expectedMessage = EditCommand.MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX;
 

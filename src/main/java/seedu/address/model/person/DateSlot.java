@@ -9,7 +9,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Patient's home-visit's date and time slot.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateSlot(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidDateSlot(String)}
  */
 public class DateSlot {
 
@@ -21,7 +22,8 @@ public class DateSlot {
      * The DateSlot can only be in YYYY-MM-DD,SLOT_NUMBER format without any space.
      */
     // @@author xhphoong-reused
-    // Reused from https://mkyong.com/regular-expressions/how-to-validate-date-with-regular-expression/
+    // Reused from
+    // https://mkyong.com/regular-expressions/how-to-validate-date-with-regular-expression/
     public static final String VALIDATION_REGEX = "((?:19|20)[0-9][0-9])-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])"
             + "," + "([1-4])";
     // @@author
@@ -34,7 +36,7 @@ public class DateSlot {
     private static final String SLOT_THREE = "14:00:00";
     private static final String SLOT_FOUR = "16:00:00";
     private static final Boolean DEFAULT_BOOLEAN = false;
-    private static final Long DEFAULT_EMPTY_ASSIGNED_NURSE = Long.valueOf(-1); //No nurse assigned
+    private static final Long DEFAULT_EMPTY_ASSIGNED_NURSE = Long.valueOf(-1); // No nurse assigned
     private static final String DEFAULT_CHECK = " ";
     public final LocalDateTime dateSlotTime;
     private final String dateSlotInString;
@@ -111,7 +113,8 @@ public class DateSlot {
     }
 
     /**
-     * Check the datetime of the DateSlot with the current datetime from the system clock.
+     * Check the datetime of the DateSlot with the current datetime from the system
+     * clock.
      * Mark isVisited true if the datetime is before the current datetime.
      */
     public void checkDateTime() {
@@ -220,7 +223,7 @@ public class DateSlot {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateSlot // instanceof handles nulls
-                && dateSlotTime.equals(((DateSlot) other).dateSlotTime)); // state check
+                        && dateSlotTime.equals(((DateSlot) other).dateSlotTime)); // state check
     }
 
     @Override
@@ -229,4 +232,3 @@ public class DateSlot {
     }
 
 }
-

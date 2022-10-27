@@ -21,7 +21,8 @@ public class CollectionUtil {
     }
 
     /**
-     * Throws NullPointerException if {@code items} or any element of {@code items} is null.
+     * Throws NullPointerException if {@code items} or any element of {@code items}
+     * is null.
      */
     public static void requireAllNonNull(Collection<?> items) {
         requireNonNull(items);

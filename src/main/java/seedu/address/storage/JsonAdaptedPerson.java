@@ -58,17 +58,17 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("uid") Long uid, @JsonProperty("name") String name,
-                             @JsonProperty("category") String category,
-                             @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("dateSlots") List<JsonAdaptedDateSlot> dateSlot,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("homeVisits") List<JsonAdaptedHomeVisit> homeVisit,
-                             @JsonProperty("unavailableDates") List<JsonAdaptedDate> unavailableDateList,
-                             @JsonProperty("fullyAssignedDates") List<JsonAdaptedDate> fullyAssignedDateList,
-                             @JsonProperty("phys name") String pName,
-                             @JsonProperty("phys phone") String pPhone,
-                             @JsonProperty("phys email") String pEmail) {
+            @JsonProperty("category") String category,
+            @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("dateSlots") List<JsonAdaptedDateSlot> dateSlot,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("homeVisits") List<JsonAdaptedHomeVisit> homeVisit,
+            @JsonProperty("unavailableDates") List<JsonAdaptedDate> unavailableDateList,
+            @JsonProperty("fullyAssignedDates") List<JsonAdaptedDate> fullyAssignedDateList,
+            @JsonProperty("phys name") String pName,
+            @JsonProperty("phys phone") String pPhone,
+            @JsonProperty("phys email") String pEmail) {
 
         this.uid = uid;
         this.name = name;
@@ -115,13 +115,13 @@ class JsonAdaptedPerson {
             dateSlots.addAll(sourcePatient.getDatesSlots().stream()
                     .map(JsonAdaptedDateSlot::new)
                     .collect(Collectors.toList()));
-            String[] physNameArr = new String[]{"NA"};
+            String[] physNameArr = new String[] { "NA" };
             sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] = x.getName().fullName);
             pName = physNameArr[0];
-            String[] physEmailArr = new String[]{"NA"};
+            String[] physEmailArr = new String[] { "NA" };
             sourcePatient.getAttendingPhysician().ifPresent(x -> physEmailArr[0] = x.getEmail().value);
             pEmail = physEmailArr[0];
-            String[] physPhoneArr = new String[]{"NA"};
+            String[] physPhoneArr = new String[] { "NA" };
             sourcePatient.getAttendingPhysician().ifPresent(x -> physPhoneArr[0] = x.getPhone().value);
             pPhone = physPhoneArr[0];
         } else {
@@ -252,4 +252,3 @@ class JsonAdaptedPerson {
     }
 
 }
-

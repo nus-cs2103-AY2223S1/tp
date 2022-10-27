@@ -51,7 +51,8 @@ public class DeassignCommand extends Command {
     private final List<Index> dateslotOrHomevisitIndex;
 
     /**
-     * Creates a DeassignCommand to deassgin specific patient's date slot or specific nurse's home visit.
+     * Creates a DeassignCommand to deassgin specific patient's date slot or
+     * specific nurse's home visit.
      */
     public DeassignCommand(Uid uid, List<Index> dateslotOrHomevisitIndex) {
         requireNonNull(uid);
@@ -183,7 +184,6 @@ public class DeassignCommand extends Command {
             updatedFullyScheduledList.remove(dateToBeDeleted.get());
         }
 
-
         editNurse(model, nurse, updatedHomeVisitList, updatedFullyScheduledList);
 
     }
@@ -197,8 +197,8 @@ public class DeassignCommand extends Command {
     }
 
     private void unmarkActionForNurse(Model model, HomeVisit homeVisit, List<Person> personList,
-                                      List<HomeVisit> homeVisitList,
-                                      List<Date> fullyScheduledList) throws CommandException {
+            List<HomeVisit> homeVisitList,
+            List<Date> fullyScheduledList) throws CommandException {
         DateSlot homeVisitToBeDeleted = homeVisit.getDateSlot();
         Long patientUidNo = homeVisit.getHomeVisitPatientUidNo();
         unmarkDateSlot(model, homeVisitToBeDeleted, patientUidNo, personList);
@@ -237,7 +237,7 @@ public class DeassignCommand extends Command {
     }
 
     private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-                           List<Date> fullyScheduledDateList) throws CommandException {
+            List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         editPersonDescriptor.setHomeVisits(homeVisitList);
@@ -250,8 +250,8 @@ public class DeassignCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeassignCommand // instanceof handles nulls
-                && uid.equals(((DeassignCommand) other).uid)
-                && dateslotOrHomevisitIndex.equals(((DeassignCommand) other).dateslotOrHomevisitIndex));
+                        && uid.equals(((DeassignCommand) other).uid)
+                        && dateslotOrHomevisitIndex.equals(((DeassignCommand) other).dateslotOrHomevisitIndex));
     }
 
 }

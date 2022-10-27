@@ -9,7 +9,8 @@ import javafx.fxml.FXMLLoader;
 import seedu.address.MainApp;
 
 /**
- * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.
+ * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status
+ * bars, etc.
  * It contains a scene graph with a root node of type {@code T}.
  */
 public abstract class UiPart<T> {
@@ -30,7 +31,8 @@ public abstract class UiPart<T> {
     }
 
     /**
-     * Constructs a UiPart using the specified FXML file within {@link #FXML_FILE_FOLDER}.
+     * Constructs a UiPart using the specified FXML file within
+     * {@link #FXML_FILE_FOLDER}.
      *
      * @see #UiPart(URL)
      */
@@ -47,7 +49,8 @@ public abstract class UiPart<T> {
     }
 
     /**
-     * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
+     * Constructs a UiPart with the specified FXML file within
+     * {@link #FXML_FILE_FOLDER} and root object.
      *
      * @see #UiPart(URL, T)
      */
@@ -56,7 +59,8 @@ public abstract class UiPart<T> {
     }
 
     /**
-     * Returns the FXML file URL for the specified FXML file name within {@link #FXML_FILE_FOLDER}.
+     * Returns the FXML file URL for the specified FXML file name within
+     * {@link #FXML_FILE_FOLDER}.
      */
     private static URL getFxmlFileUrl(String fxmlFileName) {
         requireNonNull(fxmlFileName);

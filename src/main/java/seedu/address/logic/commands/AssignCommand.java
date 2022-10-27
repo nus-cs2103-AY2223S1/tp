@@ -177,7 +177,7 @@ public class AssignCommand extends Command {
     }
 
     private void createHomeVisit(DateSlot date, Person patient, List<HomeVisit> homeVisitList,
-                                 List<Date> updatedFullyScheduledDateList) {
+            List<Date> updatedFullyScheduledDateList) {
         HomeVisit homeVisit = new HomeVisit(date, patient.getUid().getUid());
         homeVisitList.add(homeVisit);
         LocalDate localdate = date.getDate();
@@ -207,7 +207,7 @@ public class AssignCommand extends Command {
     }
 
     private void editNurse(Model model, Person nurse, List<HomeVisit> homeVisitList,
-                           List<Date> fullyScheduledDateList) throws CommandException {
+            List<Date> fullyScheduledDateList) throws CommandException {
         Uid uid = nurse.getUid();
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         editPersonDescriptor.setHomeVisits(homeVisitList);
@@ -227,8 +227,8 @@ public class AssignCommand extends Command {
     }
 
     private void executeChecksAndActions(DateSlot dateSlot, List<HomeVisit> homeVisitList,
-                                         List<Date> fullyScheduledDate,
-                                         Person nurse, Long nurseUidNo, Person patient) throws CommandException {
+            List<Date> fullyScheduledDate,
+            Person nurse, Long nurseUidNo, Person patient) throws CommandException {
         checkInvalid(dateSlot);
         checkAssigned(dateSlot);
         checkCrashes(dateSlot, homeVisitList);
@@ -241,9 +241,9 @@ public class AssignCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AssignCommand // instanceof handles nulls
-                && uid1.equals(((AssignCommand) other).uid1)
-                && uid2.equals(((AssignCommand) other).uid2)
-                && dateslotIndex.equals(((AssignCommand) other).dateslotIndex));
+                        && uid1.equals(((AssignCommand) other).uid1)
+                        && uid2.equals(((AssignCommand) other).uid2)
+                        && dateslotIndex.equals(((AssignCommand) other).dateslotIndex));
     }
 
 }

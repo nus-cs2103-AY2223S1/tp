@@ -95,7 +95,8 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Patient} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Patient} that we are building.
      */
     public PatientBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);

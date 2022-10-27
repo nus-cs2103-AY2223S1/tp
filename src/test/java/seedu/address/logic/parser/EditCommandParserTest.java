@@ -82,7 +82,6 @@ public class EditCommandParserTest {
     private static final String OTHER_TAG_DESC = " " + PREFIX_TAG + OTHER_TAG;
     private static final String OTHER_TAG_DESC_TWO = " " + PREFIX_TAG + OTHER_TAG_TWO;
 
-
     private final EditCommandParser parser = new EditCommandParser();
 
     @Test
@@ -278,14 +277,14 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allDatesTimesCases_success() {
-        //empty dateTimes, empty dateTimeIndexes
+        // empty dateTimes, empty dateTimeIndexes
         String userInput = UID_DESC_AMY + DATE_AND_SLOT_EMPTY + DATE_AND_SLOT_INDEXES_EMPTY;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withDatesSlots()
                 .withDateSlotIndexes().build();
         EditCommand expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        //empty dateTimeIndexes only
+        // empty dateTimeIndexes only
         userInput = UID_DESC_AMY + DATE_AND_SLOT_INDEXES_EMPTY;
         descriptor = new EditPersonDescriptorBuilder().withDateSlotIndexes().build();
         expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
@@ -312,7 +311,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        //non-empty dateTimes and empty dateTimeIndexes
+        // non-empty dateTimes and empty dateTimeIndexes
         userInput = UID_DESC_AMY + OTHER_DATES_AND_SLOTS_DESC_TWO + DATE_AND_SLOT_INDEXES_EMPTY;
         descriptor = new EditPersonDescriptorBuilder().withDatesSlots(OTHER_DATES_AND_SLOTS_TWO)
                 .withDateSlotIndexes().build();

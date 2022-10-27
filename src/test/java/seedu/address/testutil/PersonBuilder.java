@@ -40,7 +40,6 @@ public class PersonBuilder {
     public static final String DEFAULT_CONTACT_EMAIL = "johndoe@example.com";
     public static final String DEFAULT_CONTACT_PHONE = "81234567";
 
-
     private Category category;
     private Uid uid;
     private Name name;
@@ -54,7 +53,6 @@ public class PersonBuilder {
     private Physician physician;
     private List<Date> unavailableDateList;
     private List<Date> fullyScheduledDateList;
-
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -92,7 +90,7 @@ public class PersonBuilder {
         if (personToCopy.getCategory().isPatient()) {
             Patient patientToCopy = (Patient) personToCopy;
             dateSlotList = new ArrayList<>(patientToCopy.getDatesSlots());
-            Physician[] physicianArr = new Physician[]{null};
+            Physician[] physicianArr = new Physician[] { null };
             patientToCopy.getAttendingPhysician().ifPresent(
                     x -> physicianArr[0] = new Physician(x.getName(), x.getPhone(), x.getEmail()));
             physician = physicianArr[0];
@@ -181,7 +179,6 @@ public class PersonBuilder {
         return this;
     }
 
-
     /**
      * Parses the {@code homeVisit} into a {@code List<HomeVisit>} and
      * set it to the {@code Person} that we are building.
@@ -191,7 +188,6 @@ public class PersonBuilder {
         this.homeVisitList = SampleDataUtil.getHomeVisitsList(homeVisit);
         return this;
     }
-
 
     /**
      * Sets the {@code Uid} of the {@code Person} that we are building to the
