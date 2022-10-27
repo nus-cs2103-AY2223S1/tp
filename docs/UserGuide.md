@@ -58,9 +58,13 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 
 Shows a message which explains the basic commands and links to the user guide.
 
+`exit`
+
+Exits the application.
+
 ### Modules
 
-### Adding a module: `add module`
+#### Adding a module: `add module`
 
 Adds a module to the program.
 
@@ -73,7 +77,7 @@ Examples:
 - `add module CS2103T`
 - `add -m CS2103T`
 
-### Removing a module: `remove module`
+#### Removing a module: `remove module`
 
 Deletes a module from the program.
 
@@ -87,7 +91,7 @@ Examples:
 - `remove module CS2103T`
 - `rm -m CS2103T`
 
-### Entering a module: `cd`
+#### Entering a module: `cd`
 
 Sets the current module page to the specified module.
 
@@ -101,20 +105,42 @@ Allows user to view information relating to the specified module.
 Examples:
 - `cd CS2103T`
 
-### Listing all modules: `list modules`
+#### Done a module: `done`
 
-Lists all the modules added by the user.
+Marks a module as done. 
+- After you marked a module as done, this will increment
+the total MC you completed displayed on the left side of the application.
+- When you mark a module as done, this will mark all active tasks 
+corresponding to the module as done.
 
-Format: `list modules`
-
-Shorthand: `ls -m`
+Format: `done module <module code>`, `done mod <module code>`
 
 Examples:
-- `list modules`
+- `done module CS1101S`
+
+#### Undone a module: `undone`
+
+Marks a module as undone. 
+- After you unmarked a module, this will decrement
+the total MC you completed displayed on the left side of the application.
+- Unmarking a module will not affect its tasks. (It will not undone the corresponding tasks)
+
+#### Listing all modules: `list module`
+
+Lists all the modules added by the user.
+- Using the command without `-a` tag will show you all active modules.
+- Using the command with `-a` tag will show you all modules, including those marked as done.
+
+Format: `list module [-a]`, `list mod [-a]`
+
+Shorthand: `ls module [-a]`, `ls mod [-a]`
+
+Examples:
+- `list module -a`
 
 ### Tasks
 
-### Adding a task: `add task`
+#### Adding a task: `add task`
 
 Adds a task under specific module.
 - User must be within a module page.
@@ -129,7 +155,7 @@ Examples:
 - `add task do ip tasks -d 15/09/2022`
 - `add -t do ip tasks`
 
-### Removing a task: `remove task`
+#### Removing a task: `remove task`
 
 Removes a task under a specific module.
 - User must be within a module page.
@@ -143,7 +169,7 @@ Examples:
 - `remove task 1`
 - `rm -t 1`
 
-### Listing all tasks: `list tasks`
+#### Listing all tasks: `list tasks`
 
 Lists all tasks under either all modules or a specific module.
 - Module code is inferred from the current module page if the user is currently within a module page.
@@ -164,7 +190,8 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModuleList home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous ModuleList home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -178,18 +205,19 @@ Examples:
 
 |       Action        | Format          | Examples        |
 |:-------------------:|-----------------|-----------------|
-| **List Everything** | `list`<br/>`ls` | `list`<br/>`ls` |
 |      **Help**       | `help`<br/>`h`  | `help`<br/>`h`  |
 |      **Exit**       | `exit`          | `exit`          |
 
 ### Modules
 
-|        Action        | Format                                              | Examples                                    |
-|:--------------------:|-----------------------------------------------------|---------------------------------------------|
-|   **Add a Module**   | `add module <mod. code>`<br/>`add -m <mod. code>`   | `add module CS2103T`<br/>`add -m CS2103T`   |
-| **Remove a Module**  | `remove module <mod. code>`<br/>`rm -m <mod, code>` | `remove module CS2103T`<br/>`rm -m cS2103t` |
-|  **Go to a Module**  | `cd <mod, code>`                                    | `cd CS2103T`                                |
-| **List All Modules** | `list modules` <br/> `ls -m`                        | `list modules`<br/>`ls -m`                  |
+|        Action        | Format                                                                              | Examples                                                           |
+|:--------------------:|-------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+|   **Add a Module**   | `add module <mod. code>`<br/>`add -m <mod. code>`                                   | `add module CS2103T`<br/>`add -m CS2103T`                          |
+| **Remove a Module**  | `remove module <mod. code>`<br/>`rm -m <mod, code>`                                 | `remove module CS2103T`<br/>`rm -m cS2103t`                        |
+|  **Go to a Module**  | `cd <mod, code>`                                                                    | `cd CS2103T`                                                       |
+|  **Done a Module**   | `done module <module code>` <br/> `done mod <module code>`                          | `done module CS1101S` <br/> `done mod CS1101S`                     |
+| **Undone a Module**  | `undone module <module code>` <br/> `undone mod <module code>`                      | `undone module CS1101S` <br/> `undone mod CS1101S`                 |
+| **List All Modules** | `list module [-a]` <br/> `list mod [-a]` <br/> `ls module [-a]` <br/> `ls mod [-a]` | `list module`<br/> `list mod -a`<br/> `ls module`<br/> `ls mod -a` |
 
 ### Tasks
 
