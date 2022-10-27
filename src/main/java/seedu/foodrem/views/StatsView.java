@@ -2,9 +2,11 @@ package seedu.foodrem.views;
 
 import java.util.List;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.viewmodels.Stats;
@@ -27,7 +29,7 @@ public class StatsView {
     public static Node from(Stats stats) {
 
         // Statistics header on top left
-        final Label statsHeader = new Label("FoodRem Statistics");
+        final Label statsHeader = new Label("Statistics");
         statsHeader.getStyleClass().add("stats-header");
 
         // Section for amount wasted due to expired food
@@ -45,8 +47,15 @@ public class StatsView {
                 new VBox(buildTopThreeMostExpensiveItemsListFrom(stats)));
         new Separator();
 
+        // Section for Common Tags
+        final FlowPane commonTags = new FlowPane(new Label("Top 3 common tags: "));
+        commonTags.getChildren().addAll(TagsView.from(stats.getCommonTags()));
+        commonTags.setAlignment(Pos.CENTER_LEFT);
+        commonTags.setHgap(SPACING_UNIT);
+        commonTags.setVgap(SPACING_UNIT);
+
         // Combine everything
-        final VBox statsView = new VBox(statsHeader, new Separator(), amountWasted, expensiveItems);
+        final VBox statsView = new VBox(statsHeader, new Separator(), amountWasted, commonTags, expensiveItems);
 
         return statsView;
     }
