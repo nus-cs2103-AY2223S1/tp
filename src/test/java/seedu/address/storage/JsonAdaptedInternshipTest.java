@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.BINANCE;
@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
-// import seedu.address.model.internship.InterviewDateTime;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 
 public class JsonAdaptedInternshipTest {
@@ -36,13 +36,11 @@ public class JsonAdaptedInternshipTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    /* Passes locally but not on GitHub Actions
     @Test
     public void toModelType_validInternshipDetails_returnsInternship() throws Exception {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(BINANCE);
         assertEquals(BINANCE, internship.toModelType());
     }
-     */
 
     @Test
     public void toModelType_invalidCompany_throwsIllegalValueException() {
@@ -112,7 +110,6 @@ public class JsonAdaptedInternshipTest {
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
-    /* Passes locally but not on GitHub Actions
     @Test
     public void toModelType_invalidInterviewDateTime_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
@@ -121,9 +118,7 @@ public class JsonAdaptedInternshipTest {
         String expectedMessage = InterviewDateTime.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
-     */
 
-    /* Passes locally but not on GitHub Actions
     @Test
     public void toModelType_nullInterviewDateTime_throwsIllegalValueException() {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, VALID_DESCRIPTION,
@@ -131,7 +126,6 @@ public class JsonAdaptedInternshipTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, InterviewDateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
-     */
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {

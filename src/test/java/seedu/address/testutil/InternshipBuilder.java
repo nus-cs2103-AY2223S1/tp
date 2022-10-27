@@ -22,6 +22,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_LINK = "https://careers.google.com/jobs/results/97935383573996230/";
     public static final String DEFAULT_DESCRIPTION = "Software Engineering Intern, BS, Summer 2023";
     public static final ApplicationStatus DEFAULT_APPLICATION_STATUS = ApplicationStatus.Applied;
+    public static final ApplicationStatus INTERVIEW_APPLICATION_STATUS = ApplicationStatus.Shortlisted;
     public static final String DEFAULT_APPLIED_DATE = "25 Oct 2022";
     public static final String DEFAULT_INTERVIEW_DATE_TIME = "30 Dec 2022 09:00";
 
@@ -40,7 +41,7 @@ public class InternshipBuilder {
         company = new Company(DEFAULT_COMPANY);
         link = new Link(DEFAULT_LINK);
         description = new Description(DEFAULT_DESCRIPTION);
-        applicationStatus = DEFAULT_APPLICATION_STATUS;
+        applicationStatus = INTERVIEW_APPLICATION_STATUS;
         appliedDate = new AppliedDate(DEFAULT_APPLIED_DATE);
         interviewDateTime = new InterviewDateTime(DEFAULT_INTERVIEW_DATE_TIME);
         tags = new HashSet<>();
@@ -58,6 +59,7 @@ public class InternshipBuilder {
         if (noInterviewDateTime == true) {
             interviewDateTime = null;
         } else {
+            applicationStatus = INTERVIEW_APPLICATION_STATUS;
             interviewDateTime = new InterviewDateTime(DEFAULT_INTERVIEW_DATE_TIME);
         }
         tags = new HashSet<>();

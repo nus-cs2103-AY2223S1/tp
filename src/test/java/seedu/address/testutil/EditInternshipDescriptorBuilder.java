@@ -36,6 +36,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor = new EditCommand.EditInternshipDescriptor();
         descriptor.setCompany(internship.getCompany());
         descriptor.setLink(internship.getLink());
+        descriptor.setApplicationStatus(internship.getApplicationStatus());
         descriptor.setDescription(internship.getDescription());
         descriptor.setAppliedDate(internship.getAppliedDate());
         descriptor.setInterviewDateTime(internship.getInterviewDateTime());
