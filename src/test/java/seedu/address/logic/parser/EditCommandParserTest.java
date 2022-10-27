@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REMARK_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -79,6 +81,14 @@ public class EditCommandParserTest {
         // negative index
         assertParseFailure(parser, "-5 m/client" + NAME_DESC_AMY, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX
             + "\n" + EditCommand.MESSAGE_USAGE);
+
+        // negative index
+        assertParseFailure(parser, "-5 m/transaction", MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX
+                + "\n" + EditCommand.MESSAGE_USAGE);
+
+        // negative index
+        assertParseFailure(parser, "-5 m/remark" + NAME_DESC_AMY, MESSAGE_INVALID_REMARK_DISPLAYED_INDEX
+                + "\n" + EditCommand.MESSAGE_USAGE);
 
         // zero index
         assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
