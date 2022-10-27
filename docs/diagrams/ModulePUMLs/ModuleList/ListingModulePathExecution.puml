@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes the command to mark a module as done;
+:User executes the command to list modules;
 :JCommander parses the command looking for tags;
 
 'Since the beta syntax does not support placing the condition outside the
@@ -9,16 +9,11 @@ start
 if () then ([contains all valid tags])
     :check if user is in another module;
     if() then ([not in another module])
-        :check if module code argument is valid;
-        if () then ([valid module code])
-            if () then ([module is not already done])
-                :mark module as done;
-                :display marking success message;
-            else ([else])
-                :display invalid state error message;
-            endif
+        :check if -a tag is present;
+        if () then ([-a tag is present])
+            :list all modules including the ones marked as done;
         else ([else])
-            :display invalid input error message;
+            :list modules that are not marked as done;
         endif
     else ([else])
         :display cd state error message;

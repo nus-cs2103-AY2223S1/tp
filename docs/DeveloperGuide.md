@@ -473,9 +473,9 @@ The done/undone state is handled in the `Module` class via a boolean flag `isDon
 Because `Module` is immutable, the methods `Module::done` and `Module::undone` return a new `Module`
 with the done/undone state changed instead of mutating the `isDone` variable directly.
 
-The following activity diagram shows the execution and control flow of the `done` command.
+The following diagram shows the execution and control flow of the `done` command.
 
-<img src="images/ModuleDoneDiagram.png" width="1000" />
+<img src="images/ModulePUMLs/DoneModule/ModuleDonePathExecution.png" width="1000" />
 
 Notice how we explicitly prevent a done module from being marked as done again. Even though marking a done module as 
 done again is inconsequential from a data perspective (nothing in a `Module` changes other than the creation of a new
@@ -493,6 +493,31 @@ The classes directly involved in setting the done/undone state from user input a
 For brevity, we omit the diagrams and explanations for marking modules as undone—it is the direct inverse of marking tasks as done,
 such that the control flow is exactly the same: just replace "done" and its derivatives
 with "undone", and vice versa.
+
+### Module listing
+
+Section by : [Marciano](https://github.com/midnightfeverrr)
+
+Module listing allows users to view the modules they have added.
+
+The relevant commands for this section are:
+* **`cd`** sets path to the homepage. (Not inside of any module)
+* **`ls mod`/`ls module`** displays only the undone modules (active modules) in the UI.
+* **`ls mod -a`/`ls module -a`** displays all the modules, including the ones marked done, in the UI.
+
+#### Current implementation
+
+We check for the presence of the `-a` flag to decide whether to display done tasks.
+
+The following diagram shows the execution and control flow of the `list module` command.
+
+<img src="images/modulePUMLs/ListModule/ListingModulePathExecution.png" width="1000" />
+
+The predicates defined by `Model.PREDICATE_SHOW_ALL_MODULES` and `PREDICATE_HIDE_DONE_MODULES` are used to filter
+the tasks displayed in the UI via the `updateFilteredModuleList` method in the `Model` interface.
+
+The sequence diagram below details the interactions between the command and the model
+for the `ls mod` and `ls mod -a` commands:
 
 ### Tasks
 
