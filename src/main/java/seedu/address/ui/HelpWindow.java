@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -30,17 +31,11 @@ import seedu.address.logic.commands.UnassignCommand;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL
-            + "example\n"  + "example\n"  + "example\n"  + "example\n"  + "example\n"  + "example\n";
-
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
-    private Button copyButton;
-
-    @FXML
-    private Label helpMessage;
+    private TextArea textArea;
 
     /**
      * Creates a new HelpWindow.
@@ -49,7 +44,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        textArea.setText(HelpCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -84,53 +79,49 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     public void set() {
-        helpMessage.setText(HELP_MESSAGE);
+        textArea.setText(HelpCommand.MESSAGE_USAGE);
     }
 
     public void set(CommandResult.CommandType commandType) {
+        assert(commandType != CommandResult.CommandType.EXIT
+                || commandType != CommandResult.CommandType.HELP
+                || commandType != CommandResult.CommandType.OTHER);
         switch (commandType) {
         case ADD:
-            helpMessage.setText(AddCommand.HELP_MESSAGE);
+            textArea.setText(AddCommand.MESSAGE_USAGE);
             break;
-//        case EDIT:
-//            helpMessage.setText(EditCommand.HELP_MESSAGE);
-//            break;
-//        case DELETE:
-//            helpMessage.setText(DeleteCommand.HELP_MESSAGE);
-//            break;
-//        case SORT:
-//            helpMessage.setText(SortCommand.HELP_MESSAGE);
-//            break;
-//        case CLEAR:
-//            helpMessage.setText(ClearCommand.HELP_MESSAGE);
-//            break;
-//        case FIND:
-//            helpMessage.setText(FindCommand.HELP_MESSAGE);
-//            break;
-//        case LIST:
-//            helpMessage.setText(ListCommand.HELP_MESSAGE);
-//            break;
-//        case EXIT:
-//            helpMessage.setText(ExitCommand.HELP_MESSAGE);
-//            break;
-//        case HELP:
-//            helpMessage.setText(HelpCommand.HELP_MESSAGE);
-//            break;
-//        case SHOW:
-//            helpMessage.setText(ShowCommand.HELP_MESSAGE);
-//            break;
-//        case ASSIGN:
-//            helpMessage.setText(AssignCommand.HELP_MESSAGE);
-//            break;
-//        case UNASSIGN:
-//            helpMessage.setText(UnassignCommand.HELP_MESSAGE);
-//            break;
-//        case NOK:
-//            helpMessage.setText(NextOfKinCommand.HELP_MESSAGE);
-//            break;
-        case OTHER:
+        case EDIT:
+            textArea.setText(EditCommand.MESSAGE_USAGE);
+            break;
+        case DELETE:
+            textArea.setText(DeleteCommand.MESSAGE_USAGE);
+            break;
+        case SORT:
+            textArea.setText(SortCommand.MESSAGE_USAGE);
+            break;
+        case CLEAR:
+            textArea.setText(ClearCommand.MESSAGE_USAGE);
+            break;
+        case FIND:
+            textArea.setText(FindCommand.MESSAGE_USAGE);
+            break;
+        case LIST:
+            textArea.setText(ListCommand.MESSAGE_USAGE);
+            break;
+        case SHOW:
+            textArea.setText(ShowCommand.MESSAGE_USAGE);
+            break;
+        case ASSIGN:
+            textArea.setText(AssignCommand.MESSAGE_USAGE);
+            break;
+        case UNASSIGN:
+            textArea.setText(UnassignCommand.MESSAGE_USAGE);
+            break;
+        case NOK:
+            textArea.setText(NextOfKinCommand.MESSAGE_USAGE);
+            break;
         default:
-            helpMessage.setText(HELP_MESSAGE);
+            textArea.setText(HelpCommand.MESSAGE_USAGE);
         }
     }
 

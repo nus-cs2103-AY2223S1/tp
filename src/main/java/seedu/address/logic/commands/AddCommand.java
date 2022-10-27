@@ -109,7 +109,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds either a student, a tutor or a class to the database.\n"
-            + "Parameters:"
+            + "\nParameters:\n"
             + "student "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -133,12 +133,12 @@ public class AddCommand extends Command {
             + PREFIX_DAY + "DAY "
             + PREFIX_TIME + "TIME "
             + "[" + PREFIX_TAG + "TAG]... \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: \n" + COMMAND_WORD + " "
             + "student "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 \n"
             + PREFIX_SUBJECT_OR_SCHOOL + "Keming Primary School "
             + PREFIX_LEVEL + "Primary3 "
             + PREFIX_TAG + "badBoy "

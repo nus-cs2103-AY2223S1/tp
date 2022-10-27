@@ -24,10 +24,10 @@ public class FindCommand extends Command {
     public static final String FEEDBACK_MESSAGE = "Valid find command format:\n"
             + "find KEYWORD [MORE_KEYWORDS]...\n";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all entities whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "\nParameters:\nKEYWORD [MORE_KEYWORDS]...\n"
+            + "\nExample:\n" + COMMAND_WORD + " alice bob charlie";
 
     private final List<String> keywords;
 

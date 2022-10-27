@@ -12,9 +12,9 @@ public abstract class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists either students, tutors or classes in the database.\n"
-            + "Parameters:"
+            + "\nParameters:\n"
             + "student OR\n"
             + "tutor OR\n"
             + "class \n"
-            + "Example: " + COMMAND_WORD + " student\n";
+            + "\nExample: \n" + COMMAND_WORD + " student\n";
 }
