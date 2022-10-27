@@ -64,6 +64,17 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
 
 </div>
 
+### Next session : `no command needed`
+
+Pupilist helps to organise your session timings automatically, no need for commands for this feature!<br>
+It will show you this feature on launch of the application and when you use the [`list`](#listing-all-persons--list) command.
+
+Pupilist takes your current device time and sees the sessions that are upcoming if you have any,<br>
+then shows you the name of the person and the session timing. If you don't have any sessions with anyone, <br>
+it will also tell you that there are no next session timing.
+
+![]
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page, and a list of basic commands.
@@ -83,7 +94,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book. Toggles the address book to list mode.
+Shows a list of all persons in the address book. Changes the address book to list mode.
 Also allows you to see the next session for you to attend along with the person you 
 are going to be teaching next.
 
@@ -177,6 +188,7 @@ Examples:
 ### Viewing persons details: `view`
 
 View details of a person. Required to `edit` or `remove` person's details.
+You can only view one person's details at one time.
 
 Format: `view NAME` 
 
@@ -240,7 +252,7 @@ Adds a formatted session timing to student, expected to repeat weekly.
 Format: `session INDEX s/TUITION_TIME`
 
 *Adds tuition time to student with the specified `INDEX`.<br>
-*Tuition time must be in `DDD HH-MM` format
+*Tuition time must be in `DDD HH:MM` format
 
 Examples:
 *`session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
