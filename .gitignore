@@ -3,6 +3,7 @@
 /build/
 src/main/resources/docs/
 /bin/
+/.vscode/
 
 # IDEA files
 /.idea/
