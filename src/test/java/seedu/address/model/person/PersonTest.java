@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FILEPATH_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -44,16 +43,16 @@ public class PersonTest {
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_AMY).build();
+                .withTags(VALID_TAG_BOB).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, same email, different attributes -> returns false
         editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_AMY).build();
+                .withTags(VALID_TAG_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_AMY).build();
+        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_BOB).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
     }
 
