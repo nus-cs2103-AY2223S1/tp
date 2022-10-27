@@ -112,11 +112,13 @@ public class EditCommand extends Command {
         int updatedLeaves = editPersonDescriptor.getLeaves().orElse(currentLeaves);
         EmployeeId employeeId = personToEdit.getEmployeeId();
         Rating rating = personToEdit.getRating();
-
+        int currentLeavesLeft = personToEdit.getLeavesLeft();
         Person p = new Person(
                 updatedName, employeeId, updatedPhone, updatedEmail, updatedPosition,
                 updatedDepartment, updatedAddress, updatedTags, updatedLeaves, rating);
-        p.setLeavesLeft(updatedLeaves - currentLeaves + currentLeaves);
+        p.setLeavesLeft(updatedLeaves - currentLeaves + currentLeavesLeft);
+        p.setLeaves(personToEdit.getLeaves());
+        p.setRatingHistory(personToEdit.getRatingHistory());
         return p;
     }
 

@@ -31,7 +31,7 @@ public class Person {
     private final Department department;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Queue<Leave> leaves = new PriorityQueue<>(Leave.COMPARATOR);
+    private Queue<Leave> leaves = new PriorityQueue<>(Leave.COMPARATOR);
     private final int totalNumberOfLeaves;
     private int leavesLeft = 0;
     private ArrayList<Rating> performanceHistory = new ArrayList<>();
@@ -134,6 +134,14 @@ public class Person {
 
     public ArrayList<Rating> getRatingHistory() {
         return this.performanceHistory;
+    }
+
+    public void setRatingHistory(ArrayList<Rating> ratinglist) {
+        this.performanceHistory = ratinglist;
+    }
+
+    public void setLeaves(Queue<Leave> leaves) {
+        this.leaves = leaves;
     }
 
     /**
