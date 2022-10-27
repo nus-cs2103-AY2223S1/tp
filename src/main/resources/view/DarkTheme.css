@@ -111,6 +111,10 @@
 .list-cell:filled:selected {
     -fx-background-color: #154073;
 }
+#sessionListView .list-cell:filled:selected {
+    -fx-background-color: #7d6b48;
+}
+
 .list-cell:filled:selected .label {
     -fx-text-fill: white;
 }
