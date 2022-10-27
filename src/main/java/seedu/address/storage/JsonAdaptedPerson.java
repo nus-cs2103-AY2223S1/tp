@@ -96,11 +96,13 @@ class JsonAdaptedPerson {
         String email = socialArray[2];
         String instagram = socialArray[3];
         String preferred = socialArray[4];
+        String imageUrl = socialArray[5];
         modelSocial.addWhatsapp(whatsapp);
         modelSocial.addTelegram(telegram);
         modelSocial.addEmail(email);
         modelSocial.addInstagram(instagram);
         modelSocial.prefer(preferred);
+        modelSocial.addUrl(imageUrl);
 
         return modelSocial;
     }
