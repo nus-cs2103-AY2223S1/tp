@@ -79,8 +79,16 @@ public class Task extends AbstractSingleItem {
         return completedTime;
     }
 
-    public Description getDescription() {
-        return description;
+    /**
+     * Returns the content of the task description.
+     *
+     * @return content of task description, or an empty string if it does not exist.
+     */
+    public String getDescriptionContent() {
+        if (description != null) {
+            return description.getAttributeContent();
+        }
+        return "";
     }
 
     /**

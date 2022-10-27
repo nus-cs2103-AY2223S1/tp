@@ -6,18 +6,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attribute.Field;
 
+/**
+ * Jackson-friendly version of {@link Field}.
+ */
 class JsonAdaptedField {
 
     private final String name;
     private final String value;
 
+    /**
+     * Constructs a {@code JsonAdaptedField} with the given field details.
+     */
     @JsonCreator
     public JsonAdaptedField(@JsonProperty("name") String name, @JsonProperty("value") String value) {
-        this.name = name;
-        this.value = value;
+        this.name = name == null ? "" : name;
+        this.value = value == null ? "" : value;
     }
 
     public JsonAdaptedField(Field field) {
+        assert field != null;
         name = field.name;
         value = field.value;
     }
