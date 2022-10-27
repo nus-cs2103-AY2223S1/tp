@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.ui.HelpWindow.USERGUIDE_URL;
+
 import picocli.CommandLine;
 import seedu.address.model.Model;
 
@@ -16,9 +18,13 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
+    @CommandLine.Spec
+    private CommandLine.Model.CommandSpec commandSpec;
+
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        CommandLine parent = commandSpec.commandLine().getParent();
+        return new CommandResult(parent.getUsageMessage() + "\nAccess our user guide here: " + USERGUIDE_URL);
     }
 
 }
