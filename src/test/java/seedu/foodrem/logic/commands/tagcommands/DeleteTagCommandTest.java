@@ -10,6 +10,8 @@ import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
@@ -20,10 +22,11 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
+import seedu.foodrem.viewmodels.TagsWithMessage;
 
 public class DeleteTagCommandTest {
     private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in the FoodRem";
-    private static final String EXPECTED_FORMAT_SUCCESS = "Tag deleted: %1$s";
+    private static final String EXPECTED_FORMAT_SUCCESS = "Tag deleted:";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
@@ -32,7 +35,7 @@ public class DeleteTagCommandTest {
         Tag tagToDelete = model.getFilteredTagList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(tagToDelete);
 
-        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, tagToDelete);
+        TagsWithMessage expectedMessage = new TagsWithMessage(List.of(tagToDelete), EXPECTED_FORMAT_SUCCESS);
 
         ModelManager expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.deleteTag(tagToDelete);
@@ -54,12 +57,12 @@ public class DeleteTagCommandTest {
             assertTrue(item.getTagSet().contains(tagToDelete));
         }
 
-        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, tagToDelete);
+        TagsWithMessage expectedResult = new TagsWithMessage(List.of(tagToDelete) , EXPECTED_FORMAT_SUCCESS);
 
         ModelManager expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.deleteTag(tagToDelete);
 
-        assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteTagCommand, model, expectedResult, expectedModel);
 
         // Tag should be deleted from all items
         for (Item item : model.getCurrentList()) {
