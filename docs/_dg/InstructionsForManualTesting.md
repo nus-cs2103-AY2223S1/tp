@@ -29,9 +29,9 @@ Prerequisite: There is at least 1 item in the Item List Box.
 ### Tags
 
 #### Creating a Tag
-Test Case: `newtag n/Fruits`<br> Expected Output in Command Output Box: New tag added and its details.
+1. Test Case: `newtag n/Fruits`<br> Expected Output in Command Output Box: New tag added and its details.
 
-Test Case: `newtag n/!`<br> Expected Output in Command Output Box: Error message for invalid name format.
+1. Test Case: `newtag n/!`<br> Expected Output in Command Output Box: Error message for invalid name format.
 
 #### Renaming a Tag
 Prerequisite: Original tag to be renamed exists.
@@ -72,4 +72,4 @@ Prerequisite: Tag currently exists in FoodRem
 
 
 ### Exit
-Test Case: `exit`<br> Expected Output: FoodRem application closes.
+1. Test Case: `exit`<br> Expected Output: FoodRem application closes.
