@@ -86,7 +86,6 @@ Examples:
 * `add n/Adam Doink e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 c/CS1101S cg/CS1101S:Tut07`
 * `add n/David Lim e/ad4md01nk@example.com a/Tembusu College p/82738419 c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
 
-![addstu](images/userguide/addstu.png)
 
 ### Adding a module: `madd`
 
@@ -187,7 +186,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a student : `delstu`
 
@@ -249,7 +247,6 @@ If the schedule to be added conflicts with any existing schedule, the ProfNUS wi
 
 **Example**: `sadd m/CS2103T w/Wednesday ct/11:00-12:00 cc/tut cv/Zoom`
 
-<img src="./images/userguide/sadd.png" alt="Screenshot 2022-10-16 at 2.30.31 PM" style="zoom: 50%;" width=1200px/>
 
 ### Edit a schedule `sedit`
 
@@ -263,7 +260,6 @@ Edits a schedule in the ProfNUS.
 
 **Example**: `sedit 3 w/Wednesday ct/09:00-10:00 cv/COM2-0218`
 
-<img src="./images/userguide/sedit.png" alt="sedit" style="zoom:67%;" width=1000px/>
 
 ### Delete a schedule `sdelete`
 
@@ -275,7 +271,6 @@ Deletes a schedule from the ProfNUS.
 
 **Example**: `sdelete 2`
 
-<img src="images/userguide/sdelete.png" alt="sdelete" style="zoom:67%;" width=1000px/>
 
 ### Clear your teaching schedule: `sclear`
 
@@ -291,7 +286,6 @@ Clears some selected schedules/all schedules from the ProfNUS.
 
 **Example**: `sclear m/CS2103T m/CS2103`
 
-<img src="images/userguide/sclear.png" alt="sdelete" style="zoom:67%;" width="1000px/">
 
 
 ### View your teaching schedule: `view`
@@ -307,8 +301,6 @@ Shows the list of some selected schedules/all schedules from the ProfNUS.
 - If all `[m/MODULE_CODE]` don't exist or they have no schedules, it will show empty list.
 
 **Example**: `view m/CS2103T m/CS2103`
-
-<img src="images/userguide/view.png" alt="sdelete" style="zoom:67%;" width="1000px/">
 
 ### View your teaching schedule: `tview`
 
