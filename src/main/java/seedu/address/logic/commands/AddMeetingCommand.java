@@ -21,8 +21,8 @@ import seedu.address.model.person.Person;
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "meeting";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting time to the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds one or multiple meeting times to the person "
+            + "identified by the index number used in the last person listing. "
             + "Existing MeetingTime will not be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_MEETING_TIME + "[MeetingTime]\n"
@@ -35,7 +35,7 @@ public class AddMeetingCommand extends Command {
 
     /**
      * @param index of the person in the filtered person list to add the MeetingTime
-     * @param meetingTimes of the person to be updated to
+     * @param meetingTimes all meeting times to be added to person
      */
     public AddMeetingCommand(Index index, Set<MeetingTime> meetingTimes) {
         requireAllNonNull(index, meetingTimes);
