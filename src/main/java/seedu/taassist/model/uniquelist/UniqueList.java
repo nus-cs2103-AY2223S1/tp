@@ -60,9 +60,7 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
                 throw new DuplicateElementException();
             }
         }
-        for (T toAdd : toAddList) {
-            internalList.add(toAdd);
-        }
+        internalList.addAll(toAddList);
         Collections.sort(internalList);
     }
 
