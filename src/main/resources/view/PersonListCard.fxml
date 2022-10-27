@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<!-- <?import javafx.scene.layout.RowConstraints?> -->
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -16,6 +17,9 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
+    <!-- <rowConstraints>
+      <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints> -->
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
@@ -39,7 +43,7 @@
         <FlowPane fx:id="tags" />
       </HBox>
 
-      <HBox fx:id="phoneContainer" alignment="CENTER_LEFT">
+      <HBox fx:id="phoneContainer" alignment="TOP_LEFT">
         <padding>
           <Insets top="2" right="0" bottom="2" left="-3" />
         </padding>
@@ -58,16 +62,18 @@
         </children>
       </HBox>
 
-      <HBox fx:id="addressContainer" alignment="CENTER_LEFT">
+      <HBox fx:id="addressContainer" alignment="TOP_LEFT">
         <padding>
           <Insets top="0" right="0" bottom="2" left="-1" />
         </padding>
         <children>
-          <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-              <Image url="@../images/address.png" />
-            </image>
-          </ImageView>
+          <HBox >
+            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../images/address.png" />
+              </image>
+            </ImageView>
+          </HBox>
           <HBox>
             <padding>
               <Insets top="0" right="1" bottom="1" left="0" />
@@ -77,7 +83,7 @@
         </children>
       </HBox>
 
-      <HBox fx:id="emailContainer" alignment="CENTER_LEFT">
+      <HBox fx:id="emailContainer" alignment="TOP_LEFT">
         <padding>
           <Insets top="0" right="1" bottom="1" left="1" />
         </padding>
@@ -96,7 +102,7 @@
         </children>
       </HBox>
 
-      <HBox fx:id="personGroupContainer" alignment="CENTER_LEFT">
+      <HBox fx:id="personGroupContainer" alignment="TOP_LEFT">
         <padding>
           <Insets top="2" right="1" bottom="1" left="1" />
         </padding>
