@@ -7,13 +7,16 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventSortField;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.SortField;
+import seedu.address.model.person.PersonSortField;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvents;
+    private final ObservableList<PieChart.Data> data;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        data = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -79,7 +84,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+
+    //=========== AddressBook =================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -90,6 +96,9 @@ public class ModelManager implements Model {
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
+
+
+    //=========== Person Methods ==============================================================================
 
     @Override
     public boolean hasPerson(Person person) {
@@ -111,9 +120,17 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
+
+    @Override
+    public void sortPersons(PersonSortField sortField) {
+        requireNonNull(sortField);
+        addressBook.sortPersons(sortField);
+    }
+
+
+    //=========== Event Methods ===============================================================================
 
     @Override
     public void addEvent(Event event) {
@@ -136,11 +153,18 @@ public class ModelManager implements Model {
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-
         addressBook.setEvent(target, editedEvent);
     }
 
-    //=========== Filtered Event List Accessor =================
+    @Override
+    public void sortEvents(EventSortField sortField) {
+        requireNonNull(sortField);
+        addressBook.sortEvents(sortField);
+    }
+
+
+    //=========== Filtered Event List Accessor ================================================================
+
     /**
      * Returns an unmodifiable view of the list of Events backed by the internal list present in the AddressBook
      */
@@ -149,33 +173,6 @@ public class ModelManager implements Model {
         return filteredEvents;
     }
 
-    @Override
-    public void sortPersons(SortField sortField) {
-        requireNonNull(sortField);
-        addressBook.sortPersons(sortField);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    /**
-     * Updates an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
     /**
      * Updates an unmodifiable view of the list of {@code Event} backed by the internal list of
      * {@code versionedAddressBook}
@@ -195,6 +192,39 @@ public class ModelManager implements Model {
         // This predicate updates the person names in the UidList in each event
         // All events in the event list are displayed since the predicate returns true for all events
         this.updateFilteredEventList(x -> x.getUids().setPersonNames(this));
+    }
+
+
+    //=========== Filtered Person List Accessors ==============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    /**
+     * Updates an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<PieChart.Data> getPieChartData() {
+        return data;
+    }
+
+    @Override
+    public void setData(ObservableList<PieChart.Data> newData) {
+        requireNonNull(newData);
+        this.data.setAll(newData);
     }
 
     @Override

@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart.Data;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -21,8 +22,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventSortField;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.SortField;
+import seedu.address.model.person.PersonSortField;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPersonCommandTest {
@@ -161,7 +163,12 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void sortPersons(SortField sortField) {
+        public void sortPersons(PersonSortField sortField) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortEvents(EventSortField sortField) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -182,6 +189,16 @@ public class AddPersonCommandTest {
 
         @Override
         public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Data> getPieChartData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setData(ObservableList<Data> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
