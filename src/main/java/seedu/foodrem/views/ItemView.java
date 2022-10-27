@@ -32,6 +32,7 @@ public class ItemView {
         // Name and tags at the top left
         final HBox tags = new HBox(new Label("Tags: "), TagsView.from(item.getTagSet()));
         tags.setAlignment(Pos.CENTER_LEFT);
+        tags.setSpacing(SPACING_UNIT);
 
         // Quantity and unit at the top right
         final Label quantityLabel = new Label("Quantity\nRemaining:");
