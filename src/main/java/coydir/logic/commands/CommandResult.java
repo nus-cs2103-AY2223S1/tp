@@ -20,9 +20,6 @@ public class CommandResult {
     /** The application should display a person's profile. */
     private final boolean viewPerson;
 
-    /** The home panel should be displayed. */
-    private final boolean goHome;
-
     /** The displayed person should be updated. */
     private final boolean update;
 
@@ -32,14 +29,12 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean goHome) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.goHome = goHome;
         this.viewPerson = false;
         this.update = true;
-        this.viewIndex = -1;
     }
 
     /**
@@ -50,7 +45,6 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
-        this.goHome = false;
         this.viewPerson = true;
         this.update = false;
         this.viewIndex = index;
@@ -61,7 +55,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -78,10 +72,6 @@ public class CommandResult {
 
     public boolean isViewPerson() {
         return viewPerson;
-    }
-
-    public boolean isGoHome() {
-        return goHome;
     }
 
     public boolean isUpdate() {
@@ -108,14 +98,13 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && viewPerson == otherCommandResult.viewPerson
-                && goHome == otherCommandResult.goHome
                 && update == otherCommandResult.update
                 && viewIndex == otherCommandResult.viewIndex;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, viewPerson, goHome, update, viewIndex);
+        return Objects.hash(feedbackToUser, showHelp, exit, viewPerson, update, viewIndex);
     }
 
 }

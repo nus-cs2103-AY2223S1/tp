@@ -10,6 +10,7 @@ import coydir.logic.commands.exceptions.CommandException;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -227,18 +228,18 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleViewPerson(int index) {
         Person currentPerson = logic.getFilteredPersonList().get(index);
-        if (index == currentIndex && !currentPerson.getEmployeeId().equals(currentEmployee)) {
-            setSidePanel(homePanel);
-        } else {
-            personInfo.update(currentPerson);
-            setSidePanel(personInfo);
-        }
+        personInfo.update(currentPerson);
+        setSidePanel(personInfo);
         currentIndex = index;
-        currentEmployee = currentPerson.getEmployeeId();
     }
 
     private void handleUpdate(int index) {
-        personInfo.update(logic.getFilteredPersonList().get(index));
+        ObservableList<Person> personList = logic.getFilteredPersonList();
+        if (index >= personList.size()) {
+            setSidePanel(homePanel);
+        } else {
+            personInfo.update(logic.getFilteredPersonList().get(index));
+        }
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -262,7 +263,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             } else if (commandResult.isViewPerson()) {
                 int viewIndex = commandResult.getViewIndex();
-                handleViewPerson(viewIndex == -1 ? currentIndex : viewIndex);
+                handleViewPerson(viewIndex);
             } else if (commandResult.isUpdate()) {
                 handleUpdate(currentIndex);
             }
