@@ -88,7 +88,7 @@
                 </Label>
                 <HBox id="descriptionField">
                     <Label fx:id="description" text="\$description" wrapText="true"
-                           HBox.hgrow="ALWAYS" minWidth="300" VBox.vgrow="ALWAYS" prefWidth="0">
+                           HBox.hgrow="ALWAYS" minWidth="300" VBox.vgrow="ALWAYS">
                         <minHeight>
                             <!-- Ensures that the label text is never truncated -->
                             <Region fx:constant="USE_PREF_SIZE" />
