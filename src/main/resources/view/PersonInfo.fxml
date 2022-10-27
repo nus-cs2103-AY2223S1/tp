@@ -41,7 +41,7 @@
                     <Insets top="10"/>
                 </padding>
                 <LineChart fx:id="lineChart" layoutX="14.0" layoutY="52.0" prefHeight="512.0"
-                    prefWidth="887.0" title="Fuck" style="-fx-background-color: #F5F5F5;">
+                    prefWidth="887.0" title="performanceHistory" style="-fx-background-color: #F5F5F5;">
                     <xAxis>
                         <CategoryAxis fx:id="xAxis" side="BOTTOM" />
                     </xAxis>
