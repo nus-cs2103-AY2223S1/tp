@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -44,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane servers;
     @FXML
     private FlowPane gameTypes;
+    @FXML
+    private ImageView avatarPane;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -57,6 +60,9 @@ public class PersonCard extends UiPart<Region> {
         name.setText("[" + person.getName().toString() + "]");
         minecraftName.setText(person.getMinecraftName().toString());
         information.setText(person.toDisplayString());
+        avatarPane.setImage(person.getAvatar());
+        avatarPane.setFitHeight(90);
+        avatarPane.setFitWidth(90);
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
