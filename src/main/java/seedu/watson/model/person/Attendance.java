@@ -128,6 +128,11 @@ public class Attendance {
         return sb.toString();
     }
 
+    /**
+     * Returns the Attendance into a String to be shown in the GUI.
+     *
+     * @return a String which represents the Attendance of the person.
+     */
     public String guiString() {
         StringBuilder sb = new StringBuilder();
         if (personAttendance.isEmpty()) {

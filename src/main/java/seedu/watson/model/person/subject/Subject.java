@@ -1,9 +1,9 @@
 package seedu.watson.model.person.subject;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.watson.commons.util.AppUtil.checkArgument;
+
+import java.util.Locale;
 
 /**
  * Represents a subject taken by the student
