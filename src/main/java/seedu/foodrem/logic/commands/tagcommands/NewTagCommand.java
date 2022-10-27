@@ -16,8 +16,6 @@ import seedu.foodrem.viewmodels.TagsWithMessage;
  * Adds a tag to FoodRem.
  */
 public class NewTagCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "New tag added:";
-
     private final Tag toAdd;
 
     /**
@@ -39,7 +37,7 @@ public class NewTagCommand extends Command {
         }
 
         model.addTag(toAdd);
-        return CommandResult.from(new TagsWithMessage(List.of(toAdd), MESSAGE_SUCCESS));
+        return CommandResult.from(new TagsWithMessage(List.of(toAdd), "New tag added:"));
     }
 
     public static String getUsage() {

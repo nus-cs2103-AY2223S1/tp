@@ -16,8 +16,6 @@ import seedu.foodrem.viewmodels.TagsWithMessage;
  * Deletes an existing tag in FoodRem.
  */
 public class DeleteTagCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Tag deleted:";
-
     private final Tag toDelete;
 
     /**
@@ -40,7 +38,7 @@ public class DeleteTagCommand extends Command {
 
         model.deleteTag(toDelete);
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
-        return CommandResult.from(new TagsWithMessage(List.of(toDelete), MESSAGE_SUCCESS));
+        return CommandResult.from(new TagsWithMessage(List.of(toDelete), "Tag deleted:"));
     }
 
     public static String getUsage() {

@@ -18,8 +18,6 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Untags an item with a Tag.
  */
 public class UntagCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Item untagged successfully. Updated item:";
-
     private final Index index;
     private final Tag tag;
 
@@ -50,7 +48,7 @@ public class UntagCommand extends Command {
         model.setItem(itemToUntag, newTagSetItem);
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
-        return CommandResult.from(new ItemWithMessage(newTagSetItem, MESSAGE_SUCCESS));
+        return CommandResult.from(new ItemWithMessage(newTagSetItem, "Item untagged successfully. Updated item:"));
     }
 
     public static String getUsage() {
