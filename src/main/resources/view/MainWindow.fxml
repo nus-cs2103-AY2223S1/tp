@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -26,20 +27,12 @@
       </stylesheets>
 
       <VBox prefHeight="66.0" prefWidth="1200.0">
-        <MenuBar fx:id="menuBar" translateX="-6.0" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="CONTACTS">
-            <MenuItem mnemonicParsing="false" onAction="#showContactTab" text="Switch to Contacts tab" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="TASKS">
-            <MenuItem mnemonicParsing="false" onAction="#showTaskTab" text="Switch to Tasks tab" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="HELP">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Get Help" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="EXIT">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Quit App" />
-          </Menu>
-        </MenuBar>
+        <HBox style="-fx-background-color: #FAFAFA; -fx-padding: 0 0 0 20;">
+          <Button fx:id="contactsButton" mnemonicParsing="false" onAction="#showContactTab" text="CONTACTS"/>
+          <Button fx:id="tasksButton" mnemonicParsing="false" onAction="#showTaskTab" text="TASKS"/>
+          <Button fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelp" text="HELP"/>
+          <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleExit" text="EXIT"/>
+        </HBox>
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
