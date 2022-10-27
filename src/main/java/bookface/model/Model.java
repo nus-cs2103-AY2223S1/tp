@@ -25,6 +25,26 @@ public interface Model {
     /** {@code Predicate} returns true if book is loaned*/
     Predicate<Book> PREDICATE_ALL_LOANED_BOOKS = book -> book.isLoaned();
 
+    /** {@code Predicate} returns true for all persons with overdue books */
+    Predicate<Person> PREDICATE_OWE_OVERDUE_BOOKS = person -> {
+        if (person.hasBooksOnLoan()) {
+            for (Book book : person.getLoanedBooksSet()) {
+                if (book.isOverdue()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+
+    /** {@code Predicate} returns true for all books due past return date */
+    Predicate<Book> PREDICATE_ALL_OVERDUE_BOOKS = book -> {
+        if (book.isLoaned()) {
+            return book.isOverdue();
+        }
+        return false;
+    };
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
