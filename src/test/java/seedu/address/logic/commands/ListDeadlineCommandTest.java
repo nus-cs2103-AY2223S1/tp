@@ -23,8 +23,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.task.TaskByDeadlinePredicate;
 
 public class ListDeadlineCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {

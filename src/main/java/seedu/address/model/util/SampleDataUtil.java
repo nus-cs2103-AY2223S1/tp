@@ -35,28 +35,6 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-
-
-    public static Task[] getSampleArchivedTasks() {
-        return new Task[] {
-            new Task(new Name("Tutorial 1"), new Module("CS2100"), new Deadline("2022-11-02"),
-                getTagSet("highPriority")),
-            new Task(new Name("Tutorial 4"), new Module("CS2100"), new Deadline("2022-10-07"),
-                getTagSet("mediumPriority", "easy")),
-            new Task(new Name("Chapter 1 Revision"), new Module("CS2103T"), new Deadline("2022-10-11"),
-                getTagSet("revision"))
-        };
-    }
-
-    public static ReadOnlyAddressBook getSampleArchivedTaskBook() {
-        AddressBook sampleArchivedTaskBook = new AddressBook();
-        for (Task sampleTask: getSampleArchivedTasks()) {
-            sampleArchivedTaskBook.addPerson(sampleTask);
-        }
-        return sampleArchivedTaskBook;
-    }
-
-
     /**
      * Returns a tag set containing the list of strings given.
      */
