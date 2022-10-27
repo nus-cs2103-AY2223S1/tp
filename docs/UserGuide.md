@@ -124,7 +124,8 @@ Format: `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 <br>
 1. Date must be specified in the format <em>yyyy-MM-dd</em>.<br>
-2. Status must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.
+2. Status must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
+3. Tags must be alphanumeric and without any spaces.
 </div>
 <br>
 
@@ -307,6 +308,7 @@ Format: `remind`
 * Archived interviews will not be displayed even if they fall within the next week.
 * If there are no upcoming interviews, a blank window will be displayed.
 * `remind` can only be used on the main application list page (i.e. not to be used on list-archive page).
+* To refresh the list of upcoming interviews, close the reminder window (if it is currently opened) and input `remind` command again.
 
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
