@@ -19,6 +19,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventTitle;
 import seedu.address.model.event.Purpose;
 import seedu.address.model.event.StartTime;
+import seedu.address.model.event.UidList;
 
 /**
  * Edits the details of an existing event in the application.
@@ -95,7 +96,8 @@ public class EditEventCommand extends Command {
         Date updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getStartDate());
         StartTime updatedTime = editEventDescriptor.getTime().orElse(eventToEdit.getStartTime());
         Purpose updatedPurpose = editEventDescriptor.getPurpose().orElse(eventToEdit.getPurpose());
-        return new Event(updatedEventTitle, updatedDate, updatedTime, updatedPurpose);
+        UidList uids = eventToEdit.getUids();
+        return new Event(updatedEventTitle, updatedDate, updatedTime, updatedPurpose, uids);
     }
 
     @Override
