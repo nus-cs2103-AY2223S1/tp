@@ -50,7 +50,7 @@ public class CsvAdaptedPerson {
         elementType = Plan.class, splitOn = ",", converter = StringToPlan.class, writeDelimiter = ",")
     private final List<Plan> planned = new ArrayList<>();
     @CsvBindAndSplitByName(column = "notes",
-        elementType = Note.class, splitOn = ",", converter = StringToPlan.class, writeDelimiter = ",")
+        elementType = Note.class, splitOn = ",", converter = StringToNote.class, writeDelimiter = ",")
     private final List<Note> noted = new ArrayList<>();
 
     /**

@@ -28,6 +28,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -44,9 +45,11 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Set<Tag> originalTags = model.getFilteredPersonList().get(0).getTags();
         Set<Plan> originalPlans = model.getFilteredPersonList().get(0).getPortfolio().getPlans();
+        Set<Note> originalNotes = model.getFilteredPersonList().get(0).getPortfolio().getNotes();
         Person editedPerson = new PersonBuilder()
             .withTags(Stream.of(originalTags).flatMap(Collection::stream).map(Tag::toString).toArray(String[]::new))
             .withPlans(Stream.of(originalPlans).flatMap(Collection::stream).map(Plan::toString).toArray(String[]::new))
+            .withNotes(Stream.of(originalNotes).flatMap(Collection::stream).map(Note::toString).toArray(String[]::new))
             .build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);

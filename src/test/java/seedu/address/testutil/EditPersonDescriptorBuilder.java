@@ -49,7 +49,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(person.getTags());
         descriptor.setRisk(portfolio.getRisk());
         descriptor.setPlans(portfolio.getPlans());
-        descriptor.setNote(portfolio.getNote());
+        descriptor.setNotes(portfolio.getNotes());
     }
 
     /**
@@ -132,8 +132,9 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Note} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withNote(String note) {
-        descriptor.setNote(new Note(note));
+    public EditPersonDescriptorBuilder withNote(String... notes) {
+        Set<Note> notesSet = Stream.of(notes).map(Note::new).collect(Collectors.toSet());
+        descriptor.setNotes(notesSet);
         return this;
     }
 

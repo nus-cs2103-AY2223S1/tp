@@ -16,6 +16,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.tag.Tag;
@@ -49,9 +50,11 @@ public class PersonUtil {
         );
         sb.append(PREFIX_RISK + portfolio.getRisk().value + " ");
         portfolio.getPlans().stream().forEach(
-                s -> sb.append(PREFIX_PLAN + s.value + " ")
+            s -> sb.append(PREFIX_PLAN + s.value + " ")
         );
-        sb.append(PREFIX_NOTE + portfolio.getNote().value + " ");
+        portfolio.getNotes().stream().forEach(
+            s -> sb.append(PREFIX_NOTE + s.value + " ")
+        );
         return sb.toString();
     }
 
@@ -66,7 +69,7 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getIncome().ifPresent(income -> sb.append(PREFIX_INCOME).append(income.value).append(" "));
         descriptor.getMeetingDate().ifPresent(meetingDate -> sb.append(PREFIX_MEETING_DATE)
-                .append(meetingDate.value).append(" "));
+            .append(meetingDate.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
@@ -87,7 +90,14 @@ public class PersonUtil {
             }
         }
 
-        descriptor.getNote().ifPresent(note -> sb.append(PREFIX_NOTE).append(note.value).append(" "));
+        if (descriptor.getNotes().isPresent()) {
+            Set<Note> notes = descriptor.getNotes().get();
+            if (notes.isEmpty()) {
+                sb.append(PREFIX_NOTE).append(" ");
+            } else {
+                notes.forEach(s -> sb.append(PREFIX_NOTE).append(s.value).append(" "));
+            }
+        }
 
         return sb.toString();
     }
