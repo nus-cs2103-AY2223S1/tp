@@ -57,11 +57,11 @@ So what are you waiting for? Start using FinBook today!
 commands or refer at [Command Summary](#command-summary).
 
 ## 2.1. Icons and symbols
-| Symbol               | Meaning                                                                                       |
-|----------------------|-----------------------------------------------------------------------------------------------|
-| :information_source: | Additional information that may be useful to know when using FinBook                          |
-| :exclamation:        | Important information or warnings that you should take note of when using FinBook             | 
-| `command`            | The highlighted words indicate a command that can be typed into the Command Box of FinBook    |
+| Symbol               | Meaning                                                                                    |
+|----------------------|--------------------------------------------------------------------------------------------|
+| :information_source: | Additional information that may be useful to know when using FinBook                       |
+| :exclamation:        | Important information or warnings that you should take note of when using FinBook          | 
+| `command`            | The highlighted words indicate a command that can be typed into the Command Box of FinBook |
 
 
 ## 2.2. User Interface (UI) of FinBook
