@@ -386,7 +386,7 @@ Aspect: How to allow the `SortCommand` to sort using different possible orders w
 ### Remind Feature
 
 #### Implementation
-The remind feature allows the user to view a list of upcoming interviews within the next 1 week, sorted by interview date and time. <br>
+The remind feature allows the user to view a list of upcoming interviews within the next 1 week, sorted by interview date and time.
 
 The rationale for this enhancement is that the interview list on the main GUI window shows all non-archived interviews, including interviews that have passed and interviews scheduled weeks to months later. This feature enables a focused view of only approaching interviews within the next week.
 
