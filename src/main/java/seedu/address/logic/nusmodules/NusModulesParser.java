@@ -8,6 +8,8 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Class to parse NusModule json file
  */
@@ -28,13 +30,13 @@ public class NusModulesParser {
      * @param moduleCode Module Code to query
      * @return NusModule Title if module is present, null if not
      */
-    public String getModuleTitle(String moduleCode) {
+    public String getModuleTitle(String moduleCode) throws ParseException {
         for (NusModule nusModule : nusModuleLists) {
             if (nusModule.getModuleCode().equalsIgnoreCase(moduleCode)) {
                 return nusModule.getModuleTitle();
             }
         }
-        return null;
+        throw new ParseException("ModuleCode does not match NUS Module!");
     }
 
     /**

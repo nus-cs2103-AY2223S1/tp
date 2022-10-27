@@ -2,8 +2,6 @@ package seedu.address.model.module;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.logic.nusmodules.NusModule;
-
 /**
  * Represents a Module's code in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
@@ -60,13 +58,6 @@ public class ModuleCode {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is a valid NUS module code.
-     */
-    public boolean isNusModule(NusModule nusModule) {
-        return nusModule.getModuleCode().equalsIgnoreCase(moduleCode);
     }
 
     @Override
