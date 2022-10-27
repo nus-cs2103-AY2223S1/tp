@@ -1,7 +1,9 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 Thank you for choosing FoodRem! We are delighted to have you as a user and we aim to serve you and your business well!
 
-We **highly recommend** that you read through the User Guide in a **sequential order**. 
+```tip
+We **highly recommend** that you read through the User Guide in a **sequential order**. Please note the importance of the [Using FoodRem](#using-foodrem) section, which covers how to use FoodRem!
+```
 
 If you have not installed FoodRem head over to the [Installation](#installation) section.
 
