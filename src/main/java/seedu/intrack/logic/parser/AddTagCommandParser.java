@@ -24,30 +24,26 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
      */
     public AddTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String trimArgs = args.trim();
 
+        String trimArgs = args.trim();
         if (trimArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
 
         String[] splitCommand = trimArgs.split("\\s+", 2);
-
         if (splitCommand.length != 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddTagCommand.ADD_TAG_CONSTRAINTS));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
 
-        // these are the tags to be added
         String[] tags = splitCommand[1].split("\\s+");
         List<Tag> tagList = new ArrayList<>();
-        for (int i = 0; i < tags.length; i++) {
-            Tag tagToAdd = new Tag(tags[i]);
-            tagList.add(tagToAdd);
+        for (String tag : tags) {
+            tagList.add(ParserUtil.parseTag(tag));
         }
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(splitCommand[0]);
         } catch (IllegalValueException ive) {
@@ -55,6 +51,5 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         }
 
         return new AddTagCommand(index, tagList);
-
     }
 }

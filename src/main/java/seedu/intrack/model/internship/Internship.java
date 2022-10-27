@@ -240,7 +240,7 @@ public class Internship {
             tags.forEach(builder::append);
         }
 
-        builder.append(" Remark: ")
+        builder.append("; Remark: ")
                 .append(getRemark());
 
         return builder.toString();

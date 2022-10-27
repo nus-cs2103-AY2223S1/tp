@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.intrack.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
@@ -113,9 +112,9 @@ public class InTrackParserTest {
     @Test
     public void parseCommand_remark() throws Exception {
         final Remark remark = new Remark("New remark.");
-        RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_INTERNSHIP.getOneBased() + " " + PREFIX_REMARK + remark.value);
-        assertEquals(new RemarkCommand(INDEX_FIRST_INTERNSHIP, remark), command);
+        RemarkCommand command =
+                (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " " + remark.value);
+        assertEquals(new RemarkCommand(remark), command);
     }
 
     @Test

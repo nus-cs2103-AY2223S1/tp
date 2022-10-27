@@ -2,7 +2,6 @@ package seedu.intrack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 import java.util.Set;
@@ -15,21 +14,17 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.tag.Tag;
 
 /**
- * Adds a new Tag to the selected Internship.
+ * Adds one or more tags to the internship application identified by the index number used in the displayed list.
  */
 public class AddTagCommand extends Command {
     public static final String COMMAND_WORD = "addtag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to the internship application "
-            + "with the selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n"
-            + "Example: " + COMMAND_WORD + " 1 URGENT\n"
-            + "or " + COMMAND_WORD + " 1 URGENT HARD HELP";
+            + "identified by the index number used in the displayed list.\n"
+            + "Parameters: INDEX (must be a positive unsigned integer) TAG [MORE_TAGS]...\n"
+            + "Example: " + COMMAND_WORD + " 1 Urgent";
 
-
-    public static final String ADD_TAG_CONSTRAINTS = "No tag detected, please include a tag to add to the indicated"
-            + " internship";
-
-    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to internship successfully";
+    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added new tag(s) to internship application: \n%1$s";
 
     private final Index index;
     private final List<Tag> tags;
@@ -39,24 +34,21 @@ public class AddTagCommand extends Command {
      */
     public AddTagCommand(Index index, List<Tag> tags) {
         requireAllNonNull(index, tags);
-
         this.index = index;
         this.tags = tags;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        final String messageSuccess = "Added tag/tags to internship at INDEX "
-                + index.toString() + " successfully";
         requireNonNull(model);
+
         List<Internship> lastShownList = model.getFilteredInternshipList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
 
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
-        for (int i = 0; i < tags.size(); i++) {
-            Tag tagToAdd = tags.get(i);
+        for (Tag tagToAdd : tags) {
             internshipToEdit.addTag(tagToAdd);
         }
         Set<Tag> newTagList = internshipToEdit.getTags();
@@ -66,9 +58,8 @@ public class AddTagCommand extends Command {
                 newTagList, internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
-        return new CommandResult(messageSuccess);
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedInternship));
     }
 
     @Override

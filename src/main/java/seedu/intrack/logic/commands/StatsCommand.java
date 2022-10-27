@@ -7,7 +7,7 @@ import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.StatusIsKeywordPredicate;
 
 /**
- * Shows the overall statistics of the internship applications in the tracker.
+ * Shows the overall statistics of the internship applications in InTrack.
  */
 public class StatsCommand extends Command {
 

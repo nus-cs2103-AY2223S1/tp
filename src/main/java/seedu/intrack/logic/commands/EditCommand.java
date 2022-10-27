@@ -7,7 +7,6 @@ import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
-import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -37,10 +36,11 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the selected internship."
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the details of the selected internship. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_NAME + "COMPANY] "
             + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_WEBSITE + "WEBSITE] "
@@ -54,7 +54,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the tracker.";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP =
+            "This internship application already exists in the tracker.";
 
     private final EditInternshipDescriptor editInternshipDescriptor;
 
@@ -63,13 +64,13 @@ public class EditCommand extends Command {
      */
     public EditCommand(EditInternshipDescriptor editInternshipDescriptor) {
         requireNonNull(editInternshipDescriptor);
-
         this.editInternshipDescriptor = new EditInternshipDescriptor(editInternshipDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Internship> lastShownList = model.getSelectedInternship();
         if (lastShownList.size() != 1) {
             throw new CommandException(Messages.MESSAGE_NO_INTERNSHIP_SELECTED);
@@ -82,7 +83,8 @@ public class EditCommand extends Command {
         }
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.updateSelectedInternship(a -> a.isSameInternship(editedInternship));
+
         return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 
@@ -98,9 +100,9 @@ public class EditCommand extends Command {
         Position updatedPosition = editInternshipDescriptor.getPosition().orElse(internshipToEdit.getPosition());
         Status updatedStatus = internshipToEdit.getStatus(); // edit command does not allow editing status
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
-        Salary updatedSalary = editInternshipDescriptor.getSalary().orElse(internshipToEdit.getSalary());
         Website updatedWebsite = editInternshipDescriptor.getWebsite().orElse(internshipToEdit.getWebsite());
-        List<Task> updatedTasks = internshipToEdit.getTasks();
+        List<Task> updatedTasks = internshipToEdit.getTasks(); // edit command does allow editing tasks
+        Salary updatedSalary = editInternshipDescriptor.getSalary().orElse(internshipToEdit.getSalary());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
         Remark updatedRemark = internshipToEdit.getRemark(); // edit command does not allow editing remarks
 
@@ -123,8 +125,8 @@ public class EditCommand extends Command {
         private Name name;
         private Position position;
         private Email email;
-        private Salary salary;
         private Website website;
+        private Salary salary;
         private Set<Tag> tags;
 
         public EditInternshipDescriptor() {}
@@ -173,20 +175,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setSalary(Salary salary) {
-            this.salary = salary;
-        }
-
-        public Optional<Salary> getSalary() {
-            return Optional.ofNullable(salary);
-        }
-
         public void setWebsite(Website website) {
             this.website = website;
         }
 
         public Optional<Website> getWebsite() {
             return Optional.ofNullable(website);
+        }
+
+        public void setSalary(Salary salary) {
+            this.salary = salary;
+        }
+
+        public Optional<Salary> getSalary() {
+            return Optional.ofNullable(salary);
         }
 
         /**

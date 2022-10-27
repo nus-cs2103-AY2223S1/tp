@@ -7,17 +7,18 @@ import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all internships in the internship tracker whose name contains any of the argument keywords.
+ * Finds and lists all internships applications in InTrack whose company name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindNameCommand extends Command {
 
-    public static final String COMMAND_WORD = "findn";
+    public static final String COMMAND_WORD = "findc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internship applications whose company name "
+            + "contains any of the specified keywords (case-insensitive) and "
+            + "displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Google Meta";
+            + "Example: " + COMMAND_WORD + " Google";
 
     private final NameContainsKeywordsPredicate predicate;
 

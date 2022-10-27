@@ -7,17 +7,18 @@ import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.PositionContainsKeywordsPredicate;
 
 /**
- * Finds and lists all internships in the internship tracker whose position contains any of the argument keywords.
+ * Finds and lists all internships applications in InTrack whose position contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindPositionCommand extends Command {
 
     public static final String COMMAND_WORD = "findp";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships whose positions contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internship applications whose position "
+            + "contains any of the specified keywords (case-insensitive) and "
+            + "displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "SWE";
+            + "Example: " + COMMAND_WORD + " SWE";
 
     private final PositionContainsKeywordsPredicate predicate;
 
