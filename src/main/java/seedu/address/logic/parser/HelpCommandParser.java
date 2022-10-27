@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AppendCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CloneCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -13,6 +14,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.ThemeCommand;
+import seedu.address.logic.commands.ToggleListModeCommand;
+import seedu.address.logic.commands.UnappendCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.commands.ViewCommand;
@@ -77,6 +80,15 @@ public class HelpCommandParser implements Parser<HelpCommand> {
 
         case ThemeCommand.COMMAND_WORD:
             return new HelpCommand(ThemeCommand.COMMAND_WORD);
+
+        case AppendCommand.COMMAND_WORD:
+            return new HelpCommand(AppendCommand.COMMAND_WORD);
+
+        case UnappendCommand.COMMAND_WORD:
+            return new HelpCommand(UnappendCommand.COMMAND_WORD);
+
+        case ToggleListModeCommand.COMMAND_WORD:
+            return new HelpCommand(ToggleListModeCommand.COMMAND_WORD);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
