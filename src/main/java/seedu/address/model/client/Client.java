@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -127,7 +126,7 @@ public class Client implements ReadOnlyClient {
     }
 
     /**
-     * Returns true if both client have the same name.
+     * Returns true if both client have the same name (case-insensitive).
      * This defines a weaker notion of equality between two clients.
      */
     public boolean isSameClient(Client otherClient) {
@@ -135,8 +134,14 @@ public class Client implements ReadOnlyClient {
             return true;
         }
 
-        return otherClient != null
-                && otherClient.getName().equals(getName());
+        if (otherClient == null) {
+            return false;
+        }
+
+        String otherClientName = otherClient.getName().toString().toLowerCase().replace(" ", "");
+        String clientName = name.toString().toLowerCase().replace(" ", "");
+
+        return otherClientName.equals(clientName);
     }
 
     /**
@@ -182,17 +187,6 @@ public class Client implements ReadOnlyClient {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
-        }
-
-        UniqueRemarkList remarks = getRemarks();
-        builder.append("; Remarks: ");
-        Iterator<Remark> itr = remarks.iterator();
-        String prefix = "";
-        while (itr.hasNext()) {
-            Remark remark = itr.next();
-            builder.append(prefix);
-            prefix = ", ";
-            builder.append(remark.getText());
         }
 
         TransactionLog transactions = getTransactions();
