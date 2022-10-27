@@ -214,49 +214,48 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
-
-            // start of creeper animation
-            String creeperSoundFile = "src/main/resources/audio/creeper_sound.mp3";
-            Media creeperSound = new Media(new File(creeperSoundFile).toURI().toString());
-            MediaPlayer mediaPlayerCreeper = new MediaPlayer(creeperSound);
-            mediaPlayerCreeper.play();
-            PauseTransition creeperSoundPause = new PauseTransition(Duration.seconds(1));
-            creeperSoundPause.setOnFinished(
-                    event -> {
-                        String explosionSoundFile = "src/main/resources/audio/explosion_sound.mp3";
-                        Media explosionSound = new Media(new File(explosionSoundFile).toURI().toString());
-                        MediaPlayer mediaPlayerExplosion = new MediaPlayer(explosionSound);
-                        mediaPlayerExplosion.play();
-                    }
-            );
-            creeperSoundPause.play();
-            ScaleTransition scaleTransitionExpand = new ScaleTransition();
-            scaleTransitionExpand.setDuration(Duration.seconds(4));
-            scaleTransitionExpand.setToX(1.2);
-            scaleTransitionExpand.setToY(1.2);
-            scaleTransitionExpand.setNode(creeperImageView);
-            scaleTransitionExpand.play();
-            PauseTransition creeperExplosionPause = new PauseTransition(Duration.seconds(3.5));
-            creeperExplosionPause.setOnFinished(
-                    event -> {
-                        creeperImageView.setVisible(false);
-                        explosionImageView.setVisible(true);
-                    }
-            );
-            creeperExplosionPause.play();
-            PauseTransition endOfExplosionPause = new PauseTransition(Duration.seconds(6));
-            endOfExplosionPause.setOnFinished(
-                    event -> {
-                        explosionImageView.setVisible(false);
-                        creeperImageView.setScaleX(1 / 1.2);
-                        creeperImageView.setScaleY(1 / 1.2);
-                        creeperImageView.setVisible(true);
-                    }
-            );
-            endOfExplosionPause.play();
-            // end of creeper animation
-
+            executeAnimation();
             throw e;
         }
+    }
+
+    private void executeAnimation() {
+        // start of creeper animation
+        playSound();
+        ScaleTransition scaleTransitionExpand = new ScaleTransition();
+        scaleTransitionExpand.setDuration(Duration.seconds(0.5));
+        scaleTransitionExpand.setToX(1.2);
+        scaleTransitionExpand.setToY(1.2);
+        scaleTransitionExpand.setNode(creeperImageView);
+        scaleTransitionExpand.play();
+        PauseTransition creeperExplosionPause = new PauseTransition(Duration.seconds(0.4375));
+        creeperExplosionPause.setOnFinished(
+                event -> {
+                    creeperImageView.setVisible(false);
+                    explosionImageView.setVisible(true);
+                }
+        );
+        creeperExplosionPause.play();
+        PauseTransition endOfExplosionPause = new PauseTransition(Duration.seconds(0.75));
+        endOfExplosionPause.setOnFinished(
+                event -> {
+                    explosionImageView.setVisible(false);
+                    creeperImageView.setScaleX(1 / 1.2);
+                    creeperImageView.setScaleY(1 / 1.2);
+                    creeperImageView.setVisible(true);
+                }
+        );
+        endOfExplosionPause.play();
+        // end of creeper animation
+    }
+
+    private MediaPlayer loadSound(String soundFile) {
+        Media sound = new Media(new File(soundFile).toURI().toString());
+        return new MediaPlayer(sound);
+    }
+
+    private void playSound() {
+        MediaPlayer explosionSound = loadSound("src/main/resources/audio/explosion_sound.mp3");
+        explosionSound.play();
     }
 }
