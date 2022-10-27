@@ -13,10 +13,12 @@ public class ReminderDeadlineComparator implements Comparator<Reminder> {
         LocalDateTime otherDeadline = r2.getDatetime();
         LocalDateTime thisDeadline = r1.getDatetime();
 
-        if (otherDeadline == thisDeadline) {
-            return r1.getName().fullName.compareTo(r2.getName().fullName);
-        } else {
-            return thisDeadline.compareTo(otherDeadline);
-        }
+//        if (otherDeadline == thisDeadline) {
+//            return r1.getName().fullName.compareTo(r2.getName().fullName);
+//        } else {
+//            return thisDeadline.compareTo(otherDeadline);
+//        }
+
+        return thisDeadline.compareTo(otherDeadline);
     }
 }

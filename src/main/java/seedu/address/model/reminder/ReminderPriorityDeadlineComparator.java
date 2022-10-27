@@ -1,30 +1,35 @@
 package seedu.address.model.reminder;
 
-
-import java.time.LocalDateTime;
 import java.util.Comparator;
 
 /**
- * A comparison function, which imposes a total ordering on Reminders by ReminderDeadline. The ordering is defined by
- * the compareTo method of LocalDateTime, which is the type of deadline field.
+ * A comparison function, which imposes a total ordering on Reminders by 2 custom Reminder comparators.
+ * The ordering is defined by the result of the first comparator. If it is 0, it will be defined by the value of the
+ * second comparator. If it is still 0, the String value of ReminderName would be used which will be by the default
+ * lexicographical order.
  */
 public class ReminderPriorityDeadlineComparator implements Comparator<Reminder> {
-    private Comparator<Reminder> one;
-    private Comparator<Reminder> two;
+    private final Comparator<Reminder> reminderComparatorOne;
+    private final Comparator<Reminder> reminderComparatorTwo;
 
-    public ReminderPriorityDeadlineComparator(Comparator<Reminder> one, Comparator<Reminder> two) {
-        this.one = one;
-        this.two = two;
+    public ReminderPriorityDeadlineComparator(Comparator<Reminder> reminderComparatorOne,
+                                              Comparator<Reminder> reminderComparatorTwo) {
+        this.reminderComparatorOne = reminderComparatorOne;
+        this.reminderComparatorTwo = reminderComparatorTwo;
         
     }
+
     @Override
     public int compare(Reminder r1, Reminder r2) {
-        int comparisonByPriority = one.compare(r1, r2);
+        int compareValueOne = reminderComparatorOne.compare(r1, r2);
         
-        if (comparisonByPriority == 0) {
-            return two.compare(r1, r2);
+        if (compareValueOne == 0) {
+            int compareValueTwo = reminderComparatorTwo.compare(r1, r2);
+
+            return compareValueTwo == 0 ? r1.getName().fullName.compareTo(r2.getName().fullName)
+                    : compareValueTwo;
         } else {
-            return comparisonByPriority;
+            return compareValueOne;
         }
     }
 }
