@@ -362,42 +362,46 @@ Step 4. Classify updates and displays a list of all student records
 #### 4.2.6 ViewClass command
 
 <u>**Description**</u>
-
-The `viewClass` command displays a list of student records from the specified class.
+The `ViewClassCommand` displays the list of students in a particular class.
+This feature relies mainly on the `ViewClassCommandParser` and `ClassPredicate`, where the `ViewClassCommandParser` uses
+`ClassPredicate` to select students in the student record with the mentioned class.
 
 <u>**Implementation**</u>
+This command can be divided into 2 main steps: 
+1. Parsing the command
+3. Executing the command
 
-The `ViewClass` Command displays the list of Students in a particular class by updating the `FilteredStudentList` with a `ClassPredicate`.
-The ClassPredicate checks that a Student's Class matches the user input (ignoring case-sensitivity).
+The following Sequence diagram shows how the `ViewClassCommand` works:
 
-*Insert Basic Class Diagram*
+<img src="images/ViewClassCommandSequenceDiagram.png" />
 
-Given below is an example usage scenario and how the ViewClass mechanism behaves at each step.
+**Step 1: Parsing the command**
 
-Step 1. Assuming Class-ify has been populated with sample data, the `FilteredStudentList` currently contains all Students and user can see all the students listed in the Student List Panel.
-*Insert Object Diagram showing user fields*
+The user's input command is first parsed.
 
-Step 2. The user executes `viewClass 1A` command. 
-*Insert Object Diagram*
+1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a `ViewClassCommand` and creates a new `ViewClassCommandParser` instance to parse the user’s input.
+3. `ViewClassCommandParser` checks whether the user input is valid by parsing it into the `parseClass` method in `ParserUtil`.
+4. If the input is valid, a new `ClassPredicate` instance is created. 
+6. `ViewClassCommandParser` then creates a new `ViewClassCommand` instance which will be executed by the `LogicManager`.
 
-Step 3. A new ClassPredicate object is created with the user input.
-*Insert Object Diagram*
+**Step 2: Executing the command**
 
-Step 4. The `updateFilteredStudentList` method in `model` is called with the ClassPredicate.
-*Insert Object Diagram*
+The `ViewClassCommand` instance now interacts with the `ModelManager` to execute the command.
 
-Step 5. Class-ify displays the list of students with the class "1A" on the student card list panel according to the updated `FilteredStudentList`.
-*Insert Object Diagram*
+1. The `updateFilteredStudentList` method is called with the `ClassPredicate` to filter the list to only contain students whose `Class` matches the user input.
+:information_source: **Note:** A case-insensitive match is done, hence `viewClass 1a` and `viewClass 1A` will return the same results.
+2. A new `CommandResult` instance is created and returned to `LogicManager`.
 
-The following sequence diagram shows how the ViewClass Command works:
-*Insert Sequence Diagram*
 
 <u>**Design Considerations**</u>
+* **Alternative 1**: Integrate `ViewClassCommand` together with `FindCommand`, and users will find students in a specific class.
+  * Pros: Users will not need to learn a different command.
+  * Cons: There is still a need to differentiate the filter logic as class name requires an exact match, while name only requires it to contain the keywords.
+* **Alternative 2**: Separate `ViewClassCommand` and `FindCommand`. (Current Implementation)
+  * Pros: Distinguishing between a `View` and `Find` can make the filtering logic more obvious and apparent to users
+  * Cons: Users have an additional command to learn.
 
-1. Predicate logic for filtering students by their class
-2. Command name
-
-*To be further updated*
 
 #### 4.2.7 ToggleView command
 
@@ -523,14 +527,17 @@ Ministry of Education (MOE) Teachers who:
 * Manages about 60 to 100 students with varying needs
 * Is required to identify students who need additional academic assistance and contact their parents if necessary
 * Finds paperwork time-consuming and messy
-* Manually keeps track of the academic progress of each individual student
-* Manually identifies students who are performing poorly academically and finds it inefficient
-* Find Excel spreadsheet complex and difficult to use
+* Finds it tedious to manually keep track of the academic progress of each individual student
+* Finds it tedious to manually identify students who are performing poorly academically
+* Finds Excel spreadsheet complex and difficult to use
 * Prefers typing to mouse interactions
 * Types fast and is reasonably comfortable using CLI apps
 
-**Value proposition**: an all-in-one platform to view and organize students’ details. The teacher can keep track
-of class statistics / progress. Manage student details faster than a typical mouse/GUI driven app.
+**Value proposition**:
+Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to
+monitor their student's academic progress easily. Teachers can generate exam statistics for each class,
+and Class-ify quickly flags out students who require more support for contacting.
+
 
 ### 6.2 User stories
 
@@ -695,28 +702,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 6.4 Non-Functional Requirements
 - **Technical Requirement**:
-  - Application should work on any mainstream operating system (OS) as long as it has Java version 11 or above installed.
+  - Class-ify should work on any mainstream operating system (OS) as long as it has Java version 11 or above installed.
+  - Class-ify should work on both 32-bit and 64-bit environments.
 - **Quality Requirement**:
-  - Display of information on the application should not feel cluttered.
+  - Display of information on the application should not feel disorganised or cluttered.
+  - Colour scheme of Class-ify should be pleasant for most users and not cause a strain to the eye.
 - **Performance Requirement**:
-  - Should be able to process any command within two seconds - response of application should not feel laggy.
+  - Class-ify should be able to process any command within two seconds.
+  - Class-ify Should be able to hold up to 200 students in the student record without a noticeable lag in performance.
 - **Project Scope**:
-  - Application does not offer student or parent accounts, and hence no communication with students or their guardians via the product.
-  - Application does not allow synchronisation of class lists with other teachers, but allows for sharing of data between teachers.
-
-*More to be added*
+  - Class-ify does not offer student or parent accounts, and hence no communication with students or their guardians via the application.
+  - Class-ify does not allow synchronisation of class lists with other teachers, but allows for sharing of data between teachers.
+- **Others**:
+  - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Student**: a person studying in a secondary school. A student typically takes up to 8 subjects and thus, may be taught by up to 8 teachers.
-* **MOE Teacher**: a person teaching a subject in a secondary school. A teacher usually teaches 3 to 5 classes. Each class has roughly 20 students.
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs.
 Through the CLI, users interact with the application by typing in text commands
+* **GUI**: Graphical User Interface (GUI) is an interface that allows the user to interact with through various visual graphics.
 * **MSS**: Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, 
 which assumes that nothing goes wrong
-
-*More to be added*
+* **32-bit/64-bit environment**: Refers to systems that use a 32-bit/64-bit processor respectively.
 
 --------------------------------------------------------------------------------------------------------------------
 
