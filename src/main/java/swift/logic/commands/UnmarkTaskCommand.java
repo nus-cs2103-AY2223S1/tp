@@ -1,10 +1,10 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static swift.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
-import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static swift.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import static swift.logic.commands.EditTaskCommand.createEditedTask;
+import static swift.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.ArrayList;
 import java.util.List;
