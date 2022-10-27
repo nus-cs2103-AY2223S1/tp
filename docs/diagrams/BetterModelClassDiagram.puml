@@ -4,8 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-InternshipBook *-right-> "1" UniqueInternshipList
-InternshipBook *-right-> "1" UniqueTagList
+VersionedInternshipBook *-right-> "1" UniqueInternshipList
+VersionedInternshipBook *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueInternshipList
 UniqueTagList -[hidden]down- UniqueInternshipList
 
