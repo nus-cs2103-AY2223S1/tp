@@ -49,7 +49,7 @@ Note how the app contains some sample data.
 
 **:information_source: Shortcut key to switch between *Contact details* and *Assignments*:**<br>
 
-Use the `SHIFT` key to switch between the *Contact details* and *Assignments*.
+Use the `TAB` key to switch between *Contact details* and *Assignments*.
 
 **:information_source: Notes about the command format:**<br>
 
