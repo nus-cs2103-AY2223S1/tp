@@ -227,9 +227,9 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
+    -fx-font-family: "Segoe UI SemiBold", Helvetica, Arial, sans-serif;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #d6d2d2;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 

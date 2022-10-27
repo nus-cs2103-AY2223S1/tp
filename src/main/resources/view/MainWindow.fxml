@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 
+<?import javafx.scene.image.ImageView?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -49,16 +50,41 @@
         </StackPane>
 
         <HBox fx:id="lists" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-          <VBox styleClass="pane-with-border" minWidth="200" prefWidth="150" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="300">
+          <VBox styleClass="pane-with-border" minWidth="200" prefWidth="150" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="250">
             <padding>
               <Insets top="10" bottom="10"/>
             </padding>
             <Label styleClass="label-list-header" text="ModQuik" />
-            <Button text="Student" onAction="#handlePerson" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
-            <Button text="Tutorial" onAction="#handleTutorial" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
-            <Button text="Consultation" onAction="#handleConsultation" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
-            <Button text="Grade Chart" onAction="#handleShowChart" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
+            <Button text="Student" onAction="#handlePerson" prefWidth="250" prefHeight="60" alignment="CENTER_LEFT">
+              <graphic>
+                <ImageView fitWidth="24" fitHeight="24">
+                  <Image url="@/images/cap.png" />
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button text="Grade Chart" onAction="#handleShowChart" prefWidth="250" prefHeight="60" alignment="CENTER_LEFT">
+              <graphic>
+                <ImageView fitWidth="24" fitHeight="24">
+                  <Image url="@/images/graph.png" />
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button text="Consultation" onAction="#handleConsultation" prefWidth="250" prefHeight="60" alignment="CENTER_LEFT">
+              <graphic>
+                <ImageView fitWidth="24" fitHeight="24">
+                  <Image url="@/images/consulting.png" />
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button text="Tutorial" onAction="#handleTutorial" prefWidth="250" prefHeight="60" alignment="CENTER_LEFT">
+              <graphic>
+                <ImageView fitWidth="24" fitHeight="24">
+                  <Image url="@/images/revision.png" />
+                </ImageView>
+              </graphic>
+            </Button>
           </VBox>
+
           <VBox styleClass="pane-with-border" minWidth="340" prefWidth="500" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />

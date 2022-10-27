@@ -62,7 +62,7 @@ public class PersonCard extends UiPart<Region> {
         stuId.setText(student.getId().id);
         phone.setText(student.getPhone().value);
         email.setText(student.getEmail().value);
-        telegramHandle.setText(" @" + student.getTelegram().telegram);
+        telegramHandle.setText("@" + student.getTelegram().telegram);
         tutorial.setText(student.getTutorialModule().moduleName + "-" + student.getTutorialName().fullName);
         attendance.setText("Attendance: " + student.getAttendance().value);
         participation.setText("Participation: " + student.getParticipation().value);
