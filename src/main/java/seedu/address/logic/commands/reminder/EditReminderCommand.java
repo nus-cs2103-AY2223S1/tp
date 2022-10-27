@@ -13,24 +13,9 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderPriority;
-import seedu.address.model.student.Attendance;
-import seedu.address.model.student.Email;
-import seedu.address.model.student.Grade;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Participation;
-import seedu.address.model.student.Phone;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.StudentId;
-import seedu.address.model.student.TelegramHandle;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tutorial.TutorialModule;
-import seedu.address.model.tutorial.TutorialName;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -87,10 +72,10 @@ public class EditReminderCommand extends Command {
         }
 
         Reminder reminderToEdit = lastShownList.get(index.getZeroBased());
-        Reminder editedReminder = createEditedPerson(reminderToEdit, editReminderDescriptor);
+        Reminder editedReminder = createEditedReminder(reminderToEdit, editReminderDescriptor);
 
-        if (!reminderToEdit.isSameStudent(editedReminder) && model.hasPerson(editedReminder)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!reminderToEdit.isSameReminder(editedReminder) && model.hasReminder(editedReminder)) {
+            throw new CommandException(MESSAGE_DUPLICATE_REMINDER);
         }
 
         model.setReminder(reminderToEdit, editedReminder);
@@ -105,27 +90,13 @@ public class EditReminderCommand extends Command {
     private static Reminder createEditedReminder(Reminder reminderToEdit, EditReminderDescriptor editReminderDescriptor) {
         assert reminderToEdit != null;
 
-        Name updatedName = editReminderDescriptor.getName().orElse(reminderToEdit.getName());
-        StudentId updatedId = editReminderDescriptor.getDeadline().orElse(reminderToEdit.getId());
-        Phone updatedPhone = editReminderDescriptor.getDescription().orElse(reminderToEdit.getPhone());
-        Email updatedEmail = editReminderDescriptor.getPriority().orElse(reminderToEdit.getEmail());
-        TelegramHandle updatedTelegramHandle = editReminderDescriptor.getTelegram().orElse(reminderToEdit.getTelegram());
-        TutorialModule updatedTutorialModule = editReminderDescriptor.getTutorialModule()
-                .orElse(reminderToEdit.getTutorialModule());
-        TutorialName updatedTutorialName = editReminderDescriptor.getTutorialName()
-                .orElse(reminderToEdit.getTutorialName());
-        Attendance updatedAttendance = editReminderDescriptor.getAttendance()
-                .orElse(reminderToEdit.getAttendance());
-        Participation updatedParticipation = editReminderDescriptor.getParticipation()
-                .orElse(reminderToEdit.getParticipation());
-        Grade updatedGrade = editReminderDescriptor.getGrade()
-                .orElse(reminderToEdit.getGrade());
-        Set<Tag> updatedTags = editReminderDescriptor.getTags().orElse(reminderToEdit.getTags());
+        ReminderName updatedName = editReminderDescriptor.getName().orElse(reminderToEdit.getName());
+        Datetime updatedDeadline = editReminderDescriptor.getDeadline().orElse(reminderToEdit.getDeadline());
+        ReminderPriority updatedPriority= editReminderDescriptor.getPriority().orElse(reminderToEdit.getPriority());
+        ReminderDescription updatedDescription = editReminderDescriptor.getDescription()
+                .orElse(reminderToEdit.getDescription());
 
-        return new Student(updatedName, updatedId, updatedPhone,
-                updatedEmail, updatedTelegramHandle, updatedTutorialModule,
-                updatedTutorialName, updatedAttendance, updatedParticipation,
-                updatedGrade, updatedTags);
+        return new Reminder(updatedName, updatedDeadline, updatedPriority, updatedDescription);
     }
 
     @Override
@@ -165,8 +136,8 @@ public class EditReminderCommand extends Command {
         public EditReminderDescriptor(EditReminderDescriptor toCopy) {
             setName(toCopy.name);
             setDeadline(toCopy.deadline);
-            setDescription(toCopy.description);
             setPriority(toCopy.priority);
+            setDescription(toCopy.description);
         }
 
         /**
@@ -192,20 +163,20 @@ public class EditReminderCommand extends Command {
             return Optional.ofNullable(deadline);
         }
 
-        public void setDescription(ReminderDescription description) {
-            this.description = description;
-        }
-
-        public Optional<ReminderDescription> getDescription() {
-            return Optional.ofNullable(description);
-        }
-
         public void setPriority(ReminderPriority priority) {
             this.priority = priority;
         }
 
         public Optional<ReminderPriority> getPriority() {
             return Optional.ofNullable(priority);
+        }
+
+        public void setDescription(ReminderDescription description) {
+            this.description = description;
+        }
+
+        public Optional<ReminderDescription> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         @Override

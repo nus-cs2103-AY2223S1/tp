@@ -156,6 +156,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given reminder {@code target} in the list with {@code editedReminder}.
+     * {@code target} must exist in ModQuik.
+     * The reminder identity of {@code editedReminder} must not be the same as another existing person in ModQuik.
+     */
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireNonNull(editedReminder);
+
+        reminders.setReminder(target, editedReminder);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
