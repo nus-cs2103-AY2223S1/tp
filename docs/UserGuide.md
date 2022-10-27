@@ -7,6 +7,9 @@
 * Find patients (findpatient/fp)
 * Find appointments (findappointment/fa)
 * Find bills (findbill/fb)
+* Delete patients (deletepatient/dp)
+* Delete appointments (deleteappointment/da)
+* Delete bills (deletebill/db)
 * Sort (sort)
 
 
@@ -132,6 +135,55 @@ Format:
 
 Examples:
 
+### Deleting patients `deletepatient` `dp`
+
+Deletes a patient by the index number of the patient in the list.
+
+Format:
+```deletepatient <targetindex>``` or ```dp <targetindex>```
+
+* The command words are `deletepatient` or `dp`.
+* The patient to be deleted is identified by using the index in the displayed list.
+* Deleting a patient deletes their related appointments and bills.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be 
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+
+### Deleting appointments `deleteappointment` `da`
+
+Deletes an appointment by the index number of the appointment in the list.
+
+Format:
+```deleteappointment <targetindex>``` or ```da <targetindex>```
+
+* The command words are `deleteappointment` or `da`.
+* The appointment to be deleted is identified by using the index in the displayed list.
+* Deleting an appointment deletes its related bills.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
+
+### Deleting bills `deletebill` `db`
+
+Deletes a bill by the index number of the bill in the list.
+
+Format:
+```deletebill <targetindex>``` or ```db <targetindex>```
+
+* The command words are `deletebill` or `db`.
+* The bill to be deleted is identified by using the index in the displayed list.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+Examples:
 
 
 ### Sorting by criteria: `sort` [coming soon]
