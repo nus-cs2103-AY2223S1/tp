@@ -138,12 +138,19 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Customers matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* When searching for names, fuzzy search based on Soundex will be used
+  e.g. `Aschcroft` will match `Aschcraft`
 * No need to type in the whole word. e.g `9927` will match `27859927`
+* For precise searching, specify the corresponding attribute (phone number or email)
+  e.g. `find p/88888888` will only match the customer with phone number `88888888`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find alex david` returns `Alex Yeoh`, `David Li`
+* `find Aschcroft` returns `Aschcroft`, `Ashcraft`, and `Aschcraft`
+* `find 43` returns both `Alex Yeoh` and `David Li` 
+* `find p/87438807` returns only `Alex Yeoh` <br>
+  ![result for 'find alex david'](images/findAlexResult.png)
 
 ### Deleting a Customer : `delete`
 
