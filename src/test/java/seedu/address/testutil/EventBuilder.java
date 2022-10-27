@@ -87,6 +87,7 @@ public class EventBuilder {
 
     /**
      * Sets the list of profiles {@code ... profiles} as attendees.
+     * Sets the {@code attendees} of the {@code Event} that we are building.
      */
     public EventBuilder withAttendees(Profile ... profiles) {
         this.attendees = new Attendees(List.of(profiles));

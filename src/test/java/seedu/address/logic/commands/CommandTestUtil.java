@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
@@ -89,6 +90,10 @@ public class CommandTestUtil {
     public static final String START_DESC_PRACTICE = " " + PREFIX_START_DATE + VALID_START_PRACTICE;
     public static final String END_DESC_PRESENTATION = " " + PREFIX_END_DATE + VALID_END_PRESENTATION;
     public static final String END_DESC_PRACTICE = " " + PREFIX_END_DATE + VALID_END_PRACTICE;
+
+    public static final String PROFILE_FIRST = " " + PREFIX_PROFILE + "1";
+    public static final String PROFILE_SECOND = " " + PREFIX_PROFILE + "2";
+
 
     public static final String TAG_DESC_SWE = " " + PREFIX_TAG + VALID_TAG_SWE;
     public static final String TAG_DESC_CCA = " " + PREFIX_TAG + VALID_TAG_CCA;

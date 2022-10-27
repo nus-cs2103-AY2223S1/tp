@@ -25,7 +25,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EventBuilder;
 
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for DeleteProfilesFromEventCommand.
  */
@@ -42,8 +41,8 @@ public class DeleteProfilesFromEventCommandTest {
         DeleteProfilesFromEventCommand deleteProfilesFromEventCommand = new DeleteProfilesFromEventCommand(
                 INDEX_FIRST_EVENT, Set.of(INDEX_FIRST_PROFILE, INDEX_SECOND_PROFILE));
 
-        String expectedMessage = String.format(DeleteProfilesFromEventCommand.MESSAGE_EDIT_ATTENDEES_SUCCESS,
-                editedEvent);
+        String expectedMessage = String.format(
+                DeleteProfilesFromEventCommand.MESSAGE_EDIT_ATTENDEES_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);

@@ -29,7 +29,6 @@ import seedu.address.model.profile.Profile;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ProfileBuilder;
 
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddProfilesToEventCommand.
  */
