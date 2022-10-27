@@ -2,8 +2,8 @@ package seedu.trackascholar.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.trackascholar.commons.core.Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.trackascholar.logic.commands.SortCommand.MESSAGE_SORT_SUCCESS;
 import static seedu.trackascholar.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 import static seedu.trackascholar.testutil.TypicalApplicants.ALICE;
 import static seedu.trackascholar.testutil.TypicalApplicants.BENSON;
@@ -35,7 +35,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_name_sortedByName() {
-        String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 7);
+        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS);
         SortCommand command = new SortCommand(compareName);
         expectedModel.sortApplicants(compareName);
         expectedModel.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
@@ -45,7 +45,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_scholarship_sortedByScholarship() {
-        String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 7);
+        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS);
         SortCommand command = new SortCommand(compareScholarship);
         expectedModel.sortApplicants(compareScholarship);
         expectedModel.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
@@ -55,7 +55,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_status_sortedByStatus() {
-        String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 7);
+        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS);
         SortCommand command = new SortCommand(compareStatus);
         expectedModel.sortApplicants(compareStatus);
         expectedModel.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);

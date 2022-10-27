@@ -69,6 +69,12 @@ Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Overview of TrackAScholar app
+
+![Overview of TrackAScholar app](images/UserGuideCommands/TrackAScholarOverview.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -330,10 +336,11 @@ All applicants in TrackAScholar will be sorted in the specified manner
 
 Format: 
 ```
-sort <NAME>/<SCHOLARSHIP>/<STATUS>
+sort <NAME>/<SCHOLARSHIP>/<STATUS> [-r]
 ```
 
 * The user can choose to sort the list according the applicant's `NAME`, `SCHOLARSHIP` or Application `STATUS`.
+* The optional `-r` flag specifies that the sort will be in reverse order.
 * sort command is case-insensitive. e.g. `NamE` or `name` both matches `NAME`.
 
 Examples:
@@ -472,7 +479,7 @@ If your changes to the data file makes its format invalid, TrackAScholar will di
 | **Clear**  | `clear`                                                                                                                                                                                    |
 | **Find**   | `find [n/NAME]... [s/SCHOLARSHIP]... [m/MAJOR]...` <br/> e.g. `find n/alex m/business`                                                                                                     |
 | **Filter** | `filter <PENDING>/<ACCEPTED>/<REJECTED>` <br/> e.g. `filter pending`                                                                                                                       |
-| **Sort**   | `sort <NAME>/<SCHOLARSHIP>/<STATUS>` <br/> e.g. `sort scholarship`                                                                                                                         |
+| **Sort**   | `sort <NAME>/<SCHOLARSHIP>/<STATUS> [-r]` <br/> e.g. `sort scholarship`                                                                                                                    |
 | **Import** | `import <r>/<k>` <br/> e.g. `import r`                                                                                                                                                     |
 | **Pin**    | `pin INDEX` <br/> e.g. `pin 2`                                                                                                                                                             |
 | **Unpin**  | `unpin FULL_NAME` <br/> e.g. `unpin Alex Yeoh`                                                                                                                                             |

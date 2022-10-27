@@ -5,7 +5,6 @@ import static seedu.trackascholar.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 
 import java.util.Comparator;
 
-import seedu.trackascholar.commons.core.Messages;
 import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.applicant.Applicant;
 
@@ -23,6 +22,8 @@ public class SortCommand extends Command {
             + "Parameters: name/scholarship/status [-r]\n"
             + "Example: " + COMMAND_WORD + " name -r";
 
+    public static final String MESSAGE_SORT_SUCCESS = "Applicants have been sorted";
+
     private final Comparator<Applicant> comparator;
 
     public SortCommand(Comparator<Applicant> comparator) {
@@ -34,8 +35,7 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.sortApplicants(comparator);
         model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getFilteredApplicantList().size()));
+        return new CommandResult(MESSAGE_SORT_SUCCESS);
     }
 
     @Override
