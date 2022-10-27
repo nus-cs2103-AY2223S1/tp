@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Region;
@@ -47,9 +48,12 @@ public class ModuleCard extends UiPart<Region> {
 
         if (!module.hasTasks()) {
             percentageCompleted.setPrefWidth(0);
+        } else {
+            percentageCompleted.setPadding(new Insets(0, 5, 0, 0));
         }
 
         percentageCompleted.setProgress(module.getPercentageCompleted());
+        percentageCompleted.setStyle("-fx-accent: limegreen");
         progressString.setText(module.generateProgressMessage());
     }
 
