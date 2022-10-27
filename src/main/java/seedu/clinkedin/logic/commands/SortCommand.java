@@ -1,12 +1,12 @@
 package seedu.clinkedin.logic.commands;
 
-import seedu.clinkedin.logic.commands.exceptions.CommandException;
-import seedu.clinkedin.model.Model;
-import seedu.clinkedin.model.person.Person;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
-import static java.util.Objects.requireNonNull;
+import seedu.clinkedin.logic.commands.exceptions.CommandException;
+import seedu.clinkedin.model.Model;
+import seedu.clinkedin.model.person.Person;
 
 /**
  * Sorts candidates based on their ratings. Candidates with no ratings will be placed at the bottom of the list.
