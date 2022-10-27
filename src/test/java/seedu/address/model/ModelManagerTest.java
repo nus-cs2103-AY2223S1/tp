@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
