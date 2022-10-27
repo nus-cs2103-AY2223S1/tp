@@ -17,5 +17,3 @@ The TAG_NAME is the term we use to identify an item.
 **Invalid Examples:**
 
 * Одноразовый
-* Fruits & Vegetables
-* Fruit's
