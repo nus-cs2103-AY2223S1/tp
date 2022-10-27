@@ -3,7 +3,6 @@ package tracko.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import tracko.logic.commands.exceptions.CommandException;
-import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
 import tracko.model.TrackO;
 
@@ -27,8 +26,6 @@ public class ClearCommand extends MultiLevelCommand {
         if (this.isCancelled) {
             // User has cancelled the command
             return new CommandResult(MESSAGE_COMMAND_ABORTED);
-        } else {
-
         }
 
         if (!this.isAwaitingInput()) {
@@ -38,16 +35,5 @@ public class ClearCommand extends MultiLevelCommand {
 
         return new CommandResult(CLEAR_CONFIRMATION_MESSAGE);
 
-    }
-
-    private ClearCommand parseAndUpdate(String args, ClearCommand command) throws ParseException {
-        if (args.equals("done")) {
-            command.setAwaitingInput(false);
-        } else if (args.equals("cancel")) {
-            command.setAwaitingInput(false);
-            command.cancel();
-        }
-
-        return command;
     }
 }
