@@ -3,6 +3,7 @@ package swift.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -54,6 +55,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private Button tasksButton;
+
+    @FXML
+    private Button contactsButton;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -138,6 +145,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        setMenuButtonStyle(contactsButton);
     }
 
     /**
@@ -185,6 +194,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void showTaskTab() {
+        setMenuButtonStyle(tasksButton);
+        resetMenuButtonStyle(contactsButton);
+
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getUnfilteredBridgeList(),
                 logic.getFilteredPersonList());
 
@@ -199,6 +211,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void showContactTab() {
+        setMenuButtonStyle(contactsButton);
+        resetMenuButtonStyle(tasksButton);
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -229,11 +244,17 @@ public class MainWindow extends UiPart<Stage> {
         personTaskListPanelPlaceholder.getChildren().add(taskPersonListPanel.getRoot());
     }
 
+    /**
+     * Show the assigned contacts in task tab side panel.
+     */
     @FXML
     private void showAssignedContacts() {
         taskPersonListPanel.switchToAssignedContacts();
     }
 
+    /**
+     * Show the assigned tasks in the contact tab side panel.
+     */
     @FXML
     private void showAssignedTasks() {
         personTaskListPanel.switchToAssignedTasks();
@@ -246,6 +267,19 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void removeSidePanel() {
         personTaskListPanelPlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Underline the menu button that represents the tab the application is on.
+     *
+     * @param button the menu button to be styled.
+     */
+    private void setMenuButtonStyle(Button button) {
+        button.setStyle("-fx-border-color: transparent transparent #6D28D9 transparent");
+    }
+
+    private void resetMenuButtonStyle(Button button) {
+        button.setStyle("-fx-border-color: transparent transparent transparent transparent");
     }
 
     public PersonListPanel getPersonListPanel() {
