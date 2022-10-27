@@ -22,10 +22,12 @@ public class PersonViewPanel extends UiPart<Region> {
 
     private final Person person;
 
-    private final Image identificationImage = new Image(this.getClass().getResourceAsStream("/images/ui/identification-card.png"));
+    private final Image identificationImage = new Image(this.getClass()
+            .getResourceAsStream("/images/ui/identification-card.png"));
     private final Image helplineImage = new Image(this.getClass().getResourceAsStream("/images/ui/help-line.png"));
     private final Image pillImage = new Image(this.getClass().getResourceAsStream("/images/ui/pills.png"));
-    private final Image hospitalbedImage = new Image(this.getClass().getResourceAsStream("/images/ui/hospital-bed.png"));
+    private final Image hospitalbedImage = new Image(this.getClass()
+            .getResourceAsStream("/images/ui/hospital-bed.png"));
     private final Image calendarImage = new Image(this.getClass().getResourceAsStream("/images/ui/calendar.png"));
 
     @FXML
