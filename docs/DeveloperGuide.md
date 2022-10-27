@@ -385,7 +385,7 @@ The following diagram illustrates how the operation works:
 
 #### Implementation Details
 
-The undo mechanism is facilitated by `teachersPetHistory` within [ModelManager.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/ModelManager.java).  Additionally, it implements the following operations:
+The undo mechanism is facilitated by `teachersPetHistory` within [ModelManager.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/ModelManager.java). Additionally, it implements the following operations:
 
 * `ModelManager#updateTeachersPeyHistory()` — Saves the current teacher's pet state in its history.
 * `ModelManager#undo()` — Restores the previous teacher's pet state from its history.
