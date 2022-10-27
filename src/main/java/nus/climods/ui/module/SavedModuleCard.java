@@ -40,7 +40,7 @@ public class SavedModuleCard extends UiPart<Region> {
         this.module = module;
         moduleCode.setText(module.getCode());
         tutorial.setText(module.getLessons()); //TODO: Change back later
-        lecture.setText(module.getLecture());
+        lecture.setText("Lesson Details:");
         ayData.getChildren()
             .add(new SemesterPill(module.getSelectedSemester(), AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR));
     }

@@ -27,7 +27,7 @@ public class PickCommandTest {
 
     @Test
     public void execute_pick_success() throws CommandException {
-        String expectedMessage = String.format(PickCommand.MESSAGE_SUCCESS, "CS1010J TUTORIAL 02");
+        String expectedMessage = String.format(PickCommand.MESSAGE_SUCCESS, "CS1010J TUT 02");
         model.addUserModule(new UserModule("CS1010J", SemestersEnum.S1));
 
         PickCommand pickCommand = new PickCommand("CS1010J", LessonTypeEnum.TUT, "02");

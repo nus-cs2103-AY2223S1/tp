@@ -75,7 +75,7 @@ public class PickCommand extends Command {
         // if everything correct then set accordingly in hashmap in UserModule
         curr.setLessons(lessonType, classNo);
 
-        String addedDetails = String.format("%s %s %s", toPick, lessonType, classNo);
+        String addedDetails = String.format("%s %s %s", toPick, lessonType.name(), classNo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()),
                 COMMAND_WORD, model);
     }
