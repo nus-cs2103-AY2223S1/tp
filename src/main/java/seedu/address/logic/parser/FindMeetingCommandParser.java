@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.FindMeetingCommand.getDescription;
-import static seedu.address.logic.commands.FindMeetingCommand.getLocation;
-import static seedu.address.logic.commands.FindMeetingCommand.getPeople;
+import static seedu.address.logic.commands.FindMeetingCommand.GET_DESCRIPTION;
+import static seedu.address.logic.commands.FindMeetingCommand.GET_LOCATION;
+import static seedu.address.logic.commands.FindMeetingCommand.GET_PEOPLE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,13 +48,13 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
     private FindMeetingFunctionalInterface verifyParameters(String parameter) throws ParseException {
         switch (parameter) {
         case FindMeetingCommand.FIND_AT:
-            return getLocation;
+            return GET_LOCATION;
 
         case FindMeetingCommand.FIND_DESCRIPTION:
-            return getDescription;
+            return GET_DESCRIPTION;
 
         case FindMeetingCommand.FIND_WITH:
-            return getPeople;
+            return GET_PEOPLE;
 
         default:
             throw new ParseException(

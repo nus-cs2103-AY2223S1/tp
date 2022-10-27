@@ -18,9 +18,9 @@ public class FindMeetingCommand extends Command {
      * these are set to public static and final to be used in test
      * lambdas/functional interfaces cannot be "equal" unless they are the same object
      */
-    public static final FindMeetingFunctionalInterface getDescription = Meeting::getDescription;
-    public static final FindMeetingFunctionalInterface getLocation = Meeting::getLocation;
-    public static final FindMeetingFunctionalInterface getPeople = Meeting::getPeopleToMeetAsString;
+    public static final FindMeetingFunctionalInterface GET_DESCRIPTION = Meeting::getDescription;
+    public static final FindMeetingFunctionalInterface GET_LOCATION = Meeting::getLocation;
+    public static final FindMeetingFunctionalInterface GET_PEOPLE = Meeting::getPeopleToMeetAsString;
 
     public static final String COMMAND_WORD = "findmeeting";
     public static final String FIND_AT = "/at";
