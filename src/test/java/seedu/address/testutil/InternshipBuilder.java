@@ -41,8 +41,9 @@ public class InternshipBuilder {
         company = new Company(DEFAULT_COMPANY);
         link = new Link(DEFAULT_LINK);
         description = new Description(DEFAULT_DESCRIPTION);
-        applicationStatus = DEFAULT_APPLICATION_STATUS;
+        applicationStatus = INTERVIEW_APPLICATION_STATUS;
         appliedDate = new AppliedDate(DEFAULT_APPLIED_DATE);
+        interviewDateTime = new InterviewDateTime(DEFAULT_INTERVIEW_DATE_TIME);
         tags = new HashSet<>();
     }
 

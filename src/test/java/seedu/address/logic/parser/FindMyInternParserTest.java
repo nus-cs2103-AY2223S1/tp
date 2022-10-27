@@ -55,7 +55,7 @@ public class FindMyInternParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Internship internship = new InternshipBuilder().build();
+        Internship internship = new InternshipBuilder(false).build();
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(internship).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_INTERNSHIP.getOneBased() + " "
