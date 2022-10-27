@@ -39,7 +39,8 @@ public class Student {
                    TelegramHandle telegramHandle, TutorialModule tutorialModule,
                    TutorialName tutorialName, Attendance attendance,
                    Participation participation, Grade grade, Set<Tag> tags) {
-        requireAllNonNull(name, id, phone, email, telegramHandle, tutorialModule, tutorialName, grade, tags);
+        requireAllNonNull(name, id, phone, email, telegramHandle, tutorialModule, tutorialName,
+                attendance, participation, grade, tags);
         this.name = name;
         this.id = id;
         this.phone = phone;
