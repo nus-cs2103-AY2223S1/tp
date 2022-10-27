@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: User Guide
@@ -60,14 +59,27 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 
 ## Features
 
-### Note about command format
-* All command words are not case-sensitive so `T tagadd` is the same as `t tagadd`
-* Optional parameters are marked by `[` and `]`
-* If duplicate prefixes are used, the latest prefix in the line will be selected.
-  * For example, for `t sort c/priority c/deadline`, the latest prefix `c/deadline` will be selected
-* For the group of prefixes marked by `[` and `]*`, it means that at least one of the prefixes in the
-group must be selected and the rest of the prefixes in the group are optional
-
+<div markdown="span" class="alert alert-info">
+**:information_source: How to read the command format:**<br>
+  
+* Words in UPPER_CASE are the parameters to be supplied by the user.<br>
+  e.g. in `t add m/MODULE`, `MODULE` is a parameter which can be used as `t add m/CS2030`.
+  
+* Items in square brackets are optional.<br>
+  e.g `t/KEYWORD [SECOND_KEYWORD]` can be used as `t/priority deadline` or as `t/priority`.
+  
+* Items in square brackets with * are optional, but at least one of them is required.<br>
+  e.g `[m/MODULE]* [d/DESCRIPTION]*` can be used as `m/cs2030` or `m/cs2030 d/assignment` but not ` `(none provided).
+  
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `m/MODULE d/DESCRIPTION`, `d/DESCRIPTION m/MODULE` is also acceptable.
+  
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `m/cs2030 m/cs2040`, only `m/cs2040` will be taken.
+  
+* Extraneous parameters for commands that do not take in parameters (such as help, list, exit and clear) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</div>
 
 ## Modules-related Features
 
@@ -149,7 +161,7 @@ Examples:
 ### Editing a task
 Edits the specified task, by updating the existing values to the input values.
 
-Format: `t edit INDEX [m/MODULE] [d/DESCRIPTION]`
+Format: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`
 * Edits the task at the specified INDEX in the task list. 
 * At least one of the optional fields must be provided.
 * The input values should not be the same as existing values.
@@ -161,7 +173,6 @@ Examples:
 
 `t edit 2 m/cs2040 d/tutorial 2` changes the module and description of the second task in the task list to 'CS2040' and 'tutorial 2' respectively.
 <div markdown="span" class="alert alert-info">
-  
 :information_source: **Note:** If a task is linked to an exam, and its module is changed, the task will be unlinked from the exam.
 </div>
 
@@ -501,26 +512,26 @@ Format: `exit`
 | **Module**                                                                                                                                        |
 | **M add**     | **Format**: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT`<br/> **Example**: `m add c/cs2103t m/software engineering mc/4` |
 | **M del**     | **Format**: `m del INDEX`<br/> **Example**: `m del 1`                                                                             |
-| **M edit**    | **Format**: `m edit INDEX [c/MODULE CODE] [m/MODULE NAME] [mc/MODULE CREDIT]`<br/> **Example**: `edit 1 c/cs2040 mc/4`            |
+| **M edit**    | **Format**: `m edit INDEX [c/MODULE CODE]* [m/MODULE NAME]* [mc/MODULE CREDIT]*`<br/> **Example**: `edit 1 c/cs2040 mc/4`         |
 | **M list**    | **Format**: `m list`<br/> **Example**: `m list`                                                                                   |
 | **M find**    | **Format**: `m find KEYWORD`<br/> **Example**: `m find cs`                                                                        |
 | **Task**      |                                                                                                                                   |
 | **T add**     | **Format**: `t add m/MODULE d/DESCRIPTION`<br/> **Example**: `t add m/CS2105 d/Assignment 1`                                      |
 | **T del**     | **Format**: `t del INDEX`<br/> **Example**: `t del 1`                                                                             |
-| **T edit**    | **Format**: `t edit INDEX [m/MODULE] [d/DESCRIPTION]`<br/> **Example**: `t edit 1 d/Assignment 2`                                 |
+| **T edit**    | **Format**: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`<br/> **Example**: `t edit 1 d/Assignment 2`                               |
 | **T mark**    | **Format**: `t mark INDEX`<br/> **Example**: `t mark 1`                                                                           |
 | **T unmark**  | **Format**: `t unmark INDEX`<br/> **Example**: `t unmark 1`                                                                       |
 | **T list**    | **Format**: `t list`<br/> **Example**: `t list`                                                                                   |
 | **T sort**    | **Format**: `t sort c/CRITERIA`<br/> **Example**: `sort c/priority`                                                               |
-| **T filter**  | **Format**: `t filter m/MODULE c/COMPLETE l/LINKED`<br/> **Example**: `filter m/cs2030 c/y`                                       |
+| **T filter**  | **Format**: `t filter [m/MODULE]* [c/COMPLETED]* [l/LINKED]*`<br/> **Example**: `filter m/cs2030 c/y`                             |
 | **T find**    | **Format**: `t find KEYWORD`<br/> **Example**: `t find watch lecture rec`                                                         |
-| **T tagadd**  | **Format**: `t tagadd INDEX p/PRIORITY_STATUS dl/DEADLINE`<br/> **Example**: `t tagadd 1 p/high dl/29-12-2022`                    |
+| **T tagadd**  | **Format**: `t tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagadd 1 p/high dl/29-12-2022`              |
 | **T tagdel**  | **Format**: `t tagdel INDEX t/KEYWORD [SECOND_KEYWORD]`<br/> **Example**:`t tagdel 1 t/priority`                                  |
-| **T tagedit** | **Format**: `t tagedit INDEX p/PRIORITY_STATUS dl/DEADLINE`<br/> **Example**: `t tagedit 1 p/medium`                              |
+| **T tagedit** | **Format**: `t tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagedit 1 p/medium`                        |
 | **T clear**   | **Format**: `t clear`<br/> **Example**: `t clear`                                                                                 |
 | **Exam**      |                                                                                                                                   |
 | **E add**     | **Format**: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`<br/> **Example**: `e add m/cs2013t ex/practical ed/29-10-2022`      |
-| **E edit**    | **Format**: `e edit INDEX [c/MODULE CODE] [ex/EXAM DESCRIPTION] [ed/EXAM DATE]`<br/> **Example**: `e edit 1 c/cs2040`             |
+| **E edit**    | **Format**: `e edit INDEX [m/MODULE CODE]* [ex/EXAM DESCRIPTION]* [ed/EXAM DATE]*`<br/> **Example**: `e edit 1 c/cs2040`          |
 | **E del**     | **Format**: `e del INDEX`<br/> **Example**: `e del 1`                                                                             |
 | **E link**    | **Format**: `e link e/EXAM_INDEX t/TASK_INDEX`<br/> **Example**: `e link e/1 t/2`                                                 |
 | **E unlink**  | **Format**: `e unlink INDEX`<br/> **Example**: `e unlink 1`                                                                       |
