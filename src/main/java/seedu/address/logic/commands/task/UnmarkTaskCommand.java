@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -15,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Marks a task of a person as complete or incomplete.
+ * Unmarks a task and sets it as incomplete.
  */
 public class UnmarkTaskCommand extends TaskCommand {
 
@@ -31,17 +30,12 @@ public class UnmarkTaskCommand extends TaskCommand {
 
     private final Index targetIndex;
 
-    private final Logger log = Logger.getLogger("test");
-
     /**
      * @param targetIndex of the person's task to be updated
      */
     public UnmarkTaskCommand(Index targetIndex) {
         requireAllNonNull(targetIndex);
-
         this.targetIndex = targetIndex;
-
-        log.warning("warning");
     }
 
     @Override
