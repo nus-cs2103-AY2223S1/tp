@@ -91,7 +91,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if none of the prefixes are present {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     public static boolean noPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
