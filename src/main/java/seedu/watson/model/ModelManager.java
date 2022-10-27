@@ -147,8 +147,8 @@ public class ModelManager implements Model {
      * @param isInAscending if true the list is set to ascending order, else descending
      */
     @Override
-    public void sortListByGrade(boolean isInAscending) {
-        this.database.sortByGrade(isInAscending);
+    public void sortListByGrade(boolean isInAscending, String subjectName) {
+        this.database.sortByGrade(isInAscending, subjectName);
     }
 
     @Override

@@ -87,8 +87,8 @@ public class Database implements ReadOnlyDatabase {
      * Sorts the list of students by grades.
      * @param isInAscending sorts by ascending if true, descending otherwise
      */
-    public void sortByGrade(boolean isInAscending) {
-        persons.sortByGrade(isInAscending);
+    public void sortByGrade(boolean isInAscending, String subjectName) {
+        persons.sortByGrade(isInAscending, subjectName);
     }
 
     //// util methods
