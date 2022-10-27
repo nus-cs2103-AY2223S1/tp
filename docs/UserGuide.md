@@ -110,11 +110,11 @@ Format: `:del <index>`
 * `:del 3` Deletes an exercise at index 3 of the list
 
 
-### Listing all exercises : `:ls`
+### Listing all exercises : `:list`
 
 Shows a list of all exercises.
 
-Format: `:ls`
+Format: `:list`
 
 
 ### Sorting all exercises : `:sort`
