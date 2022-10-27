@@ -48,7 +48,7 @@ public class DeletePersonCommandTest {
         Name nameOfInvalidPerson = JON_NOT_IN_TYPICAL_ADDRESS_BOOK.getName();
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(nameOfInvalidPerson);
 
-        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_NO_SUCH_PERSON);
+        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_NO_SUCH_PERSON_DELETE);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class DeletePersonCommandTest {
 
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(BENSON.getName());
 
-        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_NO_SUCH_PERSON);
+        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_NO_SUCH_PERSON_DELETE);
     }
 
     @Test

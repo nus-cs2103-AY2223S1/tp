@@ -1,8 +1,8 @@
 package seedu.address.model.module;
 
 /**
- * Represents a {@code Module}'s title (optional field) in Plannit.
- * Guarantees: immutable
+ * Represents a {@code Module}'s title (optional field) in the address book.
+ * Guarantees: immutable.
  */
 public class ModuleTitle {
 

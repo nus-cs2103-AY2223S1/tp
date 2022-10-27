@@ -6,54 +6,36 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.StackPane?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane"
+      xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#handleClick">
+  <GridPane HBox.hgrow="ALWAYS" styleClass="module-card-pane">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="400" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="TOP_LEFT" minHeight="90" GridPane.columnIndex="0">
       <padding>
         <Insets top="5" right="5" bottom="5" left="5" />
       </padding>
+      <!-- HBox with module code and title. -->
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
+        <Label fx:id="id" styleClass="cell_big_label" />
         <Label fx:id="moduleCode" text="\$first" styleClass="cell_big_label" />
-        <Label fx:id="moduleTitle" text="\$moduleTitle"
-               styleClass="cell_small_label" />
+        <Label fx:id="moduleTitle" text="\$moduleTitle" styleClass="cell_small_label" />
       </HBox>
-      <HBox>
-        <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="170"
-              prefWidth="200" HBox.hgrow="ALWAYS">
-          <Label alignment="CENTER" styleClass="underlined-text"
-                 prefWidth="200" maxWidth="Infinity">
-            Tasks
-          </Label>
-          <padding>
-            <Insets top="0" right="0" bottom="0" left="0" />
-          </padding>
-          <StackPane fx:id="taskListPanelPlaceholder" />
-        </VBox>
-        <VBox styleClass="pane-with-border" minWidth="170"
-              prefWidth="200" HBox.hgrow="ALWAYS">
-          <padding>
-            <Insets top="0" right="0" bottom="0" left="0" />
-          </padding>
-          <Label alignment="CENTER" styleClass="underlined-text"
-                 prefWidth="200" maxWidth="Infinity">
-            Links
-          </Label>
-          <FlowPane fx:id="links" />
-        </VBox>
-      </HBox>
+      <!-- VBox with links. -->
+      <VBox styleClass="pane-with-border" fx:id="linksPane" minWidth="100"
+            prefWidth="200">
+        <FlowPane fx:id="links" />
+      </VBox>
+      <!-- VBox with tasks . -->
+      <VBox styleClass="pane-with-border" fx:id="taskListPane" minWidth="100"
+            prefWidth="200">
+        <StackPane fx:id="taskListPanelPlaceholder" />
+      </VBox>
     </VBox>
   </GridPane>
 </HBox>

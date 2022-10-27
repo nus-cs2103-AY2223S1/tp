@@ -13,7 +13,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.task.Task;
 
 /**
- * Parses input arguments and creates a new {@code AddTaskCommand} object
+ * Parses input arguments and creates a new {@code AddTaskCommand} object.
  */
 public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 

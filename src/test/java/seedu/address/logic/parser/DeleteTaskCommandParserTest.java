@@ -10,13 +10,13 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBER_D
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NUMBER_DESC_ZERO;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_CS2106;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_MA2001;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_LINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_THREE;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_CS2103T;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -79,7 +79,7 @@ public class DeleteTaskCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // incorrect prefix
-        assertParseFailure(parser, MODULE_CODE_DESC_MA2001 + MODULE_LINK_CS2103T,
+        assertParseFailure(parser, MODULE_CODE_DESC_MA2001 + VALID_MODULE_LINK_CS2103T,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
 
         // invalid module code

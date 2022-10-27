@@ -24,7 +24,7 @@ public class NameContainsKeywordsPredicateTest {
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
-        // same values -> returns true
+        // same keyword -> returns true
         NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -34,7 +34,7 @@ public class NameContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different keyword -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

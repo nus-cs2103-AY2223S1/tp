@@ -21,7 +21,7 @@ public class ModuleCodeMatchesKeywordsPredicateTest {
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
-        // same values -> returns true
+        // same keyword -> returns true
         ModuleCodeMatchesKeywordPredicate firstPredicateCopy =
                 new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
@@ -32,7 +32,7 @@ public class ModuleCodeMatchesKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different module -> returns false
+        // different keyword -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -42,7 +42,7 @@ public class ModuleCodeMatchesKeywordsPredicateTest {
         ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(VALID_CS2106_MODULE_CODE);
         assertTrue(predicate.test(new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).build()));
 
-        // Mixed-case keywords
+        // Mixed-case keyword
         predicate = new ModuleCodeMatchesKeywordPredicate("cS2106");
         assertTrue(predicate.test(new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).build()));
     }

@@ -33,26 +33,29 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 ### 1.1. Command summary
 
-| Action                                  | Format                                                                    | Short Description                                                               |
-|-----------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                          | Add module with a module code and optional module title                         |
-| [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                           | Delete module by module code                                                    |
-| [`edit-module`](#213-edit-module)       | `edit-module     INDEX ([m/MODULE_CODE] <br/><br/><br/>[t/MODULE_TITLE])` | Edit module belonging to the specified index currently displayed on the screen  |
-| [`find-module`](#214-find-module)       | `find-module     KEYWORD`                            <br/>                | Find module that starts with specified keyword in home page                     |
-| [`list-module`](#215-list-module)       | `list-module`                                        <br/>                | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                       | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                            | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`   | Swaps the order of tasks in the task list of a specified module                 |
-| [`add-link`](#231-add-link)             | `add-link        INDEX l/LINK_URL`                                        | Add link URL to a module by its displayed index                                 |
-| [`delete-link`](#232-delete-link)       | `delete-link     INDEX l/LINK_URL`                                        | Delete link URL from a module by its displayed index                            |
-| [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                     | Add contact with specified name, email, and phone number                        |
-| [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                                  | Delete contact belonging to the specified name                                  |
-| [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`            | Edit contact belonging to the specified index currently displayed on the screen |
-| [`find-person`](#244-find-person)       | `find-person     KEYWORD`                                                 | Find contacts that starts with specified keyword                                |
-| [`list-person`](#245-list-person)       | `list-person`                                                             | List all contacts                                                               |
-| [`home`](#251-navigate-to-home)         | `home`                                                                    | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules) | `goto MODULE_CODE`                                                        | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)       | `exit`                                                                    | Exit the program                                                                |
+| Action                                                        | Format                                                                  | Short Description                                                               |
+|---------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [`add-module`](#211-add-module)                               | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
+| [`delete-module`](#212-delete-module)                         | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
+| [`edit-module`](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
+| *[`find-module`](#214-find-module)                            | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
+| *[`list-module`](#215-list-module)                            | `list-module`                                                           | List all modules in home page after finding                                     |
+| [`add-person-to-module`](#216-add-person-to-module)           | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
+| [`delete-person-from-module`](#217-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
+| [`add-task`](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
+| [`swap-task`](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
+| [`add-link`](#231-add-link)                                   | `add-link        m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`                | Add link URL with an alias to a module by its specified module code             |
+| [`delete-link`](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
+| [`open-link`](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
+| [`add-person`](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
+| [`delete-person`](#242-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
+| [`edit-person`](#243-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
+| *[`find-person`](#244-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
+| *[`list-person`](#245-list-person)                            | `list-person`                                                           | List all contacts                                                               |
+| [`home`](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
+| [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
+| [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
 
 ## 2. Features
 
@@ -67,9 +70,8 @@ while still having the benefits of a Graphical User Interface (GUI).
   e.g `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
-to be present.
-
-e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
+to be present.  
+  e.g `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
 to be present.
 
 * Parameters can be in any order.<br>
@@ -83,6 +85,8 @@ the parameter will be taken.<br>
   `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
 
+* Features marked with * can only be utilised when user is currently at the home page.
+
 </div>
 
 ### 2.1. Modules
@@ -95,7 +99,8 @@ This command will require one flag, and one flag is optional:
 * `t/`: (Optional flag) To be followed by the module title of the module to be added into Plannit.
 
 Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
-
+* Module code will be automatically treated as uppercase. For example, `cs1231s` will be treated 
+  as `CS1231S`.
 * You may optionally add a module title. If provided module title is empty, then Plannit 
 interprets it as that there is no module title. 
 * You cannot add a duplicate module code.
@@ -170,7 +175,7 @@ In the above example, we are changing the module title of the third module on Pl
 `Software Engineering`.
 
 #### 2.1.4. Find module
-You can find all modules in Plannit whose module code starts with a specific keyword.
+You may find modules whose module code starts with a specific keyword while in Plannit's home page.
 
 Format: `find-module KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -183,7 +188,7 @@ OR
 ```
 find-module CS
 ```
-In either of the above examples, we find every module that starts with CS from Plannit.
+In either of the above examples, we find every module whose module code starts with CS in Plannit.
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:** You will
 remain on the home page after executing the `find-module` command. This is different
@@ -191,7 +196,7 @@ from the behavior of [`goto`](#252-navigate-between-modules)
 </div>
 
 #### 2.1.5. List module
-Show a list of all modules in Plannit after finding module.
+You may obtain the list of every module in Plannit while in the home page.
 
 Format: `list-module`
 
@@ -200,7 +205,47 @@ Example:
 ```
 list-module
 ```
-In the above example, we list every module in Plannit while in home page.
+In the above example, we list every module that exist in Plannit.
+
+#### 2.1.6. Add person to module
+You can add a person to a module on Plannit using the `add-person-to-module` command. In other 
+words, an association between a person and a module will be created.
+
+This command will require two flags:
+* `m/`: To be followed by the module code of the module which the person will be added to.
+* `n/`: To be followed by the name of the person who will be added to the module.
+
+Format: `add-person-to-module m/MODULE_CODE n/NAME`
+* You can only add a person to a module if both the person and the module are currently 
+  displayed on screen.
+* If a person has already been added to a module, the person cannot be added to the module again.
+
+Example:
+
+```
+add-person-to-module m/CS2103T n/Dinosaur Lim
+```
+In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
+
+#### 2.1.7. Delete person from module
+You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
+command.  
+
+This command will require two flags:
+* `m/`: To be followed by the module code of the module, which the person will be removed from.
+* `n/`: To be followed by the name of the person, whom will be removed from the module.
+
+Format: `delete-person-from-module m/MODULE_CODE n/NAME`
+* You can only delete the specified person from the specified module if the person was originally associated to the
+module.
+* You can only delete a person from a module when both the specified module and person are currently being displayed.
+
+Example:
+
+```
+delete-person-from-module m/CS2103T n/Dinosaur Lim
+```
+In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
 
 <br>
 
@@ -271,69 +316,127 @@ task within the task list of the module with the module code `CS2103T`.
 
 <br>
 
-### 2.3. Adding and deleting links
+### 2.3. Links
+All links in Plannit are represented by a unique (case-sensitive) alias.
+
+Alias:
+* Alphanumeric and whitespace characters
+* Character limit of 15
+* At least 1 alphanumeric character
+
+Link URL (Plannit provides no guarantee of the link's existence):
+* At least one top-level domain (e.g. com)
+* Domain length of 1 to 256 characters (e.g. for 'www.google.com', the domain is 'google')
+* Supported by 'https' or 'http'
+
 #### 2.3.1. Add link
-You may add a link to a specific module using the `add-link` command.
+You may add link(s) to a specific module using the `add-link` command. 
+Each link URL is to be paired with a link alias, both of which are unique within a module.
 
-This command will require one flag:
-* `l/`: To be followed by the link URL.
+Multiple links can be added at once. Link aliases will be paired with link URLs according to their respective
+order of input (left-to-right).
+If there exists a link URL or alias that is detected as invalid within a chained command,
+none of the links in the command will be added.
 
-Format: `add-link INDEX l/LINK_URL`
-* `INDEX`: To be replaced with the displayed index of the module which is associated with the link
-* You cannot add a link URL to a non-existent module code.
-* You cannot add a duplicate link URL for a single module code.
+This command will require three flags:
+* `m/`: To be followed by the module code of the module which is associated with the link
+* `l/`: To be followed by the link URL which is associated with the link
+* `la/`: To be followed by the link alias which is associated with the link
+
+Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`
+* You cannot add a link to a non-existent module code.
+* You cannot add a link using a link alias that already exists in the module represented by the module code.
+* You cannot add a link using a link URL that already exists in the module represented by the module code.
 
 Example:
 ```
-add-link 1 l/visualgo.net/en
+add-link m/CS2040 l/visualgo.net/en la/visualgo
 ```
 In the above example, we are adding the link with the URL `visualgo.net/en`
-to the module with the displayed index of `1`.
+to the module with module code `CS2040`, represented by the link alias `visualgo`.
 
 ```
-add-link 2 l/https://www.nusmods.com l/kattis.com
+add-link m/CS2040 l/https://www.nusmods.com l/open.kattis.com la/nus mods la/kattis
 ```
-In the above example, we are adding the links with the URL `https://www.nusmods.com` and `l/kattis.com`
-to the module with the displayed index of `2`.
+In the above example, we are adding the links with the URL `https://www.nusmods.com` and `open.kattis.com`
+to the module with module code `CS2040`, represented by the link alias `nus mods` and `kattis` respectively.
 
 #### 2.3.2. Delete link
-You may delete a link from a specific module using the `delete-link` command.
+You may delete link(s) from a specific module using the `delete-link` command. 
+Links will be deleted by means of their corresponding alias.
 
-This command will require one flag:
-* `l/`: To be followed by the link URL.
+Multiple links can be deleted at once using their corresponding alias.
+If there exists a link alias that is detected as invalid within a chained command,
+none of the links in the command will be deleted.
 
-Format: `delete-link INDEX l/LINK_URL`
-* `INDEX`: To be replaced with the displayed index of the module which is associated with the link
-* You cannot delete a link URL from a non-existent module code.
-* You cannot delete a non-existent link URL from a valid module code.
+This command will require two flags:
+* `m/`: To be followed by the module code of the module which is associated with the link
+* `la/`: To be followed by the link alias which is associated with the link
+
+Format: `delete-link m/MODULE_CODE la/LINK_ALIAS`
+* You cannot delete a link from a non-existent module code.
+* You cannot delete a link using a non-existent link alias from an existing module.
 
 Example:
 ```
-delete-link 1 l/visualgo.net/en
+delete-link m/CS2040 la/visualgo
 ```
 In the above example, we are deleting the link with the URL `visualgo.net/en`
-from the module with the displayed index of `1`.
+from the module with module code `CS2040`, using its corresponding link alias `visualgo`.
 
 ```
-delete-link 2 l/https://www.nusmods.com l/kattis.com
+delete-link m/CS2040 la/nus mods la/kattis
 ```
-In the above example, we are deleting the links with the URL `https://www.nusmods.com` and `l/kattis.com`
-from the module with the displayed index of `2`.
+In the above example, we are deleting the links with the URL `https://www.nusmods.com` and `open.kattis.com`
+from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
+
+#### 2.3.3. Open link
+You may open link(s) from a specific module to your default browser using the `open-link` command.
+Links will be opened by means of their corresponding alias.
+
+An alternative way to open links is by means of clicking on their aliases on the application window.
+Permissions from your operating system may be required for some users to use this feature.
+
+Multiple links can be opened at once using its corresponding alias according to their order of input
+(left to right). If there exists a link alias that is detected as invalid within a chained command,
+the links to its left will be opened while the links to its right will not be opened.
+
+This command will require two flags:
+* `m/`: To be followed by the module code of the module which is associated with the link
+* `la/`: To be followed by the link alias which is associated with the link
+
+Format: `open-link m/MODULE_CODE la/LINK_ALIAS`
+* You cannot open a link from a non-existent module code.
+* You cannot open a link using a non-existent link alias from an existing module.
+
+Example:
+```
+open-link m/CS2040 la/visualgo
+```
+In the above example, we are opening the link with the URL `visualgo.net/en`
+from the module with module code `CS2040`, using its corresponding link alias `visualgo`.
+
+```
+open-link m/CS2040 la/nus mods la/kattis
+```
+In the above example, we are opening the links with the URL `https://www.nusmods.com` and `open.kattis.com`
+from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
 <br>
 
 ### 2.4. Contacts
 #### 2.4.1. Add person
 You may add a contact using the `add-person` command.
 
-This command will require two flags, and one optional flag:
+This command will require three flags:
 * `n/`: To be followed by the to-be-added contact name.
 * `e/`: To be followed by the email of the new contact.
 * `p/`: To be followed by the phone number of the new contact.
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
+* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
 * You cannot specify any country code for phone number.
-* You cannot specify a non-8-digit phone number.
+* You must specify an 8-digit phone number.
 
 Example:
 ```
@@ -350,6 +453,7 @@ This command will require one flag:
 
 Format: `delete-person n/NAME`
 * You cannot delete a non-existent contact.
+* You can only delete a person from Plannit when the person is currently being displayed.
 
 Example:
 ```
@@ -367,8 +471,9 @@ This command will require an index and minimally any of the three flags:
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 * `INDEX` is the currently displayed index number of the contact you are editing for on the screen.
+* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
 * You cannot specify any country code for phone number.
-* You cannot specify a non-8-digit phone number.
+* You must specify an 8-digit phone number.
 
 Examples:
 ```
@@ -389,7 +494,7 @@ In the above example, we are editing the contact with a displayed-index number o
 
 
 #### 2.4.4. Find person
-You can find all contacts in Plannit whose name starts with a specific keyword.
+You may find person whose name starts with a specific keyword while in Plannit's home page.
 
 Format: `find-person KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -402,10 +507,10 @@ OR
 ```
 find-person Alex
 ```
-In either of the above examples, we find every contact with names starting with Alex from Plannit.
+In either of the above examples, we find every person whose name starts with Alex in Plannit.
 
 #### 2.4.5. List person
-Show a list of all contacts in Plannit after finding contacts.
+You may obtain the list of every person in Plannit while in the home page.
 
 Format: `list-person`
 
@@ -414,10 +519,10 @@ Example:
 ```
 list-person
 ```
-In the above example, we list every contact in Plannit.
+In the above example, we list every person that exist in Plannit.
 
 ### 2.5. Navigation
-With navigation functionalities, you now have the ability to navigate between different tabs in Plannit!
+With navigation functionalities, you now have the ability to navigate between different modules in Plannit!
 
 #### 2.5.1. Navigate to home
 You may navigate back to the home page using the `home` command.

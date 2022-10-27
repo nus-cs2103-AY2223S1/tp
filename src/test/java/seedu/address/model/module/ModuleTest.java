@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_C
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2106;
 import static seedu.address.testutil.TypicalModules.MA2001;
 
@@ -63,6 +64,15 @@ public class ModuleTest {
         String moduleWithLeadingSpaces = " " + VALID_CS2106_MODULE_CODE;
         editedCs2106 = new ModuleBuilder(CS2106).withModuleCode(moduleWithLeadingSpaces).build();
         assertTrue(CS2106.isSameModule(editedCs2106));
+    }
+
+    @Test
+    public void compareTo() {
+        assertTrue(CS2103T.compareTo(CS2106) < 0); // lexicographically smaller module against larger
+
+        assertTrue(CS2106.compareTo(CS2106) == 0); // Same module
+
+        assertTrue(MA2001.compareTo(CS2106) > 0); // lexicographically larger module against smaller
     }
 
     @Test

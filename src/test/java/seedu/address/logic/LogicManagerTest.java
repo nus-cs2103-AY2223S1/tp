@@ -1,7 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_PERSON;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_PERSON_DELETE;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -58,13 +58,13 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deletePersonCommand = "delete-person n/Walker";
-        assertCommandException(deletePersonCommand, MESSAGE_NO_SUCH_PERSON);
+        assertCommandException(deletePersonCommand, MESSAGE_NO_SUCH_PERSON_DELETE);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String homeCommand = HomeCommand.COMMAND_WORD;
+        assertCommandSuccess(homeCommand, HomeCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
