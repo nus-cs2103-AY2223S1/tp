@@ -17,6 +17,9 @@ import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.resident.fields.Tag;
+import seedu.rc4hdb.model.venues.VenueName;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -171,6 +174,42 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String venueName} into a {@code VenueName}.
+     */
+    public static VenueName parseVenueName(String venueName) throws ParseException {
+        requireNonNull(venueName);
+        String trimmedVenueName = venueName.trim();
+        if (!VenueName.isValidVenueName(trimmedVenueName)) {
+            throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
+        }
+        return new VenueName(trimmedVenueName);
+    }
+
+    /**
+     * Parses {@code String hourPeriod} into a {@code HourPeriod}.
+     */
+    public static HourPeriod parseHourPeriod(String hourPeriod) throws ParseException {
+        requireNonNull(hourPeriod);
+        String trimmedHourPeriod = hourPeriod.trim();
+        if (!HourPeriod.isValidHourPeriod(trimmedHourPeriod)) {
+            throw new ParseException(HourPeriod.MESSAGE_CONSTRAINTS);
+        }
+        return new HourPeriod(trimmedHourPeriod);
+    }
+
+    /**
+     * Parses {@code String day} into a {@code Day}.
+     */
+    public static Day parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        if (!Day.isValidDay(trimmedDay)) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+        }
+        return new Day(trimmedDay);
     }
 
 }

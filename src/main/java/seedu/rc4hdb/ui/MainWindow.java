@@ -8,6 +8,8 @@ import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -36,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
 
     private ResidentTableView residentTableView;
+    private VenueTabView venueTabView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBoxRegion;
@@ -51,7 +54,19 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem commandBoxRedirect;
 
     @FXML
+    private TabPane tableViewPane;
+
+    @FXML
+    private Tab residentTab;
+
+    @FXML
+    private Tab venueTab;
+
+    @FXML
     private StackPane residentTableViewPlaceholder;
+
+    @FXML
+    private StackPane venueTabViewPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -69,17 +84,13 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
-        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
-        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
-
-        this.logic.getObservableResidentBookFilePath().addListener(getFileChangeListener());
-
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
+        setTabLabels();
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        setUpListeners();
     }
 
     public Stage getPrimaryStage() {
@@ -130,10 +141,19 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getHiddenFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
+        venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getObservableBookings(),
+                logic.getCurrentlyDisplayedVenueName());
+        venueTabViewPlaceholder.getChildren().add(venueTabView.getRoot());
+
+        residentTab.setContent(residentTableViewPlaceholder);
+        venueTab.setContent(venueTabViewPlaceholder);
+
+        tableViewPane.getTabs().addAll(residentTab, venueTab);
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableResidentBookFilePath());
+        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableFolderPath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -188,10 +208,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ResidentTableView getResidentTablePanel() {
-        return residentTableView;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -238,6 +254,20 @@ public class MainWindow extends UiPart<Stage> {
     private ChangeListener<Path> getFileChangeListener() {
         return (observableValue, oldValue, newValue) ->
                 statusBarFooter.updateFilePath(newValue);
+    }
+
+    private void setTabLabels() {
+        this.residentTab.setText("Residents");
+        this.venueTab.setText("Bookings");
+    }
+
+    /**
+     * Add listeners to fields to be listened to.
+     */
+    private void setUpListeners() {
+        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
+        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
+        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
     }
 
 }

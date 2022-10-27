@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.rc4hdb.logic.commands.modelcommands.ShowOnlyCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.ShowOnlyCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**

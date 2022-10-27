@@ -1,6 +1,7 @@
 package seedu.rc4hdb.storage.csv;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.core.FilePostfixes.CSV_POSTFIX;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -51,13 +52,14 @@ public class CsvReader {
      */
     public Optional<ReadOnlyResidentBook> readCsvFile(Path filePath) throws IOException, DataConversionException {
         requireNonNull(filePath);
-        assert(isCsvFilePath(filePath));
-        if (!FileUtil.isFileExists(filePath)) {
-            logger.warning("File does not exist: " + filePath);
+        Path csvFilePath = filePath.resolveSibling(filePath.getFileName() + CSV_POSTFIX);
+        logger.info(String.format("Attempting to read from csv file: %s", csvFilePath));
+        if (!FileUtil.isFileExists(csvFilePath)) {
+            logger.warning("File does not exist: " + csvFilePath);
             return Optional.empty();
         }
 
-        String csvAsString = cleanBom(filePath);
+        String csvAsString = cleanBom(csvFilePath);
         List<String> lines = splitLines(csvAsString);
         ResidentBook residentBook = new ResidentBook();
 
@@ -66,10 +68,6 @@ public class CsvReader {
         }
 
         return Optional.of(residentBook);
-    }
-
-    private boolean isCsvFilePath(Path filePath) {
-        return filePath.toString().endsWith(".csv");
     }
 
     /**
@@ -98,6 +96,7 @@ public class CsvReader {
         if (bom[0] == csvByteArray[0]
                 && bom[1] == csvByteArray[1]
                 && bom[2] == csvByteArray[2]) {
+            logger.info(String.format("BOM found in %s", filePath));
             return csvAsString.substring(1);
         }
         return csvAsString;
