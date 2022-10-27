@@ -24,6 +24,7 @@ import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NokPhoneContainsNumberPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
+import seedu.address.model.person.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -54,11 +55,16 @@ public class FindCommandTest {
                 new PhoneContainsNumberPredicate("94351253");
         PhoneContainsNumberPredicate phoneTwoPredicate =
                 new PhoneContainsNumberPredicate("98765432");
+
+        TagContainsKeywordsPredicate tagOnePredicate =
+                new TagContainsKeywordsPredicate(Collections.singletonList("python"));
+        TagContainsKeywordsPredicate tagTwoPredicate =
+                new TagContainsKeywordsPredicate(Collections.singletonList("java"));
+
         NokPhoneContainsNumberPredicate nokPhoneOnePredicate =
                 new NokPhoneContainsNumberPredicate("94351253");
         NokPhoneContainsNumberPredicate nokPhoneTwoPredicate =
                 new NokPhoneContainsNumberPredicate("98765432");
-
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -70,6 +76,8 @@ public class FindCommandTest {
         FindCommand findEmailSecondCommand = new FindCommand(emailSecondPredicate);
         FindCommand findPhoneOneCommand = new FindCommand(phoneOnePredicate);
         FindCommand findPhoneTwoCommand = new FindCommand(phoneTwoPredicate);
+        FindCommand findTagOneCommand = new FindCommand(tagOnePredicate);
+        FindCommand findTagTwoCommand = new FindCommand(tagTwoPredicate);
         FindCommand findNokPhoneOneCommand = new FindCommand(nokPhoneOnePredicate);
         FindCommand findNokPhoneTwoCommand = new FindCommand(nokPhoneTwoPredicate);
 
@@ -79,6 +87,7 @@ public class FindCommandTest {
         assertTrue(findClassOneCommand.equals(findClassOneCommand));
         assertTrue(findEmailFirstCommand.equals(findEmailFirstCommand));
         assertTrue(findPhoneOneCommand.equals(findPhoneOneCommand));
+        assertTrue(findTagOneCommand.equals(findTagOneCommand));
         assertTrue(findNokPhoneOneCommand.equals(findNokPhoneOneCommand));
 
         // same values -> returns true
@@ -92,6 +101,8 @@ public class FindCommandTest {
         assertTrue(findEmailFirstCommand.equals(findEmailFirstCommandCopy));
         FindCommand findPhoneOneCommandCopy = new FindCommand(phoneOnePredicate);
         assertTrue(findPhoneOneCommand.equals(findPhoneOneCommandCopy));
+        FindCommand findTagOneCommandCopy = new FindCommand(tagOnePredicate);
+        assertTrue(findTagOneCommand.equals(findTagOneCommandCopy));
         FindCommand findNokPhoneOneCommandCopy = new FindCommand(nokPhoneOnePredicate);
         assertTrue(findNokPhoneOneCommand.equals(findNokPhoneOneCommandCopy));
 
@@ -99,6 +110,8 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(1));
         assertFalse(findAddressFirstCommand.equals(2));
         assertFalse(findSecondCommand.equals(1));
+        assertFalse(findTagOneCommand.equals(1));
+        assertFalse(findTagTwoCommand.equals(1));
         assertFalse(findEmailFirstCommand.equals(1));
 
         // null -> returns false
@@ -107,6 +120,7 @@ public class FindCommandTest {
         assertFalse(findClassOneCommand.equals(null));
         assertFalse(findEmailFirstCommand.equals(null));
         assertFalse(findPhoneOneCommand.equals(null));
+        assertFalse(findTagOneCommand.equals(null));
         assertFalse(findNokPhoneOneCommand.equals(null));
 
         // different person -> returns false
@@ -123,6 +137,9 @@ public class FindCommandTest {
 
         // different phone -> returns false
         assertFalse(findPhoneOneCommand.equals(findPhoneTwoCommand));
+
+        // different tag -> returns false
+        assertFalse(findTagOneCommand.equals(findTagTwoCommand));
 
         // different phone -> returns false
         assertFalse(findNokPhoneOneCommand.equals(findNokPhoneTwoCommand));
@@ -169,6 +186,15 @@ public class FindCommandTest {
     }
 
     @Test
+    public void execute_zeroTagKeyword_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        TagContainsKeywordsPredicate predicate = prepareTagPredicate("hello");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
     public void execute_zeroNokPhoneKeyword_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NokPhoneContainsNumberPredicate predicate = new NokPhoneContainsNumberPredicate("81234566");
@@ -205,6 +231,12 @@ public class FindCommandTest {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
+    /**
+     * Parses {@code userInput} into a {@code TagContainsKeywordsPredicate}.
+     */
+    private TagContainsKeywordsPredicate prepareTagPredicate(String userInput) {
+        return new TagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
     /**
      * Parses {@code userInput} into an {@code AddressContainsKeywordsPredicate}.
      */

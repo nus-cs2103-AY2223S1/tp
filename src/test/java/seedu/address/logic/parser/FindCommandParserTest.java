@@ -22,6 +22,7 @@ import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NokPhoneContainsNumberPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
+import seedu.address.model.person.predicate.TagContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -166,6 +167,18 @@ public class FindCommandParserTest {
 
         // empty
         assertParseFailure(parser, " p/", Phone.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_validTagPrefix_returnsFindCommand() {
+        FindCommand expectedFindCommand =
+                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("Python")));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " t/Python", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " t/   Python  ", expectedFindCommand);
     }
 
     @Test
