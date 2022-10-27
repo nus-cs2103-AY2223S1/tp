@@ -16,10 +16,10 @@ public class CommandResultTest {
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
         assertTrue(commandResult.equals((new CommandResult("feedback", false, false,
-                false, true))));
+                false, true, false))));
 
         assertTrue(commandResult.equals((new CommandResult("feedback", false, false,
-                false, false))));
+                false, false, false))));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -84,12 +84,25 @@ public class CommandResultTest {
     @Test
     public void isSortTransactions() {
         CommandResult firstCommandResult = new CommandResult("feedback");
-        CommandResult secondCommandResult = new CommandResult("feedback", true, false, false, false);
-        CommandResult thirdCommandResult = new CommandResult("feedback", false, false, false, true);
+        CommandResult secondCommandResult = new CommandResult("feedback", true, false, false, false, false);
+        CommandResult thirdCommandResult = new CommandResult("feedback", false, false, false, true, false);
 
         assertEquals(firstCommandResult.isSortedTransactions(), false);
         assertEquals(secondCommandResult.isSortedTransactions(), false);
         assertEquals(thirdCommandResult.isSortedTransactions(), true);
+    }
+
+    @Test
+    public void hasNoUiChange() {
+        CommandResult firstCommandResult = new CommandResult("feedback");
+        CommandResult secondCommandResult = new CommandResult("feedback", true);
+        CommandResult thirdCommandResult = new CommandResult("feedback", false, false, false, false, true);
+        CommandResult fourthCommandResult = new CommandResult("feedback", false, false, true);
+
+        assertEquals(firstCommandResult.hasNoUiChange(), false);
+        assertEquals(secondCommandResult.hasNoUiChange(), true);
+        assertEquals(thirdCommandResult.hasNoUiChange(), true);
+        assertEquals(fourthCommandResult.hasNoUiChange(), false);
     }
 
 

@@ -28,7 +28,7 @@ import seedu.address.model.transaction.TransactionLog;
 public class EditTransactionCommand extends EditCommand {
 
     public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Transaction: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one Transaction field to edit must be provided. "
+    public static final String MESSAGE_NOT_EDITED = "At least one Transaction field to edit must be provided.\n"
             + "E.g. [q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]";
     public static final String MESSAGE_INVALID_USAGE = "Edit of transaction can only happen when transactions "
             + "are visible in the application!\n"

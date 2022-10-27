@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_EMPTY;
@@ -49,6 +50,10 @@ public class BuyCommandParserTest {
     public void parse_invalidIndexPreamble_failure() {
         // negative index
         assertParseFailure(parser, "-5", MESSAGE_INVALID_FORMAT);
+
+        // negative index
+        assertParseFailure(parser, "-1" + VALID_QUANTITY + VALID_GOODS + VALID_PRICE,
+                MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
 
         // zero index
         assertParseFailure(parser, "0", MESSAGE_INVALID_FORMAT);

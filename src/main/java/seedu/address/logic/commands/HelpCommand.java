@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the usage of commands\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the usage of commands.\n"
             + "Parameters: [COMMAND]\n"
             + "Example: help add";
 
@@ -27,7 +27,7 @@ public class HelpCommand extends Command {
             + "9. exit\n"
             + "10. help [COMMAND]\n"
             + "11. list\n"
-            + "12. remark INDEX REMARK\n"
+            + "12. remark INDEX REMARK [t/TAG]...\n"
             + "13. sort INDEX ORDER (ORDER must be 'latest' or 'oldest')\n"
             + "14. user_guide\n"
             + "15. clear";
@@ -44,7 +44,7 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(helpMessage);
+        return new CommandResult(helpMessage, true);
     }
 
     @Override

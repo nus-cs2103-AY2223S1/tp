@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
@@ -22,12 +23,14 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a remark and links to Client. \n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
-            + "REMARK\n"
+            + "REMARK "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 2 "
-            + "Fast buyer";
+            + "Fast buyer t/favourite";
 
     public static final String MESSAGE_SUCCESS = "New Remark created: %1$s\nLinked to Client: %2$s; Email: %3$s";
     public static final String MESSAGE_DUPLICATE_REMARK = "This client already has %1$s as Remark";
+
     private final Index index;
     private final Remark remark;
 
