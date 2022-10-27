@@ -2,7 +2,9 @@ package seedu.address.ui;
 
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Region;
 import seedu.address.model.exam.Exam;
 
@@ -28,6 +30,12 @@ public class ExamCard extends UiPart<Region> {
     @FXML
     private Label moduleCode;
 
+    @FXML
+    private ProgressBar percentageCompleted;
+
+    @FXML
+    private Label progressMessage;
+
 
     /**
      * Constructor of the ExamCard. Sets the exam and the position.
@@ -42,5 +50,15 @@ public class ExamCard extends UiPart<Region> {
         moduleCode.setText(exam.getModule().getModuleCode().moduleCode);
         examDescription.setText(exam.getDescription().description);
         examDate.setText(exam.getExamDate().examDate);
+        if (!exam.hasTasks()) {
+            percentageCompleted.setPrefWidth(0);
+        } else {
+            percentageCompleted.setPadding(new Insets(0, 5, 0, 0));
+        }
+
+        percentageCompleted.setProgress(exam.getPercentageCompleted());
+        percentageCompleted.setStyle("-fx-accent:limegreen");
+        progressMessage.setText(exam.generateProgressMessage());
+
     }
 }
