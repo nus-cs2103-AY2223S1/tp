@@ -3,10 +3,17 @@ layout: page
 title: User Guide
 ---
 
-IdENTify is a **desktop app made for ENT administrative staff to manage patients' contact details and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your contact management tasks done faster than traditional GUI apps.
+IdENTify is a **desktop app made for ENT administrative staff to manage patients' contact details and appointments, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, idENTify can get your patients/appointments' management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
+
+## Quick Start
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest [idENTify.jar](https://github.com/AY2223S1-CS2103T-T17-4/tp/releases/tag/v1.3) from here.
+3. Copy the file to your preferred folder.
+4. Double-click the file to start the app.
+5. Refer to the Features below for the commands available. 
 
 ## Features
 
