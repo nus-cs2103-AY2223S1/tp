@@ -73,7 +73,7 @@ public class Task implements Comparable<Task> {
      * Returns true if both tasks have the same name and module.
      * This defines a weaker notion of equality between two tasks.
      */
-    public boolean isSamePerson(Task otherTask) {
+    public boolean isSameTask(Task otherTask) {
         if (this == otherTask) {
             return true;
         }

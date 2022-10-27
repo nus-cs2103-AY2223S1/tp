@@ -65,7 +65,7 @@ public class TagCommand extends Command {
         Task taskToTag = lastShownList.get(index.getZeroBased());
         Task taggedTask = createTaggedPerson(taskToTag, editPersonTags);
 
-        if (!taskToTag.isSamePerson(taggedTask)) {
+        if (!taskToTag.isSameTask(taggedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
