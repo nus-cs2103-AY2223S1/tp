@@ -22,7 +22,7 @@ import seedu.foodrem.viewmodels.TagToRename;
 public class RenameTagCommandTest {
     private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in the FoodRem.";
     private static final String EXPECTED_ERROR_DUPLICATE = "This tag name already exists in the FoodRem.";
-    private static final String EXPECTED_FORMAT_SUCCESS = "Tag renamed:";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Tag renamed:";
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
     @Test
@@ -31,12 +31,11 @@ public class RenameTagCommandTest {
         Tag renamedTag = new TagBuilder().withTagName("test").build();
         RenameTagCommand renameTagCommand = new RenameTagCommand(originalTag, renamedTag);
 
-        TagToRename expectedResult = new TagToRename(originalTag, renamedTag , EXPECTED_FORMAT_SUCCESS);
-
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModel.setTag(originalTag, renamedTag);
 
-        assertCommandSuccess(renameTagCommand, model, expectedResult, expectedModel);
+        assertCommandSuccess(renameTagCommand, model,
+                new TagToRename(originalTag, renamedTag , EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
