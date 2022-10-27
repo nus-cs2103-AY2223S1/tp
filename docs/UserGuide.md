@@ -47,21 +47,32 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 * Words in diamond brackets `<>` are parameters to be supplied by the user.<br>
   e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/John`.
 
-* Parameters with ... can be used multiple times.<br>
-  e.g. in  `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a parameter which can be used as `add n/John t/forgetful t/loser`
+* Parameters with … can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
+  e.g. in `adddebt <person index>…`, `<person index>…` is a parameter which can be used as `adddebt 1` or as `adddebt 1 2`.
 
 * Items in square brackets `[]` are optional.<br>
   e.g. in `add n/<name> [t/<tag>]…` can be used as `add n/Alan Poe t/shy pooper` or as `add n/Alan Poe`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
+  e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if the command requires `p/<phone number>` and you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. This is useful for correcting a wrong input without having to use backspace.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
   will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+#### Parameter-specific behavior
+
+* Whenever `<date>` is specified as a parameter, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.
+  e.g. September 5 2022 should be input as `2022-09-05`.
+
+* Whenever `<time>` is specified as a parameter, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.
+  e.g. 5:15PM should be input as `17:15` as per 24h clock notation.
+
+* Whenever `<money>` is specified as a parameter, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with '+' to add GST, or '++' to add both Service Charge and GST to the amount specified. All calculated values are automatically rounded up to the nearest cent.<br>
+  e.g. when you input `2.00++`, PayMeLah will store a debt with a money amount that has Service Charge and GST added, i.e. `2.36`.
 
 </div>
 
@@ -90,12 +101,21 @@ Examples:
 
 ### Adding a debt: `adddebt`
 
-Adds a debt to PayMeLah for you to track.
+Adds a debt to a person in PayMeLah for you to track. Specifying multiple people will add a copy of this debt to each person specified.
 
-Format: `adddebt <person index> d/<description> m/<money>`
+Format: `adddebt <person index>… d/<description> m/<money> [date/<date>] [time/<time>]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
+</div>
+
+* If you do not specify date and time, they will conveniently default to the current date and time.
+* If you specify the date but not the time, the time will default to midnight. Be careful that this default behaviour is different from the previous.
+* One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of these items being the same.
 
 Example:
 * `adddebt 3 d/McDonalds m/8.9`
+* `adddebt 1 4 d/chicken rice m/10++ date/2022-10-12 time/13:00`
 
 ### Splitting a debt: `splitdebt`
 
@@ -124,7 +144,7 @@ Example:
 
 Deletes the debts specified by their index numbers from a person listed in PayMeLah.
 
-Format: `deletedebts <person index> debt/<debt index...>`
+Format: `deletedebts <person index> debt/<debt index>…`
 
 Example:
 * `deletedebts 2 debt/2 3`
@@ -171,8 +191,8 @@ Examples:
 
 Finds persons who match all the given conditions.
 
-Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag> ...]
-[d/<description> ...] [m/<money> ...] [date/<date> ...] [time/<time> ...]`
+Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>…]
+[d/<description>…] [m/<money>…] [date/<date>…] [time/<time>…]`
 
 * Name and Address are case-insensitive partial matches. All other fields are exact matches.
 * The order of the conditions does not matter.
@@ -250,16 +270,16 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add person** | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add debt** | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`
-**Clear** | `clear`
-**Delete** | `delete <index>`<br> e.g., `delete 3`
-**Edit** | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`
-**Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
-**Find debts** | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`
-**List** | `list`
-**List debtors** | `listdebtors`
-**Get statement** | `statement`
-**Help** | `help`
+| Action            | Format, Examples                                                                                                                                                             |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**    | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add debt**      | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`                                                                                 |
+| **Clear**         | `clear`                                                                                                                                                                      |
+| **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                        |
+| **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                         |
+| **Find**          | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`                                                                                                               |
+| **Find debts**    | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`                                                                                                           |
+| **List**          | `list`                                                                                                                                                                       |
+| **List debtors**  | `listdebtors`                                                                                                                                                                |
+| **Get statement** | `statement`                                                                                                                                                                  |
+| **Help**          | `help`                                                                                                                                                                       |

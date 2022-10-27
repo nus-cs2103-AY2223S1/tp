@@ -2,6 +2,7 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
+import static paymelah.model.debt.Money.ZERO_MONEY;
 
 import java.util.function.Predicate;
 
@@ -34,7 +35,7 @@ public class ListDebtorsCommand extends Command {
     }
 
     public ListDebtorsCommand() {
-        this.predicate = p -> !p.getDebts().isEmpty();
+        this.predicate = p -> !p.getDebts().isEmpty() && p.getDebtsAmountAsMoney().compareTo(ZERO_MONEY) > 0;
     }
 
     @Override
