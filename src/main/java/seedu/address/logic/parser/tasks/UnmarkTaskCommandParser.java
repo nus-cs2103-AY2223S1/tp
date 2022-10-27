@@ -17,8 +17,13 @@ public class UnmarkTaskCommandParser implements Parser<UnmarkTaskCommand> {
     @Override
     public UnmarkTaskCommand parse(String args) throws ParseException {
         try {
+            if (args.trim().equals("")) {
+                return new UnmarkTaskCommand(null);
+            }
+
             Index index = ParserUtil.parseIndex(args);
             return new UnmarkTaskCommand(index);
+
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkTaskCommand.MESSAGE_USAGE), pe);

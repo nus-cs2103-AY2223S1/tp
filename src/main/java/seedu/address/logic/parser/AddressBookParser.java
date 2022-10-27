@@ -17,12 +17,22 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemoveFieldCommand;
+import seedu.address.logic.commands.logicalcommand.CheckTaskCompleteCommand;
+import seedu.address.logic.commands.logicalcommand.ContainsAttributeCommand;
+import seedu.address.logic.commands.logicalcommand.IfCommand;
+import seedu.address.logic.commands.tasks.MarkTaskCommand;
 import seedu.address.logic.commands.tasks.TaskCommand;
+import seedu.address.logic.commands.tasks.UnmarkTaskCommand;
 import seedu.address.logic.commands.teams.AddUserToTeamCommand;
 import seedu.address.logic.commands.teams.ChangeTeamCommand;
 import seedu.address.logic.commands.teams.TeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.logiccommands.CheckTaskCompleteCommandParser;
+import seedu.address.logic.parser.logiccommands.ContainsAttributeCommandParser;
+import seedu.address.logic.parser.logiccommands.IfCommandParser;
+import seedu.address.logic.parser.tasks.MarkTaskCommandParser;
 import seedu.address.logic.parser.tasks.TaskCommandParser;
+import seedu.address.logic.parser.tasks.UnmarkTaskCommandParser;
 import seedu.address.logic.parser.teams.TeamCommandParser;
 
 /**
@@ -51,52 +61,66 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            case EditCommand.COMMAND_WORD:
+                return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-        case AddFieldCommand.COMMAND_WORD:
-            return new AddFieldCommandParser().parse(arguments);
+            case AddFieldCommand.COMMAND_WORD:
+                return new AddFieldCommandParser().parse(arguments);
 
-        case RemoveFieldCommand.COMMAND_WORD:
-            return new RemoveFieldCommandParser().parse(arguments);
+            case RemoveFieldCommand.COMMAND_WORD:
+                return new RemoveFieldCommandParser().parse(arguments);
 
-        case ChangeTeamCommand.COMMAND_WORD:
-            return new ChangeTeamCommandParser().parse(arguments);
+            case ChangeTeamCommand.COMMAND_WORD:
+                return new ChangeTeamCommandParser().parse(arguments);
 
-        case TaskCommand.COMMAND_WORD:
-            return new TaskCommandParser().parse(arguments);
+            case TaskCommand.COMMAND_WORD:
+                return new TaskCommandParser().parse(arguments);
 
-        case AddUserToTeamCommand.COMMAND_WORD:
-            return new AddUserToTeamCommandParser().parse(arguments);
+            case AddUserToTeamCommand.COMMAND_WORD:
+                return new AddUserToTeamCommandParser().parse(arguments);
 
-        case TeamCommand.COMMAND_WORD:
-            return new TeamCommandParser().parse(arguments);
+            case TeamCommand.COMMAND_WORD:
+                return new TeamCommandParser().parse(arguments);
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            case CheckTaskCompleteCommand.COMMAND_WORD:
+                return new CheckTaskCompleteCommandParser().parse(arguments);
+
+            case ContainsAttributeCommand.COMMAND_WORD:
+                return new ContainsAttributeCommandParser().parse(arguments);
+
+            case IfCommand.COMMAND_WORD:
+                return new IfCommandParser().parse(arguments);
+
+            case MarkTaskCommand.SUBCOMMAND_WORD:
+                return new MarkTaskCommandParser().parse(arguments);
+
+            case UnmarkTaskCommand.SUBCOMMAND_WORD:
+                return new UnmarkTaskCommandParser().parse(arguments);
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
 }
-

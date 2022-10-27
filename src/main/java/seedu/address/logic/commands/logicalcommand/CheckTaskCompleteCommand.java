@@ -16,24 +16,24 @@ public class CheckTaskCompleteCommand extends Command {
 
     Task item = null;
 
-    CheckTaskCompleteCommand() {
+    public CheckTaskCompleteCommand() {
     }
- 
+
     @Override
     public void setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof Task)) {
             throw new CommandException(INVALID_INPUT);
-        }      
-        item = (Task) item;
+        }
+        item = (Task) additionalData;
     }
-    
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (item == null) {
             throw new CommandException(NO_SELECTED);
         }
-        LocalDateTime dt =  item.getCompletedTime();
-        return new CommandResult(String.format("result is %s", dt != null), false, false, dt!=null);
+        LocalDateTime dt = item.getCompletedTime();
+        return new CommandResult(String.format("result is %s", dt != null), false, false, dt != null);
     }
-    
+
 }

@@ -27,36 +27,55 @@ public class ChangeTeamCommand extends TeamInputCommand {
             + "To go back to the previous context, use\n"
             + COMMAND_WORD + " ..";
 
-    public static final String SWITCH_SUCCESS = " switched %s%n";
+    public static final String SWITCH_SUCCESS = " switched to %s%n";
 
     private final Index targetIndex;
+    private final int status;
+    // status table
+    // 1 - normal/read from index
+    // 0 - traverse up 1 directory
+    // -1 - traverse to root
+    // 2 - use setter
 
     public ChangeTeamCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        status = 1;
+    }
+
+    public ChangeTeamCommand(int status) {
+        this.targetIndex = null;
+        this.status = status;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        AbstractSingleItem toSwitch = group;
-        if (toSwitch == null) {
-            if (targetIndex == null) {
-                if (model.getContextContainer() != null) {
-                    toSwitch = model.getContextContainer().getParent();
-                } else {
-                    return new CommandResult("No more parent!");
-                }
-            } else {
-                List<Group> lastShownList = model.getFilteredTeamList();
-    
-                if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-                }
-    
-                toSwitch = lastShownList.get(targetIndex.getZeroBased());
+        AbstractSingleItem toSwitch;
+        if (status == 1) {
+            List<Group> lastShownList = model.getFilteredTeamList();
+
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
+
+            toSwitch = lastShownList.get(targetIndex.getZeroBased());
+        } else if (status == 0) {
+            if (model.getContextContainer() != null) {
+                toSwitch = model.getContextContainer().getParent();
+            } else {
+                return new CommandResult("No more parent!");
+            }
+        } else if (status == -1) {
+            toSwitch = null;
+        } else {
+            assert status == -2;
+            if (group == null) {
+                throw new CommandException("Method takes in an input of group!");
+            }
+            toSwitch = group;
         }
+
         model.updateContextContainer(toSwitch);
-        return new CommandResult(String.format(SWITCH_SUCCESS, toSwitch));
+        return new CommandResult(String.format(SWITCH_SUCCESS, toSwitch == null ? "root" : toSwitch.toString()));
     }
 }

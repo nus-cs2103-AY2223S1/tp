@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.teams.AddTeamCommand;
 import seedu.address.logic.commands.teams.DeleteTeamCommand;
+import seedu.address.logic.commands.teams.ForEachTeamCommand;
 import seedu.address.logic.commands.teams.RemoveUserFromTeamCommand;
 import seedu.address.logic.commands.teams.SelectTeamCommand;
 import seedu.address.logic.commands.teams.TeamCommand;
@@ -48,6 +49,8 @@ public class TeamCommandParser implements Parser<TeamCommand> {
                 return new RemoveUserFromTeamCommandParser().parse(arguments);
             case SelectTeamCommand.SUBCOMMAND_WORD:
                 return new SelectTeamCommandParser().parse(arguments);
+            case ForEachTeamCommand.SUBCOMMAND_WORD:
+                return new ForEachTeamCommandParser().parse(arguments);
             default:
                 throw new ParseException(MESSAGE_USAGE);
         }

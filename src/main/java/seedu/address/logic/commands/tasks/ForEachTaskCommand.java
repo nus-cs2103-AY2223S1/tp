@@ -2,10 +2,9 @@ package seedu.address.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.PureCommandInterface;
@@ -18,18 +17,18 @@ import seedu.address.model.task.Task;
 /**
  * Marks a task as complete
  */
-public class SelectTaskCommand extends TaskCommand implements PureCommandInterface {
-    public static final String SUBCOMMAND_WORD = "select";
+public class ForEachTaskCommand extends TaskCommand implements PureCommandInterface {
+    public static final String SUBCOMMAND_WORD = "foreach";
 
     public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
-            + "selects a task and execute subsequent commands with that task as context\n"
-            + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "1 contains description";
+            + "for each task in the current list, execute subsequent commands with that task as context\n"
+            + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "task delete";
 
-    private final Index targetIndex;
+    private static final String ON_COMPLETE = "Completed task loop! (failed: %d/%d executions)";
+
     private final Command nextCmd;
 
-    public SelectTaskCommand(Index targetIndex, String nextCmd) throws ParseException {
-        this.targetIndex = targetIndex;
+    public ForEachTaskCommand(String nextCmd) throws ParseException {
         try {
             this.nextCmd = new AddressBookParser().parseCommand(nextCmd);
         } catch (ParseException ps) {
@@ -40,16 +39,17 @@ public class SelectTaskCommand extends TaskCommand implements PureCommandInterfa
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Task task = lastShownList.get(targetIndex.getZeroBased());
-
-        nextCmd.setInput(task);
-        return nextCmd.execute(model);
+        List<Task> lastShownList = new ArrayList<>(model.getFilteredTaskList());
+        int[] skipped = { 0, lastShownList.size() };
+        lastShownList.forEach(t -> {
+            try {
+                nextCmd.setInput(t);
+                nextCmd.execute(model);
+            } catch (CommandException e) {
+                skipped[0]++;
+            }
+        });
+        return new CommandResult(String.format(ON_COMPLETE, skipped[0], skipped[1]));
     }
 
     @Override

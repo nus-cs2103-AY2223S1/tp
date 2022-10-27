@@ -16,7 +16,9 @@ public class SelectTaskCommandParser implements Parser<SelectTaskCommand> {
 
     @Override
     public SelectTaskCommand parse(String args) throws ParseException {
+        System.out.println(args);
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
+        System.out.println(matcher.matches());
 
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectTaskCommand.MESSAGE_USAGE));

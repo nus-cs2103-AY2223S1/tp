@@ -17,8 +17,12 @@ public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
     @Override
     public MarkTaskCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new MarkTaskCommand(index);
+            if (args.trim().equals("")) {
+                return new MarkTaskCommand(null);
+            } else {
+                Index index = ParserUtil.parseIndex(args);
+                return new MarkTaskCommand(index);
+            }
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE), pe);

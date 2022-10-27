@@ -20,20 +20,25 @@ public class IfCommand extends Command {
     private final Command ifC, trueC;
     private final Command elseC;
 
-    public IfCommand(String ifString,String trueString, String elseString) throws ParseException {
+    public IfCommand(String ifString, String trueString, String elseString) throws ParseException {
         requireNonNull(ifString);
         requireNonNull(trueString);
         AddressBookParser p = new AddressBookParser();
-        ifC = p.parseCommand(ifString);
-        trueC = p.parseCommand(trueString);
-        if (elseString == null || elseString.equals("")) {
-            elseC = null;
-        } else {
-            elseC = p.parseCommand(elseString);
+        try {
+
+            ifC = p.parseCommand(ifString);
+            trueC = p.parseCommand(trueString);
+            if (elseString == null || elseString.equals("")) {
+                elseC = null;
+            } else {
+                elseC = p.parseCommand(elseString);
+            }
+        } catch (Exception e) {
+            throw new ParseException("Syntax error parsing if" );
         }
     }
 
-    public IfCommand(String ifString,String trueString) throws ParseException {
+    public IfCommand(String ifString, String trueString) throws ParseException {
         this(ifString, trueString, null);
     }
 
@@ -46,18 +51,18 @@ public class IfCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         ifC.setInput(details);
         CommandResult res = ifC.execute(model);
-        Boolean result = (Boolean)res.getResult().filter(v -> v instanceof Boolean)
+        Boolean result = (Boolean) res.getResult().filter(v -> v instanceof Boolean)
                 .orElseThrow(() -> new CommandException(NOT_BOOLEAN_COMMAND));
 
         if (result) {
             trueC.setInput(details);
             trueC.execute(model);
-        } else if(elseC != null) {
+        } else if (elseC != null) {
             elseC.setInput(details);
             elseC.execute(model);
         }
 
         return new CommandResult("if command has been executed!");
     }
-    
+
 }

@@ -23,17 +23,20 @@ import seedu.address.model.group.Group;
 public class SelectTeamCommand extends TeamCommand implements PureCommandInterface {
     public static final String SUBCOMMAND_WORD = "select";
 
-    public static final String MESSAGE_USAGE =
-        TeamCommand.getFullCommand(SUBCOMMAND_WORD)
+    public static final String MESSAGE_USAGE = TeamCommand.getFullCommand(SUBCOMMAND_WORD)
             + "selects a team and execute subsequent commands with that team as context\n"
             + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "1 contains description";
 
     private final Index targetIndex;
-    private final Command nextCmd;    
+    private final Command nextCmd;
 
-    public SelectTeamCommand(Index targetIndex, String nextCmd) throws ParseException  {
+    public SelectTeamCommand(Index targetIndex, String nextCmd) throws ParseException {
         this.targetIndex = targetIndex;
-        this.nextCmd = new AddressBookParser().parseCommand(nextCmd);
+        try {
+            this.nextCmd = new AddressBookParser().parseCommand(nextCmd);
+        } catch (ParseException e) {
+            throw new ParseException("Syntax error parsing select");
+        }
     }
 
     @Override

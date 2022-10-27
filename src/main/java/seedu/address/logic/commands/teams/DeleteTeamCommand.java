@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.teams;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import seedu.address.model.group.Group;
  */
 public class DeleteTeamCommand extends TeamCommand {
     public static final String SUBCOMMAND_WORD = "delete";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUBCOMMAND_WORD
             + ": Delete the team with the specified index\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -37,6 +38,9 @@ public class DeleteTeamCommand extends TeamCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (toDelete == null && targetIndex == null) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
 
         if (toDelete == null) {
             List<Group> lastShownList = model.getFilteredTeamList();
@@ -57,7 +61,7 @@ public class DeleteTeamCommand extends TeamCommand {
         if (additionalData == null || !(additionalData instanceof Group)) {
             toDelete = null;
             return;
-        } 
+        }
         this.toDelete = (Group) additionalData;
     }
 }

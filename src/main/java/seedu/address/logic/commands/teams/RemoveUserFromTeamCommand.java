@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.teams;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class RemoveUserFromTeamCommand extends TeamCommand {
 
     public static final String REMOVAL_SUCCESS = " User %s has been removed from %s%n";
     public static final String INVALID_INPUT = "This method takes in only Person types!";
-    
+
     private Person toRemove = null;
     private final Index targetIndex;
 
@@ -57,6 +58,8 @@ public class RemoveUserFromTeamCommand extends TeamCommand {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
             toRemove = lastShownList.get(targetIndex.getZeroBased());
+        } else if (toRemove == null) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         toRemove.removeParent(currContext);

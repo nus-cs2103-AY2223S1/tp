@@ -15,18 +15,18 @@ public class ContainsAttributeCommand extends Command {
     DisplayItem item = null;
     private final String attributeType;
 
-    ContainsAttributeCommand(String attributeType) {
+    public ContainsAttributeCommand(String attributeType) {
         this.attributeType = attributeType;
     }
- 
+
     @Override
     public void setInput(Object additionalData) throws CommandException {
         if (additionalData == null || !(additionalData instanceof DisplayItem)) {
             throw new CommandException(INVALID_INPUT);
-        }      
-        item = (DisplayItem) item;
+        }
+        item = (DisplayItem) additionalData;
     }
-    
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (item == null) {
@@ -35,5 +35,5 @@ public class ContainsAttributeCommand extends Command {
         Boolean res = item.getAttribute(attributeType).isPresent();
         return new CommandResult(String.format("result is %s", res), false, false, res);
     }
-    
+
 }
