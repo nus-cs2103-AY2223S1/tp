@@ -47,6 +47,10 @@ Note how the app contains some sample data.
 
 <div markdown="block" class="alert alert-info">
 
+**:information_source: Shortcut key to switch between *Contact details* and *Assignments*:**<br>
+
+Use the `SHIFT` key to switch between the *Contact details* and *Assignments*.
+
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
