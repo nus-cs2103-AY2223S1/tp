@@ -218,7 +218,7 @@
 /*
  * unique CSS for the copy button, separate from the help button
  */
-.copyButton {
+#moduleCardPane .copyButton {
     -fx-background-color: #3f6411;
     -fx-text-fill: white;
     -fx-font-size: 3;
@@ -232,12 +232,34 @@
     -fx-background-size: 5px;
 }
 
-.copyButton:hover {
+#moduleCardPane .copyButton:hover {
     -fx-background-color: #67a616;
 }
 
-.copyButton:armed {
+#moduleCardPane .copyButton:armed {
     -fx-background-color: #8ce719;
+}
+
+#personCardPane .copyButton {
+    -fx-background-color: #723126;
+    -fx-text-fill: white;
+    -fx-font-size: 3;
+    -fx-background-radius: 5em;
+    -fx-translate-x: 3;
+    -fx-min-height: 18;
+    -fx-max-height: 18;
+    -fx-min-width: 18;
+    -fx-max-width: 18;
+    -fx-border-width: 0;
+    -fx-background-size: 5px;
+}
+
+#personCardPane .copyButton:hover {
+    -fx-background-color: #a14535;
+}
+
+#personCardPane .copyButton:armed {
+    -fx-background-color: #c5553f;
 }
 
 .scroll-bar {

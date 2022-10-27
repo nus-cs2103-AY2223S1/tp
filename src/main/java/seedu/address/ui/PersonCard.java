@@ -3,7 +3,10 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -42,6 +45,20 @@ public class PersonCard extends UiPart<Region> {
     private Label telegram;
     @FXML
     private FlowPane tags;
+    @FXML
+    private HBox phoneContainer;
+    @FXML
+    private HBox emailContainer;
+    @FXML
+    private HBox telegramContainer;
+    @FXML
+    private HBox moduleContainer;
+    @FXML
+    private Button phoneCopyButton;
+    @FXML
+    private Button telegramCopyButton;
+    @FXML
+    private Button emailCopyButton;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,13 +68,54 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
+
         moduleCode.setText(person.getModuleCode().moduleCode);
+
+        if (person.getPhone().value == null) {
+            phoneCopyButton.setVisible(false);
+            phoneCopyButton.setManaged(false);
+        }
+        phone.setText(person.getPhone().value);
+
+        if (person.getEmail().value == null) {
+            emailCopyButton.setVisible(false);
+            emailCopyButton.setManaged(false);
+        }
         email.setText(person.getEmail().value);
+
+        if (person.getTelegram().value == null) {
+            telegramCopyButton.setVisible(false);
+            telegramCopyButton.setManaged(false);
+        }
         telegram.setText(person.getTelegram().value);
+
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    @FXML
+    private void copyEmail() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent email = new ClipboardContent();
+        email.putString(this.email.getText());
+        clipboard.setContent(email);
+    }
+
+    @FXML
+    private void copyTelegram() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent telegram = new ClipboardContent();
+        telegram.putString(this.telegram.getText());
+        clipboard.setContent(telegram);
+    }
+
+    @FXML
+    private void copyPhone() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent phone = new ClipboardContent();
+        phone.putString(this.phone.getText());
+        clipboard.setContent(phone);
     }
 
     @Override
@@ -75,6 +133,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+            && person.equals(card.person);
     }
 }

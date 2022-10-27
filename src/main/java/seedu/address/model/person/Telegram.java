@@ -8,11 +8,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
+    public static final String EMPTY_TELEGRAM = "";
     public static final String MESSAGE_CONSTRAINTS =
-            "Telegram handles should start with a @ symbol and "
-                    + "should only have alphanumeric characters after the @. "
-                    + "The minimum length of the telegram handle should be 5 characters, not including the @ symbol. "
-                    + "Additionally, it does not accept spaces between any characters";
+        "Telegram handles should start with a @ symbol and "
+            + "should only have alphanumeric characters after the @. "
+            + "The minimum length of the telegram handle should be 5 characters, not including the @ symbol. "
+            + "Additionally, it does not accept spaces between any characters";
 
     public static final String LOWER_CASE_ALPHANUMERIC_WITH_AT_LEAST_FIVE_CHARACTERS = "[a-z0-9_]{5,}";
     public static final String VALIDATION_REGEX = "@" + LOWER_CASE_ALPHANUMERIC_WITH_AT_LEAST_FIVE_CHARACTERS;
@@ -41,14 +42,17 @@ public class Telegram {
 
     @Override
     public String toString() {
+        if (value == null) {
+            return EMPTY_TELEGRAM;
+        }
         return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Telegram // instanceof handles nulls
-                && value.equals(((Telegram) other).value)); // state check
+            || (other instanceof Telegram // instanceof handles nulls
+            && value.equals(((Telegram) other).value)); // state check
     }
 
     @Override

@@ -9,6 +9,10 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Hyperlink?>
 <HBox id="personCardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -32,21 +36,51 @@
                     <Insets bottom="10"/>
                 </padding>
             </FlowPane>
-            <HBox>
+            <HBox fx:id="phoneContainer">
                 <Label styleClass="field_label" text="Phone: "/>
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
+                <Button fx:id="phoneCopyButton" styleClass="copyButton" mnemonicParsing="false"
+                        onAction="#copyPhone">
+                    <graphic>
+                        <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/images/copy-button.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </HBox>
-            <HBox>
+            <HBox fx:id="moduleContainer">
                 <Label styleClass="field_label" text="Module: "/>
                 <Label fx:id="moduleCode" styleClass="cell_small_label" text="\$moduleCode"/>
             </HBox>
-            <HBox>
+            <HBox fx:id="emailContainer">
                 <Label styleClass="field_label" text="Email: "/>
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
+                <Button fx:id="emailCopyButton" styleClass="copyButton" mnemonicParsing="false"
+                        onAction="#copyEmail">
+                    <graphic>
+                        <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/images/copy-button.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </HBox>
-            <HBox>
+            <HBox fx:id="telegramContainer">
                 <Label styleClass="field_label" text="Telegram: "/>
                 <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram"/>
+                <Button fx:id="telegramCopyButton" styleClass="copyButton" mnemonicParsing="false"
+                        onAction="#copyTelegram">
+                    <graphic>
+                        <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/images/copy-button.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </HBox>
         </VBox>
     </GridPane>

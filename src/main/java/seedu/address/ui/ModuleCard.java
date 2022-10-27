@@ -47,6 +47,10 @@ public class ModuleCard extends UiPart<Region> {
     private Label tutorialZoomLink;
     @FXML
     private FlowPane assignmentDetails;
+    @FXML
+    private HBox lectureZoomLinkContainer;
+    @FXML
+    private HBox tutorialZoomLinkContainer;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,7 +63,17 @@ public class ModuleCard extends UiPart<Region> {
         moduleTitle.setText(module.getModuleCode().getModuleTitle());
         lectureDetails.setText(module.getLectureDetails().value);
         tutorialDetails.setText(module.getTutorialDetails().value);
+
+        if (module.getLectureZoomLink().zoomLink == null) {
+            lectureZoomLinkContainer.setManaged(false);
+            lectureZoomLinkContainer.setVisible(false);
+        }
         lectureZoomLink.setText(module.getLectureZoomLink().zoomLink);
+
+        if (module.getTutorialZoomLink().zoomLink == null) {
+            tutorialZoomLinkContainer.setManaged(false);
+            tutorialZoomLinkContainer.setVisible(false);
+        }
         tutorialZoomLink.setText(module.getTutorialZoomLink().zoomLink);
         module.getAssignmentDetails().stream()
             .sorted(Comparator.comparing(assignment -> assignment.assignmentDetails))
