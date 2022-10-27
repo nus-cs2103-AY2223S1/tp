@@ -21,15 +21,16 @@ public class FindAppointmentCommand extends Command {
             new CommandWord("findappointment", "fa");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose names/medical test/"
-            + "slot/doctor contains any of the specified keywords/number and displays them as a list with index"
-            + " numbers.\n"
-            + "Multiple prefixes can be used at once to filter appointments.\n"
-            + "Parameters: prefix(s), KEYWORD/Number [MORE_KEYWORDS]...\n"
+            + "slot/doctor contains any of the specified inputs and displays them as a list with index numbers.\n"
+            + "Multiple prefixes can be used at once to filter appointments, but each prefix can only be used once "
+            + "in one command.\n"
+            + "Inputs can have letters, numbers and/or special characters depending on constraints of a field.\n"
+            + "Parameters: prefix(s), INPUT [MORE_INPUTS]...\n"
             + "Example: " + COMMAND_WORD + " n/alice \n"
             + "Example: " + COMMAND_WORD + " t/x-ray \n"
             + "Example: " + COMMAND_WORD + " s/2022 \n"
             + "Example: " + COMMAND_WORD + " d/Dr. Tan\n"
-            + "Example: " + COMMAND_WORD + " n/alice t/x-ray s/2022";
+            + "Example: " + COMMAND_WORD + " n/alice t/x-ray s/2022 d/Dr Tan";
 
     private final Predicate<Appointment> predicate;
 
