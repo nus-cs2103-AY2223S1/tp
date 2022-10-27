@@ -135,7 +135,7 @@ Examples:
 * `findperson alex david` returns `Alex Yeoh`, `David Li`
 <br>
 <br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](findAlexDavidResult.png)
 
 ### Listing all persons: `listpersons`
 
@@ -219,7 +219,7 @@ assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0`
 
   When the workload of the person increase, the workload indicator will gradually change from green to red.
 
-  
+![Workload_Indicator](workload_indicator.png)
 </div>
 
 ### Deleting a task from a member: `deletetask`
