@@ -130,9 +130,9 @@ Beyond individual products, you can also:
 
 * This symbol `||` indicates that only one of the optional parameters can be used. <br> 
   **Using more than one optional parameter is strictly not allowed.** <br>
-  e.g. `listClient` can be used as 
+  e.g. `listClient [pd/PRODUCT || b/BIRTHDAY]` can be used as 
   * `listClient pd/Product1`
-  * `listClient bd/week`
+  * `listClient b/week`
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -167,13 +167,26 @@ Examples:
 
 #### 3.1.2 Listing all clients : `listClient`
 
-List all clients in MyInsuRec.
+* List clients in MyInsuRec with a valid filter.
+* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
+* `BIRTHDAY` is specified by keywords. The possible keywords are:
+    * `tomorrow` for a list of clients whose birthday is tomorrow;
+    * `week` for a list of clients whose birthday is in the next week;
+    * `month` for a list of clients whose birthday is in the next month.
 
-Format: `listClient`
+Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
+
+Examples:
+* `listClient`
+* `listClient pd/Product1`
+* `listClient b/week`
+
+<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 bd/week` is strictly not allowed.
+</div>
 
 #### 3.1.3 Viewing a client: `viewClient`
 
-View details associated with a client, such as client's name and phone number.
+View details associated with a client, such as the client's name and phone number.
 
 Format: `viewClient i/INDEX`
 
@@ -197,6 +210,23 @@ Format: `delClient i/INDEX`
 Examples:
 * `delClient i/2`
 
+#### 3.1.5 Editing a client: `editClient`
+
+Edits detail of the specified client.
+
+Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
+
+* Edits the client at the specified `INDEX`.
+*`INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* At least one optional detail must be modified.
+* Maintains value of details not edited by the command.
+
+Examples:
+Suppose MyInsuRec contains only one client 'John Tan' having phone number '0123456789':
+* `editClient i/1 n/John Smith` changes the name of this client to 'John Smith'.
+* `editClient i/1 e/johntan@insurec.com`adds the email 'johntan@insurec.com' to the client.
+
 ### 3.2 Meeting commands
 
 #### 3.2.1 Adding a meeting : `addMeeting`
@@ -212,27 +242,21 @@ Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 Examples:
 * `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
 
-#### 3.2.2 Listing meetings: `listMeeting`
+#### 3.2.2 List meetings: `listMeeting`
 
-Shows a list of all meetings in MyInsuRec.
+Shows a list of meetings in MyInsuRec.
+If used with optional parameter `[d/DATE]`, *MyInsuRec* will show a list of meetings happening in that time period.
 
-Format: `listMeeting`
-
-##### List meetings by time period
-
-Shows a list of meetings in MyInsuRec during a specified time period.
-
-Format: `listMeeting d/DATE`
+Format: `listMeeting [d/DATE]`
 
 * Time periods are specified by keywords. The possible keywords are:
-* * `tomorrow` for a list of meetings happening tomorrow;
-* * `week` for a list of meetings happening in the next week;
-* * `month` for a list of meetings happening in the next month.
+  * `tomorrow` for a list of meetings happening tomorrow;
+  * `week` for a list of meetings happening in the next week;
+  * `month` for a list of meetings happening in the next month.
 
 Examples:
 * `listMeeting d/tomorrow`
 * `listMeeting d/month`
-
 
 #### 3.2.3 Viewing a meeting: `viewMeeting`
 
@@ -260,11 +284,36 @@ Format: `delMeeting i/INDEX`
 Examples:
 * `delMeeting i/2`
 
+#### 3.2.5 Editing a meeting: `editMeeting`
+
+Edits details of the specified meeting.
+
+Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`
+
+* Edits information about the meeting at the specific `INDEX`.
+* The `INDEX` refers to the index number shown in the displayed meetings' list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one optional detail must be modified.
+* Maintains values of details not edited by the command.
+
+Examples:
+Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#adding-a-meeting--addmeeting) command:
+* `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
+* `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
+
 ### 3.3 Product commands
 
 #### 3.3.1 Adding a product: `addProduct`
 
-{addProduct PLACEHOLDER}
+Adds a new product to MyInsuRec.
+
+Format: `addProduct pd/PRODUCT`
+
+* Adds a product having name `PRODUCT`.
+* A product must have a product name which is `PRODUCT`.
+
+Examples:
+* `addProduct pd/Product1`
 
 #### 3.3.2 Listing products: `listProduct`
 
@@ -347,10 +396,12 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 | **List all clients**  | `listClient`                                                                                                                                                                                                                                       |
 | **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                                                                                                            |
 | **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/2`                                                                                                                                                                                              |
+| **Edit client**       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` <br> e.g., <br> • `editClient i/1 n/John Smith`                                                                                                     |
 | **Add meeting**       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                                                             |
 | **List all meetings** | `listMeeting`                                                                                                                                                                                                                                      |
 | **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                                                                                                          |
 | **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/2`                                                                                                                                                                                            |
+| **Edit meeting**      | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]` <br> e.g., <br> • `i/1 dn/Follow up team meeting`                                                                                                                    |
 | **Help**              | `help`                                                                                                                                                                                                                                             |
 | **Exit**              | `exit`                                                                                                                                                                                                                                             |                                                                                                                                               |
 

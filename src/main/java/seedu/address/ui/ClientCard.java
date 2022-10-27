@@ -1,16 +1,10 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-import java.util.List;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import seedu.address.model.client.Client;
-import seedu.address.model.meeting.Meeting;
 
 /**
  * An UI component that displays information of a {@code Client}.
@@ -38,17 +32,9 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
     @FXML
-    private FlowPane products;
-    @FXML
-    private VBox vbox;
-    @FXML
-    private VBox meetingsBox;
-    @FXML
-    private Label numMeetings;
+    private Label products;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -56,27 +42,12 @@ public class ClientCard extends UiPart<Region> {
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
-        id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + "");
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
-        address.setText(client.getAddress().get().toString());
         email.setText(client.getEmail().get().toString());
-        client.getProducts().stream()
-                .sorted(Comparator.comparing(product -> product.productName))
-                .forEach(product -> products.getChildren().add(new Label(product.productName)));
-        if (client.hasMeeting()) {
-            List<Meeting> clientMeetings = client.getMeetings();
-            numMeetings.setText(Integer.toString(clientMeetings.size()));
-            for (Meeting meeting : clientMeetings) {
-                String meetingSummary = String.format("•  %s, %s - %s", meeting.getMeetingDate(),
-                        meeting.getMeetingStartTime(), meeting.getDescription());
-                Label label = new Label(meetingSummary);
-                label.getStyleClass().add("cell_small_label");
-                meetingsBox.getChildren().add(label);
-            }
-        } else {
-            meetingsBox.getChildren().clear();
-        }
+        String productStr = client.getProducts().toString();
+        products.setText(productStr.substring(1, productStr.length() - 1));
     }
 
     @Override

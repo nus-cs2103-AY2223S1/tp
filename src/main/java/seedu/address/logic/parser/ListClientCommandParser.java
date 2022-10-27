@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 
 import static java.util.Objects.requireNonNull;
+
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.ListClientCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
@@ -25,6 +26,7 @@ public class ListClientCommandParser {
      */
     public ListClientCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PRODUCT, PREFIX_BIRTHDAY);
 
         if (arePrefixesPresent(argumentMultimap, PREFIX_PRODUCT, PREFIX_BIRTHDAY)) {
@@ -43,5 +45,4 @@ public class ListClientCommandParser {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

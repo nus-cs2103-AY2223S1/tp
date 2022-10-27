@@ -15,6 +15,7 @@ public class ListClientCommand extends Command {
     public static final String COMMAND_WORD = "listClient";
     public static final String MESSAGE_SUCCESS = "Listed all clients";
     public static final String MESSAGE_USAGE = "Usage: listClient OR listClient pd/PRODUCT OR b/PERIOD";
+
     private final Object object;
 
     public ListClientCommand() {
@@ -34,12 +35,11 @@ public class ListClientCommand extends Command {
         requireNonNull(model);
         if (this.object == null) {
             model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        if (this.object instanceof DateKeyword) {
+            model.updateFilteredClientList(client -> client.isBirthdayInPeriod((DateKeyword) object));
         }
         if (this.object instanceof Product) {
             model.updateFilteredClientList(client -> client.hasProduct((Product) object));
-        }
-        if (this.object instanceof DateKeyword) {
-            model.updateFilteredClientList(client -> client.isBirthdayInPeriod((DateKeyword) object));
         }
         return new CommandResult(MESSAGE_SUCCESS, CommandSpecific.CLIENT);
     }

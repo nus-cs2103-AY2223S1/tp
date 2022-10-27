@@ -6,15 +6,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="700" minWidth="500" onCloseRequest="#handleExit" title="MyInsuRec" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="700" minWidth="650.0" onCloseRequest="#handleExit" title="MyInsuRec" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -40,48 +37,26 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <HBox prefHeight="25.0" spacing="5.0" styleClass="status-bar">
-               <children>
-                  <ToggleButton mnemonicParsing="false" onAction="#setListPanelToClient" styleClass="button" text="Clients">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="panel" />
-                     </toggleGroup>
-                  </ToggleButton>
-                  <ToggleButton mnemonicParsing="false" onAction="#setListPanelToMeeting" styleClass="button" text="Meetings">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="panel1" />
-                     </toggleGroup>
-                  </ToggleButton>
-                   <ToggleButton mnemonicParsing="false" onAction="#setListPanelToProduct" styleClass="button" text="Products">
-                       <toggleGroup>
-                           <ToggleGroup fx:id="panel2" />
-                       </toggleGroup>
-                   </ToggleButton>
-               </children>
-               <padding>
-                  <Insets left="5.0" right="5.0" />
-               </padding></HBox>
-
-        <VBox fx:id="clientList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="clientList" maxHeight="1.7976931348623157E308" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-          <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="clientListPanelPlaceholder" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
         </VBox>
 
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
           </padding>
         </StackPane>
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="5.0" left="16.0" right="16.0" top="5.0" />
           </padding>
         </StackPane>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" maxHeight="20.0" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>
