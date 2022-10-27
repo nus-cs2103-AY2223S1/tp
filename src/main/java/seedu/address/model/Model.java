@@ -107,6 +107,13 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
+     * Replaces the given reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in ModQuik.
+     * The reminder identity of {@code editedReminder} must not be the same as another existing reminder in ModQuik.
+     */
+    void setReminder(Reminder target, Reminder editedReminder);
+
+    /**
      * Deletes the given reminder.
      * The reminder must exist in the ModQuik.
      */

@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
+import seedu.address.model.student.exceptions.PersonNotFoundException;
 
 /**
  * A list of reminders that enforces uniqueness between its elements and does not allow nulls.
@@ -46,6 +47,26 @@ public class UniqueReminderList implements Iterable<Reminder> {
             throw new DuplicateReminderException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Replaces the reminder {@code target} in the list with {@code editedReminder}.
+     * {@code target} must exist in the list.
+     * The reminder identity of {@code editedReminder} must not be the same as another existing reminder in ModQuik.
+     */
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireAllNonNull(target, editedReminder);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        if (!target.isSameReminder(editedReminder) && contains(editedReminder)) {
+            throw new DuplicateReminderException();
+        }
+
+        internalList.set(index, editedReminder);
     }
 
     /**

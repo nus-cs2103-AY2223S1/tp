@@ -8,6 +8,7 @@ public enum ModelType {
     STUDENT,
     TUTORIAL,
     CONSULTATION,
+    REMINDER,
     GRADE_CHART,
     HELP,
     EXIT,

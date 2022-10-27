@@ -207,6 +207,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireAllNonNull(target, editedReminder);
+
+        addressBook.setReminder(target, editedReminder);
+    }
+
+    @Override
     public void resetReminders() {
         addressBook.setReminders(new ArrayList<>());
     }
