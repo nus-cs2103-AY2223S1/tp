@@ -36,15 +36,15 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 5. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all internships.
+* **`list`** : Lists all internships.
 
-   * **`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`** : Adds a new internship to the internship tracker.
+* **`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`** : Adds a new internship to the internship tracker.
 
-   * **`delete 3`** : Deletes the 3rd internship shown in the current list.
+* **`delete 3`** : Deletes the 3rd internship shown in the current list.
 
-   * **`clear`** : Deletes all internships.
+* **`clear`** : Deletes all internships.
 
-   * **`exit`** : Exits the app.
+* **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 --------------------------------------------------------------------------------------------------------------------
@@ -221,12 +221,14 @@ Examples:
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:**
+
 | Category                  | Short-form |
 |---------------------------|------------|
 | **`company_name`**        | `c`        |
 | **`position`**            | `p`        |
 | **`application_process`** | `pr`       |
 | **`date`**                | `d`        |
+| **`tag`**                 | `t`        |
 
 `list c/company_name` is equivalent to `list c/n`
 </div>
