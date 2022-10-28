@@ -53,10 +53,10 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/unattainable`, `t/unattainable t/AWS` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `c/COMPANY p/PHONE_NUMBER`, `p/PHONE_NUMBER c/COMPANY` is also acceptable.
+  e.g. if the command specifies `c/COMPANY s/STAGE`, `s/STAGE c/COMPANY` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `r/Frontend r/Backend`, only `r/Backend` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -77,16 +77,19 @@ Example:
 
 Adds an internship application to WorkBook.
 
-Format: `add c/COMPANY d/DATE_APPLIED e/COMPANY_EMAIL r/ROLE [t/TAG]…​`
+Format: `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
-* Adds an internship application to the next index.
-* Date must be properly formatted (YYYY-MM-DD).
-* Email domain must be properly formatted (example@domain.com).
-* An application can have any number of tags (including 0).
+* Adds an internship application to the list in sorted order.
+* Fields not square-bracketed are mandatory.
+* Date must be properly formatted (DD-MMM-YYYY HH:mm) when inputted.
+* Date can represent the date it happened or the deadline of the corresponding `stage`
+* Email domain, if included, must be properly formatted (example@domain.com).
+* An application can have any number of tags and language tags and are added one by one (i.e.
+if you want 2 tags, you have to specify `t/two t/tags`).
 
 Examples:
-* `add c/Meta d/2022-09-15 e/hrmonkey@example.com r/Frontend`
-* `add c/Bytedance d/2022-04-20 e/bytehr@dance.com r/Backend t/high pay`
+* `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
+* `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Java l/Python`
 
 ### Editing a person : `edit`
 
@@ -178,11 +181,11 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add c/COMPANY d/YYYY-MM-DD e/EMAIL r/ROLE [t/TAG]…​` <br> e.g., `add c/Meta d/2022-09-15 e/hrmonkey@example.com r/Frontend`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [t/TAG]…​​`<br> e.g.,`edit 2 c/META e/hrmonkey@example.com`
-**Help** | `help`
-**Exit** | `exit`
+| Action     | Format, Examples                                                                                                                                                                                     |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
+| **Clear**  | `clear`                                                                                                                                                                                              |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                  |
+| **Edit**   | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [t/TAG]…​​`<br> e.g.,`edit 2 c/META e/hrmonkey@example.com`                                                                                |
+| **Help**   | `help`                                                                                                                                                                                               |
+| **Exit**   | `exit`                                                                                                                                                                                               |
