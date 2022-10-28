@@ -17,7 +17,6 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
 
 /**
@@ -93,7 +92,6 @@ public class EditListingCommand extends Command {
         Price updatedAskingPrice = editListingDescriptor.getAskingPrice().orElse(listingToEdit.getAskingPrice());
 
         return new Listing(updatedId, updatedAddress, updatedName, updatedAskingPrice);
-       
     }
     @Override
     public boolean equals(Object other) {
@@ -197,4 +195,3 @@ public class EditListingCommand extends Command {
         }
     }
 }
-

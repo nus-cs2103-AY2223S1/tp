@@ -10,7 +10,6 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
