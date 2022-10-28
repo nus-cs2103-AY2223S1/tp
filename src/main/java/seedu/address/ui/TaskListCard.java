@@ -2,10 +2,13 @@ package seedu.address.ui;
 
 import java.util.Set;
 
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
 import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 
@@ -50,18 +53,36 @@ public class TaskListCard extends UiPart<Region> {
         deadline.setText(String.format("Due by %s", task.getTaskDeadline()));
 
         Set<Student> setOfStudents = task.getStudents();
+        final var gradesMap = Task.gradesMap;
 
         if (setOfStudents.size() == 0) {
+
             completion.setText("No students are assigned to this task.");
             studentsHeading.setVisible(false);
             studentsBodyText.setVisible(false);
         } else {
-            // Populate optionalInfo with the relevant information.
-            completion.setText(String.format("??%% completed (??/%d) students", setOfStudents.size()));
+
+            // Calculate how many percent complete this task is.
+            int denominator = setOfStudents.size();
+            assert denominator > 0;
+            int numerator = 0;
+
+            for (Student student : setOfStudents) {
+                if (gradesMap.get(new GradeKey(student, task)) == Grade.GRADED) {
+                    numerator += 1;
+                }
+            }
+            int percentageCompletion = 100 * numerator / denominator;
+            completion.setText(String.format("%d%% completed (%d/%d) students", percentageCompletion, numerator, denominator));
+
+
             studentsHeading.setText("List of Students:");
+
+            // For each student, display whether the task is complete for this student.
             StringBuilder studentsBodyTextString = new StringBuilder();
             for (Student student : setOfStudents) {
-                studentsBodyTextString.append(String.format("[?] %s\n", student.getName()));
+                boolean taskCompletedForThisStudent = gradesMap.get(new GradeKey(student, task)) == Grade.GRADED;
+                studentsBodyTextString.append(String.format("[%s] %s\n", taskCompletedForThisStudent ? "X" : " ", student.getName()));
             }
             studentsBodyText.setText(studentsBodyTextString.toString());
         }

@@ -4,11 +4,14 @@ import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
 import seedu.address.model.task.Task;
 
 /**
@@ -24,8 +27,9 @@ public class TaskListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(ObservableList<Task> taskList) {
+    public TaskListPanel(ObservableList<Task> taskList, ObservableMap<GradeKey, Grade> gradeMap) {
         super(FXML);
+
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
         taskListView.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Task>() {

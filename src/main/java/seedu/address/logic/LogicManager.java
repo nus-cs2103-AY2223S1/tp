@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -14,6 +15,8 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
 import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
@@ -83,5 +86,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableMap<GradeKey, Grade> getGradeMap() {
+        return this.model.getGradeMap();
     }
 }

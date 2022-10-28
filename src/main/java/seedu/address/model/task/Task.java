@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableMap;
+import seedu.address.model.grade.Grade;
+import seedu.address.model.grade.GradeKey;
 import seedu.address.model.student.Student;
 
 /**
@@ -22,6 +25,10 @@ public class Task {
     private final TaskDescription taskDescription;
     private final TaskDeadline taskDeadline;
     private final Set<Student> students = new HashSet<>();
+
+    // A static variable is used because the same gradesMap is used to track
+    // students' grades for tasks across all tasks.
+    public static ObservableMap<GradeKey, Grade> gradesMap;
 
     /**
      * Every field must be present and not null.

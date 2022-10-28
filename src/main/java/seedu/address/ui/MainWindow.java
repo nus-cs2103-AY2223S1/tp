@@ -181,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleClickTasksButton() {
         // A helpful comment goes here.
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getGradeMap());
         resultListPanelPlaceholder.getChildren().clear();
         resultListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
     }
