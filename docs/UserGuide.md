@@ -7,10 +7,10 @@ Are you a CS student struggling to keep track of your internship?
 Do you feel tired of using spreadsheets to keep track of your applications?
 We have just the right tool for you!
 
-Introducing PleaseHireUs (PHU), the internship tracking application made just for you!
-<br>
-<br>
-![Ui](images/icon.png)
+Introducing PleaseHireUs (PHU), the internship tracking application made just for you!<br>
+
+![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
+
 
 Now you will never miss any internship application deadlines or interviews again!
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
@@ -24,16 +24,16 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you are unsure you can refer to [this](#appendix-installing-java-11)
 
-1. Download the latest `PleaseHireUs.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
+2. Download the latest `PleaseHireUs.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your application.
+3. Copy the file to the folder you want to use as the _home folder_ for your application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click on the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all internships.
@@ -46,8 +46,7 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
-
+6. Refer to the [Features](#features) below for details of each command.
 --------------------------------------------------------------------------------------------------------------------
 ## About this User Guide
 
@@ -142,9 +141,12 @@ The reminder panel displays the number of interviews, assessments or pending off
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
+
 </div>
 
 ## Features
+This section shows all features and commands which is supported by PleaseHireUs. 
 
 ### Viewing help : `help`
 
@@ -318,7 +320,7 @@ Format: `undo`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** <br>
-You can only undo `add`,`clear`,`delete`,`edit` commands
+You can only undo `add`,`clear`,`delete`,`edit`,`redo` commands
 
 </div>
 
@@ -357,22 +359,21 @@ If your changes to the data file makes its format invalid, PleaseHireUs will dis
 _Details coming soon …​_
 
 --------------------------------------------------------------------------------------------------------------------
+## Command summary [**Add**](#adding-an-internship-add)
 
-## Command summary
-
-| Action     | Undo               | Format, Examples                                                                                                                                                                                               |
-|------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                        |
-| **Clear**  | :heavy_check_mark: | `clear`                                                                                                                                                                                                        |
-| **Delete** | :heavy_check_mark: | `delete INDEX…​`<br> e.g., `delete 1 3`                                                                                                                                                                          |
-| **View**   | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                |
-| **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]…​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
-| **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS…​`<br> e.g., `find c/p engineer`                                                                                                                                                  |
-| **List**   | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                     |
-| **Help**   | :x:                | `help`                                                                                                                                                                                                         |
-| **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
-| **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
-| **Redo**   | :heavy_check_mark: | `redo`                                                                                                                                                                                                         |
+| Action                                          | Undo               | Format, Examples                                                                                                                                                                                            |
+|-------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add**](#adding-an-internship-add)            | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                     |
+| [**Clear**](#clearing-all-entries--clear)       | :heavy_check_mark: | `clear`                                                                                                                                                                                                     |
+| [**Delete**](#deleting-internships--delete)     | :heavy_check_mark: | `delete INDEX…​`<br> e.g., `delete 1 3`                                                                                                                                                                     |
+| [**View**](#view-details-of-an-internship-view) | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                             |
+| [**Edit**](#editing-internship--edit)           | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]…​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
+| [**Find**](#locating-internships-by-find)       | :x:                | `find [c/CATEGORY] KEYWORDS…​`<br> e.g., `find c/p engineer`                                                                                                                                                |
+| [**List**](#listing-all-internships--list)      | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                  |
+| [**Help**](#viewing-help--help)                 | :x:                | `help`                                                                                                                                                                                                      |
+| [**Copy**](#copy-details-of-internship--copy)   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                            |
+| [**Undo**](#undo-previous-command--undo)        | :x:                | `undo`                                                                                                                                                                                                      |
+| [**Redo**](#redo-previous-undone-command--redo) | :heavy_check_mark: | `redo`                                                                                                                                                                                                      |
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** Valid inputs for `CATEGORY` parameter in `list` and `find` <br>
@@ -398,7 +399,7 @@ Prefix | Symbolize
 **ph/** | Phone Number
 **e/** | Email
 **r/** | Remark
-**t/** | Tags
+**t/** | Tag
 **c/** | Category
 
 ## FAQ
@@ -422,3 +423,10 @@ Prefix | Symbolize
 * Undo and Redo commands are adapted and modified from  **[AddressBook 4(AB4)](https://github.com/se-edu/addressbook-level4)**
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
+
+## Appendix: Installing Java 11
+1. Check if you have installed the correct version of java by running `java -version` in your terminal.
+2. If Java is not installed in your computer or the Java version is different,
+   1. For Windows users, you may download Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11-windows)
+   2. For Mac users, you may download Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11-mac)
+3. After installing, you may verify that the correct version of Java is installed by repeating step 1.
