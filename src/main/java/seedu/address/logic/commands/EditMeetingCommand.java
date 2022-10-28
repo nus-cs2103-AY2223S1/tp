@@ -6,11 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
@@ -21,8 +18,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.DateTimeProcessor;
-
 
 /**
  * Edits the details of an existing person in the address book.

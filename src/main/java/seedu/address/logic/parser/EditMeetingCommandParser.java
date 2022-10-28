@@ -5,10 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
-import java.util.Locale;
+import static seedu.address.logic.parser.CreateMeetingCommandParser.DATE_FORMATTER;
+import static seedu.address.logic.parser.CreateMeetingCommandParser.TIME_FORMATTER;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand;
@@ -21,11 +19,7 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
 
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
-        .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
-        .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeProcessor validator = new DateTimeProcessor(dateFormatter, timeFormatter);
+    private final DateTimeProcessor validator = new DateTimeProcessor(DATE_FORMATTER, TIME_FORMATTER);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditMeetingCommand

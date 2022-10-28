@@ -16,11 +16,11 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> {
 
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
         .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
         .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeProcessor validator = new DateTimeProcessor(dateFormatter, timeFormatter);
+    private final DateTimeProcessor validator = new DateTimeProcessor(DATE_FORMATTER, TIME_FORMATTER);
 
     /**
      * Parses the given {@code String} of arguments in the context of the CreateMeetingCommand
