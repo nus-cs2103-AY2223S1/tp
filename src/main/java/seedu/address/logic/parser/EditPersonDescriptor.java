@@ -14,6 +14,7 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ClientTag;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
@@ -32,6 +33,7 @@ public class EditPersonDescriptor {
     private Monthly monthly;
     private RiskTag riskTag;
     private PlanTag planTag;
+    private ClientTag clientTag;
     private Set<NormalTag> tags;
     public EditPersonDescriptor() {}
 
@@ -48,6 +50,7 @@ public class EditPersonDescriptor {
         setMonthly(toCopy.monthly);
         setRiskTag(toCopy.riskTag);
         setPlanTag(toCopy.planTag);
+        setClientTag(toCopy.clientTag);
         setTags(toCopy.tags);
     }
 
@@ -55,7 +58,8 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, planTag, tags);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly,
+                riskTag, planTag, clientTag, tags);
     }
 
     public void setName(Name name) {
@@ -105,7 +109,13 @@ public class EditPersonDescriptor {
     public Optional<PlanTag> getPlanTag() {
         return Optional.ofNullable(planTag);
     }
+    public void setClientTag(ClientTag clientTag) {
+        this.clientTag = clientTag;
+    }
 
+    public Optional<ClientTag> getClientTag() {
+        return Optional.ofNullable(clientTag);
+    }
     public void setIncome(IncomeLevel income) {
         this.income = income;
     }
@@ -151,11 +161,12 @@ public class EditPersonDescriptor {
         Monthly updateMonthly = editPersonDescriptor.getMonthly().orElse(personToEdit.getMonthly());
         RiskTag updatedRiskTag = editPersonDescriptor.getRiskTag().orElse(personToEdit.getRiskTag());
         PlanTag updatedPlanTag = editPersonDescriptor.getPlanTag().orElse(personToEdit.getPlanTag());
+        ClientTag updatedClientTag = editPersonDescriptor.getClientTag().orElse(personToEdit.getClientTag());
         Set<NormalTag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         MaximumSortedList<Appointment> originalAppointments = personToEdit.getAppointments();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel,
-                updateMonthly, updatedRiskTag, updatedPlanTag, updatedTags, originalAppointments);
+                updateMonthly, updatedRiskTag, updatedPlanTag, updatedClientTag, updatedTags, originalAppointments);
 
     }
     @Override
@@ -180,6 +191,8 @@ public class EditPersonDescriptor {
                 && getRiskTag().equals(e.getRiskTag())
                 && getMonthly().equals(e.getMonthly())
                 && getPlanTag().equals(e.getPlanTag())
+                && getClientTag().equals(e.getClientTag())
+                && getIncome().equals(e.getIncome())
                 && getTags().equals(e.getTags());
     }
 }

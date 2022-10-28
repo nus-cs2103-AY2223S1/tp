@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.ArgumentMultimap.arePrefixesPresent;
 import static seedu.address.logic.parser.ArgumentMultimap.noPrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ClientTagContainsKeywordsPredicate;
 import seedu.address.model.person.FindPredicate;
 import seedu.address.model.person.IncomeContainsKeywordsPredicate;
 import seedu.address.model.person.MonthlyContainsKeywordsPredicate;
@@ -29,6 +31,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.PlanTagContainsKeywordsPredicate;
 import seedu.address.model.person.RiskTagContainsKeywordsPredicate;
+import seedu.address.model.tag.ClientTag;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
@@ -53,10 +56,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<FindPredicate> predicates = new ArrayList<>();
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_RISKTAG,
-                        PREFIX_PLANTAG, PREFIX_TAG, PREFIX_INCOME, PREFIX_MONTHLY);
+                        PREFIX_PLANTAG, PREFIX_CLIENTTAG, PREFIX_TAG, PREFIX_INCOME, PREFIX_MONTHLY);
 
         if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_RISKTAG,
-                PREFIX_PLANTAG, PREFIX_TAG, PREFIX_INCOME, PREFIX_MONTHLY)
+                PREFIX_PLANTAG, PREFIX_CLIENTTAG, PREFIX_TAG, PREFIX_INCOME, PREFIX_MONTHLY)
                 || !argMultimap.getPreamble().isEmpty()
                 || arePrefixesPresent(argMultimap, PREFIX_APPOINTMENT_DATE, PREFIX_APPOINTMENT_LOCATION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -84,6 +87,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             List<PlanTag> planTags = ParserUtil.parseAllSpaceSeparatedPlanTags(argMultimap
                     .getAllValuesSeparatedByRegex(PREFIX_PLANTAG, PLAN_REGEX));
             predicates.add(new PlanTagContainsKeywordsPredicate(planTags.stream()
+                    .map(x -> x.tagName).collect(Collectors.toList())));
+        }
+        if (argMultimap.getValue(PREFIX_CLIENTTAG).isPresent()) {
+            List<ClientTag> clientTags = ParserUtil.parseAllSpaceSeparatedClientTags(argMultimap
+                    .getAllValuesSeparatedByRegex(PREFIX_CLIENTTAG, SPACE_REGEX));
+            predicates.add(new ClientTagContainsKeywordsPredicate(clientTags.stream()
                     .map(x -> x.tagName).collect(Collectors.toList())));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {

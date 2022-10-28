@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.tag.ClientTag;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
@@ -33,6 +34,7 @@ public class Person {
     private final Address address;
     private final RiskTag riskTag;
     private final PlanTag planTag;
+    private final ClientTag clientTag;
     private final Set<Tag> specialTags = new HashSet<>();
     private final Set<NormalTag> tags = new HashSet<>();
     private MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
@@ -41,7 +43,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel,
-                  Monthly monthly, RiskTag riskTag, PlanTag planTag, Set<NormalTag> tags) {
+                  Monthly monthly, RiskTag riskTag, PlanTag planTag, ClientTag clientTag, Set<NormalTag> tags) {
         requireAllNonNull(name, phone, email, address, incomeLevel, monthly, riskTag, planTag, tags);
 
         this.name = name;
@@ -50,8 +52,10 @@ public class Person {
         this.address = address;
         this.riskTag = riskTag;
         this.planTag = planTag;
+        this.clientTag = clientTag;
         this.specialTags.add(riskTag);
         this.specialTags.add(planTag);
+        this.specialTags.add(clientTag);
         this.incomeLevel = incomeLevel;
         this.monthly = monthly;
         this.tags.addAll(tags);
@@ -61,7 +65,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel, Monthly monthly,
-                  RiskTag riskTag, PlanTag planTag, Set<NormalTag> tags, MaximumSortedList<Appointment> appointments) {
+                  RiskTag riskTag, PlanTag planTag, ClientTag clientTag,
+                  Set<NormalTag> tags, MaximumSortedList<Appointment> appointments) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -69,8 +74,10 @@ public class Person {
         this.address = address;
         this.riskTag = riskTag;
         this.planTag = planTag;
+        this.clientTag = clientTag;
         this.specialTags.add(riskTag);
         this.specialTags.add(planTag);
+        this.specialTags.add(clientTag);
         this.monthly = monthly;
         this.tags.addAll(tags);
         this.appointments = appointments;
@@ -114,6 +121,9 @@ public class Person {
     }
     public PlanTag getPlanTag() {
         return planTag;
+    }
+    public ClientTag getClientTag() {
+        return clientTag;
     }
 
 
@@ -167,6 +177,9 @@ public class Person {
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getIncome().equals(getIncome())
                 && otherPerson.getMonthly().equals(getMonthly())
+                && otherPerson.getClientTag().equals(getClientTag())
+                && otherPerson.getRiskTag().equals(getRiskTag())
+                && otherPerson.getPlanTag().equals(getPlanTag())
                 && otherPerson.getAppointments().equals(getAppointments());
     }
 

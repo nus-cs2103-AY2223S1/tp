@@ -5,6 +5,7 @@
     "email": "hans@example.com",
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
     "income": "$1000",
     "address": "4th street",
     "monthly": "$1000"
@@ -14,6 +15,7 @@
     "email": "hans@example.com",
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
+    "clientTag": "CURRENT",
     "income": "$1000",
     "address": "4th street",
     "monthly": "$1000"

@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTTAG_CURRENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTTAG_POTENTIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_23_MAR_2024;
@@ -43,18 +45,19 @@ public class TypicalPersons {
             .withMonthly("$200")
             .withRiskTag("LOW")
             .withPlanTag("Savings Plan")
+            .withClientTag("POTENTIAL")
             .withTags("friends")
             .build();
 
     public static final Person MUSAB_WITH_NO_APPT = new PersonBuilder()
             .withName("Musab")
             .withAddress("301 Upper Thomson Rd, Singapore 574408")
-
             .withEmail("musab@gmail.com")
             .withPhone("92345678")
             .withMonthly("$100")
             .withRiskTag("LOW")
             .withPlanTag("Savings Plan")
+            .withClientTag("CURRENT")
             .withTags("gay")
             .build();
 
@@ -67,6 +70,7 @@ public class TypicalPersons {
             .withMonthly("$100")
             .withRiskTag("HIGH")
             .withPlanTag("Savings Plan")
+            .withClientTag("POTENTIAL")
             .withTags("owesMoney", "friends")
             .build();
     public static final Person CARL = new PersonBuilder()
@@ -78,6 +82,7 @@ public class TypicalPersons {
             .withMonthly("$200")
             .withRiskTag("LOW")
             .withPlanTag("Savings Plan")
+            .withClientTag("CURRENT")
             .build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
@@ -89,6 +94,7 @@ public class TypicalPersons {
             .withRiskTag("LOW")
             .withTags("friends")
             .withPlanTag("Savings Plan")
+            .withClientTag("POTENTIAL")
             .build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
@@ -98,6 +104,7 @@ public class TypicalPersons {
             .withIncome("$6000")
             .withMonthly("$250")
             .withRiskTag("MEDIUM")
+            .withClientTag("CURRENT")
             .withPlanTag("Savings Plan")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_22_JAN_2023)
@@ -111,6 +118,7 @@ public class TypicalPersons {
             .withIncome("$2000")
             .withMonthly("$500")
             .withRiskTag("MEDIUM")
+            .withClientTag("CURRENT")
             .withPlanTag("Savings Plan")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_23_MAR_2024)
@@ -124,6 +132,7 @@ public class TypicalPersons {
             .withIncome("$10000")
             .withMonthly("$400")
             .withRiskTag("LOW")
+            .withClientTag("POTENTIAL")
             .withPlanTag("Savings Plan")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -142,6 +151,7 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$300")
             .withRiskTag("LOW")
+            .withClientTag("CURRENT")
             .withPlanTag("Savings Plan")
             .build();
     public static final Person IDA = new PersonBuilder()
@@ -151,6 +161,7 @@ public class TypicalPersons {
             .withAddress("chicago ave")
             .withIncome("$1000")
             .withMonthly("$200")
+            .withClientTag("POTENTIAL")
             .withRiskTag("MEDIUM")
             .withPlanTag("Savings Plan")
             .build();
@@ -165,6 +176,7 @@ public class TypicalPersons {
             .withMonthly(VALID_MONTHLY_AMY)
             .withRiskTag(VALID_RISKTAG_LOW)
             .withPlanTag("Savings Plan")
+            .withClientTag(VALID_CLIENTTAG_CURRENT)
             .withTags(VALID_TAG_FRIEND)
             .build();
     public static final Person BOB = new PersonBuilder()
@@ -176,6 +188,7 @@ public class TypicalPersons {
             .withMonthly(VALID_MONTHLY_BOB)
             .withRiskTag(VALID_RISKTAG_LOW)
             .withPlanTag("Savings Plan")
+            .withClientTag(VALID_CLIENTTAG_POTENTIAL)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 

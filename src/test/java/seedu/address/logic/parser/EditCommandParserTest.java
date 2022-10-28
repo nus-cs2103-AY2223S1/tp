@@ -3,10 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.CLIENTTAG_DESC_CURRENT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLIENTTAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INCOME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONTHLY_DESC;
@@ -25,6 +27,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTTAG_CURRENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INCOME_AMY;
@@ -53,6 +56,7 @@ import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ClientTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
@@ -102,6 +106,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_RISKTAG_DESC, RiskTag.MESSAGE_CONSTRAINTS); // invalid riskTag
         assertParseFailure(parser, "1" + INVALID_PLANTAG_DESC, PlanTag.MESSAGE_CONSTRAINTS); // invalid PlanTag
+        assertParseFailure(parser, "1" + INVALID_CLIENTTAG_DESC, ClientTag.MESSAGE_CONSTRAINTS); // invalid ClientTag
         assertParseFailure(parser, "1" + INVALID_INCOME_DESC, IncomeLevel.MESSAGE_CONSTRAINTS); // invalid income
         assertParseFailure(parser, "1" + INVALID_MONTHLY_DESC, Monthly.MESSAGE_CONSTRAINTS); // invalid monthly
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
@@ -129,13 +134,13 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + INCOME_DESC_AMY + MONTHLY_DESC_AMY
-                + NAME_DESC_AMY + RISKTAG_DESC_LOW + PLANTAG_DESC_SAVINGS + TAG_DESC_FRIEND;
+                + NAME_DESC_AMY + RISKTAG_DESC_LOW + PLANTAG_DESC_SAVINGS + CLIENTTAG_DESC_CURRENT + TAG_DESC_FRIEND;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withIncome(VALID_INCOME_AMY).withMonthly(VALID_MONTHLY_AMY)
                 .withRiskTag(VALID_RISKTAG_LOW).withPlanTag(VALID_PLANTAG_SAVINGS)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withClientTag(VALID_CLIENTTAG_CURRENT).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

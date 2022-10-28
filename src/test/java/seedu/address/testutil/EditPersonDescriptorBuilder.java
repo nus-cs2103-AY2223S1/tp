@@ -12,6 +12,7 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ClientTag;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
@@ -88,6 +89,13 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPlanTag(String planTag) {
         descriptor.setPlanTag(new PlanTag(planTag));
+        return this;
+    }
+    /**
+     * Sets the {@code ClientTag} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withClientTag(String clientTag) {
+        descriptor.setClientTag(new ClientTag(clientTag));
         return this;
     }
 

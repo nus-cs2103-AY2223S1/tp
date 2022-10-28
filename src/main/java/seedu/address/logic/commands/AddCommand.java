@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
@@ -32,6 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_MONTHLY + "MONTHLY "
             + PREFIX_RISKTAG + "RISKTAG "
             + PREFIX_PLANTAG + "PLANTAG "
+            + PREFIX_CLIENTTAG + "CLIENTTAG "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -42,6 +44,7 @@ public class AddCommand extends Command {
             + PREFIX_MONTHLY + "$200 "
             + PREFIX_RISKTAG + "HIGH "
             + PREFIX_PLANTAG + "Savings Plan "
+            + PREFIX_CLIENTTAG + "Current "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

@@ -6,6 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
     "income": "$1000",
     "monthly": "$1000",
     "tagged": [ "friends" ]
@@ -16,6 +17,7 @@
     "address": "4th street",
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
     "income": "$1000",
     "monthly": "$1000"
   } ]

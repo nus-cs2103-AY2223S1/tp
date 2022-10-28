@@ -12,9 +12,13 @@ public class SpecialTagLabel extends Label {
     public static final String LOW_KEYWORD = "LOW";
     public static final String MEDIUM_KEYWORD = "MEDIUM";
     public static final String HIGH_KEYWORD = "HIGH";
+    public static final String POTENTIAL_KEYWORD = "POTENTIAL";
+    public static final String CURRENT_KEYWORD = "CURRENT";
     private static final String LOW_COLOR = "green";
     private static final String MEDIUM_COLOR = "orange";
     private static final String HIGH_COLOR = "red";
+    private static final String POTENTIAL_COLOR = "blue";
+    private static final String CURRENT_COLOR = "grey";
     private static final String DEFAULT_COLOR = "#d91175";
     private static final String TEXT_FILL_COLOR = "-fx-text-fill: white;";
     private static final String BACKGROUND_COLOR = "-fx-background-color: ";
@@ -39,6 +43,12 @@ public class SpecialTagLabel extends Label {
             break;
         case LOW_KEYWORD:
             setLabelStyle(LOW_COLOR);
+            break;
+        case POTENTIAL_KEYWORD:
+            setLabelStyle(POTENTIAL_COLOR);
+            break;
+        case CURRENT_KEYWORD:
+            setLabelStyle(CURRENT_COLOR);
             break;
         default:
             setLabelStyle(DEFAULT_COLOR);

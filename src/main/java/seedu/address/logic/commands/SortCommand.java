@@ -16,7 +16,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons based on the given KEYWORD"
             + " in ascending or descending order"
-            + "(KEYWORD: name, appt, risk, income, monthly) \n"
+            + "(KEYWORD: name, appt, risk, income, monthly, client) \n"
             + "Parameters: [KEYWORD]/ [KEYWORD] desc\n"
             + "Example: " + COMMAND_WORD + " name" + "/" + COMMAND_WORD + " name desc";
 

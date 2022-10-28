@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -28,11 +29,13 @@ public class FindCommand extends Command {
             + "Parameters: PREFIX/ KEYWORD [MORE_KEYWORDS]\n"
             + PREFIX_NAME.getPrefix() + " KEYWORD [MORE_KEYWORDS]...\n"
             + PREFIX_RISKTAG.getPrefix() + " RISKTAG [MORE_RISKTAGS]...\n"
+            + PREFIX_CLIENTTAG.getPrefix() + " CLIENTTAG [MORE_CLIENTTAGS]...\n"
             + PREFIX_TAG.getPrefix() + " TAG [MORE_TAGS]...\n"
             + PREFIX_PHONE.getPrefix() + " PHONE [MORE_PHONE]...\n"
-            + PREFIX_INCOME.getPrefix() + ">/< INCOME \n"
+            + PREFIX_INCOME.getPrefix() + ">/</= INCOME \n"
             + "Examples: " + COMMAND_WORD + " " + PREFIX_NAME.getPrefix() + " alice bob charlie\n"
             + COMMAND_WORD + " " + PREFIX_RISKTAG.getPrefix() + " high low\n"
+            + COMMAND_WORD + " " + PREFIX_CLIENTTAG.getPrefix() + "POTENTIAL \n"
             + COMMAND_WORD + " " + PREFIX_PLANTAG.getPrefix() + " savings plan"
             + COMMAND_WORD + " " + PREFIX_PHONE.getPrefix() + " 912345678"
             + COMMAND_WORD + " " + PREFIX_INCOME.getPrefix() + " >1000";

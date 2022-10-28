@@ -22,6 +22,7 @@ import seedu.address.model.person.Location;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ClientTag;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
@@ -257,6 +258,19 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String clientTag} into an {@code ClientTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ClientTag parseClientTag(String clientTag) throws ParseException {
+        requireNonNull(clientTag);
+        String trimmedClientTag = clientTag.trim();
+        if (!ClientTag.isValidClientTagName(trimmedClientTag)) {
+            throw new ParseException(ClientTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ClientTag(trimmedClientTag);
+    }
+
+    /**
      * Parses {@code Collection<String> riskTags} into a {@code List<RiskTag>}.
      */
     public static List<RiskTag> parseAllSpaceSeparatedRiskTag(Collection<String> riskTags) throws ParseException {
@@ -291,6 +305,18 @@ public class ParserUtil {
             planTagList.add(parsePlanTag(planTag));
         }
         return planTagList;
+    }
+    /**
+     * Parses {@code Collection<String> names} into a {@code List<Name>}.
+     */
+    public static List<ClientTag> parseAllSpaceSeparatedClientTags(Collection<String> clientTags)
+            throws ParseException {
+        requireNonNull(clientTags);
+        final List<ClientTag> clientTagList = new ArrayList<>();
+        for (String clientTag: clientTags) {
+            clientTagList.add(parseClientTag(clientTag));
+        }
+        return clientTagList;
     }
 
     /**
