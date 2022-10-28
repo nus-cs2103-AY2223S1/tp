@@ -23,7 +23,15 @@ public class HelpWindow extends UiPart<Stage> {
             + "3. To view all information of an existing student:\n" + "> view NAME\n"
             + "4. To edit a students details:\n" + "> edit [n/ p/ lp/]NEW_FIELD\n"
             + "> edit [h/ a/ g/ s/]INDEX NEW_FIELD \n"
-            + "5. To delete a student from your address book:\n" + "> delete INDEX\n";
+            + "5. To delete a student from your address book:\n" + "> delete INDEX\n"
+            + "6. To remove a students details:\n" + "> view INDEX\n"
+            + "> remove [s/ h/ g/ a/]INDEX\n"
+            + "7. To mark a students details:\n" + "> view INDEX\n"
+            + "> mark [h/ a/]INDEX\n"
+            + "8. To unmark a students details:\n" + "> view INDEX\n"
+            + "> unmark [h/ a/]INDEX\n"
+            + "9. To show lessons in the day:\n" + "> show DAY\n";
+
     public static final String HELP_MESSAGE = BUFFER_LINE + BASIC_COMMANDS + BUFFER_LINE
             + "For other queries, you can refer to the user guide: \n" + USERGUIDE_URL;
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);

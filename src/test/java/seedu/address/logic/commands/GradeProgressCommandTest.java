@@ -33,7 +33,7 @@ class GradeProgressCommandTest {
         GradeProgressCommand gradeProgressCommand = new GradeProgressCommand(INDEX_SECOND_PERSON,
                 new GradeProgress(GRADE_PROGRESS_STUB));
 
-        String expectedMessage = String.format(GradeProgressCommand.MESSAGE_ADD_GRADEPROGRESS_SUCCESS, editedPerson);
+        String expectedMessage = String.format(GradeProgressCommand.MESSAGE_ADD_GRADE_PROGRESS_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(secondPerson, editedPerson);
@@ -52,7 +52,7 @@ class GradeProgressCommandTest {
         GradeProgressCommand gradeProgressCommand = new GradeProgressCommand(INDEX_FIRST_PERSON,
                 new GradeProgress(GRADE_PROGRESS_STUB));
 
-        String expectedMessage = String.format(GradeProgressCommand.MESSAGE_ADD_GRADEPROGRESS_SUCCESS, editedPerson);
+        String expectedMessage = String.format(GradeProgressCommand.MESSAGE_ADD_GRADE_PROGRESS_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);

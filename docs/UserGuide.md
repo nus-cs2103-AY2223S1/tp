@@ -51,7 +51,7 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
   e.g `n/NAME [h/HOMEWORK]` can be used as `n/John Doe h/math` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[h/Homework]…​` can be used as ` ` (i.e. 0 times), `h/Math`, `h/Math h/Science` etc.
+  e.g. `[t/Tag]…​` can be used as ` ` (i.e. 0 times), `t/Math`, `t/Math t/Science` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -63,17 +63,6 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
-### Next session : `no command needed`
-
-Pupilist helps to organise your session timings automatically, no need for commands for this feature!<br>
-It will show you this feature on launch of the application and when you use the [`list`](#listing-all-persons--list) command.
-
-Pupilist takes your current device time and sees the sessions that are upcoming if you have any,<br>
-then shows you the name of the person and the session timing. If you don't have any sessions with anyone, <br>
-it will also tell you that there are no next session timing.
-
-![next session feature](images/next_session.png)
 
 ### Viewing help : `help`
 
@@ -193,6 +182,10 @@ You can only view one person's details at one time.
 Format: `view NAME` 
 
 * The command requires the full `NAME` of a person.
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+
+![result for 'view alex yeoh'](images/viewAlexYeohResult.png)
 
 ### Deleting a person : `delete`
 
@@ -211,27 +204,27 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### Adding Homework to student: `homework`
+### Adding Homework to student: `hw`
 
-Adds a string description of homework to student in address book.
+Adds a description of homework to student in address book.
 
-Format: `homework INDEX h/HOMEWORK`
+Format: `hw INDEX h/HOMEWORK`
 
-*Adds homework to student with the specified `INDEX`.
+* Adds homework to student with the specified `INDEX`.
 
 Examples:
-*`homework 1 h/math assignment` adds math assignment to first student in address book.
+* `hw 1 h/math assignment` adds math assignment to first student in address book.
 
 ### Adding Grade Progress to student: `grade`
 
-Adds a string description of grade progress to student in address book.
+Adds a description of grade progress to student in address book.
 
 Format: `grade INDEX g/GRADE_PROGRESS`
 
-*Adds grade progress to student with the specified `INDEX`.
+* Adds grade progress to student with the specified `INDEX`.
 
 Examples:
-*`grade 1 g/Math: D+` adds Math: D+ grade to first student in address book.
+* `grade 1 g/Math: D+` adds Math: D+ grade to first student in address book.
 
 ### Adding Attendance to student : `attendance`
 
@@ -239,11 +232,11 @@ Adds a formatted description of dates students attended class in address book.
 
 Format: `attendance INDEX h/ATTENDACE`
 
-*Adds attendance to student with the specified `INDEX`.<br>
-*Attendance must be in `YYYY-MM-DD` format
+* Adds attendance to student with the specified `INDEX`.<br>
+* Attendance must be in `YYYY-MM-DD` format
 
 Examples:
-*`attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in address book.
+* `attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in address book.
 
 ### Adding Session to student: `session`
 
@@ -251,11 +244,11 @@ Adds a formatted session timing to student, expected to repeat weekly.
 
 Format: `session INDEX s/TUITION_TIME`
 
-*Adds tuition time to student with the specified `INDEX`.<br>
-*Tuition time must be in `DDD HH:MM` format
+* Adds tuition time to student with the specified `INDEX`.<br>
+* Tuition time must be in `DDD HH:MM` format
 
 Examples:
-*`session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
+* `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
 
 ### Update Lesson Plan for student: `lesson`
 
@@ -263,10 +256,10 @@ Updates a student's lesson plan by overwriting the current one. Can only be used
 
 Format: `lesson INDEX lp/LESSON_PLAN`
 
-*Updates lesson plan of student with the specified `INDEX`.<br>
+* Updates lesson plan of student with the specified `INDEX`.<br>
 
 Examples:
-*`lesson 1 lp/science` changes lesson plan of first student to science.
+* `lesson 1 lp/science` changes lesson plan of first student to science.
 
 ### Viewing daily schedule: `show`
 
@@ -275,13 +268,24 @@ Displays all sessions scheduled on a certain day of the week. Changes address bo
 Format: `show [DDD]`
 
 Examples:
-*`show MON` lists all tuition timings scheduled for Monday.
+* `show MON` lists all tuition timings scheduled for Monday.
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Next session
+
+Pupilist helps to organise your session timings automatically, no need for commands for this feature!<br>
+It will show you this feature on launch of the application and when you use the [`list`](#listing-all-persons--list) command.
+
+Pupilist takes your current device time and sees the sessions that are upcoming if you have any,<br>
+then shows you the name of the person and the session timing. If you don't have any sessions with anyone, <br>
+it will also tell you that there are no next session timing.
+
+![next session feature](images/next_session.png)
 
 ### Saving the data
 
@@ -319,13 +323,18 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN` <br> e.g., `add n/James Ho p/96775567 lp/english`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 1`
-**Edit** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN]`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit 2 n/James Lee h/1 math`
+**Edit** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN]`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit n/James Lee h/1 math`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Help** | `help`
+**Homework** | `hw INDEX h/HOMEWORK`<br> e.g., `hw 1 h/Science worksheet`
+**Grade** | `grade INDEX g/GRADE`<br> e.g., `grade 2 g/English: B+`
 **Lesson** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`
+**Session** | `session INDEX s/SESSION` <br> e.g., `session 1 s/mon 09:00`
 **List** | `list`
 **Remove** | `remove [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g., `remove h/1`
+**Mark** | `mark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `mark a/1`
+**Unmark** | `unmark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `unmark h/2`
 **Show** | `show [DDD]`<br> e.g., `show MON`
 **View** | `view NAME`<br> e.g., `view James Ho`
 

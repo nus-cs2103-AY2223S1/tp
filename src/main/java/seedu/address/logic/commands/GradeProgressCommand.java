@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_PROGRESS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,12 +27,12 @@ public class GradeProgressCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing grade progress will not be modified.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_GRADEPROGRESS + " GRADEPROGRESS]\n"
+            + "[" + PREFIX_GRADE_PROGRESS + " GRADEPROGRESS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_GRADEPROGRESS + " MATH:A";
+            + PREFIX_GRADE_PROGRESS + " MATH:A";
 
-    public static final String MESSAGE_ADD_GRADEPROGRESS_SUCCESS = "Added grade progress to Person: %1$s";
-    public static final String MESSAGE_DELETE_GRADEPROGRESS_SUCCESS = "Removed grade progress from Person: %1$s";
+    public static final String MESSAGE_ADD_GRADE_PROGRESS_SUCCESS = "Added grade progress to Person: %1$s";
+    public static final String MESSAGE_DELETE_GRADE_PROGRESS_SUCCESS = "Removed grade progress from Person: %1$s";
 
     public static final String MESSAGE_IN_DAY_MODE = "You need to be in list or view mode to add a grade progress.";
 
@@ -88,8 +88,8 @@ public class GradeProgressCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         String message = !gradeProgress.value.isEmpty()
-                ? MESSAGE_ADD_GRADEPROGRESS_SUCCESS
-                : MESSAGE_DELETE_GRADEPROGRESS_SUCCESS;
+                ? MESSAGE_ADD_GRADE_PROGRESS_SUCCESS
+                : MESSAGE_DELETE_GRADE_PROGRESS_SUCCESS;
         return String.format(message, personToEdit);
     }
 

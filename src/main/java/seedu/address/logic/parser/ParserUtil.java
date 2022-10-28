@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_PROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -33,11 +33,11 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_EDIT_COMMAND_FORMAT = "The correct format for an edit is:\n"
             + "edit [" + PREFIX_NAME + PREFIX_PHONE + PREFIX_LESSON_PLAN + "]NEW_FIELD, or\n"
-            + "edit [" + PREFIX_HOMEWORK + PREFIX_GRADEPROGRESS + PREFIX_ATTENDANCE + "]INDEX NEW_FIELD\n"
+            + "edit [" + PREFIX_HOMEWORK + PREFIX_GRADE_PROGRESS + PREFIX_ATTENDANCE + "]INDEX NEW_FIELD\n"
             + "Example: edit " + PREFIX_HOMEWORK + "2 Maths worksheet";
     public static final String MESSAGE_REMOVE_COMMAND_FORMAT = "The correct format for a remove is:\n"
             + "remove PERSON_INDEX [" + PREFIX_HOMEWORK
-            + PREFIX_GRADEPROGRESS + PREFIX_ATTENDANCE + "] INDEX_TO_REMOVE\n";
+            + PREFIX_GRADE_PROGRESS + PREFIX_ATTENDANCE + "] INDEX_TO_REMOVE\n";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
