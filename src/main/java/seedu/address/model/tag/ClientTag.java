@@ -24,14 +24,14 @@ public class ClientTag extends Tag {
         super(tagName);
         checkArgument(isValidClientTagName(tagName), MESSAGE_CONSTRAINTS);
         // only setRisk after we are sure that tagName is valid
-        this.type = setRisk(tagName);
+        this.type = setClient(tagName);
     }
 
     public int getType() {
         return this.type;
     }
 
-    public int setRisk(String tagName) {
+    public int setClient(String tagName) {
         switch (tagName) {
 
         case CURRENT:
