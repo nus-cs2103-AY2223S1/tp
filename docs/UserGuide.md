@@ -138,7 +138,10 @@ Format: `batchadd FILENAME`
 
 Example:
 
--   `batchadd employees.csv`
+- `batchadd employees.csv`
+
+Sample CSV file as such:
+![](./images/Sample_CSV.png)
 
 ### Listing all employees : `list`
 
