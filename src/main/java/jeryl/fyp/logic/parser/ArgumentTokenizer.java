@@ -143,6 +143,11 @@ public class ArgumentTokenizer {
         Prefix getPrefix() {
             return prefix;
         }
+
+        @Override
+        public String toString() {
+            return "(" + prefix + ", " + startPosition + ")";
+        }
     }
 
 }

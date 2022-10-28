@@ -22,6 +22,8 @@ import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.ListDeadlineCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
+import jeryl.fyp.logic.commands.SortProjectNameCommand;
+import jeryl.fyp.logic.commands.SortProjectStatusCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 
 /**
@@ -30,11 +32,11 @@ import jeryl.fyp.logic.parser.exceptions.ParseException;
 public class FypManagerParser {
 
     /**
-     * Used for initial separation of command word and args.
+     * Used for initial separation of command word, flag, and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern
             .compile("(?<commandWord>[\\S&&[^-]]+)"
-                    + "(?<flag>\\s*-\\w)?"
+                    + "(?<flag>\\s*-\\w+)?"
                     + "(?<arguments>.*)");
 
     /**
@@ -104,6 +106,13 @@ public class FypManagerParser {
 
         case ListDeadlineCommand.COMMAND_WORD:
             return new ListDeadlineCommandParser().parse(arguments);
+
+        case SortProjectNameCommand.COMMAND_WORD:
+        case SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD:
+            return new SortProjectNameCommand();
+
+        case SortProjectStatusCommand.COMMAND_WORD:
+            return new SortProjectStatusCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

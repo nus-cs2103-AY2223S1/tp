@@ -70,11 +70,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_AMY)
+        DESC_AMY = new EditStudentDescriptorBuilder().withStudentName(VALID_STUDENT_NAME_AMY)
                 .withStudentId(VALID_STUDENT_ID_AMY).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_FRIEND).withProjectName(VALID_PROJECT_NAME_AMY)
                 .withProjectStatus(VALID_PROJECT_STATUS_AMY).build();
-        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_BOB)
+        DESC_BOB = new EditStudentDescriptorBuilder().withStudentName(VALID_STUDENT_NAME_BOB)
                 .withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withProjectName(VALID_PROJECT_NAME_BOB)
                 .withProjectStatus(VALID_PROJECT_STATUS_BOB)
@@ -128,7 +128,8 @@ public class CommandTestUtil {
      * {@code model}'s FYP manager.
      */
     public static void showStudentAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size()
+                && targetIndex.getZeroBased() >= 0);
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getStudentName().fullStudentName.split("\\s+");

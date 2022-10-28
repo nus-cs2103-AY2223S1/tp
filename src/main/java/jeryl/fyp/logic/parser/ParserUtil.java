@@ -153,7 +153,7 @@ public class ParserUtil {
         requireNonNull(deadlineName);
         String trimmedDeadlineName = deadlineName.trim();
         if (!DeadlineName.isValidDeadlineName(trimmedDeadlineName)) {
-            throw new ParseException(ProjectName.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DeadlineName.MESSAGE_CONSTRAINTS);
         }
         return new DeadlineName(trimmedDeadlineName);
     }
@@ -188,7 +188,6 @@ public class ParserUtil {
     public static Integer parseRank(String rank) throws ParseException {
         requireNonNull(rank);
         String trimmedRank = rank.trim();
-        //
         try {
             return Integer.valueOf(trimmedRank);
         } catch (Exception e) {

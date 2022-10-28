@@ -81,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -125,6 +126,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         uncompletedStudentListPanel = new UncompletedStudentListPanel(logic.getUncompletedStudentList());
         uncompletedStudentListPanelPlaceholder.getChildren().add(uncompletedStudentListPanel.getRoot());
 
@@ -148,6 +150,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -199,6 +202,41 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Outputs the sorted list of projects by project name
+     */
+    private void handleSortByProjectName() {
+        uncompletedStudentListPanel = new UncompletedStudentListPanel(logic
+                .getSortedByProjectNameUncompletedStudentList());
+        uncompletedStudentListPanelPlaceholder.getChildren().add(uncompletedStudentListPanel.getRoot());
+
+        completedStudentListPanel = new CompletedStudentListPanel(logic.getSortedCompletedStudentList());
+        completedStudentListPanelPlaceholder.getChildren().add(completedStudentListPanel.getRoot());
+    }
+
+    /**
+     * Outputs the sorted list of projects by project status followed by alphabetical order
+     */
+    private void handleSortByProjectStatus() {
+        uncompletedStudentListPanel = new UncompletedStudentListPanel(logic
+                .getSortedByProjectStatusUncompletedStudentList());
+        uncompletedStudentListPanelPlaceholder.getChildren().add(uncompletedStudentListPanel.getRoot());
+
+        completedStudentListPanel = new CompletedStudentListPanel(logic.getSortedCompletedStudentList());
+        completedStudentListPanelPlaceholder.getChildren().add(completedStudentListPanel.getRoot());
+    }
+
+    /**
+     * Reverts the UI back to the Filtered Student List
+     */
+    private void revertStudentListPanel() {
+        uncompletedStudentListPanel = new UncompletedStudentListPanel(logic.getUncompletedStudentList());
+        uncompletedStudentListPanelPlaceholder.getChildren().add(uncompletedStudentListPanel.getRoot());
+
+        completedStudentListPanel = new CompletedStudentListPanel(logic.getCompletedStudentList());
+        completedStudentListPanelPlaceholder.getChildren().add(completedStudentListPanel.getRoot());
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see jeryl.fyp.logic.Logic#execute(String)
@@ -216,6 +254,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSortByProjectName()) {
+                handleSortByProjectName();
+            } else if (commandResult.isSortByProjectStatus()) {
+                handleSortByProjectStatus();
+            } else {
+                revertStudentListPanel();
             }
 
             return commandResult;

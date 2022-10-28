@@ -20,16 +20,16 @@ import jeryl.fyp.model.tag.Tag;
 public class StudentUtil {
 
     /**
-     * Returns an add command string for adding the {@code student}.
+     * Returns an add student command string for adding the {@code student}.
      */
-    public static String getAddCommand(Student student) {
+    public static String getAddStudentCommand(Student student) {
         return AddStudentCommand.COMMAND_WORD + " " + getStudentDetails(student);
     }
 
     /**
-     * Returns a delete command string for deleting the {@code student}.
+     * Returns a delete student command string for deleting the {@code student}.
      */
-    public static String getDeleteCommand(Student student) {
+    public static String getDeleteStudentCommand(Student student) {
         return DeleteStudentCommand.COMMAND_WORD + " " + PREFIX_STUDENT_ID + student.getStudentId();
     }
 
@@ -53,8 +53,8 @@ public class StudentUtil {
      */
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_STUDENT_NAME).append(name.fullStudentName).append(" "));
-        descriptor.getStudentId().ifPresent(studentId -> sb.append(PREFIX_STUDENT_ID).append(studentId.id).append(" "));
+        descriptor.getStudentName().ifPresent(name -> sb.append(PREFIX_STUDENT_NAME)
+                .append(name.fullStudentName).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getProjectName().ifPresent(projectName -> sb.append(PREFIX_PROJECT_NAME)
                 .append(projectName.fullProjectName).append(" "));

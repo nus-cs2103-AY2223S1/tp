@@ -67,6 +67,7 @@ public interface Model {
      */
     void deleteStudent(Student target);
 
+
     /**
      * Adds the given student.
      * {@code student} must not already exist in the FYP manager.
@@ -120,6 +121,21 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns an unmodifiable view of the sorted Uncompleted student list by project name */
+    ObservableList<Student> getSortedByProjectNameUncompletedStudentList();
+
+    /**
+     * Returns an unmodifiable view of the sorted Uncompleted student list by project status
+     * followed by alphabetical order
+     */
+    ObservableList<Student> getSortedByProjectStatusUncompletedStudentList();
+
+    /**
+     * Returns an unmodifiable view of the sorted Completed student list by project name
+     * which is equivalent to sorting by  alphabetical order
+     */
+    ObservableList<Student> getSortedCompletedStudentList();
 
     /** Returns an unmodifiable view of the uncompleted list of students */
     ObservableList<Student> getUncompletedStudentList();

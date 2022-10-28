@@ -25,7 +25,7 @@ public class DeleteStudentCommand extends Command {
             + ": Deletes the student identified by it's unique student ID\n"
             + "Parameters: "
             + PREFIX_STUDENT_ID + "STUDENT_ID\n"
-            + "(STUDENT_ID must be a valid student id that is already in the FYP manager)\n"
+            + "(STUDENT_ID must be a valid student ID that is already in the FYP manager)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G";
 

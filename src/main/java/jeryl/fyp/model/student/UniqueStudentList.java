@@ -3,6 +3,7 @@ package jeryl.fyp.model.student;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -113,6 +114,7 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalUnmodifiableList;
     }
 
+
     @Override
     public Iterator<Student> iterator() {
         return internalList.iterator();
@@ -165,5 +167,33 @@ public class UniqueStudentList implements Iterable<Student> {
             }
         }
         return new Index(index);
+    }
+
+    /**
+     * Sorts our student list by project name (which naturally sorts it by alphabetical order as well)
+     */
+    public ObservableList<Student> sortByProjectName() {
+        return internalList.sorted((Student a, Student b) -> a.getProjectName().toString().toLowerCase()
+                .compareTo(b.getProjectName().toString().toLowerCase()));
+    }
+
+    /**
+     * Sorts our student list by project Status(YTS, IP then DONE) then by alphabetical order
+     */
+    public ObservableList<Student> sortByProjectStatus() {
+        return internalList.sorted(new Comparator<Student>() {
+
+            public int compare(Student a, Student b) {
+                int statusComp = b.getProjectStatus().toString().toLowerCase()
+                        .compareTo(a.getProjectStatus().toString().toLowerCase());
+
+                if (statusComp != 0) {
+                    return statusComp;
+                }
+
+                return a.getProjectName().toString().toLowerCase()
+                        .compareTo(b.getProjectName().toString().toLowerCase());
+            }
+        });
     }
 }

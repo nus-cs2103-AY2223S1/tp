@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
@@ -195,6 +196,21 @@ public class AddStudentCommandTest {
 
         @Override
         public Index getIndexByStudentId(StudentId studentId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SortedList<Student> getSortedByProjectStatusUncompletedStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SortedList<Student> getSortedByProjectNameUncompletedStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SortedList<Student> getSortedCompletedStudentList() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -4,7 +4,6 @@ import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -37,11 +36,7 @@ public class EditStudentDescriptorTest {
 
         // different name -> returns false
         EditStudentDescriptor editedAmy = new EditStudentDescriptorBuilder(DESC_AMY)
-                .withName(VALID_STUDENT_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different student ID -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withStudentId(VALID_STUDENT_ID_BOB).build();
+                .withStudentName(VALID_STUDENT_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false

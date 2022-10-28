@@ -3,6 +3,7 @@ package jeryl.fyp.model;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -20,7 +21,6 @@ import jeryl.fyp.model.student.UniqueStudentList;
 public class FypManager implements ReadOnlyFypManager {
 
     private final UniqueStudentList students;
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -108,6 +108,10 @@ public class FypManager implements ReadOnlyFypManager {
         return students.getStudentByStudentId(studentId);
     }
 
+    /**
+     * @param studentId studentId we provide to get index in FYPManager
+     * @return index position in FYPManager
+     */
     public Index getIndexByStudentId(StudentId studentId) {
         requireNonNull(studentId);
 
@@ -115,6 +119,7 @@ public class FypManager implements ReadOnlyFypManager {
     }
 
     //// deadline-level operations
+
     /**
      * Returns true if a deadline with the same identity as {@code deadline} exists in the {@code student}.
      */
@@ -139,6 +144,7 @@ public class FypManager implements ReadOnlyFypManager {
         student.getDeadlineList().add(deadline);
         setStudent(student, student);
     }
+
     /**
      * Replaces the given deadline {@code target} in the list with {@code editedDeadline}.
      * {@code target} must exist in the {@code student}.
@@ -156,7 +162,6 @@ public class FypManager implements ReadOnlyFypManager {
     @Override
     public String toString() {
         return students.asUnmodifiableObservableList().size() + " students";
-        // TODO: refine later
     }
 
     @Override
@@ -178,6 +183,33 @@ public class FypManager implements ReadOnlyFypManager {
         return student.getDeadlineList();
     }
 
+
+    @Override
+    public ObservableList<Student> getSortedByProjectNameUncompletedStudentList() {
+        return getUncompletedStudentList().sorted(Comparator.comparing(s -> s.getProjectName().toString()
+                .toLowerCase()));
+    }
+
+    @Override
+    public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
+        return getUncompletedStudentList().sorted((a, b) -> {
+            int statusComp = b.getProjectStatus().toString().toLowerCase()
+                    .compareTo(a.getProjectStatus().toString().toLowerCase());
+
+            if (statusComp != 0) {
+                return statusComp;
+            }
+
+            return a.getProjectName().toString().toLowerCase()
+                    .compareTo(b.getProjectName().toString().toLowerCase());
+        });
+    }
+
+    @Override
+    public ObservableList<Student> getSortedCompletedStudentList() {
+        return getCompletedStudentList().sorted(Comparator.comparing(s -> s.getProjectName().toString()
+                .toLowerCase()));
+    }
 
     @Override
     public boolean equals(Object other) {
