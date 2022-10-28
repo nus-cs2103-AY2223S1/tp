@@ -25,7 +25,8 @@ import javafx.collections.ObservableList;
  */
 public class UniqueStudentList implements Iterable<Student> {
 
-    private static final Comparator<Student> STUDENT_COMPARATOR = Comparator.comparing(s -> s.getName().toString());
+    private static final Comparator<Student> STUDENT_COMPARATOR = Comparator.comparing(
+            s -> s.getName().toString().toLowerCase());
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

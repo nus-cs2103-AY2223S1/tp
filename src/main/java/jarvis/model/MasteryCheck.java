@@ -15,6 +15,11 @@ public class MasteryCheck extends Lesson {
         super(lessonDesc, timePeriod, students);
     }
 
+    public MasteryCheck(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
+                        LessonAttendance attendance, LessonNotes notes) {
+        super(lessonDesc, timePeriod, students, attendance, notes);
+    }
+
     /**
      * Returns true if both MasteryChecks have the same description,
      * occur at the same time and are attended by the same students.

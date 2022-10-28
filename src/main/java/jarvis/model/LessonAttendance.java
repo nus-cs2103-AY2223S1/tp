@@ -1,7 +1,7 @@
 package jarvis.model;
 
 import java.util.Collection;
-import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -14,15 +14,30 @@ import jarvis.model.exceptions.StudentNotFoundException;
 public class LessonAttendance {
 
     private final TreeMap<Student, Boolean> attendance;
+
     /**
      * Creates the attendance list for a lesson.
      * @param students Students who are involved in the lesson.
      */
     public LessonAttendance(Collection<Student> students) {
-        attendance = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
+        attendance = new TreeMap<>(Student.NAME_COMPARATOR);
         for (Student stu : students) {
             attendance.put(stu, false);
         }
+    }
+
+    /**
+     * Creates the attendance list with the given attendance data for a lesson.
+     *
+     * @param studentList The list of students in the lesson.
+     * @param indexAttendanceMap The attendance data using student indexes to represent students in the studentList.
+     */
+    public LessonAttendance(List<Student> studentList, Map<Integer, Boolean> indexAttendanceMap) {
+        TreeMap<Student, Boolean> attendance = new TreeMap<>(Student.NAME_COMPARATOR);
+        for (Integer i : indexAttendanceMap.keySet()) {
+            attendance.put(studentList.get(i), indexAttendanceMap.get(i));
+        }
+        this.attendance = attendance;
     }
 
     /**
@@ -69,7 +84,8 @@ public class LessonAttendance {
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
-        boolean b = attendance.get(targetStudent);
+        Boolean b = attendance.get(targetStudent);
+        assert b != null;
         attendance.remove(targetStudent);
         attendance.put(editedStudent, b);
     }

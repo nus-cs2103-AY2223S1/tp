@@ -34,7 +34,7 @@ public class LessonBook implements ReadOnlyLessonBook {
      * Replaces the contents of the lesson list with {@code lessons}.
      * {@code lessons} must not contain duplicate lessons.
      */
-    public void setLessons(List<Lesson> lessons) {
+    public void setLessons(List<? extends Lesson> lessons) {
         this.lessons.setLessons(lessons);
     }
 
@@ -68,10 +68,9 @@ public class LessonBook implements ReadOnlyLessonBook {
     /**
      * Checks if lesson has a time period clash with existing lessons in lesson book.
      */
-    public boolean hasPeriodClash(Lesson p) {
-        return lessons.hasPeriodClash(p);
+    public boolean hasPeriodClash(Lesson l) {
+        return lessons.hasPeriodClash(l);
     }
-
 
     /**
      * Replaces the given lesson {@code targetLesson} in the list with {@code editedLesson}.
@@ -86,8 +85,8 @@ public class LessonBook implements ReadOnlyLessonBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code LessonBook}.
+     * {@code key} must exist in the lesson book.
      */
     public void removeLesson(Lesson key) {
         lessons.remove(key);

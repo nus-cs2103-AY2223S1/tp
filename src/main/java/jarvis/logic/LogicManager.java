@@ -2,6 +2,7 @@ package jarvis.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import jarvis.commons.core.GuiSettings;
@@ -45,6 +46,15 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        model.updateFilteredLessonList(Model.PREDICATE_SHOW_ALL_LESSONS);
+        List<Lesson> allLessonList = model.getFilteredLessonList();
+        for (Lesson l : allLessonList) {
+            if (l.hasTimingConflict()) {
+                l.unmarkClash();
+                model.setLesson(l, l);
+            }
+        }
+
         CommandResult commandResult;
         Command command = jarvisParser.parseCommand(commandText);
         commandResult = command.execute(model);
@@ -52,6 +62,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveStudentBook(model.getStudentBook());
             storage.saveTaskBook(model.getTaskBook());
+            storage.saveLessonBook(model.getLessonBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

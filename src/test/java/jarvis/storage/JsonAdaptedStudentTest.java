@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.GradeProfile;
 import jarvis.model.StudentName;
 
@@ -26,18 +25,18 @@ public class JsonAdaptedStudentTest {
     }
 
     @Test
-    public void toModelType_invalidName_throwsIllegalValueException() {
+    public void toModelType_invalidName_throwsIllegalArgumentException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(INVALID_NAME, VALID_MATRIC_NUM, VALID_GRADE_PROFILE);
         String expectedMessage = StudentName.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, student::toModelType);
     }
 
     @Test
-    public void toModelType_nullName_throwsIllegalValueException() {
+    public void toModelType_nullName_throwsIllegalArgumentException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent((String) null, VALID_MATRIC_NUM, VALID_GRADE_PROFILE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentName.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+        assertThrows(IllegalArgumentException.class, expectedMessage, student::toModelType);
     }
 }

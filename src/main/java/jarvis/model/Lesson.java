@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Set;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
@@ -30,6 +32,7 @@ public abstract class Lesson {
     private final LessonAttendance attendance;
     private final LessonNotes notes;
     private boolean isCompleted = false;
+    private boolean hasClash = false;
 
     /**
      * Every field must be present and not null.
@@ -44,12 +47,35 @@ public abstract class Lesson {
         this.notes = new LessonNotes(students);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
+                  LessonAttendance attendance, LessonNotes notes) {
+        requireAllNonNull(timePeriod, students, attendance, notes);
+        // check if list of students is the same
+        assert attendance.getAllStudents().containsAll(notes.getAllStudents());
+        assert notes.getAllStudents().containsAll(students);
+        assert students.containsAll(attendance.getAllStudents());
+
+        this.lessonDesc = lessonDesc;
+        this.timePeriod = timePeriod;
+        this.studentList = new ArrayList<>(students);
+        this.observableStudentList = FXCollections.observableArrayList(studentList);
+        this.attendance = attendance;
+        this.notes = notes;
+    }
+
     public LocalDateTime startDateTime() {
         return timePeriod.getStart();
     }
 
     public LocalDateTime endDateTime() {
         return timePeriod.getEnd();
+    }
+
+    public boolean hasTimingConflict() {
+        return hasClash;
     }
 
     public boolean hasTimingConflict(Lesson other) {
@@ -64,8 +90,8 @@ public abstract class Lesson {
         return studentList.get(index);
     }
 
-    public Set<Student> getStudents() {
-        return attendance.getAllStudents();
+    public List<Student> getStudentList() {
+        return studentList;
     }
 
     public ObservableList<Student> getObservableStudentList() {
@@ -73,12 +99,14 @@ public abstract class Lesson {
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
-        attendance.setStudent(targetStudent, editedStudent);
-        notes.setStudent(targetStudent, editedStudent);
-        studentList.remove(targetStudent);
-        studentList.add(editedStudent);
-        studentList.sort(Comparator.comparing(s -> s.getName().toString()));
-        observableStudentList.setAll(studentList);
+        if (studentList.contains(targetStudent)) {
+            attendance.setStudent(targetStudent, editedStudent);
+            notes.setStudent(targetStudent, editedStudent);
+            studentList.remove(targetStudent);
+            studentList.add(editedStudent);
+            studentList.sort(Comparator.comparing(s -> s.getName().toString()));
+            observableStudentList.setAll(studentList);
+        }
     }
 
     public String getStudentsName() {
@@ -121,16 +149,32 @@ public abstract class Lesson {
         return timePeriod;
     }
 
-    public LessonAttendance getAttendance() {
-        return attendance;
+    public Map<Integer, Boolean> getAttendance() {
+        Map<Integer, Boolean> resMap = new TreeMap<>();
+        for (Student student : studentList) {
+            resMap.put(studentList.indexOf(student), attendance.isPresent(student));
+        }
+        return resMap;
     }
 
-    public String getStudentNotes(Student student) {
-        return notes.getStudentNotes(student);
+    public String getStudentNotesString(Student student) {
+        return notes.getStudentNotesString(student);
     }
 
-    public String getGeneralNotes() {
+    public String getGeneralNotesString() {
+        return notes.getGeneralNotesString();
+    }
+
+    public ArrayList<String> getGeneralNotes() {
         return notes.getGeneralNotes();
+    }
+
+    public Map<Integer, ArrayList<String>> getStudentNotes() {
+        TreeMap<Integer, ArrayList<String>> resMap = new TreeMap<>();
+        for (Student student: studentList) {
+            resMap.put(studentList.indexOf(student), notes.getStudentNotes(student));
+        }
+        return resMap;
     }
 
     public abstract LessonType getLessonType();
@@ -149,5 +193,13 @@ public abstract class Lesson {
 
     public String deleteStudentNote(Student student, Index index) {
         return notes.deleteNote(student, index.getZeroBased());
+    }
+
+    public void markClash() {
+        hasClash = true;
+    }
+
+    public void unmarkClash() {
+        hasClash = false;
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
  * Panel containing the list of lessons, fully expanded with all details shown.
  */
 public class ExpandedLessonListPanel extends UiPart<Region> {
+
     private static final String FXML = "ExpandedLessonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ExpandedLessonListPanel.class);
 
