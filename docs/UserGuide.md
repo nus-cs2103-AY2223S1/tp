@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-NUScheduler is a desktop app for **managing contacts, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
+NUScheduler is a desktop app for **NUS students who have a large network of contacts to manage, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NUScheduler can get your contact management tasks done faster than traditional GUI apps.
 
-With NUScheduler, you can store contact details of the NUS community around you.
+With NUScheduler, you can store the contact details of the NUS community around you and manage your classes and events effectively.
 
 * Table of Contents
 {:toc}
@@ -20,7 +20,9 @@ With NUScheduler, you can store contact details of the NUS community around you.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NUScheduler.
 
-4. Double-click the file to start the app.
+4. Double-click the file to start the app. The GUI similar to the one shown below should appear. Note how the app contains some sample data.
+   
+<img src="images/UiSampleData.png"/>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -47,8 +49,9 @@ With NUScheduler, you can store contact details of the NUS community around you.
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times, including zero times for optional items.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `pr/PROFILE_INDEX...` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
 
 * For Event and Profile commands, option flags (-x where x is a placeholder for valid flags e.g. a, d, v) must be used after the event and profile command word.
 
@@ -176,7 +179,7 @@ A event may also contain:
 
 * Start time
 * End time
-* Attendees of the event
+* Attendees of the event, who must exist as a `Profile` in NUScheduler.
 * Tags to categorise your events, limited to 24 alphanumeric characters, with no spaces allowed
 
 </div>
@@ -227,7 +230,10 @@ Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`
 * At least one `ATTENDEE_INDEX` must be provided.
 
 Example:
-* `event -dp 1 pr/1 pr/3` deletes the first and third attendees listed under the event from the first event listed.
+* `event -dp 1 pr/1 pr/3`
+<img src="images/BeforeDeleteAttendee.png"/>
+Note how the first and third attendee under `Discuss presentation` have been deleted.
+<img src="images/AfterDeleteAttendee.png"/>
 
 #### Viewing upcoming events: `event -u`
 
