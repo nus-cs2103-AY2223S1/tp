@@ -168,4 +168,20 @@ public class StringUtil {
         }
         return index;
     }
+
+    /**
+     * Compares two strings by first ignoring case.
+     * Using compare directly will yield AZaz instead of AaZz.
+     *
+     * @throws NullPointerException if {@code s1} or {@code s2} is null.
+     */
+    public static int compareTo(String s1, String s2) {
+        requireNonNull(s1);
+        requireNonNull(s2);
+        int compareLowerCase = s1.compareToIgnoreCase(s2);
+        if (compareLowerCase == 0) {
+            return s1.compareTo(s2);
+        }
+        return compareLowerCase;
+    }
 }

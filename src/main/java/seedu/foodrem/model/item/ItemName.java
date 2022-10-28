@@ -2,6 +2,7 @@ package seedu.foodrem.model.item;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.model.item.itemvalidators.ItemNameValidator;
 
 /**
@@ -40,7 +41,7 @@ public class ItemName {
      * @param other The ItemName to compare this ItemName against.
      */
     public int compareTo(ItemName other) {
-        return itemName.compareTo(other.itemName);
+        return StringUtil.compareTo(itemName, other.itemName);
     }
 
     /**
