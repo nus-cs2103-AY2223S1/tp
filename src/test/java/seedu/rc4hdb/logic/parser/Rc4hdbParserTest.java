@@ -10,11 +10,6 @@ import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_ANY_SPECIFI
 import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_NAME_AMY;
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.NAME_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_ALL_SPECIFIER_DESC;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_ANY_SPECIFIER_DESC;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_NAME_AMY;
 import static seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser.DATA_DIR_PATH;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.INVALID_LETTERS;

@@ -5,6 +5,7 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TIME_PERIOD;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE_NAME;
 
+
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
@@ -39,6 +40,7 @@ public class UnbookCommandParser implements CommandParser<UnbookCommand> {
         } catch (NoSuchElementException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnbookCommand.MESSAGE_USAGE), e);
         }
+
 
     }
 

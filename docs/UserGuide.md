@@ -152,11 +152,12 @@ Shows a list of residents whose fields match the input keywords.
 
 Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 
-* The default specifier, if not specified by the user is `/all`.
+* A specifier is required in order for the command to work. If not it is an invalid command format
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
   * `/any` returns a resident if it fulfills **any** of the specified keywords.
-* Repeated keys are not permitted for `/all` specifier, e.g. `filter /all h/D h/A` will not work.
+* Repeated keys are not permitted for both specifiers, e.g. `filter /all h/D h/A` will not work.
+* However, tags can be repeated in the command e.g. `filter /all t/exhange t/fresher`
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
@@ -177,6 +178,25 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd resident in the database.
 * `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
+
+### Deleting multiple residents : `remove`
+
+Deletes the specified resident from the RC4HDB database.
+
+Format: `remove [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
+
+* A specifier is required in order for the command to work. If not it is an invalid command format
+* Currently, only two specifiers are supported:
+  * `/all` returns a resident if it fulfills **all** of the specified keywords.
+  * `/any` returns a resident if it fulfills **any** of the specified keywords.
+* Repeated keys are not permitted for both specifiers, e.g. `remove /all h/D h/A` will not work.
+* However, tags can be repeated in the command e.g. `remove /all t/exchange t/fresher`
+* Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
+
+Examples:
+* `remove /all h/D g/M` deletes residents who are in Draco house, **and** are Male.
+* `remove /any h/D h/A` deletes residents belonging to either `Draco` **or** `Aquila` house.
+* `remove g/M` deletes residents who are male.
 
 ### Clearing all entries : `clear`
 

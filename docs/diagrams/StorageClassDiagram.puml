@@ -65,7 +65,4 @@ JsonSerializableVenueBook --> "*" JsonAdaptedVenue
 JsonAdaptedVenue --> "*" JsonAdaptedRecurrentBooking
 JsonAdaptedRecurrentBooking --> "1" JsonAdaptedResident
 
-
-
-
 @enduml

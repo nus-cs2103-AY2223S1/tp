@@ -17,4 +17,6 @@ ModelCommand .up.|> Command
 FileCommand .up.|> Command
 MiscCommand .up.|> Command
 StorageCommand .up.|> Command
+
 @enduml
+

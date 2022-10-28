@@ -65,7 +65,8 @@ public class DailySchedule {
     /**
      * Factory method for producing a list of {@code DailySchedule} instances which represent a weekly schedule.
      */
-    public static List<DailySchedule> generateWeeklySchedule(List<Booking> bookings) throws BookingClashesException {
+    public static List<DailySchedule> generateWeeklySchedule(List<? extends Booking> bookings)
+            throws BookingClashesException {
         return Day.DAYS_OF_WEEK.stream().map(Day::new).map(day ->
                 new DailySchedule(buildBookedByList(bookings.stream()
                         .filter(booking -> booking.isSameDay(day))
