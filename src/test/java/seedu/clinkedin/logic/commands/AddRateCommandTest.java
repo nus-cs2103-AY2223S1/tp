@@ -7,6 +7,7 @@ import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.clinkedin.commons.core.index.Index;
+import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.ModelManager;
 import seedu.clinkedin.model.UserPrefs;
