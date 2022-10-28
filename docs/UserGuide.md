@@ -258,9 +258,9 @@ Examples:
 
 Edits an existing club member's loan amount in the SectresBook.
 
-Format: `editLoan INDEX amt/VALUE reason/REASON`
+Format: `editLoan INDEX <OR> NAME amt/VALUE reason/REASON`
 
-* Edits the loan value of the existing person at the specified `INDEX`.
+* Edits the loan value of the existing person at the specified `INDEX` or `NAME`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1,2,3 …​
 * The `VALUE` can be a positive or negative value with up to 2 decimal places.
@@ -269,7 +269,7 @@ Format: `editLoan INDEX amt/VALUE reason/REASON`
 Examples:
 
 * `editLoan 2 amt/30 reason/bought logistics`
-* `editLoan 3 amt/-30 reason/return money from logisitics`
+* `editLoan alex amt/-30 reason/return money from logisitics`
 * `list` followed by `editLoan 1 amt/-20 reason/return money` will edit the 1st person in the SectresBook,
 reducing their loan by $20 and saving the `REASON` as `return money`.
 
@@ -443,7 +443,7 @@ Action | Format                                                                 
 **Edit** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                     | `find James Jake` <br> `find 8651`
 **Find Tag** | `findTag TAG [MORE_TAGS]`                                                                             | `findTag Operations Outreach`
-**Edit Loan** | `editLoan INDEX amt/AMOUNT reason/REASON`                                                             | `editLoan 1 amt/-20 reason/Buy Logistics`
+**Edit Loan** | `editLoan INDEX amt/AMOUNT reason/REASON` <br> `editLoan NAME amt/AMOUNT reason/REASON`                | `editLoan 1 amt/-20 reason/Buy Logistics` <br> `editLoan alex amt/30 reason reason/payment`
 **List** | `list`                                                                                                | `list`
 **Help** | `help`                                                                                                | `help`
 **Exit** | `exit`                                                                                                | `exit`
