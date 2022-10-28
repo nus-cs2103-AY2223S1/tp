@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
-import seedu.address.model.student.exceptions.PersonNotFoundException;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * A list of students that enforces uniqueness between its elements and does not allow nulls.
@@ -60,7 +60,7 @@ public class UniqueScheduleList implements Iterable<Student> {
         requireAllNonNull(target, editedStudent);
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new StudentNotFoundException();
         }
 
         if (!target.isSameStudent (editedStudent) && contains(editedStudent)) {
@@ -77,7 +77,7 @@ public class UniqueScheduleList implements Iterable<Student> {
     public void remove(Student toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new StudentNotFoundException();
         }
         updateInternalListRef();
     }
