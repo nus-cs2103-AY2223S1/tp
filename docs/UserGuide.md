@@ -104,7 +104,7 @@ Here is everything you need to install and set up *MyInsuRec*. For the best poss
 * macOS
 * Linux
 
-You will also require Java 11 or above to run *MyInsuRec*. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/).
+You will also require Java 11 or above to run *MyInsuRec*. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). To tell if you already have the correct version of Java installed on your system, refer to [8.1 Checking your system's Java version](#81-checking-your-systems-java-version).
 
 ### 3.2 Installation Instructions
 
@@ -484,6 +484,32 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. Glossary
+## 8. Troubleshooting
+
+This section covers technical issues you may run into while using *MyInsuRec*.
+
+### 8.1 Checking your system's Java version
+
+To check that your system has the correct Java version (Java 11 and above) to run *MyInsuRec*, you can follow the steps below:
+
+1. Open your terminal.
+   * Windows
+     * Use `Win` + `S` to open search.
+     * Type in 'Terminal' to search for it and click on it to launch.
+   * macOS
+     * Use `Cmd` + `Space` to open Spotlight search.
+     * Type in 'Terminal' to search for it and click on it to launch.
+2. In your terminal, type in `java --version` and click enter.
+3. The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
+
+![JavaVersionTroubleShoot](images/troubleshoot/JavaVersionTroubleShoot.png)
+
+4. The number in the red highlight rectangle tells you the Java version installed. For example, the Java version installed on the example system is Java 11.0.16, which is sufficient to run *MyInsuRec* as it is greater than Java 11.
+
+5. If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 9. Glossary
 
 { glossary placeholder }
