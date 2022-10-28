@@ -23,6 +23,7 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.ReadOnlyUserPrefs;
 import jeryl.fyp.model.student.Deadline;
+import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.testutil.StudentBuilder;
@@ -185,7 +186,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void listDeadlineUnderStudent(Student student) {
+        public DeadlineList listDeadlineUnderStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
