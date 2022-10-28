@@ -86,13 +86,11 @@ Item List Box:
 
 **Format:** `find KEYWORD [KEYWORDS]...`
 
-> Finds all items in FoodRem whose names contain any of the specified keywords
-
+> Finds all items in FoodRem whose names contain substrings of the KEYWORDS
 ```info
 * The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
 * The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
-* The order of the `KEYWORDS` do not matter (e.g "rose apple" will match "apple rose").
-* The result will be items in which `ITEM_NAME` contain any one of the `KEYWORDS` provided.
+* The result will be items in which any of the words in `ITEM_NAME` contains a substring of the `KEYWORDS`. (e.g. "c e" will match "Carrot Cake", "cereal", "Cold Escargo" and "eclairs")
 ```
 
 ```tip
