@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The lesson plan feature allows the user to keep track of a lesson plan for a student. It is a required parameter when a new person is added, through `AddCommandParser`.
+The lesson plan feature allows the user to keep track of a lesson plan for a person in the form of a string. It is a required parameter when a new person is added, through `AddCommandParser`.
 
 It can also be added independently, and is facilitated by `LessonPlanCommand` in the Logic component. It extends `Commmand` with a `LessonPlan` object stored internally.
 `LessonPlanCommand` is created by `LessonPlanCommandParser` which implements `Parser<LessonPlanCommand>`.
@@ -201,7 +201,8 @@ The following sequence shows how adding homework works:
 
 ![HomeworkSequenceDiagram](images/HomeworkSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `HomeworkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note** The lifeline for `HomeworkCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Step 3. The user decides to edit the homework to Science instead of Maths.
@@ -256,25 +257,27 @@ Aspect: How grade progress command executes
   - Cons: Implementation details are greatly exposed, damages code's maintainability
 
 Aspect: Addition of Grade progress
-- Alternative 1 (current choice): Creation of `Person` object first with empty `GradeProgressList` and thereafter executing `GradeProgressCommand`
+- **Alternative 1 (current choice):** Creation of `Person` object first with empty `GradeProgressList` and thereafter executing `GradeProgressCommand`
   - Pros: Users would not have to key in a long statement when adding a new `Person` to the `AddressBook`
   - Cons: 2 command lines to be written for addition of new `Person` with non-empty `GradeProgressList`
-- Alternative 2: Grade progress to be added during the creation of the new object
+- **Alternative 2:** Grade progress to be added during the creation of the new object
   - Pros: Reduce the need to recreate new `Person` object for the addition of grade progress
   - Cons: Increase tendency of user-made errors when inputting longer command lines
 
 Aspect: Data Structure of `GradeProgressList`
-- Alternative 1 (current choice): ArrayList
+- **Alternative 1 (current choice):** ArrayList
   - Pros: Easy to perform basic functions such as add, delete and remove of respective grade progress elements in the list.
   - Cons: Deletion of data from the middle is time-consuming as data needs to be shifted to update the list.
-- Alternative 2: Singly Linked list
+- **Alternative 2:** Singly Linked list
   - Pros: Insertion and deletion are easier in the linked list. There is no need to shift elements after the insertion or deletion of any element only the address present in the next pointer needs to be updated.
   - Cons: More memory is required in the linked list as compared to an array.
 
 The following sequence diagram shows how the grade progress command operation works:
 
 ![GradeProgressSequenceDiagram](images/GradeProgressSequenceDiagram.png)
-
+<div markdown="span" class="alert alert-info">
+:information_source: **Note** The lifeline for `GradeProgressCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 ### Session feature
 
 #### Implementation
@@ -331,11 +334,11 @@ Step 6. The user executes a `remove s/3` command which removes the instance of `
 
 **Aspect: How to encapsulate user input in Session**
 
-***Alternative 1 (current choice):** Use defaulting of `LocalDateTimeFormatter` as formatter for `LocalDateTime`.
+* **Alternative 1 (current choice):** Use defaulting of `LocalDateTimeFormatter` as formatter for `LocalDateTime`.
   * Pros: Easier to implement, uses only one imported Java class `LocalDateTime` for encapsulating user input.
   * Cons: Have to default to a *Black Box* year, month and week which is a workaround. 
 
-***Alternative 2:** Use of extra `DayOfWeek` class alongside `LocalDateTime`.
+* **Alternative 2:** Use of extra `DayOfWeek` class alongside `LocalDateTime`.
   * Pros: Less of a workaround. More accurate backstage representation of user input.
   * Cons: Harder to implement. Have to concatenate `DayOfWeek` and `LocalDateTime` in `toString` method, which may affect performance with a large `SessionList`.
 
@@ -363,20 +366,55 @@ The following activity diagram summarises what happens when a user executes the 
 
 #### Design Consideration
 
-**Aspect: Where to implement Remove function
+**Aspect: Where to implement Remove function**
 
-***Alternative 1 (current choice):** Have a dedicated function for removing specified details of a Person from the various lists in their details. 
+* **Alternative 1 (current choice):** Have a dedicated function for removing specified details of a Person from the various lists in their details. 
   * Pros: Easier to implement
   * Cons: Less intuitive, users must know difference between `edit` and `remove` functions
 
-***Alternative 2:** Integrate remove function into edit function.
+* **Alternative 2:** Integrate remove function into edit function.
   * Pros: More intuitive as removing a feature is also instinctively understood as editing details. 
   * Cons: Harder to implement, can lead to potential errors if user means to edit as opposed to remove 
   
 
 ### Schedule feature
 
-_{to be added}_
+#### Implementation
+
+The session feature is facilitated by `ShowCommand` and `TimeSlot` which is an association class. Each `TimeSlot` contains a `Person` and a `Session`.
+Below is a partial class diagram of the relationship:
+
+![TimeSlotClassDiagram](images/TimeSlotClassDiagram.png)
+
+Given below is an example usage scenario of how the user can view the schedule by day:
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `session 1 s/Mon 12:30`, adding a session time to the first person in the list.
+
+Step 3. The user executes a `show Mon` command which displays a list of persons with sessions on Monday.
+
+The following sequence shows how viewing the schedule works:
+
+![ShowSequenceDiagram](images/ShowSequenceDiagram.png)
+
+#### Design considerations
+**Aspect: Retrieval of individual sessions**
+* **Alternative 1 (current choice):** An association class between `Session` and `Person`
+  * Pros: Simple to retrieve a `Person` and a `Session` when bound together
+  * Cons: Association has to be explicitly added and created when needed instead of existing throughout
+* **Alternative 2:** Bidirectional navigability
+  * Pros: Easy to identify the corresponding `Person` for each `Session`
+  * Cons: Increases coupling
+
+**Aspect: Populating of `TimeSlot` objects**
+* **Alternative 1 (current choice):** Populated and retrieved only when user inputs `show`
+  * Pros: Lesser things to store and keep track of, easier to implement
+  * Cons: Has to iterate through the list multiple times if user enters the command multiple times without making changes to the session timings
+* **Alternative 2:** Global list that gets updated each time a session changes
+  * Pros: Easy to retrieve list of time slots
+  * Cons: Unnecessary storing as it only depends on `Session` and `Person` which are both already stored, have to constantly update whenever `SessionList` is updated.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -485,9 +523,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * has a need to keep track of their students' grades progress
 * has a need to keep track of their students' attendance in lessons
 * has a need to keep track of their student's assignment progress
+* has a need to keep track of their student's time slots
 * has a need to keep track of their homework assignments for their students
 * has a need to access and organise their students contact details
-* has a need to keep track of follow-up future lesson plans for their students
 * prefer an all-in-one solution to organise their lesson plans and students
 * prefer desktop apps over other types
 * can type fast
@@ -501,18 +539,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I want to …​                                                  | So that I can…​                                                      |
-|----------|--------------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------|
-| `* * *`  | potential user                       | see the app populated with sample data                       | see how the app would look like after frequent usage                |
-| `* * *`  | new user                             | purge all current data                                       | restart with a new set of data for                                  |
-| `* * *`  | new user		 		  | be able to view all the basic commands of the app            | I can pick them up quickly to start using the app	               |
-| `* * *`  | user                                 | assign homework to my students                               | keep track of the work I assigned to them                           |
-| `* * *`  | user                                 | mark my students attendance 	                         | keep track of my students' attendance	                       |
-| `* * *`  | user                                 | modify my students' grade progress                           | keep track on how well my students' are doing                       |
-| `* * *`  | user with many students to manage    | add my students' lesson plans                                | I can organise my lesson plans for each of my students              |
-| `* * *`  | user with many students to manage	  | view a list of all my students and their work-related info   | I can see my students' workload at a glance                         |
-| `* * *`  | long-term user with many students	  | update my students data easily                               | I can keep updated information relevant to their work and contact   |
-| `* * *`  | long-term user			  | view grade and assignment progress of my individual students | keep track of my students progress  	                               |
+| Priority | As a …​                               | I want to …​                                                 | So that I can…​                                                   |
+|----------|--------------------------------------|--------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | potential user                       | see the app populated with sample data                       | see how the app would look like after frequent usage              |
+| `* * *`  | new user                             | purge all current data                                       | restart with a new set of data for                                |
+| `* * *`  | new user		 		  | be able to view all the basic commands of the app            | I can pick them up quickly to start using the app	                |
+| `* * *`  | user                                 | assign homework to my students                               | keep track of the work I assigned to them                         |
+| `* * *`  | user                                 | mark my students attendance 	                                | keep track of my students' attendance	                            |
+| `* * *`  | user                                 | modify my students' grade progress                           | keep track on how well my students' are doing                     |
+| `* * *`  | user with many students to manage    | add my students' time slots                                  | keep track of my daily schedule                                   |
+| `* * *`  | user with many students to manage	  | view a list of all my students and their work-related info   | I can see my students' workload at a glance                       |
+| `* * *`  | long-term user with many students	  | update my students data easily                               | I can keep updated information relevant to their work and contact |
+| `* * *`  | long-term user			  | view grade and assignment progress of my individual students | keep track of my students progress  	                             |
 
 *{More to be added}*
 
@@ -622,45 +660,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. Pupilist detects an error in the lesson plan description.
+* 3a. Pupilist detects an error in the selected index.
 
     * 3a1. Pupilist displays an error message.
 
       Use case resumes at step 3.
 
-
-* 3b. Pupilist detects an error in the selected index.
-
-    * 3b1. Pupilist displays an error message.
-
-      Use case resumes at step 3.
-    
-
-**Use case: Purge data**
-
-**MSS**
-
-1. User requests to purge data.
-2. Pupilist requests for confirmation.
-3. User confirms.
-4. Pupilist clears the data in the file and system.
-
-    Use case ends.  
-  
-**Extensions**
-
-* 2a. User chooses to cancel.
-  * 2a1. User cancels the command.
-
-    Use case ends.
-
-
-* 3a. Pupilist detects an error in clearing the file.
-
-    * 3a1. Pupilist displays an error message.
-
-      Use case ends.
-    
     *{More to be added}*
 
 ### Non-Functional Requirements
@@ -677,9 +682,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Card**: The details of a student
 * **Grade Progress**: The current grade of the student and their standard of work
 * **Homework**: Work assigned to a student and whether or not they completed it
-* **Lesson plan**: What the tutor intends to do for each student or what has been covered
+* **Lesson plan**: What the tutor intends to teach each student such as a subject or topic
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-
+* **Session**: The time slot allocated to a student
+* **Schedule**: The students and time slots scheduled for a particular day
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
