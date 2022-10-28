@@ -74,8 +74,7 @@ class JsonAdaptedMeeting {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
 
-        return new Meeting(person, meetingDescription,
-                DateTimeConverter.processFullDateToLocalDatetime(meetingDateAndTime), meetingLocation);
+        return new Meeting(person, meetingDescription, meetingDateAndTime, meetingLocation);
     }
 
 }

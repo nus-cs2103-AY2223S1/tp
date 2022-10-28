@@ -5,13 +5,22 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingContainsKeywordsPredicate;
+import seedu.address.model.util.FindMeetingFunctionalInterface;
 
 /**
  * Finds and lists all meetings in the application whose description contains the argument keyword.
  * Keyword matching is case insensitive.
  */
 public class FindMeetingCommand extends Command {
+    /**
+     * these are set to public static and final to be used in test
+     * lambdas/functional interfaces cannot be "equal" unless they are the same object
+     */
+    public static final FindMeetingFunctionalInterface GET_DESCRIPTION = Meeting::getDescription;
+    public static final FindMeetingFunctionalInterface GET_LOCATION = Meeting::getLocation;
+    public static final FindMeetingFunctionalInterface GET_PEOPLE = Meeting::getPeopleToMeetAsString;
 
     public static final String COMMAND_WORD = "findmeeting";
     public static final String FIND_AT = "/at";
@@ -46,5 +55,12 @@ public class FindMeetingCommand extends Command {
 
         return new CommandResult(String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW,
                 model.getFilteredMeetingList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindMeetingCommand // instanceof handles nulls
+                && predicate.equals(((FindMeetingCommand) other).predicate)); // state check
     }
 }

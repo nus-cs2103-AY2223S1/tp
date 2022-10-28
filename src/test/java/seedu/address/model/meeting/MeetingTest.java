@@ -48,22 +48,6 @@ public class MeetingTest {
         return output;
     }
 
-    //    @Test
-    //    public void newMeeting_wrongDateAndTimeFormat_throwsParseException() throws Exception {
-    //        String meetingInfo = "Amy ;;; Do CS2103 Project ;;; tomorrow ;;; University Town";
-    //
-    //        String[] newMeetingInformation = meetingInfo.split(";;;");
-    //        String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
-    //        String meetingTitle = newMeetingInformation[1].strip();
-    //        String meetingDateAndTime = newMeetingInformation[2].strip();
-    //        String meetingLocation = newMeetingInformation[3].strip();
-    //
-    //        ArrayList<Person> arrayOfPeopleToMeet = dummyConvertNameToPerson(peopleToMeet);
-    //
-    //        assertThrows(ParseException.class, "Meeting date: tomorrow is not in dd-MM-yyyy format", () ->
-    //            new Meeting(arrayOfPeopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation));
-    //    }
-
     /**
      * Testing the stronger notion of equality
      */
