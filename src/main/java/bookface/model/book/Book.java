@@ -49,8 +49,8 @@ public class Book {
         return author;
     }
 
-    public Date getReturnDate() {
-        return returnDate;
+    public Optional<Date> getReturnDate() {
+        return Optional.ofNullable(returnDate);
     }
 
     public void setReturnDate(Date returnDate) {
@@ -68,6 +68,9 @@ public class Book {
         return Optional.ofNullable(loanee);
     }
 
+    /**
+     * Checks if book is loaned out
+     */
     public boolean isLoaned() {
         return this.loanee != null;
     }
@@ -94,10 +97,18 @@ public class Book {
 
 
     /**
-     * Return this loaned book .
+     * Return this loaned book.
      */
     public void markBookAsReturned() {
         this.loanee = null;
+    }
+
+    /**
+     * Checks if the book is overdue.
+     * @return True if book is overdue, false otherwise
+     */
+    public Optional<Boolean> isOverdue() {
+        return this.getReturnDate().map((x) -> new Date().after(x));
     }
 
     /**

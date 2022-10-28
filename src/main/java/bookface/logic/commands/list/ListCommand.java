@@ -10,19 +10,15 @@ public abstract class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, "Lists "
-            + "users, books or loans", COMMAND_WORD + " users");
-
-    public static final String MESSAGE_SUCCESS = "Listed all users";
+            + "users, books, loans or overdue books", COMMAND_WORD + " users");
 
     /**
      * Generates an usage message.
      * @param commandName the name of the command
-     * @param commandDescription the description of the command
-     * @param commandExample the example usage of the command
      * @return The generated usage message
      */
-    public static String generateMessage(String commandName, String commandDescription, String commandExample) {
-        return Command.generateMessage(COMMAND_WORD + " " + commandName, "List all "
-                + commandDescription, COMMAND_WORD + " " + commandExample);
+    public static String generateMessage(String commandName) {
+        return Command.generateMessage(COMMAND_WORD + " " + commandName, "List "
+                + commandName, COMMAND_WORD + " " + commandName);
     }
 }

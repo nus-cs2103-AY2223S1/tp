@@ -47,7 +47,9 @@ class JsonAdaptedBook {
         isLoaned = source.isLoaned();
         if (isLoaned) {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            returnDate = formatter.format(source.getReturnDate());
+
+            returnDate = formatter.format(source.getReturnDate()
+                    .orElseGet(bookface.commons.util.Date::getFourteenDaysLaterDate));
         } else {
             returnDate = null;
         }
