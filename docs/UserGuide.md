@@ -16,7 +16,7 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
 
 2. Download the latest `Pupilist.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your address book.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -131,7 +131,7 @@ Examples:
 
 ### Marking specific field in person: `mark`
 
-Marks a specific field of a person in the address book, accessed by View method.<br>
+Marks a specific field of a person in the address book. Can only be used in View Mode.<br>
 It requires one field:
 - h/: To be followed by INDEX of homework to be marked
 - a/: To be followed by INDEX of attendance to be marked
@@ -144,7 +144,7 @@ Examples:
 
 ### Unmarking specific field in person: `unmark`
 
-Unmarks a specific field of a person in the address book, accessed by View method.<br>
+Unmarks a specific field of a person in the address book. Can only be used in View Mode.<br>
 It requires one field:
 - h/: To be followed by INDEX of homework to be unmarked
 - a/: To be followed by INDEX of attendance to be unmarked
@@ -189,7 +189,7 @@ Format: `view NAME`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from the address book. Cannot be used in schedule mode.
 
 Format: `delete INDEX` 
 
@@ -206,7 +206,7 @@ Format: `clear`
 
 ### Adding Homework to student: `hw`
 
-Adds a description of homework to student in address book.
+Adds a description of homework to student in address book. Cannot be used in schedule mode.
 
 Format: `hw INDEX h/HOMEWORK`
 
@@ -217,7 +217,7 @@ Examples:
 
 ### Adding Grade Progress to student: `grade`
 
-Adds a description of grade progress to student in address book.
+Adds a description of grade progress to student in address book. Cannot be used in schedule mode.
 
 Format: `grade INDEX g/GRADE_PROGRESS`
 
@@ -228,7 +228,7 @@ Examples:
 
 ### Adding Attendance to student : `attendance`
 
-Adds a formatted description of dates students attended class in address book.
+Adds a formatted description of dates students attended class in address book. Cannot be used in schedule mode.
 
 Format: `attendance INDEX h/ATTENDACE`
 
@@ -240,7 +240,7 @@ Examples:
 
 ### Adding Session to student: `session`
 
-Adds a formatted session timing to student, expected to repeat weekly.
+Adds a formatted session timing to student, expected to repeat weekly. Cannot be used in schedule mode.
 
 Format: `session INDEX s/TUITION_TIME`
 
@@ -252,7 +252,7 @@ Examples:
 
 ### Update Lesson Plan for student: `lesson`
 
-Updates a student's lesson plan by overwriting the current one. Can only be used in view or list mode.
+Updates a student's lesson plan by overwriting the current one. Cannot be used in schedule mode.
 
 Format: `lesson INDEX lp/LESSON_PLAN`
 
@@ -263,7 +263,7 @@ Examples:
 
 ### Viewing daily schedule: `show`
 
-Displays all sessions scheduled on a certain day of the week. Changes address book to day mode.
+Displays all sessions scheduled on a certain day of the week. Changes address book to schedule mode.
 
 Format: `show [DDD]`
 
@@ -321,21 +321,22 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN` <br> e.g., `add n/James Ho p/96775567 lp/english`
+**Add Attendance** | `attendance INDEX a/ATTENDANCE`<br> e.g., `attendance 2 a/2022-12-08`
+**Add Grade** | `grade INDEX g/GRADE`<br> e.g., `grade 2 g/English: B+`
+**Add Homework** | `hw INDEX h/HOMEWORK`<br> e.g., `hw 1 h/Science worksheet`
+**Add Session** | `session INDEX s/SESSION` <br> e.g., `session 1 s/mon 09:00`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 1`
 **Edit** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN]`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit n/James Lee h/1 math`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Help** | `help`
-**Homework** | `hw INDEX h/HOMEWORK`<br> e.g., `hw 1 h/Science worksheet`
-**Grade** | `grade INDEX g/GRADE`<br> e.g., `grade 2 g/English: B+`
-**Lesson** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`
-**Session** | `session INDEX s/SESSION` <br> e.g., `session 1 s/mon 09:00`
 **List** | `list`
+**Mark Item** | `mark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `mark a/1`
 **Remove** | `remove [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g., `remove h/1`
-**Mark** | `mark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `mark a/1`
-**Unmark** | `unmark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `unmark h/2`
-**Show** | `show [DDD]`<br> e.g., `show MON`
+**Show Schedule** | `show [DDD]`<br> e.g., `show MON`
+**Unmark Item** | `unmark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `unmark h/2`
+**Update Lesson plan** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`
 **View** | `view NAME`<br> e.g., `view James Ho`
 
 
