@@ -563,7 +563,7 @@ Use case ends.
       Use case resumes from step 2.
 
 
-**Use case: UC19 - Delete note for a student in a lesson**
+**Use case: UC19 - Delete note from a student in a lesson**
 
 Preconditions: There are existing students, lessons and notes for a student in JARVIS.
 
@@ -595,6 +595,8 @@ Use case ends.
   - 2d1. JARVIS informs Avenger that the note does not exist for the student in the lesson.
   - 2d2. JARVIS tells Avenger to make a request again.
 
+    Use case resumes from step 2.
+  
 **Use case: UC20 - Set participation for a student in a lesson**
 
 Refer to <ins>UC18 - Add note for a student in a lesson</ins> with the only difference being setting participation instead of adding note.  
@@ -622,6 +624,8 @@ Use case ends.
   - 2b1. JARVIS informs Avenger that the student does not exist.
   - 2b2. JARVIS tells Avenger to make a request again.
 
+    Use case resumes from step 2.
+  
 **Use case: UC22 - Delete a task**
 
 Refer to <ins>UC21 - Delete a student</ins> with the only difference being task instead of student.
