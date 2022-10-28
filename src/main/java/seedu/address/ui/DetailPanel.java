@@ -7,14 +7,19 @@ import java.util.stream.Collectors;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.github.User;
+import seedu.address.model.person.github.repo.Repo;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -43,6 +48,9 @@ public class DetailPanel extends MainPanel {
 
     @FXML
     private HBox contactBoxContainer;
+
+    @FXML
+    private ListView<Repo> githubRepoListView;
 
     /**
      * Initialises the DetailPanel.
@@ -75,6 +83,12 @@ public class DetailPanel extends MainPanel {
         setLabelVisibility(addressLabel, person.getAddress().isPresent());
         person.getAddress().ifPresent(a -> addressLabel.setText(a.toString()));
 
+        if (person.getGithubUser().isPresent()) {
+            User githubUser = person.getGithubUser().get();
+            githubRepoListView.setItems(FXCollections.observableList(githubUser.getRepoList().getRepos()));
+            githubRepoListView.setCellFactory(listView -> new GithubRepoListViewCell());
+        }
+
         List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
                 person.getContacts()
                         .values().stream()
@@ -97,5 +111,23 @@ public class DetailPanel extends MainPanel {
     @Override
     public MainPanelName getPanelName() {
         return MainPanelName.Detail;
+    }
+
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Repo} using a {@code GithubRepoCard}.
+     */
+    class GithubRepoListViewCell extends ListCell<Repo> {
+        @Override
+        protected void updateItem(Repo repo, boolean empty) {
+            super.updateItem(repo, empty);
+
+            if (empty || repo == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new GithubRepoCard(repo).getRoot());
+            }
+        }
     }
 }

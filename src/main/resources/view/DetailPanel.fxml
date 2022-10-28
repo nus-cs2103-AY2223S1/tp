@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
+<?import javafx.scene.control.ListView?>
 <StackPane fx:id="detailPanel" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox spacing="16.0">
@@ -27,6 +27,7 @@
                 <Label styleClass="sub-header" text="CONTACTS"/>
                 <HBox spacing="10.0" fx:id="contactBoxContainer" VBox.vgrow="ALWAYS"/>
             </VBox>
+            <ListView fx:id="githubRepoListView" VBox.vgrow="ALWAYS" />
         </VBox>
     </children>
 </StackPane>
