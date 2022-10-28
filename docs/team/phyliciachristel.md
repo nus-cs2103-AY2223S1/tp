@@ -24,7 +24,12 @@ Pupilist is a desktop address book application used for private tutors to handle
     * Had to thoroughly consider the different methods to access the timings and how to allow it to be displayed
   * Remove case-sensitiveness of inputs (Pull request [\#65](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/65))
 
-* **Contributions to the UG**: to be added soon
+* **Contributions to the UG**:
+  * Update pre-existing commands to match current features
+  * Added `view` command
+  * Added `lesson` command
+  * Added `show` command
+  * Update commands to specify the mode that they can be executed in
 
 * **Contributions to the DG**:
   * Updated glossary and use cases
