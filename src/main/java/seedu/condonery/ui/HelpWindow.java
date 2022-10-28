@@ -83,11 +83,11 @@ public class HelpWindow extends UiPart<Stage> {
     private void renderHtml() {
         try {
             Stream<String> lines = Files.lines(
-                Paths.get(ClassLoader.getSystemResource("html/UserGuide.html").toURI())
+                Paths.get(this.getClass().getResource("/html/UserGuide.html").toURI())
             );
             WebEngine webEngine = webView.getEngine();
             webEngine.loadContent(lines.collect(Collectors.joining("\n")));
-            webEngine.setUserStyleSheetLocation(ClassLoader.getSystemResource("html/style.css").toString());
+            webEngine.setUserStyleSheetLocation(this.getClass().getResource("/html/style.css").toString());
         } catch (URISyntaxException | IOException e) {
             logger.warning("User Guide not found!");
         }
