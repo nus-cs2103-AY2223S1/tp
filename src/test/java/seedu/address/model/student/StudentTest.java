@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.AVA;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.AVA;
+import static seedu.address.testutil.TypicalStudents.BOB;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

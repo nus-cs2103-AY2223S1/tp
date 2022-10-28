@@ -23,7 +23,7 @@ import seedu.address.model.student.Student;
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -69,20 +69,20 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code TeachersPet} with all the typical persons.
+     * Returns an {@code TeachersPet} with all the typical students.
      */
     public static TeachersPet getTypicalTeachersPet() {
         TeachersPet ab = new TeachersPet();
-        for (Student student : getTypicalPersons()) {
+        for (Student student : getTypicalStudents()) {
             ab.addPerson(student);
         }
         return ab;
     }
 
-    public static List<Student> getTypicalPersons() {
+    public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
