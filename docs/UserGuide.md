@@ -35,7 +35,6 @@ tasks done faster than traditional GUI apps.
 8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Berserk) is displayed. ![Ui](images/UiCommissionDetail.png)
 9. The following commands are available in Commission Details View:
    * **`additer`**`d/2022-10-11 n/Add lighting p//Users/Joseph/CSP/sunshine_highlight.png f/Warmer tone might be better` : Adds an iteration to the selected commission and attaches the image at the specified file path to the iteration.
-   * **`openimg`** : Expands the attached image for the commission for better view
 10. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
