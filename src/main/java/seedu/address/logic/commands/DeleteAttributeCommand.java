@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
@@ -22,6 +23,7 @@ import seedu.address.model.person.Role;
 import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
 
@@ -32,8 +34,8 @@ public class DeleteAttributeCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_DELETE_SUCCESS = "Contact Attribute successfully deleted";
     public static final String MESSAGE_USAGE = " Deletes a person's specified contact. "
-        + "Allowed Parameters are: email, phone, slack, telegram, role, timezone, address\n"
-        + "Example: " + COMMAND_WORD + " email";
+            + "Allowed Parameters are: email, phone, slack, telegram, role, timezone, address\n"
+            + "Example: " + COMMAND_WORD + " email";
 
     private final Prefix prefixToDelete;
 
@@ -47,6 +49,7 @@ public class DeleteAttributeCommand extends Command {
     /**
      * Creates a new Person after deleting specified attribute.
      * Sets it to the previous person
+     *
      * @return CommandResult depicting success of delete command
      */
     @Override
@@ -66,6 +69,7 @@ public class DeleteAttributeCommand extends Command {
 
     /**
      * Returns if DeleteAttributeCommand can execute at given Panel name.
+     *
      * @return true if Detail Page, false otherwise.
      */
     @Override
@@ -75,6 +79,7 @@ public class DeleteAttributeCommand extends Command {
 
     /**
      * Creates new Person Object after deleting specified attribute (prefixToDelete)
+     *
      * @param toDelete The Person whose attribute will be deleted
      * @return a Person after the deletion has been done
      */
@@ -83,9 +88,12 @@ public class DeleteAttributeCommand extends Command {
         Set<Tag> tags = toDelete.getTags();
         Role role = prefixToDelete.equals(PREFIX_ROLE) ? null : toDelete.getRole().orElse(null);
         Address address = prefixToDelete.equals(PREFIX_ADDRESS) ? null
-                                : toDelete.getAddress().orElse(null);
+                : toDelete.getAddress().orElse(null);
         Timezone timezone = prefixToDelete.equals(PREFIX_TIMEZONE) ? null
-                                : toDelete.getTimezone().orElse(null);
+                : toDelete.getTimezone().orElse(null);
+
+        User githubUser = prefixToDelete.equals(PREFIX_GITHUB) ? null
+                : toDelete.getGithubUser().orElse(null);
 
         Map<ContactType, Contact> updatedContacts = new HashMap<>(toDelete.getContacts());
 
@@ -99,6 +107,6 @@ public class DeleteAttributeCommand extends Command {
             updatedContacts.remove(ContactType.TELEGRAM);
         }
 
-        return new Person(name, address, tags, updatedContacts, role, timezone);
+        return new Person(name, address, tags, updatedContacts, role, timezone, githubUser);
     }
 }

@@ -27,20 +27,17 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
-
+    private final Stage primaryStage;
+    private final Logic logic;
+    private final HelpWindow helpWindow;
+    private final HelpPanel helpPanel;
+    private final DetailHelpPanel detailHelpPanel;
+    private final Stack<MainPanelName> mainPanelHistory = new Stack<>();
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private DetailPanel detailPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
-    private HelpPanel helpPanel;
-    private DetailHelpPanel detailHelpPanel;
-
     private MainPanelName currentMainPanel;
-    private Stack<MainPanelName> mainPanelHistory = new Stack<>();
-
     @FXML
     private StackPane commandBoxPlaceholder;
 

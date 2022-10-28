@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -24,8 +25,10 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+        + "Either GitHub username or name must be provided."
         + "Parameters: "
-        + PREFIX_NAME + "NAME "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_GITHUB + "GITHUB] "
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
         + "[" + PREFIX_ROLE + "ROLE] "
         + "[" + PREFIX_TIMEZONE + "TIMEZONE] "
@@ -36,6 +39,7 @@ public class AddCommand extends Command {
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_NAME + "John Doe "
+        + PREFIX_GITHUB + "johndoe "
         + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
         + PREFIX_ROLE + "engineer "
         + PREFIX_TIMEZONE + "+8 "

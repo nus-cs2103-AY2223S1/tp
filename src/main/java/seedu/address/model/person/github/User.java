@@ -20,13 +20,13 @@ import seedu.address.model.person.github.repo.RepoList;
 public class User {
 
     public static final String MESSAGE_CONSTRAINTS = "GitHub usernames should be of the format @username "
-            + "and adhere to the following constraints:\n"
-            + "1. Username may only contain alphanumeric characters or hyphens\n"
-            + "2. Username cannot have multiple consecutive hyphens\n"
-            + "3. Username cannot begin or end with a hyphen\n"
-            + "4. Username can have a maximum of 39 characters";
-    private static final String GITHUB_PREFIX = "https://github.com/";
-    private static final String VALIDATION_REGEX = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
+        + "and adhere to the following constraints:\n"
+        + "1. Username may only contain alphanumeric characters or hyphens\n"
+        + "2. Username cannot have multiple consecutive hyphens\n"
+        + "3. Username cannot begin or end with a hyphen\n"
+        + "4. Username can have a maximum of 39 characters";
+    private static final String BASE_GITHUB_URL = "https://github.com/";
+    private static final String VALIDATION_REGEX = "^[a-zA-Z\\d](?:[a-zA-Z\\d]|-(?=[a-zA-Z\\d])){0,38}$";
     private final String username;
     private final String url;
     private final Name name;
@@ -40,15 +40,29 @@ public class User {
      * @param username Username corresponding to user to be added
      */
     public User(String username, UserInfoWrapper userInfoWrapper, UserReposWrapper userReposWrapper) {
-        requireAllNonNull(username);
+        requireAllNonNull(username, userInfoWrapper, userReposWrapper);
         this.username = userInfoWrapper.getUsername();
         this.url = userInfoWrapper.getUrl();
         this.name = new Name(userInfoWrapper.getName().orElse(this.username));
         this.email = userInfoWrapper.getEmail().isPresent() ? new Email(userInfoWrapper.getEmail().get()) : null;
         this.address =
-                userInfoWrapper.getLocation().isPresent() ? new Address(userInfoWrapper.getLocation().get()) : null;
+            userInfoWrapper.getLocation().isPresent() ? new Address(userInfoWrapper.getLocation().get()) : null;
         userInfoWrapper.downloadAvatar();
         this.repoList = getUpdatedRepoList(userReposWrapper);
+    }
+
+    /**
+     * @param username Username for the GitHub User class to be initiated with
+     * @param repoList RepoList for the GitHub User class to be initiated with
+     */
+    public User(String username, RepoList repoList) {
+        requireAllNonNull(username, repoList);
+        this.username = username;
+        this.name = new Name(username);
+        this.url = BASE_GITHUB_URL + username;
+        this.repoList = repoList;
+        this.email = null;
+        this.address = null;
     }
 
     /**
@@ -86,10 +100,10 @@ public class User {
         RepoList repoList = new RepoList();
         for (int repoId : getRepoIds(userReposWrapper)) {
             repoList.add(new Repo(
-                    userReposWrapper.getRepoName(repoId),
-                    userReposWrapper.getRepoUrl(repoId),
-                    userReposWrapper.getRepoForkCount(repoId),
-                    userReposWrapper.getLastUpdated(repoId)
+                userReposWrapper.getRepoName(repoId),
+                userReposWrapper.getRepoUrl(repoId),
+                userReposWrapper.getRepoForkCount(repoId),
+                userReposWrapper.getLastUpdated(repoId)
             ));
         }
         return repoList;
@@ -101,19 +115,26 @@ public class User {
 
     @Override
     public String toString() {
-        return GITHUB_PREFIX + username;
+        return BASE_GITHUB_URL + username;
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof User)
-                && username.equals(((User) other).username)
-                && url.equals(((User) other).url)
-                && name.equals(((User) other).name)
-                && email.equals(((User) other).email)
-                && address.equals(((User) other).address)
-                && repoList.equals(((User) other).repoList);
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof User)) { //this handles null as well.
+            return false;
+        }
+
+        User other = (User) obj;
+
+        return username.equals(other.getUsername())
+            && url.equals(other.getUrl())
+            && name.equals(other.getName())
+            && email.equals(other.getEmail().orElse(null))
+            && address.equals(other.getAddress().orElse(null))
+            && repoList.equals(other.getRepoList());
     }
 
     @Override

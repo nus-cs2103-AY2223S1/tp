@@ -16,8 +16,6 @@ import seedu.address.model.person.github.User;
  * Class representing a singleton GitHub API wrapper
  */
 public class GithubApi {
-
-    //@@author arnav-ag
     private static final String BASE_CHECK_USER_URL = "https://api.github.com/users/";
     private final UnirestInstance unirest;
 
@@ -26,22 +24,22 @@ public class GithubApi {
     }
 
     public static UnirestInstance getDefaultUnirestInstance() {
-        Config config = new Config()
-                .interceptor(new Interceptor() {
-                    @Override
-                    public void onResponse(HttpResponse<?> response, HttpRequestSummary request, Config config) {
-                        if (response.getStatus() == 404) {
-                            throw new UserInvalidException(
-                                    "User does not exist. Please provide an existing GitHub username.");
-                        }
+        Config config = new Config().connectTimeout(2000)
+            .interceptor(new Interceptor() {
+                @Override
+                public void onResponse(HttpResponse<?> response, HttpRequestSummary request, Config config) {
+                    if (response.getStatus() == 404) {
+                        throw new UserInvalidException(
+                            "User does not exist. Please provide an existing GitHub username.");
                     }
+                }
 
-                    @Override
-                    public HttpResponse<?> onFail(Exception e, HttpRequestSummary request, Config config)
-                            throws RepoNotFoundException {
-                        throw new NetworkConnectionException("Error while getting request, unable to get results.");
-                    }
-                });
+                @Override
+                public HttpResponse<?> onFail(Exception e, HttpRequestSummary request, Config config)
+                        throws RepoNotFoundException {
+                    throw new NetworkConnectionException("Error while getting request, unable to get results.");
+                }
+            });
         return new UnirestInstance(config);
     }
 

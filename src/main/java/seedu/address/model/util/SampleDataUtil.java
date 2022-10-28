@@ -32,7 +32,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.EMAIL, "alexyeoh@example.com")
                 ),
                 new Role("Product Manager"),
-                new Timezone("+8")
+                new Timezone("+8"),
+                null
             ),
             new Person(new Name("Bernice Yu"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
@@ -42,7 +43,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.EMAIL, "berniceyu@example.com")
                 ),
                 new Role("Software Engineer"),
-                new Timezone("+8")
+                new Timezone("+8"),
+                null
             ),
             new Person(new Name("Charlotte Oliveiro"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
@@ -52,7 +54,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.EMAIL, "charlotte@example.com")
                 ),
                 new Role("Developer"),
-                new Timezone("+8")
+                new Timezone("+8"),
+                null
             ),
             new Person(new Name("David Li"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
@@ -62,7 +65,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.EMAIL, "lidavid@example.com")
                 ),
                 new Role("Lead Developer"),
-                new Timezone("+8")
+                new Timezone("+8"),
+                null
             ),
             new Person(new Name("Irfan Ibrahim"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
@@ -72,7 +76,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.EMAIL, "irfan@example.com")
                 ),
                 new Role("Senior Developer"),
-                new Timezone("+8")
+                new Timezone("+8"),
+                null
             ),
             new Person(new Name("Roy Balakrishnan"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
@@ -82,7 +87,8 @@ public class SampleDataUtil {
                     new Pair<>(ContactType.EMAIL, "royb@example.com")
                 ),
                 new Role("Consultant"),
-                new Timezone("+8")
+                new Timezone("+8"),
+                null
             )
         };
     }

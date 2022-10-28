@@ -18,8 +18,6 @@ import seedu.address.github.exceptions.FileSaveFailException;
  * Class representing a wrapper over the requests and routes needed to get user information from GitHub
  */
 public class UserInfoWrapper {
-    //@@author arnav-ag
-
     private static final String NAME_KEY = "name";
     private static final String URL_KEY = "html_url";
     private static final String USERNAME_KEY = "login";
@@ -94,10 +92,10 @@ public class UserInfoWrapper {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof UserInfoWrapper)
-                && userInfoRequest.equals(((UserInfoWrapper) other).userInfoRequest)
-                && userAvatarRequest.equals(((UserInfoWrapper) other).userAvatarRequest)
-                && userJson.equals(((UserInfoWrapper) other).userJson);
+            || (other instanceof UserInfoWrapper)
+            && userInfoRequest.equals(((UserInfoWrapper) other).userInfoRequest)
+            && userAvatarRequest.equals(((UserInfoWrapper) other).userAvatarRequest)
+            && userJson.equals(((UserInfoWrapper) other).userJson);
     }
 
     @Override

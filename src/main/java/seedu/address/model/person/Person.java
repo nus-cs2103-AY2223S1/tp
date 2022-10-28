@@ -36,17 +36,21 @@ public class Person implements Comparable<Person> {
      * Every field must be present and not null.
      */
     public Person(Name name, Address address, Set<Tag> tags,
-                  Map<ContactType, Contact> contacts, Role role, Timezone timezone) {
-        requireAllNonNull(name, tags);
-        this.name = name;
+                  Map<ContactType, Contact> contacts, Role role, Timezone timezone, User githubUser) {
+        requireAllNonNull(tags);
+        assert (name != null || githubUser != null);
+
+        this.name = (name == null) ? githubUser.getName() : name;
         this.address = address;
         this.role = role;
         this.timezone = timezone;
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
-        // TODO: CHANGE githubUser in constructor
-        // mock user
-        this.gitHubUser = null;
+        if (!this.contacts.containsKey(ContactType.EMAIL)
+            && (githubUser != null && githubUser.getEmail().isPresent())) {
+            this.contacts.put(ContactType.EMAIL, githubUser.getEmail().get());
+        }
+        this.gitHubUser = githubUser;
     }
 
     public Name getName() {
@@ -57,7 +61,7 @@ public class Person implements Comparable<Person> {
         return Optional.ofNullable(address);
     }
 
-    public Optional<User> getGitHubUser() {
+    public Optional<User> getGithubUser() {
         return Optional.ofNullable(gitHubUser);
     }
 
@@ -95,7 +99,7 @@ public class Person implements Comparable<Person> {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     @Override
@@ -119,12 +123,12 @@ public class Person implements Comparable<Person> {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getContacts().equals(getContacts())
-                && otherPerson.getRole().equals(getRole())
-                && otherPerson.getTimezone().equals(getTimezone())
-                && otherPerson.getGitHubUser().equals(getGitHubUser());
+            && otherPerson.getAddress().equals(getAddress())
+            && otherPerson.getTags().equals(getTags())
+            && otherPerson.getContacts().equals(getContacts())
+            && otherPerson.getRole().equals(getRole())
+            && otherPerson.getTimezone().equals(getTimezone())
+            && otherPerson.getGithubUser().equals(getGithubUser());
     }
 
     @Override
@@ -157,7 +161,7 @@ public class Person implements Comparable<Person> {
         getTimezone().ifPresent(t -> builder.append("; Timezone: " + t));
 
         builder.append("; Github: ")
-                .append(getGitHubUser());
+            .append(getGithubUser());
         return builder.toString();
     }
 

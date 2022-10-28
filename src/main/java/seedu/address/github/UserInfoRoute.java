@@ -14,8 +14,6 @@ import seedu.address.github.exceptions.ResponseParseException;
  * Class representing routes taken to get user information
  */
 public final class UserInfoRoute {
-    //@@author arnav-ag
-
     public static final String BASE_GITHUB_URL = "https://api.github.com";
 
     private static final String BASE_GET_USER_PATH = "/users/";

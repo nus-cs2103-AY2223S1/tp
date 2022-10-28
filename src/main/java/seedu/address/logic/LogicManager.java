@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.github.exceptions.NetworkConnectionException;
+import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -41,7 +43,8 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText,
-                                 MainPanelName mainPanelName) throws CommandException, ParseException {
+                                 MainPanelName mainPanelName) throws CommandException, ParseException,
+            UserInvalidException, NetworkConnectionException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -87,12 +90,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void setSelectedPerson(Person selectedPerson) {
-        model.setSelectedPerson(selectedPerson);
+    public SimpleObjectProperty<Person> getSelectedPerson() {
+        return model.getSelectedPerson();
     }
 
     @Override
-    public SimpleObjectProperty<Person> getSelectedPerson() {
-        return model.getSelectedPerson();
+    public void setSelectedPerson(Person selectedPerson) {
+        model.setSelectedPerson(selectedPerson);
     }
 }

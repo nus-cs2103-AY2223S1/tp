@@ -128,9 +128,9 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean matchesGitHubUser(Person person) {
-        return findSimilarity(keywords, person.getGitHubUser().toString()) > 0.5
+        return findSimilarity(keywords, person.getGithubUser().toString()) > 0.5
                 || StringUtil.containsWordIgnoreCase(
-                        person.getGitHubUser().toString(), keywords);
+                        person.getGithubUser().toString(), keywords);
     }
 
     private boolean matchesTags(Person person) {
