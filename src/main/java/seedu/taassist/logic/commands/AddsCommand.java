@@ -19,9 +19,9 @@ import seedu.taassist.model.session.Session;
 /**
  * Creates Session for a class.
  */
-public class SessionCommand extends Command {
+public class AddsCommand extends Command {
 
-    public static final String COMMAND_WORD = "session";
+    public static final String COMMAND_WORD = "adds";
 
     public static final String MESSAGE_USAGE = "> Creates a new session for a class.\n"
             + "Paramaters: "
@@ -37,9 +37,9 @@ public class SessionCommand extends Command {
     private final Set<Session> sessions;
 
     /**
-     * Creates a SessionCommand to create the specified {@code Session}.
+     * Creates a AddsCommand to create the specified {@code Session}.
      */
-    public SessionCommand(Set<Session> sessions) {
+    public AddsCommand(Set<Session> sessions) {
         requireNonNull(sessions);
         this.sessions = sessions;
     }
@@ -105,8 +105,8 @@ public class SessionCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SessionCommand // instanceof handles nulls
-                && sessions.equals(((SessionCommand) other).sessions));
+                || (other instanceof AddsCommand // instanceof handles nulls
+                && sessions.equals(((AddsCommand) other).sessions));
     }
 
 

@@ -16,10 +16,10 @@ participant "s:Session" as Session MODEL_COLOR
 participant "newClass:ModuleClass" as ModuleClass MODEL_COLOR
 end box
 
-[-> LogicManager : execute("session s/Lab1")
+[-> LogicManager : execute("adds s/Lab1")
 activate LogicManager
 
-LogicManager -> TaAssistParser : parseCommand("session s/Lab1")
+LogicManager -> TaAssistParser : parseCommand("adds s/Lab1")
 activate TaAssistParser
 
 create SessionCommandParser

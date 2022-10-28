@@ -289,9 +289,9 @@ The following commands are only available in **focus mode.**
 
 
 | Command   | Format                                        |
-| --------- |-----------------------------------------------|
+|-----------|-----------------------------------------------|
 | `list`    | `list`                                        |
-| `session` | `session s/SESSION_NAME... [d/DATE]`          |
+| `adds`    | `adds s/SESSION_NAME... [d/DATE]`             |
 | `deletes` | `deletes s/SESSION_NAME...`                   |
 | `grade`   | `grade INDEX... s/SESSION_NAME g/GRADE_VALUE` |
 | `scores`  | `scores s/SESSION_NAME`                       |
@@ -314,7 +314,7 @@ Format: `list`
 * Note that `list` has different behavior in focus mode and outside focus mode.
 * In the focus mode, only students within the class will be listed.
 
-### Create session: `session`
+### Create session: `adds`
 
 {% include note.html content="
 
@@ -322,14 +322,14 @@ Creates one or more sessions in the class.
 
 " %}
 
-Format: `session s/SESSION_NAME... [d/DATE]`
+Format: `adds s/SESSION_NAME... [d/DATE]`
 
 - Creates sessions with the specified names sharing the same `DATE`. If the `DATE` field is empty, the current date will be used.
 - `DATE` field should follow the format `yyyy-MM-dd`
 
 Example:
 
-- `session s/Lab1 s/Tutorial1 d/2022-08-11` will create sessions `Lab1` and `Tutorial1` on 11  August 2022.
+- `adds s/Lab1 s/Tutorial1 d/2022-08-11` will create sessions `Lab1` and `Tutorial1` on 11  August 2022.
 
 ### Delete sessions: `deletes`
 
@@ -362,7 +362,7 @@ Format: `grade INDEX... s/SESSION_NAME g/GRADE_VALUE`
 
 Example:
 
-* `session s/Lab1 d/06-10-2022` followed by `grade 1 2 s/Lab1 g/93` will give the students at index 1 and 2 a grade of 93 for the session `Lab1`.
+* `adds s/Lab1 d/06-10-2022` followed by `grade 1 2 s/Lab1 g/93` will give the students at index 1 and 2 a grade of 93 for the session `Lab1`.
 
 ### Show students' grades for a session: `scores`
 

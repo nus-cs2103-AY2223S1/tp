@@ -344,10 +344,10 @@ As `ModuleClass` is immutable, there exists no methods to add/delete/modify the 
 The only way to do so is by constructing new `ModuleClass` instances, then replacing the new instance over the old one by
 calling `Model#setModuleClass(ModuleClass target, ModuleClass newModuleClass)`.
 
-For example, the following sequence diagram shows how the command `session s/Lab1`
+For example, the following sequence diagram shows how the command `adds s/Lab1`
 creates a `Session` named "Lab1" and adds it inside the focused class.
 
-<img src="images/SessionCommandSequenceDiagram.png" width="1000"/>
+<img src="images/AddsCommandSequenceDiagram.png" width="1000"/>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The above diagram assumes that `Model` is currently in focus mode and 

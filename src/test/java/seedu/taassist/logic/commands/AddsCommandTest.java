@@ -19,11 +19,11 @@ import seedu.taassist.testutil.ModuleClassBuilder;
 import seedu.taassist.testutil.SessionBuilder;
 
 
-public class SessionCommandTest {
+public class AddsCommandTest {
 
     @Test
     public void constructor_nullSession_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SessionCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddsCommand(null));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class SessionCommandTest {
         ModelStubNeverInFocusMode modelStub = new ModelStubNeverInFocusMode();
         Session validSession = new SessionBuilder().withName(VALID_SESSION_LAB1).build();
         Set<Session> validSessions = new HashSet<>(List.of(validSession));
-        assertThrows(CommandException.class, () -> new SessionCommand(validSessions).execute(modelStub));
+        assertThrows(CommandException.class, () -> new AddsCommand(validSessions).execute(modelStub));
     }
 
     @Test
@@ -40,9 +40,9 @@ public class SessionCommandTest {
         Session validSession1 = new SessionBuilder().withName("lab1").build();
         Session validSession2 = new SessionBuilder().withName("tut1").build();
         Set<Session> validSessions = new HashSet<>(List.of(validSession1, validSession2));
-        SessionCommand command = new SessionCommand(validSessions);
+        AddsCommand command = new AddsCommand(validSessions);
         CommandResult commandResult = command.execute(modelStub);
-        assertEquals(SessionCommand.getCommandMessage(validSessions, new HashSet<>()),
+        assertEquals(AddsCommand.getCommandMessage(validSessions, new HashSet<>()),
                 commandResult.getFeedbackToUser());
     }
 
