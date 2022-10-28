@@ -68,7 +68,6 @@ public class BatchAddCommand extends Command {
                         arg += PREFIX_LIST[i] + data[i] + " ";
                     }
                 }
-                System.out.println(arg);
                 addCommandList.add(new AddCommandParser().parse(arg));
             }
         } catch (FileNotFoundException e) {
