@@ -11,22 +11,22 @@ Choose a section from the table of contents below to learn more about how RC4HDB
 
 ## **Table of Contents**
 
-* [Acknowledgements](#acknowledgements-outdated)
-* [Getting started](#setting-up-getting-started-outdated)
+* [Acknowledgements](#acknowledgements)
+* [Getting started](#setting-up-getting-started)
 * [Design](#design)
-    * [Architecture](#architecture-outdated)
+    * [Architecture](#architecture)
     * [Ui](#ui-component)
-    * [Logic](#logic-component-outdated)
+    * [Logic](#logic-component)
     * [Model](#model-component)
-    * [Storage](#storage-component-outdated)
+    * [Storage](#storage-component)
     * [Common classes](#common-classes)
-* [Implementation](#implementation-outdated)
+* [Implementation](#implementation)
     * [Resident class](#the-resident-class)
     * [Displaying results](#changes-in-displaying-results)
     * [Show/Hide fields](#showhide-feature-for-resident-fields)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops-outdated)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: requirements](#appendix-requirements)
     * [Product scope](#product-scope)
     * [User stories](#user-stories)
@@ -54,7 +54,7 @@ a starting point for Software Engineering (SE) students enrolled in CS2103T.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started** (OUTDATED)
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -83,7 +83,7 @@ using a computer. For users who type fast, RC4HDB will be highly efficient and q
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture (OUTDATED)
+### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -128,7 +128,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram2.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTableView`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -141,14 +141,10 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Resident` object residing in the `Model`.
 
-<<<<<<< HEAD
 
 ### Logic component
 
-=======
-### Logic component
 
->>>>>>> 89921c5cf73fac81bd27fab184dfccc8ade094e5
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
@@ -157,7 +153,6 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `Rc4hdbParser` class to parse the user command.
-<<<<<<< HEAD
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -166,13 +161,6 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-=======
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-   The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-   ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
->>>>>>> 89921c5cf73fac81bd27fab184dfccc8ade094e5
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -226,19 +214,14 @@ The `Storage` component,
 
 The ```DataStorage``` class inherits ```ResidentBookStorage``` and ```VenueBookStorage```. The functionalities
 of both these classes can be extended into DataStorage, which is applied by the ```DataStorageManager``` class.
-<<<<<<< HEAD
 
 ### Common classes
 
-=======
-
-### Common classes
->>>>>>> 89921c5cf73fac81bd27fab184dfccc8ade094e5
 Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation** (OUTDATED)
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -556,7 +539,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops** (OUTDATED)
+## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
