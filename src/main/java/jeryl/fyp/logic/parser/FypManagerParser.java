@@ -20,6 +20,7 @@ import jeryl.fyp.logic.commands.FindStudentNameCommand;
 import jeryl.fyp.logic.commands.FindTagsCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
+import jeryl.fyp.logic.commands.ListDeadlineCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
 import jeryl.fyp.logic.commands.SortProjectNameCommand;
 import jeryl.fyp.logic.commands.SortProjectStatusCommand;
@@ -102,6 +103,9 @@ public class FypManagerParser {
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case ListDeadlineCommand.COMMAND_WORD:
+            return new ListDeadlineCommandParser().parse(arguments);
 
         case SortProjectNameCommand.COMMAND_WORD:
         case SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD:
