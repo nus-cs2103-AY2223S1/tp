@@ -52,9 +52,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletei 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![ArchitectureSequenceDiagram](images/developer-guide/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -71,9 +71,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/developer-guide/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItemListPanel`, `OrderListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Order` and `Item` object residing in the `Model`.
 
 ### Logic component
 
@@ -90,19 +90,19 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![LogicClassDiagram](images/developer-guide/LogicClassDiagram.png)
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it uses the `TrackOParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddOrderCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletei 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletei 1` Command](images/developer-guide/DeleteItemSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,25 +110,26 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `TrackOParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `TrackOParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![ModelClassDiagram](images/developer-guide/ModelClassDiagram.png)
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the TrackO data i.e., all `Item` and `Order` objects (which are contained in an `InventoryList` and `OrderList` object respectively).
+* stores the currently 'selected' `Item` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently selected `Order` objects (e.g., results of a search query) as a separate _filtered_ list, which is wrapped within a _sorted_ list (`Order` objects can be sorted by time of creation), which is exposed to outsiders as an unmodifiable `ObservableList<Order>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TrackO`, which `Item` references. This allows `TrackO` to only require one `Tag` object per unique tag, instead of each `Item` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+![BetterModelClassDiagram](images/developer-guide/BetterModelClassDiagram.png)
 
 </div>
 
@@ -137,11 +138,11 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/developer-guide/StorageClassDiagram.png)
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both TrackO data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TrackOStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -158,13 +159,16 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`. 
+The add item command will be executed by `AddItemCommand`. Items added will be stored in `InventoryList`. 
 
 Given below is an example usage scenario and how the add item mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `ItemsList` will contain sample data.
+Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `InventoryList` will contain sample data.
 
-Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
+Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. 
+The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. 
+
+The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
 
@@ -271,33 +275,40 @@ The edit item feature allows the user to edit an `Item` currently being tracked 
 
 The edit item command `editi` is supported by the `EditItemCommand`. It extends `Command`.
 
-It is implemented through the `Logic`, `Model` and `Storage` components. The `Logic`
-component parses the user input, the `Model` component then performs the edit on the target item, the `Storage`
-component then saves the edited data into `data/trackO.json`.
+The command is implemented through the `Logic` and `Model` components. The `Logic`
+component parses the user input, the `Model` component then performs the edit on the target `Item`.
 
-Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls `LogicCommand#execute()` which calls
-`TrackOParser#parseCommand`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser`.
-`EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target index and the
-appropriate `EditItemDescriptor` as input. The `EditItemDescriptor` contains information which the newly edited `Item`
+Step 1: The user inputs the command `editi 1 i/Chair q/20`. This calls:
+1. `LogicManager#execute()`
+2. `TrackOParser#parseCommand()`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser` object.
+3. `EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target `Index` and the
+appropriate `EditItemDescriptor` as input.
+
+The `EditItemDescriptor` contains information which the newly edited `Item`
 should have and is used in the creation of the new `Item` object. In this case, the `EditItemDescriptor` contains a new
-`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing item at the
-target index 1.
+`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing `Item` at the
+target `Index` 1.
 
-Step 2. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
-checks if this `Item` already exists in the inventory list by using `Model#has()`. If it already exists, a
-`CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`. An item already exists if there is another item in the
-inventory list with same `ItemName`. `Item#isSameItem` returns true when both `Item` have the same `ItemName`. This is
+Step 2:. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
+checks if this `Item` already exists in the inventory list by using `Model#hasItem()`. If it already exists, a
+`CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`.
+
+An item already exists if there is another item in the
+inventory list with same `ItemName`. `Item#isSameItem()` returns true when both `Item` have the same `ItemName`. This is
 because having 2 `Item` with the same `ItemName` can be confusing to the user and this safeguards the user from such a
 situation.
 
 Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `Model#setItem()`,
 successfully executing the edit item command in the `Model`.
 
-Step 4. `LogicManager#execute()` then calls `Storage#saveTrackO()` which saves the new `Model` to the data file.
-
 The sequence diagram below illustrates this process.
 
-_**Sequence diagram to be added here**_
+![EditItemSequenceDiagram](images/developer-guide/EditItemSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `EditItemCommandParser` should end at 
+the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the 
+end of diagram.
+</div>
 
 ### Order Management
 

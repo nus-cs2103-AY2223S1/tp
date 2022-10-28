@@ -48,6 +48,9 @@ TrackO is a **desktop app built for small business owners to help them manage or
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g.`p/`, `i/`, etc.) 
+and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**. 
+
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
@@ -162,20 +165,36 @@ Format: `listo`
 
 ### Locating orders by keyword: `findo`
 
-Finds order with item names containing any of the given keywords.
+Finds an order with item names containing any of the given keywords.
 
-Format: `findo KEYWORD [MORE_KEYWORDS]`
+Format: `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`
 
-* The search is case-insensitive. e.g. `keychain` will match `Keychain`
+* All 4 flags (`-d`, `-D`, `-p`, `-P`) are optional
+  * `-d`: search for orders which are delivered
+  * `-D`: search for orders which are not delivered
+  * `-p`: search for orders which are paid
+  * `-P`: search for orders which are not paid
+* There are 3 prefixes (`a/`, `n/`, `i/`). At least one of the 3 prefixes must be used in the `findo` command
+  * `a/`: searches by address
+  * `n/`: searches by name
+  * `i/`: searches by order item
+* A prefix is only expected once in the command but if specified multiple times, only the last occurrence of 
+the parameter will be taken in. Eg. `findo a/Clementi a/Geylang` will search for orders with `Geylang` 
+in their address.
+<br><br/>
+* The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
 * The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
-* Only the name is searched.
 * Only full words will be matched e.g. `keychains` will not match `keychain`
 * Orders matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `apple keychain` will return `apple painting`, `banana keychain`
 
 Examples:
-* `findo keychain` returns `banana keychain` and `keychain`
-* `findo apple keychain` returns `apple painting`, `banana keychain`<br>
+* `findo n/Alex` returns all orders with the name Alex 
+* `findo n/Alex a/Clementi` returns all orders with the name Alex and an address including the word Clementi
+* `findo n/Alex Barbara Clyde a/Clementi` returns all orders with the name Alex, Barbara or Clyde and an address including the word Clementi
+* `findo n/Alex Barbara a/Clementi Geylang` returns all orders with the name Alex or Barbara and an address including the word Clementi or Geylang
+* `findo -d n/Alex` returns all orders with the name Alex which have been delivered
+* `findo -d -p n/Alex` returns all orders with Alex which have been paid and delivered
 
 ### Sorting orders by time created: `sorto`
 
@@ -183,13 +202,13 @@ Sorts the displayed list of orders by the time at which they were created.
 
 Format: `sorto new` or `sorto old`
 
-* The keyword `new` and `old` are case-insensitive.
-* `sorto new` sorts the order list such that newest orders are at the top
-* `sorto old` sorts the order list such that oldest orders are at the top
+* The keywords `new` and `old` are case-insensitive.
+* `sorto new` sorts the order list such that the newest orders are at the top.
+* `sorto old` sorts the order list such that the oldest orders are at the top.
 
 Examples:
 * `listo` followed by `sorto old` sorts all orders such that oldest orders are at the top
-* `findo Chair` followed by `sorto new` sorts all orders found using `findo Chair` such that newest orders are at the 
+* `findo i/Chair` followed by `sorto new` sorts all orders found using `findo i/Chair` such that newest orders are at the 
 top
 
 
@@ -205,7 +224,7 @@ Format: `deleteo INDEX`
 
 Examples:
 * `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
-* `findo Paper` followed by `deleteo 1` deletes the 1st item in the results of the `findo` command.
+* `findo i/Paper` followed by `deleteo 1` deletes the 1st item in the results of the `findo i/Paper` command.
 * `sorto new` followed by `deleteo 1` deletes the most recently created order
 
 ### Editing details of an order: `edito`
@@ -215,6 +234,7 @@ Edits an existing order in the order list.
 Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]`
 
 * Edits the order at the specified `INDEX`.
+* Only orders which are not marked as `paid` or `delivered` can be edited. 
 * This feature is case-insensitive.
 * The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -237,7 +257,7 @@ Note:
 
 Examples:
 * `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`
-  Edits the name, phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`, 
+  Edits the name, phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`,
   and `123 Apartment Unit, #05-11` respectively.
 * When the third order in the list has `Chairs` in quantity `5`, `edito 3 i/chairs q/0` 
   will remove the item from the order list. 
@@ -265,7 +285,7 @@ Format: `exit`
 | **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                              |
 | **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br>e.g. `i/Pillow q/2` <br>followed by `done` or `cancel` |
 | **List All Orders**          | `listo`                                                                                                                                                                                                                   |
-| **Find Order(s)**            | `findo KEYWORD [MORE_KEYWORDS]`                                                                                                                                                                                           |
+| **Find Order(s)**            | `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`, where all flags are optional and only 1 prefix is compulsory <br> e.g. `findo -d i/keychain n/Alex`|
 | **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |
 | **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                    |                                                                                                                                                                              
 | **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                |
