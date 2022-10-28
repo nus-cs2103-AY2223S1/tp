@@ -509,7 +509,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
-**Use case 7: Exiting the program**
+**Use case 7: Sort food stalls**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to sort food stalls by specified criteria.
+3. FoodWhere displays all food stalls, sorted by the specified criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. FoodWhere detects an error in the entered data. (Invalid criteria)
+  * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
+
+    Use case ends.
+
+****
+
+**Use case 8: Sort food reviews**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to sort food reviews by specified criteria.
+3. FoodWhere displays all food reviews, sorted by the specified criteria.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. FoodWhere detects an error in the entered data. (Invalid criteria)
+    * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
+
+      Use case ends.
+
+****
+
+**Use case 9: Exiting the program**
 
 **Preconditions**
 - User is currently using FoodWhere.
@@ -523,7 +561,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
-**Use case 8: Clearing data**
+**Use case 10: Clearing data**
 
 **Preconditions**
 - User is currently using FoodWhere.
