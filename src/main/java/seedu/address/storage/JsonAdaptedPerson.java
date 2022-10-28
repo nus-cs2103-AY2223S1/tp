@@ -190,7 +190,6 @@ class JsonAdaptedPerson {
 
         final Social modelSocial = getModelSocial(social + " .");
 
-
         return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelTutorial, modelAddress, modelTags,
                 modelSocial, modelGroups);
     }
