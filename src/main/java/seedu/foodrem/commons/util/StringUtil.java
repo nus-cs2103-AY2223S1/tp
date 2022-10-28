@@ -157,7 +157,7 @@ public class StringUtil {
         }
 
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedArgument)) {
-            throw new ParseException("The index of an item should be a positive number.");
+            throw new ParseException(Messages.MESSAGE_NON_POSITIVE_INDEX);
         }
 
         Index index;
