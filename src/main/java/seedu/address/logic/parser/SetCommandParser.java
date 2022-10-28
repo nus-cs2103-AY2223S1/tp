@@ -98,7 +98,12 @@ public class SetCommandParser implements Parser<SetCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
-            setPersonDescriptor.setGithubUser(ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get()));
+            try {
+                setPersonDescriptor.setGithubUser(
+                    ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get()));
+            } catch (UserInvalidException | NetworkConnectionException e) {
+                throw new ParseException(e.getMessage());
+            }
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(setPersonDescriptor::setTags);

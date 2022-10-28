@@ -17,6 +17,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.address.github.exceptions.NetworkConnectionException;
+import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -61,7 +63,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         User githubUser = null;
 
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
-            githubUser = ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get());
+            try {
+                githubUser = ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get());
+            } catch (UserInvalidException | NetworkConnectionException e) {
+                throw new ParseException(e.getMessage());
+            }
         }
 
         Name name = null;
