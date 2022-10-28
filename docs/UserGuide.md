@@ -4,8 +4,30 @@ title: User Guide
 ---
 
 bobaBot is a **desktop application** for managing customers’ membership details. It is **optimized for Command Line Interface (CLI) while retaining some benefits of the Graphical User Interface (GUI)**. If you are a cashier working at a bubble tea shop and can type fast, bobaBot can help you easily find and manage your customers’ membership information as compared to other GUI applications.
-* Table of Contents
-  {:toc}
+
+---
+
+## Table of Contents
+
+1. [Quick start](#quick-start) <br>
+1. <details><summary><a href="#4-features">Features</a></summary>
+      2.1. <a href="#viewing-help--help">Help</a><br>
+      2.2. <a href="#adding-a-customer-add">Add</a><br>
+      2.3. <a href="#editing-a-customers-details-edit">Edit</a><br>
+      2.4. <a href="#increasing-a-customers-reward-points-incr">Increase</a><br>
+      2.5. <a href="#decreasing-a-customers-reward-points-decr">Decrease</a><br>
+      2.6. <a href="#listing-all-customers--list">List</a><br>
+      2.7. <a href="#locating-customers-by-name-find">Find</a><br>
+      2.8. <a href="#deleting-a-customer--delete">Delete</a><br>
+      2.9. <a href="#undo-a-command--undo">Undo</a><br>
+      2.10. <a href="#redo-an-undocommand--redo">Redo</a><br>
+      2.11. <a href="#clearing-all-entries--clear">Clear</a><br>
+      2.12. <a href="#calculate-calc">Calculate</a><br>
+      2.13. <a href="#gui-calculator-calc-gui">Calculator</a><br>
+      2.14. <a href="#exiting-the-program--exit">Exit</a><br>
+   </details>
+1. [FAQ](#faq) <br>
+1. [Command summary](#command-summary) <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -190,18 +212,6 @@ Format: `redo`
 Clears all Customers from the bobaBot.
 
 Format: `clear`
-
-### Undo the last edit : `undo`
-
-Revert the data to the version prior the last edit.
-
-Format: `undo`
-
-### Redo the last edit : `redo`
-
-Redo the last edit.
-
-Format: `redo`
 
 ### Calculate: `calc`
 
