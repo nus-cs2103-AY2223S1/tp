@@ -1,24 +1,46 @@
 package seedu.address.model.util;
 
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.imageio.ImageIO;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.CompletionStatus;
+import seedu.address.model.commission.Deadline;
+import seedu.address.model.commission.Fee;
+import seedu.address.model.commission.Title;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
+import seedu.address.model.iteration.Date;
+import seedu.address.model.iteration.Feedback;
+import seedu.address.model.iteration.Iteration;
+import seedu.address.model.iteration.IterationDescription;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.Storage;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Customer[] getSampleCustomers() {
-        return new Customer[] {
+    private static final Random random = new Random();
+    private static final String PLACEHOLDER_IMAGE_PATH = System.getProperty("user.dir")
+            + "/src/main/resources/images/placeholderart.png";
+
+    public static Customer[] getSampleCustomers(Storage storage) {
+        Customer[] customers = new Customer[] {
             new Customer.CustomerBuilder(new Name("Alex Yeoh"), new Phone("87438807"),
                     new Email("alexyeoh@example.com"), getTagSet("friends"))
                     .setAddress(new Address("Blk 30 Geylang Street 29, #06-40")).build(),
@@ -38,11 +60,57 @@ public class SampleDataUtil {
                     new Email("royb@example.com"), getTagSet("colleagues"))
                     .setAddress(new Address("Blk 45 Aljunied Street 85, #11-31")).build()
         };
+
+
+        try {
+            for (Customer customer: customers) {
+                for (int i = 1; i <= 3; i++) {
+                    addCommissionToCustomer(customer, storage, i);
+                }
+            }
+        } catch (IOException e) {
+            // shouldn't happen
+            System.out.println("Failed to load placeholder image.");
+            e.printStackTrace();
+        }
+
+        return customers;
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
+    /**
+     * Adds a sample commission with 3 iterations to a customer.
+     * @param customer Customer to add commissions to.
+     * @param storage Storage to save placeholder images to for a commission's iterations.
+     * @param index Index of the commission.
+     * @throws IOException If the placeholder image cannot be found.
+     */
+    public static void addCommissionToCustomer(Customer customer, Storage storage, int index) throws IOException {
+        Commission commission = new Commission.CommissionBuilder(
+                new Title(customer.getName().fullName + " Commission " + index),
+                new Fee(random.nextDouble() * 20),
+                new Deadline(LocalDate.now()),
+                new CompletionStatus(random.nextBoolean()),
+                new HashSet<>()).build(customer);
+
+        FileInputStream fis = new FileInputStream(PLACEHOLDER_IMAGE_PATH);
+        BufferedImage placeholderImage = ImageIO.read(fis);
+        for (int j = 1; j <= 3; j++) {
+            Path imageCopyPath = storage.getRandomImagePath();
+            storage.saveImage(placeholderImage, imageCopyPath);
+            Iteration iteration = new Iteration(
+                    new Date(LocalDate.now()),
+                    new IterationDescription("iteration description " + j),
+                    imageCopyPath,
+                    new Feedback("feedback " + j)
+            );
+            commission.addIteration(iteration);
+        }
+        customer.addCommission(commission);
+    }
+
+    public static ReadOnlyAddressBook getSampleAddressBook(Storage storage) {
         AddressBook sampleAb = new AddressBook();
-        for (Customer sampleCustomer : getSampleCustomers()) {
+        for (Customer sampleCustomer : getSampleCustomers(storage)) {
             sampleAb.addCustomer(sampleCustomer);
         }
         return sampleAb;
@@ -56,5 +124,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
