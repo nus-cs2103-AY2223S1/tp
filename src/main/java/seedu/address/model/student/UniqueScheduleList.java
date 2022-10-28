@@ -16,10 +16,10 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
 /**
  * A list of students that enforces uniqueness between its elements and does not allow nulls.
  * A student is considered unique by comparing using {@code Student#isSameStudent (Student)}.
- * As such, adding and updating of students uses Student#isSameStudent (Student) for equality so as to ensure that
+ * As such, adding and updating of students uses Student#isSameStudent (Student) for equality to ensure that
  * the student being added or updated is unique in terms of identity in the UniqueStudentList.
- * However, the removal of a student uses Student#equals(Object) so as to ensure that the student with exactly the same fields will be removed.
- *
+ * However, the removal of a student uses Student#equals(Object)
+ * to ensure that the student with exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
  * @see Student#isSameStudent (Student)
@@ -107,7 +107,6 @@ public class UniqueScheduleList implements Iterable<Student> {
      *  and returns a {@code List<Student>} which contains the filtered student list.
      */
     private List<Student> getScheduleList() {
-
         internalList.stream()
                 .forEach(student -> student.updateDisplayClass(LocalDate.now()));
         return internalList
