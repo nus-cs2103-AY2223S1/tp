@@ -11,8 +11,8 @@ import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.logic.commands.FindPriceCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.PriceContainsKeywordsPredicate;
+import eatwhere.foodguide.model.eatery.Eatery;
 
 
 /**

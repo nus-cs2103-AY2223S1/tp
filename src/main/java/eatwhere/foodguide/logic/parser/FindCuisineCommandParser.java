@@ -11,8 +11,9 @@ import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.logic.commands.FindCuisineCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.CuisineContainsKeywordsPredicate;
+import eatwhere.foodguide.model.eatery.Eatery;
+
 
 /**
  * Parses input arguments and creates a new FindLocationCommand object
