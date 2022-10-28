@@ -187,10 +187,10 @@ The `Model` component,
 The diagrams given below contains more details on how each `Buyer`, `Supplier`, 
 `Deliverer`, `Order` and `Pet` objects are stored in the Model component. <br>
 
-For more information on what each object represents, refer to the [Glossary](#glossary) section. <br>
+For more information on what each object represents, refer to the [Glossary](#glossary) section. <br><br>
 
 
-**`Buyer` and `Deliverer` Class**
+**`Buyer` and `Deliverer` Class**<br>
 
 Both the `Buyer` and `Deliverer` classes inherit from the `Person` class and have an orders attribute. 
 Each order has an `UniqueId` for easier identification. Hence, the orders are stored as a collection of `UniqueId` 
@@ -198,11 +198,11 @@ objects to easily access unique orders. <br>
 
 Given below is the class diagram for the **`Buyer`** Class: <br>
 
-<img src="images/ModelBuyerObjectImplementation.png" width="600" /> <br>
+<img src="images/ModelBuyerObjectImplementation.png" width="600" /> <br><br>
 
 
 
-**`Supplier` Class**
+**`Supplier` Class**<br>
 
 Similar to the `Buyer` and `Deliverer` class, the `Supplier` class inherits from the `Person` class. However, instead of 
 an orders attribute, the `Supplier` class has a pets attribute to represent the pets sold by the `Supplier`.
@@ -211,16 +211,16 @@ Similar to an order, each pet has an `UniqueId` for easier identification. Hence
 
 Given below is the class diagram for the **`Supplier`** Class: <br>
 
-<img src="images/ModelSupplierObjectImplementation.png" width="600" /> <br>
+<img src="images/ModelSupplierObjectImplementation.png" width="600" /> <br><br>
 
-**`Order` Class**
+**`Order` Class**<br>
 
 The `Order` class consists of several attributes. The most important attribute to take note of is the Buyer as 
 every order should be made by a Buyer. Given below is the class diagram for the **`Order`** Class: <br>
 
-<img src="images/ModelOrderObjectImplementation.png" width="800" /> <br>
+<img src="images/ModelOrderObjectImplementation.png" width="800" /> <br><br>
 
-**`Pet` Class**
+**`Pet` Class**<br>
 
 The `Pet` class consists of several attributes. The most important attribute to take note of is the Supplier as
 every pet should be sold by a Supplier. Given below is the class diagram for the **`Pet`** Class: <br>
