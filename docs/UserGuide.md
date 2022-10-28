@@ -33,7 +33,7 @@ food options in NUS and thus make an informed decision on where to eat._
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type commands into the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`help`** : Lists all commands.
@@ -50,7 +50,7 @@ food options in NUS and thus make an informed decision on where to eat._
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are parameters to be supplied by the user.<br>
   e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n Pasta Express`.<br><br>
 
 * Items in square brackets are optional.<br>
@@ -63,10 +63,10 @@ Note:  ` ` (i.e. 0 times) is only allowed if there are square brackets, e.g. `[
 * Prefixed parameters _(e.g. -n, -p, -t, etc.)_ can be in any order.<br>
   e.g. if the command specifies `-n NAME -t TAG`, `-t TAG -n NAME` is also acceptable.<br><br>
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you have specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `-n nameA -n nameB`, only `-n nameB` will be taken.<br><br>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`) will be ignored.<br>
+* Extra parameters for commands that do not take in parameters (such as `help`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 <br>
@@ -76,7 +76,7 @@ Note:  ` ` (i.e. 0 times) is only allowed if there are square brackets, e.g. `[
 ### Help command : `help`
 
 _Lists out all the available commands & their functions as a pop-out window. <br>
-Also contains a link to this User Guide._
+The window also contains a link to this User Guide._
 
 **Format:** `help`
 
