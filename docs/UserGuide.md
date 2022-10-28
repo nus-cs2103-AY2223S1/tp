@@ -6,11 +6,16 @@ title: User Guide
 {:toc}
 ---
 
+![banner](images/checkUp_banner.png)
+
 **checkUp** is a **desktop app for managing patient details, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient management
 tasks done faster than traditional GUI apps.
 
-
+checkUp stores patient details directly on your device, allowing you to keep track of your patients' details without an
+internet connection. You can store details such as patient name, address, phone number, email, medical history, upcoming
+appointments and past appointments. You can also add medication tags to your patients to keep track of their long-term
+medication history.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -18,15 +23,15 @@ tasks done faster than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
+2. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
+3. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
 
-1. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app
-   contains some sample data.<br>
+4. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup. 
+5. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
@@ -40,7 +45,7 @@ tasks done faster than traditional GUI apps.
 
     * **`view`** `1` : Views the 1st contact shown in the current list.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,7 +83,11 @@ Format: `view INDEX`
 
 - Views the patient at the specified INDEX.
 - The index corresponds to the index number shown in the displayed patient list on the left.
-- The index must be a positive integer 1, 2, 3, …​
+- The index must be a positive number 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Note: You can also double click on a patient in the list to view their details!
+</div>
 
 Example:
 - `list` followed by `view 1` views the first patient in the list.
@@ -89,6 +98,8 @@ Example:
 Adds a patient to checkUp.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT pt/PATIENT TYPE hw/HOSPITAL_WING fn/FLOOR_NUMBER wn/WARD_NUMBER [m/MEDICATION]…​`
+
+* Medication tags are for assigning long-term medication to patients.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of medications (including 0)!
@@ -157,7 +168,7 @@ Finds all the patients in that particular floor number.
 
 Format: `get /fn FLOOR_NUMBER`
 
-* `Floor number` only allows positive integer.
+* `Floor number` only allows positive numbers. 
 * All the patients in that floor number will be returned.
 * The floor number refers to the floor number the patient is on. e.g. `get /fn 2` will return `John` `Peter` `Mary`
 
@@ -225,7 +236,7 @@ Format: `delete INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive number** 1, 2, 3, …​
 
 Examples:
 
@@ -238,9 +249,11 @@ Gets total number of patients.
 
 Format: `count`
 
-* A count of all existing patients in the hospital will be returned.
-* The count will be a non-negative integer (>= 0). eg. `count` returns `452` when there are 452 patients noted within
-  the hospital.
+* A count of all existing patients in the hospital will be displayed, along with a list of long-term medications that
+  are being prescribed to patients, with the number of patients being prescribed each medication.
+* The count will be a non-negative number (>= 0). eg. `count` displays `452` when there are 452 patients noted within
+  the hospital. If 32 of those patients are on long-term antidepressants, the count will also display
+  `antidepressants: 32`.
 
 ### Create past appointment for patient: `appt`
 
@@ -250,7 +263,7 @@ Format: `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICINE]...`
 
 * Past appointment is created for a patient at the specified `INDEX`.
 * The index refers to the index number showed in the displayed patient list.
-* The index **must be a positive integer**, eg. 1, 2, 3...
+* The index **must be a positive number**, eg. 1, 2, 3...
 * The date can only be input in the `dd-MM-yyyy` format.
 * The `DATE` and `DIAGNOSIS` fields **cannot be empty**.
 * The `MEDICINE` field(s) is/are optional. Use multiple `m/` prefixes if multiple medicines are prescribed.
@@ -269,7 +282,7 @@ Format: `consult INDEX diag/DIAGNOSIS [m/MEDICINE]...`
 
 * Past appointment is created for a patient at the specified `INDEX`.
 * The index refers to the index number showed in the displayed patient list.
-* The index **must be a positive integer**, eg. 1, 2, 3...
+* The index **must be a positive number**, eg. 1, 2, 3...
 * The `DIAGNOSIS` field **cannot be empty**.
 * The `MEDICINE` field(s) is/are optional. Use multiple `m/` prefixes if multiple medicines are prescribed.
 * The date of the appointment will be the current date.
@@ -287,7 +300,7 @@ Format: `delappt INDEX`
 
 * Most recent past appointment is deleted for a patient at the specified `INDEX`.
 * The index refers to the index number showed in the displayed patient list.
-* The index **must be a positive integer**, eg. 1, 2, 3...
+* The index **must be a positive number**, eg. 1, 2, 3...
 
 Example:
 * `list` followed by `delappt 2` deletes the most recent past appointment for the 2nd patient in checkUp.
@@ -310,7 +323,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT OF KIN] [pt/PATIENT T
         [fn/FLOOR NUMBER] [wn/WARD NUMBER] [upcoming/DATE] [m/MEDICATION]...`
 
 * Edits the details of the patient at the specified `INDEX`. The index refers to the index number shown in the
-displayed patient list. The index **must be a positive integer** 1, 2, 3, ...
+displayed patient list. The index **must be a positive number** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing medication, the existing medication of the patient will be removed i.e adding of medication is not
@@ -340,7 +353,7 @@ any data created or deleted from the application!
 ### Editing the data file
 
 * checkUp stores data in the JSON format, improving readability and allowing for manually editing the data file.
-* The data file can be found in `data/addressbook.json` in the home folder where checkUp's `jar` file is stored.
+* The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
 
 --------------------------------------------------------------------------------------------------------------------

@@ -5,21 +5,21 @@ title: Kartikeya's Project Portfolio Page
 
 # Project: AddressBook Level 3
 
-## Overview
+### Overview
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 Given below are my contributions to the project.
 
-## Summary of Contributions
+### Summary of Contributions
 
-### Code contributed
+#### Code contributed
 RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxrt&breakdown=true)
 
-### Enhancements implemented
+#### Enhancements implemented
 
 - Obtaining count of all patients: `count`
-  - What it does: Returns count of all patients in the application.
+  - What it does: Returns count of all patients in the application, along with prescription counts for long-term medicine.
   - Justification: Allows medical staff to easily keep track of total patient count.
 - Creating past appointments for patients: `appt`
   - What it does: Creates a record of a past appointment for a patient in the application, with details such as the date
@@ -31,17 +31,18 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Creating upcoming appointments for patients: `edit upcoming/`
   - What it does: Schedules a future appointment for a patient.
   - Justification: Allows medical staff to keep track of when a patient is next due for a visit.
+- UI changes to PersonViewPanel to beautify it from a rudimentary text layout.
+- Created application [logo](../images/checkUp_512.png).
 
-### Contributions to the UG
+#### Contributions to the UG
 
-- Added user documentation for `count`.
-- Renamed all instances of "person(s)" to "patient(s)" for consistency.
-- Updated introductory line to match checkUp's identity.
+- Documented `count`, `appt`, `view`, `delappt` commands.
+- Updated documentation for `edit`, `add` and `find` commands to reflect changes made to them.
 - Updated command summary.
-- Added user documentation for `appt`.
-- Updated `edit` documentation to include the `upcoming/` tag.
+- Rewrote introduction and added a section on the purpose of the application. 
+- Created banner [image](../images/checkUp_banner.png). 
 
-### Contributions to the DG
+#### Contributions to the DG
 
 - Added "Patient Administrator/Staff" to glossary.
 - Added documentation for the Appointment feature as a whole, including:
@@ -50,23 +51,23 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
   - A possible use case with outlined steps for the feature.
   - A sequence diagram of the use case with method calls shown. [TBA]
 
-### Contributions to team-based tasks
+#### Contributions to team-based tasks
 
 - Set up project workspace and team repository with member management.
-- Set up CodeCov.io on team repository.
-- Set up CI on team repository.
+- Set up code coverage, CI, CD on team repository.
 - Set up CD for pull requests on team repository using Netlify.
 - Created priority and type tags in team repository.
-- Updated CI status and CodeCov badges in `index.md`.
-- Created and managed milestones `v1.1`, `v1.2`, `v1.2b`, `v1.3` progress in the team.
+- Created and managed milestones `v1.1`, `v1.2`, `v1.2b`, `v1.3`, `v1.3b`, `v1.4` progress in the team.
 - Ensured team was on schedule with frequent reminders on deadlines and pending tasks.
+- Scheduled tasks for team members and ensured they were completed on time.
+- Checked for code quality and adherence to coding standards.
 
-### Review/mentoring contributions
+#### Review/mentoring contributions
 
 - Reviewed multiple PRs across the different SDLC versions.
 - Planned Appointment feature and its integration with the other features in the application.
 
-### Contributions beyond the project team
+#### Contributions beyond the project team
 
 - https://github.com/nus-cs2103-AY2223S1/forum/issues/323#issuecomment-1265182783
 - https://github.com/nus-cs2103-AY2223S1/forum/issues/335#issuecomment-1272447673
