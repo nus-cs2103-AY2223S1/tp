@@ -15,7 +15,6 @@ import tuthub.model.tutor.SortByTeachingNominationComparator;
 public class SortCommandParser implements Parser<SortCommand> {
 
     public static final Integer EXP_ARGS = 2;
-    public static final String SLASH = "/";
     public static final String MESSAGE_UNKNOWN_PREFIX = "Prefix %1$s is not valid for this command. "
             + "Valid prefixes are tn/ or r/.";
     /**
@@ -35,11 +34,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        String firstArg = strArr[0];
-        String secondArg = strArr[1];
-
-        String order = ParserUtil.parseOrder(findOrder(firstArg, secondArg));
-        Prefix prefix = ParserUtil.parseSortPrefix(new Prefix(findPrefix(firstArg, secondArg)));
+        String order = ParserUtil.parseOrder(strArr[0]);
+        Prefix prefix = ParserUtil.parseSortPrefix(new Prefix(strArr[1]));
 
         if (isRating(prefix)) {
             return new SortCommand(order, prefix, new SortByRatingComparator(order));
@@ -48,25 +44,6 @@ public class SortCommandParser implements Parser<SortCommand> {
         } else {
             throw new ParseException(String.format(MESSAGE_UNKNOWN_PREFIX, prefix));
         }
-    }
-
-    public boolean isPrefix(String s) {
-        String first = s.substring(s.length() - 1);
-        return first.equals(SLASH);
-    }
-
-    public String findOrder(String s1, String s2) {
-        if (isPrefix(s1)) {
-            return s2;
-        }
-        return s1;
-    }
-
-    public String findPrefix(String s1, String s2) {
-        if (isPrefix(s1)) {
-            return s1;
-        }
-        return s2;
     }
 
     public Boolean isRating(Prefix prefix) {
