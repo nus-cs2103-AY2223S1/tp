@@ -183,7 +183,7 @@ Examples:
 Sample execution of command `cd CS2100`:
 ![cd-module-sample](images/UserGuidePictures/cd-module-sample.png)
 
-### Exiting a module: `cd`
+#### Exiting a module: `cd`
 
 Exits the current module page to revert to showing all modules.
 

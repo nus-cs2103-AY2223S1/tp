@@ -28,6 +28,10 @@ h3, h4 {
   margin-top: 6rem !important;
 }
 
+h4 {
+  font-variant: all-small-caps;
+}
+
 body {
   color: #484a43;
 }
@@ -46,9 +50,15 @@ blockquote {
   font-size: 14px;
 }
 
+img {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 code {
   color: #505959;
   background-color: rgba(51, 102, 102, 0.05);
+  font-variant: none;
 }
 
 // Bootstrap style alerts
