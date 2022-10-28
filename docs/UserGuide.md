@@ -1,10 +1,21 @@
-# checkUp
+---
+layout: page
+title: User Guide
+---
+* Table of Contents
+{:toc}
+---
 
-is a **desktop app for managing patient details, optimized for use via a Command Line Interface** (CLI) while still
+![banner](images/checkUp_banner.png)
+
+**checkUp** is a **desktop app for managing patient details, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient management
 tasks done faster than traditional GUI apps.
 
-
+checkUp stores patient details directly on your device, allowing you to keep track of your patients' details without an
+internet connection. You can store details such as patient name, address, phone number, email, medical history, upcoming
+appointments and past appointments. You can also add medication tags to your patients to keep track of their long-term
+medication history.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -12,26 +23,29 @@ tasks done faster than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
+2. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
+3. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data.<br>
+4. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup. 
+5. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
     * **`add`**`add n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol m/ibuprofen ` :
-      Adds a contact named `Amy Toh` to the Address Book.
+      Adds a contact named `Amy Toh` to checkUp. 
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-    * **`get`** : Retrieve contact's information based on the prefix you provided.
+    * **`get`** `/n Alex`: Retrieve contact's information based on the prefix you provided. In this case, patients
+    with the name `Alex` will be retrieved.
 
-1. Refer to the [Features](#features) below for details of each command.
+    * **`view`** `1` : Views the 1st contact shown in the current list.
+
+7. Refer to the [Features](#features) below for details of each command.
 
 ---
 
@@ -45,13 +59,15 @@ tasks done faster than traditional GUI apps.
   e.g. in `get /n NAME`, `NAME` is a parameter which can be used as `get /n John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [m/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [m/TAG]` can be used as `n/John Doe m/Ibuprofen` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[m/TAG]…​` can be used as ` ` (i.e. 0 times), `m/ibuprofen`, `m/ibuprofen m/lozenges` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
   ignored.<br>
@@ -72,10 +88,12 @@ tasks done faster than traditional GUI apps.
 
 Adds a patient to checkUp.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN NAME, RELATIONSHIP, CONTACT pt/PATIENT TYPE hw/HOSPITAL WING fn/FLOOR NUMBER wn/WARD NUMBER [m/MEDICATION]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT pt/PATIENT TYPE hw/HOSPITAL_WING fn/FLOOR_NUMBER wn/WARD_NUMBER [m/MEDICATION]…​`
+
+* Medication tags are for assigning long-term medication to patients.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of medication (including 0)
+A patient can have any number of medications (including 0)!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -202,7 +220,7 @@ Examples:
 
 #### by next-of-kin data: `/nok`
 
-Finds next-of-kin data of the inputted patient.
+Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
 
 Format: `get /nok PATIENT_NAME`
 
@@ -216,7 +234,7 @@ Finds all the patients in that particular hospital wing.
 
 Format: `get /hw HOSPITAL_WING`
 
-* `Hospital wing` only allows the following values: South, North, West, East
+* `HOSPITAL_WING` only allows the following values: South, North, West, East
 * The search is case-insensitive. e.g `souTh` will match `South`
 * All the patients in that hospital wing will be returned. e.g. `get /hw SOUTH` will return `John` `Peter` `Mary`
 * Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `South No` will match `south`
@@ -227,7 +245,7 @@ Finds all the patients in that particular floor number.
 
 Format: `get /fn FLOOR_NUMBER`
 
-* `Floor number` only allows positive and non-negative integer.
+* `Floor number` only allows positive numbers. 
 * All the patients in that floor number will be returned.
 * The floor number refers to the floor number the patient is on. e.g. `get /fn 2` will return `John` `Peter` `Mary`
 
@@ -245,7 +263,7 @@ Format: `get /wn WARD_NUMBER`
 Finds all the patients by medication.
 
 Format: `get /m MEDICATION`
-* 
+
 * All the patients being prescribed that medication will be returned.
 e.g. `get /m ibuprofen` will return `John` `Peter` `Mary`
 
@@ -287,13 +305,15 @@ Format: `get /appton APPOINTMENT_DATE`
 
 ### Obtaining total patient count: `count`
 
-Finds total number of patients.
+Gets total number of patients.
 
 Format: `count`
 
-* A count of all existing patients in the hospital will be returned.
-* The count will be a non-negative integer (>= 0). eg. `count` returns `452` when there are 452 patients noted within
-  the hospital.
+* A count of all existing patients in the hospital will be displayed, along with a list of long-term medications that
+  are being prescribed to patients, with the number of patients being prescribed each medication.
+* The count will be a non-negative number (>= 0). eg. `count` displays `452` when there are 452 patients noted within
+  the hospital. If 32 of those patients are on long-term antidepressants, the count will also display
+  `antidepressants: 32`.
 
 ---
 ## General Commands
@@ -345,7 +365,7 @@ any data created or deleted from the application!
 ### Editing the data file
 
 * checkUp stores data in the JSON format, improving readability and allowing for manually editing the data file.
-* The data file can be found in `data/addressbook.json` in the home folder where checkUp's `jar` file is stored.
+* The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
 
 ### Keyboard Shortcuts
