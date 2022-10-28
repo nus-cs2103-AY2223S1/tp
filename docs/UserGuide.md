@@ -91,18 +91,22 @@ Examples:
 
 ### Assigning a member to a team: `assign`
 
-assigns a member to a team.
+assigns a member to a team. 
 
-Format: `assign m/MEMBER-INDEX t/TEAM-INDEX`
+Format: `assign m/MEMBER-INDEX t/TEAM-INDEX` 
+
+* IMP: MEMBER-INDEX is the index from the userlist (refer to `Viewing all members` section below).
 
 Examples:
-* `assign m/1 t/1` Assigns first member to first team.
+* `assign m/1 t/1` Assigns first member to first team. 
 
 ### UnAssigning a member to a team: `unassign`
 
 removes a member from a team.
 
 Format: `unassign m/MEMBER-INDEX t/TEAM-INDEX`
+
+* IMP: MEMBER-INDEX is the index from the userlist (refer to `Viewing all members` section below).
 
 Examples:
 * `unassign m/1 t/1` removes the person with global index 1 from team 1.
