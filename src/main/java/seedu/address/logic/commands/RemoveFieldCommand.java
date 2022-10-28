@@ -46,6 +46,6 @@ public class RemoveFieldCommand extends PureCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RemoveFieldCommand // instanceof handles nulls
-                && fieldName.equals(((RemoveFieldCommand) other).fieldName)); // state check
+                        && fieldName.equals(((RemoveFieldCommand) other).fieldName)); // state check
     }
 }

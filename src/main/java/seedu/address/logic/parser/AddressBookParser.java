@@ -50,7 +50,7 @@ import seedu.address.logic.parser.teams.TeamCommandParser;
  */
 public class AddressBookParser {
 
-    private static final Pattern NAME_CHECK = Pattern.compile("([a-zA-Z][a-zA-Z0-9])");
+    private static final Pattern NAME_CHECK = Pattern.compile("([a-zA-Z][a-zA-Z0-9]*)");
     private static AddressBookParser bp = null;
 
     private final Map<String, CustomCommandBuilder> bonusMapper;
