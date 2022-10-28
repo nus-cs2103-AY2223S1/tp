@@ -344,73 +344,89 @@ The add order feature allows the user to add an `Order` to be tracked by the sys
 
 ##### Implementation
 
-This feature is facilitated by the `AddOrderCommand`, which extends from the `MultiLevelCommand` class.
+The add order feature is supported by the `AddOrderCommand`, which extends from the `MultiLevelCommand` class.
 The user will enter multiple rounds of input before an `Order` is successfully added to the system.
 
-Given below is an example usage scenario and how the add order mechanism behaves at each step. We assume that the user
-has already added some inventory items to be tracked by the system, such that our initial state before the add order command
-is initiated, is illustrated as such.
+Before giving an example usage scenario, lets assume that the user has already added some inventory items to be tracked by the system, but has not added any orders yet.
+Hence, our initial state before the add order command is initiated is illustrated as such.
+
+![AddOrderState0](images/developer-guide/AddOrderState0.png)
+
+Given below is an example usage scenario that works with the given model state as depicted above, and how the add order mechanism behaves at each step.
 
 Step 1. The user enters the following input into the UI's command box:
 `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`. This instantiates an `AddOrderCommand`, that references
-a new `Order` which encapsulates the input customer data. This then sets the system to await and prompt for further input from the user.
+a new `Order` which encapsulates the input customer data. This then sets the `LogicManager` to reference said instantiated `AddOrderCommand`
+in its `inProgressCommand` field. The UI then prompts the user for further input.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format
 </div>
 
-**_Object diagram to be added here_**
+![AddOrderState1](images/developer-guide/AddOrderState1.png);
 
-Step 2a. The user then enters `i/Pen q/3`, representing that the order requires 3 units (quantities) of 'Pens' to fulfill.
-The system updates the instantiated command, by first having the `AddOrderCommand` stages the input item name and quantity for validation,
+Step 2a. The user then enters `i/Eraser q/3`, representing that the order requires 3 quantities (or units) of `Erasers` to fulfill.
+The system updates the instantiated command, by first having the `AddOrderCommand` stage the input item name and quantity for validation,
 using the `AddOrderCommand#stageForValidation()` method.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format
 </div>
 
-**_Object diagram to be added here_**
+![AddOrderState2a](images/developer-guide/AddOrderState2a.png);
 
-Step 2b. The system searches the inventory items for an item that has a matching name. In this scenario,
-we assume that the user has already added an `Item` with its `ItemName` value to be `Pen`, to the system's list of tracked items.
-Hence, upon execution, a valid item was found based on the user's input item name, and the system adds a new `ItemQuantityPair` that
-references the found item to the list of items ordered in the instantiated `Order`.
+Step 2b. On the `AddOrderCommand#execute()` method call, the system searches the model's inventory for an item that has a matching name to the user's input item name.
+In this scenario, we assume that the user has already added an `InventoryItem` with its `ItemName` value to be `Eraser`, to the model's list of tracked `InventoryItem`s.
+Hence, upon execution, a valid item will be found based on the user's input item name, and the `Order#addToItemList()` method is called on the `toAdd` object, with the found
+`InventoryItem` in the model and `Quantity` object that was previously staged for validation as method parameters.
+This adds a new `ItemQuantityPair` object that references the found `InventoryItem` and given `Quantity` to the list of ordered items in the `toAdd` object.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that cannot be matched to the system's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that does not match any of the items in the model's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs
 </div>
 
-**_Object diagram to be added here_**
-
+![AddOrderState2b](images/developer-guide/AddOrderState2b.png);
 
 Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
 
-**_Object diagram to be added here_**
+![AddOrderState3](images/developer-guide/AddOrderState3.png);
 
-Step 4. The user then enters `done` after inputting all the required order details. The system finally executes the command, adding the
-built up `Order` to the `OrderList`. The system also no longer waits for additional input as the previously 'in progress' `AddOrderCommand`
-is now completed.
+Step 4. The user then enters `done` after inputting all the required order item details. On the following `AddOrderCommand#execute()` method call,
+the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`.
+The built up `Order` object is finally added to the model's `OrderList`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'. The model will then be unaffected.
 </div>
 
-**_Object diagram to be added here_**
+![AddOrderState4](images/developer-guide/AddOrderState4.png)
 
-The following sequence diagram shows how the add order operation works:
+The following sequence diagrams show how the add order feature works for a user entering an order with only one ordered item. Take note that
+the sequences occurring in the following diagrams are meant to occur in one full sequence (under one diagram) but for readability, have been separated into 3 smaller diagrams.
 
-_**Sequence diagram to be added here**_
+* Initiating the add order command (Step 1)
+![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram1.png)
+
+* Adding item details (Step 2a, 2b, 3)
+* ![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram2.png)
+
+* Adding item details (Step 4)
+* ![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for the objects with the
+<i>destroy marker</i> (X) should end at the <i>destroy marker</i> itself but due to a limitation of PlantUML, the lifeline
+reaches the end of the diagram.
+</div>
 
 The following activity diagram below illustrates the general flow of the user's experience in adding an order.
 ![AddOrderActivityDiagram](images/developer-guide/AddOrderActivityDiagram.png)
 
 ##### Design considerations
 
-Aspect: How add order command executes:
-* **Alternative 1 (current choice)**: Multi-level command, with user inputting information multiples times between customer data and then subsequently multiple item and quantity inputs.
-  * Pros: Better user experience. Users don't have to type out a very long command in one go to add an order.
-  * Cons: Harder to implement.
-* **Alternative 2**: Single level command, user inputs all required information in one long command.
-  * Pros: Easier to implement.
-  * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data.
+**Aspect: How the add order command receives input and executes**
+* **Alternative 1**: Single level command, user inputs all required information in one long command.
+    * Pros: Easier to implement as the implementation will follow the already in-place command execution structure.
+    * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data (e.g, enter multiple instances of "i/ITEM_NAME q/QUANTITY" on the same line of input).
+* **Alternative 2 (current choice)**: Multi-level command. User enters inputs in levels (customer data -> multiple iterations of item/quantity information -> "done"/"cancel" ).
+  * Pros: Better user experience. Users can be sure that any previously entered input is already validated by the application, making it less overwhelming to input large amounts of information.
+  * Cons: Harder to implement as it deviates from the original command execution structure (where one instance of user input relates to one full command execution).
 
-**_More design considerations_**
 
 ### Find Order Feature
 
