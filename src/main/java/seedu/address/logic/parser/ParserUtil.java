@@ -306,6 +306,18 @@ public class ParserUtil {
         }
         return planTagList;
     }
+    /**
+     * Parses {@code Collection<String> names} into a {@code List<Name>}.
+     */
+    public static List<ClientTag> parseAllSpaceSeparatedClientTags(Collection<String> clientTags)
+            throws ParseException {
+        requireNonNull(clientTags);
+        final List<ClientTag> clientTagList = new ArrayList<>();
+        for (String clientTag: clientTags) {
+            clientTagList.add(parseClientTag(clientTag));
+        }
+        return clientTagList;
+    }
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

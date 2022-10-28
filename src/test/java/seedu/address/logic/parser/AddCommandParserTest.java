@@ -227,8 +227,8 @@ public class AddCommandParserTest {
         // invalid riskTag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INCOME_DESC_BOB + MONTHLY_DESC_BOB + PLANTAG_DESC_SAVINGS
-                + CLIENTTAG_DESC_POTENTIAL + INVALID_RISKTAG_DESC + TAG_DESC_HUSBAND +
-                TAG_DESC_FRIEND, RiskTag.MESSAGE_CONSTRAINTS);
+                + CLIENTTAG_DESC_POTENTIAL + INVALID_RISKTAG_DESC + TAG_DESC_HUSBAND
+                + TAG_DESC_FRIEND, RiskTag.MESSAGE_CONSTRAINTS);
 
         // invalid planTag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
