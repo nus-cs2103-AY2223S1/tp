@@ -11,7 +11,7 @@
 <!-- Reused from https://gist.github.com/argius/08834fab73b91de8d79b with modifications -->
 
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root title = "Calculator" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <scene>
       <Scene>
          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="201.0" styleClass="background" stylesheets="@CalculatorWindow.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
