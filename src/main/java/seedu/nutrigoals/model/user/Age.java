@@ -7,9 +7,11 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
  * Represents the user's age
  */
 public class Age {
-    public static final String VALIDATION_REGEX = "^[1-9]\\d*$";
-    public static final String MESSAGE_CONSTRAINTS = "Age must be a number greater than 0";
+    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String MESSAGE_CONSTRAINTS = "Age must take on a positive integer than is not too large.";
     public static final String DEFAULT_VALUE = "0";
+    public static final int MAX_AGE = 100;
+    public static final int MIN_AGE = 0;
     public final String value;
 
     /**
@@ -26,8 +28,21 @@ public class Age {
         value = DEFAULT_VALUE;
     }
 
+    /**
+     * Checks if the {@code age} is valid
+     * @param age Input age
+     * @return true if the {@code age} is valid
+     */
     public static boolean isValidAge(String age) {
-        return age.matches(VALIDATION_REGEX);
+        if (!age.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        try {
+            int ageValue = Integer.parseInt(age);
+            return ageValue > MIN_AGE && ageValue < MAX_AGE;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public int getAge() {

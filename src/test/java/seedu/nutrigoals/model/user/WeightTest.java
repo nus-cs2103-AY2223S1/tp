@@ -17,17 +17,36 @@ public class WeightTest {
     public void constructor_invalidThrowsIllegalArgumentException() {
         String invalidWeight = " ";
         assertThrows(IllegalArgumentException.class, () -> new Weight(invalidWeight));
+
+        // EP: [min_int...9]
+        assertThrows(IllegalArgumentException.class, () -> new Weight("9"));
+        assertThrows(IllegalArgumentException.class, () -> new Weight("-300"));
+
+        // EP: [200...max_int]
+        assertThrows(IllegalArgumentException.class, () -> new Weight("200"));
+        assertThrows(IllegalArgumentException.class, () -> new Weight("500"));
     }
 
     @Test
     public void isValidWeight() {
         String invalidWeight = " ";
-        String validWeight = "30";
+        String validWeight = "80";
 
+        // EP: [10...199]
         assertTrue(Weight.isValidWeight(validWeight));
+        assertTrue(Weight.isValidWeight("10"));
+        assertTrue(Weight.isValidWeight("199"));
+
+        // EP: empty string
         assertFalse(Weight.isValidWeight(invalidWeight));
+
+        // EP: [200...max_int]
         assertFalse(Weight.isValidWeight("2123"));
+
+        // EP: [min_int...9]
         assertFalse(Weight.isValidWeight("-11"));
+
+        // EP: non-integer
         assertFalse(Weight.isValidWeight("abdc"));
 
     }
