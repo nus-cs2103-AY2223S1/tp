@@ -57,6 +57,7 @@ public class DeleteAttributeCommand extends Command {
 
         // Update the Person with the Deletion
         Person personAfterDeletion = createPersonAfterDeletion(toDelete);
+        assert !personAfterDeletion.isSamePerson(toDelete) : "Cannot have same Person after Deletion";
 
         // Check for Duplicates
         model.setPerson(toDelete, personAfterDeletion);
