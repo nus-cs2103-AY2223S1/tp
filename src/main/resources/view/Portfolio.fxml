@@ -12,7 +12,7 @@
 
 <HBox id="cardPanePortfolio" fx:id="cardPanePortfolio" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane prefHeight="350.0" prefWidth="350.0" HBox.hgrow="ALWAYS">
+    <GridPane fx:id="portfolioGridPane" prefHeight="350.0" prefWidth="350.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES"/>
         </columnConstraints>
@@ -58,7 +58,7 @@
                     </VBox.margin>
                     <Label fx:id="note" styleClass="cell_small_label" text="Notes: " wrapText="true"/>
                     <Line endX="300" startX="-100.0" stroke="#0b2545"/>
-                    <VBox fx:id="notes" alignment="CENTER_LEFT" GridPane.columnIndex="0">
+                    <VBox fx:id="notes" alignment="CENTER_LEFT" prefWidth="300" maxHeight="Infinity" GridPane.columnIndex="0">
                         <padding>
                             <Insets bottom="10" left="10" right="10" top="10"/>
                         </padding>

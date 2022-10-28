@@ -454,8 +454,12 @@
     -fx-text-fill: -contrast-background;
 }
 
-#note {
-    -fx-padding: 16px;
+#plans .label, #notes .label {
+    -fx-text-fill: -text;
+    -fx-padding: 3 5 3 5;
+    -fx-font-size: 16;
+    -fx-word-wrap: break-word;
+    -fx-wrap-text: true;
 }
 
 

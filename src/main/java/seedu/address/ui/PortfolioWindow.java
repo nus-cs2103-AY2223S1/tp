@@ -41,8 +41,6 @@ public class PortfolioWindow extends UiPart<Region> {
     private VBox notes;
     @FXML
     private ScrollPane scroller;
-    @FXML
-    private Label note;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -62,9 +60,13 @@ public class PortfolioWindow extends UiPart<Region> {
             .sorted(Comparator.comparing(plan -> plan.value))
             .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
 
-        portfolio.getNotes().stream()
-            .sorted(Comparator.comparing(note -> note.value))
-            .forEach(note -> notes.getChildren().add(new Label(note.value)));
+        if (portfolio.getNotes().isEmpty()) {
+            notes.getChildren().add(new Label(NO_NOTE));
+        } else {
+            portfolio.getNotes().stream()
+                    .sorted(Comparator.comparing(note -> note.value))
+                    .forEach(note -> notes.getChildren().add(new Label(note.value)));
+        }
     }
 
 }
