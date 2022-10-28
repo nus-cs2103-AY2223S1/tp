@@ -40,7 +40,11 @@ public class ItemName {
      * @param other The ItemName to compare this ItemName against.
      */
     public int compareTo(ItemName other) {
-        return itemName.compareTo(other.itemName);
+        int compareLowerCase = itemName.compareToIgnoreCase(other.itemName);
+        if (compareLowerCase == 0) {
+            return itemName.compareTo(other.itemName);
+        }
+        return compareLowerCase;
     }
 
     /**
