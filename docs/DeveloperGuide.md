@@ -188,6 +188,9 @@ The `Model` component,
 The diagrams given below contains more details on how each `Buyer`, `Supplier`, 
 `Deliverer`, `Order` and `Pet` objects are stored in the Model component. 
 
+For more information on what each object 
+represents, refer to the [Glossary](#glossary) section.
+
 #### `Buyer` and `Deliverer` Class
 
 Both the `Buyer` and `Deliverer` classes inherit from the `Person` class and have an orders attribute. 
@@ -211,13 +214,15 @@ Given below is the class diagram for the **`Supplier`** Class:
 
 #### `Order` Class
 
-The `Order` class consists of several attributes. Given below is the class diagram for the **`Order`** Class:
+The `Order` class consists of several attributes. The most important attribute to take note of is the Buyer as 
+every order should be made by a Buyer. Given below is the class diagram for the **`Order`** Class:
 
 <img src="images/ModelOrderObjectImplementation.png" width="800" />
 
 #### `Pet` Class
 
-The `Pet` class consists of several attributes. Given below is the class diagram for the **`Pet`** Class:
+The `Pet` class consists of several attributes. The most important attribute to take note of is the Supplier as
+every pet should be sold by a Supplier. Given below is the class diagram for the **`Pet`** Class:
 
 <img src="images/ModelPetObjectImplementation.png" width=950 />
 
