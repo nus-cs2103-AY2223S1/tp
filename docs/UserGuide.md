@@ -38,7 +38,7 @@ food options in NUS and thus make an informed decision on where to eat._
 
    * **`help`** : Lists all commands.
 
-   * **`list`**`: Lists all eateries.
+   * **`list`**: Lists all eateries.
 
 1. Refer to [Features](#features) below for details of each command.
 
@@ -58,7 +58,7 @@ food options in NUS and thus make an informed decision on where to eat._
 
 * Items with `…`​ after them can be used one or more times.<br>
   e.g. `-t TAGNAME…​` can be used as `-t Foodcourt`, `-t Tea -t Coffee` etc.  <br>
-Note:  ` ` (i.e. 0 times) is only allowed if there are square brackets, e.g. `[-t TAGNAME]`<br><br>
+Note:  (i.e. 0 times) is only allowed if there are square brackets, e.g. `[-t TAGNAME]`<br><br>
 
 * Prefixed parameters _(e.g. -n, -p, -t, etc.)_ can be in any order.<br>
   e.g. if the command specifies `-n NAME -t TAG`, `-t TAG -n NAME` is also acceptable.<br><br>
@@ -129,14 +129,15 @@ Note how only 2 random eateries with "mala" in their names are shown.
 
 _Search for eateries that match the specified tag(s)._
 
-**Format:** `find TAGNAME…​ [-h]`
+**Format:** `find TAGNAME…​ [-r NUMBER] [-h]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 You can search for any number of tags by typing them all after findTag
 </div>
 
 **Arguments:** </br>
 `TAGNAME`: returns eateries that match the keyword(s)<br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
 `-h`: displays help message (specific to findTag)
 <br>
 
@@ -153,10 +154,11 @@ Example: `findTag restaurant`
 
 _Search for eateries that match the specified location(s)._
 
-**Format:** `findLocation LOCATIONNAME…​ [-h]`
+**Format:** `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`
 
 **Arguments:** <br>
 `LOCATIONNAME`: returns eateries that match the keyword(s)<br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
 `-h`: displays help message (specific to findLocation)<br>
 
 Note:
@@ -164,7 +166,8 @@ Note:
 * Eateries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findLocation engineering science` will eateries stalls at either location.
 
-Example: `findLocation utown`
+Example: `findLocation utown -r 2`
+Example:`findLocation utown`
 
 <br>
 
@@ -172,19 +175,43 @@ Example: `findLocation utown`
 
 _Search for eateries that match the specified cuisine(s)._
 
-**Format:** `findCuisine CUISINENAME…​ [-h]`
+**Format:** `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`
 
 **Arguments:** </br>
 `CUISINENAME`: returns eateries that match the keyword(s)<br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
 `-h`: displays help message (specific to findCuisine)
 <br>
 
 Note:
 * The search is case-insensitive. e.g `korean` will match `Korean`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Eateries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findCuisine Western Japanese` will return eateries that sell either cuisine.
 
+Example: `findCuisine chinese -r 2`
 Example: `findCuisine chinese`
+
+<br>
+
+
+### Finding eateries by price : `findPrice`
+
+_Search for eateries that match the specified price(s)._
+
+**Format:** `findCuisine PRICE…​ [-r NUMBER] [-h]`
+
+**Arguments:** </br>
+`PRICE`: returns eateries that match the keyword(s)<br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
+`-h`: displays help message (specific to findCuisine)
+<br>
+
+Note:
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `findCuisine $ $$` will return eateries that have either of the price.
+
+Example: `findPrice $ -r 2`
+Example:`findPrice $`
 
 <br>
 
@@ -226,16 +253,17 @@ _Adds a new eatery to NUSEatWhere's database. Eatery will be added to the end of
 current list <br>
 (i.e. if the current list pre-addition has 5 eateries, the newly added eatery will be of index 6)._
 
-**Format:** `add -n NAME -l LOCATION -c CUSINE [-p PHONE] [-t TAG]…​ [-h]`
+**Format:** `add -n NAME -l LOCATION -c CUSINE [-p PRICE] [-t TAG]…​ [-h]`
 
 **Arguments:**<br>
 `NAME`: name of the eatery to be added<br>
 `LOCATION`: location of the eatery<br>
 `CUSINE`: cuisine type of the eatery<br>
-`PHONE`: phone number of the eatery <br>
+`PRICE`: price of the eatery <br>
 `TAG`: extra tags to add to the eatery<br>
 `-h`: displays help message (specific to add)<br><br>
 Example: `add -n KOI -l Central Square -c Drinks`
+Example: `add -n KOI -l Central Square -c Drinks -p $$`
 
 <br>
 
@@ -302,11 +330,12 @@ the data of your previous NUSEatWhere home folder.
 |:-----------------|:---------------------------------------------------------------|
 | **Help**         | `help`                                                         |
 | **List**         | `list [-h]`                                                    |
-| **Find**         | `find NAME…​ [-r NUMBER] [-h]`                                 |
-| **FindTag**      | `findTag TAGNAME…​ [-h]`                                       |
-| **FindLocation** | `findLocation LOCATIONNAME…​ [-h]`                             |
-| **FindCuisine**  | `findCuisine CUISINENAME…​ [-h]`                               |
+| **Find**         | `find NAME…​ [-r NUMBER] [-h]`                                  |
+| **FindTag**      | `findTag TAGNAME…​ [-r NUMBER] [-h]`                                       |
+| **FindLocation** | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                             |
+| **FindCuisine**  | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                               |
+| **FindPrice**    | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`									 |
 | **Tag**          | `tag ID -t TAGNAME…​ [-h]`                                     |
 | **Untag**        | `untag ID -t TAGNAME…​ [-h]`                                   |
-| **Add**          | `add -n NAME -l LOCATION -c CUSINE [-p PHONE] [-t TAG…​] [-h]` |
-| **Delete**       | `delete ID [-h]`                                               |
+| **Add**          | `add -n NAME -l LOCATION -c CUSINE [-p PRICE] [-t TAG…​] [-h]` |
+| **Delete**       | `delete ID [-h]`                                              |
