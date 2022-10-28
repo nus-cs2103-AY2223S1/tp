@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.Messages;
+import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.eatery.Eatery;
 
@@ -42,7 +43,7 @@ public class FindLocationCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredEateryList(predicate);
         if (numRandPicks > 0) {
