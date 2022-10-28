@@ -9,7 +9,7 @@ benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get 
 faster than traditional GUI apps.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ---
 
