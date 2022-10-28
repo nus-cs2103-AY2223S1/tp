@@ -405,9 +405,6 @@ NUScheduler accepts date-time formats both with and without a time specified. Fo
 - dd/MM/yyyy
 - dd-MM-yyyy
 - dd MM yyyy
-- dd/MM/yy
-- dd-MM-yy
-- dd MM yy
 - dd/MM (uses current year by default)
 - dd-MM (uses current year by default)
 - dd MM (uses current year by default)
