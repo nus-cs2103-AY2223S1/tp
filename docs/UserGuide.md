@@ -20,20 +20,21 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
    2. [Adding/Deleting contacts in CLInkedIn](#addingdeleting-contacts-in-clinkedin)
       1. [Adding a person `add`](#adding-a-person-add)
       2. [Deleting a person `delete`](#deleting-a-person--delete)
-   3. [Modifying contacts in CLInkedIn](#modifying-contacts-in-clinkedin)
+   3. [Adding/Editing/Deleting Tag Types in CLInkedIn](#addingdeleting-contacts-in-clinkedin)
+      1. [Creating a custom tag type `createTagType`](#creating-a-custom-tag-type-createtagtype)
+      2. [Editing tag type name `editTagType`](#editing-tag-type-name-edittagtype)
+      3. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type-deletetagtype)
+   4. [Modifying contacts in CLInkedIn](#modifying-contacts-in-clinkedin)
       1. [Editing a person `edit`](#editing-a-person--edit)
       2. [Adding an optional tag `addTag`](#adding-a-tag-to-an-existing-person--addtag)
-      3. [Deleting an optional tag `deleteTag`]([#deleting-a-tag-of-an-existing-person--deletetag))
+      3. [Deleting an optional tag `deleteTag`]([#deleting-a-tag-of-an-existing-person--deletetag)
       4. [Adding optional information `addNote`](#adding-optional-information-addnote)
       5. [Deleting optional information `deleteNote`](#deleting-optional-information-deletenote)
       6. [Adding optional rating `addRate`](#adding-optional-rating-addrate)
       7. [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
       8. [Adding optional links `addLink`](#adding-optional-links-addlink)
       9. [Deleting links `celeteLink`](#deleting-links-deletelink)
-      10. [Creating a custom tag type `createTagType`](#creating-a-custom-tag-type-createtagtype)
-      11. [Editing tag type name `editTagType`](#editing-tag-type-name-edittagtype)
-      12. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type-deletetagtype)
-   4. [Modifying contacts view in CLInkedIn](#modifying-contacts-in-clinkedin-1)
+   5. [Modifying contacts view in CLInkedIn](#modifying-contacts-view-in-clinkedin)
       1. [Viewing the details of a person `view`](#viewing-the-details-of-a-person--view)
       2. [Listing all persons `list`](#listing-all-persons--list)
       3. [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
@@ -42,7 +43,7 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
       6. [Importing contacts `import`](#importing-an-addressbook-import)
       7. [Exporting contacts `export`](#importing-an-addressbook-import)
       8. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
-   5. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
+   6. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
       5. [Saving the data](#saving-the-data)
       6. [Editing the data file](#editing-the-data-file)
 5. [FAQ](#faq)
@@ -165,6 +166,46 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+## Adding/Editing/Deleting Tag Types in CLInkedIn
+
+
+### Creating a custom tag type: `createTagType`
+
+Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types.
+
+Format: `createTagType TAG_TYPE TAG_ALIAS`
+
+- Creates a new `TAG_TYPE` tag type.
+- `TAG_ALIAS` can be used to add tags to this custom tag type.
+
+Examples:
+
+- `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can use existing tag types: Skill, or Degree, or Job Type.
+</div>
+
+### Editing tag type name: `editTagType`
+
+Edits the name and alias of an existing tag type to `NEW_TAG_TYPE` and `NEW_TAG_ALIAS`
+
+Format: `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS`
+
+Examples: `editTagType GPA-Grade gpat-grdt`
+
+- Edits name of the `GPA` tag type to `Grade` and its tag alias from `gpat` to `grdt`
+
+### Deleting an existing tag type: `deleteTagType`
+
+Deletes an existing tag type and its corresponding tag alias.
+
+Format: `deleteTagType TAG_TYPE`
+
+Examples: `deleteTagType GPA`
+
+- Deletes the `GPA` tag type.
 
 ## Modifying contacts in CLInkedIn
 
@@ -294,44 +335,7 @@ Format: `deleteLink INDEX`
 Examples:
 * `deletLink 4` deletes all links of the 4th person in the address book.
 
-### Creating a custom tag type: `createTagType`
-
-Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types.
-
-Format: `createTagType TAG_TYPE TAG_ALIAS`
-
-- Creates a new `TAG_TYPE` tag type.
-- `TAG_ALIAS` can be used to add tags to this custom tag type.
-
-Examples:
-
-- `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use existing tag types: Skill, or Degree, or Job Type.
-</div>
-
-### Editing tag type name: `editTagType`
-
-Edits the name and alias of an existing tag type to `NEW_TAG_TYPE` and `NEW_TAG_ALIAS`
-
-Format: `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS`
-
-Examples: `editTagType GPA-Grade gpat-grdt`
-
-- Edits name of the `GPA` tag type to `Grade` and its tag alias from `gpat` to `grdt`
-
-### Deleting an existing tag type: `deleteTagType`
-
-Deletes an existing tag type and its corresponding tag alias.
-
-Format: `deleteTagType TAG_TYPE`
-
-Examples: `deleteTagType GPA`
-
-- Deletes the `GPA` tag type.
-
-## Modifying contacts in CLInkedIn
+## Modifying contacts view in CLInkedIn
 
 ### Viewing the details of a person : `view`
 
