@@ -103,6 +103,16 @@ public class Task extends AbstractSingleItem {
         return getFullPath().equals(t.getFullPath());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        } else if (o instanceof DisplayItem) {
+            return this.stronglyEqual((DisplayItem) o);
+        }
+        return false;
+    }
+
     /**
      * Defines a stronger notions of equality between display items.
      *
