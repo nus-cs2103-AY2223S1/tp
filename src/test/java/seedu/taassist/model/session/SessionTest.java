@@ -2,6 +2,7 @@ package seedu.taassist.model.session;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_SESSION_NAME;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
 import static seedu.taassist.testutil.TypicalSessions.TUTORIAL_1;
@@ -14,10 +15,9 @@ public class SessionTest {
 
     @Test
     public void constructor_invalidSessionName_throwsIllegalArgumentException() {
-        String invalidSessionName = "";
         Date validDate = ASSIGNMENT_1.getDate();
-        assertThrows(IllegalArgumentException.class, () -> new Session(invalidSessionName));
-        assertThrows(IllegalArgumentException.class, () -> new Session(invalidSessionName, validDate));
+        assertThrows(IllegalArgumentException.class, () -> new Session(INVALID_SESSION_NAME));
+        assertThrows(IllegalArgumentException.class, () -> new Session(INVALID_SESSION_NAME, validDate));
     }
 
     @Test
@@ -75,12 +75,10 @@ public class SessionTest {
 
     @Test
     public void isValidSessionName() {
-        // special characters and whitespaces are allowed
-        assertTrue(Session.isValidSessionName("+/~@#$%^&* "));
-
-        // sessions names beginning with whitespaces are not allowed
-        assertFalse(Session.isValidSessionName(" Assignment 1"));
-
+        // underscores and whitespace are allowed
+        assertTrue(Session.isValidSessionName("_LAB 1_"));
+        // special characters are not allowed
+        assertFalse(Session.isValidSessionName("+/~@#$%^&* "));
         // empty session names are not allowed
         assertFalse(Session.isValidSessionName(""));
     }

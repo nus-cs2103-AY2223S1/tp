@@ -10,6 +10,7 @@ markdown: kramdown
 
 repository: "AY2223S1-CS2103T-T12-1/tp"
 github_icon: "images/github-icon.png"
+app_icon: "images/app-icon.png"
 
 plugins:
   - jemoji

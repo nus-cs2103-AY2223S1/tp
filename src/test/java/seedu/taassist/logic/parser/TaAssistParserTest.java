@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.AddCommand;
 import seedu.taassist.logic.commands.AddcCommand;
+import seedu.taassist.logic.commands.AddsCommand;
 import seedu.taassist.logic.commands.AssignCommand;
 import seedu.taassist.logic.commands.ClearCommand;
 import seedu.taassist.logic.commands.DeleteCommand;
@@ -37,7 +38,6 @@ import seedu.taassist.logic.commands.GradeCommand;
 import seedu.taassist.logic.commands.HelpCommand;
 import seedu.taassist.logic.commands.ListCommand;
 import seedu.taassist.logic.commands.ListcCommand;
-import seedu.taassist.logic.commands.SessionCommand;
 import seedu.taassist.logic.commands.UnassignCommand;
 import seedu.taassist.logic.commands.UnfocusCommand;
 import seedu.taassist.logic.commands.ViewCommand;
@@ -84,7 +84,8 @@ public class TaAssistParserTest {
     @Test
     public void parseCommand_focus() throws Exception {
         ModuleClass moduleClass = new ModuleClassBuilder().build();
-        String commandString = joinWithSpace(FocusCommand.COMMAND_WORD, moduleClass.getClassName());
+        String commandString = joinWithSpace(FocusCommand.COMMAND_WORD,
+                PREFIX_MODULE_CLASS + moduleClass.getClassName());
         FocusCommand command = (FocusCommand) parser.parseCommand(commandString);
         assertEquals(new FocusCommand(moduleClass), command);
     }
@@ -153,10 +154,10 @@ public class TaAssistParserTest {
     @Test
     public void parseCommand_session() throws Exception {
         Session session = new SessionBuilder().build();
-        String commandString = joinWithSpace(SessionCommand.COMMAND_WORD,
+        String commandString = joinWithSpace(AddsCommand.COMMAND_WORD,
                 PREFIX_SESSION + session.getSessionName());
-        SessionCommand command = (SessionCommand) parser.parseCommand(commandString);
-        assertEquals(new SessionCommand(session), command);
+        AddsCommand command = (AddsCommand) parser.parseCommand(commandString);
+        assertEquals(new AddsCommand(new HashSet<>(List.of(session))), command);
     }
 
     @Test

@@ -132,6 +132,11 @@ public interface Model {
     void removeModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /**
+     * Adds the specified {@code sessions} to the specified {@code moduleClass}.
+     */
+    void addSessions(ModuleClass moduleClass, Set<Session> sessions);
+
+    /**
      * Removes the specified {@code sessions} from the specified {@code moduleClass}.
      */
     void removeSessions(ModuleClass moduleClass, Set<Session> sessions);

@@ -2,18 +2,21 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.TextArea?>
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
-         title="TA Assist" minWidth="740" minHeight="600" onCloseRequest="#handleExit">
+
+<fx:root minHeight="600" minWidth="740" onCloseRequest="#handleExit" title="TA Assist" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/ta_assist_logo.png" />
   </icons>
@@ -25,10 +28,11 @@
       </stylesheets>
 
       <VBox styleClass="pane-with-border">
-        <ButtonBar fx:id="buttonBar" VBox.vgrow="NEVER">
-          <buttons>
-            <Button fx:id="classTitle" visible="false" disable="true"/>
-            <Button ButtonBar.buttonData="LEFT" fx:id="unfocusButton" mnemonicParsing="false" visible="false" onAction="#buttonHandleUnfocus">
+        <HBox fx:id="buttonBar" alignment="CENTER" maxHeight="20" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="4.0" left="20.0" right="20.0" top="4.0" />
+          </padding>
+            <Button fx:id="unfocusButton" mnemonicParsing="false" onAction="#buttonHandleUnfocus" visible="false">
               <graphic>
                 <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -38,7 +42,13 @@
               </graphic>
             </Button>
 
-            <Button fx:id="helpButton" mnemonicParsing="false" text="Help" onAction="#handleHelp" translateX="-25">
+          <Pane HBox.hgrow="ALWAYS" />
+
+          <Label fx:id="classTitle" alignment="CENTER" disable="true" translateX="20" visible="false" />
+
+          <Pane HBox.hgrow="ALWAYS" />
+
+            <Button fx:id="helpButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleHelp" text="Help">
               <graphic>
                 <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -47,45 +57,74 @@
                 </ImageView>
               </graphic>
             </Button>
-          </buttons>
-        </ButtonBar>
+        </HBox>
 
         <HBox fx:id="studentList" minHeight="350" prefHeight="350" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <padding>
-            <Insets top="10" right="25" bottom="10" left="25" />
+            <Insets bottom="10" left="25" right="25" top="10" />
           </padding>
-          <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+          <VBox maxWidth="1.7976931348623157E308" prefWidth="400.0" HBox.hgrow="ALWAYS">
             <padding>
-              <Insets top="10" right="12.5" bottom="10"/>
+              <Insets bottom="10" right="12.5" top="10" />
             </padding>
-            <TextArea fx:id="sessionClassText" styleClass="class-title" prefHeight="50" editable="false">Classes</TextArea>
-            <StackPane fx:id="moduleClassListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+                  <GridPane fx:id="classLabelContainer" alignment="TOP_CENTER" styleClass="class-title-container">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="50.0" prefHeight="50.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="classLabel" alignment="CENTER" styleClass="class-title" text="Classes" textAlignment="CENTER" />
+                     </children>
+                  </GridPane>
+            <StackPane fx:id="moduleClassListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></StackPane>
           </VBox>
 
-          <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+          <VBox maxWidth="1.7976931348623157E308" prefWidth="400.0" HBox.hgrow="ALWAYS">
             <padding>
-              <Insets top="10" bottom="10" left="12.5" />
+              <Insets bottom="10" left="12.5" top="10" />
             </padding>
-            <TextArea styleClass="student-title" prefHeight="50" editable="false">Students</TextArea>
-            <StackPane fx:id="studentListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
+                  <GridPane fx:id="studentLabelContainer" alignment="TOP_CENTER" styleClass="student-title-container">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="50.0" prefHeight="50.0" valignment="CENTER" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="studentLabel" alignment="CENTER" styleClass="student-title" text="Students" textAlignment="CENTER" />
+                     </children>
+                  </GridPane>
+            <StackPane fx:id="studentListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
           </VBox>
 
         </HBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="25" left="25" />
+            <Insets left="25" right="25" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder">
+        <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER">
           <padding>
-            <Insets right="25" bottom="5" left="25" />
+            <Insets bottom="5.0" left="26.0" right="26.0" />
           </padding>
+               <VBox.margin>
+                  <Insets top="-2.0" />
+               </VBox.margin>
         </StackPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            <StackPane fx:id="commandBoxPlaceholder1" layoutX="10.0" layoutY="507.0">
+               <padding>
+                  <Insets bottom="5.0" left="26.0" right="26.0" />
+               </padding>
+            </StackPane>
       </VBox>
     </Scene>
   </scene>

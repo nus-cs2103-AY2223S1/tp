@@ -14,10 +14,10 @@ participant ":Model" as Model MODEL_COLOR
 participant "m:ModuleClass" as ModuleClass MODEL_COLOR
 end box
 
-[-> LogicManager : execute("focus CS1101S")
+[-> LogicManager : execute("focus c/CS1101S")
 activate LogicManager
 
-LogicManager -> TaAssistParser : parseCommand("focus CS1101S")
+LogicManager -> TaAssistParser : parseCommand("focus c/CS1101S")
 activate TaAssistParser
 
 create FocusCommandParser

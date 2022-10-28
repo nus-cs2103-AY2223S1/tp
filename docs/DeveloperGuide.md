@@ -11,7 +11,8 @@ title: Developer Guide
 We'd like to thank:
 * The [CS2103/T teaching team](https://nus-cs2103-ay2223s1.github.io/website/admin/instructors.html) for guiding us throughout the development of this project.
 * [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for laying the foundations on which our (brownfield) project is built upon.
-* The [Jackson Project](https://github.com/FasterXML/jackson) for creating an awesome library for JSON parsing in Java!
+* The [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), and [JUnit](https://junit.org/junit5/) project teams for their awesome work
+on which our product is built upon!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,7 +70,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component {TODO - Modify upon implementation}
+### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/ui/Ui.java)
 
@@ -84,7 +85,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student`, `ModuleClass` and `Session` object residing in the `Model`.
 
 ### Logic component
 
@@ -126,7 +127,8 @@ The `Model` component,
 * stores data in TA Assist:
   * all `Student` objects are contained in a `UniqueList` object.
   * all `ModuleClass` objects are also contained in a `UniqueList` object.
-* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `StudentView` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<StudentView>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* the `StudentView` object is a class that encapsulates `Student` data along with a `SessionData` to be displayed to `UI`. More details regarding this class can be referred to in [the Implementation section](#querying-student-grades-for-a-session).
 * stores the currently 'focused' `ModuleClass` object.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (i.e. `Ui`, `Logic` and `Storage`) as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components.
@@ -342,13 +344,70 @@ As `ModuleClass` is immutable, there exists no methods to add/delete/modify the 
 The only way to do so is by constructing new `ModuleClass` instances, then replacing the new instance over the old one by
 calling `Model#setModuleClass(ModuleClass target, ModuleClass newModuleClass)`.
 
-For example, the following sequence diagram shows how the command `session s/Lab1`
+For example, the following sequence diagram shows how the command `adds s/Lab1`
 creates a `Session` named "Lab1" and adds it inside the focused class.
 
-<img src="images/SessionCommandSequenceDiagram.png" width="1000"/>
+<img src="images/AddsCommandSequenceDiagram.png" width="1000"/>
 
+<div markdown="span" class="alert alert-info">
 :information_source: **Note:** The above diagram assumes that `Model` is currently in focus mode and 
 the focused class doesn't contain a session named `Lab1` as of current.
+</div>
+
+### Querying student grades for a session
+
+This feature allows the user to query student grades of a session to `TaAssist`. `TaAssist` will provide a response showing the grades of all students of the queried session.
+
+Its implementation is facilitated by two classes:
+
+#### StudentView class
+`StudentView` encapsulates the view of a `Student` for the UI. It stores the `Student` data itself along with a `SessionData` if queried.
+
+`SessionData` can be queried from a `Student` through the `StudentView::withSession` method. This will construct a new `StudentView` that encapsulates the queried `SessionData`.
+
+This encapsulated `SessionData` internally represented with three values:
+* `null`: `SessionData` has not been queried
+* an empty `Optional`: `SessionData` has been queried, but doesn't exist in `Student`.
+* an `Optional` encapsulating a `SessionData`: `SessionData` has been queried and does exist in `Student`.
+
+#### MappedStudentViewList class
+`MappedStudentViewList` maps an `ObservableList<Student>` to an `ObservableList<StudentView>`. 
+
+It takes in `ObservableList<Student>` as a source list. Each `Student` in the source list will be mapped to a `StudentView`. 
+
+It stores two additional parameters, a `ModuleClass` and a `Session`. These parameters are used in determining which `SessionData` to be queried from `Student` and encapsulated by the resulting `StudentView`. 
+If either of these two parameters are `null`, `MappedStudentViewList` will assume no `Session` is being queried and the resulting `StudentView` will follow suit.
+
+If the source list is modified, `MappedStudentViewList` will also map the new `Student` data accordingly and execute a `fireChange` to inform its listeners of a new update. 
+
+If the two parameters are modified through the `MappedStudentViewList::setTarget` method, `MappedStudentViewList` will re-map all `Student` to the appropriate `StudentView`-s and execute a `fireChange` to inform its listeners of a new update.
+
+With these two classes implemented, `SessionData` can now be easily passed to `UI` by simply passing the `MappedStudentViewList` within
+`ModelManager` to `UI`. `UI` will then update accordingly whenever the `MappedStudentViewList` fires a change.
+
+The following sequence diagram shows how changes are propagated to the `UI` through the chain of `ObservableList`-s when `TaAssist::addStudent(s)` is called:
+
+<img src="images/ObservableUpdateSequenceDiagram.png" w="800"/>
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The diagram above simplifies the `ListView` interaction as it is abstracted away by JavaFX and its details are mostly irrelevant to our implementation.
+</div>
+
+#### Design Considerations
+
+**Aspect: How query data is passed to `UI`:**
+* **Option 1 (Current Choice).** Pair `Student` and `SessionData` together in a `StudentView` class.
+  * Pros: With `Observable` pattern, can be made to automatically update when a new student is graded. Simplifies `UI` implementation.
+  * Cons: Complicates design of `Model` as it adds another class just for handling the "view" of a student.
+* **Option 2.** Maintain two `ObservableList`-s for `Student` and `SessionData` seperately.
+  * Pros: Reduces the need of a encapsulating class, which simplifies the design of `Model`.
+  * Cons: Hard to maintain. Accidental slip-up in updating one list but not the other can occur.
+* **Option 3.** Let UI query the data from `Student`
+  * Pros: `Model` needs no change.
+  * Cons: Breaks abstraction principle. Non-trivial querying of fields from `Student` should be handled by `Model`.
+* **Option 4.** Pass data through `CommandResult`
+  * Pros: Easy to implement.
+  * Cons: Hard to maintain. Each `Command` now needs to know that `CommandResult` can pass data other than for result display.
 
 ### [Proposed] UI Implementation
 **Home Screen**
@@ -374,9 +433,9 @@ The screen upon entering the focus mode consists of components:
 * `ResultDisplay`, showing the sessions and students the user has added to the class;
 * `ResultDisplay` consists of `SessionListPanel`, each row representing a session,sorted based on the time it was added with the most recently added at the top, and `StudentListPanel`, each row representing a student, with their grades related to a particular session (given by user input) shown as well;
 * `CommandBox`, the Command Line Interface (CLI) for user to key in command and
-* `HelpWindow` shown with a help button, redirect users to our User Guide to facilitate their usage;
+* `HelpWindow` shown with a help button that redirects users to our User Guide to facilitate their usage; a back button that allow user to leave the focus mode; and a header which shows the class the user is currently focused in.
 
-Whenever users call `session s/SESSION_NAME`, the grade pertaining to that particular session appear, with ungraded students highlighted to the users.
+Whenever users call `scores s/SESSION_NAME`, the grade pertaining to that particular session appear, with ungraded students highlighted in red to the users.
 
 {another screenshot}
 

@@ -44,7 +44,6 @@ public class AddCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.COMMAND_WORD, AddCommand.MESSAGE_USAGE);
     private AddCommandParser parser = new AddCommandParser();
 
-
     @Test
     public void parse_allFieldsPresent_success() {
         Student expectedStudent = new StudentBuilder(BOB)

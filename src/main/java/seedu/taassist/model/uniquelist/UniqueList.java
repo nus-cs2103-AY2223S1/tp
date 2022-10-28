@@ -3,6 +3,8 @@ package seedu.taassist.model.uniquelist;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +22,7 @@ import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
  * uses {@code Identity<T>#equals(Object)} so as to ensure that the element with exactly the same fields are removed.
  * Supports a minimal set of list operations.
  */
-public class UniqueList<T extends Identity<T>> implements Iterable<T> {
+public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterable<T> {
 
     private final ObservableList<T> internalList = FXCollections.observableArrayList();
     private final ObservableList<T> internalUnmodifiableList =
@@ -44,6 +46,22 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
             throw new DuplicateElementException();
         }
         internalList.add(toAdd);
+        Collections.sort(internalList);
+    }
+
+    /**
+     * Adds all elements in the collection to the list.
+     * The elements must not already exist in the list.
+     */
+    public void addAll(Collection<T> toAddList) {
+        requireAllNonNull(toAddList);
+        for (T toAdd : toAddList) {
+            if (contains(toAdd)) {
+                throw new DuplicateElementException();
+            }
+        }
+        internalList.addAll(toAddList);
+        Collections.sort(internalList);
     }
 
     /**

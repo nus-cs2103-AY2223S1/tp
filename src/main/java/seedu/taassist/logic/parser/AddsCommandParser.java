@@ -5,26 +5,27 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.time.LocalDate;
+import java.util.Set;
 
-import seedu.taassist.logic.commands.SessionCommand;
+import seedu.taassist.logic.commands.AddsCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.session.Date;
 import seedu.taassist.model.session.Session;
 
 /**
- * Parses input arguments and creates a new SessionCommand object.
+ * Parses input arguments and creates a new AddsCommand object.
  */
-public class SessionCommandParser implements Parser<SessionCommand> {
+public class AddsCommandParser implements Parser<AddsCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the SessionCommand
-     * and returns a SessionCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddsCommand
+     * and returns a AddsCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public SessionCommand parse(String args) throws ParseException {
+    public AddsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSION, PREFIX_DATE);
         if (!argMultimap.containsPrefixes(PREFIX_SESSION) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.COMMAND_WORD,
-                    SessionCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddsCommand.COMMAND_WORD,
+                    AddsCommand.MESSAGE_USAGE));
         }
 
         Date date;
@@ -34,8 +35,8 @@ public class SessionCommandParser implements Parser<SessionCommand> {
             date = new Date(LocalDate.now());
         }
 
-        Session session = ParserUtil.parseSession(argMultimap.getValue(PREFIX_SESSION).get(), date);
+        Set<Session> sessions = ParserUtil.parseSessions(argMultimap.getAllValues(PREFIX_SESSION), date);
 
-        return new SessionCommand(session);
+        return new AddsCommand(sessions);
     }
 }

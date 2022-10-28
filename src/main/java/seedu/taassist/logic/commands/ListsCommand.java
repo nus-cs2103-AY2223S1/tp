@@ -20,7 +20,7 @@ public class ListsCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Recorded sessions for class [ %1s ]:\n%2s";
     public static final String MESSAGE_EMPTY_SESSION_LIST = "No sessions have been added for this class. "
-            + "Add sessions with [ " + SessionCommand.COMMAND_WORD + " ] command.";
+            + "Add sessions with [ " + AddsCommand.COMMAND_WORD + " ] command.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

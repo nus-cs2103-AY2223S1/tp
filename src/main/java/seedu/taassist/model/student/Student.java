@@ -19,7 +19,7 @@ import seedu.taassist.model.uniquelist.UniqueList;
  * Represents a Student in TA-Assist.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Student implements Identity<Student> {
+public class Student implements Identity<Student>, Comparable<Student> {
 
     // Identity fields
     private final Name name;
@@ -208,6 +208,11 @@ public class Student implements Identity<Student> {
             moduleData.stream().map(StudentModuleData::getModuleClass).forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return name.toString().compareTo(other.name.toString());
     }
 
 }

@@ -11,7 +11,9 @@ Class "<<interface>>\nModel" as Model
 Class TaAssist
 Class ModelManager
 Class UserPrefs
+Class StudentView
 Class Student
+Class SessionData
 Class ModuleClass
 Class UniqueList
 }
@@ -33,5 +35,8 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 TaAssist *--down-> "\tall\nstudents\n\t1" UniqueList
 TaAssist *--down-> "all\t\nmodule\nclasses\n1\t" UniqueList
 
-ModelManager -->"~* filtered" Student
+ModelManager -->"~* filtered" StudentView
+StudentView --> "0..1" SessionData
+StudentView -down-> "1" Student
+
 @enduml

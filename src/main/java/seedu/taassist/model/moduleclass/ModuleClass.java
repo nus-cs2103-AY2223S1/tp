@@ -18,7 +18,7 @@ import seedu.taassist.model.uniquelist.Identity;
  * Represents a Class in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModuleClassName(String)}
  */
-public class ModuleClass implements Identity<ModuleClass> {
+public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClass> {
 
     public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -82,6 +82,7 @@ public class ModuleClass implements Identity<ModuleClass> {
         }
         List<Session> newSessions = new ArrayList<>(sessions);
         newSessions.add(session);
+        Collections.sort(newSessions);
         return new ModuleClass(className, newSessions);
     }
 
@@ -136,6 +137,11 @@ public class ModuleClass implements Identity<ModuleClass> {
      */
     public String toString() {
         return getClassName();
+    }
+
+    @Override
+    public int compareTo(ModuleClass other) {
+        return className.compareTo(other.className);
     }
 
 }
