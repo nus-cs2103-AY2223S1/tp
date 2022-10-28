@@ -510,7 +510,7 @@ Format: `calendar`
 ## Command summary
 
 <details>
-<summary>Gemeral Commands</summary>
+<summary>General Commands</summary>
 <br>
 
 | Action                      | Format, Examples                                                                                                                                                                                              |
@@ -518,8 +518,11 @@ Format: `calendar`
 | **Clear pre-existing data** | `clear`                                                                                                                                                                                                       |                                                                                                                                                                                                      |
 | **Help**                    | `help`                                                                                                                                                                                                        |
 | **Exit application**        | `exit`                                                                                                                                                                                                        |
+
 </details>
+
 <br>
+
 <details>
 <summary>Commands For Contacts</summary>
 <br>
@@ -533,9 +536,13 @@ Format: `calendar`
 | **View Clients**          | `allClients`                                                                                                                                                                                                 |
 | **View Filtered Clients** | `clients`                                                                                                                                                                                                    |
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
+
 </details>
+
 <br>
+
 <details>
+
 <summary>Commands For Policy</summary>
 <br>
 
@@ -549,8 +556,11 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **Delete Assigned**        | `deleteAssigned [INDEX of CONTACT] [INDEX of POLICY]` <br> e.g. `deleteAssigned 1 1`                                                                                                                          |                                                                                                                                                                                                               |
 | **List Assigned**          | `listAssigned`                                                                                                                                                                                                |
 | **View Income**            | `viewIncome [YEAR]`                                                                                                                                                                                           |                                                                                                                                                                                                               |
+
 </details>
+
 <br>
+
 <details>
 <summary>Commands For Events</summary>
 <br>
@@ -562,8 +572,11 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **Delete Event**  | `deleteEvent [INDEX]` <br> e.g.: `deleteEvent 1`                                                                                                                                                              |
 | **View events**   | `events`                                                                                                                                                                                                      |
 | **View calendar** | `calendar`                                                                                                                                                                                                    |
+
 </details>
+
 <br>
+
 <details>
 <summary>Miscellaneous Commands</summary>
 <br>
@@ -573,6 +586,7 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **Sort**        | `sort [COMPARABLE_METRIC]` <br> `e.g.: sort AGE`                                                                                                                                                              |
 | **Pin**         | `pin [n/NAME]` <br> e.g: `pin n/Jim`                                                                                                                                                                          |
 | **View Pinned** | ` viewPin ` <br> e.g: `viewPin`                                                                                                                                                                               |
+
 </details>
 <br>    
 <br>
