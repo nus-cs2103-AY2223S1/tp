@@ -101,7 +101,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TeachersPetParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+3. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -340,10 +340,10 @@ This feature allows the teacher to mark a student as present for class, which in
 This command executes 3 main actions, they are:
 1. Display a cross beside the student's name in the Schedule list.
    - `ScheduleCard.java` contains a `Label` called `markStatus` to display the cross if the student is marked.
-   - `ScheduleCard#setMarkStatus(Person person)` sets the text of `markStatus` to be `[X]` if the `person` is marked, else `[ ]`.
+   - `ScheduleCard#setMarkStatus(Student student)` sets the text of `markStatus` to be `[X]` if the `student` is marked, else `[ ]`.
 
 2. Increment the money owed by the student.
-   - This action will add `ratesPerClass` field to `moneyOwed` field in `Person`.
+   - This action will add `ratesPerClass` field to `moneyOwed` field in `Student`.
    - The addition of money is called through `Money#addTo(Money money)` method.
    - To prevent integer overflow from happening, `Money#addTo(Money money)` throws a `CommandException` if it occurs.
 
@@ -368,8 +368,8 @@ This feature allows the user(teacher) to sort the students from Teacher's Pet by
 
 The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
-list of person as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `persons` by sorting the list with the given `Comparator`
+list of student as per usual. Additionally, it implements the following operation:
+- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `students` by sorting the list with the given `Comparator`
 
 The following diagram illustrates how the operation works:
 
@@ -411,7 +411,7 @@ The following sequence diagram shows how the undo operation works:
 
 * **Alternative 2:** Individual command knows how to undo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 ---
