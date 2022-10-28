@@ -121,9 +121,6 @@ public class CondoneryParser {
         case RangePropertyCommand.COMMAND_WORD:
             return new RangePropertyCommandParser().parse(arguments);
 
-        case TypePropertyCommand.COMMAND_WORD:
-            return new TypePropertyCommandParser().parse(arguments);
-
         case ListPropertyCommand.COMMAND_WORD:
             return new ListPropertyCommand();
 
