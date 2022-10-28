@@ -56,10 +56,6 @@ public class TypicalPersons {
             .withEmail("heinz@example.com").withGender("M").build();
     public static final Person DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withGender("M").withTags("friends").build();
-    public static final Person ELLE = new ProfessorBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withGender("F").build();
-    public static final Person FIONA = new TeachingAssistantBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withGender("F").build();
     public static final Person GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withGender("M").build();
 
@@ -102,6 +98,12 @@ public class TypicalPersons {
             .withGender(VALID_GENDER_MALE)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
+    public static final Person ELLE = new ProfessorBuilder().withName("Elle Meyer").withPhone("9482224")
+            .withEmail("werner@example.com").withGender("F").build();
+
+    /* -------------------------------TEACHING ASSISTANT------------------------------- */
+    public static final Person FIONA = new TeachingAssistantBuilder().withName("Fiona Kunz").withPhone("9482427")
+            .withEmail("lydia@example.com").withGender("F").build();
 
     private TypicalPersons() {} // prevents instantiation
 

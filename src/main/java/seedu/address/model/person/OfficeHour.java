@@ -29,7 +29,7 @@ public class OfficeHour {
      * Duration must be specified as an integer (1 - 9)
      */
     public static final String VALIDATION_REGEX =
-            "^(?:SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY)+,"
+            "^(?:MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY)+,"
                     + "+ (([0]{1}\\d{1})|([1]{1}[0-2]{1}))+:+([0-5]{1}\\d{1}) "
                     + "+(?:PM|AM) +-+ (([0]{1}\\d{1})|([1]{1}[0-2]{1}))+:+([0-5]{1}\\d{1}) +(?:PM|AM)$";
     public static final String INSTRUCTION_REGEX =
