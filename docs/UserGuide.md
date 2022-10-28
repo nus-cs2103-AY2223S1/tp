@@ -242,8 +242,6 @@ Format: `list`
 Shows all details of a specified patient.
 
 Format: `focus -p PATIENT_INDEX`
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `focus -p 2` shows all details of the 2nd patient in the patient book. 
