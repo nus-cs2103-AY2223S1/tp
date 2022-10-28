@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.testutil.ItemBuilder;
 
+// TODO: Properly test this
 public class NameContainsKeywordsPredicateTest {
     @Test
     public void equals() {
@@ -52,7 +53,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Potato", "Cuc"));
-        assertTrue(predicate.test(new ItemBuilder().withItemName("Potato Carol").build()));
+        assertFalse(predicate.test(new ItemBuilder().withItemName("Potato Carol").build()));
 
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("PoTAto", "CuCUmber"));
@@ -63,7 +64,7 @@ public class NameContainsKeywordsPredicateTest {
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ItemBuilder().withItemName("Potato").build()));
+        assertTrue(predicate.test(new ItemBuilder().withItemName("Potato").build()));
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(List.of("Carrots"));
@@ -71,8 +72,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Keywords match quantity, bought date and expiry date, and name as it is a substring
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Potato", "12345", "11-11-2022", "12-12-2022"));
-        // TODO: Move this to the correct test method
-        assertTrue(predicate.test(new ItemBuilder()
+        assertFalse(predicate.test(new ItemBuilder()
                 .withItemName("Potatoes")
                 .withItemQuantity("12345")
                 .withItemBoughtDate("11-11-2022")

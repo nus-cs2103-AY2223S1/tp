@@ -54,22 +54,22 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noItemsFound() {
-        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 2);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getCurrentList());
+        assertEquals(Arrays.asList(POTATOES, CUCUMBERS), model.getCurrentList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleItemsFound() {
-        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate("Potatoes Cucumbers Carrots");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(POTATOES, CUCUMBERS), model.getCurrentList());
+        assertEquals(Collections.emptyList(), model.getCurrentList());
     }
 
     /**
