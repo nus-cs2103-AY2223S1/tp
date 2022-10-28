@@ -539,7 +539,7 @@ range and with the specified class duration.
 
 Format: `avail TIME_RANGE DURATION`
 
-- The `TIME_RANGE` would follow a 24 hour format of 0000-2359.
+- The `TIME_RANGE` would follow a 24-hour format of 0000-2359.
 - The `DURATION` is in minutes.
 
 ```yaml
@@ -572,9 +572,10 @@ Format: `sort TYPE [ORDER]`
 - `ORDER`, if present, must be followed by either one of the below options:
   - `ASC`
   - `DESC`
-  - If it is left as blank, it will follow the default order based on the specified`TYPE`.
+  - If it is left as blank, it will follow the default order based on the specified `TYPE`.
 - The default order for `NAME` and `CLASS` is `ASC` while for `OWED`, the default order is `DESC`.
-- The parameters `TYPE` and `ORDER` are case-insensitive
+- The parameters `TYPE` and `ORDER` are case-insensitive.
+- When two students are **in a tie** for the compared `TYPE`, they will be sorted according to their **names** in **ascending** order by default.
 
 [↑ Back to top](#table-of-contents)
 
