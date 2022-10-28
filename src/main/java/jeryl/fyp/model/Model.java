@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.model.student.Deadline;
+import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 
@@ -132,5 +133,5 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    void listDeadlineUnderStudent(Student student);
+    DeadlineList listDeadlineUnderStudent(Student student);
 }
