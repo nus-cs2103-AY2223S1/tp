@@ -29,6 +29,7 @@ import seedu.address.model.social.Social;
 import seedu.address.model.social.exceptions.SocialException;
 import seedu.address.storage.PictureStorage;
 
+import javax.imageio.ImageIO;
 
 
 /**
@@ -120,33 +121,36 @@ public class PersonCard extends UiPart<Region> {
         }
 
         cir2.setStroke(Color.AQUAMARINE);
-        Image im = new Image(social.getImageUrl(), false);
+        String imageUrl = social.getImageUrl();
+        Image im = new Image(String.valueOf(this.getClass().getResource("/images/profile_pic.png")));
         cir2.setFill(new ImagePattern(im));
         cir2.setEffect(new DropShadow(+25d, 0d, +2d, Color.AQUAMARINE));
         final FileChooser f = new FileChooser();
-        browse.setText("Browse");
-        browse.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                File file = f.showOpenDialog(primaryStage);
-                if (file != null) { // only proceed, if file was chosen
-                    String newImageUrl = file.toURI().toString();
-                    social.addUrl(newImageUrl);
-                    System.out.println(social.toString());
-                    Image im = new Image(newImageUrl, false);
-                    cir2.setFill(new ImagePattern(im));
-                    try (Reader reader = new FileReader("data/addressbook.json")) {
-                        // Read JSON file
-                        PictureStorage saver = new PictureStorage(displayedIndex, social, newImageUrl);
-                        saver.saveStorage();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                }
-                }
-            });
+        browse.setText("Choose Picture");
+        browse.setVisible(false);
+//        browse.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                File file = f.showOpenDialog(primaryStage);
+//                if (file != null) { // only proceed, if file was chosen
+//                    String newImageUrl = file.toURI().toString();
+//                    System.out.println(newImageUrl);
+//                    social.addUrl(newImageUrl);
+//                    //System.out.println(social.toString());
+//                    Image im = new Image(newImageUrl);
+//                    cir2.setFill(new ImagePattern(im));
+//                    try (Reader reader = new FileReader("data/addressbook.json")) {
+//                        // Read JSON file
+//                        PictureStorage saver = new PictureStorage(displayedIndex, social, newImageUrl);
+//                        saver.saveStorage();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                }
+//            });
 
         whatsapp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
