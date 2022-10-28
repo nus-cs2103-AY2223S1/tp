@@ -5,35 +5,35 @@ title: FinBook User Guide
 
 # Table of Contents
 
-1. [Introduction](#1-introduction)
-   1.1. [What is FinBook?](#11-what-is-finbook)
-2. [How to use this User Guide?](#2-how-to-use-this-user-guide)
-   2.1. [Icons and symbols](#21-icons-and-symbols)
-   2.2. [User Interface (UI) of FinBook](#22-user-interface-ui-of-finbook)  
-   2.3. [Command format](#23-command-format)
-3. [Quick Start](#3-quick-start)
-4. [Features](#4-features)
-   4.1. [Managing a client](#41-managing-a-client)
-   &emsp; 4.1.1. [Adding a client: `add`](#411-adding-a-client-add)
-   &emsp; 4.1.2. [Editing a client: `edit`](#412-editing-a-client--edit)
-   &emsp; 4.1.3. [Deleting a client: `delete`](#413-deleting-a-client--delete)
-   &emsp; 4.1.4. [Listing all clients: `list`](#414-listing-all-clients--list)
-   &emsp; 4.1.5. [Finding a client: `find`](#415-finding-a-client--find)
-   &emsp; 4.1.6. [Viewing Portfolio of a specific client: `view`](#416-viewing-portfolio-of-a-specific-client-view)
-   4.2. [Data privacy](#42-data-privacy)
-   &emsp; 4.2.1. [Locking the application: `lock`](#421-locking-the-application--lock)
-   &emsp; 4.2.2. [Setting or updating the password: `password`](#422-setting-or-updating-the-password--password)
-   4.3. [General](#43-general)
-   &emsp; 4.3.1. [Saving the data](#431-saving-the-data)
-   &emsp; 4.3.2. [Editing the data file](#432-editing-the-data-file)
-   &emsp; 4.3.3. [Importing data: `import`](#433-importing-data--import)
-   &emsp; 4.3.4. [Exporting data: `export`](#434-exporting-data--export)
-   &emsp; 4.3.5. [Copying a client's data: `copy`](#435-copying-a-clients-data--copy)
-   &emsp; 4.3.6. [Changing Light/Dark mode](#436-changing-lightdark-mode)
-   &emsp; 4.3.7. [Exiting the application: `exit`](#437-exiting-the-application--exit)
-5. [FAQ](#5-faq)
-6. [Glossary](#6-glossary)
-7. [Command Summary](#7-command-summary)
+1. [Introduction](#1-introduction)<br>
+   1.1. [What is FinBook?](#11-what-is-finbook)<br>
+2. [How to use this User Guide?](#2-how-to-use-this-user-guide)<br>
+   2.1. [Icons and symbols](#21-icons-and-symbols)<br>
+   2.2. [User Interface (UI) of FinBook](#22-user-interface-ui-of-finbook)<br>
+   2.3. [Command format](#23-command-format)<br>
+3. [Quick Start](#3-quick-start)<br>
+4. [Features](#4-features)<br>
+   4.1. [Managing a client](#41-managing-a-client)<br>
+   &emsp; 4.1.1. [Adding a client: `add`](#411-adding-a-client-add)<br>
+   &emsp; 4.1.2. [Editing a client: `edit`](#412-editing-a-client--edit)<br>
+   &emsp; 4.1.3. [Deleting a client: `delete`](#413-deleting-a-client--delete)<br>
+   &emsp; 4.1.4. [Listing all clients: `list`](#414-listing-all-clients--list)<br>
+   &emsp; 4.1.5. [Finding a client: `find`](#415-finding-a-client--find)<br>
+   &emsp; 4.1.6. [Viewing Portfolio of a specific client: `view`](#416-viewing-portfolio-of-a-specific-client-view)<br>
+   4.2. [Data privacy](#42-data-privacy)<br>
+   &emsp; 4.2.1. [Locking the application: `lock`](#421-locking-the-application--lock)<br>
+   &emsp; 4.2.2. [Setting or updating the password: `password`](#422-setting-or-updating-the-password--password)<br>
+   4.3. [General](#43-general)<br>
+   &emsp; 4.3.1. [Saving the data](#431-saving-the-data)<br>
+   &emsp; 4.3.2. [Editing the data file](#432-editing-the-data-file)<br>
+   &emsp; 4.3.3. [Importing data: `import`](#433-importing-data--import)<br>
+   &emsp; 4.3.4. [Exporting data: `export`](#434-exporting-data--export)<br>
+   &emsp; 4.3.5. [Copying a client's data: `copy`](#435-copying-a-clients-data--copy)<br>
+   &emsp; 4.3.6. [Changing Light/Dark mode](#436-changing-lightdark-mode)<br>
+   &emsp; 4.3.7. [Exiting the application: `exit`](#437-exiting-the-application--exit)<br>
+5. [FAQ](#5-faq)<br>
+6. [Glossary](#6-glossary)<br>
+7. [Command Summary](#7-command-summary)<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -56,7 +56,8 @@ So what are you waiting for? Start using FinBook today!
 
 # 2. How to Use this User Guide?
 
-1. To get familiar with this user guide you can continue reading [How to Use this User Guide](#2-how-to-use-this-user-guide)
+1. To get familiar with this user guide you can continue
+   reading [How to Use this User Guide](#2-how-to-use-this-user-guide)
 2. If you are a new user, you can get started with [Quick Start](#3-quick-start) to familiarise yourself with FinBook.
 3. If you are familiar with FinBook, you can refer to the [Features](#4-features) to see details of all available
    commands or refer at [Command Summary](#7-command-summary).
@@ -164,6 +165,8 @@ For example,
 
 ## 4.1. Managing a client
 
+----
+
 ### 4.1.1. Adding a client: `add`
 
 Adds a client to the FinBook.
@@ -178,11 +181,13 @@ Examples:
   r/high pl/Prudential Health note/Client is currently having COVID`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
 
+----
+
 ### 4.1.2. Editing a client : `edit`
 
 Edits an existing client in the FinBook.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]`
 
         [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
@@ -197,6 +202,8 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower`.
 
+----
+
 ### 4.1.3. Deleting a client : `delete`
 
 Four formats of deleting a client.
@@ -208,6 +215,8 @@ Four formats of deleting a client.
 
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+----
 
 #### Deleting a single client
 
@@ -221,6 +230,8 @@ Examples:
 
 * `list` followed by `delete 2` deletes the 2nd client in the FinBook.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+----
 
 #### Deleting multiple clients
 
@@ -256,15 +267,34 @@ Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
 
+----
+
 ### 4.1.4. Listing all clients : `list`
 
 Shows a list of all clients in the FinBook.
 
 Format: `list`
 
+----
+
 ### 4.1.5. Finding a client : `find`
 
-(toc)
+Finds all clients whose names or tags contain any of the specified keywords (case-insensitive) and displays them as a
+list with index numbers.
+
+Format: `find [n/NAME] [t/TAG]`
+
+* Updated list of clients whose name or tag contain any of the specified keywords is displayed in the list of clients on
+  the left.
+* At least one of the parameters must be provided.
+* Only one type of parameter can be provided at one time.
+
+Examples:
+
+* `find n/John n/alex` will find all clients with John or Alex in their names.
+* `find t/friends t/colleagues` will find all clients with either `friends` or `colleagues` tags.
+
+----
 
 ### 4.1.6. Viewing Portfolio of a specific client: `view`
 
@@ -444,7 +474,9 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 Toggle the visibility of FinBook by clicking on the `open eye` or `close eye` icon on the top right of the application.
 
 * If the icon is an `open eye` FinBook displays all client data.
+  ![Shown](images/Ui_shown.png)
 * If the icon is a `close eye` FinBook hides all sensitive client data.
+  ![Hidden](images/Ui_hidden.png)
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Your mode preference will be automatically saved ** 
@@ -489,7 +521,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                    |
 | **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                  |
 | **List**             | `list`                                                                                                                                                                                                                                                                                                                                                |
-| **Find**             | (toc)                                                                                                                                                                                                                                                                                                                                                 | 
+| **Find**             | `find [n/NAME] [t/TAG]` <br> e.g., `find t/friends`                                                                                                                                                                                                                                                                                                   | 
 | **View Portfolio**   | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                                                                                      |
 | **Lock application** | `lock`                                                                                                                                                                                                                                                                                                                                                |
 | **Password**         | `password [old/OLDPASSWORD] new/NEWPASSWORD`<br> e.g.,`password old/foobar new/barfoo`                                                                                                                                                                                                                                                                |
