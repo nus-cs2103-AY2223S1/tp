@@ -12,14 +12,17 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniqueBuyerList
+Class UniqueDelivererList
+Class UniqueSupplierList
+Class UniqueOrderList
+Class UniquePetList
 
+Class Buyer
+Class Deliverer
+Class Supplier
+Class Order
+Class Pet
 }
 
 Class HiddenOutside #FFFFFF
@@ -27,24 +30,34 @@ HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
 
-ModelManager .up.|> Model
+ModelManager .up.....|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager -up-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+UserPrefs .up.....|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueBuyerList
+AddressBook *--> "1" UniqueDelivererList
+AddressBook *--> "1" UniqueSupplierList
+AddressBook *--> "1" UniqueOrderList
+AddressBook *--> "1" UniquePetList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UniqueBuyerList-down->"all" Buyer
+UniqueDelivererList-down->"all" Deliverer
+UniqueSupplierList-down->"all" Supplier
+UniqueOrderList-down->"all" Order
+UniquePetList-down->"all" Pet
 
-ModelManager -->"~* filtered" Person
+ModelManager-up-->"filtered" Buyer
+ModelManager-up-->"filtered" Deliverer
+ModelManager-up-->"filtered" Supplier
+ModelManager-up-->"filtered" Order
+ModelManager-up-->"filtered" Pet
+
+UniqueBuyerList -right[hidden]- UniqueSupplierList
+UniqueSupplierList -right[hidden]- UniqueDelivererList
+UniqueDelivererList -right[hidden]- UniqueOrderList
+UniqueOrderList -right[hidden]- UniquePetList
+
 @enduml
