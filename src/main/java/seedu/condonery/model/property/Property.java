@@ -58,6 +58,10 @@ public class Property {
         return price;
     }
 
+    public Path getImageDirectoryPath() {
+        return this.imageDirectoryPath;
+    }
+
     public Path getImagePath() {
         requireAllNonNull(imageDirectoryPath);
         return imageDirectoryPath.resolve("property-" + getCamelCaseName());

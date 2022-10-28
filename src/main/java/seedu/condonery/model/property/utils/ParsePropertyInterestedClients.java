@@ -51,7 +51,7 @@ public class ParsePropertyInterestedClients {
     }
 
     public Property getNewProperty() {
-        return new Property(
+        Property property = new Property(
                 originalProperty.getName(),
                 originalProperty.getAddress(),
                 originalProperty.getPrice(),
@@ -60,5 +60,6 @@ public class ParsePropertyInterestedClients {
                 originalProperty.getPropertyTypeEnum(),
                 originalProperty.getPropertyStatusEnum()
         );
+        property.setImageDirectoryPath(originalProperty.getImageDirectoryPath());
     }
 }
