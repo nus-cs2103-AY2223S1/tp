@@ -10,6 +10,8 @@ These statistics include:
 * Total cost of wasted items
 * Top 3 most commonly used tags in your inventory
 * Top 3 most costly items in your inventory
+
+The cost of an item is the price of the item multiplied by the number of those items in your inventory.
 ```
 
 **Example Input:**
