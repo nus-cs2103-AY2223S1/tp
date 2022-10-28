@@ -29,16 +29,15 @@ Long Time No See (LTNS) is a  **desktop app for managing clients, policies and e
 3. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`listClients`** : Lists all clients.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to the Address Book.
+   * **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd client shown in the current list.
+   * **`deleteClient`**`3` : Deletes the 3rd client shown in the current list.
 
    * **`clear`** : Deletes all clients.
 
@@ -121,7 +120,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 Adds a client to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
+Format: `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can have any number of tags (including 0)
@@ -137,8 +136,8 @@ The `Risk Appetite` can be classified as High, Medium or Low. They are represent
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05, i/50000, ra/L`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H`
+* `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05, i/50000, ra/L`
+* `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H`
 
 ### Listing all clients : `allClients`
 
@@ -150,7 +149,7 @@ Format: `allClients`
 
 Edits an existing client in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [r/RISK_APPETITE] ​`
+Format: `editClient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [r/RISK_APPETITE] ​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -160,9 +159,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTH
     specifying any tags after it. 
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
-*  `edit 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
+*  `editClient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+*  `editClient 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+*  `editClient 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
 
 ### Search for clients: `findClient`
 
@@ -198,15 +197,15 @@ Examples:
 
 Deletes the specified client from the address book.
 
-Format: `delete INDEX`
+Format: `deleteClient INDEX`
 
 * Deletes the client at the specified `INDEX`.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listClients` followed by `delete 2` deletes the 2nd client in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st Client in the results of the `find` command.
+* `listClients` followed by `deleteClient 2` deletes the 2nd client in the address book.
+* `find Betsy` followed by `deleteClient 1` deletes the 1st Client in the results of the `find` command.
 
 ### Sorting all Clients : `sort`
 
