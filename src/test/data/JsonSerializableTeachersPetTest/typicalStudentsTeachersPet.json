@@ -1,6 +1,6 @@
 {
-  "_comment": "TeachersPet save file which contains the same Person values as in TypicalPersons#getTypicalTeachersPet()",
-  "persons" : [ {
+  "_comment": "TeachersPet save file which contains the same Student values as in TypicalStudents#getTypicalTeachersPet()",
+  "students" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "nokPhone" : "88219345",
