@@ -275,7 +275,7 @@ Then, multiple processes occur to parse, validate and execute the command.
 
 **Implementation**
 
-This feature allow `Tasks` to be added to the `TaskList` for vendors to keep track of tasks they need to do.
+This feature allows `Tasks` to be added to the `TaskList` for vendors to keep track of tasks they need to do.
 
 The proposed addTask feature is facilitated by `AddTaskCommand` and `AddTaskCommandParser` classes
 
