@@ -74,7 +74,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -83,7 +83,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
 
 ### Logic component
 
@@ -94,9 +94,9 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `WorkBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -111,7 +111,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `WorkBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `WorkBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -122,12 +122,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the work book data i.e., all `Internship` objects (which are contained in a `UniqueInternshipList` object).
+* stores the currently 'selected' `Internship` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `WorkBook`, which `Internship` references. This allows `WorkBook` to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -141,13 +141,13 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both work book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `WorkBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.workbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -156,6 +156,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Undo/Redo feature
+
+The undo feature allows for users to revert back to their previous undone state in the Workbook. 
+The redo feature complements the undo feature by allowing users to restore to its previous changed state following an undo command. 
 
 #### Implementation
 
@@ -202,19 +205,29 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoWorkBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the work book to that state.
+Step 5. The user now decides that undoing the added internship was a mistake, and decides to redo that action by executing the `redo` command. The `redo` command will call `Model#redoWorkBook()`, which will shift the `currentStatePointer` once to the right, pointing it to the previous undone work book state, and restores the work book to that state.
+
+![UndoRedoState4](images/UndoRedoState4.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `workBookStateList.size() - 1`, pointing to the latest work book state, then there are no undone WorkBook states to restore. The `redo` command uses `Model#canRedoWorkBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the work book, such as `list`, will usually not call `Model#commitWorkBook()`, `Model#undoWorkBook()` or `Model#redoWorkBook()`. Thus, the `workBookStateList` remains unchanged.
+The following sequence diagram shows how the redo operation works:
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitWorkBook()`. Since the `currentStatePointer` is not pointing at the end of the `workBookStateList`, all work book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/COMPANY …​` command. This is the behavior that most modern desktop applications follow.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RedoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 6. The user then decides to execute the command `list`. Commands that do not modify the work book, such as `list`, will usually not call `Model#commitWorkBook()`, `Model#undoWorkBook()` or `Model#redoWorkBook()`. Thus, the `workBookStateList` remains unchanged.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
+
+Step 7. The user executes `clear`, which calls `Model#commitWorkBook()`. Since the `currentStatePointer` is not pointing at the end of the `workBookStateList`, all work book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/COMPANY …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState6](images/UndoRedoState6.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -230,7 +243,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the internship being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -273,33 +286,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                       | I want to …​                                                                           | So that I can…​                                                                                               |
-|----------|-----------------------------------------------|----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| `* * *`  | student                                       | add an internship company and role that I have applied to                              | keep track of which company and which roles I have applied for, especially when I have many applications      |
-| `* * *`  | student                                       | update an internship position that I have applied to                                   | keep the tracker updated on the current state of my internship application                                    |
-| `* * *`  | student                                       | add an interview date and time to an internship application                            | track when my interview for that particular internship application is coming up                               |
-| `* * *`  | student                                       | view the list of commands for use                                                      | familiarize myself with them and increase efficiency when performing operations on the application            |
-| `* * *`  | student                                       | keep track of the stage of my application                                              | know which stages I am at for each application and thereafter what to prepare for it                          |
-| `* * *`  | student                                       | delete an internship that I am not interested in anymore                               | get rid of internship applications that are not relevant to me anymore                                        |
-| `* * *`  | forgetful student                             | sort the list of internship applications by dates                                      | see and remember which interviews are upcoming to better prepare for them in case I have forgotten about them |
-| `* * *`  | student preparing for upcoming internships    | view daily tips to aid in my learning                                                  | be better prepared for the technical interviews                                                               |
-| `* * *`  | student preparing for technical interviews    | conveniently do practice questions                                                     | be better prepared for my technical interviews                                                                |
-| `* * *`  | student who got rejected by all the companies | clear the list of internship applications                                              | I can start anew                                                                                              |
-| `* * *`  | student                                       | add an expiry date and time to an application that is in the “Online Assessment” stage.| keep track of when I have to complete the Online Assessment by                                                |
-| `* * *`  | student who constantly changes my mind        | redo an undone command                                                                 | revert back the changes I had originally made                                                                 |
-| `* * `   | student                                       | filter my internship applications according to position                                | view all my internship applications for that particular position that I am interested in                      |
-| `*`      | student                                       | rank all my internship applications                                                    | decide which applications that I have to focus on more.                                                       |
-| `*`      | easily confused student                       | prevent myself from adding the same internship application twice                       | I dont get distracted by duplicate internships                                                                |
+| Priority | As a …​                                       | I want to …​                                                                                  | So that I can…​                                                                                               |
+|----------|-----------------------------------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| `* * *`  | student                                       | add an internship company and role that I have applied to                                     | keep track of which company and which roles I have applied for, especially when I have many applications      |
+| `* * *`  | student                                       | update an internship position that I have applied to                                          | keep the tracker updated on the current state of my internship application                                    |
+| `* * *`  | student                                       | add an interview date and time to an internship application                                   | track when my interview for that particular internship application is coming up                               |
+| `* * *`  | student                                       | view the list of commands for use                                                             | familiarize myself with them and increase efficiency when performing operations on the application            |
+| `* * *`  | student                                       | keep track of the stage of my application                                                     | know which stages I am at for each application and thereafter what to prepare for it                          |
+| `* * *`  | student                                       | delete an internship that I am not interested in anymore                                      | get rid of internship applications that are not relevant to me anymore                                        |
+| `* * *`  | forgetful student                             | sort the list of internship applications by dates                                             | see and remember which interviews are upcoming to better prepare for them in case I have forgotten about them |
+| `* * *`  | student preparing for upcoming internships    | view daily tips to aid in my learning                                                         | be better prepared for the technical interviews                                                               |
+| `* * *`  | student preparing for technical interviews    | conveniently do practice questions                                                            | be better prepared for my technical interviews                                                                |
+| `* * *`  | student who got rejected by all the companies | clear the list of internship applications                                                     | I can start anew                                                                                              |
+| `* * *`  | student                                       | add an expiry date and time to an application that is in the “Online Assessment” stage.       | keep track of when I have to complete the Online Assessment by                                                |
+| `* * *`  | student who constantly changes my mind        | redo an undone command                                                                        | revert back the changes I had originally made                                                                 |
+| `* * `   | student                                       | filter my internship applications according to position                                       | view all my internship applications for that particular position that I am interested in                      |
+| `*`      | student                                       | rank all my internship applications                                                           | decide which applications that I have to focus on more.                                                       |
+| `*`      | easily confused student                       | prevent myself from adding the same internship application twice                              | I dont get distracted by duplicate internships                                                                |
 | `*`      | student                                       | move an existing application to the "Rejection" stage and provide a reason why I got rejected | keep track of common trends or reasons for my failed applications                                             |
 | `*`      | broke student                                 | sort the internships based on pay                                                             | determine which applications are more worth it in this current economic state.                                |
 | `*`      | less experienced student with CLI             | view the list of commands                                                                     | familiarise myself with the commands.                                                                         |
 | `*`      | less experienced student                      | view some helpful resources                                                                   | understand the hiring process and tech landscapes better.                                                     |
 | `*`      | anxious student                               | switch to a calender view                                                                     | easily see all my upcoming interviews/OAs/expiring offers                                                     |
-| `* * *`  | student                                       | view stage specific prepatory tips                                                            | see how I can prepare before my stage specific deadline.
-| `*`      | student                                       | create a todo list for each internship entry                                                  | keep track of what I've done and what I've yet to do to prepare.
-| `* *`    | forgetful student                             | easily access tips specific to each internship based on the current stage                     | quickly see a list of things to prepare for an upcoming internship stage deadline.
-
-
+| `* * *`  | student                                       | view stage specific prepatory tips                                                            | see how I can prepare before my stage specific deadline.                                                      |
+| `*`      | student                                       | create a todo list for each internship entry                                                  | keep track of what I've done and what I've yet to do to prepare.                                              |
+| `* *`    | forgetful student                             | easily access tips specific to each internship based on the current stage                     | quickly see a list of things to prepare for an upcoming internship stage deadline.                            |
 
 *{More to be added}*
 

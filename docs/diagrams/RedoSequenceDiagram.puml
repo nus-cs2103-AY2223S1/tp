@@ -4,49 +4,49 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":WorkBookParser" as WorkBookParser LOGIC_COLOR
-participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+participant "r:RedoCommand" as RedoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":VersionedWorkBook" as VersionedWorkBook MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute(redo)
 activate LogicManager
 
-LogicManager -> WorkBookParser : parseCommand(undo)
+LogicManager -> WorkBookParser : parseCommand(redo)
 activate WorkBookParser
 
-create UndoCommand
-WorkBookParser -> UndoCommand
-activate UndoCommand
+create RedoCommand
+WorkBookParser -> RedoCommand
+activate RedoCommand
 
-UndoCommand --> WorkBookParser
-deactivate UndoCommand
+RedoCommand --> WorkBookParser
+deactivate RedoCommand
 
-WorkBookParser --> LogicManager : u
+WorkBookParser --> LogicManager : r
 deactivate WorkBookParser
 
-LogicManager -> UndoCommand : execute()
-activate UndoCommand
+LogicManager -> RedoCommand : execute()
+activate RedoCommand
 
-UndoCommand -> Model : undoWorkBook()
+RedoCommand -> Model : redoWorkBook()
 activate Model
 
-Model -> VersionedWorkBook : undo()
+Model -> VersionedWorkBook : redo()
 activate VersionedWorkBook
 
 VersionedWorkBook -> VersionedWorkBook :resetData(ReadOnlyWorkBook)
 VersionedWorkBook --> Model :
 deactivate VersionedWorkBook
 
-Model --> UndoCommand
+Model --> RedoCommand
 deactivate Model
 
-UndoCommand --> LogicManager : result
-deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
+RedoCommand --> LogicManager : result
+deactivate RedoCommand
+RedoCommand -[hidden]-> LogicManager : result
+destroy RedoCommand
 
 [<--LogicManager
 deactivate LogicManager
