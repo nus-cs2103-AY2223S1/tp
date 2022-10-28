@@ -111,6 +111,9 @@ Finds the calorie content of a food item for 1 serving in kcal.
 Format: `find FOOD`
 
 * Only the calorie contents of some common food items are included.
+* If the user has entered a specific food item before, the `find` command will return the average calories of 
+that specific food item that the user has specified
+* 
 
 Example:
 
