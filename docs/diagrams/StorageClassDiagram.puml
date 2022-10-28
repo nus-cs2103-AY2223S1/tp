@@ -22,11 +22,11 @@ Class JsonAdaptedStudent
 }
 
 package "TaskBook Storage" #F4F6F6{
-
+    Class "<<interface>>\nTaskBookStorage" as TaskBookStorage
 }
 
 package "LessonBook Storage" #F4F6F6{
-
+    Class "<<interface>>\nLessonBookStorage" as LessonBookStorage
 }
 
 }
@@ -35,14 +35,16 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 HiddenOutside ..[hidden] "LessonBook Storage"
 
-StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" StudentBookStorage
+StorageManager ..|> Storage
+StorageManager --> "1" UserPrefsStorage
+StorageManager --> "1" StudentBookStorage
+StorageManager --> "1" TaskBookStorage
+StorageManager --> "1" LessonBookStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> StudentBookStorage
-Storage -up-|> "TaskBook Storage"
-Storage -up-|> "LessonBook Storage"
+Storage -down-|> StudentBookStorage
+Storage -up-|> LessonBookStorage
+Storage -up-|> TaskBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonStudentBookStorage .up.|> StudentBookStorage
