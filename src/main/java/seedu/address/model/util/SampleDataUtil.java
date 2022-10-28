@@ -35,8 +35,8 @@ import seedu.address.storage.Storage;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    private static Random random = new Random();
-    private static String placeholderImagePath = System.getProperty("user.dir")
+    private static final Random random = new Random();
+    private static final String PLACEHOLDER_IMAGE_PATH = System.getProperty("user.dir")
             + "/src/main/resources/images/placeholderart.png";
 
     public static Customer[] getSampleCustomers(Storage storage) {
@@ -92,7 +92,7 @@ public class SampleDataUtil {
                 new CompletionStatus(random.nextBoolean()),
                 new HashSet<>()).build(customer);
 
-        FileInputStream fis = new FileInputStream(placeholderImagePath);
+        FileInputStream fis = new FileInputStream(PLACEHOLDER_IMAGE_PATH);
         BufferedImage placeholderImage = ImageIO.read(fis);
         for (int j = 1; j <= 3; j++) {
             Path imageCopyPath = storage.getRandomImagePath();
