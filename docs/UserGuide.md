@@ -472,6 +472,7 @@ Expected outcome:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 | Action               | Format, Examples                                                                                                                                                                         |
 |----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**             | `help`                                                                                                                                                                                   |
@@ -491,7 +492,7 @@ Expected outcome:
 | **Stats**            | `stats`                                                                                                                                                                                  |
 | **Select**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                     |
 | **Add Task**         | `addtask TASKNAME /at TASKTIME`<br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                             |
-| **Delete Task**      |  `deltask INDEX` <br/> e.g. `deltask `                                                                                                                                                                                        |
+| **Delete Task**      | `deltask INDEX` <br/> e.g. `deltask `                                                                                                                                                    |
 | **Add Tag**          | `addtag`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                     |
 | **Delete Tag**       | `deltag`<br/> e.g. `deltag 1 Urgent`                                                                                                                                                     |
 | **Mail**             | `mail`                                                                                                                                                                                   |
