@@ -93,9 +93,6 @@ Beyond individual products, you can also:
 
 --------------------------------------------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-1. Ensure you have Java `11` or above installed on your computer.
-=======
 ## 3. Installation Guide
 
 ### 3.1 System Requirements
@@ -113,13 +110,12 @@ You will also require Java 11 or above to run *MyInsuRec*. If you don't already 
 To install *MyInsuRec*, simply follow the steps below:
 
 1. Ensure that your system meets the [system requirements](#31-system-requirements).
->>>>>>> 7d672637eb1a8fa1fb12674eb0297799592356dd
 
-1. Download the latest `MyInsuRec.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-4/tp/releases).
+2. Download the latest `MyInsuRec.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your *MyInsuRec*.
+3. Copy the file to the folder you want to use as the _home folder_ for your *MyInsuRec*.
 
-1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
    ![Ui](images/Ui.png)
 
 Ta-da! *MyInsuRec* is now installed on your system.
@@ -227,9 +223,9 @@ Welcome to your new and organized life, and happy (financial) advising!
 
 ### 5.1 Client commands
 
-#### 5.1.1 Adding a client: `addClient`
+#### 5.1.1 Add client: `addClient`
 
-Adds a new client to **MyInsuRec.
+Add a new client to MyInsuRec.
 
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
@@ -245,7 +241,7 @@ Examples:
 * `addClient n/John Tan p/12345678 b/12122000`
 * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
 
-#### 5.1.2 Listing all clients : `listClient`
+#### 5.1.2 List clients: `listClient`
 
 * List clients in *MyInsuRec* with a valid filter.
 * A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
@@ -261,46 +257,41 @@ Examples:
 * `listClient pd/Product1`
 * `listClient b/week`
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 bd/week` is strictly not allowed.
+<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
-#### 5.1.3 Viewing a client: `viewClient`
+#### 5.1.3 View client: `viewClient`
 
 View details associated with a client, such as the client's name and phone number.
 
 Format: `viewClient i/INDEX`
 
-* Displays information about the client at the specific `INDEX`.
-* The index refers to the index number shown in the displayed clients' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Display information about the client at the specific [`INDEX`](#index) in the client list.
+
 
 Examples:
 * `viewClient i/1`
 
-#### 5.1.4 Deleting a client : `delClient`
+#### 5.1.4 Delete client: `delClient`
 
-Deletes the specified client from *MyInsuRec*.
+Delete the specified client from *MyInsuRec*.
 
 Format: `delClient i/INDEX`
 
-* Deletes the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
-* `Index` **must be a positive integer** 1, 2, 3, …​
+* Delete the client at the specified [`INDEX`](#index) in the client list.
 
 Examples:
 * `delClient i/2`
 
-#### 5.1.5 Editing a client: `editClient`
+#### 5.1.5 Edit client: `editClient`
 
-Edits detail of the specified client.
+Edit detail of the specified client.
 
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
-* Edits the client at the specified `INDEX`.
-*`INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Edit the client at the specified [`INDEX`](#index) in the client list.
 * At least one optional detail must be modified.
-* Maintains value of details not edited by the command.
+* Maintain value of details not edited by the command.
 
 Examples:
 Suppose *MyInsuRec* contains only one client 'John Tan' having phone number '0123456789':
@@ -309,22 +300,23 @@ Suppose *MyInsuRec* contains only one client 'John Tan' having phone number '012
 
 ### 5.2 Meeting commands
 
-#### 5.2.1 Adding a meeting : `addMeeting`
+#### 5.2.1 Add meeting: `addMeeting`
 
-Adds a new meeting to *MyInsuRec*.
-DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
+Add a new meeting to *MyInsuRec*.
+DATE should be in DDMMYYYY format and TIME should be in 24-hour HHMM format.
 
 Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 
-* Adds a meeting.
-* A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
+* Add a meeting.
+* A meeting contains the [`INDEX`](#index) of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 
 Examples:
 * `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
 
 #### 5.2.2 List meetings: `listMeeting`
 
-Shows a list of meetings in *MyInsuRec*.
+Show a list of meetings in *MyInsuRec*.
+
 If used with optional parameter `[d/DATE]`, *MyInsuRec* will show a list of meetings happening in that time period.
 
 Format: `listMeeting [d/DATE]`
@@ -338,79 +330,72 @@ Examples:
 * `listMeeting d/tomorrow`
 * `listMeeting d/month`
 
-#### 5.2.3 Viewing a meeting: `viewMeeting`
+#### 5.2.3 View meeting: `viewMeeting`
 
-View details associated with a meeting, such as meeting's date and time.
+View detail associated with a meeting, such as meeting's date and time.
 
 Format: `viewMeeting i/INDEX`
 
-* Displays information about the meeting at the specific `INDEX`.
-* The index refers to the index number shown in the displayed meetings' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Display information about the meeting at the specific [`INDEX`](#index).
 
 Examples:
 * `viewMeeting i/1`
 
-#### 5.2.4 Deleting a meeting : `delMeeting`
+#### 5.2.4 Delete meeting: `delMeeting`
 
-Deletes a meeting from *MyInsuRec*.
+Delete a meeting from *MyInsuRec*.
 
 Format: `delMeeting i/INDEX`
 
-* Deletes the meeting at the specified `INDEX`.
-* `INDEX` refers to the index number shown by executing [`listMeeting`](#322-listing-meetings-listmeeting) command.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Delete the meeting at the specified [`INDEX`](#index).
+
 
 Examples:
 * `delMeeting i/2`
 
-#### 5.2.5 Editing a meeting: `editMeeting`
+#### 5.2.5 Edit meeting: `editMeeting`
 
-Edits details of the specified meeting.
+Edit details of the specified meeting.
 
 Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`
 
-* Edits information about the meeting at the specific `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed meetings' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Edit information about the meeting at the specific [`INDEX`](#index).
 * At least one optional detail must be modified.
-* Maintains values of details not edited by the command.
+* Maintain values of details not edited by the command.
 
-Examples:
-Suppose *MyInsuRec* contains only one meeting as created in the [`addMeeting`](#adding-a-meeting--addmeeting) command:
+Suppose *MyInsuRec* contains only one meeting as created in the [`addMeeting`](#521-add-meeting-addmeeting) command:
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
 * `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
 
 ### 5.3 Product commands
 
-#### 5.3.1 Adding a product: `addProduct`
+#### 5.3.1 Add product: `addProduct`
 
-Adds a new product to *MyInsuRec*.
+Add a new product to *MyInsuRec*.
 
 Format: `addProduct pd/PRODUCT`
 
-* Adds a product having name `PRODUCT`.
+* Add a product having name `PRODUCT`.
 * A product must have a product name which is `PRODUCT`.
 
 Examples:
 * `addProduct pd/Product1`
 
-#### 5.3.2 Listing products: `listProduct`
+#### 5.3.2 List products: `listProduct`
 
-Shows a list of all products in *MyInsuRec*.
+Show a list of all products in *MyInsuRec*.
 
 Format: `listProduct`
 
-#### 5.3.3 Deleting a product : `delProduct`
+#### 5.3.3 Delete product: `delProduct`
 
-Deletes a product from *MyInsuRec*.  
+Delete a product from *MyInsuRec*.
+
 This feature will remove the product from association with any client.
 
 Format: `delProduct i/INDEX`
 
-* Deletes the product at the specified `INDEX`.
-* The index refers to the index number shown in the displayed product list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Delete the product at the specified [`INDEX`](#index).
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from *MyInsuRec*'s product list, it also **removes the product from any association with your clients**.
@@ -421,42 +406,38 @@ Examples:
 
 ### 5.4 General commands
 
-#### 5.4.1 Viewing help : `help`
+#### 5.4.1 View help: `help`
 
-Shows a message explaining how to access the help page.
+Show a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-#### 5.4.2 Exiting MyInsuRec : `exit`
+#### 5.4.2 Exit *MyInsuRec*: `exit`
 
-Exits the program.
+Exit the program.
 
 Format: `exit`
 
-<<<<<<< HEAD
-#### Clear data:
+#### 5.4.3 Clear *MyInsuRec*: `clear`
 
 Format: `clear`
 
 This is a one-shot way of removing all data stored in *MyInsuRec*.
-Only clear when you are sure you do not need the data anymore, or else make a [backup](#backup-data).
+Only clear when you are sure you do not need the data anymore, or else make a [backup](#553-creating-and-using-data-file-backups).
 
 Example usage: 
 * Clearing default data shipped with *MyInsuRec*
 * Restarting the app from an empty version
 
-### 3.5 Others
-=======
 ### 5.5 Others
->>>>>>> 7d672637eb1a8fa1fb12674eb0297799592356dd
 
-#### 5.5.1 Saving the data
+#### 5.5.1 Save the data
 
 *MyInsuRec* data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 5.5.2 Editing the data file
+#### 5.5.2 Edit the data file
 
 *MyInsuRec* data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -464,11 +445,7 @@ Example usage:
 If your changes to the data file makes its format invalid, *MyInsuRec* will discard all data and start with an empty data file at the next run.
 </div>
 
-<<<<<<< HEAD
-#### 3.5.3 Creating and using data file backups
-=======
-#### 5.5.3 Archiving data files `[coming in v2.0]`
->>>>>>> 7d672637eb1a8fa1fb12674eb0297799592356dd
+#### 5.5.3 Creating and using data file backups
 
 This is the recommended method of storing backups of the `[JAR file location]/data/myinsurec.json` file.
 First, create a copy of the original file in the `[JAR file location]/data` folder and rename it to `myinsurec_date.json` where date identifies when the file was created.
@@ -494,9 +471,9 @@ Remember to save the original `myinsurec.json` file before renaming the backup!
 **A**: Install Java version 11 and above from the official Java website.
 
 **Q**: Why can't I add a product to my client?<br>
-**A**: First check that the product has been created (use the [`listProduct` command](#332-listing-products-listproduct)). 
-Create the product suing the [`addProduct`](#331-adding-a-product-addproduct) command if it is not there.
-Add the product to the client using the [`editClient`](#315-editing-a-client-editclient)  or [`addClient`](#311-adding-a-client-addclient) command.
+**A**: First check that the product has been created (use the [`listProduct` command](#532-list-products-listproduct). 
+Create the product suing the [`addProduct`](#531-add-product-addproduct) command if it is not there.
+Add the product to the client using the [`editClient`](#515-edit-client-editclient)  or [`addClient`](#511-add-client-addclient) command.
 
 **Q**: Where is my data file located?<br>
 **A**: The data file is located at `[JAR file location]/data/myinsurec.json`. 
@@ -505,63 +482,27 @@ Add the product to the client using the [`editClient`](#315-editing-a-client-edi
 
 ## 7. Command summary
 
-| Action                | Format, Examples                                                                                                                                                                                                                                   |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add client**        | `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` <br> e.g., <br> • `addClient n/John Tan p/12345678` <br> • `addClient n/John Tan p/12345678 a/123 ABC ROAD, #11-01 e/johntan@insurec.com b/12122000 pd/Product1` |
-| **List all clients**  | `listClient`                                                                                                                                                                                                                                       |
-| **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                                                                                                            |
-| **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/2`                                                                                                                                                                                              |
-| **Edit client**       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` <br> e.g., <br> • `editClient i/1 n/John Smith`                                                                                                     |
-| **Add meeting**       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                                                             |
-| **List all meetings** | `listMeeting`                                                                                                                                                                                                                                      |
-| **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                                                                                                          |
-| **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/2`                                                                                                                                                                                            |
-| **Edit meeting**      | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]` <br> e.g., <br> • `i/1 dn/Follow up team meeting`                                                                                                                    |
-| **Help**              | `help`                                                                                                                                                                                                                                             |
-| **Exit**              | `exit`                                                                                                                                                                                                                                             |                                                                                                                                               |
+| Action                                               | Format                                                                                         | Examples                                                                                                                                         |
+|------------------------------------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add client**](#511-add-client-addclient)          | `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`              | • `addClient n/John Tan p/12345678` <br> • `addClient n/John Tan p/12345678 a/123 ABC ROAD, #11-01 e/johntan@insurec.com b/12122000 pd/Product1` |
+| [**List clients**](#512-list-clients-listclient)     | <code>listClient [pd/PRODUCT &#124;&#124; b/BIRTHDAY]</code>                                   | • `listClient` <br> • `listClient pd/Product1` <br> • `listClient b/tomorrow` <br> • `listClient b/week` <br> • `listClient b/month`             |
+| [**View client**](#513-view-client-viewclient)       | `viewClient i/INDEX`                                                                           | • `viewClient i/1`                                                                                                                               |
+| [**Delete client**](#514-delete-client-delclient)    | `delClient i/INDEX`                                                                            | • `delClient i/1`                                                                                                                                |
+| [**Edit client**](#515-edit-client-editclient)       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` | • `editClient i/1 n/John Smith`                                                                                                                  |
+| [**Add meeting**](#521-add-meeting-addmeeting)       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`                                              | • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                             |
+| [**List meetings**](#522-list-meetings-listmeeting)  | `listMeeting [d/DATE]`                                                                         | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
+| [**View meeting**](#523-view-meeting-viewmeeting)    | `viewMeeting i/INDEX`                                                                          | • `viewMeeting i/1`                                                                                                                              |
+| [**Delete meeting**](#524-delete-meeting-delmeeting) | `delMeeting i/INDEX`                                                                           | • `delMeeting i/1`                                                                                                                               |
+| [**Edit meeting**](#525-edit-meeting-editmeeting)    | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`                  | • `i/1 dn/Follow up team meeting`                                                                                                                |
+| [**Add product**](#531-add-product-addproduct)       | `addProduct pd/PRODUCT`                                                                        | • `addProduct pd/Product1`                                                                                                                       |
+| [**List products**](#532-list-products-listproduct)  | `listProduct`                                                                                  | • `listProduct`                                                                                                                                  |
+| [**Delete product**](#533-delete-product-delproduct) | `delProduct i/INDEX`                                                                           | • `delProduct i/1`                                                                                                                               |
+| [**Help**](#541-view-help-help)                      | `help`                                                                                         | `help`                                                                                                                                           |
+| [**Exit**](#542-exit-myinsurec-exit)                 | `exit`                                                                                         | `exit`                                                                                                                                           |
+| [**Clear**](#543-clear-myinsurec-clear)              | `clear`                                                                                        | `clear`                                                                                                                                          |
 
 --------------------------------------------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-## Troubleshooting
-
-### I cannot see any data
-
-Here are a few reasons why this may have occurred:
-
-1. The data file is empty:
-   * Locate the [date file](#4-faq).
-   * If the file is empty ,i.e. contains no data, then *MyInsuRec* did not load any data on start up.
-   * How to recover? :
-   * [Swap the file with your backup](#353-creating-and-using-data-file-backups). 
-2. The data file was corrupt before starting the app:
-   * This issue is harder to detect since the app will only empty the file if the data in it was corrupt before starting. 
-   * How to avoid this issue? :
-   * [Create backups](#353-creating-and-using-data-file-backups) of your `myinsurec.json` file and ensure that they are not corrupt. 
-   * See the [section below](#my-data-file-is-corrupt) on how to detect and recover from file corruption.
-
-### My data file is corrupt
-
-Do not launch the app if you detect this issue, since the `myinsurec.json` file will be cleared of all data.
-To recover: 
-
-1. [create a backup](#353-creating-and-using-data-file-backups) of the file.
-2. Edit all invalid fields and format issues manually in the backup file. 
-   * What should I look out for while editing? :
-   * Check that the structure of the file is correct (no missing semicolons, commas, brackets, and data fields). <br> It helps to be familiar with the [JSON file](#json-file) format here, but most users can quickly pick up the basics by referring to a working copy of the data file.
-   * Some invalid data values to look out for :
-   * invalid dates for client birthday, or meeting date e.g. 00000000 (invalid DDMMYYYY), 1212202020 (too many digits),
-   * Invalid meeting start time or end time e.g. 2500 (invalid HHMM).
-3. [Use this edited file](#353-creating-and-using-data-file-backups) when launching *MyInsuRec*.
-   
-## 5. Acknowledgements
-
-This project is based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) by [se-education.org](https://se-education.org/).
-
-We thank the CS2103T and CS2101 teaching team and all our classmates for supporting us in this project!
-
-## 6. Glossary
-=======
 ## 8. Troubleshooting
 
 This section covers technical issues you may run into while using *MyInsuRec*.
@@ -588,10 +529,45 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 
 5. If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
 
+
+### 8.2 I cannot see any data
+
+Here are a few reasons why this may have occurred:
+
+1. The data file is empty:
+    * Locate the [date file](#4-faq).
+    * If the file is empty ,i.e. contains no data, then *MyInsuRec* did not load any data on start up.
+    * How to recover? :
+    * [Swap the file with your backup](#353-creating-and-using-data-file-backups).
+2. The data file was corrupt before starting the app:
+    * This issue is harder to detect since the app will only empty the file if the data in it was corrupt before starting.
+    * How to avoid this issue? :
+    * [Create backups](#353-creating-and-using-data-file-backups) of your `myinsurec.json` file and ensure that they are not corrupt.
+    * See the [section below](#my-data-file-is-corrupt) on how to detect and recover from file corruption.
+
+### 8.3 My data file is corrupt
+
+Do not launch the app if you detect this issue, since the `myinsurec.json` file will be cleared of all data.
+To recover:
+
+1. [create a backup](#353-creating-and-using-data-file-backups) of the file.
+2. Edit all invalid fields and format issues manually in the backup file.
+    * What should I look out for while editing? :
+    * Check that the structure of the file is correct (no missing semicolons, commas, brackets, and data fields). <br> It helps to be familiar with the [JSON file](#json-file) format here, but most users can quickly pick up the basics by referring to a working copy of the data file.
+    * Some invalid data values to look out for :
+    * invalid dates for client birthday, or meeting date e.g. 00000000 (invalid DDMMYYYY), 1212202020 (too many digits),
+    * Invalid meeting start time or end time e.g. 2500 (invalid HHMM).
+3. [Use this edited file](#353-creating-and-using-data-file-backups) when launching *MyInsuRec*.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Glossary
->>>>>>> 7d672637eb1a8fa1fb12674eb0297799592356dd
+## 9. Acknowledgements
+
+This project is based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) by [se-education.org](https://se-education.org/).
+
+We thank the CS2103T and CS2101 teaching team and all our classmates for supporting us in this project!
+
+## 10. Glossary
 
 ### Quick Reference
 
@@ -618,7 +594,24 @@ Graphical User Interface, user interface that accepts input in means other than 
 
 ##### INDEX
 
-Number indicating the position of a client, meeting, or product in their respective lists, e.g.  Product6 has position of 5 in the shown [product list](#332-listing-products-listproduct):
+Number indicating the position of a client, meeting, or product in their respective lists.
+
+In all commands `INDEX` **must be a positive integer** 1, 2, 3, …​`
+
+In `editClient`, `delClient`, and `viewClient` commands, `INDEX` refers to the  number shown by executing [`listClient`](#512-list-clients-listclient) command.
+
+e.g. David Li has position of 4 in the shown [client list](#512-list-clients-listclient)
+![](images/listClient.png)
+
+
+In `viewMeeting`, `delMeeting`, and `editMeeting` commands, `INDEX` refers to the number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
+
+e.g. The meeting shown has position of 1 in [meeting list](#522-list-meetings-listmeeting)
+![](images/listMeeting.png)
+
+In `delProduct` command, `INDEX` refers to the number shown by executing [`listProduct`](#532-list-products-listproduct) command. 
+
+e.g. Product6 has position of 5 in the shown [product list](#332-listing-products-listproduct):
 ![](images/listProduct.png)
 
 ### *J*
@@ -637,5 +630,5 @@ A file having the extension .jar which is usually used to share applications wri
 ##### Parameter
 
 Value that should be provided to a command for it to execute.
-e.g. the `delClient` command requires the `INDEX` value identifying a client in order to delete that client.
+e.g. the `delClient` command requires the [`INDEX`](#index) value identifying a client in order to delete that client.
 
