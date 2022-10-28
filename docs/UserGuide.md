@@ -105,8 +105,25 @@ Format: `edit INDEX [c/COMPANY] [p/PHONE] [e/EMAIL] [r/ROLE] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/hrmonkey@example.com` Edits the phone number and email address of the first internship to be `91234567` and `hrmonkey@example.com` respectively.
-*  `edit 2 c/Google t/` Edits the company of the 2nd internship to be `Google` and clears all existing tags.
+* `edit 1 p/91234567 e/hrmonkey@example.com` Edits the phone number and email address of the first internship to be `91234567` and `hrmonkey@example.com` respectively.
+* `edit 2 c/Google t/` Edits the company of the 2nd internship to be `Google` and clears all existing tags.
+
+### Finds internships by company,stage or role name: `find`
+
+Finds internships whose company,role or stage names contain any of the respective keywords.
+
+Format: `find c/COMPANY | r/ROLE | s/STAGE`
+
+* Displays a list of internships that match all the keywords.
+* Case does not matter e.g. `meta` will match `Meta`.
+* Only full words will be matched e.g. `met` will not match `Meta`.
+* Order of the keywords does not matter e.g. `Jane Street` will match `Street Jane`.
+* Exactly one attribute can be searched for either Company,Role or Stage.
+
+
+Examples:
+* `find r/Engineer` returns `Software Engineer` and `Backend Engineer`.
+* `find s/Interview` returns `Technical Interview` and `Behavioural Interview`.
 
 ### Deleting an internship application : `delete`
 
@@ -130,6 +147,74 @@ Format: `clear`
 
 Example:
 * `clear` removes all internship applications in the workbook.
+
+### Undoing previous command: `undo`
+
+Restores the work book to the state before the previous <em>undoable</em> command was executed
+
+Format: `undo`
+
+Undoable commands: commands that modify the work book's content (`add`, `delete`, `edit` and `clear`)
+
+Examples:
+* `delete 1`
+
+    `list`
+
+    `undo` (reverses the `delete 1` command)
+
+
+* `find google`
+
+  `list`
+
+  `undo` 
+
+    The `undo` command fails as there are no undoable commands executed previously.
+
+    
+* `delete 1`
+    
+    `clear`
+
+    `undo` (reverses the `clear` command)
+
+    `undo` (reverses the `delete 1` command )
+
+### Redoing previous command: `redo`
+
+Reverses the most recent `undo` command.
+
+Format: `redo`
+
+Examples:
+* `delete 1`
+
+  `undo` (reverses the `delete 1` command)
+
+  `redo` (reapplies the `delete 1` command)
+
+
+* `delete 1`
+
+  `redo`
+
+  The `redo` command fails as there are no `undo` commands executed previously.
+
+
+* `delete 1`
+
+  `clear`
+
+  `undo`(reverses the `clear` command)
+
+  `undo`(reverses the `delete 1` command)
+
+  `redo`(reapplies the `delete 1` command)
+
+  `redo`(reapplies the `clear` command)
+
+
 
 ### Exiting the program : `exit`
 
@@ -189,3 +274,4 @@ _Details coming soon ..._
 | **Edit**   | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [t/TAG]…​​`<br> e.g.,`edit 2 c/META e/hrmonkey@example.com`                                                                                |
 | **Help**   | `help`                                                                                                                                                                                               |
 | **Exit**   | `exit`                                                                                                                                                                                               |
+

@@ -43,14 +43,34 @@
               <Label fx:id="addCommand" styleClass="commandText" text="Add" />
             </children>
           </HBox>
-          <HBox fx:id="clearCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="listCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="clearCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Clear all Internships: ">
+              <Label fx:id="listCommandHeader" styleClass="commandHeader" minWidth="150.0" text="List all Internships: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
               </Label>
-              <Label fx:id="clearCommand" styleClass="commandText" text="Clear" />
+              <Label fx:id="listCommand" styleClass="commandText" text="list" />
+            </children>
+          </HBox>
+          <HBox fx:id="findCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+            <children>
+              <Label fx:id="findCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Filter Internships: ">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Label>
+              <Label fx:id="findCommand" styleClass="commandText" text="filter" />
+            </children>
+          </HBox>
+          <HBox fx:id="editCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+            <children>
+              <Label fx:id="editCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Edit an Internship: ">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Label>
+              <Label fx:id="editCommand" styleClass="commandText" text="Edit" />
             </children>
           </HBox>
           <HBox fx:id="deleteCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
@@ -63,14 +83,34 @@
               <Label fx:id="deleteCommand" styleClass="commandText" text="Delete" />
             </children>
           </HBox>
-          <HBox fx:id="editCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+          <HBox fx:id="clearCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
             <children>
-              <Label fx:id="editCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Edit an Internship: ">
+              <Label fx:id="clearCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Clear all Internships: ">
                 <HBox.margin>
                   <Insets left="5.0" />
                 </HBox.margin>
               </Label>
-              <Label fx:id="editCommand" styleClass="commandText" text="Edit" />
+              <Label fx:id="clearCommand" styleClass="commandText" text="Clear" />
+            </children>
+          </HBox>
+          <HBox fx:id="undoCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+            <children>
+              <Label fx:id="undoCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Undo a command: ">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Label>
+              <Label fx:id="undoCommand" styleClass="commandText" text="undo" />
+            </children>
+          </HBox>
+          <HBox fx:id="redoCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">
+            <children>
+              <Label fx:id="redoCommandHeader" styleClass="commandHeader" minWidth="150.0" text="Redo a command: ">
+                <HBox.margin>
+                  <Insets left="5.0" />
+                </HBox.margin>
+              </Label>
+              <Label fx:id="redoCommand" styleClass="commandText" text="redo" />
             </children>
           </HBox>
           <HBox fx:id="exitCommandContainer" styleClass="commandContainer" alignment="CENTER_LEFT">

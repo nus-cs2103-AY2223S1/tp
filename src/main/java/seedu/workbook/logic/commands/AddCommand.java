@@ -23,7 +23,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     /** Help message to execute the add command */
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an internship application to WorkBook. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an internship application to WorkBook.\n"
             + "Parameters: "
             + PREFIX_COMPANY + "COMPANY "
             + PREFIX_ROLE + "ROLE "
@@ -37,10 +37,10 @@ public class AddCommand extends Command {
             + PREFIX_ROLE + "Software Engineer "
             + PREFIX_STAGE + "Interview "
             + PREFIX_DATETIME + "10-Dec-2022 12:10 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_LANGUAGE_TAG + "java "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_EMAIL + "hr@meta.com "
+            + PREFIX_LANGUAGE_TAG + "javascript "
+            + PREFIX_TAG + "MANGA "
+            + PREFIX_TAG + "frontend";
 
     /** Message string displaying successful execution of the add command */
     public static final String MESSAGE_SUCCESS = "New internship application added: %1$s, "
