@@ -3,6 +3,7 @@ package seedu.address.model.person.github;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -11,8 +12,6 @@ import seedu.address.github.UserReposWrapper;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.contact.Email;
-import seedu.address.model.person.github.repo.Repo;
-import seedu.address.model.person.github.repo.RepoList;
 
 /**
  * Represents a GitHub's User
@@ -32,7 +31,7 @@ public class User {
     private final Name name;
     private final Email email;
     private final Address address;
-    private final RepoList repoList;
+    private final List<Repo> repoList = new ArrayList<>();
 
     /**
      * Constructs a GitHub's user
@@ -48,19 +47,19 @@ public class User {
         this.address =
             userInfoWrapper.getLocation().isPresent() ? new Address(userInfoWrapper.getLocation().get()) : null;
         userInfoWrapper.downloadAvatar();
-        this.repoList = getUpdatedRepoList(userReposWrapper);
+        updateRepoList(userReposWrapper);
     }
 
     /**
      * @param username Username for the GitHub User class to be initiated with
      * @param repoList RepoList for the GitHub User class to be initiated with
      */
-    public User(String username, RepoList repoList) {
+    public User(String username, List<Repo> repoList) {
         requireAllNonNull(username, repoList);
         this.username = username;
         this.name = new Name(username);
         this.url = BASE_GITHUB_URL + username;
-        this.repoList = repoList;
+        this.repoList.addAll(repoList);
         this.email = null;
         this.address = null;
     }
@@ -92,21 +91,19 @@ public class User {
         return Optional.ofNullable(this.address);
     }
 
-    public RepoList getRepoList() {
+    public List<Repo> getRepoList() {
         return this.repoList;
     }
 
-    private RepoList getUpdatedRepoList(UserReposWrapper userReposWrapper) {
-        RepoList repoList = new RepoList();
+    private void updateRepoList(UserReposWrapper userReposWrapper) {
         for (int repoId : getRepoIds(userReposWrapper)) {
             repoList.add(new Repo(
                 userReposWrapper.getRepoName(repoId),
                 userReposWrapper.getRepoUrl(repoId),
-                userReposWrapper.getRepoForkCount(repoId),
+                userReposWrapper.getDescription(repoId),
                 userReposWrapper.getLastUpdated(repoId)
             ));
         }
-        return repoList;
     }
 
     public ArrayList<Integer> getRepoIds(UserReposWrapper userReposWrapper) {

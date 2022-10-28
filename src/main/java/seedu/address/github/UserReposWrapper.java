@@ -21,7 +21,7 @@ public class UserReposWrapper {
     private static final String ID_KEY = "id";
     private static final String NAME_KEY = "name";
     private static final String URL_KEY = "html_url";
-    private static final String FORKS_KEY = "forks_count";
+    private static final String DESCRIPTION_KEY = "description";
     private static final String UPDATED_KEY = "updated_at";
     private final UserReposRoute.UserReposRequest getUserReposRequest;
     private JSONArray reposJson;
@@ -89,12 +89,12 @@ public class UserReposWrapper {
         throw new RepoNotFoundException("Provided ID does not correspond to a repository owned by this user!");
     }
 
-    public int getRepoForkCount(int id) {
+    public String getDescription(int id) {
         JSONObject obj;
         for (int i = 0; i < this.reposJson.length(); i++) {
             obj = (JSONObject) this.reposJson.get(i);
             if (obj.getInt("id") == id) {
-                return obj.getInt(FORKS_KEY);
+                return obj.optString(DESCRIPTION_KEY);
             }
         }
 
@@ -104,9 +104,9 @@ public class UserReposWrapper {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof UserReposWrapper)
-                && getUserReposRequest.equals(((UserReposWrapper) other).getUserReposRequest)
-                && reposJson.equals(((UserReposWrapper) other).reposJson);
+            || (other instanceof UserReposWrapper)
+            && getUserReposRequest.equals(((UserReposWrapper) other).getUserReposRequest)
+            && reposJson.equals(((UserReposWrapper) other).reposJson);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package seedu.address.model.person.github.repo;
+package seedu.address.model.person.github;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Repo {
     private final String repoName;
     private final String repoUrl;
-    private final int numberForks;
+    private final String description;
     private final LocalDateTime lastUpdated;
 
     /**
@@ -18,15 +18,15 @@ public class Repo {
      *
      * @param repoName    the name of the GitHub repository
      * @param repoUrl     the predominant language used in the repository
-     * @param numberForks the number of times the repo has been forked
+     * @param description the description of the GitHub repository
      * @param lastUpdated A String containing the date/time the repo was last updated.
      */
     public Repo(String repoName, String repoUrl,
-                int numberForks, LocalDateTime lastUpdated) {
-        requireAllNonNull(repoName, repoUrl, numberForks, lastUpdated);
+                String description, LocalDateTime lastUpdated) {
+        requireAllNonNull(repoName, repoUrl, description, lastUpdated);
         this.repoName = repoName;
         this.repoUrl = repoUrl;
-        this.numberForks = numberForks;
+        this.description = description;
         this.lastUpdated = lastUpdated;
     }
 
@@ -34,8 +34,8 @@ public class Repo {
         return this.repoUrl;
     }
 
-    public int getNumberForks() {
-        return this.numberForks;
+    public String getDescription() {
+        return this.description;
     }
 
     public LocalDateTime getLastUpdated() {

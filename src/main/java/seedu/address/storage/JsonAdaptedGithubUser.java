@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.github.Repo;
 import seedu.address.model.person.github.User;
-import seedu.address.model.person.github.repo.RepoList;
 
 /**
  * Jackson-friendly version of {@link User}.
@@ -38,7 +38,7 @@ public class JsonAdaptedGithubUser {
      */
     public JsonAdaptedGithubUser(User source) {
         username = source.getUsername();
-        repoList.addAll(source.getRepoList().getRepos().stream()
+        repoList.addAll(source.getRepoList().stream()
             .map(JsonAdaptedGithubRepo::new)
             .collect(Collectors.toList()));
     }
@@ -49,7 +49,7 @@ public class JsonAdaptedGithubUser {
      * @throws IllegalValueException if there were any data constraints violated in the adapted contact
      */
     public User toModelType() throws IllegalValueException {
-        final RepoList repoList = new RepoList();
+        final List<Repo> repoList = new ArrayList<>();
         for (JsonAdaptedGithubRepo repo : this.repoList) {
             repoList.add(repo.toModelType());
         }
