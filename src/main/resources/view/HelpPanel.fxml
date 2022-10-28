@@ -17,11 +17,11 @@
         </HBox>
         <HBox>
             <TextField editable="false" styleClass="command-text" text="find"/>
-            <Label text="Displays the persons that match the keyword" HBox.hgrow="ALWAYS"/>
+            <Label text="Displays the people that match the keyword" HBox.hgrow="ALWAYS"/>
         </HBox>
         <HBox>
             <TextField editable="false" styleClass="command-text" text="sort"/>
-            <Label text="Sorts the persons" HBox.hgrow="ALWAYS"/>
+            <Label text="Sorts the people" HBox.hgrow="ALWAYS"/>
         </HBox>
         <HBox>
             <TextField editable="false" styleClass="command-text" text="reset"/>
