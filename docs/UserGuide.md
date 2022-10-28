@@ -230,9 +230,9 @@ Do take some time to read the following note to better understand how you can us
 
 This subsection covers all client-related commands.
 
-#### 5.1.1 Adding a client: `addClient`
+#### 5.1.1 Add client: `addClient`
 
-Adds a new client to MyInsuRec.
+Add a new client to MyInsuRec.
 
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
@@ -240,7 +240,8 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. See [addProduct](#331-adding-a-product-addproduct).
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. 
+See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
 Examples:
@@ -248,62 +249,64 @@ Examples:
 * `addClient n/John Tan p/12345678 b/12122000`
 * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
 
-#### 5.1.2 Listing all clients : `listClient`
+#### 5.1.2 List clients: `listClient`
 
-* List clients in MyInsuRec with a valid filter.
-* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
-* `BIRTHDAY` is specified by keywords. The possible keywords are:
-    * `tomorrow` for a list of clients whose birthday is tomorrow;
-    * `week` for a list of clients whose birthday is in the next week;
-    * `month` for a list of clients whose birthday is in the next month.
+List clients in MyInsuRec with a valid filter.
 
 Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
+
+* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
+* `BIRTHDAY` is specified by keywords. The possible keywords are:
+  * `tomorrow` for a list of clients whose birthday is tomorrow;
+  * `week` for a list of clients whose birthday is in the next week;
+  * `month` for a list of clients whose birthday is in the next month.
 
 Examples:
 * `listClient`
 * `listClient pd/Product1`
 * `listClient b/week`
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 bd/week` is strictly not allowed.
+<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. 
+A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
-#### 5.1.3 Viewing a client: `viewClient`
+#### 5.1.3 View client: `viewClient`
 
 View details associated with a client, such as the client's name and phone number.
 
 Format: `viewClient i/INDEX`
 
-* Displays information about the client at the specific `INDEX`.
+* Display information about the client at the specific `INDEX`.
 * The index refers to the index number shown in the displayed clients' list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `viewClient i/1`
 
-#### 5.1.4 Deleting a client : `delClient`
+#### 5.1.4 Delete client: `delClient`
 
-Deletes the specified client from MyInsuRec.
+Delete the specified client from MyInsuRec.
 
 Format: `delClient i/INDEX`
 
-* Deletes the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
+* Delete the client at the specified `INDEX`.
+* `INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
 * `Index` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `delClient i/2`
 
-#### 5.1.5 Editing a client: `editClient`
+#### 5.1.5 Edit client: `editClient`
 
-Edits detail of the specified client.
+Edit detail of the specified client.
 
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
-* Edits the client at the specified `INDEX`.
-*`INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
+* Edit the client at the specified `INDEX`.
+*`INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
-* Maintains value of details not edited by the command.
+* Maintain value of details not edited by the command.
 
 Examples:
 Suppose MyInsuRec contains only one client 'John Tan' having phone number '0123456789':
@@ -314,18 +317,28 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
 
 This subsection covers all meeting-related commands.
 
-#### 5.2.1 Adding a meeting : `addMeeting`
+#### 5.2.1 Add meeting: `addMeeting`
 
-Adds a new meeting to MyInsuRec.
-DATE should be in DD-MM-YYYY format and TIME should be in 24-hour format.
+Add a new meeting to MyInsuRec.
 
-Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 
-* Adds a meeting.
+* `INDEX` refers to the number of the client you are meeting with,
+as shown by executing the [`listClient`](#312-list-clients-listclient) command.
+* `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
+1 February 2022.
+* `START_TIME` and `END_TIME` should be give in the format HHMM. For example, 
+1234 represents the 12:34PM.
 * A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 
 Examples:
-* `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
+* `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal` 
+
+<div markdown="span" class="alert alert-success">:information_source: **Friendly Tip:**
+MyInsuRec can help you detect conflicting meeting times! For example, attempting
+to add a meeting from 1330 to 1430 when you already have one scheduled for 
+1300 to 1400 will display an error message.
+</div>
 
 #### 5.2.2 List meetings: `listMeeting`
 
@@ -359,68 +372,69 @@ Use case:
 1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
 2. Organize all your meetings in a single place, so you don't have to worry about missing a meeting ever again.
 
-#### 5.2.3 Viewing a meeting: `viewMeeting`
+#### 5.2.3 View meeting: `viewMeeting`
 
 View details associated with a meeting, such as meeting's date and time.
 
 Format: `viewMeeting i/INDEX`
 
-* Displays information about the meeting at the specific `INDEX`.
-* The index refers to the index number shown in the displayed meetings' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Display information about the meeting at the specific `INDEX`.
+* The index refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `viewMeeting i/1`
 
-#### 5.2.4 Deleting a meeting : `delMeeting`
+#### 5.2.4 Delete meeting: `delMeeting`
 
-Deletes a meeting from MyInsuRec.
+Delete a meeting from MyInsuRec.
 
 Format: `delMeeting i/INDEX`
 
-* Deletes the meeting at the specified `INDEX`.
-* `INDEX` refers to the index number shown by executing [`listMeeting`](#322-listing-meetings-listmeeting) command.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Delete the meeting at the specified `INDEX`.
+* `INDEX` refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
+* `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `delMeeting i/2`
 
-#### 5.2.5 Editing a meeting: `editMeeting`
+#### 5.2.5 Edit meeting: `editMeeting`
 
-Edits details of the specified meeting.
+Edit details of the specified meeting.
 
 Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`
 
-* Edits information about the meeting at the specific `INDEX`.
+* Edit information about the meeting at the specific `INDEX`.
 * The `INDEX` refers to the index number shown in the displayed meetings' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 * At least one optional detail must be modified.
-* Maintains values of details not edited by the command.
+* Details that are not edited will be kept as is.
 
 Examples:
-Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#adding-a-meeting--addmeeting) command:
+Suppose MyInsuRec contains only one meeting as created by the [`addMeeting`](#321-add-meeting-addmeeting) command:
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
-* `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
+* `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, 
+since the start time is later than end time.
 
 ### 5.3 Product commands
 
 This subsection covers all product-related commands.
 
-#### 5.3.1 Adding a product: `addProduct`
+#### 5.3.1 Add product: `addProduct`
 
-Adds a new product to MyInsuRec.
+Add a new product to MyInsuRec.
 
 Format: `addProduct pd/PRODUCT`
 
-* Adds a product having name `PRODUCT`.
+* Add a product having name `PRODUCT`.
 * A product must have a product name which is `PRODUCT`.
 
 Examples:
 * `addProduct pd/Product1`
 
-#### 5.3.2 Listing products: `listProduct`
+#### 5.3.2 List products: `listProduct`
 
-Shows a list of all products in MyInsuRec.
+Show a list of all products in MyInsuRec.
 
 Format: `listProduct`
 
@@ -434,7 +448,7 @@ Use case:
 1. Get an overview of all the products you are offering!
 2. This feature is used to get the index of a product, which is needed for most product-related commands.
 
-#### 5.3.3 Deleting a product : `delProduct`
+#### 5.3.3 Delete a product : `delProduct`
 
 Deletes a product from *MyInsuRec*.  
 This command removes this product from all the clients as well.
@@ -460,37 +474,33 @@ Use case:
 
 ### 5.4 General commands
 
-#### 5.4.1 Viewing help : `help`
+#### 5.4.1 View help: `help`
 
-Shows a message explaining how to access the help page.
+Show a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-#### 5.4.2 Exiting MyInsuRec : `exit`
+#### 5.4.2 Exit MyInsuRec: `exit`
 
-Exits the program.
+Exit the program.
 
 Format: `exit`
 
 ### 5.5 Others
 
-#### 5.5.1 Saving the data
+#### 5.5.1 Save the data
 
 MyInsuRec data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 5.5.2 Editing the data file
+#### 5.5.2 Edit the data file
 
 MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
-
-#### 5.5.3 Archiving data files `[coming in v2.0]`
-
-*Details coming soon ...*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -509,20 +519,23 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 ## 7. Command summary
 
-| Action                | Format, Examples                                                                                                                                                                                                                                   |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add client**        | `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` <br> e.g., <br> • `addClient n/John Tan p/12345678` <br> • `addClient n/John Tan p/12345678 a/123 ABC ROAD, #11-01 e/johntan@insurec.com b/12122000 pd/Product1` |
-| **List all clients**  | `listClient`                                                                                                                                                                                                                                       |
-| **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                                                                                                            |
-| **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/2`                                                                                                                                                                                              |
-| **Edit client**       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` <br> e.g., <br> • `editClient i/1 n/John Smith`                                                                                                     |
-| **Add meeting**       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                                                             |
-| **List all meetings** | `listMeeting`                                                                                                                                                                                                                                      |
-| **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                                                                                                          |
-| **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/2`                                                                                                                                                                                            |
-| **Edit meeting**      | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]` <br> e.g., <br> • `i/1 dn/Follow up team meeting`                                                                                                                    |
-| **Help**              | `help`                                                                                                                                                                                                                                             |
-| **Exit**              | `exit`                                                                                                                                                                                                                                             |                                                                                                                                               |
+| Action                                               | Format                                                                                         | Examples                                                                                                                                         |
+|------------------------------------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add client**](#311-add-client-addclient)          | `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`              | • `addClient n/John Tan p/12345678` <br> • `addClient n/John Tan p/12345678 a/123 ABC ROAD, #11-01 e/johntan@insurec.com b/12122000 pd/Product1` |
+| [**List clients**](#312-list-clients-listclient)     | <code>listClient [pd/PRODUCT &#124;&#124; b/BIRTHDAY]</code>                                   | • `listClient` <br> • `listClient pd/Product1` <br> • `listClient b/tomorrow` <br> • `listClient b/week` <br> • `listClient b/month`             |
+| [**View client**](#313-view-client-viewclient)       | `viewClient i/INDEX`                                                                           | • `viewClient i/1`                                                                                                                               |
+| [**Delete client**](#314-delete-client-delclient)    | `delClient i/INDEX`                                                                            | • `delClient i/1`                                                                                                                                |
+| [**Edit client**](#315-edit-client-editclient)       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` | • `editClient i/1 n/John Smith`                                                                                                                  |
+| [**Add meeting**](#321-add-meeting-addmeeting)       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`                                              | • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                             |
+| [**List meetings**](#322-list-meetings-listmeeting)  | `listMeeting [d/DATE]`                                                                         | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
+| [**View meeting**](#323-view-meeting-viewmeeting)    | `viewMeeting i/INDEX`                                                                          | • `viewMeeting i/1`                                                                                                                              |
+| [**Delete meeting**](#324-delete-meeting-delmeeting) | `delMeeting i/INDEX`                                                                           | • `delMeeting i/1`                                                                                                                               |
+| [**Edit meeting**](#325-edit-meeting-editmeeting)    | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`                  | • `i/1 dn/Follow up team meeting`                                                                                                                |
+| [**Add product**](#331-add-product-addproduct)       | `addProduct pd/PRODUCT`                                                                        | • `addProduct pd/Product1`                                                                                                                       |
+| [**List products**](#332-list-products-listproduct)  | `listProduct`                                                                                  | • `listProduct`                                                                                                                                  |
+| [**Delete product**](#333-delete-product-delproduct) | `delProduct i/INDEX`                                                                           | • `delProduct i/1`                                                                                                                               |
+| [**Help**](#341-view-help-help)                      | `help`                                                                                         | `help`                                                                                                                                           |
+| [**Exit**](#342-exit-myinsurec-exit)                 | `exit`                                                                                         | `exit`                                                                                                                                           |
 
 --------------------------------------------------------------------------------------------------------------------
 
