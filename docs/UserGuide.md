@@ -89,7 +89,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-![help message](images/help.png)
+![help message](images/Help.png)
 
 ### Adding a nurse or patient: `add`
 
@@ -326,17 +326,17 @@ Updates a patient's contact information for next-of-kin or attending physician.
 Format: `updatecontact id/PATIENT_ID c/CATEGORY n/CONTACT_NAME p/CONTACT_PHONE e/CONTACT_EMAIL`
 
 * PATIENT_ID: Unique ID of the patient whose emergency contact is to be updated.
-* CATEGORY: Only accepts N for next-of-kin or D for attending physician.
+* CATEGORY: Only accepts `K` for next-of-kin or `D` for attending physician.
 * CONTACT_NAME: Name of the emergency contact.
 * CONTACT_PHONE: Phone number of the emergency contact.
 * CONTACT_EMAIL: Email address of the emergency contact.
-* Note: The UID must belong to a patient.
-* Note: Only N or D are accepted.
+* Note: The UID must belong to a **patient**.
+* Note: Only `K` or `D` are accepted.
 * Note: This command replaces the current next-of-kin or attending physician contact info, 
   * if there is already an existing one.
 
 Examples:
-* `updatecontact id/3 c/N n/John Doe p/81234567 e/johndoe@example.com` 
+* `updatecontact id/3 c/K n/John Doe p/81234567 e/johndoe@example.com` 
   * updates NoK contact information for patient UID 3.
 * `updatecontact id/3 c/D n/kw p/9013890 e/kw@gmail.com` 
   * updates attending physician contact information for patient UID 3.
