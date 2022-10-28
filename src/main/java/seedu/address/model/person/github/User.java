@@ -3,6 +3,7 @@ package seedu.address.model.person.github;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -92,7 +93,7 @@ public class User {
     }
 
     public List<Repo> getRepoList() {
-        return this.repoList;
+        return Collections.unmodifiableList(this.repoList);
     }
 
     private void updateRepoList(UserReposWrapper userReposWrapper) {
