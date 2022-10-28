@@ -8,7 +8,7 @@ Salesy is a desktop app for helping food vendors manage details of their clients
 ![Ui](images/Ui.png)
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -40,9 +40,9 @@ A brief display of important information for **inventory** and **tasks**.
 
 **More information**
 
-* **(A)** `Incomplete` tasks refers to tasks that are shown as `Not Done`. 
+* **(A)** `Incomplete` tasks refers to tasks that are shown as `Not Done`.
 * **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has deadline that is
-past today's date.
+  past today's date.
   * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
 * **(C)** `Upcoming` tasks refers to tasks that have deadline of today's date and the dates after today and are `Not Done`.
   * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or after**_, this will be counted as `Upcoming`.
@@ -76,11 +76,17 @@ Inventory Cards for Items
 
 Adds an item of a specified type with the given details
 
-***Format:*** 
+***Format:***
 
 `add [n/NAME] [p/PHONE] [pr/PRICE] [i/ITEM] [a/ADDRESS] [t/Supplier]` (supplier)
 
 `addTask [d/TASKNAME] [dl/DEADLINE] [t/TAG_NAME]` (task)
+[t/tag_name] in this command is an optional field which can be omitted when
+entering the command. 
+
+Multiple tag_name is allowed. 
+
+An example is `addTask [d/TASKNAME] [dl/DEADLINE] [t/TAG_NAME1] [t/TAG_NAME2] [t/TAG_NAME3]`
 
 `addItem <supplier index> [c/CURRENTSTOCK] [m/MINIMUMSTOCK]` (supply item)
 
@@ -103,15 +109,15 @@ Add a task to Salesy
 Add a SupplyItem to Salesy's inventory
 
 SupplyItem from first supplier in address book added
-    
->`addItem 1 c/10 m/3` 
+
+>`addItem 1 c/10 m/3`
 
 
 ### Delete: `delete`
 
 Delete the specified item of the specified type from Salesy
 
-***Format:*** 
+***Format:***
 
 `delete <supplier index>` (supplier)
 
@@ -122,7 +128,7 @@ Delete the specified item of the specified type from Salesy
 **Things you can delete:**
 * Suppliers
 * Tasks
-* Supply items 
+* Supply items
 
 **Examples**
 
@@ -142,7 +148,7 @@ Delete an item in inventory
 
 Marks the specified task as done to keep task list updated
 
-***Format:*** 
+***Format:***
 
 `mark <task index>`
 
@@ -160,7 +166,7 @@ Mark a task that you have completed
 
 Unmarks a previously marked task
 
-***Format:*** 
+***Format:***
 
 `unmark <task index>`
 
@@ -188,7 +194,7 @@ Edit a specified item's details
 **Things you can edit:**
 * Supplier details
 * Tasks
-* Supply Item stock 
+* Supply Item stock
 
 **Examples**
 
@@ -254,7 +260,7 @@ Increase or decrease your stock for a particular item in the inventory
 
 Lists all items.
 
-***Format:*** 
+***Format:***
 
 `listAll`
 
@@ -271,7 +277,7 @@ Lists all items.
 
 Lists all suppliers
 
-***Format:*** 
+***Format:***
 
 `listSuppliers`
 
@@ -285,7 +291,7 @@ Lists all suppliers
 
 Lists all tasks
 
-***Format:*** 
+***Format:***
 
 `listTasks`
 
@@ -295,13 +301,17 @@ Lists all tasks
 
 > `listTasks`
 
+Note: All task displayed by the GUI is according to deadline.
+
+The task with the earlier deadline is found at the top of the list.
+
 ### List everything in the inventory: `listInventory`
 
 Lists whole inventory.
 
-***Format:*** 
+***Format:***
 
-`listInventory`  
+`listInventory`
 
 **Examples**
 
@@ -313,7 +323,7 @@ Lists whole inventory.
 
 Sorts and displays items based on sorting criteria
 
-***Format:*** 
+***Format:***
 
 `sort /<item type> <sort criteria> <ascending/descending>`
 
