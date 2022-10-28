@@ -29,7 +29,7 @@ tasks done faster than traditional GUI apps.
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-    * **`get`** `\n Alex`: Retrieve contact's information based on the prefix you provided. In this case, patients
+    * **`get`** `/n Alex`: Retrieve contact's information based on the prefix you provided. In this case, patients
     with the name `Alex` will be retrieved.
 
     * **`view`** `1` : Views the 1st contact shown in the current list.
