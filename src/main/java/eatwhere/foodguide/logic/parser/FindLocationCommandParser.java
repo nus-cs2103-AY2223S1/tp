@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.Messages;
-import eatwhere.foodguide.logic.commands.FindCommand;
 import eatwhere.foodguide.logic.commands.FindLocationCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
@@ -60,7 +59,7 @@ public class FindLocationCommandParser implements Parser<FindLocationCommand> {
             return new FindLocationCommand(predicate, numRandPicks);
         } catch (NumberFormatException nfe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_INVALID_NUMTOSHOW),
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindLocationCommand.MESSAGE_USAGE),
                     nfe);
         }
     }

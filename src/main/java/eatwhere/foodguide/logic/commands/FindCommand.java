@@ -25,7 +25,6 @@ public class FindCommand extends Command {
             + "Optionally, you can randomly choose a given number of the found eateries.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]... -r [NUMTOSHOW]\n"
             + "Example: " + COMMAND_WORD + " Chicken Rice -r 1";
-    public static final String MESSAGE_INVALID_NUMTOSHOW = "Number to show must be positive";
 
     private final Predicate<Eatery> predicate;
 

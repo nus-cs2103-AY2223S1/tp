@@ -21,8 +21,8 @@ public class FindTagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries whose list of tags matches any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " mala";
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...-r <INT>\n"
+            + "Example: " + COMMAND_WORD + " vegetarian -r 1";
 
     private final Predicate<Eatery> predicate;
     private final int numRandPicks;
