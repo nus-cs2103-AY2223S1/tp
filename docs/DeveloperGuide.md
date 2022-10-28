@@ -303,7 +303,6 @@ Step 5. After looking through all the tasks that are related to backend, the use
 
 The following activity diagram summarizes what happens when a user executes a filter command:
 
-![image](https://user-images.githubusercontent.com/88974230/198338516-a5681945-2f14-4001-8900-ea897e71f317.png)
 
 
 
