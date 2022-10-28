@@ -1,3 +1,11 @@
+.root {
+    -fx-dark-default: #383838;
+    -fx-dark-background-primary: #1d1d1d;
+    -fx-dark-primary: #3e7b91;
+    -fx-light-default: #e0e0e0;
+    -fx-light-background-primary: #e8e8e8;
+    -fx-light-primary: #d3ccea;
+}
 
 .error {
     -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
@@ -5,7 +13,7 @@
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background-color: transparent;
 }
 
 .tag-selector {

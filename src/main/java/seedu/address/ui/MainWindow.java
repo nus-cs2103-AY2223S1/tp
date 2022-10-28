@@ -1,9 +1,13 @@
 package seedu.address.ui;
 
+import static javafx.application.Application.setUserAgentStylesheet;
+
+import java.net.URL;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -53,6 +57,18 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private URL lightTheme;
+
+    @FXML
+    private URL darkTheme;
+
+    @FXML
+    private URL extensions;
+
+    @FXML
+    private Scene mainScene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -180,6 +196,24 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    @FXML
+    private void handleLightThemeSwitch() {
+        mainScene.getStylesheets().clear();
+        setUserAgentStylesheet(null);
+
+        mainScene.getStylesheets().add("file:" + lightTheme.getPath());
+        mainScene.getStylesheets().add("file:" + extensions.getPath());
+    }
+
+    @FXML
+    private void handleDarkThemeSwitch() {
+        mainScene.getStylesheets().clear();
+        setUserAgentStylesheet(null);
+
+        mainScene.getStylesheets().add("file:" + darkTheme.getPath());
+        mainScene.getStylesheets().add("file:" + extensions.getPath());
     }
 
     public PersonListPanel getPersonListPanel() {
