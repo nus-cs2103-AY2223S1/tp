@@ -143,12 +143,12 @@ Deletes the specified property from the address book.
 Format: `delete -p INDEX`
 
 * Deletes the property at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed property list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list -p` followed by `delete -p 2` deletes the 2nd person in the address book.
-* `find -p Wall Street` followed by `delete -p 1` deletes the 1st person in the results of the `find -p` command.
+* `list -p` followed by `delete -p 2` deletes the 2nd property in the address book.
+* `find -p Wall Street` followed by `delete -p 1` deletes the 1st property in the results of the `find -p` command.
 
 ### Filtering profiles: `filter -p`
 
@@ -173,6 +173,18 @@ Returns a filtered list of clients that fulfil the filter conditions.
 Format: `type -p HDB`
 Examples:
 * `type -p HDB condo` returns all properties that are HDBs or Condos
+
+### Selecing a property: `select -p INDEX`
+
+Selects the specified property in the address book, for its details to be displayed.
+
+Format: `select -p INDEX`
+
+* Selects the property at the specified `INDEX`.
+* The index refers to the index number shown in the displayed property list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The GUI changes to display just the selected property in the property directory,
+while clients interested in that property are shown in the client directory.
 
 ### Clearing all entries : `clear`
 
@@ -249,6 +261,18 @@ Tips:
 * `filter -c high-end` followed by `delete 1` deletes the first client in the results of the
   `filter -c` command
 
+### Selecting a client profile: `select -pc INDEX`
+
+Selects the specified client in the address book, for its details to be displayed.
+
+Format: `select -c INDEX`
+
+* Selects the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The GUI changes to display just the selected client in the client directory,
+while properties the client is interested in are shown in the property directory.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -272,6 +296,7 @@ Action | Format, Examples
 **Find -p** | `find -p NAME [MORE_NAMES]`<br> e.g., `find -p PINNACLE@DUXTON BISHAN`
 **Range -p** | `range -p l/LOWER_BOUND u/UPPER_BOUND`<br> e.g., `range -p l/1,000,000 u/3,000,000`
 **List -p** | `list -p`
+**Select -p** | `select -p INDEX` <br> e.g., `select -p 2`
 
 **Client Directory**
 Action | Format, Examples
@@ -283,6 +308,7 @@ Action | Format, Examples
 **Filter -c** | `filter -c TAG [MORE_TAGS]`<br> e.g., `filter -c friend colleague`
 **Find -c** | `find -c NAME [MORE_NAMES]`<br> e.g., `find -c James Jake`
 **List -c** | `list -c`
+**Select -c** | `select -c INDEX` <br> e.g., `select -p 1`
 
 **General**
 
