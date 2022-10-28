@@ -32,7 +32,6 @@ Click on the links below to quickly get to what you need.
 
 e.g.
 1. xyz (link)
-2. 
 
 
 ### 2.2 Symbols
@@ -65,7 +64,7 @@ Beyond individual clients, you can also:
 
 #### 2.3.2 Meetings
 
-*MyInsuRec* eases a financial advisor's mental load by helping them track of any upcoming meetings. You can do meeting-specific tasks such as:
+*MyInsuRec* eases a financial advisor's mental load by helping them track any upcoming meetings. You can do meeting-specific tasks such as:
 
 * add a meeting to a client in *MyInsuRec*.
 * view a meeting in greater details.
@@ -94,13 +93,13 @@ Beyond individual products, you can also:
 
 ### 2.5 Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your computer.
 
 1. Download the latest `MyInsuRec.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your MyInsuRec.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -232,7 +231,7 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
 #### 3.2.1 Adding a meeting : `addMeeting`
 
 Adds a new meeting to MyInsuRec.
-DATE should be in DD-MM-YYYY format and TIME should be in 24-hour format.
+DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
 
 Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 
@@ -297,7 +296,7 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 * Maintains values of details not edited by the command.
 
 Examples:
-Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#adding-a-meeting--addmeeting) command:
+Suppose **MyInsuRec** contains only one meeting as created in the [`addMeeting`](#adding-a-meeting--addmeeting) command:
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
 * `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
 
@@ -355,11 +354,22 @@ Exits the program.
 
 Format: `exit`
 
+#### Clear data:
+
+Format: `clear`
+
+This is a one-shot way of removing all data stored in MyInsuRec.
+Only clear when you are sure you do not need the data anymore, or else make a [backup](#backup-data).
+
+Example usage: 
+* Clearing default data shipped with MyInsuRec
+* Restarting the app from an empty version
+
 ### 3.5 Others
 
 #### 3.5.1 Saving the data
 
-MyInsuRec data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+MyInsuRec data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 #### 3.5.2 Editing the data file
 
@@ -369,9 +379,17 @@ MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
 
-#### 3.5.3 Archiving data files `[coming in v2.0]`
+#### 3.5.3 Creating and using data file backups
 
-*Details coming soon ...*
+This is the recommended method of storing backups of the `[JAR file location]/data/myinsurec.json` file.
+First, create a copy of the original file in the `[JAR file location]/data` folder and rename it to `myinsurec_date.json` where date identifies when the file was created.
+
+If you want to start MyInsuRec using a backup file, rename the backup to `myinsurec.json`.
+Then launch the app as usual.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Remember to save the original `myinsurec.json` file before renaming the backup!
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -385,6 +403,14 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 **Q**: My computer does not recognise the file type jar. How do I open the app?<br>
 **A**: Install Java version 11 and above from the official Java website.
+
+**Q**: Why can't I add a product to my client?<br>
+**A**: First check that the product has been created (use the [`listProduct` command](#332-listing-products-listproduct)). 
+Create the product suing the [`addProduct`](#331-adding-a-product-addproduct) command if it is not there.
+Add the product to the client using the [`editClient`](#315-editing-a-client-editclient)  or [`addClient`](#311-adding-a-client-addclient) command.
+
+**Q**: Where is my data file located?<br>
+**A**: The data file is located at `[JAR file location]/data/myinsurec.json`. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -407,6 +433,88 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Troubleshooting
+
+### I cannot see any data
+
+Here are a few reasons why this may have occurred:
+
+1. The data file is empty:
+   * Locate the [date file](#4-faq).
+   * If the file is empty ,i.e. contains no data, then MyInsuRec did not load any data on start up.
+   * How to recover? :
+   * [Swap the file with your backup](#353-creating-and-using-data-file-backups). 
+2. The data file was corrupt before starting the app:
+   * This issue is harder to detect since the app will only empty the file if the data in it was corrupt before starting. 
+   * How to avoid this issue? :
+   * [Create backups](#353-creating-and-using-data-file-backups) of your `myinsurec.json` file and ensure that they are not corrupt. 
+   * See the [section below](#my-data-file-is-corrupt) on how to detect and recover from file corruption.
+
+### My data file is corrupt
+
+Do not launch the app if you detect this issue, since the `myinsurec.json` file will be cleared of all data.
+To recover: 
+
+1. [create a backup](#353-creating-and-using-data-file-backups) of the file.
+2. Edit all invalid fields and format issues manually in the backup file. 
+   * What should I look out for while editing? :
+   * Check that the structure of the file is correct (no missing semicolons, commas, brackets, and data fields). <br> It helps to be familiar with the [JSON file](#json-file) format here, but most users can quickly pick up the basics by referring to a working copy of the data file.
+   * Some invalid data values to look out for :
+   * invalid dates for client birthday, or meeting date e.g. 00000000 (invalid DDMMYYYY), 1212202020 (too many digits),
+   * Invalid meeting start time or end time e.g. 2500 (invalid HHMM).
+3. [Use this edited file](#353-creating-and-using-data-file-backups) when launching MyInsuRec.
+   
+## 5. Acknowledgements
+
+This project is based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) by [se-education.org](https://se-education.org/).
+
+We thank the CS2103T and CS2101 teaching team and all our classmates for supporting us in this project!
+
 ## 6. Glossary
 
-{ glossary placeholder }
+### Quick Reference
+
+- [CLI](#cli)
+- [GUI](#gui)
+- [INDEX](#)
+- [JSON file](#json-file)
+- [JAR file](#jar-file)
+- [Parameter](#parameter)
+
+### *C*
+
+##### CLI 
+
+Command Line Interface, user interface that accepts input as lines of text.
+
+### *G*
+
+##### GUI
+
+Graphical User Interface, user interface that accepts input in means other than text, such as mouse clicks.
+
+### *I*
+
+##### INDEX
+
+Number indicating the position of a client, meeting, or product in their respective lists, e.g.  Product6 has position of 5 in the shown [product list](#332-listing-products-listproduct):
+![](images/listProduct.png)
+
+### *J*
+
+##### JSON file
+
+A file that stores data that has been structured according to the JSON data format.
+
+##### JAR file
+
+A file having the extension .jar which is usually used to share applications written in Java.
+MyInsuRec can be downloaded and executed as a JAR file.
+
+### *P*
+
+##### Parameter
+
+Value that should be provided to a command for it to execute.
+e.g. the `delClient` command requires the `INDEX` value identifying a client in order to delete that client.
+
