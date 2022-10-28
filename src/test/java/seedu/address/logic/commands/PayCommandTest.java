@@ -20,7 +20,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Money;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for PayCommand.
@@ -40,7 +40,7 @@ public class PayCommandTest {
 
     @Test
     public void create_newPaidPerson_success() throws CommandException {
-        Student studentPaying = new PersonBuilder(AMY).withMoneyOwed(VALID_MONEY.value).build();
+        Student studentPaying = new StudentBuilder(AMY).withMoneyOwed(VALID_MONEY.value).build();
         Student expectedPaidStudent = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(0),
                 AMY.getMoneyPaid().addTo(VALID_MONEY), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),

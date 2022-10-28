@@ -26,7 +26,7 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.Mark;
 import seedu.address.model.student.Money;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for MarkCommand.
@@ -50,7 +50,7 @@ public class MarkCommandTest {
     public void create_newMarkedPerson_success() throws CommandException {
 
         // initialize Amy to be not marked yet
-        Student studentToMark = new PersonBuilder(AMY).withMark(Boolean.FALSE).build();
+        Student studentToMark = new StudentBuilder(AMY).withMark(Boolean.FALSE).build();
         Student expectedMarkedStudent = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), VALID_CLASS.addDays(7), AMY.getMoneyOwed().addTo(AMY.getRatesPerClass()),
                 AMY.getMoneyPaid(), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
@@ -66,7 +66,7 @@ public class MarkCommandTest {
     @Test
     public void create_existingMarkedPerson_success() throws CommandException {
         // initialize Amy to be marked
-        Student studentToMark = new PersonBuilder(AMY).withMark(Boolean.TRUE).build();
+        Student studentToMark = new StudentBuilder(AMY).withMark(Boolean.TRUE).build();
 
         assertEquals(studentToMark, MarkCommand.createMarkedPerson(studentToMark));
     }

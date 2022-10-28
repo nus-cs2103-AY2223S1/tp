@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.student.predicate.EmailContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class EmailContainsKeywordsPredicateTest {
 
@@ -45,26 +45,26 @@ public class EmailContainsKeywordsPredicateTest {
         // One keyword
         EmailContainsKeywordsPredicate predicate =
                 new EmailContainsKeywordsPredicate(Collections.singletonList("jon_snow@winterfell.com"));
-        assertTrue(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com").build()));
+        assertTrue(predicate.test(new StudentBuilder().withEmail("jon_snow@winterfell.com").build()));
 
         // Mixed-case keywords
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("gHoSt@woOds.cOm"));
-        assertTrue(predicate.test(new PersonBuilder().withEmail("ghost@woods.com").build()));
+        assertTrue(predicate.test(new StudentBuilder().withEmail("ghost@woods.com").build()));
     }
 
     @Test
     public void test_emailDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         EmailContainsKeywordsPredicate predicate = new EmailContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com").build()));
+        assertFalse(predicate.test(new StudentBuilder().withEmail("jon_snow@winterfell.com").build()));
 
         // Non-matching keyword
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("RobStark@winterfell.com"));
-        assertFalse(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com").build()));
+        assertFalse(predicate.test(new StudentBuilder().withEmail("jon_snow@winterfell.com").build()));
 
         // Keywords match phone, name and address, but does not match email
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("81234567", "jon", "chua", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withEmail("jon_snow@winterfell.com").withPhone("81234567")
+        assertFalse(predicate.test(new StudentBuilder().withEmail("jon_snow@winterfell.com").withPhone("81234567")
                 .withName("jon chua").withAddress("Main Street").build()));
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.student.predicate.TagContainsKeywordsPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class TagContainsKeywordsPredicateTest {
 
@@ -44,21 +44,21 @@ public class TagContainsKeywordsPredicateTest {
     public void test_tagContainsKeywords_returnsTrue() {
         // One keyword
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.singletonList("Java"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("Java").build()));
+        assertTrue(predicate.test(new StudentBuilder().withTags("Java").build()));
 
         // Mixed-case keyword
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("pYthOn"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("Python").build()));
+        assertTrue(predicate.test(new StudentBuilder().withTags("Python").build()));
 
         // Zero keywords
         predicate = new TagContainsKeywordsPredicate(Collections.emptyList());
-        assertTrue(predicate.test(new PersonBuilder().withTags("Java").build()));
+        assertTrue(predicate.test(new StudentBuilder().withTags("Java").build()));
     }
 
     @Test
     public void test_tagDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Arrays.asList("Java"));
-        assertFalse(predicate.test(new PersonBuilder().withTags("Python").build()));
+        assertFalse(predicate.test(new StudentBuilder().withTags("Python").build()));
     }
 }

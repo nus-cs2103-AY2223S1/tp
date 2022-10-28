@@ -20,7 +20,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Student objects.
  */
-public class PersonBuilder {
+public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
@@ -48,9 +48,9 @@ public class PersonBuilder {
     private Mark mark;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code StudentBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         nokPhone = new Phone(DEFAULT_NOK_PHONE);
@@ -67,9 +67,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code studentToCopy}.
+     * Initializes the StudentBuilder with the data of {@code studentToCopy}.
      */
-    public PersonBuilder(Student studentToCopy) {
+    public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
         phone = studentToCopy.getPhone();
         nokPhone = studentToCopy.getNokPhone();
@@ -88,7 +88,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Student} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public StudentBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -96,7 +96,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Student} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public StudentBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -104,7 +104,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Student} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public StudentBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
@@ -112,7 +112,7 @@ public class PersonBuilder {
     /**
      * Sets the next of kin {@code Phone} of the {@code Student} that we are building.
      */
-    public PersonBuilder withNokPhone(String nokPhone) {
+    public StudentBuilder withNokPhone(String nokPhone) {
         this.nokPhone = new Phone(nokPhone);
         return this;
     }
@@ -120,7 +120,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Email} of the {@code Student} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public StudentBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
@@ -128,7 +128,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Class} of the {@code Student} that we are building.
      */
-    public PersonBuilder withClass(String classDateTime) throws ParseException {
+    public StudentBuilder withClass(String classDateTime) throws ParseException {
         this.aClass = ParserUtil.parseClass(classDateTime);
         return this;
     }
@@ -136,7 +136,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code MoneyOwed} of the {@code Student} that we are building.
      */
-    public PersonBuilder withMoneyOwed(Integer moneyOwed) {
+    public StudentBuilder withMoneyOwed(Integer moneyOwed) {
         this.moneyOwed = new Money(moneyOwed);
         return this;
     }
@@ -144,7 +144,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code MoneyPaid} of the {@code Student} that we are building.
      */
-    public PersonBuilder withMoneyPaid(Integer moneyPaid) {
+    public StudentBuilder withMoneyPaid(Integer moneyPaid) {
         this.moneyPaid = new Money(moneyPaid);
         return this;
     }
@@ -152,7 +152,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code ratesPerClass} of the {@code Student} that we are building.
      */
-    public PersonBuilder withRatesPerClass(Integer ratesPerClass) {
+    public StudentBuilder withRatesPerClass(Integer ratesPerClass) {
         this.ratesPerClass = new Money(ratesPerClass);
         return this;
     }
@@ -160,7 +160,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code AdditionalNotes} of the {@code Student} that we are building.
      */
-    public PersonBuilder withAdditionalNotes(String additionalNotes) {
+    public StudentBuilder withAdditionalNotes(String additionalNotes) {
         this.additionalNotes = new AdditionalNotes(additionalNotes);
         return this;
     }
@@ -168,7 +168,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public StudentBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -176,7 +176,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code displayedClass} of the {@code Student} that we are building.
      */
-    public PersonBuilder withDisplayDate(String displayClass) throws ParseException {
+    public StudentBuilder withDisplayDate(String displayClass) throws ParseException {
         this.displayedClass = displayedClass;
         return this;
     }
@@ -184,7 +184,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code mark} of the {@code Student} that we are building.
      */
-    public PersonBuilder withMark(Boolean attended) {
+    public StudentBuilder withMark(Boolean attended) {
         this.mark = new Mark(attended);
         return this;
     }

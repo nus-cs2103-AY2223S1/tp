@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.student.predicate.NokPhoneContainsNumberPredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class NokPhoneContainsNumberPredicateTest {
 
@@ -39,11 +39,11 @@ public class NokPhoneContainsNumberPredicateTest {
 
     @Test
     public void test_nokPhoneContainsNumber_returnsTrue() {
-        assertTrue(predicate.test(new PersonBuilder().withNokPhone("81234566").build()));
+        assertTrue(predicate.test(new StudentBuilder().withNokPhone("81234566").build()));
     }
 
     @Test
     public void test_nokPhoneDoesNotContainNumber_returnsFalse() {
-        assertFalse(predicate.test(new PersonBuilder().withNokPhone("67891234").build()));
+        assertFalse(predicate.test(new StudentBuilder().withNokPhone("67891234").build()));
     }
 }

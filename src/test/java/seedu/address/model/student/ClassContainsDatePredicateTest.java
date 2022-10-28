@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.predicate.ClassContainsDatePredicate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class ClassContainsDatePredicateTest {
 
@@ -40,11 +40,11 @@ public class ClassContainsDatePredicateTest {
 
     @Test
     public void test_classContainsKeyword_returnsTrue() throws ParseException {
-        assertTrue(predicate.test(new PersonBuilder().withClass("2022-10-12 1000-1200").build()));
+        assertTrue(predicate.test(new StudentBuilder().withClass("2022-10-12 1000-1200").build()));
     }
 
     @Test
     public void test_classDoesNotContainKeyword_returnsFalse() throws ParseException {
-        assertFalse(predicate.test(new PersonBuilder().withClass("2022-10-13 1000-1200").build()));
+        assertFalse(predicate.test(new StudentBuilder().withClass("2022-10-13 1000-1200").build()));
     }
 }

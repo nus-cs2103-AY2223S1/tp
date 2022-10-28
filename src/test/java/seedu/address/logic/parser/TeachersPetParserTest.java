@@ -31,7 +31,7 @@ import seedu.address.model.student.Money;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.predicate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.PersonUtil;
 
 public class TeachersPetParserTest {
@@ -40,7 +40,7 @@ public class TeachersPetParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Student student = new PersonBuilder().build();
+        Student student = new StudentBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }
@@ -62,7 +62,7 @@ public class TeachersPetParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Student student = new PersonBuilder().build();
+        Student student = new StudentBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));

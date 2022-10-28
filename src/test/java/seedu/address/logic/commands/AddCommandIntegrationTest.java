@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -27,7 +27,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Student validStudent = new PersonBuilder().build();
+        Student validStudent = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(model.getTeachersPet(), new UserPrefs());
         expectedModel.addPerson(validStudent);

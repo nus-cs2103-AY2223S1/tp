@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 public class StatisticsCalculatorTest {
 
@@ -68,8 +68,8 @@ public class StatisticsCalculatorTest {
     @Test
     public void calculates_amountOwedOverflow() {
         // Edits Ava to have the maximum possible amount of money owed by a single student.
-        Student editedAva = new PersonBuilder(AVA).withMoneyOwed(Integer.MAX_VALUE).build();
-        Student editedBen = new PersonBuilder(BEN).withMoneyOwed(1).build();
+        Student editedAva = new StudentBuilder(AVA).withMoneyOwed(Integer.MAX_VALUE).build();
+        Student editedBen = new StudentBuilder(BEN).withMoneyOwed(1).build();
         List<Student> newStudents = Arrays.asList(editedAva, editedBen);
         StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newStudents);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
@@ -81,8 +81,8 @@ public class StatisticsCalculatorTest {
     @Test
     public void calculates_amountPaidOverflow() {
         // Edits Ava to have the maximum possible amount of money paid by a single student.
-        Student editedAva = new PersonBuilder(AVA).withMoneyPaid(Integer.MAX_VALUE).build();
-        Student editedBen = new PersonBuilder(BEN).withMoneyPaid(1).build();
+        Student editedAva = new StudentBuilder(AVA).withMoneyPaid(Integer.MAX_VALUE).build();
+        Student editedBen = new StudentBuilder(BEN).withMoneyPaid(1).build();
         List<Student> newStudents = Arrays.asList(editedAva, editedBen);
         StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newStudents);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);

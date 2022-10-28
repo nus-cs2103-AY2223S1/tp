@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.student.exceptions.DuplicatePersonException;
 import seedu.address.model.student.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 
 public class UniqueScheduleListTest {
@@ -42,7 +42,7 @@ public class UniqueScheduleListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueScheduleList.add(ALICE);
-        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertTrue(uniqueScheduleList.contains(editedAlice));
     }
 
@@ -84,7 +84,7 @@ public class UniqueScheduleListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueScheduleList.add(ALICE);
-        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         uniqueScheduleList.setPerson(ALICE, editedAlice);
         UniqueScheduleList expectedUniqueScheduleList = new UniqueScheduleList();
         expectedUniqueScheduleList.add(editedAlice);
