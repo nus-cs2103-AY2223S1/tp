@@ -38,9 +38,9 @@ With NUScheduler, you can store the contact details of the NUS community around 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`profile -a`** : Adds a profile.
+   * <code class="language-plaintext highlighter-rouge"><b>profile -a</b> n/John Doe p/98765432 e/johnd@u.nus.edu t/friend</code>: Adds a profile with the name `John Doe`.
 
-   * **`profile -d `**`2` : Deletes the 2nd profile shown in the current list.
+   * <code class="language-plaintext highlighter-rouge"><b>profile -d</b> 2</code>: Deletes the 2nd profile shown in the current list.
 
    * **`profile -v`** : Lists all profiles in NUScheduler.
 
