@@ -8,7 +8,6 @@ import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 import seedu.foodrem.logic.commands.statscommands.StatsCommand;
-import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.logic.parser.generalcommandparser.ExitCommandParser;
 import seedu.foodrem.logic.parser.generalcommandparser.HelpCommandParser;
@@ -25,6 +24,7 @@ import seedu.foodrem.logic.parser.itemcommandparser.RemarkCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.SortCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.ViewCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.DeleteTagCommandParser;
+import seedu.foodrem.logic.parser.tagcommandparser.ListTagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.NewTagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.RenameTagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.TagCommandParser;
@@ -97,7 +97,7 @@ public class FoodRemParser {
         case UNTAG_COMMAND:
             return new UntagCommandParser().parse(arguments);
         case LIST_TAG_COMMAND:
-            return new ListTagCommand();
+            return new ListTagCommandParser().parse(arguments);
         case STATS_COMMAND:
             return new StatsCommand();
         default:

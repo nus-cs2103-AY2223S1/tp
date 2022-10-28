@@ -7,6 +7,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 
+import seedu.foodrem.commons.core.Messages;
+import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.logic.parser.ParserUtil;
+import seedu.foodrem.logic.parser.exceptions.ParseException;
+
 /**
  * Helper functions for handling strings.
  */
@@ -130,5 +135,37 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Validates if a string is can be parsed into an index, and if the index is positive.
+     *
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static Index validateAndGetIndexFromString(String string, String commandUsage) {
+        requireNonNull(string);
+        requireNonNull(commandUsage);
+
+        String trimmedArgument = string.trim();
+
+        if (trimmedArgument.isEmpty()) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, commandUsage));
+        }
+
+        if (!StringUtil.isInteger(trimmedArgument)) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, commandUsage));
+        }
+
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedArgument)) {
+            throw new ParseException(Messages.MESSAGE_NON_POSITIVE_INDEX);
+        }
+
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(trimmedArgument);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, commandUsage), pe);
+        }
+        return index;
     }
 }
