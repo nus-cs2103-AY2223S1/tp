@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.DateTimeConverter;
 
 /**
  * Jackson-friendly version of {@link Person}.
