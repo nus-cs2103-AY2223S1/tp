@@ -17,7 +17,7 @@ import seedu.address.model.team.Task;
 /**
  * Command that sorts the current task list
  */
-@CommandLine.Command(name = "task", aliases = {"ta"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "tasks", aliases = {"ta"}, mixinStandardHelpOptions = true)
 public class SortTaskCommand extends Command {
     public static final String COMMAND_WORD = "sort task";
 

@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
 /**
  * Command that sorts the current member list.
  */
-@CommandLine.Command(name = "member", aliases = {"m"}, mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "members", aliases = {"m"}, mixinStandardHelpOptions = true)
 public class SortMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "sort member";
