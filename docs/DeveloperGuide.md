@@ -20,7 +20,7 @@ title: Developer Guide
   * [Use Cases](#use-cases)
     * [Use case: **Delete a student**](#use-case-delete-a-student)
     * [Use case: **Edit a student's contact number**](#use-case-edit-a-students-contact-number)
-    * [Use case: **Edit a student's class date**](#use-case-edit-a-students-class-date-)
+    * [Use case: **Edit a student's class date**](#use-case-edit-a-students-class-date)
     * [Use case: **Find student by class date**](#use-case-find-student-by-class-date)
     * [Use case: **Find student by names**](#use-case-find-student-by-name)
     * [Use case: **Find student by address**](#use-case-find-student-by-address)
@@ -178,11 +178,11 @@ The edit class mechanism is facilitated by ClassStorage. It stores the date of t
 
 Additionally, it implements the following operations:
 
-ClassStorage#saveClass() — Saves the new class into its storage.
+- `ClassStorage#saveClass()` — Saves the new class into its storage.
 
-ClassStorage#removeExistingClass() — Removes class from storage to free up the time slot.
+- `ClassStorage#removeExistingClass()` — removes class from storage to free up the time slot.
 
-ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
+- `ClassStorage#hasConflict()` — Checks if there is a conflict between the class timings.
 
 The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer,
 a `ParseException` will be thrown.
@@ -368,8 +368,11 @@ This feature allows the user(teacher) to sort the students from Teacher's Pet by
 
 The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
-list of person as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `persons` by sorting the list with the given `Comparator`
+list of person as per usual.
+
+Additionally, it implements the following operation:
+
+- `TeachersPet#SortPersons(ComparatorM<Person>)` — Updates the `persons` by sorting the list with the given `Comparator`
 
 The following diagram illustrates how the operation works:
 
@@ -423,14 +426,16 @@ This feature allows the user (teacher) to find a list of students from Teacher's
 #### Proposed Implementation
 
 The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
-There are 4 different variations of `find`:
+There are 7 different variations of `find`:
 1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
-3. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
-4. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
-5. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
-6. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
+2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
+3. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+4. Find by student's contact number: Find the matching student with a particular contact number using `find p/CONTACT_NUMBER`.
+5. Find by next of kin's contact number: Find all matching student(s) with a particular next of kin's contact number using `find np/NEXT_OF_KIN_CONTACT_NUMBER`.
+6. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
+7. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The 4 variations cannot be mixed with one another.</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The 7 variations cannot be mixed with one another.</div>
 
 The following activity diagram summarizes what happens when a user executes a find command:
 
