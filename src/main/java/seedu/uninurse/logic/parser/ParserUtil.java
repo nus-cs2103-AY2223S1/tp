@@ -389,7 +389,9 @@ public class ParserUtil {
     }
 
     private static boolean isOptionLimit(String s) {
-        return s.contains("/");
+        // s is guaranteed to contain no whitespace
+        // (" " + s).contains(" " + x) checks if x is a prefix of s
+        return Arrays.stream(PREFIXES_PATIENT_ALL).anyMatch(x -> (" " + s).contains(" " + x));
     }
 
     /**
