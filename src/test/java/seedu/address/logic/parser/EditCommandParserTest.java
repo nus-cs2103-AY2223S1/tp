@@ -59,7 +59,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Class;
@@ -156,7 +156,7 @@ public class EditCommandParserTest {
                 + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB
                 + RATES_PER_CLASS_DESC_AMY + ADDITIONAL_NOTE_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditPersonDescriptor descriptor;
+        EditStudentDescriptor descriptor;
         try {
             descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                     .withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
@@ -179,7 +179,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -191,7 +191,7 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -253,7 +253,7 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + NOK_PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB
                 + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withNokPhone(VALID_NOK_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
@@ -268,7 +268,7 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -285,7 +285,7 @@ public class EditCommandParserTest {
     public void parse_validClassDateTime() throws ParseException {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_CLASS_DATE_TIME + "2022-05-05 1200-1500";
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withClass("2022-05-05 1200-1500").build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withClass("2022-05-05 1200-1500").build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -303,7 +303,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditPersonDescriptor descriptor = new EditStudentDescriptorBuilder().withTags().build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

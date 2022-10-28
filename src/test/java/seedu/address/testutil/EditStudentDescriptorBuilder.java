@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.AdditionalNotes;
@@ -18,31 +18,31 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditStudentDescriptor objects.
  */
 public class EditStudentDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private EditStudentDescriptor descriptor;
 
     /**
-     * Constructs a EditPersonDescriptionBuilder object with descriptor initialised.
+     * Constructs a EditStudentDescriptionBuilder object with descriptor initialised.
      * By default, descriptor field Class will have fields date and time to be null.
      */
     public EditStudentDescriptorBuilder() {
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditStudentDescriptor editPersonDescriptor = new EditStudentDescriptor();
         editPersonDescriptor.setClass(new Class());
         descriptor = editPersonDescriptor;
     }
 
-    public EditStudentDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditStudentDescriptorBuilder(EditStudentDescriptor descriptor) {
+        this.descriptor = new EditStudentDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code student}'s details
+     * Returns an {@code EditStudentDescriptor} with fields containing {@code student}'s details
      */
     public EditStudentDescriptorBuilder(Student student) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new EditStudentDescriptor();
         descriptor.setName(student.getName());
         descriptor.setPhone(student.getPhone());
         descriptor.setNokPhone(student.getNokPhone());
@@ -57,7 +57,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -65,7 +65,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -73,7 +73,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} next of kin phone of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} next of kin phone of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withNokPhone(String nokPhone) {
         descriptor.setNokPhone(new Phone(nokPhone));
@@ -81,7 +81,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -89,7 +89,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -97,7 +97,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Class} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Class} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withClass(String classDateTime) throws ParseException {
         descriptor.setClass(ParserUtil.parseClass(classDateTime));
@@ -105,7 +105,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code moneyOwed} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code moneyOwed} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withMoneyOwed(Integer moneyOwed) {
         descriptor.setMoneyOwed(new Money(moneyOwed));
@@ -113,7 +113,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code moneyPaid} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code moneyPaid} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withMoneyPaid(Integer moneyPaid) {
         descriptor.setMoneyPaid(new Money(moneyPaid));
@@ -129,7 +129,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code AdditionalNotes} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code AdditionalNotes} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withAdditionalNotes(String additionalNotes) {
         descriptor.setAdditionalNotes(new AdditionalNotes(additionalNotes));
@@ -137,7 +137,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditStudentDescriptor}
      * that we are building.
      */
     public EditStudentDescriptorBuilder withTags(String... tags) {
@@ -146,7 +146,7 @@ public class EditStudentDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public EditStudentDescriptor build() {
         return descriptor;
     }
 
