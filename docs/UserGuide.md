@@ -224,7 +224,7 @@ Extraneous parameters (before and after the `confirm/` flag) will be ignored. <b
 </div>
 
 ##### Example:
-* `:clear confirm/` Confirms the clearing the saved exercises, resetting the data in the system.
+* `:clear confirm/` Confirms the clearing of all saved exercises, resetting the data in the system.
 
 
 ### Sorting exercises : `:sort`
