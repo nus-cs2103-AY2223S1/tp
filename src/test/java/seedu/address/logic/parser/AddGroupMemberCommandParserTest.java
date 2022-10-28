@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddGroupMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonGroup;
 
 public class AddGroupMemberCommandParserTest {
 
@@ -27,6 +29,6 @@ public class AddGroupMemberCommandParserTest {
     @Test
     public void parse_validInput_commandParseSuccess() {
         assertParseSuccess(parser, AddGroupMemberCommand.COMMAND_WORD + " g/group n/name",
-                new AddGroupMemberCommand("group", "name"));
+                new AddGroupMemberCommand(new PersonGroup("group"), new Name("name")));
     }
 }

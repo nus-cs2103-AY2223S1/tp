@@ -214,9 +214,12 @@ public class ParserUtil {
      * Parses a {@code String PersonGroup} into a {@code PersonGroup}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static PersonGroup parsePersonGroup(String personGroup) {
+    public static PersonGroup parsePersonGroup(String personGroup) throws ParseException {
         requireNonNull(personGroup);
         String trimmedPersonGroup = personGroup.trim();
+        if (!PersonGroup.isValidGroup(trimmedPersonGroup)) {
+            throw new ParseException(PersonGroup.MESSAGE_CONSTRAINTS);
+        }
         return new PersonGroup(trimmedPersonGroup);
     }
 
