@@ -22,11 +22,10 @@ If you need help setting up GREWZ, jump over to [Quick start](#quick-start) to c
 
 If you want to find out more about GREWZ features and commands, jump over to [Features](#features).
 
-If you want the quick overview of GREWZ commands, jump over to [Command Summary](command-summary)
+If you want the quick overview of GREWZ commands, jump over to [Command Summary](#command-summary)
 
 Take note of the following symbols and formatting used in this document:
 
-<Insert document>
 
 --------------------------------------------------------------------------------------------------------------------
 
