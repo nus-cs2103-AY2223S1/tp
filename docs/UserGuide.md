@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-![App Logo](images/guest_book_160.png)
+![App Logo](images/guest_book_320.png)
 
 ## Introduction
 
@@ -39,24 +39,12 @@ This user guide provides in-depth descriptions of all the available features in 
 
 ## Components of the UI
 
-### Locations of the components
 ![UiComponentLabels](images/UiComponentLabels.png)
 
-### Use of the components
-| Component                              | Use                                                               |
-|----------------------------------------|-------------------------------------------------------------------|
-| **Command Box**                        | This is where you enter your commands.                            |
-| **Result Display**                     | This is where the detailed results of your command will be shown. |
-| **Guest Card**                         | This is where all your guest information will be shown.           |
-| **Status Bar**                         | This shows the path your save file is stored in.                  |
-| ![Phone](images/phone.png)             | This is the phone number of your guest.                           |
-| ![Email](images/email.png)             | This is the email address of your guest.                          |
-| ![Room](images/room.png)               | This is the room of your guest.                                   |
-| ![DateRange](images/dateRange.png)     | This is the date of stay of your guest.                           |
-| ![NumberOfGuests](images/group.png)    | This is the total number of guests in your guest's room.          |
-| ![IsRoomClean](images/isRoomClean.png) | This is the room cleaned status of your guest's room.             |
-| ![Bill](images/bill.png)               | This is the current bill of your guest.                           |
-| ![Request](images/request.png)         | This is the request made by your guest (if any).                  |
+* Command Box: This is where you enter your commands.
+* Result Display: This is where the detailed results of your command will be shown.
+* Guest Card: This is where all your guest information will be shown.
+* Status Bar: This is where your saved file is stored.
 
 [Return to Table of Contents](#table-of-contents)
 

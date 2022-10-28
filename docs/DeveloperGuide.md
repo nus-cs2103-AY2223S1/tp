@@ -17,9 +17,6 @@ title: Developer Guide
   * [Jackson](https://github.com/FasterXML/jackson)
   * [JUnit5](https://github.com/junit-team/junit5)
 
-* Icons used:
-  * [IconsDB](https://iconsdb.com/)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
