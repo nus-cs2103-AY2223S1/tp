@@ -319,28 +319,6 @@ Lists whole inventory.
 
 > `listInventory`
 
-### Sort: `sort`
-
-Sorts and displays items based on sorting criteria
-
-***Format:***
-
-`sort /<item type> <sort criteria> <ascending/descending>`
-
-**Available sorting criteria:**
-* Task details (name, type, time, marked status)
-* Supplier details (name, type, price, address)
-* Customer details (name, contact, order)
-
-**Examples:**
-* Sort by task deadline date, in descending order
-
-> `sortTask /date descending`
-
-* Sort by supplier address, in ascending order
-
-> `sortSupplier /address ascending`
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -363,4 +341,3 @@ Sorts and displays items based on sorting criteria
 | **delete** (supply item)     | `deleteItem <item index>`                                             | `deleteItem 2`                                                                     |
 | **edit stock** (supply item) | `editStock <item index> [c/NEWCURRENTSTOCK]`                          | `editStock 2 c/12`                                                                 |
 | **list** (all items)         | `listAll`                                                             | `listAll`                                                                          |
-| **sort**                     | `sort /<item type> <sort criteria> <ascending/descending>`            | `sort /task time descending`                                                       |
