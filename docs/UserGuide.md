@@ -44,13 +44,14 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 
 * **`clear`** : Deletes all internships.
 
-* **`exit`** : Exits the app.
+* **`exit`** : Exits the app. 
 
 6. Refer to the [Features](#features) below for details of each command.
 --------------------------------------------------------------------------------------------------------------------
 ## About this User Guide
 
 This guides aims to: <br>
+
 1. Teach first-time users how to start using PleaseHireUs
 2. Show and explain to users how to use each command
 3. Provide users with a summary of the commands available
