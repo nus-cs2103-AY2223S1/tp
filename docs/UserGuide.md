@@ -186,7 +186,7 @@ An event must contain the following information:
 * Start date
 * End date, which must be on the same day or after the start date
 
-A event may also contain:
+An event may also contain:
 
 * Start time
 * End time
