@@ -7,7 +7,7 @@ Command Line Interface (CLI) while still having the benefits of a Graphical User
 Teacher’s Pet can get your contact and class management tasks done faster than traditional GUI apps.
 
 **Teacher’s Pet** allows you to manage your schedule and keep track of your students.
-The app stores basic information about your students, such as `Name`, `Contact Number`, `Money Owed`, `Class Date` and more.
+The app stores basic information about your students, such as `Name`, `Contact Number`, `Class Date` and more.
 
 Before you get started, you may want to read [how to get started with this User Guide](#reading-the-user-guide)!
 To get started with using our application, jump straight to the [Quick Start](#quick-start) section.
@@ -34,10 +34,10 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by Next of Kin's Contact Number](#find-by-next-of-kins-contact-number)
       * [Find by Class Date](#find-by-class-date)
       * [Find by Tag](#find-by-tag)
-    * [Next available class: `avail`](#next-available-class)
+    * [Next available class: `avail`](#next-available-class-avail)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
       * [Sort by Name](#sort-by-name)
-      * [Sort by Class](#sort-by-class)
+      * [Sort by Class](#sort-by-class-date)
       * [Sort by Money Owed](#sort-by-money-owed)
     * [Deleting a student: `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
@@ -146,11 +146,8 @@ Adds a student to the Teacher’s Pet.
 1. Student’s Name:
     - Student’s Name must not be empty.
     - Student’s Name must only contain alphanumeric characters.
-
-```yaml
-ℹ Note:
-  Multiple students may share the same name.
-```
+    
+<div markdown="span" class="alert alert-info">ℹ **Note:** Multiple students may share the same name.</div>
 
 2. Student’s Contact Number:
    - Student’s contact number must not be empty. 
