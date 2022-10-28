@@ -188,7 +188,7 @@ in their address.
 * The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
 * The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
 * Only full words will be matched e.g. `keychains` will not match `keychain`
-* Orders matching at least one keyword will be returned (i.e. `OR` search).</br>
+* Orders matching at least one keyword will be returned (i.e. `OR` search).<br>
   e.g. `findo apple keychain` will return `apple painting`, `banana keychain`
 
 Examples:
@@ -263,8 +263,8 @@ Examples:
   and `123 Apartment Unit, #05-11` respectively.
 * When the third order in the list has `Chairs` in quantity `5`, `edito 3 i/chairs q/0` 
   will remove the item from the order list. 
-* When the fifth order in the list has `Tables` in quantity `3` in its order list, and you have `Chairs` in your inventory, 
-` edito 5 i/chairs q/15` will add `15` `Chairs` to the order list.
+* When the fifth order in the list has `Tables` in quantity `3` in its order list, and you have `Chairs` in your inventory,
+`edito 5 i/chairs q/15` will add `15 Chairs` to the order list.
 
 ### Marking an order as paid or delivered: `marko`
 
@@ -278,7 +278,7 @@ Format: `marko INDEX [-p] [-d]`
 * Flag `-p` marks the order as paid. 
 * Flag `-d` marks the order as delivered. 
 * Flags are case-sensitive and specific to the character. 
-</br> e.g. `- p` is not a valid flag because there is a space between the `-` and `p`. 
+<br> e.g. `- p` is not a valid flag because there is a space between the `-` and `p`. 
 * At least one of `-p` or `-d` must be present in your input. 
 * Both `-p` and `-d` may be present in your input to mark an order as both paid and delivered.
 * When an order is completed (marked as both `paid` and `delivered`), 
@@ -293,9 +293,9 @@ Examples:
 
 Clears all data (in both `Order List` and `Inventory List`) from TrackO.
 
-1. Initiate the command to clear all data from TrackO. </br>
+1. Initiate the command to clear all data from TrackO. <br>
     Format: `clear`
-2. Confirm the decision to clear all data. </br>
+2. Confirm the decision to clear all data. <br>
     Format: `confirm` or `cancel`
 - `clear` will trigger a message which prompts for user confirmation to clear the data in TrackO.
 - Keyword `confirm` : confirms the deletion of all data in TrackO. All data in TrackO will be removed after this input. 
