@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
 
@@ -20,9 +21,9 @@ import seedu.address.model.task.Task;
 public class DeleteTaskCommand extends TaskCommand {
     public static final String SUBCOMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE =
-            TaskCommand.getFullCommand(SUBCOMMAND_WORD) + ": Delete the selected task\n"
-                    + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n";
+    public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
+            + ": Delete the selected task\n"
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n";
 
     public static final String DELETE_SUCCESS = " task %s is deleted%n";
 
@@ -37,9 +38,18 @@ public class DeleteTaskCommand extends TaskCommand {
         requireNonNull(model);
 
         List<Task> lastShownList = model.getFilteredTaskList();
+        if (targetIndex == null && task == null) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+        if (task == null) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            task = lastShownList.get(targetIndex.getZeroBased());
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
         }
 
         Task task = lastShownList.get(targetIndex.getZeroBased());

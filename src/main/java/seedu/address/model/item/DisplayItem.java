@@ -37,6 +37,11 @@ public interface DisplayItem {
     void setParent(DisplayItem o);
 
     /**
+     * Renames the current item with the name
+     */
+    void rename(String name);
+
+    /**
      * Removes o as the parent of the current item {@code DisplayItem o}
      */
     void removeParent(DisplayItem o);

@@ -22,6 +22,12 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Group> PREDICATE_SHOW_ALL_GROUPS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -65,6 +71,11 @@ public interface Model {
      * the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Refreshes the addressbook lists
+     */
+    void refresh();
 
     /**
      * Deletes the given person.

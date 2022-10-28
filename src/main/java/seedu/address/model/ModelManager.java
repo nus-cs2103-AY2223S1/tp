@@ -54,6 +54,16 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
+    /**
+     * Updates all gui
+     */
+    @Override
+    public void refresh() {
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_GROUPS);
+    }
+
     // =========== UserPrefs
     // ==================================================================================
 
