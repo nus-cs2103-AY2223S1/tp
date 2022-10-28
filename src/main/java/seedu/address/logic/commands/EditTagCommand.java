@@ -23,7 +23,8 @@ public class EditTagCommand extends Command {
     public static final String MESSAGE_USAGE = "t " + COMMAND_WORD + ": edits the tags of a task "
             + "in the task list.\n"
             + "Parameters: INDEX " + "[" + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS]* "
-            + "[" + PREFIX_DEADLINE + "DEADLINE]*";
+            + "[" + PREFIX_DEADLINE + "DEADLINE]*\n"
+            + "Example: " + "t " + COMMAND_WORD + " 1 " + PREFIX_PRIORITY_STATUS + "HIGH";
     public static final String PRIORITY_TAG_DOES_NOT_EXIST = "The task does not have a priority tag.";
     public static final String DEADLINE_TAG_DOES_NOT_EXIST = "The task does not have a deadline tag.";
     public static final String PRIORITY_TAG_UNCHANGED = "The priority status provided is "
