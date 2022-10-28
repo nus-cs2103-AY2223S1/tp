@@ -101,9 +101,9 @@ public class ItemBoughtDateValidatorTest {
         ItemBoughtDateValidator.validate("01-12-2000"); // Upper Bound
         ItemBoughtDateValidator.validate("01-06-2000"); // Middle
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-00-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Below Lower Bound
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE); // Below Lower Bound
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("01-13-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // Above Upper Bound
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE); // Above Upper Bound
 
         // Test Days - Lower Bound
         // Positive Cases
@@ -122,29 +122,29 @@ public class ItemBoughtDateValidatorTest {
 
         // Negative Cases
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-01-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-02-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-03-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-04-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-05-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-06-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-07-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-08-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-09-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-10-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-11-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("00-12-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
 
         // Test Days - Upper Bound
         ItemBoughtDateValidator.validate("31-01-2000");
@@ -162,31 +162,31 @@ public class ItemBoughtDateValidatorTest {
         ItemBoughtDateValidator.validate("31-12-2000");
 
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-01-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("29-02-2001"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // February Non-Leap Year
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE); // February Non-Leap Year
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("30-02-2004"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE); // February Leap Year
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE); // February Leap Year
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-03-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("31-04-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-05-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("31-06-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-07-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-08-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("31-09-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-10-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("31-11-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("32-12-2000"),
-                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE);
 
     }
 }
