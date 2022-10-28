@@ -84,15 +84,14 @@ Item List Box:
 
 #### Search for an item: `find`
 
-**Format:** `find KEYWORD [KEYWORDS]...`
+**Format:** `find KEYWORD`
 
-> Finds all items in FoodRem whose names contain any of the specified keywords
+> Finds all items in FoodRem whose names contain words that begin with the KEYWORD
 
 ```info
-* The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
-* The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
-* The order of the `KEYWORDS` do not matter (e.g "rose apple" will match "apple rose").
-* The result will be items in which `ITEM_NAME` contain any one of the `KEYWORDS` provided.
+* The `KEYWORD` is case-insensitive. (e.g. "apples" will match "Apples").
+* The result will be items in which any word in `ITEM_NAME` begins with the `KEYWORD`. (e.g. "ap" will match "Apricot", "Apples" and "Plain appam")
+
 ```
 
 ```tip

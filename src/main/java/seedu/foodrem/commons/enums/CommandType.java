@@ -107,12 +107,12 @@ public enum CommandType {
         @Override
         public String getUsage() {
             return getCommandWord() + ": Finds all items in FoodRem whose names contain any of "
-                    + "the specified keywords (case-insensitive).\n\n"
+                    + "the specified keyword (case-insensitive).\n\n"
                     + "Format:\n"
-                    + getCommandWord() + " KEYWORD [KEYWORDS]...\n\n"
+                    + getCommandWord() + " KEYWORD\n\n"
                     + "Examples:\n"
                     + getCommandWord() + " Potatoes\n"
-                    + getCommandWord() + " Potatoes Carrots Cucumbers";
+                    + getCommandWord() + " Carrots";
         }
     },
     INCREMENT_COMMAND("inc") {
