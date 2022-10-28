@@ -17,8 +17,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +26,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
@@ -111,15 +110,8 @@ public class EditTaskCommand extends Command {
         if (arguments.assignees.length != 1 || !Arrays.asList(arguments.assignees).contains("")) {
             editTaskDescriptor.setAssignees(Arrays.asList(arguments.assignees));
         }
-        if (!arguments.deadline.equals("")) {
-            try {
-                editTaskDescriptor.setDeadline(LocalDateTime.parse(arguments.deadline,
-                        DateTimeFormatter.ofPattern(Task.DATE_FORMAT)));
-            } catch (DateTimeParseException e) {
-                throw new CommandException(MESSAGE_DEADLINE_BADLY_FORMATTED);
-            }
-        } else {
-            editTaskDescriptor.setDeadline(null);
+        if (arguments.deadline != null) {
+            editTaskDescriptor.setDeadline(arguments.deadline);
         }
         if (arguments.name != null) {
             editTaskDescriptor.setName(arguments.name);
@@ -181,8 +173,8 @@ public class EditTaskCommand extends Command {
         private String name;
 
         @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
-                description = FLAG_TASK_DEADLINE_DESCRIPTION)
-        private String deadline;
+                parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
+        private LocalDateTime deadline;
 
         @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, defaultValue = "", description =
                 FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
