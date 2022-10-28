@@ -284,7 +284,7 @@ Adds a task under a specific module.
 
 - You may have selected a module (i.e. used the [`cd` command](#entering-a-module-cd) to select a module).
 - You can specify a deadline for the task with the `-d` flag along with the deadline in YYYY-MM-DD format.
-- The task description accepts only use letters, numbers, spaces, and other
+- The task description accepts only letters, numbers, spaces, and other
   American Standard Code for Information Interchange [(ASCII)](https://en.wikipedia.org/wiki/ASCII) characters.
 - The task description must be enclosed in double-quotes (`""`) if it contains spaces.
 - The symbols `-` and `"` are special characters and must be escaped with a backslash (`\`) to
