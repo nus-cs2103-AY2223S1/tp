@@ -5,7 +5,6 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TIME_PERIOD;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE_NAME;
 
-
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
