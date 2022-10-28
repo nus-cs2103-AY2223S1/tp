@@ -28,6 +28,21 @@ public class PastAppointment extends Appointment {
     }
 
     /**
+     * Returns true if a given string is a valid date; false otherwise.
+     */
+    public static boolean isValidDate(String test) {
+        if (test.equals("")) {
+            return true;
+        }
+        // A Past Appointment can only be today or earlier.
+        if (Appointment.isValidDate(test)) {
+            LocalDate date = parseLocalDate(test);
+            return date.isBefore(LocalDate.now()) || date.isEqual(LocalDate.now());
+        }
+        return false;
+    }
+
+    /**
      * Getter for the medications prescribed in the appointment.
      * @returns prescription for the patient
      */

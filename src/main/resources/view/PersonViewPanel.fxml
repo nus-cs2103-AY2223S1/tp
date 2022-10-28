@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
-<ScrollPane styleClass="scroll-pane" prefHeight="674.0" fitToWidth="true" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane styleClass="scroll-pane" prefHeight="674.0" fitToWidth="true" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <VBox HBox.hgrow="ALWAYS" style="-fx-padding: 5 0 0 0">
       <children>
          <Label alignment="TOP_CENTER" prefWidth="Infinity" id="name" fx:id="name" styleClass="cell_name_label" HBox.hgrow="ALWAYS" />
@@ -26,9 +26,11 @@
                   <ImageView fx:id="helplineIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
                   <Label styleClass="cell_big_label" text="Next-of-Kin Details" textAlignment="CENTER" style="-fx-padding: 0 0 0 5" />
                </HBox>
-               <Label fx:id="nokName" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-               <Label fx:id="nokRelationship" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-               <Label fx:id="nokContact" styleClass="cell_small_label" style="-fx-padding: 1 0 8 10" />
+               <VBox fx:id="nok">
+                  <Label fx:id="nokName" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+                  <Label fx:id="nokRelationship" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+                  <Label fx:id="nokContact" styleClass="cell_small_label" style="-fx-padding: 1 0 8 10" />
+               </VBox>
             </children>
          </VBox>
 
