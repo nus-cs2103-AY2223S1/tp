@@ -539,6 +539,78 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+
+**Use case UC4: Enroll a student to a tutorial group**
+
+**MSS**
+
+1. User searches for his/her name or ID.
+2. TAA displays all the students records with a matching signature.
+3. User chooses the correct student.
+4. User searches for the name of the tutorial group.
+5. TAA displays all the tutorial groups.
+6. User chooses the correct tutorial group.
+7. User confirms the enrollment.
+8. TAA enrolls the student to the tutorial group.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The inputted student index is out of range.
+
+- 2b. TAA displays error and requests re-enter of the student index.
+
+  Use case resume from step 4.
+
+
+- 7a. The student is already enrolled in a tutorial group.
+
+- 7b. TAA displays error and requests the student to be expelled from his/her current tutorial group.
+
+- 7c. User expels the student from his/her current tutorial group. 
+
+  Use case resume from step 1.
+
+
+**Use case UC5: Expel a student from a tutorial group**
+
+**MSS**
+
+1. User searches for the student's name or ID.
+2. TAA displays all the students records with a matching signature.
+3. User chooses the correct student.
+4. User confirms to expel the student from his/her current tutorial group.
+5. TAA expels the student from the tutorial group.
+
+   Use case ends.
+
+**Extensions**
+
+- 3a. The student is not enrolled in any tutorial groups.
+
+- 3b. TAA displays error and requests re-enter of the student index.
+
+  Use case resume from step 3.
+
+**Use case UC6: Add a new tutorial group**
+
+**MSS**
+
+1. User chooses to add a new tutorial group.
+2. TAA adds a tutorial group with the given name.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. There already exists a tutorial group with the same name.
+
+- 1b. TAA requests re-enter of the tutorial group name.
+
+  Use case resume from step 2.
+
+
 _{More to be added}_
 
 ### Non-Functional Requirements
