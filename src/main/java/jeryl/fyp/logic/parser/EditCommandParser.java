@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -13,10 +12,10 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -32,12 +31,12 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_NAME,
-                PREFIX_STUDENT_ID, PREFIX_EMAIL, PREFIX_PROJECT_NAME, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_PROJECT_NAME, PREFIX_TAG);
 
-        Index index;
+        StudentId studentId;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            studentId = ParserUtil.parseStudentId(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -46,10 +45,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_STUDENT_NAME).isPresent()) {
             editStudentDescriptor.setStudentName(
                 ParserUtil.parseStudentName(argMultimap.getValue(PREFIX_STUDENT_NAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_STUDENT_ID).isPresent()) {
-            editStudentDescriptor.setStudentId(
-                ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
@@ -64,7 +59,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editStudentDescriptor);
+        return new EditCommand(studentId, editStudentDescriptor);
     }
 
     /**

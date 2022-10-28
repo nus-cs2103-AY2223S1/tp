@@ -14,10 +14,10 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = "Finds all students matching the given name of a certain field.\n"
             + "Examples:\n"
-            + "1) by StudentId: " + FindStudentIdCommand.COMMAND_WORD + " KEYWORD/[KEYWORD2/KEYWORD3/...]\n"
-            + "2) by StudentName: " + FindStudentNameCommand.COMMAND_WORD + " KEYWORD/[KEYWORD2/KEYWORD3/...]\n"
-            + "3) by Tags: " + FindTagsCommand.COMMAND_WORD + " KEYWORD/[KEYWORD2/KEYWORD3/...]\n"
-            + "4) by ProjectName: " + FindProjectNameCommand.COMMAND_WORD + " KEYWORD/[KEYWORD2/KEYWORD3/...]";
+            + "1) by ProjectName: " + FindProjectNameCommand.COMMAND_WORD + " KEYWORD/[KEYWORD2/KEYWORD3/...]\n"
+            + "2) by StudentId: " + FindStudentIdCommand.COMMAND_WORD + " KEYWORD/[KEYWORD2/KEYWORD3/...]\n"
+            + "3) by StudentName: " + FindStudentNameCommand.COMMAND_WORD + " KEYWORD/[KEYWORD2/KEYWORD3/...]\n"
+            + "4) by Tags: " + FindTagsCommand.COMMAND_WORD + " KEYWORD/[KEYWORD2/KEYWORD3/...]";
 
     private final FieldContainsKeywordsPredicate fieldPredicate;
 

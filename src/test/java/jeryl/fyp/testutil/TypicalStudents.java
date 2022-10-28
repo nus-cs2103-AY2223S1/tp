@@ -56,10 +56,10 @@ public class TypicalStudents {
     // Manually added
     public static final Student HOON = new StudentBuilder().withStudentName("Hoon Meier").withStudentId("A1482424H")
             .withEmail("stefan@example.com").withProjectName("Robotics")
-            .withDeadlines(new String[]{"Opening talk, deadline: 2022-10-10 12:00"}).build();
+            .withDeadlines(new String[]{"Opening talk, deadline: 10-10-2022 1200"}).build();
     public static final Student IDA = new StudentBuilder().withStudentName("Ida Mueller").withStudentId("A1482131I")
             .withEmail("hans@example.com").withProjectName("computer network")
-            .withDeadlines(new String[]{"assignments, deadline: 2022-12-01 15:15"}).build();
+            .withDeadlines(new String[]{"assignments, deadline: 01-12-2022 15:15"}).build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withStudentName(VALID_STUDENT_NAME_AMY)

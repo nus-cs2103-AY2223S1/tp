@@ -34,19 +34,10 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 
-    /** Returns an unmodifiable view of the sorted list of uncompleted projects according to specialisation */
-    ObservableList<Student> getSortedBySpecialisationUncompletedStudentList();
+    ObservableList<Student> getSortedByProjectNameUncompletedStudentList();
 
-    /**
-     * Returns an unmodifiable view of the sorted list of uncompleted projects according to project status
-     * followed by alphabetical order
-     */
     ObservableList<Student> getSortedByProjectStatusUncompletedStudentList();
 
-    /**
-     * Returns an unmodifiable view of the sorted list of completed projects according to specialisation
-     * or equivalently alphabetical order
-     */
     ObservableList<Student> getSortedCompletedStudentList();
 
     /** Returns an unmodifiable view of the uncompleted list of students */

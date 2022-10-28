@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final FypManager fypManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    private final SortedList<Student> sortedBySpecialisationUncompletedStudents;
+    private final SortedList<Student> sortedByProjectNameUncompletedStudents;
     private final SortedList<Student> sortedByProjectStatusUncompletedStudents;
     private final SortedList<Student> sortedCompletedStudents;
     private final FilteredList<Student> completedStudents;
@@ -43,14 +43,14 @@ public class ModelManager implements Model {
         this.fypManager = new FypManager(fypManager);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.fypManager.getStudentList());
-        sortedBySpecialisationUncompletedStudents =
-                new SortedList<>(this.fypManager.getSortedBySpecialisationUncompletedStudentList());
+        completedStudents = new FilteredList<>(this.fypManager.getCompletedStudentList());
+        uncompletedStudents = new FilteredList<>(this.fypManager.getUncompletedStudentList());
+        sortedByProjectNameUncompletedStudents =
+                new SortedList<>(this.fypManager.getSortedByProjectNameUncompletedStudentList());
         sortedByProjectStatusUncompletedStudents =
                 new SortedList<>(this.fypManager.getSortedByProjectStatusUncompletedStudentList());
         sortedCompletedStudents =
                 new SortedList<>(this.fypManager.getSortedCompletedStudentList());
-        completedStudents = new FilteredList<>(this.fypManager.getCompletedStudentList());
-        uncompletedStudents = new FilteredList<>(this.fypManager.getUncompletedStudentList());
     }
 
     public ModelManager() {
@@ -121,6 +121,7 @@ public class ModelManager implements Model {
         fypManager.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
+
 
     @Override
     public void setStudent(Student target, Student editedStudent) {
@@ -200,12 +201,12 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} who have yet to complete
-     * their projects sorted by their specialisation,
+     * their projects sorted by their project name,
      * backed by the internal list of {@code versionedFypManager}
      */
     @Override
-    public ObservableList<Student> getSortedBySpecialisationUncompletedStudentList() {
-        return sortedBySpecialisationUncompletedStudents;
+    public ObservableList<Student> getSortedByProjectNameUncompletedStudentList() {
+        return sortedByProjectNameUncompletedStudents;
     }
 
     /**
@@ -220,7 +221,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} who have completed
-     * their projects sorted by their specialisation (or equivalently alphabetical order)
+     * their projects sorted by their project name (or equivalently alphabetical order)
      * backed by the internal list of {@code versionedFypManager}
      */
     @Override

@@ -43,7 +43,7 @@ class JsonAdaptedDeadline {
      * @throws IllegalValueException if there were any data constraints violated in the adapted deadline.
      */
     public Deadline toModelType() throws IllegalValueException {
-        String[] deadlineComponents = deadline.split(", deadline:");
+        String[] deadlineComponents = deadline.split(", deadline: ");
         if (deadlineComponents.length != 2) {
             throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }

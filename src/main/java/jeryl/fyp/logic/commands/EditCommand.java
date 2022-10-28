@@ -3,7 +3,6 @@ package jeryl.fyp.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
@@ -35,34 +34,32 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
-            + "by the index number used in the displayed student list. "
+            + "by unique student ID. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: STUDENT_ID "
             + "[" + PREFIX_STUDENT_NAME + "NAME] "
-            + "[" + PREFIX_STUDENT_ID + "STUDENT_ID] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_PROJECT_NAME + "PROJECT_NAME] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_STUDENT_ID + "A91234567H "
+            + "Example: " + COMMAND_WORD + " A0123456X "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the FYP manager.";
 
-    private final Index index;
+    private final StudentId studentId;
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
+ * @param studentId of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
-        requireNonNull(index);
+    public EditCommand(StudentId studentId, EditStudentDescriptor editStudentDescriptor) {
+        requireNonNull(studentId);
         requireNonNull(editStudentDescriptor);
 
-        this.index = index;
+        this.studentId = studentId;
         this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
@@ -70,12 +67,13 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
+        Index targetIndex = model.getIndexByStudentId(studentId);
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
 
-        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student studentToEdit = lastShownList.get(targetIndex.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
         if (!studentToEdit.isSameStudentId(editedStudent) && model.hasStudent(editedStudent)) {
@@ -94,12 +92,12 @@ public class EditCommand extends Command {
     private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
-        StudentName updatedStudentName = editStudentDescriptor.getName().orElse(studentToEdit.getStudentName());
+        StudentName updatedStudentName = editStudentDescriptor.getStudentName().orElse(studentToEdit.getStudentName());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         ProjectName updatedProjectName = editStudentDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
         ProjectStatus updatedProjectStatus =
-                studentToEdit.getProjectStatus(); //edit does not allow editing of project status
+                editStudentDescriptor.getProjectStatus().orElse(studentToEdit.getProjectStatus());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedStudentName, updatedStudentId, updatedEmail,
@@ -120,7 +118,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return studentId.equals(e.studentId)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
 
@@ -155,14 +153,14 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(studentName, id, email, projectName, tags);
+            return CollectionUtil.isAnyNonNull(studentName, email, projectName, tags);
         }
 
         public void setStudentName(StudentName studentName) {
             this.studentName = studentName;
         }
 
-        public Optional<StudentName> getName() {
+        public Optional<StudentName> getStudentName() {
             return Optional.ofNullable(studentName);
         }
 
@@ -230,8 +228,7 @@ public class EditCommand extends Command {
             // state check
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getStudentId().equals(e.getStudentId())
+            return getStudentName().equals(e.getStudentName())
                     && getEmail().equals(e.getEmail())
                     && getProjectName().equals(e.getProjectName())
                     && getTags().equals(e.getTags());
