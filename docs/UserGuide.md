@@ -55,6 +55,8 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
     * **`exit`** : Exits the app.
 
+1. Scroll down on the Customer list and Promotion list to see all the customers and on-going promotions
+
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
