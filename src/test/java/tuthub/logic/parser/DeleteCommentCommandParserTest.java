@@ -28,11 +28,13 @@ public class DeleteCommentCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommentCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommentCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_shorterArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommentCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommentCommand.MESSAGE_USAGE));
     }
 }
