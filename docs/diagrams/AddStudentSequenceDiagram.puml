@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add -s id/A0123456X n/John Doe\nproj/Machine e/john@gmail.com")
+[-> LogicManager : execute("add -s i/A0123456X n/John Doe\nproj/Machine e/john@gmail.com")
 activate LogicManager
 
-LogicManager -> FypManagerParser : parseCommand("add -s id/A0123456X n/John Doe\nproj/Machine e/john@gmail.com")
+LogicManager -> FypManagerParser : parseCommand("add -s i/A0123456X n/John Doe\nproj/Machine e/john@gmail.com")
 
 activate FypManagerParser
 
@@ -27,7 +27,7 @@ activate AddStudentCommandParser
 AddStudentCommandParser --> FypManagerParser
 deactivate AddStudentCommandParser
 
-FypManagerParser -> AddStudentCommandParser : parse("id/A0123456X n/John Doe\np/Machine e/john@gmail.com")
+FypManagerParser -> AddStudentCommandParser : parse("i/A0123456X n/John Doe\np/Machine e/john@gmail.com")
 activate AddStudentCommandParser
 
 create AddStudentCommand

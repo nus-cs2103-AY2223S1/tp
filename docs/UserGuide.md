@@ -26,11 +26,11 @@ title: User Guide
 
    * **`list`** - lists all FYP projects the professor is supervising
 
-   * **`add -s id/A0123456G n/John Doe p/Automation of Selenium e/johndoe@gmail.com`** - adds the FYP project of the student named John Doe with ID A0123456G, email `johndoe@gmail.com`, and project titled _Automation of Selenium_
+   * **`add -s i/A0123456G n/John Doe p/Automation of Selenium e/johndoe@gmail.com`** - adds the FYP project of the student named John Doe with ID A0123456G, email `johndoe@gmail.com`, and project titled _Automation of Selenium_
 
-   * **`delete -s id/A0123456G`** - deletes the FYP project of the student with ID A0123456G
+   * **`delete -s i/A0123456G`** - deletes the FYP project of the student with ID A0123456G
 
-   * **`mark id/A0123456G s/IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
+   * **`mark i/A0123456G s/IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
 
    * **`find machine`** - searches any FYP project names that has “machine” in its name, for example it will include the FYP project named “Machine Learning”.
 
@@ -76,13 +76,13 @@ title: User Guide
 ### Adding students FYP: `add`
 
 There are 2 types of `add` commands.
-1. `add -s`: Adds a new FYP of a student to the FYP manager.
+1. `add -s`: Adds a new FYP of a student to the FYP manager. The same student ID should not exist in the FYP manager previously.
 
-    Format: `add [-s] id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
+    Format: `add [-s] i/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​`
 
-1. `add -d`: Adds a new deadline to a student specified by the student ID.
+1. `add -d`: Adds a new deadline to a student specified by the student ID. The deadline name should not exist in this student previously.
 
-    Format: `add -d id/STUDENT_ID n/DEADLINE_NAME d/DEADLINE_DATETIME`
+    Format: `add -d i/STUDENT_ID n/DEADLINE_NAME d/DEADLINE_DATETIME`
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -90,39 +90,39 @@ A student can have any number of tags! (including 0)
 </div>
 
 Examples:
-* `add -s id/A0123456G n/Jane Doe p/Neural Network e/e0123456@u.nus.edu t/NN t/Difficult`
-* `add -s id/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
-* `add id/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
-* `add -d id/A0123456G n/Random Task d/23-10-2022 23:59`
+* `add -s i/A0123456G n/Jane Doe p/Neural Network e/e0123456@u.nus.edu t/NN t/Difficult`
+* `add -s i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
+* `add i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
+* `add -d i/A0123456G n/Random Task d/23-10-2022 23:59`
 
 ### Removing students FYP: `delete`
 
 There are 2 types of `delete` commands.
-1. `delete -s`: Removes a FYP from the FYP manager.
+1. `delete -s`: Removes a FYP from the FYP manager. The specified student ID must exist in the FYP manager previously.
 
-    Format: `delete [-s] id/STUDENT_ID`
+    Format: `delete [-s] i/STUDENT_ID`
 
-1. `delete -d`: Removes a deadline assigned to a student specified by ID & a priority rank.
+1. `delete -d`: Removes a deadline assigned to a student specified by ID & a priority rank. The specified deadline must exist in the student's deadline list previously.
 
-    Format: `delete -d id/STUDENT_ID r/DEADLINE_RANK`
+    Format: `delete -d i/STUDENT_ID r/DEADLINE_RANK`
 
 Example:
-* `delete -s id/A0987654X`, `delete id/A0987654X`
-* `delete -d id/A0123456G r/1`
+* `delete -s i/A0987654X`, `delete i/A0987654X`
+* `delete -d i/A0123456G r/1`
 
 ### Marking project status: `mark`
 
 Marks a FYP as "Done"/"In Progress"/"Yet to Start", etc.
 
-Format: `mark id/STUDENT_ID s/STATUS`
+Format: `mark i/STUDENT_ID s/STATUS`
 * Current supported statuses are as follows:
   * **"DONE"** - Done
   * **"IP"** - In Progress
   * **"YTS"** - Yet To Start
 
 Examples:
-* `mark id/A0123456G s/DONE`
-* `mark id/A0234567H s/YTS`
+* `mark i/A0123456G s/DONE`
+* `mark i/A0234567H s/YTS`
 
 ### Searching keyword: `find`
 
@@ -135,7 +135,7 @@ The four fields that the user can search by are:
 
 Format for each variant of `find`:
 1) `ProjectName`: `find [-p] KEYWORD/[KEYWORD2/KEYWORD3/…]`
-1) `StudentId`: `find -id KEYWORD/[KEYWORD2/KEYWORD3/…]`
+1) `StudentId`: `find -i KEYWORD/[KEYWORD2/KEYWORD3/…]`
 1) `StudentName`: `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`
 1) `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
@@ -156,6 +156,7 @@ Examples:
 Edit student details according to the input.
 
 Format: `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL] [t/TAG]…​`
+* At least one of the optional fields must be present.
 
 Examples:
 * `edit A0123456G p/Food Genetics` sets the project name the student with student ID `A0123456G` into `Food Genetics`.
@@ -215,13 +216,13 @@ Format: `exit`
 
 | Action                     | Format, Examples                                                                                                                                                                                                          |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Student**            | `add [-s] id/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add -s id/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu`, `add id/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu` |
-| **Add Deadline**           | `add -d id/STUDENT_ID n/DEADLINE_NAME d/DEADLINE_DATETIME` <br> e.g., `add -d id/A0123456G nRandom Task d/23-10-2022 23:59`                                                                                               |
-| **Delete Student**         | `delete [-s] id` <br> e.g., `delete -s id/A0987654X`, `delete id/A0987654X`                                                                                                                                               |
-| **Delete Deadline**        | `delete -d id/STUDENT_ID r/DEADLINE_RANK` <br> e.g., `delete -d id/A0123456G r/1`                                                                                                                                         |
-| **Mark**                   | `mark id/STUDENT_ID s/STATUS`<br> e.g.,`mark id/A0123456G s/IP`                                                                                                                                                           |
+| **Add Student**            | `add [-s] i/STUDENT_ID n/STUDENT_NAME p/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add -s i/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu`, `add i/A0987654X n/John Doe p/Data Caching e/e09876567@u.nus.edu` |
+| **Add Deadline**           | `add -d i/STUDENT_ID n/DEADLINE_NAME d/DEADLINE_DATETIME` <br> e.g., `add -d i/A0123456G n/Random Task d/23-10-2022 23:59`                                                                                              |
+| **Delete Student**         | `delete [-s] id` <br> e.g., `delete -s i/A0987654X`, `delete i/A0987654X`                                                                                                                                               |
+| **Delete Deadline**        | `delete -d i/STUDENT_ID r/DEADLINE_RANK` <br> e.g., `delete -d i/A0123456G r/1`                                                                                                                                         |
+| **Mark**                   | `mark i/STUDENT_ID s/STATUS`<br> e.g.,`mark i/A0123456G s/IP`                                                                                                                                                           |
 | **Find by Project Name**   | `find [-p] KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -p data / software`, `find data / software`                                                                                                                     |
-| **Find by Student ID**     | `find -id KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -id 515W/123X/A09281`                                                                                                                                            |
+| **Find by Student ID**     | `find -i KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -i 515W/123X/A09281`                                                                                                                                            |
 | **Find by Student Name**   | `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -n John`                                                                                                                                                          |
 | **Find by Tags**           | `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -t Handsome/Look`                                                                                                                                                 |
 | **Edit**                   | `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL]`<br> e.g., `edit A0234567H n/John Hoe`                                                                                                                           |

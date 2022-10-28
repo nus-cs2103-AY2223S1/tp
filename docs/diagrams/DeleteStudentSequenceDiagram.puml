@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete -s id/A0123456X")
+[-> LogicManager : execute("delete -s i/A0123456X")
 activate LogicManager
 
-LogicManager -> FypManagerParser : parseCommand("delete -s id/A0123456X")
+LogicManager -> FypManagerParser : parseCommand("delete -s i/A0123456X")
 activate FypManagerParser
 
 create DeleteStudentCommandParser
@@ -26,7 +26,7 @@ activate DeleteStudentCommandParser
 DeleteStudentCommandParser --> FypManagerParser
 deactivate DeleteStudentCommandParser
 
-FypManagerParser -> DeleteStudentCommandParser : parse("id/A0123456X")
+FypManagerParser -> DeleteStudentCommandParser : parse("i/A0123456X")
 activate DeleteStudentCommandParser
 
 create DeleteStudentCommand
