@@ -66,7 +66,7 @@ public class TutorDetailsPanel extends UiPart<Region> {
         rating.setText("Student Feedback Points: " + tutor.getRating().value);
         teachingNomination.setText("Teaching Nominations: " + tutor.getTeachingNomination().value);
 
-        Text tutorComments = new Text("- " + tutor.getComments().toStringForTutorCard());
+        Text tutorComments = new Text(tutor.getComments().toStringForTutorCard());
         tutorComments.setFill(Color.DIMGRAY);
         comments.getChildren().add(tutorComments);
 
