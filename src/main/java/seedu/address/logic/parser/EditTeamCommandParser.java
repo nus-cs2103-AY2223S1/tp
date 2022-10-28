@@ -28,7 +28,8 @@ public class EditTeamCommandParser {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TEAM_INDEX, PREFIX_TEAM_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TEAM_NAME)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TEAM_NAME)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTeamCommand.MESSAGE_USAGE));
         }
 
