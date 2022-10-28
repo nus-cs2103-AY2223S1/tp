@@ -1,6 +1,12 @@
-# checkUp
+---
+layout: page
+title: User Guide
+---
+* Table of Contents
+{:toc}
+---
 
-is a **desktop app for managing patient details, optimized for use via a Command Line Interface** (CLI) while still
+**checkUp** is a **desktop app for managing patient details, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient management
 tasks done faster than traditional GUI apps.
 
