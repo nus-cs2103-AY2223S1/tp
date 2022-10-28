@@ -28,6 +28,7 @@ import coydir.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String LEAVES_FIELD = "Number of Leaves";
 
     private final String name;
     private final String employeeId;
@@ -193,10 +194,18 @@ class JsonAdaptedPerson {
             modelAddress = new Address(address);
         }
 
-        if (leave == null) {
-            throw new IllegalValueException("Invalid");
+        final int modelLeave;
+        final int leaveLeftTransfer;
+        if (leave == null || leaveLeft == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LEAVES_FIELD));
+        } else {
+            try {
+                modelLeave = Integer.valueOf(leave);
+                leaveLeftTransfer = Integer.valueOf(leaveLeft);
+            } catch (NumberFormatException nfe) {
+                throw new IllegalValueException(String.format("%s is not a valid integer", leave));
+            }
         }
-        final int modelLeave = Integer.valueOf(leave);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
@@ -218,7 +227,7 @@ class JsonAdaptedPerson {
                 modelRating);
 
         // Add related data
-        p.setLeavesLeft(Integer.valueOf(leaveLeft));
+        p.setLeavesLeft(leaveLeftTransfer);
         for (Leave l : personLeaves) {
             p.addLeave(l);
         }
