@@ -100,7 +100,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 | **CAP**             | `c`       | None         | Can only consist of 2 numeric values in the form of `CURRENT_CAP/MAX_CAP`     |
 | **Gender**          | `g`       | None         | Can only be `male` or `female` in any capitalization                          |
 | **University**      | `u`       | 100          | Can only contain alphanumeric characters and spaces                           |
-| **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of mm-YYYY, starting from the year 0000 |                           
+| **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of `mm-YYYY`, starting from the year 0000 |                           
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                           |
 | **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces     |
 
