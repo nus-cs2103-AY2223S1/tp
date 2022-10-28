@@ -6,22 +6,23 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.foodrem.model.item.Item;
 
 /**
  * A view of an {@code Item}. This can be displayed.
+ *
  * @author Richard Dominick
  */
 public class ItemView {
     private static final double SPACING_UNIT = 8;
 
-    private ItemView() {} // Prevents instantiation
+    private ItemView() {
+    } // Prevents instantiation
 
     /**
      * Creates a new detailed view of the given item.
+     *
      * @param item the item to be displayed.
      * @return the node to be displayed in the UI.
      */
@@ -40,12 +41,15 @@ public class ItemView {
         tags.setVgap(SPACING_UNIT);
 
         // Quantity/unit and price row
-        final Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-        final HBox quantityAndPrice = new HBox(
-                new Label("Quantity: " + buildItemQuantityAndUnitStringFrom(item)),
-                spacer,
-                new Label("Price: $" + item.getPrice().toString()));
+        final Label quantityLabel = new Label("Quantity Remaining: ");
+        final Label quantityValue = new Label(buildItemQuantityAndUnitStringFrom(item));
+        quantityValue.getStyleClass().add("bold");
+        final Label priceLabel = new Label("Price: $");
+        final Label priceValue = new Label(item.getPrice().toString());
+        priceValue.getStyleClass().add("bold");
+        final Label costLabel = new Label("Total Cost: $");
+        final Label costValue = new Label(String.valueOf(item.getItemCost()));
+        costValue.getStyleClass().add("bold");
 
         final Label remarks = new Label(item.getRemarks().toString().isBlank() ? "-" : item.getRemarks().toString());
         remarks.setWrapText(true);
@@ -55,7 +59,9 @@ public class ItemView {
         linedSeparator.getStyleClass().add("lined-separator");
         final VBox itemView = new VBox(
                 name,
-                quantityAndPrice,
+                new HBox(quantityLabel, quantityValue),
+                new HBox(priceLabel, priceValue),
+                new HBox(costLabel, costValue),
                 new Separator(),
                 new Label("Bought Date: " + buildBoughtDateStringFrom(item)),
                 new Label("Expiry Date: " + buildExpiryDateStringFrom(item)),
@@ -70,6 +76,7 @@ public class ItemView {
 
     /**
      * Builds the string representation of the item's quantity attached to its units.
+     *
      * @param item the item whose quantity is to be formatted.
      * @return the string representation of the item's quantity and units.
      */
@@ -80,6 +87,7 @@ public class ItemView {
 
     /**
      * Builds the string representation of the item's bought date.
+     *
      * @param item the item whose bought date is to be formatted.
      * @return the string representation of the item's bought date.
      */
@@ -89,6 +97,7 @@ public class ItemView {
 
     /**
      * Builds the string representation of the item's expiry date.
+     *
      * @param item the item whose expiry date is to be formatted.
      * @return the string representation of the item's expiry date.
      */
