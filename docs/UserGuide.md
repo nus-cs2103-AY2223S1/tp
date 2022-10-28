@@ -1,6 +1,7 @@
 
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 `CLIMods` is a native desktop application for NUS students to explore, manage and plan academic
@@ -9,7 +10,11 @@ Interface (CLI) while still providing the benefits of a Graphical User Interface
 of the command line/terminal will be able to plan and manage their modules much faster than doing it
 on [nusmods.com](https://www.nusmods.com).
 
-* Table of Contents {:toc}
+Developed with love by: 
+Linus, Cheng Yi, Yi Hong, Huzaifa, Hong Jin
+
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -75,7 +80,18 @@ Required Arguments:
 - `MODULE-CODE`
     - e.g. `CS2103`
 
-View full details (e.g. description, workload) of a module via its module code.
+View full details (e.g. description, module credits and lesson slots) of a module via its module code.
+
+### Listing module prerequisite: `preq`
+
+Format: `preq MODULE-CODE`
+
+Required Arguments:
+
+- `MODULE-CODE`
+    - e.g. `CS2103`
+
+Show the list of modules that are the given module's prerequisites.
 
 ### Add modules to user list: `add`
 
@@ -94,6 +110,8 @@ Required Arguments:
 
 Add a module to the user's own list of modules.
 
+Your added module will display your lesson timings!
+
 ### Delete a module from user list: `rm`
 
 Format: `rm MODULE-CODE`
@@ -105,9 +123,9 @@ Required Arguments:
 
 Delete a module to the user's own list of modules.
 
-### Pick lessons to modules in user list: `pick`
+### Pick module lessons: `pick`
 
-Format: `pick MODULE-CODE LESSON-TYPE LESSON-CODE`
+Format: `pick MODULE-CODE LESSON-TYPE LESSON-ID`
 
 Required Arguments:
 
@@ -115,16 +133,20 @@ Required Arguments:
     - e.g. `CS2103`
 
 - `LESSON-TYPE`
-    - `TUT`, Tutorial
-    - `LEC`, Lecture
-    - `LAB`, Laboratory
-    - `REC`, Recitation
-    - `SEC`, Sectional Teaching
+    - `TUT`: Tutorial
+    - `LAB`: Lab
+    - `REC`: Recitations
+    - `SEC`: Sectional Teaching
+    - `LEC`: Lecture
+  > More lesson types coming soon 😃
 
-- `LESSON-CODE`
-    - e.g. `02`
+- `LESSON-ID`
+    - e.g. `08J`
+  > Tip: Use the `view` command to look at the available lessons!
 
-Pick a lesson for the user's added module.
+Pick lesson (e.g tutorial, lab) slots from the available choices for modules that are in the user list.
+
+Your list of modules will display your lesson timings!
 
 ### Exiting the program: `exit`
 
@@ -148,12 +170,14 @@ Traverse/Scroll **down**: `<Down>`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**help** | `help`<br> e.g. `help find`
-**ls** | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`, `ls MA --user`
-**find** | `find KEYWORD`<br> e.g. `find compilers`
-**view** | `view MODULE-CODE`<br> e.g. `view CS2103`
-**add** | `add MODULE-CODE`<br> e.g. `add CS2103`
-**rm** | `rm MODULE-CODE`<br> e.g. `rm CS2103`
-**exit** | `exit`
+| Action   | Format, Examples                                                       |
+|----------|------------------------------------------------------------------------|
+| **help** | `help`<br> e.g. `help find`                                            |
+| **ls**   | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`, `ls MA --user`           |
+| **find** | `find KEYWORD`<br> e.g. `find compilers`                               |
+| **view** | `view MODULE-CODE`<br> e.g. `view CS2103`                              |
+| **preq** | `preq MODULE-CODE`<br> e.g. `preq CS2103`                              |
+| **add**  | `add MODULE-CODE`<br> e.g. `add CS2103`                                |
+| **rm**   | `rm MODULE-CODE`<br> e.g. `rm CS2103`                                  |
+| **pick** | `pick MODULE-CODE LESSON-TYPE LESSON-ID`<br> e.g. `pick CS2103 TUT 06` |
+| **exit** | `exit`                                                                 |
