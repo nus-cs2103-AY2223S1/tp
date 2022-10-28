@@ -10,7 +10,7 @@ title: User Guide
 GuestBook is a **desktop app for managing guests in a hotel,
 optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
-As a hotel manager, if you can type fast, GuestBook can get your
+If you are a hotel manager who can type fast, GuestBook can get your
 guest management tasks done faster than traditional GUI apps.
 
 You can use GuestBook to track guests and their details including name, email address, phone number, 
@@ -167,7 +167,7 @@ and room details.
 &nbsp;&nbsp;&nbsp;Unless stated otherwise, all fields should not be left blank.
 * `NAME` should only contain alphanumeric characters and spaces.
 * `PHONE` should only contain numbers, and it should be at least 3 digits and at most 15 digits long.
-* `EMAIL` should only contain alphanumeric characters and '@' character. The local length (before "@") should be at most 64 characters long, and the domain length (after "@") should be at most 255 characters long.
+* `EMAIL` should only contain alphanumeric characters and '@' character. The local segment (before "@") should be at most 64 characters long, and the domain segment (after "@") should be at most 255 characters long.
 * `ROOM` should only contain alphanumeric characters and a hyphen. A hyphen can only be added if it is in between 2 alphanumeric characters.
 * `DATE_RANGE` should follow the format dd/MM/yy - dd/MM/yy.
 * `NUMBER_OF_GUESTS` should only contain numbers, and it should be at least 1 and at most 4.
