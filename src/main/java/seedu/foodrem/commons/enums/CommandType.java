@@ -100,7 +100,7 @@ public enum CommandType {
                     + PREFIX_NAME + "TAG_NAME\n\n"
                     + "Example:\n"
                     + getCommandWord() + " "
-                    + PREFIX_NAME + "Potatoes ";
+                    + PREFIX_NAME + "Vegetables ";
         }
     },
     FIND_COMMAND("find") {
@@ -215,7 +215,7 @@ public enum CommandType {
                     + PREFIX_NAME + "TAG_NAME\n\n"
                     + "Example:\n"
                     + getCommandWord() + " "
-                    + PREFIX_NAME + "Potatoes ";
+                    + PREFIX_NAME + "Vegetables";
         }
     },
     LIST_TAG_COMMAND("listtag") {
@@ -235,21 +235,21 @@ public enum CommandType {
                     + PREFIX_NAME + "TAG_NAME\n\n"
                     + "Example:\n"
                     + getCommandWord() + " "
-                    + PREFIX_NAME + "Potatoes ";
+                    + PREFIX_NAME + "Vegetables ";
         }
     },
     RENAME_TAG_COMMAND("renametag") {
         @Override
         public String getUsage() {
             return getCommandWord() + ": Renames an existing tag in FoodRem.\n\n"
-                    + "Format:\n"
+                    + "Format (Original Tag: First TAG_NAME. Renamed Tag: Second TAG_NAME):\n"
                     + getCommandWord() + " "
-                    + PREFIX_NAME + "ORIGINAL_TAG_NAME "
-                    + PREFIX_NAME + "NEW_TAG_NAME\n\n"
+                    + PREFIX_NAME + "TAG_NAME "
+                    + PREFIX_NAME + "TAG_NAME\n\n"
                     + "Example:\n"
                     + getCommandWord() + " "
-                    + PREFIX_NAME + "vegetables "
-                    + PREFIX_NAME + "fruits";
+                    + PREFIX_NAME + "Vegetables "
+                    + PREFIX_NAME + "Fruits";
         }
     },
     TAG_COMMAND("tag") {
