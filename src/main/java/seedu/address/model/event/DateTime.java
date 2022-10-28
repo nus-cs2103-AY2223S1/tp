@@ -45,21 +45,21 @@ public class DateTime implements Comparable<DateTime> {
     public static final HashSet<String> REGEX_DATES = new LinkedHashSet<>() {
         {
             add("((?<dateGroup>" + REGEX_DAY + "-" + REGEX_MONTH + "(-" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_COLON + "))?");
             add("((?<dateGroup>" + REGEX_DAY + "-" + REGEX_MONTH + "(-" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "-" + REGEX_MONTH + "-" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_COLON + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "-" + REGEX_MONTH + "-" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_DAY + "/" + REGEX_MONTH + "(/" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_COLON + "))?");
             add("((?<dateGroup>" + REGEX_DAY + "/" + REGEX_MONTH + "(/" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "/" + REGEX_MONTH + "/" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_COLON + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "/" + REGEX_MONTH + "/" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
         }
     };
 
