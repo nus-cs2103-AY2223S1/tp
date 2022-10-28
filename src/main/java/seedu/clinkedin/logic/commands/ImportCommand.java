@@ -6,17 +6,27 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PATH;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import seedu.clinkedin.commons.exceptions.DataConversionException;
 import seedu.clinkedin.commons.exceptions.EmptyFileException;
+import seedu.clinkedin.commons.exceptions.IllegalValueException;
+import seedu.clinkedin.commons.util.JsonUtil;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.logic.parser.ParserUtil;
 import seedu.clinkedin.logic.parser.ParserUtil.FileType;
 import seedu.clinkedin.logic.parser.exceptions.InvalidPersonException;
+import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Person;
-
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
+import seedu.clinkedin.model.person.exceptions.DuplicateTagTypeException;
+import seedu.clinkedin.model.tag.TagType;
+import seedu.clinkedin.storage.JsonSerializableAddressBook;
 
 
 /**
@@ -36,6 +46,8 @@ public class ImportCommand extends Command {
             "CLInkedIn already contains all the candidates you are importing from %s!";
     public static final String MESSAGE_SOME_CHANGE =
             "Some candidates were ignored as adding them would result in duplicate persons!";
+    public static final String MESSAGE_NEW_TAGTYPES =
+            "Missing tag types were created!";
     public static final String MESSAGE_WINDOW = "Opening Import Window...";
 
     private String filePath;
@@ -64,6 +76,116 @@ public class ImportCommand extends Command {
         if (onlyCommand) {
             return new CommandResult(MESSAGE_WINDOW, false, false, false, true);
         }
+        List<Person> personList;
+        switch (fileType) {
+        case CSV:
+            personList = fromCsv();
+            break;
+        case JSON:
+            personList = fromJson();
+            break;
+        default:
+            throw new CommandException("File format invalid or not compatible!");
+        }
+
+        boolean isUpdated = false;
+        boolean isSomeExisting = false;
+        for (Person person : personList) {
+            if (!model.hasPerson(person)) {
+                isUpdated = true;
+                model.addPerson(person);
+            } else {
+                isSomeExisting = true;
+            }
+        }
+
+        boolean isNewCreated = false;
+        if (isUpdated && fileType == fileType.CSV) {
+            try {
+                if (isCreateNonExistingTagTypes(personList)) {
+                    isNewCreated = true;
+                }
+            } catch (DuplicateTagTypeException dte) {
+                throw new CommandException("File format invalid or not compatible!");
+            }
+        }
+        StringBuilder returnMessage = new StringBuilder();
+        if (isUpdated) {
+            returnMessage.append(MESSAGE_SUCCESS);
+            if (isSomeExisting) {
+                returnMessage.append(" " + MESSAGE_SOME_CHANGE);
+            }
+            if (isNewCreated) {
+                returnMessage.append(" " + MESSAGE_NEW_TAGTYPES);
+            }
+            return new CommandResult(returnMessage.toString());
+        }
+        return new CommandResult(String.format(MESSAGE_NO_CHANGE, filePath));
+
+    }
+
+    /**
+     * Creates tag types not pre-existing in the addressbook.
+     */
+    public boolean isCreateNonExistingTagTypes(List<Person> personList) throws DuplicateTagTypeException {
+        boolean result = false;
+        for (Person p : personList) {
+            for (TagType tagType: p.getTags().keySet()) {
+                if (!UniqueTagTypeMap.getPrefixMap().containsKey(tagType.getPrefix())
+                        && !UniqueTagTypeMap.getPrefixMap().containsValue(tagType)) {
+                    result = true;
+                    UniqueTagTypeMap.createTagType(tagType.getPrefix(), tagType);
+                } else if (!UniqueTagTypeMap.getPrefixMap().containsKey(tagType.getPrefix())
+                        || !UniqueTagTypeMap.getPrefixMap().containsValue(tagType)) {
+                    throw new DuplicateTagTypeException();
+                }
+            }
+        }
+        return result;
+    }
+
+    public List<Person> getPersonList(ArrayList<ArrayList<String[]>> stringPersonList) throws CommandException {
+        List<Person> personList = new ArrayList<>();
+        for (ArrayList<String[]> person: stringPersonList) {
+            try {
+                personList.add(ParserUtil.parsePerson(person));
+            } catch (InvalidPersonException ipe) {
+                throw new CommandException("Address book couldn't be imported as the file format is incorrect!");
+            }
+        }
+        return personList;
+    }
+
+    /**
+     * Reads from JSON file.
+     */
+    public List<Person> fromJson() throws CommandException {
+        Optional<JsonSerializableAddressBook> jsonAddressBook;
+        try {
+            Path path = Paths.get(filePath);
+            jsonAddressBook = JsonUtil.readJsonFile(
+                    path, JsonSerializableAddressBook.class);
+        } catch (DataConversionException | IllegalArgumentException e) {
+            throw new CommandException("Couldn't read file properly. Check your file again!");
+        }
+        if (!jsonAddressBook.isPresent()) {
+            throw new CommandException("Couldn't read file properly. Check your file again!");
+        }
+        Optional<AddressBook> addressBook;
+        try {
+            addressBook = Optional.of(jsonAddressBook.get().toModelType());
+        } catch (IllegalValueException ive) {
+            throw new CommandException("Incompatible file format. Check your file again!");
+        }
+        if (addressBook.isPresent()) {
+            return addressBook.get().getPersonList();
+        }
+        throw new CommandException("Incompatible file format. Check your file again!");
+    }
+    /**
+     * Reads from CSV file.
+     */
+    public List<Person> fromCsv() throws CommandException {
         ArrayList<ArrayList<String[]>> content;
         try {
             content = importFromCsvFile(filePath);
@@ -79,38 +201,6 @@ public class ImportCommand extends Command {
             throw new CommandException(String.format(MESSAGE_EMPTY_FILE, filePath));
         }
         List<Person> personList = getPersonList(content);
-
-        boolean isUpdated = false;
-        boolean isSomeExisting = false;
-        for (Person person : personList) {
-            if (!model.hasPerson(person)) {
-                isUpdated = true;
-                model.addPerson(person);
-            } else {
-                isSomeExisting = true;
-            }
-        }
-
-        if (isUpdated && isSomeExisting) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS) + " " + MESSAGE_SOME_CHANGE);
-        }
-        if (isUpdated) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS));
-        }
-        return new CommandResult(String.format(MESSAGE_NO_CHANGE, filePath));
-
-    }
-
-    public List<Person> getPersonList(ArrayList<ArrayList<String[]>> stringPersonList) throws CommandException {
-        List<Person> personList = new ArrayList<>();
-        for (ArrayList<String[]> person: stringPersonList) {
-            try {
-                personList.add(ParserUtil.parsePerson(person));
-            } catch (InvalidPersonException ipe) {
-                throw new CommandException(ipe.getMessage());
-            }
-        }
         return personList;
     }
-
 }

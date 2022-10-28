@@ -1,6 +1,7 @@
 package seedu.clinkedin.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.function.Predicate;
 
@@ -63,10 +64,10 @@ public interface Model {
     /** Restores the address book to its previously undone state. */
     void redoAddressBook();
 
-    /** Returns true if the model has previous CLInkedIn states to restore. */
+    /** Returns true if the model has previous address states to restore. */
     boolean canUndoAddressBook();
 
-    /** Returns true if the model has undone ClInkedIn states to restore. */
+    /** Returns true if the model has undone address states to restore. */
     boolean canRedoAddressBook();
 
     /**
@@ -77,26 +78,26 @@ public interface Model {
 
     /**
      * Deletes the given person.
-     * The person must exist in the clinkedin book.
+     * The person must exist in the address book.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the clinkedin book.
+     * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the clinkedin book.
+     * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the clinkedin book.
+     * existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Returns a summary of the statistics of the persons in the clinkedin book.
+     * Returns a summary of the statistics of the persons in the address book.
      */
     DoubleSummaryStatistics setStats();
 
@@ -104,12 +105,12 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the total number of persons in the clinkedin book.
+     * Returns the total number of persons in the address book.
      */
     int getTotalNumberOfPersons();
 
     /**
-     * Returns the total number of filtered persons in the clinkedin book.
+     * Returns the total number of filtered persons in the address book.
      */
     int getFilteredNumberOfPersons();
 
@@ -119,6 +120,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    ///**
+    // * Returns an unmodifiable view of the sorted persons list.
+    // */
+    // ObservableList<Person> getSortedPersonList();
+
+    /**
+     * Updates the comparator of the sorted person list to sort by the given
+     * {@code comparator}
+     * @param comparator comparator to update sorted persons list with.
+     */
+    void updateSort(Comparator<Person> comparator);
 
     void deleteTagTypeForAllPerson(TagType toDelete);
 

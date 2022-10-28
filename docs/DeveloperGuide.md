@@ -194,7 +194,6 @@ Given below is an example usage scenario of the prefix-based mode and how the fi
 
 Step 1. The user launches the application for the first time. The `AddressBook` will be initialized with the initial
 address book state, and the `filteredPersons` will be initialized to show all persons.
-
 Step 2. The user executes `find n/Betsy` command to find the person named `Betsy` in the address book. The `find`
 command calls `FindCommandParser#parse()` which will parse the command.
 
@@ -220,7 +219,7 @@ The following sequence diagram shows how the find operation works:
 
 <img src="images/FindSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -414,7 +413,7 @@ It is designed to be a non-compulsory feature, as the recruiter might not be abl
 ##### Aspect: Argument type of the `Rating` constructor
 It is designed to take in a String, as Commands are parsed as a String. However, the constructor will parse the String and the Rating is stored as an Integer.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
 #### Proposed Implementation
 
@@ -494,11 +493,36 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+
+### Sort feature 
+
+#### Implementation 
+
+The proposed sorting feature sorts candidates based on their rating. The candidates will then be displayed in descending order of rating. 
+
+It is mainly implemented by the `SortCommand` method. 
+
+Here is an example of what happens when the recruiter attempts to sort candidates on CLInkedIn:
+1. Recruiter enters the command `sort`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command. 
+3. Since this is a `SortCommand`, there is no parser. A `SortCommand()` object is returned by the parser. 
+4. Next, the `SortCommand#execute(Model model)` is called, which triggers the `Model#updateSort(Comparator)` command 
+5. Lastly, a `CommandResult` is returned.
+
+#### Design Considerations 
+
+As candidates with no ratings are implemented to have a rating of 0, the candidates with no ratings will be ordered below the candidates with ratings.
+
+This is because the recruiter would have no opinion about candidates with no rating, and thus no need to make comparisons that include candidates with no rating. 
+
+The purpose of this feature is such that recruiters can view candidates based on order of desirability, and they would not need to look at candidates with no rating and they do not know their desirability yet. 
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Implemented\] Add/Edit/Delete Tags Feature
+### Add/Edit/Delete Tags Feature
 
 #### Implementation
 
@@ -516,11 +540,9 @@ Each candidate in the `UniquePersonList` has a `UniqueTagTypeMap`, which represe
 
 Given below is an example usage scenario and how the add/edit/delete Tag mechanism behaves at each step:
 
-Step 1. The user executes `addTag 3 st/Java dt/Bachelors` to add a skill tag `Java` and degree tag `Bachelors` to the 3rd candidate in the displayed list of candidates. After being parsed by the `AddTagCommandParser` to an `AddTagCommand`, the `AddTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, and merges the new tags by invoking `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
-
-Step 2. The user executes `edit 3 st/Java-JavaScript` to edit the skill tag `Java` to `JavaScript` of the 3rd candidate in the displayed list of candidates. After being parsed by the `EditCommandParser` to an `EditCommand`, the `EditCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, removes the existing tags to be edited by invoking `UniqueTagTypeMap#removeTags()` and adds the edited tags by invoking the `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
-
-Step 3. The user executes `deleteTag 3 st/JavaScript dt/Bachelors` to delete the skill tag `JavaScript` and degree tag `Bachelors` of the 3rd candidate in the displayed list of candidates. After being parsed by the `DeleteTagCommand` to a `DeleteTagCommand`, the `DeleteTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()` and removes the tags to be deleted by invoking `UniqueTagTypeMap#removeTags()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+1. The user executes `addTag 3 st/Java dt/Bachelors` to add a skill tag `Java` and degree tag `Bachelors` to the 3rd candidate in the displayed list of candidates. After being parsed by the `AddTagCommandParser` to an `AddTagCommand`, the `AddTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, and merges the new tags by invoking `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+2. The user executes `edit 3 st/Java-JavaScript` to edit the skill tag `Java` to `JavaScript` of the 3rd candidate in the displayed list of candidates. After being parsed by the `EditCommandParser` to an `EditCommand`, the `EditCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, removes the existing tags to be edited by invoking `UniqueTagTypeMap#removeTags()` and adds the edited tags by invoking the `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+3. The user executes `deleteTag 3 st/JavaScript dt/Bachelors` to delete the skill tag `JavaScript` and degree tag `Bachelors` of the 3rd candidate in the displayed list of candidates. After being parsed by the `DeleteTagCommand` to a `DeleteTagCommand`, the `DeleteTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()` and removes the tags to be deleted by invoking `UniqueTagTypeMap#removeTags()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
 
 #### Design Considerations:
 
@@ -552,13 +574,10 @@ Additionally, it implements the following operations:
 
 Given below is an example usage scenario and how the create/edit/delete Tag Types mechanism behaves at each step:
 
-Step 1. The user launches the application for the first time. The `prefixMap` in the `UniqueTagTypeMap` will be initialised with the initial 3 Key — Value pairs: st/ — Skills, dt/ — Degree, and jtt/ — Job Type.
-
-Step 2. The user executes `createTagType Grade grdt` command to add a Grade Tag Type to the available Tag Types so that the recruiter can now add Tags of Grade Tag Type to candidates using the alias grdt/. The `createTagTYpe` command calls the `UniqueTagTypeMap#createTagType()`, causing the addition of grdt/ — Grade key-value pair to the `prefixMap`.
-
-Step 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the existing Tag Type Grade and rename it as Score. The `editTagType` command calls the `UniqueTagTypeMap#setExistingTagType()` to remove the grdt/ — Grade key-value pair from the `prefixMap` and add scrt/ — Score key-value pair to the `prefixMap`. Furthermore, the `editTagType` command also calls 'Model#editTagTypeForAllPerson()' to edit the Grade Tag Type name and rename it as Score Tag Type for all person who had Tags of Grade Tag Type.
-
-Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
+1. The user launches the application for the first time. The `prefixMap` in the `UniqueTagTypeMap` will be initialised with the initial 3 Key — Value pairs: st/ — Skills, dt/ — Degree, and jtt/ — Job Type.
+2. The user executes `createTagType Grade grdt` command to add a Grade Tag Type to the available Tag Types so that the recruiter can now add Tags of Grade Tag Type to candidates using the alias grdt/. The `createTagTYpe` command calls the `UniqueTagTypeMap#createTagType()`, causing the addition of grdt/ — Grade key-value pair to the `prefixMap`.
+3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the existing Tag Type Grade and rename it as Score. The `editTagType` command calls the `UniqueTagTypeMap#setExistingTagType()` to remove the grdt/ — Grade key-value pair from the `prefixMap` and add scrt/ — Score key-value pair to the `prefixMap`. Furthermore, the `editTagType` command also calls 'Model#editTagTypeForAllPerson()' to edit the Grade Tag Type name and rename it as Score Tag Type for all person who had Tags of Grade Tag Type.
+4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
 
 ### \[Implemented\] Status feature
 

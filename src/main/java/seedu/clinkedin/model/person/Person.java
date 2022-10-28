@@ -11,6 +11,8 @@ import java.util.Set;
 
 import javafx.collections.ObservableMap;
 import seedu.clinkedin.model.link.Link;
+import seedu.clinkedin.model.person.exceptions.DuplicateLinkException;
+import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
 import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
@@ -188,7 +190,7 @@ public class Person {
         if (!tags.isEmpty()) {
             tags.forEach((tagType, tagList) -> {
                 List<String> tagWithTagType = new ArrayList<>();
-                tagWithTagType.add("Tag:" + tagType.getTagTypeName());
+                tagWithTagType.add("Tag:" + tagType.getPrefix() + "-" + tagType.getTagTypeName());
                 tagWithTagType.addAll(tagList.getAsList());
                 String[] tagWithTagTypeArray = tagWithTagType.toArray(new String[tagWithTagType.size()]);
                 personDetails.add(tagWithTagTypeArray);
@@ -211,33 +213,36 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\n\nContact Information: ")
+                .append("\n- Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\n- Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\n- Address: ")
                 .append(getAddress());
 
         ObservableMap<TagType, UniqueTagList> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach((tagType, tagList) -> builder.append(String.format("%s: %s", tagType.toString(),
+            builder.append("\n\nTags:\n");
+            tags.forEach((tagType, tagList) -> builder.append(String.format("- %s: %s\n", tagType.toString(),
                     tagList.toString())));
         }
 
-        builder.append("; Status: ")
-                .append(getStatus());
-
-        builder.append("; Note: ")
-                .append(getNote());
-
-        builder.append("; Rating: ")
-                .append(getRating());
-
         Set<Link> links = getLinks();
         if (!links.isEmpty()) {
-            builder.append("; Links: ");
+            builder.append("\nLinks: ");
             links.forEach(builder::append);
+        }
+
+        builder.append("\n\nStatus: ")
+                .append(getStatus());
+
+        builder.append("\n\nRating: ")
+                .append(getRating().value > 0 ? getRating() : "No rating given");
+
+        if (!getNote().value.equals("")) {
+            builder.append("\n\nNote: ")
+                    .append(getNote());
         }
 
         return builder.toString();
@@ -257,5 +262,44 @@ public class Person {
      */
     public void setTagTypeMap(UniqueTagTypeMap tagTypeMap) throws TagTypeNotFoundException {
         this.tagTypeMap.setTagTypeMap(tagTypeMap);
+    }
+
+    /**
+     * Compares the person and the input person to decide rating order.
+     * @param other input Person
+     * @return 1 if this person has a higher rating than other, -1 otherwise.
+     */
+    public int compareByRating(Person other) {
+        return this.rating.compare(other.rating);
+    }
+
+    /**
+     * Adds new links to existing links of a person.
+     * @param linksToAdd Links to be added to the person.
+     * @return Set of links after adding new links to existing links.
+     */
+    public Set<Link> mergeLinks(Set<Link> linksToAdd) {
+        Set<Link> mergedLinks = new HashSet<>(links);
+        for (Link l: linksToAdd) {
+            if (links.contains(l)) {
+                throw new DuplicateLinkException(l.toString());
+            } else {
+                mergedLinks.add(l);
+            }
+        }
+        return mergedLinks;
+    }
+
+    /**
+     * Adds new notes to existing notes of a person.
+     * @param note Notes to be added.
+     * @return Note after adding new note to the existing note.
+     * @throws DuplicateNoteException
+     */
+    public Note mergeNote(Note note) throws DuplicateNoteException {
+        if (this.note.value.equals(note.value)) {
+            throw new DuplicateNoteException(note.value);
+        }
+        return new Note(this.note.value + "\n" + note.value);
     }
 }

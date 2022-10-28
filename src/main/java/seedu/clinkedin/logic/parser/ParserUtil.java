@@ -3,12 +3,16 @@ package seedu.clinkedin.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.clinkedin.commons.core.index.Index;
@@ -26,9 +30,11 @@ import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
+import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -188,10 +194,12 @@ public class ParserUtil {
     public static Link parseLink(String link) throws ParseException {
         requireNonNull(link);
         String trimmedLink = link.trim();
-        if (!Link.isValidLink(trimmedLink)) {
-            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        try {
+            URL url = new URL(trimmedLink);
+            return new Link(url);
+        } catch (MalformedURLException m) {
+            throw new ParseException(m.getMessage());
         }
-        return new Link(trimmedLink);
     }
 
     /**
@@ -204,6 +212,21 @@ public class ParserUtil {
             linkSet.add(parseLink(tagName));
         }
         return linkSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> links} into a {@code Set<Link>} if {@code links} is non-empty.
+     * If {@code links} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Link>} containing zero link.
+     */
+    public static Optional<Set<Link>> parseLinksForEdit(Collection<String> links) throws ParseException {
+        assert links != null;
+
+        if (links.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> linkSet = links.size() == 1 && links.contains("") ? Collections.emptySet() : links;
+        return Optional.of(ParserUtil.parseLinks(linkSet));
     }
 
     /**
@@ -405,39 +428,53 @@ public class ParserUtil {
             } else if (!check.startsWith("Links") && detail.length != 2) {
                 throw new InvalidPersonException("More arguments found than possible!");
             }
-            switch (check) {
-            case "Name":
-                name = new Name(detail[1]);
-                break;
-            case "Phone":
-                phone = new Phone(detail[1]);
-                break;
-            case "Email":
-                email = new Email(detail[1]);
-                break;
-            case "Address":
-                address = new Address(detail[1]);
-                break;
-            case "Status":
-                status = new Status(detail[1]);
-                break;
-            case "Note":
-                note = new Note(detail[1]);
-                break;
-            case "Tag:":
-                TagType tagTypeName = new TagType(tagType);
-                ParserUtil.addTags(tagTypeMap, tagTypeName, detail);
-                break;
-            case "Rating":
-                rating = new Rating(detail[1]);
-                break;
-            case "Links":
-                for (int i = 1; i < detail.length; i++) {
-                    links.add(new Link(detail[i]));
+            try {
+                switch (check) {
+                case "Name":
+                    name = new Name(detail[1]);
+                    break;
+                case "Phone":
+                    phone = new Phone(detail[1]);
+                    break;
+                case "Email":
+                    email = new Email(detail[1]);
+                    break;
+                case "Address":
+                    address = new Address(detail[1]);
+                    break;
+                case "Status":
+                    status = new Status(detail[1]);
+                    break;
+                case "Note":
+                    note = new Note(detail[1]);
+                    break;
+                case "Tag:":
+                    String[] prefixTagNamePair = tagType.split("-", 2);
+                    if (prefixTagNamePair.length != 2) {
+                        throw new InvalidPersonException();
+                    }
+                    Prefix p = new Prefix(prefixTagNamePair[0]);
+                    TagType tagTypeName = new TagType(prefixTagNamePair[1], p);
+                    ParserUtil.addTags(tagTypeMap, tagTypeName, detail);
+                    break;
+                case "Rating":
+                    rating = new Rating(detail[1]);
+                    break;
+                case "Links":
+                    for (int i = 1; i < detail.length; i++) {
+                        try {
+                            URL url = new URL(detail[i]);
+                            links.add(new Link(url));
+                        } catch (MalformedURLException m) {
+                            throw new InvalidPersonException();
+                        }
+                    }
+                    break;
+                default:
+                    throw new InvalidPersonException("Invalid attribute found!");
                 }
-                break;
-            default:
-                throw new InvalidPersonException("Invalid attribute found!");
+            } catch (IllegalArgumentException | DuplicateTagException | TagTypeNotFoundException e) {
+                throw new InvalidPersonException();
             }
         }
         boolean foundAll = checkAllNonNull(name, phone, email, address, tagTypeMap, status, note, rating, links);

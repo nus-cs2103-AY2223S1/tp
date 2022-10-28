@@ -18,7 +18,7 @@ public class Rating {
      *
      * @param ratingStr A valid rating number.
      */
-    public Rating(String ratingStr) {
+    public Rating(String ratingStr) throws IllegalArgumentException {
         requireNonNull(ratingStr);
         checkArgument(isValidRatingStr(ratingStr), MESSAGE_CONSTRAINTS);
         int rating = Integer.parseInt(ratingStr);
@@ -49,6 +49,18 @@ public class Rating {
     @Override
     public int hashCode() {
         return Integer.toString(value).hashCode();
+    }
+
+    /**
+     * Compares value of rating.
+     * Makes use of java compareTo() method
+     * @param other
+     * @return 1 if this is more than other, 0 if equal and -1 if less
+     */
+    public int compare(Rating other) {
+        Integer rating1 = this.value;
+        Integer rating2 = other.value;
+        return rating1.compareTo(rating2);
     }
 
 }

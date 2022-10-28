@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
@@ -45,6 +46,9 @@ public class ExportWindow extends UiPart<Stage> {
     @FXML
     private Button exportButton;
 
+    @FXML
+    private ComboBox<String> fileFormat;
+
 
     /**
      * Creates a new ExportWindow.
@@ -58,7 +62,6 @@ public class ExportWindow extends UiPart<Stage> {
         directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Choose Location");
         fileName.setText(CHOOSE_NAME);
-
     }
 
     /**
@@ -118,9 +121,9 @@ public class ExportWindow extends UiPart<Stage> {
         try {
             String filePath = null;
             if (chosenLocation.getText().trim().equals("")) {
-                filePath = userEnteredFileName.getText() + ".csv";
+                filePath = userEnteredFileName.getText() + fileFormat.getValue();
             } else {
-                filePath = chosenLocation.getText() + "/" + userEnteredFileName.getText() + ".csv";
+                filePath = chosenLocation.getText() + "/" + userEnteredFileName.getText() + fileFormat.getValue();
             }
             if (userEnteredFileName.getText().trim().contains("/")) {
                 throw new ParseException("File name cannot contain '/'. Try again!");

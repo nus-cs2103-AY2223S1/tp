@@ -19,3 +19,7 @@
     -fx-font-family: "Segoe UI";
     -fx-padding: 5px 5px 5px 5px;
 }
+
+#fileFormat {
+    -fx-text-fill: black;
+}

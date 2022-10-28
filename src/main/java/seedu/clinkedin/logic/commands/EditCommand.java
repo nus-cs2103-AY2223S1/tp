@@ -56,7 +56,7 @@ public class EditCommand extends Command {
             + PREFIX_STATUS + "STATUS"
             + "[" + PREFIX_NOTE + "NOTE]"
             + "[" + PREFIX_RATING + "RATING]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + "1 "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
