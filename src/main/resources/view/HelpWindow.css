@@ -1,13 +1,13 @@
 #copyButton {
     -fx-text-fill: white;
     -fx-background-color: gray;
-    -fx-font-family: "Impact";
+    -fx-font-family: "Lato";
     -fx-font-size: 12pt;
 }
 
 #helpMessage {
     -fx-text-fill: white;
-    -fx-font-family: "Impact";
+    -fx-font-family: "Lato";
     -fx-font-size: 12pt;
 }
 
