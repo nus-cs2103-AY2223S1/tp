@@ -120,11 +120,6 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void editStudent(Student target, EditCommand.EditStudentDescriptor editStudentDescriptor) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setFypManager(ReadOnlyFypManager newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -205,7 +200,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public SortedList<Student> getSortedBySpecialisationUncompletedStudentList() {
+        public SortedList<Student> getSortedByProjectNameUncompletedStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 

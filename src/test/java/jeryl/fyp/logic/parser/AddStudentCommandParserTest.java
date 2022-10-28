@@ -109,7 +109,7 @@ public class AddStudentCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
+        // invalid student name
         assertParseFailure(parser, INVALID_STUDENT_NAME_DESC + STUDENT_ID_DESC_BOB + EMAIL_DESC_BOB
                 + PROJECT_NAME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, StudentName.MESSAGE_CONSTRAINTS);
 
