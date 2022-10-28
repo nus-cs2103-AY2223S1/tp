@@ -183,6 +183,21 @@ public interface Model {
      */
     void updateFilteredCommissionList(Predicate<Commission> predicate);
 
+    /**
+     * Returns the aggregate sum of fees from all the commissions in the @code observableFilteredCommissions
+     */
+    Double getTotalRevenue();
+
+    void addCommissionToUniverse(Commission commission);
+
+    void removeCommissionFromUniverse(Commission commission);
+
+    void setCommissionInUniverse(Commission oldCommission, Commission editedCommission);
+
+    void initCommissionUniverse();
+
+    void specialUpdateCommissionList();
+
     boolean hasSelectedCustomer();
 
     /**

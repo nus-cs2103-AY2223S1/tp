@@ -135,6 +135,34 @@ public class AddressBook implements ReadOnlyAddressBook {
         allCommissions.remove(key);
     }
 
+    public UniqueCommissionList getAllCommissions() {
+        return allCommissions;
+    }
+
+    public void addCommissionToUniverse(Commission commission) {
+        allCommissions.add(commission);
+    }
+
+    public void removeCommissionFromUniverse(Commission key) {
+        allCommissions.remove(key);
+    }
+
+    public void setCommissionInUniverse(Commission oldCommission, Commission editedCommission) {
+        allCommissions.setCommission(oldCommission, editedCommission);
+    }
+
+    /**
+     * Populates @code allCommissions with all commissions in the data storage
+     * when the application initializes.
+     */
+    public void initCommissionUniverse() {
+        for (Customer customer : customers) {
+            for (Commission commission : customer.getCommissions()) {
+                allCommissions.add(commission);
+            }
+        }
+    }
+
 
     //// util methods
 

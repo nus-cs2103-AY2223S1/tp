@@ -10,7 +10,6 @@ import seedu.address.model.tag.Tag;
  */
 public class CustomerContainsAnyTagPredicate implements Predicate<Customer> {
     private final List<Tag> tags;
-    private CustomerContainsAnyTagPredicate predicate;
 
     public CustomerContainsAnyTagPredicate(List<Tag> tags) {
         this.tags = tags;

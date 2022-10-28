@@ -98,6 +98,10 @@ public class Commission {
         return completionStatus;
     }
 
+    public boolean hasTag(Tag tag) {
+        return tags.contains(tag);
+    }
+
     /**
      * Returns a String representation of the Commission's completion status,
      * based on whether it has been marked as completed, as determined by its

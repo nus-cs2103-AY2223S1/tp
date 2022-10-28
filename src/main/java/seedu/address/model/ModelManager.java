@@ -167,7 +167,6 @@ public class ModelManager implements Model {
     @Override
     public void addCustomer(Customer customer) {
         addressBook.addCustomer(customer);
-
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
@@ -238,7 +237,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Commission List Accessors =============================================================
-
     @Override
     public FilteredList<Commission> getFilteredCommissionList() {
         if (observableFilteredCommissions.getValue() == null) {
@@ -256,6 +254,43 @@ public class ModelManager implements Model {
     public void updateFilteredCommissionList(Predicate<Commission> predicate) {
         requireAllNonNull(getFilteredCommissionList(), predicate);
         getFilteredCommissionList().setPredicate(predicate);
+    }
+
+    //=========== Filtered Commission List Statistic Aggregator ==================================================
+    @Override
+    public Double getTotalRevenue() {
+        double revenue = 0;
+        for (Commission commission : observableFilteredCommissions.getValue().getValue()) {
+            revenue += commission.getFee().fee;
+        }
+        return revenue;
+    }
+
+    //=========== Commission Universe =======================================================
+    @Override
+    public void addCommissionToUniverse(Commission commission) {
+        addressBook.addCommissionToUniverse(commission);
+    }
+
+    @Override
+    public void removeCommissionFromUniverse(Commission commission) {
+        addressBook.removeCommissionFromUniverse(commission);
+    }
+
+    @Override
+    public void setCommissionInUniverse(Commission oldCommission, Commission editedCommission) {
+        addressBook.setCommissionInUniverse(oldCommission, editedCommission);
+    }
+
+    // Must be invoked after all data has been initialized.
+    @Override
+    public void initCommissionUniverse() {
+        addressBook.initCommissionUniverse();
+    }
+
+    @Override
+    public void specialUpdateCommissionList() {
+        observableUniqueCommissions.setValue(new Pair<>(null, addressBook.getAllCommissions()));
     }
 
     //=========== Selected Customer =============================================================
