@@ -170,9 +170,9 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Sorts our student list by specialisation (which naturally sorts it by alphabetical order as well)
+     * Sorts our student list by project name (which naturally sorts it by alphabetical order as well)
      */
-    public ObservableList<Student> sortBySpecialisation() {
+    public ObservableList<Student> sortByProjectName() {
         return internalList.sorted((Student a, Student b) -> a.getProjectName().toString().toLowerCase()
                 .compareTo(b.getProjectName().toString().toLowerCase()));
     }

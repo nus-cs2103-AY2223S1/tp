@@ -8,7 +8,7 @@ import jeryl.fyp.model.student.StudentIdContainsKeywordsPredicate;
  */
 public class FindStudentIdCommand extends FindCommand {
 
-    public static final String COMMAND_WORD = "find -id";
+    public static final String COMMAND_WORD = "find -i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

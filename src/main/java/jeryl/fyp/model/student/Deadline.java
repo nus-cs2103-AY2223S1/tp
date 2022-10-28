@@ -7,12 +7,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
- * Represents a task deadline added by the professor to a student's project.
+ * Represents a deadline added by the professor to a student's project.
  * Guarantees: immutable
  */
-public class Deadline implements Comparable<Deadline> {
+public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Deadline must have a valid deadline name and valid deadline datetime";
 
     public final DeadlineName fullDeadlineName;
     public final LocalDateTime fullDeadlineDateTime;
@@ -42,6 +42,7 @@ public class Deadline implements Comparable<Deadline> {
     public LocalDateTime getDeadlineDateTime() {
         return fullDeadlineDateTime;
     }
+
     /**
      * Returns true if both deadlines have the same name.
      * This defines a weaker notion of equality between two deadlines.
@@ -84,24 +85,4 @@ public class Deadline implements Comparable<Deadline> {
         return Objects.hash(fullDeadlineName, fullDeadlineDateTime);
     }
 
-    // Pending YH sorting compareTo(...)
-    @Override
-    public int compareTo(Deadline o) {
-        return 0;
-        // TODO: refine this!
-        /*
-        if (this.age > o.age) {
-            // if current object is greater,then return 1
-            return 1;
-        } else if (this.age < o.age) {
-
-            // if other object is greater,then return -1
-            return -1;
-        } else {
-
-            // if current object is equal to o,then return 0
-            return 0;
-        }
-         */
-    }
 }

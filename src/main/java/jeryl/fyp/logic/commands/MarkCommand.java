@@ -27,7 +27,7 @@ public class MarkCommand extends Command {
             + "Parameters: "
             + PREFIX_STUDENT_ID + "STUDENT_ID "
             + PREFIX_PROJECT_STATUS + "STATUS\n"
-            + "(STUDENT_ID must be a valid student id that is already in the FYP manager)\n"
+            + "(STUDENT_ID must be a valid student ID that is already in the FYP manager)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_PROJECT_STATUS + "DONE";

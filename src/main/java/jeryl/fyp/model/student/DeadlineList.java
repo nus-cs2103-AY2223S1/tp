@@ -139,7 +139,7 @@ public class DeadlineList implements DeadlineListTemplate {
         return "[" + internalList
                 .stream()
                 .map(ddl -> ddl.getDeadlineName().fullDeadlineName)
-                .collect(Collectors.joining(",")) + "]";
+                .collect(Collectors.joining(", ")) + "]";
     }
 
     /**

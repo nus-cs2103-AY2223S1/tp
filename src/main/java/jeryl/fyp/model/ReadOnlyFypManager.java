@@ -28,4 +28,22 @@ public interface ReadOnlyFypManager {
      */
     ObservableList<Student> getCompletedStudentList();
 
+    /**
+     * Sorts our uncompleted student list by project name, which
+     * naturally sorts it in alphabetical order.
+     */
+    ObservableList<Student> getSortedByProjectNameUncompletedStudentList();
+
+    /**
+     * Sorts our uncompleted student list by project status then
+     * by alphabetical order.
+     */
+    ObservableList<Student> getSortedByProjectStatusUncompletedStudentList();
+
+    /**
+     * Sorts our completed student list by project name, which
+     * naturally sorts it in alphabetical order.
+     */
+    ObservableList<Student> getSortedCompletedStudentList();
+
 }

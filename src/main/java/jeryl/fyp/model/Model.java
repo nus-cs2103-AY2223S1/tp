@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.index.Index;
-import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.model.student.Deadline;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
@@ -74,8 +73,6 @@ public interface Model {
      */
     void addStudent(Student student);
 
-    void editStudent(Student target, EditCommand.EditStudentDescriptor editStudentDescriptor);
-
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in the FYP manager.
@@ -124,8 +121,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
-    /** Returns an unmodifiable view of the sorted Uncompleted student list by specialisation */
-    ObservableList<Student> getSortedBySpecialisationUncompletedStudentList();
+    /** Returns an unmodifiable view of the sorted Uncompleted student list by project name */
+    ObservableList<Student> getSortedByProjectNameUncompletedStudentList();
 
     /**
      * Returns an unmodifiable view of the sorted Uncompleted student list by project status
@@ -134,7 +131,7 @@ public interface Model {
     ObservableList<Student> getSortedByProjectStatusUncompletedStudentList();
 
     /**
-     * Returns an unmodifiable view of the sorted Completed student list by specialisation
+     * Returns an unmodifiable view of the sorted Completed student list by project name
      * which is equivalent to sorting by  alphabetical order
      */
     ObservableList<Student> getSortedCompletedStudentList();

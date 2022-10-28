@@ -21,8 +21,8 @@ import jeryl.fyp.logic.commands.FindTagsCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
+import jeryl.fyp.logic.commands.SortProjectNameCommand;
 import jeryl.fyp.logic.commands.SortProjectStatusCommand;
-import jeryl.fyp.logic.commands.SortSpecialisationCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 
 /**
@@ -31,11 +31,11 @@ import jeryl.fyp.logic.parser.exceptions.ParseException;
 public class FypManagerParser {
 
     /**
-     * Used for initial separation of command word and args.
+     * Used for initial separation of command word, flag, and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern
             .compile("(?<commandWord>[\\S&&[^-]]+)"
-                    + "(?<flag>\\s*-\\w)?"
+                    + "(?<flag>\\s*-\\w+)?"
                     + "(?<arguments>.*)");
 
     /**
@@ -103,8 +103,9 @@ public class FypManagerParser {
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
 
-        case SortSpecialisationCommand.COMMAND_WORD:
-            return new SortSpecialisationCommand();
+        case SortProjectNameCommand.COMMAND_WORD:
+        case SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD:
+            return new SortProjectNameCommand();
 
         case SortProjectStatusCommand.COMMAND_WORD:
             return new SortProjectStatusCommand();

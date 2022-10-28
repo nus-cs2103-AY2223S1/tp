@@ -3,7 +3,6 @@ package jeryl.fyp.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
@@ -35,16 +34,14 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
-            + "by unique studentId. "
+            + "by unique student ID. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: STUDENT_ID (must be in form A0123456X) "
+            + "Parameters: STUDENT_ID "
             + "[" + PREFIX_STUDENT_NAME + "NAME] "
-            + "[" + PREFIX_STUDENT_ID + "STUDENT_ID] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_PROJECT_NAME + "PROJECT_NAME] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " A0123456X "
-            + PREFIX_STUDENT_ID + "A91234567H "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
@@ -95,12 +92,12 @@ public class EditCommand extends Command {
     private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
-        StudentName updatedStudentName = editStudentDescriptor.getName().orElse(studentToEdit.getStudentName());
+        StudentName updatedStudentName = editStudentDescriptor.getStudentName().orElse(studentToEdit.getStudentName());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         ProjectName updatedProjectName = editStudentDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
         ProjectStatus updatedProjectStatus =
-                studentToEdit.getProjectStatus(); //edit does not allow editing of project status
+                editStudentDescriptor.getProjectStatus().orElse(studentToEdit.getProjectStatus());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedStudentName, updatedStudentId, updatedEmail,
@@ -156,14 +153,14 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(studentName, id, email, projectName, tags);
+            return CollectionUtil.isAnyNonNull(studentName, email, projectName, tags);
         }
 
         public void setStudentName(StudentName studentName) {
             this.studentName = studentName;
         }
 
-        public Optional<StudentName> getName() {
+        public Optional<StudentName> getStudentName() {
             return Optional.ofNullable(studentName);
         }
 
@@ -231,8 +228,7 @@ public class EditCommand extends Command {
             // state check
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getStudentId().equals(e.getStudentId())
+            return getStudentName().equals(e.getStudentName())
                     && getEmail().equals(e.getEmail())
                     && getProjectName().equals(e.getProjectName())
                     && getTags().equals(e.getTags());

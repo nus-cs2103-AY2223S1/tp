@@ -18,6 +18,8 @@ import jeryl.fyp.logic.commands.FindTagsCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
+import jeryl.fyp.logic.commands.SortProjectNameCommand;
+import jeryl.fyp.logic.commands.SortProjectStatusCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 
 /**
@@ -93,6 +95,13 @@ public class HelpCommandParser implements Parser<HelpCommand> {
 
         case MarkCommand.COMMAND_WORD:
             return new HelpCommand(MarkCommand.MESSAGE_USAGE);
+
+        case SortProjectNameCommand.COMMAND_WORD:
+        case SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD:
+            return new HelpCommand(SortProjectNameCommand.MESSAGE_USAGE);
+
+        case SortProjectStatusCommand.COMMAND_WORD:
+            return new HelpCommand(SortProjectStatusCommand.MESSAGE_USAGE);
 
         default:
             return new HelpCommand();
