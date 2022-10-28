@@ -36,6 +36,8 @@ public class MessageToUser {
     // Bought date
     public static final String MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE =
             "The item bought date must follow the format dd-mm-yyyy.";
+    public static final String MESSAGE_FOR_NON_EXISTENT_PARSE_BOUGHT_DATE =
+            "The item bought date do not exist.";
     public static final String MESSAGE_FOR_BOUGHT_DATE_YEAR_TOO_SMALL =
             "The year for item bought date should be larger than or equal to 1900.";
     public static final String MESSAGE_FOR_BOUGHT_DATE_YEAR_TOO_LARGE =
@@ -44,6 +46,8 @@ public class MessageToUser {
     // Expiry date
     public static final String MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE =
             "The item expiry date must follow the format dd-mm-yyyy.";
+    public static final String MESSAGE_FOR_NON_EXISTENT_PARSE_EXPIRY_DATE =
+            "The item expiry date do not exist.";
     public static final String MESSAGE_FOR_EXPIRY_DATE_YEAR_TOO_SMALL =
             "The year for item expiry date should be larger than or equal to 1900.";
     public static final String MESSAGE_FOR_EXPIRY_DATE_YEAR_TOO_LARGE =
