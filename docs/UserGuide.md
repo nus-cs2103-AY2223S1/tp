@@ -14,7 +14,7 @@ InterNUS is a desktop app for **managing internship applications, optimized for 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `internus.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
+1. Download the latest `InterNUS.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your app.
 
