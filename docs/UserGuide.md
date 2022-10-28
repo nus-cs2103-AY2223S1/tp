@@ -299,12 +299,91 @@ Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
 ### g. Add a person's socials : `include`
-// HERE
 
-### h. Set a person's preferred social media
-// HERE
+Adds a valid SOCIAL to an existing person in uNivUSal.
 
-### i. Find persons with a preferred social media : `social`
+General format: `include INDEX s/SOCIAL #/SOCIAL_INFO`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL_INFO` currently includes:
+  * Whatsapp phone number
+  * Telegram username
+  * Email
+  * Instagram username
+* `SOCIAL` is case-insensitive
+
+Format(WHATSAPP): `include INDEX s/WHATSAPP #/WHATSAPP_PHONE_NUMBER`
+
+Format(Telegram): `include INDEX s/TELEGRAM #/TELEGRAM_USERNAME`
+
+Format(Email): `include INDEX s/EMAIL #/EMAIL
+
+Format(Instagram): `include INDEX s/INSTAGRAM #/INSTAGRAM_USERNAME`
+
+Examples:
+* `include 1 s/WHATSAPP #/87654321`
+* `include 1 s/TELEGRAM #/JohnDoe321`
+* `include 1 s/EMAIL #/johnd@example.com`
+* `include 1 s/INSTAGRAM #/johndoe`
+
+### h. Delete a person's socials : `exclude`
+
+Deletes the specified person's socials from uNivUSal.
+
+Format: `exclude INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `exclude 1 s/TELEGRAM`
+* `exclude 1 s/INSTAGRAM`
+
+### i. Set a person's preferred social media : `prefer`
+
+Set the specified person's preferred social media in uNivUSal.
+
+Format: `prefer INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `prefer 1 s/TELEGRAM`
+* `prefer 1 s/INSTAGRAM`
+
+### j. Open a person's social media : `open`
+
+Open the specified person's social media in uNivUSal.
+
+Format: `open INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+  * Preferred (the person's currently preferred social media that has been set)
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `open 1 s/TELEGRAM`
+* `open 1 s/INSTAGRAM`
+* `open 1 s/PREFERRED`
+
+### k. Find persons with a preferred social media : `social`
 
 Filters the current list to people who set their preferred social media to the input.
 
@@ -398,6 +477,10 @@ _Details coming soon ..._
 | **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                        |
 | **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                            |
 | **Favorite**          | `fav INDEX`                                                                                                                                                                                                  |
-| **Social**            | `social SOCIAL`                                                                                                                                                                                              |
+| **Include**           | `include INDEX s/SOCIAL #/SOCIAL_INFO` |
+| **Exclude**           | `exclude INDEX s/SOCIAL`               |
+|  **Prefer**           | `open INDEX s/SOCIAL`                 |
+| **Open**              | `open INDEX s/SOCIAL`                 |
+| **Social**            | `social SOCIAL`                        |                                                                                                                                                                      |
 | **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                         |
 | **Exit**              | `exit`                                                                                                                                                                                                       |

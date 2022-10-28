@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root resizable="true" title="Group" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea"
+<fx:root resizable="true" title="Group" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11"
          xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/info_icon.png"/>
