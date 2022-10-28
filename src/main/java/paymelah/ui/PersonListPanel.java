@@ -35,12 +35,22 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         List<TitledPane> titledPanes = new ArrayList<TitledPane>();
         personList.addListener((ListChangeListener<Person>) c -> {
+            TitledPane expandedPane = personListView.getExpandedPane();
+            Label label = (Label) ((HBox) (expandedPane.getGraphic())).getChildren().get(0);
+            String text = label.getText();
+            String name = text.substring(text.indexOf('.') + 2);
             personListView.getPanes().clear();
             titledPanes.clear();
+            TitledPane newExpandedPane = null;
             for (Person person : c.getList()) {
-                titledPanes.add(createTitledPane(person, c.getList()));
+                TitledPane titledPane = createTitledPane(person, c.getList());
+                if (person.getName().fullName.equals(name)) {
+                    newExpandedPane = titledPane;
+                }
+                titledPanes.add(titledPane);
             }
             personListView.getPanes().addAll(titledPanes);
+            personListView.setExpandedPane(newExpandedPane);
         });
         for (Person person : personList) {
             titledPanes.add(createTitledPane(person, personList));
