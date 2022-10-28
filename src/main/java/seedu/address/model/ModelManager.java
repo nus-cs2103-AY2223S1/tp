@@ -266,33 +266,6 @@ public class ModelManager implements Model {
         return revenue;
     }
 
-    //=========== Commission Universe =======================================================
-    @Override
-    public void addCommissionToUniverse(Commission commission) {
-        addressBook.addCommissionToUniverse(commission);
-    }
-
-    @Override
-    public void removeCommissionFromUniverse(Commission commission) {
-        addressBook.removeCommissionFromUniverse(commission);
-    }
-
-    @Override
-    public void setCommissionInUniverse(Commission oldCommission, Commission editedCommission) {
-        addressBook.setCommissionInUniverse(oldCommission, editedCommission);
-    }
-
-    // Must be invoked after all data has been initialized.
-    @Override
-    public void initCommissionUniverse() {
-        addressBook.initCommissionUniverse();
-    }
-
-    @Override
-    public void specialUpdateCommissionList() {
-        observableUniqueCommissions.setValue(new Pair<>(null, addressBook.getAllCommissions()));
-    }
-
     //=========== Selected Customer =============================================================
 
     @Override

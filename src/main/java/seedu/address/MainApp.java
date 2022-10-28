@@ -65,7 +65,6 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
-        model.initCommissionUniverse();
 
         logic = new LogicManager(model, storage);
 
