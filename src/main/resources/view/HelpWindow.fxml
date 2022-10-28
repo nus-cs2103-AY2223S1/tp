@@ -11,16 +11,17 @@
 <?import javafx.stage.Stage?>
 <?import javafx.scene.control.ScrollPane?>
 
+<!-- @@author Rachel-AG, AY2223S1-CS2103T-W17-4 -->
 <fx:root title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene fx:id="scene">
+    <Scene fx:id="scene" >
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      <ScrollPane fx:id="myScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" vbarPolicy="ALWAYS" hbarPolicy="ALWAYS">
+      <ScrollPane fx:id="myScrollPane" fitToHeight="true" fitToWidth="true" pannable="true" vbarPolicy="ALWAYS">
         <VBox alignment="CENTER" fx:id="helpResultContainer" minHeight="800.0" minWidth="500.0">
           <children>
             <Label fx:id="welcomeMessage" text="Label" alignment="CENTER">

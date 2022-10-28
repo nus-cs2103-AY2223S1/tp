@@ -62,7 +62,7 @@ public class HelpWindow extends UiPart<Stage> {
                     + "+-----------------------------+-------------------------------------------------------------+\n"
                     + "| Sort events in bucket list  | sort-e                                                      |\n"
                     + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Sort Trips                  | sort                                                         |\n"
+                    + "| Sort Trips                  | sort                                                        |\n"
                     + "+-----------------------------+-------------------------------------------------------------+\n"
                     + "| List available commands     | help                                                        |\n"
                     + "| and link to User Guide      |                                                             |\n"
@@ -77,17 +77,16 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label message;
 
+    //@@author AY2223S1-CS2103T-W17-4
+
     @FXML
     private Label welcomeMessage;
-
 
     @FXML
     private Label userGuideMessage;
 
     @FXML
     private Label commandSummary;
-    @FXML
-    private Label commandSummaryIntro;
 
     /**
      * Creates a new HelpWindow.
