@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.Messages;
-import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.eatery.Eatery;
 
