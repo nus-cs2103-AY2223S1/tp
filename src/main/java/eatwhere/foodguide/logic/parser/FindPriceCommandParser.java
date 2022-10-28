@@ -16,7 +16,7 @@ import eatwhere.foodguide.model.eatery.PriceContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindPriceCommand object
  */
-public class FindPriceCommandParser implements Parser<FindCommand>{
+public class FindPriceCommandParser implements Parser<FindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindPriceCommand

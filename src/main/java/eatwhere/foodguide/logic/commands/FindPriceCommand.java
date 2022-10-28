@@ -37,7 +37,7 @@ public class FindPriceCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-        || (other instanceof FindPriceCommand // instanceof handles nulls
-        && predicate.equals(((FindPriceCommand) other).predicate)); // state check
+            || (other instanceof FindPriceCommand // instanceof handles nulls
+            && predicate.equals(((FindPriceCommand) other).predicate)); // state check
     }
 }

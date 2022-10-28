@@ -8,7 +8,7 @@ import eatwhere.foodguide.commons.util.StringUtil;
 /**
  * Tests that a {@code Eatery}'s {@code Name} matches any of the keywords given.
  */
-public class PriceContainsKeywordsPredicate implements Predicate<Eatery>{
+public class PriceContainsKeywordsPredicate implements Predicate<Eatery> {
 
     private final List<String> keywords;
 
