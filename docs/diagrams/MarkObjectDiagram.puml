@@ -15,23 +15,10 @@ class DebtIndex2 as "__2:Index__"
 class DebtIndex3 as "__3:Index__"
 }
 
-
-package Debt {
-class Debt2 as "__2:Debt__"
-class Debt3 as "__3:Debt__"
-}
-
-
 MarkCommand ----> "debtor index" DebtorIndex1
 MarkCommand ----> "debt index" DebtIndex2
 MarkCommand ----> "debt index" DebtIndex3
-DebtorIndex1 -right[hidden]-> DebtIndex2
+MarkCommand -right[hidden]-> DebtorIndex1
 DebtIndex2 -right[hidden]-> DebtIndex3
-
-
-MarkCommand --> "to mark" Debt2
-MarkCommand --> "to mark" Debt3
-Debt2 -right[hidden]-> Debt3
-
 
 @end

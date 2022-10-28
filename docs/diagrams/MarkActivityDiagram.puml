@@ -4,10 +4,10 @@ start
 :Parser parses command;
 
 :Index matched to person in filtered list;
-if () then ([invalid index])
-:User informed of invalid index;
+if () then ([invalid person index])
+:User informed of invalid person index;
 stop
-else ([valid index])
+else ([valid person index])
 :Person-to-edit;
 endif
 
@@ -15,10 +15,10 @@ endif
 
 repeat
   :Index matched to debt in DebtList of person-to-edit;
-  if () then ([invalid index])
-  :User informed of invalid index;
+  if () then ([invalid debt index])
+  :User informed of invalid debt index;
   stop
-  else ([valid index])
+  else ([valid debt index])
   :Debt added to debts-to-mark;
   endif
 repeat while () is ([has more indices])
