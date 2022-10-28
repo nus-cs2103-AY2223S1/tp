@@ -95,14 +95,14 @@ java -version
 
 **Before we begin, let us understand the technical terminologies used:**
 
-| Word         | Meaning                                                                                                                                                                                   |
-|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command      | A sentence which the user inputs to                                                                                                                                                       |
-| Command word | The first word of every command.                                                                                                                                                          |
-| Option       | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                 |
-| Flag         | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`.                   |
-| Parameter    | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                         |
-| Prefix       | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`. |
+| Word         | Meaning                                                                                                                                                                                                    |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command      | A sentence which the user inputs to                                                                                                                                                                        |
+| Command word | The first word of every command.                                                                                                                                                                           |
+| Option       | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                                  |
+| Flag         | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-m`, `-c`, `-r`.            |
+| Parameter    | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                          |
+| Prefix       | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`, `m/`, `c/`, `r/` |
 
 
 <div markdown="block" class="alert alert-info">
@@ -129,7 +129,7 @@ java -version
 * Parameters in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Parameters with `…` after them can be used multiple times including zero times.<br>
+* Parameters with `…` after them can be used multiple times, including zero times.<br>
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
@@ -165,6 +165,19 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 _Help window displayed after running the `help` command_
+
+<br>
+
+### Navigate command history: `↑` `↓`
+
+Navigate the command history using the `↑` and `↓` arrow keys.
+* `↑` will replace the text in the command box with the previous command.
+* `↓` will replace the text in the command box with the next command. 
+* Only successful commands are saved in the command history.
+* Two or more consecutive equal commands are saved once.
+
+Examples:
+* `find Betsy`, followed by `list`, then followed by `↑` will replace the text in the command box with `list`. Using `↑` again will replace the text in the command box with `find Betsy`. Using `↓` will replace the command box with `list`.
 
 <br>
 
@@ -224,6 +237,18 @@ Format: `list`
 
 <br>
 
+### Listing all details of a patient: `focus -p`
+
+Shows all details of a specified patient.
+
+Format: `focus -p PATIENT_INDEX`
+
+Examples:
+* `list` followed by `focus -p 2` shows all details of the 2nd patient in the patient book. 
+* `find Betsy` followed by `focus -p 1` shows all details of the 1st patient in the results of the `find` command.
+
+<br>
+
 ### Listing all tasks: `view -p --all`
 
 Shows a list of all tasks to be completed.
@@ -237,7 +262,7 @@ Suppose the following patients were added.
 `add n/John Doe d/Administer 3ml of example medicine`
 
 `add n/Betsy Crowe d/Change dressing on left arm`
-* `listTask` will display:
+* `view -p --all` will display:
     * `Administer 3ml of example medicine FOR John Doe`
     * `Change dressing on left arm FOR Betsy Crowe`
 
@@ -256,9 +281,9 @@ Suppose the following patients were added.
 `add n/John Doe d/Administer 3ml of example medicine`
 
 `add n/Betsy Crowe d/Change dressing on left arm`
-* `viewTask 1` will display:
+* `view -p 1` will display:
     * `Administer 3ml of example medicine`
-* `viewTask 2` will display:
+* `view -p 2` will display:
     * `Change dressing on left arm`
 
 <br>
@@ -578,35 +603,36 @@ the data of your previous UniNurse home folder.
 
 ## Command summary
 
-| Action                          | Format                                                                                                                                   |
-|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**                        | `help`                                                                                                                                   |
-| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]… [c/CONDITION]… [t/TAG]…`                                                          |
-| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                                                                          |
-| **Delete patient**              | `delete -p INDEX`                                                                                                                        |
-| **List all patients**           | `list`                                                                                                                                   |
-| **List all tasks**              | `view -p --all`                                                                                                                          |
-| **View all tasks of a patient** | `view -p PATIENT_INDEX`                                                                                                                  |
-| **List all patients today**     | `view --today`                                                                                                                           |
-| **Listing all tasks for a particular day**     | `view DATE`                                                                                                               |
-| **Find patient**                | `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… [t/TAG]… [c/CONDITION]… [d/TASK_DESCRIPTION]… [m/MEDICATION]… [r/REMARK]…` |
-| **Add task**                    | `add -p PATIENT_INDEX d/TASK`                                                                                                            |
-| **Edit task**                   | `edit -p PATIENT_INDEX -d TASK_INDEX d/TASK`                                                                                             |
-| **Delete task**                 | `delete -p PATIENT_INDEX -d TASK_INDEX`                                                                                                  |
-| **Add condition**               | `add -p PATIENT_INDEX c/CONDITION`                                                                                                       |
-| **Edit condition**              | `edit -p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`                                                                                   |
-| **Delete condition**            | `delete -p PATIENT_INDEX -c CONDITION_INDEX`                                                                                             |
-| **Add medication**              | `add -p PATIENT_INDEX m/MEDICATION`                                                                                                      |
-| **Edit medication**             | `edit -p PATIENT_INDEX -m MEDICATION_INDEX m/MEDICATION`                                                                                 |
-| **Delete medication**           | `delete -p PATIENT_INDEX -m MEDICATION_INDEX`                                                                                            |
-| **Add remark**                  | `add -p PATIENT_INDEX r/REMARK`                                                                                                          |
-| **Edit remark**                 | `edit -p PATIENT_INDEX -r REMARK_INDEX r/REMARK`                                                                                         |
-| **Delete remark**               | `delete -p PATIENT_INDEX -r REMARK_INDEX`                                                                                                |
-| **Add tag**                     | `add -p PATIENT_INDEX t/TAG`                                                                                                             |
-| **Edit tag**                    | `edit -p PATIENT_INDEX -t TAG_INDEX t/TAG`                                                                                               |
-| **Delete tag**                  | `delete -p PATIENT_INDEX -t TAG_INDEX`                                                                                                   |
-| **Clear all patients**          | `clear`                                                                                                                                  |
-| **Undo last command**           | `undo`                                                                                                                                   |
-| **Reverse undo command**        | `redo`                                                                                                                                   |
-| **Exit**                        | `exit`                                                                                                                                   |
+| Action                                     | Format                                                                                                                                   |
+|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                                   | `help`                                                                                                                                   |
+| **Add patient**                            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]… [c/CONDITION]… [t/TAG]… [m/MEDICATION]… [r/REMARK]…`                              |
+| **Edit patient**                           | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`                                                                          |
+| **Delete patient**                         | `delete -p INDEX`                                                                                                                        |
+| **List all patients**                      | `list`                                                                                                                                   |
+| **List all details of a patient**          | `focus -p PATIENT_INDEX`                                                                                                                 |
+| **List all tasks**                         | `view -p --all`                                                                                                                          |
+| **View all tasks of a patient**            | `view -p PATIENT_INDEX`                                                                                                                  |
+| **List all patients today**                | `view --today`                                                                                                                           |
+| **Listing all tasks for a particular day** | `view DATE`                                                                                                                              |
+| **Find patient**                           | `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… [t/TAG]… [c/CONDITION]… [d/TASK_DESCRIPTION]… [m/MEDICATION]… [r/REMARK]…` |
+| **Add task**                               | `add -p PATIENT_INDEX d/TASK`                                                                                                            |
+| **Edit task**                              | `edit -p PATIENT_INDEX -d TASK_INDEX d/TASK`                                                                                             |
+| **Delete task**                            | `delete -p PATIENT_INDEX -d TASK_INDEX`                                                                                                  |
+| **Add condition**                          | `add -p PATIENT_INDEX c/CONDITION`                                                                                                       |
+| **Edit condition**                         | `edit -p PATIENT_INDEX -c CONDITION_INDEX c/CONDITION`                                                                                   |
+| **Delete condition**                       | `delete -p PATIENT_INDEX -c CONDITION_INDEX`                                                                                             |
+| **Add medication**                         | `add -p PATIENT_INDEX m/MEDICATION`                                                                                                      |
+| **Edit medication**                        | `edit -p PATIENT_INDEX -m MEDICATION_INDEX m/MEDICATION`                                                                                 |
+| **Delete medication**                      | `delete -p PATIENT_INDEX -m MEDICATION_INDEX`                                                                                            |
+| **Add remark**                             | `add -p PATIENT_INDEX r/REMARK`                                                                                                          |
+| **Edit remark**                            | `edit -p PATIENT_INDEX -r REMARK_INDEX r/REMARK`                                                                                         |
+| **Delete remark**                          | `delete -p PATIENT_INDEX -r REMARK_INDEX`                                                                                                |
+| **Add tag**                                | `add -p PATIENT_INDEX t/TAG`                                                                                                             |
+| **Edit tag**                               | `edit -p PATIENT_INDEX -t TAG_INDEX t/TAG`                                                                                               |
+| **Delete tag**                             | `delete -p PATIENT_INDEX -t TAG_INDEX`                                                                                                   |
+| **Clear all patients**                     | `clear`                                                                                                                                  |
+| **Undo last command**                      | `undo`                                                                                                                                   |
+| **Reverse undo command**                   | `redo`                                                                                                                                   |
+| **Exit**                                   | `exit`                                                                                                                                   |
 
