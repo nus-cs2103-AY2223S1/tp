@@ -3,13 +3,29 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <VBox>
         <HBox spacing="0" alignment="TOP_LEFT">
-            <Label styleClass="label-bright-padding" text="Selected Team: " StackPane.alignment="TOP_LEFT"/>
+            <Label styleClass="label-bright-padding" text="Selected Team: " StackPane.alignment="TOP_LEFT">
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minWidth>
+            </Label>
             <Label fx:id="teamNameDisplay" styleClass="label-bright-padding" text="\$teamNameDisplay"
+                   StackPane.alignment="TOP_LEFT"/>
+        </HBox>
+        <HBox spacing="0" alignment="TOP_LEFT">
+            <Label styleClass="label-bright-padding" text="Team Description: " StackPane.alignment="TOP_LEFT">
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE"/>
+                </minWidth>
+            </Label>
+            <Label fx:id="teamDescription" styleClass="label-bright-padding" text="\$teamDescription"
                    StackPane.alignment="TOP_LEFT"/>
         </HBox>
         <HBox>

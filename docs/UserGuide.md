@@ -59,7 +59,7 @@ Format:
 
 ### Creating a new team `add team`
 
-Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name.
+Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name. The team name must consist only of alphanumeric characters (i.e., even spaces are not allowed).
 
 Format:
 
