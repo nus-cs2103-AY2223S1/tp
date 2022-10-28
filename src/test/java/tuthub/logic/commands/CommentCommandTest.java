@@ -6,9 +6,9 @@ import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tuthub.testutil.Assert.assertThrows;
 import static tuthub.testutil.TypicalIndexes.INDEX_FIRST_TUTOR;
 import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
-import static tuthub.testutil.TypicalTutors.getTypicalTutors;
 
 import org.junit.jupiter.api.Test;
+
 import tuthub.commons.core.index.Index;
 import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.model.Model;

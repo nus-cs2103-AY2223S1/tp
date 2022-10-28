@@ -96,7 +96,8 @@ public class DeleteCommentCommandTest {
         assertTrue(deleteCommentFirstCommand.equals(deleteCommentFirstCommand));
 
         // same values -> returns true
-        DeleteCommentCommand deleteCommentFirstCommandCopy = new DeleteCommentCommand(INDEX_FIRST_TUTOR, Index.fromZeroBased(0));
+        DeleteCommentCommand deleteCommentFirstCommandCopy = new DeleteCommentCommand(INDEX_FIRST_TUTOR,
+                Index.fromZeroBased(0));
         assertTrue(deleteCommentFirstCommand.equals(deleteCommentFirstCommandCopy));
 
         // different types -> returns false
