@@ -5,46 +5,53 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyStudMap" as ReadOnlyStudMap
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class StudMap
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class UniqueStudentList
+Class Student
 Class Name
+Class StudentID
+Class Module
 Class Phone
+Class Email
+Class GitName
+Class TeleHandle
 Class Tag
+Class Attendance
+Class Assignment
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+StudMap .up.|> ReadOnlyStudMap
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyStudMap
+ModelManager -left-> "1" StudMap
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+StudMap *--> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Student *--> "1" Name
+Student *--> "1" StudentID
+Student *--> "1" Module
+Student *--> "0..1" Phone
+Student *--> "0..1" Email
+Student *--> "0..1" GitName
+Student *--> "0..1" TeleHandle
+Student *--> "*" Tag
+Student *--> "*" Attendance
+Student *--> "*" Assignment
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Student
 @enduml

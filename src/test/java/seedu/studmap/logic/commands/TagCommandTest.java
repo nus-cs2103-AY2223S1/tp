@@ -35,27 +35,27 @@ import seedu.studmap.testutil.StudentBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for
  * EditCommand.
  */
-public class AddTagCommandTest {
+public class TagCommandTest {
 
     private Model model = new ModelManager(getTypicalStudMap(), new UserPrefs());
 
     private Set<Tag> singleTagSet = Stream.of(VALID_TAG_FRIEND).map(Tag::new).collect(Collectors.toSet());
-    private AddTagCommand.AddTagCommandStudentEditor singleTagAdder =
-            new AddTagCommand.AddTagCommandStudentEditor(singleTagSet);
+    private TagCommand.TagCommandStudentEditor singleTagAdder =
+            new TagCommand.TagCommandStudentEditor(singleTagSet);
 
     private Set<Tag> multiTagSet =
             Stream.of(VALID_TAG_FRIEND, VALID_TAG_STUDENT).map(Tag::new).collect(Collectors.toSet());
 
-    private AddTagCommand.AddTagCommandStudentEditor multiTagAdder =
-            new AddTagCommand.AddTagCommandStudentEditor(multiTagSet);
+    private TagCommand.TagCommandStudentEditor multiTagAdder =
+            new TagCommand.TagCommandStudentEditor(multiTagSet);
 
     private Set<Tag> multiTagSetReversed =
             Stream.of(VALID_TAG_STUDENT, VALID_TAG_FRIEND).map(Tag::new).collect(Collectors.toSet());
-    private AddTagCommand.AddTagCommandStudentEditor multiTagAdderReversed =
-            new AddTagCommand.AddTagCommandStudentEditor(multiTagSetReversed);
+    private TagCommand.TagCommandStudentEditor multiTagAdderReversed =
+            new TagCommand.TagCommandStudentEditor(multiTagSetReversed);
 
     public static void main(String[] args) {
-        AddTagCommandTest test = new AddTagCommandTest();
+        TagCommandTest test = new TagCommandTest();
         test.execute_invalidstudentIndexFilteredList_failure();
     }
 
@@ -70,17 +70,17 @@ public class AddTagCommandTest {
 
         Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         baseModel.setStudent(lastStudent, editedStudentBase);
-        AddTagCommand addTagCommand = new AddTagCommand(new SingleIndexGenerator(indexLaststudent),
+        TagCommand tagCommand = new TagCommand(new SingleIndexGenerator(indexLaststudent),
                 singleTagAdder);
 
         Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentExpected);
         String expectedMessage = String.format(
-                AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
+                TagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(singleTagSet),
                 editedStudentBase.getName());
 
-        assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, baseModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -95,17 +95,17 @@ public class AddTagCommandTest {
 
         Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         baseModel.setStudent(lastStudent, editedStudentBase);
-        AddTagCommand addTagCommand = new AddTagCommand(new SingleIndexGenerator(indexLaststudent),
+        TagCommand tagCommand = new TagCommand(new SingleIndexGenerator(indexLaststudent),
                 multiTagAdder);
 
         Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentExpected);
         String expectedMessage = String.format(
-                AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
+                TagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(multiTagSet),
                 editedStudentBase.getName());
 
-        assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, baseModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class AddTagCommandTest {
         Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
 
         String expectedMessage = String.format(
-                AddTagCommand.MESSAGE_MULTI_ADD_TAGS_SUCCESS,
+                TagCommand.MESSAGE_MULTI_ADD_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(singleTagSet),
                 model.getFilteredStudentList().size());
 
@@ -130,8 +130,8 @@ public class AddTagCommandTest {
             expectedModel.setStudent(student, editedStudentExpected);
         }
 
-        AddTagCommand addTagCommand = new AddTagCommand(new AllIndexGenerator(), singleTagAdder);
-        assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
+        TagCommand tagCommand = new TagCommand(new AllIndexGenerator(), singleTagAdder);
+        assertCommandSuccess(tagCommand, baseModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -144,7 +144,7 @@ public class AddTagCommandTest {
         Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
 
         String expectedMessage = String.format(
-                AddTagCommand.MESSAGE_MULTI_ADD_TAGS_SUCCESS,
+                TagCommand.MESSAGE_MULTI_ADD_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(multiTagSet),
                 model.getFilteredStudentList().size());
 
@@ -157,8 +157,8 @@ public class AddTagCommandTest {
             expectedModel.setStudent(student, editedStudentExpected);
         }
 
-        AddTagCommand addTagCommand = new AddTagCommand(new AllIndexGenerator(), multiTagAdder);
-        assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
+        TagCommand tagCommand = new TagCommand(new AllIndexGenerator(), multiTagAdder);
+        assertCommandSuccess(tagCommand, baseModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -172,17 +172,17 @@ public class AddTagCommandTest {
 
         Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         baseModel.setStudent(lastStudent, editedStudentBase);
-        AddTagCommand addTagCommand = new AddTagCommand(new SingleIndexGenerator(indexLaststudent),
+        TagCommand tagCommand = new TagCommand(new SingleIndexGenerator(indexLaststudent),
                 multiTagAdder);
 
         Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentModel);
         String expectedMessage = String.format(
-                AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
+                TagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(multiTagSet),
                 editedStudentBase.getName());
 
-        assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, baseModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -196,17 +196,17 @@ public class AddTagCommandTest {
 
         Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         baseModel.setStudent(lastStudent, editedStudentBase);
-        AddTagCommand addTagCommand = new AddTagCommand(new SingleIndexGenerator(indexLaststudent),
+        TagCommand tagCommand = new TagCommand(new SingleIndexGenerator(indexLaststudent),
                 singleTagAdder);
 
         Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentModel);
         String expectedMessage = String.format(
-                AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
+                TagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(singleTagSet),
                 editedStudentBase.getName());
 
-        assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, baseModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -220,7 +220,7 @@ public class AddTagCommandTest {
         Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
 
         String expectedMessage = String.format(
-                AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
+                TagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(singleTagSet),
                 model.getFilteredStudentList().get(0).getName());
 
@@ -233,8 +233,8 @@ public class AddTagCommandTest {
         }
 
         showStudentAtIndex(baseModel, INDEX_SECOND_STUDENT);
-        AddTagCommand addTagCommand = new AddTagCommand(new AllIndexGenerator(), singleTagAdder);
-        assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
+        TagCommand tagCommand = new TagCommand(new AllIndexGenerator(), singleTagAdder);
+        assertCommandSuccess(tagCommand, baseModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -253,24 +253,24 @@ public class AddTagCommandTest {
         Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentExpected);
         String expectedMessage = String.format(
-                AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
+                TagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(singleTagSet),
                 editedStudentBase.getName());
 
         showStudentAtIndex(baseModel, INDEX_SECOND_STUDENT);
-        AddTagCommand addTagCommand = new AddTagCommand(new SingleIndexGenerator(indexLaststudent),
+        TagCommand tagCommand = new TagCommand(new SingleIndexGenerator(indexLaststudent),
                 singleTagAdder);
 
-        assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, baseModel, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidstudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        AddTagCommand addTagCommand = new AddTagCommand(new SingleIndexGenerator(outOfBoundIndex),
+        TagCommand tagCommand = new TagCommand(new SingleIndexGenerator(outOfBoundIndex),
                 singleTagAdder);
 
-        assertCommandFailure(addTagCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -284,27 +284,27 @@ public class AddTagCommandTest {
         // ensures that outOfBoundIndex is still in bounds of student map list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getStudMap().getStudentList().size());
 
-        AddTagCommand addTagCommand = new AddTagCommand(new SingleIndexGenerator(outOfBoundIndex),
+        TagCommand tagCommand = new TagCommand(new SingleIndexGenerator(outOfBoundIndex),
                 singleTagAdder);
 
-        assertCommandFailure(addTagCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final AddTagCommand standardSingleCommand =
-                new AddTagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), singleTagAdder);
-        final AddTagCommand standardMultiCommand =
-                new AddTagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), multiTagAdderReversed);
+        final TagCommand standardSingleCommand =
+                new TagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), singleTagAdder);
+        final TagCommand standardMultiCommand =
+                new TagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), multiTagAdderReversed);
 
         // same values -> returns true
-        AddTagCommand commandWithSameValues =
-                new AddTagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), singleTagAdder);
+        TagCommand commandWithSameValues =
+                new TagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), singleTagAdder);
         assertTrue(standardSingleCommand.equals(commandWithSameValues));
 
         // same values but different order -> returns true
-        AddTagCommand commandWithSameMultiValues =
-                new AddTagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), multiTagAdderReversed);
+        TagCommand commandWithSameMultiValues =
+                new TagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), multiTagAdderReversed);
         assertTrue(standardMultiCommand.equals(commandWithSameMultiValues));
 
         // same object -> returns true
@@ -318,10 +318,10 @@ public class AddTagCommandTest {
 
         // different index -> returns false
         assertFalse(standardSingleCommand.equals(
-                new AddTagCommand(new SingleIndexGenerator(INDEX_SECOND_STUDENT), singleTagAdder)));
+                new TagCommand(new SingleIndexGenerator(INDEX_SECOND_STUDENT), singleTagAdder)));
 
         // different descriptor -> returns false
         assertFalse(standardSingleCommand.equals(
-                new AddTagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), multiTagAdder)));
+                new TagCommand(new SingleIndexGenerator(INDEX_FIRST_STUDENT), multiTagAdder)));
     }
 }

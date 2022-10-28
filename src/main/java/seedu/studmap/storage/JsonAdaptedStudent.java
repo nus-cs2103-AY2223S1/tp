@@ -16,6 +16,7 @@ import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
+import seedu.studmap.model.student.Participation;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
@@ -40,6 +41,7 @@ class JsonAdaptedStudent {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attended = new ArrayList<>();
     private final List<JsonAdaptedAssignment> assigned = new ArrayList<>();
+    private final List<JsonAdaptedParticipation> participated = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -51,7 +53,8 @@ class JsonAdaptedStudent {
                               @JsonProperty("handle") String handle,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("attended") List<JsonAdaptedAttendance> attended,
-                              @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
+                              @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments,
+                              @JsonProperty("participations") List<JsonAdaptedParticipation> participations) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -67,6 +70,9 @@ class JsonAdaptedStudent {
         }
         if (assignments != null) {
             this.assigned.addAll(assignments);
+        }
+        if (participations != null) {
+            this.participated.addAll(participations);
         }
     }
 
@@ -90,6 +96,9 @@ class JsonAdaptedStudent {
         assigned.addAll(source.getAssignments().stream()
                 .map(assignment -> new JsonAdaptedAssignment(assignment.getString()))
                 .collect(Collectors.toList()));
+        participated.addAll(source.getParticipations().stream()
+                              .map(participation -> new JsonAdaptedParticipation(participation.getString()))
+                              .collect(Collectors.toList()));
     }
 
     /**
@@ -111,6 +120,11 @@ class JsonAdaptedStudent {
         final List<Assignment> studentAssignments = new ArrayList<>();
         for (JsonAdaptedAssignment assignment : assigned) {
             studentAssignments.add(assignment.toModelType());
+        }
+
+        final List<Participation> studentParticipations = new ArrayList<>();
+        for (JsonAdaptedParticipation participation : participated) {
+            studentParticipations.add(participation.toModelType());
         }
 
         if (name == null) {
@@ -175,6 +189,7 @@ class JsonAdaptedStudent {
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         final Set<Attendance> modelAttendances = new HashSet<>(studentAttendances);
         final Set<Assignment> modelAssignments = new HashSet<>(studentAssignments);
+        final Set<Participation> modelParticipations = new HashSet<>(studentParticipations);
 
 
         StudentData studentData = new StudentData();
@@ -188,6 +203,7 @@ class JsonAdaptedStudent {
         studentData.setTags(modelTags);
         studentData.setAttendances(modelAttendances);
         studentData.setAssignments(modelAssignments);
+        studentData.setParticipations(modelParticipations);
         return new Student(studentData);
     }
 

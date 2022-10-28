@@ -47,7 +47,9 @@ public class TypicalStudents {
             .addAssignedNew("A04").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withModule("CS2103T").withId("E1234564").withGitName("user4")
-            .withTeleHandle("@user4").withTags("friends").build();
+            .withTeleHandle("@user4").withTags("friends")
+            .addParticipated("P01")
+            .addNotParticipated("P02").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withModule("CS2103T").withId("E1234565").withGitName("user5")
             .withTeleHandle("@user5").build();
