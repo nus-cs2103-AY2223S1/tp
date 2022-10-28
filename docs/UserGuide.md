@@ -63,14 +63,21 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 </div>
 
-### Viewing help : `help`
+## Command summary
 
-Shows a message explaining how to access the help page.
+| Action     | Format, Examples                                                                                                                                                                                     |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
+| **Edit**   | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                                |
+| **List**   | `list`                                                                                |
+| **Find**   | `find c/COMPANY | r/ROLE | s/STAGE​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                                |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                  |
+| **Undo** | `undo`                                                                                                                                                                  |
+| **Redo** | `redo`                                                                                                                                                                  |
+| **Clear**  | `clear`                                                                                                                                                                                              |
+| **Help**   | `help`                                                                                                                                                                                               |
+| **Exit**   | `exit`                                                                                                                                                                                               |
 
-Format: `help`
-
-Example:
-* `help` displays a message and link to access the help page.
 
 
 ### Adding an internship application: `add`
@@ -95,7 +102,7 @@ Examples:
 
 Edits an existing person in the WorkBook.
 
-Format: `edit INDEX [c/COMPANY] [p/PHONE] [e/EMAIL] [r/ROLE] [t/TAG]…​`
+Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
 * Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internships list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -105,12 +112,18 @@ Format: `edit INDEX [c/COMPANY] [p/PHONE] [e/EMAIL] [r/ROLE] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-* `edit 1 p/91234567 e/hrmonkey@example.com` Edits the phone number and email address of the first internship to be `91234567` and `hrmonkey@example.com` respectively.
-* `edit 2 c/Google t/` Edits the company of the 2nd internship to be `Google` and clears all existing tags.
+* `edit 1 s/Behavioural Interview e/hr@meta.com` Edits the stage and email address of the first internship to be `Behavioural Interview` and `hr@meta.com` respectively.
+* `edit 2 l/golang t/` Adds `golang` as the only language tag for the second internship and clears all existing tags.
 
-### Finds internships by company,stage or role name: `find`
+### Listing all existing internship applications : `list`
 
-Finds internships whose company,role or stage names contain any of the respective keywords.
+Lists all internship applications in the Workbook.
+
+Format: `list`
+
+### Finds internships by company, stage or role name: `find`
+
+Finds internships whose company, role or stage names contain any of the respective keywords.
 
 Format: `find c/COMPANY | r/ROLE | s/STAGE`
 
@@ -118,7 +131,7 @@ Format: `find c/COMPANY | r/ROLE | s/STAGE`
 * Case does not matter e.g. `meta` will match `Meta`.
 * Only full words will be matched e.g. `met` will not match `Meta`.
 * Order of the keywords does not matter e.g. `Jane Street` will match `Street Jane`.
-* Exactly one attribute can be searched for either Company,Role or Stage.
+* Exactly one attribute can be searched for either Company, Role or Stage.
 
 
 Examples:
@@ -214,7 +227,14 @@ Examples:
 
   `redo`(reapplies the `clear` command)
 
+### Viewing help : `help`
 
+Shows a summary of the commands as well as a link to this User Guide.
+
+Format: `help`
+
+Example:
+* `help`
 
 ### Exiting the program : `exit`
 
@@ -239,10 +259,6 @@ If your changes to the data file makes its format invalid, WorkBook will discard
 
 _Details coming soon ..._
 
-### Filtering internships `[coming soon]`
-
-_Details coming soon ..._
-
 ### Sorting internships `[coming soon]`
 
 _Details coming soon ..._
@@ -264,14 +280,4 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
-| Action     | Format, Examples                                                                                                                                                                                     |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
-| **Clear**  | `clear`                                                                                                                                                                                              |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                  |
-| **Edit**   | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [t/TAG]…​​`<br> e.g.,`edit 2 c/META e/hrmonkey@example.com`                                                                                |
-| **Help**   | `help`                                                                                                                                                                                               |
-| **Exit**   | `exit`                                                                                                                                                                                               |
 
