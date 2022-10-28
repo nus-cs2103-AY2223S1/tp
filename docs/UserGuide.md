@@ -359,7 +359,7 @@ Examples:
 
 Sample output for `sort name`:
 
-![sortNmae message](images/UserGuideCommands/sort.png)
+![sort name message](images/UserGuideCommands/sort.png)
 
 [Return to top](#table-of-contents)
 
