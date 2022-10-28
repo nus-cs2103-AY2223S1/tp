@@ -295,19 +295,17 @@ If your changes to the data file makes its format invalid, BookFace will discard
 
 ## Command summary
 
-<div markdown="block" class="alert alert-info" name="commandsummary">
-
-| Action          | Format, Examples                                                                                                          |
-|-----------------|---------------------------------------------------------------------------------------------------------------------------|
-| **Add book**    | `add book t/TITLE a/AUTHOR` <br> E.g: `add t/James and The Giant Peach  a/Roald Dahl`                                     |
-| **Add user**    | `add user n/NAME p/PHONE_NUMBER e/EMAIL` <br> E.g: `add user n/John Doe p/91234567 e/johndoe@outlook.com`                 |
-| **Clear**       | `clear all`                                                                                                               |
-| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                                         |
-| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                                         |
-| **Return book** | `return BOOK_INDEX`<br> E.g: `return 1`                                                                                   |
-| **Loan book**   | `loan USER_INDEX BOOK_INDEX` or `loan <user index> <book index> <due date>` <br> E.g: `loan 1 1` or `loan 1 1 2022-12-28` |
-| **List users**  | `list users`                                                                                                              |
-| **List books**  | `list books`                                                                                                              |
-| **List loans**  | `list loans`                                                                                                              |
-| **Exit**        | `exit`                                                                                                                    |
-</div>
+| Action          | Format, Examples                                                                                          |
+|-----------------|-----------------------------------------------------------------------------------------------------------|
+| **Add book**    | `add book t/TITLE a/AUTHOR` <br> E.g: `add t/James and The Giant Peach  a/Roald Dahl`                     |
+| **Add user**    | `add user n/NAME p/PHONE_NUMBER e/EMAIL` <br> E.g: `add user n/John Doe p/91234567 e/johndoe@outlook.com` |
+| **Clear**       | `clear all`                                                                                               |
+| **Delete book** | `delete book BOOK_INDEX`<br> E.g: `delete book 1`                                                         |
+| **Delete user** | `delete user USER_INDEX`<br> E.g: `delete user 1`                                                         |
+| **Return book** | `return BOOK_INDEX`<br> E.g: `return 1`                                                                   |
+| **Loan book**   | `loan USER_INDEX BOOK_INDEX [DUE_DATE]` <br> E.g: `loan 1 1` or `loan 1 1 2022-12-28`                     |
+| **List users**  | `list users`                                                                                              |
+| **List books**  | `list books`                                                                                              |
+| **List loans**  | `list loans`                                                                                              |
+| **List all**    | `list all`                                                                                                |
+| **Exit**        | `exit`                                                                                                    |
