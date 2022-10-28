@@ -13,12 +13,12 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTIO
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
@@ -55,9 +55,9 @@ public class AddTaskCommand extends Command {
             description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
     private String[] assignees;
 
-    @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG}, defaultValue = "",
-            description = FLAG_TASK_DEADLINE_DESCRIPTION)
-    private String deadline;
+    @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
+            parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
+    private LocalDateTime deadline;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -84,20 +84,14 @@ public class AddTaskCommand extends Command {
         } else {
             assigneesList = Arrays.asList(assignees);
         }
-        LocalDateTime date;
-        if (deadline.equals("")) {
-            date = null;
-        } else {
-            date = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(Task.DATE_FORMAT));
-        }
-        Task task = new Task(taskName, List.of(), false, date);
+        Task task = new Task(taskName, List.of(), false, deadline);
         if (model.getTeam().hasTask(task)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         List<Person> memberList = model.getTeam().getTeamMembers();
-        for (int i = 0; i < assigneesList.size(); i++) {
-            if (Integer.parseInt(assigneesList.get(i)) < 1
-                    || Integer.parseInt(assigneesList.get(i)) > memberList.size()) {
+        for (String s : assigneesList) {
+            if (Integer.parseInt(s) < 1
+                    || Integer.parseInt(s) > memberList.size()) {
                 throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
             }
         }

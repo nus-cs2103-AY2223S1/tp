@@ -149,9 +149,9 @@ Format:
 
 Examples:
 
-* `add task -n "Merge PR" -a 1 -d "02-Dec-2022 23:59"` will add a task with the name "Merge PR", assign the task to the
+* `add task -n "Merge PR" -a 1 -d "2022-12-02 23:59"` will add a task with the name "Merge PR", assign the task to the
 first member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's task list.
-* `add task -n "Review PR" -a 1 3 -d "02-Dec-2022 23:59"` will add a task with the name "Review PR", assign the task
+* `add task -n "Review PR" -a 1 3 -d "2022-12-02 23:59"` will add a task with the name "Review PR", assign the task
 to the first and third member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's
 task list.
 
@@ -166,10 +166,10 @@ Format:
 
 Examples:
 
-* `edit task 1 -n "Merge PR" -a 1 -d "02-Dec-2022 23:59"` will edit the first task in the current team's task
+* `edit task 1 -n "Merge PR" -a 1 -d "2022-12-02 23:59"` will edit the first task in the current team's task
 list, setting the name as "Merge PR", setting the assignee as the first member in the team list and deadline
 as "02-Dec-2022 23:59".
-* `edit task 1 -n "Update UG" -d "02-Dec-2022 23:59"` will edit the first task in the current team's task
+* `edit task 1 -n "Update UG" -d "2022-12-02 23:59"` will edit the first task in the current team's task
 list, setting the name as "Update UG" and changing the deadline as "02-Dec-2022 23:59". The assignees are not changed
 in this case.
 
@@ -199,17 +199,21 @@ Examples:
 
 ### Set Deadline for task: `set deadline`
 
-Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If a deadline has been set for the task before, a new deadline will be set if command is run again. The deadline must be specified in YYYY-MM-DD HH:MM format.
+Set a deadline for an existing task. Will display an error message if task is not found in the user’s team.
+If a deadline has been set for the task before, a new deadline will be set if command is run again.
+The deadline must be specified in yyyy-MM-dd HH:mm format.
 
 Format: `set deadline TASK_INDEX DEADLINE`
 
 Examples:
 
-- `set deadline 1 "2023-12-25 23:59"` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
+- `set deadline 1 "2023-12-25 23:59"` will set the deadline for the first task on the task list as 25 December 2023
+11.59pm.
 
 ### Delete task from team : `delete task`
 
-Delete an existing task from the team given the task's index. Will display an error message if the task is not found in the user’s team, i.e., when the index exceeds the number of tasks.
+Delete an existing task from the team given the task's index. Will display an error message if the task is not found in
+the user’s team, i.e., when the index exceeds the number of tasks.
 
 Format:
 
@@ -221,7 +225,8 @@ Examples:
 
 ### List tasks in team: `list tasks`
 
-View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or remaining tasks.
+View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or
+remaining tasks.
 
 Format:
 
