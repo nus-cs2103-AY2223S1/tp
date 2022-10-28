@@ -16,6 +16,7 @@ public class Room {
 
     // Room contains alphanumeric characters with an optional hyphen only in between, and don't start with a hyphen
     // It can also accept a hyphen as long as it is in between 2 alphanumeric characters
+    // Solution below adapted from https://stackoverflow.com/questions/51063724/
     private static final String VALIDATION_REGEX = "^[A-Za-z0-9]+(-?[A-Za-z0-9])+$";
 
     public final String value;
