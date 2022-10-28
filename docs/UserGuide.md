@@ -167,7 +167,7 @@ Before the application can be edited, it must first be selected via the [`select
 
 </div>
 
-Format: `edit [c/NEW_NAME] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [t/NEW_TAGS] [s/NEW_SALARY]`
+Format: `edit [c/NEW_COMPANY] [p/NEW_POSITION] [e/NEW_EMAIL] [w/NEW_WEBSITE] [t/NEW_TAGS] [s/NEW_SALARY]`
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** An edit command only requires minimally 1 field to be edited.
@@ -250,10 +250,11 @@ Finds internship applications which has company name containing any of the given
 
 Format: findn KEYWORD [MORE_KEYWORDS]
 
-* The search is case-insensitive. E.g. `google` will match `Google`
-* The order of keywords does not matter. E.g. `Bytedance Tiktok` will match `Tiktok Bytedance`
-* Only full words will be matched. E.g. `Goog` will not match `Google`
-* Internship applications with company name matching at least one keyword will be returned.
+* The search is case-insensitive. E.g. `google` will match `Google`.
+* The order of keywords does not matter. E.g. `Bytedance Tiktok` will match `Tiktok Bytedance`.
+* Only full words will be matched. E.g. `Goog` will not match `Google`.
+* Internship applications with company name matching at least one keyword will be returned. E.g. `findn google tech` 
+will match `Google` and `Gov tech`.
 
 Example of usage:
 * `findn Google`
@@ -267,10 +268,11 @@ Finds internship applications which has position name containing any of the give
 
 Format: findp KEYWORD [MORE_KEYWORDS]
 
-* The search is case-insensitive. E.g. `developer` will match `Developer`
-* The order of keywords does not matter. E.g. `Developer Frontend` will match `Frontend Developer`
-* Only full words will be matched. E.g. `Develop` will not match `Developer`
-* Internship applications with position name matching at least one keyword will be returned.
+* The search is case-insensitive. E.g. `developer` will match `Developer`.
+* The order of keywords does not matter. E.g. `Developer Frontend` will match `Frontend Developer`.
+* Only full words will be matched. E.g. `Develop` will not match `Developer`.
+* Internship applications with position name matching at least one keyword will be returned. E.g. `findp analyst 
+junior` will match `Data analyst` and `Junior SWE`.
 
 Example of usage:
 * `findp Frontend`
@@ -284,10 +286,11 @@ Finds internship applications which has tags containing any of the given keyword
 
 Format: findt KEYWORD [MORE_KEYWORDS]
 
-* The search is case-insensitive. E.g. `urgent` will match `Urgent`
-* The order of keywords does not matter. E.g. `Urgent Remote` will match `Remote Urgent`
-* Only full words will be matched. E.g. `Remote` will not match `Remotely`
-* Internship applications with tags matching at least one keyword will be returned.
+* The search is case-insensitive. E.g. `urgent` will match `Urgent`.
+* The order of keywords does not matter. E.g. `Urgent Remote` will match `Remote Urgent`.
+* Only full words will be matched. E.g. `Remote` will not match `Remotely`.
+* Internship applications with tags matching at least one keyword will be returned. E.g. `findt urgent remote` will 
+match tags `urgent` and `remote`.
 
 Example of usage: 
 * `findt urgent`
@@ -310,24 +313,21 @@ Expected outcome:
 
 ### Sorting internship applications: `sort`
 
-Sorts the list of internship applications on the left panel by the time of their tasks or by their salaries 
-via their `ORDERTYPE` which is either `time` or `salary`, in either ascending or descending `ORDER`.
-Format: `sort ORDERTYPE ORDER`
+Sorts the list of internship applications on the left panel via their `ORDER_TYPE` which is either `time` or `salary`, 
+in either ascending or descending `ORDER`.
+Format: `sort ORDER_TYPE ORDER`
 
 * For sorting by the time of their tasks, internships are also sorted with the current date and time taken
 into consideration.
 * The date of the task that is the earliest and is on or after the current date (if any) in the internship will be used
-as the factor in sorting, if there aren't any, the date of the task with  the
-earliest date will be used instead for that internship.
+as the factor in sorting, if there aren't any, the date of the task with the earliest date will be used instead for 
+that internship.
 * `sort time a`  will sort all internships in an ascending manner, with the
 internship with the task that has the earliest date and time that is on or after the current time at the top. 
 * If an internship only has one task however, only that task's date and time is taken into consideration, so even if 
 that task is before the current date but has the earliest date and time, it will still be at the top.
-* `sort time d`  will sort all internships in a descending manner, with the
-    internship with the task that has the earliest date and time that is on or after the current time at the bottom.
-* If an internship only has one task however, only that task's date and time is taken into consideration, so even if
-  that task is before the current date but has the earliest date and time, it will still be at the bottom.
-* If there is one or more internships without any tasks in the list, the list cannot be sorted.
+* `sort time d`  will sort all internships in a descending manner, with the internship with the task that has the 
+furthest date and time that is on or after the current time at the top.
 * For sorting by of their salaries, internships are just sorted by the value of their salaries. 
 
 
@@ -338,7 +338,7 @@ Example of usage:
 Expected outcome:
 
 * The list of internships are sorted in an ascending manner,
-with the internship with the task with the earliest date and time that is after the current date and time is at the top.
+with the internship with the task with the earliest date and time that is after the current date and time at the top.
 
 Example of usage:
 
@@ -352,22 +352,22 @@ with the internship with the lowest salary at the top.
 
 ### Viewing statistics of internship applications : `stats`
 
-Displays statistics of the current list of internship applications based on the number of offered, in progress and 
+Displays statistics of the current list of internship applications based on the number of offered, in-progress and 
 rejected applications.
 
 Format: `stats`
 
 ### Selecting an internship application : `select`
 
-Selects and shows the details of the internship application at the specified `INDEX`
-`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+Selects and shows the details of the internship application at the specified `INDEX`. `INDEX` refers to the index 
+number of the desired entry as shown in the displayed internship list and **must be a positive unsigned integer**.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note about `select`:**<br>
 
-An internship application entry must be selected via the `select` command before the `edit`, `addtask` and `deltask`
-commands can be used.
+An internship application entry must be selected via the `select` command before the `edit`, `addtask`, `deltask`, 
+`mail` and `remark` commands can be used.
 
 </div>
 
@@ -385,12 +385,12 @@ Expected outcome:
 
 Adds a task to a selected internship application at the selected `Internship` from InTrack.
 
-Format: `addtask TASKNAME /at TASKTIME`
+Format: `addtask TASK_NAME /at TASK_TIME`
 
-* `TASKNAME` refers to the name of the task to be added.
-* `TASKNAME` can take any value, but must not be left blank.
-* `TASKTIME` refers to the time the added task is due.
-* `TASKTIME` must be in the format `dd-MM-yyyy HH:mm`
+* `TASK_NAME` refers to the name of the task to be added.
+* `TASK_NAME` can take any value, but must not be left blank.
+* `TASK_TIME` refers to the time the added task is due or at.
+* `TASK_TIME` must be in the format `dd-MM-yyyy HH:mm`.
 
 Example of usage:
 
@@ -398,17 +398,16 @@ Example of usage:
 
 Expected outcome:
 
-* The selected `Internship` would be updated with the new task added in the list in an ascending manner, with the internship with the task that has the earliest date and time that is on or after the current time at the top.
-
-
+* The selected `Internship` would be updated with the new task added in the list in an ascending manner, with the 
+internship with the task that has the earliest date and time that is on or after the current time at the top.
 
 ### Deleting a task from a selected internship application : `deltask`
 
-Deletes a task from a selected internship application at the selected `Internship` from InTrack.
+Deletes the task at the specified index in the task list of a selected internship application.
 
-Format: `deltask INDEX`
+Format: `deltask TASK_INDEX`
 
-* Where `INDEX` refers to the index of the list of tasks in the selected internship
+* Where `TASK_INDEX` refers to the index of the task in the list of tasks of the selected internship.
 
 Examples of usage:
 
@@ -416,11 +415,12 @@ Examples of usage:
 
 Expected outcome:
 
-* Deletes the first task of the selected `Internship`
+* Deletes the first task of the selected `Internship`.
 
 ### Adding a tag to an internship application : `addtag`
 Adds one or more `Tag`s to the internship application at the specified `INDEX` from InTrack.
-`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+`INDEX` refers to the index number of the desired entry as shown in the displayed internship list and **must be a 
+positive unsigned integer**.
 
 Format: `addtag INDEX TAG [MORE_TAGS]`
 
@@ -436,10 +436,7 @@ Expected outcome:
 Deletes one or more existing `Tag`s from the internship application at the specified `INDEX` from InTrack.
 `INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
 
-Format: `deltag INDEX TAG [MORE_TAGS]` 
-
-* Apart from the standard format, the user can also input `deltag INDEX clear` to clear all tags in the internship
-application with the selected `INDEX`.
+Format: `deltag INDEX TAG [MORE_TAGS]`
 
 Example of usage:
 
@@ -447,23 +444,16 @@ Example of usage:
 
 Expected outcome:
 
-* The `Urgent` tag will disappear on the internship application panel with the selected `INDEX`, if it exists.
-
-Example of usage:
-
-* `deltag 1 clear`
-
-Expected outcome:
-
-* All tags from the internship at `INDEX` 1 will disappear.
+* The `Urgent` tag will be removed from the internship application at the selected `INDEX`, if it exists.
 
 ### Sending an email to a company : `mail`
-Sends an email to the email address registered to a selected internship by launching the default mail app with the target email recipient already set.
+Sends an email to the email address registered to a selected internship by launching the default mail app with the 
+target email recipient already set.
 
 Format: `mail`
 
-* `mail` does not check if the email address is valid/correct and is the responsibility of the user
-* `mail` invokes the native desktop application of the default mail app
+* `mail` does not check if the email address is valid/correct and is the responsibility of the user.
+* `mail` invokes the native desktop application of the default mail app.
 
 Expected outcome:
 
