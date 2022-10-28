@@ -2,37 +2,31 @@ package seedu.clinkedin.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
-import seedu.clinkedin.logic.commands.RateCommand;
+import seedu.clinkedin.logic.commands.DeleteRateCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
-import seedu.clinkedin.model.person.Rating;
 
 /**
- * Parses input arguments and creates a new RateCommand object
+ * Parses input arguments and creates a new DeleteRateCommand object
  */
-public class RateCommandParser implements Parser<RateCommand> {
+public class DeleteRateCommandParser implements Parser<DeleteRateCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * RateCommand
+     * DeleteRateCommand
      */
-    public RateCommand parse(String args) throws ParseException {
+    public DeleteRateCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_RATING);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
         Index index;
-        Rating rating;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RateCommand.MESSAGE_USAGE), ive);
+                    DeleteRateCommand.MESSAGE_USAGE), ive);
         }
-        rating = new Rating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
-
-        return new RateCommand(index, rating);
+        return new DeleteRateCommand(index);
     }
 }

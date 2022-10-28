@@ -16,28 +16,23 @@ import seedu.clinkedin.testutil.PersonBuilder;
 
 
 
-public class RateCommandTest {
+public class DeleteRateCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void constructor_nullNote_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new RateCommand(Index.fromZeroBased(0), null));
-    }
-
-    @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new RateCommand(null, new Rating("5")));
+        assertThrows(NullPointerException.class, () -> new DeleteRateCommand(null));
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Rating rating = new Rating("6");
-        RateCommand rateCommand = new RateCommand(Index.fromOneBased(1), rating);
+        DeleteRateCommand rateCommand = new DeleteRateCommand(Index.fromOneBased(1));
 
         Person personToEdit = model.getFilteredPersonList().get(0);
-        Person editedPerson = new PersonBuilder(personToEdit).withRating(rating.toString()).build();
-        String expectedMessage = String.format(RateCommand.MESSAGE_ADD_RATING_SUCCESS, editedPerson);
+        Person editedPerson = new PersonBuilder(personToEdit).withRating("0").build();
+        String expectedMessage = String.format(DeleteRateCommand.MESSAGE_DELETE_RATE_SUCCESS, editedPerson);
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
         assertCommandSuccess(rateCommand, model, expectedMessage, expectedModel);
@@ -46,10 +41,10 @@ public class RateCommandTest {
     @Test
     public void execute_noChangeInValue_success() {
         Person personToEdit = model.getFilteredPersonList().get(0);
-        RateCommand rateCommand = new RateCommand(Index.fromOneBased(1), personToEdit.getRating());
+        DeleteRateCommand rateCommand = new DeleteRateCommand(Index.fromOneBased(1));
 
-        Person editedPerson = new PersonBuilder(personToEdit).withRating(personToEdit.getRating().toString()).build();
-        String expectedMessage = String.format(RateCommand.MESSAGE_ADD_RATING_SUCCESS, editedPerson);
+        Person editedPerson = new PersonBuilder(personToEdit).withRating("0").build();
+        String expectedMessage = String.format(DeleteRateCommand.MESSAGE_DELETE_RATE_SUCCESS, editedPerson);
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
         assertCommandSuccess(rateCommand, model, expectedMessage, expectedModel);
