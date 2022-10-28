@@ -4,7 +4,7 @@ title: User Guide
 ---
 # uNivUSal
 
-uNivUSal is a **desktop app for managing contacts catered to CS2103T students, TAs, and professors**, optimized for use 
+uNivUSal is a **desktop app for managing contacts catered to CS2103T students, TAs, and professors**, optimized for use
 via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 
@@ -15,8 +15,7 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     2. [name](#b-name--n) : `n/`
     3. [phone](#c-phone--pphone) : `p/`
     4. [tutorial](#d-tutorial--tuttutorial) : `tut/`
-    5. [social medias](#e-social-medias--ssocial-medias) : `s/`
-    6. [tags](#f-tags--ttags) : `t/`
+    5. [tags](#e-tags--ttags) : `t/`
   * [Basic Features](#basic-features):
     1. [Adding a person](#a-adding-a-person-add) : `add`
     2. [Editing a person](#b-editing-a-person--edit) : `edit`
@@ -49,11 +48,11 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 
 3. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
 open the help window.
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -120,15 +119,7 @@ Format : `tut/TUTORIAL`
 
 Example : `tut/T08`
 
-### e. social medias : `s/SOCIAL MEDIAS`
-
-Sets the social medias of a person in uNivUSal.
-
-Format : `s/SOCIAL MEDIAS`
-
-Example : 
-
-### f. tags : `t/TAGS`
+### e. tags : `t/TAGS`
 
 Sets tag(s) of a person in uNivUSal.
 
@@ -169,7 +160,7 @@ Format: `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE] [e/EMAIL] [tut/TUTORIAL] [
   specifying any tags after it.
 
 Examples:
-* `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` 
+* `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
 and `janedoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and **clears** all existing tags.
 
@@ -316,6 +307,7 @@ Format: `social SOCIAL`
 
 Examples:
 * `social telegram` will display a filtered list of persons with `telegram` as their preferred social media.
+
 
 ## General App Features
 
