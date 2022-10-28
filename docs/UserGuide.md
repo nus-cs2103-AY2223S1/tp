@@ -91,7 +91,7 @@ Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3
 * Items in square brackets are optional.<br>
   e.g `n/NAME [m/MAJOR]` can be used as `n/John Doe m/Business` or as `n/John Doe`.
 
-* Items in angle brackets are fixed, precise values.
+* Items in angle brackets are fixed, precise values.<br>
   e.g. `<ACCEPTED>` means the parameter must be an input of the value `ACCEPTED`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
