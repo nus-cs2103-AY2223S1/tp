@@ -25,7 +25,7 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
             + "Example: %s n p e\n";
 
     public static final String INVALID_FIELDS_ENTERED = "Please check that you have entered"
-            + " valid column headers or field names.";
+            + " letters that correspond to valid column headers or field names.";
 
     public static final String WHITESPACE = " ";
 
