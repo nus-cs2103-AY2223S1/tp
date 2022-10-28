@@ -59,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -135,7 +135,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` refers to either Person, Policy or Event
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` refers to either Person, Policy or Event</div>
 
 
 ### Storage component
@@ -176,7 +176,7 @@ The following sequence diagram summarizes how pin works:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-#### Pin activity dragram:
+#### Pin activity diagram:
 <img src="images/PinActivityDiagram.png" width="250" />
 
 #### View Pin Activity diagram:
@@ -211,7 +211,7 @@ Given below is an example usage scenario and how the pin mechanism behaves at ea
 **Aspect: How viewIncome executes:**
 
 * **Alternative 1 (current choice):** Encapsulate user's income into a class of its own
-    * Pros: By assigning FinanicialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilise the income for other features.
+    * Pros: By assigning FinancialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilise the income for other features.
     * Cons: Might pose a problem for retrival of values from class.
 
 * **Alternative 2:** Saves the entire address book of clients pinned.
@@ -344,7 +344,7 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 
 * Valid Client Name : An event is tagged to a single Client. The Client’s name must already exist in the `UniqueEventList`. If said person specified does not exist, the `AddEventParser` throws an: `InvalidPersonException`
 
-* No overlapping events: . If the event overlaps with another event (i.e: occurs on the same day, and has a start and end time that coincides with another event in `UniqueEventList`, the `AddEventParser` throws an: `OverlapEventException`.
+* No overlapping events: . If the event overlaps with another event (i.e: occurs on the same day, and has a start and end time that coincides with another event in `UniqueEventList`, the `AddEventParser` throws an: `OverlapEventException`.)
 
 ### Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
 
@@ -703,7 +703,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. Performance requirements: Should be able to serve its features right now
 8. Extremely intuitive and minimalistic design to avoid confusion. 
 9. The product is not required to handle the direct contacting of users.
-10. For added personality, user should be able to have some customizability.(e.g: Change UI’s theme based on system-defined presets)
+10. For added personality, user should be able to have some customisability.(e.g: Change UI’s theme based on system-defined presets)
 
 
 *{More to be added}*
