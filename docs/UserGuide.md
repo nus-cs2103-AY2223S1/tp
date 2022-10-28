@@ -309,27 +309,27 @@ Format:
 Examples
 * `find task -n User Guide`
 
-### Sort members : `sort members`
+### Sort members : `sort member`
 Sorts all members in the current team by name and displays them in the member list
 
 Format:
-* `sort members ORDER`
+* `sort member ORDER`
 
 Examples
-* `sort members asc`
-* `sort members dsc`
-* `sort members res`
+* `sort member asc`
+* `sort member dsc`
+* `sort member res`
 
-### Sort tasks : `sort tasks`
+### Sort tasks : `sort task`
 Sorts all tasks in the current team by name and displays them in the task list
 
 Format:
-* `sort tasks ORDER`
+* `sort task ORDER`
 
 Examples
-* `sort tasks asc`
-* `sort tasks dsc`
-* `sort tasks res`
+* `sort task asc`
+* `sort task dsc`
+* `sort task res`
 
 ### Filter tasks by team member : `tasksof`
 Find all tasks in the current team assigned to a particular team member.
