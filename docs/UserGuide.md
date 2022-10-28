@@ -4,7 +4,7 @@ title: User Guide
 ---
 # uNivUSal
 
-uNivUSal is a **desktop app for managing contacts catered to CS2103T students, TAs, and professors**, optimized for use 
+uNivUSal is a **desktop app for managing contacts catered to CS2103T students, TAs, and professors**, optimized for use
 via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 
@@ -15,27 +15,30 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     2. [name](#b-name--n) : `n/`
     3. [phone](#c-phone--pphone) : `p/`
     4. [tutorial](#d-tutorial--tuttutorial) : `tut/`
-    5. [social medias](#e-social-medias--ssocial-medias) : `s/`
-    6. [tags](#f-tags--ttags) : `t/`
-   * [Basic Features](#basic-features):
-     1. [Adding a person](#a-adding-a-person-add) : `add`
-     2. [Editing a person](#b-editing-a-person--edit) : `edit`
-     3. [Deleting a person](#c-deleting-a-person--delete) : `delete`
-     4. [Listing all persons](#d-listing-all-persons--list) : `list`
-     5. [Clearing all entries](#e-clearing-all-entries--clear) : `clear`
-     6. [Find a person](#f-find-entries-by-keywords-of-fields--find-keyword-eg-find-john) : `find`
-     7. [Sorting entries by field](#g-sort-entries-by-field--sort-prefix-eg-sort-n) : `sort`
-   * [Enhanced Features](#enhanced-features):
-     1. [Add a person to favorite](#a-add-a-person-to-favorite--fav) : `fav`
-     2. [Add a person to a group](#b-adding-a-person-to-a-group--addtogroup): `addtogroup`
-     3. [Remove a person from a group](#c-removing-a-person-from-a-group--ungroup) : `ungroup`
-     4. [Open a group window](#d-opening-a-group-window--group) : `group`
-     5. [Email all persons in a group](#e-email-all-persons-in-a-group--emailall) : `emailall`
-     6. [Find persons with a preferred social media](#f-find-persons-with-a-preferred-social-media--social) : `social`
-   * [General App Features](#general-app-features):
-       1. [Viewing help](#a-viewing-help--help) : `help`
-       2. [Undoing last command](#b-undo-last-modification--undo) : `undo`
-       3. [Exiting the app](#c-exiting-the-program--exit) : `exit`
+    5. [tags](#e-tags--ttags) : `t/`
+  * [Basic Features](#basic-features):
+    1. [Adding a person](#a-adding-a-person-add) : `add`
+    2. [Editing a person](#b-editing-a-person--edit) : `edit`
+    3. [Deleting a person](#c-deleting-a-person--delete) : `delete`
+    4. [Listing all persons](#d-listing-all-persons--list) : `list`
+    5. [Clearing all entries](#e-clearing-all-entries--clear) : `clear`
+    6. [Find a person](#f-find-entries-by-keywords-of-fields--find-keyword-eg-find-john) : `find`
+    7. [Sorting entries by field](#g-sort-entries-by-field--sort-field_prefix-eg-sort-n) : `sort`
+  * [Enhanced Features](#enhanced-features):
+    1. [Quickly edit a person](#a-quickly-edit-a-persons-features)
+    2. [Add a person to favorite](#b-add-a-person-to-favorite--fav) : `fav`
+    3. [Add a person to a group](#c-adding-a-person-to-a-group--addtogroup): `addtogroup`
+    4. [Remove a person from a group](#d-removing-a-person-from-a-group--ungroup) : `ungroup`
+    5. [Open a group window](#e-opening-a-group-window--group) : `group`
+    6. [Email all persons in a group](#f-email-all-persons-in-a-group--emailall) : `emailall`
+    7. [Add a person's social](#g-add-a-persons-socials--include) : `include`
+    8. [Set a person's preferred social media](#h-set-a-persons-preferred-social-media)
+    9. [Find persons with a preferred social media](#i-find-persons-with-a-preferred-social-media--social) : `social`
+  * [General App Features](#general-app-features):
+    1. [Viewing help](#a-viewing-help--help) : `help`
+    2. [Viewing history](#b-viewing-history--history) : `history`
+    3. [Undoing last command](#c-undo-last-modification--undo) : `undo`
+    4. [Exiting the app](#d-exiting-the-program--exit) : `exit`
 * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -48,11 +51,11 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 
 3. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
 open the help window.
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -119,15 +122,7 @@ Format : `tut/TUTORIAL`
 
 Example : `tut/T08`
 
-### e. social medias : `s/SOCIAL MEDIAS`
-
-Sets the social medias of a person in uNivUSal.
-
-Format : `s/SOCIAL MEDIAS`
-
-Example : 
-
-### f. tags : `t/TAGS`
+### e. tags : `t/TAGS`
 
 Sets tag(s) of a person in uNivUSal.
 
@@ -168,7 +163,7 @@ Format: `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE] [e/EMAIL] [tut/TUTORIAL] [
   specifying any tags after it.
 
 Examples:
-* `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` 
+* `edit 1 p/91234567 e/janedoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
 and `janedoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and **clears** all existing tags.
 
@@ -176,15 +171,17 @@ and `janedoe@example.com` respectively.
 
 Deletes the specified person from uNivUSal.
 
-Format: `delete INDEX`
+Format: `delete INDEX {OPTIONAL PREFIX/}`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* If `PREFIX/` is provided, deletes the specified field of the person at the specified `INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in uNivUSal.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2 p/` deletes the 2nd person's phone number in uNivUSal.
 
 ### d. Listing all persons : `list`
 
@@ -233,7 +230,13 @@ Examples:
 
 ## Enhanced Features
 
-### a. Add a person to favorite : `fav`
+### a. Quickly edit a person's features
+
+Quickly make small changes to a person by clicking on a person card while the command box is empty.
+This creates an edit command with all the features that person currently has.
+You may then modify this command to your needs.
+
+### b. Add a person to favorite : `fav`
 
 Adds the specified person to `favorite` group.
 
@@ -244,7 +247,7 @@ Format: `fav INDEX`
 Examples:
 * `fav 1` will add 1st person in the current list to `favorite`.
 
-### b. Adding a person to a group : `addtogroup`
+### c. Adding a person to a group : `addtogroup`
 
 Adds the specified person to the specified group.
 
@@ -258,7 +261,7 @@ Examples:
 * `addtogroup 1 friends` adds the 1st person in the current list to the group `friends`.
 
 
-### c. Removing a person from a group : `ungroup`
+### d. Removing a person from a group : `ungroup`
 
 Removes the specified person from the specified group.
 
@@ -271,7 +274,7 @@ Format: `ungroup INDEX GROUP`
 Examples:
 * `ungroup 1 friends` ungroups the 1st person in the current list from the group `friends`.
 
-### d. Opening a group window : `group`
+### e. Opening a group window : `group`
 
 Open a new window containing the persons in the group.
 
@@ -283,7 +286,7 @@ Format: `group GROUPNAME`
 Examples:
 * `group friends` opens a group window containing persons in the group `friends`.
 
-### e. Email all persons in a group : `emailall`
+### f. Email all persons in a group : `emailall`
 
 Open an email link to all persons in the specified group.
 
@@ -295,7 +298,92 @@ Format: `emailall GROUPNAME`
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
-### f. Find persons with a preferred social media : `social`
+### g. Add a person's socials : `include`
+
+Adds a valid SOCIAL to an existing person in uNivUSal.
+
+General format: `include INDEX s/SOCIAL #/SOCIAL_INFO`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL_INFO` currently includes:
+  * Whatsapp phone number
+  * Telegram username
+  * Email
+  * Instagram username
+* `SOCIAL` is case-insensitive
+
+Format(WHATSAPP): `include INDEX s/WHATSAPP #/WHATSAPP_PHONE_NUMBER`
+
+Format(Telegram): `include INDEX s/TELEGRAM #/TELEGRAM_USERNAME`
+
+Format(Email): `include INDEX s/EMAIL #/EMAIL
+
+Format(Instagram): `include INDEX s/INSTAGRAM #/INSTAGRAM_USERNAME`
+
+Examples:
+* `include 1 s/WHATSAPP #/87654321`
+* `include 1 s/TELEGRAM #/JohnDoe321`
+* `include 1 s/EMAIL #/johnd@example.com`
+* `include 1 s/INSTAGRAM #/johndoe`
+
+### h. Delete a person's socials : `exclude`
+
+Deletes the specified person's socials from uNivUSal.
+
+Format: `exclude INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `exclude 1 s/TELEGRAM`
+* `exclude 1 s/INSTAGRAM`
+
+### i. Set a person's preferred social media : `prefer`
+
+Set the specified person's preferred social media in uNivUSal.
+
+Format: `prefer INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `prefer 1 s/TELEGRAM`
+* `prefer 1 s/INSTAGRAM`
+
+### j. Open a person's social media : `open`
+
+Open the specified person's social media in uNivUSal.
+
+Format: `open INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+  * Preferred (the person's currently preferred social media that has been set)
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `open 1 s/TELEGRAM`
+* `open 1 s/INSTAGRAM`
+* `open 1 s/PREFERRED`
+
+### k. Find persons with a preferred social media : `social`
 
 Filters the current list to people who set their preferred social media to the input.
 
@@ -310,6 +398,7 @@ Format: `social SOCIAL`
 Examples:
 * `social telegram` will display a filtered list of persons with `telegram` as their preferred social media.
 
+
 ## General App Features
 
 ### a. Viewing help : `help`
@@ -320,7 +409,15 @@ Shows a message explaining the basic features of the app and also provides a lin
 
 Format: `help`
 
-### b. Undo last modification : `undo`
+### b. Viewing history : `history`
+
+Shows up to the previous five commands typed by the user.
+
+![history message](images/historyMessage.png)
+
+Format: `history`
+
+### c. Undo last modification : `undo`
 
 Undoes the last command that modifies the address book.
 
@@ -329,7 +426,7 @@ Format: `undo`
 * Ignores modifying commands if they don't modify the address book.
 * Will cancel out when trying to undo an undo command.
 
-### c. Exiting the program : `exit`
+### d. Exiting the program : `exit`
 
 Exits the program.
 
@@ -367,10 +464,11 @@ _Details coming soon ..._
 | Action                | Format, Examples                                                                                                                                                                                             |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**              | `help`                                                                                                                                                                                                       |
+| **History**           | `history`                                                                                                                                                                                                    |
 | **Add**               | `add o/OCCUPATION n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **List**              | `list`                                                                                                                                                                                                       |
 | **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                |
-| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                          |
+| **Delete**            | `delete INDEX [OPTIONAL PREFIX/]`<br> e.g., `delete 3`,`delete 3 p/`                                                                                                                                         |
 | **Clear**             | `clear`                                                                                                                                                                                                      |                                                                             |                                                                                                          |
 | **Undo**              | `undo`                                                                                                                                                                                                       |
 | **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                                    |
@@ -379,6 +477,10 @@ _Details coming soon ..._
 | **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                        |
 | **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                            |
 | **Favorite**          | `fav INDEX`                                                                                                                                                                                                  |
-| **Social**            | `social SOCIAL`                                                                                                                                                                                              |
+| **Include**           | `include INDEX s/SOCIAL #/SOCIAL_INFO` |
+| **Exclude**           | `exclude INDEX s/SOCIAL`               |
+|  **Prefer**           | `open INDEX s/SOCIAL`                 |
+| **Open**              | `open INDEX s/SOCIAL`                 |
+| **Social**            | `social SOCIAL`                        |                                                                                                                                                                      |
 | **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                         |
 | **Exit**              | `exit`                                                                                                                                                                                                       |

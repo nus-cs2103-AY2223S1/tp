@@ -84,7 +84,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex, Stage primaryStage) {
+    public PersonCard(Person person, int displayedIndex, Stage primaryStage, CommandBox.CommandSetter commandSetter) {
         super(FXML);
         this.person = person;
         String s = person.getOccupation().getString();
@@ -120,20 +120,23 @@ public class PersonCard extends UiPart<Region> {
         }
 
         cir2.setStroke(Color.AQUAMARINE);
-        Image im = new Image(social.getImageUrl(), false);
+        String imageUrl = social.getImageUrl();
+        Image im = new Image(String.valueOf(this.getClass().getResource("/images/profile_pic.png")));
         cir2.setFill(new ImagePattern(im));
         cir2.setEffect(new DropShadow(+25d, 0d, +2d, Color.AQUAMARINE));
         final FileChooser f = new FileChooser();
-        browse.setText("Browse");
+        browse.setText("Choose Picture");
+        browse.setVisible(false);
         browse.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 File file = f.showOpenDialog(primaryStage);
                 if (file != null) { // only proceed, if file was chosen
                     String newImageUrl = file.toURI().toString();
+                    System.out.println(newImageUrl);
                     social.addUrl(newImageUrl);
-                    System.out.println(social.toString());
-                    Image im = new Image(newImageUrl, false);
+                    //System.out.println(social.toString());
+                    Image im = new Image(newImageUrl);
                     cir2.setFill(new ImagePattern(im));
                     try (Reader reader = new FileReader("data/addressbook.json")) {
                         // Read JSON file
@@ -222,6 +225,8 @@ public class PersonCard extends UiPart<Region> {
                 }
             }
         });
+
+        cardPane.setOnMouseClicked((click) -> commandSetter.setCommand(person.getEditString(displayedIndex)));
     }
 
     @Override

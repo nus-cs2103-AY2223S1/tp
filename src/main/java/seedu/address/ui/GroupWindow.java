@@ -42,12 +42,12 @@ public class GroupWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the GroupWindow.
      */
-    public GroupWindow(Stage root, Group group, Logic logic) {
+    public GroupWindow(Stage root, Group group, Logic logic, CommandBox.CommandSetter commandSetter) {
         super(FXML, root);
         this.logic = logic;
         this.group = group;
 
-        groupListPanel = new PersonListPanel(this.logic.getGroupedPersonList());
+        groupListPanel = new PersonListPanel(this.logic.getGroupedPersonList(), commandSetter);
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
         root.setTitle("Group: " + group.groupName);
