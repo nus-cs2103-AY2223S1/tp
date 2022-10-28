@@ -343,17 +343,17 @@ weights for different fields, such as price, age, species and so on.
 Displays the specified type of contacts or items. This command is especially useful when you want to find the index of a
 contact / item.
 
-Format: `list KEY`
+Format: `list [KEY]`
 
-#### KEY Types Table
+#### List KEY Types Table
 
-| Contact / Item to List  |    KEY    |
-|:-----------------------:|:---------:|
-|          Buyer          |   buyer   |
-|        Supplier         | supplier  |
-|        Deliverer        | deliverer |
-|          Order          |   order   |
-|           Pet           |    pet    |
+| Contact / Item to List  |         KEY          |
+|:-----------------------:|:--------------------:|
+|          Buyer          |   buyer, b, -b, /b   |
+|        Supplier         | supplier, s, -s, /s  |
+|        Deliverer        | deliverer, d, -d, /d |
+|          Order          |   order, o, -o, /p   |
+|           Pet           |    pet, p, -p, /p    |
 
 Examples:
 * `list buyer`, lists all Buyer contacts.
@@ -558,7 +558,7 @@ Format: `sort LIST_PARAMETER [ATTRIBUTES...]`
 :exclamation:**Note that different lists could have different supported sort attributes.**
 
 Check out the acceptable List Parameters for different types of contacts /
-items [here](#acceptable-list-parameters-for-contacts--items-table).
+items [here](#list-key-types-table).
 
 #### List Attribute Table
 
@@ -622,7 +622,7 @@ Format: `check LIST_PARAMETER INDEX`
 * The input index has to be a valid index.
 
 Check out the acceptable List Parameters for different types of contacts /
-items [here](#acceptable-list-parameters-for-contacts--items-table).
+items [here](#list-key-types-table).
 
 #### Application Behaviour for the Check command
 
@@ -739,23 +739,23 @@ These prefixes are for you to indicate different fields when you add a new perso
 ### Command Summary
 
 
-|            Action            | Format                                                                                        | Examples                                                                                      |
-|:----------------------------:|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-|           **Add**            | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…`  | `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
-| **Add** (using popup window) | `add buyer`, `add supplier`                                                                   |                                                                                               |
-|          **Clear**           | `clear`                                                                                       |                                                                                               |
-|          **Delete**          | `delete-KEY INDEX`                                                                            | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`                          |
-|           **Edit**           | `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`                                    | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p//884321`                                               |
-|           **Find**           | `find PREFIX/KEYWORD`                                                                         | `find n/James Jake`                                                                           |
-|        **Find Buyer**        | `find-b PREFIX/KEYWORD`                                                                       | `find-b n/James Jake`                                                                         |
-|      **Find Deliverer**      | `find-d PREFIX/KEYWORD`                                                                       | `find-d n/James Jake`                                                                         |
-|      **Find Supplier**       | `find-s PREFIX/KEYWORD`                                                                       | `find-s n/James Jake`                                                                         |
-|          **Filter**          | `filter t/INPUT`                                                                              | `filter t/dog t/second-hand`                                                                  |
-|      **Filter Orders**       | `filter-o PREFIX/KEYWORD`                                                                     | `filter-o ar/good with children pr/10-100`                                                    |
-|       **Filter Pets**        | `filter-p PREFIX/KEYWORD`                                                                     | `filter-p c/white s/capybara`                                                                 |
-|           **Help**           | `help`                                                                                        |                                                                                               |
-|           **List**           | `list all`, `list buyer`, `list supplier`, <br>`list delivery`, `list order`, `list pet`      |                                                                                               |
-|           **Sort**           | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                         | `sort pet price height weight`                                                                |
-|          **Check**           | `check LIST_TYPE INDEX`                                                                       | `check buyer 1`                                                                               |
+|            Action            | Format                                                                                       | Examples                                                                                      |
+|:----------------------------:|----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+|           **Add**            | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…` | `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
+| **Add** (using popup window) | `add buyer`, `add supplier`                                                                  |                                                                                               |
+|          **Clear**           | `clear`                                                                                      |                                                                                               |
+|          **Delete**          | `delete-KEY INDEX`                                                                           | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`                          |
+|           **Edit**           | `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`                                   | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p//884321`                                               |
+|           **Find**           | `find PREFIX/KEYWORD`                                                                        | `find n/James Jake`                                                                           |
+|        **Find Buyer**        | `find-b PREFIX/KEYWORD`                                                                      | `find-b n/James Jake`                                                                         |
+|      **Find Deliverer**      | `find-d PREFIX/KEYWORD`                                                                      | `find-d n/James Jake`                                                                         |
+|      **Find Supplier**       | `find-s PREFIX/KEYWORD`                                                                      | `find-s n/James Jake`                                                                         |
+|          **Filter**          | `filter t/INPUT`                                                                             | `filter t/dog t/second-hand`                                                                  |
+|      **Filter Orders**       | `filter-o PREFIX/KEYWORD`                                                                    | `filter-o ar/good with children pr/10-100`                                                    |
+|       **Filter Pets**        | `filter-p PREFIX/KEYWORD`                                                                    | `filter-p c/white s/capybara`                                                                 |
+|           **Help**           | `help`                                                                                       |                                                                                               |
+|           **List**           | `list all`, `list buyer`, `list supplier`, <br>`list deliverer`, `list order`, `list pet`    |                                                                                               |
+|           **Sort**           | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                        | `sort pet price height weight`                                                                |
+|          **Check**           | `check LIST_TYPE INDEX`                                                                      | `check buyer 1`                                                                               |
 
 [Go back to [Table of Contents](#table-of-contents)]
