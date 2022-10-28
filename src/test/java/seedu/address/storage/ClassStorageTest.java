@@ -103,8 +103,8 @@ public class ClassStorageTest {
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
         // edit money owed and money paid of Daniel Tan (last student on personsTeachersPet list)
-        ClassStorage.updatePerson(studentToEdit, editedStudent);
-        List<Student> listOfStudents = ClassStorage.getListOfPerson(LocalDate.of(2022, 5, 5));
+        ClassStorage.updateStudent(studentToEdit, editedStudent);
+        List<Student> listOfStudents = ClassStorage.getListOfStudent(LocalDate.of(2022, 5, 5));
 
         assert listOfStudents.size() == 3;
         assertEquals(editedStudent, listOfStudents.get(2));
