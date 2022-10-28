@@ -147,36 +147,32 @@ Adds a student to the Teacher’s Pet.
     - Student’s Name must not be empty.
     - Student’s Name must only contain alphanumeric characters.
     
-<div markdown="span" class="alert alert-info">ℹ **Note:** Multiple students may share the same name.</div>
+<div markdown="span" class="alert alert-info">ℹ **Note:** Multiple students may share the same name.
+</div>
 
 2. Student’s Contact Number:
    - Student’s contact number must not be empty. 
    - Student’s contact number must only contain numerical digits between `0` and `9`.
-   - Student's contact number must begin with `6`, `8` or `9`. 
+   - Student's contact number must begin with `6`, `8` or `9`.
 
-```yaml
-ℹ Note:
-  Contact number must contain exactly 8 digits. Contact number must be unique.
-```
+<div markdown="span" class="alert alert-info">ℹ **Note:** Contact number must contain exactly 8 digits. Contact number must be unique.
+</div>
 
 3. Next of Kin’s Contact Number:
     - Next of Kin’s contact number must not be empty.
     - Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
-    - Next of Kin’s contact number must begin with `6`, `8` or `9`. 
+    - Next of Kin’s contact number must begin with `6`, `8` or `9`.
 
-```yaml
-ℹ Note:
-  Next of Kin’s contact number must contain exactly 8 digits.
-```
+<div markdown="span" class="alert alert-info">ℹ **Note:** Next of Kin’s contact number must contain exactly 8 digits.
+</div>
+
 
 4. Address:
     - Address must not be empty.
     - Address may contain any kinds of character.
 
-```yaml
-ℹ Note:
-  Address cannot be empty. It must contain at least 1 character.
-```
+<div markdown="span" class="alert alert-info">ℹ **Note:** Address cannot be empty. It must contain at least 1 character.
+</div>
 
 5. Email:
     - Email must not be empty. 
@@ -192,11 +188,9 @@ Adds a student to the Teacher’s Pet.
     - Tags are optional.
     - A student can have any number of tags (including 0).
     - Tags must only contain alphanumeric characters.
-
-```yaml
-ℹ Note:
-  Tags must contain at least 1 alphanumeric character and cannot contain spacings.
-```
+    
+<div markdown="span" class="alert alert-info">ℹ **Note:** Tags must contain at least 1 alphanumeric character and cannot contain spacings.
+</div>
 
 Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
@@ -206,10 +200,8 @@ Example:
 
 ![Add](images/UG-screenshots/UiAdd.png)
 
-```yaml
-ℹ Note:
-  Amount paid, Amount owed, Rates per Class, and Additional notes fields are to be updated via `edit` command.
-```
+<div markdown="span" class="alert alert-info">ℹ **Note:** Amount paid, Amount owed, Rates per Class, and Additional notes fields are to be updated via `edit` command.
+</div>
 
 [↑ Back to top](#table-of-contents)
 
@@ -246,10 +238,8 @@ the same convention as [adding a student](#adding-a-student-add).
     - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
-```yaml
-❗Caution: 
-  If a chosen date is occupied by another student, a class conflict error will arise.
-```
+<div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
+</div>
 
 4. Amount Paid:
     - Amount paid can only be an integer.
@@ -263,28 +253,22 @@ the same convention as [adding a student](#adding-a-student-add).
     - Rates per Class can only be an integer.
     - Rates per Class must be non-negative.
 
-```yaml
-ℹ Note:
-  Amount Owed, Amount Paid, and Rates per Class must be between $0 and $2147483647. They are modified
-  independent of each other.
-```
+<div markdown="span" class="alert alert-info">ℹ **Note:** Amount Owed, Amount Paid, and Rates per Class must be between $0 and $2147483647. They are modified
+  independent of each other.</div>
+
 
 7. Additional Notes:
     - Additional notes can be left empty.
     - Additional notes can take in any types of character.
     - Use `nt/` to set the additional notes.
     - Use `nt-a/` to append the additional notes.
+    
+<div markdown="span" class="alert alert-danger">❗ **Caution:** Using both nt/ and nt-a/ in a single command will reset the content of Additional Notes
+to the content behind both nt/ and nt-a/ prefixes.
+</div>
 
-```yaml
-❗Caution:
-  Using both nt/ and nt-a/ in a single command will reset the content of Additional
-  Notes to the content behind both nt/ and nt-a/ prefixes.
-```
-
-```yaml
-❗Caution: 
-  At least one of these fields must exist in order to make the edit command valid.
-```
+<div markdown="span" class="alert alert-danger">❗ **Caution:** At least one of these fields must exist in order to make the edit command valid.
+</div>
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
 [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [rate/RATES_PER_CLASS] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] [t/TAG]…`
@@ -320,12 +304,9 @@ Example:
 
 ![UiMark](images/UG-screenshots/UiMark.png)
 
-```yaml
-💡 Tip:
-  If you want to charge the student for missing the class, you can do so by executing
-  the mark command. This increases the amount owed but frees up that time slot for
-  another student.
-```
+<div markdown="span" class="alert alert-success">💡 **Tip:** If you want to charge the student for missing the class, you can do so by executing
+the mark command. This increases the amount owed but frees up that time slot for another student.
+</div>
 
 [↑ Back to top](#table-of-contents)
 
@@ -349,11 +330,9 @@ Example:
 
 ![UiPay](images/UG-screenshots/UiPay.png)
 
-```yaml
-ℹ Note:
-  The student cannot pay more than what he/she owes. There is also a maximum cap of
+<div markdown="span" class="alert alert-info">ℹ **Note:** The student cannot pay more than what he/she owes. There is also a maximum cap of
   $2147483647 for every payment.
-```
+</div>
 
 [↑ Back to top](#table-of-contents)
 
@@ -396,10 +375,8 @@ Fields supported in `find`:
 - Class Date `dt/`
 - Tag `t/`
 
-```yaml
-❗ Caution:
-  Only one field can be searched at once.
-```
+<div markdown="span" class="alert alert-danger">❗ **Caution:** Only one field can be searched at once.
+</div>
 
 #### Find by Name:
 
@@ -428,11 +405,8 @@ Format: `find e/EMAIL`
 - Only one email can be searched at each time.
 - Full email must be used for corresponding student to be found e.g., `ghost` will not match `ghost@woods.com`.
 
-```yaml
-❗Caution:
-  Do not include more than one email such as
-  find e/jonsnow@winterfell.com ghost@woods.com.
-```
+<div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one email such as find e/jonsnow@winterfell.com ghost@woods.com.
+</div>
 
 Example:
 
@@ -473,10 +447,8 @@ Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 
 - Only one contact number can be searched at each time.
 
-```yaml
-❗Caution:
-  Do not include more than one contact number such as find np/91232323 81231232.
-```
+<div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one contact number such as find np/91232323 81231232.
+</div>
 
 Examples:
 
@@ -495,10 +467,8 @@ Formats:
 
 - Only the date is searched.
 
-```yaml
-❗Caution:
-  Do not include class timing.
-```
+<div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include class timing.
+</div>
 
 Examples:
 
@@ -515,10 +485,8 @@ Formats: `find t/tagName`
 
 - Only one tag can be searched at each time.
 
-```yaml
-❗Caution:
-  Do not include more than one tag such as find t/python java.
-```
+<div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one tag such as find t/python java.
+</div>
 
 Examples:
 
@@ -539,11 +507,9 @@ Format: `avail TIME_RANGE DURATION`
 - The `TIME_RANGE` would follow a 24-hour format of 0000-2359.
 - The `DURATION` is in minutes.
 
-```yaml
-❗ Caution:
-  The duration should not exceed the time range. e.g., If the time range is 1000-1100
-  and the duration is 70, this would be invalid.
-```
+<div markdown="span" class="alert alert-danger">❗ **Caution:** The duration should not exceed the time range. e.g., If the time range is 1000-1100
+and the duration is 70, this would be invalid.
+</div>
 
 Examples:
 - Given that there is 1 student on the current day of 2022-10-27 from 0900-1000, `avail 1100-1200 60` would return
@@ -634,10 +600,8 @@ Examples:
 - `list` followed by `delete 1 2` deletes the 1st and 2nd student in the Student's Details panel.
 - `find Betsy` followed by `delete 1` deletes the 1st student in the Student's Details panel.
 
-```yaml
-💡 Tip:
-  Deleting a student by mistake can be reversed by "undo" command!
-```
+<div markdown="span" class="alert alert-success">💡 **Tip:** Deleting a student by mistake can be reversed by "undo" command!
+</div>
 
 [↑ Back to top](#table-of-contents)
 
@@ -649,10 +613,8 @@ Clears all students and their details from the list.
 
 Format: `clear`
 
-```yaml
-💡 Tip:
-  Clearing all students by mistake can be reversed by undo command!
-```
+<div markdown="span" class="alert alert-success">💡 **Tip:** Clearing all students by mistake can be reversed by undo command!
+</div>
 
 [↑ Back to top](#table-of-contents)
 
@@ -690,11 +652,9 @@ Teacher’s Pet data are saved in the hard disk automatically after any command 
 
 Students' data is saved as a JSON file `[JAR file location]/data/teachersPet.json`. Advanced users are welcome to edit the data file.
 
-```yaml
-⚠️ Warning: 
-  Proceed with care! If your changes to the data file makes its format invalid,
-  Teacher’s Pet will discard all data and start with an empty data file at the next run!
-```
+<div markdown="span" class="alert alert-warning">⚠️ **Warning:** Proceed with care! If your changes to the data file makes its format invalid,
+Teacher’s Pet will discard all data and start with an empty data file at the next run!
+</div>
 
 [↑ Back to top](#table-of-contents)
 
