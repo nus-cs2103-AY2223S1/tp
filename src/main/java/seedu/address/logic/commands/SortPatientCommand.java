@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 
 /**
- * Sorts Patient data in Address Book.
+ * Sorts Patient data in Health Contact.
  */
 public class SortPatientCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("sortpatient", "sop");

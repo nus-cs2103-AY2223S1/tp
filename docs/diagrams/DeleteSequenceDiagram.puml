@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HealthContactParser" as HealthContactParser LOGIC_COLOR
 participant ":DeletePatientCommandParser" as DeletePatientCommandParser LOGIC_COLOR
 participant "d:DeletePatientCommand" as DeletePatientCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("deletepatient 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("deletepatient 1")
-activate AddressBookParser
+LogicManager -> HealthContactParser : parseCommand("deletepatient 1")
+activate HealthContactParser
 
 create DeletePatientCommandParser
-AddressBookParser -> DeletePatientCommandParser
+HealthContactParser -> DeletePatientCommandParser
 activate DeletePatientCommandParser
 
-DeletePatientCommandParser --> AddressBookParser
+DeletePatientCommandParser --> HealthContactParser
 deactivate DeletePatientCommandParser
 
-AddressBookParser -> DeletePatientCommandParser : parse("1")
+HealthContactParser -> DeletePatientCommandParser : parse("1")
 activate DeletePatientCommandParser
 
 create DeletePatientCommand
@@ -36,14 +36,14 @@ activate DeletePatientCommand
 DeletePatientCommand --> DeletePatientCommandParser : d
 deactivate DeletePatientCommand
 
-DeletePatientCommandParser --> AddressBookParser : d
+DeletePatientCommandParser --> HealthContactParser : d
 deactivate DeletePatientCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeletePatientCommandParser -[hidden]-> AddressBookParser
+DeletePatientCommandParser -[hidden]-> HealthContactParser
 destroy DeletePatientCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+HealthContactParser --> LogicManager : d
+deactivate HealthContactParser
 
 LogicManager -> DeletePatientCommand : execute()
 activate DeletePatientCommand

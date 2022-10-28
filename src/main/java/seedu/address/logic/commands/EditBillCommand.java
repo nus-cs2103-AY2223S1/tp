@@ -18,7 +18,7 @@ import seedu.address.model.bill.Bill;
 import seedu.address.model.bill.BillDate;
 
 /**
- * Edits the details of an existing bill in the address book.
+ * Edits the details of an existing bill in the health contact.
  */
 public class EditBillCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("editbill", "eb");

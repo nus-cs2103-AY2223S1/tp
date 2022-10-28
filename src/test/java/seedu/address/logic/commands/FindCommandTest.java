@@ -4,8 +4,8 @@ package seedu.address.logic.commands;
 
 /*
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalPatientsAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalPatientsAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPatientsHealthContact(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPatientsHealthContact(), new UserPrefs());
     @Test
     public void equals() {
         NameContainsKeywordsPredicatePatient firstPredicate =

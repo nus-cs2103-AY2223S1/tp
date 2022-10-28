@@ -59,7 +59,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 ### 1.1.1 Adding a patient `addpatient`, `ap`
 
-Adds a patient to the address book with input information including name, phone number,
+Adds a patient to the health contact with input information including name, phone number,
 email address, home address, remarks and tags. 
 
 * Name must be different from existing patient. 
@@ -100,14 +100,14 @@ Notes on symbols in first column:
 <img src="images/addcommand/ap1.png" width="800px" height ="500px">
 
 * `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable
-* to add such patient because Bernice Yu already exists in the address book.
+* to add such patient because Bernice Yu already exists in the health contact.
 
 <img src="images/addcommand/ap2.png" width="800px" height ="500px">
 
 
 ### 1.1.2 Adding an appointment of a patient `addappointment`, `aa`
 
-Adds an appointment to the address book with input information including patient name, medical test,
+Adds an appointment to the health contact with input information including patient name, medical test,
 slot, and doctor.
 
 * Name must be the name of an existing patient.
@@ -149,7 +149,7 @@ Notes on symbols in first column:
 
 * Executing `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` again is unable
 * to add such appointment because the appointment with the combination of the four inputs
-* parameters already exists in the address book.
+* parameters already exists in the health contact.
 
 <img src="images/addcommand/aa2.png" width="800px" height ="500px">
 

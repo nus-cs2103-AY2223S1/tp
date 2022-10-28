@@ -19,21 +19,21 @@ import seedu.address.model.bill.BillDate;
 import seedu.address.model.bill.PaymentStatus;
 
 /**
- * Adds a bill to the address book.
+ * Adds a bill to the health contact.
  */
 public class AddBillCommand extends Command {
 
     public static final CommandWord COMMAND_WORD = new CommandWord("addbill", "ab");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a bill that corresponds to an appointment to the address book. "
+            + ": Adds a bill that corresponds to an appointment to the health contact. "
             + "Parameters: INDEX_OF_APPOINTMENT (must be a positive integer)"
             + PREFIX_BILL_DATE + " DATE<yyyy-MM-dd> "
             + PREFIX_AMOUNT + " AMOUNT ";
     public static final String MESSAGE_SUCCESS = "New bill added: %1$s";
-    public static final String MESSAGE_DUPLICATE_BILL = "This bill already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_BILL = "This bill already exists in the health contact";
     public static final String MESSAGE_APPOINTMENT_NOT_EXIST =
-            "This appointment does not exist in the address book";
+            "This appointment does not exist in the health contact";
 
     private final Index indexOfAppointment;
     private final BillDate billDate;
