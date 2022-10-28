@@ -123,6 +123,7 @@ public class PersonViewPanel extends UiPart<Region> {
 
     private void setHospitalisationDetails() {
         patientType.setText(person.getPatientType().toString());
+        hospitalbedIcon.setImage(hospitalbedImage);
         patientType.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_PATIENT_TYPE));
         person.getHospitalWing().ifPresentOrElse(hw -> {
             hospitalWing.setText(hw.toString());
@@ -136,7 +137,6 @@ public class PersonViewPanel extends UiPart<Region> {
             wardNumber.setText(wn.toString());
             wardNumber.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_WARD_NUMBER));
         }, () -> wardNumber.setVisible(false));
-        hospitalbedIcon.setImage(hospitalbedImage);
     }
 
     private void setAppointmentDetails() {
