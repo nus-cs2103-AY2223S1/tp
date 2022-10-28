@@ -1,13 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.tutorial.Tutorial;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -15,6 +7,15 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TUTORIAL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TUTORIAL;
 import static seedu.address.testutil.TypicalTutorials.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.tutorial.Tutorial;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -27,9 +28,8 @@ public class MarkTutorialCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Tutorial tutorialToMark = model.getFilteredTutorialList().get(INDEX_FIRST_TUTORIAL.getZeroBased());
-        Tutorial editedTutorial = new Tutorial(tutorialToMark.getGroup()
-                , tutorialToMark.getContent()
-                , tutorialToMark.getTime(), true);
+        Tutorial editedTutorial = new Tutorial(tutorialToMark.getGroup(),
+                tutorialToMark.getContent(), tutorialToMark.getTime(), true);
         MarkTutorialCommand markTutorialCommand = new MarkTutorialCommand(INDEX_FIRST_TUTORIAL);
 
         String expectedMessage = String.format(markTutorialCommand.MESSAGE_MARKTUT_SUCCESS, editedTutorial) ;

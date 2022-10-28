@@ -1,13 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.tutorial.Tutorial;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -15,6 +7,15 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TUTORIAL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TUTORIAL;
 import static seedu.address.testutil.TypicalTutorials.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.tutorial.Tutorial;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -26,9 +27,8 @@ public class UnmarkTutorialCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Tutorial tutorialToUnmark = model.getFilteredTutorialList().get(INDEX_FIRST_TUTORIAL.getZeroBased());
-        Tutorial editedTutorial = new Tutorial(tutorialToUnmark.getGroup()
-                , tutorialToUnmark.getContent()
-                , tutorialToUnmark.getTime(), false);
+        Tutorial editedTutorial = new Tutorial(tutorialToUnmark.getGroup(), tutorialToUnmark.getContent(),
+                tutorialToUnmark.getTime(), false);
         UnmarkTutorialCommand unmarkTutorialCommand = new UnmarkTutorialCommand(INDEX_FIRST_TUTORIAL);
 
         String expectedMessage = String.format(unmarkTutorialCommand.MESSAGE_UNMARKTUT_SUCCESS, editedTutorial) ;
