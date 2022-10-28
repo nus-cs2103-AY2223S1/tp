@@ -2,7 +2,7 @@
 The QUANTITY is the number representing the amount of an item.
 
 ```info
-* QUANTITY is a number larger than 0
+* QUANTITY is a non-negative number
 * QUANTITY has an accuracy of 4 decimal places
 * QUANTITY has a limit of 1,000,000
 * Do not include thousands separators and mathematical symbols in QUANTITY
