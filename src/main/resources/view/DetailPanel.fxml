@@ -15,9 +15,10 @@
                     <Circle fx:id="profileImageContainer" radius="60.0"/>
                     <VBox spacing="8.0" HBox.hgrow="ALWAYS">
                         <children>
-                            <Label fx:id="nameLabel" text="Name"/>
-                            <Label fx:id="roleLabel" text="Role"/>
-                            <Label fx:id="timezoneLabel" text="Timezone"/>
+                            <Label fx:id="nameLabel" />
+                            <Label fx:id="roleLabel" />
+                            <Label fx:id="timezoneLabel" />
+                            <Label fx:id="addressLabel" />
                         </children>
                     </VBox>
                 </children>

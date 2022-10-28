@@ -39,6 +39,9 @@ public class DetailPanel extends MainPanel {
     private Label timezoneLabel;
 
     @FXML
+    private Label addressLabel;
+
+    @FXML
     private HBox contactBoxContainer;
 
     /**
@@ -63,11 +66,14 @@ public class DetailPanel extends MainPanel {
         Image placeholder = new Image(this.getClass().getResourceAsStream("/images/user_placeholder.png"));
         profileImageContainer.setFill(new ImagePattern(placeholder));
 
-        roleLabel.setVisible(person.getRole().isPresent());
+        setLabelVisibility(roleLabel, person.getRole().isPresent());
         person.getRole().ifPresent(r -> roleLabel.setText(r.toString()));
 
-        timezoneLabel.setVisible(person.getTimezone().isPresent());
+        setLabelVisibility(timezoneLabel, person.getTimezone().isPresent());
         person.getTimezone().ifPresent(t -> timezoneLabel.setText(t.toString()));
+
+        setLabelVisibility(addressLabel, person.getAddress().isPresent());
+        person.getAddress().ifPresent(a -> addressLabel.setText(a.toString()));
 
         List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
                 person.getContacts()
@@ -79,6 +85,11 @@ public class DetailPanel extends MainPanel {
         contactBoxContainer.getChildren().addAll(contactBoxList.stream()
                 .map(ContactBox::getRoot)
                 .collect(Collectors.toList()));
+    }
+
+    private void setLabelVisibility(Label label, boolean visible) {
+        label.setManaged(visible);
+        label.setVisible(visible);
     }
 
     @Override
