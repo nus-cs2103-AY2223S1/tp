@@ -48,6 +48,22 @@ medication history.
 7. Refer to the [Features](#features) below for details of each command.
 
 ---
+## Glossary
+
+| Term              | Definition                                                                      |
+|-------------------|---------------------------------------------------------------------------------|
+| **Inpatient**     | A patient who lives in hospital while under treatment.                          |                                                                                                                                                                                                                                                                          |
+| **Outpatient**    | A patient who attends a hospital for treatment without staying there overnight. |
+| **Medication**    | A drug or other form of medicine that is used to treat or prevent disease.      |
+| **Diagnosis**     | The identification of diseases by the examination of symptoms and signs.        |                                                                                                                                                                                                                                                                                    |
+| **Hospital Wing** | The section of the hospital where the inpatient is in.                          |
+| **Floor Number**  | The floor where the inpatient is on.                                            |
+| **Ward Number**   | The ward where the inpatient is in.                                             |
+| **Next-Of-Kin**   | The patient's closest living relative.                                          |
+| **Appointment**   | An arrangement to consult the doctor at a particular time.                      |
+                                                                                                                                                                                                                                                                                                                                  |
+
+
 
 ## Features
 
@@ -66,8 +82,6 @@ medication history.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
   ignored.<br>
@@ -239,7 +253,6 @@ Format: `get /hw HOSPITAL_WING`
 * The search is case-insensitive. e.g `souTh` will match `South`
 * Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `South No` will match `south`
 * `get /hw south /hw north` matches `get /hw south north`.
-* The hospital wing refers to the hospital wing the patient is in.
 * All the patients in that hospital wing will be returned. e.g. `get /hw SOUTH` will return `John` `Peter` `Mary`
 
 #### by floor number: `/fn`
@@ -251,7 +264,6 @@ Format: `get /fn FLOOR_NUMBER`
 * `FLOOR_NUMBER` only allows positive numbers. 
 * Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `1 3` will match `1 OR 3`
 * `get /fn 1 /fn 3` matches `get /fn 1 3`.
-* The floor number refers to the floor number the patient is on. 
 * All the patients in that floor number will be returned. e.g. `get /fn 2` will return `John` `Peter` `Mary`
 
 
@@ -262,8 +274,7 @@ Finds all the patients in that particular ward number.
 Format: `get /wn WARD_NUMBER`
 
 * Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `D1 E31` will match `D1 OR E31`
-* `get /wn D12 /wn E13` matches `get /wn D12 E13`.
-* The ward number refers to the ward the patient is in. 
+* `get /wn D12 /wn E13` matches `get /wn D12 E13`. 
 * All the patients in that ward number will be returned. e.g. `get /wn D12` will return `John` `Peter` `Mary`
 
 #### by medication: `/m`
