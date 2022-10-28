@@ -287,8 +287,38 @@ public class ModelManager implements Model {
         return model == this ||
                 moduleFilteredList.equals(modelManager.moduleFilteredList)
                 && taskFilteredList.equals(modelManager.taskFilteredList)
-                && examFilteredList.equals(modelManager.examFilteredList);
+                && examFilteredList.equals(modelManager.examFilteredList)
+                && addressBook.equals(modelManager.addressBook)
+                        && userPrefs.equals(modelManager.userPrefs)
+                        && filteredPersons.equals(modelManager.filteredPersons);
+
+
                // moduleFilteredList.equals(model.getFilteredModuleList()) && taskFilteredList.equals(model.getFilteredTaskList())
                 //&& examFilteredList.equals(model.getFilteredExamList());
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return addressBook.equals(other.addressBook)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons)
+        && moduleFilteredList.equals(other.moduleFilteredList)
+                && taskFilteredList.equals(other.taskFilteredList)
+                && examFilteredList.equals(other.examFilteredList);
+
+
     }
 }
