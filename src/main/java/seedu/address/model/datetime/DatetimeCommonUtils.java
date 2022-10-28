@@ -28,7 +28,7 @@ public class DatetimeCommonUtils {
     public static final String DATE_MESSAGE_CONSTRAINTS =
             DATE_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2022-01-01";
     public static final String DATE_MESSAGE_CONSTRAINTS_UNPARSABLE =
-            DATE_MESSAGE_CONSTRAINTS_BASE + "and it must be valid!";
+            DATE_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";
 
     public static final String TIME_INPUT_FORMAT = "HH:mm";
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_INPUT_FORMAT);
