@@ -44,8 +44,8 @@ A brief display of important information for **inventory** and **tasks**.
 * **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has deadline that is
 past today's date.
   * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
-* **(C)** `Upcoming` tasks refers to tasks that have deadline of today's date and the dates after today.
-  * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or after**_, this will be counted as `Upcoming`.
+* **(C)** `Upcoming` tasks refers to tasks that have deadline of today's date and the dates after today and are `Not Done`.
+  * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or after**_, this will be counted as `Upcoming`.
 
 ### Colors used for Inventory
 
