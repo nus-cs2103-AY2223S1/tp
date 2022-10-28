@@ -228,7 +228,9 @@ the graphical interface.
 
 Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
-* The file path specified should be an absolute path from your root directory.
+* The specified date should be in YYYY-MM-DD format
+* The file path specified should be an absolute path from your root directory. If you're not familiar with file paths
+and root directories, you might find the explanation [below](#filepath-explanation) helpful.
 * The command requires a commission to be selected.
 * The image name will assume the filename specified in the command.
 * Currently, only image file types .png, .jpg, .bmp and .gif are supported
@@ -236,36 +238,45 @@ Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
   existing image will not be allowed. Your existing image will not be overridden, but the new image will not be added to
   your commission. To replace a commission image, first delete the image before adding a new image.
 
+Example:
+* `additer n/First Draft d/2022-10-28 p//Users/John/Downloads/Draft 1.png f/Looks great` creates an iteration 
+with the description "First Draft", date 28 October 2022, image at file path `p//Users/John/Downloads/Draft 1.png`, 
+and feedback "Looks great".
+
+<br>
 <details>
-<summary><strong>What is a filepath and my root directory?</strong></summary>
+<summary id="filepath_explanation">What is a filepath and my root directory?</summary>
 <div markdown="span" class="alert alert-info">
 **:information_source: What is a filepath and my root directory?**<br>
 Just like how we use addresses to tell specify locations when talking to people, computers
 do the same! Each file in your computer has a unique address that can be used to identify the
 exact location in your computer where the file is stored.
-
+<br><br>
 The address of each file in your computer can be viewed simply as "directions", guiding your
 computer to get to the file. Think about how you would tell someone how to open a specific file
 in your computer. You would probably say something along the lines of: "Go to the Downloads folder,
 where you'll find an  Image folder. Click into the Images folder and open the file Draft1.png".
-
+<br><br>
 Well to computers, filepaths are just like these guiding instructions that help them locate
 a specific file! And your 'root directory' is simply a 'base point' that stores all your files in
 your computer. For most users using a Windows or Mac computer, this root directory is simply
 a folder named `/`.
-
+<br><br>
 So what a file path `/Users/John/Downloads/Draft 1.png` really means is just a way of telling
 the computer, "Hey, from my root directory, you'll find a folder called Users, and in there a
 folder called John. Open that up and you'll find another folder called Downloads.
 Open the Downloads folder and you'll see the file I want called `Draft 1.png`".
-
+<br><br>
 To easily copy a filepath of a file:
-* On Windows, in your File Explorer, hold shift down while you right-click on the file you want.
-Select the option `Copy as Path` and the filepath of your file will be copied!
-* On Mac, in your Finder, click on the file you want to select it and press the
-`Option`, `Command`, `C` keys simultaneously. The filepath of your file is now copied!
+<ul>
+<li>On Windows, in your File Explorer, hold shift down while you right-click on the file you want.
+Select the option `Copy as Path` and the filepath of your file will be copied!</li>
+<li>On Mac, in your Finder, click on the file you want to select it and press the
+`Option`, `Command`, `C` keys simultaneously. The filepath of your file is now copied!</li>
+</ul>
 </div>
 </details>
+<br>
 
 **Adding by Graphical Interface**
 
@@ -281,14 +292,14 @@ an image to the grey image drop area.
 
 <img src="images/AddIterationWindow.png" width="450" />
 
+<br><br>
+
 <div markdown="span" class="alert alert-info">
 **:information_source: Notes about images in ArtBuddy:**<br>
 
 ArtBuddy creates a copy of each file you upload. This means that you can edit, delete, or
 move your original copy of the file without affecting the uploaded image on ArtBuddy.
 </div>
-
-Example: `additer /Users/John/Downloads/Draft 1.png`
 
 ### Deleting iteration from commission: `deliter`
 Deletes an iteration from a commission.
@@ -353,7 +364,7 @@ Action | Format, Examples
 **Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
 **View all Commissions** | `allcom`
 **Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
-**Add Iteration** | `additer FILEPATH`<br> e.g., `additer /Users/John/Downloads/Bread.jpeg`
+**Add Iteration** | `additer DESCRIPTION DATE FEEDBACK FILEPATH`<br> e.g., `additer n/Draft 1 f/Good d/ 2022-10-28 p//Users/John/Downloads/Bread.jpeg`
 **Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
 **Exit** | `exit`
 **Help** | `help`
