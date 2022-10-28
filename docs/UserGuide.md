@@ -512,14 +512,14 @@ General Commands
 
 Commands For Contacts
 
-| Action                    | Format, Examples                                                                                                                                                                                                                        |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Client**           | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br> e.g: ` find n/Jim p/98765432`                            |
-| **Add Client**            | `addClient [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`  <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                    |
-| **Delete Client**         | `deleteClient [INDEX]` <br> e.g., `delete 3`                                                                                                                                                                                            |
-| **Edit Client**           | `editClient [INDEX] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                    |
-| **View Clients**          | `allClients`                                                                                                                                                                                                                            |
-| **View Filtered Clients** | `clients`                                                                                                                                                                                                                               |
+| Action                    | Format, Examples                                                                                                                                                                                                              |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Client**           | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br> e.g: ` find n/Jim p/98765432`            |       
+| **Add Client**            | `addClient [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`  <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                       |   
+| **Delete Client**         | `deleteClient [INDEX]` <br> e.g., `delete 3`                                                                                                                                                                                  |
+| **Edit Client**           | `editClient [INDEX] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                       |   
+| **View Clients**          | `allClients`                                                                                                                                                                                                                  |
+| **View Filtered Clients** | `clients`                                                                                                                                                                                                                     |
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
 
@@ -527,7 +527,7 @@ Commands For Policy
 
 | Action                     | Format, Examples                                                                                                                                                        |
 |----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                            |     
+| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                         |        
 | **Add Policy**             | `addPolicy [ti/POLICY_TITLE] [cmp/POLICY_COMPANY] [cms/POLICY_COMMISSION] [cov/POLICY_COVERAGE]` <br> e.g.: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE`         |                                                                                                                         
 | **Delete Policy**          | `deletePolicy [INDEX of POLICY]<br> e.g. `deletePolicy 1`                                                                                                               |                                                                                                                                                                                             
 | **View policies**          | `policies`                                                                                                                                                              |
