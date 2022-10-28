@@ -23,7 +23,7 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     4. [Listing all persons](#d-listing-all-persons--list) : `list`
     5. [Clearing all entries](#e-clearing-all-entries--clear) : `clear`
     6. [Find a person](#f-find-entries-by-keywords-of-fields--find-keyword-eg-find-john) : `find`
-    7. [Sorting entries by field](#g-sort-entries-by-field--sort-prefix-eg-sort-n) : `sort`
+    7. [Sorting entries by field](#g-sort-entries-by-field--sort-field_prefix-eg-sort-n) : `sort`
   * [Enhanced Features](#enhanced-features):
     1. [Quickly edit a person](#a-quickly-edit-a-persons-features)
     2. [Add a person to favorite](#b-add-a-person-to-favorite--fav) : `fav`
@@ -31,12 +31,16 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     4. [Remove a person from a group](#d-removing-a-person-from-a-group--ungroup) : `ungroup`
     5. [Open a group window](#e-opening-a-group-window--group) : `group`
     6. [Email all persons in a group](#f-email-all-persons-in-a-group--emailall) : `emailall`
-    7. [Find persons with a preferred social media](#g-find-persons-with-a-preferred-social-media--social) : `social`
+    7. [Add a person's social](#g-add-a-persons-socials--include) : `include`
+    8. [Delete a person's social](#h-delete-a-persons-socials--exclude) : `exclude`
+    9. [Set a person's preferred social media](#i-set-a-persons-preferred-social-media--prefer)
+    10. [Open a person's social media](#j-open-a-persons-social-media--open) : `open`
+    11. [Find persons with a preferred social media](#k-find-persons-with-a-preferred-social-media--social) : `social`
   * [General App Features](#general-app-features):
     1. [Viewing help](#a-viewing-help--help) : `help`
-    2. [Viewing history](#a-viewing-history--history) : `history`
-    3. [Undoing last command](#b-undo-last-modification--undo) : `undo`
-    4. [Exiting the app](#c-exiting-the-program--exit) : `exit`
+    2. [Viewing history](#b-viewing-history--history) : `history`
+    3. [Undoing last command](#c-undo-last-modification--undo) : `undo`
+    4. [Exiting the app](#d-exiting-the-program--exit) : `exit`
 * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -296,7 +300,92 @@ Format: `emailall GROUPNAME`
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
-### g. Find persons with a preferred social media : `social`
+### g. Add a person's socials : `include`
+
+Adds a valid SOCIAL to an existing person in uNivUSal.
+
+General format: `include INDEX s/SOCIAL #/SOCIAL_INFO`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL_INFO` currently includes:
+  * Whatsapp phone number
+  * Telegram username
+  * Email
+  * Instagram username
+* `SOCIAL` is case-insensitive
+
+Format(WHATSAPP): `include INDEX s/WHATSAPP #/WHATSAPP_PHONE_NUMBER`
+
+Format(Telegram): `include INDEX s/TELEGRAM #/TELEGRAM_USERNAME`
+
+Format(Email): `include INDEX s/EMAIL #/EMAIL
+
+Format(Instagram): `include INDEX s/INSTAGRAM #/INSTAGRAM_USERNAME`
+
+Examples:
+* `include 1 s/WHATSAPP #/87654321`
+* `include 1 s/TELEGRAM #/JohnDoe321`
+* `include 1 s/EMAIL #/johnd@example.com`
+* `include 1 s/INSTAGRAM #/johndoe`
+
+### h. Delete a person's socials : `exclude`
+
+Deletes the specified person's socials from uNivUSal.
+
+Format: `exclude INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `exclude 1 s/TELEGRAM`
+* `exclude 1 s/INSTAGRAM`
+
+### i. Set a person's preferred social media : `prefer`
+
+Set the specified person's preferred social media in uNivUSal.
+
+Format: `prefer INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `prefer 1 s/TELEGRAM`
+* `prefer 1 s/INSTAGRAM`
+
+### j. Open a person's social media : `open`
+
+Open the specified person's social media in uNivUSal.
+
+Format: `open INDEX s/SOCIAL`
+
+* `SOCIAL` currently includes:
+  * Whatsapp
+  * Telegram
+  * Email
+  * Instagram
+  * Preferred (the person's currently preferred social media that has been set)
+* `SOCIAL` is case-insensitive
+
+Examples:
+* `open 1 s/TELEGRAM`
+* `open 1 s/INSTAGRAM`
+* `open 1 s/PREFERRED`
+
+### k. Find persons with a preferred social media : `social`
 
 Filters the current list to people who set their preferred social media to the input.
 
@@ -390,6 +479,10 @@ _Details coming soon ..._
 | **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                        |
 | **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                            |
 | **Favorite**          | `fav INDEX`                                                                                                                                                                                                  |
-| **Social**            | `social SOCIAL`                                                                                                                                                                                              |
+| **Include**           | `include INDEX s/SOCIAL #/SOCIAL_INFO` |
+| **Exclude**           | `exclude INDEX s/SOCIAL`               |
+|  **Prefer**           | `open INDEX s/SOCIAL`                 |
+| **Open**              | `open INDEX s/SOCIAL`                 |
+| **Social**            | `social SOCIAL`                        |                                                                                                                                                                      |
 | **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                         |
 | **Exit**              | `exit`                                                                                                                                                                                                       |

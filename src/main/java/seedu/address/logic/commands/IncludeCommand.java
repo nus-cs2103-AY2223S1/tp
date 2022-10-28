@@ -28,9 +28,9 @@ public class IncludeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Includes a Social media link to a specified entry in uNivUSal.\n"
-            + "Example: " + COMMAND_WORD + " 1 s/WHATSAPP #/87654321.\n"
-            + "Example: " + COMMAND_WORD + " 1 s/TELEGRAM #/JohnDoe321.\n"
-            + "Example: " + COMMAND_WORD + " 1 s/EMAIL #/johnd@example.com.\n"
+            + "Example: " + COMMAND_WORD + " 1 s/WHATSAPP #/87654321\n"
+            + "Example: " + COMMAND_WORD + " 1 s/TELEGRAM #/JohnDoe321\n"
+            + "Example: " + COMMAND_WORD + " 1 s/EMAIL #/johnd@example.com\n"
             + "Example: " + COMMAND_WORD + " 1 s/INSTAGRAM #/johndoe";
 
     public static final String MESSAGE_SUCCESS = "New link added";
