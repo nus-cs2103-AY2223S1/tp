@@ -20,11 +20,11 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 /** Command to rename a group/task/person */
-public class AddFieldCommand extends FieldCommand {
+public class EditFieldCommand extends FieldCommand {
 
     private static final Pattern PATTERN = Pattern.compile("\\s+([a-zA-Z][a-zA-Z0-9]*)\\s+(.*)");
 
-    public static final String SUBCOMMAND_WORD = "add";
+    public static final String SUBCOMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = getFullCommand(SUBCOMMAND_WORD)
             + " :Assigns an attribute to a given item.\n"
@@ -40,7 +40,7 @@ public class AddFieldCommand extends FieldCommand {
     String data;
     String ftype;
     Index index;
-    public AddFieldCommand(Index index, String ftype, String type, String data) {
+    public EditFieldCommand(Index index, String ftype, String type, String data) {
         this.index = index;
         this.type = type;
         this.ftype = ftype;
@@ -61,6 +61,7 @@ public class AddFieldCommand extends FieldCommand {
         if (item == null) {
             item = sItem;
         }
+        item.deleteAttribute(type);
         item.addAttribute(new AbstractAttribute<String>(type,data) {
             
         });

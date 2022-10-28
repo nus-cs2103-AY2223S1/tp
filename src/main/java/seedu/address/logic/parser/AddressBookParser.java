@@ -22,6 +22,7 @@ import seedu.address.logic.commands.creationcommand.DeleteCustomCommand;
 import seedu.address.logic.commands.creationcommand.FloatCommand;
 import seedu.address.logic.commands.creationcommand.IntCommand;
 import seedu.address.logic.commands.creationcommand.StringCommand;
+import seedu.address.logic.commands.fields.FieldCommand;
 import seedu.address.logic.commands.logicalcommand.CheckTaskCompleteCommand;
 import seedu.address.logic.commands.logicalcommand.ContainsAttributeCommand;
 import seedu.address.logic.commands.logicalcommand.IfCommand;
@@ -37,6 +38,7 @@ import seedu.address.logic.commands.teams.AddUserToTeamCommand;
 import seedu.address.logic.commands.teams.ChangeTeamCommand;
 import seedu.address.logic.commands.teams.TeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.fields.FieldCommandParser;
 import seedu.address.logic.parser.logiccommands.CheckTaskCompleteCommandParser;
 import seedu.address.logic.parser.logiccommands.ContainsAttributeCommandParser;
 import seedu.address.logic.parser.logiccommands.IfCommandParser;
@@ -92,6 +94,7 @@ public class AddressBookParser {
         defaultMapper.put(CreateCommand.COMMAND_WORD, k -> CreateCommand.parser().parse(k));
         defaultMapper.put(DeleteCustomCommand.COMMAND_WORD, k -> DeleteCustomCommand.parser().parse(k));
         defaultMapper.put(AliasCommand.COMMAND_WORD, k -> AliasCommand.parser().parse(k));
+        defaultMapper.put(FieldCommand.COMMAND_WORD, k -> new FieldCommandParser().parse(k));
     }
 
     private AddressBookParser() {
