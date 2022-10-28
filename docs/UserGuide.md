@@ -57,8 +57,8 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
 * Command fields with … can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
-  e.g. in `adddebt <person index…>`, `<person index…>` is a parameter which can be used as `adddebt 1` or as `adddebt 1 2`.
-  e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and parameter which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend.
+  e.g. in `adddebt <person index…>`, `<person index…>` is a parameter which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
+  e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and parameter which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
@@ -72,10 +72,10 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 
 #### Parameter-specific behavior
 
-* Whenever `<date>` is specified as a parameter, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.
+* Whenever `<date>` is specified as a parameter, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
   e.g. September 5 2022 should be input as `2022-09-05`.
 
-* Whenever `<time>` is specified as a parameter, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.
+* Whenever `<time>` is specified as a parameter, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.<br>
   e.g. 5:15PM should be input as `17:15` as per 24h clock notation.
 
 * Whenever `<money>` is specified as a parameter, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with '+' to add GST, or '++' to add both Service Charge and GST to the amount specified. All calculated values are automatically rounded up to the nearest cent.<br>
@@ -85,16 +85,17 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Using `help` will provide you with a link to our online user guide.<br>
+If you get lost while using PayMeLah, this is the one command to remember!
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-
 ### Adding a person: `add`
 
-Adds a person to PayMeLah.
+Adds a person to PayMeLah. <br>
+This command will let you add the people who owe you money (and some of their information, like their phone number or telegram handle) to PayMeLah.
 
 Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
@@ -108,7 +109,8 @@ Examples:
 
 ### Adding a debt: `adddebt`
 
-Adds a debt to a person in PayMeLah for you to track. Specifying multiple people will add a copy of this debt to each person specified.
+Adds a debt to a person in PayMeLah for you to track. Specifying multiple people will add a copy of this debt to each person specified.<br>
+This command will help you add debts to the people in PayMeLah, so that the app can help you to remember all the debts you are owed instead.
 
 Format: `adddebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
@@ -134,6 +136,10 @@ You can split a debt among as many people as you want. You can even include your
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Splitting a debt is just like adding a debt to multiple people; however, here we divide the money of the debt over the people who shared it. Sharing is made easy as we do the Maths for you!
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Since `splitdebt` works very similarly to `adddebt`, you can skip the following bullet points if you are already familiar with how `adddebt` works.
 </div>
 
 * You can tell PayMeLah to add Service Charge and GST to the amount of money specified by including '++' at the back of the amount. A single '+' will add only GST instead.
@@ -193,7 +199,8 @@ Example: `statement` returns `You are owed $583.90 in total.`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in PayMeLah.
+Shows a list of all persons in PayMeLah.<br>
+You can use this command to return to displaying the full list of people you have added to PayMeLah.
 
 Format: `list`
 
@@ -219,11 +226,12 @@ Example: `sort n/+` sorts and displays the list of persons in ascending alphabet
 
 ### Editing a person : `edit`
 
-Edits an existing person in PayMeLah.
+Edits an existing person in PayMeLah.<br>
+You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or telegram handle have changed.
 
 Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
-* Edits the person at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
@@ -277,7 +285,8 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from PayMeLah.
+Deletes the specified person from PayMeLah.<br>
+You can use this to remove people you no longer need to track debts for from PayMeLah.
 
 Format: `delete <index>`
 
@@ -291,15 +300,24 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from PayMeLah.
+Clears all entries from PayMeLah.<br>
+You can use this command to delete all info from PayMeLah and start afresh!
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This is the command to use when you want to start using PayMeLah for real and delete all the sample data that exist when you first use PayMeLah!
+</div>
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can also just press the 'X' button in the upper right corner. There is no difference, and both methods help safely exit PayMeLah :)
+</div>
 
 ### Saving the data
 
@@ -324,22 +342,22 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                   |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add person**    | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`                                       |
-| **Add debt**      | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`                                                                                                                       |
-| **Split debt**    | `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]` <br> e.g., `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`                                                            |
-| **Mark debts**    | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                                                                              |
-| **Unmark debts**  | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                                                                                          |
-| **Clear debts**   | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                                                                              |
-| **Delete debts**  | `deletedebts <person index> debt/<debt index…>` <br> e.g., `deletedebts 2 debt/2 3`                                                                                                                                |
-| **Clear**         | `clear`                                                                                                                                                                                                            |
-| **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                                                              |
-| **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                                                               |
-| **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag> ...] [d/<description> ...] [m/<money> ...] [above/<money>] [below/<money>] [date/<date> ...] [before/<date>] [after/<date>] [time/<time> ...]`<br> e.g., `find d/burger above/10.0`                                                                                                                                                                                                           |
-| **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                          |
-| **List**          | `list`                                                                                                                                                                                                             |
-| **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                             |
-| **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]`<br> e.g., `sort n/+`                                                                                                                                           |
-| **Get statement** | `statement`                                                                                                                                                                                                        |
-| **Help**          | `help`                                                                                                                                                                                                             |
+| Action            | Format, Examples                                                                                                                                                                                                                                        |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**    | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                            |
+| **Add debt**      | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`                                                                                                                                                            |
+| **Split debt**    | `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]` <br> e.g., `splitdebt 1 2 d/Pizza m/33.99 date/2022-10-12 time/13:00`                                                                                                 |
+| **Mark debts**    | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                                                                                                                   |
+| **Unmark debts**  | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                                                                                                                               |
+| **Clear debts**   | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                                                                                                                   |
+| **Delete debts**  | `deletedebts <person index> debt/<debt index…>` <br> e.g., `deletedebts 2 debt/2 3`                                                                                                                                                                     |
+| **Clear**         | `clear`                                                                                                                                                                                                                                                 |
+| **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                                                                                                   |
+| **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                                                                                                    |
+| **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<description>]… [m/<money>]…`<br> `[above/<money>] [below/<money>] [date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`<br> e.g., `find d/burger above/10.0` |
+| **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
+| **List**          | `list`                                                                                                                                                                                                                                                  |
+| **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
+| **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]`<br> e.g., `sort n/+`                                                                                                                                                                                |
+| **Get statement** | `statement`                                                                                                                                                                                                                                             |
+| **Help**          | `help`                                                                                                                                                                                                                                                  |
