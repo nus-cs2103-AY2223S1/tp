@@ -1,8 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 #### Display statistics: `stats`
 
-<!-- TODO: Update after Richard's PR on statistics -->
-
 **Format**: `stats`
 
 > Displays relevant statistics collected by FoodRem.
