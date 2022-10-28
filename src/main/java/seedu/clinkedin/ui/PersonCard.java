@@ -1,5 +1,7 @@
 package seedu.clinkedin.ui;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,15 +12,21 @@ import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.ImageUtil;
@@ -72,7 +80,8 @@ public class PersonCard extends UiPart<Region> {
     private Label status;
     @FXML
     private Label rating;
-
+    @FXML
+    private HBox ratingBox;
     @FXML
     private FlowPane links;
 
@@ -104,8 +113,67 @@ public class PersonCard extends UiPart<Region> {
         tagPane.setVgap(5);
 
         status.setText(person.getStatus().status);
-        // note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
-        rating.setText(person.getRating().equals(new Rating("0")) ? "" : "Rating: " + person.getRating().toString());
+        note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
+
+        // pure text "Rating: " with color
+        int ratingNumber = person.getRating().value;
+        rating.setText(person.getRating().equals(new Rating("0")) ? "" : "Rating: " + person.getRating()
+                .toString());
+        rating.setFont(new Font(4));
+        rating.setPadding(new Insets(1));
+
+        CornerRadii corn = new CornerRadii(2.5);
+        if (ratingNumber <= 3 && ratingNumber >= 1) {
+            Color red = Color.rgb(235, 50, 50);
+            Background redBg = new Background(new BackgroundFill(red, corn, Insets.EMPTY));
+            rating.setBackground(redBg);
+        } else if (ratingNumber <= 6) {
+            Color yellow = Color.rgb(236, 180, 16);
+            Background yellowBg = new Background(new BackgroundFill(yellow, corn, Insets.EMPTY));
+            rating.setBackground(yellowBg);
+        } else {
+            Color green = Color.rgb(16, 185, 67);
+            Background greenBg = new Background(new BackgroundFill(green, corn, Insets.EMPTY));
+            rating.setBackground(greenBg);
+        }
+
+        try {
+            // stars as rating
+            int displayRating = person.getRating().value;
+            // Image fullStar = ImageUtil.getStar("fullstar");
+            Image fullStar = new Image(new FileInputStream("/images/rating/fullstar.png"));
+            ImageView fullStarView = new ImageView();
+            fullStarView.setImage(fullStar);
+            fullStarView.setFitWidth(15);
+            // Image halfStar = ImageUtil.getStar("halfstar");
+            Image halfStar = new Image(new FileInputStream("/images/rating/halfstar.png"));
+            ImageView halfStarView = new ImageView();
+            halfStarView.setImage(halfStar);
+            halfStarView.setFitWidth(15);
+            // Image emptyStar = ImageUtil.getStar("emptystar");
+            Image emptyStar = new Image(new FileInputStream("/images/rating/emptystar.png"));
+            ImageView emptyStarView = new ImageView();
+            emptyStarView.setImage(emptyStar);
+            emptyStarView.setFitWidth(15);
+
+            int stars = 5;
+            while (stars != 0) {
+                stars--;
+                if (displayRating == 0) {
+                    ratingBox.getChildren().add(emptyStarView);
+                } else if (displayRating == 1) {
+                    ratingBox.getChildren().add(halfStarView);
+                    displayRating = 0;
+                } else {
+                    ratingBox.getChildren().add(fullStarView);
+                    displayRating -= 2;
+                }
+                System.out.println(displayRating);
+            }
+        } catch (FileNotFoundException e) {
+            e.toString();
+        }
+
         person.getLinks().stream().sorted(Comparator.comparing(link -> link.platform))
                 .forEach(link -> {
                     Button button = new Button();
