@@ -7,14 +7,14 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":ReadOnlyTeachersPet" as ReadOnlyTeachersPet LOGIC_COLOR
-participant ":ObservableList<Person>" as ObservableList LOGIC_COLOR
-participant ":Person" as Person LOGIC_COLOR
+participant ":ObservableList<Student>" as ObservableList LOGIC_COLOR
+participant ":Student" as Student LOGIC_COLOR
 end box
 
 [-> StatisticsCalculator : getSize()
 activate StatisticsCalculator
 
-StatisticsCalculator -> ReadOnlyTeachersPet : getPersonList()
+StatisticsCalculator -> ReadOnlyTeachersPet : getStudentList()
 activate ReadOnlyTeachersPet
 
 ReadOnlyTeachersPet --> StatisticsCalculator
@@ -34,10 +34,10 @@ activate ObservableList
 ObservableList --> StatisticsCalculator
 deactivate ObservableList
 
-StatisticsCalculator -> Person : getMoneyPaid()
-activate Person
+StatisticsCalculator -> Student : getMoneyPaid()
+activate Student
 
-Person --> StatisticsCalculator
+Student --> StatisticsCalculator
 deactivate
 end
 [<--StatisticsCalculator
