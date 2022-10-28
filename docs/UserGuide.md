@@ -18,7 +18,7 @@ should be used. Start by looking at the [quick start](#quick-start) guide to get
 1. Ensure you have **Java `11`** or above installed in your Computer.
 1. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.3).
 1. **Copy** the file to the folder you want to use as the _home folder_ for your TA-Assist.
-1. **Double-click** the file to start the app.
+1. **Double-click** the file to start the app. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ should be used. Start by looking at the [quick start](#quick-start) guide to get
 <div markdown="block" class="alert alert-info">
 
 :information_source: Before diving into the features, the examples in this guide are formatted with the following conventions:
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.
   * e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional.
   * e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
@@ -70,7 +70,7 @@ Let's first begin with the commands available in the default mode.
 
 {% include note.html content="
 
-Redirects to the user guide page to provide help for the users. If the attempt was unsuccessful, the following help window appears.
+Redirects you to this User Guide page. If the attempt was unsuccessful, the following help window appears.
 " %}
 
 ![help message](images/helpMessage.png)
