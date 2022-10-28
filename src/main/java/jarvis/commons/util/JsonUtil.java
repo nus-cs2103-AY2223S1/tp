@@ -140,4 +140,19 @@ public class JsonUtil {
         }
     }
 
+    /**
+     * Checks whether the argument provided is null.
+     *
+     * @param className The class whose constructor is intended to take in the given argument.
+     * @param missingFieldFormat The missing field message used in the error message.
+     * @param arg The argument to check.
+     * @throws IllegalArgumentException If the argument provided is null.
+     */
+    public static void checkNullArgument(Class<?> className, String missingFieldFormat, Object arg)
+            throws IllegalArgumentException {
+        if (arg == null) {
+            throw new IllegalArgumentException(String.format(missingFieldFormat,
+                    className.getSimpleName()));
+        }
+    }
 }
