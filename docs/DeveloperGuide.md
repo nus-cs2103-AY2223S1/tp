@@ -207,9 +207,10 @@ The sequence diagram below details such behaviour of PayMeLah when a user enters
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteDebtSequenceDiagram.png)
 
 
-An example of the new objects in the internal state when a valid `deletedebt` command provided by the user, `deletedebt 1 debt/2 3`, has been parsed is given by the object diagram below.
+An example of the new objects in the internal state when a valid `deletedebt` command parsed from the user, `deletedebt 1 debt/2 3`, has been executed is given by the object diagram below.
 
 <img src="images/DeleteDebtObjectDiagram.png" width="450" />
+<img src="images/DeleteDebtAfterObjectDiagram.png" width="450" />
 
 
 
