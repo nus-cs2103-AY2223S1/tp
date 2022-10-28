@@ -165,7 +165,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="550" />
+<img src="images/ModelClassDiagram.png" width="900" />
 
 
 The `Model` component,
@@ -196,7 +196,7 @@ objects to easily access unique orders.
 
 Given below is the class diagram for the **`Buyer`** Class:
 
-<img src="images/ModelBuyerObjectImplementation.png" width="500" />
+<img src="images/ModelBuyerObjectImplementation.png" width="700" />
 
 #### `Supplier` Class
 
@@ -207,19 +207,19 @@ Similar to an order, each pet has an `UniqueId` for easier identification. Hence
 
 Given below is the class diagram for the **`Supplier`** Class:
 
-<img src="images/ModelSupplierObjectImplementation.png" width="500" />
+<img src="images/ModelSupplierObjectImplementation.png" width="700" />
 
 #### `Order` Class
 
 The `Order` class consists of several attributes. Given below is the class diagram for the **`Order`** Class:
 
-<img src="images/ModelOrderObjectImplementation.png" width="600" />
+<img src="images/ModelOrderObjectImplementation.png" width="800" />
 
 #### `Pet` Class
 
 The `Pet` class consists of several attributes. Given below is the class diagram for the **`Pet`** Class:
 
-<img src="images/ModelPetObjectImplementation.png" width=850 />
+<img src="images/ModelPetObjectImplementation.png" width=950 />
 
 </div>
 
