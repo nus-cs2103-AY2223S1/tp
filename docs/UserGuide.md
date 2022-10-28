@@ -179,7 +179,7 @@ Displays all commissions across all customers in ArtBuddy.
 Format: `allcom`
 
 After running `allcom`, you should be switched to the commissions tab to view all commissions.
-To view the commissions for a specific customer, return to the customer list ([`opencom`](#opencom)) and select the customer from the list ([`opencus INDEX`](#opencus)).
+To view the commissions for a specific customer, return to the customer list ([`opencus`](#opencus)) and select the customer from the list ([`opencus INDEX`](#opencus)).
 
 
 ### Editing a commission: `editcom`
