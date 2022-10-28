@@ -65,7 +65,7 @@ Beyond individual clients, you can also:
 
 #### 2.3.2 Meetings
 
-*MyInsuRec* eases a financial advisor's mental load by helping them track of any upcoming meetings. You can do meeting-specific tasks such as:
+*MyInsuRec* eases a financial advisor's mental load by helping them track of any upcoming meetings with clients. You can do meeting-specific tasks such as:
 
 * add a meeting to a client in *MyInsuRec*.
 * view a meeting in greater details.
@@ -193,6 +193,10 @@ Welcome to your new and organized life, and happy (financial) advising!
 
 ## 5. Features
 
+This section guides you on how to use features available in *MyInsuRec*. We lay out the command and parameters needed to use the feature, show an example input as well as its expected behaviour. We also include some tips and tricks (yay!) on how you can better use the feature and *MyInsuRec*.
+
+Do take some time to read the following note to better understand how you can use this section!
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -223,6 +227,8 @@ Welcome to your new and organized life, and happy (financial) advising!
 </div>
 
 ### 5.1 Client commands
+
+This subsection covers all client-related commands.
 
 #### 5.1.1 Add client: `addClient`
 
@@ -309,6 +315,8 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
 
 ### 5.2 Meeting commands
 
+This subsection covers all meeting-related commands.
+
 #### 5.2.1 Add meeting: `addMeeting`
 
 Add a new meeting to MyInsuRec.
@@ -334,20 +342,35 @@ to add a meeting from 1330 to 1430 when you already have one scheduled for
 
 #### 5.2.2 List meetings: `listMeeting`
 
-Show the list of meetings in MyInsuRec.
-If used with the optional parameter `[d/DATE]`, *MyInsuRec* will show only meetings happening in that time period.
+Shows a list of meetings in MyInsuRec.
 
 Format: `listMeeting [d/DATE]`
 
+Use case:
+1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
+2. Organize all your meetings in a single place, so you don't have to worry about missing a meeting ever again.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+* You can use the `d/DATE` parameter optionally to view the list of meetings happening in that time period!
 * `DATE` is specified by keywords. The possible keywords are:
-  * `tomorrow` for a list of meetings happening today or tomorrow;
-  * `week` for a list of meetings happening today or in the next 7 days;
-  * `month` for a list of meetings happening this month.
+  * `tomorrow` for a list of meetings happening tomorrow;
+  * `week` for a list of meetings happening in the next week;
+  * `month` for a list of meetings happening in the next month.
+* For example, `listMeeting d/week` will show a list of meetings happening in the next week.
+* This is an excellent feature if you want to get a quick overview of your upcoming schedule!
+</div>
+
+<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+This command is used to get the index of a meeting. In order to perform commands related to a particular meeting such as `editMeeting`, you will have to first get its index by running `listMeeting`. So, expect to use this command a lot!
+</div>
 
 Examples:
-* `listMeeting`
-* `listMeeting d/tomorrow`
-* `listMeeting d/month`
+
+* List all meetings
+    * `listMeeting`
+
+* List meetings happening in the next month
+    * `listMeeting d/month`
 
 #### 5.2.3 View meeting: `viewMeeting`
 
@@ -396,6 +419,8 @@ since the start time is later than end time.
 
 ### 5.3 Product commands
 
+This subsection covers all product-related commands.
+
 #### 5.3.1 Add product: `addProduct`
 
 Add a new product to MyInsuRec.
@@ -414,23 +439,37 @@ Show a list of all products in MyInsuRec.
 
 Format: `listProduct`
 
-#### 5.3.3 Delete product: `delProduct`
+Use case:
+1. Get an overview of all the products you are offering!
+2. This feature is used to get the index of a product, which is needed for most product-related commands.
 
-Delete a product from MyInsuRec.  
-This feature will remove the product from association with any client.
+Examples:
+
+* List all products
+  * `listProduct`
+
+#### 5.3.3 Delete a product : `delProduct`
+
+Deletes a product from *MyInsuRec*.  
+This command removes this product from all the clients as well.
 
 Format: `delProduct i/INDEX`
 
-* Delete the product at the specified `INDEX`.
-* The index refers to the index number shown in the displayed product list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Use case:
+1. If you no longer offer this product and no clients have purchased it before, you can remove it from *MyInsuRec* and prevent it from cluttering up *MyInsuRec*!
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+* This command is usually preceded by `listProduct`. This is because the product's index number `INDEX` is required to use this command, and `listProduct` shows a list of all the products with their index numbers.
+</div>
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from MyInsuRec's product list, it also **removes the product from any association with your clients**.
 </div>
 
 Examples:
-* `delProduct i/2`
+
+* Delete the product with index number 2
+    * `delProduct i/2`
 
 ### 5.4 General commands
 
