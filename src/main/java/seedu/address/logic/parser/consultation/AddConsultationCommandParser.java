@@ -37,8 +37,8 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
                 PREFIX_DESCRIPTION);
 
         ParserUtil.assertAllPrefixesPresent(
-                argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DATE_DAY, PREFIX_TIME,
-                PREFIX_DESCRIPTION);
+                argMultimap, AddConsultationCommand.MESSAGE_USAGE,
+                PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DATE_DAY, PREFIX_TIME, PREFIX_DESCRIPTION);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddConsultationCommand.MESSAGE_USAGE));

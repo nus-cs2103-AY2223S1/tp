@@ -21,8 +21,8 @@ public class SortReminderCommandParser implements Parser<SortReminderCommand> {
      */
     public SortReminderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT_CRITERIA);
-        ParserUtil.assertAllPrefixesPresent(argMultimap, PREFIX_SORT_CRITERIA);
-        ParserUtil.assertPrefixesPresentNotEmpty(argMultimap, PREFIX_SORT_CRITERIA);
+        ParserUtil.assertAllPrefixesPresent(argMultimap, SortReminderCommand.MESSAGE_USAGE, PREFIX_SORT_CRITERIA);
+        ParserUtil.assertPrefixesPresentNotEmpty(argMultimap, SortReminderCommand.MESSAGE_USAGE, PREFIX_SORT_CRITERIA);
 
         String criteria = argMultimap.getValue(PREFIX_SORT_CRITERIA).get();
         if (!criteria.equals(SortReminderCommand.CRITERIA_PRIORITY)

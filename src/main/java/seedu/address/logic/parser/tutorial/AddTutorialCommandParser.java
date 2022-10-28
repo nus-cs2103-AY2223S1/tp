@@ -35,8 +35,8 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE,
                         PREFIX_TIME, PREFIX_DATE_DAY);
 
-        ParserUtil.assertAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE,
-                PREFIX_TIME, PREFIX_DATE_DAY);
+        ParserUtil.assertAllPrefixesPresent(argMultimap, AddTutorialCommand.MESSAGE_USAGE,
+                PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_TIME, PREFIX_DATE_DAY);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             String s = argMultimap.getPreamble();
