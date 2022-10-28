@@ -510,6 +510,7 @@ General Commands
 | **Help**                    | `help`                                                                                                                                                                                                        |
 | **Exit application**        | `exit`                                                                                                                                                                                                        |
 
+
 Commands For Contacts
 
 | Action                    | Format, Examples                                                                                                                                                                                                              |
@@ -523,18 +524,20 @@ Commands For Contacts
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
 
+
 Commands For Policy
 
-| Action                     | Format, Examples                                                                                                                                                        |
-|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                         |        
-| **Add Policy**             | `addPolicy [ti/POLICY_TITLE] [cmp/POLICY_COMPANY] [cms/POLICY_COMMISSION] [cov/POLICY_COVERAGE]` <br> e.g.: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE`         |                                                                                                                         
-| **Delete Policy**          | `deletePolicy [INDEX of POLICY]<br> e.g. `deletePolicy 1`                                                                                                               |                                                                                                                                                                                             
-| **View policies**          | `policies`                                                                                                                                                              |
-| **View assigned policies** | `assign [INDEX of CONTACT] [INDEX of POLICY] [pr/PREMIUM_PAID] [sd/START_DATE] [ed/END_DATE]` <br>  `assignPolicy 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`             |
-| **Delete Assigned**        | `deleteAssigned [INDEX of CONTACT] [INDEX of POLICY]` <br> e.g. `deleteAssigned 1 1`                                                                                    |                                                                                                                                                                                                               
-| **List Assigned**          | `listAssigned`                                                                                                                                                          |
-| **View Income**            | `viewIncome [YEAR]`                                                                                                                                                     |                                                                                                                                                                                                               
+| Action                     | Format, Examples                                                                                                                                                |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                    |        
+| **Add Policy**             | `addPolicy [ti/POLICY_TITLE] [cmp/POLICY_COMPANY] [cms/POLICY_COMMISSION] [cov/POLICY_COVERAGE]` <br> e.g.: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
+| **Delete Policy**          | `deletePolicy [INDEX of POLICY]<br> e.g. `deletePolicy 1`                                                                                                       |                                                                                                                                                                                             
+| **View policies**          | `policies`                                                                                                                                                      |
+| **View assigned policies** | `assign [INDEX of CONTACT] [INDEX of POLICY] [pr/PREMIUM_PAID] [sd/START_DATE] [ed/END_DATE]` <br>  `assignPolicy 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`     |
+| **Delete Assigned**        | `deleteAssigned [INDEX of CONTACT] [INDEX of POLICY]` <br> e.g. `deleteAssigned 1 1`                                                                            |                                                                                                                                                                                                               
+| **List Assigned**          | `listAssigned`                                                                                                                                                  |
+| **View Income**            | `viewIncome [YEAR]`                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           |
+
 
 Commands For Events
 
@@ -545,6 +548,7 @@ Commands For Events
 | **Delete Event**  | `deleteEvent [INDEX]` <br> e.g.: `deleteEvent 1`                                                                                                                                                              |
 | **View events**   | `events`                                                                                                                                                                                                      |
 | **View calendar** | `calendar`                                                                                                                                                                                                    |
+|                   |                                                                                                                                                                                                               |
 
 
 Miscellaneous Commands
