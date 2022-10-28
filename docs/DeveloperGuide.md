@@ -164,7 +164,6 @@ How the parsing works:
 ### Model component
 
 **API** : [`Model.java`](https://https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
-
 <img src="images/ModelClassDiagram.png" width="800" />
 
 
@@ -183,25 +182,24 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **How Different Address Book Objects are Stored:** 
-
-The diagrams given below contains more details on how each `Buyer`, `Supplier`, 
+:information_source: **How Different Address Book Objects are Stored:**
+<br>The diagrams given below contains more details on how each `Buyer`, `Supplier`, 
 `Deliverer`, `Order` and `Pet` objects are stored in the Model component. 
 
-For more information on what each object 
-represents, refer to the [Glossary](#glossary) section.
-
+For more information on what each object represents, refer to the [Glossary](#glossary) section. </br>
+<br> 
 
 #### `Buyer` and `Deliverer` Class
 
 Both the `Buyer` and `Deliverer` classes inherit from the `Person` class and have an orders attribute. 
 Each order has an `UniqueId` for easier identification. Hence, the orders are stored as a collection of `UniqueId` 
 objects to easily access unique orders.
-
-Given below is the class diagram for the **`Buyer`** Class:
+</br>
+<br> Given below is the class diagram for the **`Buyer`** Class: </br>
 
 <img src="images/ModelBuyerObjectImplementation.png" width="600" />
 
+<br>
 
 #### `Supplier` Class
 
@@ -209,25 +207,27 @@ Similar to the `Buyer` and `Deliverer` class, the `Supplier` class inherits from
 an orders attribute, the `Supplier` class has a pets attribute to represent the pets sold by the `Supplier`.
 Similar to an order, each pet has an `UniqueId` for easier identification. Hence, the pets are stored as a collection of 
 `UniqueId` objects to easily access unique pets.
-
-Given below is the class diagram for the **`Supplier`** Class:
+</br>
+<br> Given below is the class diagram for the **`Supplier`** Class: </br>
 
 <img src="images/ModelSupplierObjectImplementation.png" width="600" />
 
+<br>
 
 #### `Order` Class
 
 The `Order` class consists of several attributes. The most important attribute to take note of is the Buyer as 
 every order should be made by a Buyer. Given below is the class diagram for the **`Order`** Class:
-
+</br>
 <img src="images/ModelOrderObjectImplementation.png" width="800" />
 
+<br>
 
 #### `Pet` Class
 
 The `Pet` class consists of several attributes. The most important attribute to take note of is the Supplier as
 every pet should be sold by a Supplier. Given below is the class diagram for the **`Pet`** Class:
-
+</br>
 <img src="images/ModelPetObjectImplementation.png" width=1000 />
 
 </div>
