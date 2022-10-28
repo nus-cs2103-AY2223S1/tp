@@ -1,7 +1,6 @@
 package seedu.address.model.util;
 
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -12,6 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 
+import seedu.address.MainApp;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.commission.Commission;
@@ -36,8 +36,7 @@ import seedu.address.storage.Storage;
  */
 public class SampleDataUtil {
     private static final Random random = new Random();
-    private static final String PLACEHOLDER_IMAGE_PATH = System.getProperty("user.dir")
-            + "/src/main/resources/images/placeholderart.png";
+    private static final String PLACEHOLDER_IMAGE_PATH = "/images/placeholderart.png";
 
     public static Customer[] getSampleCustomers(Storage storage) {
         Customer[] customers = new Customer[] {
@@ -92,8 +91,7 @@ public class SampleDataUtil {
                 new CompletionStatus(random.nextBoolean()),
                 new HashSet<>()).build(customer);
 
-        FileInputStream fis = new FileInputStream(PLACEHOLDER_IMAGE_PATH);
-        BufferedImage placeholderImage = ImageIO.read(fis);
+        BufferedImage placeholderImage = ImageIO.read(MainApp.class.getResourceAsStream(PLACEHOLDER_IMAGE_PATH));
         for (int j = 1; j <= 3; j++) {
             Path imageCopyPath = storage.getRandomImagePath();
             storage.saveImage(placeholderImage, imageCopyPath);
