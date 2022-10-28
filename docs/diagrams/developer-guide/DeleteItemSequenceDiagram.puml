@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant ":DeleteItemCommandParser" as DeleteItemCommandParser LOGIC_COLOR
+participant "d:DeleteItemCommand" as DeleteItemCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deletei 1")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseCommand("deletei 1")
+activate TrackOParser
+
+create DeleteItemCommandParser
+TrackOParser -> DeleteItemCommandParser
+activate DeleteItemCommandParser
+
+DeleteItemCommandParser --> TrackOParser
+deactivate DeleteItemCommandParser
+
+TrackOParser -> DeleteItemCommandParser : parse("1")
+activate DeleteItemCommandParser
+
+create DeleteItemCommand
+DeleteItemCommandParser -> DeleteItemCommand
+activate DeleteItemCommand
+
+DeleteItemCommand --> DeleteItemCommandParser : d
+deactivate DeleteItemCommand
+
+DeleteItemCommandParser --> TrackOParser : d
+deactivate DeleteItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteItemCommandParser -[hidden]-> TrackOParser
+destroy DeleteItemCommandParser
+
+TrackOParser --> LogicManager : d
+deactivate TrackOParser
+
+LogicManager -> DeleteItemCommand : execute()
+activate DeleteItemCommand
+
+DeleteItemCommand -> Model : deleteItem(1)
+activate Model
+
+Model --> DeleteItemCommand
+deactivate Model
+
+create CommandResult
+DeleteItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteItemCommand
+deactivate CommandResult
+
+DeleteItemCommand --> LogicManager : result
+deactivate DeleteItemCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteItemCommand -[hidden]-> TrackOParser
+destroy DeleteItemCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

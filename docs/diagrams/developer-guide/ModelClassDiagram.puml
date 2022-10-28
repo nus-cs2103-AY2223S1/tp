@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class "<<interface>>\nReadOnlyTrackO" as ReadOnlyTrackO
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nModel" as Model
+Class TrackO
+Class ModelManager
+Class UserPrefs
+
+Class InventoryList
+Class Item
+Class ItemName
+Class Description
+Class Quantity
+Class SellPrice
+Class CostPrice
+Class Tag
+
+Class OrderList
+Class Order {
+    - timeCreated: LocalDateTime
+    - isPaid: boolean
+    - isDelivered: boolean
+}
+class Name
+class Phone
+class Email
+class Address
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+TrackO .up.|> ReadOnlyTrackO
+
+ModelManager .up.|> Model
+Model .right.> ReadOnlyUserPrefs
+Model .left.> ReadOnlyTrackO
+ModelManager -left-> "1" TrackO
+ModelManager -right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+TrackO *--> "1" InventoryList
+InventoryList --> "~* all" Item
+Item *--> ItemName
+Item *--> Description
+Item *--> SellPrice
+Item *--> CostPrice
+Item *--> Quantity
+Item *--> "*" Tag
+
+TrackO *--> "1" OrderList
+OrderList --> "~* all" Order
+Order *--> Name
+Order *--> Phone
+Order *--> Email
+Order *--> Address
+
+ItemName -[hidden]right-> Description
+Description -[hidden]right-> Quantity
+Quantity -[hidden]right-> SellPrice
+
+ModelManager -->"~* filtered" Item
+ModelManager -->"~* filtered" Order
+@enduml
