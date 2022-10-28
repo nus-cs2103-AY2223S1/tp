@@ -11,7 +11,7 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 ---
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -19,23 +19,22 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data.<br>
+4. Double-click the file to start the app. A window which looks similar to the screenshot below should appear in a few 
+   seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+   open the help window, which contains a link to this document.<br>
    Some example commands you can try:
 
-   - `list members`
-   - `list tasks`
+   - `add member 1`
    - `add task "My First Task"`
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 ---
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -47,28 +46,26 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
     Otherwise, they will be treated as 2 separate words (i.e. `add member "two words"` indicates that you are
     adding the member named `two words`, however, `add member two words` is adding the member named `two` with some
     other argument `word`)
-- Double <kbd>Tab</kbd> to autocomplete string values (Coming soon!)
 - Arguments are delimited with flags (`add member "word" --email="sample@email.com"`)
 </div>
 
-### Viewing help : `help`
-
-Format:
-
-- `help`
+## Commands to Manage Teams
 
 ### Creating a new team `add team`
 
-Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name. The team name must consist only of alphanumeric characters (i.e., even spaces are not allowed).
+Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Team name must consist only of alphanumeric characters (i.e., **Spaces are NOT allowed**).
+</div>
 
 Format:
 
-- `add team -n TEAM_NAME [-d TEAM_DESCRIPTION]`
+- `add team TEAM_NAME [-d TEAM_DESCRIPTION]`
 
 Examples:
 
-- `add team -n CS2103` will create a new team by the name of "CS2103"
-- `add team -n CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
+- `add team CS2103` will create a new team by the name of "CS2103"
+- `add team CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems"
   as description
 
 ### Set a new team `set team`
@@ -107,6 +104,8 @@ Examples:
 
 - `delete team CS2103` will delete the team with the name "CS2103"
 
+## Commands to Manage Members
+
 ### Adding a new member to the team `add member`
 
 Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
@@ -131,6 +130,26 @@ Examples:
 
 - `delete member 2` will delete the second member of the current team.
 
+### Find members : `find member`
+Finds all members in the current team by name or by email and displays them in the member list.
+
+If multiple words are provided, separated by spaces, e.g. `find member -n Alex Beatrice`, members with names containing
+**either** the words "Alex" or "Beatrice" will be returned.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The search is **not** case sensitive.
+In other words, `find member -n alex` and `find member -n Alex` will return the same results.
+</div>
+
+Format:
+* `find member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
+
+Examples
+* `find member -n Alex` finds team members with **names** containing the word "Alex".
+* `find member -n Alex Beatrice` finds team members with **names** containing **either** of the words "Alex" or "Beatrice".
+* `find member -e alexyeoh`  finds team members with **emails** containing "alexyeoh".
+
+
 ### Listing all members of the team : `list members`
 
 View all the members currently in the team, in the form of a list.
@@ -139,19 +158,35 @@ Format:
 
 - `list members`
 
+### Sort members : `sort members`
+Sorts all members in the current team by name and displays them in the member list
+
+Format:
+* `sort members ORDER`
+
+Examples
+* `sort members asc` sorts the team members in **ascending** order.
+* `sort members dsc` sorts the team members in **descending** order.
+* `sort members res` **resets** the order of the team members shown.
+
+## Commands to Manage Tasks
+
 ### Add task to team : `add task`
 
 Add a new task to the current team. The task name is compulsory, while the other fields such as assignee index and
 deadline are optional.
 
+Multiple assignees can be assigned at one time, by specifying the indices of each of the members, separated by spaces.
+e.g. `add task "Merge PR" -a 1 3 4` will assign members 1, 3 and 4.
+
 Format:
-* `add task -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d "DEADLINE"]`
+* `add task "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
 
 Examples:
 
-* `add task -n "Merge PR" -a 1 -d "2022-12-02 23:59"` will add a task with the name "Merge PR", assign the task to the
+* `add task "Merge PR" -a 1 -d 2022-12-02 23:59` will add a task with the name "Merge PR", assign the task to the
 first member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's task list.
-* `add task -n "Review PR" -a 1 3 -d "2022-12-02 23:59"` will add a task with the name "Review PR", assign the task
+* `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` will add a task with the name "Review PR", assign the task
 to the first and third member in the team list and set the deadline "02-Dec-2022 23:59", to the current team's
 task list.
 
@@ -160,16 +195,19 @@ task list.
 Edits a specified task in the current team. The task index is compulsory, while the other fields are optional and
 will be overwritten accordingly.
 
+Multiple assignees can be assigned at one time, by specifying the indices of each of the members, separated by spaces.
+e.g. `edit task 1 -a 1 3 4` will assign members 1, 3 and 4.
+
 Format:
 
-- `edit task TASK_INDEX -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d "DEADLINE"]`
+- `edit task TASK_INDEX -n "TASK_NAME" [-a ASSIGNEE_INDEX] [-d DEADLINE]`
 
 Examples:
 
-* `edit task 1 -n "Merge PR" -a 1 -d "2022-12-02 23:59"` will edit the first task in the current team's task
+* `edit task 1 "Merge PR" -a 1 -d 2022-12-02 23:59` will edit the first task in the current team's task
 list, setting the name as "Merge PR", setting the assignee as the first member in the team list and deadline
 as "02-Dec-2022 23:59".
-* `edit task 1 -n "Update UG" -d "2022-12-02 23:59"` will edit the first task in the current team's task
+* `edit task 1 "Update UG" -d 2022-12-02 23:59` will edit the first task in the current team's task
 list, setting the name as "Update UG" and changing the deadline as "02-Dec-2022 23:59". The assignees are not changed
 in this case.
 
@@ -178,7 +216,7 @@ in this case.
 Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
 the task is not found in the user’s team.
 
-Format: `assign task TASK_INDEX -n MEMBER_INDEX`
+Format: `assign task TASK_INDEX -a MEMBER_INDEX`
 
 Examples:
 
@@ -207,7 +245,7 @@ Format: `set deadline TASK_INDEX DEADLINE`
 
 Examples:
 
-- `set deadline 1 "2023-12-25 23:59"` will set the deadline for the first task on the task list as 25 December 2023
+- `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023
 11.59pm.
 
 ### Delete task from team : `delete task`
@@ -223,20 +261,9 @@ Examples:
 
 - `delete task 1` will delete the first task of the current team.
 
-### List tasks in team: `list tasks`
-
-View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or
-remaining tasks.
-
-Format:
-
-- `list tasks` will list all the tasks of the current team.
-- `list tasks -i` will list all the incomplete tasks of the current team.
-- `list tasks -c` will list all the completed tasks of the current team.
-
 ### Mark tasks as done: `mark`
 
-Mark a specified task as done.
+Mark a specified task as done. To undo this command, see the `unmark` command below.
 
 Format:
 
@@ -246,6 +273,51 @@ Examples:
 
 - `mark 1` will mark the first task in the team as done.
 
+### Unmark tasks as done: `unmark`
+
+Mark a specified task as incomplete. This will undo the `mark` command.
+
+Format:
+
+- `unmark INDEX`
+
+Examples:
+
+- `unmark 1` will mark the first task in the team as incomplete.
+
+### Find tasks : `find task`
+Find all tasks in the current team by name and displays them in the task list.
+
+
+If multiple words are provided, separated by spaces, e.g. `find member -n Alex Beatrice`, members with names containing
+**either** the words "Alex" or "Beatrice" will be returned.
+
+To reset the task list, see `list tasks` command below.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The search is **not** case sensitive.
+In other words, `find task -n project` and `find task -n Project` will return the same results.
+</div>
+
+Format:
+* `find task -n TASK_NAME`
+
+Examples
+* `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
+
+### List tasks in team: `list tasks`
+
+View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or
+remaining tasks.
+
+The command `list tasks` can also be used to view all tasks again after the `find task` command has been run.
+
+Format:
+
+- `list tasks` will list all the tasks of the current team.
+- `list tasks -i` will list all the incomplete tasks of the current team.
+- `list tasks -c` will list all the completed tasks of the current team.
+
 ### View summary of task assignments in team: `summary`
 
 View the number of tasks assigned to each user in the team.
@@ -253,6 +325,28 @@ View the number of tasks assigned to each user in the team.
 Format:
 
 - `summary`
+
+### Sort tasks : `sort tasks`
+Sorts all tasks in the current team by name and displays them in the task list
+
+Format:
+* `sort tasks ORDER`
+
+Examples
+* `sort tasks asc` sorts the tasks in **ascending** order.
+* `sort tasks dsc` sorts the tasks in **descending** order.
+* `sort tasks res` **resets** the order of the tasks shown.
+
+### Filter tasks by team member : `tasksof`
+Find all tasks in the current team assigned to a particular team member.
+
+Format:
+* `tasksof MEMBER_INDEX`
+
+Examples
+* `tasksof 1` will show all tasks assigned to the first member in the team's member list.
+
+## Commands to Manage Links / URLs
 
 ### Add a new link : `add link`
 
@@ -264,7 +358,7 @@ Format:
 
 Examples:
 
-- `add link -n google -l "https://google.com`
+- `add link -n google -l https://google.com`
 
 ### Edit an existing link : `edit link`
 
@@ -276,7 +370,7 @@ Format:
 
 Examples:
 
-- `edit link 1 -n facebook -l "https://facebook.com`
+- `edit link 1 -n facebook -l https://facebook.com`
 
 - ### Delete an existing link : `delete link`
 
@@ -290,55 +384,7 @@ Examples:
 
 - `delete link 1`
 
-### Find members : `find member`
-Finds all members in the current team by name or by email and displays them in the member list.
-
-Format:
-* `find member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
-
-Examples
-* `find member -n Alex`
-* `find member -e alexyeoh`
-
-### Find tasks : `find task`
-Find all tasks in the current team by name and displays them in the task list.
-
-Format:
-* `find task -n TASK_NAME`
-
-Examples
-* `find task -n User Guide`
-
-### Sort members : `sort member`
-Sorts all members in the current team by name and displays them in the member list
-
-Format:
-* `sort member ORDER`
-
-Examples
-* `sort member asc`
-* `sort member dsc`
-* `sort member res`
-
-### Sort tasks : `sort task`
-Sorts all tasks in the current team by name and displays them in the task list
-
-Format:
-* `sort task ORDER`
-
-Examples
-* `sort task asc`
-* `sort task dsc`
-* `sort task res`
-
-### Filter tasks by team member : `tasksof`
-Find all tasks in the current team assigned to a particular team member.
-
-Format:
-* `tasksof MEMBER_INDEX`
-
-Examples
-* `tasksof 1` will show all tasks assigned to the first member in the team's member list.
+## Miscellaneous Commands
 
 ### Clearing all entries : `clear`
 
@@ -364,19 +410,27 @@ Format:
 
 - `exit`
 
+### Viewing help : `help`
+
+Shows the URL to this help page, which will list all available commands.
+
+Format:
+
+- `help`
+
 ### Saving the data
 
-TruthTable data are saved in the hard disk automatically after any command that changes the data. There is no need to
+TruthTable data is saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
 ### Editing the data file
 
-TruthTable data are saved as a JSON file `[JAR file location]/data/truthtable.json`. Advanced users are welcome to
+TruthTable data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
 update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TruthTable will discard all data and start with an empty
-data file at the next run.
+data file on the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -385,7 +439,7 @@ _Details coming soon ..._
 
 ---
 
-## FAQ
+# FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -393,7 +447,7 @@ the data of your previous TruthTable home folder.
 
 ---
 
-## Command summary
+# Command summary
 
 | Action | Format, Examples |
 | ------ | ---------------- |
