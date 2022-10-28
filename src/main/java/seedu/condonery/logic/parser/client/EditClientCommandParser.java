@@ -2,6 +2,7 @@ package seedu.condonery.logic.parser.client;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDPROPERTIES;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,8 +35,9 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
     @Override
     public EditClientCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_IMAGE_UPLOAD);
                 ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_INTERESTEDPROPERTIES);
+                        PREFIX_TAG, PREFIX_INTERESTEDPROPERTIES, PREFIX_IMAGE_UPLOAD);
         EditClientCommand.EditClientDescriptor editClientDescriptor =
                 new EditClientCommand.EditClientDescriptor();
         Index index;
@@ -48,6 +50,7 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
         }
 
         if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+                && !argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()
                 && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
             throw new ParseException(EditClientCommand.MESSAGE_NOT_EDITED);
         }
@@ -62,7 +65,11 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
 
         if (argMultimap.getValue(PREFIX_INTERESTEDPROPERTIES).isPresent()) {
             editClientDescriptor.setInterestedProperties(
-                    ParserUtil.parseProperties(argMultimap.getAllValues(PREFIX_INTERESTEDPROPERTIES)));
+                ParserUtil.parseProperties(argMultimap.getAllValues(PREFIX_INTERESTEDPROPERTIES)));
+        }
+
+        if (argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()) {
+            return new EditClientCommand(index, editClientDescriptor, true);
         }
 
         return new EditClientCommand(index, editClientDescriptor);

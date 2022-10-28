@@ -57,9 +57,7 @@ public class Property {
     }
 
     public Path getImagePath() {
-        if (imageDirectoryPath == null) {
-            return null;
-        }
+        requireAllNonNull(imageDirectoryPath);
         return imageDirectoryPath.resolve("property-" + getCamelCaseName());
     }
 

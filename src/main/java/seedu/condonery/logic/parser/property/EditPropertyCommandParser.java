@@ -3,6 +3,7 @@ package seedu.condonery.logic.parser.property;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -39,6 +40,8 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
     @Override
     public EditPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG,
+                        PREFIX_PROPERTY_TYPE, PREFIX_IMAGE_UPLOAD, PREFIX_INTERESTEDCLIENTS);
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE,
                         PREFIX_TAG, PREFIX_INTERESTEDCLIENTS, PREFIX_PROPERTY_TYPE, PREFIX_PROPERTY_STATUS);
         EditPropertyDescriptor editPropertyDescriptor =
@@ -57,6 +60,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
             && !argMultimap.getValue(PREFIX_PRICE).isPresent()
             && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
             && !argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()
+            && !argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()
             && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
             throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
         }
@@ -93,6 +97,10 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_STATUS,
                         EditPropertyCommand.MESSAGE_USAGE));
             }
+        }
+
+        if (argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()) {
+            return new EditPropertyCommand(index, editPropertyDescriptor, true);
         }
 
         return new EditPropertyCommand(index, editPropertyDescriptor);

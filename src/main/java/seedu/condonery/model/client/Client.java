@@ -78,9 +78,7 @@ public class Client {
     }
 
     public Path getImagePath() {
-        if (imageDirectoryPath == null) {
-            return null;
-        }
+        requireAllNonNull(imageDirectoryPath);
         return imageDirectoryPath.resolve("client-" + getCamelCaseName());
     }
 
