@@ -2,9 +2,6 @@
 layout: page
 title: User Guide
 ---
-
-# GithubContact
-
 ![Ui](images/ug/Ui.png)
 
 GithubContact is an address book **integrated with Github's Public API**, targeted at software engineering project
@@ -13,6 +10,8 @@ managers to help them communicate and collaborate with their teams smoothly.
 This guide contains all you need to get started on working with GithubContact.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 1. [Getting Started](#getting-started)
 2. [Command Summary](#command-summary)
@@ -31,6 +30,8 @@ This guide contains all you need to get started on working with GithubContact.
 5. [Prefix Aliases](#prefix-aliases)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Getting Started
 
@@ -56,6 +57,8 @@ This guide contains all you need to get started on working with GithubContact.
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
@@ -101,6 +104,8 @@ This guide contains all you need to get started on working with GithubContact.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 #### Add a person : `add`
@@ -119,6 +124,8 @@ Before the command is executed:
 
 After the command is executed:
 ![after adding](images/ug/add_after.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Delete a Person : `delete`
 
@@ -139,6 +146,8 @@ Before the command is executed:
 
 After the command is executed:
 ![after deleting](images/ug/delete_after.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Find a Person : `find`
 
@@ -166,6 +175,7 @@ Before the command is executed:
 After the command is executed:
 ![after find](images/ug/find_after.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Sort the list of Persons : `sort`
 
@@ -184,6 +194,8 @@ Before the command is executed:
 After the command is executed:
 ![after sort](images/ug/sort_after.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Reset the list of persons: `reset`
 
 Resets the persons list.
@@ -201,6 +213,8 @@ After executing a [`find`](#find-a-person--find) command.
 
 After `reset` is executed:
 ![reset](images/ug/reset.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Show a Person's Details : `<ENTER>` or double click
 
@@ -231,6 +245,8 @@ Step 2: Navigate to the person using the arrow keys.
 Step 3: Press `<ENTER>` to enter the detail page.
 ![step 3](images/ug/detail_step3.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Set a Person's Details : `set`
 
 Set attribute of a person.
@@ -250,6 +266,8 @@ Before the command is executed:
 
 After the command is executed:
 ![after set](images/ug/set_after.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Delete a Person's Details: `delete`
 
@@ -279,6 +297,8 @@ Before the command is executed, inside a person's contact detail page:
 After the command is executed:
 ![after delete attr](images/ug/delete_attr_after.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Return to previous page : `back` or `<ESC>`
 
 Returns to the previously selected page.
@@ -295,6 +315,8 @@ Before the command is executed, in the detail help page:
 
 After the command is executed:
 ![after back](images/ug/back_after.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Show help page : `help`
 
@@ -322,12 +344,16 @@ After executing `help delete`:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Prefix Aliases
 
