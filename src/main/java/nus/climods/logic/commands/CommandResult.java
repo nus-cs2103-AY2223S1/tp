@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import nus.climods.model.Model;
-
 /**
  * Represents the result of a command execution.
  */
@@ -39,14 +37,13 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, and other fields set to their
      * default value.
      */
-    public CommandResult(String feedbackToUser, String commandWord,
-                         Model model) {
+    public CommandResult(String feedbackToUser, String commandWord) {
         this(feedbackToUser, false, false);
 
         switch (commandWord) {
         case (AddCommand.COMMAND_WORD):
-
         case (DeleteCommand.COMMAND_WORD):
+        case (PickCommand.COMMAND_WORD):
             isSave = true;
             break;
         default:

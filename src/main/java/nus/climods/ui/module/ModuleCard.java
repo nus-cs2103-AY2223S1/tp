@@ -1,15 +1,28 @@
 package nus.climods.ui.module;
 
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.openapitools.client.model.Lesson;
+import org.openapitools.client.model.SemestersEnum;
+
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import nus.climods.model.module.LessonTypeEnum;
 import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
+import nus.climods.ui.module.components.LessonPill;
 import nus.climods.ui.module.components.ModuleCreditsPill;
 import nus.climods.ui.module.components.SemesterPill;
 
@@ -56,6 +69,9 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label preclusion;
 
+    @FXML
+    private VBox lessonInfo;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -77,6 +93,9 @@ public class ModuleCard extends UiPart<Region> {
         expandedModuleInfo.managedProperty().bind(expandedModuleInfo.visibleProperty());
         // by default expanded is not visible
         expandedModuleInfo.setVisible(false);
+        // add lesson info in a similar way as expanded module info
+        lessonInfo.managedProperty().bind(lessonInfo.visibleProperty());
+        lessonInfo.setVisible(false);
 
         if (module.isFocused()) {
             showDetailedModuleInformation();
@@ -91,6 +110,55 @@ public class ModuleCard extends UiPart<Region> {
 
         prerequisite.setText(module.getPrerequisite());
         preclusion.setText(module.getPreclusion());
+        showLessonInformation();
+    }
+
+    private void showLessonInformation() {
+        lessonInfo.setVisible(true);
+        for (SemestersEnum sem : SemestersEnum.values()) {
+            HashMap<LessonTypeEnum, Module.ModuleLessonIdMap> lessons = module.getLessons(sem);
+            if (lessons == null) {
+                continue;
+            }
+            lessonInfo.getChildren().addAll(new SemesterPill(sem), addSemesterLessons(lessons));
+        }
+    }
+
+    private Accordion addSemesterLessons(HashMap<LessonTypeEnum, Module.ModuleLessonIdMap> sem) {
+        Accordion a = new Accordion();
+        a.setPadding(new Insets(10, 0, 10, 0));
+        a.getPanes()
+                .addAll(sem.entrySet().stream()
+                        .map(entry -> addLessonType(entry.getKey(), entry.getValue()))
+                        .collect(Collectors.toList()));
+        return a;
+    }
+
+    private TitledPane addLessonType(LessonTypeEnum lessonType, Module.ModuleLessonIdMap slots) {
+        TitledPane pane = new TitledPane();
+        ScrollPane sc = new ScrollPane();
+        pane.setText(String.format("%s: %s", module.getCode(), lessonType));
+        sc.setContent(addLessonSlot(slots));
+        sc.setFitToWidth(true);
+        sc.setFitToHeight(true);
+        pane.setContent(sc);
+        return pane;
+    }
+
+    private FlowPane addLessonSlot(Module.ModuleLessonIdMap slots) {
+        FlowPane fc = new FlowPane();
+        fc.getChildren().addAll(slots.entrySet().stream()
+                .sorted(Comparator.comparing(Map.Entry::getKey))
+                .map(entry -> addSlot(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList()));
+        fc.setHgap(4);
+        fc.setVgap(8);
+        fc.setPadding(new Insets(10));
+        return fc;
+    }
+
+    private LessonPill addSlot(String id, List<Lesson> lessons) {
+        return new LessonPill(id, lessons);
     }
 
     @Override

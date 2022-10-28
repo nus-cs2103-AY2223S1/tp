@@ -39,12 +39,10 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // TODO: Implement filtering for saved modules
-        // Support for --user flag
+
         model.setFilteredModuleList(new CodeContainsKeywordsPredicate(facultyCode));
 
         return new CommandResult(String.format(MESSAGE_MODULES_LISTED_OVERVIEW,
-                model.getFilteredModuleList().size()),
-                COMMAND_WORD, model);
+                model.getFilteredModuleList().size()), COMMAND_WORD);
     }
 }

@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 import org.openapitools.client.model.SemestersEnum;
 
+import nus.climods.model.module.LessonTypeEnum;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -13,6 +15,8 @@ public class ParserUtil {
 
     // Validates user entered module codes at parsing stage.
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("[A-Z]{0,3}\\d{4}");
+    // Validates user entered class number at parsing stage.
+    public static final Pattern CLASS_NO_PATTERN = Pattern.compile("[0-9]{0,2}");
     // Validates user flag, case insensitive
     public static final Pattern USER_FLAG_PATTERN = Pattern.compile("(?i)--user(?-i)");
     // Validates faculty code, case insensitive and matches between 2-3 chars
@@ -90,6 +94,24 @@ public class ParserUtil {
         return Optional.of(input);
     }
 
+    /**
+     * Parses Lesson Type according to user input
+     *
+     * @param input Input string from user representing a lesson type
+     * @return Empty Optional if input string does not pass initial validation check, else Optional of the entered
+     *               String
+     */
+    public static Optional<LessonTypeEnum> parseLessonType(String input) {
+        String toCheck = input.trim().toUpperCase();
+
+        LessonTypeEnum s1 = LessonTypeEnum.fromName(toCheck);
+
+        if (!s1.equals(LessonTypeEnum.UNSUPPORTED)) {
+            return Optional.of(s1);
+        }
+
+        return Optional.empty();
+    }
     /**
      * Parse semester details according to user input
      * @param input Input string from user containing semester details

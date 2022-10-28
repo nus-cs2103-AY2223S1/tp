@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 <HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" maxHeight="1.7976931348623157E308"
   maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/18"
   fx:id="cardPane">
@@ -18,8 +19,12 @@
           text="\$moduleCode" fx:id="moduleCode"/>
           <FlowPane alignment="CENTER_LEFT" fx:id="ayData"/>
       </HBox>
-      <Label text="\$lecture" fx:id="lecture"/>
-      <Label text="\$tutorial" fx:id="tutorial"/>
+      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15; -fx-font-weight: bold;" text="Chosen Lessons:">
+        <VBox.margin>
+          <Insets bottom="5.0" top="5.0" />
+        </VBox.margin>
+      </Text>
+      <Label text="\$lessonsData" fx:id="lessonsData"/>
       <padding>
         <Insets bottom="5" left="15" right="5" top="5"/>
       </padding>

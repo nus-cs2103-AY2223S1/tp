@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.openapitools.client.model.SemestersEnum;
 
 import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.module.UniqueUserModuleList;
@@ -66,9 +67,9 @@ class JsonUserModuleListStorageTest {
     public void saveAndReadUserModuleList_success() throws Exception {
         Path filePath = testFolder.resolve("TempUserModuleList1.json");
         UniqueUserModuleList data = new UniqueUserModuleList();
-        data.add(new UserModule("CS2103", "Friday 1400-1500", "Friday 1600-1700", "S1"));
-        data.add(new UserModule("CS2030S", "Friday 1400-1500", "Monday 1600-1700", "S1"));
-        data.add(new UserModule("CS2040S", "Tuesday 1400-1500", "Monday 1600-1700", "ST2"));
+        data.add(new UserModule("CS2103", SemestersEnum.S1));
+        data.add(new UserModule("CS2030S", SemestersEnum.S1));
+        data.add(new UserModule("CS2040S", SemestersEnum.S2));
 
         JsonUserModuleListStorage jsonUserModuleListStorage = new JsonUserModuleListStorage(filePath);
 

@@ -4,22 +4,23 @@ import java.util.HashMap;
 
 import org.openapitools.client.model.SemestersEnum;
 
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  * Class representing module a chosen by a user
  */
 public class UserModule {
 
+    public final SimpleStringProperty lessonsDataDisplay = new SimpleStringProperty("");
     private String code;
     private SemestersEnum selectedSemester;
-    private String tutorial = "<Not Selected>"; // TODO placeholder
-    private String lecture = "<Not Selected>"; // TODO placeholder
+    private HashMap<LessonTypeEnum, String> lessons = new HashMap<>();
 
     //Hashmap to store Lesson Data
     private HashMap<LessonType, String> lessons = new HashMap<>();
 
     /**
-     * Creates a UserModule
+     * Creates a user module
      *
      * @param moduleCode module code
      * @param selectedSemester semester
@@ -30,26 +31,34 @@ public class UserModule {
     }
 
     /**
-     * Creates a UserModule
+     * Creates a user module
      *
-     * @param moduleCode           string for the module code
-     * @param lecture              selected lecture slot
-     * @param tutorial             selected tutorial slot
-     * @param selectedSemesterStr  selected semester
+     * @param moduleCode module code
+     * @param selectedSemester semester
+     * @param lessons lessons
      */
-    public UserModule(String moduleCode, String lecture, String tutorial, String selectedSemesterStr) {
+    public UserModule(String moduleCode, SemestersEnum selectedSemester, HashMap<LessonTypeEnum, String> lessons) {
         this.code = moduleCode;
-        this.selectedSemester = SemestersEnum.fromValue(selectedSemesterStr);
-
-        this.lecture = lecture;
-        this.tutorial = tutorial;
+        this.selectedSemester = selectedSemester;
+        this.lessons = lessons;
+        updateLessonDataDisplay();
     }
 
 
     /**
      * Constructor used for UserModuleStub
      */
-    protected UserModule() {}
+    protected UserModule() {
+    }
+
+    private void updateLessonDataDisplay() {
+        StringBuilder str = new StringBuilder();
+        for (LessonTypeEnum k : lessons.keySet()) {
+            str.append(k.name()).append(" ").append(lessons.get(k)).append("\n");
+        }
+
+        lessonsDataDisplay.set(str.toString());
+    }
 
     /**
      * Allows user to set Lessons type, storing and updating them in the HashMap.
@@ -95,24 +104,19 @@ public class UserModule {
         return this.selectedSemester;
     }
 
-    // TEMP
-    public String getTutorial() {
-        return this.tutorial;
+    public HashMap<LessonTypeEnum, String> getLessons() {
+        return lessons;
     }
 
-    // TEMP
-    public void setTutorial(String tutorial) {
-        this.tutorial = tutorial;
-    }
-
-    // TEMP
-    public String getLecture() {
-        return this.lecture;
-    }
-
-    // TEMP
-    public void setLecture(String lecture) {
-        this.lecture = lecture;
+    /**
+     * Add a lesson to module
+     *
+     * @param lessonType       lesson type
+     * @param lessonIdWithTime lesson id
+     */
+    public void addLessons(LessonTypeEnum lessonType, String lessonIdWithTime) {
+        lessons.put(lessonType, lessonIdWithTime);
+        updateLessonDataDisplay();
     }
 
     /**
@@ -137,6 +141,6 @@ public class UserModule {
 
         UserModule otherModule = (UserModule) other;
         return code.equals(otherModule.getCode()) && selectedSemester.equals(otherModule.selectedSemester)
-            && tutorial.equals(otherModule.tutorial) && lecture.equals(otherModule.lecture);
+            && lessons.equals(otherModule.lessons);
     }
 }

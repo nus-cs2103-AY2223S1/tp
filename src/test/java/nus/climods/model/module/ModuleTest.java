@@ -38,52 +38,54 @@ class ModuleTest {
     }
 
     @Test
-    public void test_moduleGetLessonTypes_success() {
-        Set<LessonType> lessonTypes = testModuleCS1101S.getLessonTypes(SemestersEnum.S1);
+    public void test_moduleGetLessonTypeEnums_success() {
+        Set<LessonTypeEnum> lessonTypes = testModuleCS1101S.getLessonTypeEnums(SemestersEnum.S1);
 
-        assertEquals(Set.of(LessonType.LEC, LessonType.REC, LessonType.TUT), lessonTypes);
+        assertEquals(Set.of(LessonTypeEnum.LEC, LessonTypeEnum.REC, LessonTypeEnum.TUT), lessonTypes);
     }
 
     @Test
-    public void test_moduleHasLessonType_success() {
-        assertTrue(testModuleCS2103.hasLessonType(LessonType.TUT));
-        assertTrue(testModuleCS2103.hasLessonType(LessonType.LEC));
-        assertFalse(testModuleCS2103.hasLessonType(LessonType.LAB));
+    public void test_moduleHasLessonTypeEnum_success() {
+        assertTrue(testModuleCS2103.hasLessonTypeEnum(LessonTypeEnum.TUT));
+        assertTrue(testModuleCS2103.hasLessonTypeEnum(LessonTypeEnum.LEC));
+        assertFalse(testModuleCS2103.hasLessonTypeEnum(LessonTypeEnum.LAB));
     }
 
     @Test
-    public void test_moduleSelectableLessonTypes_correctLessonTypesFound() {
-        Set<LessonType> selectableLessonTypes = testModuleCS1101S.getSelectableLessonTypes(SemestersEnum.S1);
+    public void test_moduleSelectableLessonTypeEnums_correctLessonTypeEnumsFound() {
+        Set<LessonTypeEnum> selectableLessonTypeEnums = testModuleCS1101S
+                .getSelectableLessonTypeEnums(SemestersEnum.S1);
 
         // Note: CS1101S has 2 lecture slots, but it comes as a set, therefore it is not selectable
-        assertEquals(Set.of(LessonType.TUT, LessonType.REC), selectableLessonTypes);
+        assertEquals(Set.of(LessonTypeEnum.TUT, LessonTypeEnum.REC), selectableLessonTypeEnums);
     }
 
     @Test
-    public void test_moduleUnselectableLessonTypes_correctLessonTypesFound() {
-        Set<LessonType> unselectableLessonTypes = testModuleCS1101S.getUnselectableLessonTypes(SemestersEnum.S1);
+    public void test_moduleUnselectableLessonTypeEnums_correctLessonTypeEnumsFound() {
+        Set<LessonTypeEnum> unselectableLessonTypeEnums = testModuleCS1101S
+                .getUnselectableLessonTypeEnums(SemestersEnum.S1);
 
-        assertEquals(Set.of(LessonType.LEC), unselectableLessonTypes);
+        assertEquals(Set.of(LessonTypeEnum.LEC), unselectableLessonTypeEnums);
     }
 
     @Test
     public void test_moduleGetLessons_correctNumber() {
-        HashMap<LessonType, Module.ModuleLessonIdMap> lessonsMap1 = testModuleCS1101S.getLessons(SemestersEnum.S1);
-        HashMap<LessonType, Module.ModuleLessonIdMap> lessonsMap2 = testModuleCS1101S.getLessons(SemestersEnum.S2);
+        HashMap<LessonTypeEnum, Module.ModuleLessonIdMap> lessonsMap1 = testModuleCS1101S.getLessons(SemestersEnum.S1);
+        HashMap<LessonTypeEnum, Module.ModuleLessonIdMap> lessonsMap2 = testModuleCS1101S.getLessons(SemestersEnum.S2);
 
-        assertEquals(106, lessonsMap1.get(LessonType.TUT).size());
-        assertEquals(6, lessonsMap2.get(LessonType.TUT).size());
-        assertEquals(35, lessonsMap1.get(LessonType.REC).size());
-        assertEquals(3, lessonsMap2.get(LessonType.REC).size());
+        assertEquals(106, lessonsMap1.get(LessonTypeEnum.TUT).size());
+        assertEquals(6, lessonsMap2.get(LessonTypeEnum.TUT).size());
+        assertEquals(35, lessonsMap1.get(LessonTypeEnum.REC).size());
+        assertEquals(3, lessonsMap2.get(LessonTypeEnum.REC).size());
         // Note: There are 2 lecture slots in S1, but they are under the same lesson id,
         //       therefore they are considered as one lesson
-        assertEquals(1, lessonsMap1.get(LessonType.LEC).size());
-        assertEquals(1, lessonsMap2.get(LessonType.LEC).size());
+        assertEquals(1, lessonsMap1.get(LessonTypeEnum.LEC).size());
+        assertEquals(1, lessonsMap2.get(LessonTypeEnum.LEC).size());
     }
 
     @Test
     public void test_moduleHasLessonId() {
-        assertTrue(testModuleCS2103.hasLessonId("06", SemestersEnum.S1, LessonType.TUT));
-        assertFalse(testModuleCS2103.hasLessonId("0X", SemestersEnum.S1, LessonType.TUT));
+        assertTrue(testModuleCS2103.hasLessonId("06", SemestersEnum.S1, LessonTypeEnum.TUT));
+        assertFalse(testModuleCS2103.hasLessonId("0X", SemestersEnum.S1, LessonTypeEnum.TUT));
     }
 }

@@ -26,11 +26,9 @@ public class SavedModuleCard extends UiPart<Region> {
     @FXML
     private Label moduleCode;
     @FXML
-    private Label tutorial;
-    @FXML
-    private Label lecture;
-    @FXML
     private FlowPane ayData;
+    @FXML
+    private Label lessonsData;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -38,9 +36,9 @@ public class SavedModuleCard extends UiPart<Region> {
     public SavedModuleCard(UserModule module) {
         super(FXML);
         this.module = module;
+
         moduleCode.setText(module.getCode());
-        tutorial.setText(module.getLessons());
-        lecture.setText(module.getLecture());
+        lessonsData.textProperty().bind(module.lessonsDataDisplay);
         ayData.getChildren()
             .add(new SemesterPill(module.getSelectedSemester(), AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR));
     }

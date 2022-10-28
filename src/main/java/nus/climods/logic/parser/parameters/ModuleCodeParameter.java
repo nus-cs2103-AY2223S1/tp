@@ -11,7 +11,6 @@ public class ModuleCodeParameter extends PositionalParameter<String> {
     public static final String PARSE_EXCEPTION_MESSAGE = "Invalid module code: %s";
     private static final int MODULE_CODE_INDEX = 0;
 
-
     /**
      * Creates a ModuleCodeParameter with argumentsString
      *
