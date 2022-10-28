@@ -6,8 +6,6 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
-import javax.lang.model.type.NullType;
-
 /**
  * Tests that a {@code Person} matches any of the keywords given.
  */
@@ -70,8 +68,8 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     private double findSimilarity(String x, String y) {
         double maxLength = Double.max(x.length(), y.length());
         if (maxLength > 0) {
-            assert ((maxLength - getLevenshteinDist(x, y)) / maxLength) <= 1 :
-                    "findSimilarity method not working properly";
+            assert ((maxLength - getLevenshteinDist(x, y)) / maxLength) <= 1
+                    : "findSimilarity method not working properly";
             return (maxLength - getLevenshteinDist(x, y)) / maxLength;
         }
         return 1.0;
