@@ -18,7 +18,7 @@ public class ViewPatientCommand extends Command {
     public static final String COMMAND_WORD = "focus";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
-            + ": Show a patient's details.\n"
+            + ": Shows a patient's full details.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2";
 

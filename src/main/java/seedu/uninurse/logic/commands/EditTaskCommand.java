@@ -21,7 +21,7 @@ import seedu.uninurse.model.task.TaskList;
 public class EditTaskCommand extends EditGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_TASK_INDEX
-            + ": Edit a task of a patient.\n"
+            + ": Edits a task of a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_OPTION_TASK_INDEX + " TASK_INDEX "
             + PREFIX_TASK_DESCRIPTION + "<TASK_DESCRIPTION> | <DATE TIME> | <INTERVAL TIME_PERIOD>\n"

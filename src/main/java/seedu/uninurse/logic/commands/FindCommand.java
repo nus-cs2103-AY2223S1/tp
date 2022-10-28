@@ -22,7 +22,7 @@ import seedu.uninurse.model.person.PatientMatchPredicate;
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find all patients whose details contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients whose details contain any of "
             + "the specified keywords (case-insensitive).\n"
             + "Format: [KEYWORD]... "
             + "[" + PREFIX_PHONE + "PHONE]... "

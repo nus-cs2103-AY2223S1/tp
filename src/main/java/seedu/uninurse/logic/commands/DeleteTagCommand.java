@@ -2,8 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TAG_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TAG_INDEX;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import seedu.uninurse.model.tag.TagList;
 public class DeleteTagCommand extends DeleteGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_TAG_INDEX
-            + ": Delete a tag from a patient.\n"
+            + ": Delete a tags from a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "

@@ -20,7 +20,7 @@ import seedu.uninurse.model.task.TaskList;
  */
 public class AddTaskCommand extends AddGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
-            + ": Add a task to a patient.\n"
+            + ": Adds a task to a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>\n"
             + "Examples:\n" + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "

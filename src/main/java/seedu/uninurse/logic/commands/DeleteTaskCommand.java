@@ -2,8 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TASK_INDEX;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import seedu.uninurse.model.task.TaskList;
 public class DeleteTaskCommand extends DeleteGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_TASK_INDEX
-            + ": Delete a task from a patient.\n"
+            + ": Deletes a task from a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_OPTION_TASK_INDEX + " TASK_INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "

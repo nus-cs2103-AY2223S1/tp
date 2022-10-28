@@ -24,10 +24,10 @@ import seedu.uninurse.model.person.Patient;
 public class EditMedicationCommand extends EditGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_MEDICATION_INDEX
-            + ": Edit a medication of a patient.\n"
+            + ": Edits a medication of a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_OPTION_MEDICATION_INDEX + " MEDICATION_INDEX "
-            + PREFIX_MEDICATION + "<MEDICATION_TYPE> | <MEDICATION_DOSAGE>\n"
+            + PREFIX_MEDICATION + "<MEDICATION_TYPE> | <DOSAGE>\n"
             + "Examples:\n" + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_MEDICATION_INDEX
             + " 1 " + PREFIX_MEDICATION + "Amoxicillin\n"
             + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_MEDICATION_INDEX

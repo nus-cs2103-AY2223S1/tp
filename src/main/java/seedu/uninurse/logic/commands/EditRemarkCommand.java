@@ -23,7 +23,7 @@ import seedu.uninurse.model.remark.exceptions.DuplicateRemarkException;
 public class EditRemarkCommand extends EditGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_REMARK_INDEX
-            + ": Edit a remark of a patient.\n"
+            + ": Edits a remark of a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_OPTION_REMARK_INDEX + " REMARK_INDEX " + PREFIX_REMARK + "REMARK\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_REMARK_INDEX

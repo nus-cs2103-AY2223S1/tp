@@ -20,9 +20,9 @@ import seedu.uninurse.model.person.Patient;
  */
 public class AddMedicationCommand extends AddGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
-            + ": Add a medication to a patient.\n"
+            + ": Adds a medication to a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
-            + PREFIX_MEDICATION + "MEDICATION_TYPE | MEDICATION_DOSAGE\n"
+            + PREFIX_MEDICATION + "MEDICATION_TYPE | DOSAGE\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_MEDICATION + "Amoxicillin | 0.5 g every 8 hours";
 

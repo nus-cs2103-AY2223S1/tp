@@ -29,7 +29,7 @@ import seedu.uninurse.model.task.TaskList;
  * Edits the details of an existing patient in the uninurse book.
  */
 public class EditPatientCommand extends EditGenericCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edit a patient's contact details.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a patient's contact details.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "

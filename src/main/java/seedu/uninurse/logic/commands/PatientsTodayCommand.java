@@ -14,7 +14,7 @@ import seedu.uninurse.model.task.DateTime;
  */
 public class PatientsTodayCommand extends DisplayTasksGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SPECIAL_CHARACTER_TODAY
-            + ": View all patients with tasks today.";
+            + ": Shows all patients with tasks today.";
 
     public static final String MESSAGE_SUCCESS = "Listed all patients for today";
 

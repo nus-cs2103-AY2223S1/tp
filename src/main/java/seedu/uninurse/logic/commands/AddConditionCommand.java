@@ -20,7 +20,7 @@ import seedu.uninurse.model.person.Patient;
  */
 public class AddConditionCommand extends AddGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
-            + ": Add a medical condition to a patient.\n"
+            + ": Adds a medical condition to a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_CONDITION + "CONDITION\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "

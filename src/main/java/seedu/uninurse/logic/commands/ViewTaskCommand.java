@@ -16,7 +16,7 @@ import seedu.uninurse.model.person.Patient;
  */
 public class ViewTaskCommand extends DisplayTasksGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
-            + ": View a patient's task list.\n"
+            + ": Shows a patient's task list.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2";
 

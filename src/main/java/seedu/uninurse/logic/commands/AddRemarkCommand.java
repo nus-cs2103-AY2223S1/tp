@@ -20,9 +20,9 @@ import seedu.uninurse.model.remark.exceptions.DuplicateRemarkException;
  */
 public class AddRemarkCommand extends AddGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
-            + ": Add a remark to a patient.\n"
+            + ": Adds a remark to a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
-            + PREFIX_REMARK+ "REMARK\n"
+            + PREFIX_REMARK + "REMARK\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_REMARK + "Allergic to Amoxicillin";
 

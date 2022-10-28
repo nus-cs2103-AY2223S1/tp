@@ -19,7 +19,7 @@ import seedu.uninurse.model.person.Patient;
  * Adds a person to the uninurse book.
  */
 public class AddPatientCommand extends AddGenericCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a patient.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient.\n"
             + "Format: " + COMMAND_WORD + " "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -35,7 +35,7 @@ public class AddPatientCommand extends AddGenericCommand {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TASK_DESCRIPTION + "Change dressing | 01-01-2022 1345 | 2 days "
+            + PREFIX_TASK_DESCRIPTION + "Change dressing | 1-1-22 1345 | 2 days "
             + PREFIX_TASK_DESCRIPTION + "Take X-rays "
             + PREFIX_MEDICATION + "Amoxicillin | 0.5 g every 8 hours";
 

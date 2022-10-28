@@ -16,7 +16,7 @@ import seedu.uninurse.model.person.Patient;
  */
 public class DeletePatientCommand extends DeleteGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX
-            + ": Delete a patient.\n"
+            + ": Deletes a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2";
 

@@ -12,7 +12,7 @@ import seedu.uninurse.model.Model;
 public class ListTaskCommand extends DisplayTasksGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_OPTION_PATIENT_INDEX + " " + SPECIAL_CHARACTER_ALL
-            + ": View all tasks.";
+            + ": Shows all tasks.";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 

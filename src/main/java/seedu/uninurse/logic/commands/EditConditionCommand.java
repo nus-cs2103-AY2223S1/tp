@@ -23,7 +23,7 @@ import seedu.uninurse.model.person.Patient;
 public class EditConditionCommand extends EditGenericCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_OPTION_PATIENT_INDEX + " " + PREFIX_OPTION_CONDITION_INDEX
-            + ": Edit a medical condition of a patient.\n"
+            + ": Edits a medical condition of a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
             + PREFIX_OPTION_CONDITION_INDEX + " CONDITION_INDEX " + PREFIX_CONDITION + "CONDITION\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 " + PREFIX_OPTION_CONDITION_INDEX
