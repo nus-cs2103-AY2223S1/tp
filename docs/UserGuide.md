@@ -22,13 +22,14 @@ note down questions more effectively than traditional GUI apps.
         * Listing all students: [`liststu`](#listing-all-students-liststu)
     * **Question**
         * Adding a question: [`addq`](#adding-a-question--addq)
-        * Marking a question: [`markq`](#marking-a-question--markq)
-        * Unmarking a question: [`unmarkq`](#unmarking-a-question--unmarkq)
+        * Marking a question as important: [`markq`](#marking-a-question--markq)
+        * Marking a question as unimportant: [`unmarkq`](#unmarking-a-question--unmarkq)
         * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
     * **Tutorial**
         * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
         * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
         * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+        * Unmarking a tutorial: [`unmarktut`](#unmarking-a-tutorial-unmarktut)
     * **Exiting the program**: [`exit`](#exiting-the-program--exit)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -120,42 +121,41 @@ Examples:
 
 ### Adding student's attendance : `attendance`
 
-Increases or decreases the number of times a student attended tutorials.
+Increases student's attendance by 1.
 
-Format: `attendance INDEX s/SIGN v/VALUE`
+Format: `attendance INDEX`
 
-* Adds attendance to the student at the specified INDEX.
+* Increment attendance to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
 * The index must be a positive integer 1, 2. 3, ….
-* decrease attendance value if `SIGN` is '-' and increase attendance value if `SIGN` is '+'.
-* increase or decrease the specific student's attendance by `VALUE`.
 
 Examples:
 
-* `attendance 1 s/- v/2`
-* `attendance 1 s/+ v/1`
-
+* `attendance 1 
 
 ### Adding student's response: `addresponse`
 
 Adds the number of messages a specified student sent during tutorial.
 
-Format: `addresponse n\NAME m\MESSAGE_COUNT`
+Format: `addresponse INDEX m\MESSAGE_COUNT`
 
-Examples:
+Example:
 
-* `addresponse n\John Doe m\7`
+* `addresponse 1 m\7`
 
 ### Adding help tag: `helpstu`
 
 Adds a help tag to an existing student.
 
-Format: `helpstu NAME`
+Format: `helpstu INDEX`
+
+* Adds a help tag to the student at the specified INDEX.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3, ….
 
 Example:
 
-* `helpstu John Lim Jun Jie`
-
+* `helpstu 2`
 
 ### Deleting a student: `deletestu`
 
@@ -186,14 +186,13 @@ Example:
 * `findstu bob`
 * `findstu john mary`
 
-
 ### Listing all students: `liststu`
 
 Lists all students in the student list.
 
 Format: `liststu`
 
-Example: 
+Example:
 
 * `liststu`
 
@@ -217,8 +216,9 @@ Format: `markq INDEX`
 
 * Marks the question at the specified INDEX as important.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2. 3, ….
-*
+* The index must be a positive integer 1, 2, 3, ...
+* The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible 
+  indexes are 1, 2, 3 and 4.
 
 Examples:
 
@@ -233,8 +233,9 @@ Format: `unmarkq INDEX`
 
 * Marks the question at the specified INDEX as unimportant.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2. 3, ….
-*
+* The index must be a positive integer 1, 2, 3, ...
+* The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.
 
 Examples:
 
@@ -246,6 +247,10 @@ Examples:
 Deletes a question in the question list.
 
 Format: `deleteq INDEX`
+* The index refers to the index number shown in the displayed question list.
+* The index must be a positive integer 1, 2, 3, ...
+* The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.
 
 Examples:
 
@@ -293,6 +298,20 @@ Example:
 
 * `marktut 1` marks the first tutorial from the tutorial list as done.
 
+### Unmarking a tutorial: `unmarktut`
+
+Marks content in the tutorial as undone.
+
+Format: `unmarktut INDEX`
+
+* Marks the tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index must be a positive integer 1, 2, 3, ...
+
+Example:
+
+* `unmarktut 1` marks the first tutorial from the tutorial list as undone.
+
 
 ### Exiting the program : `exit`
 
@@ -332,14 +351,14 @@ the data of your previous SETA home folder.
 
 ## Command summary
 
-| Action         | Format, Examples                    |
-|----------------|-------------------------------------|
-| **Add**        | `addstu`, `addq`, `addtut`          |
-| **Attendance** | `attendance`                        |
-| **Delete**     | `deletestu`, `deleteq`, `deletetut` |
-| **Edit**       | `editstu`                           |
-| **Find**       | `findstu`                           |  
-| **List**       | `liststu`                           |  
-| **Mark**       | `markq`, `unmarkq`, `marktut`       |
-| **Tag**        | `helpstu`                           |
-| **Exit**       | `exit`                              |
+| Action         | Format, Examples                           |
+|----------------|--------------------------------------------|
+| **Add**        | `addstu`, `addq`, `addtut`                 |
+| **Attendance** | `attendance`, `addresponse`                |
+| **Delete**     | `deletestu`, `deleteq`, `deletetut`        |
+| **Edit**       | `editstu`                                  |
+| **Find**       | `findstu`                                  |  
+| **List**       | `liststu`                                  |  
+| **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
+| **Tag**        | `helpstu`                                  |
+| **Exit**       | `exit`                                     |
