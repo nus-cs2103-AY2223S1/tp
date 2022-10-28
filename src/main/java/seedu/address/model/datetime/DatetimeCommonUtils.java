@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.util.Locale;
-import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -151,17 +150,17 @@ public class DatetimeCommonUtils {
      *
      * @throws ParseException if the given {@code datetimeString} is invalid.
      */
-    public static Datetime parseDatetime(String datetimeString) throws ParseException {
-        Objects.requireNonNull(datetimeString);
+    public static Datetime parseDatetime(String date, String time) throws ParseException {
+        requireAllNonNull(date, time);
 
-        String trimmedDatetime = datetimeString.trim();
+        String trimmedDatetime = date.trim() + " " + time.trim();
 
         if (!trimmedDatetime.matches(DATETIME_FORMAT_REGEX)) {
             throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS);
         }
 
-        assertDatetimeValid(datetimeString);
-        return Datetime.fromFormattedString(datetimeString);
+        assertDatetimeValid(trimmedDatetime);
+        return Datetime.fromFormattedString(trimmedDatetime);
     }
 
     /**

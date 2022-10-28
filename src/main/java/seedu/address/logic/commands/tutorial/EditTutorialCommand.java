@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.tutorial;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
@@ -39,12 +39,12 @@ public class EditTutorialCommand extends Command {
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_MODULE + "MODULE] "
         + "[" + PREFIX_VENUE + "VENUE] "
-        + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
-        + "[" + PREFIX_DAY + "DAY]\n"
+        + "[" + PREFIX_TIME + "TIMESLOT] "
+        + "[" + PREFIX_DATE_DAY + "DAY]\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_VENUE + "COM1 B1-01 "
-        + PREFIX_TIMESLOT + "14:00-16:00 "
-        + PREFIX_DAY + "2";
+        + PREFIX_TIME + "14:00-16:00 "
+        + PREFIX_DATE_DAY + "2";
 
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

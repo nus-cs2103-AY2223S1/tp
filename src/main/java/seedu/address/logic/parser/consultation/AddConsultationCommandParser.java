@@ -1,11 +1,11 @@
 package seedu.address.logic.parser.consultation;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
@@ -33,12 +33,12 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
      */
     public AddConsultationCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DAY, PREFIX_TIMESLOT,
+                args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DATE_DAY, PREFIX_TIME,
                 PREFIX_DESCRIPTION);
 
         ParserUtil.assertAllPrefixesPresent(
                 argMultimap, AddConsultationCommand.MESSAGE_USAGE,
-                PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DAY, PREFIX_TIMESLOT, PREFIX_DESCRIPTION);
+                PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DATE_DAY, PREFIX_TIME, PREFIX_DESCRIPTION);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddConsultationCommand.MESSAGE_USAGE));
@@ -53,8 +53,8 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
         ConsultationDescription description = ConsultationParserUtil.parseConsultationDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        String date = argMultimap.getValue(PREFIX_DAY).get();
-        String timeslotString = argMultimap.getValue(PREFIX_TIMESLOT).get();
+        String date = argMultimap.getValue(PREFIX_DATE_DAY).get();
+        String timeslotString = argMultimap.getValue(PREFIX_TIME).get();
         DatetimeRange timeslot = DatetimeCommonUtils.parseDatetimeRange(date, timeslotString);
 
 

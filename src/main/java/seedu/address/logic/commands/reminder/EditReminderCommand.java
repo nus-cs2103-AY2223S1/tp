@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDERS;
 
 import java.util.List;
@@ -37,16 +37,17 @@ public class EditReminderCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_TIMESLOT + "DEADLINE] "
+            + "[" + PREFIX_TIME + "DEADLINE] "
             + "[" + PREFIX_PRIORITY + "PRIORITY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TIMESLOT + "2022-10-10 14:00 "
+            + PREFIX_TIME + "2022-10-10 14:00 "
             + PREFIX_PRIORITY + "HIGH";
 
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in ModQuik.";
+    public static final String MESSAGE_DATETIME_REMINDER = "Both new date and new timeslot must be given.";
 
     private final Index index;
     private final EditReminderDescriptor editReminderDescriptor;
