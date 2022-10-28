@@ -351,11 +351,11 @@ If you have successfully sealed a deal with a client, you can keep track of this
 
 If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client-add) or [Adding a Policy](#adding-a-policy) guides.
 
-Format: `assign INDEXOFCLIENT INDEXOFPOLICY pr/PREMIUM sd/STARTDATE ed/ENDDATE
+Format: `assign INDEXOFCLIENT INDEXOFPOLICY pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
-</div>`
+</div>
 
 Example Usage:
 
@@ -367,7 +367,7 @@ first client in the list from Step 2, with the following details:
   2. Start date of 10th October 2010
   3. End date of 12th October 2021
 
-###Listing out policies assigned to a client:`listAssigned`
+### Listing out policies assigned to a client:`listAssigned`
 
 If you'd like to recall which policies a client has taken up this command lists out, in the command box, the policies 
 that have been assigned to a specific client.
@@ -379,7 +379,7 @@ Example Usage:
 1. `findClient n/John Doe` to filter the list of clients to find `John Doe`.
 2. `listAssigned INDEXOFCLIENT` to list out the policies assigned to the first client in the list from Step 1.
 
-###Deleting assigned policies from a client: `deleteAssigned`
+### Deleting assigned policies from a client: `deleteAssigned`
 
 Unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy
 in the address book using this command.
@@ -391,17 +391,6 @@ Example Usage:
 2. `deleteAssigned 1 1` to delete the first assigned policy in the assigned policy list from Step 1, of the first client obtained from filtering the client list.
 
 This allows you to sort your clients in the address book based on a specified metric.
-
-### Adding an Event : `addEvent`
-* Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME d/EVENT_DATE s/START_TIME e/END_TIME`
-* Description: Adds an event into the address book. Note the following restrictions 
-  * `START_TIME` must before `END_TIME`. All times are in the format: `HH:MM`.
-  * `EVENT_DATE` follows a standard date format for our app (i.e: `YYYY-MM-DD`).
-  * `CLIENT_NAME` indicates the name of a valid client within the address book. All Events must be tagged to a single client.
-    * If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
-* Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
-* Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation,
-
 
 ### Tracking your Income  : `viewIncome`
 
@@ -416,17 +405,24 @@ Examples:
 * `viewIncome 2000` will display the expected income for years 2000, 2001 and 2002
 * `viewIncome 1899` will not be allowed since 1899 is not between 1900 and 2200
 
-<img src=".\images\viewIncome.png">
+![result for 'viewIncome 2000'](images/viewIncome.png)
 
 (Result after typing the command `viewIncome 2000`, which displays three year expected income starting from year 2000)
 
-## Event Features 
+## Event Features
 
-### Adding an Event 
+### Adding an Event : `addEvent`
+* Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME d/EVENT_DATE s/START_TIME e/END_TIME`
+* Description: Adds an event into the address book. Note the following restrictions
+    * `START_TIME` must before `END_TIME`. All times are in the format: `HH:MM`.
+    * `EVENT_DATE` follows a standard date format for our app (i.e: `YYYY-MM-DD`).
+    * `CLIENT_NAME` indicates the name of a valid client within the address book. All Events must be tagged to a single client.
+        * If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
+* Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
+* Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation,
 
 ### Deleting an Event : `deleteEvent`
 Deletes the specified Event from the address book.
-
 
 ### Deleting an Event
 
@@ -475,8 +471,6 @@ This allows you to view all Events that you have in the next 7 days, allowing yo
 
 Format: `calendar`
 
-### 
-
 ## FAQ
 
 <details>
@@ -509,9 +503,7 @@ Format: `calendar`
 
 ## Command summary
 
-<details>
-<summary>General Commands</summary>
-<br>
+General Commands
 
 | Action                      | Format, Examples                                                                                                                                                                                              |
 |-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -519,13 +511,7 @@ Format: `calendar`
 | **Help**                    | `help`                                                                                                                                                                                                        |
 | **Exit application**        | `exit`                                                                                                                                                                                                        |
 
-</details>
-
-<br>
-
-<details>
-<summary>Commands For Contacts</summary>
-<br>
+Commands For Contacts
 
 | Action                    | Format, Examples                                                                                                                                                                                             |
 |---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -537,14 +523,7 @@ Format: `calendar`
 | **View Filtered Clients** | `clients`                                                                                                                                                                                                    |
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
 
-</details>
-
-<br>
-
-<details>
-
-<summary>Commands For Policy</summary>
-<br>
+Commands For Policy
 
 | Action                     | Format, Examples                                                                                                                                                                                              |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -557,13 +536,7 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **List Assigned**          | `listAssigned`                                                                                                                                                                                                |
 | **View Income**            | `viewIncome [YEAR]`                                                                                                                                                                                           |                                                                                                                                                                                                               |
 
-</details>
-
-<br>
-
-<details>
-<summary>Commands For Events</summary>
-<br>
+Commands For Events
 
 | Action            | Format, Examples                                                                                                                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -573,13 +546,8 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **View events**   | `events`                                                                                                                                                                                                      |
 | **View calendar** | `calendar`                                                                                                                                                                                                    |
 
-</details>
 
-<br>
-
-<details>
-<summary>Miscellaneous Commands</summary>
-<br>
+Miscellaneous Commands
 
 | Action          | Format, Examples                                                                                                                                                                                              |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -587,7 +555,7 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **Pin**         | `pin [n/NAME]` <br> e.g: `pin n/Jim`                                                                                                                                                                          |
 | **View Pinned** | ` viewPin ` <br> e.g: `viewPin`                                                                                                                                                                               |
 
-</details>
+
 <br>    
 <br>
 <br>
