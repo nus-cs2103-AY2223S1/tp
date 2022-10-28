@@ -78,11 +78,11 @@ Examples:
 * `add -p n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta`
 * `add -p n/Betsy Crowe t/friend e/betsycrowe@example.com`
 
-### Adding an Internship: `addi`
+### Adding an Internship: `add -i`
 
 Adds an Internship to InterNUS.
 
-Format: `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]`
+Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Date of interview can be left blank, since it is possible that an interview is not scheduled yet.
@@ -90,8 +90,8 @@ The link index refers to the index number shown in the person list and is option
 </div>
 
 Examples:
-* `addi c/TikTok r/Data Engineer s/rejected l/1`
-* `addi c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00`
+* `add -i c/TikTok r/Data Engineer s/rejected l/1`
+* `add -i c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00`
 
 ### Listing all persons : `list -p`
 
@@ -162,7 +162,7 @@ Examples:
 
 Finds persons whose fields contain any of the given keywords.
 
-Format: `find -p [n/ NAME_KEYWORD [MORE_KEYWORDS]...] [p/ PHONE_KEYWORD [MORE_KEYWORDS]...] [e/ EMAIL_KEYWORD [MORE_KEYWORDS]...] [t/ TAG_KEYWORD [MORE_KEYWORDS]...]`
+Format: `find -p [n/ NAME_KEYWORD [MORE_KEYWORDS]...] [p/ PHONE_KEYWORD [MORE_KEYWORDS]...] [e/ EMAIL_KEYWORD [MORE_KEYWORDS]...] [t/ TAG_KEYWORD [MORE_KEYWORDS]...] [c/ COMPANY_KEYWORD [MORE_KEYWORDS]...]`
 - The search is case-insensitive. e.g **hans** will match **Hans**
 - The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**
 - Only the fields corresponding to the specified prefixes will be searched,
@@ -295,19 +295,19 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                                                        |
-|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX] [c/COMPANY]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta`                                                      |
-| **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1`                                                                    |
-| **Clear**             | `clear`                                                                                                                                                                                                 |
-| **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                                                                               |
-| **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                                                                               |
-| **Edit person**       | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [t/TAG]…`<br> e.g.,`edit -p 2 n/James Lee e/jameslee@example.com`                                                                        |
-| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                                                                      |
-| **Find person**       | `findp KEYWORD` <br> e.g., `findp James`                                                                                                                                                                |
-| **Find internship**   | `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]` |
-| **List persons**      | `listp`                                                                                                                                                                                                 |
-| **List internships**  | `list -i`                                                                                                                                                                                               |
-| **Sort persons**      | `sort -p c/` or `sort -p n/`                                                                                                                                                                            |
-| **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                                                                        |
-| **Help**              | `help`                                                                                                                                                                                                  |
+| Action                | Format, Examples                                                                                                                                                                                                                       |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX] [c/COMPANY]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta`                                                                                     |
+| **Add internship**    | `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `add -i n/TikTok r/Data Engineer s/rejected l/1`                                                                                               |
+| **Clear**             | `clear`                                                                                                                                                                                                                                |
+| **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                                                                                                              |
+| **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                                                                                                              |
+| **Edit person**       | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [t/TAG]…`<br> e.g.,`edit -p 2 n/James Lee e/jameslee@example.com`                                                                                                       |
+| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                                                                                                     |
+| **Find person**       | `find -p [n/ NAME_KEYWORD [MORE_KEYWORDS]...] [p/ PHONE_KEYWORD [MORE_KEYWORDS]...] [e/ EMAIL_KEYWORD [MORE_KEYWORDS]...] [t/ TAG_KEYWORD [MORE_KEYWORDS]...] [c/ COMPANY_KEYWORD [MORE_KEYWORDS]...]` <br> e.g., `find -p n/John`     |
+| **Find internship**   | `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]` <br> e.g., `find -i c/inc ltd` |
+| **List persons**      | `list -p`                                                                                                                                                                                                                              |
+| **List internships**  | `list -i`                                                                                                                                                                                                                              |
+| **Sort persons**      | `sort -p c/` or `sort -p n/`                                                                                                                                                                                                           |
+| **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                                                                                                       |
+| **Help**              | `help`                                                                                                                                                                                                                                 |

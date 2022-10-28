@@ -39,9 +39,11 @@ public class FindPersonCommandTest {
                         Collections.singletonList("first"),
                         Collections.singletonList("first"),
                         Collections.singletonList("first"),
+                        Collections.singletonList("first"),
                         Collections.singletonList("first"));
         PersonContainsKeywordsPredicate secondPredicate =
                 new PersonContainsKeywordsPredicate(
+                        Collections.singletonList("second"),
                         Collections.singletonList("second"),
                         Collections.singletonList("second"),
                         Collections.singletonList("second"),
@@ -93,6 +95,7 @@ public class FindPersonCommandTest {
     private PersonContainsKeywordsPredicate preparePredicate(String userInput) {
         return new PersonContainsKeywordsPredicate(
                 Arrays.asList(userInput.split("\\s+")),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList());

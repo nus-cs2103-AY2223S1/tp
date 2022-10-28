@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,9 +29,10 @@ public class FindPersonCommandParserTest {
         FindPersonCommand expectedFindCommand =
                 new FindPersonCommand(new PersonContainsKeywordsPredicate(
                         Arrays.asList("Alice", "Bob"),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        new ArrayList<>()));
+                        Collections.emptyList(),
+                        Collections.emptyList(),
+                        Collections.emptyList(),
+                        Collections.emptyList()));
         assertParseSuccess(parser, " " + PREFIX_NAME + "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
