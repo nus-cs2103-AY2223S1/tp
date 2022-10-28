@@ -80,7 +80,7 @@ This guides aims to:
 
 **Keyboard Inputs**<br>
 
-<kbd>enter</kbd>   <kbd>&uarr;</kbd>   <kbd>&darr;</kbd>
+<button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
 ## Navigating the GUI
 ![Ui](images/navigate_ui.png)
@@ -90,7 +90,7 @@ Enter your command here.
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
-You can use <kbd>&uarr;</kbd> or <kbd>&darr;</kbd> to navigate through your command history
+You can use <button>&uarr;</button> or <button>&darr;</button> to navigate through your command history
 </div>
 
 **Result Display** <br>
@@ -262,7 +262,7 @@ Examples:
 
 Deletes the specified internship(s) from the list.
 
-Format: `delete INDEX...`
+Format: `delete INDEX…​`
 
 * Deletes the internship at the specified `INDEX`.
 * The index refers to the index number shown in the displayed internship list.
@@ -281,7 +281,7 @@ Format: `view INDEX`
 
 * Only the index is searched.
 * Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
-* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …​
 * More details about the company at the index will be displayed. 
 
 Examples:
@@ -317,9 +317,8 @@ Undo the most recent command that modified the internship book.
 
 Format: `undo`
 
-**Information Box**
 <div markdown="block" class="alert alert-info">
-**:information_source: Info:** **NOTE:** <br>
+**:information_source: Info:** <br>
 You can only undo `add`,`clear`,`delete`,`edit` commands
 
 </div>
@@ -356,14 +355,7 @@ If your changes to the data file makes its format invalid, PleaseHireUs will dis
 
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PleaseHireUs home folder.
+_Details coming soon …​_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -373,17 +365,16 @@ _Details coming soon ..._
 |------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                        |
 | **Clear**  | :heavy_check_mark: | `clear`                                                                                                                                                                                                        |
-| **Delete** | :heavy_check_mark: | `delete INDEX...`<br> e.g., `delete 1 3`                                                                                                                                                                       |
+| **Delete** | :heavy_check_mark: | `delete INDEX…​`<br> e.g., `delete 1 3`                                                                                                                                                                          |
 | **View**   | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                |
-| **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
-| **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`                                                                                                                                                  |
+| **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]…​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
+| **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS…​`<br> e.g., `find c/p engineer`                                                                                                                                                  |
 | **List**   | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                     |
 | **Help**   | :x:                | `help`                                                                                                                                                                                                         |
 | **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
 | **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
 | **Redo**   | :heavy_check_mark: | `redo`                                                                                                                                                                                                         |
 
-**Information Box**
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** Valid inputs for `CATEGORY` parameter in `list` and `find` <br>
 
@@ -411,6 +402,10 @@ Prefix | Symbolize
 **t/** | Tags
 **c/** | Category
 
+## FAQ
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PleaseHireUs home folder.
+
 ## Glossary
 
 | Term                           | Description                                                                                                                                        |
@@ -421,7 +416,8 @@ Prefix | Symbolize
 | Parameter                      | A component of a command for the user to input information. For PHU context, this refers to the internship application details.                    |
 | Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
 | Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
-
+| PHU                            | PleaseHireUs                                                                                                                                       |
+  
 ## Acknowledgements
 * This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
 * Undo and Redo commands are adapted and modified from  **[AddressBook 4(AB4)](https://github.com/se-edu/addressbook-level4)**
