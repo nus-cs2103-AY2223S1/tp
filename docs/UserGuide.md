@@ -173,16 +173,16 @@ Format: `comment INDEX c/COMMENT`
 Examples:
 * `comment 1 c/Tasks not Finished` adds a comment of "Tasks not Finished" on the 1st tutor.
 
-### Deleting comments on a tutor : `deletecomment`
+### Deleting comments on a tutor : `deletecomment` or `dc`
 
 Deletes a comment from the specified tutor.
 
-Format: `deletecomment TUTORINDEX COMMENTINDEX`
+Format: `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`
 
 * Deletes the comment at the specified index of the specified tutor. The tutor index refers to the index number shown in the displayed person list. The comment index refers to the index number of the comment shown in the comment section. Both indeces **must be positive integers** 1, 2, 3, …​
 
 Examples:
-* `deletecomment 1 1` deletes the 1st comment from the 1st tutor.
+* `deletecomment 1 1` and `dc 1 1` deletes the 1st comment from the 1st tutor.
 
 
 ### Editing a tutor : `edit`
@@ -306,7 +306,7 @@ Format: `exit`
 | **View** a Tutor           | `view`                                                                                                                     | `view 1`                                                                                                   |
 | **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`                 | `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
 | **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                  | `comment 1 c/Tasks not Finished`                                                                           |
-| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX`                                                                                    | `deletecomment 1 1`                                                                                        |
+| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                     | `deletecomment 1 1`, `dc 1 1`                                                                               |
 | **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                          |
 | **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                          | `find n/Alex`                                                                                              |
 | **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                      | `mail 3`                                                                                                   |
