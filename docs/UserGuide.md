@@ -149,7 +149,7 @@ Beyond individual products, you can also:
 
 #### 3.1.1 Add client: `addClient`
 
-Adds a new client to MyInsuRec.
+Add a new client to MyInsuRec.
 
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
@@ -167,7 +167,7 @@ Examples:
 
 #### 3.1.2 List clients: `listClient`
 
-* Lists clients in MyInsuRec with a valid filter.
+* List clients in MyInsuRec with a valid filter.
 * A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
 * `BIRTHDAY` is specified by keywords. The possible keywords are:
     * `tomorrow` for a list of clients whose birthday is tomorrow;
@@ -186,11 +186,11 @@ Examples:
 
 #### 3.1.3 View client: `viewClient`
 
-Views details associated with a client, such as the client's name and phone number.
+View details associated with a client, such as the client's name and phone number.
 
 Format: `viewClient i/INDEX`
 
-* Displays information about the client at the specific `INDEX`.
+* Display information about the client at the specific `INDEX`.
 * The index refers to the index number shown in the displayed clients' list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -199,11 +199,11 @@ Examples:
 
 #### 3.1.4 Delete client: `delClient`
 
-Deletes the specified client from MyInsuRec.
+Delete the specified client from MyInsuRec.
 
 Format: `delClient i/INDEX`
 
-* Deletes the client at the specified `INDEX`.
+* Delete the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
 * `Index` **must be a positive integer** 1, 2, 3, …​
 
@@ -212,15 +212,15 @@ Examples:
 
 #### 3.1.5 Edit client: `editClient`
 
-Edits detail of the specified client.
+Edit detail of the specified client.
 
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
-* Edits the client at the specified `INDEX`.
+* Edit the client at the specified `INDEX`.
 *`INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
-* Maintains value of details not edited by the command.
+* Maintain value of details not edited by the command.
 
 Examples:
 Suppose MyInsuRec contains only one client 'John Tan' having phone number '0123456789':
@@ -231,12 +231,12 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
 
 #### 3.2.1 Add meeting: `addMeeting`
 
-Adds a new meeting to MyInsuRec.
+Add a new meeting to MyInsuRec.
 DATE should be in DD-MM-YYYY format and TIME should be in 24-hour format.
 
 Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 
-* Adds a meeting.
+* Add a meeting.
 * A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 
 Examples:
@@ -244,7 +244,7 @@ Examples:
 
 #### 3.2.2 List meetings: `listMeeting`
 
-Shows a list of meetings in MyInsuRec.
+Show a list of meetings in MyInsuRec.
 If used with optional parameter `[d/DATE]`, *MyInsuRec* will show a list of meetings happening in that time period.
 
 Format: `listMeeting [d/DATE]`
@@ -260,11 +260,11 @@ Examples:
 
 #### 3.2.3 View meeting: `viewMeeting`
 
-View details associated with a meeting, such as meeting's date and time.
+View detail associated with a meeting, such as meeting's date and time.
 
 Format: `viewMeeting i/INDEX`
 
-* Displays information about the meeting at the specific `INDEX`.
+* Display information about the meeting at the specific `INDEX`.
 * The index refers to the index number shown in the displayed meetings' list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -277,7 +277,7 @@ Delete a meeting from MyInsuRec.
 
 Format: `delMeeting i/INDEX`
 
-* Deletes the meeting at the specified `INDEX`.
+* Delete the meeting at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
@@ -286,15 +286,15 @@ Examples:
 
 #### 3.2.5 Edit meeting: `editMeeting`
 
-Edits details of the specified meeting.
+Edit details of the specified meeting.
 
 Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`
 
-* Edits information about the meeting at the specific `INDEX`.
+* Edit information about the meeting at the specific `INDEX`.
 * The `INDEX` refers to the index number shown in the displayed meetings' list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
-* Maintains values of details not edited by the command.
+* Maintain values of details not edited by the command.
 
 Examples:
 Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#321-add-meeting-addmeeting) command:
@@ -305,11 +305,11 @@ Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#32
 
 #### 3.3.1 Add product: `addProduct`
 
-Adds a new product to MyInsuRec.
+Add a new product to MyInsuRec.
 
 Format: `addProduct pd/PRODUCT`
 
-* Adds a product having name `PRODUCT`.
+* Add a product having name `PRODUCT`.
 * A product must have a product name which is `PRODUCT`.
 
 Examples:
@@ -317,18 +317,18 @@ Examples:
 
 #### 3.3.2 List products: `listProduct`
 
-Shows a list of all products in MyInsuRec.
+Show a list of all products in MyInsuRec.
 
 Format: `listProduct`
 
 #### 3.3.3 Delete product: `delProduct`
 
-Deletes a product from MyInsuRec.  
+Delete a product from MyInsuRec.  
 This feature will remove the product from association with any client.
 
 Format: `delProduct i/INDEX`
 
-* Deletes the product at the specified `INDEX`.
+* Delete the product at the specified `INDEX`.
 * The index refers to the index number shown in the displayed product list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -343,7 +343,7 @@ Examples:
 
 #### 3.4.1 View help: `help`
 
-Shows a message explaining how to access the help page.
+Show a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -351,7 +351,7 @@ Format: `help`
 
 #### 3.4.2 Exit MyInsuRec: `exit`
 
-Exits the program.
+Exit the program.
 
 Format: `exit`
 
