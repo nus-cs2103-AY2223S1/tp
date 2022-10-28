@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_1;
 import static seedu.address.logic.commands.CommandTestUtil.MEETING_2;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING_1;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_MEETING_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_MEETING_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MEETING_1;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showMeetingAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -20,16 +20,16 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
-//import seedu.address.logic.commands.exceptions.CommandException;
-//import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.model.AddressBook;
-//import seedu.address.model.MeetingList;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-//import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
-//import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.MeetingBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditMeetingCommand.
@@ -38,96 +38,97 @@ public class EditMeetingCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingList(), new UserPrefs());
 
-    //    @Test
-    //    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException, ParseException {
-    //        Meeting editedMeeting = new MeetingBuilder().build();
-    //        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
-    //        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, descriptor);
-    //
-    //        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
-    //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-    //                new MeetingList(model.getMeetingList()), new UserPrefs());
-    //        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
-    //
-    //        System.out.println(editMeetingCommand.execute(model).getFeedbackToUser());
-    //        System.out.println(expectedMessage);
-    //        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
-    //    }
+    @Test
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Meeting editedMeeting = new MeetingBuilder().build();
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, descriptor);
 
-    //    @Test
-    //    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-    //        Index indexLastMeeting = Index.fromOneBased(model.getFilteredMeetingList().size());
-    //        Meeting lastMeeting = model.getFilteredMeetingList().get(indexLastMeeting.getZeroBased());
-    //
-    //        MeetingBuilder meetingInList = new MeetingBuilder(lastMeeting);
-    //        Meeting editedMeeting = meetingInList.withDescription(VALID_NAME_MEETING_1)
-    //                .withLocation(VALID_LOCATION_MEETING_1).withDateAndTime(VALID_DATE_MEETING_1).build();
-    //
-    //    EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_1)
-    //                .withLocation(VALID_LOCATION_MEETING_1).withDate(VALID_DATE_MEETING_1).build();
-    //        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(indexLastMeeting, descriptor);
-    //
-    //        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
-    //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-    //                new MeetingList(model.getMeetingList()), new UserPrefs());
-    //        expectedModel.setMeeting(lastMeeting, editedMeeting);
-    //
-    //        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
-    //    }
+        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
-    //    @Test
-    //    public void execute_noFieldSpecifiedUnfilteredList_success() {
-    //  EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, new EditMeetingDescriptor());
-    //        Meeting editedMeeting = model.getFilteredMeetingList().get(INDEX_FIRST_PERSON.getZeroBased());
-    //
-    //        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
-    //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-    //                new MeetingList(model.getMeetingList()), new UserPrefs());
-    //
-    //        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
-    //    }
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new MeetingList(model.getMeetingList()), new UserPrefs());
+        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
 
-    //    @Test
-    //    public void execute_filteredList_success() {
-    //        showMeetingAtIndex(model, INDEX_FIRST_PERSON);
-    //
-    //        Meeting meetingInFilteredList = model.getFilteredMeetingList().get(INDEX_FIRST_PERSON.getZeroBased());
-    //Meeting editedMeeting = new MeetingBuilder(meetingInFilteredList).withDescription(VALID_NAME_MEETING_1).build();
-    //        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
-    //                new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_1).build());
-    //
-    //        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
-    //
-    //        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-    //                new MeetingList(model.getMeetingList()), new UserPrefs());
-    //        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
-    //
-    //        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
-    //    }
+        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
+    }
 
-    //    @Test
-    //    public void execute_duplicateMeetingUnfilteredList_failure() {
-    //        Meeting firstMeeting = model.getFilteredMeetingList().get(INDEX_FIRST_PERSON.getZeroBased());
-    //        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(firstMeeting).build();
-    //        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_SECOND_PERSON, descriptor);
-    //
-    //        assertCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_MEETING);
-    //    }
+    @Test
+    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+        Index indexLastMeeting = Index.fromOneBased(model.getFilteredMeetingList().size());
+        Meeting lastMeeting = model.getFilteredMeetingList().get(indexLastMeeting.getZeroBased());
 
-    //    @Test
-    //    public void execute_duplicateMeetingFilteredList_failure() {
-    //        showMeetingAtIndex(model, INDEX_FIRST_PERSON);
-    //
-    //        // edit person in filtered list into a duplicate in address book
-    //        Meeting meetingInList = model.getMeetingList().getMeetingList().get(INDEX_SECOND_PERSON.getZeroBased());
-    //        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
-    //                new EditMeetingDescriptorBuilder(meetingInList).build());
-    //
-    //        assertCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_MEETING);
-    //    }
+        MeetingBuilder meetingInList = new MeetingBuilder(lastMeeting);
+        Meeting editedMeeting = meetingInList.withDescription(VALID_NAME_MEETING_1)
+                .withLocation(VALID_LOCATION_MEETING_1).withDateAndTime(VALID_DATE_MEETING_1).build();
+
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_1)
+                .withLocation(VALID_LOCATION_MEETING_1).withDate(VALID_DATE_MEETING_1).build();
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(indexLastMeeting, descriptor);
+
+        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new MeetingList(model.getMeetingList()), new UserPrefs());
+        expectedModel.setMeeting(lastMeeting, editedMeeting);
+
+        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_noFieldSpecifiedUnfilteredList_success() {
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, new EditMeetingDescriptor());
+        Meeting editedMeeting = model.getFilteredMeetingList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new MeetingList(model.getMeetingList()), new UserPrefs());
+
+        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_filteredList_success() throws CommandException, ParseException {
+        showMeetingAtIndex(model, INDEX_FIRST_PERSON);
+
+        Meeting meetingInFilteredList = model.getFilteredMeetingList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Meeting editedMeeting = new MeetingBuilder(meetingInFilteredList).withDescription(VALID_NAME_MEETING_1).build();
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
+                new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_1).build());
+
+        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new MeetingList(model.getMeetingList()), new UserPrefs());
+        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
+
+        System.out.println(editMeetingCommand.execute(model).getFeedbackToUser());
+        System.out.println(expectedMessage);
+
+        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateMeetingUnfilteredList_failure() {
+        Meeting firstMeeting = model.getFilteredMeetingList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(firstMeeting).build();
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_SECOND_PERSON, descriptor);
+
+        assertCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_MEETING);
+    }
+
+    @Test
+    public void execute_duplicateMeetingFilteredList_failure() {
+        showMeetingAtIndex(model, INDEX_FIRST_PERSON);
+
+        // edit person in filtered list into a duplicate in address book
+        Meeting meetingInList = model.getMeetingList().getMeetingList().get(INDEX_SECOND_PERSON.getZeroBased());
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON,
+                new EditMeetingDescriptorBuilder(meetingInList).build());
+
+        assertCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_MEETING);
+    }
 
     @Test
     public void execute_invalidMeetingIndexUnfilteredList_failure() {

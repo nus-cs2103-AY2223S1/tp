@@ -6,15 +6,26 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+import java.util.Locale;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.util.DateTimeProcessor;
 
 /**
  * Parses input arguments and creates a new EditMeetingCommand object
  */
 public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
+
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
+        .withResolverStyle(ResolverStyle.SMART);
+    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
+        .withResolverStyle(ResolverStyle.SMART);
+    private final DateTimeProcessor validator = new DateTimeProcessor(dateFormatter, timeFormatter);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditMeetingCommand
@@ -41,7 +52,13 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
             editMeetingDescriptor.setDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editMeetingDescriptor.setDate(argMultimap.getValue(PREFIX_DATE).get());
+            String processedEditedDateAndTime;
+            try {
+                processedEditedDateAndTime = this.validator.processDateTime(argMultimap.getValue(PREFIX_DATE).get());
+            } catch (java.text.ParseException e) {
+                throw new ParseException(e.getMessage());
+            }
+            editMeetingDescriptor.setDate(processedEditedDateAndTime);
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editMeetingDescriptor.setLocation(argMultimap.getValue(PREFIX_LOCATION).get());

@@ -66,7 +66,7 @@ public class MeetingBuilder {
     public MeetingBuilder(Meeting meetingToCopy) {
         this.personsToMeetArray = meetingToCopy.getArrayListPersonToMeet();
         this.meetingDescription = meetingToCopy.getDescription();
-        this.meetingDateAndTime = meetingToCopy.getNonProcessedDateAndTime();
+        this.meetingDateAndTime = meetingToCopy.getDateAndTime();
         this.meetingLocation = meetingToCopy.getLocation();
     }
 
