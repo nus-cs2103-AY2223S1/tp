@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Collections;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
@@ -26,6 +28,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.LockCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
+import seedu.address.model.portfolio.Note;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
+import seedu.address.model.portfolio.Risk;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -46,7 +53,9 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private PortfolioWindow portfolioWindow;
     private LockWindow lockWindow;
-    private int index = 0;
+    private int index = -1;
+    private Set<Plan> emptyPlan = Collections.emptySet();
+    private Set<Note> emptyNote = Collections.emptySet();
 
     @FXML
     private Scene parent;
@@ -195,7 +204,15 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the portfolio page after each view command
      */
     public void getPortfolio() {
-        portfolioWindow = new PortfolioWindow(logic.getFilteredPersonList().get(index), index);
+        Person person;
+        Portfolio portfolio;
+        if (index == -1) {
+            portfolio = null;
+        } else {
+            person = logic.getFilteredPersonList().get(index);
+            portfolio = person.getPortfolio();
+        }
+        portfolioWindow = new PortfolioWindow(portfolio);
         portfolioListPanelPlaceholder.getChildren().clear();
         portfolioListPanelPlaceholder.getChildren().add(portfolioWindow.getRoot());
     }
@@ -239,10 +256,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        portfolioWindow = new PortfolioWindow(logic.getFilteredPersonList().get(0), 0);
+        portfolioWindow = new PortfolioWindow(null);
         portfolioListPanelPlaceholder.getChildren().add(portfolioWindow.getRoot());
 
         resultDisplay = new ResultDisplay();
