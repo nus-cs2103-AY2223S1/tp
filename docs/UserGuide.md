@@ -90,17 +90,17 @@ This guide contains all you need to get started on working with GithubContact.
 
 </div>
 
-| Action               | Format, Examples                                                                                                                                                                      |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**              | `add name/NAME [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `add name/John Doe address/27 Clementi` |
-| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                                                                                                                                            |
-| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter`                                                                                                               |
-| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`       |
-| **sort**             | `sort` <br> `sort name`, `sort name/desc`                                                                                                                                             |
-| **find**             | `find KEYWORD` <br> `find Tex`, `find Engineer`                                                                                                                                       |
-| **reset**            | `reset`                                                                                                                                                                               |
-| **back**             | `back` or `<ESC>` key                                                                                                                                                                 |
-| **help**             | `help` <br> `help`, `help add`                                                                                                                                                        |
+| Action               | Format, Examples                                             |
+| -------------------- | ------------------------------------------------------------ |
+| **add**              | `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `<br> `add name/John Doe address/27 Clementi` |
+| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                   |
+| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter` |
+| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi` |
+| **sort**             | `sort` <br> `sort name`, `sort name/desc`                    |
+| **find**             | `find KEYWORD` <br> `find Tex`, `find Engineer`              |
+| **reset**            | `reset`                                                      |
+| **back**             | `back` or `<ESC>` key                                        |
+| **help**             | `help` <br> `help`, `help add`                               |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -110,14 +110,16 @@ This guide contains all you need to get started on working with GithubContact.
 
 #### Add a person : `add`
 
-Adds person to list and shows contact information page, where attributes can be added and set.
+Adds person to list and shows contact information page, where attributes can be added and set. At least one of `NAME` or `GITHUB` must be provided.
 
-Format: `add name/NAME address/ADDRESS [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
+Format: `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
 
 Example:
+- `add github/johndoe`
+- `add github/johndoe name/John Doe`
 - `add name/John Doe address/27 Clementi`
 - `add name/Alex address/22 Clementi phone/86609830 email/alex@gmail.com`
-- `add name/Mike address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123`
+- `add name/Mike github/mikelim address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123`
 
 Before the command is executed:
 ![before adding](images/ug/add_before.png)
