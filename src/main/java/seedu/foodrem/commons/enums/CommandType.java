@@ -106,8 +106,8 @@ public enum CommandType {
     FIND_COMMAND("find") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": Finds all items in FoodRem whose names contain any of "
-                    + "the specified keyword (case-insensitive).\n\n"
+            return getCommandWord() + ": Finds all items in FoodRem whose names contain substrings of any of "
+                    + "the KEYWORDS (case-insensitive).\n\n"
                     + "Format:\n"
                     + getCommandWord() + " KEYWORD\n\n"
                     + "Examples:\n"
