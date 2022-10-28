@@ -23,6 +23,8 @@ title: FinBook User Guide
    4.2. [Data privacy](#42-data-privacy)<br>
    &emsp; 4.2.1. [Locking the application: `lock`](#421-locking-the-application--lock)<br>
    &emsp; 4.2.2. [Setting or updating the password: `password`](#422-setting-or-updating-the-password--password)<br>
+   &emsp; 4.2.3. [Resetting the password](#423-resetting-the-password)<br>
+   &emsp; 4.2.4. [Hiding sensitive data](#424-hiding-sensitive-data)<br>
    4.3. [General](#43-general)<br>
    &emsp; 4.3.1. [Saving the data](#431-saving-the-data)<br>
    &emsp; 4.3.2. [Editing the data file](#432-editing-the-data-file)<br>
@@ -349,6 +351,34 @@ Examples:
 
 ---
 
+### 4.2.3. Resetting the password
+
+Steps to reset the password:
+
+1. Close FinBook
+2. Locate `preferences.json` (default location is in the same directory as the FinBook executable)
+3. Open `preferences.json` with a text editor
+4. Change the line `"passwordHash" : "$argon2id$xxxxxxxx"` to `"passwordHash" : ""`
+5. Save `preferences.json`
+
+---
+
+### 4.2.4. Hiding sensitive data
+
+Toggle the visibility of FinBook by clicking on the `open eye` or `closed eye` icon on the top right of the application.
+
+* If the icon is an `open eye` FinBook displays all client data.
+  ![Shown](images/Ui_shown.png)
+* If the icon is a `closed eye` FinBook hides all sensitive client data.
+  ![Hidden](images/Ui_hidden.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Your mode preference will be automatically saved**
+</div>
+
+---
+
 ## 4.3. General
 
 ### 4.3.1. Saving the data
@@ -468,19 +498,6 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 </div>
 
 ---
-
-### Hiding sensitive data
-
-Toggle the visibility of FinBook by clicking on the `open eye` or `close eye` icon on the top right of the application.
-
-* If the icon is an `open eye` FinBook displays all client data.
-  ![Shown](images/Ui_shown.png)
-* If the icon is a `close eye` FinBook hides all sensitive client data.
-  ![Hidden](images/Ui_hidden.png)
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Your mode preference will be automatically saved ** 
-</div>
 
 ### 4.3.7. Exiting the application : `exit`
 
