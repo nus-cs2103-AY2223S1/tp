@@ -52,14 +52,15 @@ public class ParsePropertyInterestedClients {
 
     public Property getNewProperty() {
         Property property = new Property(
-                originalProperty.getName(),
-                originalProperty.getAddress(),
-                originalProperty.getPrice(),
-                originalProperty.getTags(),
-                filteredInterestedClients,
-                originalProperty.getPropertyTypeEnum(),
-                originalProperty.getPropertyStatusEnum()
+            originalProperty.getName(),
+            originalProperty.getAddress(),
+            originalProperty.getPrice(),
+            originalProperty.getTags(),
+            filteredInterestedClients,
+            originalProperty.getPropertyTypeEnum(),
+            originalProperty.getPropertyStatusEnum()
         );
         property.setImageDirectoryPath(originalProperty.getImageDirectoryPath());
+        return property;
     }
 }
