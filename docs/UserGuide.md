@@ -3,11 +3,9 @@ layout: page
 title: User Guide
 ---
 
-# ModtRekt User Guide
+ModtRekt is a **desktop app for managing modules and tasks**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-ModtRekt is a **desktop app for managing modules and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
-# Table of Contents
+## Table of Contents
 - [UI Mockups](#ui-mockups)
 - [Quick Start](#quick-start)
 - [Features](#features)
@@ -15,8 +13,6 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 
 ## UI Mockups
 ![Ui](images/Ui.png)
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
 
@@ -45,9 +41,6 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
    1. `exit`: Exits the app.
 
    1. Refer to the Features below for details of each command.
-
-
---------------------------------------------------------------------------------------------------------------------
 
 ## General Command Syntax
 
@@ -102,8 +95,6 @@ which tells ModtRekt to treat the quote as a normal character.
 ## Features
 
 In this section, we will cover the features of ModtRekt, and introduce the command syntaxes.
-
-<div markdown="block" class="alert alert-info"/>
 
 ### General
 `help`
@@ -390,8 +381,6 @@ Examples:
 
 ![](./images/UserGuidePictures/edit_task.png)
 
---------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -404,10 +393,7 @@ the data of your previous ModuleList home folder.
 **Q**: Do I need a working internet connection to use this application?<br>
 **A**: No, it is not required. We have a backup data file of all NUS modules for AY2022-2023, so no internet is required.
 
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
+## Command Summary
 
 ### General
 

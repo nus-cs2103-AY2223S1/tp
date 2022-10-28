@@ -1,7 +1,46 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 h2, h3, h4, h5, h6 {
-  color: #e46c0a;
+}
+
+h1 {
+  font-weight: 800;
+  color: #2d5959;
+  margin-top: $spacing-unit * 0.5 !important;
+}
+
+h2 {
+  font-weight: 900;
+  color: #2d5959;
+  margin-top: $spacing-unit * 1 !important;
+}
+
+h3, h4 {
+  font-weight: 800;
+  color: #2d5959;
+  margin-top: $spacing-unit * 3 !important;
+}
+
+body {
+  color: #484a43;
+}
+
+p {
+  margin-top: $spacing-unit / 1.5;
+}
+
+strong {
+  color: #408080;
+  font-weight: bold;
+}
+
+blockquote {
+  font-size: 14px;
+}
+
+code {
+  color: #505959;
+  background-color: rgba(51, 102, 102, 0.05);
 }
 
 // Bootstrap style alerts
