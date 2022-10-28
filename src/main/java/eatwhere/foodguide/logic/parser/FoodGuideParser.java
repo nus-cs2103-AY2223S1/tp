@@ -4,9 +4,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import eatwhere.foodguide.commons.core.Messages;
-import eatwhere.foodguide.logic.commands.*;
+import eatwhere.foodguide.logic.commands.AddCommand;
+import eatwhere.foodguide.logic.commands.ClearCommand;
+import eatwhere.foodguide.logic.commands.Command;
+import eatwhere.foodguide.logic.commands.DeleteCommand;
+import eatwhere.foodguide.logic.commands.EditCommand;
+import eatwhere.foodguide.logic.commands.ExitCommand;
+import eatwhere.foodguide.logic.commands.FavouriteCommand;
+import eatwhere.foodguide.logic.commands.FindCommand;
+import eatwhere.foodguide.logic.commands.FindCuisineCommand;
+import eatwhere.foodguide.logic.commands.FindLocationCommand;
+import eatwhere.foodguide.logic.commands.FindTagCommand;
+import eatwhere.foodguide.logic.commands.FindPriceCommand;
+import eatwhere.foodguide.logic.commands.HelpCommand;
+import eatwhere.foodguide.logic.commands.ListCommand;
+import eatwhere.foodguide.logic.commands.TagCommand;
+import eatwhere.foodguide.logic.commands.UnfavouriteCommand;
+import eatwhere.foodguide.logic.commands.UntagCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
