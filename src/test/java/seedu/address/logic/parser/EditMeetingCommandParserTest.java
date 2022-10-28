@@ -16,6 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MEETING_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MEETING_2;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CreateMeetingCommandParser.DATE_TIME_VALIDATOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
@@ -25,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
 
 public class EditMeetingCommandParserTest {
@@ -62,13 +64,14 @@ public class EditMeetingCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsSpecified_success() {
+    public void parse_allFieldsSpecified_success() throws ParseException, java.text.ParseException {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + DATE_DESC_MEETING_1 + LOCATION_DESC_MEETING_1
                 + DESCRIPTION_DESC_MEETING_1;
 
         EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_1)
-                .withLocation(VALID_LOCATION_MEETING_1).withDate(VALID_DATE_MEETING_1).build();
+                .withLocation(VALID_LOCATION_MEETING_1)
+            .withDate(DATE_TIME_VALIDATOR.processDateTime(VALID_DATE_MEETING_1)).build();
         EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -87,7 +90,7 @@ public class EditMeetingCommandParserTest {
     }
 
     @Test
-    public void parse_oneFieldSpecified_success() {
+    public void parse_oneFieldSpecified_success() throws ParseException, java.text.ParseException {
         // description
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MEETING_1;
@@ -104,30 +107,35 @@ public class EditMeetingCommandParserTest {
 
         // date
         userInput = targetIndex.getOneBased() + DATE_DESC_MEETING_1;
-        descriptor = new EditMeetingDescriptorBuilder().withDate(VALID_DATE_MEETING_1).build();
+        descriptor = new EditMeetingDescriptorBuilder()
+            .withDate(DATE_TIME_VALIDATOR.processDateTime(VALID_DATE_MEETING_1)).build();
         expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
+
+        System.out.println(descriptor.getDate());
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
+    public void parse_multipleRepeatedFields_acceptsLast() throws ParseException, java.text.ParseException {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MEETING_1 + LOCATION_DESC_MEETING_1
-                + DATE_DESC_MEETING_1 + DESCRIPTION_DESC_MEETING_2 + LOCATION_DESC_MEETING_2 + DATE_DESC_MEETING_2;
+               + DATE_DESC_MEETING_1 + DESCRIPTION_DESC_MEETING_2 + LOCATION_DESC_MEETING_2 + DATE_DESC_MEETING_2;
 
         EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_2)
-                .withLocation(VALID_LOCATION_MEETING_2).withDate(VALID_DATE_MEETING_2).build();
+                .withLocation(VALID_LOCATION_MEETING_2)
+            .withDate(DATE_TIME_VALIDATOR.processDateTime(VALID_DATE_MEETING_2)).build();
         EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
-    public void parse_invalidValueFollowedByValidValue_success() {
+    public void parse_invalidValueFollowedByValidValue_success() throws ParseException, java.text.ParseException {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_MEETING_1;
-        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withDate(VALID_DATE_MEETING_1).build();
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder()
+            .withDate(DATE_TIME_VALIDATOR.processDateTime(VALID_DATE_MEETING_1)).build();
         EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

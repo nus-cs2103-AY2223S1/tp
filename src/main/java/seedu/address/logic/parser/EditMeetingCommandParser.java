@@ -5,21 +5,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CreateMeetingCommandParser.DATE_FORMATTER;
-import static seedu.address.logic.parser.CreateMeetingCommandParser.TIME_FORMATTER;
+import static seedu.address.logic.parser.CreateMeetingCommandParser.DATE_TIME_VALIDATOR;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.util.DateTimeProcessor;
 
 /**
  * Parses input arguments and creates a new EditMeetingCommand object
  */
 public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
-
-    private final DateTimeProcessor validator = new DateTimeProcessor(DATE_FORMATTER, TIME_FORMATTER);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditMeetingCommand
@@ -48,7 +44,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             String processedEditedDateAndTime;
             try {
-                processedEditedDateAndTime = this.validator.processDateTime(argMultimap.getValue(PREFIX_DATE).get());
+                processedEditedDateAndTime =
+                    DATE_TIME_VALIDATOR.processDateTime(argMultimap.getValue(PREFIX_DATE).get());
             } catch (java.text.ParseException e) {
                 throw new ParseException(e.getMessage());
             }

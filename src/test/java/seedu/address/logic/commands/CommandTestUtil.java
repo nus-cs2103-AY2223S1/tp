@@ -38,8 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_MEETING_2 = "Test 2";
     public static final String VALID_LOCATION_MEETING_1 = "Location 1";
     public static final String VALID_LOCATION_MEETING_2 = "Location 2";
-    public static final String VALID_DATE_MEETING_1 = "Friday, 23 September 2022 11:59 pm";
-    public static final String VALID_DATE_MEETING_2 = "Saturday, 24 September 2022 11:59 pm";
+    public static final String VALID_DATE_MEETING_1 = "23-09-2022 2359";
+    public static final String VALID_DATE_MEETING_2 = "24-09-2022 2359";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
