@@ -19,7 +19,7 @@ public class Task {
     public static final String MESSAGE_CONSTRAINTS =
             "Task names should not be blank and cannot begin with a whitespace";
 
-    public static final String DATE_FORMAT = "dd-MMM-yyyy HH:mm";
+    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
     /*
      * The first character of the task name must not be a whitespace,
@@ -103,7 +103,7 @@ public class Task {
         if (deadline == null) {
             return "";
         } else {
-            return String.format("(By %s)", deadline.format(DateTimeFormatter.ofPattern("dd-MMM-YYYY hh:MM a")));
+            return String.format("(By %s)", deadline.format(DateTimeFormatter.ofPattern("dd-MMM-YYYY hh:mm a")));
         }
     }
 
