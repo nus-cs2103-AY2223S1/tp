@@ -12,6 +12,7 @@ import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
+import seedu.clinkedin.model.person.exceptions.RatingAlreadyExistsException;
 
 /**
  * Changes rating of an existing person in the address book.
@@ -32,6 +33,7 @@ public class AddRateCommand extends Command {
 
     public static final String MESSAGE_ADD_RATING_SUCCESS = "Added rating to Person: %1$s";
     public static final String MESSAGE_DELETE_RATING_SUCCESS = "Removed rating from Person: %1$s";
+    public static final String MESSAGE_RATING_EXIST = "Rating for this person already exists";
 
     private final Index index;
 
@@ -56,6 +58,9 @@ public class AddRateCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (!personToEdit.getRating().toString().equals("0")) {
+            throw new CommandException(MESSAGE_RATING_EXIST);
+        }
         UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
@@ -65,19 +70,7 @@ public class AddRateCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
-    }
-
-    /**
-     * Generates a command execution success message based on whether
-     * the rating is added or removed from {@code personToEdit}.
-     *
-     * @param personToEdit the person whose note is edited
-     * @return the success message
-     */
-    private String generateSuccessMessage(Person personToEdit) {
-        String message = !rating.toString().isEmpty() ? MESSAGE_ADD_RATING_SUCCESS : MESSAGE_DELETE_RATING_SUCCESS;
-        return String.format(message, personToEdit);
+        return new CommandResult(String.format(MESSAGE_ADD_RATING_SUCCESS, editedPerson));
     }
 
     @Override
