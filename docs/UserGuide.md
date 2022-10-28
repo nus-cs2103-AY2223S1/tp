@@ -204,16 +204,15 @@ Format: `find [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMAIL] [g
 * The search is case-insensitive. e.g. `bob` will match `Bob`
 * Keywords for all fields (except specialisation) are separated by spaces. e.g. `find n/bob alex joe`
 * For fields `NAME` and `LOCATION`, only one of the keywords need to fully match. e.g. `find n/alex bob` can return contacts `Alex Hunter` and `Bob Jones`.
-* Keywords for specialisation must be a full match and are separated by `,`. e.g. `find s/discrete math, networks` will return contacts with specialisation `Discrete Math` AND/OR `Networks`, but NOT `Discrete`.
+* Keywords for specialisation must be a full match and are separated by `,`. e.g. `find s/discrete math, networks` will return contacts with specialisation `Discrete Math` OR `Networks`, but NOT `Discrete`.
 * The order of the keywords for any field does not matter. e.g. `find n/Hans Bo` will match `find n/Bo Hans`
 * For all fields, only full keywords will be matched e.g. `Bob` will not match `Bobby`
-* Persons matching at least one of the fields (as well one of the keywords in the field) will be returned (i.e. `OR` search).
-  e.g. `find n/alex bob t/friends` can return `Alex James`, `Bob Hunt` AND/OR all contacts with the tag `friends` (case-insensitive).
+* Find command performs `AND` search between fields but `OR` search for keywords within fields. e.g. `find n/alex bob t/friends` can return `Alex James`, `Bob Hunt` IF both contacts have the tag `friends`.
 * `OFFICE_HOUR` input must be in the same format as office hour input. e.g. To find office hour `MONDAY, 03:00 PM - 05:00 PM` enter `find o/1-15:00-2`.
 
 Examples:
-* `find m/CS2103T t/friends goodCoder` -> Returns contacts who take module `CS2103T` OR have the tags `friends` OR `goodCoder`.
-* `find n/wong leong m/CS1231S l/COM3` -> Returns all contacts whose names have `wong` OR `leong` in them, OR take the module `CS1231S`, OR have the location `COM3`.
+* `find m/CS2103T t/friends goodCoder` -> Returns contacts who take module `CS2103T` AND (have the tags `friends` OR `goodCoder`).
+* `find n/wong leong m/CS1231S l/COM3` -> Returns all contacts whose names have (`wong` OR `leong`) in them, AND take the module `CS1231S`, AND have the location `COM3`.
 * `find o/1-15:00-2 2-12:00-2` -> Returns all contacts with office time `MONDAY, 03:00 PM - 05:00 PM` OR `TUESDAY, 12:00 PM - 02:00 PM`.
 
 #### `ALL` search for `module` and `tag` fields
@@ -227,8 +226,8 @@ Format: `find [m/all/LIST OF MODULES] [t/all/LIST OF TAGS]`
 * `OR` search is still supported for modules and tags (omit the `all/`).
 
 Examples
-*  `find n/wong m/all/CS2100 CS2103T CS2109S` -> Returns all contacts who have `wong` in their name OR (take the modules: `CS2100` AND `CS2103T` and `CS2109S`).
-*  `find l/NUS t/all/friends owesMoney smart` -> Returns all contacts who have the location `NUS` OR (have the tags: `friends` AND `owesMoney` AND `smart`).
+*  `find n/wong m/all/CS2100 CS2103T CS2109S` -> Returns all contacts who have `wong` in their name AND (take the modules: `CS2100` AND `CS2103T` and `CS2109S`).
+*  `find l/NUS t/all/friends owesMoney smart` -> Returns all contacts who have the location `NUS` AND (have the tags: `friends` AND `owesMoney` AND `smart`).
 
 #### Type search
 
@@ -244,8 +243,8 @@ Only the following are accepted for `TYPE`:
 * More than one type can be provided
 
 Examples:
-* `find typ/stu ta` -> Returns contacts who are students or teaching assistants.
-* * `find typ/stu prof` -> Returns contacts who are students or professors.
+* `find typ/stu ta` -> Returns contacts who are students OR teaching assistants.
+* * `find typ/stu prof` -> Returns contacts who are students OR professors.
 
 ### 3.3.2 List contact: `list`
 
