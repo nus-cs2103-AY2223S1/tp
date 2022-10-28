@@ -13,10 +13,12 @@ import seedu.foodrem.commons.util.ValidationUtil;
  */
 public class ItemExpiryDateValidator implements Validator {
     // Validation for parsing
-    private static final String MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE =
+    private static final String MESSAGE_FOR_EXPIRY_DATE_NOT_DDMMYYYY =
             "The item expiry date must follow the format dd-mm-yyyy.";
+    private static final String MESSAGE_FOR_EXPIRY_DATE_DO_NOT_EXIST =
+            "The item expiry date do not exist.";
 
-    // Validation for year
+    // Validation for year'
     private static final int MIN_YEAR = 1900;
     private static final String MESSAGE_FOR_YEAR_TOO_SMALL =
             String.format("The year for item expiry date should be larger than or equal to %d.", MIN_YEAR);
@@ -31,8 +33,11 @@ public class ItemExpiryDateValidator implements Validator {
      * @param dateString String representation of date to validate against.
      */
     public static Void validate(String dateString) {
+        boolean isDateStringInRightFormat = dateString.matches("[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]");
+
         boolean isDateStringParsable = ValidationUtil.isParsableDateString(dateString, EXPIRY_DATE_PATTERN_REGEX);
-        checkArgument(isDateStringParsable, MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        checkArgument(isDateStringInRightFormat, MESSAGE_FOR_EXPIRY_DATE_NOT_DDMMYYYY);
+        checkArgument(isDateStringParsable, MESSAGE_FOR_EXPIRY_DATE_DO_NOT_EXIST);
 
         LocalDate date = LocalDate.parse(dateString, EXPIRY_DATE_FORMATTER);
 
