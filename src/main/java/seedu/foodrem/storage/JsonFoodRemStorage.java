@@ -9,6 +9,9 @@ import java.util.logging.Logger;
 
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.commons.exceptions.DataConversionException;
+import seedu.foodrem.commons.exceptions.ItemStorageFullException;
+import seedu.foodrem.commons.exceptions.StorageFullException;
+import seedu.foodrem.commons.exceptions.TagStorageFullException;
 import seedu.foodrem.commons.util.FileUtil;
 import seedu.foodrem.commons.util.JsonUtil;
 import seedu.foodrem.model.ReadOnlyFoodRem;
@@ -40,7 +43,7 @@ public class JsonFoodRemStorage implements FoodRemStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyFoodRem> readFoodRem(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyFoodRem> readFoodRem(Path filePath) throws DataConversionException, StorageFullException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableFoodRem> jsonFoodRem = JsonUtil.readJsonFile(
@@ -54,6 +57,12 @@ public class JsonFoodRemStorage implements FoodRemStorage {
         } catch (IllegalArgumentException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
+        } catch (ItemStorageFullException sfe) {
+            logger.info("Too many items in the data file");
+            throw new ItemStorageFullException(sfe.getMessage());
+        } catch (TagStorageFullException sfe) {
+            logger.info("Too many tags in the data file");
+            throw new TagStorageFullException(sfe.getMessage());
         }
     }
 

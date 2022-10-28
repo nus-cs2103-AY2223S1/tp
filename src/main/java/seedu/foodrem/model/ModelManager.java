@@ -85,6 +85,16 @@ public class ModelManager implements Model {
         userPrefs.setFoodRemFilePath(foodRemFilePath);
     }
 
+    @Override
+    public boolean isItemStorageFull() {
+        return foodRem.isItemStorageFull();
+    }
+
+    @Override
+    public boolean isTagStorageFull() {
+        return foodRem.isTagStorageFull();
+    }
+
     //=========== FoodRem ================================================================================
 
     @Override

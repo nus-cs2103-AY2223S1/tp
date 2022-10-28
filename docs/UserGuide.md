@@ -49,7 +49,6 @@ show-toc: true
 
 {% include_relative _ug/commandSummary/StatisticsCommands.md %}
 
-
 ## Troubleshooting
 
 <!-- Added one issue that is referred to by Quick Start -->
