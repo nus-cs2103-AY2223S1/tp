@@ -14,10 +14,11 @@ public class TypicalTasks {
             .withIsDone(false).build();
     public static final Task COOK = new TaskBuilder().withName("Cook for 4 people").withDeadline("24-10-2022")
             .withIsDone(true).build();
+    public static final Task REVIEW = new TaskBuilder().withName("Review John PR").withIsDone(false).build();
 
     private TypicalTasks() {} // prevents instantiation
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(STUDY, COOK));
+        return new ArrayList<>(Arrays.asList(STUDY, COOK, REVIEW));
     }
 }

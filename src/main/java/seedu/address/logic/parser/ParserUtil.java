@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd/MM/yyyy format "
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd-MM-yyyy format "
             + "and must be a valid date.";
     public static final String DATE_FORMAT = "dd-MM-yyyy";
 

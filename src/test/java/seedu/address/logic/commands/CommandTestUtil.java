@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -57,10 +60,15 @@ public class CommandTestUtil {
     public static final String VALID_TEAM_NAME_FRONTEND = "Frontend";
     public static final String VALID_TEAM_NAME_BACKEND = "Backend (payment system)";
 
+    public static final String TEAM_INDEX_1 = " " + PREFIX_TEAM_INDEX + "1";
+
     public static final String VALID_TASK_NAME_STUDY = "Study for exam";
     public static final String VALID_TASK_NAME_COOK = "Cook for 4 people";
+    public static final String VALID_TASK_DEADLINE_STUDY = "02-01-2022";
     public static final String VALID_TASK_DEADLINE_COOK = "24-10-2022";
 
+    public static final String TASK_NAME_DESC_STUDY = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_STUDY;
+    public static final String TASK_DEADLINE_DESC_STUDY = " " + PREFIX_TASK_DEADLINE + VALID_TASK_DEADLINE_STUDY;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
