@@ -21,10 +21,10 @@ bobaBot is a **desktop application** for managing customers’ membership detail
       2.8. <a href="#deleting-a-customer--delete">Delete</a><br>
       2.9. <a href="#undo-a-command--undo">Undo</a><br>
       2.10. <a href="#redo-an-undocommand--redo">Redo</a><br>
-      4.11. <a href="#clearing-all-entries--clear">Clear</a><br>
-      4.12. <a href="#calculate-calc">Calculate</a><br>
-      4.13. <a href="#gui-calculator-calc-gui">Calculator</a><br>
-      4.14. <a href="#exiting-the-program--exit">Exit</a><br>
+      2.11. <a href="#clearing-all-entries--clear">Clear</a><br>
+      2.12. <a href="#calculate-calc">Calculate</a><br>
+      2.13. <a href="#gui-calculator-calc-gui">Calculator</a><br>
+      2.14. <a href="#exiting-the-program--exit">Exit</a><br>
    </details>
 1. [FAQ](#faq) <br>
 1. [Command summary](#command-summary) <br>
