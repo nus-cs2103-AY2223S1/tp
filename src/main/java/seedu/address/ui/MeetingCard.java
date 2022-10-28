@@ -5,9 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.offer.Offer;
 
-import java.util.Comparator;
 
 
 /**
@@ -36,7 +34,7 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label client;
     @FXML
-    private Label listingId ;
+    private Label listingId;
 
     /**
      * Creates a {@code meetingCode} with the given {@code meeting} and index to display.
