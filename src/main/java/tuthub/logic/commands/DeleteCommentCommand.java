@@ -17,6 +17,7 @@ import tuthub.model.tutor.Tutor;
 public class DeleteCommentCommand extends Command {
 
     public static final String COMMAND_WORD = "deletecomment";
+    public static final String ALTERNATIVE_COMMAND_WORD = "dc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a comment identified by the index number used in the displayed tutor list.\n"
