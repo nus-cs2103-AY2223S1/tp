@@ -9,8 +9,15 @@ public class PropertyTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Property(null, null,
-                null, null, null));
+        assertThrows(NullPointerException.class, () -> new Property(
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null)
+        );
     }
 
 }
