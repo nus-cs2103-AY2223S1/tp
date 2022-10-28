@@ -9,7 +9,6 @@ import seedu.foodrem.commons.util.StringUtil;
  */
 public class ItemRemarksValidator implements Validator {
     // Validation for remarks length
-    // TODO: Ensure UG is standardised
     private static final int MAX_LENGTH = 10000;
     private static final String MESSAGE_FOR_REMARKS_TOO_LONG =
             String.format("The item remark should not exceed %d characters", MAX_LENGTH);

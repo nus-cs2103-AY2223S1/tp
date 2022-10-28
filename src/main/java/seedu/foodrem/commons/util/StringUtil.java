@@ -66,7 +66,34 @@ public class StringUtil {
         String[] wordsInPreppedSentence = sentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-            .anyMatch(preppedWord::equalsIgnoreCase);
+                .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns {@code true} if the {@code sentence} contains the {@code word}.
+     * Ignores case, and does not need a full word match.
+     * <br>examples:<pre>
+     *       containsSubstringIgnoreCase("ABc def", "abc") == true
+     *       containsSubstringIgnoreCase("ABc def", "DEF") == true
+     *       containsSubstringIgnoreCase("ABc def", "AB") == true
+     *       containsSubstringIgnoreCase("ABc def", "GH") == false
+     *       </pre>
+     *
+     * @param sentence cannot be null
+     * @param word     cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsSubstringIgnoreCase(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim().toLowerCase();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String[] wordsInPreppedSentence = sentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(w -> w.toLowerCase().contains(preppedWord));
     }
 
     /**
