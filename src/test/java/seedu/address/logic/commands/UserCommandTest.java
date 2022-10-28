@@ -198,6 +198,30 @@ public class UserCommandTest {
         public void nextSem() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitAddressBook() {
+        }
+
+        @Override
+        public boolean canUndoAddressBook() {
+            return false;
+        }
+
+        @Override
+        public boolean canRedoAddressBook() {
+            return false;
+        }
+
+        @Override
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

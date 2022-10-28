@@ -152,13 +152,11 @@ public interface Model {
 
     /**
      * Reverts the AddressBook to the previous state.
-     * @return The previous AddressBook state
      */
     void undoAddressBook();
 
     /**
      * Reverts the AddressBook to the forward state.
-     * @return The forward AddressBook state
      */
     void redoAddressBook();
 

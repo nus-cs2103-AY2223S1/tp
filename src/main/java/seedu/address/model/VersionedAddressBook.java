@@ -67,9 +67,6 @@ public class VersionedAddressBook extends AddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof VersionedAddressBook) // instanceof handles nulls
-                && super.equals((VersionedAddressBook) other)
-                && this.addressBookStateList.equals(((VersionedAddressBook) other).addressBookStateList)
-                && currentStatePointer == ((VersionedAddressBook) other).currentStatePointer;
+                || (other instanceof VersionedAddressBook); // instanceof handles nulls
     }
 }
