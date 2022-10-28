@@ -1,6 +1,7 @@
 package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.foodrem.commons.core.Messages.MESSAGE_NON_POSITIVE_INDEX;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -71,6 +72,6 @@ class IncrementCommandParserTest {
         // Index negative
         assertParseFailure(parser,
                 "-1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncrementCommand.getUsage()));
+                           MESSAGE_NON_POSITIVE_INDEX);
     }
 }

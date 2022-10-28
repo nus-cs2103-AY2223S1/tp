@@ -2,8 +2,8 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
@@ -34,14 +34,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                         CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
                         CliSyntax.PREFIX_ITEM_PRICE,
                         CliSyntax.PREFIX_ITEM_REMARKS);
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditCommand.getUsage()), pe);
-        }
+        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble().trim(),
+                                                               EditCommand.getUsage());
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
         if (argMultimap.isValuePresent(CliSyntax.PREFIX_NAME)) {
@@ -79,20 +73,4 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         return new EditCommand(index, editItemDescriptor);
     }
-
-    // TODO: Check if we can delete this
-    ///**
-    // * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-    // * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-    // * {@code Set<Tag>} containing zero tags.
-    // */
-    //private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-    //    assert tags != null;
-    //
-    //    if (tags.isEmpty()) {
-    //        return Optional.empty();
-    //    }
-    //    Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-    //    return Optional.of(ParserUtil.parseTags(tagSet));
-    //}
 }
