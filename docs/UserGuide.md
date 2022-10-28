@@ -284,7 +284,7 @@ Adds a task under a specific module.
 
 - You may have selected a module (i.e. used the [`cd` command](#entering-a-module-cd) to select a module).
 - You can specify a deadline for the task with the `-d` flag along with the deadline in YYYY-MM-DD format.
-- The task description accepts only use letters, numbers, spaces, and other
+- The task description accepts only letters, numbers, spaces, and other
   American Standard Code for Information Interchange [(ASCII)](https://en.wikipedia.org/wiki/ASCII) characters.
 - The task description must be enclosed in double-quotes (`""`) if it contains spaces.
 - The symbols `-` and `"` are special characters and must be escaped with a backslash (`\`) to
@@ -397,8 +397,10 @@ Examples:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous ModuleList home folder.
+
 **Q**: Is my data saved when I close the app?<br>
 **A**: Yes! We keep track of your modules and tasks, and they will automatically be shown when you re-open the application.
+
 **Q**: Do I need a working internet connection to use this application?<br>
 **A**: No, it is not required. We have a backup data file of all NUS modules for AY2022-2023, so no internet is required.
 
