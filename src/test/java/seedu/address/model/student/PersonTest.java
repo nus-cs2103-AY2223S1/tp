@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -49,7 +49,7 @@ public class PersonTest {
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // different name, all other attributes same -> returns true (same person by same phone number)
+        // different name, all other attributes same -> returns true (same student by same phone number)
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -86,7 +86,7 @@ public class PersonTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false

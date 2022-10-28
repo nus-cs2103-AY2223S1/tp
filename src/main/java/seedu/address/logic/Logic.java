@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTeachersPet;
 import seedu.address.model.StatisticsCalculator;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 
 /**
  * API of the Logic component

@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 /**
  * Represents a Person's additional Notes in the address book.

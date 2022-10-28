@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
+import seedu.address.model.student.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressContainsKeywordsPredicateTest {
@@ -38,7 +38,7 @@ public class AddressContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

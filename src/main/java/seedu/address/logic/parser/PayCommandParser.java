@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PayCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Money;
+import seedu.address.model.student.Money;
 
 /**
  * Parses input arguments and creates a new PayCommand object

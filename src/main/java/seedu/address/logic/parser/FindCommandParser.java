@@ -18,13 +18,13 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.ClassContainsDatePredicate;
-import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.NokPhoneContainsNumberPredicate;
-import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
-import seedu.address.model.person.predicate.TagContainsKeywordsPredicate;
+import seedu.address.model.student.predicate.AddressContainsKeywordsPredicate;
+import seedu.address.model.student.predicate.ClassContainsDatePredicate;
+import seedu.address.model.student.predicate.EmailContainsKeywordsPredicate;
+import seedu.address.model.student.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.student.predicate.NokPhoneContainsNumberPredicate;
+import seedu.address.model.student.predicate.PhoneContainsNumberPredicate;
+import seedu.address.model.student.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

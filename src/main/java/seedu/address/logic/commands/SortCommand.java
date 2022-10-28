@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Comparator;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 
 /**
  * Lists all persons in the address book to the user.

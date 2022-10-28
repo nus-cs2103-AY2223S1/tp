@@ -7,8 +7,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Person;
 import seedu.address.model.timeRange.TimeRange;
 
 /**
@@ -57,26 +57,26 @@ public interface Model {
     ReadOnlyTeachersPet getTeachersPet();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
     boolean hasPerson(Person person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given student.
+     * The student must exist in the address book.
      */
     void deletePerson(Person target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given student.
+     * {@code student} must not already exist in the address book.
      */
     void addPerson(Person person);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given student {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The student identity of {@code editedPerson} must not be the same as another existing student in the address book.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -87,15 +87,15 @@ public interface Model {
     Class findAvailableClass(TimeRange timeRange);
 
     /**
-     * Sorts the current filtered person list with the given {@code comparator}.
+     * Sorts the current filtered student list with the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
     void sortPersons(Comparator<Person> comparator);
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
@@ -104,7 +104,7 @@ public interface Model {
     ObservableList<Person> getFilteredScheduleList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredScheduleList(Predicate<Person> predicate);

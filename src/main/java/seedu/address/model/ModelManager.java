@@ -14,8 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Person;
 import seedu.address.model.timeRange.TimeRange;
 
 /**

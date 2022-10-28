@@ -6,10 +6,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.UniqueScheduleList;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Person;
+import seedu.address.model.student.UniquePersonList;
+import seedu.address.model.student.UniqueScheduleList;
 import seedu.address.model.timeRange.TimeRange;
 
 /**
@@ -46,7 +46,7 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
+     * Replaces the contents of the student list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
@@ -71,10 +71,10 @@ public class TeachersPet implements ReadOnlyTeachersPet {
         setSchedule(newData.getPersonList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -82,8 +82,8 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a student to the address book.
+     * The student must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -91,9 +91,9 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given student {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The student identity of {@code editedPerson} must not be the same as another existing student in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);

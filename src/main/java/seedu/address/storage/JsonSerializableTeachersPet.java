@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTeachersPet;
 import seedu.address.model.TeachersPet;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 
 /**
  * An Immutable TeachersPet that is serializable to JSON format.
@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "teacherspet")
 class JsonSerializableTeachersPet {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate student(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 

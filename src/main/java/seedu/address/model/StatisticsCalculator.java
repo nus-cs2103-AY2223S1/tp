@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 
 /**
  * A calculator that calculates the statistics of a particular TeachersPet.

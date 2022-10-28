@@ -18,7 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
 import seedu.address.model.TeachersPet;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 import seedu.address.testutil.PersonBuilder;
 
 public class ClassStorageTest {
@@ -83,7 +83,7 @@ public class ClassStorageTest {
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
-        // returns 0 since there is no same person found
+        // returns 0 since there is no same student found
         assertEquals(0, ClassStorage.getIndex(person));
     }
 
@@ -102,7 +102,7 @@ public class ClassStorageTest {
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
-        // edit money owed and money paid of Daniel Tan (last person on personsTeachersPet list)
+        // edit money owed and money paid of Daniel Tan (last student on personsTeachersPet list)
         ClassStorage.updatePerson(personToEdit, editedPerson);
         List<Person> listOfPerson = ClassStorage.getListOfPerson(LocalDate.of(2022, 5, 5));
 

@@ -10,15 +10,15 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.AdditionalNotes;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Mark;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.student.AdditionalNotes;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Mark;
+import seedu.address.model.student.Money;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Person;
+import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
 
 /**

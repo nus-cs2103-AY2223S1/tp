@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -168,9 +168,9 @@ public class Person {
     }
 
     /**
-     * Determines whether the person is owing money.
+     * Determines whether the student is owing money.
      *
-     * @return true if the person is owing money
+     * @return true if the student is owing money
      */
     public boolean isOwingMoney() {
         return moneyOwed.isGreaterThanZero();
@@ -260,10 +260,10 @@ public class Person {
     }
 
     /**
-     * Compare the current {@code person} object with another {@code person} object
+     * Compare the current {@code student} object with another {@code student} object
      * based on startTime.
-     * @param person a person object to compare with.
-     * @return the result of comparing the two {@code person} object startTime.
+     * @param person a student object to compare with.
+     * @return the result of comparing the two {@code student} object startTime.
      */
     public int compareTo(Person person) {
         if (person.aClass.startTime == null && this.aClass.startTime == null) {
@@ -277,14 +277,14 @@ public class Person {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      */
     public int compareToByNameAsc(Person person) {
         return this.name.compareTo(person.name);
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      */
     public int compareToByNameDesc(Person person) {
         // return opposite result as this::compareToByNameAsc
@@ -292,8 +292,8 @@ public class Person {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
-     * When one of the two has empty {@code Class}, this person should be placed at the end.
+     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
+     * When one of the two has empty {@code Class}, this student should be placed at the end.
      * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
      */
     public int compareToByClassAsc(Person person) {
@@ -309,8 +309,8 @@ public class Person {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
-     * When one of the two has empty {@code Class}, this person should be placed at the end.
+     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
+     * When one of the two has empty {@code Class}, this student should be placed at the end.
      * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
      */
     public int compareToByClassDesc(Person person) {
@@ -326,7 +326,7 @@ public class Person {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
      */
     public int compareToByMoneyOwedAsc(Person person) {
@@ -339,7 +339,7 @@ public class Person {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
      */
     public int compareToByMoneyOwedDesc(Person person) {
@@ -352,7 +352,7 @@ public class Person {
     }
 
     /**
-     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      */
     public int compareToByDisplayClass(Person person) {
         requireAllNonNull(this.displayedClass, person.displayedClass);

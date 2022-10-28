@@ -18,13 +18,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.ClassContainsDatePredicate;
-import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
-import seedu.address.model.person.predicate.NokPhoneContainsNumberPredicate;
-import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
-import seedu.address.model.person.predicate.TagContainsKeywordsPredicate;
+import seedu.address.model.student.predicate.AddressContainsKeywordsPredicate;
+import seedu.address.model.student.predicate.ClassContainsDatePredicate;
+import seedu.address.model.student.predicate.EmailContainsKeywordsPredicate;
+import seedu.address.model.student.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.student.predicate.NokPhoneContainsNumberPredicate;
+import seedu.address.model.student.predicate.PhoneContainsNumberPredicate;
+import seedu.address.model.student.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -123,7 +123,7 @@ public class FindCommandTest {
         assertFalse(findTagOneCommand.equals(null));
         assertFalse(findNokPhoneOneCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
 
         // different address -> returns false

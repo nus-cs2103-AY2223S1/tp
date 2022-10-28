@@ -22,10 +22,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Mark;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Mark;
+import seedu.address.model.student.Money;
+import seedu.address.model.student.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**

@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 
 /**
  * An UI component that displays information of a {@code Schedule}.
@@ -53,7 +53,7 @@ public class ScheduleCard extends UiPart<Region> {
     }
 
     /**
-     * Sets off warning indication if the person owes money.
+     * Sets off warning indication if the student owes money.
      *
      * @param person to set warning if he/she owes money.
      */
@@ -68,7 +68,7 @@ public class ScheduleCard extends UiPart<Region> {
     }
 
     /**
-     * Toggles the mark indicator based on the status of the person.
+     * Toggles the mark indicator based on the status of the student.
      *
      * @param person to check whether he/she is marked.
      */

@@ -9,18 +9,18 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 import seedu.address.storage.ClassStorage;
 
 /**
- * Deletes a person identified using its displayed index from the student list.
+ * Deletes a student identified using its displayed index from the student list.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed student list.\n"
+            + ": Deletes the student identified by the index number used in the displayed student list.\n"
             + "Parameters: INDEX [OPTIONAL INDEXES] (must be positive integer(s))\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -32,7 +32,7 @@ public class DeleteCommand extends Command {
     /**
      * Creates a DeleteCommand to delete the specified {@code Person}(s).
      *
-     * @param targetIndexes of the person(s) to delete.
+     * @param targetIndexes of the student(s) to delete.
      */
     public DeleteCommand(List<Index> targetIndexes) {
         Collections.sort(targetIndexes);

@@ -3,7 +3,7 @@ package seedu.address.model;
 import java.util.Comparator;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 
 /**
  * Unmodifiable view of an address book

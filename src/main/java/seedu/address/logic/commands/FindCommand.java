@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 
 /**
  * Finds and lists all students in student list whose details contain any of the argument keywords/number in a prefix.

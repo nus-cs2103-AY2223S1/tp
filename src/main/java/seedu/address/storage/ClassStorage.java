@@ -11,8 +11,8 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TeachersPet;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Person;
 
 /**
  * Manages storage of TeachersPet class data.
@@ -35,7 +35,7 @@ public class ClassStorage {
     }
 
     /**
-     * Updates the person in the List of Person in the HashMap classes.
+     * Updates the student in the List of Person in the HashMap classes.
      *
      * @param personToEdit Person object without the edited fields.
      * @param editedPerson Person object with the edited fields.
@@ -84,7 +84,7 @@ public class ClassStorage {
      * Saves added classes into storage if there is no conflict between the timings of the classes.
      *
      * @param editedPerson Person object.
-     * @param indexOfEditedPerson One-based index of the person in the list.
+     * @param indexOfEditedPerson One-based index of the student in the list.
      * @throws CommandException if there is a conflict between the timings of the classes.
      */
     public static void saveClass(Person editedPerson, int indexOfEditedPerson) throws CommandException {
@@ -96,7 +96,7 @@ public class ClassStorage {
             newListOfPersons.add(editedPerson);
             classes.put(date, newListOfPersons);
         } else {
-            // Gets the list of person who have classes with same date
+            // Gets the list of student who have classes with same date
             List<Person> listOfPerson = classes.get(date);
             for (Person currPerson : listOfPerson) {
                 LocalTime startOfCurrClass = currPerson.getAClass().startTime;
@@ -145,7 +145,7 @@ public class ClassStorage {
     }
 
     /**
-     * Returns the index of person in the current list shown on left UI panel.
+     * Returns the index of student in the current list shown on left UI panel.
      *
      * @param person Person object.
      * @return int.

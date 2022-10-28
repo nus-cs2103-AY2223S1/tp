@@ -25,27 +25,27 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.AdditionalNotes;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Mark;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.student.AdditionalNotes;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Mark;
+import seedu.address.model.student.Money;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Person;
+import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.ClassStorage;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing student in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+            + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -65,7 +65,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
     public static final String MESSAGE_CLASS_CONFLICT = "There is a conflict between the class timings.";
     private static final String MESSAGE_MULTIPLE_CLASSES_PER_DAY = "A student cannot have multiple classes per day";
 
@@ -73,8 +73,8 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit.
-     * @param editPersonDescriptor details to edit the person with.
+     * @param index of the student in the filtered student list to edit.
+     * @param editPersonDescriptor details to edit the student with.
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -175,8 +175,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
      */
     public static class EditPersonDescriptor {
         private Name name;

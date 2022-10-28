@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicate.ClassContainsDatePredicate;
+import seedu.address.model.student.predicate.ClassContainsDatePredicate;
 import seedu.address.testutil.PersonBuilder;
 
 public class ClassContainsDatePredicateTest {

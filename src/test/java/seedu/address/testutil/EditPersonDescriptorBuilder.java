@@ -7,14 +7,14 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AdditionalNotes;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.student.AdditionalNotes;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Money;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Person;
+import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,7 +39,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code student}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
