@@ -222,7 +222,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePersonGroup_validValueWithoutWhitespace_returnsPersonGroup() {
+    public void parsePersonGroup_validValueWithoutWhitespace_returnsPersonGroup() throws ParseException {
         PersonGroup expectedPersonGroup = new PersonGroup(VALID_PERSONGROUP_1);
         assertEquals(expectedPersonGroup, ParserUtil.parsePersonGroup(VALID_PERSONGROUP_1));
     }
