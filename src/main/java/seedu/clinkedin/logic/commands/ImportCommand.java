@@ -203,4 +203,15 @@ public class ImportCommand extends Command {
         List<Person> personList = getPersonList(content);
         return personList;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this.onlyCommand) {
+            return other instanceof ImportCommand && ((ImportCommand) other).onlyCommand;
+        }
+        return other == this // short circuit if same object
+                || (other instanceof ImportCommand // instanceof handles nulls
+                && filePath.equals(((ImportCommand) other).filePath)
+                && fileType == ((ImportCommand) other).fileType);
+    }
 }

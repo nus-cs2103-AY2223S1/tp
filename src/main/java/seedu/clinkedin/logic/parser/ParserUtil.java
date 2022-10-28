@@ -47,9 +47,7 @@ public class ParserUtil {
      * Types of file extensions supported for export and/or import.
      */
     public enum FileType {
-        XML,
         CSV,
-        TXT,
         JSON
     }
 
@@ -302,10 +300,16 @@ public class ParserUtil {
     public static Prefix parsePrefix(String prefix) throws ParseException {
         requireNonNull(prefix);
         String trimmedPrefix = prefix.trim();
-        if (!Prefix.isValidPrefixName(trimmedPrefix)) {
+        if (!Prefix.isValidPrefixName(trimmedPrefix + "/")) {
             throw new ParseException(Prefix.MESSAGE_CONSTRAINTS);
         }
-        return new Prefix(trimmedPrefix + "/");
+        Prefix p;
+        try {
+            p = new Prefix(trimmedPrefix + "/");
+        } catch (IllegalArgumentException iae) {
+            throw new ParseException(iae.getMessage());
+        }
+        return p;
     }
 
     /**

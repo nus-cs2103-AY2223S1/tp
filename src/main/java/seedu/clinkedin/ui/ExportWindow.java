@@ -76,6 +76,8 @@ public class ExportWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.info("Showing Export Window.");
+        chosenLocation.setText("");
+        userEnteredFileName.clear();
         getRoot().show();
         getRoot().centerOnScreen();
     }

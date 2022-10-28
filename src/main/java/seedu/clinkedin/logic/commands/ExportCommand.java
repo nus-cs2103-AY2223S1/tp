@@ -105,4 +105,15 @@ public class ExportCommand extends Command {
             throw new CommandException("Couldn't export file! Check file path and try again!");
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this.onlyCommand) {
+            return other instanceof ExportCommand && ((ExportCommand) other).onlyCommand;
+        }
+        return other == this // short circuit if same object
+                || (other instanceof ExportCommand // instanceof handles nulls
+                && filePath.equals(((ExportCommand) other).filePath)
+                && fileType == ((ExportCommand) other).fileType);
+    }
 }
