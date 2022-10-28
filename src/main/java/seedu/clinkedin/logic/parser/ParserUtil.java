@@ -44,7 +44,6 @@ public class ParserUtil {
      */
     public enum FileType {
         CSV,
-        TXT,
         JSON
     }
 
