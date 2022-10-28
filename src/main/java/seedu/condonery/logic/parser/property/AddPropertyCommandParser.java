@@ -43,8 +43,7 @@ public class AddPropertyCommandParser implements Parser<Command> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG,
                         PREFIX_IMAGE_UPLOAD, PREFIX_INTERESTEDCLIENTS, PREFIX_PROPERTY_TYPE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE,
-                PREFIX_PROPERTY_TYPE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_PROPERTY_TYPE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE));
         }

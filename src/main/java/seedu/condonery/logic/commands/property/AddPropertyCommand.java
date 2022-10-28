@@ -2,6 +2,7 @@ package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
@@ -28,14 +29,16 @@ public class AddPropertyCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_PROPERTY_TYPE + "PROPERTY_TYPE "
+            + "[" + PREFIX_IMAGE_UPLOAD + "] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "PINNACLE@DUXTON "
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
             + PREFIX_PRICE + "1000000 "
+            + PREFIX_PROPERTY_TYPE + "HDB "
             + PREFIX_TAG + "High-End "
-            + PREFIX_TAG + "Available"
-            + PREFIX_PROPERTY_TYPE + "HDB";
+            + PREFIX_TAG + "Available";
 
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import seedu.condonery.commons.core.index.Index;
@@ -186,6 +187,11 @@ public class ParserUtil {
      */
     public static PropertyTypeEnum parsePropertyType(String propertyType) throws ParseException {
         requireNonNull(propertyType);
-        return PropertyTypeEnum.valueOf(propertyType);
+        try {
+            return PropertyTypeEnum.valueOf(propertyType.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException ex) {
+            throw new ParseException(
+                "Invalid Property Type specified! Property Type must be one of HDB, CONDO, or LANDED");
+        }
     }
 }
