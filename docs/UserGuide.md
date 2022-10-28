@@ -344,7 +344,7 @@ any data created or deleted from the application!
 ### Editing the data file
 
 * checkUp stores data in the JSON format, improving readability and allowing for manually editing the data file.
-* The data file can be found in `data/addressbook.json` in the home folder where checkUp's `jar` file is stored.
+* The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
 
 --------------------------------------------------------------------------------------------------------------------
