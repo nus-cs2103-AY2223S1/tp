@@ -297,7 +297,7 @@ Edit detail of the specified client.
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
 * Edit the client at the specified `INDEX`.
-*`INDEX` refers to the index number shown by executing [`listClient`](#512-list-clients-listclient) command.
+* `INDEX` refers to the index number shown by executing [`listClient`](#512-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
@@ -313,12 +313,10 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
 
 Add a new meeting to MyInsuRec.
 
-DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
-
 Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 
 * `INDEX` refers to the number of the client you are meeting with,
-as shown by executing the [`listClient`](#312-list-clients-listclient) command.
+as shown by executing the [`listClient`](#512-list-clients-listclient) command.
 * `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
 1 February 2022.
 * `START_TIME` and `END_TIME` should be give in the format HHMM. For example, 
@@ -358,7 +356,7 @@ View details associated with a meeting, such as meeting's date and time.
 Format: `viewMeeting i/INDEX`
 
 * Display information about the meeting at the specific `INDEX`.
-* The index refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
+* The index refers to the index number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
