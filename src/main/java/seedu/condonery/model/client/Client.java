@@ -73,6 +73,10 @@ public class Client {
         return Collections.unmodifiableSet(stringTags);
     }
 
+    public Path getImageDirectoryPath() {
+        return this.imageDirectoryPath;
+    }
+
     public Path getImagePath() {
         if (imageDirectoryPath == null) {
             return null;
