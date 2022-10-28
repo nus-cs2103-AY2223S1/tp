@@ -88,6 +88,8 @@ public class DetailPanel extends MainPanel {
     }
 
     private void setLabelVisibility(Label label, boolean visible) {
+        // Remove node from tree so it doesn't occupy the space.
+        // @see https://stackoverflow.com/a/28559958
         label.setManaged(visible);
         label.setVisible(visible);
     }
