@@ -2,6 +2,7 @@ package seedu.condonery.model.client;
 
 import static java.util.Objects.requireNonNull;
 
+import java.nio.file.Path;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -31,9 +32,13 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
     /**
      * Creates an ClientDirectory using the Clients in the {@code toBeCopied}
      */
-    public ClientDirectory(ReadOnlyClientDirectory toBeCopied) {
+    public ClientDirectory(ReadOnlyClientDirectory toBeCopied, Path imageDirectoryPath) {
         this();
         resetData(toBeCopied);
+
+        for (Client client : this.clients) {
+            client.setImageDirectoryPath(imageDirectoryPath);
+        }
     }
 
     //// list overwrite operations

@@ -7,6 +7,8 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -78,12 +80,18 @@ public class EditClientCommand extends Command {
         }
 
         Client clientToEdit = lastShownList.get(targetIndex.getZeroBased());
-        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
+        Path imageDirectoryPath = model.getUserPrefs().getUserImageDirectoryPath();
+        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor, imageDirectoryPath);
         // Parsed interested properties
         Client newEditedClient = new ParseClientInterestedProperties(editedClient, model).getNewClient();
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+        }
+
+        File existingImage = new File(clientToEdit.getImagePath().toString());
+        if (existingImage.exists()) {
+            existingImage.renameTo(new File(newEditedClient.getImagePath().toString()));
         }
 
         model.setClient(clientToEdit, newEditedClient);
@@ -100,7 +108,8 @@ public class EditClientCommand extends Command {
      * edited with {@code editClientDescriptor}.
      */
     private static Client createEditedClient(Client clientToEdit,
-                                                 EditClientDescriptor editClientDescriptor) {
+                                             EditClientDescriptor editClientDescriptor,
+                                             Path imageDirectoryPath) {
         assert clientToEdit != null;
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
@@ -110,7 +119,9 @@ public class EditClientCommand extends Command {
                 .getInterestedProperties()
                 .orElse(clientToEdit.getInterestedProperties());
 
-        return new Client(updatedName, updatedAddress, updatedTags, updatedInterestedProperties);
+        Client updatedClient = new Client(updatedName, updatedAddress, updatedTags, updatedInterestedProperties);
+        updatedClient.setImageDirectoryPath(imageDirectoryPath);
+        return updatedClient;
     }
 
     @Override
