@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CreateMeetingCommandParser.DATE_TIME_VALIDATOR;
-
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.model.meeting.Meeting;
 
