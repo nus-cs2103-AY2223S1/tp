@@ -39,12 +39,24 @@ This user guide provides in-depth descriptions of all the available features in 
 
 ## Components of the UI
 
+### Locations of the components
 ![UiComponentLabels](images/UiComponentLabels.png)
 
-* Command Box: This is where you enter your commands.
-* Result Display: This is where the detailed results of your command will be shown.
-* Guest Card: This is where all your guest information will be shown.
-* Status Bar: This is where your saved file is stored.
+### Use of the components
+| Component                                                    | Use                                                               |
+|--------------------------------------------------------------|-------------------------------------------------------------------|
+| **Command Box**                                              | This is where you enter your commands.                            |
+| **Result Display**                                           | This is where the detailed results of your command will be shown. |
+| **Guest Card**                                               | This is where all your guest information will be shown.           |
+| **Status Bar**                                               | This shows the path your save file is stored in.                  |
+| ![Phone](../src/main/resources/images/phone.png)             | This is the phone number of your guest.                           |
+| ![Email](../src/main/resources/images/email.png)             | This is the email address of your guest.                          |
+| ![Room](../src/main/resources/images/room.png)               | This is the room of your guest.                                   |
+| ![DateRange](../src/main/resources/images/dateRange.png)     | This is the date of stay of your guest.                           |
+| ![NumberOfGuests](../src/main/resources/images/group.png)    | This is the total number of guests in your guest's room.          |
+| ![IsRoomClean](../src/main/resources/images/isRoomClean.png) | This is the room cleaned status of your guest's room.             |
+| ![Bill](../src/main/resources/images/bill.png)               | This is the current bill of your guest.                           |
+| ![Request](../src/main/resources/images/request.png)         | This is the request made by your guest (if any).                  |
 
 [Return to Table of Contents](#table-of-contents)
 
