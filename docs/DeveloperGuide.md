@@ -165,7 +165,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="900" />
+<img src="images/ModelClassDiagram.png" width="800" />
 
 
 The `Model` component,
@@ -191,6 +191,7 @@ The diagrams given below contains more details on how each `Buyer`, `Supplier`,
 For more information on what each object 
 represents, refer to the [Glossary](#glossary) section.
 
+
 #### `Buyer` and `Deliverer` Class
 
 Both the `Buyer` and `Deliverer` classes inherit from the `Person` class and have an orders attribute. 
@@ -199,7 +200,8 @@ objects to easily access unique orders.
 
 Given below is the class diagram for the **`Buyer`** Class:
 
-<img src="images/ModelBuyerObjectImplementation.png" width="700" />
+<img src="images/ModelBuyerObjectImplementation.png" width="600" />
+
 
 #### `Supplier` Class
 
@@ -210,7 +212,8 @@ Similar to an order, each pet has an `UniqueId` for easier identification. Hence
 
 Given below is the class diagram for the **`Supplier`** Class:
 
-<img src="images/ModelSupplierObjectImplementation.png" width="700" />
+<img src="images/ModelSupplierObjectImplementation.png" width="600" />
+
 
 #### `Order` Class
 
@@ -219,12 +222,13 @@ every order should be made by a Buyer. Given below is the class diagram for the 
 
 <img src="images/ModelOrderObjectImplementation.png" width="800" />
 
+
 #### `Pet` Class
 
 The `Pet` class consists of several attributes. The most important attribute to take note of is the Supplier as
 every pet should be sold by a Supplier. Given below is the class diagram for the **`Pet`** Class:
 
-<img src="images/ModelPetObjectImplementation.png" width=950 />
+<img src="images/ModelPetObjectImplementation.png" width=1000 />
 
 </div>
 
