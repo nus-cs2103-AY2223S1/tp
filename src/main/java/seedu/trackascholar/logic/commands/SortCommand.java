@@ -22,7 +22,7 @@ public class SortCommand extends Command {
             + "Parameters: name/scholarship/status [-r]\n"
             + "Example: " + COMMAND_WORD + " name -r";
 
-    public static final String MESSAGE_SORT_SUCCESS = "Applicants have been sorted";
+    public static final String MESSAGE_SORT_SUCCESS = "Applicants have been sorted!";
 
     private final Comparator<Applicant> comparator;
 
