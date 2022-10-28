@@ -258,7 +258,7 @@ Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<
   e.g. `d/burger n/hans` will match `Hansel` if he owes money for a burger.
 * Only persons matching all conditions will be returned (i.e. `AND` search).
   e.g. `d/burger d/fries n/hans` will return `Hans Gruber` only if he owes money for a burger and fries,
-  but not `Hansel`  if he only owes money for a burger and not for fries. 
+  but not `Hansel`  if he only owes money for a burger and not for fries.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
