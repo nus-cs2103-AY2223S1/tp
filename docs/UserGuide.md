@@ -209,19 +209,19 @@ Opens up a GUI window for the user to enter student's assignment results.
 
 Format: `grade SUBJECT_ASSIGNMENT_TOTALSCORE_WEIGHTAGE_DIFFICULTY`
 
-* The Subject refers to subject of the assignment, eg - math
-* The Assignment refers to the name of the assignment, eg -CA1.
+* The Subject refers to subject of the assignment, in captail letters, eg - MATH
+* The Assignment refers to the name of the assignment, eg - CA1.
 * The Total score refers to the maximum achievable score in the assignment
 * The weightage refers to the weightage of the assignment, written in decimal form. For example, if the assignment is worth 40% of the total grade, write 0.4
 * The difficulty of an assignment is an arbitrary number out of 5 to denote how difficult the assignment is
 
 Examples:
-* `grade math_CA1_100_0.5_1.0`
-* `grade english_CA1_40_0.2_4.5`
+* `grade MATH_CA1_100_0.5_1.0`
+* `grade ENGLISH_CA1_40_0.2_4.5`
 
 Example use
 
-1) Type in "grade math_CA1_100_0.5_1.0" into the input box as shown:
+1) Type in "grade MATH_CA1_100_0.5_1.0" into the input box as shown:
 
 
    ![Example Command](images/GradeCommand.png "Grade Command")
