@@ -59,6 +59,75 @@ and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.
 
 </div>
 
+### Adding an inventory item: `addi`
+
+Adds an item to the list of tracked inventory.
+
+Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An inventory item can have any number of tags (including 0)
+</div>
+
+Examples:
+* `addi n/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
+* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture sp/50 cp/20`
+
+### Listing all inventory items: `listi`
+
+Lists all the existing items in the store’s inventory.
+
+Format: `listi`
+
+### Finding an inventory item: `findi`
+
+Finds an inventory item whose name fits any of the given keywords.
+
+Format: `findi KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive. e.g. `keychain` will match `Keychain`
+- The order of the keywords does not matter. e.g. `pants long` will match `long pants`
+- Only the name of the item is searched.
+- Only full words will be matched. e.g. `key` will not match `Keychain`
+- Items matching at least one keyword will be returned (i.e. OR search).
+  e.g. `shirt` will return `dress shirt`, `collared shirt`
+
+Examples:
+- `findi oil` returns `Olive Oil` and `Vegetable Oil`
+- `findi blue` returns `Blue Shirt`, `Blue Pants`
+
+### Deleting an inventory item : `deletei`
+
+Deletes the specified item from the list of tracked inventory.
+
+Format: `deletei INDEX`
+
+* Deletes the item at the specified `INDEX`.
+* The index refers to the index number shown in the displayed inventory list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listi` followed by `deletei 2` deletes the 2nd item in the list of tracked inventory.
+* `findi Paper` followed by `deletei 1` deletes the 1st item in the results of the `findi` command.
+
+### Editing an inventory item: `editi`
+
+Edits an existing item in the inventory list.
+
+Format: `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`
+
+* Edits the item at the specified `INDEX`.
+* The index refers to the index number shown in the displayed inventory list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* You can remove all the item’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+* `editi 1 i/Table q/200 d/Metal Table t/Fragile`
+  Edits the item name, quantity, description and tag of the 1st item to be
+  `Table`, `200`, `Metal Table` and `Fragile` respectively.
+* `editi 3 t/` removes the tags of the item at index 3.
+
 ### Adding an order: `addo`
 
 Creates an order to be added to the list of orders tracked by TrackO.
@@ -184,6 +253,7 @@ Note:
 * The order's created time cannot be edited.
 * An order's paid status and delivery status also cannot be edited through this command. To modify those, 
   see [`marko`](#marking-an-order-as-paid-or-delivered-marko) instead.
+* A completed order (i.e. both paid and delivered) cannot be edited.
 
 Examples:
 * `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`
@@ -198,75 +268,6 @@ Examples:
 
 Placeholder content
 
-### Adding an inventory item: `addi`
-
-Adds an item to the list of tracked inventory.
-
-Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An inventory item can have any number of tags (including 0)
-</div>
-
-Examples:
-* `addi n/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
-* `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture sp/50 cp/20`
-
-### Listing all inventory items: `listi`
-
-Lists all the existing items in the store’s inventory.
-
-Format: `listi`
-
-### Finding an inventory item: `findi`
-
-Finds an inventory item whose name fits any of the given keywords.
-
-Format: `findi KEYWORD [MORE_KEYWORDS]`
-
-- The search is case-insensitive. e.g. `keychain` will match `Keychain`
-- The order of the keywords does not matter. e.g. `pants long` will match `long pants`
-- Only the name of the item is searched.
-- Only full words will be matched. e.g. `key` will not match `Keychain`
-- Items matching at least one keyword will be returned (i.e. OR search).
-  e.g. `shirt` will return `dress shirt`, `collared shirt`
-
-Examples:
-- `findi oil` returns `Olive Oil` and `Vegetable Oil`
-- `findi blue` returns `Blue Shirt`, `Blue Pants`
-
-### Deleting an inventory item : `deletei`
-
-Deletes the specified item from the list of tracked inventory.
-
-Format: `deletei INDEX`
-
-* Deletes the item at the specified `INDEX`.
-* The index refers to the index number shown in the displayed inventory list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `listi` followed by `deletei 2` deletes the 2nd item in the list of tracked inventory.
-* `findi Paper` followed by `deletei 1` deletes the 1st item in the results of the `findi` command.
-
-### Editing an inventory item: `editi`
-
-Edits an existing item in the inventory list.
-
-Format: `edit INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`
-
-* Edits the item at the specified `INDEX`.
-* The index refers to the index number shown in the displayed inventory list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* You can remove all the item’s tags by typing `t/` without
-  specifying any tags after it.
-
-Examples:
-* `editi 1 i/Table q/200 d/Metal Table t/Fragile`
-  Edits the item name, quantity, description and tag of the 1st item to be
-  `Table`, `200`, `Metal Table` and `Fragile` respectively.
-* `editi 3 t/` removes the tags of the item at index 3.
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -275,18 +276,17 @@ Format: `exit`
 
 ## Command summary
 
-| Action                       | Format, Examples                                                                                                                                                                                                                                            |
-|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br>e.g. `i/Pillow q/2` <br>followed by `done` or `cancel`        |
-| **List All Orders**          | `listo`                                                                                                                                                                                                                                                     |
-| **Find Order(s)**            | `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`, where all flags are optional and only 1 prefix is compulsory <br> e.g. `findo -d i/keychain n/Alex`  |
-| **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                                                      |
-| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME] [q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                                                    |                                                                                                                                                                              
-| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                                                  |
-| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00`                                                                                            |
-| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                                                       |                                                                                                                                                        
-| **List All Inventory Items** | `listi`                                                                                                                                                                                                                                                     |
-| **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                                                              |
-| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                                |                                                                                                                                                                                         |
-| **Exit**                     | `exit`                                                                                                                                                                                                                                                      |
-
+| Action                       | Format, Examples                                                                                                                                                                                                          |
+|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00`                                                          |
+| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                     |                                                                                                                                                        
+| **List All Inventory Items** | `listi`                                                                                                                                                                                                                   |
+| **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                            |
+| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                              |
+| **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br>e.g. `i/Pillow q/2` <br>followed by `done` or `cancel` |
+| **List All Orders**          | `listo`                                                                                                                                                                                                                   |
+| **Find Order(s)**            | `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`, where all flags are optional and only 1 prefix is compulsory <br> e.g. `findo -d i/keychain n/Alex`|
+| **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |
+| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                    |                                                                                                                                                                              
+| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                |
+| **Exit**                     | `exit`                                                                                                                                                                                                                    |
