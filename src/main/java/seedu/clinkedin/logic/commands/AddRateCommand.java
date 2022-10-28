@@ -12,7 +12,6 @@ import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.person.exceptions.RatingAlreadyExistsException;
 
 /**
  * Changes rating of an existing person in the address book.
