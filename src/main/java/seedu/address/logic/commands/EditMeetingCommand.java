@@ -58,7 +58,7 @@ public class EditMeetingCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, ParseException, java.text.ParseException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         List<Meeting> lastShownList = model.getFilteredMeetingList();
 
@@ -82,8 +82,7 @@ public class EditMeetingCommand extends Command {
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
      * edited with {@code editMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor)
-            throws ParseException, java.text.ParseException {
+    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
 
         String updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());

@@ -20,6 +20,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
+//import seedu.address.logic.commands.exceptions.CommandException;
+//import seedu.address.logic.parser.exceptions.ParseException;
 //import seedu.address.model.AddressBook;
 //import seedu.address.model.MeetingList;
 import seedu.address.model.Model;
@@ -37,7 +39,7 @@ public class EditMeetingCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingList(), new UserPrefs());
 
     //    @Test
-    //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    //    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException, ParseException {
     //        Meeting editedMeeting = new MeetingBuilder().build();
     //        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
     //        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_PERSON, descriptor);
@@ -48,6 +50,8 @@ public class EditMeetingCommandTest {
     //                new MeetingList(model.getMeetingList()), new UserPrefs());
     //        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
     //
+    //        System.out.println(editMeetingCommand.execute(model).getFeedbackToUser());
+    //        System.out.println(expectedMessage);
     //        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
     //    }
 
