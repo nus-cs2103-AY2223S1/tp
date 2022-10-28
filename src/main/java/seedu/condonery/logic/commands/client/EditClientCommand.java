@@ -7,6 +7,8 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -54,6 +56,7 @@ public class EditClientCommand extends Command {
 
     private final Index targetIndex;
     private final EditClientDescriptor editClientDescriptor;
+    private boolean hasImage = false;
 
     /**
      * Creates a EditClientCommand to edit the specific {@code Client} at the specified index
@@ -68,6 +71,17 @@ public class EditClientCommand extends Command {
         this.editClientDescriptor = editClientDescriptor;
     }
 
+    /**
+     * Overloaded Constructor to specify if user is editting the Client image.
+     * @param targetIndex index of the client to edit
+     * @param editClientDescriptor details to edit the client
+     * @param hasImage boolean image is being uploaded
+     */
+    public EditClientCommand(Index targetIndex, EditClientDescriptor editClientDescriptor, boolean hasImage) {
+        this(targetIndex, editClientDescriptor);
+        this.hasImage = true;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -78,7 +92,8 @@ public class EditClientCommand extends Command {
         }
 
         Client clientToEdit = lastShownList.get(targetIndex.getZeroBased());
-        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
+        Path imageDirectoryPath = model.getUserPrefs().getUserImageDirectoryPath();
+        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor, imageDirectoryPath);
         // Parsed interested properties
         Client newEditedClient = new ParseClientInterestedProperties(editedClient, model).getNewClient();
 
@@ -86,8 +101,22 @@ public class EditClientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
+        File existingImage = new File(clientToEdit.getImagePath().toString());
+        if (existingImage.exists()) {
+            existingImage.renameTo(new File(newEditedClient.getImagePath().toString()));
+        }
+
         model.setClient(clientToEdit, newEditedClient);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+
+        if (this.hasImage) {
+            return new CommandResult(
+                String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient),
+                false,
+                false,
+                "client-" + newEditedClient.getCamelCaseName()
+            );
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, newEditedClient));
     }
 
@@ -100,7 +129,8 @@ public class EditClientCommand extends Command {
      * edited with {@code editClientDescriptor}.
      */
     private static Client createEditedClient(Client clientToEdit,
-                                                 EditClientDescriptor editClientDescriptor) {
+                                             EditClientDescriptor editClientDescriptor,
+                                             Path imageDirectoryPath) {
         assert clientToEdit != null;
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
@@ -110,7 +140,9 @@ public class EditClientCommand extends Command {
                 .getInterestedProperties()
                 .orElse(clientToEdit.getInterestedProperties());
 
-        return new Client(updatedName, updatedAddress, updatedTags, updatedInterestedProperties);
+        Client updatedClient = new Client(updatedName, updatedAddress, updatedTags, updatedInterestedProperties);
+        updatedClient.setImageDirectoryPath(imageDirectoryPath);
+        return updatedClient;
     }
 
     @Override

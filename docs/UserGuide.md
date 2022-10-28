@@ -69,7 +69,17 @@ If you can type fast, Condonery can get your contact management tasks done faste
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## Features in Property Directory
+
+## Features in Condonery 
+
+### Undoing commands : `undo`
+
+Reverses the effect of the previous command. Only commands that affect the state of Property/Client Directory can be
+undone.
+
+For example, `help` cannot be undone, whereas `add -p` can be undone.
+
+Format: `undo`
 
 ### Viewing help : `help`
 
@@ -79,19 +89,34 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+## Property Directory Features
+
 ### Adding a property: `add -p`
 
 Adds a property to the property directory.
 
-Format: `add -p n/NAME a/ADDRESS p/PRICE [t/TAG]…​`
+Format: `add -p n/NAME a/ADDRESS p/PRICE [-i] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A property can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 t/cheap`
-* `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 t/high-end`
+* `add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 h/HDB t/cheap`
+* `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 h/CONDO t/high-end`
+
+The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the
+command.
+
+The `h/PROPERTY_TYPE` flag specifies the type of property. It can only be either HDB, CONDO, or LANDED.
+
+![file_chooser](images/fileChooser.png)
 
 ### Listing all properties : `list -p`
 
@@ -103,7 +128,7 @@ Format: `list -p`
 
 Edits an existing person in the address book.
 
-Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [t/TAG]…​`
+Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [h/PROPERTY_TYPE] [t/TAG]…​`
 
 * Edits the property at the specified `INDEX`. The index refers to the index number shown in the displayed property list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -167,6 +192,16 @@ Examples:
 Notes:
 * lower and upper price boundaries only accept integer values (commas acceptable).
 
+### Filter properties by status: `status -p`
+
+Returns all the properties with the specified `PropertyStatusEnum`
+Format: `status -p STATUS`
+
+Examples:
+* `status -p AVAILABLE` returns all the properties with status of `AVAILABLE`
+* `status -p PENDING` returns all the properties with status of `PENDING`
+* `status -p SOLD` returns all the properties with status of `SOLD`
+
 ### Filtering properties by type: `type -p`
 
 Returns a filtered list of clients that fulfil the filter conditions.
@@ -190,22 +225,18 @@ while clients interested in that property are shown in the client directory.
 
 Clears all properties from the property directory.
 
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
+Format: `clear -p`
 
 ### Saving the data
 
-Property directory and Client directory data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Property directory and Client directory data are saved in the hard disk automatically after any command that changes 
+the data. There is no need to save manually.
 
 ### Editing the data file
 
 Property directory data are saved as a JSON file `[JAR file location]/data/propertyDirectory.json`.
 Client directory data are saved as a JSON file `[JAR file location]/data/clientDirectory.json`.
+Uploaded images are saved in `[JAR file location]/data/images`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -278,7 +309,8 @@ while properties the client is interested in are shown in the property directory
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Property directory and Client directory home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous Property directory and Client directory home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -288,20 +320,22 @@ while properties the client is interested in are shown in the property directory
 
 Action | Format, Examples
 --------|------------------
-**Add -p** | `add -p n/NAME a/ADDRESS p/PRICE [t/TAG]…​` <br> e.g., `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`
+**Add -p** |`add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [t/TAG]…​` <br> e.g., `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`
 **Clear -p** | `clear -p`
 **Delete -p** | `delete -p INDEX`<br> e.g., `delete -p 3`
-**Edit -p** | `edit INDEX [n/NAME] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`
+**Edit -p** | `edit INDEX [n/NAME] [a/ADDRESS] [h/PROPERTY_TYPE] [t/TAG]…​`<br> e.g.,`edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`
 **Filter -p** | `filter -p TAG [MORE_TAGS]`<br> e.g., `filter -p high-end thrifty`
 **Find -p** | `find -p NAME [MORE_NAMES]`<br> e.g., `find -p PINNACLE@DUXTON BISHAN`
 **Range -p** | `range -p l/LOWER_BOUND u/UPPER_BOUND`<br> e.g., `range -p l/1,000,000 u/3,000,000`
 **List -p** | `list -p`
 **Select -p** | `select -p INDEX` <br> e.g., `select -p 2`
+**Status -p** | `status -p`
+**Type -p** | `type -p`
 
 **Client Directory**
 Action | Format, Examples
 --------|------------------
-**Add -c** | `add n/NAME a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add -c** | `add n/NAME a/ADDRESS [-i] [t/TAG]…​` <br> e.g., `add n/James a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear -c** | `clear -c`
 **Delete -c** | `delete -c INDEX`<br> e.g., `delete -c 3`
 **Edit -c** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee a/SG, Cantonment Rd, #1G, 085301`
@@ -314,4 +348,5 @@ Action | Format, Examples
 
 **Exit** | `exit`
 **Help** | `help`
+**Undo** | `undo`
 

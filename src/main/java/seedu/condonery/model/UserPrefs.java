@@ -38,6 +38,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setPropertyDirectoryFilePath(newUserPrefs.getPropertyDirectoryFilePath());
+        setClientDirectoryFilePath(newUserPrefs.getClientDirectoryFilePath());
+        setUserImageDirectoryPath(newUserPrefs.getUserImageDirectoryPath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -72,6 +74,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setClientDirectoryFilePath(Path clientDirectoryFilePath) {
         requireNonNull(clientDirectoryFilePath);
         this.clientDirectoryFilePath = clientDirectoryFilePath;
+    }
+
+    public void setUserImageDirectoryPath(Path userImageDirectoryPath) {
+        requireNonNull(userImageDirectoryPath);
+        this.userImageDirectoryPath = userImageDirectoryPath;
     }
 
     @Override

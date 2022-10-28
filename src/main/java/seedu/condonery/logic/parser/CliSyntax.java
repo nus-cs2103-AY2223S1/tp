@@ -13,6 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_LOWER = new Prefix("l/");
     public static final Prefix PREFIX_UPPER = new Prefix("u/");
     public static final Prefix PREFIX_PROPERTY_TYPE = new Prefix("h/");
+    public static final Prefix PREFIX_PROPERTY_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_IMAGE_UPLOAD = new Prefix("-i");
     public static final Prefix PREFIX_INTERESTEDCLIENTS = new Prefix("ic/");
     public static final Prefix PREFIX_INTERESTEDPROPERTIES = new Prefix("ip/");

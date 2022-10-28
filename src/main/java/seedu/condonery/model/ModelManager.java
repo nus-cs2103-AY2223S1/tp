@@ -49,7 +49,7 @@ public class ModelManager implements Model {
         this.initialPropertyDirectory = propertyDirectory;
         filteredProperties = new FilteredList<>(this.propertyDirectory.getPropertyList());
 
-        this.clientDirectory = new ClientDirectory(clientDirectory);
+        this.clientDirectory = new ClientDirectory(clientDirectory, userPrefs.getUserImageDirectoryPath());
         this.initialClientDirectory = clientDirectory;
         filteredClients = new FilteredList<>(this.clientDirectory.getClientList());
 
