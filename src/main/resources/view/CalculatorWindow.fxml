@@ -9,7 +9,8 @@
 
 <!-- Reused from https://gist.github.com/argius/08834fab73b91de8d79b with modifications -->
 
-<fx:root minHeight="270.0" minWidth="201.0" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="270.0" minWidth="201.0" title="Calculator" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+
    <scene>
       <Scene>
          <AnchorPane minHeight="270.0" minWidth="201.0" styleClass="background" stylesheets="@CalculatorWindow.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
