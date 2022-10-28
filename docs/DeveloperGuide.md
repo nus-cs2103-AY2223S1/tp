@@ -156,7 +156,7 @@ Classes used by multiple components are in the `jarvis.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### List Students / Tasks / Lessons
-To see the full list of students or tasks, the user keys in the valid command (`liststudent`, `listtask` or `listlesson`). Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
+To see the full list of students, tasks or lessons, the user keys in the valid command (`liststudent`, `listtask` or `listlesson`). As an example, the user keys in "`liststudent`". Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
 
 <img src="images/ListStudentSequenceDiagram.png" width="550"/>
 
