@@ -202,7 +202,8 @@ that you have inputted. The values that you did not specify to edit will remain 
 
 ### Billing a guest : `bill`
 
-This command updates the bill of a guest in GuestBook.
+This command updates the bill of a guest in GuestBook. Note that the bill here refers to the additional costs incurred
+by the guest during his stay at your hotel and should not include the cost of the hostel stay.
 
 This command updates the bill of the guest at the specified `INDEX`. 
 Depending on the sign ('+' or '-') of your input, the existing bill value be incremented 
