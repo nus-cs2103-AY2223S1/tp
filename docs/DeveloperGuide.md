@@ -2,34 +2,34 @@
 layout: page
 title: Developer Guide
 ---
-# Table of Contents 
+# Table of Contents
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up-getting-started)
 3. [Design](#design)
-   - [Architecture](#architecture)
-   - [UI component](#ui-component)
-   - [Logic component](#logic-component)
-   - [Model component](#model-component)
-   - [Storage component](#storage-component)
-   - [Common classes](#common-classes)
+    - [Architecture](#architecture)
+    - [UI component](#ui-component)
+    - [Logic component](#logic-component)
+    - [Model component](#model-component)
+    - [Storage component](#storage-component)
+    - [Common classes](#common-classes)
 4. [Implementation](#implementation)
-   - [Module Features](#module-features)
-     - [Add Module](#add-module)
-     - [Remove Module](#remove-module)
-     - [Navigation](#navigation)
-   - [Task/Deadline Features](#taskdeadline-features)
-     - [Add Task](#add-task)
-     - [Remove Task](#remove-task)
-     - [Edit Task](#edit-task)
-     - [Marking Tasks as Done](#marking-tasks-as-done)
-     - [Task Listing](#task-listing)
+    - [Module Features](#module-features)
+        - [Add Module](#add-module)
+        - [Remove Module](#remove-module)
+        - [Navigation](#navigation)
+    - [Task/Deadline Features](#taskdeadline-features)
+        - [Add Task](#add-task)
+        - [Remove Task](#remove-task)
+        - [Edit Task](#edit-task)
+        - [Marking Tasks as Done](#marking-tasks-as-done)
+        - [Task Listing](#task-listing)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 6. [Appendix: Requirements](#appendix-requirements)
-   - [Product Scope](#product-scope)
-   - [User Stories](#user-stories)
-   - [Use Cases](#use-cases)
-   - [Non-Functional Requirements](#non-functional-requirements)
-   - [Glossary](#glossary)
+    - [Product Scope](#product-scope)
+    - [User Stories](#user-stories)
+    - [Use Cases](#use-cases)
+    - [Non-Functional Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ The `ResultDisplay` class shows the message returned from the user's input.
 1. Command is executed on `MainWindow`.
 2. `MainWindow` calls the method `executeCommand`, which refreshes the resultant message displayed in `ResultDisplay`.
 3. `ResultDisplay` updates its JavaFX `TextArea` according to the `CommandResult` of the command given.
-In this case, the `TextArea` will display the message returned as a result of the command.
+   In this case, the `TextArea` will display the message returned as a result of the command.
 4. ResultDisplay displays visible change on the interface.
 5. `executeCommand` ends execution.
 
@@ -170,18 +170,30 @@ as a `TaskCard` object, presented in the form of `ListView`.
 
 #### ProfileSidePanel
 
-The `ProfileSidePanel` class contains the user's profile and (proposed) CAP. The following information is displayed in on the object:
+The `ProfileSidePanel` class contains the user's profile. The following information is displayed in on the object:
 * `Course` name
 * Inspiring quote
-* (Proposed) Modular Credit completed by user
-* (Proposed) Current Cumulative Average Point (CAP)
+* Modular Credits completed by user
+* Number of Active Tasks
+
+Here is how the `ProfileSidePanel` works:
+![Structure of ProfileSidePanel](images/ProfileSidePanel.png)
+1. Command executed on `MainWindow`.
+2. `Model` is updated.
+3. `MainWindow` calls the method `refresh`, which refreshes the `ProfileSidePanel`.
+4. `ProfileSidePanel` uses `Logic` to obtain the corresponding information:
+    1. MC Completed
+    2. Active Tasks
+5. `ProfileSidePanel` executes corresponding JavaFX methods to update displayed information.
+6. `ProfileSidePanel` shows visible change on the interface.
+7. `refresh` ends execution.
 
 #### Other Components
 In addition to the main UI components in the `MainWindow` class, these are other UI Components:
 * `ModuleCard` - Individual card containing the relevant information of the module.
-List of ModuleCard contained in the ModuleListPanel.
+  List of ModuleCard contained in the ModuleListPanel.
 * `TaskCard` - Individual card containing the relevant information of the task.
-List of TaskCards contained in the TaskListPanel.
+  List of TaskCards contained in the TaskListPanel.
 * `HelpWindow` - Pop-up window containing the link the User Guide, as well as a (proposed) list of all the commands in the application.
 
 ### Logic component
@@ -284,12 +296,12 @@ These tags are:
 **Aspect 1: How many modules are added:**
 
 * **Alternative 1 (current choice):** Add 1 module added per AddCommand.
-  * Pros: Easy to implement.
-  * Cons: May have to type more to add multiple modules.
+    * Pros: Easy to implement.
+    * Cons: May have to type more to add multiple modules.
 
 * **Alternative 2:** Add multiple modules per AddCommand.
-  * Pros: Convenient for user.
-  * Cons: More complicated, may require much more parsing.
+    * Pros: Convenient for user.
+    * Cons: More complicated, may require much more parsing.
 
 We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
 reduce the compulsory AddCommand parameters.
@@ -326,11 +338,11 @@ In the event that the HTTP request made to NUSMods fails when fetching, a fallba
 module data. The fallback data file is a JSON file that contains the module data of all the modules in NUS as of AY22/23.
 The fallback data file is located in `src/main/modrekt/logic/parser/modules/data/modules.json`.
 
-Additionally, the endpoint used to fetch from NUSMods is currently set to only fetch the modules in the academic year 
-of 2022-2033 (AY22/23). This is an intended effect, as a collaboration with NUS is something we hope to seek in the 
-future to provide a more robust module data fetching system. As such, if utilised in years beyond AY22/23, 
-the module data obtained may be out of date. 
-To further mitigate this, we also have our verbose module adding command, where users can specify the module name, code 
+Additionally, the endpoint used to fetch from NUSMods is currently set to only fetch the modules in the academic year
+of 2022-2033 (AY22/23). This is an intended effect, as a collaboration with NUS is something we hope to seek in the
+future to provide a more robust module data fetching system. As such, if utilised in years beyond AY22/23,
+the module data obtained may be out of date.
+To further mitigate this, we also have our verbose module adding command, where users can specify the module name, code
 and credits, without any reliance on NUSMods.
 
 ### Remove Module
@@ -352,7 +364,7 @@ Removal of a `Module` would remove all `Task` and `Deadline` associated with it.
 * **Alternative 1 (current choice):** Using their index in the list.
     * Pros: Easier for user to select.
     * Cons: May be hard to find module especially if module list is long. More complicated as index may change
-    especially after modifying the module list
+      especially after modifying the module list
 
 * **Alternative 2:** Using the module code.
     * Pros: User need not list the modules to find exact module to remove.
@@ -397,14 +409,14 @@ The relevant commands are:
 The syntax and command word were aspects that we took into consideration in the design process.
 
 1. **Using the shorthand word `cd` and similar syntax e.g. `cd ..` (Current Implementation)**
-  * Pro: Users who are familiar with CLI applications will be able to use similar syntax for navigation inside the application
-  * Pro: Users will be able to navigate through the application faster, due to the shorter command word and syntax
-  * Con: Users who are not familiar with CLI applications would have to remember a specific command word that may not be very intuitive
+* Pro: Users who are familiar with CLI applications will be able to use similar syntax for navigation inside the application
+* Pro: Users will be able to navigate through the application faster, due to the shorter command word and syntax
+* Con: Users who are not familiar with CLI applications would have to remember a specific command word that may not be very intuitive
 
 2. **Using a longer command word e.g. `enter` and `exit`**
-  * Pro: The command word is more universally intuitive, especially for users who are not familiar with CLI applications
-  * Con: Users who are already familiar with CLI applications will have to relearn navigation using a different command
-  * Con: Users will have to type out a longer command word and syntax, which will reduce the speed at which a user can navigate through the application
+* Pro: The command word is more universally intuitive, especially for users who are not familiar with CLI applications
+* Con: Users who are already familiar with CLI applications will have to relearn navigation using a different command
+* Con: Users will have to type out a longer command word and syntax, which will reduce the speed at which a user can navigate through the application
 
 Taking into account that our [target user profile](#product-scope) is one that is familiar with using CLI apps, we chose option 1 as it provided the most benefit for such a user. In particular, it contributes to the goal of allowing the user to accomplish tasks (in this case navigation) in a shorter time using the CLI.
 
@@ -425,6 +437,101 @@ The sequence diagram below shows the flow of the interactions between the differ
 In the diagram, the predicates `modulePredicate` and `taskPredicate` are the custom predicates used to filter the module and task lists, respectively. They are within the `setCurrentModule` method in `Model`.
 
 <img src="images/CdSequenceDiagram.png" width="1000" />
+
+### Marking modules as done
+
+Section by : [Marciano](https://github.com/midnightfeverrr)
+
+Allows users to mark their modules as done,
+and alternate between viewing all modules and viewing undone modules via the list command.
+
+Every module in the module list will be in either the done or undone state.
+New tag will be created to mark a module as `done`.
+
+In this section, we will discuss the management of done/undone state, as well as the
+interactions between the commands and the UI.
+
+The relevant commands for this section are:
+* **`done module <module code>`**  marks the module with a done tag in the UI
+* **`undone module <module code>`** removes the done tag from a module (if present) in the UI
+
+#### Design considerations
+
+There was an alternative we considered for users to select the module to mark as done:
+
+* **Alternative 1:** Using the module name:
+    * Pro: Users do not have to search for a module code.
+    * Con: Users have to type a significant amount to disambiguate modules by their name.
+
+* **Alternative 2:** Using the module index:
+    * Pro: Users can mark modules as done without much typing.
+    * Con: Module index is not visible in UI. It is quite tedious to count the index manually if user has a lot of modules.
+
+* **Alternative 3:** Using the module code (current implementation):
+    * Pro: Users can mark modules as done by their module code easily without much typing.
+    * Con: Users still have to type more than if they were to specify via index.
+
+To optimize the amount of typing a user has to do, we decided to choose the second option.
+
+#### Current implementation
+
+The done/undone state is handled in the `Module` class via a boolean flag `isDone`.
+Because `Module` is immutable, the methods `Module::done` and `Module::undone` return a new `Module`
+with the done/undone state changed instead of mutating the `isDone` variable directly.
+
+The following diagram shows the execution and control flow of the `done` command.
+
+<img src="images/ModulePUMLs/DoneModule/ModuleDonePathExecution.png" width="1000" />
+
+The diagram below shows how the `done` command work with input `done module CS1101S`
+
+<img src="images/ModulePUMLs/DoneModule/ModuleDoneSequenceDiagram.png" width="1200" />
+
+Notice how we explicitly prevent a done module from being marked as done again. Even though marking a done module as
+done again is inconsequential from a data perspective (nothing in a `Module` changes other than the creation of a new
+instance), it is still a user error that should be handled:
+
+> Suppose that a user intended to mark a module as undone, but accidentally entered the `done` command instead.
+By displaying an error instead of silently accepting the erroneous command, the user is notified and
+can enter the correct command next—this results in better UX!
+
+The classes directly involved in setting the done/undone state from user input are:
+* `DoneModuleCommand` and `UndoneModuleCommand` which are the commands that when executed, mark tasks as done or undone respectively.
+* `ModtrektParser` which parses the command word and delegates the parsing to JCommander.
+* `LogicManager` which executes the commands.
+
+For brevity, we omit the diagrams and explanations for marking modules as undone—it is the direct inverse of marking tasks as done,
+such that the control flow is exactly the same: just replace "done" and its derivatives
+with "undone", and vice versa.
+
+### Module listing
+
+Section by : [Marciano](https://github.com/midnightfeverrr)
+
+Module listing allows users to view the modules they have added.
+
+The relevant commands for this section are:
+* **`cd`** sets path to the homepage. (Not inside of any module)
+* **`ls mod`/`ls module`** displays only the undone modules (active modules) in the UI.
+* **`ls mod -a`/`ls module -a`** displays all the modules, including the ones marked done, in the UI.
+
+#### Current implementation
+
+We check for the presence of the `-a` flag to decide whether to display done tasks.
+
+The following diagram shows the execution and control flow of the `list module` command.
+
+<img src="images/modulePUMLs/ListModule/ListingModulePathExecution.png" width="1000" />
+
+The sequence diagram below details the interactions between the command and the model
+for the `ls mod` and `ls mod -a` commands:
+
+<img src="images/modulePUMLs/ListModule/ListingModuleSequenceDiagram.png" width="1000" />
+
+The predicates defined by `Model.PREDICATE_SHOW_ALL_MODULES` and `PREDICATE_HIDE_DONE_MODULES` are used to filter
+the tasks displayed in the UI via the `updateFilteredModuleList` method in the `Model` interface.
+
+_Side note: We delegate parsing to JCommander which already has the command object registered_
 
 ### Tasks
 
@@ -465,12 +572,12 @@ These tags are:
 **Aspect 1: How many tasks are added:**
 
 * **Alternative 1 (current choice):** Add 1 task added per AddTaskCommand.
-  * Pros: Easy to implement.
-  * Cons: May have to type more to add multiple tasks.
+    * Pros: Easy to implement.
+    * Cons: May have to type more to add multiple tasks.
 
 * **Alternative 2:** Add multiple tasks per AddTaskCommand.
-  * Pros: Convenient for user.
-  * Cons: More complicated, may require much more parsing.
+    * Pros: Convenient for user.
+    * Cons: More complicated, may require much more parsing.
 
 We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
 reduce the compulsory AddTaskCommand parameters.
@@ -478,13 +585,13 @@ reduce the compulsory AddTaskCommand parameters.
 **Aspect 2: What parameters do we need:**
 
 * **Alternative 1:** Add task by specifying module index instead of code.
-  * Pros: Less verbosity in the command, user can go off of the displayed index.
-  * Cons: Slightly more complicated as more errors need to be handled (invalid index etc.). Users
-    may also be more prone to adding the task to the wrong module.
+    * Pros: Less verbosity in the command, user can go off of the displayed index.
+    * Cons: Slightly more complicated as more errors need to be handled (invalid index etc.). Users
+      may also be more prone to adding the task to the wrong module.
 
 * **Alternative 2:** Require the user to specify the module code.
-  * Pros: Reduces the chance of error by the user, users will not need to remember the module index.
-  * Cons: User has to type more information in the command.
+    * Pros: Reduces the chance of error by the user, users will not need to remember the module index.
+    * Cons: User has to type more information in the command.
 
 We decided to implement alternative 2 in order to reduce the chance of user error and reduce the
 potential for bugs.
@@ -554,12 +661,12 @@ Editing a task has no effect on the task count of a module, as it is a replaceme
 **Aspect 1: Whether editing tasks should be allowed:**
 
 * **Alternative 1 (current choice):** Allow editing of tasks.
-  * Pros: Allows users to change partial details in the event of a small error.
-  * Cons: Have to parse a varying amount of optional arguments.
+    * Pros: Allows users to change partial details in the event of a small error.
+    * Cons: Have to parse a varying amount of optional arguments.
 
 * **Alternative 2:** No edit command, user would have to delete and re-add their task.
-  * Pros: Convenient for development, less bug-prone.
-  * Cons: Inconvenient and troublesome for the user.
+    * Pros: Convenient for development, less bug-prone.
+    * Cons: Inconvenient and troublesome for the user.
 
 We decided to go with the alternative 1 to give our users the best experience possible.
 
@@ -734,15 +841,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to view all active tasks and deadlines
 2. ModtRekt shows all active tasks and deadlines, categorised into modules
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-  * 2a.1 ModtRekt displays an empty list.
+    * 2a.1 ModtRekt displays an empty list.
 
-    Use case ends
+      Use case ends
 
 **Use case: Add a task**
 
@@ -752,14 +859,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ModtRekt adds the task
 3. Task count of the module is updated, and the task is added to the displayed list
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The module list is empty
-  * 2a1. ModtRekt shows an error message when the command is entered
-  
-     Use case ends.
+    * 2a1. ModtRekt shows an error message when the command is entered
+
+      Use case ends.
 
 * 3a. The given module code is invalid
 
@@ -775,7 +882,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ModtRekt adds the deadline
 3. Task count of the module is updated, and the deadline is added to the displayed list
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -799,7 +906,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to remove a specific task via index
 4. ModtRekt removes the task
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -812,7 +919,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ModtRekt shows an error message.
 
       Use case resumes at step 2.
-    
+
 
 
 *{More to be added}*

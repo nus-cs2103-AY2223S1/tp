@@ -310,7 +310,6 @@ Sample execution of command `add "Assignment 1" -c CS2100 -d 2022-10-29`:
 
 Removes a task under a specific module.
 
-- User must be within a module page.
 - The task index must be a non-zero positive integer, and have a corresponding task indicated with `#` in the task list.
 
 Format: `remove task <task index>`
