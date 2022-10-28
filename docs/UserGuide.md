@@ -60,7 +60,7 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/Low s/1000` : Adds a contact named `John Doe` to the list of clients.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/Low m/1000 c/POTENTIAL` : Adds a contact named `John Doe` to the list of clients.
 
    * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date, time and location of the appointment.
 
@@ -90,9 +90,10 @@ The following figures show the overall GUI of **Financial Advisor Planner**
 4. a/ADDRESS
 5. i/YEARLY_INCOME
 6. m/MONTHLY_CONTRIBUTIONS
-7. r/RISK_APPETITE
-8. ip/INVESTMENT_PLAN
-9. t/TAG
+7. c/CLIENT_TYPE
+8. r/RISK_APPETITE
+9. ip/INVESTMENT_PLAN
+10. t/TAG
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -149,7 +150,7 @@ Adds a client to the list of clients.
 
 Do note that t/TAG is an optional field, the rest are compulsory.
 
-Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT PLAN [t/TAG]…​`
+Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE c/CLIENT_TYPE ip/INVESTMENT PLAN [t/TAG]…​`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
 <br>
@@ -161,7 +162,7 @@ A client can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$200000 m/$5000 r/Medium ip/Savings Plan`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$200000 m/$5000 c/POTENTIAL r/Medium ip/Savings Plan`
 
 #### 5.1.3 Listing all clients : `list`
 
@@ -173,7 +174,7 @@ Format: `list`
 
 Edits an existing client in the list of clients.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [m/MONTHLY_CONTRIBUTIONS] [r/RISK_APPETITE] [ip/INVESTMENT PLAN] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [m/MONTHLY_CONTRIBUTIONS] [r/RISK_APPETITE] [c/CLIENT_TYPE] [ip/INVESTMENT PLAN] [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3,…​
 * At least one of the fields must be provided.
@@ -403,13 +404,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
+**Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE m/MONTHLY_CONTRIBUTIONS c/CLIENT_TYPE [t/TAG]…​ ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
 **Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 **Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-Jan-2023 12:30 PM l/NUS, TechnoEdge`
 **Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [m/MONTHLY_CONTRIBUTIONS] [c/CLIENT_TYPE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
 **Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS]` e.g., `find n/James Jake`
 **List** | `list`
