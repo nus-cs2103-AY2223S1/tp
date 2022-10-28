@@ -27,7 +27,7 @@ public class StringReplaceCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         int end = replacers.size();
-        if (replaceLast) {
+        if (!replaceLast) {
             end--;
         } else {
             if (end == 0) {
