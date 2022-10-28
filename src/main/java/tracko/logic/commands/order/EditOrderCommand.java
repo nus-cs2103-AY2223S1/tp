@@ -55,6 +55,7 @@ public class EditOrderCommand extends Command {
             + "not exist in the inventory list.";
     public static final String MESSAGE_ONE_ORDERED_ITEM = "An order list cannot have 0 items. "
             + "Perhaps you want to delete the order instead?";
+
     public static final String MESSAGE_ORDER_ALREADY_MARKED =
             "An order marked as paid and/or delivered cannot be edited!";
 
@@ -266,6 +267,7 @@ public class EditOrderCommand extends Command {
             if (!hasItemBeenUpdated && itemToEdit.getQuantityValue() != 0) {
                 orderedItems.add(itemToEdit);
             }
+
             this.itemList = orderedItems;
         }
 
