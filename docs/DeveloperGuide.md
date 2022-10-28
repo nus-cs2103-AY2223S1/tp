@@ -52,9 +52,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletei 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![ArchitectureSequenceDiagram](images/developer-guide/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -71,9 +71,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/developer-guide/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItemListPanel`, `OrderListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Order` and `Item` object residing in the `Model`.
 
 ### Logic component
 
@@ -90,19 +90,19 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![LogicClassDiagram](images/developer-guide/LogicClassDiagram.png)
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it uses the `TrackOParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddOrderCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletei 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletei 1` Command](images/developer-guide/DeleteItemSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,25 +110,26 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `TrackOParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `TrackOParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+![ModelClassDiagram](images/developer-guide/ModelClassDiagram.png)
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the TrackO data i.e., all `Item` and `Order` objects (which are contained in an `InventoryList` and `OrderList` object respectively).
+* stores the currently 'selected' `Item` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently selected `Order` objects (e.g., results of a search query) as a separate _filtered_ list, which is wrapped within a _sorted_ list (`Order` objects can be sorted by time of creation), which is exposed to outsiders as an unmodifiable `ObservableList<Order>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TrackO`, which `Item` references. This allows `TrackO` to only require one `Tag` object per unique tag, instead of each `Item` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+![BetterModelClassDiagram](images/developer-guide/BetterModelClassDiagram.png)
 
 </div>
 
@@ -137,11 +138,11 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![StorageClassDiagram](images/developer-guide/StorageClassDiagram.png)
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both TrackO data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TrackOStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -154,17 +155,20 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Items feature
+### Add Item feature
 
 #### Implementation
 
-The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`. 
+The add item command will be executed by `AddItemCommand`. Items added will be stored in `InventoryList`. 
 
 Given below is an example usage scenario and how the add item mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `ItemsList` will contain sample data.
+Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `InventoryList` will contain sample data.
 
-Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
+Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. 
+The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. 
+
+The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
 
@@ -190,39 +194,121 @@ _{add design considerations}_
 
 _{more aspects and alternatives to be added}_
 
+### List Items Feature
+
+The list items feature allows the user to list all the existing `Item`s in the inventory.
+
+#### Implementation
+
+The list item feature is supported by the `ListItemsCommand`. It extends `Command`.
+
+Given below is an example usage scenario and how the `ListItemsCommand` mechanism behaves at each step.
+
+Step 1. The user inputs `listi`. This calls `LogicManager#execute`, which then calls `TrackOParser#parseCommand`.
+This method will return a new instance of `ListItemsCommand`.
+
+Step 2. `ListItemsCommand#execute` is called, which then calls the method
+`Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS)`. This will show all the `Item`s in the existing
+inventory list.
+
+The sequence diagram below illustrates this process.
+
+![ListItemsSequenceDiagram](images/ListItemsSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListItemsCommand` 
+should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+reaches the end of diagram.
+</div>
+
+#### Design Considerations
+
+**Aspect: How the `listi` command executes**
+
+- **Alternative 1 (current choice)**: The command lists all the items in the inventory list.
+  - Pros: Easier to implement.
+  - Cons: Unable to filter specific items.
+
+### Find Item Feature
+
+The find item feature allows the user to find `InventoryItem`(s) by keyword(s) given by the user.
+
+#### Implementation
+
+The find item command is supported by `FindItemCommand`. It extends `Command`.
+
+Given below is an example usage scenario and how the find order mechanism behaves at each step.
+
+Step 1. The user executes `findi chair mattress` command to find the orders containing items with the keywords
+keychain or apple. The `findi` command calls `FindItemCommandParser` which checks for the correct command
+syntax and separates the keywords, utilising each space as a delimiter. 
+
+Step 2. The keywords are then passed into a constructor for `ItemContainsKeywordsPredicate`,
+which extends `Predicate<Item>`, to construct a predicate that will filter the items according to the keywords.
+The predicate is passed into a new instance of `FindItemCommand`. `FindItemCommand` then calls
+`Model#updateFilteredItemList()` to filter `Model#filteredOrders` according to the previously constructed
+`ItemContainsKeywordsPredicate`.
+
+The sequence diagram below illustrates this process.
+
+![FindItemSequenceDiagram](images/FindItemSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser` 
+and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+reaches the end of diagram.
+</div>
+
+#### Design Considerations
+
+**Aspect: How `findi` is implemented**
+- **Alternative 1 (current choice)**: The command finds items based on their `ItemName`.
+    - Pros: Easier to implement, and users do not have to use prefixes to find items.
+    - Cons: Cannot search based on other item fields, e.g. searching based on the price range of the items.
+- **Alternative 2**: The command can find items based on all of their fields.
+    - Pros: Can search based on more fields, useful if the user has large number of items to navigate through.
+    - Cons: Harder to implement.
+
 ### Edit Item Feature
 
 The edit item feature allows the user to edit an `Item` currently being tracked by the system.
 
 #### Implementation
 
-The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic` 
-component parses the user input, the `Model` component then performs the edit on the target item, the `Storage` 
-component then saves the edited data into `data/trackO.json`.
+The edit item command `editi` is supported by the `EditItemCommand`. It extends `Command`.
 
-Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls `LogicCommand#execute()` which calls
-`TrackOParser#parseCommand`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser`. 
-`EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target index and the
-appropriate `EditItemDescriptor` as input. The `EditItemDescriptor` contains information which the newly edited `Item`
+The command is implemented through the `Logic` and `Model` components. The `Logic`
+component parses the user input, the `Model` component then performs the edit on the target `Item`.
+
+Step 1: The user inputs the command `editi 1 i/Chair q/20`. This calls:
+1. `LogicManager#execute()`
+2. `TrackOParser#parseCommand()`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser` object.
+3. `EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target `Index` and the
+appropriate `EditItemDescriptor` as input.
+
+The `EditItemDescriptor` contains information which the newly edited `Item`
 should have and is used in the creation of the new `Item` object. In this case, the `EditItemDescriptor` contains a new
-`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing item at the
-target index 1.
+`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing `Item` at the
+target `Index` 1.
 
-Step 2. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
-checks if this `Item` already exists in the inventory list by using `Model#has()`. If it already exists, a
-`CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`. An item already exists if there is another item in the
-inventory list with same `ItemName`. `Item#isSameItem` returns true when both `Item` have the same `ItemName`. This is
+Step 2:. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
+checks if this `Item` already exists in the inventory list by using `Model#hasItem()`. If it already exists, a
+`CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`.
+
+An item already exists if there is another item in the
+inventory list with same `ItemName`. `Item#isSameItem()` returns true when both `Item` have the same `ItemName`. This is
 because having 2 `Item` with the same `ItemName` can be confusing to the user and this safeguards the user from such a
 situation.
 
 Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `Model#setItem()`,
 successfully executing the edit item command in the `Model`.
 
-Step 4. `LogicManager#execute()` then calls `Storage#saveTrackO()` which saves the new `Model` to the data file.
-
 The sequence diagram below illustrates this process.
 
-_**Sequence diagram to be added here**_
+![EditItemSequenceDiagram](images/developer-guide/EditItemSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `EditItemCommandParser` should end at 
+the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the 
+end of diagram.
+</div>
 
 ### Order Management
 
@@ -236,11 +322,12 @@ at any point in time. This `OrderList` instance represents the container that ke
 
 Currently, the application features 5 main operations that interact directly with the `OrderList`. They are represented by
 the following commands:
-* [`AddOrderCommand`](#Add-Order-Feature) - creates a new order to be added to the `OrderList`
-* `FindOrderCommand` - filters and display matching orders from the `OrderList` based on provided keywords
+* [`AddOrderCommand`](#add-order-feature) - creates a new order to be added to the `OrderList`
+* [`FindOrderCommand`](#find-order-feature) - filters and display matching orders from the `OrderList` based on provided keywords
 * `ListOrderCommand` - display all order data from the `OrderList`
-* `EditOrderCommand` - edit the data of an order from the `OrderList`
+* [`EditOrderCommand`](#edit-order-feature) - edit the data of an order from the `OrderList`
 * `DeleteOrderCommand` - deletes an existing order from the `OrderList`
+* `MarkOrderCommand` - marks an existing order from the `OrderList` as paid or delivered
 
 The order management feature is supported by the `Order` class, represented by the class diagram below.
 ![OrderClassDiagram](images/developer-guide/OrderClassDiagram.png)
@@ -251,90 +338,108 @@ The `Order` class encapsulates order-related data packaged in the following clas
 * `LocalDateTime` - the time at which the order entry was created in the system
 * `isPaid`/`isDelivered` - represents the completion status of the order (an `Order` is considered complete if both fields are true)
 
-#### Add Order Feature
+### Add Order Feature
 
 The add order feature allows the user to add an `Order` to be tracked by the system.
 
 ##### Implementation
 
-This feature is facilitated by the `AddOrderCommand`, which extends from the `MultiLevelCommand` class.
+The add order feature is supported by the `AddOrderCommand`, which extends from the `MultiLevelCommand` class.
 The user will enter multiple rounds of input before an `Order` is successfully added to the system.
 
-Given below is an example usage scenario and how the add order mechanism behaves at each step. We assume that the user
-has already added some inventory items to be tracked by the system, such that our initial state before the add order command
-is initiated, is illustrated as such.
+Before giving an example usage scenario, lets assume that the user has already added some inventory items to be tracked by the system, but has not added any orders yet.
+Hence, our initial state before the add order command is initiated is illustrated as such.
+
+![AddOrderState0](images/developer-guide/AddOrderState0.png)
+
+Given below is an example usage scenario that works with the given model state as depicted above, and how the add order mechanism behaves at each step.
 
 Step 1. The user enters the following input into the UI's command box:
 `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`. This instantiates an `AddOrderCommand`, that references
-a new `Order` which encapsulates the input customer data. This then sets the system to await and prompt for further input from the user.
+a new `Order` which encapsulates the input customer data. This then sets the `LogicManager` to reference said instantiated `AddOrderCommand`
+in its `inProgressCommand` field. The UI then prompts the user for further input.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format
 </div>
 
-**_Object diagram to be added here_**
+![AddOrderState1](images/developer-guide/AddOrderState1.png);
 
-Step 2a. The user then enters `i/Pen q/3`, representing that the order requires 3 units (quantities) of 'Pens' to fulfill.
-The system updates the instantiated command, by first having the `AddOrderCommand` stages the input item name and quantity for validation,
+Step 2a. The user then enters `i/Eraser q/3`, representing that the order requires 3 quantities (or units) of `Erasers` to fulfill.
+The system updates the instantiated command, by first having the `AddOrderCommand` stage the input item name and quantity for validation,
 using the `AddOrderCommand#stageForValidation()` method.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format
 </div>
 
-**_Object diagram to be added here_**
+![AddOrderState2a](images/developer-guide/AddOrderState2a.png);
 
-Step 2b. The system searches the inventory items for an item that has a matching name. In this scenario,
-we assume that the user has already added an `Item` with its `ItemName` value to be `Pen`, to the system's list of tracked items.
-Hence, upon execution, a valid item was found based on the user's input item name, and the system adds a new `ItemQuantityPair` that
-references the found item to the list of items ordered in the instantiated `Order`.
+Step 2b. On the `AddOrderCommand#execute()` method call, the system searches the model's inventory for an item that has a matching name to the user's input item name.
+In this scenario, we assume that the user has already added an `InventoryItem` with its `ItemName` value to be `Eraser`, to the model's list of tracked `InventoryItem`s.
+Hence, upon execution, a valid item will be found based on the user's input item name, and the `Order#addToItemList()` method is called on the `toAdd` object, with the found
+`InventoryItem` in the model and `Quantity` object that was previously staged for validation as method parameters.
+This adds a new `ItemQuantityPair` object that references the found `InventoryItem` and given `Quantity` to the list of ordered items in the `toAdd` object.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that cannot be matched to the system's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that does not match any of the items in the model's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs
 </div>
 
-**_Object diagram to be added here_**
-
+![AddOrderState2b](images/developer-guide/AddOrderState2b.png);
 
 Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
 
-**_Object diagram to be added here_**
+![AddOrderState3](images/developer-guide/AddOrderState3.png);
 
-Step 4. The user then enters `done` after inputting all the required order details. The system finally executes the command, adding the
-built up `Order` to the `OrderList`. The system also no longer waits for additional input as the previously 'in progress' `AddOrderCommand`
-is now completed.
+Step 4. The user then enters `done` after inputting all the required order item details. On the following `AddOrderCommand#execute()` method call,
+the `AddOrderCommand` will no longer await input, and the `LogicManager` also removes its reference to the `AddOrderCommand`.
+The built up `Order` object is finally added to the model's `OrderList`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'. The model will then be unaffected.
 </div>
 
-**_Object diagram to be added here_**
+![AddOrderState4](images/developer-guide/AddOrderState4.png)
 
-The following sequence diagram shows how the add order operation works:
+The following sequence diagrams show how the add order feature works for a user entering an order with only one ordered item. Take note that
+the sequences occurring in the following diagrams are meant to occur in one full sequence (under one diagram) but for readability, have been separated into 3 smaller diagrams.
 
-_**Sequence diagram to be added here**_
+* Initiating the add order command (Step 1)
+![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram1.png)
+
+* Adding item details (Step 2a, 2b, 3)
+* ![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram2.png)
+
+* Adding item details (Step 4)
+* ![AddOrderSequenceDiagram](images/developer-guide/AddOrderSequenceDiagram3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for the objects with the
+<i>destroy marker</i> (X) should end at the <i>destroy marker</i> itself but due to a limitation of PlantUML, the lifeline
+reaches the end of the diagram.
+</div>
 
 The following activity diagram below illustrates the general flow of the user's experience in adding an order.
 ![AddOrderActivityDiagram](images/developer-guide/AddOrderActivityDiagram.png)
 
 ##### Design considerations
 
-Aspect: How add order command executes:
-* **Alternative 1 (current choice)**: Multi-level command, with user inputting information multiples times between customer data and then subsequently multiple item and quantity inputs.
-  * Pros: Better user experience. Users don't have to type out a very long command in one go to add an order.
-  * Cons: Harder to implement.
-* **Alternative 2**: Single level command, user inputs all required information in one long command.
-  * Pros: Easier to implement.
-  * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data.
+**Aspect: How the add order command receives input and executes**
+* **Alternative 1**: Single level command, user inputs all required information in one long command.
+    * Pros: Easier to implement as the implementation will follow the already in-place command execution structure.
+    * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data (e.g, enter multiple instances of "i/ITEM_NAME q/QUANTITY" on the same line of input).
+* **Alternative 2 (current choice)**: Multi-level command. User enters inputs in levels (customer data -> multiple iterations of item/quantity information -> "done"/"cancel" ).
+  * Pros: Better user experience. Users can be sure that any previously entered input is already validated by the application, making it less overwhelming to input large amounts of information.
+  * Cons: Harder to implement as it deviates from the original command execution structure (where one instance of user input relates to one full command execution).
 
-**_More design considerations_**
 
-### Find Orders feature
+### Find Order Feature
+
+The find order feature allows the user to find an `Order` to be tracked by the system.
 
 #### Implementation
 
-The find order command is executed by `FindOrderCommand`. It extends `Command`.
+The find order command is supported by `FindOrderCommand`. It extends `Command`.
 
 Given below is an example usage scenario and how the find order mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. `TrackO` will be initialised with the initial TrackO
-state, and the `OrdersList` will contain sample data.
+state, and the `OrderList` will contain sample data.
 
 Step 2. The user executes `findo keychain apple` command to find the orders containing items with the keywords
 keychain or apple. The `findo` command calls `FindOrderCommandParser` which checks for the correct command
@@ -344,7 +449,7 @@ that will filter the items according to the keywords. The predicate is passed in
 `FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter `Model#filteredOrders`
 according to the previously constructed `OrderContainsKeywordsPredicate`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect, 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect,
 `FindOrderCommandParser` will throw a `ParseException`.
 
 </div>
@@ -362,6 +467,76 @@ _{insert activity diagram}_
 _{add design considerations}_
 
 _{more aspects and alternatives to be added}_
+
+### Edit Order Feature
+
+The edit order feature allows the user to edit an `Order` to be tracked by the system.
+
+#### Implementation
+
+The edit order feature is supported by `EditOrderCommand`. It extends `Command`.
+
+Given below is an example usage scenario and how the `EditOrderCommand` mechanism behaves at each step.
+
+Step 1. The user inputs `edito 3 n/John Doe i/Banana q/5`. The following methods are called, in the given order:
+1. `LogicManager#execute`, which then calls
+2. `TrackOParser#parseCommand`. It will parse the input as an `EditOrderCommand` and call the constructor of 
+`EditOrderCommandParser`.
+3. `EditOrderCommandParser#parse` will parse the user command based on the prefixes given by the user, and returns an
+`EditOrderCommand` with the target index and `EditOrderDescriptor` as input. 
+
+The `EditOrderDescriptor` contains information that a newly edited order should have; in this case, 
+it contains a `Name`, `Item`, and `Quantity`. The rest of the fields that are not provided are copied from the existing 
+order at target index `3` (This index is **one-based**).
+
+Step 2. `EditOrderCommand#execute` is called, and it will check whether the `orderToEdit` is completed; if it is, it
+will throw a `CommandException` with `MESSAGE_ORDER_ALREADY_COMPLETED`. Otherwise, the method continues to run.
+
+Step 3. The `EditOrderCommand#createEditedOrder` creates an edited order using the information in the
+`EditOrderDescriptor`. When the user inputs an `Item` and `Quantity`, it checks whether:
+
+- **the `Item` exists in the `InventoryList`.**
+  - If it does not exist, the method will throw a `CommandException` with `MESSAGE_NONEXISTENT_ITEM`.
+  *This is because customers cannot order things that are not in stock*.
+  - If it exists, the method will keep running.
+- **the `Item` exists in the `Order`'s list of ordered items, which is stored as a `List<ItemQuantityPair>`.** This is
+done by `Item#isSameItem`, which returns true if both the newly inputted `Item` and the `Item` referenced in 
+`ItemQuantityPair` share the same `ItemName` (case-insensitive).
+  - If it does not exist, then the `Item` and `Quantity` will form a
+    new instance of `ItemQuantityPair` which will be added to the `List<ItemQuantityPair>`.
+  - If it exists, it will check whether:
+    - The `Quantity` is `0`. If it is, then:
+      - If the order's list of ordered items has more than one `ItemQuantityPair` will be removed from the 
+      `List<ItemQuantityPair>`.
+      - If the order's list of ordered items has only one `ItemQuantityPair`, then a `CommandException` with
+      `MESSAGE_ONE_ORDERED_ITEM` will be thrown. This is because **an order cannot have zero ordered items**.
+    - The newly inputted`Quantity` is different from the existing `Quantity`. If it is, then it will update 
+to the newly inputted `Quantity`.
+    - Otherwise, nothing happens.
+
+Step 4. The `Order` at the target index is then replaced by the newly created `Order` using `Model#setOrder()`, 
+successfully executing the edit order command in the `Model`. `Model#refreshData` is called to refresh the GUI, and 
+`Model#updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS)` is called to update the list to show all orders.
+`EditOrderCommand#execute()` returns a `CommandResult` to the `LogicManager`.
+
+The sequence diagram below illustrates this process.
+
+![EditOrderSequenceDiagram](images/EditOrderSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditOrderCommandParser` 
+and `EditOrderCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design Considerations
+
+**Aspect: Whether to implement the edit order feature**
+- **Alternative 1 (current choice)**: The command is implemented and edits the order based on the prefixes 
+inputted by the user.
+  - Pros: The user can edit only the fields that they want to edit.
+  - Cons: The user may have to input long commands.
+- **Alternative 2**: No edit command, users have to delete and re-add orders should there be any change.
+  - Pros: Less bug-prone, more convenient for the developers to implement.
+  - Cons: Not user-friendly and makes things more difficult for the user.
 
 ### \[Proposed\] Undo/redo feature
 

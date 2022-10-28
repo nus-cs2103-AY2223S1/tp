@@ -189,7 +189,8 @@ public class CommandTestUtil {
         // Index is at 1 because at 0, every order is initialized to have a keychain.
         final String[] splitName = order.getItemList().get(1).getItemName().split("\\s+");
         model.updateFilteredOrderList(new OrderMatchesFlagsAndPrefixPredicate(Collections.EMPTY_LIST,
-                Collections.EMPTY_LIST, Collections.singletonList(splitName[0]), false, false, false, false));
+                Collections.EMPTY_LIST, Collections.singletonList(splitName[0]), false,
+                false, false, false));
 
         assertEquals(1, model.getFilteredOrderList().size());
     }
