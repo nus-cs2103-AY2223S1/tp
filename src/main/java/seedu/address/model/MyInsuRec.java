@@ -110,6 +110,10 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         requireNonNull(editedClient);
 
         clients.setClient(target, editedClient);
+
+        // this part is necessary to affect the noconflictmeetinglist
+        target.getMeetings().forEach(meetings::remove);
+        editedClient.getMeetings().forEach(meetings::add);
     }
 
     /**
