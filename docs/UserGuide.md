@@ -168,6 +168,18 @@ Format: `clear`
 
 * Take note of which list you are clearing.
 
+### Sort list: `sort`
+
+Sorts the current list chronologically, alphabetically, or in reverse order.
+
+Format: `sort [default/alpha/reverse]`
+
+* **default**: sorts the list in order of entries added from oldest to newest.
+* **alpha**: sorts the list alphabetically with reference to the name.
+* **reverse**: sorts the list in reverse order.
+
+
+
 ### Searching by multiple fields: `find`
 
 Finds entities from the current list based on multiple fields at a time such that the fields of the entity specified contains the respective keywords.
@@ -253,11 +265,14 @@ Examples:
 
 ### Exporting address books to csv
 
-Export Students, Tutors, and TuitionClasses into their own .csv files to be used in other programs.
+Export Students, Tutors, and TuitionClasses address books into their own .csv files to be used in other programs.
 
 Format: Click on the "*File*" tab at the top left hand corner of `myStudents` and click on "*Export*" in the dropdown menu.
 
+<img src="images/exportButton.png" width="400">
+
 * The csv files will be saved in the same location as the json files specified in `preference.json`.
+* The default location is a folder named `data` in the same location where you have the myStudent.jar file.
 
 ### FAQs
 **Q:** Does myStudent need an Internet connection?
