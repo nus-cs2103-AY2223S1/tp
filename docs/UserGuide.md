@@ -81,8 +81,8 @@ Alternatively, you may read our [Developer Guide](https://ay2223s1-cs2103t-w10-3
 
 **:information_source: Notes about the command format:**<br>
 
-* Command words and prefixes have to be in `lower_case` **(Case sensitive)**
-  Command words includes `help`, `list`, `exit` etc.
+* Command words and prefixes have to be in `lower_case` **(Case sensitive)**.<br>
+  Command words includes `help`, `list`, `exit` etc.<br>
   Prefixes are used to recognise the different parameters input by the user, these include `n/`, `p/`, `e/` etc.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
