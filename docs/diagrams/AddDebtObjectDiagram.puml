@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Final state
+
+class AddDebtCommand as "__:AddDebtCommand__"
+class IndexOne as "__1:Index__"
+class IndexTwo as "__2:Index__"
+
+package Debt {
+    class Debt as "__:Debt__"
+    class Description as "__food:Description__"
+    class Money as "__10:Money__"
+    class DebtDate as "__currentDate:DebtDate__"
+    class DebtTime as "__currentTime:DebtTime__"
+}
+
+IndexOne -[hidden]> IndexTwo
+AddDebtCommand --> "index" IndexOne
+AddDebtCommand --> "index" IndexTwo
+AddDebtCommand --> Debt
+
+Debt --> Description
+Debt --> Money
+Debt --> DebtDate
+Debt --> DebtTime
+
+Description -[hidden]> Money
+Money -[hidden]> DebtDate
+DebtDate -[hidden]> DebtTime
+@end
