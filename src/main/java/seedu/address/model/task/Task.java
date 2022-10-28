@@ -97,17 +97,20 @@ public class Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTaskName())
-                .append(" Task Description: ")
+                .append("\n")
+                .append("Task Description: \n")
                 .append(getTaskDescription())
-                .append(" Task Deadline: ")
+                .append("\n")
+                .append("Task Deadline: \n")
                 .append(getTaskDeadline().toString())
-                .append(" Students: ");
+                .append("\n")
+                .append("Students: \n");
 
         Set<Student> students = getStudents();
         if (students.isEmpty()) {
             builder.append("None");
         } else {
-            students.forEach(builder::append);
+            students.forEach(s -> builder.append(s + "\n"));
         }
         return builder.toString();
     }

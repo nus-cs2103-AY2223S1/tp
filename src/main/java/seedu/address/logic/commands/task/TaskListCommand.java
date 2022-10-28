@@ -30,7 +30,7 @@ public class TaskListCommand extends Command {
         String display = "";
 
         for (int i = 0; i < tasks.size(); i++) {
-            display += tasks.get(i).toString() + "\n";
+            display += String.valueOf(i + 1) + ". " + tasks.get(i).toString() + "\n";
         }
 
         return new CommandResult(display + MESSAGE_SUCCESS);

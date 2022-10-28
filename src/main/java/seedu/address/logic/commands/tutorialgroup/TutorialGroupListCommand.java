@@ -30,9 +30,9 @@ public class TutorialGroupListCommand extends Command {
         String display = "";
 
         for (int i = 0; i < groups.size(); i++) {
-            display += groups.get(i).toString() + "\n";
+            display += String.valueOf(i + 1) + ". " + groups.get(i).toString() + "\n";
         }
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(display + MESSAGE_SUCCESS);
     }
 }
