@@ -89,7 +89,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-![help message](images/help.png)
+![help message](images/Help.png)
 
 ### Adding a nurse or patient: `add`
 
