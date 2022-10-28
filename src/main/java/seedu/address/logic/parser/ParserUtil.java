@@ -138,8 +138,8 @@ public class ParserUtil {
     public static seedu.address.model.task.Name parseTaskName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.task.Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.task.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.task.Name(trimmedName);
     }
