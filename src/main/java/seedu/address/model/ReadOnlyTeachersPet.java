@@ -22,5 +22,5 @@ public interface ReadOnlyTeachersPet {
      */
     ObservableList<Student> getScheduleList();
 
-    void sortPersons(Comparator<Student> comparator);
+    void sortStudents(Comparator<Student> comparator);
 }

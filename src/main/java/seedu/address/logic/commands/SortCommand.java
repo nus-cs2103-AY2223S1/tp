@@ -84,7 +84,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortPersons(this.comparator);
+        model.sortStudents(this.comparator);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
