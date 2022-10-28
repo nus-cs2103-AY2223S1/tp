@@ -101,15 +101,15 @@ Format: `exit`
 
 Adds a property to the property directory.
 
-Format: `add -p n/NAME a/ADDRESS p/PRICE [-i] [t/TAG]…​`
+Format: `add -p n/NAME a/ADDRESS p/PRICE s/AVAILABLE h/HDB [-i] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A property can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 h/HDB t/cheap`
-* `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 h/CONDO t/high-end`
+* `add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 s/AVAILABLE h/HDB t/cheap`
+* `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 s/AVAILABLE h/HDB t/high-end`
 
 The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the
 command.
@@ -128,7 +128,7 @@ Format: `list -p`
 
 Edits an existing person in the address book.
 
-Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [h/PROPERTY_TYPE] [t/TAG]…​`
+Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [s/PROPERTY_STATUS] [h/PROPERTY_TYPE] [t/TAG]…​`
 
 * Edits the property at the specified `INDEX`. The index refers to the index number shown in the displayed property list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -205,7 +205,7 @@ Examples:
 ### Filtering properties by type: `type -p`
 
 Returns a filtered list of clients that fulfil the filter conditions.
-Format: `type -p HDB`
+Format: `type -p TYPE`
 Examples:
 * `type -p HDB condo` returns all properties that are HDBs or Condos
 
@@ -292,7 +292,7 @@ Tips:
 * `filter -c high-end` followed by `delete 1` deletes the first client in the results of the
   `filter -c` command
 
-### Selecting a client profile: `select -pc INDEX`
+### Selecting a client profile: `select -c INDEX`
 
 Selects the specified client in the address book, for its details to be displayed.
 

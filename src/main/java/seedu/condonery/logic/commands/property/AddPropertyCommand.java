@@ -6,6 +6,7 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -37,10 +38,9 @@ public class AddPropertyCommand extends Command {
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
             + PREFIX_PRICE + "1000000 "
             + PREFIX_PROPERTY_TYPE + "HDB "
+            + PREFIX_PROPERTY_STATUS + "SOLD "
             + PREFIX_TAG + "High-End "
-            + PREFIX_TAG + "Available "
-            + PREFIX_PROPERTY_TYPE + "HDB"
-            + PREFIX_TAG + "Available";
+            + PREFIX_TAG + "Available ";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in Condonery";
