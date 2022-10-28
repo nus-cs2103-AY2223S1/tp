@@ -7,9 +7,10 @@ Are you a CS student struggling to keep track of your internship?
 Do you feel tired of using spreadsheets to keep track of your applications?
 We have just the right tool for you!
 
-Introducing PleaseHireUs (PHU), the internship tracking application made just for you!<br>
-
-![Ui](images/phu_icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
+Introducing PleaseHireUs (PHU), the internship tracking application made just for you!
+<br>
+<br>
+![Ui](images/icon.png)
 
 Now you will never miss any internship application deadlines or interviews again!
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
