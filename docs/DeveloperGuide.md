@@ -354,7 +354,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user    | mark debts as paid/unpaid                                                                     | I know whether the debts has been paid or not                       |
 | `* * *`  | user    | close the application                                                                         |                                                                     |
 | `* * *`  | user    | specify if an amount of money in the debt is inclusive or exclusive of GST and service charge | I do not have to manually calculate the final debt amount           |
-| `* *`    | user    | see an overview of all the debts owed                                                         | I am in better control of my overall financial situation            |
 | `* *`    | user    | search for a person’s contact                                                                 | I can easily access his contact details                             |
 | `* *`    | user    | save my contacts and debts over multiple usage sessions of the app                            | I do not need to key in data again when I exit and re-enter the app |
 
