@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 
 public class FindContactCommandParserTest {
 
@@ -36,14 +37,17 @@ public class FindContactCommandParserTest {
         String emailKeyword2 = "colonel-sanders-123@kfc.co.uk";
         String addressKeyword1 = "17A Lower Kent Ridge Road, #01-01, S(119081)";
         String addressKeyword2 = "17A Lower Kent Ridge Road, c/o reception@sally, #01-01, S(119081)";
+        String remarkKeywords1 = "prefers online meetings";
+        String remarkKeywords2 = "prefers f2f meetings";
 
         List<Name> nameKeywords = Arrays.asList(new Name(nameKeyword1), new Name(nameKeyword2));
         List<Phone> phoneKeywords = Arrays.asList(new Phone(phoneKeyword1), new Phone(phoneKeyword2));
         List<Email> emailKeywords = Arrays.asList(new Email(emailKeyword1), new Email(emailKeyword2));
         List<Address> addressKeywords = Arrays.asList(new Address(addressKeyword1), new Address(addressKeyword2));
+        List<Remark> remarkKeywords = Arrays.asList(new Remark(remarkKeywords1), new Remark(remarkKeywords2));
 
         FindContactCommand expectedFindCommand = new FindContactCommand(new PersonContainsKeywordsPredicate(
-                nameKeywords, phoneKeywords, emailKeywords, addressKeywords));
+                nameKeywords, phoneKeywords, emailKeywords, addressKeywords, remarkKeywords));
 
         // multiple whitespaces between keywords
         // TODO: Add test case
