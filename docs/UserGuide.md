@@ -85,16 +85,17 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Using `help` will provide you with a link to our online user guide.<br>
+If you get lost while using PayMeLah, this is the one command to remember!
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-
 ### Adding a person: `add`
 
-Adds a person to PayMeLah.
+Adds a person to PayMeLah. <br>
+This command will let you add the people who owe you money (and some of their information, like their phone number or telegram handle) to PayMeLah.
 
 Format: `add n/<name> [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
@@ -108,7 +109,8 @@ Examples:
 
 ### Adding a debt: `adddebt`
 
-Adds a debt to a person in PayMeLah for you to track. Specifying multiple people will add a copy of this debt to each person specified.
+Adds a debt to a person in PayMeLah for you to track. Specifying multiple people will add a copy of this debt to each person specified.<br>
+This command will help you add debts to the people in PayMeLah, so that the app can help you to remember all the debts you are owed instead.
 
 Format: `adddebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
 
@@ -197,7 +199,8 @@ Example: `statement` returns `You are owed $583.90 in total.`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in PayMeLah.
+Shows a list of all persons in PayMeLah.<br>
+You can use this command to return to displaying the full list of people you have added to PayMeLah.
 
 Format: `list`
 
@@ -223,7 +226,8 @@ Example: `sort n/+` sorts and displays the list of persons in ascending alphabet
 
 ### Editing a person : `edit`
 
-Edits an existing person in PayMeLah.
+Edits an existing person in PayMeLah.<br>
+You can use this command to edit information about people you have already added in PayMeLah, in case some of their particulars such as their phone number or telegram handle have changed.
 
 Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
@@ -281,7 +285,8 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from PayMeLah.
+Deletes the specified person from PayMeLah.<br>
+You can use this to remove people you no longer need to track debts for from PayMeLah.
 
 Format: `delete <index>`
 
@@ -295,15 +300,24 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from PayMeLah.
+Clears all entries from PayMeLah.<br>
+You can use this command to delete all info from PayMeLah and start afresh!
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This is the command to use when you want to start using PayMeLah for real and delete all the sample data that exist when you first use PayMeLah!
+</div>
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can also just press the 'X' button in the upper right corner. There is no difference, and both methods help safely exit PayMeLah :)
+</div>
 
 ### Saving the data
 
