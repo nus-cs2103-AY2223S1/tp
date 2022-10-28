@@ -16,7 +16,7 @@ tasks done faster than traditional GUI apps.
 
 1. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+1. Double-click the file to start the app. The GUI similar to the below image should appear in a few seconds. Note how the app
    contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -29,7 +29,10 @@ tasks done faster than traditional GUI apps.
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-    * **`get`** : Retrieve contact's information based on the prefix you provided.
+    * **`get`** `\n Alex`: Retrieve contact's information based on the prefix you provided. In this case, patients
+    with the name `Alex` will be retrieved.
+
+    * **`view`** `1` : Views the 1st contact shown in the current list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -45,7 +48,7 @@ tasks done faster than traditional GUI apps.
   e.g. in `get /n NAME`, `NAME` is a parameter which can be used as `get /n John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [m/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [m/TAG]` can be used as `n/John Doe m/Ibuprofen` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[m/TAG]…​` can be used as ` ` (i.e. 0 times), `m/ibuprofen`, `m/ibuprofen m/lozenges` etc.
@@ -79,10 +82,10 @@ Example:
 
 Adds a patient to checkUp.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN NAME, RELATIONSHIP, CONTACT pt/PATIENT TYPE hw/HOSPITAL WING fn/FLOOR NUMBER wn/WARD NUMBER [m/MEDICATION]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT pt/PATIENT TYPE hw/HOSPITAL_WING fn/FLOOR_NUMBER wn/WARD_NUMBER [m/MEDICATION]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of medication (including 0)
+A patient can have any number of medications (including 0)!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -122,7 +125,7 @@ Examples:
 
 #### by next-of-kin data: `/nok`
 
-Finds next-of-kin data of the inputted patient.
+Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
 
 Format: `get /nok PATIENT_NAME`
 
@@ -136,7 +139,7 @@ Finds all the patients in that particular hospital wing.
 
 Format: `get /hw HOSPITAL_WING`
 
-* `Hospital wing` only allows the following values: South, North, West, East
+* `HOSPITAL_WING` only allows the following values: South, North, West, East
 * The search is case-insensitive. e.g `souTh` will match `South`
 * All the patients in that hospital wing will be returned. e.g. `get /hw SOUTH` will return `John` `Peter` `Mary`
 * Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `South No` will match `south`
@@ -148,7 +151,7 @@ Finds all the patients in that particular floor number.
 
 Format: `get /fn FLOOR_NUMBER`
 
-* `Floor number` only allows positive and non-negative integer.
+* `Floor number` only allows positive integer.
 * All the patients in that floor number will be returned.
 * The floor number refers to the floor number the patient is on. e.g. `get /fn 2` will return `John` `Peter` `Mary`
 
@@ -166,7 +169,7 @@ Format: `get /wn WARD_NUMBER`
 Finds all the patients by medication.
 
 Format: `get /m MEDICATION`
-* 
+
 * All the patients being prescribed that medication will be returned.
 e.g. `get /m ibuprofen` will return `John` `Peter` `Mary`
 
@@ -225,7 +228,7 @@ Examples:
 
 ### Obtaining total patient count: `count`
 
-Finds total number of patients.
+Gets total number of patients.
 
 Format: `count`
 
@@ -237,13 +240,13 @@ Format: `count`
 
 Creates a past appointment for the specified patient in checkUp.
 
-Format: `appt INDEX on/DATE diag/DIAGNOSIS m/MEDICINE...`
+Format: `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICINE]...`
 
 * Past appointment is created for a patient at the specified `INDEX`.
 * The index refers to the index number showed in the displayed patient list.
 * The index **must be a positive integer**, eg. 1, 2, 3...
 * The date can only be input in the `dd-MM-yyyy` format.
-* The `DIAGNOSIS` field **cannot be empty**.
+* The `DATE` and `DIAGNOSIS` fields **cannot be empty**.
 * The `MEDICINE` field(s) is/are optional. Use multiple `m/` prefixes if multiple medicines are prescribed.
 
 Examples:
@@ -306,7 +309,7 @@ displayed patient list. The index **must be a positive integer** 1, 2, 3, ...
 * Existing values will be updated to the input values.
 * When editing medication, the existing medication of the patient will be removed i.e adding of medication is not
 cumulative.
-* You can remove all the patient’s tags by typing m/ without specifying any medication after it.
+* You can remove all the patient’s medication by typing m/ without specifying any medication after it.
 * When editing upcoming appointment dates, the date must be in `dd-MM-yyyy` format, eg. `12-06-2022`.
 
 Examples:
