@@ -6,16 +6,13 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<TitledPane fx:id="titledPane" minWidth="10.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane fx:id="titledPane" minWidth="10.0" prefWidth="150.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-    <VBox alignment="CENTER_LEFT" minHeight="75.0">
+    <VBox fx:id="dataFields" alignment="CENTER_LEFT" minHeight="75.0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <FlowPane fx:id="classes" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
     </VBox>
    </content>
 </TitledPane>
