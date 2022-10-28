@@ -19,7 +19,7 @@ public class UnmarkTutorialCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "abc", String.format(MESSAGE_INVALID_COMMAND_FORMAT
-                , UnmarkTutorialCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "abc", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                UnmarkTutorialCommand.MESSAGE_USAGE));
     }
 }

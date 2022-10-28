@@ -32,7 +32,7 @@ public class MarkTutorialCommandTest {
                 tutorialToMark.getContent(), tutorialToMark.getTime(), true);
         MarkTutorialCommand markTutorialCommand = new MarkTutorialCommand(INDEX_FIRST_TUTORIAL);
 
-        String expectedMessage = String.format(markTutorialCommand.MESSAGE_MARKTUT_SUCCESS, editedTutorial) ;
+        String expectedMessage = String.format(markTutorialCommand.MESSAGE_MARKTUT_SUCCESS, editedTutorial);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setTutorial(tutorialToMark, editedTutorial);

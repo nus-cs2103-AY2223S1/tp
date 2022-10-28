@@ -31,7 +31,7 @@ public class UnmarkTutorialCommandTest {
                 tutorialToUnmark.getTime(), false);
         UnmarkTutorialCommand unmarkTutorialCommand = new UnmarkTutorialCommand(INDEX_FIRST_TUTORIAL);
 
-        String expectedMessage = String.format(unmarkTutorialCommand.MESSAGE_UNMARKTUT_SUCCESS, editedTutorial) ;
+        String expectedMessage = String.format(unmarkTutorialCommand.MESSAGE_UNMARKTUT_SUCCESS, editedTutorial);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setTutorial(tutorialToUnmark, editedTutorial);
