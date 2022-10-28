@@ -19,8 +19,8 @@
   <scene>
     <Scene fx:id="mainScene">
       <stylesheets>
-        <URL fx:id="darkTheme" value="@DarkTheme.css" />
         <URL fx:id="lightTheme" value="@LightTheme.css" />
+        <URL fx:id="darkTheme" value="@DarkTheme.css" />
         <URL fx:id="extensions" value="@Extensions.css" />
       </stylesheets>
 

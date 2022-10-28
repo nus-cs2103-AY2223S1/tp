@@ -25,7 +25,7 @@ public class LinkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links a Person and an Internship. "
             + "Parameters: "
             + PREFIX_PERSON + "PERSON_INDEX "
-            + PREFIX_INTERNSHIP + "INTERNSHIP_ID "
+            + PREFIX_INTERNSHIP + "INTERNSHIP_ID\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PERSON + "0 "
             + PREFIX_INTERNSHIP + "0 ";
