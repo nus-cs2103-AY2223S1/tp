@@ -19,16 +19,16 @@ import seedu.address.model.student.Student;
 @JsonRootName(value = "teacherspet")
 class JsonSerializableTeachersPet {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
 
-    private final List<JsonAdaptedStudent> persons = new ArrayList<>();
+    private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableTeachersPet} with the given persons.
+     * Constructs a {@code JsonSerializableTeachersPet} with the given students.
      */
     @JsonCreator
-    public JsonSerializableTeachersPet(@JsonProperty("persons") List<JsonAdaptedStudent> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableTeachersPet(@JsonProperty("students") List<JsonAdaptedStudent> students) {
+        this.students.addAll(students);
     }
 
     /**
@@ -38,7 +38,7 @@ class JsonSerializableTeachersPet {
      */
     public JsonSerializableTeachersPet(ReadOnlyTeachersPet source) {
         assert source != null;
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
+        students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,12 +48,12 @@ class JsonSerializableTeachersPet {
      */
     public TeachersPet toModelType() throws IllegalValueException {
         TeachersPet teachersPet = new TeachersPet();
-        for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
+        for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (teachersPet.hasPerson(student)) {
+            if (teachersPet.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            teachersPet.addPerson(student);
+            teachersPet.addStudent(student);
         }
         return teachersPet;
     }

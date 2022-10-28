@@ -106,7 +106,7 @@ public class StatisticsCalculatorTest {
             this(Collections.emptyList());
         }
         @Override
-        public ObservableList<Student> getPersonList() {
+        public ObservableList<Student> getStudentList() {
             return students;
         }
         @Override
@@ -114,7 +114,7 @@ public class StatisticsCalculatorTest {
             return schedule;
         }
         @Override
-        public void sortPersons(Comparator<Student> comparator) {
+        public void sortStudents(Comparator<Student> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

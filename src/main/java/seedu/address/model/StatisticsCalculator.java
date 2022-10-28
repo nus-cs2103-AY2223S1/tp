@@ -29,7 +29,7 @@ public class StatisticsCalculator {
      * @return the number of people stored in TeachersPet.
      */
     public int getSize() {
-        return teachersPet.getPersonList().size();
+        return teachersPet.getStudentList().size();
     }
 
     /**
@@ -38,7 +38,7 @@ public class StatisticsCalculator {
      * @return the total amount of money owed.
      */
     public String getAmountOwed() {
-        ObservableList<Student> studentList = teachersPet.getPersonList();
+        ObservableList<Student> studentList = teachersPet.getStudentList();
         int moneyOwed = 0;
         try {
             for (Student student : studentList) {
@@ -56,7 +56,7 @@ public class StatisticsCalculator {
      * @return the total amount of money paid.
      */
     public String getAmountPaid() {
-        ObservableList<Student> studentList = teachersPet.getPersonList();
+        ObservableList<Student> studentList = teachersPet.getStudentList();
         int moneyPaid = 0;
         try {
             for (Student student : studentList) {

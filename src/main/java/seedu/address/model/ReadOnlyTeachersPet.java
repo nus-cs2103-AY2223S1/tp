@@ -14,7 +14,7 @@ public interface ReadOnlyTeachersPet {
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Student> getPersonList();
+    ObservableList<Student> getStudentList();
 
     /**
      * Returns an unmodifiable view of the schedule list.
