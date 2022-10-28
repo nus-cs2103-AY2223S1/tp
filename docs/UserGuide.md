@@ -145,6 +145,74 @@ Format: `clear`
 Example:
 * `clear` removes all internship applications in the workbook.
 
+### Undoing previous command: `undo`
+
+Restores the work book to the state before the previous <em>undoable</em> command was executed
+
+Format: `undo`
+
+Undoable commands: commands that modify the work book's content (`add`, `delete`, `edit` and `clear`)
+
+Examples:
+* `delete 1`
+
+    `list`
+
+    `undo` (reverses the `delete 1` command)
+
+
+* `find google`
+
+  `list`
+
+  `undo` 
+
+    The `undo` command fails as there are no undoable commands executed previously.
+
+    
+* `delete 1`
+    
+    `clear`
+
+    `undo` (reverses the `clear` command)
+
+    `undo` (reverses the `delete 1` command )
+
+### Redoing previous command: `redo`
+
+Reverses the most recent `undo` command.
+
+Format: `redo`
+
+Examples:
+* `delete 1`
+
+  `undo` (reverses the `delete 1` command)
+
+  `redo` (reapplies the `delete 1` command)
+
+
+* `delete 1`
+
+  `redo`
+
+  The `redo` command fails as there are no `undo` commands executed previously.
+
+
+* `delete 1`
+
+  `clear`
+
+  `undo`(reverses the `clear` command)
+
+  `undo`(reverses the `delete 1` command)
+
+  `redo`(reapplies the `delete 1` command)
+
+  `redo`(reapplies the `clear` command)
+
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -195,11 +263,11 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add c/COMPANY d/YYYY-MM-DD e/EMAIL r/ROLE [t/TAG]…​` <br> e.g., `add c/Meta d/2022-09-15 e/hrmonkey@example.com r/Frontend`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [t/TAG]…​​`<br> e.g.,`edit 2 c/META e/hrmonkey@example.com`
-**Help** | `help`
-**Exit** | `exit`
+| Action     | Format, Examples                                                                                                             |
+|------------|------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add c/COMPANY d/YYYY-MM-DD e/EMAIL r/ROLE [t/TAG]…​` <br> e.g., `add c/Meta d/2022-09-15 e/hrmonkey@example.com r/Frontend` |
+| **Clear**  | `clear`                                                                                                                      |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                          |
+| **Edit**   | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [t/TAG]…​​`<br> e.g.,`edit 2 c/META e/hrmonkey@example.com`        |
+| **Help**   | `help`                                                                                                                       |
+| **Exit**   | `exit`                                                                                                                       |
