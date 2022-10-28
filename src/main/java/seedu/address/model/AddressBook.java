@@ -378,6 +378,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         exams.updateModuleFieldForExam(previousModule, newModule);
     }
 
+    /**
+     * Deletes tasks that have their module field as {@code module}.
+     * @param module The module in the task's module field.
+     */
+    public void deleteTasksWithModule(Module module) {
+        requireNonNull(module);
+        tasks.deleteTasksWithModule(module);
+    }
+
+    /**
+     * Deletes exams that have their module field as {@code module}.
+     * @param module The module in the exam's module field.
+     */
+    public void deleteExamsWithModule(Module module) {
+        requireNonNull(module);
+        exams.deleteExamsWithModule(module);
+    }
+
 
     @Override
     public boolean equals(Object other) {

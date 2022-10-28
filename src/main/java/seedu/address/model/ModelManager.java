@@ -283,6 +283,12 @@ public class ModelManager implements Model {
         addressBook.updateModuleFieldForTask(previousModule, newModule);
     }
 
+    @Override
+    public void deleteTasksWithModule(Module module) {
+        requireNonNull(module);
+        addressBook.deleteTasksWithModule(module);
+    }
+
     //================================Exam Commands=====================================
     @Override
     public ObservableList<Exam> getFilteredExamList() {
@@ -305,6 +311,12 @@ public class ModelManager implements Model {
     public void updateModuleFieldForExam(Module previousModule, Module newModule) {
         requireAllNonNull(previousModule, newModule);
         addressBook.updateModuleFieldForExam(previousModule, newModule);
+    }
+
+    @Override
+    public void deleteExamsWithModule(Module module) {
+        requireNonNull(module);
+        addressBook.deleteExamsWithModule(module);
     }
 
 }
