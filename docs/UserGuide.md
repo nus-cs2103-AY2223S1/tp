@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-![App Logo](images/guest_book_320.png)
+![App Logo](images/guest_book_160.png)
 
 ## Introduction
 
