@@ -14,6 +14,7 @@ import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.PropertyDirectory;
 import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
@@ -26,23 +27,39 @@ public class SampleDataUtil {
             new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
                     new Price("1000000"), getTagSet("High-End", "Available"),
                     getClientSet(
-                            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet(""), new HashSet<>()),
-                            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"),
-                                    new HashSet<>())), PropertyTypeEnum.valueOf("CONDO")),
+                        new Client(new Name("Bobby"),
+                                new Address("BobbyAddress"),
+                                getTagSet(""),
+                                new HashSet<>()),
+                        new Client(new Name("Samuel"),
+                                new Address("SamuelAddress"),
+                                getTagSet("Friend"),
+                                new HashSet<>())),
+                    PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
                     new Price("1000000"),
                     getTagSet("High-End", "Sold"),
-                    getClientSet(new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich"),
-                            new HashSet<>())), PropertyTypeEnum.valueOf("CONDO")),
+                    getClientSet(
+                            new Client(new Name("Casey"),
+                                    new Address("CaseyAddress"),
+                                    getTagSet("Rich"),
+                                    new HashSet<>())), PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE),
             new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
                     new Price("1000000"),
                     getTagSet("High-End", "Reserved"),
                     getClientSet(
-                            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent"),
+                            new Client(new Name("Jac"),
+                                    new Address("JacAddress"),
+                                    getTagSet("Urgent"),
                                     new HashSet<>()),
-                            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet(""), new HashSet<>()),
-                            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich"),
-                                    new HashSet<>())), PropertyTypeEnum.valueOf("CONDO")),
+                            new Client(new Name("Jack"),
+                                    new Address("JackAddress"),
+                                    getTagSet(""),
+                                    new HashSet<>()),
+                            new Client(new Name("Hamster"),
+                                    new Address("Hamster"),
+                                    getTagSet("Friend", "Rich"),
+                                    new HashSet<>())), PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE),
         };
     }
 
@@ -62,7 +79,7 @@ public class SampleDataUtil {
                     getPropertySet(
                             new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
                                     new Price("1000000"), getTagSet("High-End", "Available"),
-                                    new HashSet<>(), PropertyTypeEnum.valueOf("CONDO")))),
+                                    new HashSet<>(), PropertyTypeEnum.valueOf("CONDO"), PropertyStatusEnum.AVAILABLE))),
             new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"), new HashSet<>())
         };
     }

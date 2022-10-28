@@ -8,7 +8,8 @@
       "tagged": [
         "friends"
       ],
-      "propertyType" : "CONDO"
+      "propertyType" : "CONDO",
+      "propertyStatus" : "AVAILABLE"
     },
     {
       "name": "Oasis",
@@ -18,14 +19,17 @@
         "owesMoney",
         "friends"
       ],
-      "propertyType" : "CONDO"
+      "propertyType" : "CONDO",
+      "propertyStatus" : "PENDING"
     },
     {
       "name": "Carl Kurz",
       "address": "wall street",
       "price": "3,000,000",
       "tagged": [],
-      "propertyType" : "CONDO"
+      "propertyType" : "CONDO",
+      "propertyStatus" : "PENDING"
+
     },
     {
       "name": "Daniel Meier",
@@ -34,28 +38,36 @@
       "tagged": [
         "friends"
       ],
-      "propertyType" : "CONDO"
+      "propertyType" : "CONDO",
+      "propertyStatus" : "PENDING"
+
     },
     {
       "name": "Elle Meyer",
       "address": "michegan ave",
       "price": "5,000,000",
       "tagged": [],
-      "propertyType" : "CONDO"
+      "propertyType" : "CONDO",
+      "propertyStatus" : "PENDING"
+
     },
     {
       "name": "Fiona Kunz",
       "address": "little tokyo",
       "price": "6,000,000",
       "tagged": [],
-      "propertyType" : "CONDO"
+      "propertyType" : "CONDO",
+      "propertyStatus" : "SOLD"
+
     },
     {
       "name": "George Best",
       "address": "4th street",
       "price": "7,000,000",
       "tagged": [],
-      "propertyType" : "CONDO"
+      "propertyType" : "CONDO",
+      "propertyStatus" : "SOLD"
+
     }
   ]
 }

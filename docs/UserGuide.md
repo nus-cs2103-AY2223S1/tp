@@ -167,6 +167,16 @@ Examples:
 Notes:
 * lower and upper price boundaries only accept integer values (commas acceptable).
 
+### Filter properties by status: `status -p`
+
+Returns all the properties with the specified `PropertyStatusEnum`
+Format: `status -p STATUS`
+
+Examples:
+* `status -p AVAILABLE` returns all the properties with status of `AVAILABLE`
+* `status -p PENDING` returns all the properties with status of `PENDING`
+* `status -p SOLD` returns all the properties with status of `SOLD`
+
 ### Filtering properties by type: `type -p`
 
 Returns a filtered list of clients that fulfil the filter conditions.
@@ -272,6 +282,8 @@ Action | Format, Examples
 **Find -p** | `find -p NAME [MORE_NAMES]`<br> e.g., `find -p PINNACLE@DUXTON BISHAN`
 **Range -p** | `range -p l/LOWER_BOUND u/UPPER_BOUND`<br> e.g., `range -p l/1,000,000 u/3,000,000`
 **List -p** | `list -p`
+**Status -p** | `status -p`
+**Type -p** | `type -p`
 
 **Client Directory**
 Action | Format, Examples

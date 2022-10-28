@@ -51,7 +51,9 @@ public class ParseClientInterestedProperties {
     }
 
     public Client getNewClient() {
-        return new Client(originalClient.getName(), originalClient.getAddress(),
+        Client client = new Client(originalClient.getName(), originalClient.getAddress(),
                 originalClient.getTags(), filteredInterestedProperties);
+        client.setImageDirectoryPath(originalClient.getImageDirectoryPath());
+        return client;
     }
 }

@@ -189,6 +189,7 @@ public class MainWindow extends UiPart<Stage> {
             }
         }
         propertyListPanel.refresh();
+        clientListPanel.refresh();
     }
 
 
