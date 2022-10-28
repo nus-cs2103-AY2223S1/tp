@@ -4,8 +4,8 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingId;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 
 /**
  * A utility class to help with building Listing objects.
@@ -28,7 +28,7 @@ public class ListingBuilder {
     public ListingBuilder() {
         this.id = new ListingId(DEFAULT_ID);
         this.address = new Address(DEFAULT_ADDRESS);
-        this.owner = DEFAULT_PERSON.getName();
+        this.owner = DEFAULT_CLIENT.getName();
         this.askingPrice = new Price(DEFAULT_ASKING_PRICE);
     }
 
