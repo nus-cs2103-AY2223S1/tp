@@ -102,8 +102,25 @@ Format: `edit INDEX [c/COMPANY] [p/PHONE] [e/EMAIL] [r/ROLE] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/hrmonkey@example.com` Edits the phone number and email address of the first internship to be `91234567` and `hrmonkey@example.com` respectively.
-*  `edit 2 c/Google t/` Edits the company of the 2nd internship to be `Google` and clears all existing tags.
+* `edit 1 p/91234567 e/hrmonkey@example.com` Edits the phone number and email address of the first internship to be `91234567` and `hrmonkey@example.com` respectively.
+* `edit 2 c/Google t/` Edits the company of the 2nd internship to be `Google` and clears all existing tags.
+
+### Finds internships by company,stage or role name: `find`
+
+Finds internships whose company,role or stage names contain any of the respective keywords.
+
+Format: `find c/COMPANY | r/ROLE | s/STAGE`
+
+* Displays a list of internships that match all the keywords.
+* Case does not matter e.g. `meta` will match `Meta`.
+* Only full words will be matched e.g. `met` will not match `Meta`.
+* Order of the keywords does not matter e.g. `Jane Street` will match `Street Jane`.
+* Exactly one attribute can be searched for either Company,Role or Stage.
+
+
+Examples:
+* `find r/Engineer` returns `Software Engineer` and `Backend Engineer`.
+* `find s/Interview` returns `Technical Interview` and `Behavioural Interview`.
 
 ### Deleting an internship application : `delete`
 
