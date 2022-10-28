@@ -170,10 +170,14 @@ _Help window displayed after running the `help` command_
 
 ### Navigate command history: `↑` `↓`
 
-Navigate the command history. Pressing `↑` will replace the text in the command box with the previous command. Pressing `↓` will replace the text in the command box with the next command.
+Navigate the command history using the `↑` and `↓` arrow keys.
+* `↑` will replace the text in the command box with the previous command.
+* `↓` will replace the text in the command box with the next command. 
+* Only successful commands are saved in the command history.
+* Two or more consecutive equal commands are saved once.
 
 Examples:
-* `find Betsy`, followed by `list`, then followed by `↑` will replace the text in the command box with `list`. Pressing `↑` again will replace the text in the command box with `find Betsy`. Pressing `↓` will replace the command box with `list`.
+* `find Betsy`, followed by `list`, then followed by `↑` will replace the text in the command box with `list`. Using `↑` again will replace the text in the command box with `find Betsy`. Using `↓` will replace the command box with `list`.
 
 <br>
 
