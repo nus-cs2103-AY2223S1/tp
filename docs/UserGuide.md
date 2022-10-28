@@ -458,9 +458,9 @@ Examples:
 Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
 
 * If icon is a `moon` FinBook is in Dark mode.
-  ![Dark mode](images/Ui_dark.png)
+  ![Dark mode](images/Ui_dark_w_arrow.png)
 * If icon is a `sun` FinBook is in Light mode.
-* ![Light mode](images/Ui_light.png)
+  ![Light mode](images/Ui_light.png)
 
 <div markdown="block" class="alert alert-info">
 
