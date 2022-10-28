@@ -7,14 +7,15 @@
     "tutorial": "T08",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "social" : "null null null null null file:src/main/resources/images/profile_pic.png"
+    "social" : "<none> <none> <none> <none> <none> file:src/main/resources/images/profile_pic.png"
   }, {
     "occupation" : "STUDENT",
     "name": "Alice Pauline",
     "phone": "94351253",
+    "email": "alice@example.com",
     "tutorial": "T08",
-    "email": "pauline@example.com",
-    "address": "4th street",
-    "social" : "null null null null null file:src/main/resources/images/profile_pic.png"
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ],
+    "social" : "<none> <none> <none> <none> <none> file:src/main/resources/images/profile_pic.png"
   } ]
 }
