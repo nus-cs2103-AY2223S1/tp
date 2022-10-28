@@ -265,6 +265,15 @@ public class Person {
     }
 
     /**
+     * Compares the person and the input person to decide rating order.
+     * @param other input Person
+     * @return 1 if this person has a higher rating than other, -1 otherwise.
+     */
+    public int compareByRating(Person other) {
+        return this.rating.compare(other.rating);
+    }
+
+    /**
      * Adds new links to existing links of a person.
      * @param linksToAdd Links to be added to the person.
      * @return Set of links after adding new links to existing links.
