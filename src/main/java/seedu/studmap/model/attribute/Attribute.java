@@ -37,7 +37,7 @@ public abstract class Attribute {
         switch (attributeTypeEnum) {
 
         case NAME:
-            resultComparator = Comparator.comparing(Student::getNameString);
+            resultComparator = Comparator.comparing(Student::getNameString, String::compareToIgnoreCase);
             break;
 
         case PHONE:
