@@ -1,22 +1,16 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalClients.ALICE;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Email;
-import seedu.address.model.client.Name;
-import seedu.address.model.client.Phone;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingTime;
-import seedu.address.model.product.Product;
+
 
 /**
  * A utility class to help with building Meeting objects.
@@ -26,12 +20,7 @@ public class MeetingBuilder {
     public static final LocalDate DEFAULT_MEETING_DATE = LocalDate.of(2020, 1, 8);
     public static final LocalTime DEFAULT_MEETING_START_TIME = LocalTime.of(7, 20, 45, 342123342);
     public static final LocalTime DEFAULT_MEETING_END_TIME = LocalTime.of(8, 20, 45, 342123342);
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final LocalDate DEFAULT_BIRTHDAY = LocalDate.of(2000, 1, 1);
-    private static final Set<Product> DEFAULT_PRODUCTS = new HashSet<>();
+    public static final Client DEFAULT_CLIENT = ALICE;
 
     private Description description;
     private Client client;
@@ -47,9 +36,7 @@ public class MeetingBuilder {
         meetingDate = new MeetingDate(DEFAULT_MEETING_DATE);
         meetingStartTime = new MeetingTime(DEFAULT_MEETING_START_TIME);
         meetingEndTime = new MeetingTime(DEFAULT_MEETING_END_TIME);
-        client = new Client(new Name(DEFAULT_NAME), new Phone(DEFAULT_PHONE),
-                Optional.of(new Email(DEFAULT_EMAIL)), Optional.of(new Address(DEFAULT_ADDRESS)),
-                Optional.of(new Birthday(DEFAULT_BIRTHDAY)), DEFAULT_PRODUCTS);
+        client = DEFAULT_CLIENT;
     }
 
     /**

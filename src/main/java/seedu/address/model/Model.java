@@ -83,10 +83,23 @@ public interface Model {
     boolean hasMeeting(Meeting meeting);
 
     /**
+     * Returns true if a meeting with the same date, time, and description as {@code meeting} exists in the MyInsuRec.
+     * This is a stronger version of hasMeeting.
+     */
+    boolean hasSpecificMeeting(Meeting meeting);
+
+    /**
      * Adds the given meeting.
      * {@code meeting} must not already exist in the MyInsuRec.
      */
     void addMeeting(Meeting meeting);
+
+    /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the MyInsuRec.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the MyInsuRec.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
 
     /**
      * Adds the given product.

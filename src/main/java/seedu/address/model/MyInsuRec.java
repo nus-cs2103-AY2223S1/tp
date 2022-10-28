@@ -110,14 +110,23 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         requireNonNull(editedClient);
 
         clients.setClient(target, editedClient);
+
+        // this part is necessary to affect the noconflictmeetinglist
+        target.getMeetings().forEach(meetings::remove);
+        editedClient.getMeetings().forEach(meetings::add);
     }
 
     /**
-     * Removes {@code key} from this {@code MyInsuRec}.
+     * Removes {@code client} from this {@code MyInsuRec}. This includes any associated meetings with the client.
      * {@code key} must exist in MyInsuRec.
      */
-    public void removeClient(Client key) {
-        clients.remove(key);
+    public void removeClient(Client client) {
+        clients.remove(client);
+        client.getMeetings().forEach(meetingToRemove -> {
+            if (meetings.contains(meetingToRemove)) {
+                meetings.remove(meetingToRemove);
+            }
+        });
     }
 
     //// meeting-level operations
@@ -140,10 +149,31 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     }
 
     /**
-     * Returns true if a meeting with the same identity as {@code meeting} exists in the meetings book.
+     * Returns true if a meeting with the same date and time as {@code meeting} exists in the meetings book.
      */
     public boolean hasMeeting(Meeting meeting) {
         return meetings.contains(meeting);
+    }
+
+    /**
+     * Returns true if a meeting with the same date, time, and description
+     * as {@code meeting} exists in the meetings book.
+     * This is stronger version of hasMeeting.
+     */
+    public boolean hasSpecificMeeting(Meeting meeting) {
+        return meetings.containsSpecific(meeting);
+    }
+
+    /**
+     * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
+     * {@code target} must exist in MyInsuRec.
+     * The Meeting identity of {@code editedMeeting} must not be the same as
+     * another existing Meeting in MyInsuRec.
+     */
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
+
+        meetings.setMeeting(target, editedMeeting);
     }
 
     //// product-level operations
