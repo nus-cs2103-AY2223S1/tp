@@ -54,6 +54,15 @@ public class ItemExpiryDate {
     }
 
     /**
+     * Returns true if the given datetime object is after the expiry date.
+     *
+     * @param datetime The datetime object to compare against
+     */
+    public boolean isAfterExpiryDate(LocalDate datetime) {
+        return datetime.isAfter(expiryDate);
+    }
+
+    /**
      * Returns {@code true} if both {@link ItemExpiryDate#expiryDate} have the same date by
      * {@link LocalDate#equals(Object)}.
      */

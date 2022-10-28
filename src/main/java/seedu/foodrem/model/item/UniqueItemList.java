@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.foodrem.commons.exceptions.ItemStorageFullException;
 import seedu.foodrem.model.item.exceptions.DuplicateItemException;
 import seedu.foodrem.model.item.exceptions.ItemNotFoundException;
 
@@ -23,6 +24,7 @@ import seedu.foodrem.model.item.exceptions.ItemNotFoundException;
  * @see Item#isSameItem(Item)
  */
 public class UniqueItemList implements Iterable<Item> {
+    private static final int MAX_ITEMS = 10000;
     private final ObservableList<Item> internalList = FXCollections.observableArrayList();
     private final ObservableList<Item> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -36,11 +38,21 @@ public class UniqueItemList implements Iterable<Item> {
     }
 
     /**
+     * Returns true is the storage is full, false otherwise.
+     */
+    public boolean isStorageFull() {
+        return internalList.size() == MAX_ITEMS;
+    }
+
+    /**
      * Adds an item to the list.
      * The item must not already exist in the list.
      */
     public void add(Item toAdd) {
         requireNonNull(toAdd);
+        if (isStorageFull()) {
+            throw new ItemStorageFullException(MAX_ITEMS);
+        }
         if (contains(toAdd)) {
             throw new DuplicateItemException();
         }

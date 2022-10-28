@@ -23,9 +23,9 @@ show-toc: true
 
 {% include_relative _ug/Installation.md %}
 
-## Using FoodRem
+## Quickstart Guide 
 
-{% include_relative _ug/UsingFoodRem.md %}
+{% include_relative _ug/QuickstartGuide.md %}
 
 ## Commands
 
@@ -48,7 +48,6 @@ show-toc: true
 ### Statistics Command
 
 {% include_relative _ug/commandSummary/StatisticsCommands.md %}
-
 
 ## Troubleshooting
 

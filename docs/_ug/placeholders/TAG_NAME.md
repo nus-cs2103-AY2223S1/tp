@@ -2,7 +2,7 @@
 The TAG_NAME is the term we use to identify an item.
 
 ```info
-* TAG_NAME is a short text with a limit of 50 characters
+* TAG_NAME is a short text with a limit of 20 characters
 * TAG_NAME can contain alphanumeric characters, spaces, and the following symbols: `?` `'` `.` `"` `[` `]` `{` `}` `(` `)` `+` `^` `$` `*` `-` `,` `:` `;` `@` `!` `#` `%` `&` `_` `=`
 * TAG_NAME is unique and case-sensitive
 * TAG_NAME will have leading and trailing spaces trimmed
@@ -17,5 +17,3 @@ The TAG_NAME is the term we use to identify an item.
 **Invalid Examples:**
 
 * Одноразовый
-* Fruits & Vegetables
-* Fruit's

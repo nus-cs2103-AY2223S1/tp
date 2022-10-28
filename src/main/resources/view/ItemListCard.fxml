@@ -3,27 +3,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Region?>
 
 <HBox spacing="5" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
   <Label fx:id="id" />
   <VBox spacing="5" HBox.hgrow="ALWAYS">
-    <HBox spacing="5">
       <VBox spacing="5" HBox.hgrow="ALWAYS">
         <HBox spacing="5">
           <HBox HBox.hgrow="ALWAYS">
             <Label fx:id="name"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="quantity" styleClass="bold"/>
           </HBox>
         </HBox>
         <HBox spacing="5">
           <Label fx:id="bought" styleClass="item-listview-data"/>
           <Label fx:id="expires" styleClass="item-listview-data"/>
+          <Region HBox.hgrow="ALWAYS"/>
+          <Label fx:id="price" styleClass="item-listview-data, bold"/>
         </HBox>
       </VBox>
-      <VBox spacing="5" alignment="TOP_RIGHT">
-        <Label fx:id="quantity"/>
-        <Label fx:id="price" styleClass="item-listview-data"/>
-      </VBox>
-    </HBox>
     <HBox spacing="5" alignment="CENTER_LEFT" fx:id="tags" />
   </VBox>
 </HBox>

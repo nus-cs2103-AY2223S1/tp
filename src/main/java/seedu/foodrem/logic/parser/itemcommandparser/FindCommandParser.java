@@ -3,6 +3,7 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 import java.util.Arrays;
 
 import seedu.foodrem.commons.core.Messages;
+import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.parser.Parser;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
@@ -21,6 +22,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.getUsage()));
+        }
+
+        if (!StringUtil.isValidString(trimmedArgs)) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.getUsage()));
         }

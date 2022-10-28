@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.commons.exceptions.DataConversionException;
+import seedu.foodrem.commons.exceptions.StorageFullException;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.ReadOnlyUserPrefs;
 import seedu.foodrem.model.UserPrefs;
@@ -52,7 +53,7 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyFoodRem> readFoodRem() throws DataConversionException, IOException {
+    public Optional<ReadOnlyFoodRem> readFoodRem() throws DataConversionException, StorageFullException, IOException {
         return readFoodRem(foodRemStorage.getFoodRemFilePath());
     }
 

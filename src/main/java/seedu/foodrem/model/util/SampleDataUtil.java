@@ -240,6 +240,19 @@ public class SampleDataUtil {
         };
     }
 
+    public static Tag[] getSampleTags() {
+        return new Tag[]{
+            new Tag("Vegetables"),
+            new Tag("Aromatics"),
+            new Tag("Herbs"),
+            new Tag("Meats"),
+            new Tag("Spices"),
+            new Tag("Cutlery"),
+            new Tag("Kitchenware"),
+        };
+    }
+
+
     public static ReadOnlyFoodRem getSampleFoodRem() {
         FoodRem sampleFoodRem = new FoodRem();
         for (Item sampleItem : getSampleItems()) {
