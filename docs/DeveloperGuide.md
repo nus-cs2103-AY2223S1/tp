@@ -32,19 +32,13 @@ title: Developer Guide
     - [Glossary](#glossary)
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
---------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
---------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_here_](SettingUp.md).
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
@@ -259,8 +253,6 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `modtrekt.commons` package.
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
@@ -774,8 +766,6 @@ for the`ls` and `ls -a` commands:
 
 <img src="images/tasks/ListingSequenceDiagram.png" width="1000" />
 
---------------------------------------------------------------------------------------------------------------------
-
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -783,8 +773,6 @@ for the`ls` and `ls -a` commands:
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
@@ -942,9 +930,6 @@ Windows, Linux, Unix, OS-X
 _**Private contact detail**_
 
 A contact detail that is not meant to be shared with others
-
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
