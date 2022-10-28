@@ -25,7 +25,7 @@ and generation of statistics, ArtBuddy is also here to help you grow as an artis
 
 So, focus on your art and leave the rest to ArtBuddy.
 
-Eager to get started? You can refer to our [Quick Start](#Quick start) section to set ArtBuddy up, or
+Eager to get started? You can refer to our [Quick Start](#Quick_start) section to set ArtBuddy up, or
 you can jump to our [Features](#features) section to learn more about the features ArtBuddy offers.
 
 ## Quick start
@@ -314,10 +314,22 @@ move your original copy of the file without affecting the uploaded image on ArtB
 ### Deleting iteration from commission: `deliter`
 Deletes an iteration from a commission.
 
-Format: `deliter [INDEX]`
+Format: `deliter INDEX`
 * The command requires a commission to be selected.
 * As each commission currently has only one image, the command will simply delete the image tied to the current commission, if it exists.
 * You may want to note that your local copy of the image will not be deleted.
+
+### Editing iteration from commission: `edititer`
+Edits an iteration in a commission.
+
+Format: `edititer INDEX [n/DESCRIPTION] [d/DATE] [p/FILEPATH] [f/FEEDBACK]`
+* The command requires a commission to be selected.
+* At least one field to edit must be provided.
+
+Example:
+* `edititer 1 n/Colourised image d/2022-10-12 f/Good improvement p//Users/John/Downloads/Updated Image.png`
+  Edits the first iteration in the currently selected commission to have the above fields and image.
+* `edititer 2 n/Sketch` Edits the description of the second iteration in the currently selected commission.
 
 ### Exiting the program : `exit`
 
@@ -374,7 +386,8 @@ Action | Format, Examples
 **Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
 **View all Commissions** | `allcom`
 **Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
-**Add Iteration** | `additer DESCRIPTION DATE FEEDBACK FILEPATH`<br> e.g., `additer n/Draft 1 f/Good d/ 2022-10-28 p//Users/John/Downloads/Bread.jpeg`
+**Add Iteration** | `additer n/DESCRIPTION d/DATE f/FEEDBACK p/FILEPATH`<br> e.g., `additer n/Draft 1 f/Good d/ 2022-10-28 p//Users/John/Downloads/Bread.jpeg`
 **Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
+**Edit Iteration**| `editer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, `edititer 2 n/Sketch`
 **Exit** | `exit`
 **Help** | `help`
