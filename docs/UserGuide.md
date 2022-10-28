@@ -34,7 +34,8 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
-   Some example commands you can try you may refer to [this](#features) for details of each command.
+   
+6. Some example commands you can try you may refer to [this](#features) for details of each command.
 
 * **`list`** : Lists all internships.
 
