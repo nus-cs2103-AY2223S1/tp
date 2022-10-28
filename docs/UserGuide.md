@@ -103,8 +103,6 @@ pay attention to. </div>
 
 [Back to Top](#welcome-to-rc4hdb-user-guide)
 
----
-
 ## Quick start
 
 Here is a quick start on how to get RC4HDB onto your computer.
