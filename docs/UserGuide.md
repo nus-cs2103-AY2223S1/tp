@@ -126,8 +126,9 @@ java -version
 * Indices for patient attributes (e.g. `TASK_INDEX`, `CONDITION_INDEX`, `TAG_INDEX`, etc.) refers to the index number shown in the attribute list of a patient.<br>
   e.g. `TASK_INDEX` refers to the index number show in the task list of a patient.
 
-* Parameters in square brackets are optional.<br>
+* Parameters in square brackets and angle brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>` can be used as `d/task 1` or `d/task 1 | 22-3-22 1800`.
 
 * Parameters with `…` after them can be used multiple times, including zero times.<br>
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -369,11 +370,10 @@ Format: `edit -p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE TIME> 
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in notes under command format.
 * If no new `DATE TIME` or `INTERVAL TIME_PERIOD` are provided, then original values will be used.
 * If a `INTERVAL TIME_PERIOD` is provided for what was originally a non-recurring task, the edit will transform it into a recurring one based on the given frequency
-* To keep the original task description and edit only the `DATE TIME` or `INTERVAL TIME_PERIOD` fields, simply copy the task description and only change the desired `DATE TIME` or `INTERVAL TIME_PERIOD` field
 
 Examples:
 * `list` followed by `edit -p 1 -d 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`, while retaining the original date and time for the task.
-* `find Betsy` followed by `edit -p 2 -d 3 d/Change dressing on left arm | 23-10-22 0800` edits the description of the 3rd task of the 2nd patient in results of the `find` command to `Change dressing on left arm` and also changes the date and time for the task to 23rd October 2022 0800 hours.
+* `find Betsy` followed by `edit -p 2 -d 3 d/| 23-10-22 0800` edits the date and time of the 3rd task of the 2nd patient in results of the `find` command to 23rd October 2022 0800 hours.
 
 <br>
 
