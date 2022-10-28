@@ -34,7 +34,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                         CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
                         CliSyntax.PREFIX_ITEM_PRICE,
                         CliSyntax.PREFIX_ITEM_REMARKS);
-        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble(), EditCommand.getUsage());
+        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble().trim(),
+                                                               EditCommand.getUsage());
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
         if (argMultimap.isValuePresent(CliSyntax.PREFIX_NAME)) {

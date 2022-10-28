@@ -27,7 +27,8 @@ public class DecrementCommandParser implements Parser<DecrementCommand> {
     public DecrementCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_ITEM_QUANTITY);
-        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble(), DecrementCommand.getUsage());
+        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble().trim(),
+                                                               DecrementCommand.getUsage());
 
         // Default decrement by 1 if PREFIX_ITEM_QUANTITY not provided
         ItemQuantity decrementQuantity = ParserUtil.parseQuantity("1");

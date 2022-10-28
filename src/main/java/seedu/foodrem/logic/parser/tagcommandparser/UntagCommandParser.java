@@ -27,7 +27,8 @@ public class UntagCommandParser implements Parser<UntagCommand> {
     public UntagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME);
-        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble(), UntagCommand.getUsage());
+        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble().trim(),
+                                                               UntagCommand.getUsage());
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, UntagCommand.getUsage()));

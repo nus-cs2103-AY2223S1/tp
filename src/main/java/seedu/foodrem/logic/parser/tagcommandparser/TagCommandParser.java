@@ -29,7 +29,8 @@ public class TagCommandParser implements Parser<TagCommand> {
     public TagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME);
-        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble(), TagCommand.getUsage());
+        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble().trim(),
+                                                               TagCommand.getUsage());
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)
                 || argMultimap.getPreamble().isEmpty()) {
