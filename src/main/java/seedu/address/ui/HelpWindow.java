@@ -51,7 +51,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "| group friends                                 |";
     public static final String EMAILALL_EXAMPLE = " | emailall  | emailall GROUP                                  "
             + "| emailall friends                              |";
-    public static final String INCLUDE_EXAMPLE = " |  include  | include s/SOCIAL #/SOCIAL_INFO                  "
+    public static final String INCLUDE_EXAMPLE = " |  include  | include INDEX s/SOCIAL #/SOCIAL_INFO            "
             + "| include 1 s/EMAIL #/johnd@example.com         |";
     public static final String EXCLUDE_EXAMPLE = " |  exclude  | exclude index s/SOCIAL                          "
             + "| exclude 1 s/INSTAGRAM                         |";
