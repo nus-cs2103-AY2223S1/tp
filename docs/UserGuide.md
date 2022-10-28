@@ -574,6 +574,6 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 
 ## 10. Contact Us
 
-Our team is committed to delivering a high-quality product, so we'd love to hear from you if you have any feedback or enquires! 
+Our team is committed to delivering a high-quality product, so we'd love to hear from you if you have any feedback or enquiries! 
 
 Please feel free to contact us at [myinsurec@gmail.com](myinsurec@gmail.com).
