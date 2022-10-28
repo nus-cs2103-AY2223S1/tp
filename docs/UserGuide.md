@@ -3,14 +3,30 @@ layout: page
 title: User Guide
 ---
 
-ArtBuddy (AB) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while
-still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB can get your contact management
-tasks done faster than traditional GUI apps.
+Made for commission-based artists, ArtBuddy (AB) is the easiest way to organise your customers and commissions.
+Powerful features and intuitive design, all packaged into one desktop app. With optimised support for
+use via a Command Line Interface (CLI) while still offering the benefits of a Graphical User Interface (GUI),
+ArtBuddy can help you manage your small business fast.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+Ever forget a deadline? Or lost track of your customers? Many commission-based artists struggle to organise
+their business. With so many things to keep track of, you might have found yourself wondering if there were a
+better way to manage all of these.
+
+That's why we built ArtBuddy, a commission-based artist's best buddy, just for you. Developed with your
+needs in mind, ArtBuddy can help you manage all your customers and commissions in one place. That's
+not all. With integrated support for tracking the progress of your commissions through iterations,
+and generation of statistics, ArtBuddy is also here to help you grow as an artist.
+
+So, focus on your art and leave the rest to ArtBuddy.
+
+Eager to get started? You can refer to our [Quick Start](#Quick start) section to set ArtBuddy up, or
+you can jump to our [Features](#features) section to learn more about the features ArtBuddy offers.
 
 ## Quick start
 
