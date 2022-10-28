@@ -135,9 +135,11 @@ Similar analogues exist for task and lesson data. The class diagram is similar a
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
+
 The above diagram only shows the UserPrefs and StudentBook Storage in full. TaskBook Storage is done similarly to StudentBook Storage. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
 
 <img src="images/LessonStorageClassDiagram.png" width="550" />
+
 The LessonBook Storage is slightly different from the StudentBook and TaskBook Storages.
 
 The `Storage` component,
@@ -282,36 +284,41 @@ In the case where `AddNoteCommand` is executed for adding to student specific no
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                                    | So that I …​                                                                               |
-|----------|-----------------------------------|-----------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | potential user                    | find the installation/setup instructions                        | can install the app properly                                                               |
-| `* * *`  | user ready to start using the app | see the basic commands                                          | can learn how to use the most basic features of the app                                    |
-| `* * *`  | user ready to start using the app | add the students in my tutorial class into the app              | can track the students' attendance and grades                                              |
-| `* * *`  | user                              | add my tasks                                                    | will not forget to do any of the tasks                                                     |
-| `* * *`  | user                              | mark tasks as done                                              | can focus on the remaining tasks                                                           |
-| `* * *`  | user                              | mark tasks as not done                                          | can go back and redo tasks that are incomplete                                             |
-| `* * *`  | clumsy user                       | delete tasks                                                    | can remove tasks I have wrongfully added                                                   |
-| `* * *`  | clumsy user                       | delete students                                                 | can remove students I have wrongfully added                                                |
-| `* * *`  | user                              | list the tasks that I need to do                                | can see all my tasks                                                                       |
-| `* * *`  | user                              | list students in my class                                       | can see all my students with relevant details                                              |
-| `* * *`  | user                              | see my students' mastery check completion status                | know which students I have not seen for mastery check                                      |
-| `* * *`  | user                              | update my students' mastery check completion status             | can keep track of which students I have already seen for mastery check                     |
-| `* *`    | first time user                   | see the app being populated with sample students and tasks      | can try out the functions of the app                                                       |
-| `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data            |
-| `*`      | user                              | assign different priorites to my tasks                          | can focus on the more important tasks                                                      |
-| `*`      | user ready to start using the app | import my timetable for the semester	                           | can plan my TA duties in sync with tasks from other modules                                |
-| `*`      | user                              | add in mastery check timeslots                                  | can keep track of when and who I have to see for mastery check and I can make preparations |
-| `*`      | user                              | detect if there any schedule conflicts in my upcoming tasks     | resolve those conflicts and complete all my tasks                                          |
-| `*`      | user                              | add in timeslots for consultations	                             | can keep track of details of consultation and students                                     |
-| `*`      | user                              | get the task with the next earliest deadline	                   | can plan my schedule accordingly                                                           |
-| `*`      | user                              | receive reminders about upcoming deadlines                      | am able to meet all my deadlines on time                                                   |
-| `*`      | user                              | receive notifications when my students submit their assignments | know that I have assignments to grade                                                      |
-| `*`      | user                              | keep track of my students' level of participation               | decide how to assign tutorial participation exp for each student                           |
-| `*`      | user                              | keep track of my students' grades                               | can focus more on the weaker students                                                      |
-| `*`      | user                              | send notifications to my students                               | can remind them to submit their work                                                       |
-| `*`      | user                              | see performance statistics on each assignment                   | can spend more time on topics that my students are weak in                                 |
-| `*`      | user                              | see attendance statistics for studios                           | can understand the needs of my students better                                             |
-| `*`      | user                              | hide irrelevant data                                            | can focus on the more relevant data                                                        |
+| Priority | As a …​                           | I want to …​                                                    | So that I …​                                                                    |
+|----------|-----------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------|
+| `* * *`  | potential user                    | find the installation/setup instructions                        | can install the app properly                                                    |
+| `* * *`  | user ready to start using the app | see the basic commands                                          | can learn how to use the most basic features of the app                         |
+| `* * *`  | user ready to start using the app | add the students in my tutorial class into the app              | can track the students' attendance and grades                                   |
+| `* * *`  | user                              | add my tasks                                                    | can keep track of the tasks I have to do                                          |
+ | `* * *`  | user                              | add my lessons                                                  | can keep track of lessons I have scheduled with which students                  |
+| `* * *`  | user                              | mark tasks as done                                              | can focus on the remaining tasks                                                |
+| `* * *`  | user                              | mark tasks as not done                                          | can go back and redo tasks that are incomplete                                  |
+| `* * *`  | user                              | mark lessons as completed                                       | can focus on upcoming lessons                                                   | 
+| `* * *`  | clumsy user                       | delete tasks                                                    | can remove tasks I have wrongfully added                                        |
+| `* * *`  | clumsy user                       | delete students                                                 | can remove students I have wrongfully added                                     |
+| `* * *`  | clumsy user                       | delete lessons                                                  | can remove lessons I have wrongfully added                                      |
+| `* * *`  | user                              | list the tasks that I need to do                                | can see all my tasks                                                            |
+| `* * *`  | user                              | list all students in my class                                   | can see all my students with relevant details                                   |
+| `* * *`  | user                              | list all lessons for my class                                   | can see all upcoming and completed lessons                                      |
+| `* * *`  | user                              | see my students' mastery check completion status                | know which students I have not seen for mastery check                           |
+| `* * *`  | user                              | update my students' mastery check completion status             | can keep track of which students I have already seen for mastery check          |
+| `* * *`  | user                              | see the duration and students involved for my lessons           | can keep track of when and who I have to meet in order to make preparations       |
+| `* *`    | first time user                   | see the app being populated with sample students, tasks and lessons      | can try out the functions of the app                                            |
+| `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data |
+| `* *`    | user                              | add attendance for a lesson                                      | can keep track of who attended the lesson                                       |
+| `* *`    | user                              | keep track of my students' level of participation               | can prompt students who are less active in class                        |
+| `* *`    | user                              | keep track of my students' grades                               | can help and pay more attention to the weaker students                             |  
+| `* *`    | user                              | take down notes related to a lesson                             | can refer back and remember important things that happened during the lesson      |      
+| `* *`    | user                              | detect if there are any lesson schedule conflicts                      | will not wrongly schedule lessons at the same time                               |
+| `*`      | user                              | assign different priorities to my tasks                         | can focus on the more important tasks                                           |
+| `*`      | user ready to start using the app | import my timetable for the semester	                           | can plan my TA duties in sync with tasks from other modules                     |
+| `*`      | user                              | detect if there any schedule conflicts in my upcoming tasks     | resolve those conflicts and complete all my tasks                               |
+| `*`      | user                              | get the task with the next earliest deadline	                   | can plan my schedule accordingly                                                |
+| `*`      | user                              | receive reminders about upcoming deadlines                      | am able to meet all my deadlines on time                                        |
+| `*`      | user                              | receive notifications when my students submit their assignments | know that I have assignments to grade                                           |
+| `*`      | user                              | send notifications to my students                               | can remind them to submit their work                                            |
+| `*`      | user                              | see performance statistics on each assignment                   | can spend more time on topics that my students are weak in                      |
+| `*`      | user                              | hide irrelevant data                                            | can focus on the more relevant data                                             |
 
 
 
@@ -540,10 +547,10 @@ Use case ends.
 * **Mastery check**: An assessment where students in pairs must present what they have learnt in the module to their TA, and the TA will assess the students’ understanding of the concepts.
 * **Avenger**: A teaching assistant (TA) who is responsible for teaching a studio class.
 * **Studio**: A tutorial class with up to 8 students.
-* **XP**: Points that will count towards a student’s grade
+* **XP**: Points that will count towards a student’s grade.
 * **Source Academy**: Online platform used for CS1101S.
-* **Mission**: Assignment on Source Academy
-* **Quest**: Optional assignment on Source Academy
+* **Mission**: Assignment on Source Academy.
+* **Quest**: Optional assignment on Source Academy.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -562,7 +569,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and tasks. The window size may not be optimum.
+   1. Double-click the jar file 
+       Expected: Shows the GUI with a set of sample students, tasks and lists. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -575,7 +583,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a student
 
-1. Deleting a student while all persons are being shown
+1. Deleting a student while student list is being shown
 
    1. Prerequisites: List all student using the `lists` command. Multiple students in the list.
 
