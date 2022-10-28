@@ -120,6 +120,12 @@
     -fx-text-fill: black;
 }
 
+.person_view_cell {
+    -fx-background-color: #F7EBEC;
+    -fx-border-color: #000000;
+    -fx-border-radius: 20;
+}
+
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;

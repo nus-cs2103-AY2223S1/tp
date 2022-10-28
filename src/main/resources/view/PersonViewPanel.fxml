@@ -2,35 +2,72 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
 
 <ScrollPane styleClass="scroll-pane" prefHeight="674.0" fitToWidth="true" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <VBox HBox.hgrow="ALWAYS" style="-fx-padding: 5 0 0 0">
       <children>
          <Label alignment="TOP_CENTER" prefWidth="Infinity" id="name" fx:id="name" styleClass="cell_name_label" HBox.hgrow="ALWAYS" />
 
-         <Label styleClass="cell_big_label" text="Personal Details" textAlignment="CENTER" style="-fx-padding: 0 0 0 10" />
-         <Label fx:id="email" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-         <Label fx:id="phone" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-
-         <Label styleClass="cell_big_label" text="Next-of-Kin Details" textAlignment="CENTER" style="-fx-padding: 10 0 0 10" />
-         <VBox fx:id="nok">
-            <Label fx:id="nokName" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-            <Label fx:id="nokRelationship" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-            <Label fx:id="nokContact" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <VBox VBox.vgrow="ALWAYS" styleClass="person_view_cell">
+            <children>
+               <HBox HBox.hgrow="ALWAYS" style="-fx-padding: 10 0 0 10">
+                  <ImageView fx:id="identificationIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label styleClass="cell_big_label" text="Personal Details" textAlignment="CENTER" style="-fx-padding: 0 0 0 5" />
+               </HBox>
+               <Label fx:id="email" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+               <Label fx:id="phone" styleClass="cell_small_label" style="-fx-padding: 1 0 8 10" />
+            </children>
          </VBox>
 
-         <Label styleClass="cell_big_label" text="Long Term Medications" style="-fx-padding: 10 0 0 10" />
-         <FlowPane fx:id="medications" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <VBox VBox.vgrow="ALWAYS" styleClass="person_view_cell">
+            <children>
+               <HBox HBox.hgrow="ALWAYS" style="-fx-padding: 10 0 0 10">
+                  <ImageView fx:id="helplineIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label styleClass="cell_big_label" text="Next-of-Kin Details" textAlignment="CENTER" style="-fx-padding: 0 0 0 5" />
+               </HBox>
+               <VBox fx:id="nok">
+                  <Label fx:id="nokName" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+                  <Label fx:id="nokRelationship" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+                  <Label fx:id="nokContact" styleClass="cell_small_label" style="-fx-padding: 1 0 8 10" />
+               </VBox>
+            </children>
+         </VBox>
 
-         <Label styleClass="cell_big_label" text="Hospitalisation Details" style="-fx-padding: 10 0 0 10" />
-         <Label fx:id="patientType" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-         <Label fx:id="hospitalWing" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-         <Label fx:id="floorNumber" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-         <Label fx:id="wardNumber" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+         <VBox VBox.vgrow="ALWAYS" styleClass="person_view_cell">
+            <children>
+               <HBox HBox.hgrow="ALWAYS" style="-fx-padding: 10 0 0 10">
+                  <ImageView fx:id="pillIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label styleClass="cell_big_label" text="Long Term Medications" style="-fx-padding: 0 0 0 5" />
+               </HBox>
+               <FlowPane fx:id="medications" styleClass="cell_small_label" style="-fx-padding: 1 0 8 10" />
+            </children>
+         </VBox>
 
-         <Label styleClass="cell_big_label" text="Appointment Details" style="-fx-padding: 10 0 0 10" />
-         <Label fx:id="upcomingAppointment" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
-         <Label styleClass="cell_small_label" text="Past Appointments, if any, are listed below." style="-fx-padding: 0 0 0 10" />
+         <VBox VBox.vgrow="ALWAYS" styleClass="person_view_cell">
+            <children>
+               <HBox HBox.hgrow="ALWAYS" style="-fx-padding: 10 0 0 10">
+                  <ImageView fx:id="hospitalbedIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label styleClass="cell_big_label" text="Hospitalisation Details" style="-fx-padding: 0 0 0 5" />
+               </HBox>
+               <Label fx:id="patientType" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+               <Label fx:id="hospitalWing" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+               <Label fx:id="floorNumber" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+               <Label fx:id="wardNumber" styleClass="cell_small_label" style="-fx-padding: 1 0 8 10" />
+            </children>
+         </VBox>
+
+         <VBox VBox.vgrow="ALWAYS" styleClass="person_view_cell">
+            <children>
+               <HBox HBox.hgrow="ALWAYS" style="-fx-padding: 10 0 0 10">
+                  <ImageView fx:id="calendarIcon" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label styleClass="cell_big_label" text="Appointment Details" style="-fx-padding: 0 0 0 5" />
+               </HBox>
+               <Label fx:id="upcomingAppointment" styleClass="cell_small_label" style="-fx-padding: 1 0 0 10" />
+               <Label styleClass="cell_small_label" text="Past Appointments, if any, are listed below." style="-fx-padding: 1 0 8 10" />
+            </children>
+         </VBox>
          <ListView accessibleText="Past Appointments" id="pastAppointments" fx:id="pastAppointments" HBox.hgrow="ALWAYS" />
+
       </children></VBox>
 </ScrollPane>
