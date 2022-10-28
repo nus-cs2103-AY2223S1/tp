@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -33,6 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_NAME_COLIN = "Colin Lin";
     public static final String VALID_MODULE_CODE_BOB = "CS1231S";
+
+    public static final String VALID_MODULE_CODE_AMY = "CS2103T";
     public static final String VALID_MODULE_CODE_CABE = "CS2100";
     public static final String VALID_NAME_CABE = "Cabe Tan";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -55,6 +58,7 @@ public class CommandTestUtil {
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String NAME_DESC_CABE = " " + PREFIX_NAME + VALID_NAME_CABE;
+    public static final String MODULE_CODE_DESC_AMY = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_AMY;
     public static final String MODULE_CODE_DESC_BOB = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_BOB;
     public static final String MODULE_CODE_DESC_CABE = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CABE;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;

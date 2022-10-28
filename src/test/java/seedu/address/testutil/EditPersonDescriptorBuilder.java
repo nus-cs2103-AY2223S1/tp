@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -106,10 +107,17 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withModuleCode(String moduleCode) {
         descriptor.setModuleCode(new ModuleCode(moduleCode));
+        //set module hashset for equals() of EditPersonDescriptor
+        Set<ModuleCode> moduleCodes = new HashSet<>();
+        moduleCodes.add(new ModuleCode(moduleCode));
+        descriptor.setModuleCodes(moduleCodes);
         return this;
     }
 
-
+    public EditPersonDescriptorBuilder withModuleCodeSet(Set<ModuleCode> moduleCodes) {
+        descriptor.setModuleCodes(moduleCodes);
+        return this;
+    }
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
