@@ -385,7 +385,7 @@ to find the position we should insert this new `Task`.
 Step 5. `Task` will be inserted to the `taskList` at the position returned by `TaskList#findIndexOfTask(Task task)`
 method.
 
-Step 4. `CommandResult` is then returned, notifying the user that the `Task` is successfully added.
+Step 6. `CommandResult` is then returned, notifying the user that the `Task` is successfully added.
 
 **Activity Diagram**
 The user flow is illustrated in the *Activity Diagram* below.
@@ -414,10 +414,10 @@ Step 4. The old Task at the specified index will be removed.
 Step 5. Then the `Model#addTask(Task task)` will be called. Which will call `TaskList#findIndexOfTask(Task task)`
 that returns the position for the new Task to be inserted.
 
-Step 5. `Task` will be inserted to the `taskList` at the position returned by `TaskList#findIndexOfTask(Task task)`
+Step 6. `Task` will be inserted to the `taskList` at the position returned by `TaskList#findIndexOfTask(Task task)`
 method.
 
-Step 4. `CommandResult` is then returned, notifying the user that the `Task` is successfully updated.
+Step 7. `CommandResult` is then returned, notifying the user that the `Task` is successfully updated.
 
 **Activity Diagram**
 The user flow is illustrated in the *Activity Diagram* below.
