@@ -36,6 +36,12 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
+    public void rename(String newName) {
+        assert Name.isValidName(newName);
+        this.name = new Name(newName);
+    }
+
+    @Override
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
@@ -59,8 +65,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     @Override
     public Optional<Attribute<?>> getAttribute(String type) {
         return getAttributes().stream()
-                .filter(attr -> attr.getAttributeType()
-                        .equals(type))
+                .filter(attr -> attr.getAttributeType().toLowerCase()
+                        .equals(type.toLowerCase()))
                 .findFirst();
     }
 

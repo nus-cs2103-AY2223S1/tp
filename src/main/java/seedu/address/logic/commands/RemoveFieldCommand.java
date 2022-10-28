@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Removes a field by a given field name from the addressbook.
  */
-public class RemoveFieldCommand extends Command {
+public class RemoveFieldCommand extends PureCommand {
 
     public static final String COMMAND_WORD = "rmfield";
 

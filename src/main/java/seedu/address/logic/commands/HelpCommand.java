@@ -5,7 +5,7 @@ import seedu.address.model.Model;
 /**
  * Format full help instructions for every command for display.
  */
-public class HelpCommand extends Command {
+public class HelpCommand extends PureCommand {
 
     public static final String COMMAND_WORD = "help";
 
