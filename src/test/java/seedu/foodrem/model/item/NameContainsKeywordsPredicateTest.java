@@ -69,9 +69,10 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(List.of("Carrots"));
         assertFalse(predicate.test(new ItemBuilder().withItemName("Potato Cucumber").build()));
 
-        // Keywords match quantity, bought date and expiry date, but does not match name
+        // Keywords match quantity, bought date and expiry date, and name as it is a substring
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Potato", "12345", "11-11-2022", "12-12-2022"));
-        assertFalse(predicate.test(new ItemBuilder()
+        // TODO: Move this to the correct test method
+        assertTrue(predicate.test(new ItemBuilder()
                 .withItemName("Potatoes")
                 .withItemQuantity("12345")
                 .withItemBoughtDate("11-11-2022")

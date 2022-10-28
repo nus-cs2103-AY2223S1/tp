@@ -3,8 +3,8 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
-import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
 import seedu.foodrem.logic.parser.ArgumentTokenizer;
@@ -27,19 +27,8 @@ public class IncrementCommandParser implements Parser<IncrementCommand> {
     public IncrementCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_ITEM_QUANTITY);
-        Index index;
-
-        if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    IncrementCommand.getUsage()));
-        }
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    IncrementCommand.getUsage()), pe);
-        }
+        Index index = StringUtil.validateAndGetIndexFromString(argMultimap.getPreamble().trim(),
+                                                               IncrementCommand.getUsage());
 
         // Default increment by 1 if PREFIX_ITEM_QUANTITY not provided
         ItemQuantity incrementQuantity = ParserUtil.parseQuantity("1");

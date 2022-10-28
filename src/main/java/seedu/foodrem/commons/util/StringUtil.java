@@ -7,6 +7,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 
+import seedu.foodrem.commons.core.Messages;
+import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.logic.parser.ParserUtil;
+import seedu.foodrem.logic.parser.exceptions.ParseException;
+
 /**
  * Helper functions for handling strings.
  */
@@ -61,7 +66,34 @@ public class StringUtil {
         String[] wordsInPreppedSentence = sentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-            .anyMatch(preppedWord::equalsIgnoreCase);
+                .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns {@code true} if the {@code sentence} contains the {@code word}.
+     * Ignores case, and does not need a full word match.
+     * <br>examples:<pre>
+     *       containsSubstringIgnoreCase("ABc def", "abc") == true
+     *       containsSubstringIgnoreCase("ABc def", "DEF") == true
+     *       containsSubstringIgnoreCase("ABc def", "AB") == true
+     *       containsSubstringIgnoreCase("ABc def", "GH") == false
+     *       </pre>
+     *
+     * @param sentence cannot be null
+     * @param word     cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsSubstringIgnoreCase(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim().toLowerCase();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String[] wordsInPreppedSentence = sentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(w -> w.toLowerCase().contains(preppedWord));
     }
 
     /**
@@ -103,5 +135,37 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Validates if a string is can be parsed into an index, and if the index is positive.
+     *
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static Index validateAndGetIndexFromString(String string, String commandUsage) {
+        requireNonNull(string);
+        requireNonNull(commandUsage);
+
+        String trimmedArgument = string.trim();
+
+        if (trimmedArgument.isEmpty()) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, commandUsage));
+        }
+
+        if (!StringUtil.isInteger(trimmedArgument)) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, commandUsage));
+        }
+
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedArgument)) {
+            throw new ParseException(Messages.MESSAGE_NON_POSITIVE_INDEX);
+        }
+
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(trimmedArgument);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, commandUsage), pe);
+        }
+        return index;
     }
 }

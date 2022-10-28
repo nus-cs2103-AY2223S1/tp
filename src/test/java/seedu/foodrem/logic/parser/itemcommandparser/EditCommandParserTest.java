@@ -1,5 +1,6 @@
 package seedu.foodrem.logic.parser.itemcommandparser;
 
+import static seedu.foodrem.commons.core.Messages.MESSAGE_NON_POSITIVE_INDEX;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -36,11 +37,11 @@ public class EditCommandParserTest {
     public void parse_invalidPreamble_failure() {
         // negative index
         assertParseFailure(parser, "-5" + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES,
-                MESSAGE_INVALID_FORMAT);
+                           MESSAGE_NON_POSITIVE_INDEX);
 
         // zero index
         assertParseFailure(parser, "0" + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES,
-                MESSAGE_INVALID_FORMAT);
+                           MESSAGE_NON_POSITIVE_INDEX);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
