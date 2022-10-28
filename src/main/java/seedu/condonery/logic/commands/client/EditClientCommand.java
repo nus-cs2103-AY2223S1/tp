@@ -2,10 +2,13 @@ package seedu.condonery.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDPROPERTIES;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -21,8 +24,10 @@ import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.utils.ParseClientInterestedProperties;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -41,7 +46,9 @@ public class EditClientCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Alice Tan"
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
-            + PREFIX_TAG + "Condo";
+            + PREFIX_TAG + "Condo"
+            + PREFIX_INTERESTEDPROPERTIES + "duxton";
+
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Client successfully edited: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -85,17 +92,32 @@ public class EditClientCommand extends Command {
         }
 
         Client clientToEdit = lastShownList.get(targetIndex.getZeroBased());
-        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
+        Path imageDirectoryPath = model.getUserPrefs().getUserImageDirectoryPath();
+        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor, imageDirectoryPath);
+        // Parsed interested properties
+        Client newEditedClient = new ParseClientInterestedProperties(editedClient, model).getNewClient();
+
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
-        model.setClient(clientToEdit, editedClient);
-        model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
-        if (this.hasImage) {
-            // TODO: add command result after merge
+        File existingImage = new File(clientToEdit.getImagePath().toString());
+        if (existingImage.exists()) {
+            existingImage.renameTo(new File(newEditedClient.getImagePath().toString()));
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
+
+        model.setClient(clientToEdit, newEditedClient);
+        model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+
+        if (this.hasImage) {
+            return new CommandResult(
+                String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient),
+                false,
+                false,
+                "client-" + newEditedClient.getCamelCaseName()
+            );
+        }
+        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, newEditedClient));
     }
 
     public EditClientDescriptor getEditClientDescriptor() {
@@ -107,14 +129,20 @@ public class EditClientCommand extends Command {
      * edited with {@code editClientDescriptor}.
      */
     private static Client createEditedClient(Client clientToEdit,
-                                                 EditClientDescriptor editClientDescriptor) {
+                                             EditClientDescriptor editClientDescriptor,
+                                             Path imageDirectoryPath) {
         assert clientToEdit != null;
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
+        Set<Property> updatedInterestedProperties = editClientDescriptor
+                .getInterestedProperties()
+                .orElse(clientToEdit.getInterestedProperties());
 
-        return new Client(updatedName, updatedAddress, updatedTags);
+        Client updatedClient = new Client(updatedName, updatedAddress, updatedTags, updatedInterestedProperties);
+        updatedClient.setImageDirectoryPath(imageDirectoryPath);
+        return updatedClient;
     }
 
     @Override
@@ -151,17 +179,19 @@ public class EditClientCommand extends Command {
         private Name name;
         private Address address;
         private Set<Tag> tags;
+        private Set<Property> interestedProperties;
 
         public EditClientDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code tags} and {@code interestedProperties} is used internally.
          */
         public EditClientDescriptor(EditClientDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setInterestedProperties(toCopy.interestedProperties);
         }
 
         /**
@@ -204,6 +234,28 @@ public class EditClientCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code properies} to this object's {@code properties}.
+         * A defensive copy of {@code properties} is used internally.
+         */
+        public void setInterestedProperties(Set<Property> properties) {
+            this.interestedProperties = (interestedProperties != null)
+                    ? new HashSet<>(interestedProperties)
+                    : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code properties} is null.
+         */
+        public Optional<Set<Property>> getInterestedProperties() {
+            return (interestedProperties != null)
+                    ? Optional.of(Collections.unmodifiableSet(interestedProperties))
+                    : Optional.empty();
+        }
+
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -221,7 +273,8 @@ public class EditClientCommand extends Command {
 
             return getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getInterestedProperties().equals(e.getInterestedProperties());
         }
 
         @Override
@@ -230,6 +283,7 @@ public class EditClientCommand extends Command {
                     + "name=" + name
                     + ", address=" + address
                     + ", tags=" + tags
+                    + ", interested properties=" + interestedProperties
                     + '}';
         }
 

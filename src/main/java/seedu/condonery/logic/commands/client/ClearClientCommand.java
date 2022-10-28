@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
-import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.Model;
+import seedu.condonery.model.client.ClientDirectory;
 
 /**
  * Clears the client directory.

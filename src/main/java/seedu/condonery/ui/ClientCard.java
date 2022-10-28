@@ -1,12 +1,17 @@
 package seedu.condonery.ui;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import seedu.condonery.model.client.Client;
 
 /**
@@ -15,6 +20,7 @@ import seedu.condonery.model.client.Client;
 public class ClientCard extends UiPart<Region> {
 
     private static final String FXML = "ClientListCard.fxml";
+    private static final String DEFAULT_PROPERTY_IMAGE = "/images/ClientDisplay.png";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -40,6 +46,8 @@ public class ClientCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView displayPicture;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Person} and index to display.
@@ -53,6 +61,18 @@ public class ClientCard extends UiPart<Region> {
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        displayPicture.setClip(new Circle(40, 40, 40));
+        Path imagePath = client.getImagePath();
+        if (imagePath != null) {
+            File file = new File(client.getImagePath().toString());
+            if (file.exists()) {
+                Image img = new Image(file.toURI().toString());
+                displayPicture.setImage(img);
+            } else {
+                Image img = new Image(this.getClass().getResourceAsStream(DEFAULT_PROPERTY_IMAGE));
+                displayPicture.setImage(img);
+            }
+        }
     }
 
     @Override

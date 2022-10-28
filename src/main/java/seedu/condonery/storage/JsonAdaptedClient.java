@@ -13,6 +13,7 @@ import seedu.condonery.commons.exceptions.IllegalValueException;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
 /**
@@ -25,17 +26,22 @@ class JsonAdaptedClient {
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedProperty> interestedProperties = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("interestedProperties") List<JsonAdaptedProperty> interestedProperties) {
         this.name = name;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (interestedProperties != null) {
+            this.interestedProperties.addAll(interestedProperties);
         }
     }
 
@@ -48,6 +54,9 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        interestedProperties.addAll(source.getInterestedProperties().stream()
+                .map(JsonAdaptedProperty::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -57,8 +66,14 @@ class JsonAdaptedClient {
      */
     public Client toModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();
+        final List<Property> interestedProperties = new ArrayList<>();
+
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toModelType());
+        }
+
+        for (JsonAdaptedProperty property : this.interestedProperties) {
+            interestedProperties.add(property.toModelType());
         }
 
         if (name == null) {
@@ -78,7 +93,9 @@ class JsonAdaptedClient {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelAddress, modelTags);
+
+        final Set<Property> modelInterestedProperties = new HashSet<>(interestedProperties);
+        return new Client(modelName, modelAddress, modelTags, modelInterestedProperties);
     }
 
 }

@@ -4,14 +4,17 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.commons.util.StringUtil;
 import seedu.condonery.logic.parser.exceptions.ParseException;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
@@ -116,6 +119,67 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String clientName} into a {@code Client}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code clientName} does not match to a unique
+     *     existing client's name.
+     */
+    public static Client parseClientName(String clientName) throws ParseException {
+        requireNonNull(clientName);
+        String trimmedClientName = clientName.trim();
+        return new Client(
+                new Name(clientName),
+                new Address("placeholder"),
+                new HashSet<>(),
+                new HashSet<>()
+                );
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Client>}.
+     */
+    public static Set<Client> parseClients(Collection<String> clients) throws ParseException {
+        requireNonNull(clients);
+        final Set<Client> clientSet = new HashSet<>();
+        for (String clientName : clients) {
+            clientSet.add(parseClientName(clientName));
+        }
+        return clientSet;
+    }
+
+    /**
+     * Parses a {@code String propertyName} into a {@code Property}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code propretyName} does not match to a unique
+     *     existing property's name.
+     */
+    public static Property parsePropertyName(String propertyName) throws ParseException {
+        requireNonNull(propertyName);
+        String trimmedPropertyName = propertyName.trim();
+        return new Property(
+                new Name(propertyName),
+                new Address("placeholder"),
+                new Price("1000000"),
+                new HashSet<>(),
+                new HashSet<>(),
+                PropertyTypeEnum.valueOf("CONDO"));
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Property>}.
+     */
+    public static Set<Property> parseProperties(Collection<String> properties) throws ParseException {
+        requireNonNull(properties);
+        final Set<Property> propertySet = new HashSet<>();
+        for (String propertyName : properties) {
+            propertySet.add(parsePropertyName(propertyName));
+        }
+        return propertySet;
+    }
+
+    /**
      * Parses a string into {@code PropertyTypeEnum} enum
      * @param propertyType string to prase
      * @return a {@code PropertyStatusEnum} enum
@@ -123,7 +187,11 @@ public class ParserUtil {
      */
     public static PropertyTypeEnum parsePropertyType(String propertyType) throws ParseException {
         requireNonNull(propertyType);
-        return PropertyTypeEnum.valueOf(propertyType);
+        try {
+            return PropertyTypeEnum.valueOf(propertyType.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException ex) {
+            throw new ParseException(
+                "Invalid Property Type specified! Property Type must be one of HDB, CONDO, or LANDED");
+        }
     }
-
 }

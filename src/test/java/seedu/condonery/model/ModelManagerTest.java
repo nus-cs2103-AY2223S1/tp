@@ -15,6 +15,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.condonery.commons.core.GuiSettings;
+import seedu.condonery.model.client.ClientDirectory;
+import seedu.condonery.model.property.PropertyDirectory;
 import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.PropertyDirectoryBuilder;
 

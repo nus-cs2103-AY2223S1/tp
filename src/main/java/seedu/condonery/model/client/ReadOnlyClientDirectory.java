@@ -1,17 +1,16 @@
-package seedu.condonery.model;
+package seedu.condonery.model.client;
 
 import javafx.collections.ObservableList;
-import seedu.condonery.model.property.Property;
 
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyPropertyDirectory {
+public interface ReadOnlyClientDirectory {
 
     /**
      * Returns an unmodifiable view of the properties list.
      * This list will not contain any duplicate properties.
      */
-    ObservableList<Property> getPropertyList();
+    ObservableList<Client> getClientList();
 
 }

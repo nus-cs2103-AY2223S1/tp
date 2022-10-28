@@ -10,11 +10,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.condonery.model.client.exceptions.ClientNotFoundException;
 import seedu.condonery.model.client.exceptions.DuplicateClientException;
+import seedu.condonery.model.client.exceptions.UniqueClientNotFoundException;
 
 /**
- * A list of properties that enforces uniqueness between its elements and does not allow nulls.
+ * A list of clients that enforces uniqueness between its elements and does not allow nulls.
  * A client is considered unique by comparing using {@code Client#isSameClient(Client)}.
- * As such, adding and updating of properties uses Client#isSameClient(Client) for equality
+ * As such, adding and updating of clients uses Client#isSameClient(Client) for equality
  * so as to ensure that the client being added or updated is unique in terms of identity in the
  * UniqueClientList. However, the removal of a client uses Client#equals(Object) so
  * as to ensure that the client with exactly the same fields will be removed.
@@ -86,8 +87,8 @@ public class UniqueClientList implements Iterable<Client> {
     }
 
     /**
-     * Replaces the contents of this list with {@code properties}.
-     * {@code properties} must not contain duplicate properties.
+     * Replaces the contents of this list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
      */
     public void setClients(List<Client> clients) {
         requireAllNonNull(clients);
@@ -96,6 +97,59 @@ public class UniqueClientList implements Iterable<Client> {
         }
 
         internalList.setAll(clients);
+    }
+
+    /**
+     * Returns true if a client whos name contains the given String exists in the client directory.
+     */
+    public boolean hasClientName(String substring) {
+        for (Client client : internalList) {
+            if (client.getName().toString().contains(substring)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if only one unique client whos name contains the given String exists in the client directory.
+     */
+    public boolean hasUniqueClientName(String substring) {
+        int containCount = 0;
+        for (Client client : internalList) {
+            if (client.getName().toString().contains(substring)) {
+                containCount += 1;
+            }
+        }
+        if (containCount == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns a unique client whos name contains the given string.
+     *
+     * @throws UniqueClientNotFoundException if the substring does not match to a unique
+     *                                 client.
+     */
+    public Client getUniqueClientByName(String substring) throws UniqueClientNotFoundException {
+        Client uniqueClient = null;
+        for (Client client : internalList) {
+            if (client.getName().containsSubstring(substring)) {
+                if (uniqueClient == null) {
+                    uniqueClient = client;
+                } else {
+                    throw new UniqueClientNotFoundException();
+                }
+            }
+        }
+        if (uniqueClient == null) {
+            throw new UniqueClientNotFoundException();
+        } else {
+            return uniqueClient;
+        }
     }
 
     /**
@@ -123,7 +177,7 @@ public class UniqueClientList implements Iterable<Client> {
     }
 
     /**
-     * Returns true if {@code properties} contains only unique properties.
+     * Returns true if {@code clients} contains only unique clients.
      */
     private boolean clientsAreUnique(List<Client> clients) {
         for (int i = 0; i < clients.size() - 1; i++) {

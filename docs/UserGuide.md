@@ -192,7 +192,18 @@ Examples:
 Notes:
 * lower and upper price boundaries only accept integer values (commas acceptable).
 
+<<<<<<< HEAD
 ### Clearing all entries : `clear -p`
+=======
+### Filtering properties by type: `type -p`
+
+Returns a filtered list of clients that fulfil the filter conditions.
+Format: `type -p HDB`
+Examples:
+* `type -p HDB condo` returns all properties that are HDBs or Condos
+
+### Clearing all entries : `clear`
+>>>>>>> 99b1a58140d8fd497e9b3fd356f3bf1a7a79bace
 
 Clears all properties from the property directory.
 

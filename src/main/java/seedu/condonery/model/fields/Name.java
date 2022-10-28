@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.condonery.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Property's name in Condonery.
+ * Represents a Property's or Client's name in Condonery.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
@@ -38,6 +38,12 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given string is contained within a Name.
+     */
+    public boolean containsSubstring(String substring) {
+        return fullName.contains(substring);
+    }
 
     @Override
     public String toString() {

@@ -2,6 +2,8 @@ package seedu.condonery.logic.parser.client;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDPROPERTIES;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -19,10 +21,11 @@ import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddPropertyCommand object
+ * Parses input arguments and creates a new AddClientCommand object
  */
 public class AddClientCommandParser implements Parser<Command> {
 
@@ -33,7 +36,13 @@ public class AddClientCommandParser implements Parser<Command> {
      */
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(
+                    args,
+                    PREFIX_NAME,
+                    PREFIX_ADDRESS,
+                    PREFIX_TAG,
+                    PREFIX_IMAGE_UPLOAD,
+                    PREFIX_INTERESTEDPROPERTIES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,10 +52,16 @@ public class AddClientCommandParser implements Parser<Command> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Property> interestedPropertyList = ParserUtil
+                .parseProperties(argMultimap.getAllValues(PREFIX_INTERESTEDPROPERTIES));
 
-        Client property = new Client(name, address, tagList);
+        Client client = new Client(name, address, tagList, interestedPropertyList);
 
-        return new AddClientCommand(property);
+        if (argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()) {
+            return new AddClientCommand(client, true);
+        }
+
+        return new AddClientCommand(client);
     }
 
     /**

@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
-import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.UserPrefs;
+import seedu.condonery.model.property.PropertyDirectory;
 
 public class ClearPropertyCommandTest {
 

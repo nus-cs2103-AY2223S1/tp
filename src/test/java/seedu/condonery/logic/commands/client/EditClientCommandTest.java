@@ -9,6 +9,8 @@ import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.condonery.commons.core.Messages;
@@ -16,12 +18,12 @@ import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.CommandTestUtil;
 import seedu.condonery.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import seedu.condonery.logic.commands.property.ClearPropertyCommand;
-import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
-import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.UserPrefs;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ClientDirectory;
+import seedu.condonery.model.property.PropertyDirectory;
 import seedu.condonery.testutil.ClientBuilder;
 import seedu.condonery.testutil.EditClientDescriptorBuilder;
 
@@ -39,10 +41,13 @@ public class EditClientCommandTest {
         EditClientCommand editCommand = new EditClientCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
+        Path userImageDirectory = model.getUserPrefs().getUserImageDirectoryPath();
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(
-                model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
-                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+            new PropertyDirectory(model.getPropertyDirectory(), userImageDirectory),
+            new ClientDirectory(model.getClientDirectory(), userImageDirectory),
+            new UserPrefs()
+        );
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -64,10 +69,13 @@ public class EditClientCommandTest {
         EditClientCommand editCommand = new EditClientCommand(indexLastClient, descriptor);
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedPerson);
+        Path userImageDirectory = model.getUserPrefs().getUserImageDirectoryPath();
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(
-                model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
-                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+            new PropertyDirectory(model.getPropertyDirectory(), userImageDirectory),
+            new ClientDirectory(model.getClientDirectory(), userImageDirectory),
+            new UserPrefs()
+        );
         expectedModel.setClient(lastClient, editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -79,10 +87,13 @@ public class EditClientCommandTest {
         Client editedPerson = model.getFilteredClientList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedPerson);
+        Path userImageDirectory = model.getUserPrefs().getUserImageDirectoryPath();
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(
-                model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
-                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+            new PropertyDirectory(model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
+            new ClientDirectory(model.getClientDirectory(), userImageDirectory),
+            new UserPrefs()
+        );
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -98,10 +109,13 @@ public class EditClientCommandTest {
                 new EditClientDescriptorBuilder().withName(CommandTestUtil.CLIENT_VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedPerson);
+        Path userImageDirectory = model.getUserPrefs().getUserImageDirectoryPath();
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(
-                model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
-                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+            new PropertyDirectory(model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
+            new ClientDirectory(model.getClientDirectory(), userImageDirectory),
+            new UserPrefs()
+        );
         expectedModel.setClient(model.getFilteredClientList().get(0), editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

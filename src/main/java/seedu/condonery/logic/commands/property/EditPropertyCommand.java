@@ -2,6 +2,7 @@ package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
@@ -23,10 +24,12 @@ import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.utils.ParsePropertyInterestedClients;
 import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
@@ -45,6 +48,7 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_INTERESTEDCLIENTS + "INTERESTED-CLIENTS]...\n"
             + "[" + PREFIX_PROPERTY_TYPE + "PROPERTY TYPE] "
             + "Example: " + COMMAND_WORD + " 1 ";
 
@@ -98,7 +102,10 @@ public class EditPropertyCommand extends Command {
         Property propertyToEdit = lastShownList.get(targetIndex.getZeroBased());
         Path imageDirectoryPath = model.getUserPrefs().getUserImageDirectoryPath();
         Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor, imageDirectoryPath);
-        if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
+        // Parsed interested clients
+        Property newEditedProperty = new ParsePropertyInterestedClients(editedProperty, model).getNewProperty();
+
+        if (!propertyToEdit.isSameProperty(newEditedProperty) && model.hasProperty(newEditedProperty)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
@@ -107,17 +114,18 @@ public class EditPropertyCommand extends Command {
             existingImage.renameTo(new File(editedProperty.getImagePath().toString()));
         }
 
-        model.setProperty(propertyToEdit, editedProperty);
+        model.setProperty(propertyToEdit, newEditedProperty);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+
         if (this.hasImage) {
             return new CommandResult(
-                String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty),
+                String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, newEditedProperty),
                 false,
                 false,
-                "property-" + editedProperty.getCamelCaseName()
+                "property-" + newEditedProperty.getCamelCaseName()
             );
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty));
+        return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, newEditedProperty));
     }
 
     /**
@@ -133,12 +141,16 @@ public class EditPropertyCommand extends Command {
         Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
         Price updatedPrice = editPropertyDescriptor.getPrice().orElse(propertyToEdit.getPrice());
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
+        Set<Client> updatedInterestedClients = editPropertyDescriptor
+                .getInterestedClients()
+                .orElse(propertyToEdit.getInterestedClients());
         PropertyTypeEnum propertyTypeEnum = editPropertyDescriptor
                 .getPropertyTypeEnum().orElse(propertyToEdit.getPropertyTypeEnum());
 
         Property updatedProperty = new Property(updatedName, updatedAddress,
                 updatedPrice,
                 updatedTags,
+                updatedInterestedClients,
                 propertyTypeEnum);
         updatedProperty.setImageDirectoryPath(imageDirectoryPath);
         return updatedProperty;
@@ -174,19 +186,21 @@ public class EditPropertyCommand extends Command {
         private Address address;
         private Price price;
         private Set<Tag> tags;
+        private Set<Client> interestedClients;
         private PropertyTypeEnum propertyTypeEnum;
 
         public EditPropertyDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code tags} and {@code interestedClients} is used internally.
          */
         public EditPropertyDescriptor(EditPropertyDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setPrice(toCopy.price);
             setTags(toCopy.tags);
+            setInterestedClients(toCopy.interestedClients);
             setPropertyTypeEnum(toCopy.propertyTypeEnum);
         }
 
@@ -238,6 +252,25 @@ public class EditPropertyCommand extends Command {
             return Optional.ofNullable(price);
         }
 
+        /**
+         * Sets {@code interestedClients} to this object's {@code interestedClients}.
+         * A defensive copy of {@code interestedClients} is used internally.
+         */
+        public void setInterestedClients(Set<Client> interestedClients) {
+            this.interestedClients = (interestedClients != null) ? new HashSet<>(interestedClients) : null;
+        }
+
+        /**
+         * Returns an unmodifiable client set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code interestedClients} is null.
+         */
+        public Optional<Set<Client>> getInterestedClients() {
+            return (interestedClients != null)
+                    ? Optional.of(Collections.unmodifiableSet(interestedClients))
+                    : Optional.empty();
+        }
+
         public Optional<PropertyTypeEnum> getPropertyTypeEnum() {
             return Optional.ofNullable(propertyTypeEnum);
         }
@@ -265,6 +298,7 @@ public class EditPropertyCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getPrice().equals(e.getPrice())
                     && getTags().equals(e.getTags())
+                    && getInterestedClients().equals(e.getInterestedClients())
                     && getPropertyTypeEnum().equals(e.getPropertyTypeEnum());
         }
 
@@ -275,6 +309,7 @@ public class EditPropertyCommand extends Command {
                     + ", address=" + address
                     + ", price=" + price
                     + ", tags=" + tags
+                    + ", interested clients=" + interestedClients
                     + ", propertyType=" + propertyTypeEnum
                     + '}';
         }

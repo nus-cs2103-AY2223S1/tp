@@ -7,10 +7,10 @@ import java.util.logging.Logger;
 
 import seedu.condonery.commons.core.LogsCenter;
 import seedu.condonery.commons.exceptions.DataConversionException;
-import seedu.condonery.model.ReadOnlyClientDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.ReadOnlyUserPrefs;
 import seedu.condonery.model.UserPrefs;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 
 /**
  * Manages storage of PropertyDirectory data in local storage.
@@ -77,7 +77,7 @@ public class StorageManager implements Storage {
     @Override
     public void savePropertyDirectory(ReadOnlyPropertyDirectory propertyDirectory, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        propertyDirectoryStorage.savePropertyDirectory(propertyDirectory);
+        propertyDirectoryStorage.savePropertyDirectory(propertyDirectory, filePath);
     }
 
     // ================ ClientDirectory methods ==============================
