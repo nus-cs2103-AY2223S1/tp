@@ -25,7 +25,7 @@ Table of Contents
    6.5. [Glossary](#65-glossary)
 7. [Appendix: Instructions for manual testing](#7-appendix-instructions-for-manual-testing)   
    7.1. [Launch and shutdown](#71-launch-and-shutdown)   
-   7.2. [Deleting a client](#72-deleting-a-client)
+   7.2. [Deleting a client](#72-deleting-a-client)  
    7.3. [Saving data](#73-saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
