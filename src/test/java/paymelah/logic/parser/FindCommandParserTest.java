@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import paymelah.logic.commands.FindCommand;
 import paymelah.model.person.PersonMatchesDescriptorPredicate;
+import paymelah.testutil.DebtsDescriptorBuilder;
 import paymelah.testutil.PersonDescriptorBuilder;
 
 public class FindCommandParserTest {
@@ -23,9 +24,9 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new PersonMatchesDescriptorPredicate(
-                        new PersonDescriptorBuilder().withName("Alice").withDescriptions("burger").build()));
+        FindCommand expectedFindCommand = new FindCommand(new PersonMatchesDescriptorPredicate(
+                new PersonDescriptorBuilder().withName("Alice").build(),
+                new DebtsDescriptorBuilder().withDescriptions("burger").build()));
         assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_DESCRIPTION + "burger", expectedFindCommand);
 
         // multiple whitespaces between keywords
