@@ -216,13 +216,15 @@ This feature is facilitated by `MarkCommand`/`UnmarkCommand`, and `MarkCommandPa
 
 When given a valid user index, the `MarkCommandParser`/`UnmarkCommandParser` will create a new `Debt` object marked as paid/unpaid in the `DebtList` of the specified `Person`.
 
-An example of the internal state when a valid `mark` command is provided by the user is given by the object diagram below.
+To speed up marking `Debt` objects as paid (for example, when 1 person has paid for multiple debts in 1 shot) in the `DebtList` of 1 `Person`, the `MarkCommand` can take in multiple indices such that a replaced `Debt` object (only if it is unpaid) will be added to the `DebtList` for each mark operation.
 
-**(Insert object diagram here)**
+An example of the new objects in the internal state when a valid `mark` command provided by the user, `mark 1 debt/2 3`, has been parsed is given by the object diagram below.
+
+<img src="images/MarkObjectDiagram.png" width="450" />
 
 The activity diagram below details all the possible behaviour of PayMeLah when a user inputs a valid `mark` command.
 
-**(Insert activity diagram here)**
+<img src="images/MarkActivityDiagram.png" width="450" />
 
 ### \[Proposed\] Undo/redo feature
 
@@ -352,7 +354,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user    | split a debt fairly among several people                           | I do not need to manually divide the amount that each person owes   |
 | `* * *`  | user    | mark debts as paid/unpaid                                          | I know whether the debts has been paid or not                       |
 | `* * *`  | user    | close the application                                              |                                                                     |
-| `* *`    | user    | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
 | `* *`    | user    | search for a person’s contact                                      | I can easily access his contact details                             |
 | `* *`    | user    | save my contacts and debts over multiple usage sessions of the app | I do not need to key in data again when I exit and re-enter the app |
 

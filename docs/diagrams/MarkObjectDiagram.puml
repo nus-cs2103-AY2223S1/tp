@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam linetype ortho
+hide empty methods
+hide empty members
+
+title Final state
+
+class MarkCommand as "__:MarkCommand__"
+together {
+class PersonIndex1 as "__1:Index__"
+class DebtIndex2 as "__2:Index__"
+class DebtIndex3 as "__3:Index__"
+}
+
+
+package Person {
+class OldPerson as "__person1:Person__"
+class NewPerson as "__updatedPerson1:Person__"
+    package Debt {
+    class Debt1 as "__1:Debt__"
+    class Debt2 as "__2:Debt__"
+    class Debt3 as "__3:Debt__"
+    class Debt1Copy as "__copyOf1:Debt__"
+    class Debt2Marked as "__marked2:Debt__"
+    class Debt3Marked as "__marked3:Debt__"
+    }
+}
+
+
+MarkCommand -l-> "person index" PersonIndex1
+MarkCommand ----> "debt index" DebtIndex2
+MarkCommand ----> "debt index" DebtIndex3
+PersonIndex1 -[hidden]-> DebtIndex2
+DebtIndex2 -[hidden]-> DebtIndex3
+
+
+MarkCommand --right--> "to update" OldPerson
+MarkCommand ---right-> "updated debtor" NewPerson
+MarkCommand --> "to mark" Debt2
+MarkCommand --> "to mark" Debt3
+Debt2 -d[hidden]-> Debt3
+OldPerson --[hidden]right--> NewPerson
+
+OldPerson ---> Debt1
+OldPerson ---> Debt2
+OldPerson ---> Debt3
+NewPerson ---> Debt1Copy
+NewPerson ---> Debt2Marked
+NewPerson ---> Debt3Marked
+
+
+
+@end

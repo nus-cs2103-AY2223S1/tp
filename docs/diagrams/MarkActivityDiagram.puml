@@ -1,0 +1,43 @@
+@startuml
+start
+:User executes command;
+:Parser parses command;
+
+:Index matched to person in filtered list;
+if () then ([invalid index])
+:User informed of invalid index;
+stop
+else ([valid index])
+:Person-to-edit;
+endif
+
+:Model saves current AddressBook;
+
+repeat
+  :Index matched to debt in DebtList of person-to-edit;
+  if () then ([invalid index])
+  :User informed of invalid index;
+  stop
+  else ([valid index])
+  :Debt added to debts-to-mark;
+  endif
+repeat while () is ([has more indices])
+->[no more indices];
+
+repeat
+  :PayMeLah attempts marking debt as paid;
+  if () then ([debt is already
+  marked as paid])
+  else ([debt is not
+  marked
+  as paid]
+  )
+  :Model is updated;
+  endif
+repeat while () is ([debts-to-mark has
+more debts])
+->[debts-to-mark has no more debts]);
+
+:User informed that each debt-to-mark of the person-to-edit is marked;
+stop
+@enduml
