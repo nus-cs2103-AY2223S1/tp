@@ -8,7 +8,7 @@ for attendance and assignments. It is optimized for use via a Command Line Inter
 a Graphical User Interface (GUI).
 
 This user guide provides a brief documentation on how you can install the application and describes how each feature 
-should be used. Start by looking at the quick start guide to get you started.
+should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
 
 * Table of Contents
 {:toc}
@@ -70,13 +70,12 @@ Let's first begin with the commands available in the default mode.
 
 {% include note.html content="
 
-Redirects to the user guide page to provide help for the users. If attempt unsuccessful, the following help window appears.
+Redirects to the user guide page to provide help for the users. If the attempt was unsuccessful, the following help window appears.
 " %}
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a student: `add`
 
@@ -87,11 +86,9 @@ Adds a student to TA-Assist.
 " %}
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/CLASS_NAME...]`
-
 * Adds a student named `NAME` into TA-Assist.
 
 Examples:
-
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/CS2103T`
 * `add n/Betsy Crowe a/Betsy street p/62353535 c/CS1231S c/CS1101S`
 
@@ -104,13 +101,11 @@ Edits an existing student in TA-Assist.
 " %}
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
-
 * Edits student data at the specified `INDEX`.
 * Only fields that are specified will be modified.
 
 Examples:
-
-* `edit 2 n/John Doe` will change the 2nd student’s name to **John Doe.**
+* `edit 2 n/John Doe` will change the 2nd student’s name to **John Doe**.
 * `edit 4 e/john.doe@example.com a/38 College Avenue East, 138601` will change the 4th student’s:
   * E-mail to **john.doe@example.com**
   * Address to **38 College Avenue East, 138601**
@@ -124,13 +119,12 @@ Deletes the specified student from TA-Assist.
 " %}
 
 Format: `delete INDEX`
-
 * Deletes the student at the specified `INDEX`.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in TA-Assist.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
-* `class c/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T class.
+* `list` followed by `delete 2` deletes the 2nd student in the student list.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+* `focus c/CS2103T` followed by`delete 3` deletes the 3rd student in the CS2103T class.
 
 ### Locate student by name: `find`
 
@@ -140,14 +134,12 @@ Finds students whose names contain any of the given keywords.
 
 " %}
 
-Format: `find KEYWORD...`
-
+Format: `find KEYWORD...
 * The search is **case-insensitive**, i.e. `Joh` will match with `john` and `JOHN`.
-* The search is performed on the current displayed list of students. 
+* The search is performed on the current displayed student list.
 * To clear the current search, use the `list` command.
 
 Examples:
-
 * `find John` will find students with **John** in their name (case-insensitive), i.e. **John Doe**, **John Brown**, **harry jOHn**, etc.
 * `find ben chris` will find students with either **ben** or a **chris** in their name, i.e. **chris ben**, **ChRIs wonders**, **bEn ten**, etc.
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
@@ -163,7 +155,6 @@ Shows a list of all the students.
 " %}
 
 Format: `list`
-
 * The list of students you will see contains all the students in TA-Assist.
 
 {% include important.html content="
@@ -212,11 +203,11 @@ Assigns students to a class.
 " %}
 
 Format: `assign INDEX... c/CLASS_NAME`
-* Assigns students at the given indices to an existing `CLASS_NAME` class.
+* Assigns students specified by the given indices to an existing `CLASS_NAME` class.
 * The class names are **case-insensitive**.
 
 Example:
-* `list` followed by `assign 1 3 5 6 c/CS1231S` assigns **1st**, **3rd**, **5th** and **6th** student in the current visible student list to the **CS1231S** class.
+* `list` followed by `assign 1 3 5 6 c/CS1231S` assigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list to the **CS1231S** class.
 
 ### Unassign students from class: `unassign`
 
@@ -227,11 +218,11 @@ Unassigns students from a class.
 " %}
 
 Format: `unassign INDEX... c/CLASS_NAME`
-* Unassigns students at the given indices from an existing `CLASS_NAME` class.
+* Unassigns students specified by the given indices from an existing `CLASS_NAME` class.
 * The class names are **case-insensitive**.
 
 Example:
-* `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns **1st**, **3rd**, **5th** and **6th** student in the current visible student list from the **CS1231S** class.
+* `list` followed by `unassign 1 3 5 6 c/CS1231S` unassigns the **1st**, **3rd**, **5th** and **6th** student in the displayed student list from the **CS1231S** class.
 
 ### List classes: `listc`
 
@@ -258,7 +249,7 @@ Format: `exit`
 
 {% include note.html content="
 
-Enter focus mode to manage a given class, enabling features that are only available under focus mode.
+Enters focus mode to manage the specified class, enabling features that are only available in focus mode.
 
 " %}
 
@@ -267,7 +258,7 @@ Format: `focus c/CLASS_NAME`
 * The class name is **case-insensitive**.
 
 Example:
-* `focus CS1231S` will enter focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
+* `focus c/CS1231S` will enter focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
 
 ### Clear all existing data: `clear`
 
@@ -282,8 +273,7 @@ Format: `clear`
 
 ## Features Available in Focus Mode
 
-The following commands are only available in [**focus mode.**](#modes)
-
+The following commands are only available in [**focus mode**](#modes).
 
 | Command   | Format                                        |
 |-----------|-----------------------------------------------|
@@ -363,12 +353,12 @@ Grades one or multiple students for the session.
 " %}
 
 Format: `grade INDEX... s/SESSION_NAME g/GRADE_VALUE`
-* Grades the students in the specified indices on the session `SESSION_NAME` with a grade of `GRADE_VALUE`.
+* Grades the students specified by the given indices on the session `SESSION_NAME` with a grade of `GRADE_VALUE`.
 * `GRADE_VALUE` must be a number (decimal points are allowed).
 * The session name is **case-insensitive**.
 
 Example:
-* `grade 1 2 s/Lab 1 g/93` will give the students at index 1 and 2 a grade of 93 for the session **Lab 1**.
+* `grade 1 2 s/Lab 1 g/93` will give the students at index 1 and 2 a grade of **93** for the session **Lab 1**.
 
 ### Show students' grades for a session: `scores`
 
@@ -384,14 +374,14 @@ Format: `scores s/SESSION_NAME`
 
 Example:
 
-* `scores s/Assignment 1` will show the grades of all students for the session **Assignment 1**, as shown below.
+* `scores s/tutorial 1` will show the grades of all students for the session **tutorial 1**, as shown below.
   <br/>   
 
   <img src="images/scoresAssignment1Result.PNG" width="600"/>
 
   In the above example,
-  * **Alex Yeoh** and **Bernice Yu** have been graded with the scores `100.0` and `85.0` respectively.
-  * **Charlotte Oliveiro** and **Irfan Ibrahim** have not been graded, hence their cells have been marked red.
+  * **Bernice Yu** has been allocated a score of **10.0** for **tutorial 1** 
+  * **tutorial 1** for **Alex Yeoh**, **Charlotte Oliveiro** and **Irfan Ibrahim** have not been graded, hence their cells have been marked red.
 
 ### View session grades of student: `view`
 
@@ -457,4 +447,4 @@ Format: `unfocus`
 ## FAQ
 **Q**: How do I transfer my data to another Computer?
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA Assist home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA-Assist home folder.
