@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, tasks and lessons, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JARVIS can help manage your class efficiently.
+JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, tasks and lessons, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JARVIS can help you manage teaching your class efficiently and effectively.
 
 * Table of Contents
 {:toc}
@@ -24,9 +24,9 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`liststudent`** : Show an expanded list of all students.
+   * **`liststudent`** : Shows an expanded list of all students.
 
-   * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Doe` with matric number `A0123459G` to JARVIS.
+   * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Doe` with matriculation (matric) number `A0123459G` to JARVIS.
 
    * **`deletestudent 3`** : Deletes the 3rd student shown in the student list.
 
@@ -122,7 +122,7 @@ Clears all students, tasks and lessons from JARVIS.
 
 Format: `clear`
 
-**Warning! This action is irreversible! Please think twice before you use this**
+**Warning! This action is irreversible! Please think twice before you use this.**
 
 ### Exiting the program : `exit`
 
@@ -141,7 +141,7 @@ Adds a student to JARVIS.
 
 Format: `addstudent s/NAME m/MATRIC_NUM`
 
-* `m/MATRIC_NUM` must start with 'A', followed by 7 digits and a capital letter
+* `m/MATRIC_NUM` must start with 'A', followed by 7 digits and a capital letter.
 * A maximum of 10 students can exist in the student list at any point in time. The user will not be allowed to add more students after reaching the limit of 10 students.
 
 Examples:

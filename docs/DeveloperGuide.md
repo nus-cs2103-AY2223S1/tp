@@ -157,14 +157,14 @@ Classes used by multiple components are in the `jarvis.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### List Students / Tasks
-To see the full list of students or tasks, the user keys in the valid command (`lists` or `listt`). Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
+### List Students / Tasks / Lessons
+To see the full list of students, tasks or lessons, the user keys in the valid command (`liststudent`, `listtask` or `listlesson`). As an example, the user keys in "`liststudent`". Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
 
 <img src="images/ListStudentSequenceDiagram.png" width="550"/>
 
 1. The list of students in the model is updated to display all students.
 
-The implementation for listing tasks is similar.
+The implementation for listing tasks and lessons is similar.
 
 ### Mark Task as done / not done
 In order to mark a task as completed, the user keys in a valid command (e.g. `marktask 2`). Parsing of the user input is done (see the sequence diagram for deleting a student in the [Logic component](#logic-component) for a similar parsing sequence) and a `MarkTaskCommand` is then generated. The following sequence diagram shows what happens when the `MarkTaskCommand` is executed.
