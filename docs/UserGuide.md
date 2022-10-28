@@ -346,6 +346,10 @@ Shows a list of meetings in MyInsuRec.
 
 Format: `listMeeting [d/DATE]`
 
+Use case:
+1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
+2. Organize all your meetings in a single place, so you don't have to worry about missing a meeting ever again.
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 * You can use the `d/DATE` parameter optionally to view the list of meetings happening in that time period!
 * `DATE` is specified by keywords. The possible keywords are:
@@ -360,17 +364,13 @@ Format: `listMeeting [d/DATE]`
 This command is used to get the index of a meeting. In order to perform commands related to a particular meeting such as `editMeeting`, you will have to first get its index by running `listMeeting`. So, expect to use this command a lot!
 </div>
 
-Example inputs:
-1. `listMeeting`
-2. `listMeeting d/month`
+Examples:
 
-Expected behavior:
-1. Displays **a list of all the meetings**.
-2. Displays **a list of meetings happening in the next month**.
+* List all meetings
+    * `listMeeting`
 
-Use case:
-1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
-2. Organize all your meetings in a single place, so you don't have to worry about missing a meeting ever again.
+* List meetings happening in the next month
+    * `listMeeting d/month`
 
 #### 5.2.3 View meeting: `viewMeeting`
 
@@ -438,15 +438,14 @@ Show a list of all products in MyInsuRec.
 
 Format: `listProduct`
 
-Example inputs:
-1. `listProduct`
-
-Expected behavior:
-1. Displays **a list of all the products**.
-
 Use case:
 1. Get an overview of all the products you are offering!
 2. This feature is used to get the index of a product, which is needed for most product-related commands.
+
+Examples:
+
+* List all products
+  * `listProduct`
 
 #### 5.3.3 Delete a product : `delProduct`
 
@@ -454,6 +453,9 @@ Deletes a product from *MyInsuRec*.
 This command removes this product from all the clients as well.
 
 Format: `delProduct i/INDEX`
+
+Use case:
+1. If you no longer offer this product and no clients have purchased it before, you can remove it from *MyInsuRec* and prevent it from cluttering up *MyInsuRec*!
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 * This command is usually preceded by `listProduct`. This is because the product's index number `INDEX` is required to use this command, and `listProduct` shows a list of all the products with their index numbers.
@@ -463,14 +465,10 @@ Format: `delProduct i/INDEX`
 This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from MyInsuRec's product list, it also **removes the product from any association with your clients**.
 </div>
 
-Example inputs:
-1. `delProduct i/2`
+Examples:
 
-Expected behavior:
-1. Deletes the product with an index number of 2, and removes it from all the clients.
-
-Use case:
-1. If you no longer offer this product and no clients have purchased it before, you can remove it from *MyInsuRec* and prevent it from cluttering up *MyInsuRec*!
+* Delete the product with index number 2
+    * `delProduct i/2`
 
 ### 5.4 General commands
 
