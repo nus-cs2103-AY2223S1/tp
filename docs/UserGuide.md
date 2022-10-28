@@ -12,25 +12,37 @@ group projects.
     - [Definitions](#definitions)
     - [Scoping](#scoping)
     - [Basic features](#basic-features)
-        - [General commands](#general-commands)
-          - [Find command](#find-command-find)
-          - [Iterate command](#iterate-command-foreach)
-          - [Select command](#select-command-select)
-          - [Sequence command](#sequence-command-seq)
-          - [Exit command](#exits-the-program-exit)
-        - [Add a contact](#add-a-contact-person-new)
-        - [Delete a contact](#delete-a-contact-person-delete)
-        - [Searching for a contact](#searching-for-a-contact-find)
-        - [Listing all contacts](#listing-all-contacts-list)
+    - [General commands](#general-commands)
+      - [Find command](#find-command-find)
+      - [Iterate command](#iterate-command-foreach)
+      - [Select command](#select-command-select)
+      - [Sequence command](#sequence-command-seq)
+      - [Exit command](#exits-the-program-exit)
+    - [Add a contact](#add-a-contact-person-new)
+    - [Delete a contact](#delete-a-contact-person-delete)
+    - [Searching for a contact](#searching-for-a-contact-find)
+    - [Listing all contacts](#listing-all-contacts-list)
+    - [Edit a contact](#edit-a-contact-edit)
+    - [Add a custom person field](#add-a-custom-person-field-addfield)
+    - [Edit a custom person field](#edit-a-custom-person-field-editfield)
+    - [Remove a custom person field](#remove-a-custom-person-field-rmfield)
+    - [Exits the program](#exits-the-program-exit)
     - [Groups](#groups)
         - [Creating a group](#creating-a-group-team-new)
         - [Deleting a group](#deleting-a-group-team-delete)
         - [Adding people to a group](#adding-contacts-to-a-group-assign)
         - [Removing people from group](#removing-contacts-from-group-team-remove)
+      - [Add a custom team field](#add-a-custom-team-field-addfield)
+      - [Edit a custom team field](#edit-a-custom-team-field-editfield)
+      - [Remove a custom team field](#remove-a-custom-team-field-rmfield)
     - [Tasks](#tasks)
-        - [Adding a task to a group](#adding-a-task-to-a-group-task-add)
-        - [Deleting a task from group](#deleting-a-task-from-group-task-delete)
-        - [Set progress for tasks](#set-progress-for-tasks-task-progress)
+      - [Adding a task to a team](#adding-a-task-to-a-team-task-add)
+      - [Deleting a task from team](#deleting-a-task-from-team-task-delete)
+      - [Change task completion status](#change-task-completion-status-task-set-status)
+      - [Set task completion time](#set-task-completion-time-task-set-completed_time)
+      - [Add a custom task field](#add-a-custom-task-field-addfield)
+      - [Edit a custom task field](#edit-a-custom-task-field-editfield)
+      - [Remove a custom task field](#remove-a-custom-task-field-rmfield)
 - [FAQ](#faq)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -95,7 +107,6 @@ to further narrow the search for a contact, subgroup or task within the current 
 **Format:** `find <KEYWORD> [<MORE_KEYWORDS>]`
 
 **Examples:**
-
 - `find John Doe`
 - `find task1 task2`
 
@@ -269,6 +280,38 @@ into a folder on your desktop, or stepping out of it.
 - `cg /` changes the group scope to the root group. This is similar to moving your current context to the
   root folder.
 
+### Add a Custom Team Field: `addfield`
+
+Adds a field to a team by taking in a field name and value.
+
+Format: `addfield g/<TEAM_ID> <FIELD_NAME> <FIELD_VALUE>`
+
+Examples:
+- `addfield g/1 deadline 2022-05-06`
+- `addfield g/5 description A Brownfield CS2103 Project`
+
+### Edit a Custom Team Field: `editfield`
+
+Edits an existing field by taking in a field name and value. The field name should be an
+existing field name that has been created through `addfield`.
+
+Format: `editfield g/<TEAM_ID> <FIELD_NAME> <NEW_FIELD_VALUE>`
+
+Examples:
+- `editfield g/1 deadline 2022-05-20`
+- `editfield g/5 description A Greenfield CS2103 Project`
+
+### Remove a Custom Team Field: `rmfield`
+
+Removes an existing field by taking in a field name. The field name should be an
+existing field name that has been created through `addfield`.
+
+Format: `rmfield g/<TEAM_ID> <FIELD_NAME>`
+
+Examples:
+- `rmfield g/1 deadline`
+- `rmfield g/5 description`
+
 ## Tasks
 
 ### Adding a task to a group: `task add`
@@ -312,6 +355,52 @@ Example:
 - `task progress 1 25%`
 
 This sets the progress of the first task in the list as 25%.
+
+### Set progress for tasks: `task progress`
+
+Sets the progress level for each task that has been listed.
+
+Format: `task progress i/<INDEX> <LEVEL>`
+
+- Index indicates the index of the task in the list
+- Level indicates the progress level, and can only be set to 25%, 50%, 75%, 100%
+
+Example:
+- `task progress 1 25%`
+
+This sets the progress of the first task in the list as 25%
+
+### Add a Custom Task Field: `addfield`
+
+Adds a field to a task by taking in a field name and value.
+
+Format: `addfield t/<TASK_ID> <FIELD_NAME> <FIELD_VALUE>`
+
+Examples:
+- `addfield t/1 deadline 2022-05-06`
+- `addfield t/5 description A Brownfield CS2103 Project`
+
+### Edit a Custom Task Field: `editfield`
+
+Edits an existing field by taking in a field name and value. The field name should be an
+existing field name that has been created through `addfield`.
+
+Format: `editfield t/<TASK_ID> <FIELD_NAME> <NEW_FIELD_VALUE>`
+
+Examples:
+- `editfield t/1 deadline 2022-05-20`
+- `editfield t/5 description A Greenfield CS2103 Project`
+
+### Remove a Custom Task Field: `rmfield`
+
+Removes an existing field by taking in a field name. The field name should be an
+existing field name that has been created through `addfield`.
+
+Format: `rmfield t/<TASK_ID> <FIELD_NAME>`
+
+Examples:
+- `rmfield t/1 deadline`
+- `rmfield t/5 description`
 
 ## FAQ
 

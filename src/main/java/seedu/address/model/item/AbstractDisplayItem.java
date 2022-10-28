@@ -3,7 +3,6 @@ package seedu.address.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +10,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.tag.Tag;
 
@@ -21,17 +22,17 @@ import seedu.address.model.tag.Tag;
 public abstract class AbstractDisplayItem implements DisplayItem {
 
     protected Name name;
+    protected AttributeList attributes;
     private int typeFlag;
     private int parentTypeFlag;
-    private List<Attribute<?>> attributes;
     private Set<Tag> tags;
 
-    protected AbstractDisplayItem(String name, int typeFlag, int parentTypeFlag) {
+    protected AbstractDisplayItem(Name name, int typeFlag, int parentTypeFlag) {
         requireAllNonNull(name, typeFlag);
-        this.name = new Name(name);
+        this.name = name;
         this.typeFlag = typeFlag;
         this.parentTypeFlag = parentTypeFlag;
-        attributes = new ArrayList<>();
+        attributes = new AttributeList();
         tags = new HashSet<>();
     }
 
@@ -75,9 +76,6 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         this.tags = tags;
     }
 
-    protected boolean canBeChildOf(AbstractDisplayItem o) {
-        return (parentTypeFlag & o.typeFlag) > 0;
-    }
 
     protected abstract String getTitle(List<String> sb, AbstractDisplayItem o);
 
@@ -87,10 +85,50 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         if (!attribute.isAllFlagMatch(typeFlag)) {
             throw new ItemCannotBeParentException(this);
         }
-        if (attributes.stream().anyMatch(x -> x.equals(attribute))) {
+        if (attributes.toList().stream().anyMatch(x -> x.equals(attribute))) {
             throw new ItemCannotBeParentException(this);
         }
-        attributes.add(attribute);
+        attributes.addAttribute(attribute);
+    }
+
+    @Override
+    public void addAttribute(String attributeName, String attributeContent) throws AttributeException {
+        requireAllNonNull(attributeName, attributeContent);
+        attributes.addAttribute(attributeName, attributeContent);
+    }
+
+    @Override
+    public void editAttribute(String attributeName, String attributeContent) throws AttributeException {
+        requireAllNonNull(attributeName, attributeContent);
+        attributes.editAttribute(attributeName, attributeContent);
+    }
+
+
+    /**
+     * Retrieves the Fields instance of the Person.
+     *
+     * @return the Fields instance of the Person.
+     */
+    public AttributeList getFields() {
+        return this.attributes;
+    }
+
+    /**
+     * Adds a Field to the Fields of the Person.
+     *
+     * @param fieldName the field name to be added.
+     */
+    public void addField(String fieldName) throws AttributeException {
+        attributes.addAttribute(fieldName);
+    }
+
+    /**
+     * Removes a field from the Fields of the Person
+     *
+     * @param fieldName the field name to be removed.
+     */
+    public void removeField(String fieldName) {
+        attributes.removeField(fieldName);
     }
 
     @Override
@@ -99,8 +137,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
-    public void deleteAttribute(String type) {
-        attributes.removeIf(attr -> attr.getAttributeType().equals(type));
+    public void removeAttribute(String type) throws AttributeException {
+        attributes.removeAttribute(type);
     }
 
     @Override
@@ -149,7 +187,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
 
     @Override
     public List<Attribute<?>> getAttributes() {
-        return attributes;
+        return attributes.toList();
     }
 
     @Override
@@ -161,5 +199,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             return false;
         }
         return stronglyEqual((AbstractDisplayItem) obj);
+    }
+    protected boolean canBeChildOf(AbstractDisplayItem o) {
+        return (parentTypeFlag & o.typeFlag) > 0;
     }
 }

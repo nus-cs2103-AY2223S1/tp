@@ -68,16 +68,16 @@ class JsonSerializableAddressBook {
         groups.addAll(groupList.stream().map(JsonAdaptedGroup::new).collect(Collectors.toList()));
         tasks.addAll(taskList.stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
 
-        personList.forEach(person -> itemRelationship.put(person.getUid().toString(),
-                person.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
+        personList.forEach(person -> itemRelationship.put(person.getUuid().toString(),
+                person.getParents().stream().map(parent -> parent.getUuid().toString()).collect(Collectors.toList())));
 
         groupList.forEach(group -> itemRelationship.put(
-                group.getUid().toString(),
-                group.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
+                group.getUuid().toString(),
+                group.getParents().stream().map(parent -> parent.getUuid().toString()).collect(Collectors.toList())));
 
         taskList.forEach(task -> itemRelationship.put(
-                task.getUid().toString(),
-                task.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
+                task.getUuid().toString(),
+                task.getParents().stream().map(parent -> parent.getUuid().toString()).collect(Collectors.toList())));
     }
 
     /**
@@ -91,6 +91,7 @@ class JsonSerializableAddressBook {
         Map<String, Person> builtPerson = new HashMap<>();
         Map<String, Task> builtTask = new HashMap<>();
 
+        // Exception handling is not supported in Java streams.
         for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
             builtGroup.put(jsonAdaptedGroup.getUid(), jsonAdaptedGroup.toModelType());
         }
@@ -103,7 +104,6 @@ class JsonSerializableAddressBook {
             builtTask.put(jsonAdaptedTask.getUid(), jsonAdaptedTask.toModelType());
         }
 
-        // Build groups
         for (Map.Entry<String, Group> pair : builtGroup.entrySet()) {
             Group group = pair.getValue();
             List<String> parentUid = itemRelationship.get(pair.getKey());
