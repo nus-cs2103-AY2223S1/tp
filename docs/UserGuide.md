@@ -7,10 +7,23 @@ NUScheduler is a desktop app for **NUS students who have a large network of cont
 
 With NUScheduler, you can store the contact details of the NUS community around you and manage your classes and events effectively.
 
+<h2 id="toc-title" class="no-num"> Table of Contents </h2>
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Using this guide
+
+### Meaning of icons
+
+<div markdown="block" class="meaning-icons-container">
+
+* :information_source:: Additional Information
+* :bulb:: Tips
+
+</div>
 
 ## Quick start
 
@@ -20,9 +33,7 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NUScheduler.
 
-4. Double-click the file to start the app. The GUI similar to the one shown below should appear. Note how the app contains some sample data.
-   
-<img src="images/UiSampleData.png"/>
+4. Double-click the file to start the app. The GUI similar to the one shown below should appear. Note how the app contains some sample data. <img src="images/UiSampleData.png"/>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
