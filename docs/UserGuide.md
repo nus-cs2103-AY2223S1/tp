@@ -114,6 +114,24 @@ Format: `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 Examples:
 * `editcus 1 p/91234567 e/johndoe@example.com` Edits the first customer's phone number and email.
 
+### Sorting the customer list
+
+Sorts the displayed customer list by one of the following options:
+
+Prefix: 
+- `n` (name)
+- `d` (latest commission date)
+- `c` (commission count)
+- `r` (revenue)
+- `a` (active commissions count)
+
+Suffix: `+` (increasing) or `-` (decreasing)
+
+Format: `sortcus PREFIX/SUFFIX`
+
+Examples:
+* `sortcus n/+` Sorts the customer list from A to Z.
+
 ### Adding a commission: `addcom`
 
 Adds a commission to the currently opened customer.
@@ -152,6 +170,17 @@ Example:
 After running an opencom command e.g `opencom 7`, you should be switched to the commissions tab to view commission details.
 
 ![opencom](images/opencom.png)
+
+
+### Viewing all commissions: `allcom`
+
+Displays all commissions across all customers in ArtBuddy.
+
+Format: `allcom`
+
+After running `allcom`, you should be switched to the commissions tab to view all commissions.
+To view the commissions for a specific customer, return to the customer list ([`opencom`](#opencom)) and select the customer from the list ([`opencus INDEX`](#opencus)).
+
 
 ### Editing a commission: `editcom`
 
@@ -303,8 +332,10 @@ Action | Format, Examples
 **Add customer** | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]…​`  <br> e.g., `addcus n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/animal cartoons`
 **Open customer** | `opencus INDEX`<br> e.g., `opencus 14`
 **Delete customer** | `delcus INDEX`<br> e.g., `delcus 10`
+**Sort customer**| `sortcus PREFIX/SUFFIX`<br> e.g., `sortcus n/+`
 **Add commission** | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]`<br> e.g., `addcom n/Rimuru f/40 d/2022-11-01 t/traditional t/chibi`
 **Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
+**View all Commissions** | `allcom`
 **Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
 **Add Iteration** | `additer FILEPATH`<br> e.g., `additer /Users/John/Downloads/Bread.jpeg`
 **Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
