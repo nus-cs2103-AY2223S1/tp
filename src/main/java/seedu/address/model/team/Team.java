@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -141,8 +142,16 @@ public class Team {
         filteredMembers.setPredicate(predicate);
     }
 
+    public void sortMembers(Comparator<Person> comparator) {
+        filteredMembers.setComparator(comparator);
+    }
+
     public FilteredList<Task> getFilteredTaskList() {
         return filteredTasks.getFilteredDisplayList();
+    }
+
+    public void sortTasks(Comparator<Task> comparator) {
+        filteredTasks.setComparator(comparator);
     }
 
     /**

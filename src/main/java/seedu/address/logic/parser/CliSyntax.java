@@ -62,4 +62,5 @@ public class CliSyntax {
             + ".com alexy@example.com)";
     public static final String FLAG_COMPLETE_TASK_DESCRIPTION = "Filter for completed tasks";
     public static final String FLAG_INCOMPLETE_TASK_DESCRIPTION = "Filter for incomplete tasks";
+    public static final String FLAG_SORT_ORDER_DESCRIPTION = "Sort by order specified (e.g. asc, dsc, res)";
 }

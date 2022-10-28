@@ -160,4 +160,20 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses {@code String order} into a {@code Order}
+     */
+    public static Order parseOrder(String order) throws ParseException {
+        switch (order.trim().toLowerCase()) {
+        case "asc":
+            return Order.ASCENDING;
+        case "dsc":
+            return Order.DESCENDING;
+        case "res":
+            return Order.RESET;
+        default:
+            throw new ParseException("Enter a valid order to sort by!");
+        }
+    }
+
 }
