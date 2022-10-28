@@ -67,7 +67,8 @@ class JsonSerializableBookFace {
             if (person.hasBooksOnLoan()) {
                 Set<Book> loanedBooks = person.getLoanedBooksSet();
                 for (Book book : loanedBooks) {
-                    Date returnDate = book.getReturnDate();
+                    Date returnDate = book.getReturnDate()
+                            .orElseGet(bookface.commons.util.Date::getFourteenDaysLaterDate);
                     book.loanTo(person, returnDate);
                     bookFace.addBook(book);
                 }

@@ -120,7 +120,6 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void deleteBook(Book book) {
         books.delete(book);
-        persons.refreshUserListAfterOperationOnBook(book);
     }
 
     /**
@@ -181,7 +180,6 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-        books.refreshBookListAfterDeletingPerson(key);
     }
 
     /**
@@ -191,9 +189,11 @@ public class BookFace implements ReadOnlyBookFace {
         CollectionUtil.requireAllNonNull(currentBook, newBook);
         Optional<Person> loanee = currentBook.getLoanee();
         loanee.ifPresent((p) -> {
-            newBook.loanTo(p, currentBook.getReturnDate());
+            Date returnDate = currentBook.getReturnDate()
+                    .orElseGet(bookface.commons.util.Date::getFourteenDaysLaterDate);
+            newBook.loanTo(p, returnDate);
             p.returnLoanedBook(currentBook);
-            p.addLoanedBook(newBook, currentBook.getReturnDate());
+            p.addLoanedBook(newBook, returnDate);
         });
     }
 
@@ -204,7 +204,8 @@ public class BookFace implements ReadOnlyBookFace {
         CollectionUtil.requireAllNonNull(currentPerson, newPerson);
         Set<Book> updatedLoanedBook = currentPerson.getLoanedBooksSet();
         for (Book book : updatedLoanedBook) {
-            book.loanTo(newPerson, book.getReturnDate());
+            book.loanTo(newPerson, book.getReturnDate()
+                    .orElseGet(bookface.commons.util.Date::getFourteenDaysLaterDate));
         }
     }
 

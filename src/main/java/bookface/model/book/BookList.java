@@ -8,7 +8,6 @@ import java.util.List;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.book.exceptions.BookNotFoundException;
-import bookface.model.book.exceptions.BookOnLoanException;
 import bookface.model.book.exceptions.DuplicateBookException;
 import bookface.model.person.Person;
 import javafx.collections.FXCollections;
@@ -69,9 +68,6 @@ public class BookList implements Iterable<Book> {
      */
     public void delete(Book book) {
         requireNonNull(book);
-        if (book.isLoaned()) {
-            throw new BookOnLoanException();
-        }
         if (!internalList.remove(book)) {
             throw new BookNotFoundException();
         }

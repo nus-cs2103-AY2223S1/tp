@@ -20,10 +20,30 @@ public interface Model {
     Predicate<Book> PREDICATE_SHOW_ALL_BOOKS = unused -> true;
 
     /** {@code Predicate} returns true if person loaned a book*/
-    Predicate<Person> PREDICATE_ALL_LOANEES = person -> person.hasBooksOnLoan();
+    Predicate<Person> PREDICATE_ALL_LOANEES = Person::hasBooksOnLoan;
 
     /** {@code Predicate} returns true if book is loaned*/
-    Predicate<Book> PREDICATE_ALL_LOANED_BOOKS = book -> book.isLoaned();
+    Predicate<Book> PREDICATE_ALL_LOANED_BOOKS = Book::isLoaned;
+
+    /** {@code Predicate} returns true for all persons with overdue books */
+    Predicate<Person> PREDICATE_OWE_OVERDUE_BOOKS = person -> {
+        if (person.hasBooksOnLoan()) {
+            for (Book book : person.getLoanedBooksSet()) {
+                if (book.isOverdue().orElse(false)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+
+    /** {@code Predicate} returns true for all books due past return date */
+    Predicate<Book> PREDICATE_ALL_OVERDUE_BOOKS = book -> {
+        if (book.isLoaned()) {
+            return book.isOverdue().orElse(false);
+        }
+        return false;
+    };
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

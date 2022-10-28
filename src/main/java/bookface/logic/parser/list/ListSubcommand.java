@@ -4,6 +4,7 @@ import bookface.logic.commands.list.ListAllCommand;
 import bookface.logic.commands.list.ListBooksCommand;
 import bookface.logic.commands.list.ListCommand;
 import bookface.logic.commands.list.ListLoansCommand;
+import bookface.logic.commands.list.ListOverdueCommand;
 import bookface.logic.commands.list.ListUsersCommand;
 import bookface.logic.parser.CommandReturnable;
 import bookface.logic.parser.ParserFunction;
@@ -16,7 +17,8 @@ public enum ListSubcommand implements CommandReturnable {
     USERS((args) -> new ListUsersCommand()),
     BOOKS((args) -> new ListBooksCommand()),
     LOANS((args) -> new ListLoansCommand()),
-    ALL((args) -> new ListAllCommand());
+    ALL((args) -> new ListAllCommand()),
+    OVERDUE((args) -> new ListOverdueCommand());
 
     private final ParserFunction<? super String, ? extends ListCommand> commandFunction;
 

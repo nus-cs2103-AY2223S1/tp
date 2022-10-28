@@ -11,7 +11,7 @@ import bookface.model.Model;
 public class ListBooksCommand extends ListCommand {
     public static final String COMMAND_WORD = "books";
 
-    public static final String MESSAGE_USAGE = ListCommand.generateMessage(COMMAND_WORD, COMMAND_WORD, COMMAND_WORD);
+    public static final String MESSAGE_USAGE = ListCommand.generateMessage(COMMAND_WORD);
 
     public static final String MESSAGE_SUCCESS = "Listed all books";
 
