@@ -18,22 +18,31 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. About
+## 2. How to use this User Guide
 
-### 2.1 Using this User Guide
+Welcome to *_MyInsuRec_ User Guide*!
 
-Welcome to *MyInsuRec User Guide*!
+Our team would like to thank you for choosing to use _MyInsuRec_! <br>
 
-This guide explains how you can use *MyInsuRec* to organize and manage your clients, meetings and products. This guide has been structured for users to quickly find and understand what they need.
+In order to smoothen the learning curve for you,
+this guide would allow you to effectively learn how to use _MyInsuRec_. [installation guide](#32-installation-instructions)
 
-Click on the links below to quickly get to what you need.
+<div markdown="block" class="alert alert-info">:exclamation:
+If you have **not installed** _MyInsuRec_, you can follow the [installation guide](#32-installation-instructions) here!
+</div>
 
-{ fill with instructions linking to different sections of the user guide }
+After you have installed _MyInsuRec_, you should
+1. Familiarise yourself with our [Terminology and Symbol](#23-terminologies) that are used throughout this User Guide.
+2. Understand the [layout of the interface](#24-user-interface) you will be interacting with.
+3. Follow this [step-by-step tutorial](#4-quick-start) to learn the basic feature of _MyInsuRec_.
+4. Check out other advance features under [Features](#5-features) once you got the hang of the basic features.
+5. View our [glossary](#8-glossary) when you come across a unfamiliar term used.
 
-e.g.
-1. xyz (link)
-2. 
+<div markdown="block" class="alert alert-info">:information_source: 
+For **experienced user**, you can look at the [Command Summary](#7-command-summary) for a summarised table of all the commands available.
+</div>
 
+In the event where you encounter any trouble or issues, refer to our [FAQ section](#6-faq) or feel free to [contact us](#9-contact-us).
 
 ### 2.2 Symbols
 
@@ -481,3 +490,8 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 ## 8. Glossary
 
 { glossary placeholder }
+
+--------------------------------------------------------------------------------------------------------------------
+## 9. Contact Us
+
+{ contact us placeholder}
