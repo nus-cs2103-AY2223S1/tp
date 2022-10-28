@@ -1,0 +1,114 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:EditItemCommandParser" as EditItemCommandParser LOGIC_COLOR
+participant "ArgumentTokenizer" as ArgumentTokenizer<<class>> LOGIC_COLOR
+participant ":EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
+participant "command:EditItemCommand" as EditItemCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+skinparam noteTextAlignment left
+
+[-> LogicManager : execute("editi 1 i/Chair q/20")
+activate LogicManager
+
+LogicManager -> TrackOParser : parseCommand("editi 1 i/Chair q/20")
+activate TrackOParser
+
+create EditItemCommandParser
+TrackOParser -> EditItemCommandParser
+activate EditItemCommandParser
+
+EditItemCommandParser --> TrackOParser : parser
+deactivate EditItemCommandParser
+
+TrackOParser -> EditItemCommandParser : parse ("1 i/Chair q/20")
+activate EditItemCommandParser
+
+EditItemCommandParser -> ArgumentTokenizer : tokenize("1 i/Chair q/20",\n"i/", "q/", "d/", "t/", "/sp", "/cp")
+note right: (<i>omitted to reduce diagram complexity)\n**parse** method argument is processed as follows:\n*separated into prefixes("i/", "q/", etc) using the ArgumentTokenizer class,\n*have accompanying values (Chair, 200, etc)\nafter validation using the ParserUtil utility class,\n*passed as arguments for Item instantiation
+activate ArgumentTokenizer
+
+ArgumentTokenizer --> EditItemCommandParser : args
+deactivate ArgumentTokenizer
+
+create EditItemDescriptor
+EditItemCommandParser -> EditItemDescriptor
+activate EditItemDescriptor
+
+EditItemDescriptor --> EditItemCommandParser : descriptor
+deactivate EditItemDescriptor
+
+EditItemCommandParser -> EditItemCommandParser : parseArguments(descriptor, args)
+activate EditItemCommandParser
+deactivate EditItemCommandParser
+
+create EditItemCommand
+EditItemCommandParser -> EditItemCommand : EditItemCommand(1, descriptor)
+activate EditItemCommand
+
+EditItemCommand --> EditItemCommandParser : command
+deactivate EditItemCommand
+
+EditItemCommandParser --> TrackOParser : command
+deactivate EditItemCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditItemCommandParser -[hidden]-> TrackOParser
+destroy EditItemCommandParser
+
+TrackOParser --> LogicManager : command
+deactivate TrackOParser
+
+LogicManager -> EditItemCommand : execute(model)
+activate EditItemCommand
+
+EditItemCommand -> Model : getFilteredItemList()
+activate Model
+
+Model --> EditItemCommand : filteredItemList
+deactivate Model
+
+EditItemCommand -> EditItemCommand : createEditedItem(itemToEdit, descriptor)
+activate EditItemCommand
+
+EditItemCommand --> EditItemCommand : editedItem
+deactivate EditItemCommand
+
+EditItemCommand -> Model : setItem(itemToEdit, editedItem)
+activate Model
+deactivate Model
+
+EditItemCommand -> Model : refreshData()
+activate Model
+deactivate Model
+
+EditItemCommand -> Model : updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS)
+note right: PREDICATE_SHOW_ALL_ITEMS:\nPredicate to show all items
+activate Model
+deactivate Model
+
+create CommandResult
+EditItemCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditItemCommand
+deactivate CommandResult
+
+EditItemCommand --> LogicManager : result
+deactivate EditItemCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditItemCommand -[hidden]-> TrackOParser
+destroy EditItemCommand
+
+<--LogicManager
+deactivate LogicManager
+
+@enduml

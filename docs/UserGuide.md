@@ -96,7 +96,7 @@ Format: `listo`
 
 ### Locating orders by keyword: `findo`
 
-Finds order with item names containing any of the given keywords.
+Finds an order with item names containing any of the given keywords.
 
 Format: `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`
 
@@ -133,9 +133,9 @@ Sorts the displayed list of orders by the time at which they were created.
 
 Format: `sorto new` or `sorto old`
 
-* The keyword `new` and `old` are case-insensitive.
-* `sorto new` sorts the order list such that newest orders are at the top
-* `sorto old` sorts the order list such that oldest orders are at the top
+* The keywords `new` and `old` are case-insensitive.
+* `sorto new` sorts the order list such that the newest orders are at the top.
+* `sorto old` sorts the order list such that the oldest orders are at the top.
 
 Examples:
 * `listo` followed by `sorto old` sorts all orders such that oldest orders are at the top
@@ -187,7 +187,7 @@ Note:
 
 Examples:
 * `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`
-  Edits the name, phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`, 
+  Edits the name, phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`,
   and `123 Apartment Unit, #05-11` respectively.
 * When the third order in the list has `Chairs` in quantity `5`, `edito 3 i/chairs q/0` 
   will remove the item from the order list. 
