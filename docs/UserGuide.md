@@ -8,7 +8,7 @@ Salesy is a desktop app for helping food vendors manage details of their clients
 ![Ui](images/Ui.png)
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
