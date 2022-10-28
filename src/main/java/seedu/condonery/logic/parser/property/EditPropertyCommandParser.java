@@ -1,6 +1,7 @@
 package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
@@ -14,7 +15,6 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
@@ -90,7 +90,8 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                         ParserUtil.parsePropertyStatus(
                                 argMultimap.getValue(PREFIX_PROPERTY_STATUS).get()));
             } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException(Messages.MESSAGE_INVALID_STATUS);
+                throw new ParseException(String.format(MESSAGE_INVALID_STATUS,
+                        EditPropertyCommand.MESSAGE_USAGE));
             }
         }
 
