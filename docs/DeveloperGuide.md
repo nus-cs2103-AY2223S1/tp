@@ -356,7 +356,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user    | search for a person’s contact                                                                 | I can easily access his contact details                             |
 | `* *`    | user    | save my contacts and debts over multiple usage sessions of the app                            | I do not need to key in data again when I exit and re-enter the app |
 | `* *`    | user    | sort the list of contacts by name, amount owed and how long they have owed the debt           | I can quickly decide who to prioritize chasing for debts.           |
-| `* *`    | user    | I can easily undo any unintentional or wrong changes I made to my address book                | I do not have to take a long time to revert my changes.             |
+| `* *`    | user    | easily undo any unintentional or wrong changes I made to my address book                      | I do not have to take a long time to revert my changes.             |
 
 ### Use cases
 
