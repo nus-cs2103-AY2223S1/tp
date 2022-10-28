@@ -162,19 +162,17 @@ This feature is facilitated by `AddDebtCommand` and `AddDebtCommandParser` in th
 
 When given a valid user input, the `AddDebtCommandParser` will create a new `Debt` object to add to the `DebtList` of the specified `Person`.
 
-An example of the internal state when a valid `adddebt` command is provided by the user is given by the object diagram below.
+To speed up adding similar `Debt` objects (for example, when each person is to pay $30 for lunch) to the `DebtList` of more than 1 `Person`, the `AddDebtCommand` can take in multiple indices such that a new `Debt` object will be added to the `DebtList` of each specified `Person`. To ensure that modifying (such as marking as paid, or other future possible extensions such as editing) the `Debt` for 1 `Person` does not also erroneously modify the `Debt` of another `Person`, each `Debt` object should only be added to one `DebtList`, and an `equal` instance of `Debt` should be created and added to each `DebtList`.
 
-**(Insert object diagram here)**
+To enable the user to retroactively add a `Debt` that is backdated, the `AddDebtCommandParser` can take in optional `<date>` and `<time>` parameters. By making these parameters optional, a default behaviour can be implemented such that when neither parameter is specified, a `Debt` object with the current date and time is created. This will improve the efficiency at which users can input new `Debt` objects for the (expected) most common scenario where they add the `Debt` into PayMeLah on the actual day the debt occurred.
 
-The activity diagram below details all the possible behaviour of PayMeLah when a user inputs a valid `adddebt` command.
+An example of the new objects in the internal state when a valid `adddebt` command provided by the user, `adddebt 1 2 d/food m/10`, has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify the date and time parameters in their command.
 
-**(Insert activity diagram here)**
+<img src="images/AddDebtObjectDiagram.png" width="450" />
 
-#### Proposed updates
-To speed up adding similar `Debt` objects (for example, when each person is to pay $30 for lunch) to the `DebtList` of more than 1 `Person`, the `AddDebtCommand` can be updated to take in multiple indices such that a new `Debt` object will be added to the `DebtList` of each specified `Person`.
-To ensure that modifying (such as marking as paid, or other future possible extensions such as editing) the `Debt` for 1 `Person` does not also erroneously modify the `Debt` of another `Person`, each `Debt` object should only be added to one `DebtList`, and an `equal` instance of `Debt` should be created and added to each `DebtList`.
+The activity diagram below details the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
 
-To enable the user to retroactively add a `Debt` that is backdated, the `AddDebtCommandParser` should be updated to enable detection of optional `<date>` and `<time>` parameters.
+<img src="images/AddDebtActivityDiagram.png" width="450" />
 
 ### \[Proposed\] Improved find command: `find`
 
@@ -345,19 +343,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I can …​                                                           | So that …​                                                          |
-|----------|---------|--------------------------------------------------------------------|---------------------------------------------------------------------|
-| `* * *`  | user    | save persons and their contact details                             | I do not need to remember these details                             |
-| `* * *`  | user    | keep track of debts                                                | I know who owes me money and for what                               |
-| `* * *`  | user    | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
-| `* * *`  | user    | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
-| `* * *`  | user    | split a debt fairly among several people                           | I do not need to manually divide the amount that each person owes   |
-| `* * *`  | user    | mark debts as paid/unpaid                                          | I know whether the debts has been paid or not                       |
-| `* * *`  | user    | close the application                                              |                                                                     |
-| `* *`    | user    | search for a person’s contact                                      | I can easily access his contact details                             |
-| `* *`    | user    | save my contacts and debts over multiple usage sessions of the app | I do not need to key in data again when I exit and re-enter the app |
-
-*{More to be added}*
+| Priority | As a …​ | I can …​                                                                                      | So that …​                                                          |
+|----------|---------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | user    | save persons and their contact details                                                        | I do not need to remember these details                             |
+| `* * *`  | user    | keep track of debts                                                                           | I know who owes me money and for what                               |
+| `* * *`  | user    | add debts of the same type to multiple people at once                                         | I do not have to spend a long time adding debts                     |
+| `* * *`  | user    | remove debts                                                                                  | I do not mistakenly think I have not yet been paid                  |
+| `* * *`  | user    | see how much I am owed in total                                                               | I know how much I expect to be paid                                 |
+| `* * *`  | user    | split a debt fairly among several people                                                      | I do not need to manually divide the amount that each person owes   |
+| `* * *`  | user    | mark debts as paid/unpaid                                                                     | I know whether the debts has been paid or not                       |
+| `* * *`  | user    | close the application                                                                         |                                                                     |
+| `* * *`  | user    | specify if an amount of money in the debt is inclusive or exclusive of GST and service charge | I do not have to manually calculate the final debt amount           |
+| `* *`    | user    | see an overview of all the debts owed                                                         | I am in better control of my overall financial situation            |
+| `* *`    | user    | search for a person’s contact                                                                 | I can easily access his contact details                             |
+| `* *`    | user    | save my contacts and debts over multiple usage sessions of the app                            | I do not need to key in data again when I exit and re-enter the app |
 
 ### Use cases
 
@@ -572,8 +571,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. PayMeLah shows the total sum of debts the user is owed.
 
    Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
