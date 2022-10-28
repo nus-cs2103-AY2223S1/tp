@@ -3,14 +3,30 @@ layout: page
 title: User Guide
 ---
 
-ArtBuddy (AB) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while
-still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB can get your contact management
-tasks done faster than traditional GUI apps.
+Made for commission-based artists, ArtBuddy (AB) is the easiest way to organise your customers and commissions.
+Powerful features and intuitive design, all packaged into one desktop app. With optimised support for
+use via a Command Line Interface (CLI) while still offering the benefits of a Graphical User Interface (GUI),
+ArtBuddy can help you manage your small business fast.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+Ever forget a deadline? Or lost track of your customers? Many commission-based artists struggle to organise
+their business. With so many things to keep track of, you might have found yourself wondering if there were a
+better way to manage all of these.
+
+That's why we built ArtBuddy, a commission-based artist's best buddy, just for you. Developed with your
+needs in mind, ArtBuddy can help you manage all your customers and commissions in one place. That's
+not all. With integrated support for tracking the progress of your commissions through iterations,
+and generation of statistics, ArtBuddy is also here to help you grow as an artist.
+
+So, focus on your art and leave the rest to ArtBuddy.
+
+Eager to get started? You can refer to our [Quick Start](#Quick_start) section to set ArtBuddy up, or
+you can jump to our [Features](#features) section to learn more about the features ArtBuddy offers.
 
 ## Quick start
 
@@ -179,7 +195,7 @@ Displays all commissions across all customers in ArtBuddy.
 Format: `allcom`
 
 After running `allcom`, you should be switched to the commissions tab to view all commissions.
-To view the commissions for a specific customer, return to the customer list ([`opencom`](#opencom)) and select the customer from the list ([`opencus INDEX`](#opencus)).
+To view the commissions for a specific customer, return to the customer list ([`opencus`](#opencus)) and select the customer from the list ([`opencus INDEX`](#opencus)).
 
 
 ### Editing a commission: `editcom`
@@ -212,7 +228,9 @@ the graphical interface.
 
 Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
-* The file path specified should be an absolute path from your root directory.
+* The specified date should be in YYYY-MM-DD format
+* The file path specified should be an absolute path from your root directory. If you're not familiar with file paths
+and root directories, you might find the explanation [below](#filepath-explanation) helpful.
 * The command requires a commission to be selected.
 * The image name will assume the filename specified in the command.
 * Currently, only image file types .png, .jpg, .bmp and .gif are supported
@@ -220,36 +238,55 @@ Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
   existing image will not be allowed. Your existing image will not be overridden, but the new image will not be added to
   your commission. To replace a commission image, first delete the image before adding a new image.
 
+Example:
+* `additer n/First Draft d/2022-10-28 p//Users/John/Downloads/Draft 1.png f/Looks great` creates an iteration 
+with the description "First Draft", date 28 October 2022, image at file path `p//Users/John/Downloads/Draft 1.png`, 
+and feedback "Looks great".
+
+<br>
 <details>
-<summary><strong>What is a filepath and my root directory?</strong></summary>
+<summary id="filepath_explanation">What is a filepath and my root directory?</summary>
 <div markdown="span" class="alert alert-info">
 **:information_source: What is a filepath and my root directory?**<br>
 Just like how we use addresses to tell specify locations when talking to people, computers
 do the same! Each file in your computer has a unique address that can be used to identify the
 exact location in your computer where the file is stored.
-
+<br><br>
 The address of each file in your computer can be viewed simply as "directions", guiding your
 computer to get to the file. Think about how you would tell someone how to open a specific file
 in your computer. You would probably say something along the lines of: "Go to the Downloads folder,
 where you'll find an  Image folder. Click into the Images folder and open the file Draft1.png".
-
+<br><br>
 Well to computers, filepaths are just like these guiding instructions that help them locate
 a specific file! And your 'root directory' is simply a 'base point' that stores all your files in
 your computer. For most users using a Windows or Mac computer, this root directory is simply
 a folder named `/`.
-
+<br><br>
 So what a file path `/Users/John/Downloads/Draft 1.png` really means is just a way of telling
 the computer, "Hey, from my root directory, you'll find a folder called Users, and in there a
 folder called John. Open that up and you'll find another folder called Downloads.
 Open the Downloads folder and you'll see the file I want called `Draft 1.png`".
-
+<br><br>
 To easily copy a filepath of a file:
-* On Windows, in your File Explorer, hold shift down while you right-click on the file you want.
-Select the option `Copy as Path` and the filepath of your file will be copied!
-* On Mac, in your Finder, click on the file you want to select it and press the
-`Option`, `Command`, `C` keys simultaneously. The filepath of your file is now copied!
+<ul>
+<li>On Windows, in your File Explorer, hold shift down while you right-click on the file you want.
+Select the option `Copy as Path` and the filepath of your file will be copied!</li>
+<li>On Mac, in your Finder, click on the file you want to select it and press the
+`Option`, `Command`, `C` keys simultaneously. The filepath of your file is now copied!</li>
+</ul>
 </div>
 </details>
+<br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Due to file path naming and the command format, specifying a folder with a folder name that ends with
+a 'n', 'd', 'f', or 'p' would lead to an ambiguous command. For instance, the command
+<code>`additer d/2022-10-10 n/description f/actual feedback p//test f/image.png</code> is ambiguous
+because AB does know whether <code>f/image.png</code> is the feedback parameter specified by the user.
+<br><br>
+If you wish to upload the image, either rename the folder name, or upload the image by the GUI.
+</div>
+<br>
 
 **Adding by Graphical Interface**
 
@@ -265,6 +302,8 @@ an image to the grey image drop area.
 
 <img src="images/AddIterationWindow.png" width="450" />
 
+<br><br>
+
 <div markdown="span" class="alert alert-info">
 **:information_source: Notes about images in ArtBuddy:**<br>
 
@@ -272,15 +311,25 @@ ArtBuddy creates a copy of each file you upload. This means that you can edit, d
 move your original copy of the file without affecting the uploaded image on ArtBuddy.
 </div>
 
-Example: `additer /Users/John/Downloads/Draft 1.png`
-
 ### Deleting iteration from commission: `deliter`
 Deletes an iteration from a commission.
 
-Format: `deliter [INDEX]`
+Format: `deliter INDEX`
 * The command requires a commission to be selected.
 * As each commission currently has only one image, the command will simply delete the image tied to the current commission, if it exists.
 * You may want to note that your local copy of the image will not be deleted.
+
+### Editing iteration from commission: `edititer`
+Edits an iteration in a commission.
+
+Format: `edititer INDEX [n/DESCRIPTION] [d/DATE] [p/FILEPATH] [f/FEEDBACK]`
+* The command requires a commission to be selected.
+* At least one field to edit must be provided.
+
+Example:
+* `edititer 1 n/Colourised image d/2022-10-12 f/Good improvement p//Users/John/Downloads/Updated Image.png`
+  Edits the first iteration in the currently selected commission to have the above fields and image.
+* `edititer 2 n/Sketch` Edits the description of the second iteration in the currently selected commission.
 
 ### Exiting the program : `exit`
 
@@ -339,7 +388,8 @@ Action | Format, Examples
 **Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
 **View all Commissions** | `allcom`
 **Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
-**Add Iteration** | `additer FILEPATH`<br> e.g., `additer /Users/John/Downloads/Bread.jpeg`
+**Add Iteration** | `additer n/DESCRIPTION d/DATE f/FEEDBACK p/FILEPATH`<br> e.g., `additer n/Draft 1 f/Good d/ 2022-10-28 p//Users/John/Downloads/Bread.jpeg`
 **Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
+**Edit Iteration**| `editer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, `edititer 2 n/Sketch`
 **Exit** | `exit`
 **Help** | `help`
