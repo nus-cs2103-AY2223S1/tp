@@ -321,7 +321,7 @@ Creates one or more sessions in the class.
 
 {% include tip.html content="
 
-A session can be treated as a 'task' a student has to complete in the class. These tasks usually have an associated
+A session can be treated as a task a student has to complete in the class. These tasks usually have an associated
 grade. For example, **Tutorial 3 Participation** of **CS2100** is a task because they contribute to the
 overall grade for the module CS2100.
 
@@ -383,7 +383,7 @@ Example:
 * `scores s/tutorial 1` will show the grades of all students for the session **tutorial 1**, as shown below.
   <br/>   
 
-  <img src="images/scoresAssignment1Result.PNG" width="600"/>
+  <img src="images/scoresAssignment1Result.png" width="600"/>
 
   In the above example,
   * **Bernice Yu** has been allocated a score of **10.0** for **tutorial 1** 
