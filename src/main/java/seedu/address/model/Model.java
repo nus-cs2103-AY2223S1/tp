@@ -143,6 +143,16 @@ public interface Model {
      */
     void setListing(Listing listing, Listing editedListing);
 
+    /**
+     * Deletes all offers for the specified listing.
+     */
+    void deleteOffersFor(Listing target);
+
+    /**
+     * Delete all meetings about the specified listing.
+     */
+    void deleteMeetingsAbout(Listing target);
+
     /** Returns an unmodifiable view of the filtered listings list */
     ObservableList<Listing> getFilteredListingList();
 
@@ -219,6 +229,17 @@ public interface Model {
     public Meeting getMeeting(Name name, Address address);
 
     /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the address
+     * book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
+
+    /** Returns an unmodifiable view of the filtered meeting list */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
      * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
@@ -235,6 +256,20 @@ public interface Model {
      */
     void deleteClient(Client target);
 
+    /**
+     * Deletes all the listings owned by the given client.
+     */
+    void deleteListingsOwnedBy(Client target);
+
+    /**
+     * Delete all the offers made by the given client.
+     */
+    void deleteOffersMadeBy(Client target);
+
+    /**
+     * Delete all the meetings with the given client.
+     */
+    void deleteMeetingsWith(Client target);
     /**
      * Adds the given client.
      * {@code client} must not already exist in the address book.

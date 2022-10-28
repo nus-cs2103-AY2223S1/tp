@@ -10,6 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_LISTING_ID = "The listing ID provided is invalid";
     public static final String MESSAGE_INVALID_OFFER_DISPLAYED_INDEX = "The offer index provided is invalid";
+    public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "The meeting index provided is invalid";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_OFFERS_LISTED_OVERVIEW = "%1$d offers listed!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";

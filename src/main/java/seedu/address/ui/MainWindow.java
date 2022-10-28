@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private ClientListPanel clientListPanel;
     private OfferListPanel offerListPanel;
     private ListingListPanel listingListPanel;
+    private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane listingListPanelPlaceholder;
+
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -127,6 +131,9 @@ public class MainWindow extends UiPart<Stage> {
         listingListPanel = new ListingListPanel(logic.getFilteredListingList());
         listingListPanelPlaceholder.getChildren().add(listingListPanel.getRoot());
 
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -188,6 +195,12 @@ public class MainWindow extends UiPart<Stage> {
     public ListingListPanel getListingListPanel() {
         return listingListPanel;
     }
+
+    public MeetingListPanel getMeetingListPanel() {
+        return meetingListPanel;
+    }
+
+
 
     /**
      * Executes the command and returns the result.

@@ -6,8 +6,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
@@ -55,6 +58,7 @@ public class Listing implements Comparable<Listing> {
     public Name getName() {
         return this.owner;
     }
+
 
     /**
      * Gets the address of this listing.
@@ -138,6 +142,14 @@ public class Listing implements Comparable<Listing> {
         return otherListing != null
                 && (otherListing.address.equals(this.address)
                 || otherListing.id.equals(this.id));
+    }
+
+    public boolean doNotHaveMeeting(Meeting toCheck) {
+        return !this.getName().equals(toCheck.getClient());
+    }
+
+    public boolean doNotHaveOffer(Offer toCheck) {
+        return !this.getName().equals(toCheck.getClient());
     }
 
     /**
