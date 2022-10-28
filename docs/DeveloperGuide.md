@@ -135,7 +135,8 @@ Similar analogues exist for task and lesson data. The class diagram is similar a
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
-The above diagram only shows the UserPrefs and StudentBook Storage in full. TaskBook Storage is done similarly to StudentBook Storage. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
+
+The above diagram only shows the UserPrefs and StudentBook Storage in full. TaskBook Storage is designed similarly to StudentBook Storage. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
 
 <img src="images/LessonStorageClassDiagram.png" width="550" />
 
