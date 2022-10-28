@@ -280,7 +280,7 @@ Marks a reminder as complete.
 Format: `mark reminder INDEX`
 
 Examples:
-* `mark reminder 1`
+* `mark reminder 2`
 
 <table>
   <tr>
