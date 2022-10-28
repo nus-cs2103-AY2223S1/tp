@@ -108,7 +108,7 @@ Sample execution of command `help`:
 
 Exits the application.
 
-### Modules
+## Modules
 
 #### Adding a module: `add module`
 
@@ -267,7 +267,7 @@ Examples:
 
 ![](./images/UserGuidePictures/edit_module.png)
 
-### Tasks
+## Tasks
 
 #### Adding a task: `add task`
 

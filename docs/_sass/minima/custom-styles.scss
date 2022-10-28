@@ -1,24 +1,31 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+h1 {
+  font-size: 5rem !important;
+  color: #005757;
+}
+
 h2, h3, h4, h5, h6 {
+  color: #2d5959;
+}
+
+#table-of-contents {
+  margin-top: 3rem !important;
 }
 
 h1 {
   font-weight: 800;
-  color: #2d5959;
-  margin-top: $spacing-unit * 0.5 !important;
+  margin-top: 1rem !important;
 }
 
 h2 {
   font-weight: 900;
-  color: #2d5959;
-  margin-top: $spacing-unit * 1 !important;
+  margin-top: 6rem !important;
 }
 
 h3, h4 {
   font-weight: 800;
-  color: #2d5959;
-  margin-top: $spacing-unit * 3 !important;
+  margin-top: 6rem !important;
 }
 
 body {
@@ -26,7 +33,8 @@ body {
 }
 
 p {
-  margin-top: $spacing-unit / 1.5;
+  margin-top: 1.25rem;
+  line-height: 1.6rem;
 }
 
 strong {
