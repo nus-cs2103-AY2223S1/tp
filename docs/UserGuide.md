@@ -267,9 +267,9 @@ Please make sure you have added the module with `MODULE_CODE` before you add any
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If the schedule to be added conflicts with any existing schedule, the ProfNUS will not perform any operation.
 </div>
+**Example**: `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD`
 
-
-**Example**: `sadd m/CS2103T w/Wednesday ct/11:00-12:00 cc/tut cg/T1 cv/Zoom`
+![sadd](images/userguide/sadd.png)
 
 
 ### Edit a schedule `sedit`
@@ -284,6 +284,8 @@ Edits a schedule in the ProfNUS.
 
 **Example**: `sedit 3 w/Wednesday ct/09:00-10:00 cg/T09 cv/COM2-0218`
 
+![sedit](images/userguide/sedit.png)
+
 
 ### Delete a schedule `sdelete`
 
@@ -294,6 +296,8 @@ Deletes a schedule from the ProfNUS.
 - The `INDEX` needs to be a positive integer and refers to the index number shown in the displayed schedule list.
 
 **Example**: `sdelete 2`
+
+![sdelete](images/userguide/sdelete.png)
 
 
 ### Clear your teaching schedule: `sclear`
@@ -310,8 +314,6 @@ Clears some selected schedules/all schedules from the ProfNUS.
 
 **Example**: `sclear m/CS2103T m/CS2103`
 
-
-
 ### View your teaching schedule: `view`
 
 Shows the list of some selected schedules/all schedules from the ProfNUS.
@@ -324,7 +326,9 @@ Shows the list of some selected schedules/all schedules from the ProfNUS.
 - `view [m/MODULE_CODE_1] [m/MODULE_CODE_2] [w/WEEKDAY] [w/WEEKDAY_2]` will show all schedules of `MODULE_CODE_1`and`MODULE_CODE_2` as well as schedules either on `WEEKDAY` or `WEEKDAY_2`.
 - If all `[m/MODULE_CODE]` don't exist or they have no schedules, it will show empty list.
 
-**Example**: `view m/CS2103T m/CS2103`
+**Example**: `view m/CS2040S m/CS1101S`
+
+![view by module](images/userguide/view by module.png)
 
 ### View your teaching schedule: `tview`
 
@@ -332,6 +336,8 @@ Shows the timetable of all schedules from the ProfNUS.
 
 **Format**: `tview`
 **Example**: `tview`
+
+![tview](images/userguide/tview.png)
 
 ### Clearing all entries : `clear`
 
