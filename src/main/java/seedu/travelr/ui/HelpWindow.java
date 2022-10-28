@@ -130,7 +130,9 @@ public class HelpWindow extends UiPart<Stage> {
     public void show() {
         logger.fine("Showing help page about the application.");
         getRoot().show();
-        // getRoot().setMaximized(true);
+        getRoot().setHeight(650);
+        getRoot().setMaxWidth(900);
+        //getRoot().setMaximized(true);
         getRoot().centerOnScreen();
     }
 
