@@ -63,7 +63,7 @@ public class UniqueScheduleList implements Iterable<Student> {
             throw new StudentNotFoundException();
         }
 
-        if (!target.isSameStudent (editedStudent) && contains(editedStudent)) {
+        if (!target.isSameStudent(editedStudent) && contains(editedStudent)) {
             throw new DuplicateStudentException();
         }
         internalList.set(index, editedStudent);

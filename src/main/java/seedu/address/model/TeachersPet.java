@@ -8,8 +8,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Class;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.student.UniqueScheduleList;
+import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.timeRange.TimeRange;
 
 /**
@@ -93,7 +93,7 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the address book.
-     * The student identity of {@code editedStudent} must not be the same as another existing student in the address book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in Teacher's Pet.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
