@@ -487,10 +487,10 @@ Expected outcome:
 | **Clear**            | `clear`                                                                                                                                                                                  |
 | **Exit**             | `exit`                                                                                                                                                                                   |
 | **Add**              | `add c/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… ` <br/> e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent` |
-| **Delete**           | `delete`                                                                                                                                                                                 |
+| **Delete**           | `delete INDEX` <br/> e.g. `delete 1`                                                                                                                                                     |
 | **Edit**             | `edit c/NEW_NAME p/NEW_POSITION e/NEW_EMAIL w/NEW_WEBSITE t/NEW_TAGS s/NEW_SALARY` <br/> e.g. `edit s/1200`                                                                              |
-| **Status**           | `status`<br/> e.g. `status 1 o`                                                                                                                                                          |
-| **Remark**           | `remark r/[REMARK]`<br/> e.g. `remark r/ hello`                                                                                                                                          |
+| **Status**           | `status INDEX STATUS`<br/> e.g. `status 1 o`                                                                                                                                             |
+| **Remark**           | `remark r/[REMARK]`<br/> e.g. `remark r/Revise graphs`                                                                                                                                   |
 | **Find by Company**  | `findn KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findn Google`                                                                                                                                 |
 | **Find by Position** | `findp KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findp Frontend`                                                                                                                               |
 | **Find by Tag**      | `findt KEYWORD [MORE_KEYWORDS]`<br/> e.g. `findt Urgent`                                                                                                                                 |
@@ -498,8 +498,8 @@ Expected outcome:
 | **Sort**             | `sort SORT_TYPE SORT_ORDER`<br/> e.g. `sort time a`                                                                                                                                      |
 | **Stats**            | `stats`                                                                                                                                                                                  |
 | **Select**           | `select INDEX` <br/> e.g. `select 1`                                                                                                                                                     |
-| **Add Task**         | `addtask TASKNAME /at TASKTIME`<br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                             |
+| **Add Task**         | `addtask TASK_NAME /at TASK_TIME`<br/> e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                                                                           |
 | **Delete Task**      | `deltask INDEX` <br/> e.g. `deltask `                                                                                                                                                    |
-| **Add Tag**          | `addtag`<br/> e.g. `addtag 1 Urgent`                                                                                                                                                     |
-| **Delete Tag**       | `deltag`<br/> e.g. `deltag 1 Urgent`                                                                                                                                                     |
+| **Add Tag**          | `addtag INDEX TAG`<br/> e.g. `addtag 1 Urgent`                                                                                                                                           |
+| **Delete Tag**       | `deltag INDEX TAG`<br/> e.g. `deltag 1 Urgent`                                                                                                                                           |
 | **Mail**             | `mail`                                                                                                                                                                                   |
