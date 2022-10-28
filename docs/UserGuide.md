@@ -103,7 +103,7 @@ medication history.
 
 Adds a patient to checkUp.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT pt/PATIENT_TYPE hw/HOSPITAL_WING fn/FLOOR_NUMBER wn/WARD_NUMBER [ua/UPCOMING_APPOINTMENT] [m/MEDICATION]…​`
+Format: `add n/NAME p/PHONE e/EMAIL nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT pt/PATIENT_TYPE hw/HOSPITAL_WING fn/FLOOR_NUMBER wn/WARD_NUMBER [ua/UPCOMING_APPOINTMENT] [m/MEDICATION]…​`
 
 * Medication tags are for assigning long-term medication to patients.
 * Use multiple m/ prefixes if multiple medicines are prescribed.
