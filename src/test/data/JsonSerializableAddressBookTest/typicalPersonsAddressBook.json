@@ -28,10 +28,10 @@
       },
       {
         "date" : "14-06-2022",
-        "diagnosis" : "Sick",
+        "diagnosis" : "Deceased",
         "medication": [ "Chlormine", "Amoxycillin" ]
       }],
-    "upcomingAppointment" : "12-06-2022"
+    "upcomingAppointment" : "12-06-2050"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",

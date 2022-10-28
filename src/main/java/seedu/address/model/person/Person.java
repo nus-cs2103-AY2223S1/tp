@@ -86,6 +86,17 @@ public class Person {
         }
     }
 
+    /**
+     * Removes the most recent {@code PastAppointment} from the stored list of {@code PastAppointment}s.
+     */
+    public void deleteMostRecentPastAppointment() {
+        deletePastAppointment(0);
+    }
+
+    private void deletePastAppointment(int index) {
+        pastAppointments.remove(index);
+    }
+
     public Name getName() {
         return name;
     }

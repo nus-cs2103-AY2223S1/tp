@@ -41,7 +41,7 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person person = lastShownList.get(index.getZeroBased());
-        model.updateCurrentlyViewedPerson(person);
+        model.updateCurrentlyViewedPerson(person, index);
 
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS,
                 person.getName()));
