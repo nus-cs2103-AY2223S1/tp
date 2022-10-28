@@ -93,7 +93,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
 
         /* Conditions */
-        conditionHeader.setText("Conditions:");
+        conditionHeader.setText("Conditions");
         if (patient.getConditions().isEmpty()) {
             conditionContainer.getChildren().add(getEmptyConditionBox());
         } else {
@@ -105,7 +105,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         }
 
         /* Medications */
-        medicationHeader.setText("Medications:");
+        medicationHeader.setText("Medications");
         if (patient.getMedications().isEmpty()) {
             medicationContainer.getChildren().add(getEmptyMedicationBox());
         } else {
@@ -117,7 +117,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         }
 
         /* Tasks */
-        taskHeader.setText("Tasks:");
+        taskHeader.setText("Tasks");
         if (patient.getTasks().isEmpty()) {
             taskContainer.getChildren().add(getEmptyTaskBox());
         } else {
@@ -131,7 +131,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         }
 
         /* Remarks */
-        remarkHeader.setText("Remarks:");
+        remarkHeader.setText("Remarks");
         if (patient.getRemarks().isEmpty()) {
             remarkContainer.getChildren().add(getEmptyRemarkBox());
         } else {

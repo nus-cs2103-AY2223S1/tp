@@ -1,6 +1,7 @@
 package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class ViewPatientCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows a patient's details identified by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1";
 
     public static final String MESSAGE_SUCCESS = "Showing Patient: %1$s";
 

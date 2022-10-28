@@ -2,6 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_TAG_INDEX;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
@@ -19,19 +21,11 @@ import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
  * Edits the details of an existing tag for a patient.
  */
 public class EditTagCommand extends EditGenericCommand {
-    // tentative syntax; TODO: Integrate with EditGenericCommand
-    // remove after integration; use "edit" from EditGenericCommand
-    public static final String COMMAND_WORD = "editTag";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a tag of a patient.\n"
-            + "Format: " + COMMAND_WORD + " PATIENT_INDEX TAG_INDEX " + PREFIX_TAG + "TAG\n"
-            + "Example: " + COMMAND_WORD + " 2 1 " + PREFIX_TAG + "fall-risk";
-
-    /* use this after integration with EditGenericCommand
     public static final String MESSAGE_USAGE = "Command: Edit a tag of a patient.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
-            + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX " + PREFIX_TAG + "fall-risk";
-     */
+            + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX " + PREFIX_TAG + "TAG\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 1 " + PREFIX_OPTION_TAG_INDEX
+            + " 2 " + PREFIX_TAG + "fall-risk";
 
     public static final String MESSAGE_EDIT_TAG_SUCCESS = "Edited tag %1$d of %2$s:\n"
             + "Before: %3$s\n"
