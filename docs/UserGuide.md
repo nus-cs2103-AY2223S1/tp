@@ -234,7 +234,8 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. See [addProduct](#331-adding-a-product-addproduct).
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. 
+See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
 Examples:
@@ -244,21 +245,23 @@ Examples:
 
 #### 5.1.2 List clients: `listClient`
 
-* List clients in MyInsuRec with a valid filter.
-* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
-* `BIRTHDAY` is specified by keywords. The possible keywords are:
-    * `tomorrow` for a list of clients whose birthday is tomorrow;
-    * `week` for a list of clients whose birthday is in the next week;
-    * `month` for a list of clients whose birthday is in the next month.
+List clients in MyInsuRec with a valid filter.
 
 Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
+
+* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
+* `BIRTHDAY` is specified by keywords. The possible keywords are:
+  * `tomorrow` for a list of clients whose birthday is tomorrow;
+  * `week` for a list of clients whose birthday is in the next week;
+  * `month` for a list of clients whose birthday is in the next month.
 
 Examples:
 * `listClient`
 * `listClient pd/Product1`
 * `listClient b/week`
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
+<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. 
+A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
 #### 5.1.3 View client: `viewClient`
@@ -309,40 +312,53 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
 #### 5.2.1 Add meeting: `addMeeting`
 
 Add a new meeting to MyInsuRec.
+
 DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
 
-Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 
-* Add a meeting.
+* `INDEX` refers to the number of the client you are meeting with,
+as shown by executing the [`listClient`](#312-list-clients-listclient) command.
+* `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
+1 February 2022.
+* `START_TIME` and `END_TIME` should be give in the format HHMM. For example, 
+1234 represents the 12:34PM.
 * A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 
 Examples:
-* `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
+* `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal` 
+
+<div markdown="span" class="alert alert-success">:information_source: **Friendly Tip:**
+MyInsuRec can help you detect conflicting meeting times! For example, attempting
+to add a meeting from 1330 to 1430 when you already have one scheduled for 
+1300 to 1400 will display an error message.
+</div>
 
 #### 5.2.2 List meetings: `listMeeting`
 
-Show a list of meetings in MyInsuRec.
-If used with optional parameter `[d/DATE]`, *MyInsuRec* will show a list of meetings happening in that time period.
+Show the list of meetings in MyInsuRec.
+If used with the optional parameter `[d/DATE]`, *MyInsuRec* will show only meetings happening in that time period.
 
 Format: `listMeeting [d/DATE]`
 
-* Time periods are specified by keywords. The possible keywords are:
-  * `tomorrow` for a list of meetings happening tomorrow;
-  * `week` for a list of meetings happening in the next week;
-  * `month` for a list of meetings happening in the next month.
+* `DATE` is specified by keywords. The possible keywords are:
+  * `tomorrow` for a list of meetings happening today or tomorrow;
+  * `week` for a list of meetings happening today or in the next 7 days;
+  * `month` for a list of meetings happening this month.
 
 Examples:
+* `listMeeting`
 * `listMeeting d/tomorrow`
 * `listMeeting d/month`
 
 #### 5.2.3 View meeting: `viewMeeting`
 
-View detail associated with a meeting, such as meeting's date and time.
+View details associated with a meeting, such as meeting's date and time.
 
 Format: `viewMeeting i/INDEX`
 
 * Display information about the meeting at the specific `INDEX`.
-* The index refers to the index number shown in the displayed meetings' list.
+* The index refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
@@ -371,12 +387,14 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 * The `INDEX` refers to the index number shown in the displayed meetings' list.
 * The index **must be a positive integer** 1, 2, 3, …
 * At least one optional detail must be modified.
-* Maintain values of details not edited by the command.
+* Details that are not edited will be kept as is.
 
 Examples:
 Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#521-add-meeting-addmeeting) command:
+
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
-* `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
+* `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, 
+since the start time is later than end time.
 
 ### 5.3 Product commands
 
