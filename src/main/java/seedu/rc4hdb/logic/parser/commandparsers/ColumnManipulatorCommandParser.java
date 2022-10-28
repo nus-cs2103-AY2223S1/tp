@@ -1,6 +1,7 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.rc4hdb.model.resident.fields.ResidentField.LETTER_TO_FIELD_NAME_MAPPINGS;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
             + "Example: %s n p e\n";
 
     public static final String INVALID_FIELDS_ENTERED = "Please check that you have entered"
-            + " valid column headers or field names.";
+            + " letters that correspond to valid column headers or field names.";
 
     public static final String WHITESPACE = " ";
 
@@ -32,8 +33,24 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
 
     private static final String COMPLEMENT_LIST = "complementList";
 
+    public abstract String getCommandWord();
+
+    public abstract String getCommandPresentTense();
+
+    public static String getSpecifierIfPresent(String args, List<String> specifierList,
+                                               String errorMessage) throws ParseException {
+        requireAllNonNull(args, specifierList, errorMessage);
+        for (String specifier : specifierList) {
+            if (args.contains(specifier)) {
+                return specifier;
+            }
+        }
+        throw new ParseException(errorMessage);
+    }
+
     public static String getArgumentsAfterSpecifierIfPresent(String args, List<String> specifierList,
                                                              String errorMessage) throws ParseException {
+        requireAllNonNull(args, specifierList, errorMessage);
         String result = args;
         for (String specifier : specifierList) {
             if (args.contains(specifier)) {
@@ -47,27 +64,17 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
         return result;
     }
 
-    public static String getSpecifierIfPresent(String args, List<String> specifierList,
-                                               String errorMessage) throws ParseException {
-        for (String specifier : specifierList) {
-            if (args.contains(specifier)) {
-                return specifier;
-            }
-        }
-        throw new ParseException(errorMessage);
-    }
-
     private static List<String> parseColumnsToShowOrHide(String args) {
         requireNonNull(args);
-
         String[] columnsToShowOrHide = args.trim().toLowerCase().split(WHITESPACE);
         return Arrays.asList(columnsToShowOrHide);
     }
 
     private static HashMap<String, List<String>> validateAndGenerateFieldLists(String args) throws ParseException {
         requireNonNull(args);
-
         List<String> lettersOfColumnsToShowOrHide = parseColumnsToShowOrHide(args);
+
+        assert(lettersOfColumnsToShowOrHide != null);
 
         // Non-existent mappings will result in null values in the final list... null checks are performed below
         List<String> fullNamesOfColumnsToShowOrHide = lettersOfColumnsToShowOrHide.stream()
@@ -91,16 +98,17 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
         HashMap<String, List<String>> hashMap = new HashMap<>();
         hashMap.put(BASE_LIST, baseList);
         hashMap.put(COMPLEMENT_LIST, complementList);
-
         return hashMap;
     }
 
     public static List<String> getBaseFieldList(String args) throws ParseException {
+        requireNonNull(args);
         HashMap<String, List<String>> hashMapOfFieldLists = validateAndGenerateFieldLists(args);
         return hashMapOfFieldLists.get(BASE_LIST);
     }
 
     public static List<String> getComplementFieldList(String args) throws ParseException {
+        requireNonNull(args);
         HashMap<String, List<String>> hashMapOfFieldLists = validateAndGenerateFieldLists(args);
         return hashMapOfFieldLists.get(COMPLEMENT_LIST);
     }
@@ -111,6 +119,7 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
      * @throws ParseException if the arguments are empty
      */
     public void requireNonEmpty(String args) throws ParseException {
+        requireNonNull(args);
         if (args.isEmpty()) {
             throw new ParseException(String.format(INTENDED_USAGE_FORMAT,
                     getCommandWord(),
@@ -118,8 +127,4 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
                     getCommandWord()));
         }
     }
-
-    public abstract String getCommandWord();
-
-    public abstract String getCommandPresentTense();
 }

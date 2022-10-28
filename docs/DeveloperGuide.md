@@ -368,7 +368,7 @@ is a new field added for the ```Resident```.
 #### Creating a new ```FilterSpecifier``` class
 
 There is a specifier after the filter keyword in the command that is used to select whether all or any of
-the fields should match the residents' information in the database. A ```FilterSpecifier``` class is  used to
+the fields should match the residents' information in the database. A ```FilterSpecifier``` class is used to
 represent the specifier as a wrapper to make the transferring of the specifier across classes easier and less
 prone to errors.
 

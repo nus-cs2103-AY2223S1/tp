@@ -248,7 +248,6 @@ public class MainWindow extends UiPart<Stage> {
      * (and hence Logic) to the corresponding observable list in ResidentTableView.
      */
     private ListChangeListener<String> updateHiddenFieldsOnChange() {
-        // Update the observable field list within the logic attribute
         return c -> residentTableView.setHiddenFields(logic.getHiddenFields());
     }
 
