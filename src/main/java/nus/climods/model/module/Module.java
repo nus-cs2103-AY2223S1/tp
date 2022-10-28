@@ -291,7 +291,7 @@ public class Module {
      * @param semester
      * @return unselectableLessonId
      */
-    public String getUnselectableLessonId(LessonType lessonType, SemestersEnum semester) {
+    public String getUnselectableLessonId(LessonTypeEnum lessonType, SemestersEnum semester) {
         requireNonNull(lessonMap);
 
         //safe to assume that keySet only has one element in it because lesson is unselectable.

@@ -7,7 +7,7 @@ import org.openapitools.client.model.SemestersEnum;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
-import nus.climods.model.module.LessonType;
+import nus.climods.model.module.LessonTypeEnum;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.UserModule;
 
@@ -61,13 +61,13 @@ public class AddCommand extends Command {
             throw new CommandException("Error 404 something went wrong");
         }
 
-        for (LessonType t : module.getUnselectableLessonTypes(semester)) {
+        for (LessonTypeEnum t : module.getUnselectableLessonTypeEnums(semester)) {
             String lessonId = module.getUnselectableLessonId(t, semester);
-            moduleToAdd.setLessons(t, lessonId);
+            moduleToAdd.addLesson(t, lessonId);
         }
 
         model.addUserModule(moduleToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode.toUpperCase()), COMMAND_WORD);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toUpperCase()), COMMAND_WORD);
     }
 
     @Override

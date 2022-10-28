@@ -16,9 +16,6 @@ public class UserModule {
     private SemestersEnum selectedSemester;
     private HashMap<LessonTypeEnum, String> lessons = new HashMap<>();
 
-    //Hashmap to store Lesson Data
-    private HashMap<LessonType, String> lessons = new HashMap<>();
-
     /**
      * Creates a user module
      *
@@ -61,32 +58,6 @@ public class UserModule {
     }
 
     /**
-     * Allows user to set Lessons type, storing and updating them in the HashMap.
-     * @param lessonType
-     * @param classNo
-     */
-    public void setLessons(LessonType lessonType, String classNo) {
-        if (lessons.containsKey(lessonType)) {
-            lessons.replace(lessonType, classNo);
-        } else {
-            lessons.put(lessonType, classNo);
-        }
-    }
-
-    /**
-     * Returns list of lessons.
-     * @return List of lessons
-     */
-    //TODO: Change this later when fixing UI
-    public String getLessons() {
-        String str = "";
-        for (LessonType k : lessons.keySet()) {
-            str += k.toString() + " " + lessons.get(k) + "\n";
-        }
-        return str;
-    }
-
-    /**
      * Returns the module code.
      *
      * @return module code
@@ -112,10 +83,10 @@ public class UserModule {
      * Add a lesson to module
      *
      * @param lessonType       lesson type
-     * @param lessonIdWithTime lesson id
+     * @param lessonId lesson id
      */
-    public void addLessons(LessonTypeEnum lessonType, String lessonIdWithTime) {
-        lessons.put(lessonType, lessonIdWithTime);
+    public void addLesson(LessonTypeEnum lessonType, String lessonId) {
+        lessons.put(lessonType, lessonId);
         updateLessonDataDisplay();
     }
 

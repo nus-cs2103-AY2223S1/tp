@@ -25,7 +25,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_add_success() throws CommandException {
-        String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, "CS1010J\nLecture 1\n");
+        String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, "CS1010J");
 
         AddCommand addCommand = new AddCommand("CS1010J", SemestersEnum.S1);
         CommandResult commandResult = addCommand.execute(model);
