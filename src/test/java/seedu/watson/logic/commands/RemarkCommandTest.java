@@ -8,7 +8,7 @@ import static seedu.watson.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.watson.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.watson.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.watson.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.watson.testutil.TypicalPersons.getTypicalDatabase;
+import static seedu.watson.testutil.TypicalStudents.getTypicalDatabase;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ import seedu.watson.commons.core.index.Index;
 import seedu.watson.model.Model;
 import seedu.watson.model.ModelManager;
 import seedu.watson.model.UserPrefs;
-import seedu.watson.model.person.Remark;
+import seedu.watson.model.student.Remark;
 
 public class RemarkCommandTest {
     private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());

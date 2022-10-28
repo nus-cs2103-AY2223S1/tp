@@ -20,7 +20,7 @@ import seedu.watson.commons.core.index.Index;
 import seedu.watson.logic.commands.EditCommand;
 import seedu.watson.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.person.Remark;
+import seedu.watson.model.student.Remark;
 import seedu.watson.model.tag.Tag;
 
 /**

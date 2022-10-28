@@ -9,7 +9,7 @@ import seedu.watson.logic.commands.exceptions.CommandException;
 import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.Model;
 import seedu.watson.model.ReadOnlyDatabase;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 import seedu.watson.storage.Storage;
 
 /**
@@ -46,7 +46,7 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the filtered list of persons
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Student> getFilteredPersonList();
 
     /**
      * Returns the user prefs' watson book file path.

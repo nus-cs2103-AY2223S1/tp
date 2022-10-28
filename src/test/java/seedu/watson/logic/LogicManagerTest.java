@@ -11,7 +11,7 @@ import static seedu.watson.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.watson.logic.commands.CommandTestUtil.STUDENTCLASS_DUMMY;
 import static seedu.watson.logic.commands.CommandTestUtil.VALID_SUBJECTHANDLER;
 import static seedu.watson.testutil.Assert.assertThrows;
-import static seedu.watson.testutil.TypicalPersons.AMY;
+import static seedu.watson.testutil.TypicalStudents.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -29,11 +29,11 @@ import seedu.watson.model.Model;
 import seedu.watson.model.ModelManager;
 import seedu.watson.model.ReadOnlyDatabase;
 import seedu.watson.model.UserPrefs;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 import seedu.watson.storage.JsonDatabaseStorage;
 import seedu.watson.storage.JsonUserPrefsStorage;
 import seedu.watson.storage.StorageManager;
-import seedu.watson.testutil.PersonBuilder;
+import seedu.watson.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -85,10 +85,10 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + INDEX_NUMBER_DESC_AMY
                             + PHONE_DESC_AMY + EMAIL_DESC_AMY
                             + ADDRESS_DESC_AMY + STUDENTCLASS_DUMMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().withRemarks()
+        Student expectedStudent = new StudentBuilder(AMY).withTags().withRemarks()
                 .withSubjectHandler(VALID_SUBJECTHANDLER).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addPerson(expectedStudent);
 
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
 

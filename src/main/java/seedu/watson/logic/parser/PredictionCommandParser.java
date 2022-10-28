@@ -9,8 +9,8 @@ import java.util.stream.Stream;
 
 import seedu.watson.logic.commands.PredictionCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.subject.Subject;
+import seedu.watson.model.student.Name;
+import seedu.watson.model.student.subject.Subject;
 
 /**
  * Parses input arguments and creates a new PredictionCommand object

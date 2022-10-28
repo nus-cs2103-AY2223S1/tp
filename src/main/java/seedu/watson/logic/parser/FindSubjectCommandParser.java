@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.watson.logic.commands.FindNameCommand;
 import seedu.watson.logic.commands.FindSubjectCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.person.SubjectContainsKeywordsPredicate;
+import seedu.watson.model.student.SubjectContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

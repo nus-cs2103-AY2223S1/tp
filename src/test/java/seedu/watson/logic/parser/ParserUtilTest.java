@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.person.Address;
-import seedu.watson.model.person.Email;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.Phone;
+import seedu.watson.model.student.Address;
+import seedu.watson.model.student.Email;
+import seedu.watson.model.student.Name;
+import seedu.watson.model.student.Phone;
 import seedu.watson.model.tag.Tag;
 
 public class ParserUtilTest {

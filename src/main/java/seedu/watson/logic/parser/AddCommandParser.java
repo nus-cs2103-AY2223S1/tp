@@ -16,17 +16,17 @@ import java.util.stream.Stream;
 
 import seedu.watson.logic.commands.AddCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.person.Address;
-import seedu.watson.model.person.Attendance;
-import seedu.watson.model.person.Email;
-import seedu.watson.model.person.IndexNumber;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.Person;
-import seedu.watson.model.person.Phone;
-import seedu.watson.model.person.Remark;
-import seedu.watson.model.person.StudentClass;
-import seedu.watson.model.person.subject.Subject;
-import seedu.watson.model.person.subject.SubjectHandler;
+import seedu.watson.model.student.Address;
+import seedu.watson.model.student.Attendance;
+import seedu.watson.model.student.Email;
+import seedu.watson.model.student.IndexNumber;
+import seedu.watson.model.student.Name;
+import seedu.watson.model.student.Phone;
+import seedu.watson.model.student.Remark;
+import seedu.watson.model.student.Student;
+import seedu.watson.model.student.StudentClass;
+import seedu.watson.model.student.subject.Subject;
+import seedu.watson.model.student.subject.SubjectHandler;
 import seedu.watson.model.tag.Tag;
 
 /**
@@ -51,14 +51,11 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
 
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX_NUMBERS, PREFIX_ADDRESS,
-                                       PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG, PREFIX_STUDENTCLASS,
-                                       PREFIX_REMARK);
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX_NUMBERS, PREFIX_ADDRESS, PREFIX_PHONE,
+                                       PREFIX_EMAIL, PREFIX_TAG, PREFIX_STUDENTCLASS, PREFIX_REMARK);
 
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX_NUMBERS, PREFIX_ADDRESS,
-                                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STUDENTCLASS)
-            || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX_NUMBERS, PREFIX_ADDRESS, PREFIX_PHONE,
+                                PREFIX_EMAIL, PREFIX_STUDENTCLASS) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -76,10 +73,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Subject> subjectList = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_SUBJECT));
         SubjectHandler subjectHandler = new SubjectHandler(subjectList);
 
-        Person person = new Person(name, indexNumber, phone, email, address, studentClass,
-            attendance, remarksList, subjectHandler, tagList);
+        Student student =
+            new Student(name, indexNumber, phone, email, address, studentClass, attendance, remarksList, subjectHandler,
+                        tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
 }

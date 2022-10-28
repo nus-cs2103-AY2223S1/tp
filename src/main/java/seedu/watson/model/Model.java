@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.watson.commons.core.GuiSettings;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Name;
+import seedu.watson.model.student.Student;
 
 /**
  * The API of the Model component.
@@ -15,9 +15,9 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    public Predicate<Person> createPersonIsInClassPredicate(String studentClass);
+    public Predicate<Student> createPersonIsInClassPredicate(String studentClass);
 
     /**
      * Returns the user prefs.
@@ -60,42 +60,43 @@ public interface Model {
     void setAddressBook(ReadOnlyDatabase addressBook);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the watson book.
+     * Returns true if a student with the same identity as {@code student} exists in the watson book.
      */
-    boolean hasPerson(Person person);
+    boolean hasPerson(Student student);
 
-    Person getPersonByName(Name name);
+    Student getPersonByName(Name name);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the watson book.
+     * Deletes the given student.
+     * The student must exist in the watson book.
      */
-    void deletePerson(Person target);
+    void deletePerson(Student target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the watson book.
+     * Adds the given student.
+     * {@code student} must not already exist in the watson book.
      */
-    void addPerson(Person person);
+    void addPerson(Student student);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in the watson book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the watson book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student
+     * in the watson book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setPerson(Student target, Student editedStudent);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered student list
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Student> getFilteredPersonList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<Student> predicate);
 
     /**
      * Sorts the list of students by grade
