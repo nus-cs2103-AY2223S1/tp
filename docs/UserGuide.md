@@ -48,18 +48,18 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
   e.g. in `addstudent s/STUDENT_NAME m/MATRIC_NUM`, `STUDENT_NAME` and `MATRIC_NUM` are parameters which can be used as `addstudent s/John Doe m/A0123459G`.
 
 * Items in square brackets are optional.<br>
-  e.g `t/TASK_DESC [d/DEADLINE]` can be used as `t/Mark quest 2 d/2022-11-01` or as `t/Mark quest 2`.
+  e.g. `t/TASK_DESC [d/DEADLINE]` can be used as `t/Mark quest 2 d/2022-11-01` or as `t/Mark quest 2`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `t/TASK_DESC d/DEADLINE`, `d/DEADLINE t/TASK_DESC` is also acceptable.
 
-* If a parameter is expected multiple times in the command, all occurences of the parameter will be considered. <br>
-  e.g if you specify `s/John Tan s/Sally Yeoh` in a command expecting multiple `s/` parameters, both `s/John Tan` and `s/Sally Yeoh` will be considered.
+* If a parameter is expected multiple times in the command, all occurrences of the parameter will be considered. <br>
+  e.g. if you specify `s/John Tan s/Sally Yeoh` in a command expecting multiple `s/` parameters, both `s/John Tan` and `s/Sally Yeoh` will be considered.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `s/John Tan s/Sally Yeoh`, only `s/Sally Yeoh` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `listall`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -71,7 +71,7 @@ This section contains basic features of JARVIS.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -122,7 +122,7 @@ Clears all students, tasks and lessons from JARVIS.
 
 Format: `clear`
 
-**Warning! This action is irreversible! Please think twice before you use this.**
+**Warning! This action is irreversible! Please think twice before you use this!**
 
 ### Exiting the program : `exit`
 
@@ -180,11 +180,11 @@ Finds students whose names contain any of the given keywords.
 
 Format: `findstudent KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Only full words will be matched e.g. `Han` will not match `Hans`.
+* Persons matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:

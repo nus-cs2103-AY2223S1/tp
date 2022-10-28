@@ -326,7 +326,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `JARVIS` and the **Actor** is `AVENGER`, unless specified otherwise)
 
-**Use case: UC1 - Add a student**
+**Use case: UC1 - View students**
+
+**MSS**
+
+1. Avenger requests to view students.
+2. JARVIS displays the students.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. JARVIS fails to understand request.
+    * 1a1. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 1.
+
+**Use case: UC2 - View tasks**
+
+Refer to <ins>UC1 - View students</ins> with the only difference being task instead of student.
+
+**Use case: UC3 - View lessons**
+
+Refer to <ins>UC1 - View students</ins> with the only difference being lesson instead of student.
+
+**Use case: UC4 - View students, tasks and lessons at the same time**
+
+Refer to <ins>UC1 - View students</ins> with the only difference being request for all students, tasks and lessons instead of just students.
+
+**Use case: UC5 - Add a student**
 
 **MSS**
 
@@ -342,121 +370,105 @@ Use case ends.
 
     Use case resumes from step 1.
 
-**Use case: UC2 - Add a Task**
+**Use case: UC6 - Add a task**
+
+Refer to <ins>UC5 - Add a Student</ins> with the only difference being task instead of student.
+
+**Use case: UC7 - Add a lesson**
+
+Refer to <ins>UC5 - Add a Student</ins> with the only difference being lesson instead of student.
+
+**Use case: UC8 - Edit student**
+
+Preconditions: There are existing students in JARVIS.
 
 **MSS**
 
-1. Avenger requests to add a task.
-2. JARVIS successfully adds the task.
+1. Avenger requests to edit a student.
+2. JARVIS successfully edits the student.
 
 Use case ends.
 
 **Extensions**
-
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
-
+- 1a. JARVIS fails to understand request.
+  - 1a1. JARVIS tells Avenger to make a request again.
+  
     Use case resumes from step 1.
 
-**Use case: UC3 - List students**
+- 1b. Specified student not found in JARVIS.
+  - 1b1. JARVIS informs Avenger that the student does not exist.
+  - 1b2. JARVIS displays the list of students.
+  - 1b3. JARVIS tells Avenger to make a request again.
+  
+    Use case resumes from step 1.
+
+**Use case: UC9 - Find student**
+
+Preconditions: There are existing students in JARVIS.
 
 **MSS**
 
-1. Avenger requests to list students.
-2. JARVIS displays the list of students.
-
-Use case ends.
+1. Avenger requests to find a student.
+2. JARVIS successfully finds the student.
 
 **Extensions**
+- 1a. JARVIS fails to understand request.
+    - 1a1. JARVIS tells Avenger to make a request again.
 
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
+      Use case resumes from step 1.
 
-    Use case resumes from step 1.
+- 1b. Specified student not found in JARVIS.
+    - 1b1. JARVIS informs Avenger that the student does not exist.
+    - 1b2. JARVIS displays the list of students.
+    - 1b3. JARVIS tells Avenger to make a request again.
 
-**Use case: UC4 - List tasks**
+      Use case resumes from step 1.
+
+**Use case: UC10 - Grade student**
+
+Preconditions: There are existing students in JARVIS.
+
+**MSS** 
+
+1. Avenger requests to input grade for a student.
+2. JARVIS successfully adds the grade for the student.
+
+**Extensions**
+- 1a. JARVIS fails to understand request.
+    - 1a1. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 1.
+
+- 1b. Specified student not found in JARVIS.
+    - 1b1. JARVIS informs Avenger that the student does not exist.
+    - 1b2. JARVIS displays the list of students.
+    - 1b3. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 1.
+
+**Use case: UC11 - Set mastery check result**
+
+Preconditions: There are existing students in JARVIS.
 
 **MSS**
 
-1. Avenger requests to list tasks.
-2. JARVIS displays the list of tasks.
-
-Use case ends.
+1. Avenger requests to input mastery check result for a student.
+2. JARVIS successfully adds the mastery check result for the student.
 
 **Extensions**
+- 1a. JARVIS fails to understand request.
+    - 1a1. JARVIS tells Avenger to make a request again.
 
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
+      Use case resumes from step 1.
 
-    Use case resumes from step 1.
+- 1b. Specified student not found in JARVIS.
+    - 1b1. JARVIS informs Avenger that the student does not exist.
+    - 1b2. JARVIS displays the list of students.
+    - 1b3. JARVIS tells Avenger to make a request again.
 
-**Use case: UC5 - Delete a student**
+      Use case resumes from step 1.
 
-Preconditions:  There are existing students in JARVIS.
-
-**MSS**
-
-1. Avenger performs <ins>list students(UC3)</ins>.
-2. JARVIS displays list of students.
-3. Avenger requests to delete a student.
-4. JARVIS deletes the student.
-
-Use case ends.
-
-**Extensions**
-
-* 3a. JARVIS fails to understand request.
-  * 3a1. JARVIS tells Avenger to make a request again.
-
-    Use case resumes from step 3.
-
-**Use case: UC6 - Delete a task**
-
-Preconditions: There are existing tasks in JARVIS.
-
-**MSS:**
-
-1. Avenger performs <ins>list tasks (UC4)</ins>.
-2. JARVIS displays list of tasks.
-3. Avenger requests to delete a task.
-4. JARVIS deletes the task.
-
-Use case ends.
-
-**Extensions:**
-
-* 3a. JARVIS fails to understand request.
-  * 3a1. JARVIS tells Avenger to make a request again.
-
-    Use case resumes from step 2.
-
-**Use case: UC7 - Clear all students and tasks**
-
-Preconditions: There are existing tasks and/or students in JARVIS.
-
-Guarantees: All students and tasks will be deleted.
-
-**MSS:**
-
-1. Avenger requests to clear all data.
-2. JARVIS requests for confirmation message.
-3. Avenger confirms.
-4. JARVIS clears all data.
-
-Use case ends.
-
-**Extensions:**
-
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
-
-    Use case resumes from step 1.
-
-* 2a. Avenger fails to confirm.
-
-  Use case ends.
-
-**Use case: UC8 - Mark task as done**
+**Use case: UC12 - Mark task as done**
 
 Preconditions: There are existing tasks in JARVIS
 
@@ -465,71 +477,187 @@ Guarantees: Specified task is marked as done
 **MSS:**
 
 1. Avenger requests to mark a task as done.
-2. JARVIS displays the list of tasks with the aforementioned task marked as done.
+2. JARVIS marks the task as done.
 
 Use case ends.
 
 **Extensions:**
 
 * 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
+    * 1a1. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 1.
+
+* 1b. Specified task not found in JARVIS.
+  - 1b1. JARVIS informs Avenger that the task does not exist.
+  - 1b2. JARVIS displays the list of tasks.
+  - 1b3. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
 
-* 1b. JARVIS detects invalid task.
-  * 1b1. JARVIS informs Avenger that the task does not exist.
-  * 1b2. JARVIS displays the list of tasks.
-  * 1b3. JARVIS tells Avenger to make a request again.
+**Use case: UC13 - Mark task as not done**
 
-    Use case resumes from step 1.
+Refer to <ins>UC12 - Mark task as done</ins> with the only difference being marking task as not done instead of done.
 
-**Use case: UC9 - Mark task as not done**
+**Use case: UC14 - Mark lesson as completed**
 
-Preconditions: There are existing tasks in JARVIS
+Refer to <ins>UC12 - Mark task as done</ins> with the only difference being lesson instead of task.
 
-Guarantees: Specified task is marked as not done
+**Use case: UC15 - Mark lesson as incomplete**
 
-**MSS:**
+Refer to <ins>UC12 - Mark task as done</ins> with the difference being lesson instead of task and incomplete instead of done.
 
-1. Avenger requests to mark a task as not done.
-2. JARVIS displays the list of tasks with the aforementioned task marked as not done.
+**Use case: UC16 - Mark a student as present for a lesson**
+
+Preconditions: There are existing students and lessons in JARVIS.
+
+**MSS**
+1. Avenger performs <ins>view lessons(UC3)</ins>.
+2. Avenger requests to mark a student present in a lesson.
+3. JARVIS marks the student present in the lesson.
 
 Use case ends.
 
 **Extensions:**
 
-* 1a. JARVIS fails to understand request.
-  * 1a1. JARVIS tells Avenger to make a request again.
+- 2a. JARVIS fails to understand request.
+  - 2a1. JARVIS tells Avenger to make a request again.
+  - 
+    Use case resumes from step 2.
+  
+- 2b. Specified lesson not found in JARVIS.
+  - 2b1. JARVIS informs Avenger that the lesson does not exist.
+  - 2b2. JARVIS tells Avenger to make a request again.
+  
+    Use case resumes from step 2.
+  
+- 2c. Specified student not found in JARVIS.
+  - 2c1. JARVIS informs Avenger that the student does not exist in the lesson.
+  - 2c2. JARVIS tells Avenger to make a request again.
+  
+    Use case resumes from step 2.
+  
+**Use case: UC17 - Mark a student as absent for a lesson**
 
-  Use case resumes from step 1.
+Refer to <ins>UC16 - Mark a student as present for a lesson</ins> with the only difference being mark a student as absent instead of present.
 
-* 1b. JARVIS detects invalid task.
-  * 1b1. JARVIS informs Avenger that the task does not exist.
-  * 1b2. JARVIS displays the list of tasks.
-  * 1b3. JARVIS tells Avenger to make a request again.
+**Use case: UC18 - Add note for a student in a lesson**
 
-    Use case resumes from step 1.
+Preconditions: There are existing students and lessons in JARVIS.
 
-**Use case: UC10 - Record student's mastery check result**
+1. Avenger performs <ins>view lessons(UC3)</ins>.
+2. Avenger requests to add a note for a student in a lesson.
+3. JARVIS adds the note for the student to the lesson.
+
+Use case ends.
+
+**Extensions:**
+- 2a. JARVIS fails to understand request.
+    - 2a1. JARVIS tells Avenger to make a request again.
+  
+      Use case resumes from step 2.
+  
+- 2b. Specified lesson not found in JARVIS.
+    - 2b1. JARVIS informs Avenger that the lesson does not exist.
+    - 2b2. JARVIS tells Avenger to make a request again.
+  
+      Use case resumes from step 2.
+
+- 2c. Specified student not found in JARVIS.
+    - 2c1. JARVIS informs Avenger that the student does not exist in the lesson.
+    - 2c2. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 2.
+
+
+**Use case: UC19 - Delete note from a student in a lesson**
+
+Preconditions: There are existing students, lessons and notes for a student in JARVIS.
+
+1. Avenger performs <ins>view lessons(UC3)</ins>.
+2. Avenger requests to delete a note from a student in a lesson.
+3. JARVIS deletes the note from the student to the lesson.
+
+Use case ends.
+
+**Extensions:**
+- 2a. JARVIS fails to understand request.
+    - 2a1. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 2.
+
+- 2b. Specified lesson not found in JARVIS.
+    - 2b1. JARVIS informs Avenger that the lesson does not exist.
+    - 2b2. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 2.
+
+- 2c. Specified student not found in JARVIS.
+    - 2c1. JARVIS informs Avenger that the student does not exist in the lesson.
+    - 2c2. JARVIS tells Avenger to make a request again.
+
+      Use case resumes from step 2.
+  
+- 2d. Specified note not found in JARVIS.
+  - 2d1. JARVIS informs Avenger that the note does not exist for the student in the lesson.
+  - 2d2. JARVIS tells Avenger to make a request again.
+
+    Use case resumes from step 2.
+  
+**Use case: UC20 - Set participation for a student in a lesson**
+
+Refer to <ins>UC18 - Add note for a student in a lesson</ins> with the only difference being setting participation instead of adding note.  
+    
+**Use case: UC21 - Delete a student**
 
 Preconditions: There are existing students in JARVIS.
 
+**MSS**
+
+1. Avenger performs <ins>view students(UC1)</ins>.
+2. Avenger requests to delete a student.
+3. JARVIS deletes the student.
+
+Use case ends.
+
+**Extensions**
+
+- 2a. JARVIS fails to understand request.
+  - 2a1. JARVIS tells Avenger to make a request again.
+
+    Use case resumes from step 2.
+  
+- 2b. Specified student not found in JARVIS.
+  - 2b1. JARVIS informs Avenger that the student does not exist.
+  - 2b2. JARVIS tells Avenger to make a request again.
+
+    Use case resumes from step 2.
+  
+**Use case: UC22 - Delete a task**
+
+Refer to <ins>UC21 - Delete a student</ins> with the only difference being task instead of student.
+
+**Use case: UC23 - Clear all students, tasks and lessons**
+
+Preconditions: There are existing tasks, students and/or lessons in JARVIS.
+
+Guarantees: All students and tasks will be deleted.
+
 **MSS:**
 
-1. Avenger performs <ins>list students (UC3)</ins>.
-2. JARVIS displays the list of students.
-3. Avenger requests to record a student’s mastery check result.
-4. JARVIS displays list of students and mastery check results, with the aforementioned student’s updated mastery check result.
+1. Avenger requests to clear all data.
+2. JARVIS clears all data.
 
 Use case ends.
 
 **Extensions:**
 
-* 3a. JARVIS fails to understand request.
-  * 3a1. JARVIS tells Avenger to make a request again.
+- 1a. JARVIS fails to understand request.
+  - 1a1. JARVIS tells Avenger to make a request again.
 
-    Use case resumes from step 3.
-
+    Use case resumes from step 1.
+  
+    
 ### Non-Functional Requirements
 
 1.  Should work on Windows, Linux, and OS-X platforms that has version 11 of Java (i.e. no other Java versions) installed.
