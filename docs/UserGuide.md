@@ -169,8 +169,7 @@ Format: `deletestu INDEX`
 
 Example:
 
-* `deletestu 2` 
-
+* `deletestu 2`
 
 ### Finding a student: `findstu`
 
@@ -196,7 +195,6 @@ Example:
 
 * `liststu`
 
-
 ### Adding a question : `addq`
 
 Adds a question to the question list.
@@ -206,7 +204,6 @@ Format: `addq QUESTION_DESCRIPTION`
 Examples:
 
 * `addq what is the difference between self-invocation and call-backs for sequence diagrams?`
-
 
 ### Marking a question : `markq`
 
@@ -263,9 +260,12 @@ Adds a tutorial to the tutorial list.
 
 Format: `addtut g/GROUP_NUMBER c/CONTENT t/DATE TIME`
 
+* The format of the date must be in the YYYY-MM-DD.
+* The format of the time must be in 24h format HHmm.
+
 Examples:
 
-* `addtut g/T08 c/UML diagrams t/2022-10-01T08:00:00`
+* `addtut g/T08 c/UML diagrams t/2022-10-01 1400`
 
 
 ### Deleting a tutorial : `deletetut`
