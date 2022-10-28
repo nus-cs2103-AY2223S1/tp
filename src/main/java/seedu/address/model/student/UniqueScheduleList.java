@@ -14,9 +14,9 @@ import seedu.address.model.student.exceptions.DuplicatePersonException;
 import seedu.address.model.student.exceptions.PersonNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A list of students that enforces uniqueness between its elements and does not allow nulls.
  * A student is considered unique by comparing using {@code Student#isSamePerson(Student)}. As such, adding and updating of
- * persons uses Student#isSamePerson(Student) for equality so as to ensure that the student being added or updated is
+ * students uses Student#isSamePerson(Student) for equality so as to ensure that the student being added or updated is
  * unique in terms of identity in the UniqueStudentList. However, the removal of a student uses Student#equals(Object) so
  * as to ensure that the student with exactly the same fields will be removed.
  *
@@ -94,7 +94,7 @@ public class UniqueScheduleList implements Iterable<Student> {
      */
     public void setPersons(List<Student> students) {
         requireAllNonNull(students);
-        if (!personsAreUnique(students)) {
+        if (!studentsAreUnique(students)) {
             throw new DuplicatePersonException();
         }
 
@@ -109,10 +109,10 @@ public class UniqueScheduleList implements Iterable<Student> {
     private List<Student> getScheduleList() {
 
         internalList.stream()
-                .forEach(person -> person.updateDisplayClass(LocalDate.now()));
+                .forEach(student -> student.updateDisplayClass(LocalDate.now()));
         return internalList
                 .stream()
-                .filter(person -> LocalDate.now().equals(person.getDisplayedClass().date))
+                .filter(student -> LocalDate.now().equals(student.getDisplayedClass().date))
                 .sorted(Student::compareToByClassAsc)
                 .collect(Collectors.toList());
     }
@@ -153,7 +153,7 @@ public class UniqueScheduleList implements Iterable<Student> {
     /**
      * Returns true if {@code students} contains only unique students.
      */
-    private boolean personsAreUnique(List<Student> students) {
+    private boolean studentsAreUnique(List<Student> students) {
         for (int i = 0; i < students.size() - 1; i++) {
             for (int j = i + 1; j < students.size(); j++) {
                 if (students.get(i).isSamePerson(students.get(j))) {
