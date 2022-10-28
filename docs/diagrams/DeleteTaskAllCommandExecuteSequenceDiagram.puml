@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "command:DeleteTaskAllCommand" as DeleteTaskAllCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+DeleteTaskAllCommand -[hidden]-> Model
+activate DeleteTaskAllCommand
+
+group sd [DeleteTaskAllCommand executes]
+DeleteTaskAllCommand -> Model : getGroupWithName("CS2103T")
+activate Model
+return Group
+
+loop for Member in Group
+alt has Assignment "Task1"
+    DeleteTaskAllCommand -> Model : setPerson(personToDeleteTask, editedPerson)
+    activate Model
+    return
+    DeleteTaskAllCommand -> Model : setGroup(currGroup: editedGroup)
+    activate Model
+    return
+else does not have Assignment
+end
+end
+DeleteTaskAllCommand -> Model : updateFilteredPersonLIst(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+return
+
+create CommandResult
+DeleteTaskAllCommand -> CommandResult
+activate CommandResult
+return
+
+end
+
+@enduml

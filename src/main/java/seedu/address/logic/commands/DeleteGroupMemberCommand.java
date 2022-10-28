@@ -30,7 +30,7 @@ public class DeleteGroupMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " g/Group 1 n/Bobby Chua";
     public static final String MESSAGE_INVALID_GROUP = "This group does not exist.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
-    public static final String MESSAGE_PERSON_NOT_IN_GROUP = "%1$s is not in group %2$s";
+    public static final String MESSAGE_PERSON_NOT_IN_GROUP = "%1$s is not in group %2$s.";
     public static final String MESSAGE_DELETE_MEMBER_SUCCESS = "%1$s was deleted from group: %2$s";
 
     private final Name name;
@@ -100,6 +100,7 @@ public class DeleteGroupMemberCommand extends Command {
 
         //deletes person from the group
         Set<Person> groupMembers = new HashSet<>(groupToDeletePerson.getMembers());
+
         groupMembers.remove(originalPersonBeforeEdit);
         Group editedGroup = new Group(groupToDeletePerson.getName(), groupMembers);
 

@@ -83,7 +83,7 @@ public class DeleteGroupCommand extends Command {
         ObservableList<Group> currGroupList = model.getGroupWithName(new GroupName(group.getGroupName()));
         Group currGroup = currGroupList.get(0);
 
-        Set<Person> editedPersonList = new HashSet<Person>(currGroup.getMembers());
+        Set<Person> editedPersonList = new HashSet<>(currGroup.getMembers());
         editedPersonList.remove(currentPerson);
         editedPersonList.add(editedPerson);
 

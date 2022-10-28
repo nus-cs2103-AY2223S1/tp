@@ -36,7 +36,7 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
 Note how the app contains some sample data.
 <br><br>
-![TABS example](Ui.png)
+![TABS example](images/user-guide/Ui.png)
 <br><br>
 5. Refer to the [Features](#features) below for details of each command.
 
@@ -46,6 +46,12 @@ Note how the app contains some sample data.
 ## Features
 
 <div markdown="block" class="alert alert-info">
+
+**:information_source: Shortcut keys to use the application:**<br>
+
+* Use the `TAB` key to navigate between command box, person pane, and group pane in TABS.
+
+* Use arrow keys to switch between *Contact details* and *Assignments*.
 
 **:information_source: Notes about the command format:**<br>
 
@@ -73,7 +79,7 @@ Note how the app contains some sample data.
 
 Shows a list of commands explaining how to use TABS and a message to the TABS' user guide.
 
-![Help Example](Help.png)
+![Help Example](images/user-guide/Help.png)
 
 Format: help
 
@@ -135,7 +141,7 @@ Examples:
 * `findperson alex david` returns `Alex Yeoh`, `David Li`
 <br>
 <br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
 
 ### Listing all persons: `listpersons`
 
@@ -185,7 +191,7 @@ Examples:
 
 Displays the group members allocated to the specified `GROUP`. Instead of details, assigned tasks will be listed.
 
-![TABS example](Ui.png)
+![TABS example](images/user-guide/displaygroup_example.png)
 
 Format: `displaygroup GROUP`
 * Displays the members associated with the `GROUP` and their tasks.
@@ -209,10 +215,19 @@ Format: `assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]`
 * `DEADLINE` must be in `yyyy-MM-dd` or `yyyy-MM-dd HH:mm` format.
 
 Examples:
-* `assigntask John g/CS2103T task/TeamProject w/High` 
+* `assigntask John g/CS2103T task/TeamProject w/High`
 assigns `John` in group `CS2103T` with a `High` workload task `TeamProject`.
-* `assigntask Alice g/Group Alpha task/Coursework 0 w/Low d/2022-01-01 23:59` 
+* `assigntask Alice g/Group Alpha task/Coursework 0 w/Low d/2022-01-01 23:59`
 assigns `Alice` in group `Group Alpha` with a `Low` workload task `Coursework 0` and the deadline of the task is `2022-01-01 23:59`.
+
+<div markdown="span" class="alert alert-primary">
+  :information_source: **Extra note:** 
+
+A workload indicator is shown beside each person in TABS.
+When the workload of the person increase, the workload indicator will gradually change from green to red.
+
+![Workload_Indicator](images/user-guide/workload_indicator.png)
+</div>
 
 ### Deleting a task from a member: `deletetask`
 

@@ -28,7 +28,7 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" style="-fx-background-color: #808080;" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" style="-fx-background-color: #E1F4F3;" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -51,7 +51,7 @@
 
         <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
           <VBox fx:id="dataPanelsTabPaneBox" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-            <TextField alignment="CENTER" editable="False" text="Contacts" />
+            <TextField alignment="CENTER" editable="False" text="Contacts" style="-fx-background-color: #BBE6E4;" />
             <padding>
               <Insets top="7" right="10" bottom="7" left="10"/>
             </padding>
@@ -75,12 +75,11 @@
           </VBox>
 
           <VBox fx:id="groupList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-            <TextField alignment="CENTER" editable="False" text="Groups" />
+            <TextField alignment="CENTER" editable="False" text="Groups" style="-fx-background-color: #BBE6E4;" />
             <StackPane fx:id="groupListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             <padding>
-              <Insets bottom="7" left="10" right="10" top="7" />
+              <Insets top="7" right="10" bottom="7" left="10" />
             </padding>
-
           </VBox>
         </SplitPane>
 

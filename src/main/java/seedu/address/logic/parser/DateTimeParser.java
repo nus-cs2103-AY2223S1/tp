@@ -4,24 +4,24 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoField;
-
-//The code below are referenced from
-//https://www.geeksforgeeks.org/java-time-format-datetimeformatterbuilder-class-in-java/
 
 /**
  * Represents a parser that parses String to LocalDateTime in various patterns.
  */
 public class DateTimeParser {
     // only allow format of yyyy-MM-dd and yyyy-MM-dd HH:mm as of now
+    // if time is not specified, deadline is set to be 23:59, at the end of the day
     private static final DateTimeFormatter FORMATTER = new DateTimeFormatterBuilder()
-            .appendPattern("yyyy-MM-dd")
+            .appendPattern("uuuu-MM-dd")
             .optionalStart()
             .appendPattern(" HH:mm")
             .optionalEnd()
-            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
-            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
-            .toFormatter();
+            .parseDefaulting(ChronoField.HOUR_OF_DAY, 23)
+            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 59)
+            .toFormatter()
+            .withResolverStyle(ResolverStyle.STRICT);
 
     /**
      * Returns LocalDateTime object of the specified date and time.

@@ -1,10 +1,10 @@
 .table-view {
-	-fx-border-color: #A9A9A9;
+	-fx-border-color: #E5FCF5;
 	-fx-background-color: transparent;
 }
 
 .table-view .table-cell{
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
 }
@@ -13,12 +13,12 @@
     -fx-text-background-color: red;
 }
 .table-row-cell: odd{
-    -fx-background-color: -fx-table-cell-border-color, #494949;
+    -fx-background-color: -fx-table-cell-border-color, #D9E8E8;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
 .table-row-cell: even{
-    -fx-background-color: -fx-table-cell-border-color, #696969;
+    -fx-background-color: -fx-table-cell-border-color, #BBE6E4;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
@@ -30,27 +30,27 @@
 
 #copyButton, #openButton, #helpMessage {
     -fx-font-size: 12px;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: white;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: white;
 }
 
 #copyButton:armed {
-    -fx-background-color: darkgray;
+    -fx-background-color: dimgray;
 }
 
 #openButton {
-    -fx-background-color: darkgray;
+    -fx-background-color: white;
 }
 
 #openButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: dimgray;
 }
 
 #openButton:armed {
@@ -58,5 +58,5 @@
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#E1F4F3, 20%);
 }

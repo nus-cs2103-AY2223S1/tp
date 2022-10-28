@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteGroupMemberCommandParser" as DeleteGroupMemberCommandParser LOGIC_COLOR
+participant "command:DeleteGroupMemberCommand" as DeleteGroupMemberCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR_T1
+end box
+
+[-> LogicManager : execute("deletemember g/CS2103T n/Alice")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deletemember g/CS2103T n/Alice")
+activate AddressBookParser
+
+create DeleteGroupMemberCommandParser
+AddressBookParser -> DeleteGroupMemberCommandParser
+activate DeleteGroupMemberCommandParser
+return
+
+AddressBookParser -> DeleteGroupMemberCommandParser : parse("g/CS2103T n/Alice")
+activate DeleteGroupMemberCommandParser
+
+create DeleteGroupMemberCommand
+DeleteGroupMemberCommandParser -> DeleteGroupMemberCommand
+activate DeleteGroupMemberCommand
+
+return "command:DeleteGroupMemberCommand"
+
+deactivate DeleteGroupMemberCommand
+
+DeleteGroupMemberCommandParser --> AddressBookParser : command
+deactivate DeleteGroupMemberCommandParser
+
+DeleteGroupMemberCommandParser -[hidden]-> AddressBookParser
+destroy DeleteGroupMemberCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> DeleteGroupMemberCommand : execute()
+activate DeleteGroupMemberCommand
+
+group ref [DeleteGroupMemberCommand executes]
+DeleteGroupMemberCommand -[hidden]-> Model
+end
+
+DeleteGroupMemberCommand --> LogicManager : commandResult
+deactivate DeleteGroupMemberCommand
+
+DeleteGroupMemberCommand -[hidden]-> LogicManager
+destroy DeleteGroupMemberCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -28,7 +28,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
       </HBox>
 
 
@@ -39,7 +39,7 @@
         <FlowPane fx:id="tags" />
       </HBox>
 
-      <HBox fx:id="phoneContainer" alignment="CENTER_LEFT">
+      <HBox fx:id="phoneContainer" alignment="TOP_LEFT">
         <padding>
           <Insets top="2" right="0" bottom="2" left="-3" />
         </padding>
@@ -58,16 +58,18 @@
         </children>
       </HBox>
 
-      <HBox fx:id="addressContainer" alignment="CENTER_LEFT">
+      <HBox fx:id="addressContainer" alignment="TOP_LEFT">
         <padding>
           <Insets top="0" right="0" bottom="2" left="-1" />
         </padding>
         <children>
-          <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-              <Image url="@../images/address.png" />
-            </image>
-          </ImageView>
+          <HBox >
+            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../images/address.png" />
+              </image>
+            </ImageView>
+          </HBox>
           <HBox>
             <padding>
               <Insets top="0" right="1" bottom="1" left="0" />
@@ -77,7 +79,7 @@
         </children>
       </HBox>
 
-      <HBox fx:id="emailContainer" alignment="CENTER_LEFT">
+      <HBox fx:id="emailContainer" alignment="TOP_LEFT">
         <padding>
           <Insets top="0" right="1" bottom="1" left="1" />
         </padding>
@@ -96,7 +98,7 @@
         </children>
       </HBox>
 
-      <HBox fx:id="personGroupContainer" alignment="CENTER_LEFT">
+      <HBox fx:id="personGroupContainer" alignment="TOP_LEFT">
         <padding>
           <Insets top="2" right="1" bottom="1" left="1" />
         </padding>

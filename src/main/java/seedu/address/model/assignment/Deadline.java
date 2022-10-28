@@ -10,7 +10,7 @@ import seedu.address.logic.parser.DateTimeParser;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date must be in the form of yyyy-MM-dd or yyyy-MM-dd HH:mm";
+            "Date must be in the form of yyyy-MM-dd or yyyy-MM-dd HH:mm and in the valid range!";
 
     private LocalDateTime dateTime;
 
