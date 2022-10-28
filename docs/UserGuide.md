@@ -230,7 +230,7 @@ Format: `additer n/DESCRIPTION d/DATE p/FILEPATH f/FEEDBACK`
 
 * The specified date should be in YYYY-MM-DD format
 * The file path specified should be an absolute path from your root directory. If you're not familiar with file paths
-and root directories, you might find the explanation [below](#filepath-explanation) helpful.
+and root directories, you might find the explanation [below](#filepath_explanation) helpful.
 * The command requires a commission to be selected.
 * The image name will assume the filename specified in the command.
 * Currently, only image file types .png, .jpg, .bmp and .gif are supported
