@@ -75,6 +75,7 @@ Format: `help`
 ### Adding a person: `add`
 
 Adds a person to the address book. This command can only be used in list mode.
+A person is considered a duplicate only if the names are the same (non case-sensitive).
 
 Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN`
 
@@ -92,6 +93,7 @@ Format: `list`
 ### Editing a person : `edit`
 
 Edits an existing person in the address book. Can only be used in view mode.
+For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX.
 
 It requires at least one field:
 - n/: To be followed by updated name of student
@@ -207,6 +209,7 @@ Format: `clear`
 ### Adding Homework to student: `hw`
 
 Adds a description of homework to student in address book. Cannot be used in schedule mode.
+Does not check for duplicate homework entries.
 
 Format: `hw INDEX h/HOMEWORK`
 
@@ -218,6 +221,7 @@ Examples:
 ### Adding Grade Progress to student: `grade`
 
 Adds a description of grade progress to student in address book. Cannot be used in schedule mode.
+GRADE_PROGRESS does not require a fixed format and is up to the user to manually standardise. Does not check for duplicate entries. 
 
 Format: `grade INDEX g/GRADE_PROGRESS`
 
@@ -229,6 +233,7 @@ Examples:
 ### Adding Attendance to student : `attendance`
 
 Adds a formatted description of dates students attended class in address book. Cannot be used in schedule mode.
+Does not check for duplicate entries.
 
 Format: `attendance INDEX h/ATTENDACE`
 
@@ -241,6 +246,7 @@ Examples:
 ### Adding Session to student: `session`
 
 Adds a formatted session timing to student, expected to repeat weekly. Cannot be used in schedule mode.
+Does not check for duplicate entries.
 
 Format: `session INDEX s/TUITION_TIME`
 
