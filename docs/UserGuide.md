@@ -177,6 +177,13 @@ Examples:
 * `status -p PENDING` returns all the properties with status of `PENDING`
 * `status -p SOLD` returns all the properties with status of `SOLD`
 
+### Filtering properties by type: `type -p`
+
+Returns a filtered list of clients that fulfil the filter conditions.
+Format: `type -p HDB`
+Examples:
+* `type -p HDB condo` returns all properties that are HDBs or Condos
+
 ### Clearing all entries : `clear`
 
 Clears all properties from the property directory.

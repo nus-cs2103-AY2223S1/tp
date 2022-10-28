@@ -34,8 +34,11 @@ public class AddClientCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in Condonery";
+    public static final String MESSAGE_IMAGE_UPLOAD = "Opened Upload Image window";
 
     private final Client toAdd;
+    private final boolean hasImage;
+
     private final ArrayList<String> missingProperties = new ArrayList<>();
     private final ArrayList<String> duplicateProperties = new ArrayList<>();
 
@@ -45,6 +48,16 @@ public class AddClientCommand extends Command {
     public AddClientCommand(Client client) {
         requireNonNull(client);
         toAdd = client;
+        hasImage = false;
+    }
+
+    /**
+     * Creates an AddCommand to add the specified {@code Client}, with a boolean to indicate if image is uploaded.
+     */
+    public AddClientCommand(Client client, boolean hasImage) {
+        requireNonNull(client);
+        toAdd = client;
+        this.hasImage = hasImage;
     }
 
     /**
@@ -81,16 +94,26 @@ public class AddClientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
+
         ParseClientInterestedProperties parser = new ParseClientInterestedProperties(
-                toAdd, model);
+            toAdd, model);
 
         Client newClientToAdd = parser.getNewClient();
+        newClientToAdd.setImageDirectoryPath(model.getUserPrefs().getUserImageDirectoryPath());
 
         String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingProperties(),
-                parser.getDuplicateProperties());
+            parser.getDuplicateProperties());
 
         model.addClient(newClientToAdd);
 
+        if (this.hasImage) {
+            return new CommandResult(
+                String.format(newMessageSuccess, toAdd),
+                false,
+                false,
+                "client-" + newClientToAdd.getCamelCaseName()
+            );
+        }
         return new CommandResult(String.format(newMessageSuccess, newClientToAdd));
     }
 
