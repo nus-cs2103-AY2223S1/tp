@@ -257,9 +257,9 @@ The following activity diagram summarises what happens when a student enters a `
     * Pros: Shorter commands to enter and grants greater convenience to users.
     * Cons: If many module codes share the same partial module code that user inputs, many batchmates will be returned, rendering the `mod find` function ineffective as users still need to manually search for batchmates with the desired module.
 
-### Module Categorisation
+### 4. Module Categorisation
 
-#### 4. Implementation
+#### Implementation
 
 Module categorisation is handled by `ParserUtil#parseModsToCategory(String modName)`.
 A category is assigned to every mod upon creating it through its constructor.
@@ -298,7 +298,7 @@ Activity: Determines and returns a category.
     * Pros: Users can edit mod categories with fewer changes to the code base. Increased performance.
     * Cons: Increased complexity.
     
-### 4. Add Interest Feature
+### 5. Add Interest Feature
 
 #### Implementation
 The ```addInt``` command allows students to add one or more interests to a batchmate by indicating the index held by the batchmate and the list of interests to be added.
