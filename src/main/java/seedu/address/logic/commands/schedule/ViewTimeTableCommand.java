@@ -13,8 +13,8 @@ import seedu.address.model.Model;
 public class ViewTimeTableCommand extends Command {
     public static final String COMMAND_WORD = "tview";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the Horizontal/Vertical Timetable. \n"
-            + "Format: tview 0 (View Horizontal Timetable)\n"
-            + "Format: tview 1 (View Vertical Timetable)\n";
+            + "Format: tview h (View Horizontal Timetable)\n"
+            + "Format: tview v (View Vertical Timetable)\n";
 
     public static final String SHOWING_HORIZONTAL_TIMETABLE_MESSAGE = "Show the Horizontal Timetable!";
     public static final String SHOWING_VERTICAL_TIMETABLE_MESSAGE = "Show the Vertical Timetable!";
@@ -41,11 +41,11 @@ public class ViewTimeTableCommand extends Command {
         if (this.timetableModel == 0) { // Horizontal
             return new CommandResult(String.format(SHOWING_HORIZONTAL_TIMETABLE_MESSAGE),
                     false, false, false, false,
-                    false, false, true, false);
+                    false, false, true, false, false, false);
         } else if (this.timetableModel == 1) { // Vertical
             return new CommandResult(String.format(SHOWING_VERTICAL_TIMETABLE_MESSAGE),
                     false, false, false, false,
-                    false, false, false, true);
+                    false, false, false, true, false, false);
         }
 
         throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewTimeTableCommand.MESSAGE_USAGE));

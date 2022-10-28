@@ -19,16 +19,16 @@ public class ViewTimeTableCommandParser implements Parser<ViewTimeTableCommand> 
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             return new ViewTimeTableCommand();
-        } else {
-            if (trimmedArgs.equals("0")) {
-                return new ViewTimeTableCommand(0);
-            } else if (trimmedArgs.equals("1")) {
-                return new ViewTimeTableCommand(1);
-            }
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewTimeTableCommand.MESSAGE_USAGE));
-
         }
+
+        if (trimmedArgs.equals("h")) {
+            return new ViewTimeTableCommand(0);
+        }
+        if (trimmedArgs.equals("v")) {
+            return new ViewTimeTableCommand(1);
+        }
+        throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewTimeTableCommand.MESSAGE_USAGE));
 
     }
 
