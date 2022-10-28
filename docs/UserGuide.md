@@ -232,7 +232,7 @@ Format: `event -dp EVENT_INDEX pr/ATTENDEE_INDEX...`
 Example:
 * `event -dp 1 pr/1 pr/3`
 <img src="images/BeforeDeleteAttendee.png"/>
-Note how the first and third attendee under `Discuss presentation` have been deleted.
+Note how the first and third attendee under the first listed event `Discuss presentation` have been deleted.
 <img src="images/AfterDeleteAttendee.png"/>
 
 #### Viewing upcoming events: `event -u`
