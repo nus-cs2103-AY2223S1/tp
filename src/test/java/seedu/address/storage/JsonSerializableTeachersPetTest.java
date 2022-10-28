@@ -21,23 +21,23 @@ public class JsonSerializableTeachersPetTest {
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonTeachersPet.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
+    public void toModelType_typicalStudentsFile_success() throws Exception {
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
-        TeachersPet typicalPersonsTeachersPet = TypicalStudents.getTypicalTeachersPet();
-        assertEquals(teachersPetFromFile, typicalPersonsTeachersPet);
+        TeachersPet typicalStudentsTeachersPet = TypicalStudents.getTypicalTeachersPet();
+        assertEquals(teachersPetFromFile, typicalStudentsTeachersPet);
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
+    public void toModelType_invalidStudentFile_throwsIllegalValueException() throws Exception {
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
                 JsonSerializableTeachersPet.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicateStudents_throwsIllegalValueException() throws Exception {
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
                 JsonSerializableTeachersPet.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableTeachersPet.MESSAGE_DUPLICATE_PERSON,

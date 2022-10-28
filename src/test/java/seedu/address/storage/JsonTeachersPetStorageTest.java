@@ -51,12 +51,12 @@ public class JsonTeachersPetStorageTest {
     }
 
     @Test
-    public void readTeachersPet_invalidPersonTeachersPet_throwDataConversionException() {
+    public void readTeachersPet_invalidStudentTeachersPet_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTeachersPet("invalidPersonTeachersPet.json"));
     }
 
     @Test
-    public void readTeachersPet_invalidAndValidPersonTeachersPet_throwDataConversionException() {
+    public void readTeachersPet_invalidAndValidStudentTeachersPet_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readTeachersPet("invalidAndValidPersonTeachersPet.json"));
     }
 

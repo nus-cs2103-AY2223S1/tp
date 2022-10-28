@@ -39,7 +39,7 @@ public class MarkCommandTest {
     private Model model = new ModelManager(getTypicalTeachersPet(), new UserPrefs());
 
     @Test
-    public void execute_invalidPersonIndexScheduledList_failure() {
+    public void execute_invalidStudentIndexScheduledList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredScheduleList().size() + 1);
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex);
 
@@ -47,7 +47,7 @@ public class MarkCommandTest {
     }
 
     @Test
-    public void create_newMarkedPerson_success() throws CommandException {
+    public void create_newMarkedStudent_success() throws CommandException {
 
         // initialize Amy to be not marked yet
         Student studentToMark = new StudentBuilder(AMY).withMark(Boolean.FALSE).build();
@@ -59,26 +59,26 @@ public class MarkCommandTest {
         studentToMark.setClass(VALID_CLASS);
         studentToMark.setDisplayClass(VALID_CLASS);
 
-        Student markedStudent = MarkCommand.createMarkedPerson(studentToMark);
+        Student markedStudent = MarkCommand.createMarkedStudent(studentToMark);
         assertEquals(expectedMarkedStudent, markedStudent);
     }
 
     @Test
-    public void create_existingMarkedPerson_success() throws CommandException {
+    public void create_existingMarkedStudent_success() throws CommandException {
         // initialize Amy to be marked
         Student studentToMark = new StudentBuilder(AMY).withMark(Boolean.TRUE).build();
 
-        assertEquals(studentToMark, MarkCommand.createMarkedPerson(studentToMark));
+        assertEquals(studentToMark, MarkCommand.createMarkedStudent(studentToMark));
     }
 
     @Test
-    public void create_markedPersonWithHighDebt_failure() {
+    public void create_markedStudentWithHighDebt_failure() {
         Student heavyDebtor = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), VALID_CLASS, new Money(Integer.MAX_VALUE),
                 AMY.getMoneyPaid(), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
                 new Mark(Boolean.FALSE), VALID_CLASS);
 
-        assertThrows(CommandException.class, () -> MarkCommand.createMarkedPerson(heavyDebtor));
+        assertThrows(CommandException.class, () -> MarkCommand.createMarkedStudent(heavyDebtor));
 
     }
 

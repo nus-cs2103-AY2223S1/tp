@@ -29,9 +29,9 @@ public class EditStudentDescriptorBuilder {
      * By default, descriptor field Class will have fields date and time to be null.
      */
     public EditStudentDescriptorBuilder() {
-        EditStudentDescriptor editPersonDescriptor = new EditStudentDescriptor();
-        editPersonDescriptor.setClass(new Class());
-        descriptor = editPersonDescriptor;
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        editStudentDescriptor.setClass(new Class());
+        descriptor = editStudentDescriptor;
     }
 
     public EditStudentDescriptorBuilder(EditStudentDescriptor descriptor) {

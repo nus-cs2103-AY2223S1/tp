@@ -50,7 +50,7 @@ public class JsonAdaptedStudentTest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
+    public void toModelType_validStudentDetails_returnsStudent() throws Exception {
         JsonAdaptedStudent person = new JsonAdaptedStudent(BENSON);
         assertEquals(BENSON, person.toModelType());
     }

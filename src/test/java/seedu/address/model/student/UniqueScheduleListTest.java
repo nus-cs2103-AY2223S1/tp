@@ -24,7 +24,7 @@ public class UniqueScheduleListTest {
     private final UniqueScheduleList uniqueScheduleList = new UniqueScheduleList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
+    public void contains_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueScheduleList.contains(null));
     }
 
@@ -47,33 +47,33 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueScheduleList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicateStudentException() {
+    public void add_duplicateStudent_throwsDuplicateStudentException() {
         uniqueScheduleList.add(ALICE);
         assertThrows(DuplicateStudentException.class, () -> uniqueScheduleList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
+    public void setStudent_nullTargetStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueScheduleList.setStudent(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
+    public void setStudent_nullEditedStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueScheduleList.setStudent(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsStudentNotFoundException() {
+    public void setStudent_targetStudentNotInList_throwsStudentNotFoundException() {
         assertThrows(StudentNotFoundException.class, () -> uniqueScheduleList.setStudent(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setStudent_editedStudentIsSameStudent_success() {
         uniqueScheduleList.add(ALICE);
         uniqueScheduleList.setStudent(ALICE, ALICE);
         UniqueScheduleList expectedUniqueScheduleList = new UniqueScheduleList();
@@ -82,7 +82,7 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setStudent_editedStudentHasSameIdentity_success() {
         uniqueScheduleList.add(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         uniqueScheduleList.setStudent(ALICE, editedAlice);
@@ -92,7 +92,7 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
+    public void setStudent_editedStudentHasDifferentIdentity_success() {
         uniqueScheduleList.add(ALICE);
         uniqueScheduleList.setStudent(ALICE, BOB);
         UniqueScheduleList expectedUniqueScheduleList = new UniqueScheduleList();
@@ -101,14 +101,14 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicateStudentException() {
+    public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicateStudentException() {
         uniqueScheduleList.add(ALICE);
         uniqueScheduleList.add(BOB);
         assertThrows(DuplicateStudentException.class, () -> uniqueScheduleList.setStudent(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueScheduleList.remove(null));
     }
 
@@ -118,7 +118,7 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingStudent_removesStudent() {
         uniqueScheduleList.add(ALICE);
         uniqueScheduleList.remove(ALICE);
         UniqueScheduleList expectedUniqueScheduleList = new UniqueScheduleList();
@@ -126,12 +126,12 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void setPersons_nullUniqueScheduleList_throwsNullPointerException() {
+    public void setStudents_nullUniqueScheduleList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueScheduleList.setStudents((UniqueScheduleList) null));
     }
 
     @Test
-    public void setPersons_uniqueScheduleList_replacesOwnListWithProvidedUniqueScheduleList() {
+    public void setStudents_uniqueScheduleList_replacesOwnListWithProvidedUniqueScheduleList() {
         uniqueScheduleList.add(ALICE);
         UniqueScheduleList expectedUniqueScheduleList = new UniqueScheduleList();
         expectedUniqueScheduleList.add(BOB);
@@ -140,12 +140,12 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
+    public void setStudents_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueScheduleList.setStudents((List<Student>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
+    public void setStudents_list_replacesOwnListWithProvidedList() {
         uniqueScheduleList.add(ALICE);
         List<Student> studentList = Collections.singletonList(BOB);
         uniqueScheduleList.setStudents(studentList);
@@ -155,7 +155,7 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicateStudentException() {
+    public void setStudents_listWithDuplicateStudents_throwsDuplicateStudentException() {
         List<Student> listWithDuplicateStudents = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicateStudentException.class, () -> uniqueScheduleList.setStudents(listWithDuplicateStudents));
     }

@@ -138,7 +138,7 @@ public class StudentTest {
     }
 
     @Test
-    public void personDisplayDateComparisonTest() {
+    public void studentDisplayDateComparisonTest() {
         Student alice = new StudentBuilder(ALICE).withMark(Boolean.TRUE).build();
         Student bob = new StudentBuilder(BOB).withMark(Boolean.TRUE).build();
 

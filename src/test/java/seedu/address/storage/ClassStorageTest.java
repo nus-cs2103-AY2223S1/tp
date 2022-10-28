@@ -24,7 +24,7 @@ import seedu.address.testutil.StudentBuilder;
 public class ClassStorageTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTeachersPetTest");
-    private static final Path PERSONS_FILE = TEST_DATA_FOLDER.resolve("personsTeachersPet.json");
+    private static final Path PERSONS_FILE = TEST_DATA_FOLDER.resolve("studentsTeachersPet.json");
 
     @Test
     public void execute_hasConflictSuccess() {
@@ -88,7 +88,7 @@ public class ClassStorageTest {
     }
 
     @Test
-    public void execute_updatePerson() throws Exception {
+    public void execute_updateStudent() throws Exception {
         Student studentToEdit = new StudentBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
                 .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
                 .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("Remind student to submit homework")
@@ -102,7 +102,7 @@ public class ClassStorageTest {
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
-        // edit money owed and money paid of Daniel Tan (last student on personsTeachersPet list)
+        // edit money owed and money paid of Daniel Tan (last student on studentsTeachersPet list)
         ClassStorage.updateStudent(studentToEdit, editedStudent);
         List<Student> listOfStudents = ClassStorage.getListOfStudent(LocalDate.of(2022, 5, 5));
 
