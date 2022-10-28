@@ -43,7 +43,10 @@ TrackO is a **desktop app built for small business owners to help them manage or
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addo n/NAME`, `NAME` is a parameter which can be used as `addo n/John Doe`.
+
+* Parameters in square brackets `[]` are optional. <br>
+  e.g. in `findo KEYWORD [MORE_KEYWORDS]`, only the first `KEYWORD` is compulsory. The rest are optional. 
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -54,8 +57,8 @@ and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `listi`, `listo` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `listi 123`, it will be interpreted as `list`.
+* Extraneous parameters for commands that do not take in parameters (such as `listi`, `listo`,`clear` and `exit`) will be ignored.<br>
+  e.g. if the command specifies `listi 123`, it will be interpreted as `listi`.
 
 </div>
 
@@ -185,8 +188,8 @@ in their address.
 * The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
 * The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
 * Only full words will be matched e.g. `keychains` will not match `keychain`
-* Orders matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `apple keychain` will return `apple painting`, `banana keychain`
+* Orders matching at least one keyword will be returned (i.e. `OR` search).</br>
+  e.g. `findo apple keychain` will return `apple painting`, `banana keychain`
 
 Examples:
 * `findo n/Alex` returns all orders with the name Alex 
@@ -234,7 +237,6 @@ Edits an existing order in the order list.
 Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]`
 
 * Edits the order at the specified `INDEX`.
-* Only orders which are not marked as `paid` or `delivered` can be edited. 
 * This feature is case-insensitive.
 * The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -250,10 +252,10 @@ Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUA
 the `2` `Apples`.
 
 Note:
+* Only orders which are not marked as `paid` or `delivered` can be edited.
 * The order's created time cannot be edited.
 * An order's paid status and delivery status also cannot be edited through this command. To modify those, 
   see [`marko`](#marking-an-order-as-paid-or-delivered-marko) instead.
-* A completed order (i.e. both paid and delivered) cannot be edited.
 
 Examples:
 * `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`
@@ -266,7 +268,41 @@ Examples:
 
 ### Marking an order as paid or delivered: `marko`
 
-Placeholder content
+Marks an existing order in the order list as paid and/or delivered. 
+
+Format: `marko INDEX [-p] [-d]`
+
+* Marks the order at the specified `INDEX` as paid and/or delivered. 
+* The index refers to the index number shown in the currently displayed list. 
+* The index **must be a positive integer** 1, 2, 3, …​ 
+* Flag `-p` marks the order as paid. 
+* Flag `-d` marks the order as delivered. 
+* Flags are case-sensitive and specific to the character. 
+</br> e.g. `- p` is not a valid flag because there is a space between the `-` and `p`. 
+* At least one of `-p` or `-d` must be present in your input. 
+* Both `-p` and `-d` may be present in your input to mark an order as both paid and delivered.
+* When an order is completed (marked as both `paid` and `delivered`), 
+the colour of the particular order's card will be in a darker shade than an uncompleted order. 
+
+Examples:
+* `marko 1 -p` Marks the order at index `1` in the currently displayed list as `paid`. 
+* `marko 1 -d` Marks the order at index `1` in the currently displayed list as `delivered`.
+* `marko 1 -p -d` Marks the order at index `1` in the currently displayed list as both `paid` and `delivered`.
+
+### Clearing all existing data in TrackO : `clear`
+
+Clears all data (in both `Order List` and `Inventory List`) from TrackO.
+
+1. Initiate the command to clear all data from TrackO. </br>
+    Format: `clear`
+2. Confirm the decision to clear all data. </br>
+    Format: `confirm` or `cancel`
+- `clear` will trigger a message which prompts for user confirmation to clear the data in TrackO.
+- Keyword `confirm` : confirms the deletion of all data in TrackO. All data in TrackO will be removed after this input. 
+- Keyword `cancel` : aborts the command to clear all data in TrackO. No changes to data in TrackO after this input. 
+- `clear` ignores any input after. (e.g. `clear chair` will have the same effect as `clear`)
+
+:bulb: The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in lower case are accepted.
 
 ### Exiting the program : `exit`
 
@@ -276,17 +312,19 @@ Format: `exit`
 
 ## Command summary
 
-| Action                       | Format, Examples                                                                                                                                                                                                          |
-|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00`                                                          |
-| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                     |                                                                                                                                                        
-| **List All Inventory Items** | `listi`                                                                                                                                                                                                                   |
-| **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                            |
-| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                              |
-| **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br>e.g. `i/Pillow q/2` <br>followed by `done` or `cancel` |
-| **List All Orders**          | `listo`                                                                                                                                                                                                                   |
-| **Find Order(s)**            | `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`, where all flags are optional and only 1 prefix is compulsory <br> e.g. `findo -d i/keychain n/Alex`|
-| **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |
-| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                    |                                                                                                                                                                              
-| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                |
-| **Exit**                     | `exit`                                                                                                                                                                                                                    |
+| Action                       | Format, Examples                                                                                                                                                                                                                                           |
+|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00`                                                                                           |
+| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                                                      |                                                                                                                                                        
+| **List All Inventory Items** | `listi`                                                                                                                                                                                                                                                    |
+| **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                                                             |
+| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                               |
+| **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br>e.g. `i/Pillow q/2` <br>followed by `done` or `cancel`       |
+| **List All Orders**          | `listo`                                                                                                                                                                                                                                                    |
+| **Find Order(s)**            | `findo [-d OR -D] [-p OR -P] [i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]] [a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] [n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]`, where all flags are optional and only 1 prefix is compulsory <br> e.g. `findo -d i/keychain n/Alex` |
+| **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                                                     |
+| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                                                     |
+| **Mark An Order**            | `marko INDEX [-p] [-d]` <br> e.g., `marko 2 -d`, `marko 3 -p -d`                                                                                                                                                                                           |
+| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                                                 |
+| **Clear**                    | `clear`<br/> followed by `confirm` or `cancel` when prompted                                                                                                                                                                                               |
+| **Exit**                     | `exit`                                                                                                                                                                                                                                                     |
