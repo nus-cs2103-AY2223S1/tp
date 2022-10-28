@@ -18,6 +18,10 @@ import seedu.address.model.student.Student;
  */
 public class Task {
 
+    // A static variable is used because the same gradesMap is used to track
+    // students' grades for tasks across all tasks.
+    private static ObservableMap<GradeKey, Grade> gradesMap;
+
     // Identity fields
     private final TaskName taskName;
 
@@ -25,10 +29,6 @@ public class Task {
     private final TaskDescription taskDescription;
     private final TaskDeadline taskDeadline;
     private final Set<Student> students = new HashSet<>();
-
-    // A static variable is used because the same gradesMap is used to track
-    // students' grades for tasks across all tasks.
-    public static ObservableMap<GradeKey, Grade> gradesMap;
 
     /**
      * Every field must be present and not null.
@@ -59,6 +59,20 @@ public class Task {
      */
     public Set<Student> getStudents() {
         return Collections.unmodifiableSet(students);
+    }
+
+    /**
+     * Returns an immutable Grade set, which throws {@code UnsupportedOperationException}
+     */
+    public static ObservableMap<GradeKey, Grade> getGradesMap() {
+        return gradesMap;
+    }
+
+    /**
+     * Sets the gradesMap to the given ObservableMap.
+     */
+    public static void setGradesMap(ObservableMap<GradeKey, Grade> gradesMap) {
+        Task.gradesMap = gradesMap;
     }
 
     /**

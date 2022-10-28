@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.Set;
 
-import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -53,7 +52,7 @@ public class TaskListCard extends UiPart<Region> {
         deadline.setText(String.format("Due by %s", task.getTaskDeadline()));
 
         Set<Student> setOfStudents = task.getStudents();
-        final var gradesMap = Task.gradesMap;
+        final var gradesMap = Task.getGradesMap();
 
         if (setOfStudents.size() == 0) {
 
@@ -73,7 +72,9 @@ public class TaskListCard extends UiPart<Region> {
                 }
             }
             int percentageCompletion = 100 * numerator / denominator;
-            completion.setText(String.format("%d%% completed (%d/%d) students", percentageCompletion, numerator, denominator));
+            completion.setText(
+                    String.format("%d%% completed (%d/%d) students", percentageCompletion, numerator, denominator)
+            );
 
 
             studentsHeading.setText("List of Students:");
@@ -82,7 +83,9 @@ public class TaskListCard extends UiPart<Region> {
             StringBuilder studentsBodyTextString = new StringBuilder();
             for (Student student : setOfStudents) {
                 boolean taskCompletedForThisStudent = gradesMap.get(new GradeKey(student, task)) == Grade.GRADED;
-                studentsBodyTextString.append(String.format("[%s] %s\n", taskCompletedForThisStudent ? "X" : " ", student.getName()));
+                studentsBodyTextString.append(String.format(
+                        "[%s] %s\n", taskCompletedForThisStudent ? "X" : " ", student.getName())
+                );
             }
             studentsBodyText.setText(studentsBodyTextString.toString());
         }

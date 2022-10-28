@@ -46,7 +46,7 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
         filteredTutorialGroups = new FilteredList<>(this.addressBook.getTutorialGroupList());
         grades = FXCollections.observableMap(this.addressBook.getGradeMap());
-        Task.gradesMap = grades;
+        Task.setGradesMap(grades);
     }
 
     public ModelManager() {
