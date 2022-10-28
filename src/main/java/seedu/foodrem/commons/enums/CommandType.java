@@ -109,10 +109,10 @@ public enum CommandType {
             return getCommandWord() + ": Finds all items in FoodRem whose names contain substrings of any of "
                     + "the KEYWORDS (case-insensitive).\n\n"
                     + "Format:\n"
-                    + getCommandWord() + " KEYWORD\n\n"
+                    + getCommandWord() + " KEYWORD [KEYWORDS]...\n\n"
                     + "Examples:\n"
                     + getCommandWord() + " Potatoes\n"
-                    + getCommandWord() + " Carrots";
+                    + getCommandWord() + " Potatoes Carrots Cucumbers";
         }
     },
     INCREMENT_COMMAND("inc") {
