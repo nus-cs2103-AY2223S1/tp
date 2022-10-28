@@ -302,14 +302,14 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 Examples:
 Suppose MyInsuRec contains only one client 'John Tan' having phone number '0123456789':
 * `editClient i/1 n/John Smith` changes the name of this client to 'John Smith'.
-* `editClient i/1 e/johntan@insurec.com`adds the email 'johntan@insurec.com' to the client.
+* `editClient i/1 e/johntan@insurec.com` adds the email 'johntan@insurec.com' to the client.
 
 ### 5.2 Meeting commands
 
 #### 5.2.1 Add meeting: `addMeeting`
 
 Add a new meeting to MyInsuRec.
-DATE should be in DD-MM-YYYY format and TIME should be in 24-hour format.
+DATE should be in DDMMYYYY format and TIME should be in 24-hour format.
 
 Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 
