@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.clinkedin.logic.commands.AddCommand;
 import seedu.clinkedin.logic.commands.AddLinkCommand;
 import seedu.clinkedin.logic.commands.AddNoteCommand;
+import seedu.clinkedin.logic.commands.AddRateCommand;
 import seedu.clinkedin.logic.commands.AddTagCommand;
 import seedu.clinkedin.logic.commands.AddToCommand;
 import seedu.clinkedin.logic.commands.ClearCommand;
@@ -27,7 +28,6 @@ import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
-import seedu.clinkedin.logic.commands.RateCommand;
 import seedu.clinkedin.logic.commands.RedoCommand;
 import seedu.clinkedin.logic.commands.SortCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
@@ -135,8 +135,8 @@ public class AddressBookParser {
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
 
-        case RateCommand.COMMAND_WORD:
-            return new RateCommandParser().parse(arguments);
+        case AddRateCommand.COMMAND_WORD:
+            return new AddRateCommandParser().parse(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
@@ -145,5 +145,4 @@ public class AddressBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
