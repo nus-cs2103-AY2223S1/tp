@@ -1,6 +1,7 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_SESSION;
 import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.commons.util.StringUtil.commaSeparate;
@@ -34,7 +35,6 @@ public class GradeCommand extends Command {
             + PREFIX_GRADE + "100";
 
     public static final String MESSAGE_SUCCESS = "Grade [ %1$s ] for [ %2$s ] given to these student(s):\n[ %3$s ]";
-    public static final String MESSAGE_INVALID_SESSION = "The session [ %1$s ] does not exist in class [ %2$s ]!";
 
     private final List<Index> indices;
     private final Session session;
