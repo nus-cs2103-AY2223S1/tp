@@ -30,7 +30,7 @@ public class DeleteAttributeCommandParser implements Parser<DeleteAttributeComma
      */
     @Override
     public DeleteAttributeCommand parse(String userInput) throws ParseException {
-
+        assert userInput != null : "User input cannot be null";
         // Allows user to not specify '/' when deleting attribute
         userInput = userInput + "/";
         ArgumentMultimap argMultimap =
@@ -42,6 +42,8 @@ public class DeleteAttributeCommandParser implements Parser<DeleteAttributeComma
                 PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
                 PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE,
                 PREFIX_TIMEZONE);
+
+        assert prefixesToDelete.size() > 0 : "Need at least one valid prefix to delete";
 
         if (prefixesToDelete.size() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
