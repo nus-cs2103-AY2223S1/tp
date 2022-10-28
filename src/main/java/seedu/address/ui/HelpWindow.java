@@ -24,6 +24,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LinkCommand;
 import seedu.address.logic.commands.ListInternshipCommand;
 import seedu.address.logic.commands.ListPersonCommand;
+import seedu.address.logic.commands.SortInternshipCommand;
+import seedu.address.logic.commands.SortPersonCommand;
 
 /**
  * Controller for a help page
@@ -49,6 +51,8 @@ public class HelpWindow extends UiPart<Stage> {
             + FindInternshipCommand.MESSAGE_USAGE + "\n\n"
             + DeletePersonCommand.MESSAGE_USAGE + "\n\n"
             + DeleteInternshipCommand.MESSAGE_USAGE + "\n\n"
+            + SortPersonCommand.MESSAGE_USAGE + "\n\n"
+            + SortInternshipCommand.MESSAGE_USAGE + "\n\n"
             + ClearCommand.COMMAND_WORD + ": Clears all entries\n\n"
             + ExitCommand.COMMAND_WORD + ": Exits the program";
 
