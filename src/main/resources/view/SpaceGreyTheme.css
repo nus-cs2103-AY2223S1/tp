@@ -108,11 +108,11 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: 		#65737e;
+    -fx-background-color: 		#485058;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #485058;
     -fx-border-width: 1;
 }
 
