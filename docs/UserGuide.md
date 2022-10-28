@@ -239,6 +239,10 @@ Examples:
 
 Toggle the mode of the list between a compacted or an expanded mode.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** You can toggle the modes of individual elements in the list by clicking on them.
+
+</div>
+
 Expanded Mode:<br>
 ![ExpandedMode](images/ExpandedMode.png)
 
