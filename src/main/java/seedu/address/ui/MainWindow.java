@@ -32,7 +32,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
-import seedu.address.model.portfolio.Risk;
 
 /**
  * The Main Window. Provides the basic application layout containing
