@@ -34,9 +34,9 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     7. [Find persons with a preferred social media](#g-find-persons-with-a-preferred-social-media--social) : `social`
   * [General App Features](#general-app-features):
     1. [Viewing help](#a-viewing-help--help) : `help`
-    2. [Viewing history](#b-viewing-history--history) : `history`
-    3. [Undoing last command](#c-undo-last-modification--undo) : `undo`
-    4. [Exiting the app](#d-exiting-the-program--exit) : `exit`
+    2. [Viewing history](#a-viewing-history--history) : `history`
+    3. [Undoing last command](#b-undo-last-modification--undo) : `undo`
+    4. [Exiting the app](#c-exiting-the-program--exit) : `exit`
 * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
