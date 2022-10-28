@@ -1,0 +1,31 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class AddressBook
+Class UniqueSupplierList
+Class Supplier
+Class Person
+Class PersonCategory
+Class Name
+Class Phone
+Class Email
+Class Address
+Class Tag
+Class UniqueId
+
+AddressBook *--> "1" UniqueSupplierList
+Supplier .up.|> Person
+
+UniqueSupplierList-right->"0..*" Supplier
+
+Supplier *--> "1" PersonCategory
+Supplier *--> "1" Name
+Supplier *--> "1" Phone
+Supplier *--> "1" Email
+Supplier *--> "1" Address
+Supplier *--> "*" Tag
+Supplier *--> "~* pets" UniqueId
+@enduml
