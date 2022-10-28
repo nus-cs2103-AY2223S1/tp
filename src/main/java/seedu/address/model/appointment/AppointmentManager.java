@@ -20,7 +20,7 @@ import seedu.address.model.person.Person;
  * patients and nurses.
  */
 public class AppointmentManager {
-    private Set<Appointment> appointments;
+    private final Set<Appointment> appointments;
 
     /**
      * Appointment Manager Constructor
@@ -147,12 +147,11 @@ public class AppointmentManager {
             throw new IllegalArgumentException("Patient or Nurse must be given");
         }
         try {
-            Optional<Appointment> filteredAppointment = this.appointments.stream()
+            return this.appointments.stream()
                     .filter(x -> x.getAppointmentDateTime().equals(appointmentDateTime))
                     .filter(x -> nurse.map(n -> x.getNurse().equals(n)).orElse(false)
                             || patient.map(p -> x.getPatient().equals(p)).orElse(false))
                     .findFirst();
-            return filteredAppointment;
         } catch (NullPointerException e) {
             return Optional.empty();
         }

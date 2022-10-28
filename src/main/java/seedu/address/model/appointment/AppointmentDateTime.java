@@ -9,8 +9,8 @@ import seedu.address.model.appointment.enums.AppointmentSlotNumber;
  * Represents the datetime of an appointment between a patient and a nurse.
  */
 public class AppointmentDateTime implements Comparable<AppointmentDateTime> {
-    private LocalDate date;
-    private AppointmentSlotNumber slotNumber;
+    private final LocalDate date;
+    private final AppointmentSlotNumber slotNumber;
 
     /**
      * AppointmentDateTime constructor

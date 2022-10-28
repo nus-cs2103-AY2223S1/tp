@@ -11,9 +11,9 @@ public enum AppointmentSlotNumber {
     THREE(LocalTime.of(14, 0, 0)),
     FOUR(LocalTime.of(16, 0, 0));
 
-    private LocalTime time;
+    private final LocalTime time;
 
-    private AppointmentSlotNumber(LocalTime time) {
+    AppointmentSlotNumber(LocalTime time) {
         this.time = time;
     }
 

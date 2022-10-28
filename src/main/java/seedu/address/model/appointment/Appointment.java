@@ -117,12 +117,12 @@ public class Appointment implements Comparable<Appointment> {
     }
 
     @Override
-    public boolean equals(Object oTher) {
-        return oTher == this // short circuit if same object
-                || (oTher instanceof Appointment // instanceof handles nulls
-                        && patient.equals(((Appointment) oTher).patient)
-                        && nurse.equals(((Appointment) oTher).nurse)
-                        && appointmentDateTime.equals(((Appointment) oTher).appointmentDateTime)); // state check
+    public boolean equals(Object o) {
+        return o == this // short circuit if same object
+                || (o instanceof Appointment // instanceof handles nulls
+                        && patient.equals(((Appointment) o).patient)
+                        && nurse.equals(((Appointment) o).nurse)
+                        && appointmentDateTime.equals(((Appointment) o).appointmentDateTime)); // state check
     }
 
     @Override
