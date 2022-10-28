@@ -38,8 +38,9 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PRICE + "1000000 "
             + PREFIX_PROPERTY_TYPE + "HDB "
             + PREFIX_TAG + "High-End "
+            + PREFIX_TAG + "Available "
+            + PREFIX_PROPERTY_TYPE + "HDB"
             + PREFIX_TAG + "Available";
-
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in Condonery";
