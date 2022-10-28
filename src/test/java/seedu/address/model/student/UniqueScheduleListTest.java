@@ -14,8 +14,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.student.exceptions.DuplicatePersonException;
-import seedu.address.model.student.exceptions.PersonNotFoundException;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.testutil.StudentBuilder;
 
 
@@ -52,9 +52,9 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
+    public void add_duplicatePerson_throwsDuplicateStudentException() {
         uniqueScheduleList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueScheduleList.add(ALICE));
+        assertThrows(DuplicateStudentException.class, () -> uniqueScheduleList.add(ALICE));
     }
 
     @Test
@@ -68,8 +68,8 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueScheduleList.setStudent(ALICE, ALICE));
+    public void setPerson_targetPersonNotInList_throwsStudentNotFoundException() {
+        assertThrows(StudentNotFoundException.class, () -> uniqueScheduleList.setStudent(ALICE, ALICE));
     }
 
     @Test
@@ -101,10 +101,10 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicateStudentException() {
         uniqueScheduleList.add(ALICE);
         uniqueScheduleList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniqueScheduleList.setStudent(ALICE, BOB));
+        assertThrows(DuplicateStudentException.class, () -> uniqueScheduleList.setStudent(ALICE, BOB));
     }
 
     @Test
@@ -113,8 +113,8 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueScheduleList.remove(ALICE));
+    public void remove_personDoesNotExist_throwsStudentNotFoundException() {
+        assertThrows(StudentNotFoundException.class, () -> uniqueScheduleList.remove(ALICE));
     }
 
     @Test
@@ -155,9 +155,9 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setPersons_listWithDuplicatePersons_throwsDuplicateStudentException() {
         List<Student> listWithDuplicateStudents = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueScheduleList.setStudents(listWithDuplicateStudents));
+        assertThrows(DuplicateStudentException.class, () -> uniqueScheduleList.setStudents(listWithDuplicateStudents));
     }
 
     @Test

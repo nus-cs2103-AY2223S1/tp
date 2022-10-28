@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.DuplicatePersonException;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.testutil.StudentBuilder;
 
 public class TeachersPetTest {
@@ -52,7 +52,7 @@ public class TeachersPetTest {
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         TeachersPetStub newData = new TeachersPetStub(newStudents);
 
-        assertThrows(DuplicatePersonException.class, () -> teachersPet.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> teachersPet.resetData(newData));
     }
 
     @Test
