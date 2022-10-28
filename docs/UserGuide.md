@@ -7,11 +7,9 @@ Are you a CS student struggling to keep track of your internship?
 Do you feel tired of using spreadsheets to keep track of your applications?
 We have just the right tool for you!
 
-Introducing PleaseHireUs (PHU), the internship tracking application made just for you!
+Introducing PleaseHireUs (PHU), the internship tracking application made just for you!<br>
 
-Here are its main features:
-* View the status of your individual application and assessment dates at a glance
-* View the overall statistics of the status of all your internship applications in a stacked bar chart
+![Ui](images/phu_icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 Now you will never miss any internship application deadlines or interviews again!
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
@@ -157,8 +155,8 @@ Format: `help`
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
-- Press <kbd>esc</kbd> to close the Help window <br>
-- Press <kbd>C</kbd> to copy the User Guide url into the clipboard when the Help window is opened
+- Press <button>esc</button> to close the Help window <br>
+- Press <button>C</button> to copy the User Guide url into the clipboard when the Help window is opened
 </div>
 
 ### Adding an internship: `add`
@@ -221,7 +219,7 @@ Examples:
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
 - `company_name` --> `c`<br>
-- `position`--> `p`<br>
+- `position` --> `p`<br>
 - `application_process` --> `pr`<br>
 - `date` --> `d`<br>
 
@@ -250,7 +248,7 @@ Examples:
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
 - `company_name` --> `c`<br>
-- `position`--> `p`<br>
+- `position` --> `p`<br>
 - `application_process` --> `pr`<br>
 - `date` --> `d`<br>
 - `tag` --> `t`<br>
