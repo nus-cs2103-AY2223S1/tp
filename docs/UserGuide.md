@@ -61,7 +61,7 @@ medication history.
 | **Ward Number**   | The ward where the inpatient is in.                                             |
 | **Next-Of-Kin**   | The patient's closest living relative.                                          |
 | **Appointment**   | An arrangement to consult the doctor at a particular time.                      |
-                                                                                                                                                                                                                                                                                                                                  |
+                                                                                                                                                                                                                                                                                                                                  
 
 
 
