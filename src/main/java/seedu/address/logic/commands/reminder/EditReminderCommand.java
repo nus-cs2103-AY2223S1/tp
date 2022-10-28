@@ -47,6 +47,7 @@ public class EditReminderCommand extends Command {
     public static final String MESSAGE_EDIT_REMINDER_SUCCESS = "Edited Reminder: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in ModQuik.";
+    public static final String MESSAGE_DATETIME_REMINDER = "Both new date and new timeslot must be given.";
 
     private final Index index;
     private final EditReminderDescriptor editReminderDescriptor;

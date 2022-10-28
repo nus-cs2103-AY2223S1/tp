@@ -1,11 +1,11 @@
 package seedu.address.logic.commands.consultation;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import java.util.List;
@@ -38,8 +38,8 @@ public class EditConsultationCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_VENUE + "VENUE] "
-            + "[" + PREFIX_DAY + "DAY and "
-            + PREFIX_TIMESLOT + "TIMESLOT] "
+            + "[" + PREFIX_DATE_DAY + "DAY and "
+            + PREFIX_TIME + "TIMESLOT] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE + "CS2103T"
