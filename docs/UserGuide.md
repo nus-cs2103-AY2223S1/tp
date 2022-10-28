@@ -154,8 +154,10 @@ Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBU
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
 <br>
-RISK_APPETITE can only have the values ‘High’, ‘Medium’ or ‘Low’
+RISK_APPETITE can only have the values ‘HIGH’, ‘MEDIUM’ or ‘LOW’
 <br>
+<br>
+CLIENT_TYPE can only have the values ‘POTENTIAL’ or ‘CURRENT’
 <br>
 <br>
 A client can have any number of tags (including 0)
