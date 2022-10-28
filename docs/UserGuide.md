@@ -59,7 +59,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -75,15 +75,13 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 A student can have any number of tags (including 0)
 </div>
 
-* The `ROLE` of the person can only be either student or TA.
-
 Examples:
 * `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
 * `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
 
 #### 3.1.2 Deleting a student: `delete student`
 
-Deletes the specified student from the list of people.
+Deletes the specified student from the list of students.
 
 Format: `delete student INDEX`
 
@@ -164,7 +162,7 @@ Day should take in a number from 1 (Monday) to 7 (Sunday).
 </div>
 
 Examples:
-* `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`
+* `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
 #### 3.2.2 Deleting a tutorial: `delete tutorial`
 
@@ -239,12 +237,12 @@ Examples:
 
 Adds a reminder to the list of reminders.
 
-Format: `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION`
+Format: `add reminder n/NAME T/DEADLINE_TIME D/DEADLINE_DATE d/DESCRIPTION`
 
 * Adds a reminder with either `HIGH`, `MEDIUM` or `LOW` priority.
 
 Examples:
-* `add reminder n/mark midterms T/2022-10-26 20:00 p/high d/300 papers to mark`
+* `add reminder n/Mark Midterms D/2022-01-01 T/15:00 d/300 papers to mark p/HIGH`
 
 
 #### 3.4.2 Deleting a reminder : `delete reminder`
@@ -270,11 +268,16 @@ Format: `mark reminder INDEX`
 Examples:
 * `mark reminder 1`
 
-![Before marking reminder](images/UnmarkedReminder.png)
-_Figure 1. Before executing command: `mark reminder 1`_
-
-![After marking reminder](images/MarkedReminder.png)
-_Figure 1.2. After executing command: `mark reminder 1`_
+<table>
+  <tr>
+    <td>Before executing mark command</td>
+    <td>After executing mark command</td>
+  </tr>
+  <tr>
+    <td><img src="images/UnmarkedReminder.png" width=350 height=400></td>
+    <td><img src="images/MarkedReminder.png" width=350 height=400></td>
+  </tr>
+ </table>
 
 #### 3.4.4 Unmark a reminder : `unmark reminder`
 
@@ -310,7 +313,7 @@ Examples:
 * `switch f/tutorial` will switch tabs and display the tutorial list.
 * `switch f/grade` with switch tabs and display a pie chart showing an overview of the number of students in each grade category.
 
-![Grade Chart Tab](images/SwitchGrade.png)
+![Grade Chart Tab](images/GradeChart.png)
 _Figure 2. Grade Chart Tab_
 
 ### 3.6 Clearing all data: `clear`
