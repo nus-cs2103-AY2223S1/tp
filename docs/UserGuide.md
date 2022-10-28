@@ -138,30 +138,36 @@ Here, we will be guiding you on the basic features of *MyInsuRec* and help you g
 ![AddClientTommy](images/quick-start/AddClientTommy.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Both client name and their phone number are needed to add the client into *MyInsuRec*.
+Both client name and their phone number are **needed** to add the client into *MyInsuRec*.
 </div>
 
-3. Tommy has also given us his email address, his address as well as his birthday, and we would like to add that into *MyInsuRec*. To do that, we first need to get Tommy's index from the list of clients, which is 7. Type in `editClient i/7 e/tommytan21@gmail.com a/167 Canning Road bd/25081982` and hit enter. Tommy's record in the list of clients will update with the newly inputted details. The image below shows *MyInsuRec* after updating Tommy with the additional details.
+3. Tommy has also given us his email address, his address as well as his birthday, as such we would like to update Tommy's record. To do that, we first need to get Tommy's index from the list of clients, which is 7. Type in `editClient i/7 e/tommytan21@gmail.com a/167 Canning Road bd/25081982` and hit enter. Tommy's record in the list of clients will update with the newly inputted details. The image below shows *MyInsuRec* after updating Tommy with the additional details.
 
 ![EditClientTommy](images/quick-start/EditClientTommy.png)
 
-4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com bd/09091973` also adds in the client's email and birthday directly.
+4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com b/09091973` also adds in the client's email and birthday directly.
 
 <div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
 See [addClient](#311-adding-a-client-addclient) for more variety of optional fields!
 </div>
 
-5. Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review plan` (You can replace `d/27102022` with today's date in the DDMMYYYY format)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added. The image below shows *MyInsuRec* after adding the meeting with Bernice.
+5. Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review Product 2` (You can replace `d/27102022` with today's date in the DDMMYYYY format)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added. The image below shows the list of meetings after adding the meeting with Bernice.
 
 ![AddMeetingBernice](images/quick-start/AddMeetingBernice.png)
 
-6. To view the meeting (with index number of 1) in greater detail, we can call `viewMeeting i/1`. This brings up a more detailed view of the meeting, with information such as description and Bernice's contact number. The image below shows *MyInsuRec* after using the `viewMeeting` command.
+6. We would like to get Bernice's contact number and message about her upcoming meeting! We can call `viewMeeting i/1` to help us. This brings up a more detailed view of the meeting, with information such as description of the meeting and Bernice's contact number. The image below shows *MyInsuRec* after using the `viewMeeting` command.
 
 ![ViewMeetingBernice](images/quick-start/ViewMeetingBernice.png)
 
-7. Now, to go back to the list of clients, simply type in `listClient`. This brings us back to the list of clients.
+7. Now, to go back to the list of clients, simply type in `listClient`. This brings us back to the list of clients. The image below shows the current state of *MyInsuRec* after following all the previous steps.
 
-8. We would like to define and add more products! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product. The image below shows *MyInsuRec* adding the product.
+![ListClient](images/quick-start/ListClient.png)
+
+8. Suppose your company introduced a new product 'MyInsureCare' that you are interested to sell, and would like to add it into *MyInsuRec*! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product. The image below shows *MyInsuRec* after adding the product.
+
+<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+You can use `listClient`, `listMeeting` and `listProduct` to traverse between the different lists accordingly.
+</div>
 
 ![AddProductMyInsureCare](images/quick-start/AddProductMyInsureCare.png)
 
@@ -177,7 +183,7 @@ Only products added already via `addProduct` can be used! This is to help ensure
 
 ![DelClientAlex](images/quick-start/DelClientAlex.png)
 
-And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#3-features) where all the commands and their details can be found.
+And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have more advanced features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#3-features) where all the commands and their details can be found.
 
 To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*. 
 
@@ -404,7 +410,7 @@ Format: `delProduct i/INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from MyInsuRec's product list, it also removes the product from any association with your clients.
+This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from MyInsuRec's product list, it also **removes the product from any association with your clients**.
 </div>
 
 Examples:
