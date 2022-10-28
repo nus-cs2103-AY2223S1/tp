@@ -3,6 +3,7 @@ package seedu.address.model.person.github;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * Class for each individual repository for a specified GitHub.
@@ -34,8 +35,8 @@ public class Repo {
         return this.repoUrl;
     }
 
-    public String getDescription() {
-        return this.description;
+    public Optional<String> getDescription() {
+        return Optional.ofNullable(this.description);
     }
 
     public LocalDateTime getLastUpdated() {

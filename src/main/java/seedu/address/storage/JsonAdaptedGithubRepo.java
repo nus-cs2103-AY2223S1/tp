@@ -38,7 +38,7 @@ public class JsonAdaptedGithubRepo {
     public JsonAdaptedGithubRepo(Repo source) {
         name = source.getRepoName();
         url = source.getRepoUrl();
-        description = source.getDescription();
+        description = source.getDescription().orElse(null);
         lastUpdated = source.getLastUpdated();
     }
 

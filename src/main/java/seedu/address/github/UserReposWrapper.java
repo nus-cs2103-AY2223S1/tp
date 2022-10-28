@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -89,12 +90,12 @@ public class UserReposWrapper {
         throw new RepoNotFoundException("Provided ID does not correspond to a repository owned by this user!");
     }
 
-    public String getDescription(int id) {
+    public Optional<String> getDescription(int id) {
         JSONObject obj;
         for (int i = 0; i < this.reposJson.length(); i++) {
             obj = (JSONObject) this.reposJson.get(i);
             if (obj.getInt("id") == id) {
-                return obj.optString(DESCRIPTION_KEY);
+                return Optional.ofNullable(obj.optString(DESCRIPTION_KEY, null));
             }
         }
 

@@ -101,7 +101,7 @@ public class User {
             repoList.add(new Repo(
                 userReposWrapper.getRepoName(repoId),
                 userReposWrapper.getRepoUrl(repoId),
-                userReposWrapper.getDescription(repoId),
+                userReposWrapper.getDescription(repoId).orElse(null),
                 userReposWrapper.getLastUpdated(repoId)
             ));
         }
