@@ -12,9 +12,10 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
     - [Adding modules](#adding-modules)
     - [Listing modules](#listing-modules)
     - [Finding modules](#finding-modules)
+    - [Deleting modules](#deleting-modules)
   - [Tasks-Related Features](#tasks-related-features)
     - [Adding a task](#adding-a-task)
-    - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
+    - [Deleting a task](#deleting-a-task)
     - [Editing a task](#editing-a-task)
     - [Marking a task](#marking-a-task)
     - [Unmarking a task](#unmarking-a-task)
@@ -125,6 +126,48 @@ Examples:
 
 `m find 30` finds modules whose module code contains the `KEYWORD` '30' such as 'cs2030s'
 
+### Deleting modules
+Deletes the specified exam according to the index given.
+
+Format: `m del INDEX`
+* Deletes the module at the specified index from the module list.
+* INDEX refers to the index number shown in the module list.
+* INDEX must be a positive integer 1, 2, 3, …​
+* If INDEX is non-positive or more than the number of modules in the module list, an error message will be displayed.
+
+Example:
+`m del 1` deletes the first module in the module list.
+
+`m del 3` deletes the third module in the module list.
+
+**Note:** All tasks and exams related to the module will be deleted after the module is deleted.
+
+
+### Editing modules
+Edits the specified module by updating the existing values to the input values.
+
+Format: `m edit INDEX (must be a positive integer) [c/MODULE_CODE]* [m/MODULE_NAME]* [mc/MODULE_CREDIT]*`
+* Edits the module at the specified INDEX in the exam list.
+* `MODULE_CODE` refers to the module code of the module
+* `MODULE_NAME` refers to the name of the module
+* `MODULE_CREDIT` refers to the number of modular credits that the module has
+* The index must be a positive integer 1, 2, 3, …
+* If the index is a non-positive or more than the number of modules in the module list, an error message will be displayed.
+* The module cannot be edited if its module code is similar to an existing module in the module list. An error message will be displayed to inform the user that the module already exists in the module list.
+* At least one optional field of the module to edit must be provided. Otherwise, an error message will be shown.
+* `MODULE_CODE` must be at least 6 characters long and the first two characters of the module code must be an alphabetical character.
+* `MODULE_NAME` should not be empty. Otherwise, an error message will be displayed to the user.
+* `MODULE_CREDIT` should not be empty and must be an integer between 0 and 20 inclusive.
+
+Examples:
+
+`m edit 1 m/Programming Methodology I mc/4` changes the module name of the first module in the module list to ‘Programming Methodology I` and the module credit to ‘4’.
+
+`m edit 2 c/cs2040 m/Data Structures and Algorithms mc/4` changes the module name of the second module in the module list to ‘Data Structures and Algorithms’, the module code to ‘cs2040’ and the module credit to ‘4’.
+<div markdown="span" class="alert alert-info">
+
+**Note:** If the module code of the module is edited, and the module is linked to some tasks and exams, the module of these tasks and exams will be changed to this edited module.
+</div>
 
 
 ## Tasks-related Features
@@ -142,21 +185,23 @@ Format: `t add m/MODULE d/DESCRIPTION`
 Example:
 `t add m/CS2105 d/Assignment 1` adds a task with the module as 'CS2105' and description as 'Assignment 1' into the task list.
 
-### Deleting task function [Coming Soon in v1.2]
+### Deleting a task 
 Deletes the specified task according to the index given
 
-Format: `delete INDEX`
+Format: `t del INDEX`
 * Deletes the task at the specified index from the storage
 * The index refers to the index number shown in the task list.
-* The index must be a positive integer 1, 2, 3, …​
+* The index must be a positive integer 1, 2, 3, …
 * If the task list is empty and the user inputs any number, an error message will be displayed.
 * If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
 
 Examples:
 
-`delete 1` deletes the first task in the task list
+`t del 1` deletes the first task in the task list
 
-`delete 3` deletes the first task in the task list
+`t del 3` deletes the first task in the task list
+
+**Note:** When the task is deleted, if it has a link to an exam, this link will be dropped.
 
 ### Editing a task
 Edits the specified task, by updating the existing values to the input values.
