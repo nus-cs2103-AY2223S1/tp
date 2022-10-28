@@ -333,6 +333,7 @@ Action | Format, Examples
 **Type -p** | `type -p`
 
 **Client Directory**
+
 Action | Format, Examples
 --------|------------------
 **Add -c** | `add n/NAME a/ADDRESS [-i] [t/TAG]…​` <br> e.g., `add n/James a/123, Clementi Rd, 1234665 t/friend t/colleague`
