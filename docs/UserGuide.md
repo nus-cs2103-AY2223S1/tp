@@ -26,14 +26,6 @@ Welcome to *MyInsuRec User Guide*!
 
 This guide explains how you can use *MyInsuRec* to organize and manage your clients, meetings and products. This guide has been structured for users to quickly find and understand what they need.
 
-Click on the links below to quickly get to what you need.
-
-{ fill with instructions linking to different sections of the user guide }
-
-e.g.
-1. xyz (link)
-
-
 ### 2.2 Symbols
 
 | Symbol               | Meaning                                                                         |
@@ -89,7 +81,20 @@ Beyond individual products, you can also:
 
 ### 2.4 User Interface
 
-{ replace with a diagram of *MyInsuRec* and arrows and notes describing the different components of *MyInsuRec* }
+*MyInsuRec* comes with a simple [GUI](#gui) to help you see your clients and meetings easily.
+The user interface consists of a main window, command result window, [CLI](#cli),and toolbar.
+
+Below the GUI title, you will see a toolbar which can be used to change light/dark mode, open the help window, and exit the app.
+
+The main window shows the list of clients, meetings or products on executing a list command.
+It also shows a lists of details associated with a client, meeting, or product on executing a view command.
+
+All commands are accepted from the user via the [CLI](#cli).
+
+The result of executing a command is shown in the command result window just above the CLI.
+Here you will see help, command success, and warning messages.
+
+![Ui](images/annotatedGui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,9 +187,9 @@ Only products added already via `addProduct` can be used! This is to help ensure
 
 ![DelClientAlex](images/quick-start/DelClientAlex.png)
 
-And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have more advanced features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#3-features) where all the commands and their details can be found.
+And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have more advanced features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#5-features) where all the commands and their details can be found.
 
-To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't get panicked! 
+To get started with a clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't get panicked! 
 
 Welcome to your new and organized life, and happy (financial) advising!
 
@@ -233,7 +238,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-In order to use `pd/PRODUCT` as a parameter, you must have already added that product into *MyInsuRec* via `addProduct`. See [addProduct](#331-adding-a-product-addproduct).
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into *MyInsuRec* via [`addProduct`](#531-adding-a-product-addproduct).
 </div>
 
 Examples:
@@ -243,21 +248,23 @@ Examples:
 
 #### 5.1.2 List clients: `listClient`
 
-* List clients in *MyInsuRec* with a valid filter.
-* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
-* `BIRTHDAY` is specified by keywords. The possible keywords are:
-    * `tomorrow` for a list of clients whose birthday is tomorrow;
-    * `week` for a list of clients whose birthday is in the next week;
-    * `month` for a list of clients whose birthday is in the next month.
+List clients in MyInsuRec with a valid filter.
 
 Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
+
+* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
+* `BIRTHDAY` is specified by keywords. The possible keywords are:
+  * `tomorrow` for a list of clients whose birthday is tomorrow;
+  * `week` for a list of clients whose birthday is in the next week;
+  * `month` for a list of clients whose birthday is in the next month.
 
 Examples:
 * `listClient`
 * `listClient pd/Product1`
 * `listClient b/week`
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
+<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. 
+A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
 #### 5.1.3 View client: `viewClient`
@@ -302,37 +309,46 @@ Suppose *MyInsuRec* contains only one client 'John Tan' having phone number '012
 
 #### 5.2.1 Add meeting: `addMeeting`
 
-Add a new meeting to *MyInsuRec*.
-DATE should be in DDMMYYYY format and TIME should be in 24-hour HHMM format.
+Add a new meeting to MyInsuRec.
 
-Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 
-* Add a meeting.
-* A meeting contains the [`INDEX`](#index) of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
+* [`INDEX`](#index) refers client in the client list you are meeting with.
+* `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
+1 February 2022.
+* `START_TIME` and `END_TIME` should be give in the format HHMM. For example, 
+1234 represents the 12:34PM.
+* A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 
 Examples:
-* `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
+* `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal` 
+
+<div markdown="span" class="alert alert-success">:information_source: **Friendly Tip:**
+MyInsuRec can help you detect conflicting meeting times! For example, attempting
+to add a meeting from 1330 to 1430 when you already have one scheduled for 
+1300 to 1400 will display an error message.
+</div>
 
 #### 5.2.2 List meetings: `listMeeting`
 
-Show a list of meetings in *MyInsuRec*.
-
-If used with optional parameter `[d/DATE]`, *MyInsuRec* will show a list of meetings happening in that time period.
+Show the list of meetings in MyInsuRec.
+If used with the optional parameter `[d/DATE]`, *MyInsuRec* will show only meetings happening in that time period.
 
 Format: `listMeeting [d/DATE]`
 
-* Time periods are specified by keywords. The possible keywords are:
-  * `tomorrow` for a list of meetings happening tomorrow;
-  * `week` for a list of meetings happening in the next week;
-  * `month` for a list of meetings happening in the next month.
+* `DATE` is specified by keywords. The possible keywords are:
+  * `tomorrow` for a list of meetings happening today or tomorrow;
+  * `week` for a list of meetings happening today or in the next 7 days;
+  * `month` for a list of meetings happening this month.
 
 Examples:
+* `listMeeting`
 * `listMeeting d/tomorrow`
 * `listMeeting d/month`
 
 #### 5.2.3 View meeting: `viewMeeting`
 
-View detail associated with a meeting, such as meeting's date and time.
+View details associated with a meeting, such as meeting's date and time.
 
 Format: `viewMeeting i/INDEX`
 
@@ -349,7 +365,6 @@ Format: `delMeeting i/INDEX`
 
 * Delete the meeting at the specified [`INDEX`](#index).
 
-
 Examples:
 * `delMeeting i/2`
 
@@ -361,11 +376,12 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 
 * Edit information about the meeting at the specific [`INDEX`](#index).
 * At least one optional detail must be modified.
-* Maintain values of details not edited by the command.
+* Details that are not edited will be kept as is.
 
 Suppose *MyInsuRec* contains only one meeting as created in the [`addMeeting`](#521-add-meeting-addmeeting) command:
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
-* `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
+* `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, 
+since the start time is later than end time.
 
 ### 5.3 Product commands
 
@@ -535,29 +551,29 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 Here are a few reasons why this may have occurred:
 
 1. The data file is empty:
-    * Locate the [date file](#4-faq).
+    * Locate the [date file](#6-faq).
     * If the file is empty ,i.e. contains no data, then *MyInsuRec* did not load any data on start up.
     * How to recover? :
-    * [Swap the file with your backup](#353-creating-and-using-data-file-backups).
+    * [Swap the file with your backup](#553-creating-and-using-data-file-backups).
 2. The data file was corrupt before starting the app:
     * This issue is harder to detect since the app will only empty the file if the data in it was corrupt before starting.
     * How to avoid this issue? :
-    * [Create backups](#353-creating-and-using-data-file-backups) of your `myinsurec.json` file and ensure that they are not corrupt.
-    * See the [section below](#my-data-file-is-corrupt) on how to detect and recover from file corruption.
+    * [Create backups](#553-creating-and-using-data-file-backups) of your `myinsurec.json` file and ensure that they are not corrupt.
+    * See the [section below](#83-my-data-file-is-corrupt) on how to detect and recover from file corruption.
 
 ### 8.3 My data file is corrupt
 
 Do not launch the app if you detect this issue, since the `myinsurec.json` file will be cleared of all data.
 To recover:
 
-1. [create a backup](#353-creating-and-using-data-file-backups) of the file.
+1. [create a backup](#553-creating-and-using-data-file-backups) of the file.
 2. Edit all invalid fields and format issues manually in the backup file.
     * What should I look out for while editing? :
     * Check that the structure of the file is correct (no missing semicolons, commas, brackets, and data fields). <br> It helps to be familiar with the [JSON file](#json-file) format here, but most users can quickly pick up the basics by referring to a working copy of the data file.
     * Some invalid data values to look out for :
     * invalid dates for client birthday, or meeting date e.g. 00000000 (invalid DDMMYYYY), 1212202020 (too many digits),
     * Invalid meeting start time or end time e.g. 2500 (invalid HHMM).
-3. [Use this edited file](#353-creating-and-using-data-file-backups) when launching *MyInsuRec*.
+3. [Use this edited file](#553-creating-and-using-data-file-backups) when launching *MyInsuRec*.
 
 --------------------------------------------------------------------------------------------------------------------
 
