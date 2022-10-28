@@ -25,16 +25,26 @@ Welcome to *_MyInsuRec_ User Guide*!
 Our team would like to thank you for choosing to use _MyInsuRec_! <br>
 
 In order to smoothen the learning curve for you,
-this guide would allow you to effectively learn how to use _MyInsuRec_. [installation guide](#32-installation-instructions)
+this guide would allow you to effectively learn how to use _MyInsuRec_.
+
+Before we go on further, look out for these symbols in the User Guide as they provide some important message you might want to know!
+
+| Symbol               | Meaning                                                                                  |
+|----------------------|------------------------------------------------------------------------------------------|
+| :bulb:               | Tips and tricks to help you understand _MyInsuRec_ better.                               |
+| :information_source: | Additional information that can be helpful.                                              |
+| :exclamation:        | Crucial information that you should be aware of.                                         |
+
+Now we can move on to talk more about _MyInsuRec_!
 
 <div markdown="block" class="alert alert-info">:exclamation:
 If you have **not installed** _MyInsuRec_, you can follow the [installation guide](#32-installation-instructions) here!
 </div>
 
-After you have installed _MyInsuRec_, you should
-1. Familiarise yourself with our [Terminology and Symbol](#23-terminologies) that are used throughout this User Guide.
+After you have installed _MyInsuRec_, you can
+1. Familiarise yourself with our [Terminologies](#23-terminologies) that are used throughout this User Guide.
 2. Understand the [layout of the interface](#24-user-interface) you will be interacting with.
-3. Follow this [step-by-step tutorial](#4-quick-start) to learn the basic feature of _MyInsuRec_.
+3. Follow this [step-by-step tutorial](#4-quick-start) to learn the basic features of _MyInsuRec_.
 4. Check out other advance features under [Features](#5-features) once you got the hang of the basic features.
 5. View our [glossary](#8-glossary) when you come across a unfamiliar term used.
 
@@ -44,68 +54,71 @@ For **experienced user**, you can look at the [Command Summary](#7-command-summa
 
 In the event where you encounter any trouble or issues, refer to our [FAQ section](#6-faq) or feel free to [contact us](#9-contact-us).
 
-### 2.2 Symbols
+We hopefully that this guide is helpful in smoothing out the learn curve for you!
 
-| Symbol               | Meaning                                                                       |
-|----------------------|-------------------------------------------------------------------------------|
-| `command`            | Indicates some command or parameter that can be entered into MyInsuRec's CLI. |
-| :information_source: | Additional information that can be helpful.                                   |
-| :exclamation:        | Crucial information that you should be aware of.                              |
+--------------------------------------------------------------------------------------------------------------------
 
-
-### 2.3 Terminologies
+### 3 Terminologies
 
 The following explains some terminology and main features of *MyInsuRec*:
 
-#### 2.3.1 Clients
+#### 3.1 Clients
 
-At the heart of *MyInsuRec* is the ability to organize and keep track of clients. You can do client-specific tasks such as:
+At the heart of *MyInsuRec* is the ability to help you organize and keep track of clients. 
 
-* add a client and their details into *MyInsuRec*.
-* view a client and their details, such as any upcoming meetings and purchased products.
-* update a client's details.
-* delete a client from *MyInsuRec*.
+You can do client-specific tasks such as:
+
+* **add** a client and their details into *MyInsuRec*.
+* **view** a client and their details, such as any upcoming meetings and purchased products.
+* **update** a client's details.
+* **delete** a client from *MyInsuRec*.
 
 Beyond individual clients, you can also:
 
-* show a summarized list of all clients with their important details such as contact number, products bought.
-* filter and display a summarized list of clients with upcoming birthdays to help boost your customer relations.
-* filter and display a summarized list of clients who purchased a specific product.
+* **display** a summarized list of all clients with their important details such as contact number, products bought.
+* **filter and display** a summarized list of clients with upcoming birthdays to help boost your customer relations.
+* **filter and display** a summarized list of clients who purchased a specific product.
 
-#### 2.3.2 Meetings
+#### 3.2 Meetings
 
-*MyInsuRec* eases a financial advisor's mental load by helping them track of any upcoming meetings. You can do meeting-specific tasks such as:
+*MyInsuRec* eases your mental load by helping you to keep track of any upcoming meetings. 
 
-* add a meeting to a client in *MyInsuRec*.
-* view a meeting in greater details.
-* update a meeting's details.
-* delete a meeting from a client in *MyInsuRec*.
+You can do meeting-specific tasks such as:
+
+* **add** a meeting to a client in *MyInsuRec*.
+* **view** a meeting in greater details.
+* **update** a meeting's details.
+* **delete** a meeting from a client in *MyInsuRec*.
 
 Beyond individual meetings, you can also:
 
-* show a summarized list of all meetings with their important details such as meeting date and time.
-* quickly get a glance of tomorrow's meetings, and also in the coming week and month.
+* **display** a summarized list of all meetings with their important details such as meeting date and time.
+* **filter and display** a summarized list of upcoming meeting to help facilitate your follow-up with your clients.
 
-#### 2.3.3 Products
+#### 3.3 Products
 
-In order to help track a client's purchases, *MyInsuRec* also includes the ability for users to define products that a client might have purchased. You can do product-specific tasks such as:
+*MyInsuRec* also includes the ability for you to define your products to track products your clients might have purchased. 
 
-* add a product to *MyInsuRec*.
-* delete a product from *MyInsuRec*.
+You can do product-specific tasks such as:
+
+* **add** a product to *MyInsuRec*.
+* **delete** a product from *MyInsuRec*.
 
 Beyond individual products, you can also:
 
-* show a summarized list of all products.
+* **display** a summarized list of all products.
 
-### 2.4 User Interface
+--------------------------------------------------------------------------------------------------------------------
+
+### 4 User Interface
 
 { replace with a diagram of MyInsuRec and arrows and notes describing the different components of MyInsuRec }
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Installation Guide
+## 5. Installation Guide
 
-### 3.1 System Requirements
+### 5.1 System Requirements
 
 Here is everything you need to install and set up *MyInsuRec*. For the best possible experience, we recommend that you use *MyInsuRec* on the following supported operating systems:
 
@@ -115,7 +128,7 @@ Here is everything you need to install and set up *MyInsuRec*. For the best poss
 
 You will also require Java 11 or above to run *MyInsuRec*. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). To tell if you already have the correct version of Java installed on your system, refer to [8.1 Checking your system's Java version](#81-checking-your-systems-java-version).
 
-### 3.2 Installation Instructions
+### 5.2 Installation Instructions
 
 To install *MyInsuRec*, simply follow the steps below:
 
@@ -132,9 +145,9 @@ Ta-da! *MyInsuRec* is now installed on your system.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Quick start
+## 6. Quick start
 
-### 4.1 Basic features
+### 6.1 Basic features
 
 Are you new to *MyInsuRec*? This section is the place to start! 
 
@@ -156,7 +169,7 @@ Both client name and their phone number are **needed** to add the client into *M
 
 4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com b/09091973` also adds in the client's email and birthday directly.
 
-<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+<div markdown="span" class="alert alert-success">:bulb: **Tips and tricks:**
 See [addClient](#311-adding-a-client-addclient) for more variety of optional fields!
 </div>
 
@@ -174,7 +187,7 @@ See [addClient](#311-adding-a-client-addclient) for more variety of optional fie
 
 8. Suppose your company introduced a new product 'MyInsureCare' that you are interested to sell, and would like to add it into *MyInsuRec*! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product. The image below shows *MyInsuRec* after adding the product.
 
-<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+<div markdown="span" class="alert alert-success">:bulb: **Tips and tricks:**
 You can use `listClient`, `listMeeting` and `listProduct` to traverse between the different lists accordingly.
 </div>
 
@@ -200,7 +213,7 @@ Welcome to your new and organized life, and happy (financial) advising!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Features
+## 7. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -231,16 +244,19 @@ Welcome to your new and organized life, and happy (financial) advising!
 
 </div>
 
-### 5.1 Client commands
+### 7.1 Client commands
 
-#### 5.1.1 Add client: `addClient`
+#### 7.1.1 Add client: `addClient`
 
-Add a new client to MyInsuRec.
+Add a new client to _MyInsuRec_.
+
+Suppose you found a potential client, you can use this command to add their particulars into _MyInsuRec_ so that you would not forget! 
 
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
-* A client must have a `NAME` and a `PHONE_NUMBER`.
+* A client **must** have a `NAME` and a `PHONE_NUMBER`.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
+* If a pair of `Name` and `PHONE_NUMBER` already exist in _MyInsuRec_, adding the same pair of `NAME` and `PHONE_NUMBER` will result in an error!
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. 
@@ -248,11 +264,16 @@ See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
 Examples:
-* `addClient n/John Tan p/12345678`
-* `addClient n/John Tan p/12345678 b/12122000`
-* `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
+* Suppose you just met John, and he provided you with only his name and phone number, you can add him in using,
+  * `addClient n/John Tan p/12345678`
+* Suppose John also provides his birthday, you can add him using,
+  * `addClient n/John Tan p/12345678 b/12122000`
+* Suppose John provides all his particular, you can add him using, 
+  * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
+* Suppose `John Tan` with the phone number `12345678` is **already in** _MyInsuRec_, adding the following command will result in an error!
+  * `addClient n/John Tan p/12345678`
 
-#### 5.1.2 List clients: `listClient`
+#### 7.1.2 List clients: `listClient`
 
 List clients in MyInsuRec with a valid filter.
 
@@ -273,7 +294,7 @@ Examples:
 A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
-#### 5.1.3 View client: `viewClient`
+#### 7.1.3 View client: `viewClient`
 
 View details associated with a client, such as the client's name and phone number.
 
@@ -286,27 +307,34 @@ Format: `viewClient i/INDEX`
 Examples:
 * `viewClient i/1`
 
-#### 5.1.4 Delete client: `delClient`
+#### 7.1.4 Delete client: `delClient`
 
-Delete the specified client from MyInsuRec.
+Delete the specified client from _MyInsuRec_.
+
+Suppose your client no longer requires your services and would like you to remove their personal information, 
+you can use this command to remove their details from _MyInsuRec_.
 
 Format: `delClient i/INDEX`
 
 * Delete the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
-* `Index` **must be a positive integer** 1, 2, 3, …​
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* If `INDEX` is a non-positive integer or not shown in `listClient`, an error will be thrown!
 
 Examples:
-* `delClient i/2`
+* Suppose the second client in `listClient` request to have their information remove, you can remove them by using,
+  * `delClient i/2`
+* Suppose there is a total of 5 clients shown in your `listClient` , the following command will result in an error!
+  * `delClient i/6`
 
-#### 5.1.5 Edit client: `editClient`
+#### 7.1.5 Edit client: `editClient`
 
 Edit detail of the specified client.
 
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
 * Edit the client at the specified `INDEX`.
-*`INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
+* `INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
 * Maintain value of details not edited by the command.
@@ -316,9 +344,9 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
 * `editClient i/1 n/John Smith` changes the name of this client to 'John Smith'.
 * `editClient i/1 e/johntan@insurec.com`adds the email 'johntan@insurec.com' to the client.
 
-### 5.2 Meeting commands
+### 7.2 Meeting commands
 
-#### 5.2.1 Add meeting: `addMeeting`
+#### 7.2.1 Add meeting: `addMeeting`
 
 Add a new meeting to MyInsuRec.
 
@@ -335,13 +363,13 @@ as shown by executing the [`listClient`](#312-list-clients-listclient) command.
 Examples:
 * `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal` 
 
-<div markdown="span" class="alert alert-success">:information_source: **Friendly Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tips and tricks:**
 MyInsuRec can help you detect conflicting meeting times! For example, attempting
 to add a meeting from 1330 to 1430 when you already have one scheduled for 
 1300 to 1400 will display an error message.
 </div>
 
-#### 5.2.2 List meetings: `listMeeting`
+#### 7.2.2 List meetings: `listMeeting`
 
 Show the list of meetings in MyInsuRec.
 If used with the optional parameter `[d/DATE]`, *MyInsuRec* will show only meetings happening in that time period.
@@ -358,7 +386,7 @@ Examples:
 * `listMeeting d/tomorrow`
 * `listMeeting d/month`
 
-#### 5.2.3 View meeting: `viewMeeting`
+#### 7.2.3 View meeting: `viewMeeting`
 
 View details associated with a meeting, such as meeting's date and time.
 
@@ -371,20 +399,26 @@ Format: `viewMeeting i/INDEX`
 Examples:
 * `viewMeeting i/1`
 
-#### 5.2.4 Delete meeting: `delMeeting`
+#### 7.2.4 Delete meeting: `delMeeting`
 
-Delete a meeting from MyInsuRec.
+Delete a meeting from _MyInsuRec_.
+
+Suppose a meeting was cancelled, you can use this command to remove the scheduled meeting.
 
 Format: `delMeeting i/INDEX`
 
 * Delete the meeting at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
-* `INDEX` **must be a positive integer** 1, 2, 3, …
+* `INDEX` **must be a positive integer** 1, 2, 3, … 
+* If `INDEX` is a non-positive integer or not shown in `listMeeting`, an error will be thrown!
 
 Examples:
-* `delMeeting i/2`
+* Suppose the second meeting in `listMeeting` was cancelled, you can remove them by using,
+  * `delMeeting i/2`
+* Suppose there is a total of 5 meetings shown in your `listMeeting`, the following command will result in an error!
+  * `delMeeting i/6`
 
-#### 5.2.5 Edit meeting: `editMeeting`
+#### 7.2.5 Edit meeting: `editMeeting`
 
 Edit details of the specified meeting.
 
@@ -402,9 +436,9 @@ Suppose MyInsuRec contains only one meeting as created by the [`addMeeting`](#32
 * `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, 
 since the start time is later than end time.
 
-### 5.3 Product commands
+### 7.3 Product commands
 
-#### 5.3.1 Add product: `addProduct`
+#### 7.3.1 Add product: `addProduct`
 
 Add a new product to MyInsuRec.
 
@@ -416,13 +450,13 @@ Format: `addProduct pd/PRODUCT`
 Examples:
 * `addProduct pd/Product1`
 
-#### 5.3.2 List products: `listProduct`
+#### 7.3.2 List products: `listProduct`
 
 Show a list of all products in MyInsuRec.
 
 Format: `listProduct`
 
-#### 5.3.3 Delete product: `delProduct`
+#### 7.3.3 Delete product: `delProduct`
 
 Delete a product from MyInsuRec.  
 This feature will remove the product from association with any client.
@@ -440,9 +474,9 @@ This feature should only be used if there is a need to delete a product, which i
 Examples:
 * `delProduct i/2`
 
-### 5.4 General commands
+### 7.4 General commands
 
-#### 5.4.1 View help: `help`
+#### 7.4.1 View help: `help`
 
 Show a message explaining how to access the help page.
 
@@ -450,19 +484,19 @@ Show a message explaining how to access the help page.
 
 Format: `help`
 
-#### 5.4.2 Exit MyInsuRec: `exit`
+#### 7.4.2 Exit MyInsuRec: `exit`
 
 Exit the program.
 
 Format: `exit`
 
-### 5.5 Others
+### 7.5 Others
 
-#### 5.5.1 Save the data
+#### 7.5.1 Save the data
 
 MyInsuRec data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 5.5.2 Edit the data file
+#### 7.5.2 Edit the data file
 
 MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -472,7 +506,7 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. FAQ
+## 8. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app, then overwrite the `myinsurec.json` file created by the app with the version of the file from the previous computer.
@@ -485,7 +519,7 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Command summary
+## 9. Command summary
 
 | Action                                               | Format                                                                                         | Examples                                                                                                                                         |
 |------------------------------------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -507,11 +541,11 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. Troubleshooting
+## 10. Troubleshooting
 
 This section covers technical issues you may run into while using *MyInsuRec*.
 
-### 8.1 Checking your system's Java version
+### 10.1 Checking your system's Java version
 
 To check that your system has the correct Java version (Java 11 and above) to run *MyInsuRec*, you can follow the steps below:
 
@@ -535,11 +569,11 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Glossary
+## 11. Glossary
 
 { glossary placeholder }
 
 --------------------------------------------------------------------------------------------------------------------
-## 9. Contact Us
+## 12. Contact Us
 
 { contact us placeholder}
