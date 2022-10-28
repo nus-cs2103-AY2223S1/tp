@@ -52,15 +52,16 @@ medication history.
 
 | Term              | Definition                                                                      |
 |-------------------|---------------------------------------------------------------------------------|
-| **Inpatient**     | A patient who lives in hospital while under treatment.                          |                                                                                                                                                                                                                                                                          |
-| **Outpatient**    | A patient who attends a hospital for treatment without staying there overnight. |
-| **Medication**    | A drug or other form of medicine that is used to treat or prevent disease.      |
-| **Diagnosis**     | The identification of diseases by the examination of symptoms and signs.        |                                                                                                                                                                                                                                                                                    |
-| **Hospital Wing** | The section of the hospital where the inpatient is in.                          |
-| **Floor Number**  | The floor where the inpatient is on.                                            |
-| **Ward Number**   | The ward where the inpatient is in.                                             |
-| **Next-Of-Kin**   | The patient's closest living relative.                                          |
 | **Appointment**   | An arrangement to consult the doctor at a particular time.                      |
+| **Diagnosis**     | The identification of diseases by the examination of symptoms and signs.        |                                                                                                                                                                                                                                                                                    |
+| **Floor Number**  | The floor where the inpatient is on.                                            |
+| **Hospital Wing** | The section of the hospital where the inpatient is in.                          |
+| **Inpatient**     | A patient who lives in hospital while under treatment.                          |                                                                                                                                                                                                                                                                          |
+| **Medication**    | A drug or other form of medicine that is used to treat or prevent disease.      |
+| **Next-Of-Kin**   | The patient's closest living relative.                                          |
+| **Outpatient**    | A patient who attends a hospital for treatment without staying there overnight. |
+| **Ward Number**   | The ward where the inpatient is in.                                             |
+
                                                                                                                                                                                                                                                                                                                                   
 
 
