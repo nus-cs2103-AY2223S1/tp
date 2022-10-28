@@ -64,7 +64,7 @@ public class AddCommissionCommand extends Command {
         if (selectedCustomer.hasCommission(newCommission)) {
             throw new CommandException(MESSAGE_DUPLICATE_COMMISSION);
         }
-        selectedCustomer.addCommission(newCommission);
+        model.addCommission(selectedCustomer, newCommission);
         model.selectTab(GuiTab.COMMISSION);
         model.selectCommission(newCommission);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
