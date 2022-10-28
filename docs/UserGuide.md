@@ -179,13 +179,13 @@ You can use `listClient`, `listMeeting` and `listProduct` to traverse between th
 Only products added already via `addProduct` can be used! This is to help ensure the cleanliness of *MyInsuRec*. So, add your product via `addProduct` before using it to add a client with that product! See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
-10. We want to delete the client 'Alex Yeoh' from our records! To do that, type in `delClient i/1`. The image below shows *MyInsuRec* after deleting the client.
+10. Unfortunately 'Alex Yeoh' is no longer our client, and so we want delete him from our records. To do that, type in `delClient i/1`. The image below shows *MyInsuRec* after deleting the client.
 
 ![DelClientAlex](images/quick-start/DelClientAlex.png)
 
 And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have more advanced features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#3-features) where all the commands and their details can be found.
 
-To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*. 
+To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't get panicked! 
 
 Welcome to your new and organized life, and happy (financial) advising!
 
@@ -499,6 +499,8 @@ To check that your system has the correct Java version (Java 11 and above) to ru
    * macOS
      * Use `Cmd` + `Space` to open Spotlight search.
      * Type in 'Terminal' to search for it and click on it to launch.
+   * Linux
+     * Use `Ctrl` + `Alt` + `T` to open the Terminal.
 2. In your terminal, type in `java --version` and click enter.
 3. The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
 
