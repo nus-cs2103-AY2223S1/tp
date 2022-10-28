@@ -235,4 +235,4 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 | **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                     |
 | **DeleteR** | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                              |
 | **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`|                                                                                                           
-| **Help**   | `help` |                                     
+| **Help**   | `help` |
