@@ -91,7 +91,7 @@ Creates the customer entry for John Doe with his details including multiple tags
 * `addcus n/Betsy Crowe e/betsycrowe@example.com p/12345867`
 Creates the customer entry for Betsy Crowe with her email and phone number.
 
-### Viewing a customer: `opencus` [coming soon]
+### Viewing a customer: `opencus`
 
 Opens a customer and shows customer details and switches tab to commissions to show commissions made by the customer.
 
@@ -105,7 +105,7 @@ Examples:
 * `opencus 2`
   Shows details about the customer, and switches tab to commissions
 
-### Editing a customer
+### Editing a customer: `editcus`
 
 Edits the details of the customer identified by the index number used in the displayed customer list.
 
@@ -114,7 +114,7 @@ Format: `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 Examples:
 * `editcus 1 p/91234567 e/johndoe@example.com` Edits the first customer's phone number and email.
 
-### Sorting the customer list
+### Sorting the customer list: `sortcus`
 
 Sorts the displayed customer list by one of the following options:
 
@@ -142,7 +142,7 @@ Examples:
 * `addcom n/Rimuru f/40 d/2022-11-01 t/traditional t/chibi` creates the commission entry titled "Rimuru" with the given fee, due date and tags.
 * `addcom n/Tokyo Ghoul Kaneki f/50 d/2022-10-15` creates a commission entry titled with the given fee and due date.
 
-### Deleting a customer : `delcus` [coming soon]
+### Deleting a customer : `delcus`
 
 Deletes the customer from the ArtBuddy.
 
@@ -330,10 +330,12 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add customer** | `addcus n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]…​`  <br> e.g., `addcus n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/animal cartoons`
+**Edit customer** | `editcus INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., `editcus 1 p/91234567 e/johndoe@example.com`
 **Open customer** | `opencus INDEX`<br> e.g., `opencus 14`
 **Delete customer** | `delcus INDEX`<br> e.g., `delcus 10`
 **Sort customer**| `sortcus PREFIX/SUFFIX`<br> e.g., `sortcus n/+`
 **Add commission** | `addcom n/TITLE f/FEE d/DEADLINE [t/TAG]`<br> e.g., `addcom n/Rimuru f/40 d/2022-11-01 t/traditional t/chibi`
+**Edit commission** | `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]` <br> e.g., `editcom 1 n/Tokyo Ghoul Kaneki f/50 d/2022-10-10 s/False p/Unfamiliar, I will need to do up a reference board first. t/digital t/neon`
 **Open Commission** | `opencom INDEX`<br> e.g., `opencom 14`
 **View all Commissions** | `allcom`
 **Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
