@@ -42,7 +42,7 @@ public class UniqueScheduleListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueScheduleList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertTrue(uniqueScheduleList.contains(editedAlice));
     }
 
@@ -84,7 +84,7 @@ public class UniqueScheduleListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueScheduleList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         uniqueScheduleList.setPerson(ALICE, editedAlice);
         UniqueScheduleList expectedUniqueScheduleList = new UniqueScheduleList();
         expectedUniqueScheduleList.add(editedAlice);
@@ -141,14 +141,14 @@ public class UniqueScheduleListTest {
 
     @Test
     public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueScheduleList.setPersons((List<Person>) null));
+        assertThrows(NullPointerException.class, () -> uniqueScheduleList.setPersons((List<Student>) null));
     }
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
         uniqueScheduleList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
-        uniqueScheduleList.setPersons(personList);
+        List<Student> studentList = Collections.singletonList(BOB);
+        uniqueScheduleList.setPersons(studentList);
         UniqueScheduleList expectedUniqueScheduleList = new UniqueScheduleList();
         expectedUniqueScheduleList.add(BOB);
         assertEquals(expectedUniqueScheduleList, uniqueScheduleList);
@@ -156,8 +156,8 @@ public class UniqueScheduleListTest {
 
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueScheduleList.setPersons(listWithDuplicatePersons));
+        List<Student> listWithDuplicateStudents = Arrays.asList(ALICE, ALICE);
+        assertThrows(DuplicatePersonException.class, () -> uniqueScheduleList.setPersons(listWithDuplicateStudents));
     }
 
     @Test

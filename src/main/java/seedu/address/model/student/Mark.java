@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's attendance for the current day.
+ * Represents a Student's attendance for the current day.
  */
 public class Mark {
     public static final String MESSAGE_CONSTRAINTS = "Mark can take in a boolean value,"

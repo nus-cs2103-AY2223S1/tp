@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.PersonBuilder;
 
-public class PersonTest {
+public class StudentTest {
 
     public static final String EDITED_PHONE = "90008000";
     public static final Class VALID_MORNING_CLASS = new Class(LocalDate.of(2022, 10, 21),
@@ -32,8 +32,8 @@ public class PersonTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Person person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Student student = new PersonBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class PersonTest {
         assertFalse(ALICE.isSamePerson(null));
 
         // same name, all other attributes different -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
+        Student editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
@@ -54,7 +54,7 @@ public class PersonTest {
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // name differs in case, all other attributes same -> returns true
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Student editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertTrue(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns true
@@ -74,7 +74,7 @@ public class PersonTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Person aliceCopy = new PersonBuilder(ALICE).build();
+        Student aliceCopy = new PersonBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -90,7 +90,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Student editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
@@ -116,9 +116,9 @@ public class PersonTest {
 
     @Test
     public void execute_setClassSuccess() {
-        Person person = new PersonBuilder(ALICE).build();
-        person.setClass(new Class());
-        assertEquals("", person.getAClass().classDateTime);
+        Student student = new PersonBuilder(ALICE).build();
+        student.setClass(new Class());
+        assertEquals("", student.getAClass().classDateTime);
     }
 
     @Test
@@ -126,21 +126,21 @@ public class PersonTest {
         Class validClass = new Class(LocalDate.of(2022, 10, 21),
                 LocalTime.of(13, 0), LocalTime.of(14, 0));
 
-        Person unattendedPerson = new PersonBuilder(ALICE).withMark(Boolean.FALSE)
+        Student unattendedStudent = new PersonBuilder(ALICE).withMark(Boolean.FALSE)
                 .withDisplayDate("2022-10-21 1300-1400").build();
-        unattendedPerson.setClass(new Class());
-        unattendedPerson.setDisplayClass(validClass);
-        assertEquals("", unattendedPerson.getDisplayedClass().classDateTime);
+        unattendedStudent.setClass(new Class());
+        unattendedStudent.setDisplayClass(validClass);
+        assertEquals("", unattendedStudent.getDisplayedClass().classDateTime);
 
-        Person attendedPerson = new PersonBuilder(ALICE).withMark(Boolean.TRUE).build();
-        attendedPerson.setDisplayClass(validClass);
-        assertEquals("2022-10-21 1300-1400", attendedPerson.getDisplayedClass().classDateTime);
+        Student attendedStudent = new PersonBuilder(ALICE).withMark(Boolean.TRUE).build();
+        attendedStudent.setDisplayClass(validClass);
+        assertEquals("2022-10-21 1300-1400", attendedStudent.getDisplayedClass().classDateTime);
     }
 
     @Test
     public void personDisplayDateComparisonTest() {
-        Person alice = new PersonBuilder(ALICE).withMark(Boolean.TRUE).build();
-        Person bob = new PersonBuilder(BOB).withMark(Boolean.TRUE).build();
+        Student alice = new PersonBuilder(ALICE).withMark(Boolean.TRUE).build();
+        Student bob = new PersonBuilder(BOB).withMark(Boolean.TRUE).build();
 
         Class aliceClass = VALID_MORNING_CLASS;
         Class bobClass = VALID_AFTERNOON_CLASS;
@@ -157,7 +157,7 @@ public class PersonTest {
 
     @Test
     public void execute_updateDisplayClassSuccess() {
-        Person alice = new PersonBuilder(ALICE).withMark(Boolean.TRUE).build();
+        Student alice = new PersonBuilder(ALICE).withMark(Boolean.TRUE).build();
 
         // Simulate that this particular date is the schedule list date
         LocalDate particularDate = LocalDate.of(2022, 10, 21);
@@ -176,13 +176,13 @@ public class PersonTest {
 
     @Test
     public void execute_multipleClassesPerDayCheck() {
-        Person alice = new PersonBuilder(ALICE).withMark(Boolean.FALSE).build();
+        Student alice = new PersonBuilder(ALICE).withMark(Boolean.FALSE).build();
         alice.setClass(VALID_MORNING_CLASS);
 
         // Alice does not have multiple classes on the same day since she is not marked
         assertFalse(alice.hasMultipleClasses());
 
-        Person bob = new PersonBuilder(BOB).withMark(Boolean.TRUE).build();
+        Student bob = new PersonBuilder(BOB).withMark(Boolean.TRUE).build();
         bob.setClass(VALID_AFTERNOON_CLASS);
         bob.setDisplayClass(VALID_MORNING_CLASS);
 
@@ -192,25 +192,25 @@ public class PersonTest {
 
     @Test
     public void owesMoneyTest() {
-        Person debtor = AVA;
+        Student debtor = AVA;
         assertTrue(debtor.isOwingMoney());
 
-        Person nonDebtor = new PersonBuilder(AVA).withMoneyOwed(0).build();
+        Student nonDebtor = new PersonBuilder(AVA).withMoneyOwed(0).build();
         assertFalse(nonDebtor.isOwingMoney());
     }
 
     @Test
     public void compareToByNameAscTest() {
-        Person alice = new PersonBuilder(ALICE).build();
-        Person bob = new PersonBuilder(BOB).build();
+        Student alice = new PersonBuilder(ALICE).build();
+        Student bob = new PersonBuilder(BOB).build();
         assertTrue(alice.compareToByNameAsc(bob) < 0);
         assertTrue(alice.compareToByNameAsc(alice) == 0);
         assertTrue(bob.compareToByNameAsc(alice) > 0);
     }
     @Test
     public void compareToByNameDescTest() {
-        Person alice = new PersonBuilder(ALICE).build();
-        Person bob = new PersonBuilder(BOB).build();
+        Student alice = new PersonBuilder(ALICE).build();
+        Student bob = new PersonBuilder(BOB).build();
         assertTrue(alice.compareToByNameDesc(bob) > 0);
         assertTrue(alice.compareToByNameDesc(alice) == 0);
         assertTrue(bob.compareToByNameDesc(alice) < 0);
@@ -218,10 +218,10 @@ public class PersonTest {
 
     @Test
     public void compareToByClassAscTest() {
-        Person alice;
-        Person bob;
-        Person ava;
-        Person bobWithoutClass;
+        Student alice;
+        Student bob;
+        Student ava;
+        Student bobWithoutClass;
         try {
             alice = new PersonBuilder(ALICE).withClass("2022-10-11 0200-0400").build();
             bob = new PersonBuilder(BOB).withClass("2022-10-11 0400-0500").build();
@@ -247,10 +247,10 @@ public class PersonTest {
 
     @Test
     public void compareToByClassDescTest() {
-        Person alice;
-        Person bob;
-        Person ava;
-        Person bobWithoutClass;
+        Student alice;
+        Student bob;
+        Student ava;
+        Student bobWithoutClass;
         try {
             alice = new PersonBuilder(ALICE).withClass("2022-10-11 0200-0400").build();
             bob = new PersonBuilder(BOB).withClass("2022-10-11 0400-0500").build();
@@ -276,9 +276,9 @@ public class PersonTest {
 
     @Test
     public void compareToByMoneyOwedAscTest() {
-        Person alice = new PersonBuilder(ALICE).withMoneyOwed(100).build();
-        Person ava = new PersonBuilder(AVA).withMoneyOwed(100).build();
-        Person bob = new PersonBuilder(BOB).withMoneyOwed(200).build();
+        Student alice = new PersonBuilder(ALICE).withMoneyOwed(100).build();
+        Student ava = new PersonBuilder(AVA).withMoneyOwed(100).build();
+        Student bob = new PersonBuilder(BOB).withMoneyOwed(200).build();
 
         assertTrue(alice.compareToByMoneyOwedAsc(ava) < 0);
         assertTrue(alice.compareToByMoneyOwedAsc(bob) < 0);
@@ -287,9 +287,9 @@ public class PersonTest {
 
     @Test
     public void compareToByMoneyOwedDescTest() {
-        Person alice = new PersonBuilder(ALICE).withMoneyOwed(100).build();
-        Person ava = new PersonBuilder(AVA).withMoneyOwed(100).build();
-        Person bob = new PersonBuilder(BOB).withMoneyOwed(200).build();
+        Student alice = new PersonBuilder(ALICE).withMoneyOwed(100).build();
+        Student ava = new PersonBuilder(AVA).withMoneyOwed(100).build();
+        Student bob = new PersonBuilder(BOB).withMoneyOwed(200).build();
 
         assertTrue(alice.compareToByMoneyOwedDesc(ava) < 0);
         assertTrue(alice.compareToByMoneyOwedDesc(bob) > 0);

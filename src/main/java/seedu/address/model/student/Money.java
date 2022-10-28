@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
- * Represents a Person's Money in the Address Book.
+ * Represents a Student's Money in the Address Book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMoney(Integer)}
  */
 public class Money implements Comparable<Money> {

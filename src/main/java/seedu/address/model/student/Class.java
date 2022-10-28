@@ -8,7 +8,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a Person's class date in the address book.
+ * Represents a Student's class date in the address book.
  * Guarantees: immutable;
  * is valid as declared in {@link #isValidClassString(String)}, {@link #isValidFlexibleClassString(String)},
  * {@link #isValidDuration(LocalTime, LocalTime)}.

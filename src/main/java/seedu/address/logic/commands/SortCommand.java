@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Comparator;
 
 import seedu.address.model.Model;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Lists all persons in the address book to the user.
@@ -43,41 +43,41 @@ public class SortCommand extends Command {
         DESC
     };
 
-    private final Comparator<Person> comparator;
+    private final Comparator<Student> comparator;
 
     public SortCommand(Type type, Order order) {
         this.comparator = generateComparator(type, order);
     }
 
     /**
-     * Generates a Comparator for Person based on parameters.
+     * Generates a Comparator for Student based on parameters.
      *
      * @param type type of attribute to be compared
      * @param order order of sorting
      */
-    public static Comparator<Person> generateComparator(Type type, Order order) {
+    public static Comparator<Student> generateComparator(Type type, Order order) {
         switch (type) {
         case NAME:
             if (order.equals(Order.ASC)) {
-                return Person::compareToByNameAsc;
+                return Student::compareToByNameAsc;
             } else {
-                return Person::compareToByNameDesc;
+                return Student::compareToByNameDesc;
             }
         case CLASS:
             if (order.equals(Order.ASC)) {
-                return Person::compareToByClassAsc;
+                return Student::compareToByClassAsc;
             } else {
-                return Person::compareToByClassDesc;
+                return Student::compareToByClassDesc;
             }
         case OWED:
             if (order.equals(Order.ASC)) {
-                return Person::compareToByMoneyOwedAsc;
+                return Student::compareToByMoneyOwedAsc;
             } else {
-                return Person::compareToByMoneyOwedDesc;
+                return Student::compareToByMoneyOwedDesc;
             }
         default:
             // default sorting is to sort by Name Asc
-            return Person::compareToByNameAsc;
+            return Student::compareToByNameAsc;
         }
     }
 

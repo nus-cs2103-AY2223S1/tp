@@ -11,10 +11,10 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Student in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Student {
     public static final Integer DEFAULT_RATES_PER_CLASS = 40;
 
     // Identity fields
@@ -36,9 +36,9 @@ public class Person {
 
 
     /**
-     * Constructs a {@code Person} class when first initialized with add command.
+     * Constructs a {@code Student} class when first initialized with add command.
      */
-    public Person(Name name, Phone phone, Phone nokPhone, Email email, Address address, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Phone nokPhone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, nokPhone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -59,9 +59,9 @@ public class Person {
      * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Phone nokPhone, Email email, Address address, Class aClass,
-                  Money moneyOwed, Money moneyPaid, Money ratesPerClass, AdditionalNotes additionalNotes,
-                  Set<Tag> tags, Mark mark, Class displayedClass) {
+    public Student(Name name, Phone phone, Phone nokPhone, Email email, Address address, Class aClass,
+                   Money moneyOwed, Money moneyPaid, Money ratesPerClass, AdditionalNotes additionalNotes,
+                   Set<Tag> tags, Mark mark, Class displayedClass) {
         requireAllNonNull(name, phone, email, address, additionalNotes, aClass);
         this.name = name;
         this.phone = phone;
@@ -110,7 +110,7 @@ public class Person {
     }
 
     /**
-     * Updates the class to be displayed according to the Person's attendance status.
+     * Updates the class to be displayed according to the Student's attendance status.
      *
      * @param displayedClass class that should be displayed on the schedule if present.
      */
@@ -158,13 +158,13 @@ public class Person {
      * Returns true if both persons have the same phone number.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Student otherStudent) {
+        if (otherStudent == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getPhone().equals(getPhone());
+        return otherStudent != null
+                && otherStudent.getPhone().equals(getPhone());
     }
 
     /**
@@ -186,26 +186,26 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Student)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
+        Student otherStudent = (Student) other;
 
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getNokPhone().equals(getNokPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getAClass().toString().equals(getAClass().toString())
-                && otherPerson.getMoneyOwed().equals(getMoneyOwed())
-                && otherPerson.getMoneyPaid().equals(getMoneyPaid())
-                && otherPerson.getRatesPerClass().equals(getRatesPerClass())
-                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getMarkStatus().equals(getMarkStatus())
-                && otherPerson.getDisplayedClass().equals(getDisplayedClass());
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getNokPhone().equals(getNokPhone())
+                && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getAClass().toString().equals(getAClass().toString())
+                && otherStudent.getMoneyOwed().equals(getMoneyOwed())
+                && otherStudent.getMoneyPaid().equals(getMoneyPaid())
+                && otherStudent.getRatesPerClass().equals(getRatesPerClass())
+                && otherStudent.getAdditionalNotes().equals(getAdditionalNotes())
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.getMarkStatus().equals(getMarkStatus())
+                && otherStudent.getDisplayedClass().equals(getDisplayedClass());
     }
 
     @Override
@@ -262,33 +262,33 @@ public class Person {
     /**
      * Compare the current {@code student} object with another {@code student} object
      * based on startTime.
-     * @param person a student object to compare with.
+     * @param student a student object to compare with.
      * @return the result of comparing the two {@code student} object startTime.
      */
-    public int compareTo(Person person) {
-        if (person.aClass.startTime == null && this.aClass.startTime == null) {
+    public int compareTo(Student student) {
+        if (student.aClass.startTime == null && this.aClass.startTime == null) {
             return 0;
-        } else if (person.aClass.startTime == null) {
+        } else if (student.aClass.startTime == null) {
             return -1;
         } else if (this.aClass.startTime == null) {
             return 1;
         }
-        return this.aClass.startTime.compareTo(person.aClass.startTime);
+        return this.aClass.startTime.compareTo(student.aClass.startTime);
     }
 
     /**
      * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      */
-    public int compareToByNameAsc(Person person) {
-        return this.name.compareTo(person.name);
+    public int compareToByNameAsc(Student student) {
+        return this.name.compareTo(student.name);
     }
 
     /**
      * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      */
-    public int compareToByNameDesc(Person person) {
+    public int compareToByNameDesc(Student student) {
         // return opposite result as this::compareToByNameAsc
-        return -1 * this.compareToByNameAsc(person);
+        return -1 * this.compareToByNameAsc(student);
     }
 
     /**
@@ -296,15 +296,15 @@ public class Person {
      * When one of the two has empty {@code Class}, this student should be placed at the end.
      * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
      */
-    public int compareToByClassAsc(Person person) {
-        if (this.aClass.isEmpty() && person.aClass.isEmpty()) {
-            return this.compareToByNameAsc(person);
+    public int compareToByClassAsc(Student student) {
+        if (this.aClass.isEmpty() && student.aClass.isEmpty()) {
+            return this.compareToByNameAsc(student);
         } else if (this.aClass.isEmpty()) {
             return 1;
-        } else if (person.aClass.isEmpty()) {
+        } else if (student.aClass.isEmpty()) {
             return -1;
         } else {
-            return this.aClass.compareToByStartTime(person.aClass);
+            return this.aClass.compareToByStartTime(student.aClass);
         }
     }
 
@@ -313,15 +313,15 @@ public class Person {
      * When one of the two has empty {@code Class}, this student should be placed at the end.
      * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
      */
-    public int compareToByClassDesc(Person person) {
-        if (this.aClass.isEmpty() && person.aClass.isEmpty()) {
-            return this.compareToByNameAsc(person);
+    public int compareToByClassDesc(Student student) {
+        if (this.aClass.isEmpty() && student.aClass.isEmpty()) {
+            return this.compareToByNameAsc(student);
         } else if (this.aClass.isEmpty()) {
             return 1;
-        } else if (person.aClass.isEmpty()) {
+        } else if (student.aClass.isEmpty()) {
             return -1;
         } else {
-            return -1 * this.aClass.compareToByStartTime(person.aClass);
+            return -1 * this.aClass.compareToByStartTime(student.aClass);
         }
     }
 
@@ -329,10 +329,10 @@ public class Person {
      * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
      */
-    public int compareToByMoneyOwedAsc(Person person) {
-        int result = this.moneyOwed.compareTo(person.moneyOwed);
+    public int compareToByMoneyOwedAsc(Student student) {
+        int result = this.moneyOwed.compareTo(student.moneyOwed);
         if (result == 0) {
-            return this.compareToByNameAsc(person);
+            return this.compareToByNameAsc(student);
         } else {
             return result;
         }
@@ -342,10 +342,10 @@ public class Person {
      * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      * When they have same amount of {@code moneyOwed}, they are compared by their {@code name} in ascending order.
      */
-    public int compareToByMoneyOwedDesc(Person person) {
-        int result = -1 * this.moneyOwed.compareTo(person.moneyOwed);
+    public int compareToByMoneyOwedDesc(Student student) {
+        int result = -1 * this.moneyOwed.compareTo(student.moneyOwed);
         if (result == 0) {
-            return this.compareToByNameAsc(person);
+            return this.compareToByNameAsc(student);
         } else {
             return result;
         }
@@ -354,9 +354,9 @@ public class Person {
     /**
      * Returns 1 if {@code this} should be before the given {@code student}, 0 if no difference, and -1 if after.
      */
-    public int compareToByDisplayClass(Person person) {
-        requireAllNonNull(this.displayedClass, person.displayedClass);
-        return this.displayedClass.compareToByStartTime(person.displayedClass);
+    public int compareToByDisplayClass(Student student) {
+        requireAllNonNull(this.displayedClass, student.displayedClass);
+        return this.displayedClass.compareToByStartTime(student.displayedClass);
     }
 
     /**

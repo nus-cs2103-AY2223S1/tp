@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
@@ -46,11 +46,11 @@ public class TeachersPetTest {
 
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        // Two students with the same identity fields
+        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        TeachersPetStub newData = new TeachersPetStub(newPersons);
+        List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
+        TeachersPetStub newData = new TeachersPetStub(newStudents);
 
         assertThrows(DuplicatePersonException.class, () -> teachersPet.resetData(newData));
     }
@@ -74,7 +74,7 @@ public class TeachersPetTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInTeachersPet_returnsTrue() {
         teachersPet.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(teachersPet.hasPerson(editedAlice));
     }
@@ -85,28 +85,28 @@ public class TeachersPetTest {
     }
 
     /**
-     * A stub ReadOnlyTeachersPet whose persons list can violate interface constraints.
+     * A stub ReadOnlyTeachersPet whose students list can violate interface constraints.
      */
     private static class TeachersPetStub implements ReadOnlyTeachersPet {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Person> schedule = FXCollections.observableArrayList();
-        TeachersPetStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
-            this.schedule.setAll(persons);
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
+        private final ObservableList<Student> schedule = FXCollections.observableArrayList();
+        TeachersPetStub(Collection<Student> students) {
+            this.students.setAll(students);
+            this.schedule.setAll(students);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Student> getPersonList() {
+            return students;
         }
 
         @Override
-        public ObservableList<Person> getScheduleList() {
+        public ObservableList<Student> getScheduleList() {
             return schedule;
         }
 
         @Override
-        public void sortPersons(Comparator<Person> comparator) {}
+        public void sortPersons(Comparator<Student> comparator) {}
     }
 
 }

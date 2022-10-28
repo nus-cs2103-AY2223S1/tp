@@ -3,12 +3,12 @@ package seedu.address.model.student.predicate;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 /**
- * Tests that a {@code Person}'s {@code Phone} matches the phone given.
+ * Tests that a {@code Student}'s {@code Phone} matches the phone given.
  */
-public class PhoneContainsNumberPredicate implements Predicate<Person> {
+public class PhoneContainsNumberPredicate implements Predicate<Student> {
     private String keyword;
 
     public PhoneContainsNumberPredicate(String keyword) {
@@ -16,8 +16,8 @@ public class PhoneContainsNumberPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return StringUtil.containsWord(person.getPhone().value, keyword);
+    public boolean test(Student student) {
+        return StringUtil.containsWord(student.getPhone().value, keyword);
     }
 
     @Override

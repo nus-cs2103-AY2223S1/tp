@@ -3,7 +3,7 @@ package seedu.address.model;
 import java.util.Comparator;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Unmodifiable view of an address book
@@ -14,13 +14,13 @@ public interface ReadOnlyTeachersPet {
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Student> getPersonList();
 
     /**
      * Returns an unmodifiable view of the schedule list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Person> getScheduleList();
+    ObservableList<Student> getScheduleList();
 
-    void sortPersons(Comparator<Person> comparator);
+    void sortPersons(Comparator<Student> comparator);
 }

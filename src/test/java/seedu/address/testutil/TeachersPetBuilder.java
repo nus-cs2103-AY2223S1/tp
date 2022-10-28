@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.TeachersPet;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 /**
  * A utility class to help with building TeachersPet objects.
@@ -21,10 +21,10 @@ public class TeachersPetBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code TeachersPet} that we are building.
+     * Adds a new {@code Student} to the {@code TeachersPet} that we are building.
      */
-    public TeachersPetBuilder withPerson(Person person) {
-        teachersPet.addPerson(person);
+    public TeachersPetBuilder withPerson(Student student) {
+        teachersPet.addPerson(student);
         return this;
     }
 

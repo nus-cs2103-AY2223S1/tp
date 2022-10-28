@@ -11,7 +11,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Panel containing the list of persons.
@@ -21,7 +21,7 @@ public class ScheduleListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> scheduleListView;
+    private ListView<Student> scheduleListView;
 
     @FXML
     private Label classDate;
@@ -29,7 +29,7 @@ public class ScheduleListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public ScheduleListPanel(ObservableList<Person> scheduleList) {
+    public ScheduleListPanel(ObservableList<Student> scheduleList) {
         super(FXML);
         String currDate = LocalDate.now().format(DateTimeFormatter.ofPattern("d MMM yyyy"));
 
@@ -39,18 +39,18 @@ public class ScheduleListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code PersonCard}.
      */
-    class ScheduleListViewCell extends ListCell<Person> {
+    class ScheduleListViewCell extends ListCell<Student> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Student student, boolean empty) {
+            super.updateItem(student, empty);
 
-            if (empty || person == null) {
+            if (empty || student == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ScheduleCard(person, getIndex() + 1).getRoot());
+                setGraphic(new ScheduleCard(student, getIndex() + 1).getRoot());
             }
         }
     }

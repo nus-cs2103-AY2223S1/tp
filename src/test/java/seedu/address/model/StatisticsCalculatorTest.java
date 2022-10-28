@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.PersonBuilder;
 
 public class StatisticsCalculatorTest {
@@ -40,8 +40,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculates_filledTeachersPet_size() {
-        List<Person> newPersons = Arrays.asList(AVA, BEN);
-        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
+        List<Student> newStudents = Arrays.asList(AVA, BEN);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newStudents);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals(2, newCalculator.getSize());
@@ -49,8 +49,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculates_filledTeachersPet_moneyOwed() {
-        List<Person> newPersons = Arrays.asList(AVA, BEN);
-        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
+        List<Student> newStudents = Arrays.asList(AVA, BEN);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newStudents);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals("$80", newCalculator.getAmountOwed());
@@ -58,8 +58,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculates_filledTeachersPet_moneyPaid() {
-        List<Person> newPersons = Arrays.asList(AVA, BEN);
-        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
+        List<Student> newStudents = Arrays.asList(AVA, BEN);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newStudents);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals("$700", newCalculator.getAmountPaid());
@@ -68,10 +68,10 @@ public class StatisticsCalculatorTest {
     @Test
     public void calculates_amountOwedOverflow() {
         // Edits Ava to have the maximum possible amount of money owed by a single student.
-        Person editedAva = new PersonBuilder(AVA).withMoneyOwed(Integer.MAX_VALUE).build();
-        Person editedBen = new PersonBuilder(BEN).withMoneyOwed(1).build();
-        List<Person> newPersons = Arrays.asList(editedAva, editedBen);
-        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
+        Student editedAva = new PersonBuilder(AVA).withMoneyOwed(Integer.MAX_VALUE).build();
+        Student editedBen = new PersonBuilder(BEN).withMoneyOwed(1).build();
+        List<Student> newStudents = Arrays.asList(editedAva, editedBen);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newStudents);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals("Owed amount too large to calculate.", newCalculator.getAmountOwed());
@@ -81,10 +81,10 @@ public class StatisticsCalculatorTest {
     @Test
     public void calculates_amountPaidOverflow() {
         // Edits Ava to have the maximum possible amount of money paid by a single student.
-        Person editedAva = new PersonBuilder(AVA).withMoneyPaid(Integer.MAX_VALUE).build();
-        Person editedBen = new PersonBuilder(BEN).withMoneyPaid(1).build();
-        List<Person> newPersons = Arrays.asList(editedAva, editedBen);
-        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
+        Student editedAva = new PersonBuilder(AVA).withMoneyPaid(Integer.MAX_VALUE).build();
+        Student editedBen = new PersonBuilder(BEN).withMoneyPaid(1).build();
+        List<Student> newStudents = Arrays.asList(editedAva, editedBen);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newStudents);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals("Paid amount too large to calculate.", newCalculator.getAmountPaid());
@@ -92,29 +92,29 @@ public class StatisticsCalculatorTest {
     }
 
     /**
-     * A stub ReadOnlyTeachersPet that contains a persons list.
+     * A stub ReadOnlyTeachersPet that contains a students list.
      */
     private static class TeachersPetStub implements ReadOnlyTeachersPet {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Person> schedule = FXCollections.observableArrayList();
-        TeachersPetStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
-            this.schedule.setAll(persons);
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
+        private final ObservableList<Student> schedule = FXCollections.observableArrayList();
+        TeachersPetStub(Collection<Student> students) {
+            this.students.setAll(students);
+            this.schedule.setAll(students);
         }
 
         TeachersPetStub() {
             this(Collections.emptyList());
         }
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Student> getPersonList() {
+            return students;
         }
         @Override
-        public ObservableList<Person> getScheduleList() {
+        public ObservableList<Student> getScheduleList() {
             return schedule;
         }
         @Override
-        public void sortPersons(Comparator<Person> comparator) {
+        public void sortPersons(Comparator<Student> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }

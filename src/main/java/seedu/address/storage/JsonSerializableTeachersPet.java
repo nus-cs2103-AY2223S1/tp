@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTeachersPet;
 import seedu.address.model.TeachersPet;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 /**
  * An Immutable TeachersPet that is serializable to JSON format.
@@ -49,11 +49,11 @@ class JsonSerializableTeachersPet {
     public TeachersPet toModelType() throws IllegalValueException {
         TeachersPet teachersPet = new TeachersPet();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (teachersPet.hasPerson(person)) {
+            Student student = jsonAdaptedPerson.toModelType();
+            if (teachersPet.hasPerson(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            teachersPet.addPerson(person);
+            teachersPet.addPerson(student);
         }
         return teachersPet;
     }

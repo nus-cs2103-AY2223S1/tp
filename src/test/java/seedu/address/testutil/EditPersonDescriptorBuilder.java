@@ -13,7 +13,7 @@ import seedu.address.model.student.Class;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Money;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -41,19 +41,19 @@ public class EditPersonDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code student}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Student student) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setNokPhone(person.getNokPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setClass(person.getAClass());
-        descriptor.setRatesPerClass(person.getRatesPerClass());
-        descriptor.setMoneyOwed(person.getMoneyOwed());
-        descriptor.setMoneyPaid(person.getMoneyPaid());
-        descriptor.setAdditionalNotes(person.getAdditionalNotes());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(student.getName());
+        descriptor.setPhone(student.getPhone());
+        descriptor.setNokPhone(student.getNokPhone());
+        descriptor.setEmail(student.getEmail());
+        descriptor.setAddress(student.getAddress());
+        descriptor.setClass(student.getAClass());
+        descriptor.setRatesPerClass(student.getRatesPerClass());
+        descriptor.setMoneyOwed(student.getMoneyOwed());
+        descriptor.setMoneyPaid(student.getMoneyPaid());
+        descriptor.setAdditionalNotes(student.getAdditionalNotes());
+        descriptor.setTags(student.getTags());
     }
 
     /**

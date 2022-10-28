@@ -1,7 +1,7 @@
 package seedu.address.model.student;
 
 /**
- * Represents a Person's additional Notes in the address book.
+ * Represents a Student's additional Notes in the address book.
  * Guarantees: immutable.
  */
 public class AdditionalNotes {

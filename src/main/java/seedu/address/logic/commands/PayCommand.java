@@ -17,7 +17,7 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Mark;
 import seedu.address.model.student.Money;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -56,16 +56,16 @@ public class PayCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredScheduleList();
+        List<Student> lastShownList = model.getFilteredScheduleList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_SCHEDULE_INDEX);
         }
 
-        Person personPaying = lastShownList.get(targetIndex.getZeroBased());
-        Person paidPerson = createPaidPerson(personPaying, amountPaid);
+        Student studentPaying = lastShownList.get(targetIndex.getZeroBased());
+        Student paidStudent = createPaidPerson(studentPaying, amountPaid);
 
-        model.setPerson(personPaying, paidPerson);
+        model.setPerson(studentPaying, paidStudent);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
@@ -74,28 +74,28 @@ public class PayCommand extends Command {
     }
 
     /**
-     * Creates and returns a paid {@code Person} with the details of {@code personPaying}.
+     * Creates and returns a paid {@code Student} with the details of {@code studentPaying}.
      */
-    static Person createPaidPerson(Person personPaying, Money amountPaid) throws CommandException {
-        assert personPaying != null;
+    static Student createPaidPerson(Student studentPaying, Money amountPaid) throws CommandException {
+        assert studentPaying != null;
 
-        if (!personPaying.isOwingMoney()) {
+        if (!studentPaying.isOwingMoney()) {
             throw new CommandException(MESSAGE_HAS_NO_DEBT);
         }
 
-        Name currentName = personPaying.getName();
-        Phone currentPhone = personPaying.getPhone();
-        Phone currentNokPhone = personPaying.getNokPhone();
-        Email currentEmail = personPaying.getEmail();
-        Address currentAddress = personPaying.getAddress();
-        Class currentClassDateTime = personPaying.getAClass();
-        Money currentMoneyOwed = personPaying.getMoneyOwed();
-        Money currentMoneyPaid = personPaying.getMoneyPaid();
-        Money currentRatesPerClass = personPaying.getRatesPerClass();
-        AdditionalNotes currentNotes = personPaying.getAdditionalNotes();
-        Set<Tag> currentTags = personPaying.getTags();
-        Mark currentMarkStatus = personPaying.getMarkStatus();
-        Class displayedClassDate = personPaying.getDisplayedClass();
+        Name currentName = studentPaying.getName();
+        Phone currentPhone = studentPaying.getPhone();
+        Phone currentNokPhone = studentPaying.getNokPhone();
+        Email currentEmail = studentPaying.getEmail();
+        Address currentAddress = studentPaying.getAddress();
+        Class currentClassDateTime = studentPaying.getAClass();
+        Money currentMoneyOwed = studentPaying.getMoneyOwed();
+        Money currentMoneyPaid = studentPaying.getMoneyPaid();
+        Money currentRatesPerClass = studentPaying.getRatesPerClass();
+        AdditionalNotes currentNotes = studentPaying.getAdditionalNotes();
+        Set<Tag> currentTags = studentPaying.getTags();
+        Mark currentMarkStatus = studentPaying.getMarkStatus();
+        Class displayedClassDate = studentPaying.getDisplayedClass();
 
         Money updatedMoneyPaid;
         Money updatedMoneyOwed;
@@ -112,7 +112,7 @@ public class PayCommand extends Command {
             throw new CommandException(e.getMessage() + ", the student cannot pay more than the debt");
         }
 
-        return new Person(currentName, currentPhone, currentNokPhone, currentEmail, currentAddress,
+        return new Student(currentName, currentPhone, currentNokPhone, currentEmail, currentAddress,
                 currentClassDateTime, updatedMoneyOwed, updatedMoneyPaid, currentRatesPerClass, currentNotes,
                 currentTags, currentMarkStatus, displayedClassDate);
     }

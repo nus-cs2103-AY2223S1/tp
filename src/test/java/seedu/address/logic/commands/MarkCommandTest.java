@@ -25,7 +25,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Class;
 import seedu.address.model.student.Mark;
 import seedu.address.model.student.Money;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -50,30 +50,30 @@ public class MarkCommandTest {
     public void create_newMarkedPerson_success() throws CommandException {
 
         // initialize Amy to be not marked yet
-        Person personToMark = new PersonBuilder(AMY).withMark(Boolean.FALSE).build();
-        Person expectedMarkedPerson = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
+        Student studentToMark = new PersonBuilder(AMY).withMark(Boolean.FALSE).build();
+        Student expectedMarkedStudent = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), VALID_CLASS.addDays(7), AMY.getMoneyOwed().addTo(AMY.getRatesPerClass()),
                 AMY.getMoneyPaid(), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
                 new Mark(Boolean.TRUE), VALID_CLASS);
 
-        personToMark.setClass(VALID_CLASS);
-        personToMark.setDisplayClass(VALID_CLASS);
+        studentToMark.setClass(VALID_CLASS);
+        studentToMark.setDisplayClass(VALID_CLASS);
 
-        Person markedPerson = MarkCommand.createMarkedPerson(personToMark);
-        assertEquals(expectedMarkedPerson, markedPerson);
+        Student markedStudent = MarkCommand.createMarkedPerson(studentToMark);
+        assertEquals(expectedMarkedStudent, markedStudent);
     }
 
     @Test
     public void create_existingMarkedPerson_success() throws CommandException {
         // initialize Amy to be marked
-        Person personToMark = new PersonBuilder(AMY).withMark(Boolean.TRUE).build();
+        Student studentToMark = new PersonBuilder(AMY).withMark(Boolean.TRUE).build();
 
-        assertEquals(personToMark, MarkCommand.createMarkedPerson(personToMark));
+        assertEquals(studentToMark, MarkCommand.createMarkedPerson(studentToMark));
     }
 
     @Test
     public void create_markedPersonWithHighDebt_failure() {
-        Person heavyDebtor = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
+        Student heavyDebtor = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), VALID_CLASS, new Money(Integer.MAX_VALUE),
                 AMY.getMoneyPaid(), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
                 new Mark(Boolean.FALSE), VALID_CLASS);

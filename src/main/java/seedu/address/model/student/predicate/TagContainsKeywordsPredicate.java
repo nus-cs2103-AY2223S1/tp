@@ -6,13 +6,13 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches the keywords given
+ * Tests that a {@code Student}'s {@code Tag} matches the keywords given
  */
-public class TagContainsKeywordsPredicate implements Predicate<Person> {
+public class TagContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
     public TagContainsKeywordsPredicate(List<String> keywords) {
@@ -20,8 +20,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        Set<String> set = person.getTags().stream()
+    public boolean test(Student student) {
+        Set<String> set = student.getTags().stream()
                 .map(tag -> tag.tagName)
                 .collect(Collectors.toSet());
         String tagsString = String.join(" ", set);

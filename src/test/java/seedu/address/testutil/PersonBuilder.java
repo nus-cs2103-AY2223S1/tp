@@ -12,13 +12,13 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Mark;
 import seedu.address.model.student.Money;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Student objects.
  */
 public class PersonBuilder {
 
@@ -67,26 +67,26 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of {@code studentToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        nokPhone = personToCopy.getNokPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        aClass = personToCopy.getAClass();
-        moneyOwed = personToCopy.getMoneyOwed();
-        moneyPaid = personToCopy.getMoneyPaid();
-        ratesPerClass = personToCopy.getRatesPerClass();
-        additionalNotes = personToCopy.getAdditionalNotes();
-        tags = new HashSet<>(personToCopy.getTags());
-        displayedClass = personToCopy.getDisplayedClass();
-        mark = personToCopy.getMarkStatus();
+    public PersonBuilder(Student studentToCopy) {
+        name = studentToCopy.getName();
+        phone = studentToCopy.getPhone();
+        nokPhone = studentToCopy.getNokPhone();
+        email = studentToCopy.getEmail();
+        address = studentToCopy.getAddress();
+        aClass = studentToCopy.getAClass();
+        moneyOwed = studentToCopy.getMoneyOwed();
+        moneyPaid = studentToCopy.getMoneyPaid();
+        ratesPerClass = studentToCopy.getRatesPerClass();
+        additionalNotes = studentToCopy.getAdditionalNotes();
+        tags = new HashSet<>(studentToCopy.getTags());
+        displayedClass = studentToCopy.getDisplayedClass();
+        mark = studentToCopy.getMarkStatus();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Student} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
@@ -94,7 +94,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Student} that we are building.
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -102,7 +102,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Student} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -110,7 +110,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the next of kin {@code Phone} of the {@code Person} that we are building.
+     * Sets the next of kin {@code Phone} of the {@code Student} that we are building.
      */
     public PersonBuilder withNokPhone(String nokPhone) {
         this.nokPhone = new Phone(nokPhone);
@@ -118,7 +118,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Student} that we are building.
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
@@ -126,7 +126,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Class} of the {@code Person} that we are building.
+     * Sets the {@code Class} of the {@code Student} that we are building.
      */
     public PersonBuilder withClass(String classDateTime) throws ParseException {
         this.aClass = ParserUtil.parseClass(classDateTime);
@@ -134,7 +134,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code MoneyOwed} of the {@code Person} that we are building.
+     * Sets the {@code MoneyOwed} of the {@code Student} that we are building.
      */
     public PersonBuilder withMoneyOwed(Integer moneyOwed) {
         this.moneyOwed = new Money(moneyOwed);
@@ -142,7 +142,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code MoneyPaid} of the {@code Person} that we are building.
+     * Sets the {@code MoneyPaid} of the {@code Student} that we are building.
      */
     public PersonBuilder withMoneyPaid(Integer moneyPaid) {
         this.moneyPaid = new Money(moneyPaid);
@@ -150,7 +150,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code ratesPerClass} of the {@code Person} that we are building.
+     * Sets the {@code ratesPerClass} of the {@code Student} that we are building.
      */
     public PersonBuilder withRatesPerClass(Integer ratesPerClass) {
         this.ratesPerClass = new Money(ratesPerClass);
@@ -158,7 +158,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code AdditionalNotes} of the {@code Person} that we are building.
+     * Sets the {@code AdditionalNotes} of the {@code Student} that we are building.
      */
     public PersonBuilder withAdditionalNotes(String additionalNotes) {
         this.additionalNotes = new AdditionalNotes(additionalNotes);
@@ -166,7 +166,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -174,7 +174,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code displayedClass} of the {@code Person} that we are building.
+     * Sets the {@code displayedClass} of the {@code Student} that we are building.
      */
     public PersonBuilder withDisplayDate(String displayClass) throws ParseException {
         this.displayedClass = displayedClass;
@@ -182,7 +182,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code mark} of the {@code Person} that we are building.
+     * Sets the {@code mark} of the {@code Student} that we are building.
      */
     public PersonBuilder withMark(Boolean attended) {
         this.mark = new Mark(attended);
@@ -190,12 +190,12 @@ public class PersonBuilder {
     }
 
     /**
-     * Returns Person object with the fields initialised.
-     * @return Person object.
+     * Returns Student object with the fields initialised.
+     * @return Student object.
      */
-    public Person build() {
+    public Student build() {
         return new
-                Person(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
+                Student(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
                 additionalNotes, tags, mark, displayedClass);
     }
 }

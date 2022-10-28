@@ -15,25 +15,25 @@ import seedu.address.model.student.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A student is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the student being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a student uses Person#equals(Object) so
+ * A student is considered unique by comparing using {@code Student#isSamePerson(Student)}. As such, adding and updating of
+ * persons uses Student#isSamePerson(Student) for equality so as to ensure that the student being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a student uses Student#equals(Object) so
  * as to ensure that the student with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Student#isSamePerson(Student)
  */
-public class UniqueScheduleList implements Iterable<Person> {
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Person> internalListRef = FXCollections.observableArrayList();
-    private final ObservableList<Person> internalUnmodifiableList =
+public class UniqueScheduleList implements Iterable<Student> {
+    private final ObservableList<Student> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Student> internalListRef = FXCollections.observableArrayList();
+    private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalListRef);
 
     /**
      * Returns true if the list contains an equivalent student as the given argument.
      */
-    public boolean contains(Person toCheck) {
+    public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
@@ -42,7 +42,7 @@ public class UniqueScheduleList implements Iterable<Person> {
      * Adds a student to the list.
      * The student must not already exist in the list.
      */
-    public void add(Person toAdd) {
+    public void add(Student toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
@@ -52,21 +52,21 @@ public class UniqueScheduleList implements Iterable<Person> {
     }
 
     /**
-     * Replaces the student {@code target} in the list with {@code editedPerson}.
+     * Replaces the student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the list.
-     * The student identity of {@code editedPerson} must not be the same as another existing student in the list.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the list.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!target.isSamePerson(editedStudent) && contains(editedStudent)) {
             throw new DuplicatePersonException();
         }
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedStudent);
         updateInternalListRef();
     }
 
@@ -74,7 +74,7 @@ public class UniqueScheduleList implements Iterable<Person> {
      * Removes the equivalent student from the list.
      * The student must exist in the list.
      */
-    public void remove(Person toRemove) {
+    public void remove(Student toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
@@ -89,31 +89,31 @@ public class UniqueScheduleList implements Iterable<Person> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Person> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setPersons(List<Student> students) {
+        requireAllNonNull(students);
+        if (!personsAreUnique(students)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(students);
         updateInternalListRef();
     }
 
     /**
-     *  Updates the {@code List<Person>} to ensure they have the correct display class date
-     *  and returns a {@code List<Person>} which contains the filtered student list.
+     *  Updates the {@code List<Student>} to ensure they have the correct display class date
+     *  and returns a {@code List<Student>} which contains the filtered student list.
      */
-    private List<Person> getScheduleList() {
+    private List<Student> getScheduleList() {
 
         internalList.stream()
                 .forEach(person -> person.updateDisplayClass(LocalDate.now()));
         return internalList
                 .stream()
                 .filter(person -> LocalDate.now().equals(person.getDisplayedClass().date))
-                .sorted(Person::compareToByClassAsc)
+                .sorted(Student::compareToByClassAsc)
                 .collect(Collectors.toList());
     }
 
@@ -121,20 +121,20 @@ public class UniqueScheduleList implements Iterable<Person> {
      * Update internalListRef
      */
     private void updateInternalListRef() {
-        List<Person> list = getScheduleList();
+        List<Student> list = getScheduleList();
         internalListRef.setAll(FXCollections.observableList(list));
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Person> asUnmodifiableObservableList() {
+    public ObservableList<Student> asUnmodifiableObservableList() {
         updateInternalListRef();
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Person> iterator() {
+    public Iterator<Student> iterator() {
         return internalList.iterator();
     }
 
@@ -151,12 +151,12 @@ public class UniqueScheduleList implements Iterable<Person> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code students} contains only unique students.
      */
-    private boolean personsAreUnique(List<Person> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
+    private boolean personsAreUnique(List<Student> students) {
+        for (int i = 0; i < students.size() - 1; i++) {
+            for (int j = i + 1; j < students.size(); j++) {
+                if (students.get(i).isSamePerson(students.get(j))) {
                     return false;
                 }
             }

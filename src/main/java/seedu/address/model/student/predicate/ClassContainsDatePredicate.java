@@ -3,12 +3,12 @@ package seedu.address.model.student.predicate;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 /**
- * Tests that a {@code Person}'s {@code Class} matches the date given.
+ * Tests that a {@code Student}'s {@code Class} matches the date given.
  */
-public class ClassContainsDatePredicate implements Predicate<Person> {
+public class ClassContainsDatePredicate implements Predicate<Student> {
     private final String keyword;
 
     public ClassContainsDatePredicate(String keyword) {
@@ -16,8 +16,8 @@ public class ClassContainsDatePredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return StringUtil.containsWord(person.getAClass().classDateTime, keyword);
+    public boolean test(Student student) {
+        return StringUtil.containsWord(student.getAClass().classDateTime, keyword);
     }
 
     @Override

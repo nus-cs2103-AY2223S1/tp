@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTeachersPet;
 import seedu.address.model.StatisticsCalculator;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 
 /**
  * API of the Logic component
@@ -32,10 +32,10 @@ public interface Logic {
     ReadOnlyTeachersPet getTeachersPet();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Student> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the schedule list for that day*/
-    ObservableList<Person> getFilteredScheduleList();
+    ObservableList<Student> getFilteredScheduleList();
 
     /**
      * Returns the user prefs' address book file path.
