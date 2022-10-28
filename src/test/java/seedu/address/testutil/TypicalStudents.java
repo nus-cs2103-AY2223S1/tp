@@ -77,7 +77,7 @@ public class TypicalStudents {
     public static TeachersPet getTypicalTeachersPet() {
         TeachersPet ab = new TeachersPet();
         for (Student student : getTypicalStudents()) {
-            ab.addPerson(student);
+            ab.addStudent(student);
         }
         return ab;
     }

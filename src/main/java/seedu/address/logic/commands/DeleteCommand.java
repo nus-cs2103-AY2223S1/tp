@@ -42,9 +42,9 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
-        if (model.getFilteredPersonList().size() == 0) {
+        if (model.getFilteredStudentList().size() == 0) {
             throw new CommandException(STUDENT_LIST_EMPTY_ERROR);
         }
 
@@ -54,7 +54,7 @@ public class DeleteCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_INDEXES);
             }
             Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
-            model.deletePerson(studentToDelete);
+            model.deleteStudent(studentToDelete);
             ClassStorage.removeExistingClass(studentToDelete);
         }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS));

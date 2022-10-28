@@ -72,14 +72,14 @@ public class JsonTeachersPetStorageTest {
         assertEquals(original, new TeachersPet(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addStudent(HOON);
+        original.removeStudent(ALICE);
         jsonTeachersPetStorage.saveTeachersPet(original, filePath);
         readBack = jsonTeachersPetStorage.readTeachersPet(filePath).get();
         assertEquals(original, new TeachersPet(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addStudent(IDA);
         jsonTeachersPetStorage.saveTeachersPet(original); // file path not specified
         readBack = jsonTeachersPetStorage.readTeachersPet().get(); // file path not specified
         assertEquals(original, new TeachersPet(readBack));

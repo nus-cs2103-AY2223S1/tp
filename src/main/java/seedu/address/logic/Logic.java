@@ -31,8 +31,8 @@ public interface Logic {
      */
     ReadOnlyTeachersPet getTeachersPet();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Student> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of students */
+    ObservableList<Student> getFilteredStudentList();
 
     /** Returns an unmodifiable view of the schedule list for that day*/
     ObservableList<Student> getFilteredScheduleList();
