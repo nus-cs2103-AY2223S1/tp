@@ -16,6 +16,9 @@ Person -up-> "*" Tag
 
 Person *--> Name
 Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> Attendance
+Person *--> LessonPlan
+Person *--> Homework
+Person *--> Session
+Person *--> GradeProgress
 @enduml

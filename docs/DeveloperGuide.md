@@ -202,7 +202,7 @@ The following sequence shows how adding homework works:
 ![HomeworkSequenceDiagram](images/HomeworkSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note** The lifeline for `HomeworkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+:information_source: **Note** The lifeline for `HomeworkCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Step 3. The user decides to edit the homework to Science instead of Maths.
@@ -275,7 +275,9 @@ Aspect: Data Structure of `GradeProgressList`
 The following sequence diagram shows how the grade progress command operation works:
 
 ![GradeProgressSequenceDiagram](images/GradeProgressSequenceDiagram.png)
-
+<div markdown="span" class="alert alert-info">
+:information_source: **Note** The lifeline for `GradeProgressCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 ### Session feature
 
 #### Implementation
@@ -521,9 +523,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * has a need to keep track of their students' grades progress
 * has a need to keep track of their students' attendance in lessons
 * has a need to keep track of their student's assignment progress
+* has a need to keep track of their student's time slots
 * has a need to keep track of their homework assignments for their students
 * has a need to access and organise their students contact details
-* has a need to keep track of follow-up future lesson plans for their students
 * prefer an all-in-one solution to organise their lesson plans and students
 * prefer desktop apps over other types
 * can type fast
@@ -537,18 +539,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I want to …​                                                  | So that I can…​                                                      |
-|----------|--------------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------|
-| `* * *`  | potential user                       | see the app populated with sample data                       | see how the app would look like after frequent usage                |
-| `* * *`  | new user                             | purge all current data                                       | restart with a new set of data for                                  |
-| `* * *`  | new user		 		  | be able to view all the basic commands of the app            | I can pick them up quickly to start using the app	               |
-| `* * *`  | user                                 | assign homework to my students                               | keep track of the work I assigned to them                           |
-| `* * *`  | user                                 | mark my students attendance 	                         | keep track of my students' attendance	                       |
-| `* * *`  | user                                 | modify my students' grade progress                           | keep track on how well my students' are doing                       |
-| `* * *`  | user with many students to manage    | add my students' lesson plans                                | I can organise my lesson plans for each of my students              |
-| `* * *`  | user with many students to manage	  | view a list of all my students and their work-related info   | I can see my students' workload at a glance                         |
-| `* * *`  | long-term user with many students	  | update my students data easily                               | I can keep updated information relevant to their work and contact   |
-| `* * *`  | long-term user			  | view grade and assignment progress of my individual students | keep track of my students progress  	                               |
+| Priority | As a …​                               | I want to …​                                                 | So that I can…​                                                   |
+|----------|--------------------------------------|--------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | potential user                       | see the app populated with sample data                       | see how the app would look like after frequent usage              |
+| `* * *`  | new user                             | purge all current data                                       | restart with a new set of data for                                |
+| `* * *`  | new user		 		  | be able to view all the basic commands of the app            | I can pick them up quickly to start using the app	                |
+| `* * *`  | user                                 | assign homework to my students                               | keep track of the work I assigned to them                         |
+| `* * *`  | user                                 | mark my students attendance 	                                | keep track of my students' attendance	                            |
+| `* * *`  | user                                 | modify my students' grade progress                           | keep track on how well my students' are doing                     |
+| `* * *`  | user with many students to manage    | add my students' time slots                                  | keep track of my daily schedule                                   |
+| `* * *`  | user with many students to manage	  | view a list of all my students and their work-related info   | I can see my students' workload at a glance                       |
+| `* * *`  | long-term user with many students	  | update my students data easily                               | I can keep updated information relevant to their work and contact |
+| `* * *`  | long-term user			  | view grade and assignment progress of my individual students | keep track of my students progress  	                             |
 
 *{More to be added}*
 
@@ -680,9 +682,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Card**: The details of a student
 * **Grade Progress**: The current grade of the student and their standard of work
 * **Homework**: Work assigned to a student and whether or not they completed it
-* **Lesson plan**: What the tutor intends to do for each student or what has been covered
+* **Lesson plan**: What the tutor intends to teach each student such as a subject or topic
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-
+* **Session**: The time slot allocated to a student
+* **Schedule**: The students and time slots scheduled for a particular day
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
