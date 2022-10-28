@@ -149,8 +149,18 @@ public class AddProductCommandTest {
         }
 
         @Override
+        public void setMeeting(Meeting target, Meeting editedMeeting) {
+
+        }
+
+        @Override
         public boolean hasMeeting(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSpecificMeeting(Meeting meeting) {
+            return false;
         }
 
         @Override

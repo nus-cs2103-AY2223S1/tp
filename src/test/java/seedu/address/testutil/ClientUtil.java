@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddClientCommand;
-import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
+import seedu.address.logic.commands.EditClientCommand.EditClientDescriptor;
 import seedu.address.model.client.Client;
 import seedu.address.model.product.Product;
 

@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Email;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -50,7 +51,7 @@ public class ClientDetailedView extends UiPart<Region> {
         this.client = client;
         clientName.setText(client.getName().toString());
         phoneNumber.setText(client.getPhone().toString());
-        email.setText(client.getEmail().get().toString());
+        email.setText(client.getEmail().map(Email::toString).orElse(""));
         Optional<Birthday> clientBirthday = client.getBirthday();
         if (clientBirthday.isEmpty()) {
             birthday.setText("");

@@ -38,6 +38,14 @@ public class NoConflictMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Returns true if the list contains an identical meeting as the given argument.
+     */
+    public boolean containsSpecific(Meeting toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
      * Adds a meeting to the list.
      * The meeting must not conflict with any meetings in the list.
      */

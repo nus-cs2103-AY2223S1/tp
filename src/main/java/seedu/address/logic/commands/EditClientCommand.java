@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -28,14 +28,15 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.product.Product;
 
 /**
  * Edits the details of an existing client in MyInsuRec.
  */
-public class EditCommand extends Command {
+public class EditClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editClient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "
@@ -63,7 +64,7 @@ public class EditCommand extends Command {
      * @param index of the client in the filtered client list to edit
      * @param editClientDescriptor details to edit the client with
      */
-    public EditCommand(Index index, EditClientDescriptor editClientDescriptor) {
+    public EditClientCommand(Index index, EditClientDescriptor editClientDescriptor) {
         requireNonNull(index);
         requireNonNull(editClientDescriptor);
 
@@ -73,9 +74,7 @@ public class EditCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredClientList();
-
+        ObservableList<Client> lastShownList = model.getFilteredClientList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
@@ -95,8 +94,7 @@ public class EditCommand extends Command {
         }
 
         model.setClient(clientToEdit, editedClient);
-        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
+        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient), CommandSpecific.CLIENT);
     }
 
     /**
@@ -119,8 +117,21 @@ public class EditCommand extends Command {
             : editClientDescriptor.getBirthday();
         Set<Product> updatedProducts = editClientDescriptor.getProducts().orElse(clientToEdit.getProducts());
 
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        Client client = new Client(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedBirthday, updatedProducts);
+
+        // update client in each meeting this client has
+        List<Meeting> meetings = clientToEdit.getMeetings();
+
+        Meeting meeting;
+        Meeting updatedMeeting;
+        for (int i = 0; i < meetings.size(); i++) {
+            meeting = meetings.get(i);
+            updatedMeeting = new Meeting(client, meeting.getDescription(), meeting.getMeetingDate(),
+                    meeting.getMeetingStartTime(), meeting.getMeetingEndTime());
+            client.addMeeting(updatedMeeting);
+        }
+        return client;
     }
 
     @Override
@@ -131,12 +142,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditClientCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditClientCommand e = (EditClientCommand) other;
         return index.equals(e.index)
                 && editClientDescriptor.equals(e.editClientDescriptor);
     }
@@ -166,7 +177,6 @@ public class EditCommand extends Command {
             address = toCopy.address;
             birthday = toCopy.birthday;
             products = toCopy.products;
-
         }
 
         /**

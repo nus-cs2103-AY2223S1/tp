@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <AnchorPane maxHeight="25.0">
       <children>
          <Label styleClass="label-header" text="Meetings" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" />

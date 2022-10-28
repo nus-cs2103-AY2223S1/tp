@@ -31,8 +31,9 @@ public class AddMeetingCommand extends Command {
             + PREFIX_START_TIME + "START TIME "
             + PREFIX_END_TIME + "END TIME "
             + PREFIX_DESCRIPTION + "DESCRIPTION ";
-    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MyInsuRec";
-    public static final String MESSAGE_CLIENT_NOT_FOUND = "A client named %s could not be found";
+    public static final String MESSAGE_CONFLICTING_MEETING =
+            "This meeting conflicts with another that exists in MyInsuRec";
+    public static final String MESSAGE_MEETING_NOT_FOUND = "A meeting %s could not be found";
 
     private final MeetingDate meetingDate;
     private final MeetingTime meetingStartTime;
@@ -63,7 +64,7 @@ public class AddMeetingCommand extends Command {
         Meeting meetingToAdd = new Meeting(clientToUpdate, description, meetingDate, meetingStartTime, meetingEndTime);
 
         if (model.hasMeeting(meetingToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+            throw new CommandException(MESSAGE_CONFLICTING_MEETING);
         }
 
         clientToUpdate.addMeeting(meetingToAdd);

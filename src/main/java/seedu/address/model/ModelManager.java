@@ -123,6 +123,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedClient);
 
         myInsuRec.setClient(target, editedClient);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override
@@ -136,6 +137,20 @@ public class ModelManager implements Model {
         requireNonNull(meeting);
         return myInsuRec.hasMeeting(meeting);
     }
+
+    @Override
+    public boolean hasSpecificMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return myInsuRec.hasSpecificMeeting(meeting);
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        myInsuRec.setMeeting(target, editedMeeting);
+    }
+
 
     @Override
     public void addMeeting(Meeting meeting) {
