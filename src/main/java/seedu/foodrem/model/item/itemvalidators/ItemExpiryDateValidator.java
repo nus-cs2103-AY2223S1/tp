@@ -16,9 +16,9 @@ public class ItemExpiryDateValidator implements Validator {
     private static final String MESSAGE_FOR_EXPIRY_DATE_NOT_DDMMYYYY =
             "The item expiry date must follow the format dd-mm-yyyy.";
     private static final String MESSAGE_FOR_EXPIRY_DATE_DO_NOT_EXIST =
-            "The item expiry date do not exist.";
+            "The item expiry date does not exist.";
 
-    // Validation for year'
+    // Validation for year
     private static final int MIN_YEAR = 1900;
     private static final String MESSAGE_FOR_YEAR_TOO_SMALL =
             String.format("The year for item expiry date should be larger than or equal to %d.", MIN_YEAR);

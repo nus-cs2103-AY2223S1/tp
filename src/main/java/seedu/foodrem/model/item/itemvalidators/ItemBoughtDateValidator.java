@@ -16,7 +16,7 @@ public class ItemBoughtDateValidator implements Validator {
     private static final String MESSAGE_FOR_BOUGHT_DATE_NOT_DDMMYYYY =
             "The item bought date must follow the format dd-mm-yyyy.";
     private static final String MESSAGE_FOR_BOUGHT_DATE_DO_NOT_EXIST =
-            "The item bought date do not exist.";
+            "The item bought date does not exist.";
 
     // Validation for year
     private static final int MIN_YEAR = 1900;
