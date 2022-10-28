@@ -28,7 +28,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
     * **`list -p`** : Lists all properties.
 
-    * **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 t/luxury` : Adds a listing named `Pinnacle@Duxton` to the property directory.
+    * **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 t/luxury` : Adds a listing named `Pinnacle@Duxton` to the property directory.
 
     * **`list -p delete`**`3` : Deletes the 3rd property shown in the current list.
 
@@ -44,8 +44,11 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 **:information_source: Notes about the command format:**<br>
 
+* Demarcaters `-p` and `-c` after each command word represent interactions with the property and client directory respectively.<br>
+  e.g. `add -p` is used to add properties in the property directory while `add -c` is used to add clients in the client directory.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/PINNACLE@DUXTON`.
+  e.g. in `add -p n/NAME`, `NAME` is a parameter which can be used as `add n/PINNACLE@DUXTON`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/PINNACLE@DUXTON t/luxury` or as `n/PINNACLE@DUXTON`.
@@ -59,13 +62,13 @@ If you can type fast, Condonery can get your contact management tasks done faste
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/1,000,000 p/2,000,000`, only `p/2,000,000` will be taken.
 
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features in Property Directory
 
 ### Viewing help : `help`
@@ -163,6 +166,13 @@ Examples:
 * `range -p l/100,000 u/1,000,000` returns all properties within the price range of 100,000 and 1,000,000 inclusive.
 Notes:
 * lower and upper price boundaries only accept integer values (commas acceptable).
+
+### Filtering properties by type: `type -p`
+
+Returns a filtered list of clients that fulfil the filter conditions.
+Format: `type -p HDB`
+Examples:
+* `type -p HDB condo` returns all properties that are HDBs or Condos
 
 ### Clearing all entries : `clear`
 

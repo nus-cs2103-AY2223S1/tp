@@ -12,7 +12,7 @@ import seedu.condonery.commons.exceptions.DataConversionException;
 import seedu.condonery.commons.exceptions.IllegalValueException;
 import seedu.condonery.commons.util.FileUtil;
 import seedu.condonery.commons.util.JsonUtil;
-import seedu.condonery.model.ReadOnlyClientDirectory;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
 
 /**
  * A class to access ClientDirectory data stored as a json file on the hard disk.
