@@ -181,6 +181,31 @@ Find suppliers based on name or item
 
 > `find i/Egg`
 
+
+### Increment / Decrement current stock in your inventory
+
+Increase or decrease your stock for a particular item in the inventory
+
+**Steps**
+
+1. Take a look at the inventory panel at the bottom-middle section of the application.
+2. Decide on which item you want to modify the stock of.
+3. Hover your mouse over item and the white text box with a value `1` in it.
+4. Key in your desired amount to add or decrease by.
+
+![Ui](images/incdeckeyin.png)
+
+5. Press the `+` icon to add your desired amount (or press the `-` icon to minus your desired amount).
+
+![Ui](images/afterinc.png)
+
+***Notice that the current stock of Ginger increased by your desired amount.***
+
+**Limitations**
+
+* Only able to key in up to a 5 digit value.
+* Only able to key in positive values
+
 ### List all data : `listAll`
 
 Lists all items.
