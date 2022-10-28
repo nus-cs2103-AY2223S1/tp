@@ -4,8 +4,10 @@ title: User Guide
 subtitle: Explore our guide to use Arrow
 ---
 
+[**Quick Start**](#quick-start)<br>
 [**Address Book**](#address-book-commands)<br>
 [**Task Management**](#task-management-commands)<br>
+[**Notes**](#notes)<br>
 [**FAQ**](#faq)<br>
 [**Command Summary**](#command-summary)
 
@@ -228,6 +230,7 @@ Format: `task clear`
 Examples:
 * `task list` followed by `task clear` clear the entire task list.
 
+
 ### Deleting tasks: `task delete`
 
 Deletes the specified task from the task panel.
@@ -255,6 +258,14 @@ Format: `task do TASK_INDEX [by/DATE]...`
 Examples:
 * `task do 1 by/tomorrow` sets the deadline for the 1st task in the list to tomorrow.
 * `task do 1 by/?` **removes** the deadline from the 1st task in the list.
+
+
+### Sorting tasks by deadline: `task sort`
+
+Sorts the task list by deadline.
+
+Format: `task sort`
+
 
 ### Filtering the Tasks List: `task list`
 
@@ -307,22 +318,20 @@ Examples:
 
 Edits an existing task in the task list.
 
-Format: `task edit TASK_INDEX [ti/TITLE]`
+Format: `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT] [+@PERSONS_INDEX] ... [-@PERSONS_INDEX]...`
 
-* Edits the task at the specified `TASK_INDEX`.
-* The index refers to the index number shown in the displayed task list. 
-* The index **must be a positive integer** 1, 2, 3, …​
-* Replacement for previous title should be inputted.
-
-Examples:
-* `task edit 1 ti/go back home` Edits the title to `go back home`
+* Edits the person at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing contacts, adding or removing contacts is cumulative. Not specifying any contacts to add will not change the data. Specify `+@PERSON_INDEX` to add and `-@PERSON_INDEX` to delete a contact.
 
 
 ### Listing all projects : `task project`
 
-You can use the `task project` command to focus on all projects that are open.
+Lists all the projects present in the task list.
 
 Format: `task project`
+
 
 ### Exiting the program : `exit`
 
@@ -330,9 +339,11 @@ Exits the program.
 
 Format: `exit`
 
+
 ### Saving the data
 
 Arrow data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
 
 ### Editing the data file
 
@@ -341,6 +352,7 @@ Arrow data are saved as a JSON file `[JAR file location]/data/arrow.json`. Advan
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
+
 
 ### Archiving data files `[coming in v2.0]`
 
