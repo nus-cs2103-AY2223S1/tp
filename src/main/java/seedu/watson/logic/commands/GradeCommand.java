@@ -1,14 +1,11 @@
 package seedu.watson.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.watson.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.function.Predicate;
 import seedu.watson.model.Model;
-import seedu.watson.model.ReadOnlyDatabase;
 import seedu.watson.model.person.Person;
 
 
