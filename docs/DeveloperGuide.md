@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* This project is based on [MassLinkers-Level3](https://se-education.org/massLinkers-level3/) by [SE-EDU initiative](https://se-education.org/).
+* This project is based on [AddressBook-Level3](https://se-education.org/addressbook-level3/) by [SE-EDU initiative](https://se-education.org/).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -637,18 +637,19 @@ testers are expected to do more *exploratory* testing.
        Expected: A new batchmate with the name `John` and telegram handle `john` is added at the bottom of the students pane in Mass Linkers.
        The status message indicates that a batchmate named `John` has been successfully added.
 
-    2. Prerequisite: A batchmate with the name `Tom` is already in Mass Linkers. <br>
-       Test case: `add n/Tom t/tom`.<br>
-       Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers.
+       1. Prerequisite: A batchmate with the name `Tom` and the telegram `tom` is already in Mass Linkers. <br>
+          Test case: `add n/Tom t/tom`.<br>
+          Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers. 
+       Uniqueness is verified using two of the mandatory fields - the ```Student```'s name and telegram handle.
 
-    3. Test case: `add n/John t/john i/AI g/john`.<br>
+    2. Test case: `add n/John t/john i/AI g/john`.<br>
        Expected: A new batchmate with the name `John`, telegram handle `john`, interests `AI` and GitHub `john` is added at the bottom of the students pane in Mass Linkers.
        The status message indicates that a batchname named `John` has been successfully added.
 
-    4. Test case: `add n/John`.<br>
+    3. Test case: `add n/John`.<br>
        Expected: No batchmate is added. The status message indicates that the command is of an invalid format.
 
-    5. Other incorrect `add` commands to try: `add`, `add n/John t/john x/invalid`, `...` (where x is any invalid prefix).<br>
+    4. Other incorrect `add` commands to try: `add`, `add n/John t/john x/invalid`, `...` (where x is any invalid prefix).<br>
        Expected: Similar to previous.
 
 

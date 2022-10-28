@@ -46,7 +46,7 @@ public class Telegram {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Telegram // instanceof handles nulls
-                && handle.equals(((Telegram) other).handle)); // state check
+                && handle.toUpperCase().equals(((Telegram) other).handle.toUpperCase())); // state check
     }
 
     @Override

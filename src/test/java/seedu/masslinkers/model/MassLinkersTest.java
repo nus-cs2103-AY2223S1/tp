@@ -50,7 +50,7 @@ public class MassLinkersTest {
         Student editedAlice = new StudentBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
                 .withInterests(VALID_INTEREST_SWE)
                 .build();
-        List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
+        List<Student> newStudents = Arrays.asList(editedAlice, editedAlice);
         MassLinkersStub newData = new MassLinkersStub(newStudents);
 
         assertThrows(DuplicateStudentException.class, () -> massLinkers.resetData(newData));
@@ -73,12 +73,12 @@ public class MassLinkersTest {
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInMassLinkers_returnsTrue() {
+    public void hasStudent_studentWithSameIdentityFieldsInMassLinkers_returnsFalse() {
         massLinkers.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
                 .withInterests(VALID_INTEREST_SWE)
                 .build();
-        assertTrue(massLinkers.hasStudent(editedAlice));
+        assertFalse(massLinkers.hasStudent(editedAlice));
     }
 
     @Test
