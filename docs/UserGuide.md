@@ -6,7 +6,8 @@ title: User Guide
 InternConnect is a **desktop app for managing internship applicants, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InternConnect can get your application management tasks done faster than traditional GUI apps.
 
 # Table of Contents
-1. [Quick Start](#1-quick-start)
+
+1. [Quick Start](#quick-start)
 2. [Fields](#2-fields)
    1. [Identity Fields](#21-identity-fields)
    2. [Data Fields](#22-data-fields)
@@ -21,7 +22,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
    7. [Locating applicants by field](#37-locating-applicants-by-field-find)
    8. [Importing applicants from an external text file](#38-importing-applicants-from-an-external-json-file-import)
    9. [Exporting displayed list](#39-exporting-displayed-list-export)
-   10. [Check-out a new or existing list](#310-checking-out-a-new-or-existing-list-checkout)
+   10. [Checkout a new or existing list](#310-checkout-a-new-or-existing-list-checkout)
    11. [Clearing all entries](#311-clearing-all-entries-clear)
    12. [Exiting the program](#312-exiting-the-program-exit)
    13. [Saving the data](#313-saving-the-data)
@@ -78,16 +79,19 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 
 ### 2.1 Identity Fields
+
 | Field       | Parameter | Length Limit | Constraints                                                    |
 |-------------|-----------|--------------|----------------------------------------------------------------|
 | **Email**   | `e`       | 50           | Can only be of the format `LOCAL_PART@DOMAIN`                  |
 | **Job ID**  | `ji`      | 10           | Can only contain upper case alphanumeric characters and spaces |
+
 * `LOCAL_PART` can only contain alphanumeric characters and any of `+` `_` `.` `-`, but must not start or end with these special characters
 * `DOMAIN` can be made up of numerous `DOMAIN_LABEL` separated by `.`, with the last `DOMAIN_LABEL` being at least 2 characters long
 * `DOMAIN_LABEL` can only contain alphanumeric characters separated by `-`, but must start and end with alphanumeric characters
 
 
 ### 2.2 Data Fields
+
 | Field               | Parameter | Length Limit | Constraints                                                                   |
 |---------------------|-----------|--------------|-------------------------------------------------------------------------------|
 | **Name**            | `n`       | 50           | Can only contain alphanumeric characters and spaces                           |
@@ -99,15 +103,16 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 | **Graduation Date** | `gd`      | None         | Can only be a valid month in the form of mm-YYYY, starting from the year 0000 |                           
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                           |
 | **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, special punctuations and spaces     |
+
 * `CURRENT_CAP` must be smaller than or equal to `MAX_CAP`
 * Special punctuations: `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
 
 
 ### 2.3 Tag Fields
+
 | Field   | Parameter | Length Limit | Constraints                                     |
 |---------|-----------|--------------|-------------------------------------------------|
 | **Tag** | `t`       | 30           | Can only contain alphabet characters and spaces |
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -287,7 +292,7 @@ Examples:
 * `find u/NUS` followed by `export` exports the result of the `find` command to a JSON file.
 
 
-### 3.10 Checking-out a new or existing list: `checkout`
+### 3.10 Checkout a new or existing list: `checkout`
 
 Switches between different lists in InternConnect stored in `data/` folder.
 
