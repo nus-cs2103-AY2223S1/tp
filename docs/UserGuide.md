@@ -35,8 +35,9 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     7. [Find persons with a preferred social media](#g-find-persons-with-a-preferred-social-media--social) : `social`
   * [General App Features](#general-app-features):
     1. [Viewing help](#a-viewing-help--help) : `help`
-    2. [Undoing last command](#b-undo-last-modification--undo) : `undo`
-    3. [Exiting the app](#c-exiting-the-program--exit) : `exit`
+    2. [Viewing history](#a-viewing-history--history) : `history`
+    3. [Undoing last command](#b-undo-last-modification--undo) : `undo`
+    4. [Exiting the app](#c-exiting-the-program--exit) : `exit`
 * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -177,15 +178,17 @@ and `janedoe@example.com` respectively.
 
 Deletes the specified person from uNivUSal.
 
-Format: `delete INDEX`
+Format: `delete INDEX {OPTIONAL PREFIX/}`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* If `PREFIX/` is provided, deletes the specified field of the person at the specified `INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in uNivUSal.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2 p/` deletes the 2nd person's phone number in uNivUSal.
 
 ### d. Listing all persons : `list`
 
@@ -327,7 +330,15 @@ Shows a message explaining the basic features of the app and also provides a lin
 
 Format: `help`
 
-### b. Undo last modification : `undo`
+### b. Viewing history : `history`
+
+Shows up to the previous five commands typed by the user.
+
+![history message](images/historyMessage.png)
+
+Format: `history`
+
+### c. Undo last modification : `undo`
 
 Undoes the last command that modifies the address book.
 
@@ -336,7 +347,7 @@ Format: `undo`
 * Ignores modifying commands if they don't modify the address book.
 * Will cancel out when trying to undo an undo command.
 
-### c. Exiting the program : `exit`
+### d. Exiting the program : `exit`
 
 Exits the program.
 
@@ -374,10 +385,11 @@ _Details coming soon ..._
 | Action                | Format, Examples                                                                                                                                                                                             |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**              | `help`                                                                                                                                                                                                       |
+| **History**           | `history`                                                                                                                                                                                                    |
 | **Add**               | `add o/OCCUPATION n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **List**              | `list`                                                                                                                                                                                                       |
 | **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                |
-| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                          |
+| **Delete**            | `delete INDEX [OPTIONAL PREFIX/]`<br> e.g., `delete 3`,`delete 3 p/`                                                                                                                                         |
 | **Clear**             | `clear`                                                                                                                                                                                                      |                                                                             |                                                                                                          |
 | **Undo**              | `undo`                                                                                                                                                                                                       |
 | **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                                    |
