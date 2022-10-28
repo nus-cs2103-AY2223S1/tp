@@ -48,6 +48,9 @@ TrackO is a **desktop app built for small business owners to help them manage or
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* All command keywords (e.g. `addo`, `marko`, `editi`, etc.), prefixes (e.g.`p/`, `i/`, etc.) 
+and flags(e.g. `-p`, `-D`, etc.) are **case-sensitive**. 
+
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
@@ -162,6 +165,7 @@ Edits an existing order in the order list.
 Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]`
 
 * Edits the order at the specified `INDEX`.
+* Only orders which are not marked as `paid` or `delivered` can be edited. 
 * This feature is case-insensitive.
 * The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -270,6 +274,7 @@ Exits the program.
 Format: `exit`
 
 ## Command summary
+
 | Action                       | Format, Examples                                                                                                                                                                                                                                            |
 |------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add An Order**             | `addo n/NAME p/PHONE e/EMAIL a/ADDRESS` <br> e.g., `addo n/John Doe p/91234567 e/johndoe@example.com a/48 Westwood Terrace` <br> then, `i/ITEM_NAME q/QUANTITY` as many times as required <br>e.g. `i/Pillow q/2` <br>followed by `done` or `cancel`        |
@@ -284,3 +289,4 @@ Format: `exit`
 | **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                                                              |
 | **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                                |                                                                                                                                                                                         |
 | **Exit**                     | `exit`                                                                                                                                                                                                                                                      |
+
