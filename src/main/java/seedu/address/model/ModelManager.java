@@ -116,7 +116,7 @@ public class ModelManager implements Model {
     @Override
     public void updatePieChart() {
         if (pieChart != null) {
-            pieChart.updatePieChart(filteredPersons);
+            pieChart.updatePieChart(addressBook.getPersonList());
         }
     }
 

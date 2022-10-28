@@ -48,6 +48,10 @@ public class ExportCommand extends Command {
         }
         return new CommandResult(MESSAGE_EXPORT_SUCCESS + exportLocation.toAbsolutePath());
     }
-
-
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ExportCommand // instanceof handles nulls
+                && exportLocation.equals(((ExportCommand) other).exportLocation));
+    }
 }

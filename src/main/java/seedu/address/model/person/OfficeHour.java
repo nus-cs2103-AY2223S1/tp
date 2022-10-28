@@ -59,6 +59,7 @@ public class OfficeHour {
      * @return true if test is a valid officeHour
      */
     public static boolean isValidOfficeHour(String test) {
+        test = test.toUpperCase();
         return test.matches(VALIDATION_REGEX);
     }
 

@@ -623,7 +623,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. SoConnect shows an error message.
     * 1a2. User enters new data.
       Steps 1a1-1a2 are repeated until the data entered are correct.
-  
+
       Use case resumes from step 2.
 
 ### Non-Functional Requirements

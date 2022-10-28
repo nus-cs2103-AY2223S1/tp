@@ -10,7 +10,6 @@ class OfficeHourTest {
     @Test
     void isValidOfficeHour() {
         // invalid office hour
-        assertFalse(OfficeHour.isValidOfficeHour("monday, 12:00 PM - 01:00 PM")); // lower capital
         assertFalse(OfficeHour.isValidOfficeHour("MONDAY 12:00 PM - 01:00 PM")); // no comma
         assertFalse(OfficeHour.isValidOfficeHour("MONDAY, 12:00 PM - 13:00 PM")); // hour exceeds 12
         assertFalse(OfficeHour.isValidOfficeHour("MONDAY, 25:00 PM - 01:00 PM")); // hour exceeds 12
