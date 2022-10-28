@@ -62,7 +62,6 @@ public class AddCommand extends Command {
         requireNonNull(model);
         int currId = EmployeeId.getCount();
 
-
         if (model.hasPerson(toAdd)) {
             EmployeeId.setCount(--currId);
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, toAdd.getName()));

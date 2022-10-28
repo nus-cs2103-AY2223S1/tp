@@ -13,6 +13,7 @@ import coydir.model.tag.Tag;
  * Jackson-friendly version of {@link Rating}.
  */
 public class JsonAdaptedRating {
+
     private final String value;
     private final String timestamp;
 
@@ -44,4 +45,5 @@ public class JsonAdaptedRating {
         }
         return new Rating(value, timestamp);
     }
+
 }

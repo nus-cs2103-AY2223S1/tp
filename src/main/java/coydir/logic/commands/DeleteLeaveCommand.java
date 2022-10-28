@@ -54,26 +54,30 @@ public class DeleteLeaveCommand extends Command {
         if (index < 0) {
             throw new CommandException(MESSAGE_INVALID_INDEX);
         }
+        Person targetPerson = null;
         for (Person person : lastShownList) {
             if (person.getEmployeeId().equals(targetId)) {
-                if (index > person.getLeaves().size()) {
-                    throw new CommandException(MESSAGE_INVALID_INDEX);
-                }
-                Leave removedLeave = null;
-                Queue<Leave> oldLeaves = person.getLeaves();
-                Queue<Leave> newLeaves = new PriorityQueue<>(oldLeaves);
-                int counter = 1;
-                while (counter++ < index) {
-                    newLeaves.remove();
-                }
-                removedLeave = newLeaves.remove();
-                oldLeaves.remove(removedLeave);
-                person.setLeavesLeft(person.getLeavesLeft() + removedLeave.getTotalDays());
-                return new CommandResult(String.format(
-                    MESSAGE_LEAVE_REMOVE_SUCCESS, person.getName()));
+                targetPerson = person;
+                break;
             }
         }
-        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (targetPerson == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Queue<Leave> oldLeaves = targetPerson.getLeaves();
+        if (index > oldLeaves.size()) {
+            throw new CommandException(MESSAGE_INVALID_INDEX);
+        }
+        Queue<Leave> newLeaves = new PriorityQueue<>(oldLeaves);
+        int counter = 1;
+        while (counter++ < index) {
+            newLeaves.remove();
+        }
+        Leave removedLeave = newLeaves.remove();
+        oldLeaves.remove(removedLeave);
+        targetPerson.setLeavesLeft(targetPerson.getLeavesLeft() + removedLeave.getTotalDays());
+        return new CommandResult(String.format(MESSAGE_LEAVE_REMOVE_SUCCESS, targetPerson.getName()));
     }
 
     @Override

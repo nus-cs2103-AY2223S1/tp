@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
  * e.g. after deleting the employee currently displayed.
  */
 public class HomePanel extends UiPart<Region> {
+
     private static final String FXML = "HomePanel.fxml";
     private static final coydir.commons.core.Version VERSION = MainApp.VERSION;
     private static final String MESSAGE = String.format("\tWelcome To\t\n\tCoydir %s\t", VERSION.toString());
@@ -42,4 +43,5 @@ public class HomePanel extends UiPart<Region> {
         logo.setImage(logoImage);
         message.setText(MESSAGE);
     }
+
 }

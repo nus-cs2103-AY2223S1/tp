@@ -24,6 +24,7 @@ import coydir.model.person.Person;
  * Adds multiple person to the database
  */
 public class BatchAddCommand extends Command {
+
     public static final String COMMAND_WORD = "batch-add";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds multiple people into the database from a csv file \n"

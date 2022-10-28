@@ -33,6 +33,7 @@ public class AddLeaveCommand extends Command {
             + PREFIX_ENDDATE + "06-01-2022 ";
 
     public static final String MESSAGE_LEAVE_ADDED_SUCCESS = "Leave added successfully for %1$s";
+    public static final String MESSAGE_INSUFFICIENT_LEAVES = "The employee does not have enough leaves!";
     public static final String MESSAGE_DUPLICATE_LEAVE = "This leave period already exists";
     public static final String MESSAGE_OVERLAPPING_LEAVE = "Overlapping leaves are not allowed";
     private EmployeeId targetId;
@@ -52,24 +53,33 @@ public class AddLeaveCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getDatabase().getPersonList();
+        Person targetPerson = null;
         for (Person person : lastShownList) {
             if (person.getEmployeeId().equals(targetId)) {
-                if (person.getLeavesLeft() < leave.getTotalDays()) {
-                    throw new CommandException(Messages.MESSAGE_INSUFFICIENT_LEAVES);
-                } else if (person.getLeaves().contains(leave)) {
-                    throw new CommandException(MESSAGE_DUPLICATE_LEAVE);
-                }
-                for (Leave otherLeave: person.getLeaves()) {
-                    if (leave.isOverlapping(otherLeave)) {
-                        throw new CommandException(MESSAGE_OVERLAPPING_LEAVE);
-                    }
-                }
-                person.addLeave(leave);
-                person.setLeavesLeft(person.getLeavesLeft() - leave.getTotalDays());
-                return new CommandResult(String.format(MESSAGE_LEAVE_ADDED_SUCCESS, person.getName()));
+                targetPerson = person;
+                break;
             }
         }
-        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+
+        if (targetPerson == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        int leavesLeft = targetPerson.getLeavesLeft();
+        int totalDays = leave.getTotalDays();
+        if (leavesLeft < totalDays) {
+            throw new CommandException(MESSAGE_INSUFFICIENT_LEAVES);
+        }
+        for (Leave otherLeave : targetPerson.getLeaves()) {
+            if (leave.equals(otherLeave)) {
+                throw new CommandException(MESSAGE_DUPLICATE_LEAVE);
+            } else if (leave.isOverlapping(otherLeave)) {
+                throw new CommandException(MESSAGE_OVERLAPPING_LEAVE);
+            }
+        }
+        targetPerson.addLeave(leave);
+        targetPerson.setLeavesLeft(leavesLeft - totalDays);
+        return new CommandResult(String.format(MESSAGE_LEAVE_ADDED_SUCCESS, targetPerson.getName()));
     }
 
     @Override

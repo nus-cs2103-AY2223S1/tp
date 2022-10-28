@@ -196,11 +196,9 @@ class JsonAdaptedPerson {
         if (leave == null) {
             throw new IllegalValueException("Invalid");
         }
-
         final int modelLeave = Integer.valueOf(leave);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Set<Leave> modelLeaveTaken = new HashSet<>(personLeaves);
 
         final Rating modelRating;
         if (rating == null) {
@@ -214,8 +212,6 @@ class JsonAdaptedPerson {
             modelRating = new Rating(rating);
         }
 
-        final ArrayList<Rating> modelPerformanceHistory = new ArrayList<>(personRatings);
-
         // Create Person object
         Person p = new Person(modelName, modelEmployeeId, modelPhone, modelEmail,
                 modelPosition, modelDepartment, modelAddress, modelTags, modelLeave,
@@ -223,11 +219,11 @@ class JsonAdaptedPerson {
 
         // Add related data
         p.setLeavesLeft(Integer.valueOf(leaveLeft));
-        for (Leave l : modelLeaveTaken) {
+        for (Leave l : personLeaves) {
             p.addLeave(l);
         }
 
-        for (Rating r : modelPerformanceHistory) {
+        for (Rating r : personRatings) {
             p.addRating(r);
         }
 

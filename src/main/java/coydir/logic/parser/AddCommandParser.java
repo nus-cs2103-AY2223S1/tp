@@ -57,10 +57,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = Phone.getNullPhone();
         Email email = Email.getNullEmail();
         Address address = Address.getNullAddress();
+        Rating rating = Rating.getNullRating();
         Set<Tag> tagList = new HashSet<>();
-
-        Rating rating = new Rating().getNullRating();
-
         int numberOfLeaves = DEFAULT_LEAVES;
 
         // Set optional fields individually
