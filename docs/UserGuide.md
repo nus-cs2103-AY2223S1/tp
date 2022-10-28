@@ -274,21 +274,6 @@ Examples:
 * `list` followed by `delete 1 3` deletes the 1st and 3rd internship from the list.
 * `find TikTok` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
 
-### View details of an internship: `view`
-
-View details of list item at index
-
-Format: `view INDEX`
-
-* Only the index is searched.
-* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
-* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …​
-* More details about the company at the index will be displayed. 
-
-Examples:
-* `list` followed by `view 1` displays more details of the 1st internship in list.
-
-
 ### Editing internship : `edit`
 Edit details of an internship
 
@@ -300,6 +285,20 @@ Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DA
 Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find hrt` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
+
+### View details of an internship: `view`
+
+View details of list item at index
+
+Format: `view INDEX`
+
+* Only the index is searched.
+* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …​
+* More details about the company at the index will be displayed.
+
+Examples:
+* `list` followed by `view 1` displays more details of the 1st internship in list.
 
 ### Copy details of internship : `copy`
 
@@ -359,21 +358,22 @@ If your changes to the data file makes its format invalid, PleaseHireUs will dis
 _Details coming soon …​_
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary [**Add**](#adding-an-internship-add)
+## Command summary
 
-| Action                                          | Undo               | Format, Examples                                                                                                                                                                                            |
-|-------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add**](#adding-an-internship-add)            | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                     |
-| [**Clear**](#clearing-all-entries--clear)       | :heavy_check_mark: | `clear`                                                                                                                                                                                                     |
-| [**Delete**](#deleting-internships--delete)     | :heavy_check_mark: | `delete INDEX…​`<br> e.g., `delete 1 3`                                                                                                                                                                     |
-| [**View**](#view-details-of-an-internship-view) | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                             |
+| Action                                          | Undo               | Format, Examples                                                                                                                                                                                             |
+|-------------------------------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                 | :x:                | `help`                                                                                                                                                                                                       |
+| [**Add**](#adding-an-internship-add)            | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                      |
+| [**List**](#listing-all-internships--list)      | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                   |
+| [**Find**](#locating-internships-by-find)       | :x:                | `find [c/CATEGORY] KEYWORDS…​`<br> e.g., `find c/p engineer`                                                                                                                                                 |
+| [**Delete**](#deleting-internships--delete)     | :heavy_check_mark: | `delete INDEX…​`<br> e.g., `delete 1 3`                                                                                                                                                                      |
 | [**Edit**](#editing-internship--edit)           | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]…​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
-| [**Find**](#locating-internships-by-find)       | :x:                | `find [c/CATEGORY] KEYWORDS…​`<br> e.g., `find c/p engineer`                                                                                                                                                |
-| [**List**](#listing-all-internships--list)      | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                  |
-| [**Help**](#viewing-help--help)                 | :x:                | `help`                                                                                                                                                                                                      |
-| [**Copy**](#copy-details-of-internship--copy)   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                            |
-| [**Undo**](#undo-previous-command--undo)        | :x:                | `undo`                                                                                                                                                                                                      |
-| [**Redo**](#redo-previous-undone-command--redo) | :heavy_check_mark: | `redo`                                                                                                                                                                                                      |
+| [**View**](#view-details-of-an-internship-view) | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                              |
+| [**Copy**](#copy-details-of-internship--copy)   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                             |
+| [**Undo**](#undo-previous-command--undo)        | :x:                | `undo`                                                                                                                                                                                                       |
+| [**Redo**](#redo-previous-undone-command--redo) | :heavy_check_mark: | `redo`                                                                                                                                                                                                       |
+| [**Clear**](#clearing-all-entries--clear)       | :heavy_check_mark: | `clear`                                                                                                                                                                                                      |
+| [**Exit**](#exiting-the-program--exit)          | :x:                | `exit`                                                                                                                                                                                                       |
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** Valid inputs for `CATEGORY` parameter in `list` and `find` <br>
