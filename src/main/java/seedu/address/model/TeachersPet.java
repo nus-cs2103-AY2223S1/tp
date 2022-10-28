@@ -8,7 +8,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Class;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.UniquePersonList;
+import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.student.UniqueScheduleList;
 import seedu.address.model.timeRange.TimeRange;
 
@@ -18,7 +18,7 @@ import seedu.address.model.timeRange.TimeRange;
  */
 public class TeachersPet implements ReadOnlyTeachersPet {
 
-    private final UniquePersonList persons;
+    private final UniqueStudentList persons;
     private final UniqueScheduleList schedule;
 
     /*
@@ -29,7 +29,7 @@ public class TeachersPet implements ReadOnlyTeachersPet {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueStudentList();
         schedule = new UniqueScheduleList();
     }
 

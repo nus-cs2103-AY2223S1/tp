@@ -23,14 +23,14 @@ import seedu.address.storage.ClassStorage;
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A student is considered unique by comparing using {@code Student#isSamePerson(Student)}. As such, adding and updating of
  * persons uses Student#isSamePerson(Student) for equality so as to ensure that the student being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a student uses Student#equals(Object) so
+ * unique in terms of identity in the UniqueStudentList. However, the removal of a student uses Student#equals(Object) so
  * as to ensure that the student with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Student#isSamePerson(Student)
  */
-public class UniquePersonList implements Iterable<Student> {
+public class UniqueStudentList implements Iterable<Student> {
 
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
@@ -87,7 +87,7 @@ public class UniquePersonList implements Iterable<Student> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setPersons(UniqueStudentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -296,8 +296,8 @@ public class UniquePersonList implements Iterable<Student> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueStudentList // instanceof handles nulls
+                        && internalList.equals(((UniqueStudentList) other).internalList));
     }
 
     @Override
