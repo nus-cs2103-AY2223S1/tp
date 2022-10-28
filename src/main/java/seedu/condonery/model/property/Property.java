@@ -1,5 +1,7 @@
 package seedu.condonery.model.property;
 
+import static seedu.condonery.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
@@ -57,9 +59,7 @@ public class Property {
     }
 
     public Path getImagePath() {
-        if (imageDirectoryPath == null) {
-            return null;
-        }
+        requireAllNonNull(imageDirectoryPath);
         return imageDirectoryPath.resolve("property-" + getCamelCaseName());
     }
 
