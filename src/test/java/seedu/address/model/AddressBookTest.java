@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.exceptions.DuplicateCustomerException;
 import seedu.address.testutil.CustomerBuilder;
@@ -88,14 +89,21 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Customer> customers = FXCollections.observableArrayList();
+        private final ObservableList<Commission> commissions = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Customer> customers) {
             this.customers.setAll(customers);
+            this.customers.forEach(customer -> commissions.addAll(customer.getCommissionList()));
         }
 
         @Override
         public ObservableList<Customer> getCustomerList() {
             return customers;
+        }
+
+        @Override
+        public ObservableList<Commission> getFullCommissionList() {
+            return commissions;
         }
     }
 

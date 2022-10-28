@@ -20,6 +20,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: except description, all details are present and not null, field values are validated, immutable.
  */
 public class Commission {
+    private static final UniqueCommissionList allCommissions = new UniqueCommissionList();
 
     // Identity fields
     private final Title title;
@@ -216,7 +217,8 @@ public class Commission {
                 && otherCommission.getDeadline().equals(getDeadline())
                 && otherCommission.getTags().equals(getTags())
                 && otherCommission.getDescription().equals(getDescription())
-                && otherCommission.getCompletionStatus().equals(getCompletionStatus());
+                && otherCommission.getCompletionStatus().equals(getCompletionStatus())
+                && otherCommission.getCustomer().isSameCustomer(getCustomer());
     }
 
     @Override
@@ -246,6 +248,22 @@ public class Commission {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    public static void addCommission(Commission commission) {
+        Commission.allCommissions.add(commission);
+    }
+
+    public static void deleteCommission(Commission commission) {
+        Commission.allCommissions.remove(commission);
+    }
+
+    public static void setCommission(Commission oldCommission, Commission newCommission) {
+        Commission.allCommissions.setCommission(oldCommission, newCommission);
+    }
+
+    public static UniqueCommissionList getAllCommissions() {
+        return allCommissions;
     }
 
     /**

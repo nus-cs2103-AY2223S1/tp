@@ -43,7 +43,6 @@ public class OpenCustomerCommand extends Command {
 
         model.selectTab(GuiTab.CUSTOMER);
         List<Customer> lastShownList = model.getSortedFilteredCustomerList();
-
         if (targetIndex == null) {
             return new CommandResult(MESSAGE_OPEN_CUSTOMER_TAB_SUCCESS);
         }

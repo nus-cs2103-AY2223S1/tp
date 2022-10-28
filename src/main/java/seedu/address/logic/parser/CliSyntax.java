@@ -31,4 +31,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SORT_CUSTOMER_COMMISSION_COUNT = new Prefix("c/");
     public static final Prefix PREFIX_SORT_CUSTOMER_REVENUE = new Prefix("r/");
     public static final Prefix PREFIX_SORT_CUSTOMER_LAST_DATE = new Prefix("d/");
+
+    /* Filtering Prefix */
+    public static final Prefix PREFIX_KEYWORD = new Prefix("k/");
 }

@@ -54,8 +54,10 @@ public class DeleteIterationCommandIntegrationTest {
 
     @Test
     public void execute_noSelectedCommission_throwsCommandException() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model.selectCommission(null);
         assertCommandFailure(new DeleteIterationCommand(INDEX_FIRST),
-                new ModelManager(getTypicalAddressBook(), new UserPrefs()),
+                model,
                 Messages.MESSAGE_NO_ACTIVE_COMMISSION);
     }
 

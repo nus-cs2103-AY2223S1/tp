@@ -97,6 +97,21 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void addCommission(Customer customer, Commission commission) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setCommission(Customer customer, Commission target, Commission editedCommission) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeCommission(Customer customer, Commission key) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public FilteredList<Commission> getFilteredCommissionList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -108,6 +123,11 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredCommissionList(Predicate<Commission> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Double getTotalRevenue() {
         throw new AssertionError("This method should not be called.");
     }
 

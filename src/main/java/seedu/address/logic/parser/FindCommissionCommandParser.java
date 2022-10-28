@@ -8,25 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindCommissionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.commission.CompositeCustomerPredicate;
+import seedu.address.model.commission.CompositeCommissionPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommissionCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindCommissionCommandParser implements Parser<FindCommissionCommand> {
     private static final String INTERSECT_FLAG = "-all";
     private static final String UNION_FLAG = "-any";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the FindCommissionCommand
+     * and returns a FindCommissionCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format.
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindCommissionCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         int intersectTagsGroupStart = trimmedArgs.indexOf(INTERSECT_FLAG);
         int intersectTagsContentStart = intersectTagsGroupStart + 4;
@@ -37,7 +37,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         String rawIntersectTags = "";
         String rawUnionTags = "";
 
-        // Improve readability only
         String possibleRawUnionTags = unionTagsContentStart >= trimmedArgs.length() ? ""
                 : trimmedArgs.substring(unionTagsContentStart).trim();
 
@@ -58,6 +57,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 rawKeywords = trimmedArgs;
             }
         }
+
 
         List<String> keywords = new ArrayList<>();
         List<Tag> intersectTags = new ArrayList<>();
@@ -91,7 +91,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                     FindCommissionCommand.MESSAGE_USAGE));
         }
 
-        return new FindCommand(new CompositeCustomerPredicate(keywords, intersectTags, unionTags));
+        return new FindCommissionCommand(new CompositeCommissionPredicate(keywords, intersectTags, unionTags));
     }
-
 }

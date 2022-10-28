@@ -111,11 +111,6 @@ public class EditCommissionCommand extends Command {
     public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasSelectedCustomer()) {
-            throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
-        }
-        Customer selectedCustomer = model.getSelectedCustomer().getValue();
-
         List<Commission> lastShownList = model.getFilteredCommissionList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -124,13 +119,12 @@ public class EditCommissionCommand extends Command {
 
         Commission commissionToEdit = lastShownList.get(index.getZeroBased());
         Commission editedCommission = createEditedCommission(commissionToEdit, editCommissionDescriptor);
-
+        Customer selectedCustomer = commissionToEdit.getCustomer();
         if (!commissionToEdit.isSameCommission(editedCommission) && selectedCustomer.hasCommission(editedCommission)) {
             throw new CommandException(MESSAGE_DUPLICATE_COMMISSION);
         }
 
-        selectedCustomer.setCommission(commissionToEdit, editedCommission);
-
+        model.setCommission(selectedCustomer, commissionToEdit, editedCommission);
         model.selectCommission(editedCommission);
 
         model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);

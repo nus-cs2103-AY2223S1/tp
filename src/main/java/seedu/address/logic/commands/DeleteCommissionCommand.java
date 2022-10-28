@@ -49,7 +49,7 @@ public class DeleteCommissionCommand extends Command {
         Commission selectedCommission = model.getSelectedCommission().getValue();
         Commission commissionToDelete = lastShownList.get(targetIndex.getZeroBased());
         Customer customer = commissionToDelete.getCustomer();
-        customer.removeCommission(commissionToDelete);
+        model.removeCommission(customer, commissionToDelete);
         model.selectTab(GuiTab.COMMISSION);
         model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
         if (selectedCommission != null && !selectedCommission.isSameCommission(commissionToDelete)) {

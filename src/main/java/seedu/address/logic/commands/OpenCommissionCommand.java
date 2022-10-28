@@ -44,9 +44,6 @@ public class OpenCommissionCommand extends Command {
     public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasSelectedCustomer()) {
-            throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
-        }
         model.selectTab(GuiTab.COMMISSION);
 
         if (targetIndex == null) {

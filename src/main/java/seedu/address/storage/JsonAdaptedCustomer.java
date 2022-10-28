@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -70,7 +69,7 @@ class JsonAdaptedCustomer {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
 
-        commissions.addAll(StreamSupport.stream(source.getCommissions().spliterator(), false)
+        commissions.addAll(source.getCommissionList().stream()
                 .map(JsonAdaptedCommission::new)
                 .collect(Collectors.toList()));
 

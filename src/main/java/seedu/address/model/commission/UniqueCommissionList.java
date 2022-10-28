@@ -144,9 +144,9 @@ public class UniqueCommissionList implements Iterable<Commission> {
         }
     }
 
-    public void setCommissions(UniqueCommissionList replacement) {
+    public void setCommissions(ObservableList<Commission> replacement) {
         requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        internalList.setAll(replacement);
     }
 
     /**
@@ -172,6 +172,17 @@ public class UniqueCommissionList implements Iterable<Commission> {
     @Override
     public Iterator<Commission> iterator() {
         return internalList.iterator();
+    }
+
+    /**
+     * Checks if the commission list contains the same commissions as the oher list of commissions.
+     */
+    public boolean isSameUniqueCommissionList(UniqueCommissionList other) {
+        if (internalList.size() != other.internalList.size()) {
+            return false;
+        }
+        return internalList.stream().allMatch(
+            commission -> other.internalList.stream().anyMatch(commission::isSameCommission));
     }
 
     @Override

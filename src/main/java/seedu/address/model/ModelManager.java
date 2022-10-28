@@ -31,11 +31,11 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final SortedList<Customer> sortedFilteredCustomers;
     private final FilteredList<Customer> filteredCustomers;
-    private final ObservableObject<Pair<Customer, UniqueCommissionList>> observableUniqueCommissions =
-            new ObservableObject<>(new Pair<>(null, new UniqueCommissionList()));
+    private final ObservableObject<Pair<Customer, ObservableList<Commission>>> observableUniqueCommissions =
+            new ObservableObject<>(new Pair<>(null, new UniqueCommissionList().asUnmodifiableObservableList()));
     private final ObservableObject<Pair<Customer, FilteredList<Commission>>> observableFilteredCommissions =
-            new ObservableObject<>(new Pair<>(null, new FilteredList<>(
-                    observableUniqueCommissions.getValue().getValue().asUnmodifiableObservableList())));
+            new ObservableObject<>(new Pair<>(null,
+                    new FilteredList<>(observableUniqueCommissions.getValue().getValue())));
     private final ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
     private final ObservableObject<Commission> selectedCommission = new ObservableObject<>();
 
@@ -62,7 +62,7 @@ public class ModelManager implements Model {
         observableUniqueCommissions.addListener((observableUniqueCommissions, oldList, newList) ->
                 observableFilteredCommissions.setValue(new Pair<>(
                         newList.getKey(),
-                        new FilteredList<>(newList.getValue().asUnmodifiableObservableList()))));
+                        new FilteredList<>(newList.getValue()))));
 
 
         // selectedCustomerCommissions is tied to the selectedCustomer,
@@ -89,10 +89,11 @@ public class ModelManager implements Model {
     }
 
     private void setSelectedCustomerCommissions(Customer customer) {
-        Pair<Customer, UniqueCommissionList> commissionsList = customer == null
-                ? new Pair<>(null, new UniqueCommissionList())
-                : new Pair<>(customer, customer.getCommissions());
+        Pair<Customer, ObservableList<Commission>> commissionsList = customer == null
+                ? new Pair<>(null, addressBook.getFullCommissionList())
+                : new Pair<>(customer, customer.getCommissionList());
         observableUniqueCommissions.setValue(commissionsList);
+        selectCommission(null);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -148,6 +149,8 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        selectedCustomer.setValue(null);
+        selectedCommission.setValue(null);
     }
 
     @Override
@@ -172,6 +175,37 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedCustomer);
         addressBook.setCustomer(target, editedCustomer);
     }
+
+    /**
+     * Adds commission to specified customer.
+     *
+     * @param commission new commission to add.
+     */
+    public void addCommission(Customer customer, Commission commission) {
+        requireAllNonNull(customer, commission);
+        addressBook.addCommission(customer, commission);
+    }
+
+    /**
+     * Replaces the given commission {@code target} in the customer's commission list with {@code editedCommission}.
+     * {@code target} must exist in the address book.
+     * The commission identity of {@code editedCommission} must not be the same as another existing commission in the
+     * customer's commission list.
+     */
+    public void setCommission(Customer customer, Commission target, Commission editedCommission) {
+        addressBook.setCommission(customer, target, editedCommission);
+    }
+
+
+    /**
+     * Removes {@code key} from this {@code Customer}.
+     * {@code key} must exist in the customer's commission list.
+     */
+    public void removeCommission(Customer customer, Commission key) {
+        addressBook.removeCommission(customer, key);
+    }
+
+
 
     //=========== Filtered Customer List Accessors =============================================================
 
@@ -220,6 +254,16 @@ public class ModelManager implements Model {
     public void updateFilteredCommissionList(Predicate<Commission> predicate) {
         requireAllNonNull(getFilteredCommissionList(), predicate);
         getFilteredCommissionList().setPredicate(predicate);
+    }
+
+    //=========== Filtered Commission List Statistic Aggregator ==================================================
+    @Override
+    public Double getTotalRevenue() {
+        double revenue = 0;
+        for (Commission commission : observableFilteredCommissions.getValue().getValue()) {
+            revenue += commission.getFee().fee;
+        }
+        return revenue;
     }
 
     //=========== Selected Customer =============================================================

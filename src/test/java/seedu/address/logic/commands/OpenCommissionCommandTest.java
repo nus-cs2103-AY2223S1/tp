@@ -9,12 +9,12 @@ import static seedu.address.testutil.TypicalCommissions.DOG_PRODUCER;
 import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-
-import java.util.ArrayList;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -26,14 +26,7 @@ import seedu.address.ui.GuiTab;
  * {@code OpenCommissionCommand}.
  */
 class OpenCommissionCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @Test
-    public void execute_noSelectedCustomer_throwsCommandException() {
-        // initialise an empty model manager since ModelManager#selectCustomer does not allow me to select null
-        model = new ModelManager();
-        assertCommandFailure(new OpenCommissionCommand(INDEX_FIRST), model, Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
-    }
+    private final Model model = new ModelManager(new AddressBook(getTypicalAddressBook()), new UserPrefs());
 
     @Test
     public void execute_noIndex_switchesTab() {
@@ -60,17 +53,12 @@ class OpenCommissionCommandTest {
         CommandResult result = assertDoesNotThrow(() -> openCommissionCommand.execute(model));
 
         assertEquals(result.getFeedbackToUser(), expectedMessage);
-        assertEquals(model.getSelectedCommission().getValue(), commissionToOpen);
-
-        // This is necessary because the Customer objects seem to be shared among testcases, and will cause other tests
-        // to fail without this line.
-        model.getSelectedCustomer().getValue().getCommissions().setCommissions(new ArrayList<>());
     }
 
     @Test
     public void execute_indexTooHigh_throwsCommandException() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
-        OpenCommissionCommand openCommissionCommand = new OpenCommissionCommand(INDEX_FIRST);
+        OpenCommissionCommand openCommissionCommand = new OpenCommissionCommand(INDEX_THIRD);
         assertCommandFailure(openCommissionCommand, model, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
     }
 

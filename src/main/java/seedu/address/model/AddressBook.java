@@ -2,9 +2,12 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.UniqueCustomerList;
 
@@ -15,6 +18,7 @@ import seedu.address.model.customer.UniqueCustomerList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueCustomerList customers;
+    private final UniqueCommissionList allCommissions;
 
 
     /*
@@ -26,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         customers = new UniqueCustomerList();
+        allCommissions = new UniqueCommissionList();
     }
 
     public AddressBook() {
@@ -47,6 +52,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setCustomers(List<Customer> customers) {
         this.customers.setCustomers(customers);
+        allCommissions.setCommissions(new ArrayList<>());
+        customers.forEach(customer -> customer.getCommissionList().forEach(allCommissions::add));
     }
 
     /**
@@ -73,6 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addCustomer(Customer p) {
         customers.add(p);
+        p.getCommissionList().forEach(allCommissions::add);
     }
 
     /**
@@ -92,8 +100,40 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeCustomer(Customer key) {
         customers.remove(key);
+        key.getCommissionList().forEach(allCommissions::remove);
     }
 
+
+    /**
+     * Adds commission to specified customer.
+     *
+     * @param commission new commission to add.
+     */
+    public void addCommission(Customer customer, Commission commission) {
+        customer.addCommission(commission);
+        allCommissions.add(commission);
+    }
+
+    /**
+     * Replaces the given commission {@code target} in the customer's commission list with {@code editedCommission}.
+     * {@code target} must exist in the address book.
+     * The commission identity of {@code editedCommission} must not be the same as another existing commission in the
+     * customer's commission list.
+     */
+    public void setCommission(Customer customer, Commission target, Commission editedCommission) {
+        customer.setCommission(target, editedCommission);
+        allCommissions.setCommission(target, editedCommission);
+    }
+
+
+    /**
+     * Removes {@code key} from this {@code Customer}.
+     * {@code key} must exist in the customer's commission list.
+     */
+    public void removeCommission(Customer customer, Commission key) {
+        customer.removeCommission(key);
+        allCommissions.remove(key);
+    }
 
     //// util methods
 
@@ -106,6 +146,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Customer> getCustomerList() {
         return customers.asUnmodifiableObservableList();
+    }
+
+
+    @Override
+    public ObservableList<Commission> getFullCommissionList() {
+        return allCommissions.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Checks if the fields within the addressbook are identical when performing the
+     * `isSameCustomer` or `isSameCommission` check.
+     */
+    public boolean isSameAddressBook(AddressBook other) {
+        return customers.isSameUniqueCustomerList(other.customers)
+                && allCommissions.isSameUniqueCommissionList(other.allCommissions);
     }
 
     @Override
