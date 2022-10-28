@@ -5,6 +5,8 @@ title: Salesy User Guide v1.3
 
 Salesy is a desktop app for helping food vendors manage details of their clients and suppliers, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and remember the commands well, Salesy can get your contact management tasks done faster than traditional GUI apps.
 
+![Ui](images/Ui.png)
+
 * Table of Contents
 {:toc}
 
@@ -27,6 +29,48 @@ Salesy is a desktop app for helping food vendors manage details of their clients
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+### Statistics Panel
+
+A brief display of important information for **inventory** and **tasks**.
+
+**An overview of the information panel**
+
+![LabelledStatsPanel](images/labelledstatspanel.png)
+
+**More information**
+
+* **(A)** `Incomplete` tasks refers to tasks that are shown as `Not Done`. 
+* **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has deadline that is
+past today's date.
+  * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
+* **(C)** `Upcoming` tasks refers to tasks that have deadline of today's date and the dates after today.
+  * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or after**_, this will be counted as `Upcoming`.
+
+### Colors used for Inventory
+
+Simple and intuitive colors are used to identify stock levels.
+
+**Examples:**
+
+Inventory Status in the [Stats Panel](#Statistics Panel).
+
+Inventory Cards for Items
+
+![InventoryCardRed](images/redstatuscard.png)
+
+![InventoryCardOrange](images/orangestatuscard.png)
+
+![InventoryCardGreen](images/greenstatuscard.png)
+
+**Detailed Explanation**
+
+| Color          | Meaning                                                          | How is it determined ?                                                                              |
+|----------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| 🔴&nbsp;Red    | Running at `near or below minimum`, restock as soon as possible. | **Less than 120%** of minimum stock specified.                                                      |
+| 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon.     | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
+| 🟢&nbsp;Green  | Running at a `healthy` level no worries about restocking.        | **More than and equal to 165%** of minimum stock specified.                                         |
+
 
 ### Add supplier/task/supply item: `add`
 
