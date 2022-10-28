@@ -278,6 +278,16 @@ Select the option `Copy as Path` and the filepath of your file will be copied!</
 </details>
 <br>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Due to file path naming and the command format, specifying a folder with a folder name that ends with
+a 'n', 'd', 'f', or 'p' would lead to an ambiguous command. For instance, the command
+<code>`additer d/2022-10-10 n/description f/actual feedback p//test f/image.png</code> is ambiguous
+because AB does know whether <code>f/image.png</code> is the feedback parameter specified by the user.
+<br><br>
+If you wish to upload the image, either rename the folder name, or upload the image by the GUI.
+</div>
+<br>
+
 **Adding by Graphical Interface**
 
 Adding an iteration can also be done via the graphical interface by clicking on
