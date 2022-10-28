@@ -11,8 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reminder.EditReminderCommand;
 import seedu.address.logic.commands.reminder.EditReminderCommand.EditReminderDescriptor;
-import seedu.address.logic.commands.student.EditCommand;
-import seedu.address.logic.commands.tutorial.EditTutorialCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -32,7 +30,8 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
     public EditReminderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_DATE_DAY, PREFIX_PRIORITY, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_DATE_DAY, PREFIX_PRIORITY,
+                        PREFIX_DESCRIPTION);
 
         Index index;
 

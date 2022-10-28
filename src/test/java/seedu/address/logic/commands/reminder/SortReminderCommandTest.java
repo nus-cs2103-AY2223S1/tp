@@ -23,13 +23,13 @@ public class SortReminderCommandTest {
 
     @Test
     public void execute_listIsSortedByPriority_showsSameList() {
-        assertCommandSuccess(new SortReminderCommand("priority"), model, SortReminderCommand.MESSAGE_SUCCESS_TEMPLATE,
-                expectedModel);
+        assertCommandSuccess(new SortReminderCommand("priority"), model,
+                String.format(SortReminderCommand.MESSAGE_SUCCESS_TEMPLATE, "priority"), expectedModel);
     }
 
     @Test
     public void execute_listIsSortedByDeadline_showsSameList() {
-        assertCommandSuccess(new SortReminderCommand("deadline"), model, SortReminderCommand.MESSAGE_SUCCESS_TEMPLATE,
-                expectedModel);
+        assertCommandSuccess(new SortReminderCommand("deadline"), model,
+                String.format(SortReminderCommand.MESSAGE_SUCCESS_TEMPLATE, "deadline"), expectedModel);
     }
 }

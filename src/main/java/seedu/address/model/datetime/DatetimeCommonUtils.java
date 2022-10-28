@@ -152,8 +152,6 @@ public class DatetimeCommonUtils {
      */
     public static Datetime parseDatetime(String date, String time) throws ParseException {
         requireAllNonNull(date, time);
-        
-//        String datetimeString = date + time;
 
         String trimmedDatetime = date.trim() + " " + time.trim();
 
