@@ -45,26 +45,26 @@
                         <padding>
                             <Insets bottom="10" left="30" right="10" top="10"/>
                         </padding>
-                        <FlowPane styleClass="cell_label_tags">
+                        <VBox styleClass="cell_label_tags">
                             <padding>
                                 <Insets bottom="3" left="3" right="3" top="3"/>
                             </padding>
-                            <Label fx:id="income" text="\$income"/>
-                        </FlowPane>
+                            <Label fx:id="income" text="\$income" wrapText="true"/>
+                        </VBox>
 
-                        <FlowPane styleClass="cell_label_tags">
+                        <VBox styleClass="cell_label_tags">
                             <padding>
                                 <Insets bottom="3" left="3" right="3" top="3"/>
                             </padding>
-                            <Label fx:id="meetingDate" text="\$meetingDate"/>
-                        </FlowPane>
+                            <Label fx:id="meetingDate" text="\$meetingDate" wrapText="true"/>
+                        </VBox>
 
-                        <FlowPane styleClass="cell_label_tags">
+                        <VBox styleClass="cell_label_tags">
                             <padding>
                                 <Insets bottom="3" left="3" right="3" top="3"/>
                             </padding>
-                            <Label fx:id="meetingLocation" text="\$meetingDate"/>
-                        </FlowPane>
+                            <Label fx:id="meetingLocation" text="\$meetingLocation" wrapText="true"/>
+                        </VBox>
 
                     </VBox>
                 </SplitPane>
