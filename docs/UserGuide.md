@@ -26,27 +26,27 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 
 1. Ensure you have Java `11` or above installed in your Computer. If you are unsure you can refer to [this](#appendix-installing-java-11)
 
-1. Download the latest `PleaseHireUs.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
+2. Download the latest `PleaseHireUs.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your application.
+3. Copy the file to the folder you want to use as the _home folder_ for your application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
+5. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all internships.
+   * **`list`** : Lists all internships.
 
-    * **`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`** : Adds a new internship to the internship tracker.
+   * **`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`** : Adds a new internship to the internship tracker.
 
-    * **`delete 3`** : Deletes the 3rd internship shown in the current list.
+   * **`delete 3`** : Deletes the 3rd internship shown in the current list.
 
-    * **`clear`** : Deletes all internships.
+   * **`clear`** : Deletes all internships.
 
-    * **`exit`** : Exits the app.
+   * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 --------------------------------------------------------------------------------------------------------------------
 ## About this User Guide
 
@@ -220,11 +220,13 @@ Examples:
 </div>
 
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
-- `company_name` --> `c`<br>
-- `position` --> `p`<br>
-- `application_process` --> `pr`<br>
-- `date` --> `d`<br>
+**:bulb: Tip:**
+| Category                  | Short-form |
+|---------------------------|------------|
+| **`company_name`**        | `c`        |
+| **`position`**            | `p`        |
+| **`application_process`** | `pr`       |
+| **`date`**                | `d`        |
 
 `list c/company_name` is equivalent to `list c/n`
 </div>
@@ -249,12 +251,15 @@ Examples:
 * `find sea shop` returns a list of internships with company name of Sea Labs, Shopee, and Shopback
 
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
-- `company_name` --> `c`<br>
-- `position` --> `p`<br>
-- `application_process` --> `pr`<br>
-- `date` --> `d`<br>
-- `tag` --> `t`<br>
+**:bulb: Tip:** 
+
+| Category                  | Short-form |
+|---------------------------|------------|
+| **`company_name`**        | `c`        |
+| **`position`**            | `p`        |
+| **`application_process`** | `pr`       |
+| **`date`**                | `d`        |
+| **`tag`**                 | `t`        |
 
 `find c/position engineer` is equivalent to `find c/p engineer`
 </div>
@@ -378,10 +383,10 @@ _Details coming soon …​_
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** Valid inputs for `CATEGORY` parameter in `list` and `find` <br>
 
-Command | Valid Categories (case-insensitive)
---------| -----
-**`list`** | `COMPANY_NAME` `POSITION` `APPLICATION_PROCESS` `DATE`
-**`find`** | `COMPANY_NAME` `POSITION` `APPLICATION_PROCESS` `DATE` `TAG`
+| Command      | Valid Categories (case-insensitive)                          |
+|--------------|--------------------------------------------------------------|
+| **`list`**   | `COMPANY_NAME` `POSITION` `APPLICATION_PROCESS` `DATE`       |
+| **`find`**   | `COMPANY_NAME` `POSITION` `APPLICATION_PROCESS` `DATE` `TAG` |
 
 </div>
 
