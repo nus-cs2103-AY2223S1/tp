@@ -378,6 +378,7 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 * At least one optional detail must be modified.
 * Details that are not edited will be kept as is.
 
+Examples:
 Suppose *MyInsuRec* contains only one meeting as created in the [`addMeeting`](#521-add-meeting-addmeeting) command:
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
 * `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, 
