@@ -50,7 +50,7 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 --------------------------------------------------------------------------------------------------------------------
 ## About this User Guide
 
-This guides aims to:
+This guides aims to: <br>
 1. Teach first-time users how to start using PleaseHireUs
 2. Show and explain to users how to use each command
 3. Provide users with a summary of the commands available
