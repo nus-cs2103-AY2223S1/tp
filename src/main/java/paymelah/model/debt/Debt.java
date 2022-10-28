@@ -8,7 +8,7 @@ import java.util.Objects;
  * Represents a Debt in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Debt {
+public class Debt implements Comparable<Debt> {
     private final Description description;
     private final Money money;
     private final DebtDate date;
@@ -75,24 +75,6 @@ public class Debt {
     }
 
     /**
-     * Compares with another Debt using date and time.
-     */
-    public int compareDateTimeWith(Debt o) {
-        int dateComparison = this.date.compareTo(o.date);
-        int timeComparison = this.time.compareTo(o.time);
-        return dateComparison == 0
-                ? timeComparison == 0 ? compareDescriptionWith(o) : timeComparison
-                : dateComparison;
-    }
-
-    /**
-     * Compares with another Debt using their descriptions' alphabetical order.
-     */
-    public int compareDescriptionWith(Debt o) {
-        return this.description.compareTo(o.description);
-    }
-
-    /**
      * Returns a Debt with the given description, money, date and time.
      */
     public static Debt makeDebt(String description, String money, String date, String time) {
@@ -130,6 +112,27 @@ public class Debt {
                 && otherDebt.getMoney().equals(this.getMoney())
                 && otherDebt.getDate().equals(this.getDate())
                 && otherDebt.getTime().equals(this.getTime());
+    }
+
+    /**
+     * Compares with another Debt using date and time.
+     */
+    @Override
+    public int compareTo(Debt o) {
+        int dateComparison = this.date.compareTo(o.date);
+        int timeComparison = this.time.compareTo(o.time);
+        int descriptionComparison = this.description.compareTo(o.description);
+        int moneyComparison = this.money.compareTo(o.money);
+        if (dateComparison != 0) {
+            return dateComparison;
+        }
+        if (timeComparison != 0) {
+            return timeComparison;
+        }
+        if (descriptionComparison != 0) {
+            return descriptionComparison;
+        }
+        return moneyComparison;
     }
 
     @Override
