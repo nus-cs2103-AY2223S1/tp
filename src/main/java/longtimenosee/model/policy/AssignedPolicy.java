@@ -73,12 +73,12 @@ public class AssignedPolicy {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append(this.policy.toString())
-                .append(", Premium: ")
-                .append(getPremium())
-                .append(", Start: ")
-                .append(getStartDate())
-                .append(", End: ")
-                .append(getEndDate());
+                .append("\n" + "Premium: ")
+                .append(getPremium() + "\n")
+                .append("Start: ")
+                .append(getStartDate() + "\n")
+                .append("End: ")
+                .append(getEndDate() + "\n");
         return sb.toString();
     }
 

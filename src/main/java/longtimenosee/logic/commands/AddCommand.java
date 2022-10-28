@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney"
             + PREFIX_BIRTHDAY + "2019-05-05"
-            + PREFIX_INCOME + "100.00"
+            + PREFIX_INCOME + "100.00" + " "
             + PREFIX_RISK_APPETITE + "M";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";

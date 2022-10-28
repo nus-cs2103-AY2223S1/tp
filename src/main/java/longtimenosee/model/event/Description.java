@@ -9,13 +9,13 @@ import static longtimenosee.commons.util.AppUtil.checkArgument;
  */
 public class Description {
 
-
+    public static final int MAXIMUM_DESCRIPTION_LENGTH = 175;
     public static final String MESSAGE_CONSTRAINTS = "Description should only contain "
-        + "alphanumeric characters and spaces.";
+        + "alphanumeric characters and spaces. It should not be empty";
+    public static final String LENGTH_CONSTRAINTS = "Ensure description is of an appropriate length";
     /*
      * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     * Very similar to Person's Name
+     * otherwise " " (a blank string) becomes a valid input, similar to Name.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
@@ -28,6 +28,7 @@ public class Description {
     public Description(String description) {
         requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidLength(description), LENGTH_CONSTRAINTS);
         this.description = description;
     }
     /**
@@ -35,6 +36,16 @@ public class Description {
      */
     public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true is a given string is of a valid length
+     * Presumes that the description is already valid.
+     * This is to account for the case where the description is empty.
+     */
+    public static boolean isValidLength(String test) {
+        assert(isValidDescription(test));
+        return test.length() <= MAXIMUM_DESCRIPTION_LENGTH;
     }
     @Override
     public String toString() {

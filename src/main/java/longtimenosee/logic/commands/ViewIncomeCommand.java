@@ -12,7 +12,7 @@ public class ViewIncomeCommand extends Command {
 
     public static final String COMMAND_WORD = "viewIncome"; //should I change to refresh?
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "<YEAR>" + ": chooses the year for viewing income";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " <year>" + ": chooses the year for viewing income";
     private final int targetYear;
 
     public ViewIncomeCommand(int targetYear) {
@@ -22,9 +22,9 @@ public class ViewIncomeCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         LocalDate date = LocalDate.of(targetYear, 1, 1);
-        FinancialAdvisorIncome i = model.getIncome();
-        i.threeYearIncome(date, model);
-        float result = i.calculateIncome(date, model);
+        FinancialAdvisorIncome income = model.getIncome();
+        income.threeYearIncome(date, model);
+        float result = income.calculateIncome(date, model);
         String message = "Income for year " + targetYear + " is " + result;
         return new CommandResult(message, false, false, false,
                 false, false, true);

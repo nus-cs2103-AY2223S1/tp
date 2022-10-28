@@ -52,8 +52,6 @@ public class Commission {
         float[] percentages = new float[commissions.length];
         for (int i = 0; i < commissions.length; i++) {
             percentages[i] = Float.valueOf(commissions[i]);
-            System.out.println(i + "commission: " + percentages[i]);
-            //todo fix this part as array out of bounds
         }
         return percentages;
     }

@@ -8,6 +8,7 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
+    -fx-alignment: "center";
 }
 
 .label-bright {
@@ -133,7 +134,7 @@
 /*}*/
 
 .list-cell .label {
-    -fx-text-fill: rainbow; /* text color */
+    -fx-text-fill: black; /* text color */
 }
 
 .cell_big_label {

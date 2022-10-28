@@ -12,13 +12,17 @@ import java.util.Comparator;
  */
 
 public class Birthday {
+    public static final int TWENTIETH_CENTURY_BOUNDARY = 1900;
     public static final Comparator<Person> BIRTHDAY_COMPARATOR = new Comparator<Person>() {
         @Override
         public int compare(Person p1, Person p2) {
             return p1.getBirthday().getBirthday().compareTo(p2.getBirthday().getBirthday());
         }
     };
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future or invalid";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future or "
+             + "before the 20th century";
+    public static final String RANGE_FORMAT_CONSTRAINTS = "Ensure that Year/Month/Date values entered are valid."
+            + "\n Such that it is a valid date.";
     public static final String STANDARD_DATE = "yyyy-MM-dd";
     public static final String SORT_BIRTHDAY = "birthday";
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Date of Birth must follow Format: " + STANDARD_DATE;
@@ -27,7 +31,6 @@ public class Birthday {
     public final String value;
 
     private LocalDate birthday;
-    private boolean celebrated;
 
     /**
      * Main constructor for Birthday
@@ -36,19 +39,24 @@ public class Birthday {
     public Birthday(String value) {
         this.value = value;
         this.birthday = parseBirthday(value);
-        this.celebrated = false;
     }
 
-
-    public Birthday unspecified() {
-        return new Birthday(null);
-    }
-    public boolean checkCelebrated() {
-        return this.celebrated;
-    }
-
-    public void celebrateBirthday() {
-        this.celebrated = true;
+    /**
+     * Utility function to check if values entered are within range of an appropriate date.
+     * * i.e: 0 <= Day <= 31, 0 <= Month <= 12
+     * The LocalDate library is then used to parse these values.
+     * To account for edge cases like Leap years.
+     * @param date
+     * @return
+     */
+    public static boolean isValidDate(String date) {
+        assert(isValidFormat(date) == true);
+        try {
+            LocalDate attemptToParseBirthday = LocalDate.parse(date);
+        } catch (DateTimeParseException invalidValueException) {
+            return false;
+        }
+        return true;
     }
 
     public LocalDate getBirthday() {
@@ -56,17 +64,24 @@ public class Birthday {
     }
 
     /**
-     * Utility function to check if a birthday is valid
+     * Utility function to check if a birthday is reasonable
+     * date parsed in must be of a valid format (i.e: YYYY-MM-DD)
+     * Checks that a client's birthday is reasonable:
+     * i.e: Birthday is not in the future, and not before the 20th century.
+     *
      */
 
-    public static boolean isValidBirthday(String date) {
+    public static boolean isReasonableBirthday(String date) {
+        assert(isValidFormat(date) == true);
         try {
             LocalDate verifiedDate = LocalDate.parse(date);
         } catch (DateTimeParseException dte) {
             return false;
         }
         LocalDate verifiedDate = LocalDate.parse(date);
-        return LocalDate.now().isEqual(verifiedDate) || LocalDate.now().isAfter(ChronoLocalDate.from(verifiedDate));
+        int verifiedYear = verifiedDate.getYear();
+        return verifiedYear >= TWENTIETH_CENTURY_BOUNDARY
+            && (LocalDate.now().isEqual(verifiedDate) || LocalDate.now().isAfter(ChronoLocalDate.from(verifiedDate)));
     }
 
     /**
@@ -112,11 +127,10 @@ public class Birthday {
             return false;
         }
         Birthday otherBirthday = (Birthday) other;
-        boolean sameCelebrate = this.checkCelebrated() == otherBirthday.checkCelebrated();
         if (this.getBirthday() == null || otherBirthday.getBirthday() == null) {
-            return sameCelebrate && this.getBirthday() == otherBirthday.getBirthday();
+            return this.getBirthday() == otherBirthday.getBirthday();
         } else {
-            return sameCelebrate && this.getBirthday().equals(otherBirthday.getBirthday());
+            return this.getBirthday().equals(otherBirthday.getBirthday());
         }
     }
 
