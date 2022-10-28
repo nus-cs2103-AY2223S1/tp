@@ -110,14 +110,23 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
         requireNonNull(editedClient);
 
         clients.setClient(target, editedClient);
+
+        // this part is necessary to affect the noconflictmeetinglist
+        target.getMeetings().forEach(meetings::remove);
+        editedClient.getMeetings().forEach(meetings::add);
     }
 
     /**
-     * Removes {@code key} from this {@code MyInsuRec}.
+     * Removes {@code client} from this {@code MyInsuRec}. This includes any associated meetings with the client.
      * {@code key} must exist in MyInsuRec.
      */
-    public void removeClient(Client key) {
-        clients.remove(key);
+    public void removeClient(Client client) {
+        clients.remove(client);
+        client.getMeetings().forEach(meetingToRemove -> {
+            if (meetings.contains(meetingToRemove)) {
+                meetings.remove(meetingToRemove);
+            }
+        });
     }
 
     //// meeting-level operations

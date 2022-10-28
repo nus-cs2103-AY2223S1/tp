@@ -113,7 +113,7 @@ Here is everything you need to install and set up *MyInsuRec*. For the best poss
 * macOS
 * Linux
 
-You will also require Java 11 or above to run *MyInsuRec*. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/).
+You will also require Java 11 or above to run *MyInsuRec*. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). To tell if you already have the correct version of Java installed on your system, refer to [8.1 Checking your system's Java version](#81-checking-your-systems-java-version).
 
 ### 3.2 Installation Instructions
 
@@ -147,30 +147,36 @@ Here, we will be guiding you on the basic features of *MyInsuRec* and help you g
 ![AddClientTommy](images/quick-start/AddClientTommy.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Both client name and their phone number are needed to add the client into *MyInsuRec*.
+Both client name and their phone number are **needed** to add the client into *MyInsuRec*.
 </div>
 
-3. Tommy has also given us his email address, his address as well as his birthday, and we would like to add that into *MyInsuRec*. To do that, we first need to get Tommy's index from the list of clients, which is 7. Type in `editClient i/7 e/tommytan21@gmail.com a/167 Canning Road bd/25081982` and hit enter. Tommy's record in the list of clients will update with the newly inputted details. The image below shows *MyInsuRec* after updating Tommy with the additional details.
+3. Tommy has also given us his email address, his address as well as his birthday, as such we would like to update Tommy's record. To do that, we first need to get Tommy's index from the list of clients, which is 7. Type in `editClient i/7 e/tommytan21@gmail.com a/167 Canning Road bd/25081982` and hit enter. Tommy's record in the list of clients will update with the newly inputted details. The image below shows *MyInsuRec* after updating Tommy with the additional details.
 
 ![EditClientTommy](images/quick-start/EditClientTommy.png)
 
-4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com bd/09091973` also adds in the client's email and birthday directly.
+4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com b/09091973` also adds in the client's email and birthday directly.
 
 <div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
 See [addClient](#311-adding-a-client-addclient) for more variety of optional fields!
 </div>
 
-5. Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review plan` (You can replace `d/27102022` with today's date in the DDMMYYYY format)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added. The image below shows *MyInsuRec* after adding the meeting with Bernice.
+5. Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review Product 2` (You can replace `d/27102022` with today's date in the DDMMYYYY format)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added. The image below shows the list of meetings after adding the meeting with Bernice.
 
 ![AddMeetingBernice](images/quick-start/AddMeetingBernice.png)
 
-6. To view the meeting (with index number of 1) in greater detail, we can call `viewMeeting i/1`. This brings up a more detailed view of the meeting, with information such as description and Bernice's contact number. The image below shows *MyInsuRec* after using the `viewMeeting` command.
+6. We would like to get Bernice's contact number and message about her upcoming meeting! We can call `viewMeeting i/1` to help us. This brings up a more detailed view of the meeting, with information such as description of the meeting and Bernice's contact number. The image below shows *MyInsuRec* after using the `viewMeeting` command.
 
 ![ViewMeetingBernice](images/quick-start/ViewMeetingBernice.png)
 
-7. Now, to go back to the list of clients, simply type in `listClient`. This brings us back to the list of clients.
+7. Now, to go back to the list of clients, simply type in `listClient`. This brings us back to the list of clients. The image below shows the current state of *MyInsuRec* after following all the previous steps.
 
-8. We would like to define and add more products! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product. The image below shows *MyInsuRec* adding the product.
+![ListClient](images/quick-start/ListClient.png)
+
+8. Suppose your company introduced a new product 'MyInsureCare' that you are interested to sell, and would like to add it into *MyInsuRec*! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product. The image below shows *MyInsuRec* after adding the product.
+
+<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+You can use `listClient`, `listMeeting` and `listProduct` to traverse between the different lists accordingly.
+</div>
 
 ![AddProductMyInsureCare](images/quick-start/AddProductMyInsureCare.png)
 
@@ -182,13 +188,13 @@ See [addClient](#311-adding-a-client-addclient) for more variety of optional fie
 Only products added already via `addProduct` can be used! This is to help ensure the cleanliness of *MyInsuRec*. So, add your product via `addProduct` before using it to add a client with that product! See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
-10. We want to delete the client 'Alex Yeoh' from our records! To do that, type in `delClient i/1`. The image below shows *MyInsuRec* after deleting the client.
+10. Unfortunately 'Alex Yeoh' is no longer our client, and so we want delete him from our records. To do that, type in `delClient i/1`. The image below shows *MyInsuRec* after deleting the client.
 
 ![DelClientAlex](images/quick-start/DelClientAlex.png)
 
-And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#3-features) where all the commands and their details can be found.
+And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have more advanced features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#3-features) where all the commands and their details can be found.
 
-To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*. 
+To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't get panicked! 
 
 Welcome to your new and organized life, and happy (financial) advising!
 
@@ -227,9 +233,9 @@ Welcome to your new and organized life, and happy (financial) advising!
 
 ### 5.1 Client commands
 
-#### 5.1.1 Adding a client: `addClient`
+#### 5.1.1 Add client: `addClient`
 
-Adds a new client to MyInsuRec.
+Add a new client to MyInsuRec.
 
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
@@ -237,7 +243,8 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. See [addProduct](#331-adding-a-product-addproduct).
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. 
+See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
 Examples:
@@ -245,62 +252,64 @@ Examples:
 * `addClient n/John Tan p/12345678 b/12122000`
 * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
 
-#### 5.1.2 Listing all clients : `listClient`
+#### 5.1.2 List clients: `listClient`
 
-* List clients in MyInsuRec with a valid filter.
-* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
-* `BIRTHDAY` is specified by keywords. The possible keywords are:
-    * `tomorrow` for a list of clients whose birthday is tomorrow;
-    * `week` for a list of clients whose birthday is in the next week;
-    * `month` for a list of clients whose birthday is in the next month.
+List clients in MyInsuRec with a valid filter.
 
 Format: `listClient [pd/PRODUCT || b/BIRTHDAY]`
+
+* A valid filter can be clients who have bought the product `PRODUCT` or clients whose birthday is in range `BIRTHDAY`
+* `BIRTHDAY` is specified by keywords. The possible keywords are:
+  * `tomorrow` for a list of clients whose birthday is tomorrow;
+  * `week` for a list of clients whose birthday is in the next week;
+  * `month` for a list of clients whose birthday is in the next month.
 
 Examples:
 * `listClient`
 * `listClient pd/Product1`
 * `listClient b/week`
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. A user can only apply one filter at each time. For example, `listClient pd/Product1 bd/week` is strictly not allowed.
+<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. 
+A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
-#### 5.1.3 Viewing a client: `viewClient`
+#### 5.1.3 View client: `viewClient`
 
 View details associated with a client, such as the client's name and phone number.
 
 Format: `viewClient i/INDEX`
 
-* Displays information about the client at the specific `INDEX`.
+* Display information about the client at the specific `INDEX`.
 * The index refers to the index number shown in the displayed clients' list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `viewClient i/1`
 
-#### 5.1.4 Deleting a client : `delClient`
+#### 5.1.4 Delete client: `delClient`
 
-Deletes the specified client from MyInsuRec.
+Delete the specified client from MyInsuRec.
 
 Format: `delClient i/INDEX`
 
-* Deletes the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
+* Delete the client at the specified `INDEX`.
+* `INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
 * `Index` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `delClient i/2`
 
-#### 5.1.5 Editing a client: `editClient`
+#### 5.1.5 Edit client: `editClient`
 
-Edits detail of the specified client.
+Edit detail of the specified client.
 
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
-* Edits the client at the specified `INDEX`.
-*`INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
+* Edit the client at the specified `INDEX`.
+*`INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one optional detail must be modified.
-* Maintains value of details not edited by the command.
+* Maintain value of details not edited by the command.
 
 Examples:
 Suppose MyInsuRec contains only one client 'John Tan' having phone number '0123456789':
@@ -309,111 +318,123 @@ Suppose MyInsuRec contains only one client 'John Tan' having phone number '01234
 
 ### 5.2 Meeting commands
 
-#### 5.2.1 Adding a meeting : `addMeeting`
+#### 5.2.1 Add meeting: `addMeeting`
 
-Adds a new meeting to MyInsuRec.
-DATE should be in DD-MM-YYYY format and TIME should be in 24-hour format.
+Add a new meeting to MyInsuRec.
 
-Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 
-* Adds a meeting.
+* `INDEX` refers to the number of the client you are meeting with,
+as shown by executing the [`listClient`](#312-list-clients-listclient) command.
+* `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
+1 February 2022.
+* `START_TIME` and `END_TIME` should be give in the format HHMM. For example, 
+1234 represents the 12:34PM.
 * A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 
 Examples:
-* `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
+* `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal` 
+
+<div markdown="span" class="alert alert-success">:information_source: **Friendly Tip:**
+MyInsuRec can help you detect conflicting meeting times! For example, attempting
+to add a meeting from 1330 to 1430 when you already have one scheduled for 
+1300 to 1400 will display an error message.
+</div>
 
 #### 5.2.2 List meetings: `listMeeting`
 
-Shows a list of meetings in MyInsuRec.
-If used with optional parameter `[d/DATE]`, *MyInsuRec* will show a list of meetings happening in that time period.
+Show the list of meetings in MyInsuRec.
+If used with the optional parameter `[d/DATE]`, *MyInsuRec* will show only meetings happening in that time period.
 
 Format: `listMeeting [d/DATE]`
 
-* Time periods are specified by keywords. The possible keywords are:
-  * `tomorrow` for a list of meetings happening tomorrow;
-  * `week` for a list of meetings happening in the next week;
-  * `month` for a list of meetings happening in the next month.
+* `DATE` is specified by keywords. The possible keywords are:
+  * `tomorrow` for a list of meetings happening today or tomorrow;
+  * `week` for a list of meetings happening today or in the next 7 days;
+  * `month` for a list of meetings happening this month.
 
 Examples:
+* `listMeeting`
 * `listMeeting d/tomorrow`
 * `listMeeting d/month`
 
-#### 5.2.3 Viewing a meeting: `viewMeeting`
+#### 5.2.3 View meeting: `viewMeeting`
 
 View details associated with a meeting, such as meeting's date and time.
 
 Format: `viewMeeting i/INDEX`
 
-* Displays information about the meeting at the specific `INDEX`.
-* The index refers to the index number shown in the displayed meetings' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Display information about the meeting at the specific `INDEX`.
+* The index refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `viewMeeting i/1`
 
-#### 5.2.4 Deleting a meeting : `delMeeting`
+#### 5.2.4 Delete meeting: `delMeeting`
 
-Deletes a meeting from MyInsuRec.
+Delete a meeting from MyInsuRec.
 
 Format: `delMeeting i/INDEX`
 
-* Deletes the meeting at the specified `INDEX`.
-* `INDEX` refers to the index number shown by executing [`listMeeting`](#322-listing-meetings-listmeeting) command.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Delete the meeting at the specified `INDEX`.
+* `INDEX` refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
+* `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `delMeeting i/2`
 
-#### 5.2.5 Editing a meeting: `editMeeting`
+#### 5.2.5 Edit meeting: `editMeeting`
 
-Edits details of the specified meeting.
+Edit details of the specified meeting.
 
 Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`
 
-* Edits information about the meeting at the specific `INDEX`.
+* Edit information about the meeting at the specific `INDEX`.
 * The `INDEX` refers to the index number shown in the displayed meetings' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 * At least one optional detail must be modified.
-* Maintains values of details not edited by the command.
+* Details that are not edited will be kept as is.
 
 Examples:
-Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#adding-a-meeting--addmeeting) command:
+Suppose MyInsuRec contains only one meeting as created by the [`addMeeting`](#321-add-meeting-addmeeting) command:
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
-* `editMeeting i/1 st/1500 et/1200` will show error saying invalid time since start time is later than end time.
+* `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, 
+since the start time is later than end time.
 
 ### 5.3 Product commands
 
-#### 5.3.1 Adding a product: `addProduct`
+#### 5.3.1 Add product: `addProduct`
 
-Adds a new product to MyInsuRec.
+Add a new product to MyInsuRec.
 
 Format: `addProduct pd/PRODUCT`
 
-* Adds a product having name `PRODUCT`.
+* Add a product having name `PRODUCT`.
 * A product must have a product name which is `PRODUCT`.
 
 Examples:
 * `addProduct pd/Product1`
 
-#### 5.3.2 Listing products: `listProduct`
+#### 5.3.2 List products: `listProduct`
 
-Shows a list of all products in MyInsuRec.
+Show a list of all products in MyInsuRec.
 
 Format: `listProduct`
 
-#### 5.3.3 Deleting a product : `delProduct`
+#### 5.3.3 Delete product: `delProduct`
 
-Deletes a product from MyInsuRec.  
+Delete a product from MyInsuRec.  
 This feature will remove the product from association with any client.
 
 Format: `delProduct i/INDEX`
 
-* Deletes the product at the specified `INDEX`.
+* Delete the product at the specified `INDEX`.
 * The index refers to the index number shown in the displayed product list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from MyInsuRec's product list, it also removes the product from any association with your clients.
+This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from MyInsuRec's product list, it also **removes the product from any association with your clients**.
 </div>
 
 Examples:
@@ -421,37 +442,33 @@ Examples:
 
 ### 5.4 General commands
 
-#### 5.4.1 Viewing help : `help`
+#### 5.4.1 View help: `help`
 
-Shows a message explaining how to access the help page.
+Show a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-#### 5.4.2 Exiting MyInsuRec : `exit`
+#### 5.4.2 Exit MyInsuRec: `exit`
 
-Exits the program.
+Exit the program.
 
 Format: `exit`
 
 ### 5.5 Others
 
-#### 5.5.1 Saving the data
+#### 5.5.1 Save the data
 
 MyInsuRec data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### 5.5.2 Editing the data file
+#### 5.5.2 Edit the data file
 
 MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
-
-#### 5.5.3 Archiving data files `[coming in v2.0]`
-
-*Details coming soon ...*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -470,24 +487,55 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 ## 7. Command summary
 
-| Action                | Format, Examples                                                                                                                                                                                                                                   |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add client**        | `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` <br> e.g., <br> • `addClient n/John Tan p/12345678` <br> • `addClient n/John Tan p/12345678 a/123 ABC ROAD, #11-01 e/johntan@insurec.com b/12122000 pd/Product1` |
-| **List all clients**  | `listClient`                                                                                                                                                                                                                                       |
-| **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                                                                                                            |
-| **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/2`                                                                                                                                                                                              |
-| **Edit client**       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` <br> e.g., <br> • `editClient i/1 n/John Smith`                                                                                                     |
-| **Add meeting**       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                                                             |
-| **List all meetings** | `listMeeting`                                                                                                                                                                                                                                      |
-| **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                                                                                                          |
-| **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/2`                                                                                                                                                                                            |
-| **Edit meeting**      | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]` <br> e.g., <br> • `i/1 dn/Follow up team meeting`                                                                                                                    |
-| **Help**              | `help`                                                                                                                                                                                                                                             |
-| **Exit**              | `exit`                                                                                                                                                                                                                                             |                                                                                                                                               |
+| Action                                               | Format                                                                                         | Examples                                                                                                                                         |
+|------------------------------------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add client**](#311-add-client-addclient)          | `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`              | • `addClient n/John Tan p/12345678` <br> • `addClient n/John Tan p/12345678 a/123 ABC ROAD, #11-01 e/johntan@insurec.com b/12122000 pd/Product1` |
+| [**List clients**](#312-list-clients-listclient)     | <code>listClient [pd/PRODUCT &#124;&#124; b/BIRTHDAY]</code>                                   | • `listClient` <br> • `listClient pd/Product1` <br> • `listClient b/tomorrow` <br> • `listClient b/week` <br> • `listClient b/month`             |
+| [**View client**](#313-view-client-viewclient)       | `viewClient i/INDEX`                                                                           | • `viewClient i/1`                                                                                                                               |
+| [**Delete client**](#314-delete-client-delclient)    | `delClient i/INDEX`                                                                            | • `delClient i/1`                                                                                                                                |
+| [**Edit client**](#315-edit-client-editclient)       | `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` | • `editClient i/1 n/John Smith`                                                                                                                  |
+| [**Add meeting**](#321-add-meeting-addmeeting)       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`                                              | • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                             |
+| [**List meetings**](#322-list-meetings-listmeeting)  | `listMeeting [d/DATE]`                                                                         | • `listMeeting` <br> • `listMeeting d/tomorrow` <br> • `listMeeting d/week`  <br> • `listMeeting d/month`                                        |
+| [**View meeting**](#323-view-meeting-viewmeeting)    | `viewMeeting i/INDEX`                                                                          | • `viewMeeting i/1`                                                                                                                              |
+| [**Delete meeting**](#324-delete-meeting-delmeeting) | `delMeeting i/INDEX`                                                                           | • `delMeeting i/1`                                                                                                                               |
+| [**Edit meeting**](#325-edit-meeting-editmeeting)    | `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`                  | • `i/1 dn/Follow up team meeting`                                                                                                                |
+| [**Add product**](#331-add-product-addproduct)       | `addProduct pd/PRODUCT`                                                                        | • `addProduct pd/Product1`                                                                                                                       |
+| [**List products**](#332-list-products-listproduct)  | `listProduct`                                                                                  | • `listProduct`                                                                                                                                  |
+| [**Delete product**](#333-delete-product-delproduct) | `delProduct i/INDEX`                                                                           | • `delProduct i/1`                                                                                                                               |
+| [**Help**](#341-view-help-help)                      | `help`                                                                                         | `help`                                                                                                                                           |
+| [**Exit**](#342-exit-myinsurec-exit)                 | `exit`                                                                                         | `exit`                                                                                                                                           |
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. Glossary
+## 8. Troubleshooting
+
+This section covers technical issues you may run into while using *MyInsuRec*.
+
+### 8.1 Checking your system's Java version
+
+To check that your system has the correct Java version (Java 11 and above) to run *MyInsuRec*, you can follow the steps below:
+
+1. Open your terminal.
+   * Windows
+     * Use `Win` + `S` to open search.
+     * Type in 'Terminal' to search for it and click on it to launch.
+   * macOS
+     * Use `Cmd` + `Space` to open Spotlight search.
+     * Type in 'Terminal' to search for it and click on it to launch.
+   * Linux
+     * Use `Ctrl` + `Alt` + `T` to open the Terminal.
+2. In your terminal, type in `java --version` and click enter.
+3. The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
+
+![JavaVersionTroubleShoot](images/troubleshoot/JavaVersionTroubleShoot.png)
+
+4. The number in the red highlight rectangle tells you the Java version installed. For example, the Java version installed on the example system is Java 11.0.16, which is sufficient to run *MyInsuRec* as it is greater than Java 11.
+
+5. If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 9. Glossary
 
 { glossary placeholder }
 
