@@ -204,6 +204,7 @@ Redo the last edit.
 Format: `redo`
 
 ### Calculate: `calc`
+
 Do basic arithmetic calculation including +, -, *, /. Allow multiple operators and precedence
 
 Format: `calc {expression}`
@@ -211,6 +212,7 @@ Format: `calc {expression}`
 Example: `calc 2 * (1 + 1)`
 
 ### GUI Calculator: `calc-gui`
+
 Launch a GUI calculator. A calculator window will pop-up
 
 Format: `calc-gui`
