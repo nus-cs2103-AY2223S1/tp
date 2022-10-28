@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-- This is **a team project for a support application for School Teaches**.<br>
+- This is **a team project for a support application for School Teachers**.<br>
   Example usages:
 
   - can be used to store information of individuals
