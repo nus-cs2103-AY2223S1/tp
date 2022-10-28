@@ -14,11 +14,11 @@ import seedu.address.model.timeRange.TimeRange;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class TeachersPet implements ReadOnlyTeachersPet {
 
-    private final UniqueStudentList persons;
+    private final UniqueStudentList students;
     private final UniqueScheduleList schedule;
 
     /*
@@ -29,14 +29,14 @@ public class TeachersPet implements ReadOnlyTeachersPet {
      *   among constructors.
      */
     {
-        persons = new UniqueStudentList();
+        students = new UniqueStudentList();
         schedule = new UniqueScheduleList();
     }
 
     public TeachersPet() {}
 
     /**
-     * Creates an TeachersPet using the Persons in the {@code toBeCopied}
+     * Creates an TeachersPet using the Students in the {@code toBeCopied}
      */
     public TeachersPet(ReadOnlyTeachersPet toBeCopied) {
         this();
@@ -49,8 +49,8 @@ public class TeachersPet implements ReadOnlyTeachersPet {
      * Replaces the contents of the student list with {@code students}.
      * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Student> students) {
-        this.persons.setPersons(students);
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
@@ -58,7 +58,7 @@ public class TeachersPet implements ReadOnlyTeachersPet {
      * {@code students} must not contain duplicate students.
      */
     public void setSchedule(List<Student> students) {
-        this.schedule.setPersons(students);
+        this.schedule.setStudents(students);
     }
 
     /**
@@ -67,8 +67,8 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     public void resetData(ReadOnlyTeachersPet newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
-        setSchedule(newData.getPersonList());
+        setStudents(newData.getStudentList());
+        setSchedule(newData.getStudentList());
     }
 
     //// student-level operations
@@ -76,17 +76,17 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
-    public boolean hasPerson(Student student) {
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return persons.contains(student);
+        return students.contains(student);
     }
 
     /**
      * Adds a student to the address book.
      * The student must not already exist in the address book.
      */
-    public void addPerson(Student p) {
-        persons.add(p);
+    public void addStudent(Student p) {
+        students.add(p);
         schedule.add(p);
     }
 
@@ -95,19 +95,19 @@ public class TeachersPet implements ReadOnlyTeachersPet {
      * {@code target} must exist in the address book.
      * The student identity of {@code editedStudent} must not be the same as another existing student in the address book.
      */
-    public void setPerson(Student target, Student editedStudent) {
+    public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
 
-        persons.setPerson(target, editedStudent);
-        schedule.setPerson(target, editedStudent);
+        students.setStudent(target, editedStudent);
+        schedule.setStudent(target, editedStudent);
     }
 
     /**
      * Removes {@code key} from this {@code TeachersPet}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Student key) {
-        persons.remove(key);
+    public void removeStudent(Student key) {
+        students.remove(key);
         schedule.remove(key);
     }
 
@@ -116,24 +116,24 @@ public class TeachersPet implements ReadOnlyTeachersPet {
      * @return the first available class.
      */
     public Class findAvailableClass(TimeRange timeRange) {
-        return persons.findAvailableClass(timeRange);
+        return students.findAvailableClass(timeRange);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return students.asUnmodifiableObservableList().size() + " students";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Student> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
     }
 
     public ObservableList<Student> getInternalList() {
-        return persons.getInternalList();
+        return students.getInternalList();
     }
 
     @Override
@@ -142,19 +142,19 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     }
 
     @Override
-    public void sortPersons(Comparator<Student> comparator) {
-        persons.sortPersons(comparator);
+    public void sortStudents(Comparator<Student> comparator) {
+        students.sortStudents(comparator);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TeachersPet // instanceof handles nulls
-                && persons.equals(((TeachersPet) other).persons));
+                && students.equals(((TeachersPet) other).students));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return students.hashCode();
     }
 }
