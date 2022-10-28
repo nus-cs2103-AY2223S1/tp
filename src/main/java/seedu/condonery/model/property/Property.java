@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.tag.PropertyTypeEnum;
@@ -27,22 +28,28 @@ public class Property {
     private final Price price;
     private final Set<Tag> tags = new HashSet<>();
     private Path imageDirectoryPath;
+    private final Set<Client> interestedClients = new HashSet<>();
     private PropertyTypeEnum propertyTypeEnum;
 
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name,
-                                       Address address,
-                                       Price price,
-                                       Set<Tag> tags,
-                                       PropertyTypeEnum propertyTypeEnum) {
+    public Property(Name name, Address address, Price price, Set<Tag> tags, PropertyTypeEnum propertyTypeEnum) {
         requireAllNonNull(name, address, price, tags, propertyTypeEnum);
         this.name = name;
         this.address = address;
         this.price = price;
         this.tags.addAll(tags);
         this.propertyTypeEnum = propertyTypeEnum;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Property(Name name, Address address, Price price, Set<Tag> tags, Set<Client> interestedClients,
+                PropertyTypeEnum propertyTypeEnum) {
+        this(name, address, price, tags, propertyTypeEnum);
+        this.interestedClients.addAll(interestedClients);
     }
 
     public Name getName() {
@@ -74,6 +81,14 @@ public class Property {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable interested client set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Client> getInterestedClients() {
+        return Collections.unmodifiableSet(interestedClients);
     }
 
     /**
@@ -115,6 +130,17 @@ public class Property {
     }
 
     /**
+     * Returns an immutable set containing interested client names, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<String> getInterestedClientNames() {
+        HashSet<String> stringInterestedClients = new HashSet<>(interestedClients.size());
+        interestedClients.forEach(interestedClient
+                -> stringInterestedClients.add(interestedClient.getName().toString()));
+        return Collections.unmodifiableSet(stringInterestedClients);
+    }
+
+    /**
      * Returns true if both properties have the same name.
      * This defines a weaker notion of equality between two properties.
      */
@@ -145,13 +171,15 @@ public class Property {
         return otherProperty.getName().equals(getName())
             && otherProperty.getAddress().equals(getAddress())
             && otherProperty.getPrice().equals(getPrice())
-            && otherProperty.getTags().equals(getTags());
+            && otherProperty.getTags().equals(getTags())
+            && otherProperty.getInterestedClients().equals(getInterestedClients())
+            && otherProperty.getPropertyTypeEnum().equals(getPropertyTypeEnum());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, price, tags);
+        return Objects.hash(name, address, price, tags, interestedClients);
     }
 
     @Override
@@ -169,6 +197,12 @@ public class Property {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Client> interestedClients = getInterestedClients();
+        if (!interestedClients.isEmpty()) {
+            builder.append("; Interested client(s): ");
+            interestedClients.forEach(interestedClient -> builder.append(interestedClient.getName().toString()));
         }
         return builder.toString();
     }

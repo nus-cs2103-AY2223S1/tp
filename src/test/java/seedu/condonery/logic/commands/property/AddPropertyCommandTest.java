@@ -20,13 +20,13 @@ import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.ReadOnlyClientDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.ReadOnlyUserPrefs;
 import seedu.condonery.model.UserPrefs;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyDirectory;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 import seedu.condonery.testutil.PropertyBuilder;
 
 public class AddPropertyCommandTest {
@@ -43,8 +43,9 @@ public class AddPropertyCommandTest {
 
         CommandResult commandResult = new AddPropertyCommand(validProperty).execute(modelStub);
 
-        assertEquals(String.format(
-                AddPropertyCommand.MESSAGE_SUCCESS, validProperty), commandResult.getFeedbackToUser());
+        assertEquals(
+            String.format(AddPropertyCommand.MESSAGE_SUCCESS + ". No rejected client names.", validProperty),
+            commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validProperty), modelStub.propertiesAdded);
     }
 
@@ -223,6 +224,36 @@ public class AddPropertyCommandTest {
 
         @Override
         public CommandQueue getCommandQueue() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClientName(String clientName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasUniqueClientName(String clientName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Client getUniqueClientByName(String clientName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPropertyName(String propertyName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasUniquePropertyName(String propertyName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Property getUniquePropertyByName(String propertyName) {
             throw new AssertionError("This method should not be called.");
         }
     }

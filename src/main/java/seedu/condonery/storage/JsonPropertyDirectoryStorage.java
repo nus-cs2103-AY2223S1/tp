@@ -12,7 +12,7 @@ import seedu.condonery.commons.exceptions.DataConversionException;
 import seedu.condonery.commons.exceptions.IllegalValueException;
 import seedu.condonery.commons.util.FileUtil;
 import seedu.condonery.commons.util.JsonUtil;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 
 /**
  * A class to access PropertyDirectory data stored as a json file on the hard disk.
