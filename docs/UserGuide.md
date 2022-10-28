@@ -16,9 +16,12 @@ should be used. Start by looking at the [quick start](#quick-start) guide to get
 
 ## Quick Start
 1. Ensure you have **Java `11`** or above installed in your Computer.
-1. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.3).
-1. **Copy** the file to the folder you want to use as the _home folder_ for your TA-Assist.
-1. **Double-click** the file to start the app. 
+2. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.3).
+3. **Copy** the file to the folder you want to use as the _home folder_ for your TA-Assist.
+4. **Double-click** the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the
+   app contains sample data.
+
+![sample gui](images/sampleGui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -256,6 +259,9 @@ Enters focus mode to manage the specified class, enabling features that are only
 Format: `focus c/CLASS_NAME`
 * Enters focus mode for the class named `CLASS_NAME`.
 * The class name is **case-insensitive**.
+* If successful, you will see that the GUI changes to one that is similar to the one below:
+
+![Example Excel file](images/sampleFocusedGui.png)
 
 Example:
 * `focus c/CS1231S` will enter focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
@@ -443,6 +449,7 @@ Exits focus mode.
 " %}
 
 Format: `unfocus`
+* Alternatively, you can exit focus mode by clicking on the button shown [here](#enter-focus-mode-focus).
 
 ## FAQ
 **Q**: How do I transfer my data to another Computer?
