@@ -6,7 +6,7 @@
   Example usages:
 
   - can be used to store information of individuals
-  - "find" functionality allows persons to be filtered by a multitude of terms
+  - "find" functionality allows students to be filtered by a multitude of terms
 
 - The project is a desktop application (called _Watson_) used for managing data of individuals.
   - It is **written in OOP fashion**.

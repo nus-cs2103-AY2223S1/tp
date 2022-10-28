@@ -2,7 +2,7 @@ package seedu.watson.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.watson.testutil.TypicalPersons.getTypicalDatabase;
+import static seedu.watson.testutil.TypicalStudents.getTypicalDatabase;
 
 import java.nio.file.Path;
 

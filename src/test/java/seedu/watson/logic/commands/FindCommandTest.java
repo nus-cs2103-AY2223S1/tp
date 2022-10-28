@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.watson.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.watson.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.watson.testutil.TypicalPersons.CARL;
-import static seedu.watson.testutil.TypicalPersons.ELLE;
-import static seedu.watson.testutil.TypicalPersons.FIONA;
-import static seedu.watson.testutil.TypicalPersons.getTypicalDatabase;
+import static seedu.watson.testutil.TypicalStudents.CARL;
+import static seedu.watson.testutil.TypicalStudents.ELLE;
+import static seedu.watson.testutil.TypicalStudents.FIONA;
+import static seedu.watson.testutil.TypicalStudents.getTypicalDatabase;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.watson.model.Model;
 import seedu.watson.model.ModelManager;
 import seedu.watson.model.UserPrefs;
-import seedu.watson.model.person.FindCommandPredicate;
+import seedu.watson.model.student.FindCommandPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -50,7 +50,7 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 

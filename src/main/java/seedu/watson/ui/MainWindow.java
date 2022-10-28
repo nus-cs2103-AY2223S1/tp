@@ -17,7 +17,7 @@ import seedu.watson.logic.Logic;
 import seedu.watson.logic.commands.CommandResult;
 import seedu.watson.logic.commands.exceptions.CommandException;
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PredictionWindow predictionWindow;
@@ -117,8 +117,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -175,9 +175,9 @@ public class MainWindow extends UiPart<Stage> {
      * for the queried subject.
      */
     @FXML
-    public void handleGrade(List<Person> personList, String assessmentString) {
+    public void handleGrade(List<Student> studentList, String assessmentString) {
         if (!gradeWindow.isShowing()) {
-            gradeWindow.show(personList, assessmentString);
+            gradeWindow.show(studentList, assessmentString);
         } else {
             gradeWindow.focus();
         }
@@ -199,8 +199,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public StudentListPanel getPersonListPanel() {
+        return studentListPanel;
     }
 
     /**

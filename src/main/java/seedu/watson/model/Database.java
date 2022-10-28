@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.watson.model.person.Person;
-import seedu.watson.model.person.UniquePersonList;
+import seedu.watson.model.student.Student;
+import seedu.watson.model.student.UniquePersonList;
 
 /**
  * Wraps all data at the database level
@@ -30,11 +30,11 @@ public class Database implements ReadOnlyDatabase {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the student list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setPersons(List<Student> students) {
+        this.persons.setPersons(students);
     }
 
     /**
@@ -46,40 +46,40 @@ public class Database implements ReadOnlyDatabase {
         setPersons(newData.getPersonList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the database.
+     * Returns true if a student with the same identity as {@code student} exists in the database.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasPerson(Student student) {
+        requireNonNull(student);
+        return persons.contains(student);
     }
 
     /**
-     * Adds a person to the database.
-     * The person must not already exist in the database.
+     * Adds a student to the database.
+     * The student must not already exist in the database.
      */
-    public void addPerson(Person p) {
+    public void addPerson(Student p) {
         persons.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the database.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the database.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the database.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setPerson(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
 
-        persons.setPerson(target, editedPerson);
+        persons.setPerson(target, editedStudent);
     }
 
     /**
      * Removes {@code key} from this {@code Database}.
      * {@code key} must exist in the database.
      */
-    public void removePerson(Person key) {
+    public void removePerson(Student key) {
         persons.remove(key);
     }
 
@@ -94,7 +94,7 @@ public class Database implements ReadOnlyDatabase {
     //// util methods
 
     @Override
-    public ObservableList<Person> getPersonList() {
+    public ObservableList<Student> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
 

@@ -9,16 +9,16 @@ import java.util.Set;
 import seedu.watson.commons.core.index.Index;
 import seedu.watson.commons.util.StringUtil;
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.person.Address;
-import seedu.watson.model.person.Attendance;
-import seedu.watson.model.person.Email;
-import seedu.watson.model.person.IndexNumber;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.Phone;
-import seedu.watson.model.person.Remark;
-import seedu.watson.model.person.StudentClass;
-import seedu.watson.model.person.subject.Subject;
-import seedu.watson.model.person.subject.SubjectHandler;
+import seedu.watson.model.student.Address;
+import seedu.watson.model.student.Attendance;
+import seedu.watson.model.student.Email;
+import seedu.watson.model.student.IndexNumber;
+import seedu.watson.model.student.Name;
+import seedu.watson.model.student.Phone;
+import seedu.watson.model.student.Remark;
+import seedu.watson.model.student.StudentClass;
+import seedu.watson.model.student.subject.Subject;
+import seedu.watson.model.student.subject.SubjectHandler;
 import seedu.watson.model.tag.Tag;
 
 /**

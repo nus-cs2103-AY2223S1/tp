@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import seedu.watson.logic.commands.FindCommand;
 import seedu.watson.logic.commands.FindNameCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.person.FindCommandPredicate;
+import seedu.watson.model.student.FindCommandPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

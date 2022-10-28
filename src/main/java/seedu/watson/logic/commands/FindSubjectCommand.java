@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.watson.commons.core.Messages;
 import seedu.watson.model.Model;
-import seedu.watson.model.person.SubjectContainsKeywordsPredicate;
+import seedu.watson.model.student.SubjectContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in watson book whose name contains any of the argument keywords.

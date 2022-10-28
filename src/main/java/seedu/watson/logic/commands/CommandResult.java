@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Objects;
 
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 
 /**
  * Represents the result of a command execution.
@@ -33,7 +33,7 @@ public class CommandResult {
 
     private final boolean showGradeWindow;
 
-    private List<Person> studentsToGrade;
+    private List<Student> studentsToGrade;
 
     private String assessmentString;
     /**
@@ -67,7 +67,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with specific fields
      */
     public CommandResult(String feedbackToUser, boolean showGradeWindow,
-                         List<Person> studentsToGrade, String assessmentString) {
+                         List<Student> studentsToGrade, String assessmentString) {
         this(feedbackToUser, false, false, false, true, "0.0");
         this.studentsToGrade = studentsToGrade;
         this.assessmentString = assessmentString;
@@ -96,7 +96,7 @@ public class CommandResult {
         return gradePredicted;
     }
 
-    public List<Person> getStudentsToGrade() {
+    public List<Student> getStudentsToGrade() {
         return studentsToGrade;
     }
 

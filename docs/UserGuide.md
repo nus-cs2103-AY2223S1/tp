@@ -310,15 +310,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`…​` <br> e.g., add n/John Doe p/98765432 a/John street, block 123, #01-01 c/1.5`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 1`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`<br> e.g., `find n/alice bob charlie c/1A s/English`, `find s/English Math`
-**Sort** | `sort asc` or `sort desc`
-**Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                                             |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`…​` <br> e.g., add n/John Doe p/98765432 a/John street, block 123, #01-01 c/1.5`      |
+| **Clear**  | `clear`                                                                                                                                      |
+| **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                          |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                  |
+| **Find**   | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`<br> e.g., `find n/alice bob charlie c/1A s/English`, `find s/English Math` |
+| **Sort**   | `sort asc` or `sort desc`                                                                                                                    |
+| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`                                                                               |
+| **List**   | `list`                                                                                                                                       |
+| **Help**   | `help`                                                                                                                                       |
 
