@@ -1,11 +1,13 @@
 package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_INTERESTEDCLIENTS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -41,7 +43,7 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG,
                         PREFIX_PROPERTY_TYPE, PREFIX_IMAGE_UPLOAD, PREFIX_INTERESTEDCLIENTS);
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE,
-                        PREFIX_TAG, PREFIX_INTERESTEDCLIENTS, PREFIX_PROPERTY_TYPE);
+                        PREFIX_TAG, PREFIX_INTERESTEDCLIENTS, PREFIX_PROPERTY_TYPE, PREFIX_PROPERTY_STATUS);
         EditPropertyDescriptor editPropertyDescriptor =
                 new EditPropertyDescriptor();
         Index index;
@@ -53,9 +55,11 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                     EditPropertyCommand.MESSAGE_USAGE), pe);
         }
 
-        if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
-                && !argMultimap.getValue(PREFIX_PRICE).isPresent()
-                && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
+        if (!argMultimap.getValue(PREFIX_NAME).isPresent()
+            && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+            && !argMultimap.getValue(PREFIX_PRICE).isPresent()
+            && !argMultimap.getValue(PREFIX_PROPERTY_TYPE).isPresent()
+            && !argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()
             && !argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()
             && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
             throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
@@ -84,9 +88,21 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
                                     argMultimap.getValue(PREFIX_PROPERTY_TYPE).get()));
         }
 
+        if (argMultimap.getValue(PREFIX_PROPERTY_STATUS).isPresent()) {
+            try {
+                editPropertyDescriptor.setPropertyStatusEnum(
+                        ParserUtil.parsePropertyStatus(
+                                argMultimap.getValue(PREFIX_PROPERTY_STATUS).get()));
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(String.format(MESSAGE_INVALID_STATUS,
+                        EditPropertyCommand.MESSAGE_USAGE));
+            }
+        }
+
         if (argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()) {
             return new EditPropertyCommand(index, editPropertyDescriptor, true);
         }
+
         return new EditPropertyCommand(index, editPropertyDescriptor);
     }
 

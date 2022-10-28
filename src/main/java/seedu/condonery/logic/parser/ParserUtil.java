@@ -15,6 +15,7 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
@@ -162,9 +163,11 @@ public class ParserUtil {
                 new Name(propertyName),
                 new Address("placeholder"),
                 new Price("1000000"),
-                new HashSet<>(),
-                new HashSet<>(),
-                PropertyTypeEnum.valueOf("CONDO"));
+                new HashSet<Tag>(),
+                new HashSet<Client>(),
+                PropertyTypeEnum.valueOf("CONDO"),
+                PropertyStatusEnum.valueOf("AVAILABLE")
+        );
     }
 
     /**
@@ -181,7 +184,7 @@ public class ParserUtil {
 
     /**
      * Parses a string into {@code PropertyTypeEnum} enum
-     * @param propertyType string to prase
+     * @param propertyType string to PropertyTypeEnum
      * @return a {@code PropertyStatusEnum} enum
      * @throws ParseException if the string does not match any valid enum
      */
@@ -194,4 +197,16 @@ public class ParserUtil {
                 "Invalid Property Type specified! Property Type must be one of HDB, CONDO, or LANDED");
         }
     }
+
+    /**
+     * Parses a string into {@code PropertyStatusEnum} enum
+     * @param propertyStatus string to PropertyStatusEnum
+     * @return a {@code PropertyStatusEnum} enum
+     * @throws ParseException if the string does not match any valid enum
+     */
+    public static PropertyStatusEnum parsePropertyStatus(String propertyStatus) throws ParseException {
+        requireNonNull(propertyStatus);
+        return PropertyStatusEnum.valueOf(propertyStatus);
+    }
+
 }

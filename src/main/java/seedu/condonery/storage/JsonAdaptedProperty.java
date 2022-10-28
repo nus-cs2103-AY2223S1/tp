@@ -15,6 +15,7 @@ import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.tag.PropertyStatusEnum;
 import seedu.condonery.model.tag.PropertyTypeEnum;
 import seedu.condonery.model.tag.Tag;
 
@@ -31,16 +32,20 @@ class JsonAdaptedProperty {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedClient> interestedClients = new ArrayList<>();
     private final String propertyType;
+    private final String propertyStatus;
+
 
     /**
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
      */
     @JsonCreator
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("address") String address,
-            @JsonProperty("price") String price,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("interestedClients") List<JsonAdaptedClient> interestedClients,
-            @JsonProperty("propertyType") String propertyType) {
+                               @JsonProperty("price") String price,
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                               @JsonProperty("propertyType")String propertyType,
+                               @JsonProperty("propertyStatus")String propertyStatus,
+                              @JsonProperty("interestedClients") List<JsonAdaptedClient> interestedClients
+    ) {
         this.name = name;
         this.address = address;
         this.price = price;
@@ -51,6 +56,7 @@ class JsonAdaptedProperty {
             this.interestedClients.addAll(interestedClients);
         }
         this.propertyType = propertyType;
+        this.propertyStatus = propertyStatus;
     }
 
     /**
@@ -67,6 +73,7 @@ class JsonAdaptedProperty {
                 .map(JsonAdaptedClient::new)
                 .collect(Collectors.toList()));
         propertyType = source.getPropertyTypeEnum().toString();
+        propertyStatus = source.getPropertyStatusEnum().toString();
     }
 
     /**
@@ -119,8 +126,9 @@ class JsonAdaptedProperty {
         }
 
         final PropertyTypeEnum modelPropertyType = PropertyTypeEnum.valueOf(propertyType);
-        return new Property(modelName, modelAddress, modelPrice, modelTags, modelInterestedClients,
-                modelPropertyType);
+        final PropertyStatusEnum modelPropertyStatus = PropertyStatusEnum.valueOf(propertyStatus);
+        return new Property(modelName, modelAddress, modelPrice, modelTags,
+               modelInterestedClients, modelPropertyType, modelPropertyStatus);
     }
 
 }
