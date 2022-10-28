@@ -32,20 +32,15 @@ title: Developer Guide
     - [Glossary](#glossary)
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
-## **Acknowledgements**
+## Acknowledgements
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_here_](SettingUp.md).
 
-## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
+## Design
 
 ### Architecture
 
@@ -766,7 +761,7 @@ for the`ls` and `ls -a` commands:
 
 <img src="images/tasks/ListingSequenceDiagram.png" width="1000" />
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -774,7 +769,7 @@ for the`ls` and `ls -a` commands:
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
