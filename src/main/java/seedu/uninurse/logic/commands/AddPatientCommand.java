@@ -28,7 +28,7 @@ public class AddPatientCommand extends AddGenericCommand {
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>]... "
             + "[" + PREFIX_CONDITION + "CONDITION]... "
-            + "[" + PREFIX_MEDICATION + "MEDICATION | DOSAGE]... "
+            + "[" + PREFIX_MEDICATION + "MEDICATION_TYPE | DOSAGE]... "
             + "[" + PREFIX_REMARK + "REMARK]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
