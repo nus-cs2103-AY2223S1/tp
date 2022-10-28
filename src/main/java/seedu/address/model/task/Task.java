@@ -57,8 +57,7 @@ public class Task {
         this.name = newName;
         if (!isNull(newDeadline)) {
             this.deadline = Optional.ofNullable(newDeadline);
-        }
-        else {
+        } else {
             this.deadline = this.deadline;
         }
     }

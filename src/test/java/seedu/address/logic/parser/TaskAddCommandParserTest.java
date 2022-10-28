@@ -14,8 +14,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TASK_NAME_DESC_REVIEW
 import static seedu.address.logic.commands.CommandTestUtil.TASK_NAME_DESC_STUDY;
 import static seedu.address.logic.commands.CommandTestUtil.TEAM_INDEX_1;
 import static seedu.address.logic.commands.CommandTestUtil.TEAM_INDEX_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_STUDY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_COOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_STUDY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
