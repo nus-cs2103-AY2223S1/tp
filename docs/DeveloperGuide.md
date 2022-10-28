@@ -426,14 +426,16 @@ This feature allows the user (teacher) to find a list of students from Teacher's
 #### Proposed Implementation
 
 The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
-There are 4 different variations of `find`:
+There are 7 different variations of `find`:
 1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
-3. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
-4. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
-5. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
-6. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
+2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
+3. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+4. Find by student's contact number: Find the matching student with a particular contact number using `find p/CONTACT_NUMBER`.
+5. Find by next of kin's contact number: Find all matching student(s) with a particular next of kin's contact number using `find np/NEXT_OF_KIN_CONTACT_NUMBER`.
+6. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
+7. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The 4 variations cannot be mixed with one another.</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The 7 variations cannot be mixed with one another.</div>
 
 The following activity diagram summarizes what happens when a user executes a find command:
 
