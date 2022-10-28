@@ -29,9 +29,9 @@ public class EditNoteCommand extends Command {
     public static final String COMMAND_WORD = "editNote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the Note identified "
-            + "by the index number used in the displayed note list. "
+            + "by the index number or the title used in the displayed note list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Parameters: INDEX (must be a positive integer) <OR> TITLE (matches by substring) "
             + "[" + PREFIX_NOTES_TITLE + "TITLE] "
             + "[" + PREFIX_NOTES_CONTENT + "CONTENT] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -100,6 +100,24 @@ public class EditNoteCommand extends Command {
         Set<Tag> updatedTags = editNoteDescriptor.getTags().orElse(noteToEdit.getTags());
 
         return new Note(updatedTitle, updatedContent, updatedTags);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditNoteCommand)) {
+            return false;
+        }
+
+        // state check
+        EditNoteCommand e = (EditNoteCommand) other;
+        return index.equals(e.index)
+                && editNoteDescriptor.equals(e.editNoteDescriptor);
     }
 
 

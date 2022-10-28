@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="notes-VBox">
+  <Separator maxWidth="150">
+    <padding>
+      <Insets top="10" bottom="5" left="10"/>
+    </padding>
+  </Separator>
+  <HBox>
+    <padding>
+      <Insets left="10"/>
+    </padding>
+    <Label id="normalScheme" text="Notes" styleClass="label-header">
+      <padding>
+        <Insets left="20" top="2" bottom="2" right="10"/>
+      </padding>
+    </Label>
+    <HBox alignment="BOTTOM_LEFT">
+      <padding>
+        <Insets left="10"/>
+      </padding>
+      <HBox fx:id="filteredBox" alignment="CENTER" styleClass="filteredBox" maxHeight="10">
+        <ImageView fx:id="filteredImage" fitHeight="20" fitWidth="20"/>
+        <Label text="FILTERED" styleClass="cell_small_label">
+          <padding>
+            <Insets topRightBottomLeft="5"/>
+          </padding>
+        </Label>
+      </HBox>
+    </HBox>
+  </HBox>
+  <Separator maxWidth="100">
+    <padding>
+      <Insets top="5" bottom="5" left="10"/>
+    </padding>
+  </Separator>
+  <AnchorPane VBox.vgrow="ALWAYS">
+    <ImageView fx:id="notebookLogo" fitHeight="100" fitWidth="100" opacity="0.6"
+               AnchorPane.bottomAnchor="0"
+               AnchorPane.rightAnchor="0"/>
+    <ListView fx:id="noteListView" styleClass="notes-list"
+              AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0"
+              AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"/>
+  </AnchorPane>
+</VBox>

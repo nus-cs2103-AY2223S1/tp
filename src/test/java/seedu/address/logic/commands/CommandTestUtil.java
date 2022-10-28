@@ -18,8 +18,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditNoteDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -39,6 +42,12 @@ public class CommandTestUtil {
     public static final String VALID_BIRTHDAY_BOB = "01/01/2000";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_TITLE_MEETING = "Meeting";
+    public static final String VALID_TITLE_CLUB = "Club";
+    public static final String VALID_CONTENT_MEETING = "October 3rd";
+    public static final String VALID_CONTENT_CLUB = "Birthday celebration";
+    public static final String VALID_TAG_IMPORTANT = "important";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -63,8 +72,13 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String INVALID_NON_MATCHING_NOTE_TITLE = "abcdefghijklmnop";
+
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_MEETING;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_CLUB;
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -73,6 +87,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withBirthday(VALID_BIRTHDAY_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_MEETING = new EditNoteDescriptorBuilder().withTitle(VALID_TITLE_MEETING)
+                .withContent(VALID_CONTENT_MEETING).withTags(VALID_TAG_IMPORTANT).build();
+        DESC_CLUB = new EditNoteDescriptorBuilder().withTitle(VALID_TITLE_CLUB)
+                .withContent(VALID_CONTENT_CLUB).withTags(VALID_TAG_IMPORTANT).build();
     }
 
     /**
@@ -105,17 +123,19 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered person & note list, selected person & note in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Note> expectedFilteredNoteList = new ArrayList<>(actualModel.getFilteredNoteList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredNoteList, actualModel.getFilteredNoteList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
@@ -129,6 +149,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered note list to show only the note at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showNoteAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredNoteList().size());
+
+        Note note = model.getFilteredNoteList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = note.getTitle().fullTitle.split("\\s+");
+        model.updateFilteredNoteList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(1, model.getFilteredNoteList().size());
     }
 
 }

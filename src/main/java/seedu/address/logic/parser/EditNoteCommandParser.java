@@ -1,21 +1,27 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AMBIGUOUS_TITLE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditNoteCommand;
 import seedu.address.logic.commands.EditNoteCommand.EditNoteDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.note.Note;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,12 +49,14 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NOTES_TITLE, PREFIX_NOTES_CONTENT, PREFIX_TAG);
 
+        String preamble = argMultimap.getPreamble();
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(preamble);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditNoteCommand.MESSAGE_USAGE), pe);
+            filterNotesByTitle(preamble, pe);
+            index = Index.fromOneBased(1);
         }
 
         EditNoteDescriptor editNoteDescriptor = new EditNoteDescriptor();
@@ -81,6 +89,33 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet, model));
+    }
+
+    /**
+     * Filters the {@code ObservableList<Note>} by title
+     * @param preamble the name to search for, by complete word
+     * @param pe the ParseException to throw on failure
+     * @throws ParseException if there is nobody found by the find command, or there exist
+     *      an ambiguity
+     */
+    private void filterNotesByTitle(String preamble, ParseException pe) throws ParseException {
+        try {
+            new FindNoteCommandParser().parse(preamble).execute(model);
+        } catch (ParseException ignored) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditNoteCommand.MESSAGE_USAGE), pe);
+        }
+
+        ObservableList<Note> filteredNoteList = model.getFilteredNoteList();
+
+        String splitPreamble = Arrays.stream(preamble.split(" "))
+                .map(x -> "\"" + x.trim() + "\"")
+                .collect(Collectors.joining(" or "));
+
+        if (filteredNoteList.size() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_TITLE, splitPreamble), pe);
+        } else if (filteredNoteList.size() > 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_AMBIGUOUS_TITLE, splitPreamble), pe);
+        }
     }
 
 }

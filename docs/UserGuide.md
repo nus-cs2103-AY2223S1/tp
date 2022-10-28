@@ -254,6 +254,16 @@ Examples:
 * `findTag Finance` returns `John`, `Caroline` and `Bob`
   ![result for 'findTag Finance'](images/findTagFinance.png)
 
+
+### Inspecting a person : `inspect`
+
+Updates the inspect panel with the basic information and loan history of the person inspected.
+
+![help message](images/helpMessage.png)
+
+Format: `inspect <INDEX> or <NAME>`
+
+
 ### Editing loan of a person: `editLoan`
 
 Edits an existing club member's loan amount in the SectresBook.
@@ -330,12 +340,12 @@ Format: `listNote`
 
 Edits an existing specified note in the SectresBook.
 
-Format: `editNote INDEX [title/TITLE] [content/CONTENT] [tag/TAG]...`
+Format: `editNote INDEX <OR> TITLE [title/TITLE] [content/CONTENT] [tag/TAG]...`
 
 Example of usage:
 
 * `editNote 1 content/Second club meeting` can be used to easily update the first note's contents.
-* `editeNote 2 title/2020 alumni meeting` can be used to easily update the second note's title.
+* `editNote alumni title/2020 alumni meeting` can be used to amend a note with the title "2020 alumni mtg", only if it is the only note containing "2021" in its title.
 
 ### Locating a note by title: `findNote`
 
@@ -371,6 +381,17 @@ Format: `deleteNote INDEX`
 Examples:
 * `listNote` followed by `deleteNote 2` deletes the 2nd note in the SectresBook.
 
+### Hiding notes panel : `hideNotes`
+
+Hides the notes panel to the right side of the screen if visible, otherwise, no operation is performed.
+
+Format: `hideNotes`
+
+### Showing notes panel : `showNotes`
+
+Slides the notes panel into view if hidden, otherwise, no operation is performed.
+
+Format: `showNotes`
 
 ### Exiting the program : `exit`
 
@@ -435,25 +456,28 @@ Word | Definition
 
 ### AddressBook Commands
 
-Action | Format                                                                                                | Examples
---------|-------------------------------------------------------------------------------------------------------|--------
-**Add** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS bday/BIRTHDAY [tag/TAG]…​`                 | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 bday/01/01/2000 tag/friend tag/colleague`
-**Clear** | `clear`                                                                                               | `clear`
-**Delete** | `delete INDEX`<br>`delete NAME`                                                                       | `delete 3` <br> `delete Jane`
+Action | Format                                                                                               | Examples
+--------|------------------------------------------------------------------------------------------------------|--------
+**Add** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS bday/BIRTHDAY [tag/TAG]…​`                | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 bday/01/01/2000 tag/friend tag/colleague`
+**Clear** | `clear`                                                                                              | `clear`
+**Delete** | `delete INDEX`<br>`delete NAME`                                                                      | `delete 3` <br> `delete Jane`
 **Edit** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                     | `find James Jake` <br> `find 8651`
-**Find Tag** | `findTag TAG [MORE_TAGS]`                                                                             | `findTag Operations Outreach`
-**Edit Loan** | `editLoan INDEX AMOUNT REASON`                                                                        | `editLoan 1 -20 Buy Logistics`
-**List** | `list`                                                                                                | `list`
-**Help** | `help`                                                                                                | `help`
-**Exit** | `exit`                                                                                                | `exit`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                    | `find James Jake` <br> `find 8651`
+**Find Tag** | `findTag TAG [MORE_TAGS]`                                                                            | `findTag Operations Outreach`
+**Edit Loan** | `editLoan INDEX AMOUNT REASON`                                                                       | `editLoan 1 -20 Buy Logistics`
+**List** | `list`                                                                                               | `list`
+**Inspect** | `inspect NAME <OR> INDEX`                                                                            | `inspect 1` or `inspect Alex`
+**Show Notes Panel** | `showNotes`                                                                                          | `showNotes`
+**Hide Notes Panel** | `hideNotes`                                                                                          | `hideNotes`
+**Help** | `help`                                                                                               | `help`
+**Exit** | `exit`                                                                                               | `exit`
 
 ### Note Commands
 
-Action | Format | Examples
---------|---------------------------|-------------
-**Add Note** | `addNote title/TITLE content/CONTENT [tag/TAG]...` | `addNote title/Create Excel Sheet content/Create sheet for blockchain department`
-**Edit Note** | `editNote INDEX [title/TITLE] [content/CONTENT] [tag/TAG]...` | `editNote 1 title/Check meeting availability tag/president`
-**Delete Note** | `deleteNote INDEX` | `deleteNote 1`
-**List Notes** | `listNote` | `listNote`
-**Find Note** | `findNote KEYWORD [MORE_KEYWORDS]` | `findNote meeting`
+Action | Format                                                                   | Examples
+--------|--------------------------------------------------------------------------|-------------
+**Add Note** | `addNote title/TITLE content/CONTENT [tag/TAG]...`                       | `addNote title/Create Excel Sheet content/Create sheet for blockchain department`
+**Edit Note** | `editNote INDEX <OR> TITLE [title/TITLE] [content/CONTENT] [tag/TAG]...` | `editNote 1 title/Check meeting availability tag/president`
+**Delete Note** | `deleteNote INDEX`                                                       | `deleteNote 1`
+**List Notes** | `listNote`                                                               | `listNote`
+**Find Note** | `findNote KEYWORD [MORE_KEYWORDS]`                                       | `findNote meeting`

@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -13,6 +16,8 @@ import seedu.address.model.person.Person;
  * An UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
+    private static final String PHONE_IMAGE_PATH = "/images/phone.png";
+    private static final String LOAN_IMAGE_PATH = "/images/loan.png";
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -35,9 +40,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private ImageView phoneImage;
     @FXML
-    private Label email;
+    private Label loanAmount;
+    @FXML
+    private ImageView loanImage;
     @FXML
     private Label birthday;
     @FXML
@@ -49,12 +56,14 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        id.setText("#" + displayedIndex);
         name.setText(person.getName().fullName);
+        phoneImage.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(PHONE_IMAGE_PATH))));
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        birthday.setText(person.getBirthday().value);
+        loanImage.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(LOAN_IMAGE_PATH))));
+        loanAmount.setText(person.getLoan().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
