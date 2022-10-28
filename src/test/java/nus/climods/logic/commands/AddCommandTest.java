@@ -44,4 +44,3 @@ public class AddCommandTest {
         assertThrows(CommandException.class, () -> addCommand.execute(model));
     }
 }
-

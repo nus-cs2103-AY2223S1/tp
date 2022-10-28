@@ -286,6 +286,20 @@ public class Module {
     }
 
     /**
+     * Returns String lessonId that is unselectable by user, such as fixed Lecture or recitation slots
+     * @param lessonType
+     * @param semester
+     * @return unselectableLessonId
+     */
+    public String getUnselectableLessonId(LessonTypeEnum lessonType, SemestersEnum semester) {
+        requireNonNull(lessonMap);
+
+        //safe to assume that keySet only has one element in it because lesson is unselectable.
+        return Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lessonType))
+                .map(lessonSet -> lessonSet.keySet().toArray()[0]).get().toString();
+    }
+
+    /**
      * Returns the description of the module's preclusion.
      *
      * @return module preclusion description

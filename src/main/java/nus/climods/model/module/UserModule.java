@@ -41,6 +41,7 @@ public class UserModule {
         updateLessonDataDisplay();
     }
 
+
     /**
      * Constructor used for UserModuleStub
      */
@@ -82,10 +83,10 @@ public class UserModule {
      * Add a lesson to module
      *
      * @param lessonType       lesson type
-     * @param lessonIdWithTime lesson id
+     * @param lessonId lesson id
      */
-    public void addLessons(LessonTypeEnum lessonType, String lessonIdWithTime) {
-        lessons.put(lessonType, lessonIdWithTime);
+    public void addLesson(LessonTypeEnum lessonType, String lessonId) {
+        lessons.put(lessonType, lessonId);
         updateLessonDataDisplay();
     }
 
