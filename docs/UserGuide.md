@@ -166,7 +166,7 @@ Note:
 * Eateries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findLocation engineering science` will eateries stalls at either location.
 
-Example: `findLocation utown -r 2`
+Example: `findLocation utown -r 2`<br>
 Example:`findLocation utown`
 
 <br>
@@ -188,7 +188,7 @@ Note:
 * Eateries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findCuisine Western Japanese` will return eateries that sell either cuisine.
 
-Example: `findCuisine chinese -r 2`
+Example: `findCuisine chinese -r 2`<br>
 Example: `findCuisine chinese`
 
 <br>
@@ -210,7 +210,7 @@ Note:
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findCuisine $ $$` will return eateries that have either of the price.
 
-Example: `findPrice $ -r 2`
+Example: `findPrice $ -r 2`<br>
 Example:`findPrice $`
 
 <br>
@@ -262,7 +262,7 @@ current list <br>
 `PRICE`: price of the eatery <br>
 `TAG`: extra tags to add to the eatery<br>
 `-h`: displays help message (specific to add)<br><br>
-Example: `add -n KOI -l Central Square -c Drinks`
+Example: `add -n KOI -l Central Square -c Drinks`<br>
 Example: `add -n KOI -l Central Square -c Drinks -p $$`
 
 <br>
