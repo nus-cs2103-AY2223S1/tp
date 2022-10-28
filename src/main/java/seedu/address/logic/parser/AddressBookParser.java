@@ -16,6 +16,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemoveFieldCommand;
 import seedu.address.logic.commands.RenameCommand;
+import seedu.address.logic.commands.creationcommand.AliasCommand;
 import seedu.address.logic.commands.creationcommand.CreateCommand;
 import seedu.address.logic.commands.creationcommand.DeleteCustomCommand;
 import seedu.address.logic.commands.creationcommand.FloatCommand;
@@ -90,6 +91,7 @@ public class AddressBookParser {
         defaultMapper.put(StringReplaceCommand.COMMAND_WORD, k -> StringReplaceCommand.parser().parse(k));
         defaultMapper.put(CreateCommand.COMMAND_WORD, k -> CreateCommand.parser().parse(k));
         defaultMapper.put(DeleteCustomCommand.COMMAND_WORD, k -> DeleteCustomCommand.parser().parse(k));
+        defaultMapper.put(AliasCommand.COMMAND_WORD, k -> AliasCommand.parser().parse(k));
     }
 
     private AddressBookParser() {
