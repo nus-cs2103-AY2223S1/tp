@@ -318,14 +318,14 @@ Format:
 Examples
 * `sort member ASC`
 
-### Sort members : `sort task`
+### Sort tasks : `sort task`
 Sorts all tasks in the current team by name and dispalys them in the task list
 
 Format:
 * `sort task ORDER`
 
 Examples
-* `sort member ASC`
+* `sort task ASC`
 
 ### Filter tasks by team member : `tasksof`
 Find all tasks in the current team assigned to a particular team member.
