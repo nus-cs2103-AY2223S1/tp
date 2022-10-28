@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.uninurse.model.condition.ConditionContainsKeywordsPredicate;
 import seedu.uninurse.model.medication.MedicationContainsKeywordsPredicate;
+import seedu.uninurse.model.remark.RemarkContainsKeywordsPredicate;
 import seedu.uninurse.model.task.TaskContainsKeywordsPredicate;
 
 /**
@@ -27,6 +28,7 @@ public class PatientContainsKeywordsPredicate implements Predicate<Patient> {
         this.predicates.add(new ConditionContainsKeywordsPredicate(keywords));
         this.predicates.add(new TaskContainsKeywordsPredicate(keywords));
         this.predicates.add(new MedicationContainsKeywordsPredicate(keywords));
+        this.predicates.add(new RemarkContainsKeywordsPredicate(keywords));
     }
 
     @Override

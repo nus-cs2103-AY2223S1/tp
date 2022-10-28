@@ -6,6 +6,7 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
@@ -17,6 +18,7 @@ import java.util.function.Predicate;
 import seedu.uninurse.logic.parser.ArgumentMultimap;
 import seedu.uninurse.model.condition.ConditionContainsKeywordsPredicate;
 import seedu.uninurse.model.medication.MedicationContainsKeywordsPredicate;
+import seedu.uninurse.model.remark.RemarkContainsKeywordsPredicate;
 import seedu.uninurse.model.tag.TagContainsKeywordsPredicate;
 import seedu.uninurse.model.task.TaskContainsKeywordsPredicate;
 
@@ -54,6 +56,7 @@ public class PatientMatchPredicate implements Predicate<Patient> {
         addPredicate(arg.getAllValues(PREFIX_CONDITION), x -> new ConditionContainsKeywordsPredicate(x));
         addPredicate(arg.getAllValues(PREFIX_TASK_DESCRIPTION), x -> new TaskContainsKeywordsPredicate(x));
         addPredicate(arg.getAllValues(PREFIX_MEDICATION), x -> new MedicationContainsKeywordsPredicate(x));
+        addPredicate(arg.getAllValues(PREFIX_REMARK), x -> new RemarkContainsKeywordsPredicate(x));
     }
 
     private void addPredicate(List<String> list, Function<List<String>, Predicate<? super Patient>> function) {
