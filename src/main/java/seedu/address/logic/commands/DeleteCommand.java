@@ -19,19 +19,19 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the client identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+        + ": Deletes the client identified by the index number used in the displayed person list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MULTIPLE_DELETE_USAGE = COMMAND_WORD
-            + ": Deletes the multiple client identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer) separated by commas and cannot have repeated indexes\n"
-            + "Example: " + COMMAND_WORD + " 1, 2, 4";
+        + ": Deletes the multiple client identified by the index number used in the displayed person list.\n"
+        + "Parameters: INDEX (must be a positive integer) separated by commas and cannot have repeated indexes\n"
+        + "Example: " + COMMAND_WORD + " 1, 2, 4";
 
     public static final String MESSAGE_RANGE_DELETE_USAGE = COMMAND_WORD
-            + ": Deletes multiple clients identified by the index number used in the displayed client list.\n"
-            + "Parameters: startIndex - endIndex (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 2 - 4";
+        + ": Deletes multiple clients identified by the index number used in the displayed client list.\n"
+        + "Parameters: startIndex - endIndex (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " 2 - 4";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -95,6 +95,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Handles delete all clients in execute method
+     *
      * @param model of FinBook
      * @return new CommandResult
      */
@@ -105,12 +106,13 @@ public class DeleteCommand extends Command {
 
     /**
      * Handles delete multiple clients in execute method
-     * @param model of Finook
+     *
+     * @param model         of Finook
      * @param lastShownList list of clients displayed
      * @return new CommandResult
      */
     public CommandResult deleteMultiple(Model model, List<Person> lastShownList) throws CommandException {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (int i = 0; i < indexList.size(); i++) {
             Index targetIndex = indexList.get(i);
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -119,22 +121,22 @@ public class DeleteCommand extends Command {
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
             model.deletePerson(personToDelete);
             if (i != indexList.size() - 1) {
-                output = output + String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete) + "\n";
+                output.append(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete)).append("\n");
             } else {
-                output = output + String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+                output.append(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
             }
         }
-        return new CommandResult(output);
+        return new CommandResult(output.toString());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || ((other instanceof DeleteCommand // instanceof handles nulls
-                && ((targetIndex != null && targetIndex.equals(((DeleteCommand) other).targetIndex)))) //index check
-                || (indexList != null && indexList.equals(((DeleteCommand) other).indexList))) // List index check
-                || (targetIndex == null && ((DeleteCommand) other).targetIndex == null //deleteAll check
-                && indexList == null && ((DeleteCommand) other).indexList == null //deleteAll check
-                && deleteAll == (((DeleteCommand) other).deleteAll)); //deleteAll check
+            || ((other instanceof DeleteCommand // instanceof handles nulls
+            && ((targetIndex != null && targetIndex.equals(((DeleteCommand) other).targetIndex)))) //index check
+            || (indexList != null && indexList.equals(((DeleteCommand) other).indexList))) // List index check
+            || (targetIndex == null && ((DeleteCommand) other).targetIndex == null //deleteAll check
+            && indexList == null && ((DeleteCommand) other).indexList == null //deleteAll check
+            && deleteAll == (((DeleteCommand) other).deleteAll)); //deleteAll check
     }
 }

@@ -25,6 +25,10 @@ public class Income {
         value = income;
     }
 
+    public int toInt() {
+        return Integer.parseInt(value.replace("$", ""));
+    }
+
     /**
      * Returns true if a given string is a valid income.
      */
