@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.task.Task.COMPLETION_STATUS_MESSAGE_CONSTRAINTS;
+import static seedu.address.model.task.Task.INPUT_TASK_COMPLETED;
+import static seedu.address.model.task.Task.INPUT_TASK_NOT_COMPLETED;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -231,6 +234,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a string of {@code String remarks} into a list of {@code String remarks}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param remarks The remarks to be parsed.
+     * @return A list of remarks.
+     * @throws ParseException if any {@code remark} is invalid.
+     */
+    public static List<Remark> parseRemarks(String remarks) throws ParseException {
+        requireNonNull(remarks);
+        String trimmedRemarks = remarks.trim();
+        String[] remarkArr = trimmedRemarks.split(" ");
+        ArrayList<Remark> remarkList = new ArrayList<>();
+        for (String remark : remarkArr) {
+            if (!Remark.isValidRemark(remark)) {
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            }
+            remarkList.add(new Remark(remark));
+        }
+        return remarkList;
+    }
+
+    /**
      * Parses a {@code String description} into a {@code Description}.
      * @param description The String to be parsed.
      * @return A Description instance
@@ -305,5 +330,32 @@ public class ParserUtil {
             descriptionList.add(new Deadline(deadline));
         }
         return descriptionList;
+    }
+
+    /**
+     * Parses a string of {@code String completionStatuses} into a list of {@code Boolean completionStatuses}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param completionStatuses The completion statuses to be parsed.
+     * @return A list of completion statuses.
+     * @throws ParseException if any {@code completionStatus} is invalid.
+     */
+    public static List<Boolean> parseCompletionStatuses(String completionStatuses) throws ParseException {
+        requireNonNull(completionStatuses);
+        String trimmedCompletionStatuses = completionStatuses.trim();
+        String[] completionStatusArr = trimmedCompletionStatuses.split(" ");
+        ArrayList<Boolean> completionStatusList = new ArrayList<>();
+        for (String completionStatus : completionStatusArr) {
+            if (StringUtil.containsWordIgnoreCase(completionStatus, INPUT_TASK_COMPLETED)) {
+                completionStatusList.add(true);
+                continue;
+            }
+            if (StringUtil.containsWordIgnoreCase(completionStatus, INPUT_TASK_NOT_COMPLETED)) {
+                completionStatusList.add(false);
+                continue;
+            }
+            throw new ParseException(COMPLETION_STATUS_MESSAGE_CONSTRAINTS);
+        }
+        return completionStatusList;
     }
 }

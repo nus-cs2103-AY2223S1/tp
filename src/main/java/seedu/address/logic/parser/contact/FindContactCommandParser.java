@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 
 /**
  * Parses input arguments and creates a new FindContactCommand object
@@ -38,11 +40,10 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
      */
     public FindContactCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME,
-                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_REMARK);
 
-        if (arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
-                PREFIX_PHONE, PREFIX_EMAIL)
+        if (arePrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_REMARK)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
@@ -52,8 +53,9 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         List<Phone> phones = getPhones(argMultimap);
         List<Email> emails = getEmails(argMultimap);
         List<Address> addresses = getAddresses(argMultimap);
+        List<Remark> remarks = getRemarks(argMultimap);
 
-        return new FindContactCommand(new PersonContainsKeywordsPredicate(names, phones, emails, addresses));
+        return new FindContactCommand(new PersonContainsKeywordsPredicate(names, phones, emails, addresses, remarks));
     }
 
     private List<Name> getNames(ArgumentMultimap argMultimap) throws ParseException {
@@ -82,6 +84,13 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
             return new ArrayList<>();
         }
         return ParserUtil.parseAddresses(argMultimap.getValue(PREFIX_ADDRESS).get());
+    }
+
+    private List<Remark> getRemarks(ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getValue(PREFIX_REMARK).isEmpty()) {
+            return new ArrayList<>();
+        }
+        return ParserUtil.parseRemarks(argMultimap.getValue(PREFIX_REMARK).get());
     }
 
     /**

@@ -99,7 +99,9 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getId().equals(getId());
+                && (otherPerson.getEmail().equals(getEmail())
+                || otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getId().equals(getId()));
     }
 
     public boolean containTag(Tag tag) {

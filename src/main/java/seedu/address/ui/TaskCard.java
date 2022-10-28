@@ -21,6 +21,10 @@ public class TaskCard extends UiPart<Region> {
 
     private static final String COLOR_TASK_NOT_COMPLETED = "#D7504D";
 
+    private static final String COLOR_TASK_ARCHIVED = "#FFD580";
+
+    private static final String MESSAGE_TASK_ARCHIVED = "Archived";
+
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -42,6 +46,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label status;
     @FXML
+    private Label archivalStatus;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -62,6 +68,13 @@ public class TaskCard extends UiPart<Region> {
             status.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_COMPLETED));
         } else {
             status.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_NOT_COMPLETED));
+        }
+        if (task.getArchivalStatus()) {
+            archivalStatus.setText(MESSAGE_TASK_ARCHIVED);
+            archivalStatus.setStyle(String.format("-fx-text-fill: %s;", COLOR_TASK_ARCHIVED));
+        } else {
+            archivalStatus.setVisible(false);
+            archivalStatus.setManaged(false);
         }
     }
 

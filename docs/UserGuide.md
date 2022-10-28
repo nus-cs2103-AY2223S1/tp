@@ -37,7 +37,17 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
 
 ## Sample Usage
 
-1. To be added
+To better understand the usage of YellowBook, we have provided a usage scenario of YellowBook below. We encourage all first-time users to follow along the to learn how each command works.
+
+1. YellowBook comes with a list of sample contacts and tasks by default.
+
+2. Let's start by listing all the contacts in YellowBook. Type `listC` in the command box and press Enter to execute it. You should see a list of contacts. Try using `listT` to list all the tasks. 
+
+3. More to be added
+
+4. As you have have noticed, YellowBook's commands are mnemonically named. A [Command Summary](#Command summary) with these helpful tips can be found below.
+
+5. Now that you are ready, feel free to add your own contacts and tasks to YellowBook!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,7 +81,7 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
 
 ### Viewing help : `help`
 
-Shows a window with a link to this user guide.
+Shows a window with a link to this user guide and latest release of YellowBook.
 
 ### Exiting YellowBook : `exit`
 
@@ -85,13 +95,17 @@ Format: `undo`
 
 * For exceptionally large contact/task lists, it may take a few seconds to undo the command.
 
+* Undo is not available for commands that do not modify the contact/task data (e.g. list, help, findC, findT, filterC, filterT etc.)
+
 ### Redo a command : `redo`
 
 Redo the last command.
 
 Format: `redo`
 
-* For exceptionally large contact/task lists, it may take a few seconds to redo the command.
+* For exceptionally large contact/task lists, it may take a few seconds to redo the command. 
+
+* Redo is not available for commands that do not modify the contact/task data (e.g. list, help, findC, findT, filterC, filterT etc.)
 
 ## Section 1: Contacts
 
@@ -104,6 +118,10 @@ Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 * The remark of a contact is optional.
 
 * Remarks are limited to alphanumeric characters and spaces.
+
+* You cannot add a contact that is the same as one already in the address book. Two people are the same if they have the same email or phone number.
+
+* Contacts have no tags when first created.
 
 Examples:
 
@@ -157,7 +175,7 @@ Example:
 
 Finds a contact using one or more information fields (e.g. name, mobile number, email, and/or address)
 
-Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
 * At least one information field has to be provided.
 
@@ -234,13 +252,15 @@ Adds a task to the task list.
 
 Format: `addT d/DESCRIPTION D/DEADLINE`
 
-* Tasks are unique. There cannot be more than one task with the same description in the task list.
+* Tasks are unique. There cannot be more than one task with the same description, deadline and tag list in the task list.
 
 * The description and deadline of the task are not allowed to be empty. 
 
 * Newly added tasks are marked as not done by default.
 
-Throws an exception if:
+* Tasks have no tags when first created.
+
+The following scenarios should not happen for your command to run successfully:
 - If the description of the task is empty.
 - If the deadline of the task is empty.
 - The deadline of the task is not in dd-mm-yyyy format.
@@ -255,7 +275,7 @@ Removes a task from the task list.
 
 Format: `deleteT INDEX`
 
-* Index of a contact is its index number on the contact list.
+* Index of a task is its index number on the task list.
 
 * INDEX must be a positive integer more than 0.
 
@@ -318,7 +338,7 @@ Examples:
 
 Finds a task using one or more information fields (e.g. description, and/or deadline)
 
-Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)]`
+Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / incomplete)]`
 
 * At least one information field has to be provided.
 
@@ -335,6 +355,8 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)]`
 Example:
 
 * `findT d/cs2103t D/25-12-2022` will return task(s) with description containing `cs2103t` and deadline `25th December 2022`.
+* 
+* `findT s/incomplete` will return task(s) that are not complete.
 
 ### Filtering tasks by label: `filterT`
 
@@ -362,7 +384,7 @@ List tasks in YellowBook with deadlines up to and including the specified date.
 Both completed and incomplete tasks are listed.
 Task with deadline that are already past are also listed.
 
-Throws an exception if:
+The following scenarios should not happen for your command to run successfully:
 - The deadline of the task is not in dd-mm-yyyy format.
 
 Format: `remindT DEADLINE`
@@ -385,7 +407,7 @@ Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
 * Tasks with labels matching at least one keyword will be returned.
 
-Throws an exception if:
+The following scenarios should not happen for your command to run successfully:
 - The deadline of the task is not in dd-mm-yyyy format.
 
 Example:
@@ -445,7 +467,7 @@ This list is unique, meaning each label with a distinct name is only shown once,
 Multiple labels can be added in the same command. 
 However, only a maximum of one contact and one task can be labelled within the same command.
 
-Throws an exception if: 
+The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
 - Contact/task already has the required label
 - No label is provided
@@ -468,7 +490,7 @@ Otherwise, it is only removed from the specified contact/task label list.
 Multiple labels can be deleted in the same command. 
 However, only a maximum of one contact and one task can be edited within the same command.
 
-Throws an exception if:
+The following scenarios should not happen for your command to run successfully: 
 - Contact/task does not exist
 - Label does not exist on specified contact/task
 - No contact/task is provided
@@ -496,7 +518,7 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 * If a contact/task has multiple labels, it will not be deleted as long as it has at least one label.
   Instead, the labels will be removed from the contact/task.
   
-Throws an exception if:
+The following scenarios should not happen for your command to run successfully:
 - Label does not exist
 - No label is provided
 
@@ -542,7 +564,7 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **addC**       | **add** **C**ontact                             | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
 | **deleteC**    | **delete** **C**ontact                          | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 |
 | **editC**      | **edit** **C**ontact                            | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
-| **findC**      | **find** **C**ontact                            | `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]` <br> e.g., `findC n/Ferb`                                                                             |
+| **findC**      | **find** **C**ontact                            | `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `findC n/Ferb`                                                                  |
 | **filterC**    | **filter** **C**ontact                          | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterC cs2103t`                                                                                         |                                                                                                 |
 | **copyC**      | **copy** **C**ontact                            | `copyC KEYWORD` <br> e.g. `copyC CS2103T`                                                                                                              |
 | **listT**      | **list** **T**asks                              | `listT`                                                                                                                                                |
@@ -554,7 +576,7 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 | **unmarkT**    | **unmark** **T**ask as not completed            | `unmarkT INDEX` <br> e.g., `unmarkT 1`                                                                                                                 |
 | **archiveT**   | **archive** **T**ask                            | `archiveT INDEX` <br> e.g., `archiveT 1`                                                                                                               |
 | **unarchiveT** | **unarchive** **T**ask                          | `unarchiveT INDEX` <br> e.g., `unarchiveT 1`                                                                                                           |
-| **findT**      | **find** **T**asks                              | `findT [d/DESCRIPTION] [D/DEADLINE]` <br> e.g., `findT d/homework`                                                                                     |
+| **findT**      | **find** **T**asks                              | `findT [d/DESCRIPTION] [D/DEADLINE] [s/STATUS]` <br> e.g., `findT d/homework`                                                                          |
 | **filterT**    | **filter** **T**asks                            | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
 | **remindT**    | **remind** **T**asks due on/before certain date | `remindT DEADLINE` <br/> e.g., `remindT 12-09-2022`                                                                                                    |
 | **progressT**  | **progress** of **T**ask with label             | `progressT KEYWORD [MORE_KEYWORDS]` <br/> e.g., `progressT cs2103t`                                                                                    |

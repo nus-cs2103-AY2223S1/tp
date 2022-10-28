@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person`, `Task`, and `Tag` objects residing in the `Model`.
 
 ### Logic component
 
@@ -98,11 +98,11 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteC 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deleteC 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteContactCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,27 +110,23 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteContactCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagramPerson.png" width="450" />
+<img src="images/ModelClassDiagramTaskTag.png" width="450" />
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object), 
+all `Task` objects (which are contained in a `TaskList` object), and all `Tag` objects (which are contained in a `UniqueTagList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+The same goes for `Task` and `Tag`.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -150,7 +146,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ### Entity specific classes
 
-Yellowbooks has 3 primary entities: 'Person', 'Task', and 'Tag', these are represented by classes with the respective names. The 'Tag' class provides a label for `Person(s)` and `Task(s)`.
+Yellowbook has 3 primary entities: 'Person', 'Task', and 'Tag', these are represented by classes with the respective names. The 'Tag' class provides a label for `Person(s)` and `Task(s)`.
 
 These are the specifications for the fields of 'Person' and 'Task'.
 
@@ -158,8 +154,10 @@ These are the specifications for the fields of 'Person' and 'Task'.
 
 Each field is implemented by a class with the same name, except for `Id` which is implemented using Java UUID class.
 
-Id is unique and automatically generated when person is added. Persons with the same fields are allowed as the Id distinguishes between Person objects.
-This is similar to mainstream contact applications that allow contacts with same details.
+Id is unique and automatically generated when person is added. 
+
+Persons with the same fields for email, phone or ID are not allowed.
+This is because these field would always be unique for each individual, so there should not be a situation where two individuals have the same data in any of these fields.
 
 | Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |------------|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -175,7 +173,10 @@ This is similar to mainstream contact applications that allow contacts with same
 
 Each Task is implemented by a class with the same name, except for `Status` which is implemented using a boolean.
 
-Id is unique and automatically generated when task is added. Tasks with the same fields are allowed as the Id distinguishes between Task objects.
+Id is unique and automatically generated when task is added. 
+Tasks with the same fields in all of description, deadline and tag are not allowed.
+This is because two tasks would be considered the same if they were the same task with the same deadline and labels.
+As we are maintaining a unique task list in our app, this is disallowed.
 
 | Field Name  | Description                                                                        | Constraints                                                     |
 |-------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
@@ -192,6 +193,10 @@ Each Tag is implemented by the class "Tag". Tags are non-empty strings and can b
 Tags must be unique, tags with same characters but in different cases are considered distinct. (e.g. Tag `cs2103t` and `CS2103T` are considered different and hence allowed )
 
 Tags, unlike Persons and Tasks, do not have an Id. This is because Tags should not have the same names and hence the name itself is sufficient to identify a Tag.
+
+Tags also include a count field. Each tag keeps track of the total number of times it is applied to either a contact or a task.
+This count updates dynamically in response to user input.
+For example, if a contact with multiple tags is deleted, the count in each of these tags will be decremented by one.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -237,6 +242,7 @@ The following sequence diagram shows how the add tag operation works:
 ![AddTagSequenceDiagram](images/AddTagSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design considerations:
 
@@ -332,9 +338,10 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 * **Alternative 1 (current choice):** Matches individual words in the parameter to the contact fields (case insensitive)
     * Pros: Users are able to make more generic searches as only one word needs to match.
+    * Pros: This is consistent behaviours of with popular search engines who do not search for exact matches by default.
     * Cons: Results are less precise as users are unable to search multi-word strings.
 
-* **Alternative 2:** Allow users to specify which keywords are to be matched individually/multi-word strings
+* **Alternative 2:** Allow users to specify which keywords are to be matched individually or in multi-word strings
     * Pros: Allow more precise searches.
     * Cons: User needs to remember additional syntax.
     * Cons: More complex implementation.
@@ -550,26 +557,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student who often has to email others | store people’s emails    | remember their emails |
 | `* * *`  | student who prefers calling                | see the person’s phone number  | call them |
 | `* * *`  | student who prefers visiting someone in person |  see the person’s address  | visit them |
-| `* * *`  | SWE student                                | save the github usernames of my contacts | view their repo |
 | `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary |
 | `* * *`  | student who pefers a compact social circle | delete contacts                | stop keeping old contacts |
 | `* * *`  | team leader                                | add and remove people from a project when forming the project group | know who is part of the project group |
 | `* * *`  | team leader                                | remove a project and the people associated with it once the project is done | avoid cluttering my workspace |
 | `* * *`  | team member                                | group contacts                 | know which people are involved in which projects |
-| `* * *`  | team member                                | give status updates on individual tasks | inform the group on my progress |
-| `* * *`  | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
 | `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already |
 | `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time |
-| `* * *`  | forgetful person                           | save people’s profiles with photos | remember their names |
 | `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them |
 | `* *`    | team leader                                | see my team’s progress towards completing their assigned tasks | know if my team is on track |
 | `* *`    | team leader                                | assign tasks to my team members | divide the work efficiently |
 | `* *`    | team leader                                | archive a project and the people associated with it once the project is done | avoid cluttering my workspace|
 | `* *`    | team member                                | send reminders to other team members | remind them to do their work |
+| `* *`    | team member                                | give status updates on individual tasks | inform the group on my progress |
 | `* *`    | team member                                | use an idea board | generate inspiration with my teammates |
+| `* * `   | SWE student                                | save the github usernames of my contacts | view their repo |
 | `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease |
 | `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule |
 | `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them |
+| `* *`    | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
+| `* *`    | forgetful person                           | save people’s profiles with photos | remember their names |
 | `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI |
 | `* *`    | student with color blindness               | have my software be composed of minimal colors | distinguish all elements |
 | `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes |
@@ -787,7 +794,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown

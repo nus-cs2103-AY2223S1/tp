@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nModel" as Model
+Class AddressBook
+Class ModelManager
+Class UserPrefs
+
+Class TaskList
+Class Task
+Class Description
+Class Deadline
+Class Tag
+
+Class UniqueTagList
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+AddressBook .up.|> ReadOnlyAddressBook
+
+ModelManager .up.|> Model
+Model .right.> ReadOnlyUserPrefs
+Model .left.> ReadOnlyAddressBook
+ModelManager -left-> "1" AddressBook
+ModelManager -right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+AddressBook *--> "1" UniqueTagList
+UniqueTagList -----> "~* all" Tag
+
+AddressBook *--> "1" TaskList
+TaskList -----> "~* all" Task
+Task *--> Description
+Task *--> Deadline
+Task *--> "*" Tag
+
+UniqueTagList -[hidden]left-> TaskList
+Description -[hidden]right-> Deadline
+Deadline -[hidden]right-> Tag
+
+ModelManager -->"~* filtered" Task
+ModelManager -->"~* filtered" Tag
+@enduml
