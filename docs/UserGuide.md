@@ -237,7 +237,7 @@ Examples:
 
 Adds a reminder to the list of reminders.
 
-Format: `add reminder n/NAME T/DEADLINE_TIME D/DEADLINE_DATE d/DESCRIPTION`
+Format: `add reminder n/NAME T/DEADLINE_TIME D/DEADLINE_DATE d/DESCRIPTION p/PRIORITY`
 
 * Adds a reminder with either `HIGH`, `MEDIUM` or `LOW` priority.
 
@@ -258,15 +258,29 @@ Format: `delete reminder INDEX`
 Examples:
 * `delete reminder 3`
 
+#### 3.4.3 Editing a reminder: `edit reminder`
 
-#### 3.4.3 Mark a reminder : `mark reminder`
+Edits an existing reminder in the list of reminders.
+
+Format: `edit consultation INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [d/description] [p/PRIORITY]`
+
+* Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing the time or the date, both fields must be given.
+
+Examples:
+* `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
+* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd consultation to be `14:00` and sets deadline date to `2022 Oct 10`.
+
+#### 3.4.4 Mark a reminder : `mark reminder`
 
 Marks a reminder as complete.
 
 Format: `mark reminder INDEX`
 
 Examples:
-* `mark reminder 1`
+* `mark reminder 2`
 
 <table>
   <tr>
@@ -279,7 +293,7 @@ Examples:
   </tr>
  </table>
 
-#### 3.4.4 Unmark a reminder : `unmark reminder`
+#### 3.4.5 Unmark a reminder : `unmark reminder`
 
 Unmarks a reminder as incomplete.
 
@@ -288,7 +302,7 @@ Format: `unmark reminder INDEX`
 Examples:
 * `unmark reminder 3`
 
-#### 3.4.5 Sort reminders: `sort reminder`
+#### 3.4.6 Sort reminders: `sort reminder`
 
 Sort reminders by a chosen criteria.
 
