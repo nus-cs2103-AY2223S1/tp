@@ -14,7 +14,7 @@ public class ListingBuilder {
 
     public static final String DEFAULT_ID = "House";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final Person DEFAULT_PERSON = TypicalPersons.BOB;
+    public static final Client DEFAULT_CLIENT = TypicalClients.BOB;
     public static final String DEFAULT_ASKING_PRICE = "1";
 
     private ListingId id;

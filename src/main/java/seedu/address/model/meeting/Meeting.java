@@ -1,6 +1,7 @@
 package seedu.address.model.meeting;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -78,6 +79,14 @@ public class Meeting implements Comparable<Meeting> {
      */
     public LocalDateTime getdateTime() {
         return dateTime;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**

@@ -6,11 +6,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.listing.exceptions.DuplicateListingException;
 import seedu.address.model.listing.exceptions.ListingNotFoundException;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
@@ -112,6 +114,15 @@ public class UniqueListingList implements Iterable<Listing> {
         }
 
         internalList.setAll(listings);
+    }
+
+    /**
+     * Remove all listing owned by the client.
+     */
+    public void deleteListingsOfClient(Client toBeRemoved) {
+        List<Listing> newInternalList = internalList.stream().filter(toBeRemoved::doNotOwn)
+            .collect(Collectors.toList());
+        setListings(newInternalList);
     }
 
     /**

@@ -144,6 +144,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteListingsOwnedBy(Client target) {
+        addressBook.removeAllListingOwnedBy(target);
+    }
+
+    @Override
+    public void deleteOffersMadeBy(Client target) {
+        addressBook.removeAllOffersMadeBy(target);
+    }
+
+    @Override
+    public void deleteMeetingsWith(Client target) {
+        addressBook.removeAllMeetingsWith(target);
+    }
+
+    @Override
     public void addClient(Client client) {
         addressBook.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
@@ -192,6 +207,16 @@ public class ModelManager implements Model {
     public void setListing(Listing target, Listing editedListing) {
         requireAllNonNull(target, editedListing);
         addressBook.setListing(target, editedListing);
+    }
+
+    @Override
+    public void deleteOffersFor(Listing target) {
+        addressBook.removeAllOffersFor(target);
+    }
+
+    @Override
+    public void deleteMeetingsAbout(Listing target) {
+        addressBook.removeAllMeetingsAbout(target);
     }
 
     @Override
@@ -245,6 +270,13 @@ public class ModelManager implements Model {
         return addressBook.getMeeting(name, address);
     }
 
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        addressBook.setMeeting(target, editedMeeting);
+    }
+
     //=========== Filtered List Accessors =============================================================
 
     /**
@@ -294,6 +326,11 @@ public class ModelManager implements Model {
     public void updateFilteredOfferList(Predicate<Offer> predicate) {
         requireNonNull(predicate);
         filteredOffers.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
     }
 
     @Override
