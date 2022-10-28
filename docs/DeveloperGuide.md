@@ -280,72 +280,45 @@ a foreign key this way, a change in person object is reflected in the task assoc
 to this is to keep a person object in a task object but this will prevent the change in the person object that is
 supposed to be associated with the task object from being displayed in the task as they are two separate objects.
 
-### \[Proposed\] Filtering of tasks by Task Category
+### \[Proposed\] Filtering of tasks by Task Category, Task Deadline or Both
 
 #### Proposed Implementation
 
-The proposed filter mechanism allows A `Task` to be filtered based on its `Task Category`.
-The command is executed using the `FilterTaskCategoryCommand`class which extends the `Command` class and the category is determined from the `FilterTaskCategoryParser` class which parses the user input. The `TaskContainsCategoryPredicate` class will filter the existing task list based on the keyword parsed from the `FilterTaskCategoryParser` class and return the filtered tasklist, which will be displayed on the application.
+The proposed filter mechanism allows a `Task` to be filtered based on its `Task Category` or `Task Deadline`.
+The command is executed using the `FilterTaskCommand`class which extends the `Command` class and the filter criteria is determined from the `FilterTaskParser` class which parses the user input. The `TaskCategoryAndDeadlinePredicate` class will filter the existing task list based on the keyword parsed from the `FilterTaskCategoryParser` class and return the filtered tasklist, which will be displayed on the application.
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time, with an empty tasklist.
 
-Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/backend dl/2022-12-12 pe/2` to add a task to the tasklist.
+Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/backend dl/2022-12-12 pe/charlotte@example.com` to add a task to the tasklist.
 
 Step 3. The user repeats step 2 to add more tasks to the tasklist.
 
-step 4. The user decides that he only wants to see the tasks that are backend related. The user executes `filter c/backend` to filter the tasks that are backend related. After this, only tasks that have TaskCategory:backend are displayed onto the application.
+step 4. The user decides that he only wants to see the tasks that are backend related and are due by 2022-12-12. The user executes `filter c/backend dl/2022-12-12` to filter the tasks that are backend related and are due before 2022-12-12. After this, only tasks that have `TaskCategory:backend` are displayed onto the application.
 
 The following sequence diagram shows how the filter operation works:
 
 Step 5. After looking through all the tasks that are related to backend, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
 
+The following activity diagram summarizes what happens when a user executes a filter command:
+
+
+
+
 **Design considerations**
 
-**Aspect: How undo & redo executes:**
+**Aspect: How filter executes:**
 
 * **Alternative 1 (current choice):** Filters entire tasklist
-  * Pros: Easy to implement.
-  * Cons:
-
-* **Alternative 2:**
-  itself.
-  * Pros:
-  * Cons:
-
-### \[Proposed\] Filtering of tasks by Task Deadline
-
-#### Proposed Implementation
-
-The proposed filter mechanism allows A `Task` to be filtered based on its `TaskDeadline`.
-The command is executed using the `FilterTaskDeadlineCommand` class which extends the `Command` class and the deadline is determined from the `FilterTaskDeadlineParser` class which parses the user input. The `TaskDeadlineBeforeDatePredicate` class will filter the existing task list based on the date parsed from the `FilterTaskDeadlineParser` class and return the filtered tasklist, which will be displayed on the application.
-
-Given below is an example usage scenario and how the filter mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time, with an empty tasklist.
-
-Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/backend dl/2022-12-12 pe/2` to add a task to the tasklist.
-
-Step 3. The user repeats step 2 to add more tasks to the tasklist with different deadlines.
-
-step 4. The user decides that he only wants to see the tasks due on 12 December 2022. The user executes `filterByDeadline dl/2022-12-12` to filter the tasks that have 12 December 2022 as their deadline. After this, only tasks that have `TaskDeadline:2022-12-12` and earlier are displayed onto the application.
-
-The following sequence diagram shows how the filter operation works:
-
-Step 5. After looking through all the tasks with deadlines of 12 December 2022 and earlier, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
-
-#### Design considerations:
-
-**Aspect: How filtering by deadline executes:**
-
-* **Alternative 1 (current choice):** Filters the entire tasklist.
   * Pros: Easy to implement.
   * Cons: May have performance issues as the entire tasklist must be parsed.
 
 * **Alternative 2:**
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros:
+  * Cons:
+
+
 
 _{more aspects and alternatives to be added}_
 
