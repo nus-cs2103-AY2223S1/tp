@@ -38,23 +38,6 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     2. [Undoing last command](#b-undo-last-modification--undo) : `undo`
     3. [Exiting the app](#c-exiting-the-program--exit) : `exit`
 * [Command summary](#command-summary)
-* [Quick start](quick-start)
-* [Features](features)
-   * Viewing help : help
-   * Adding a person: add
-   * Listing all persons : list
-   * Editing a person : edit
-   * Deleting a person : delete
-   * Find a person: find
-   * Clearing all entries : clear
-   * Undoing last command : undo
-   * Viewing past commands : history
-   * Sorting all entries by a specific field : sort
-   * Add a person to a group: addtogroup
-   * Remove a person from a group: ungroup
-   * Open a group window: group
-   * Email all persons in a group: emailall
-* [Command summary](command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -112,14 +95,7 @@ Sets the occupation of a person in uNivUSal.
 Format: `o/OCCUPATION`
 * `OCCUPATION` includes `STUDENT`, `TA`, `PROFESSOR`
 
-### Viewing history : `history`
-
-Shows up to five previous commands typed by the user while running the app.
-
-![help message](images/historyMessage.png)
-
-Format: `help`
-
+### b. name : `n/`
 
 Sets the name of a person in uNivUSal.
 
@@ -199,21 +175,17 @@ and `janedoe@example.com` respectively.
 
 ### c. Deleting a person : `delete`
 
-Deletes the specified person or specified field from person from uNivUSal.
+Deletes the specified person from uNivUSal.
 
-Format: `delete INDEX {OPTIONAL PREFIX/}`
+Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* If valid `PREFIX/` is provided, will delete the specified field of the person at specified `INDEX`
-* A valid `PREFIX/` are prefixes such as `p/` or `t/`
-
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in uNivUSal.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `list` followed by `delete 2 p/` deletes the 2nd person's phone number in uNivUSal.
 
 ### d. Listing all persons : `list`
 
@@ -399,21 +371,21 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                            |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**              | `help`                                                                                                                                                      |
-| **History**           | `history`                                                                                                                                                   |
-| **Add**               | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**              | `list`                                                                                                                                                      |
-| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
-| **Delete**            | `delete INDEX {OPTIONAL PREFIX/}`<br> e.g., `delete 3`,`delete 3 p/`                                                                                        |
-| **Clear**             | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
-| **Undo**              | `undo`                                                                                                                                                      |
-| **Sort**              | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                         |
-| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                              |
-| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                    |
-| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                       |
-| **Open Group Window** | `group GROUPNAME`                                                                                                                                           |
-| **Favorite**          | `fav INDEX`                                                                                                                                                 |
-| **Social**            | `social SOCIAL`                                                                                                                                             |
-| **Exit**              | `exit`                                                                                                                                                      |
+| Action                | Format, Examples                                                                                                                                                                                             |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                                                                       |
+| **Add**               | `add o/OCCUPATION n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​` <br>e.g., `add o/STUDENT n/James Ho p/22224444 e/jamesho@example.com tut/T08 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **List**              | `list`                                                                                                                                                                                                       |
+| **Edit**              | `edit INDEX [o/OCCUPATION] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tut/TUTORIAL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                          |
+| **Clear**             | `clear`                                                                                                                                                                                                      |                                                                             |                                                                                                          |
+| **Undo**              | `undo`                                                                                                                                                                                                       |
+| **Sort**              | `sort FIELD_PREFIX/` <br> e.g., `sort n/`                                                                                                                                                                    |
+| **Find**              | `find KEYWORD` <br> e.g., `find John / find J`                                                                                                                                                               |
+| **Add To Group**      | `addtogroup INDEX GROUP`                                                                                                                                                                                     |
+| **Ungroup**           | `ungroup INDEX GROUP`                                                                                                                                                                                        |
+| **Open Group Window** | `group GROUPNAME`                                                                                                                                                                                            |
+| **Favorite**          | `fav INDEX`                                                                                                                                                                                                  |
+| **Social**            | `social SOCIAL`                                                                                                                                                                                              |
+| **Email All**         | `emailall GROUPNAME`                                                                                                                                                                                         |
+| **Exit**              | `exit`                                                                                                                                                                                                       |
