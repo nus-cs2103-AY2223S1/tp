@@ -47,11 +47,11 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(position + ". ");
-        moduleCode.setText(task.getModule().getModuleCode().moduleCode);
+        moduleCode.setText("Module Code: " + task.getModule().getModuleCode());
         description.setText(task.getDescription().description);
         isComplete.setSelected(task.isComplete());
         if (task.getPriorityTag() != null) {
-            priorityTag.setText(task.getPriorityTag().status);
+            priorityTag.setText(task.getPriorityTag().status.toUpperCase());
         } else {
             priorityTag.setManaged(false);
         }
@@ -63,7 +63,7 @@ public class TaskCard extends UiPart<Region> {
         }
 
         if (task.getExam() != null) {
-            examDescription.setText(task.getExam().getDescription().description);
+            examDescription.setText("Exam Description: " + task.getExam().getDescription().description);
         } else {
             examDescription.setManaged(false);
         }

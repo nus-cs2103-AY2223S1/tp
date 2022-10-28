@@ -14,7 +14,7 @@ import seedu.address.model.module.Module;
  */
 public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds a module to the module list.\n"
+    public static final String MESSAGE_USAGE = "m " + COMMAND_WORD + ": adds a module to the module list.\n"
             + "parameters: "
             + PREFIX_MOD_CODE + "MODULE_CODE "
             + PREFIX_MOD_NAME + "MODULE_NAME "
@@ -22,7 +22,7 @@ public class AddModuleCommand extends Command {
     public static final String MODULE_ADDED_SUCCESS = "Module has been added successfully!";
 
     public static final String DUPLICATE_MODULE_DETECTED = "This module already exists! "
-            + "Try to input a different module name or module code.";
+            + "Try to input a different module code along with your initial module name and module credit fields.";
     private final Module moduleAdded;
 
     /**

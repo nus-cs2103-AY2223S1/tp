@@ -15,11 +15,14 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     public static final String MESSAGE_MODULES_LISTED_OVERVIEW = "%1$d modules listed!";
-    public static final String MESSAGE_INVALID_MODULE_DISPLAYED_INDEX = "The module index provided is invalid";
+    public static final String MESSAGE_INVALID_MODULE_DISPLAYED_INDEX =
+            "Please provide a positive integer for the index of a module.";
     public static final String MESSAGE_INVALID_MODULE_DELETION_AS_TIED_WITH_TASK = "The module"
             + " cannot be deleted as it is tied with an existing task";
     public static final String MESSAGE_INVALID_MODULE_EDIT_AS_TIED_WITH_TASK = "The module"
             + " cannot be edited as it is tied with an existing task";
+    public static final String MESSAGE_INVALID_MODULE_INDEX_TOO_LARGE =
+            "Please provide a module index greater than 0 and less than %d";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
     public static final String MESSAGE_INVALID_TASK_INDEX =
         "Please provide a positive integer for the index of a task.";
@@ -28,4 +31,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists in the exam list";
     public static final String MESSAGE_INVALID_EXAM_DISPLAYED_INDEX =
             "The exam index provided is invalid";
+    public static final String MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE =
+            "Please provide an exam index greater than 0 and less than %d";
+    public static final String MESSAGE_INVALID_EXAM_INDEX =
+            "Please provide a positive integer for the index of an exam.";
 }

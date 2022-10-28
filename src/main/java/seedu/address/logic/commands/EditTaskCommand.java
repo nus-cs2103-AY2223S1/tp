@@ -26,14 +26,15 @@ import seedu.address.model.task.exceptions.DuplicateTaskException;
 public class EditTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
+    public static final String FULL_COMMAND_WORD = "t edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-        + "by the index number used in the displayed task list. "
+    public static final String MESSAGE_USAGE = FULL_COMMAND_WORD + ": Edits the details of the task at the specified "
+        + "INDEX in the displayed task list. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_MODULE + "MODULE CODE] "
-        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
-        + "Example: " + COMMAND_WORD + " 1 "
+        + "[" + PREFIX_MODULE + "MODULE]* "
+        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]*\n"
+        + "Example: " + FULL_COMMAND_WORD + " 1 "
         + PREFIX_MODULE + "cs2040 "
         + PREFIX_DESCRIPTION + "task 3";
 
@@ -41,7 +42,7 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_NO_FIELDS_PROVIDED =
         "Please provide at least one of the fields to edit: m/MODULE, d/DESCRIPTION";
     public static final String MESSAGE_SAME_FIELDS_PROVIDED =
-        "Please provide a module or description different from the task's current module and description";
+        "Please provide a m/MODULE or d/DESCRIPTION different from the task's current module and description";
     public static final String MESSAGE_EXAM_UNLINKED = "Warning: The task has been unlinked from its exam.\n";
     public static final String MESSAGE_DUPLICATE_TASK =
         "The edited task is the same as another task in the task list";

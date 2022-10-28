@@ -47,9 +47,9 @@ public class ExamCard extends UiPart<Region> {
         super(FXML);
         this.exam = exam;
         id.setText(position + ". ");
-        moduleCode.setText(exam.getModule().getModuleCode().moduleCode);
+        moduleCode.setText("Module Code: " + exam.getModule().getModuleCode().moduleCode);
         examDescription.setText(exam.getDescription().description);
-        examDate.setText(exam.getExamDate().examDate);
+        examDate.setText("Date: " + exam.getExamDate().examDate);
         if (!exam.hasTasks()) {
             percentageCompleted.setPrefWidth(0);
         } else {
