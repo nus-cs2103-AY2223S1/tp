@@ -35,7 +35,6 @@ public class EditClientCommandParser implements Parser<EditClientCommand> {
     @Override
     public EditClientCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_IMAGE_UPLOAD);
                 ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_ADDRESS,
                         PREFIX_TAG, PREFIX_INTERESTEDPROPERTIES, PREFIX_IMAGE_UPLOAD);
         EditClientCommand.EditClientDescriptor editClientDescriptor =
