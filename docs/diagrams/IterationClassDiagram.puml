@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+class Commission
+class UniqueIterationList
+class Iteration
+class Date
+class Feedback
+class IterationDescription
+class Path
+
+Commission *--> "1" UniqueIterationList
+UniqueIterationList --> "*" Iteration
+Iteration *--> "1" Date
+Iteration *--> "1" Feedback
+Iteration *--> "1" IterationDescription
+Iteration *--> "1" Path
+@enduml

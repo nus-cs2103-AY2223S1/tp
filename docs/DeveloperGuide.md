@@ -192,7 +192,7 @@ Commissions are currently stored in the individual `Customer`'s `UniqueCommissio
 * **Alternative 2:** Store all commission objects in `AddressBook`.
   * Pros:
     * Commands requiring commissions from all customers can be more efficient.
-  * Cons: 
+  * Cons:
     * More difficult to implement, since a deleted customer's commissions has to be individually deleted from this master list of commissions.
     * Less efficient for commands for an individual customer's commissions.
 
@@ -210,24 +210,57 @@ Commissions are currently stored in the individual `Customer`'s `UniqueCommissio
     * Does not support indexing. Would still need another data structure in `ModelManager` when commands request commissions by index.
     * Edit becomes tedious to implement as it requires a combination of create and delete.
 
-<!-- TODO Deleting a Commission (`delcom`) -->
+#### Deleting a Commission (`delcom`)
+
+Deletes a commission based on user input, and deletes the commission from the active customer.
+
+##### Implementation
+This section explains how the `delcom` command is implemented.
+
+Support for the `delcom` command is integrated with `DeleteCommissionCommandParser` and `DeleteCommissionCommand`.
+
+It is important to note that our commission commands usually require retrieving the customer to operate on the customer's
+commission list directly, due to our method of storing commissions (inside their Customer objects).
+
+1. User specified arguments (the commission index) are passed to the DeleteCommissionCommandParser and the arguments are broken up by the ArgumentTokenizer and ArgumentMultimap.
+
+1. The arguments will then be parsed by ParserUtil. An error will be thrown if the inputs were invalid or if no customer is selected yet.
+
+1. A new DeleteCommissionCommand object will be initialised.
+
+1. DeleteCommissionCommand#execute() will then get the currently shown list of commissions and identify the target commission to delete.
+
+1. This commission is passed into Customer#removeCommission to be removed directly from the customer's commission list.
+
+1. Model updates the GuiTab to show the Commission tab and selectedCommission to not show the deletedCommission and these changes are observed by the UI.
+
+1. The success message will be returned to the user by the CommandResult.
+
+The sequence diagram below shows the interaction between `Logic` and `Model` when `delcom 1` is executed.
+The parser part is omitted for brevity, but it is very similar to the other commands.
+
+<img src="images/DeleteCommissionCommand.png" width="450" />
 
 ### Iterations
 Iterations help users keep track of the progress of their commissions. Each commission iteration
 essentially represents a version of the commissioned artwork.
 
-Iterations contain a `Date`, `IterationDescription`, `Path` to the image, and `Feedback`. Since
-an iteration must be tied to a commission, this composition is captured by storing the
+Iterations contain:
+* a `Date`, which uses a `LocalDate` in its underlying implementation, representing the date
+tied to the iteration
+* an `IterationDescription`, which represents a textual description of the iteration
+* a `Path`, which is the file path of an image representing the iteration artwork
+* and a `Feedback`, which represents textual feedback to the iteration.
+
+Since an iteration must be tied to a commission, this composition is captured by storing the
 iterations in a `UniqueIterationList` inside the associated commission object.
 
-<!-- TODO insert iteration class diagram here -->
+<img src="images/IterationClassDiagram.png" width="450" />
 
 #### Adding an Iteration (`additer`)
-Creates an iteration based on the user input, and adds the iteration to the active commission.
-<!-- TODO Users may either add an iteration via the command line or the GUI as described in the activity
-diagram below. -->
-
-<!-- TODO insert addIteration activity diagram here -->
+Adding an `Iteration` creates an iteration based on the user input, and adds the iteration to the
+active commission. Like all other add commands, users may either add an iteration via the
+command line or the GUI.
 
 ##### Implementation
 Support for the add iteration command is integrated with the `AddIterationParser`,
@@ -238,11 +271,101 @@ iteration is added to the active commission's `UniqueIterationList` when the
 
 Note that if there is no presently active commission, the iteration will not be added.
 
-The sequence diagram below shows the interactions within the Logic component when
-the user inputs `additer d/2022-10-10 n/Changed the colour scheme. p//Users/john/Downloads/Draft 1.png
-f/Updated colour scheme is much better`;
+The sequence diagram below shows the interactions between the Logic, Model, and Storage components when
+the user runs the command `additer d/2022-10-10 n/Changed the colour scheme p//Users/john/Downloads/Draft 1.png
+f/Updated colour scheme is much better`.
 
-<!-- TODO insert addIteration sequence diagram here -->
+<img src="images/AddIterationSequenceDiagram.png" width="450" />
+<br>
+<img src="images/AddIterationParseInputSequenceDiagram.png" width="450" />
+<br>
+<img src="images/AddIterationExecuteSequenceDiagram.png" width="450" />
+
+##### Design Considerations
+<table>
+<tr><th colspan="4">Aspect 1: Image File Handling</th></tr>
+<tr><th></th><th>Alternative</th><th>Pros</th><th>Cons</th></tr>
+<tr><td>1</td>
+<td>Store and use the image at the file path specified in the <code>additer</code> command</td>
+<td>Easy to implement</td><td>The user might modify the image at the given file path. For instance,
+the image may be edited, renamed, moved, or entirely deleted.
+
+This imposes the constraint on the user not to modify their files if they do not wish for
+their files on ArtBuddy to be similarly modified, which is not ideal in most cases.
+
+In addition, it exposes ArtBuddy to some vulnerabilities that may lead to unexpected behaviour.
+For example, the user might change the file to an unsupported file type.
+
+All these potential failures have to be gracefully handled- which poses a big challenge because
+there are so many areas for error that some may be overlooked. Furthermore, many of these issues
+might not have ideal solutions that do not diminish the user experience and are easy to implement.
+</td>
+
+</tr>
+<tr><td>2</td>
+<td>Make a defensive copy of the uploaded image <strong>(current)</strong></td>
+<td>Making a defensive copy of the uploaded image in ArtBuddy protects the images used
+in ArtBuddy from modification and the problems associated to user modification, as explained above.</td>
+<td>Additional overhead will have to be added to the execution of <code>additer</code> commands,
+because a copy of the image has to be made each time the command is executed.
+
+Furthermore, it introduces deeper coupling between the `Logic` and `Storage` components since
+the `AddIterationCommand` class in `Logic` would have to depend on `Storage` to copy the image into ArtBuddy.
+</td>
+</tr>
+<tr><td colspan="4">Overall, the team felt that the tradeoffs in overhead and coupling were worth making due to the
+severity of bugs that could have been introduced in ArtBuddy otherwise.</td></tr>
+</table>
+
+<table>
+<tr><th colspan="4">Aspect 2: Image Copy File Naming</th></tr>
+<tr><th></th><th>Alternative</th><th>Pros</th><th>Cons</th></tr>
+<tr><td>1</td><td>Naming the copy of the image file with the original filename</td>
+<td>-</td><td>There may be files with the same original file name. This could result
+in duplicate filenames in the ArtBuddy storage folder, which is not allowed.</td></tr>
+
+<tr><td>2</td><td>Creating sub-folders for each customer and commission, where the
+image copy will be stored. The image copy files will be named after their iteration
+description.</td><td>As iteration descriptions are guaranteed to be unique within each commission,
+we can guarantee that all filenames within each folder will be unique.</td>
+<td>Many nested folders would have to be created in ArtBuddy just to store iteration images.
+
+In addition, it would introduce overheads into other commands, such as <code>deliter</code>
+and <code>edititer</code> because the filenames of these files would have to be modified to
+ensure they can be referenced to the correct iteration, and also avoid the issue with duplicate filenames.
+Furthermore, iteration descriptions may contain characters that result in invalid filenames.
+</td></tr>
+
+<tr><td>3</td><td>Keeping a global count and naming the image copy file after its customer,
+commission and this global count.</td><td>Each combination of customer name and commission title
+is guaranteed to be unique.
+
+Also, since there is a restriction on customer names and commission titles, they are suitable to be used as filenames.
+
+Editing and deletion of iterations will not incur additional overheads as the unique global count
+would ensure that each iteration image remains uniquely identifiable after these commands.
+</td>
+
+<td>Even though we are getting closer to a unique hash, editing and deletion of customers and commissions would
+still be problematic. These commands still require the filenames to be renamed- else, they would risk facing the
+same issue of duplicate filenames within the image storage folder.
+
+In addition, the introduction of a global variable would introduce a high level of coupling.
+</td>
+</tr>
+
+<tr><td>4</td><td>Use a randomly generated hash as the filename <strong>(current)</strong></td>
+<td>High probability of the unique filenames.
+
+Removed dependency on the state of the `Customer`, `Commission`, or `Iteration` object it belongs to.
+Hence, no additional overhead will be incurred with delete or edit commands.
+</td>
+<td>While small, there is a non-zero probability of getting duplicate filenames</td>
+</tr>
+<tr><td colspan="4">Overall, the team agreed that using a randomly generated hash was definitely
+the most elegant way of handling file naming. Furthermore, the tradeoffs are almost negligible
+as duplicate filenames can be easily handled by generating a new hash until a unique filename is obtained.</td></tr>
+</table>
 
 ### \[Proposed\] Undo/redo feature
 

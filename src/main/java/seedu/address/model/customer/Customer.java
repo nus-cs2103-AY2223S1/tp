@@ -90,6 +90,27 @@ public class Customer {
     }
 
     /**
+     * Returns the total number of completed commissions made by this customer.
+     */
+    public long getCompletedCommissionCount() {
+        return commissions.getCompletedSize();
+    }
+
+    /**
+     * Returns the total number of commissions that are in progress made by this customer.
+     */
+    public long getInProgressCommissionCount() {
+        return commissions.getInProgressSize();
+    }
+
+    /**
+     * Returns the total number of commissions that are not started made by this customer.
+     */
+    public long getNotStartedCommissionCount() {
+        return commissions.getNotStartedSize();
+    }
+
+    /**
      * Get last date of customer's commissions.
      */
     public LocalDate getLastDate() {

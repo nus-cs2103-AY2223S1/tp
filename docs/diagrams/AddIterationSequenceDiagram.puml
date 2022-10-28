@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddIterationCommandParser" as AddIterationCommandParser LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("additer d/2022-10-10 \nn/Changed the colour scheme\
+\np//Users/john/Downloads/Draft 1.png \nf/Updated colour scheme is much better")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("additer d/2022-10-10 \nn/Changed the colour scheme\
+\np//Users/john/Downloads/Draft 1.png \nf/Updated colour scheme is much better")
+activate AddressBookParser
+
+create AddIterationCommandParser
+AddressBookParser -> AddIterationCommandParser
+activate AddIterationCommandParser
+
+AddIterationCommandParser --> AddressBookParser
+deactivate AddIterationCommandParser
+
+AddressBookParser -> AddIterationCommandParser
+activate AddIterationCommandParser
+
+ref over AddressBookParser, AddIterationCommandParser : parse additer user input
+
+create AddIterationCommand
+AddIterationCommandParser -> AddIterationCommand : AddIterationCommand(toAdd)
+activate AddIterationCommand
+
+AddIterationCommand --> AddIterationCommandParser : t
+deactivate AddIterationCommand
+
+AddIterationCommandParser --> AddressBookParser : t
+deactivate AddIterationCommandParser
+
+AddressBookParser --> LogicManager : t
+deactivate AddressBookParser
+
+ref over LogicManager, AddIterationCommand : execute AddIterationCommand
+
+[<- LogicManager : commandResult
+deactivate LogicManager
+@enduml
