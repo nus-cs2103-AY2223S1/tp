@@ -138,7 +138,8 @@ Similar analogues exist for task and lesson data. The class diagram is similar a
 The above diagram only shows the UserPrefs and StudentBook Storage in full. TaskBook Storage is done similarly to StudentBook Storage. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
 
 <img src="images/LessonStorageClassDiagram.png" width="550" />
-The LessonBook Storage differs slightly from the StudentBook and TaskBook Storages.
+
+LessonBook Storage differs slightly from the StudentBook and TaskBook Storages.
 
 The `Storage` component,
 * can save student, task and lesson data as well as user preference data in json format, and read them back into corresponding objects.
