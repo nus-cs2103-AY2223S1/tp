@@ -97,7 +97,7 @@ public enum CommandType {
                     + "\n\n"
                     + "Format:\n"
                     + getCommandWord() + " "
-                    + PREFIX_NAME + "ITEM_NAME\n\n"
+                    + PREFIX_NAME + "TAG_NAME\n\n"
                     + "Example:\n"
                     + getCommandWord() + " "
                     + PREFIX_NAME + "Potatoes ";
@@ -212,7 +212,7 @@ public enum CommandType {
                     + "\n"
                     + "Format:\n"
                     + getCommandWord() + " "
-                    + PREFIX_NAME + "ITEM_NAME\n\n"
+                    + PREFIX_NAME + "TAG_NAME\n\n"
                     + "Example:\n"
                     + getCommandWord() + " "
                     + PREFIX_NAME + "Potatoes ";
@@ -232,7 +232,7 @@ public enum CommandType {
             return getCommandWord() + ": Creates a tag in FoodRem.\n\n"
                     + "Format:\n"
                     + getCommandWord() + " "
-                    + PREFIX_NAME + "ITEM_NAME\n\n"
+                    + PREFIX_NAME + "TAG_NAME\n\n"
                     + "Example:\n"
                     + getCommandWord() + " "
                     + PREFIX_NAME + "Potatoes ";
