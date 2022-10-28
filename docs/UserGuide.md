@@ -361,7 +361,7 @@ Use aliases to quickly enter tags.
 
 Example: 
 
-* `events -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.  
+* `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.  
 
 | Alias | Result       | 
 |-------|--------------|
