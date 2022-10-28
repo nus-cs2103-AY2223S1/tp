@@ -33,6 +33,7 @@ public class TypicalTasks {
     // public static final Task TASKONE = new TaskBuilder().build();
     public static final Task TASKONE = new TaskBuilder().withName("Task one").withModule("CS2030S").build();
     public static final Task TASKTWO = new TaskBuilder().withName("Task two").withModule("CS2030S").build();
+    public static final Task HOMEWORK = new TaskBuilder().withName("homework").withModule("CS2030s").build();
 //
 //    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
 //            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -93,6 +94,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(TASKONE,TASKTWO));
+        return new ArrayList<>(Arrays.asList(TASKONE,TASKTWO,HOMEWORK));
     }
 }

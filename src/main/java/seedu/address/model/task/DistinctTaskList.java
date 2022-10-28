@@ -104,6 +104,51 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns true if {@code examToEdit} is linked to any task, otherwise false.
+     */
+    public boolean isExamLinkedToTask(Exam exam) {
+        requireNonNull(exam);
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).isLinked() && taskList.get(i).getExam().equals(exam)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Replaces task by changing its given exam field from {@code previousExam}
+     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        taskList.forEach(task-> {
+            if (task.isLinked() && task.getExam().equals(previousExam)) {
+                Task editedTask = task.linkTask(newExam);
+                replaceTask(task, editedTask, true);
+            }
+        });
+    }
+
+    /**
+     * Replaces task by changing its given module field from {@code previousModule}
+     * to {@code newModule} for tasks that have their module field as {@code previousModule}.
+     * @param previousModule The module in the task's module field.
+     * @param newModule The new module which will replace the previous module in the task's module field.
+     */
+    public void updateModuleFieldForTask(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        taskList.forEach(task-> {
+            if (task.getModule().equals(previousModule)) {
+                Task editedTask = task.edit(newModule, null);
+                replaceTask(task, editedTask, false);
+            }
+        });
+    }
+
+    /**
      * Removes the equivalent task from the tasklist.
      * The task must exist in the list.
      */
@@ -114,15 +159,42 @@ public class DistinctTaskList implements Iterable<Task> {
         }
     }
 
-    public int getNumOfTasksCompleted(Module module) {
+    /**
+     * Removes tasks that have their module field as {@code module} from the tasklist.
+     * @param module The module in the task's module field.
+     */
+    public void deleteTasksWithModule(Module module) {
+        requireAllNonNull(module);
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.get(i);
+            if (task.getModule().equals(module)) {
+                remove(task);
+                --i;
+            }
+        }
+    }
+
+
+    public int getNumOfCompletedModuleTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().filter(Task::isComplete).map(Task::getModule)
             .filter(module::isSameModule).count();
     }
 
-    public int getTotalNumOfTasks(Module module) {
+    public int getTotalNumOfModuleTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().map(Task::getModule).filter(module::isSameModule).count();
+    }
+
+    public int getNumOfCompletedExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().filter(Task::isComplete).map(Task::getExam)
+            .filter(exam::isSameExam).count();
+    }
+
+    public int getTotalNumOfExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().map(Task::getExam).filter(exam::isSameExam).count();
     }
 
     /**

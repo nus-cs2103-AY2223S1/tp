@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -26,21 +25,27 @@ import seedu.address.model.task.exceptions.DuplicateTaskException;
  */
 public class EditTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "edittask";
+    public static final String COMMAND_WORD = "edit";
+    public static final String FULL_COMMAND_WORD = "t edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-        + "by the index number used in the displayed task list. "
+    public static final String MESSAGE_USAGE = FULL_COMMAND_WORD + ": Edits the details of the task at the specified "
+        + "INDEX in the displayed task list. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_MOD_CODE + "MODULE CODE] "
-        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-        + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_MOD_CODE + "cs2040 "
+        + "[" + PREFIX_MODULE + "MODULE]* "
+        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]*\n"
+        + "Example: " + FULL_COMMAND_WORD + " 1 "
+        + PREFIX_MODULE + "cs2040 "
         + PREFIX_DESCRIPTION + "task 3";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
-    public static final String MESSAGE_TASK_NOT_EDITED = "The provided fields are the same as the current task";
-    public static final String MESSAGE_NO_FIELDS_PROVIDED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Successfully Edited Task: %1$s";
+    public static final String MESSAGE_NO_FIELDS_PROVIDED =
+        "Please provide at least one of the fields to edit: m/MODULE, d/DESCRIPTION";
+    public static final String MESSAGE_SAME_FIELDS_PROVIDED =
+        "Please provide a m/MODULE or d/DESCRIPTION different from the task's current module and description";
+    public static final String MESSAGE_EXAM_UNLINKED = "Warning: The task has been unlinked from its exam.\n";
+    public static final String MESSAGE_DUPLICATE_TASK =
+        "The edited task is the same as another task in the task list";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -62,7 +67,8 @@ public class EditTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(
+                String.format(Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE, lastShownList.size() + 1));
         }
 
         if (editTaskDescriptor.getModule().isPresent() && !model.hasModule(editTaskDescriptor.module)) {
@@ -73,7 +79,7 @@ public class EditTaskCommand extends Command {
         Task editedTask = taskToEdit.edit(editTaskDescriptor);
 
         if (taskToEdit.isSameTask(editedTask)) {
-            throw new CommandException(MESSAGE_TASK_NOT_EDITED);
+            throw new CommandException(MESSAGE_SAME_FIELDS_PROVIDED);
         }
 
         try {
@@ -83,6 +89,10 @@ public class EditTaskCommand extends Command {
         }
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        if (!taskToEdit.getModule().isSameModule(editedTask.getModule())) {
+            return new CommandResult(
+                MESSAGE_EXAM_UNLINKED + String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
@@ -120,6 +130,7 @@ public class EditTaskCommand extends Command {
         }
 
         public void setModule(Module module) {
+            requireNonNull(module);
             this.module = module;
         }
 
@@ -128,6 +139,7 @@ public class EditTaskCommand extends Command {
         }
 
         public void setDescription(TaskDescription description) {
+            requireNonNull(description);
             this.description = description;
         }
 

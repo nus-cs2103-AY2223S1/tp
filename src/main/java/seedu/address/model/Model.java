@@ -170,7 +170,7 @@ public interface Model {
     void unlinkTasksFromExam(Exam exam);
 
     /**
-     * Returns true if a exam with the same description and module and exam date
+     * Returns true if an exam with the same description and module and exam date
      * as {@code exam} exists in the exam list.
      */
     boolean hasExam(Exam exam);
@@ -205,5 +205,45 @@ public interface Model {
     void updateFilteredExamList(Predicate<Exam>predicate);
 
 
-    boolean equals(Model model);
+
+    boolean equals(Object obj);
+
+    /**
+     * Updates the exam field in task by replacing the previous exam with the new exam.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    void updateExamFieldForTask(Exam previousExam, Exam newExam);
+
+    /**
+     * Returns true if {@code examToEdit} is linked to any task, otherwise false.
+     */
+    boolean isExamLinkedToTask(Exam examToEdit);
+
+    /**
+     * Updates the module field in task by replacing the previous module with the new module.
+     * @param previousModule The module in the task's module field.
+     * @param newModule The new module which will replace the previous module in the task's module field.
+     */
+    void updateModuleFieldForTask(Module previousModule, Module newModule);
+
+    /**
+     * Updates the module field in exam by replacing the previous module with the new module.
+     * @param previousModule The module in the exam's module field.
+     * @param newModule The new module which will replace the previous module in the exam's module field.
+     */
+    void updateModuleFieldForExam(Module previousModule, Module newModule);
+
+    /**
+     * Deletes tasks that have their module field as {@code module}.
+     * @param module The module in the task's module field.
+     */
+    void deleteTasksWithModule(Module module);
+
+    /**
+     * Deletes exams that have their module field as {@code module}.
+     * @param module The module in the exam's module field.
+     */
+    void deleteExamsWithModule(Module module);
+
 }

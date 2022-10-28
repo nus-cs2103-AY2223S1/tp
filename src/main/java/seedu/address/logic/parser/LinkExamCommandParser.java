@@ -17,18 +17,30 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class LinkExamCommandParser implements Parser<Command> {
 
+    public static final String TASK_INDEX_INVALID = "The index for the task should be positive.";
+    public static final String EXAM_INDEX_INVALID = "The index for the exam should be positive";
+
     @Override
     public Command parse(String userArgs) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
                 PREFIX_EXAM_INDEX, PREFIX_TASK_INDEX);
+        Index examIndex;
+        Index taskIndex;
         if (!areAllPrefixesPresent(argumentMultimap, PREFIX_TASK_INDEX, PREFIX_EXAM_INDEX)
                 || !argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     LinkExamCommand.MESSAGE_USAGE));
         }
-        Index examIndex = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_EXAM_INDEX).get());
-        Index taskIndex = ParserUtil
-                .parseIndex(argumentMultimap.getValue(PREFIX_TASK_INDEX).get());
+        try {
+            examIndex = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_EXAM_INDEX).get());
+        } catch (ParseException pe) {
+            throw new ParseException(TASK_INDEX_INVALID);
+        }
+        try {
+            taskIndex = ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_TASK_INDEX).get());
+        } catch (ParseException pe) {
+            throw new ParseException(EXAM_INDEX_INVALID);
+        }
         return new LinkExamCommand(examIndex, taskIndex);
     }
 

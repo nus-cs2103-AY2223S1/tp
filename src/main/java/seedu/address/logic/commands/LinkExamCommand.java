@@ -19,9 +19,9 @@ import seedu.address.model.task.Task;
  * LinkExamCommand represents a command which links the exam to the task.
  */
 public class LinkExamCommand extends Command {
-    public static final String COMMAND_WORD = "examlink";
-    public static final String MESSAGE_USAGE = "links the exam to the task.\n"
-            + "FORMAT: " + COMMAND_WORD + " " + PREFIX_EXAM_INDEX + "EXAM_INDEX" + " "
+    public static final String COMMAND_WORD = "link";
+    public static final String MESSAGE_USAGE = "e " + COMMAND_WORD + ": links the exam to the task.\n"
+            + "Parameters: " + PREFIX_EXAM_INDEX + "EXAM_INDEX" + " "
             + PREFIX_TASK_INDEX + "TASK_INDEX";
     public static final String EXAM_LINKED_SUCCESS = "The exam has been successfully linked to the task!";
     public static final String TASK_ALREADY_LINKED = "This task is already linked to an exam";
@@ -63,8 +63,6 @@ public class LinkExamCommand extends Command {
             throw new CommandException(DIFFERENT_MODULE_CODE);
         }
         Task linkedTask = task.linkTask(exam);
-        Exam linkedExam = exam.linkExam(task);
-        model.replaceExam(exam, linkedExam, true);
         model.replaceTask(task, linkedTask, true);
         return new CommandResult(EXAM_LINKED_SUCCESS);
     }

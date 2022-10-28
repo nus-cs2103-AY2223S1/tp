@@ -32,9 +32,14 @@ import seedu.address.model.task.TaskStatus;
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
+
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_KEYWORDS = "The keywords for tagdel must be priority"
+            + " or deadline or both.";
+    public static final String MESSAGE_INVALID_NUMBER_OF_KEYWORDS = "The number of keywords used for tag"
+            + "del should be either 1 or 2";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -191,6 +196,31 @@ public class ParserUtil {
     }
 
     /**
+     * Parses delete tag keywords from a String into a Set containing each keyword.
+     *
+     * @param keywords The keywords used to specify which tag to delete
+     * @return The set of string containing the keywords specifying the tags to delete.
+     * @throws ParseException if the keywords given are invalid or are duplicated.
+     */
+    public static Set<String> parseDeleteTagKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.strip();
+        String[] keywordsList = trimmedKeywords.split("\\s+");
+        final Set<String> keywordSet = new HashSet<>();
+        if (keywordsList.length > 2 || keywordsList.length < 1) {
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_KEYWORDS);
+        }
+        for (String keyword : keywordsList) {
+            if (!(keyword.equalsIgnoreCase("priority")
+                    || keyword.equalsIgnoreCase("deadline"))) {
+                throw new ParseException(MESSAGE_INVALID_KEYWORDS);
+            }
+            keywordSet.add(keyword.toLowerCase());
+        }
+        return keywordSet;
+    }
+
+    /**
      * Parses the priority status into a PriorityTag.
      *
      * @param priorityTag The priority status added to the tag.
@@ -216,6 +246,9 @@ public class ParserUtil {
     public static DeadlineTag parseDeadlineTag(String deadline) throws ParseException {
         requireNonNull(deadline);
         final LocalDate date;
+        if (!DeadlineTag.checkDateFormat(deadline)) {
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_FORMAT_CONSTRAINTS);
+        }
         //@@author dlimyy-reused
         //Reused from https://stackoverflow.com/questions/32823368/
         //with minor modifications.
@@ -225,10 +258,10 @@ public class ParserUtil {
         try {
             date = LocalDate.parse(deadline, dtf);
         } catch (DateTimeParseException dtp) {
-            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_INVALID_DATE);
         }
         if (!DeadlineTag.isValidDeadline(date)) {
-            throw new ParseException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+            throw new ParseException(DeadlineTag.DEADLINE_TAG_DATE_HAS_PASSED);
         }
         return new DeadlineTag(date);
     }
@@ -303,8 +336,15 @@ public class ParserUtil {
     public static ExamDate parseExamDate(String examDate) throws ParseException {
         requireNonNull(examDate);
         String trimmedDate = examDate.trim();
-        if (!ExamDate.isValidDate(trimmedDate)) {
-            throw new ParseException(ExamDate.DATE_CONSTRAINTS);
+
+        if (!ExamDate.isCorrectDateFormat(trimmedDate)) {
+            throw new ParseException(ExamDate.DATE_FORMAT_CONSTRAINTS);
+        }
+        if (!ExamDate.isExistingDate(trimmedDate)) {
+            throw new ParseException(ExamDate.VALID_DATE_CONSTRAINTS);
+        }
+        if (!ExamDate.isNotAPastDate(trimmedDate)) {
+            throw new ParseException(ExamDate.NOT_A_PAST_DATE_CONSTRAINTS);
         }
         return new ExamDate(trimmedDate);
     }

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnmarkCommand;
@@ -18,12 +19,17 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnmarkCommand parse(String args) throws ParseException {
+
+        try {
+            Integer.parseInt(args.trim());
+        } catch (NumberFormatException ne) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE));
+        }
         try {
             Index index = ParserUtil.parseIndex(args);
             return new UnmarkCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_TASK_INDEX);
         }
     }
 

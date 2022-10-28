@@ -46,27 +46,10 @@ public class ListTasksCommandTest {
         }
     }
 
-//    class ModelStub extends ModelManager {
-//        @Override
-//        public ObservableList<Task> getFilteredTaskList() {
-////            Module m = new Module(new ModuleCode("CS2030s"));
-////            DistinctModuleList list =  new DistinctModuleList();
-////            list.addModule(m);
-//            ObservableList observablelist = FXCollections.observableArrayList();
-//            observablelist.add(new Task(new Module(new ModuleCode("CS2030s")), new TaskDescription("task1")));
-//            observablelist.add(new Task(new Module(new ModuleCode("CS2040s")), new TaskDescription("task2")));
-//            return observablelist;
-//        }
-//    }
-
 
     @Test
     public void execute_listTaskIsNotFiltered_showsSameList() {
-       // System.out.println(new ListTasksCommand().execute(model));
-       // ModelStub modelStub = new ModelStub();
-       assertEquals(new ListTasksCommand().execute(model), new CommandResult(ListTasksCommand.MESSAGE_SUCCESS));
-        assertEquals(model.getFilteredTaskList(), expectedModel.getFilteredTaskList());
-      //  assertCommandSuccess(new ListTasksCommand(), model, ListTasksCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListTasksCommand(), model, ListTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     //integration test with command result...

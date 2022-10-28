@@ -16,11 +16,13 @@ import seedu.address.model.task.Task;
 public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
+    public static final String FULL_COMMAND_WORD = "t unmark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Unmark the task identified by the index number used in the displayed task list.\n"
+
+    public static final String MESSAGE_USAGE = FULL_COMMAND_WORD
+        + ": Indicates the task at the specified INDEX in the displayed task list is completed.\n"
         + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " 1";
+        + "Example: " + FULL_COMMAND_WORD + " 1";
 
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Successfully Unmarked Task: %1$s";
     public static final String MESSAGE_TASK_ALREADY_UNMARKED = "The task is already unmarked!";
@@ -37,7 +39,8 @@ public class UnmarkCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(
+                String.format(Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE, lastShownList.size() + 1));
         }
 
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());

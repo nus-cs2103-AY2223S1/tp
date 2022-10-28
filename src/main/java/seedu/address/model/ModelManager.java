@@ -160,6 +160,9 @@ public class ModelManager implements Model {
         addressBook.removeTask(target);
     }
 
+
+
+
     //========== Exam List ==================================================================================
     @Override
     public boolean hasExam(Exam exam) {
@@ -268,6 +271,23 @@ public class ModelManager implements Model {
         addressBook.unlinkTasksFromExam(exam);
     }
 
+    @Override
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        addressBook.updateExamFieldForTask(previousExam, newExam);
+    }
+
+    @Override
+    public void updateModuleFieldForTask(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        addressBook.updateModuleFieldForTask(previousModule, newModule);
+    }
+
+    @Override
+    public void deleteTasksWithModule(Module module) {
+        requireNonNull(module);
+        addressBook.deleteTasksWithModule(module);
+    }
 
     //================================Exam Commands=====================================
     @Override
@@ -281,21 +301,6 @@ public class ModelManager implements Model {
         examFilteredList.setPredicate(predicate);
     }
 
-    @Override
-    public boolean equals(Model model) {
-        ModelManager modelManager = (ModelManager) model;
-        return model == this ||
-                moduleFilteredList.equals(modelManager.moduleFilteredList)
-                && taskFilteredList.equals(modelManager.taskFilteredList)
-                && examFilteredList.equals(modelManager.examFilteredList)
-                && addressBook.equals(modelManager.addressBook)
-                        && userPrefs.equals(modelManager.userPrefs)
-                        && filteredPersons.equals(modelManager.filteredPersons);
-
-
-               // moduleFilteredList.equals(model.getFilteredModuleList()) && taskFilteredList.equals(model.getFilteredTaskList())
-                //&& examFilteredList.equals(model.getFilteredExamList());
-    }
 
 
     @Override
@@ -321,4 +326,22 @@ public class ModelManager implements Model {
 
 
     }
+
+    public boolean isExamLinkedToTask(Exam examToEdit) {
+        requireNonNull(examToEdit);
+        return addressBook.isExamLinkedToTask(examToEdit);
+    }
+
+    @Override
+    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        addressBook.updateModuleFieldForExam(previousModule, newModule);
+    }
+
+    @Override
+    public void deleteExamsWithModule(Module module) {
+        requireNonNull(module);
+        addressBook.deleteExamsWithModule(module);
+    }
+
 }

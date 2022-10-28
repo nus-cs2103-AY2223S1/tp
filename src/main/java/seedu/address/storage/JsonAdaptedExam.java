@@ -43,7 +43,7 @@ public class JsonAdaptedExam {
     public JsonAdaptedExam(Exam exam) {
         description = exam.getDescription().description;
         moduleCode = exam.getModule().getModuleCode().moduleCode;
-        date = exam.getExamDate().dateWithoutFormatting;
+        date = exam.getExamDate().examDate;
     }
 
     /**

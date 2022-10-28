@@ -77,14 +77,14 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-background-color: derive(#0D187B, 20%);
+    -fx-border-color: transparent;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#0D187B, 20%);
 }
 
 .list-view {
@@ -121,36 +121,58 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "PT Mono";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: black;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "PT Sans";
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#0D187B, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: derive(#0D187B, 20%);
+}
+
+.exams-pane-with-border {
+     -fx-background-color: derive(#2A61EF, 20%);
+     -fx-border-color: black;
+     -fx-border-width: 2 2 2 2;
+     -fx-background-radius: 11px;
+     -fx-border-radius: 10px;
+}
+
+.modules-pane-with-border {
+     -fx-background-color: derive(#329BFF, 20%);
+     -fx-border-color: black;
+     -fx-border-width: 2 2 2 2;
+     -fx-background-radius: 11px;
+     -fx-border-radius: 10px;
+}
+
+.tasks-pane-with-border {
+     -fx-background-color: derive(#303EBD, 20%);
+     -fx-border-color: black;
+     -fx-border-width: 2 2 2 2;
+     -fx-background-radius: 11px;
+     -fx-border-radius: 10px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#0D187B, 20%);
 }
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-weight: bold;
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .result-display .label {
@@ -158,16 +180,14 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
-    -fx-border-width: 1px;
+    -fx-background-color: derive(#0D187B, 20%);
 }
 
 .status-bar-with-border .label {
@@ -193,14 +213,16 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#050D55, 20%);
+    -fx-border-color: black;
+    -fx-border-width: 0 0 2 0;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
+    -fx-font-weight: bold;
 }
 
 .menu .left-container {
@@ -213,14 +235,14 @@
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
 .button {
-    -fx-padding: 5 22 5 22;
+    -fx-padding: 5 10 5 10;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
+    -fx-font-family: "PT Mono", Helvetica, Arial, sans-serif;
+    -fx-font-size: 10pt;
+    -fx-text-fill: black;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
@@ -307,6 +329,10 @@
     -fx-padding: 8 1 8 1;
 }
 
+.check-box:disabled {
+    -fx-opacity: 1;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -318,12 +344,12 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: transparent;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: derive(#0D187B, 20%) derive(#0D187B, 20%) #ffffff derive(#0D187B, 20%);
     -fx-border-insets: 0;
-    -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-border-width: 2;
+    -fx-font-weight: bold;
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -333,8 +359,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: #B3C1D0;
 }
 
 #tags {
@@ -350,3 +375,76 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#titleBox {
+    -fx-background-color: derive(#000533, 15%);
+    -fx-border-color: black;
+    -fx-border-width: 0 0 2 0;
+    -fx-alignment: center;
+}
+
+#title {
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
+}
+
+#examsHeaderBox {
+    -fx-background-color: derive(#2A61EF, 20%);
+    -fx-alignment: top-center;
+}
+
+#examsHeader {
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
+}
+
+#modulesHeaderBox {
+    -fx-background-color: derive(#329BFF, 20%);
+    -fx-alignment: top-center;
+}
+
+#modulesHeader {
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
+}
+
+#tasksHeaderBox {
+    -fx-background-color: derive(#303EBD, 20%);
+    -fx-alignment: top-center;
+}
+
+#tasksHeader {
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
+}
+
+#examListView .list-cell {
+    -fx-background-color: derive(#2A61EF, 20%);
+}
+
+#examListView {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: derive(#2A61EF, 20%);
+}
+
+#moduleListView .list-cell {
+    -fx-background-color: derive(#329BFF, 20%);
+}
+
+#moduleListView {
+    -fx-background-color: derive(#329BFF, 20%);
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+#taskListView .list-cell {
+    -fx-background-color: derive(#303EBD, 20%);
+}
+
+#taskListView {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: derive(#303EBD, 20%);
+}
+

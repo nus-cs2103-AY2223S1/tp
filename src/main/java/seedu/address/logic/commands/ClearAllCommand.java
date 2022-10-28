@@ -11,33 +11,26 @@ import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
 /**
- * Clears the task list
+ * Clears task, exam and module lists.
  */
-public class ClearTasksCommand extends Command {
+public class ClearAllCommand extends Command {
 
-    public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESSS = "Task list has been cleared!";
-    public static final String MESSAGE_TASK_LIST_ALREADY_EMPTY = "The task list is already empty!";
+    public static final String COMMAND_WORD = "clearall";
+    public static final String MESSAGE_SUCCESSS = "Task, exam and module lists have been cleared!";
+    public static final String MESSAGE_ALL_LISTS_ALREADY_EMPTY = "Task, exam and module lists are already empty!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         ObservableList<Task> taskList = model.getFilteredTaskList();
-        if (taskList.isEmpty()) {
-            throw new CommandException(MESSAGE_TASK_LIST_ALREADY_EMPTY);
-        }
-
         ObservableList<Module> moduleList = model.getFilteredModuleList();
         ObservableList<Exam> examList = model.getFilteredExamList();
+        if (taskList.isEmpty() && moduleList.isEmpty() && examList.isEmpty()) {
+            throw new CommandException(MESSAGE_ALL_LISTS_ALREADY_EMPTY);
+        }
 
-        AddressBook newAddressBook = new AddressBook();
-        newAddressBook.setModules(moduleList);
-        newAddressBook.setExams(examList);
-        newAddressBook.resetAllTaskCount();
-
-        model.setAddressBook(newAddressBook);
-
+        model.setAddressBook(new AddressBook());
         return new CommandResult(MESSAGE_SUCCESSS);
     }
 }

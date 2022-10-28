@@ -23,7 +23,9 @@ import seedu.address.model.task.TaskStatus;
  * This class represents a Jackson friendly version of the Task.
  */
 public class JsonAdaptedTask {
-    public static final String MISSING_TASK_DESCRIPTION = "Task description is not present";
+    public static final String MISSING_TASK_DESCRIPTION = "Description of the task is not present";
+    public static final String MISSING_TASK_MODULE = "Module of the task is not present";
+    public static final String MISSING_TASK_STATUS = "Completion status of the task is not present";
     public static final String WRONG_EXAM_FORMAT = "The task must either have both exam description"
             + " and exam date or have no exam description and exam date.";
     private final String taskDescription;
@@ -70,7 +72,7 @@ public class JsonAdaptedTask {
         status = task.getStatus().status;
         priority = task.getPriorityTag() == null ? null : task.getPriorityTag().status;
         deadline = task.getDeadlineTag() == null ? null : task.getDeadlineTag().toString();
-        examDate = task.getExam() == null ? null : task.getExam().getExamDate().dateWithoutFormatting;
+        examDate = task.getExam() == null ? null : task.getExam().getExamDate().examDate;
         examDescription = task.getExam() == null ? null : task.getExam().getDescription().description;
     }
 
@@ -81,8 +83,14 @@ public class JsonAdaptedTask {
      * @throws IllegalValueException if the task has invalid fields.
      */
     public Task toModelType() throws IllegalValueException {
-        if (taskDescription == null || moduleCode == null || status == null) {
+        if (taskDescription == null) {
             throw new IllegalValueException(MISSING_TASK_DESCRIPTION);
+        }
+        if (moduleCode == null) {
+            throw new IllegalValueException(MISSING_TASK_MODULE);
+        }
+        if (status == null) {
+            throw new IllegalValueException(MISSING_TASK_STATUS);
         }
         if (!TaskDescription.isValidDescription(taskDescription)) {
             throw new IllegalValueException(TaskDescription.DESCRIPTION_CONSTRAINTS);
@@ -98,6 +106,9 @@ public class JsonAdaptedTask {
         }
 
         final LocalDate date;
+        if (deadline != null && !DeadlineTag.checkDateFormat(deadline)) {
+            throw new IllegalValueException(DeadlineTag.DEADLINE_TAG_FORMAT_CONSTRAINTS);
+        }
         try {
             if (deadline != null) {
                 //@@author dlimyy-reused
@@ -111,7 +122,7 @@ public class JsonAdaptedTask {
                 date = null;
             }
         } catch (DateTimeParseException dtp) {
-            throw new IllegalValueException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
+            throw new IllegalValueException(DeadlineTag.DEADLINE_TAG_INVALID_DATE);
         }
         if (!((examDate == null && examDescription == null)
                 || (examDate != null && examDescription != null))) {

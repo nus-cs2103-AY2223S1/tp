@@ -3,48 +3,90 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+    <GridPane prefWidth="191.0" style="-fx-background-color: #ADD3FF; -fx-background-radius: 10;" HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.9451904296875" minWidth="10.0" />
+         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="143.4794464111328" minWidth="10.0" prefWidth="31.5" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-color: #ADD3FF; -fx-border-color: black;" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
+                <Insets bottom="5.0" left="15.0" top="5.0" />
             </padding>
-            <HBox alignment="CENTER_RIGHT" spacing="10">
-                <Button fx:id="priorityTag" focusTraversable="false" mouseTransparent="true"
-                        style="-fx-background-color: #D0F4FF; -fx-border-color: black;
-                        -fx-border-radius: 5; -fx-text-fill: black; -fx-background-radius: 5;"
-                        textFill="black" visible="false" />
-                <Button fx:id="deadlineTag" focusTraversable="false" mouseTransparent="true"
-                        style="-fx-background-color: #D0F4FF; -fx-border-color: black;
-                        -fx-border-radius: 5; -fx-text-fill: black; -fx-background-radius: 5;"
-                        textFill="black" visible="false" />
-                <padding>
-                    <Insets top="5" left="5" right="15" />
-                </padding>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+         <children>
+               <HBox alignment="CENTER_LEFT">
+               <VBox prefHeight="47.0" prefWidth="14.0">
+                  <children>
+                         <Label fx:id="id" alignment="TOP_LEFT" style="-fx-text-fill: black;" styleClass="cell_big_label">
+                             <minWidth>
+                                 <Region fx:constant="USE_PREF_SIZE" />
+                             </minWidth>
+                         </Label>
+                  </children>
+               </VBox>
+               <VBox HBox.hgrow="ALWAYS">
+                  <children>
+                         <Label fx:id="description" style="-fx-text-fill: black; -fx-font-weight: bold;" styleClass="cell_big_label" text="\$description" wrapText="true">
+                        <font>
+                           <Font name="PT Mono Bold" size="16.0" />
+                        </font>
+                     </Label>
+                        <Label fx:id="moduleCode" prefHeight="17.0" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$modCode" wrapText="true">
+                        <font>
+                           <Font name="PT Sans" size="14.0" />
+                        </font>
+                     </Label>
+                        <Label fx:id="examDescription" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$examDescription" wrapText="true">
+                        <VBox.margin>
+                           <Insets />
+                        </VBox.margin>
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+               </HBox>
+            <HBox prefHeight="4.0">
+               <children>
+                  <Button fx:id="priorityTag" contentDisplay="CENTER" graphicTextGap="1.0" mnemonicParsing="false" style="-fx-background-color: D0F4FF; -fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" textAlignment="JUSTIFY" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="deadlineTag" contentDisplay="CENTER" graphicTextGap="1.0" mnemonicParsing="false" style="-fx-background-color: D0F4FF; -fx-border-color: black; -fx-background-radius: 8; -fx-border-radius: 8;" textAlignment="CENTER" wrapText="true">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" spacing="10">
-                <CheckBox fx:id="isComplete" mnemonicParsing="false" prefHeight="18.0" prefWidth="7.0" />
-                <padding>
-                    <Insets top="15" left="5" right="25" />
-                </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="7">
-                <Label fx:id="id" style="-fx-text-fill: black;" styleClass="cell_big_label">
-                    <minWidth>
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="description" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$description" />
-            </HBox>
-            <Label fx:id="moduleCode" text="\$modCode" style="-fx-text-fill: black;" />
-            <Label fx:id="examDescription" style="-fx-text-fill: black;" visible="false"/>
+         </children>
         </VBox>
+          <CheckBox fx:id="isComplete" alignment="CENTER_RIGHT" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="3.0" prefWidth="18.0" style="-fx-border-color: black; -fx-border-radius: 2; -fx-border-width: 1.5;" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin>
+      </CheckBox>
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
     </GridPane>
+   <padding>
+      <Insets bottom="2.0" top="2.0" />
+   </padding>
 </HBox>

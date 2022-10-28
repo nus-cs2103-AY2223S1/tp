@@ -378,6 +378,7 @@ and exam date.
 
 #### Sequence of the AddExamCommand
 **Sequence of actions made when `execute` method of `LogicManager` is invoked**
+![AddExamCommandSequenceDiagram](images/AddExamCommandSequenceDiagram.png)
 
 Step 1. The user launches the application. 
 

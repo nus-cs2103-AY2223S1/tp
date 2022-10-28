@@ -2,9 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_INDEX;
 import static seedu.address.logic.commands.EditTaskCommand.MESSAGE_NO_FIELDS_PROVIDED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
@@ -25,20 +26,25 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_MOD_CODE, PREFIX_DESCRIPTION);
+            ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_DESCRIPTION);
+
+        try {
+            Integer.parseInt(argMultimap.getPreamble());
+        } catch (NumberFormatException ne) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
+        }
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_TASK_INDEX);
         }
 
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
 
-        if (argMultimap.getValue(PREFIX_MOD_CODE).isPresent()) {
-            ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MOD_CODE).get());
+        if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
+            ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
             editTaskDescriptor.setModule(new Module(moduleCode));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {

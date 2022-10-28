@@ -144,6 +144,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.addTask(task);
         modules.updateTotalNumOfTasks(task.getModule(), tasks);
         modules.updateNumOfCompletedTasks(task.getModule(), tasks);
+        if (task.isLinked()) {
+            exams.updateTotalNumOfTasks(task.getExam(), tasks);
+            exams.updateNumOfCompletedTasks(task.getExam(), tasks);
+        }
     }
 
 
@@ -165,6 +169,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.updateTotalNumOfTasks(target.getModule(), tasks);
         modules.updateNumOfCompletedTasks(editedTask.getModule(), tasks);
         modules.updateTotalNumOfTasks(editedTask.getModule(), tasks);
+
+        if (target.isLinked() && !editedTask.isLinked()) {
+            // to update exam when a task is unlinked from an exam
+            exams.updateTotalNumOfTasks(target.getExam(), tasks);
+            exams.updateNumOfCompletedTasks(target.getExam(), tasks);
+        }
+
+        if (editedTask.isLinked()) {
+            // to update exam for linked tasks
+            exams.updateTotalNumOfTasks(editedTask.getExam(), tasks);
+            exams.updateNumOfCompletedTasks(editedTask.getExam(), tasks);
+        }
     }
 
     public void setTasks(List<Task> tasks) {
@@ -179,6 +195,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.remove(key);
         modules.updateNumOfCompletedTasks(key.getModule(), tasks);
         modules.updateTotalNumOfTasks(key.getModule(), tasks);
+        if (key.isLinked()) {
+            exams.updateNumOfCompletedTasks(key.getExam(), tasks);
+            exams.updateTotalNumOfTasks(key.getExam(), tasks);
+        }
+    }
+
+    /**
+     * Resets number of tasks and number of completed tasks of all modules and exams to 0.
+     */
+    public void resetAllTaskCount() {
+        modules.resetAllTaskCount();
+        exams.resetAllTaskCount();
     }
 
     //// util methods
@@ -303,21 +331,71 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Links task to exam list stored in {@code AddressBook}.
-     *
-     * @param task The task which is linked.
-     */
-    public void linkTaskToExam(Task task) {
-        this.exams.linkTaskToExams(task);
-    }
-
-    /**
      * Unlinks all tasks that are currently linked to {@code exam}.
-     * @param exam
+     * @param exam The exam to unlink all tasks from.
      */
     public void unlinkTasksFromExam(Exam exam) {
         tasks.unlinkTasksFromExam(exam);
     }
+
+    /**
+     * Replaces task by changing its given exam field from {@code previousExam}
+     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        tasks.updateExamFieldForTask(previousExam, newExam);
+    }
+
+    /**
+     * Returns true if {@code examToEdit} is linked to any task, otherwise false.
+     */
+    public boolean isExamLinkedToTask(Exam examToEdit) {
+        requireNonNull(examToEdit);
+        return tasks.isExamLinkedToTask(examToEdit);
+    }
+    /**
+     * Replaces task by changing its given module field from {@code previousModule}
+     * to {@code newModule} for tasks that have their module field as {@code previousModule}.
+     * @param previousModule The module in the task's module field.
+     * @param newModule The new module which will replace the previous module in the task's module field.
+     */
+    public void updateModuleFieldForTask(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        tasks.updateModuleFieldForTask(previousModule, newModule);
+    }
+
+    /**
+     * Replaces exam by changing its given module field from {@code previousModule}
+     * to {@code newModule} for exams that have their module field as {@code previousModule}.
+     * @param previousModule The module in the exam's module field.
+     * @param newModule The new module which will replace the previous module in the exam's module field.
+     */
+    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        exams.updateModuleFieldForExam(previousModule, newModule);
+    }
+
+    /**
+     * Deletes tasks that have their module field as {@code module}.
+     * @param module The module in the task's module field.
+     */
+    public void deleteTasksWithModule(Module module) {
+        requireNonNull(module);
+        tasks.deleteTasksWithModule(module);
+    }
+
+    /**
+     * Deletes exams that have their module field as {@code module}.
+     * @param module The module in the exam's module field.
+     */
+    public void deleteExamsWithModule(Module module) {
+        requireNonNull(module);
+        exams.deleteExamsWithModule(module);
+    }
+
 
     @Override
     public boolean equals(Object other) {

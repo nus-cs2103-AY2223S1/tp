@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAnyNonNull;
 
 import java.util.Objects;
 
@@ -10,8 +11,10 @@ import seedu.address.model.module.Module;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.exceptions.DeadlineTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.DeadlineTagDoesNotExist;
 import seedu.address.model.tag.exceptions.DeadlineTagUnchangedException;
 import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.PriorityTagDoesNotExist;
 import seedu.address.model.tag.exceptions.PriorityTagUnchangedException;
 
 /**
@@ -157,6 +160,18 @@ public class Task {
         return new Task(module, description, status, tag, deadlineTag, linkedExam);
     }
 
+    /**
+     * Deletes the deadline tag stored in the task.
+     *
+     * @return The task which contains no deadline tag.
+     */
+    public Task deletePriorityTag() {
+        if (priorityTag == null) {
+            throw new PriorityTagDoesNotExist();
+        }
+        return new Task(module, description, status, null, deadlineTag, linkedExam);
+    }
+
     public boolean hasPriorityTag() {
         return priorityTag != null;
     }
@@ -195,6 +210,18 @@ public class Task {
         return new Task(module, description, status, priorityTag, tag, linkedExam);
     }
 
+    /**
+     * Deletes the priority tag stored in the task.
+     *
+     * @return The task which contains no deadline tag.
+     */
+    public Task deleteDeadlineTag() {
+        if (deadlineTag == null) {
+            throw new DeadlineTagDoesNotExist();
+        }
+        return new Task(module, description, status, priorityTag, null, linkedExam);
+    }
+
     public boolean isLinked() {
         return linkedExam != null;
     }
@@ -217,9 +244,31 @@ public class Task {
      */
     public Task edit(EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(editTaskDescriptor);
-
         Module updatedModule = editTaskDescriptor.getModule().orElse(module);
         TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(description);
+
+        if (editTaskDescriptor.getModule().isPresent()
+            && !editTaskDescriptor.getModule().get().equals(module)) {
+            return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+        }
+
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag, linkedExam);
+    }
+
+    /**
+     * Creates and returns a {@code Task} with the details of {@code this}
+     * edited with {@code newModule} and {@code newTaskDescription}.
+     */
+    public Task edit(Module newModule, TaskDescription newTaskDescription) {
+        requireAnyNonNull(newModule, newTaskDescription);
+        Module updatedModule = module;
+        TaskDescription updatedDescription = description;
+        if (newModule != null) {
+            updatedModule = newModule;
+        }
+        if (newTaskDescription != null) {
+            updatedDescription = newTaskDescription;
+        }
         return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
     }
 
@@ -261,9 +310,10 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getModule())
-                .append("; Description: ")
-                .append(getDescription());
+        builder.append("Description: ")
+                .append(getDescription())
+                .append("; Module: ")
+                .append(getModule());
         return builder.toString();
     }
 }

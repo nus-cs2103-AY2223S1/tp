@@ -12,7 +12,7 @@ import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.exam.exceptions.ExamIdentityModifiedException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
 import seedu.address.model.module.Module;
-import seedu.address.model.task.Task;
+import seedu.address.model.task.DistinctTaskList;
 
 /**
  * This class represents a list which contains Exam objects which are distinct from
@@ -93,21 +93,88 @@ public class DistinctExamList implements Iterable<Exam> {
     }
 
     /**
-     * Links task to exams in distinct exam list.
+     * Counts the number of tasks in {@code tasks} linked to {@code exam},
+     * and updates this number in {@code exam}.
+     * {@code exam} must exist in the exam list.
      *
-     * @param task Task which is being linked to exam.
+     * @param exam The exam to check for number of tasks.
+     * @param tasks The list of tasks to check with the exam.
      */
-    public void linkTaskToExams(Task task) {
-        requireNonNull(task);
-        for (Exam exam : examList) {
-            if (task.getExam() != null && exam.isSameExam(task.getExam())) {
-                exam.linkExam(task);
-                return;
+    public void updateTotalNumOfTasks(Exam exam, DistinctTaskList tasks) {
+        requireAllNonNull(exam, tasks);
+        int totalNumOfTasks = tasks.getTotalNumOfExamTasks(exam);
+
+        int index = examList.indexOf(exam);
+        if (index == -1) {
+            throw new ExamNotFoundException();
+        }
+
+        Exam examToEdit = examList.get(index);
+        Exam updatedExam = examToEdit.setTotalNumOfTasks(totalNumOfTasks);
+        examList.set(index, updatedExam);
+    }
+
+    /**
+     * Counts the number of completed tasks in {@code tasks} linked to {@code exam},
+     * and updates this number in {@code exam}.
+     * {@code exam} must exist in the exam list.
+     *
+     * @param exam The exam to check for number of completed tasks.
+     * @param tasks The list of tasks to check with the exam.
+     */
+    public void updateNumOfCompletedTasks(Exam exam, DistinctTaskList tasks) {
+        requireAllNonNull(exam, tasks);
+        int numOfCompletedTasks = tasks.getNumOfCompletedExamTasks(exam);
+
+        int index = examList.indexOf(exam);
+        if (index == -1) {
+            throw new ExamNotFoundException();
+        }
+        Exam examToEdit = examList.get(index);
+        Exam updatedExam = examToEdit.setNumOfCompletedTasks(numOfCompletedTasks);
+        examList.set(index, updatedExam);
+    }
+
+    /**
+     * Resets number of tasks and number of completed tasks of all exams to 0.
+     */
+    public void resetAllTaskCount() {
+        examList.forEach(exam -> {
+            int index = examList.indexOf(exam);
+            Exam updatedExam = exam.setNumOfCompletedTasks(0);
+            updatedExam = updatedExam.setTotalNumOfTasks(0);
+            examList.set(index, updatedExam);
+        });
+    }
+
+    /**
+     * Replaces exam by changing its given module field from {@code previousModule}
+     * to {@code newModule} for exams that have their module field as {@code previousModule}.
+     * @param previousModule The module in the exam's module field.
+     * @param newModule The new module which will replace the previous module in the exams's module field.
+     */
+    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        examList.forEach(exam -> {
+            if (exam.getModule().equals(previousModule)) {
+                Exam editedExam = exam.edit(newModule, null, null);
+                replaceExam(exam, editedExam, false);
             }
-            assert task.getExam() == null
-                    || (task.getExam() != null && !exam.isSameExam(task.getExam()))
-                    : "The task should not have no exam linked to it or "
-                    + "the task is not linked to current exam";
+        });
+    }
+
+    /**
+     * Remove exams that have their module field as {@code module} from the examlist.
+     * @param module The module in the exam's module field.
+     */
+    public void deleteExamsWithModule(Module module) {
+        requireAllNonNull(module);
+        for (int i = 0; i < examList.size(); i++) {
+            Exam exam = examList.get(i);
+            if (exam.getModule().equals(module)) {
+                remove(exam);
+                --i;
+            }
         }
     }
 

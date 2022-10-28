@@ -1,0 +1,85 @@
+]]@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddExamCommandParser" as AddExamCommandParser LOGIC_COLOR
+participant "ex:AddExamCommand" as AddExamCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("e add m/cs2030s ex/midterm ed/20-12-2022")
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand("e add...")
+activate AddressBookParser
+
+create AddExamCommandParser
+AddressBookParser -> AddExamCommandParser
+activate AddExamCommandParser
+
+AddExamCommandParser --> AddressBookParser
+deactivate AddExamCommandParser
+
+AddressBookParser -> AddExamCommandParser: parse("addexam...")
+activate AddExamCommandParser
+
+create AddExamCommand
+AddExamCommandParser -> AddExamCommand
+activate AddExamCommand
+
+AddExamCommand --> AddExamCommandParser : ex
+deactivate AddExamCommand
+
+AddExamCommandParser --> AddressBookParser : ex
+deactivate AddExamCommandParser
+AddExamCommandParser [hidden]--> AddressBookParser
+destroy AddExamCommandParser
+
+AddressBookParser --> LogicManager : ex
+deactivate AddressBookParser
+
+LogicManager -> AddExamCommand : execute(model)
+activate AddExamCommand
+
+AddExamCommand -> Model: hasModule(exam)
+activate Model
+Model --> AddExamCommand
+deactivate Model
+
+
+
+AddExamCommand -> Model: hasExam(exam)
+activate Model
+Model --> AddExamCommand
+deactivate Model
+
+AddExamCommand -> Model: addExam(exam)
+activate Model
+
+Model --> AddExamCommand
+deactivate Model
+
+
+
+create CommandResult
+AddExamCommand -> CommandResult: CommandResult(MESSAGE_SUCCESS)
+
+activate CommandResult
+CommandResult --> AddExamCommand
+deactivate CommandResult
+
+AddExamCommand --> LogicManager: result
+deactivate AddExamCommand
+
+
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
