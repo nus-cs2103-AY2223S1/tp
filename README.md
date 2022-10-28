@@ -4,9 +4,9 @@
 ![Ui](docs/images/Ui.png)
 
 
-* **Long Time No See (LTNS)** is a desktop task tracking app made for student financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!<br>
+* **Long Time No See (LTNS)** is a desktop task tracking app made for financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!<br>
   Example usages:
-* as a tool for Student Financial Advisor who wants to upgrade their networking capacities
+* as a tool for Financial Advisors who wants to upgrade their networking capacities
 * as a tracker tool that helps them manage their time spent on clients alongside their studies
 * The project is a software engineering project for a desktop application (callsed LongTimeNoSee) used for managing an individual financial advisor’s services.
 * It is **written in OOP fashion**. It provides a **reasonably well-written** code base.
