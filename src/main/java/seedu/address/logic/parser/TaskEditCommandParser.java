@@ -37,7 +37,8 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
         Name newName;
         LocalDate newDeadline;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX, PREFIX_TASK_NAME)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX, PREFIX_TASK_NAME)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskEditCommand.MESSAGE_USAGE));
         }
 
