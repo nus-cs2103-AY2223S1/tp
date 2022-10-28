@@ -11,10 +11,11 @@ import seedu.foodrem.model.item.itemvalidators.ItemPriceValidator;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class ItemPrice {
-    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.##");
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.00");
     private static final double DEFAULT_PRICE = 0;
 
     private final double itemPrice;
+
     /**
      * {@inheritDoc}
      */
@@ -26,6 +27,10 @@ public class ItemPrice {
         }
         ItemPriceValidator.validate(itemPriceString);
         itemPrice = Double.parseDouble(itemPriceString);
+    }
+
+    public double getItemPrice() {
+        return itemPrice;
     }
 
     /**

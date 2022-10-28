@@ -30,6 +30,10 @@ public class ItemQuantity {
         itemQuantity = Double.parseDouble(itemQuantityString);
     }
 
+    public double getItemQuantity() {
+        return itemQuantity;
+    }
+
     /**
      * Returns an itemQuantity after performing an arithmetic operation on them.
      */
@@ -38,6 +42,13 @@ public class ItemQuantity {
                                                           BiFunction<Double, Double, Double> op) {
         double newQuantity = op.apply(itemQuantity1.itemQuantity, itemQuantity2.itemQuantity);
         return new ItemQuantity(DECIMAL_FORMAT.format(newQuantity));
+    }
+
+    /**
+     * Returns true if the current item quantity is zero.
+     */
+    public boolean isZero() {
+        return itemQuantity == 0;
     }
 
     /**

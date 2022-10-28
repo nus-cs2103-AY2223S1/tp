@@ -33,12 +33,12 @@
         </MenuBar>
 
         <!-- Main Body -->
-        <HBox spacing="16" styleClass="main-body">
+        <HBox spacing="16" styleClass="main-body" VBox.vgrow="ALWAYS">
           <!-- Left Column -->
           <VBox spacing="12" VBox.vgrow="ALWAYS">
             <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="command-placeholder"/>
-            <VBox fx:id="personList" styleClass="list-placeholder" >
-              <StackPane fx:id="itemListPanelPlaceholder" />
+            <VBox fx:id="personList" styleClass="list-placeholder" VBox.vgrow="ALWAYS">
+              <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </VBox>
 
