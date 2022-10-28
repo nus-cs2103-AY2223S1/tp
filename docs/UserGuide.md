@@ -406,6 +406,7 @@ Existing values of that attribute will be overwritten by the input values.
 Format: `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 #### ROLE Types Table
+
 | Contact to Edit | Role |
 |:---------------:|:----:|
 |      Buyer      |  b   |
@@ -568,6 +569,7 @@ items [here](#acceptable-list-parameters-for-contacts--items-table).
 | Deliverer | *Number of Order*, Name, Phone, Email, Location, Address                                                                    |
 | Order     | *Due Date*, Price Range, Price, Status                                                                                      |
 | Pet       | *Price*, Name, Color, Color Pattern, Birth Date, Species, Height, Weight, Vaccination Status, Characteristics, Certificates |
+
 > The italicised text attribute represents the default sorting attribute for each list. <br>
 > For example, `sort pet` will sort the Pets list in default by the price attribute.
 
@@ -739,7 +741,7 @@ These prefixes are for you to indicate different fields when you add a new perso
 
 |            Action            | Format                                                                                        | Examples                                                                                      |
 |:----------------------------:|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-|           **Add**            | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` | `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
+|           **Add**            | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…`  | `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
 | **Add** (using popup window) | `add buyer`, `add supplier`                                                                   |                                                                                               |
 |          **Clear**           | `clear`                                                                                       |                                                                                               |
 |          **Delete**          | `delete-KEY INDEX`                                                                            | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`                          |
@@ -755,4 +757,5 @@ These prefixes are for you to indicate different fields when you add a new perso
 |           **List**           | `list all`, `list buyer`, `list supplier`, <br>`list delivery`, `list order`, `list pet`      |                                                                                               |
 |           **Sort**           | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                         | `sort pet price height weight`                                                                |
 |          **Check**           | `check LIST_TYPE INDEX`                                                                       | `check buyer 1`                                                                               |
+
 [Go back to [Table of Contents](#table-of-contents)]
