@@ -284,7 +284,7 @@ Finds all the patients by medication.
 
 Format: `get /m MEDICATION`
 
-* All the patients being prescribed that medication will be returned.
+All the patients being prescribed that medication will be returned.
 e.g. `get /m ibuprofen` will return `John` `Peter` `Mary`
 
 #### by patient type: `/inp`
