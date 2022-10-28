@@ -26,6 +26,9 @@ public class Task {
     public static final String MESSAGE_TASK_COMPLETED = "Completed";
     public static final String MESSAGE_TASK_NOT_COMPLETED = "Not Completed";
 
+    public static final String MESSAGE_TASK_ARCHIVED = "archived";
+    public static final String MESSAGE_TASK_NOT_ARCHIVED = "not archived";
+
     public static final String INPUT_TASK_COMPLETED = "complete";
     public static final String INPUT_TASK_NOT_COMPLETED = "incomplete";
 
@@ -114,6 +117,14 @@ public class Task {
      */
     public String getCompletionStatusForDisplay() {
         return (isDone ? MESSAGE_TASK_COMPLETED : MESSAGE_TASK_NOT_COMPLETED);
+    }
+
+    /**
+     * Returns a string representing if the task is archived.
+     * @return String representation of a task archival status.
+     */
+    public String getArchivalStatusForDisplay() {
+        return (isArchived ? MESSAGE_TASK_ARCHIVED : MESSAGE_TASK_NOT_ARCHIVED);
     }
 
     /**
@@ -224,16 +235,14 @@ public class Task {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Completion Status: ")
-                .append(getCompletionStatusForDisplay());
+                .append(getCompletionStatusForDisplay())
+                .append("; Archival Status: ")
+                .append(getArchivalStatusForDisplay());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
-        }
-
-        if (getArchivalStatus()) {
-            builder.append(";\nTask is Archived");
         }
 
         return builder.toString();

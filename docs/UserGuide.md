@@ -234,13 +234,13 @@ Example:
 
 
 ## Section 2: Tasks
-### Listing all tasks: `listT`
+### Listing all non-archived tasks: `listT`
 
 Shows all (non-archived) tasks stored in the task list.
 
 Format: `listT`
 
-### Listing all tasks: `listAT`
+### Listing all archived tasks: `listAT`
 
 Shows all archived tasks stored in the task list.
 
@@ -355,7 +355,7 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / i
 Example:
 
 * `findT d/cs2103t D/25-12-2022` will return task(s) with description containing `cs2103t` and deadline `25th December 2022`.
-* 
+
 * `findT s/incomplete` will return task(s) that are not complete.
 
 ### Filtering tasks by label: `filterT`
@@ -444,7 +444,7 @@ Archives a task in the task list, removing it from main task list.
 
 Format: `archiveT INDEX`
 
-### Archiving a task: `unarchiveT`
+### Unarchive a task: `unarchiveT`
 
 Unarchives a task in the task list, adding it to the main task list.
 
