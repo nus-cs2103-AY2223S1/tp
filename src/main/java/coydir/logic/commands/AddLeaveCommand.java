@@ -20,7 +20,7 @@ import coydir.model.person.Person;
  */
 public class AddLeaveCommand extends Command {
 
-    public static final String COMMAND_WORD = "addleave";
+    public static final String COMMAND_WORD = "add-leave";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a leave period to an employee.\n"
             + "Parameters: "

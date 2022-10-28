@@ -73,14 +73,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         }
-
         if (!argMultimap.getAllValues(PREFIX_TAG).isEmpty()) {
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         }
-
         if (!argMultimap.getAllValues(PREFIX_LEAVE).isEmpty()) {
             numberOfLeaves = Integer.valueOf(ParserUtil.parseId(argMultimap.getValue(PREFIX_LEAVE).get()));
         }
+
         Person person = new Person(
                 name, employeeId, phone, email, position, department, address, tagList, numberOfLeaves, rating
                 );
@@ -95,5 +94,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

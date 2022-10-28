@@ -11,7 +11,7 @@ import coydir.model.person.Department;
  * view a person's particular identified using its displayed index from the database.
  */
 public class ViewDepartmentCommand extends Command {
-    public static final String COMMAND_WORD = "viewdepartment";
+    public static final String COMMAND_WORD = "view-department";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View the department information in the displayed person list.\n"

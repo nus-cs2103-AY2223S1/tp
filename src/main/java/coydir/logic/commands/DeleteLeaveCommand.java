@@ -20,7 +20,7 @@ import coydir.model.person.Person;
  */
 public class DeleteLeaveCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteleave";
+    public static final String COMMAND_WORD = "delete-leave";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a leave period for an employee.\n"
