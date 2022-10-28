@@ -219,7 +219,7 @@ The `Order` class consists of several attributes. Given below is the class diagr
 
 The `Pet` class consists of several attributes. Given below is the class diagram for the **`Pet`** Class:
 
-<img src="images/ModelPetObjectImplementation.png" width=700" />
+<img src="images/ModelPetObjectImplementation.png" width=850 />
 
 </div>
 
