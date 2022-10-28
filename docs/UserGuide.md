@@ -600,7 +600,8 @@ Examples:
 - `list` followed by `delete 1 2` deletes the 1st and 2nd student in the Student's Details panel.
 - `find Betsy` followed by `delete 1` deletes the 1st student in the Student's Details panel.
 
-<div markdown="span" class="alert alert-success">💡 **Tip:** Deleting a student by mistake can be reversed by "undo" command!
+<div markdown="span" class="alert alert-success">💡 **Tip:** Deleting a student by mistake can be reversed by 
+<a href="#undo-the-last-command-undo">undo</a> command!
 </div>
 
 [↑ Back to top](#table-of-contents)
