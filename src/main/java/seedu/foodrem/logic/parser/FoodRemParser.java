@@ -8,7 +8,6 @@ import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 import seedu.foodrem.logic.commands.statscommands.StatsCommand;
-import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.logic.parser.generalcommandparser.ExitCommandParser;
 import seedu.foodrem.logic.parser.generalcommandparser.HelpCommandParser;
