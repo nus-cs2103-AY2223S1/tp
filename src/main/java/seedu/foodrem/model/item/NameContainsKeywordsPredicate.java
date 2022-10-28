@@ -18,13 +18,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Item> {
     @Override
     public boolean test(Item item) {
         return keywords.stream()
-            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(item.getName().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsSubstringIgnoreCase(item.getName().toString(), keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof NameContainsKeywordsPredicate
-            && keywords.equals(((NameContainsKeywordsPredicate) other).keywords));
+                || (other instanceof NameContainsKeywordsPredicate
+                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords));
     }
 }
