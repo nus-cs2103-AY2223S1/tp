@@ -20,7 +20,7 @@ title: Developer Guide
   * [Use Cases](#use-cases)
     * [Use case: **Delete a student**](#use-case-delete-a-student)
     * [Use case: **Edit a student's contact number**](#use-case-edit-a-students-contact-number)
-    * [Use case: **Edit a student's class date**](#use-case-edit-a-students-class-date-)
+    * [Use case: **Edit a student's class date**](#use-case-edit-a-students-class-date)
     * [Use case: **Find student by class date**](#use-case-find-student-by-class-date)
     * [Use case: **Find student by names**](#use-case-find-student-by-name)
     * [Use case: **Find student by address**](#use-case-find-student-by-address)
@@ -178,11 +178,11 @@ The edit class mechanism is facilitated by ClassStorage. It stores the date of t
 
 Additionally, it implements the following operations:
 
-ClassStorage#saveClass() — Saves the new class into its storage.
+- `ClassStorage#saveClass()` — Saves the new class into its storage.
 
-ClassStorage#removeExistingClass() — Removes class from storage to free up the time slot.
+- `ClassStorage#removeExistingClass()` — removes class from storage to free up the time slot.
 
-ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
+- `ClassStorage#hasConflict()` — Checks if there is a conflict between the class timings.
 
 The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer,
 a `ParseException` will be thrown.
@@ -368,8 +368,11 @@ This feature allows the user(teacher) to sort the students from Teacher's Pet by
 
 The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
-list of person as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `persons` by sorting the list with the given `Comparator`
+list of person as per usual.
+
+Additionally, it implements the following operation:
+
+- `TeachersPet#SortPersons(ComparatorM<Person>)` — Updates the `persons` by sorting the list with the given `Comparator`
 
 The following diagram illustrates how the operation works:
 
