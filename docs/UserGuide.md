@@ -110,6 +110,8 @@ Required Arguments:
 
 Add a module to the user's own list of modules.
 
+Your added module will display your lesson timings!
+
 ### Delete a module from user list: `rm`
 
 Format: `rm MODULE-CODE`
@@ -143,6 +145,8 @@ Required Arguments:
   > Tip: Use the `view` command to look at the available lessons!
 
 Pick lesson (e.g tutorial, lab) slots from the available choices for modules that are in the user list.
+
+Your list of modules will display your lesson timings!
 
 ### Exiting the program: `exit`
 
