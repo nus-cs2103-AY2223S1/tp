@@ -33,7 +33,7 @@ public class Phone {
         this.value = "N/A";
     }
 
-    public Phone getNullPhone() {
+    public static Phone getNullPhone() {
         return Phone.NULL;
     }
 

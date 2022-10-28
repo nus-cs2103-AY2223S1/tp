@@ -54,9 +54,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         EmployeeId employeeId = new EmployeeId();
 
         // Set optional fields as default/null values
-        Phone phone = new Phone().getNullPhone();
-        Email email = new Email().getNullEmail();
-        Address address = new Address().getNullAddress();
+        Phone phone = Phone.getNullPhone();
+        Email email = Email.getNullEmail();
+        Address address = Address.getNullAddress();
         Set<Tag> tagList = new HashSet<>();
 
         Rating rating = new Rating().getNullRating();

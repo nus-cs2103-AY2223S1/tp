@@ -39,7 +39,7 @@ public class Address {
         this.value = "N/A";
     }
 
-    public Address getNullAddress() {
+    public static Address getNullAddress() {
         return Address.NULL;
     }
 
