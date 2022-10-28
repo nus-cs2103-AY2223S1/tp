@@ -393,7 +393,8 @@ Step 2. The user executes `session 1 s/Mon 12:30`, adding a session time to the 
 Step 3. The user executes a `show Mon` command which displays a list of persons with sessions on Monday.
 
 The following sequence shows how viewing the schedule works:
-_{diagram to be added}_
+
+![ShowSequenceDiagram](images/ShowSequenceDiagram.png)
 
 #### Design considerations
 **Aspect: Retrieval of individual sessions**
