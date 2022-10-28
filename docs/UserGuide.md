@@ -397,8 +397,10 @@ Examples:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous ModuleList home folder.
+
 **Q**: Is my data saved when I close the app?<br>
 **A**: Yes! We keep track of your modules and tasks, and they will automatically be shown when you re-open the application.
+
 **Q**: Do I need a working internet connection to use this application?<br>
 **A**: No, it is not required. We have a backup data file of all NUS modules for AY2022-2023, so no internet is required.
 
