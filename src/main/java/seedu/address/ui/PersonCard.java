@@ -8,8 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
-import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
-
 /**
  * An UI component that displays information of a {@code Person}.
  */
