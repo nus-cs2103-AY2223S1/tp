@@ -133,16 +133,29 @@ Examples:
 - `list -i` followed by `edit -i 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
 - `list -i` followed by `edit -i 2 s/REJECTED` Edits the status of the 2nd internship to `REJECTED`.
 
-### Linking a person and an internship : `link` [coming soon]
+### Linking a person and an internship : `link`
 
 Links an existing person and internship together in InterNUS.
 
-Format: `link pi/PERSON_INDEX ii/INTERNSHIP_INDEX`
+Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
 - person at specified `PERSON_INDEX` and internship at specified `INTERNSHIP_INDEX` will be linked together such that 
 - person will be displayed as contact person of internship and internship will be displayed as internship of person
+- `PERSON_INDEX` and `INTERNSHIP_INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
-- `link pi/2 ii/3` will link person at index **2** to internship at index **3**
+- `link p/1 i/1` will link person at index **1** to internship at index **1**
+
+### Unlinking a person and an internship : `unlink`
+
+Unlinks an existing person and internship together in InterNUS.
+
+Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX`]
+- At least 1 of the optional fields must be provided
+- Person and/or internship at the specified `PERSON_INDEX` and/or `INTERNSHIP_INDEX` will be unlinked
+- `PERSON_INDEX` and `INTERNSHIP_INDEX` **must be a positive integer** 1, 2, 3, …
+
+Examples:
+- `unlink p/1 i/1` will unlink person at index **1** and internship at index **1**
 
 
 ### Locating persons by name : `find -p`
