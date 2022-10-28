@@ -2,10 +2,13 @@ package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
+import nus.climods.model.module.LessonTypeEnum;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.UserModule;
 
 /**
@@ -22,15 +25,15 @@ public class AddCommand extends Command {
     public static final String MESSAGE_MODULE_NOT_FOUND = "Module not in current NUS curriculum";
     public static final String MESSAGE_MODULE_NOT_OFFERED_IN_SEMESTER = "Module not offered in chosen semester";
 
-    private final String moduleCode;
+    private final String toAdd;
     private final SemestersEnum semester;
 
     /**
      * Creates an AddCommand to add the specified {@code Module}
      */
-    public AddCommand(String moduleCode, SemestersEnum semester) {
-        requireNonNull(moduleCode);
-        this.moduleCode = moduleCode.toUpperCase();
+    public AddCommand(String toAdd, SemestersEnum semester) {
+        requireNonNull(toAdd);
+        this.toAdd = toAdd.toUpperCase();
         this.semester = semester;
     }
 
@@ -38,26 +41,39 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.isModuleOffered(moduleCode)) {
+        if (!model.isModuleOffered(toAdd)) {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
-        if (!model.isModuleOfferedInSemester(moduleCode, semester)) {
+        if (!model.isModuleOfferedInSemester(toAdd, semester)) {
             throw new CommandException(MESSAGE_MODULE_NOT_OFFERED_IN_SEMESTER);
         }
 
-        UserModule moduleToAdd = new UserModule(moduleCode, semester);
+        UserModule moduleToAdd = new UserModule(toAdd, semester);
         if (model.hasUserModule(moduleToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
+        Module module = model.getListModule(toAdd).get();
+
+        try {
+            module.loadMoreData();
+        } catch (ApiException e) {
+            throw new CommandException("Error 404 something went wrong");
+        }
+
+        for (LessonTypeEnum t : module.getUnselectableLessonTypeEnums(semester)) {
+            String lessonId = module.getUnselectableLessonId(t, semester);
+            moduleToAdd.addLesson(t, lessonId);
+        }
+
         model.addUserModule(moduleToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode.toUpperCase()), COMMAND_WORD);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toUpperCase()), COMMAND_WORD);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AddCommand // instanceof handles nulls
-            && moduleCode.equals(((AddCommand) other).moduleCode));
+            && toAdd.equals(((AddCommand) other).toAdd));
     }
 }
