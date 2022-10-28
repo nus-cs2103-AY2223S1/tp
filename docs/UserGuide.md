@@ -614,7 +614,8 @@ Clears all students and their details from the list.
 
 Format: `clear`
 
-<div markdown="span" class="alert alert-success">💡 **Tip:** Clearing all students by mistake can be reversed by undo command!
+<div markdown="span" class="alert alert-success">💡 **Tip:** Clearing all students by mistake can be reversed by 
+<a href="#undo-the-last-command-undo">undo</a> command!
 </div>
 
 [↑ Back to top](#table-of-contents)
