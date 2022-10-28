@@ -46,11 +46,23 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
     }
 
-    public Boolean isRating(Prefix prefix) {
+    /**
+     * Indicates if the {@code prefix} is a {@code Rating} or not.
+     *
+     * @param prefix The prefix to be checked.
+     * @return true if it is a {@code Rating}, otherwise false
+     */
+    public boolean isRating(Prefix prefix) {
         return prefix.equals(PREFIX_RATING);
     }
 
-    public Boolean isTeachingNomination(Prefix prefix) {
+    /**
+     * Indicates if the {@code prefix} is a {@code TeachingNomination} or not.
+     *
+     * @param prefix The prefix to be checked.
+     * @return true if it is a {@code TeachingNomination}, otherwise false
+     */
+    public boolean isTeachingNomination(Prefix prefix) {
         return prefix.equals(PREFIX_TEACHINGNOMINATION);
     }
 }
