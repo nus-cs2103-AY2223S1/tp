@@ -20,7 +20,7 @@ public class DeleteExamCommand extends Command {
 
     public static final String MESSAGE_USAGE = "e " + COMMAND_WORD
             + ": Deletes the exam identified by the index number used in the displayed exam list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX\n"
             + "Example: e " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_EXAM_SUCCESS = "Deleted Exam: %1$s";

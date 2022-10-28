@@ -163,6 +163,21 @@ public class DistinctExamList implements Iterable<Exam> {
         });
     }
 
+    /**
+     * Remove exams that have their module field as {@code module} from the examlist.
+     * @param module The module in the exam's module field.
+     */
+    public void deleteExamsWithModule(Module module) {
+        requireAllNonNull(module);
+        for (int i = 0; i < examList.size(); i++) {
+            Exam exam = examList.get(i);
+            if (exam.getModule().equals(module)) {
+                remove(exam);
+                --i;
+            }
+        }
+    }
+
     @Override
     public Iterator<Exam> iterator() {
         return examList.iterator();

@@ -230,4 +230,15 @@ public interface Model {
      */
     void updateModuleFieldForExam(Module previousModule, Module newModule);
 
+    /**
+     * Deletes tasks that have their module field as {@code module}.
+     * @param module The module in the task's module field.
+     */
+    void deleteTasksWithModule(Module module);
+
+    /**
+     * Deletes exams that have their module field as {@code module}.
+     * @param module The module in the exam's module field.
+     */
+    void deleteExamsWithModule(Module module);
 }

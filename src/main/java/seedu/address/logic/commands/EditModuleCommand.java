@@ -28,15 +28,15 @@ public class EditModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = "m " + COMMAND_WORD
             + ": Edits the module code, module name and module credit of the module identified "
             + "by the index number used in the displayed module list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_MOD_CODE + "MODULE CODE] "
-            + "[" + PREFIX_MOD_NAME + "MODULE NAME] "
-            + "[" + PREFIX_MOD_CREDIT + "MODULE CREDIT] "
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Parameters: INDEX "
+            + "[" + PREFIX_MOD_CODE + "MODULE CODE]* "
+            + "[" + PREFIX_MOD_NAME + "MODULE NAME]* "
+            + "[" + PREFIX_MOD_CREDIT + "MODULE CREDIT]*\n"
+            + "Example: m " + COMMAND_WORD + " 1 "
             + PREFIX_MOD_CODE + "cs2040 "
             + PREFIX_MOD_NAME + "Data Structures and Algorithms "
             + PREFIX_MOD_CREDIT + "4";
@@ -82,13 +82,23 @@ public class EditModuleCommand extends Command {
         try {
             model.replaceModule(moduleToEdit, editedModule);
 
+            boolean isModuleFieldUpdated = false;
             if (!moduleToEdit.isSameModule(editedModule)) {
                 if (model.hasTaskWithModule(moduleToEdit)) {
                     model.updateModuleFieldForTask(moduleToEdit, editedModule);
+                    isModuleFieldUpdated = true;
                 }
                 if (model.hasExamWithModule(moduleToEdit)) {
                     model.updateModuleFieldForExam(moduleToEdit, editedModule);
+                    isModuleFieldUpdated = true;
                 }
+            }
+
+            if (isModuleFieldUpdated) {
+                return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule,
+                        editedModule.getModuleName(), editedModule.getModuleCredit()) + "\n"
+                        + "Warning! All the tasks and exams related to the initial module "
+                        + "now have this edited Module as their new module.");
             }
 
         } catch (DuplicateModuleException e) {

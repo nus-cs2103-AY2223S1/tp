@@ -159,6 +159,22 @@ public class DistinctTaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * Removes tasks that have their module field as {@code module} from the tasklist.
+     * @param module The module in the task's module field.
+     */
+    public void deleteTasksWithModule(Module module) {
+        requireAllNonNull(module);
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.get(i);
+            if (task.getModule().equals(module)) {
+                remove(task);
+                --i;
+            }
+        }
+    }
+
+
     public int getNumOfCompletedModuleTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().filter(Task::isComplete).map(Task::getModule)
