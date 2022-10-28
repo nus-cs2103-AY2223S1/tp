@@ -3,6 +3,7 @@ package seedu.foodrem.logic.commands.tagcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.NEW_TAG_COMMAND;
 
+import seedu.foodrem.commons.exceptions.TagStorageFullException;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -34,7 +35,12 @@ public class NewTagCommand extends Command {
             throw new CommandException("This tag already exists in FoodRem");
         }
 
-        model.addTag(toAdd);
+        try {
+            model.addTag(toAdd);
+        } catch (TagStorageFullException sfe) {
+            throw new CommandException(sfe.getMessage());
+        }
+
         return CommandResult.from(new TagsWithMessage("New tag added:", toAdd));
     }
 

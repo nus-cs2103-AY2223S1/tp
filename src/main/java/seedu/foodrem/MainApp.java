@@ -11,6 +11,7 @@ import seedu.foodrem.commons.core.Config;
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.commons.core.Version;
 import seedu.foodrem.commons.exceptions.DataConversionException;
+import seedu.foodrem.commons.exceptions.StorageFullException;
 import seedu.foodrem.commons.util.ConfigUtil;
 import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.Logic;
@@ -86,6 +87,10 @@ public class MainApp extends Application {
             initialData = new FoodRem();
         } catch (IOException e) {
             initialMessage = "Problem while reading from the file. Will be starting with an empty FoodRem";
+            logger.warning(initialMessage);
+            initialData = new FoodRem();
+        } catch (StorageFullException e) {
+            initialMessage = e.getMessage() + " Will be starting with an empty FoodRem.";
             logger.warning(initialMessage);
             initialData = new FoodRem();
         }

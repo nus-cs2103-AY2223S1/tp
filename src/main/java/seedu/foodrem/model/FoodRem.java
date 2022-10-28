@@ -42,6 +42,21 @@ public class FoodRem implements ReadOnlyFoodRem {
         resetData(toBeCopied);
     }
 
+    /// storage operations
+    /**
+     * Returns true if the item storage is full, false otherwise.
+     */
+    public boolean isItemStorageFull() {
+        return items.isStorageFull();
+    }
+
+    /**
+     * Returns true if the tag storage is full, false otherwise.
+     */
+    public boolean isTagStorageFull() {
+        return tags.isStorageFull();
+    }
+
     //// list overwrite operations
 
     /**

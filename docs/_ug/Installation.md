@@ -9,8 +9,12 @@ If you haven't installed FoodRem, simply follow these steps to set it up:
 1. Copy the jar file to an empty folder. This will be your home folder for FoodRem.
 1. Double-click on the jar file to launch FoodRem.
 
-```note 
-If FoodRem does not launch after double-clicking the jar file, check out the [Troubleshooting](#troubleshooting) section for an alternative solution.
+```warning
+Remember to add `foodrem.jar` into an empty folder as additional data and configuration files will be created when launching FoodRem for the first time! 
 ```
 
 Congratulations! You now have FoodRem set up.
+
+```danger
+When you launch FoodRem, notice that you will have a folder called "data" that is created in the same folder as `foodrem.jar`. Editing the file might corrupt your data, avoid doing this!
+```
