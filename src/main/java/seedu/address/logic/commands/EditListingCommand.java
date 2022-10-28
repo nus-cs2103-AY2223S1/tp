@@ -93,7 +93,6 @@ public class EditListingCommand extends Command {
 
         return new Listing(updatedId, updatedAddress, updatedName, updatedAskingPrice);
     }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
