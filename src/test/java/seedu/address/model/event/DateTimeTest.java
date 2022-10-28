@@ -102,18 +102,6 @@ public class DateTimeTest {
                 DateTime.parseTime(validDate + "23:59"));
         assertEquals(Optional.ofNullable(LocalTime.parse("00:00")),
                 DateTime.parseTime(validDate + "00:00"));
-
-        // HHmmss
-        assertEquals(Optional.ofNullable(LocalTime.parse("23:59:59")),
-                DateTime.parseTime(validDate + "235959"));
-        assertEquals(Optional.ofNullable(LocalTime.parse("00:00:00")),
-                DateTime.parseTime(validDate + "000000"));
-
-        // HH:mm:ss
-        assertEquals(Optional.ofNullable(LocalTime.parse("23:59:59")),
-                DateTime.parseTime(validDate + "23:59:59"));
-        assertEquals(Optional.ofNullable(LocalTime.parse("00:00:00")),
-                DateTime.parseTime(validDate + "00:00:00"));
     }
 
     @Test
@@ -128,14 +116,6 @@ public class DateTimeTest {
         // 60 as minutes
         assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "2360"));
         assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "23:60"));
-
-        // 60 as seconds
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "235960"));
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "23:59:60"));
-
-        // 60 as minutes and 60 as seconds
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "236060"));
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "23:60:60"));
     }
 
     @Test
@@ -152,9 +132,7 @@ public class DateTimeTest {
 
         // day, month, time only
         assertTrue(DateTime.isValidDateTime("22/22 0000"));
-        assertTrue(DateTime.isValidDateTime("22-22 999999"));
         assertTrue(DateTime.isValidDateTime("22/22 00:00"));
-        assertTrue(DateTime.isValidDateTime("22-22 99:99:99"));
 
         // day, month, year only
         assertTrue(DateTime.isValidDateTime("24/02/2022"));
@@ -166,7 +144,6 @@ public class DateTimeTest {
         // day, month, year, time
         assertTrue(DateTime.isValidDateTime("24/02/2022 26:24"));
         assertTrue(DateTime.isValidDateTime("24/02/2022 99:99"));
-        assertTrue(DateTime.isValidDateTime("24/02/2022 99:99:99"));
         assertTrue(DateTime.isValidDateTime("31/Jan/2015 13:66"));
         assertTrue(DateTime.isValidDateTime("24/02/2022 13:43"));
         assertTrue(DateTime.isValidDateTime("31-Jan-2015 16:21"));
@@ -174,7 +151,7 @@ public class DateTimeTest {
 
         // longer whitespace
         assertTrue(DateTime.isValidDateTime("25-05-2018               04:55"));
-        assertTrue(DateTime.isValidDateTime("25/jun/2018                            04:55"));
+        assertTrue(DateTime.isValidDateTime("25/jun/2018                            0455"));
     }
 
     @Test
