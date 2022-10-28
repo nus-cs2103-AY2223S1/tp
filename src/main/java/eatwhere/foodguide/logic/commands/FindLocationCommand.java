@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.Messages;
+import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.eatery.Eatery;
 
@@ -21,8 +22,8 @@ public class FindLocationCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries whose location matches any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " mala";
+            + "Parameters: KEYWORD [MORE_KEYWORDS]... -r <INT>\n"
+            + "Example: " + COMMAND_WORD + " The Deck -r 1";
 
     private final Predicate<Eatery> predicate;
     private final int numRandPicks;
@@ -42,7 +43,7 @@ public class FindLocationCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredEateryList(predicate);
         if (numRandPicks > 0) {

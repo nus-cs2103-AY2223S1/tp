@@ -13,24 +13,22 @@ import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.eatery.Eatery;
 
 /**
- * Finds and lists all eateries in food guide whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and list all eatries in food guide whose price matches the argument keyword.
  */
-public class FindCommand extends Command {
+public class FindPriceCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findPrice";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Optionally, you can randomly choose a given number of the found eateries.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]... -r [NUMTOSHOW]\n"
-            + "Example: " + COMMAND_WORD + " Chicken Rice -r 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eatries whose price matches "
+            + "the specified keywords and displays them as a list with index numbers.\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...-r <INT>\n"
+            + "Example: " + COMMAND_WORD + " $$ -r 1";
+
 
     private final Predicate<Eatery> predicate;
-
     private final int numRandPicks;
 
-    public FindCommand(Predicate<Eatery> predicate) {
+    public FindPriceCommand(Predicate<Eatery> predicate) {
         this(predicate, -1);
     }
 
@@ -38,7 +36,7 @@ public class FindCommand extends Command {
      * @param predicate What all found eateries must satisfy
      * @param numRandPicks The number of found eateries to randomly select
      */
-    public FindCommand(Predicate<Eatery> predicate, int numRandPicks) {
+    public FindPriceCommand(Predicate<Eatery> predicate, int numRandPicks) {
         this.predicate = predicate;
         this.numRandPicks = numRandPicks;
     }
@@ -70,7 +68,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+            || (other instanceof FindPriceCommand // instanceof handles nulls
+            && predicate.equals(((FindPriceCommand) other).predicate)); // state check
     }
 }

@@ -14,6 +14,7 @@ import eatwhere.foodguide.logic.commands.FavouriteCommand;
 import eatwhere.foodguide.logic.commands.FindCommand;
 import eatwhere.foodguide.logic.commands.FindCuisineCommand;
 import eatwhere.foodguide.logic.commands.FindLocationCommand;
+import eatwhere.foodguide.logic.commands.FindPriceCommand;
 import eatwhere.foodguide.logic.commands.FindTagCommand;
 import eatwhere.foodguide.logic.commands.HelpCommand;
 import eatwhere.foodguide.logic.commands.ListCommand;
@@ -22,6 +23,7 @@ import eatwhere.foodguide.logic.commands.UnfavouriteCommand;
 import eatwhere.foodguide.logic.commands.UntagCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -92,6 +94,9 @@ public class FoodGuideParser {
 
         case FavouriteCommand.COMMAND_WORD:
             return new FavouriteCommandParser().parse(arguments);
+
+        case FindPriceCommand.COMMAND_WORD:
+            return new FindPriceCommandParser().parse(arguments);
 
         case UnfavouriteCommand.COMMAND_WORD:
             return new UnfavouriteCommandParser().parse(arguments);

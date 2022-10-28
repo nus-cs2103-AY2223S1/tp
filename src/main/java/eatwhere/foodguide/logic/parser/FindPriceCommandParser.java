@@ -8,48 +8,48 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.Messages;
-import eatwhere.foodguide.logic.commands.FindCuisineCommand;
+import eatwhere.foodguide.logic.commands.FindPriceCommand;
 import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-import eatwhere.foodguide.model.eatery.CuisineContainsKeywordsPredicate;
 import eatwhere.foodguide.model.eatery.Eatery;
+import eatwhere.foodguide.model.eatery.PriceContainsKeywordsPredicate;
 
 
 /**
- * Parses input arguments and creates a new FindLocationCommand object
+ * Parses input arguments and creates a new FindPriceCommand object
  */
-public class FindCuisineCommandParser implements Parser<FindCuisineCommand> {
+public class FindPriceCommandParser implements Parser<FindPriceCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindPriceCommand
+     * and returns a FindPriceCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
-    public FindCuisineCommand parse(String args) throws ParseException, DisplayCommandHelpException {
+    public FindPriceCommand parse(String args) throws ParseException, DisplayCommandHelpException {
 
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCuisineCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindPriceCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP, PREFIX_RANDOM);
 
         if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
-            throw new DisplayCommandHelpException(FindCuisineCommand.MESSAGE_USAGE);
+            throw new DisplayCommandHelpException(FindPriceCommand.MESSAGE_USAGE);
         }
 
         Predicate<Eatery> predicate;
         if (argMultimap.getPreamble().isEmpty()) {
             predicate = eatery -> true;
         } else {
-            String[] nameKeywords = argMultimap.getPreamble().split("\\s+");
-            predicate = new CuisineContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+            String[] nameKeywords = trimmedArgs.split("\\s+");
+            predicate = new PriceContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         }
 
         if (argMultimap.getValue(PREFIX_RANDOM).isEmpty()) {
-            return new FindCuisineCommand(predicate);
+            return new FindPriceCommand(predicate);
         }
 
         try {
@@ -57,13 +57,12 @@ public class FindCuisineCommandParser implements Parser<FindCuisineCommand> {
             if (numRandPicks <= 0) {
                 throw new NumberFormatException();
             }
-            return new FindCuisineCommand(predicate, numRandPicks);
+            return new FindPriceCommand(predicate, numRandPicks);
         } catch (NumberFormatException nfe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCuisineCommand.MESSAGE_USAGE),
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindPriceCommand.MESSAGE_USAGE),
                     nfe);
         }
 
     }
-
 }

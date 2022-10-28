@@ -57,7 +57,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(predicate, numRandPicks);
         } catch (NumberFormatException nfe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_INVALID_NUMTOSHOW),
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE),
                     nfe);
         }
     }
