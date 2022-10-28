@@ -80,6 +80,10 @@ Format: `view INDEX`
 - The index corresponds to the index number shown in the displayed patient list on the left.
 - The index must be a positive integer 1, 2, 3, …​
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Note: You can also double click on a patient in the list to view their details!
+</div>
+
 Example:
 - `list` followed by `view 1` views the first patient in the list.
 - `find n/John` followed by `view 1` views the first patient in the results of the `find` command.
