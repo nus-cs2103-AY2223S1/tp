@@ -39,6 +39,7 @@ faster than other GUI-based applications.
 * **GUI** : Graphical User Interface
 * **Main Window** : The main window of the application that shows the list of students.
 * **Home Folder** : The folder where Watson will store student data.
+* **Command Box** : The text box where you can enter commands.
 
 ## Quick start
 
@@ -49,9 +50,13 @@ faster than other GUI-based applications.
 
 3. Copy the file to the folder you want to use as the _home folder_ for Watson.
 
-4. Double-click the file to start the app. A GUI similar to the one shown below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. A GUI similar to the one shown below should appear in a few seconds. 
+Note that the login details are in <span style="color:red">*red*</span>.<br>
    ![Ui](images/Ui.png)
-
+5. After logging in, you will encounter the GUI shown below.
+The _command box_ is circled in <span style="color:red">*red*</span>.
+This is where you can input commands!
+   ![Ui](images/gui.png)
 5. Type a command into the command box and press Enter to run it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -61,7 +66,7 @@ faster than other GUI-based applications.
 
     * **`delete`**`1` : Deletes the student with `INDEX number 1` from Watson.
 
-6. Refer to the [Commands](#commands) below for details of each command.
+6. Refer to the [Commands](#commands) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
