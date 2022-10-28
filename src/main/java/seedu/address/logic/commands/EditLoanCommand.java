@@ -86,7 +86,10 @@ public class EditLoanCommand extends Command {
         editedPerson.getTags().forEach(tag -> tag.addPerson(editedPerson));
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_LOAN_SUCCESS, editedPerson));
+        int index = model.getFilteredPersonList().indexOf(editedPerson);
+
+        return new CommandResult(String.format(MESSAGE_EDIT_LOAN_SUCCESS, editedPerson),
+                CommandResult.UiState.Inspect, String.valueOf(index + 1));
     }
 
 
@@ -99,13 +102,17 @@ public class EditLoanCommand extends Command {
         Address updatedAddress = personToEdit.getAddress();
         Birthday updatedBirthday = personToEdit.getBirthday();
         Set<Tag> updatedTags = personToEdit.getTags();
+
         double val = editLoanDescriptor.getLoan().get().getAmount() + personToEdit.getLoan().getAmount();
+
         Loan updatedLoan = new Loan(String.valueOf(val));
         List<LoanHistory> updatedLoanHistory = new ArrayList<>();
+
         for (LoanHistory his : personToEdit.getHistory()) {
             updatedLoanHistory.add(his);
         }
-        updatedLoanHistory.add(editLoanDescriptor.getHistory().get());
+
+        editLoanDescriptor.getHistory().ifPresent(updatedLoanHistory::add);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                           updatedBirthday, updatedTags, updatedLoan, updatedLoanHistory);

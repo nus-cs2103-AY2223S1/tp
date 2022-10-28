@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane fx:id="container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            maxWidth="Infinity" maxHeight="Infinity">
+  <VBox fx:id="personList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+    <padding>
+      <Insets right="10" left="10" />
+    </padding>
+    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+  </VBox>
+
+  <VBox fx:id="inspectionSection" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+    <padding>
+      <Insets right="10" left="10" />
+    </padding>
+    <StackPane fx:id="inspectionPanelPlaceholder" VBox.vgrow="SOMETIMES"/>
+  </VBox>
+
+  <VBox fx:id="noteList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+    <padding>
+      <Insets right="10" />
+    </padding>
+    <StackPane fx:id="noteListPanelPlaceholder" VBox.vgrow="SOMETIMES"/>
+  </VBox>
+</AnchorPane>
