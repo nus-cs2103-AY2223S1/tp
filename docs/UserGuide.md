@@ -101,9 +101,9 @@ which tells ModtRekt to treat the quote as a normal character.
 
 ## Features
 
-In this section, we will cover the features of ModtRekt, and introduce the syntax of the various commands.
+In this section, we will cover the features of ModtRekt, and introduce the command syntaxes.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info"/>
 
 ### General
 `help`
@@ -111,7 +111,7 @@ In this section, we will cover the features of ModtRekt, and introduce the synta
 Shows a message which provides a link to this user guide.
 
 Sample execution of command `help`:
-![help-message](images/help-message.png)
+![help-message](images/UserGuidePictures/help-message.png)
 
 `exit`
 
@@ -123,14 +123,15 @@ Exits the application.
 
 Adds a module to the application.
 
-To allow our users to easily add modules via their module code, our module information is fetched from
+To allow our users to easily add modules via their module code, our module information is fetched from 
 [NUSMods](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4),
-hence the module code you specify must be a valid NUS module code.
-If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods
-is a collaboration we would like to seek in future revisions of our app, we have decided to use the AY2022-2023 module
+hence the module code you specify must be a valid NUS module code. 
+If the module code is invalid, the module will not be added. Additionally, since an integration with NUSMods 
+is a collaboration we would like to seek in future revisions of our app, we have decided to use the AY2022-2023 module 
 list, hence beyond this AY, the module information and codes may have changed.
 
 Format: `add module <module code>`
+
 Shorthand: `add mod <module code>`
 
 - The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
@@ -144,29 +145,33 @@ This is useful for users with other commitments, such as internships, that they 
 Note that if your customised module is not in NUSMods, you would still need to specify the module credits, for example, 0.
 
 Format: `add module <module code> -n <custom module name> -cr <module credits>`
+
 Shorthand: `add mod <module code> -n <custom module name> -cr <module credits>`
 
 Sample execution of command `add mod CS2100`:
-![add-mod-sample](images/add-mod-sample.png)
-
+![add-mod-sample](images/UserGuidePictures/add-mod-sample.png)
 
 #### Removing a module: `remove module`
 
 Deletes a module from the program. Users specify a module code to delete.
 
 Format: `remove module <module code>`
+
 Shorthand: `rm mod <module code>`
 
 - The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - Module code must match an existing module.
+
+Format: `remove module <module code>`
+
+Shorthand: `rm mod <module code>`
 
 Examples:
 - `remove module CS2103T`
 - `rm mod CS2103T`
 
 Sample execution of command `remove mod CS2100`:
-![remove-mod-sample](images/remove-mod-sample.png)
-
+![remove-mod-sample](images/UserGuidePictures/remove-mod-sample.png)
 
 #### Entering a module: `cd`
 
@@ -179,11 +184,13 @@ Allows user to view information relating to the specified module.
 - The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
 - Module code must match an existing module.
 
+Format: `cd <module code>`
+
 Examples:
 - `cd CS2103T`
 
 Sample execution of command `cd CS2100`:
-![cd-module-sample](images/cd-module-sample.png)
+![cd-module-sample](images/UserGuidePictures/cd-module-sample.png)
 
 ### Exiting a module: `cd`
 
@@ -197,11 +204,13 @@ Examples:
 - `cd ..`
 
 Sample execution of command `cd ..`:
-![cd-default-sample](images/cd-default-sample.png)
+![cd-default-sample](images/UserGuidePictures/cd-default-sample.png)
 
 #### Marks a module as done: `done module`
 
 Marks a module as done.
+
+- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
 - After you mark a module as done, your total completed module credits (MCs) will be updated.
 - Marking a module as done will mark all active tasks belonging to that module as done.
 
@@ -213,16 +222,25 @@ Examples:
 - `done module CS1101S`
 
 Sample execution of command `done module CS2100`:
-![done-module-sample](images/done-module-sample.png)
+![done-module-sample](images/UserGuidePictures/done-module-sample.png)
 
 #### Marks undone a module: `undone module`
 
 Marks a module as undone.
+
+- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
 - After you unmark a module as done, your total completed module credits (MCs) will be updated.
 - Unmarking a module will not affect its tasks, i.e. your original tasks will not be marked as undone)
 
+Format: `undone module <module code>`
+
+Shorthand: `done mod <module code>`
+
+Examples:
+- `undone module CS1101S`
+
 Sample execution of command `done module CS2105`, with CS2105 marked as done initially:
-![undone-module-sample](images/undone-module-sample.png)
+![undone-module-sample](images/UserGuidePictures/undone-module-sample.png)
 
 #### Listing all modules: `list module`
 
@@ -238,13 +256,32 @@ Examples:
 - `list module -a`
 
 Sample execution of command `list module -a`:
-![list-module-sample](images/list-module-sample.png)
+![list-module-sample](images/UserGuidePictures/list-modules-sample.png)
+
+#### Editing modules: `edit module`
+
+Changes current parameters of selected module.
+
+- The module code is case insensitive e.g. `cs2103t` will match **CS2103T**
+- Targeted module code must exist in the module list
+- New module code must not already exist in the module list
+- All tasks associated with the module would change to the new module code after editing the module
+- New module credit must be numeric and cannot be negative
+- The order of optional tags does not matter
+
+Format: `edit module <module code> [-c <module code>] [-cr <module credit>] [-n <module name>]`
+
+Examples:
+- `edit module ST2334 -c CS2040S -cr 4 -n "Data Structures and Algorithms"`
+
+![](./images/UserGuidePictures/edit_module.png)
 
 ### Tasks
 
 #### Adding a task: `add task`
 
 Adds a task under a specific module.
+
 - You may have selected a module (i.e. used the [`cd` command](#entering-a-module-cd) to select a module).
 - You can specify a deadline for the task with the `-d` flag along with the deadline in YYYY-MM-DD format.
 - The task description accepts only use letters, numbers, spaces, and other
@@ -258,12 +295,16 @@ Format (if `cd`'d previously): `add task <description> [-d <deadline>] [-p <prio
 
 Format (if not `cd`'d): `add task <description> -c <module code> [-d <deadline>] [-p <priority>]`
 
-Example:
-`cd CS2100` followed by `add task "Assignment 1" -d 2022-10-29 -p high`, or equivalently,
-`add task "Assignment 1" -c cCS2100 -d 2022-10-29 -p high`
+Examples (CDed into a module):
+- `add task "do ip tasks" -d 2022-09-15`
+- `add task -d 15/09/2022 "do ip tasks"`
+
+Examples (Not CDed into a module):
+- `add task -c CS2103T "do ip tasks" -d 2022-09-15`
+- `add task -d 2022-09-15 "do ip tasks" -c CS2103T`
 
 Sample execution of command `add "Assignment 1" -c CS2100 -d 2022-10-29`:
-![add-task-sample](images/add-task-sample.png)
+![add-task-sample](images/UserGuidePictures/add-task-sample.png)
 
 #### Removing a task: `remove task`
 
@@ -277,10 +318,10 @@ Shorthand: `rm task <task index>`
 
 Examples:
 - `remove task 1`
-- `rm -t 1`
+- `rm task 1`
 
 Sample execution of command `remove task 1` with 2 active tasks displayed:
-![remove-task-sample](images/remove-task-sample.png)
+![remove-task-sample](images/UserGuidePictures/remove-task-sample.png)
 
 #### Marking a task as done: `done task`
 
@@ -294,7 +335,7 @@ Examples:
 - `done task 1`
 
 Sample execution of command `done task 1` with 6 active tasks displayed:
-![done-task-sample](images/done-task-sample.png)
+![done-task-sample](images/UserGuidePictures/done-task-sample.png)
 
 #### Marking a task as undone: `undone task`
 
@@ -308,14 +349,14 @@ Examples:
 - `undone task 1`
 
 Sample execution of command `undone task 6` with 6 active tasks displayed:
-![undone-task-sample](images/undone-task-sample.png)
+![undone-task-sample](images/UserGuidePictures/undone-task-sample.png)
 
 #### Listing all tasks: `list task`
 
 Shows only the active tasks (i.e. tasks which are undone) by default.
-Include the optional `-a` flag to the command to show all tasks, including those that are done.
 
-If you have used the [`cd` command](#entering-a-module-cd) to select a module, this will
+- Include the optional `-a` flag to the command to show all tasks, including those that are done.
+- If you have used the [`cd` command](#entering-a-module-cd) to select a module, this will
 only show the tasks under the selected module.
 
 Format: `list task [-a]`
@@ -325,6 +366,29 @@ Shorthand: `ls task [-a]`
 Examples:
 - `list task -a` shows all tasks, including those marked as done.
 - `ls task` hides all done tasks.
+
+#### Editing tasks: `edit task`
+
+Changes current parameters of selected task
+
+- Index must be a valid integer. Users may use the list tasks command to find the indexes of their tasks.
+- Order of optional parameters does not matter.
+- The new module code associated with task must exist in module list
+- New Deadlines must be in format: `YYYY-MM-DD`
+- Task count in module would change accordingly after editing a task to be associated with another module 
+
+
+- Users can add priorities into their tasks which will be ordered by decreasing priority in the task list
+- 4 Levels of priority: `NONE`, `LOW`, `MEDIUM`, `HIGH`
+- can be set by adding: `-p none`, `-p low`, `-p medium`, `-p high` tags
+
+Format: `edit task <task index> [-c <module code>] [-d <deadline>] [-ds <description>] [-p <priority>]`
+
+Examples:
+- `edit task 1 -d 2000-12-11 -ds "finish tutorial 9" -p high`
+- `edit task 3 -p low -ds "finals exams" -c CS2103T`
+
+![](./images/UserGuidePictures/edit_task.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -342,10 +406,6 @@ the data of your previous ModuleList home folder.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
-```< >``` for mandatory arguments
-
-```[ ]``` for optional arguments
 
 ### General
 

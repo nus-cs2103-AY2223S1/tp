@@ -6,30 +6,30 @@ title: Developer Guide
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up-getting-started)
 3. [Design](#design)
-   - [Architecture](#architecture)
-   - [UI component](#ui-component)
-   - [Logic component](#logic-component)
-   - [Model component](#model-component)
-   - [Storage component](#storage-component)
-   - [Common classes](#common-classes)
+    - [Architecture](#architecture)
+    - [UI component](#ui-component)
+    - [Logic component](#logic-component)
+    - [Model component](#model-component)
+    - [Storage component](#storage-component)
+    - [Common classes](#common-classes)
 4. [Implementation](#implementation)
-   - [Module Features](#module-features)
-     - [Add Module](#add-module)
-     - [Remove Module](#remove-module)
-     - [Navigation](#navigation)
-   - [Task/Deadline Features](#taskdeadline-features)
-     - [Add Task](#add-task)
-     - [Remove Task](#remove-task)
-     - [Edit Task](#edit-task)
-     - [Marking Tasks as Done](#marking-tasks-as-done)
-     - [Task Listing](#task-listing)
+    - [Module Features](#module-features)
+        - [Add Module](#add-module)
+        - [Remove Module](#remove-module)
+        - [Navigation](#navigation)
+    - [Task/Deadline Features](#taskdeadline-features)
+        - [Add Task](#add-task)
+        - [Remove Task](#remove-task)
+        - [Edit Task](#edit-task)
+        - [Marking Tasks as Done](#marking-tasks-as-done)
+        - [Task Listing](#task-listing)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 6. [Appendix: Requirements](#appendix-requirements)
-   - [Product Scope](#product-scope)
-   - [User Stories](#user-stories)
-   - [Use Cases](#use-cases)
-   - [Non-Functional Requirements](#non-functional-requirements)
-   - [Glossary](#glossary)
+    - [Product Scope](#product-scope)
+    - [User Stories](#user-stories)
+    - [Use Cases](#use-cases)
+    - [Non-Functional Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
 7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ The `ResultDisplay` class shows the message returned from the user's input.
 1. Command is executed on `MainWindow`.
 2. `MainWindow` calls the method `executeCommand`, which refreshes the resultant message displayed in `ResultDisplay`.
 3. `ResultDisplay` updates its JavaFX `TextArea` according to the `CommandResult` of the command given.
-In this case, the `TextArea` will display the message returned as a result of the command.
+   In this case, the `TextArea` will display the message returned as a result of the command.
 4. ResultDisplay displays visible change on the interface.
 5. `executeCommand` ends execution.
 
@@ -182,8 +182,8 @@ Here is how the `ProfileSidePanel` works:
 2. `Model` is updated.
 3. `MainWindow` calls the method `refresh`, which refreshes the `ProfileSidePanel`.
 4. `ProfileSidePanel` uses `Logic` to obtain the corresponding information:
-   1. MC Completed
-   2. Active Tasks
+    1. MC Completed
+    2. Active Tasks
 5. `ProfileSidePanel` executes corresponding JavaFX methods to update displayed information.
 6. `ProfileSidePanel` shows visible change on the interface.
 7. `refresh` ends execution.
@@ -191,9 +191,9 @@ Here is how the `ProfileSidePanel` works:
 #### Other Components
 In addition to the main UI components in the `MainWindow` class, these are other UI Components:
 * `ModuleCard` - Individual card containing the relevant information of the module.
-List of ModuleCard contained in the ModuleListPanel.
+  List of ModuleCard contained in the ModuleListPanel.
 * `TaskCard` - Individual card containing the relevant information of the task.
-List of TaskCards contained in the TaskListPanel.
+  List of TaskCards contained in the TaskListPanel.
 * `HelpWindow` - Pop-up window containing the link the User Guide, as well as a (proposed) list of all the commands in the application.
 
 ### Logic component
@@ -296,12 +296,12 @@ These tags are:
 **Aspect 1: How many modules are added:**
 
 * **Alternative 1 (current choice):** Add 1 module added per AddCommand.
-  * Pros: Easy to implement.
-  * Cons: May have to type more to add multiple modules.
+    * Pros: Easy to implement.
+    * Cons: May have to type more to add multiple modules.
 
 * **Alternative 2:** Add multiple modules per AddCommand.
-  * Pros: Convenient for user.
-  * Cons: More complicated, may require much more parsing.
+    * Pros: Convenient for user.
+    * Cons: More complicated, may require much more parsing.
 
 We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
 reduce the compulsory AddCommand parameters.
@@ -364,7 +364,7 @@ Removal of a `Module` would remove all `Task` and `Deadline` associated with it.
 * **Alternative 1 (current choice):** Using their index in the list.
     * Pros: Easier for user to select.
     * Cons: May be hard to find module especially if module list is long. More complicated as index may change
-    especially after modifying the module list
+      especially after modifying the module list
 
 * **Alternative 2:** Using the module code.
     * Pros: User need not list the modules to find exact module to remove.
@@ -409,14 +409,14 @@ The relevant commands are:
 The syntax and command word were aspects that we took into consideration in the design process.
 
 1. **Using the shorthand word `cd` and similar syntax e.g. `cd ..` (Current Implementation)**
-  * Pro: Users who are familiar with CLI applications will be able to use similar syntax for navigation inside the application
-  * Pro: Users will be able to navigate through the application faster, due to the shorter command word and syntax
-  * Con: Users who are not familiar with CLI applications would have to remember a specific command word that may not be very intuitive
+* Pro: Users who are familiar with CLI applications will be able to use similar syntax for navigation inside the application
+* Pro: Users will be able to navigate through the application faster, due to the shorter command word and syntax
+* Con: Users who are not familiar with CLI applications would have to remember a specific command word that may not be very intuitive
 
 2. **Using a longer command word e.g. `enter` and `exit`**
-  * Pro: The command word is more universally intuitive, especially for users who are not familiar with CLI applications
-  * Con: Users who are already familiar with CLI applications will have to relearn navigation using a different command
-  * Con: Users will have to type out a longer command word and syntax, which will reduce the speed at which a user can navigate through the application
+* Pro: The command word is more universally intuitive, especially for users who are not familiar with CLI applications
+* Con: Users who are already familiar with CLI applications will have to relearn navigation using a different command
+* Con: Users will have to type out a longer command word and syntax, which will reduce the speed at which a user can navigate through the application
 
 Taking into account that our [target user profile](#product-scope) is one that is familiar with using CLI apps, we chose option 1 as it provided the most benefit for such a user. In particular, it contributes to the goal of allowing the user to accomplish tasks (in this case navigation) in a shorter time using the CLI.
 
@@ -572,12 +572,12 @@ These tags are:
 **Aspect 1: How many tasks are added:**
 
 * **Alternative 1 (current choice):** Add 1 task added per AddTaskCommand.
-  * Pros: Easy to implement.
-  * Cons: May have to type more to add multiple tasks.
+    * Pros: Easy to implement.
+    * Cons: May have to type more to add multiple tasks.
 
 * **Alternative 2:** Add multiple tasks per AddTaskCommand.
-  * Pros: Convenient for user.
-  * Cons: More complicated, may require much more parsing.
+    * Pros: Convenient for user.
+    * Cons: More complicated, may require much more parsing.
 
 We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
 reduce the compulsory AddTaskCommand parameters.
@@ -585,13 +585,13 @@ reduce the compulsory AddTaskCommand parameters.
 **Aspect 2: What parameters do we need:**
 
 * **Alternative 1:** Add task by specifying module index instead of code.
-  * Pros: Less verbosity in the command, user can go off of the displayed index.
-  * Cons: Slightly more complicated as more errors need to be handled (invalid index etc.). Users
-    may also be more prone to adding the task to the wrong module.
+    * Pros: Less verbosity in the command, user can go off of the displayed index.
+    * Cons: Slightly more complicated as more errors need to be handled (invalid index etc.). Users
+      may also be more prone to adding the task to the wrong module.
 
 * **Alternative 2:** Require the user to specify the module code.
-  * Pros: Reduces the chance of error by the user, users will not need to remember the module index.
-  * Cons: User has to type more information in the command.
+    * Pros: Reduces the chance of error by the user, users will not need to remember the module index.
+    * Cons: User has to type more information in the command.
 
 We decided to implement alternative 2 in order to reduce the chance of user error and reduce the
 potential for bugs.
@@ -661,12 +661,12 @@ Editing a task has no effect on the task count of a module, as it is a replaceme
 **Aspect 1: Whether editing tasks should be allowed:**
 
 * **Alternative 1 (current choice):** Allow editing of tasks.
-  * Pros: Allows users to change partial details in the event of a small error.
-  * Cons: Have to parse a varying amount of optional arguments.
+    * Pros: Allows users to change partial details in the event of a small error.
+    * Cons: Have to parse a varying amount of optional arguments.
 
 * **Alternative 2:** No edit command, user would have to delete and re-add their task.
-  * Pros: Convenient for development, less bug-prone.
-  * Cons: Inconvenient and troublesome for the user.
+    * Pros: Convenient for development, less bug-prone.
+    * Cons: Inconvenient and troublesome for the user.
 
 We decided to go with the alternative 1 to give our users the best experience possible.
 
@@ -841,15 +841,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to view all active tasks and deadlines
 2. ModtRekt shows all active tasks and deadlines, categorised into modules
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
 
-  * 2a.1 ModtRekt displays an empty list.
+    * 2a.1 ModtRekt displays an empty list.
 
-    Use case ends
+      Use case ends
 
 **Use case: Add a task**
 
@@ -859,14 +859,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ModtRekt adds the task
 3. Task count of the module is updated, and the task is added to the displayed list
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 2a. The module list is empty
-  * 2a1. ModtRekt shows an error message when the command is entered
+    * 2a1. ModtRekt shows an error message when the command is entered
 
-     Use case ends.
+      Use case ends.
 
 * 3a. The given module code is invalid
 
@@ -882,7 +882,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ModtRekt adds the deadline
 3. Task count of the module is updated, and the deadline is added to the displayed list
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -906,7 +906,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to remove a specific task via index
 4. ModtRekt removes the task
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -995,4 +995,4 @@ testers are expected to do more *exploratory* testing.
 
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
