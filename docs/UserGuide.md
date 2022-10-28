@@ -11,11 +11,11 @@ food options in NUS and thus make an informed decision on where to eat._
 * Table of Contents
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * Help
-  * List
-  * Find / FindTag / FindLocation / FindCuisine
-  * Tag / Untag
-  * Add / Delete
+  * [Help](#help-command--help)
+  * [List](#listing-all-eateries--list)
+  * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) / [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
+  * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
+  * [Add](#add-eatery-add) / [Delete](#delete-eatery--delete)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -26,7 +26,7 @@ food options in NUS and thus make an informed decision on where to eat._
 
 1. Install **Java 11** from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
-1. Download the latest `NUSEatWhere.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
+1. Download the latest `foodguide.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
 
 1. Move the file to your intended **home folder** for the NUSEatWhere application.
 
