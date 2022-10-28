@@ -93,7 +93,7 @@ Format: `list`
 ### Editing a person : `edit`
 
 Edits an existing person in the address book. Can only be used in view mode.
-For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX
+For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX.
 
 It requires at least one field:
 - n/: To be followed by updated name of student
