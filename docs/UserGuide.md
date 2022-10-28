@@ -137,9 +137,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT-OF-KIN_NAME, RELATION
   displayed patient list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing medication, the existing medication of the person will be removed i.e adding of medication is not
+* When editing medication, the existing medication of the patient will be removed i.e adding of medication is not
   cumulative.
-* You can remove all the person’s tags by typing `m/` without specifying any medication after it.
+* You can remove all the patient’s medications by typing `m/` without specifying any medication after it.
 * When editing upcoming appointment dates, the date must be in `dd-MM-yyyy` format, eg. `12-06-2022`.
 * To remove upcoming appointments, just type `ua/` without specifying any date after it.
 
@@ -150,23 +150,23 @@ Examples:
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
 
 #### GUI Integration:
-* The individual fields on the Detailed Person View Panel are clickable to streamline the editing process.
-* e.g.: If the first person is `Alex Yeoh` Click on his name will update the Command Input to `edit 1 n/`.
+* The individual fields on the Detailed Patient View Panel are clickable to streamline the editing process.
+* e.g.: If the first patient is `Alex Yeoh` Click on his name will update the Command Input to `edit 1 n/`.
 
-### Deleting a person : `delete`
+### Deleting a patient : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified patient from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `get /n Betsy` followed by `delete 1` deletes the 1st person in the results of the `get /n` command.
+* `list` followed by `delete 2` deletes the 2nd patient in the address book.
+* `get /n Betsy` followed by `delete 1` deletes the 1st patient in the results of the `get /n` command.
 
 ### Creating past appointment for patient: `appt`
 
@@ -174,8 +174,8 @@ Creates a past appointment for the specified patient in checkUp.
 
 Format: `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICATION]...`
 
-* Past appointment is created for a person at the specified `INDEX`.
-* The index refers to the index number showed in the displayed person list.
+* Past appointment is created for a patient at the specified `INDEX`.
+* The index refers to the index number showed in the displayed patient list.
 * The index **must be a positive integer**, eg. 1, 2, 3...
 * The date can only be input in the `dd-MM-yyyy` format.
 * The `DIAGNOSIS` field **cannot be empty**.
@@ -193,8 +193,8 @@ Deletes the specified patient most recent past appointment in checkUp.
 
 Format: `delappt INDEX`
 
-* Past appointment is removed for a person at the specified `INDEX`.
-* The index refers to the index number showed in the displayed person list.
+* Past appointment is removed for a patient at the specified `INDEX`.
+* The index refers to the index number showed in the displayed patient list.
 * The index **must be a positive integer**, eg. 1, 2, 3...
 
 Examples:
@@ -343,18 +343,18 @@ Format: `count`
 
 ### Viewing a Patient : `view`
 
-Displays the detailed information of a patient in the Detailed Person View Panel.
+Displays the detailed information of a patient in the Detailed Patient View Panel.
 
 Format: `view INDEX`
 
-* Displays the detailed information of a person at the specified `INDEX`.
-* The index refers to the index number showed in the displayed person list.
+* Displays the detailed information of a patient at the specified `INDEX`.
+* The index refers to the index number showed in the displayed patient list.
 * The index **must be a positive integer**, eg. 1, 2, 3...
 
 #### GUI Integration:
-* On startup, the Detailed Person View will always default to the first patient if present. 
+* On startup, the Detailed Patient View will always default to the first patient if present. 
 * It will also focus onto the most recent patient added / edited.
-* Clicking on patients in the Person List Panel will automatically open their info in the Detailed Person View Panel.
+* Clicking on patients in the patient List Panel will automatically open their info in the Detailed Patient View Panel.
 
 ### Clearing all entries : `clear`
 
