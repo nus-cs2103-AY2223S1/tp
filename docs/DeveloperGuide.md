@@ -6,6 +6,15 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Overview**
+
+* Mass Linkers is a powerful Desktop application tool that helps Computer Science (CS) students find study support from batchmates, making it easier to form study groups and look for module-related guidance. 
+* It provides a centralised platform for CS students to save their batchmates’ contact and module details and search for batchmates with common interests or who are taking similar modules conveniently.
+* It is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+* This *Developer Guide* provides general information for developers who are interested in understanding the design and implementation of Mass Linkers for further developments.
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
@@ -60,7 +69,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -127,7 +136,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `MassLinkers`, which `Student` references. This allows `MassLinkers` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Interest` list in the `MassLinkers`, which `Student` references. This allows `MassLinkers` to only require one `Interest` object per unique tag, instead of each `Student` needing their own `Interest` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -155,7 +164,7 @@ Classes used by multiple components are in the `seedu.masslinkers.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Find Interest Feature
+### 1. Find Interest Feature
 
 #### Implementation
 
@@ -174,7 +183,7 @@ The following activity diagram summarises what happens when a student enters a `
 
 ![FindInterestActivityDiagram](images/FindInterestActivityDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How `findInt` executes:**
 
@@ -186,7 +195,7 @@ The following activity diagram summarises what happens when a student enters a `
     * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
     * Cons: It diminishes the usefulness of being able to search for multiple interests at once if a general search is implemented. The purpose of specifying multiple interests is so that the search results would be specific.
 
-### Mod mark feature
+### 2. Mod mark feature
 
 #### Implementation
 
@@ -202,7 +211,7 @@ The following activity diagram summarises what happens when a student enters a `
 
 ![ModMarkWithLoopActivityDiagram](images/ModMarkActivityDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How `mod mark` executes:**
 
@@ -214,7 +223,7 @@ The following activity diagram summarises what happens when a student enters a `
     * Pros: Easier to find the batchmate by directly entering the name.
     * Cons: Full name of the batchmate has to be specified. It may take more time to enter the name especially for long and complicated names.
 
-### Mod find feature
+### 3. Mod find feature
 
 #### Implementation
 
@@ -236,7 +245,7 @@ The following activity diagram summarises what happens when a student enters a `
 
 ![ModFindActivityDiagram](images/ModFindActivityDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How `mod find` executes:**
 
@@ -250,7 +259,7 @@ The following activity diagram summarises what happens when a student enters a `
 
 ### Module Categorisation
 
-#### Implementation
+#### 4. Implementation
 
 Module categorisation is handled by `ParserUtil#parseModsToCategory(String modName)`.
 A category is assigned to every mod upon creating it through its constructor.
@@ -277,7 +286,7 @@ Activity: Determines and returns a category.
 
 ![ModCategorisationActivityDiagramRake](images/ModCategorisationActivityDiagramRake.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How categorisation is handled:**
 
@@ -289,7 +298,7 @@ Activity: Determines and returns a category.
     * Pros: Users can edit mod categories with fewer changes to the code base. Increased performance.
     * Cons: Increased complexity.
     
-### Add Interest Feature
+### 4. Add Interest Feature
 
 #### Implementation
 The ```addInt``` command allows students to add one or more interests to a batchmate by indicating the index held by the batchmate and the list of interests to be added.
@@ -317,7 +326,7 @@ In addition, the sequence diagram below illustrates how the ```AddInterestComman
 
 ![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Usefulness of ```AddInterestCommand```:**
 
@@ -595,12 +604,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Private contact detail**: A contact detail that is not meant to be shared with others.
+* **Batchmate**: The people whom the users need to link to and interact with.
 * **Command Line Interface (CLI)**: A text of lines input by the users to send instructions to the system.
 * **Graphical User Interface (GUI)**: A means, supported by visuals, for the users to send instructions to the system.
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Private contact detail**: A contact detail that is not meant to be shared with others.
 * **Student**: The main user.
-* **Batchmate**: The people whom the users need to link to and interact with.
 
 --------------------------------------------------------------------------------------------------------------------
 
