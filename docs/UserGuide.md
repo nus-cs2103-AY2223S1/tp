@@ -25,7 +25,7 @@ tasks done faster than traditional GUI apps.
    Some example commands you can try:
 
     * **`add`**`add n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol m/ibuprofen ` :
-      Adds a contact named `Amy Toh` to the Address Book.
+      Adds a contact named `Amy Toh` to checkUp. 
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -61,6 +61,20 @@ tasks done faster than traditional GUI apps.
 
 </div>
 
+### Viewing a patient: `view`
+
+Pulls up the patient's information based on the index provided.
+
+Format: `view INDEX`
+
+- Views the patient at the specified INDEX.
+- The index corresponds to the index number shown in the displayed patient list on the left.
+- The index must be a positive integer 1, 2, 3, …​
+
+Example:
+- `list` followed by `view 1` views the first patient in the list.
+- `find n/John` followed by `view 1` views the first patient in the results of the `find` command.
+
 ### Adding a patient: `add`
 
 Adds a patient to checkUp.
@@ -68,7 +82,7 @@ Adds a patient to checkUp.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN NAME, RELATIONSHIP, CONTACT pt/PATIENT TYPE hw/HOSPITAL WING fn/FLOOR NUMBER wn/WARD NUMBER [m/MEDICATION]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of medication (including 0)
+A patient can have any number of medication (including 0)
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -194,20 +208,20 @@ Format: `get /appton APPOINTMENT_DATE`
 * All the patients having appointments on that date will be returned.
 * The appointment date refers to date the patient has an appointment with the clinic / hospital. e.g. `get /appton 12-12-2020` will return `John` `Peter` `Mary`
 
-### Deleting a person : `delete`
+### Deleting a patient : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified patient from checkUp.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `get /n Betsy` followed by `delete 1` deletes the 1st person in the results of the `get /n` command.
+* `list` followed by `delete 2` deletes the 2nd patient in checkUp.
+* `get /n Betsy` followed by `delete 1` deletes the 1st patient in the results of the `get /n` command.
 
 ### Obtaining total patient count: `count`
 
@@ -225,8 +239,8 @@ Creates a past appointment for the specified patient in checkUp.
 
 Format: `appt INDEX on/DATE diag/DIAGNOSIS m/MEDICINE...`
 
-* Past appointment is created for a person at the specified `INDEX`.
-* The index refers to the index number showed in the displayed person list.
+* Past appointment is created for a patient at the specified `INDEX`.
+* The index refers to the index number showed in the displayed patient list.
 * The index **must be a positive integer**, eg. 1, 2, 3...
 * The date can only be input in the `dd-MM-yyyy` format.
 * The `DIAGNOSIS` field **cannot be empty**.
@@ -237,6 +251,37 @@ Examples:
 * `get /n John` returns `John` at index 1 and `John Doe` at index 2.
 * Following this, `appt 1 on/12-06-2022 diag/Common cold, viral flu m/Panadol m/Lozenges` will create a past appointment
   for John.
+
+### Creating a past appointment for the patient on the current date: `consult`
+
+Creates a past appointment for the specified patient in checkUp on the current date.
+
+Format: `consult INDEX diag/DIAGNOSIS [m/MEDICINE]...`
+
+* Past appointment is created for a patient at the specified `INDEX`.
+* The index refers to the index number showed in the displayed patient list.
+* The index **must be a positive integer**, eg. 1, 2, 3...
+* The `DIAGNOSIS` field **cannot be empty**.
+* The `MEDICINE` field(s) is/are optional. Use multiple `m/` prefixes if multiple medicines are prescribed.
+* The date of the appointment will be the current date.
+* If the patient's upcoming appointment matches the current date, the upcoming appointment will be reset.
+
+Examples
+* `list` followed by `consult 2 diag/Headache m/Paracetamol` creates a past appointment for the 2nd patient in checkUp
+  on the current date.
+
+### Deleting the most recent past appointment: `delappt`
+
+Deletes the most recent past appointment for the specified patient in checkUp.
+
+Format: `delappt INDEX`
+
+* Most recent past appointment is deleted for a patient at the specified `INDEX`.
+* The index refers to the index number showed in the displayed patient list.
+* The index **must be a positive integer**, eg. 1, 2, 3...
+
+Example:
+* `list` followed by `delappt 2` deletes the most recent past appointment for the 2nd patient in checkUp.
 
 ### Clearing all entries : `clear`
 
@@ -259,9 +304,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT OF KIN] [pt/PATIENT T
 displayed patient list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing medication, the existing medication of the person will be removed i.e adding of medication is not
+* When editing medication, the existing medication of the patient will be removed i.e adding of medication is not
 cumulative.
-* You can remove all the person’s tags by typing m/ without specifying any medication after it.
+* You can remove all the patient’s tags by typing m/ without specifying any medication after it.
 * When editing upcoming appointment dates, the date must be in `dd-MM-yyyy` format, eg. `12-06-2022`.
 
 Examples:
@@ -303,6 +348,7 @@ the data of your previous checkUp home folder.
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                  |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **View**        | `view INDEX` <br> e.g., `view 3`                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                 |
 | **Add**         | `add n/NAME p/PHONE e/EMAIL nok/NEXT OF KIN pt/PATIENT TYPE [hw/HOSPITAL WING] [fn/FLOOR NUMBER] [wn/WARD NUMBER] [m/MEDICATION]...`<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/2 m/panadol m/ibuprofen` |
 | **Clear**       | `clear`                                                                                                                                                                                                                                                                           |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                               |
@@ -319,5 +365,7 @@ the data of your previous checkUp home folder.
 | **Get /appton** | `get /appton APPOINTMENT_DATE` <br> e.g., `get /appton 21-05-2020`                                                                                                                                                                                                                |
 | **Count**       | `count`                                                                                                                                                                                                                                                                           |
 | **Appt**        | `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICINE]...` <br> e.g., `appt 1 on/12-06-2022 diag/Common cold, viral flu m/panadol m/lozenges`                                                                                                                                            |
+| **Consult**     | `consult INDEX diag/DIAGNOSIS [m/MEDICINE]...` <br> e.g., `consult 1 diag/Common cold, viral flu m/panadol m/lozenges`                                                                                                                                                            |
+| **Delappt**     | `delappt INDEX` <br> e.g., `delappt 1`                                                                                                                                                                                                                                            |
 | **List**        | `list`                                                                                                                                                                                                                                                                            |
 | **Help**        | `help`                                                                                                                                                                                                                                                                            |
