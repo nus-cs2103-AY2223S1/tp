@@ -24,7 +24,7 @@ public class Repo {
      */
     public Repo(String repoName, String repoUrl,
                 String description, LocalDateTime lastUpdated) {
-        requireAllNonNull(repoName, repoUrl, description, lastUpdated);
+        requireAllNonNull(repoName, repoUrl, lastUpdated);
         this.repoName = repoName;
         this.repoUrl = repoUrl;
         this.description = description;

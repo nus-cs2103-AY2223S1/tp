@@ -56,8 +56,8 @@ public class UserReposWrapper {
 
     public String getRepoName(int id) {
         JSONObject obj;
-        for (int i = 0; i < this.reposJson.length(); i++) {
-            obj = (JSONObject) this.reposJson.get(i);
+        for (Object o : this.reposJson) {
+            obj = (JSONObject) o;
             if (obj.getInt("id") == id) {
                 return obj.getString(NAME_KEY);
             }
@@ -68,8 +68,8 @@ public class UserReposWrapper {
 
     public String getRepoUrl(int id) {
         JSONObject obj;
-        for (int i = 0; i < this.reposJson.length(); i++) {
-            obj = (JSONObject) this.reposJson.get(i);
+        for (Object o : this.reposJson) {
+            obj = (JSONObject) o;
             if (obj.getInt("id") == id) {
                 return obj.getString(URL_KEY);
             }
@@ -80,8 +80,8 @@ public class UserReposWrapper {
 
     public LocalDateTime getLastUpdated(int id) {
         JSONObject obj;
-        for (int i = 0; i < this.reposJson.length(); i++) {
-            obj = (JSONObject) this.reposJson.get(i);
+        for (Object o : this.reposJson) {
+            obj = (JSONObject) o;
             if (obj.getInt("id") == id) {
                 return LocalDateTime.parse(obj.getString(UPDATED_KEY), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
             }
@@ -92,12 +92,13 @@ public class UserReposWrapper {
 
     public Optional<String> getDescription(int id) {
         JSONObject obj;
-        for (int i = 0; i < this.reposJson.length(); i++) {
-            obj = (JSONObject) this.reposJson.get(i);
+        for (Object o : this.reposJson) {
+            obj = (JSONObject) o;
             if (obj.getInt("id") == id) {
                 return Optional.ofNullable(obj.optString(DESCRIPTION_KEY, null));
             }
         }
+
 
         throw new RepoNotFoundException("Provided ID does not correspond to a repository owned by this user!");
     }

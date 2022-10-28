@@ -160,8 +160,7 @@ public class Person implements Comparable<Person> {
         getRole().ifPresent(r -> builder.append("; Role: " + r));
         getTimezone().ifPresent(t -> builder.append("; Timezone: " + t));
 
-        builder.append("; Github: ")
-            .append(getGithubUser());
+        getGithubUser().ifPresent(g -> builder.append("; Github: " + g));
         return builder.toString();
     }
 
