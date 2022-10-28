@@ -4,6 +4,8 @@ title: User Guide
 ---
 # HealthContact User Guide
 
+HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
+It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
 
 ## Features
 * Add a patient (addpatient)
@@ -33,10 +35,6 @@ title: User Guide
 * Remark a patient (remark)
 * Set a bill to be paid (setpaid)
 * Set a bill to be unpaid (setunpaid)
-
-HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
-It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
-
 ---
 # Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
@@ -51,7 +49,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
-6. Refer to the [Features](#1.-Features) below for details of each command.
+6. Refer to the _Features_ below for details of each command.
 
 # 1. Features
 
