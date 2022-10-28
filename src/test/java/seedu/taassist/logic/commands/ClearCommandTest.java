@@ -1,5 +1,6 @@
 package seedu.taassist.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
@@ -29,4 +30,15 @@ public class ClearCommandTest {
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
+    @Test
+    public void execute_inFocusMode_exitsFocusMode() {
+        Model model = new ModelManager(getTypicalTaAssist(), new UserPrefs());
+        model.enterFocusMode(model.getModuleClassList().get(0));
+
+        Model expectedModel = new ModelManager(getTypicalTaAssist(), new UserPrefs());
+        expectedModel.setTaAssist(new TaAssist());
+
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertFalse(model.isInFocusMode());
+    }
 }

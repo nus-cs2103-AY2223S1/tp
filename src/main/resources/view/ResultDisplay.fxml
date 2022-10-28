@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
-
 <StackPane fx:id="placeHolder" maxWidth="1.7976931348623157E308" styleClass="transparent-bg" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <TextArea fx:id="resultDisplay" editable="false" maxWidth="1.7976931348623157E308" styleClass="result-display" wrapText="true" />
   <Label fx:id="focusLabel" styleClass="label-bright" StackPane.alignment="TOP_RIGHT">
