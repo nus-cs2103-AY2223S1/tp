@@ -20,7 +20,7 @@ import seedu.address.model.student.Telegram;
 /**
  * Parses input arguments and creates a new AddStuCommand object
  */
-public class AddStuCommandParser {
+public class AddStuCommandParser implements Parser<AddStuCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
