@@ -52,7 +52,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "| Redo previous           |  √   | redo                                                              |\n"
             + "| undone command          |      |                                                                   |\n"
             + "+-------------------------+------+-------------------------------------------------------------------+\n"
-            + "| Exiting the program     |  x   | exit                                                              |\n"
+            + "| Exit the program        |  x   | exit                                                              |\n"
             + "+-------------------------+------+-------------------------------------------------------------------+\n"
             + "| List available commands |  x   | help                                                              |\n"
             + "| and link to User Guide  |      |                                                                   |\n"
