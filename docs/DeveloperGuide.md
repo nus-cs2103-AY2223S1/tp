@@ -172,9 +172,9 @@ The `Model` component,
 
 * stores the address book data i.e., all `Buyer`, `Supplier`, `Deliverer`, `Order`, and `Pet` objects (which are contained in
   a `UniqueBuyerList`, `UniqueDelivererList`, `UniqueSupplierList`, `UniqueOrderList`, and `UniquePetList` object).
-* stores the currently 'selected' `Buyer`, `Supplier`, `Deliverer`, `Order`, and `Pet` objects (e.g., results of a 
-  search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Buyer>`, 
-  `ObservableList<Supplier>`, `ObservableList<Deliverer>`, `ObservableList<Order>`, `ObservableList<Pet>` that can be 
+* stores the currently 'selected' `Buyer`, `Supplier`, `Deliverer`, `Order`, and `Pet` objects (e.g., results of a
+  search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Buyer>`,
+  `ObservableList<Supplier>`, `ObservableList<Deliverer>`, `ObservableList<Order>`, `ObservableList<Pet>` that can be
   'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
@@ -184,7 +184,7 @@ The `Model` component,
 <div markdown="span" class="alert alert-info">
 
 :information_source: **How Different Address Book Objects are Stored:** <br><br>
-The diagrams given below contains more details on how each `Buyer`, `Supplier`, 
+The diagrams given below contains more details on how each `Buyer`, `Supplier`,
 `Deliverer`, `Order` and `Pet` objects are stored in the Model component. <br>
 
 For more information on what each object represents, refer to the [Glossary](#glossary) section. <br><br>
@@ -192,8 +192,8 @@ For more information on what each object represents, refer to the [Glossary](#gl
 
 **`Buyer` and `Deliverer` Class**<br>
 
-Both the `Buyer` and `Deliverer` classes inherit from the `Person` class and have an orders attribute. 
-Each order has an `UniqueId` for easier identification. Hence, the orders are stored as a collection of `UniqueId` 
+Both the `Buyer` and `Deliverer` classes inherit from the `Person` class and have an orders attribute.
+Each order has an `UniqueId` for easier identification. Hence, the orders are stored as a collection of `UniqueId`
 objects to easily access unique orders. Given below is the class diagram for the **`Buyer`** Class: <br>
 
 <img src="images/ModelBuyerObjectImplementation.png" width="600" /> <br><br>
@@ -202,16 +202,16 @@ objects to easily access unique orders. Given below is the class diagram for the
 
 **`Supplier` Class**<br>
 
-Similar to the `Buyer` and `Deliverer` class, the `Supplier` class inherits from the `Person` class. However, instead of 
+Similar to the `Buyer` and `Deliverer` class, the `Supplier` class inherits from the `Person` class. However, instead of
 an orders attribute, the `Supplier` class has a pets attribute to represent the pets sold by the `Supplier`.
-Similar to an order, each pet has an `UniqueId` for easier identification. Hence, the pets are stored as a collection of 
+Similar to an order, each pet has an `UniqueId` for easier identification. Hence, the pets are stored as a collection of
 `UniqueId` objects to easily access unique pets. Given below is the class diagram for the **`Supplier`** Class: <br>
 
 <img src="images/ModelSupplierObjectImplementation.png" width="600" /> <br><br>
 
 **`Order` Class**<br>
 
-The `Order` class consists of several attributes. The most important attribute to take note of is the Buyer as 
+The `Order` class consists of several attributes. The most important attribute to take note of is the Buyer as
 every order should be made by a Buyer. Given below is the class diagram for the **`Order`** Class: <br>
 
 <img src="images/ModelOrderObjectImplementation.png" width="800" /> <br><br>
@@ -220,7 +220,7 @@ every order should be made by a Buyer. Given below is the class diagram for the 
 
 The `Pet` class consists of several attributes. The most important attribute to take note of is the Supplier as
 every pet should be sold by a Supplier. Given below is the class diagram for the **`Pet`** Class: <br>
-<img src="images/ModelPetObjectImplementation.png" width=1000 /> 
+<img src="images/ModelPetObjectImplementation.png" width=1000 />
 
 </div>
 
