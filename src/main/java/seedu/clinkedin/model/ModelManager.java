@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -171,11 +172,26 @@ public class ModelManager implements Model {
      * @return a DoubleSummaryStatistics object containing the tag statistics of the persons in the user's ClInkedIn.
      */
     @Override
-    public DoubleSummaryStatistics setStats() {
+    public DoubleSummaryStatistics getStats() {
         DoubleSummaryStatistics stats = filteredPersons.stream().mapToDouble(Person::getTagCount).collect(
                 DoubleSummaryStatistics::new, DoubleSummaryStatistics::accept, DoubleSummaryStatistics::combine);
         logger.fine("Stats: " + stats);
         return stats;
+    }
+
+    @Override
+    public HashMap<String, Integer> getRatingCount() {
+        HashMap<String, Integer> ratingCount = new HashMap<>();
+        for (Person person : filteredPersons) {
+            assert person.getRating() != null : "Person's rating should not be null";
+            String rating = person.getRating().toString();
+            if (ratingCount.containsKey(rating)) {
+                ratingCount.put(rating, ratingCount.get(rating) + 1);
+            } else {
+                ratingCount.put(rating, 1);
+            }
+        }
+        return ratingCount;
     }
 
     // =========== Filtered Person List Accessors

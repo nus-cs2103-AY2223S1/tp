@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -208,7 +209,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public DoubleSummaryStatistics setStats() {
+        public DoubleSummaryStatistics getStats() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public HashMap<String, Integer> getRatingCount() {
             throw new AssertionError("This method should not be called.");
         }
     }

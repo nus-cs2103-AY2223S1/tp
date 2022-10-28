@@ -3,6 +3,7 @@ package seedu.clinkedin.model;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -99,7 +100,9 @@ public interface Model {
     /**
      * Returns a summary of the statistics of the persons in the address book.
      */
-    DoubleSummaryStatistics setStats();
+    DoubleSummaryStatistics getStats();
+
+    HashMap<String, Integer> getRatingCount();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
