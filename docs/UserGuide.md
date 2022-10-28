@@ -48,7 +48,7 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `modpro.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-2/tp).
+2. Download the latest `modpro.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-2/tp/releases/download/v1.3.1/modpro.jar).
 
 3. Copy the file to the folder you want to use as the _home folder_ for MODPRO.
 
