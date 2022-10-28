@@ -34,7 +34,7 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
-   Some example commands you can try:
+   Some example commands you can try you may refer to [this](#features) for details of each command.
 
 * **`list`** : Lists all internships.
 
@@ -46,8 +46,6 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 
 * **`exit`** : Exits the app. 
 
-6. Refer to the [Features](#features) below for details of each command.
---------------------------------------------------------------------------------------------------------------------
 ## About this User Guide
 
 This guides aims to: <br>
@@ -230,7 +228,6 @@ Examples:
 | **`application_process`** | `pr`       |
 | **`date`**                | `d`        |
 | **`tag`**                 | `t`        |
-
 `list c/company_name` is equivalent to `list c/n`
 </div>
 
@@ -263,7 +260,6 @@ Examples:
 | **`application_process`** | `pr`       |
 | **`date`**                | `d`        |
 | **`tag`**                 | `t`        |
-
 `find c/position engineer` is equivalent to `find c/p engineer`
 </div>
 
