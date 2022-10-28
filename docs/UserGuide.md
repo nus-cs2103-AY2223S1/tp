@@ -239,7 +239,7 @@ Increase or decrease your stock for a particular item in the inventory
 
 ![Ui](images/incdeckeyin.png)
 
-5. Press the `+` icon to add your desired amount (or press the `-` icon to minus your desired amount).
+5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount).
 
 ![Ui](images/afterinc.png)
 
