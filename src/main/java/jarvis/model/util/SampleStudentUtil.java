@@ -12,7 +12,7 @@ import jarvis.model.StudentName;
  * Contains utility methods for populating {@code StudentBook} with sample data.
  */
 public class SampleStudentUtil {
-    public static Student[] getSamplePersons() {
+    public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new StudentName("Alex Yeoh"), new MatricNum("A0123456A"), new GradeProfile()),
             new Student(new StudentName("Bernice Yu"), new MatricNum("A0000000D"), new GradeProfile()),
@@ -27,7 +27,7 @@ public class SampleStudentUtil {
 
     public static ReadOnlyStudentBook getSampleStudentBook() {
         StudentBook sampleStudentBook = new StudentBook();
-        for (Student sampleStudent : getSamplePersons()) {
+        for (Student sampleStudent : getSampleStudents()) {
             sampleStudentBook.addStudent(sampleStudent);
         }
         return sampleStudentBook;

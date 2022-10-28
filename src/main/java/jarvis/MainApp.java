@@ -23,11 +23,14 @@ import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.StudentBook;
 import jarvis.model.TaskBook;
 import jarvis.model.UserPrefs;
+import jarvis.model.util.SampleLessonUtil;
 import jarvis.model.util.SampleStudentUtil;
 import jarvis.model.util.SampleTaskUtil;
+import jarvis.storage.JsonLessonBookStorage;
 import jarvis.storage.JsonStudentBookStorage;
 import jarvis.storage.JsonTaskBookStorage;
 import jarvis.storage.JsonUserPrefsStorage;
+import jarvis.storage.LessonBookStorage;
 import jarvis.storage.Storage;
 import jarvis.storage.StorageManager;
 import jarvis.storage.StudentBookStorage;
@@ -65,7 +68,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         StudentBookStorage studentBookStorage = new JsonStudentBookStorage(userPrefs.getStudentBookFilePath());
         TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
-        storage = new StorageManager(studentBookStorage, taskBookStorage, userPrefsStorage);
+        LessonBookStorage lessonBookStorage = new JsonLessonBookStorage(userPrefs.getLessonBookFilePath());
+        storage = new StorageManager(studentBookStorage, taskBookStorage, lessonBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,9 +81,10 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s student, task and lesson books and
+     * {@code userPrefs}. <br> The data from the sample student, task or lesson book will be used instead if
+     * {@code storage}'s student, task or lesson book is not found, or an empty student, task or lesson book will
+     * be used instead if errors occur when reading {@code storage}'s student, task or lesson book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyStudentBook> studentBookOptional;
@@ -90,19 +95,26 @@ public class MainApp extends Application {
         ReadOnlyLessonBook initialLessonData = new LessonBook();
         try {
             studentBookOptional = storage.readStudentBook();
-            taskBookOptional = storage.readTaskBook();
             if (!studentBookOptional.isPresent()) {
                 logger.info("Student data file not found. Will be starting with a sample student book");
             }
+            initialStudentData = studentBookOptional.orElseGet(SampleStudentUtil::getSampleStudentBook);
+
+            taskBookOptional = storage.readTaskBook();
             if (!taskBookOptional.isPresent()) {
                 logger.info("Task data file not found. Will be starting with a sample task book");
             }
             initialTaskData = taskBookOptional.orElseGet(SampleTaskUtil::getSampleTaskBook);
-            initialStudentData = studentBookOptional.orElseGet(SampleStudentUtil::getSampleStudentBook);
+
+            lessonBookOptional = storage.readLessonBook();
+            if (!lessonBookOptional.isPresent()) {
+                logger.info("Lesson data file not found. Will be starting with a sample lesson book");
+            }
+            initialLessonData = lessonBookOptional.orElseGet(SampleLessonUtil::getSampleLessonBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with empty book");
+            logger.warning("Data file(s) not in the correct format. Will be starting with empty book(s)");
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with empty book");
+            logger.warning("Problem while reading from the file(s). Will be starting with empty book(s)");
         }
         return new ModelManager(initialStudentData, initialTaskData, initialLessonData, userPrefs);
     }

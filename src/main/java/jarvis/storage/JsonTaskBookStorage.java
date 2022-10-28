@@ -15,7 +15,7 @@ import jarvis.commons.util.JsonUtil;
 import jarvis.model.ReadOnlyTaskBook;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access TaskBook data stored as a json file on the hard disk.
  */
 public class JsonTaskBookStorage implements TaskBookStorage {
 
