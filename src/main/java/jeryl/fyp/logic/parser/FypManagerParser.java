@@ -6,7 +6,22 @@ import static jeryl.fyp.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import jeryl.fyp.logic.commands.*;
+import jeryl.fyp.logic.commands.AddDeadlineCommand;
+import jeryl.fyp.logic.commands.AddStudentCommand;
+import jeryl.fyp.logic.commands.ClearCommand;
+import jeryl.fyp.logic.commands.Command;
+import jeryl.fyp.logic.commands.DeleteDeadlineCommand;
+import jeryl.fyp.logic.commands.DeleteStudentCommand;
+import jeryl.fyp.logic.commands.EditCommand;
+import jeryl.fyp.logic.commands.ExitCommand;
+import jeryl.fyp.logic.commands.FindProjectNameCommand;
+import jeryl.fyp.logic.commands.FindStudentIdCommand;
+import jeryl.fyp.logic.commands.FindStudentNameCommand;
+import jeryl.fyp.logic.commands.FindTagsCommand;
+import jeryl.fyp.logic.commands.HelpCommand;
+import jeryl.fyp.logic.commands.ListCommand;
+import jeryl.fyp.logic.commands.ListDeadlineCommand;
+import jeryl.fyp.logic.commands.MarkCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 
 /**
