@@ -26,7 +26,7 @@ import seedu.address.model.person.PersonId;
  * Adds an internship to InterNUS.
  */
 public class AddInternshipCommand extends Command {
-    public static final String COMMAND_WORD = "addi";
+    public static final String COMMAND_WORD = "add -i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a internship to InterNUS. "
             + "Parameters: "

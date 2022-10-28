@@ -126,6 +126,7 @@ public class PersonCommandTestUtil {
                 Arrays.asList(splitName[0]),
                 Collections.emptyList(),
                 Collections.emptyList(),
+                Collections.emptyList(),
                 Collections.emptyList()));
 
         assertEquals(1, model.getFilteredPersonList().size());

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,7 +26,8 @@ public class FindPersonCommand extends Command {
             + "[" + PREFIX_NAME + " NAME_KEYWORD [MORE_KEYWORDS]...] "
             + "[" + PREFIX_PHONE + " PHONE_KEYWORD [MORE_KEYWORDS]...] "
             + "[" + PREFIX_EMAIL + " EMAIL_KEYWORD [MORE_KEYWORDS]...] "
-            + "[" + PREFIX_TAG + " TAG_KEYWORD [MORE_KEYWORDS]...]\n"
+            + "[" + PREFIX_TAG + " TAG_KEYWORD [MORE_KEYWORDS]...] "
+            + "[" + PREFIX_COMPANY + "COMPANY_KEYWORD [MORE_KEYWORDS]...]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie";
 
     private final PersonContainsKeywordsPredicate predicate;

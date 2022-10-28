@@ -78,11 +78,11 @@ Examples:
 * `add -p n/John Doe e/johnd@example.com p/98765432 l/1 c/Meta`
 * `add -p n/Betsy Crowe t/friend e/betsycrowe@example.com`
 
-### Adding an Internship: `addi`
+### Adding an Internship: `add -i`
 
 Adds an Internship to InterNUS.
 
-Format: `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]`
+Format: `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Date of interview can be left blank, since it is possible that an interview is not scheduled yet.
@@ -90,8 +90,8 @@ The link index refers to the index number shown in the person list and is option
 </div>
 
 Examples:
-* `addi c/TikTok r/Data Engineer s/rejected l/1`
-* `addi c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00`
+* `add -i c/TikTok r/Data Engineer s/rejected l/1`
+* `add -i c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00`
 
 ### Listing all persons : `list -p`
 
@@ -133,23 +133,36 @@ Examples:
 - `list -i` followed by `edit -i 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
 - `list -i` followed by `edit -i 2 s/REJECTED` Edits the status of the 2nd internship to `REJECTED`.
 
-### Linking a person and an internship : `link` [coming soon]
+### Linking a person and an internship : `link`
 
 Links an existing person and internship together in InterNUS.
 
-Format: `link pi/PERSON_INDEX ii/INTERNSHIP_INDEX`
+Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
 - person at specified `PERSON_INDEX` and internship at specified `INTERNSHIP_INDEX` will be linked together such that 
 - person will be displayed as contact person of internship and internship will be displayed as internship of person
+- `PERSON_INDEX` and `INTERNSHIP_INDEX` **must be a positive integer** 1, 2, 3, …
 
 Examples:
-- `link pi/2 ii/3` will link person at index **2** to internship at index **3**
+- `link p/1 i/1` will link person at index **1** to internship at index **1**
+
+### Unlinking a person and an internship : `unlink`
+
+Unlinks an existing person and internship together in InterNUS.
+
+Format: `unlink [p/PERSON_INDEX] [i/INTERNSHIP_INDEX`]
+- At least 1 of the optional fields must be provided
+- Person and/or internship at the specified `PERSON_INDEX` and/or `INTERNSHIP_INDEX` will be unlinked
+- `PERSON_INDEX` and `INTERNSHIP_INDEX` **must be a positive integer** 1, 2, 3, …
+
+Examples:
+- `unlink p/1 i/1` will unlink person at index **1** and internship at index **1**
 
 
 ### Locating persons by name : `find -p`
 
 Finds persons whose fields contain any of the given keywords.
 
-Format: `find -p [n/ NAME_KEYWORD [MORE_KEYWORDS]...] [p/ PHONE_KEYWORD [MORE_KEYWORDS]...] [e/ EMAIL_KEYWORD [MORE_KEYWORDS]...] [t/ TAG_KEYWORD [MORE_KEYWORDS]...]`
+Format: `find -p [n/ NAME_KEYWORD [MORE_KEYWORDS]...] [p/ PHONE_KEYWORD [MORE_KEYWORDS]...] [e/ EMAIL_KEYWORD [MORE_KEYWORDS]...] [t/ TAG_KEYWORD [MORE_KEYWORDS]...] [c/ COMPANY_KEYWORD [MORE_KEYWORDS]...]`
 - The search is case-insensitive. e.g **hans** will match **Hans**
 - The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**
 - Only the fields corresponding to the specified prefixes will be searched,
@@ -282,19 +295,19 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                                                        |
-|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX] [c/COMPANY]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta`                                                      |
-| **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1`                                                                    |
-| **Clear**             | `clear`                                                                                                                                                                                                 |
-| **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                                                                               |
-| **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                                                                               |
-| **Edit person**       | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [t/TAG]…`<br> e.g.,`edit -p 2 n/James Lee e/jameslee@example.com`                                                                        |
-| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                                                                      |
-| **Find person**       | `findp KEYWORD` <br> e.g., `findp James`                                                                                                                                                                |
-| **Find internship**   | `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]` |
-| **List persons**      | `listp`                                                                                                                                                                                                 |
-| **List internships**  | `list -i`                                                                                                                                                                                               |
-| **Sort persons**      | `sort -p c/` or `sort -p n/`                                                                                                                                                                            |
-| **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                                                                        |
-| **Help**              | `help`                                                                                                                                                                                                  |
+| Action                | Format, Examples                                                                                                                                                                                                                       |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**        | `add -p n/NAME [e/EMAIL] [p/PHONE] [t/TAG]… [l/LINK_INDEX] [c/COMPANY]` <br> e.g., `add -p n/James Ho e/jamesho@example.com p/22224444 l/3 c/Meta`                                                                                     |
+| **Add internship**    | `add -i c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `add -i n/TikTok r/Data Engineer s/rejected l/1`                                                                                               |
+| **Clear**             | `clear`                                                                                                                                                                                                                                |
+| **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                                                                                                              |
+| **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                                                                                                              |
+| **Edit person**       | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [t/TAG]…`<br> e.g.,`edit -p 2 n/James Lee e/jameslee@example.com`                                                                                                       |
+| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                                                                                                     |
+| **Find person**       | `find -p [n/ NAME_KEYWORD [MORE_KEYWORDS]...] [p/ PHONE_KEYWORD [MORE_KEYWORDS]...] [e/ EMAIL_KEYWORD [MORE_KEYWORDS]...] [t/ TAG_KEYWORD [MORE_KEYWORDS]...] [c/ COMPANY_KEYWORD [MORE_KEYWORDS]...]` <br> e.g., `find -p n/John`     |
+| **Find internship**   | `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]` <br> e.g., `find -i c/inc ltd` |
+| **List persons**      | `list -p`                                                                                                                                                                                                                              |
+| **List internships**  | `list -i`                                                                                                                                                                                                                              |
+| **Sort persons**      | `sort -p c/` or `sort -p n/`                                                                                                                                                                                                           |
+| **Sort internships**  | `sort -i [c/] [d/] [s/]` <br> e.g., `sort -i d/`                                                                                                                                                                                       |
+| **Help**              | `help`                                                                                                                                                                                                                                 |
