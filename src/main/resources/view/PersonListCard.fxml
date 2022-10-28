@@ -26,7 +26,11 @@
         <padding>
           <Insets bottom="10.0" />
         </padding></Label>
-      <ListView fx:id="debts" />
+      <ListView fx:id="debts">
+        <placeholder>
+          <Label text="No debts" />
+        </placeholder>
+      </ListView>
     </VBox>
       <rowConstraints>
          <RowConstraints />

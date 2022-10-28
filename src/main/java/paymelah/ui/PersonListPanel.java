@@ -65,7 +65,7 @@ public class PersonListPanel extends UiPart<Region> {
         }
         TitledPane titledPane = new TitledPane();
         titledPane.setAlignment(Pos.CENTER);
-        titledPane.setMinHeight(300);
+        titledPane.setMinHeight(200);
 
         // Create HBox to hold our 2 labels
         HBox contentPane = new HBox();
@@ -87,7 +87,7 @@ public class PersonListPanel extends UiPart<Region> {
         name.setMaxWidth(250);
 
         Label totalAmount = new Label("Total: $" + person.getDebtsAmountAsMoney().toString());
-        totalAmount.setMaxWidth(200);
+        totalAmount.setMaxWidth(300);
 
         // Add our nodes to the contentPane
         contentPane.getChildren().addAll(
