@@ -6,6 +6,7 @@
     "address": "4th street",
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
     "income": "$1000",
     "monthly": "$1000"
   } ]

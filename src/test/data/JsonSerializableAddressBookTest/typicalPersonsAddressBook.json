@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "riskTag": "LOW",
     "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
     "income": "$1000",
     "monthly": "$200",
     "tagged" : [ "friends" ]
@@ -17,6 +18,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
+    "clientTag": "CURRENT",
     "income": "$1000",
     "monthly": "$100",
     "tagged" : [ "owesMoney", "friends" ]
@@ -27,6 +29,7 @@
     "address" : "wall street",
     "riskTag": "LOW",
     "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
     "income": "$1000",
     "monthly": "$200",
     "tagged" : [ ]
@@ -37,6 +40,7 @@
     "address" : "10th street",
     "riskTag": "LOW",
     "planTag": "Savings Plan",
+    "clientTag": "CURRENT",
     "income": "$1000",
     "monthly": "$300",
     "tagged" : [ "friends" ]
@@ -47,6 +51,7 @@
     "address" : "michegan ave",
     "riskTag": "MEDIUM",
     "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
     "income": "$6000",
     "monthly": "$250",
     "tagged" : [ ],
@@ -61,6 +66,7 @@
     "address" : "little tokyo",
     "riskTag": "MEDIUM",
     "planTag": "Savings Plan",
+    "clientTag": "CURRENT",
     "income": "$2000",
     "monthly": "$500",
     "tagged" : [ ],
@@ -75,6 +81,7 @@
     "address" : "4th street",
     "riskTag": "LOW",
     "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
     "income": "$10000",
     "monthly": "$400",
     "tagged" : [ ],

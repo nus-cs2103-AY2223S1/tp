@@ -20,6 +20,7 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ClientTag;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
@@ -38,6 +39,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String riskTag;
     private final String planTag;
+    private final String clientTag;
     private final String income;
     private final String monthly;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -53,6 +55,7 @@ class JsonAdaptedPerson {
             @JsonProperty("monthly") String monthly,
             @JsonProperty("riskTag") String riskTag,
             @JsonProperty("planTag") String planTag,
+            @JsonProperty("clientTag") String clientTag,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
@@ -61,6 +64,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.riskTag = riskTag;
         this.planTag = planTag;
+        this.clientTag = clientTag;
         this.income = income;
         this.monthly = monthly;
         if (tagged != null) {
@@ -81,6 +85,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         riskTag = source.getRiskTag().tagName;
         planTag = source.getPlanTag().tagName;
+        clientTag = source.getClientTag().tagName;
         income = source.getIncome().value;
         monthly = source.getMonthly().value;
         tagged.addAll(source.getTags().stream()
@@ -170,10 +175,18 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(PlanTag.MESSAGE_CONSTRAINTS);
         }
         final PlanTag modelPlanTag = new PlanTag(planTag);
+        if (clientTag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientTag.class.getSimpleName()));
+        }
+        if (!ClientTag.isValidClientTagName(clientTag)) {
+            throw new IllegalValueException(ClientTag.MESSAGE_CONSTRAINTS);
+        }
+        final ClientTag modelClientTag = new ClientTag(clientTag);
 
         final Set<NormalTag> modelTags = new HashSet<>(personTags);
         Person newPerson = new Person(modelName, modelPhone, modelEmail,
-                modelAddress, modelIncome, modelMonthly, modelRiskTag, modelPlanTag, modelTags);
+                modelAddress, modelIncome, modelMonthly, modelRiskTag, modelPlanTag, modelClientTag, modelTags);
         newPerson.setAppointments(modelAppointments);
 
         return newPerson;

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
@@ -36,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME, PREFIX_MONTHLY,
-                PREFIX_RISKTAG, PREFIX_PLANTAG, PREFIX_TAG);
+                PREFIX_RISKTAG, PREFIX_PLANTAG, PREFIX_CLIENTTAG, PREFIX_TAG);
 
         Index index;
 
@@ -64,6 +65,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_PLANTAG).isPresent()) {
             editPersonDescriptor.setPlanTag(ParserUtil.parsePlanTag(argMultimap.getValue(PREFIX_PLANTAG).get()));
+        }
+        if (argMultimap.getValue(PREFIX_CLIENTTAG).isPresent()) {
+            editPersonDescriptor.setClientTag(ParserUtil.parseClientTag(argMultimap.getValue(PREFIX_CLIENTTAG).get()));
         }
         if (argMultimap.getValue(PREFIX_INCOME).isPresent()) {
             editPersonDescriptor.setIncome(ParserUtil.parseIncomeLevel(argMultimap.getValue(PREFIX_INCOME).get()));

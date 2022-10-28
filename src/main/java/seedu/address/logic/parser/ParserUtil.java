@@ -22,6 +22,7 @@ import seedu.address.model.person.Location;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ClientTag;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
@@ -254,6 +255,19 @@ public class ParserUtil {
             throw new ParseException(RiskTag.MESSAGE_CONSTRAINTS);
         }
         return new RiskTag(trimmedRiskTag);
+    }
+
+    /**
+     * Parses a {@code String clientTag} into an {@code ClientTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ClientTag parseClientTag(String clientTag) throws ParseException {
+        requireNonNull(clientTag);
+        String trimmedClientTag = clientTag.trim();
+        if (!ClientTag.isValidClientTagName(trimmedClientTag)) {
+            throw new ParseException(ClientTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ClientTag(trimmedClientTag);
     }
 
     /**
