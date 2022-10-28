@@ -87,16 +87,16 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = createEditedPerson(studentToEdit, editStudentDescriptor);
+        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
+        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -114,11 +114,11 @@ public class EditCommand extends Command {
             if (editedStudent.hasMultipleClasses()) {
                 throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
             }
-            ClassStorage.updatePerson(studentToEdit, editedStudent);
+            ClassStorage.updateStudent(studentToEdit, editedStudent);
         }
 
-        model.setPerson(studentToEdit, editedStudent);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
@@ -127,7 +127,7 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}.
      * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedPerson(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());

@@ -29,7 +29,7 @@ public class TeachersPetTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), teachersPet.getPersonList());
+        assertEquals(Collections.emptyList(), teachersPet.getStudentList());
     }
 
     @Test
@@ -57,31 +57,31 @@ public class TeachersPetTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> teachersPet.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> teachersPet.hasStudent(null));
     }
 
     @Test
     public void hasPerson_personNotInTeachersPet_returnsFalse() {
-        assertFalse(teachersPet.hasPerson(ALICE));
+        assertFalse(teachersPet.hasStudent(ALICE));
     }
 
     @Test
     public void hasPerson_personInTeachersPet_returnsTrue() {
-        teachersPet.addPerson(ALICE);
-        assertTrue(teachersPet.hasPerson(ALICE));
+        teachersPet.addStudent(ALICE);
+        assertTrue(teachersPet.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInTeachersPet_returnsTrue() {
-        teachersPet.addPerson(ALICE);
+    public void hasStudent_personWithSameIdentityFieldsInTeachersPet_returnsTrue() {
+        teachersPet.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(teachersPet.hasPerson(editedAlice));
+        assertTrue(teachersPet.hasStudent(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> teachersPet.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> teachersPet.getStudentList().remove(0));
     }
 
     /**
@@ -96,7 +96,7 @@ public class TeachersPetTest {
         }
 
         @Override
-        public ObservableList<Student> getPersonList() {
+        public ObservableList<Student> getStudentList() {
             return students;
         }
 
@@ -106,7 +106,7 @@ public class TeachersPetTest {
         }
 
         @Override
-        public void sortPersons(Comparator<Student> comparator) {}
+        public void sortStudents(Comparator<Student> comparator) {}
     }
 
 }

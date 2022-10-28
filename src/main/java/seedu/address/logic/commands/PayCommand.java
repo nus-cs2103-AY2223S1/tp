@@ -63,11 +63,11 @@ public class PayCommand extends Command {
         }
 
         Student studentPaying = lastShownList.get(targetIndex.getZeroBased());
-        Student paidStudent = createPaidPerson(studentPaying, amountPaid);
+        Student paidStudent = createPaidStudent(studentPaying, amountPaid);
 
-        model.setPerson(studentPaying, paidStudent);
+        model.setStudent(studentPaying, paidStudent);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(MESSAGE_SUCCESS);
@@ -76,7 +76,7 @@ public class PayCommand extends Command {
     /**
      * Creates and returns a paid {@code Student} with the details of {@code studentPaying}.
      */
-    static Student createPaidPerson(Student studentPaying, Money amountPaid) throws CommandException {
+    static Student createPaidStudent(Student studentPaying, Money amountPaid) throws CommandException {
         assert studentPaying != null;
 
         if (!studentPaying.isOwingMoney()) {

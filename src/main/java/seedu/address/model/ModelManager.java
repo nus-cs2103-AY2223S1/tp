@@ -40,7 +40,7 @@ public class ModelManager implements Model {
 
         this.teachersPet = new TeachersPet(teachersPet);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.teachersPet.getPersonList());
+        filteredStudents = new FilteredList<>(this.teachersPet.getStudentList());
         filteredSchedule = new FilteredList<>(this.teachersPet.getScheduleList());
         this.teachersPetHistory = new ArrayList<>();
     }
@@ -97,27 +97,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Student student) {
+    public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return teachersPet.hasPerson(student);
+        return teachersPet.hasStudent(student);
     }
 
     @Override
-    public void deletePerson(Student target) {
-        teachersPet.removePerson(target);
+    public void deleteStudent(Student target) {
+        teachersPet.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Student student) {
-        teachersPet.addPerson(student);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addStudent(Student student) {
+        teachersPet.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Student target, Student editedStudent) {
+    public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-        teachersPet.setPerson(target, editedStudent);
+        teachersPet.setStudent(target, editedStudent);
     }
 
     @Override
@@ -127,9 +127,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortPersons(Comparator<Student> comparator) {
+    public void sortStudents(Comparator<Student> comparator) {
         requireNonNull(comparator);
-        teachersPet.sortPersons(comparator);
+        teachersPet.sortStudents(comparator);
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -139,12 +139,12 @@ public class ModelManager implements Model {
      * {@code versionedTeachersPet}
      */
     @Override
-    public ObservableList<Student> getFilteredPersonList() {
+    public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Student> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }

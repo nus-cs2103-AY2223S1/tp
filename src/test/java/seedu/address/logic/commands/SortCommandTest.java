@@ -24,7 +24,7 @@ public class SortCommandTest {
         SortCommand sortCommand = new SortCommand(Type.NAME, Order.ASC);
         String expectedMessage = SortCommand.MESSAGE_SUCCESS;
         ModelManager expectedModel = new ModelManager(model.getTeachersPet(), new UserPrefs());
-        expectedModel.sortPersons(SortCommand.generateComparator(Type.NAME, Order.ASC));
+        expectedModel.sortStudents(SortCommand.generateComparator(Type.NAME, Order.ASC));
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
 

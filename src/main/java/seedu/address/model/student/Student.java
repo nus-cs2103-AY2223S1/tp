@@ -158,7 +158,7 @@ public class Student {
      * Returns true if both persons have the same phone number.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Student otherStudent) {
+    public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }

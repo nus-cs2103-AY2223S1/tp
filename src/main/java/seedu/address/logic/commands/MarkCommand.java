@@ -65,7 +65,7 @@ public class MarkCommand extends Command {
         }
 
         Student studentToMark = lastShownList.get(targetIndex.getZeroBased());
-        Student markedStudent = createMarkedPerson(studentToMark);
+        Student markedStudent = createMarkedStudent(studentToMark);
 
         if (markedStudent.equals(studentToMark)) {
             throw new CommandException(MESSAGE_MARKED_PREVIOUSLY);
@@ -74,9 +74,9 @@ public class MarkCommand extends Command {
         ClassStorage.saveClass(markedStudent, this.targetIndex.getZeroBased());
         ClassStorage.removeExistingClass(studentToMark);
 
-        model.setPerson(studentToMark, markedStudent);
+        model.setStudent(studentToMark, markedStudent);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(MESSAGE_SUCCESS);
@@ -85,7 +85,7 @@ public class MarkCommand extends Command {
     /**
      * Creates and returns a marked {@code Student} with the details of {@code studentToMark}.
      */
-    static Student createMarkedPerson(Student studentToMark) throws CommandException {
+    static Student createMarkedStudent(Student studentToMark) throws CommandException {
         assert studentToMark != null;
 
         if (studentToMark.getMarkStatus().isMarked() == true) {

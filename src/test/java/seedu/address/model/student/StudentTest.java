@@ -37,38 +37,38 @@ public class StudentTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameStudent() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameStudent(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameStudent(null));
 
         // same name, all other attributes different -> returns false
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns true (same student by same phone number)
         editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameStudent(editedAlice));
 
         // name differs in case, all other attributes same -> returns true
         Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertTrue(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSameStudent(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertTrue(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSameStudent(editedBob));
 
         // different phone number -> returns false
         editedBob = new StudentBuilder(BOB).withPhone(EDITED_PHONE).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSameStudent(editedBob));
 
         // different next of kin phone number -> returns true
         editedBob = new StudentBuilder(BOB).withNokPhone(EDITED_PHONE).build();
-        assertTrue(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSameStudent(editedBob));
     }
 
     @Test

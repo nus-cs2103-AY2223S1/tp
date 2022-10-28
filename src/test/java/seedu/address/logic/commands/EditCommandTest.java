@@ -45,28 +45,28 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new TeachersPet(model.getTeachersPet()), new UserPrefs());
         ClassStorage classStorage = new ClassStorage(model);
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
+        expectedModel.setStudent(model.getFilteredPersonList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Student lastStudent = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredPersonList().size());
+        Student lastStudent = model.getFilteredPersonList().get(indexLastStudent.getZeroBased());
 
-        StudentBuilder personInList = new StudentBuilder(lastStudent);
-        Student editedStudent = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        StudentBuilder studentInList = new StudentBuilder(lastStudent);
+        Student editedStudent = studentInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new TeachersPet(model.getTeachersPet()), new UserPrefs());
-        expectedModel.setPerson(lastStudent, editedStudent);
+        expectedModel.setStudent(lastStudent, editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -95,7 +95,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new TeachersPet(model.getTeachersPet()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
+        expectedModel.setStudent(model.getFilteredPersonList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
