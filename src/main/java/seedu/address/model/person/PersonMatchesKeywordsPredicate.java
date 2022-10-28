@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
+
+import javax.lang.model.type.NullType;
 
 /**
  * Tests that a {@code Person} matches any of the keywords given.
@@ -67,6 +70,8 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     private double findSimilarity(String x, String y) {
         double maxLength = Double.max(x.length(), y.length());
         if (maxLength > 0) {
+            assert ((maxLength - getLevenshteinDist(x, y)) / maxLength) <= 1 :
+                    "findSimilarity method not working properly";
             return (maxLength - getLevenshteinDist(x, y)) / maxLength;
         }
         return 1.0;
@@ -104,7 +109,9 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
 
     private boolean matchesAddress(Person person) {
         if (person.getAddress().isPresent()) {
-            return findSimilarity(keywords, String.valueOf(person.getAddress().get().value)) > 0.5
+            assert person.getAddress().get() != null : "Error with matchesAddress method";
+            return findSimilarity(keywords, String.valueOf(
+                    person.getAddress().get().value)) > 0.5
                     || StringUtil.containsWordIgnoreCase(
                             String.valueOf(person.getAddress().get().value), keywords);
         } else {
@@ -124,12 +131,14 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
 
     private boolean matchesGitHubUser(Person person) {
         return findSimilarity(keywords, person.getGitHubUser().toString()) > 0.5
-                || StringUtil.containsWordIgnoreCase(person.getGitHubUser().toString(), keywords);
+                || StringUtil.containsWordIgnoreCase(
+                        person.getGitHubUser().toString(), keywords);
     }
 
     private boolean matchesTags(Person person) {
         Object[] tags = person.getTags().toArray();
         for (int i = 0; i < tags.length; i++) {
+            assert tags[i] instanceof Tag : "Error with tags list of Person";
             if (findSimilarity(keywords, tags[i].toString()) > 0.5
                     || StringUtil.containsWordIgnoreCase(tags[i].toString(), keywords)) {
                 return true;
