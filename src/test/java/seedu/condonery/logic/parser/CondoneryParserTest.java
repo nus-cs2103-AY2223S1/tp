@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.client.FindClientCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
+import seedu.condonery.logic.commands.property.ClearPropertyCommand;
 import seedu.condonery.logic.commands.property.DeletePropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
@@ -44,8 +44,8 @@ public class CondoneryParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearPropertyCommand.COMMAND_WORD) instanceof ClearPropertyCommand);
+        assertTrue(parser.parseCommand(ClearPropertyCommand.COMMAND_WORD + " 3") instanceof ClearPropertyCommand);
     }
 
     @Test

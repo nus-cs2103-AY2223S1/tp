@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
-import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.ExitCommand;
@@ -19,10 +18,10 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.CondoneryParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.ReadOnlyClientDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 import seedu.condonery.storage.Storage;
 
 /**
@@ -37,7 +36,7 @@ public class LogicManager implements Logic {
     private final CondoneryParser condoneryParser;
 
     private final Collection<Class<? extends Command>> commandsToIgnore =
-            Arrays.asList(ClearCommand.class, HelpCommand.class, ExitCommand.class, UndoCommand.class);
+            Arrays.asList(HelpCommand.class, ExitCommand.class, UndoCommand.class);
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.

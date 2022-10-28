@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -40,6 +42,8 @@ public class MainWindow extends UiPart<Stage> {
     private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private final List<String> previousCommands = new ArrayList<>();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -131,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPropertyDirectoryFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, previousCommands);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -188,21 +192,6 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanel.refresh();
     }
 
-    /**
-     * Toggles the view to show Properties instead
-     */
-    @FXML
-    public void handleListProperties() {
-        // TODO
-    }
-
-    /**
-     * Toggles the view to show Clients instead
-     */
-    @FXML
-    public void handleListClients() {
-        // TODO
-    }
 
     void show() {
         primaryStage.show();
@@ -231,6 +220,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            previousCommands.add(commandText);
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());

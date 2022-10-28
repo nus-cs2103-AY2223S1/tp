@@ -1,4 +1,4 @@
-package seedu.condonery.model;
+package seedu.condonery.model.client;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,8 +6,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.condonery.model.client.Client;
-import seedu.condonery.model.client.UniqueClientList;
+import seedu.condonery.model.client.exceptions.UniqueClientNotFoundException;
 
 /**
  * Wraps all data at the Condonery level
@@ -31,7 +30,7 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
     public ClientDirectory() {}
 
     /**
-     * Creates an ClientDirectory using the Properties in the {@code toBeCopied}
+     * Creates an ClientDirectory using the Clients in the {@code toBeCopied}
      */
     public ClientDirectory(ReadOnlyClientDirectory toBeCopied, Path imageDirectoryPath) {
         this();
@@ -45,11 +44,11 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the client list with {@code properties}.
-     * {@code properties} must not contain duplicate properties.
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
      */
-    public void setProperties(List<Client> properties) {
-        this.clients.setClients(properties);
+    public void setClients(List<Client> clients) {
+        this.clients.setClients(clients);
     }
 
     /**
@@ -58,7 +57,7 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
     public void resetData(ReadOnlyClientDirectory newData) {
         requireNonNull(newData);
 
-        setProperties(newData.getClientList());
+        setClients(newData.getClientList());
     }
 
     //// client-level operations
@@ -100,6 +99,30 @@ public class ClientDirectory implements ReadOnlyClientDirectory {
     }
 
     //// util methods
+
+    /**
+     * Returns true if a client whos name contains the given String exists in the client directory.
+     */
+    public boolean hasClientName(String substring) {
+        return clients.hasClientName(substring);
+    }
+
+    /**
+     * Returns true if only one unique client whos name contains the given String exists in the client directory.
+     */
+    public boolean hasUniqueClientName(String substring) {
+        return clients.hasUniqueClientName(substring);
+    }
+
+    /**
+     * Returns a unique client whos name contains the given string.
+     *
+     * @throws UniqueClientNotFoundException if the substring does not match to a unique
+     *                                 client.
+     */
+    public Client getUniqueClientByName(String substring) throws UniqueClientNotFoundException {
+        return clients.getUniqueClientByName(substring);
+    }
 
     @Override
     public String toString() {

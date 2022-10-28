@@ -40,4 +40,7 @@
       </VBox>
     </HBox>
   </GridPane>
+  <VBox>
+    <Label fx:id="propertyType" styleClass="cell_big_label" text="\$propertyType" textAlignment="RIGHT" />
+  </VBox>
 </HBox>

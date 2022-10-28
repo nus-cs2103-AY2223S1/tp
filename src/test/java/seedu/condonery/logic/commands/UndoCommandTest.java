@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
-import seedu.condonery.model.ClientDirectory;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
-import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.UserPrefs;
+import seedu.condonery.model.client.ClientDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyDirectory;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 import seedu.condonery.testutil.PropertyBuilder;
 import seedu.condonery.testutil.TypicalProperties;

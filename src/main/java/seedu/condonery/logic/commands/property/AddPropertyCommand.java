@@ -2,15 +2,21 @@ package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.utils.ParsePropertyInterestedClients;
 
 /**
  * Adds a property to Condonery.
@@ -23,12 +29,17 @@ public class AddPropertyCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_PROPERTY_TYPE + "PROPERTY_TYPE "
+            + "[" + PREFIX_IMAGE_UPLOAD + "] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "PINNACLE@DUXTON "
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
             + PREFIX_PRICE + "1000000 "
+            + PREFIX_PROPERTY_TYPE + "HDB "
             + PREFIX_TAG + "High-End "
+            + PREFIX_TAG + "Available "
+            + PREFIX_PROPERTY_TYPE + "HDB"
             + PREFIX_TAG + "Available";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
@@ -37,6 +48,8 @@ public class AddPropertyCommand extends Command {
 
     private final Property toAdd;
     private final boolean hasImage;
+    private final ArrayList<String> missingClients = new ArrayList<>();
+    private final ArrayList<String> duplicateClients = new ArrayList<>();
 
     /**
      * Creates an AddCommand to add the specified {@code Property}
@@ -56,6 +69,31 @@ public class AddPropertyCommand extends Command {
         this.hasImage = hasImage;
     }
 
+    /**
+     * Gets an updated sucess message based on the presence of missing clients or duplicate clients.
+     */
+    private String getUpdatedSuccessMessage(ArrayList<String> missingClients, ArrayList<String> duplicateClients) {
+        String newSuccessMessage = MESSAGE_SUCCESS + ". ";
+
+        if (missingClients.isEmpty() && duplicateClients.isEmpty()) {
+            newSuccessMessage = newSuccessMessage + "No rejected client names.";
+        } else {
+            if (!missingClients.isEmpty()) {
+                newSuccessMessage = newSuccessMessage + "Missing clients: " + missingClients
+                        .stream()
+                        .collect(Collectors.joining(" "))
+                        + ". ";
+            }
+            if (!duplicateClients.isEmpty()) {
+                newSuccessMessage = newSuccessMessage + "Duplicate clients: " + duplicateClients
+                        .stream()
+                        .collect(Collectors.joining(" "))
+                        + ". ";
+            }
+        }
+        return newSuccessMessage;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -65,16 +103,22 @@ public class AddPropertyCommand extends Command {
         }
         toAdd.setImageDirectoryPath(model.getUserPrefs().getUserImageDirectoryPath());
 
-        model.addProperty(toAdd);
+        ParsePropertyInterestedClients parser = new ParsePropertyInterestedClients(
+                toAdd, model);
+
+        Property newPropertyToAdd = parser.getNewProperty();
+
+        String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingClients(), parser.getDuplicateClients());
+
+        model.addProperty(newPropertyToAdd);
         if (this.hasImage) {
             return new CommandResult(
-                String.format(MESSAGE_SUCCESS, toAdd),
-                false,
-                false,
-                "property-" + toAdd.getCamelCaseName()
-            );
+                    String.format(newMessageSuccess, newPropertyToAdd),
+                    false,
+                    false,
+                    "property-" + newPropertyToAdd.getCamelCaseName());
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(newMessageSuccess, newPropertyToAdd));
     }
 
     @Override

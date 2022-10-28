@@ -3,11 +3,13 @@ package seedu.condonery.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX;
 import static seedu.condonery.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_PRICE_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TYPE_DESC_SCOTTS;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalProperties.AMY;
+import static seedu.condonery.testutil.TypicalProperties.SCOTTS;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -23,10 +25,10 @@ import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
-import seedu.condonery.model.ReadOnlyClientDirectory;
-import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.UserPrefs;
+import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.ReadOnlyPropertyDirectory;
 import seedu.condonery.storage.JsonClientDirectoryStorage;
 import seedu.condonery.storage.JsonPropertyDirectoryStorage;
 import seedu.condonery.storage.JsonUserPrefsStorage;
@@ -86,8 +88,13 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddPropertyCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY + PRICE_DESC_AMY;
-        Property expectedProperty = new PropertyBuilder(AMY).withTags().build();
+        String addCommand = AddPropertyCommand.COMMAND_WORD
+                + PROPERTY_NAME_DESC_SCOTTS
+                + PROPERTY_ADDRESS_DESC_SCOTTS
+                + PROPERTY_PRICE_DESC_SCOTTS
+                + PROPERTY_TAGS_DESC_SCOTTS
+                + PROPERTY_TYPE_DESC_SCOTTS;
+        Property expectedProperty = new PropertyBuilder(SCOTTS).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addProperty(expectedProperty);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

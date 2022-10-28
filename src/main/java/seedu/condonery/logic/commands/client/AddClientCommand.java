@@ -5,11 +5,15 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.utils.ParseClientInterestedProperties;
 
 /**
  * Adds a property to Condonery.
@@ -35,6 +39,9 @@ public class AddClientCommand extends Command {
     private final Client toAdd;
     private final boolean hasImage;
 
+    private final ArrayList<String> missingProperties = new ArrayList<>();
+    private final ArrayList<String> duplicateProperties = new ArrayList<>();
+
     /**
      * Creates an AddCommand to add the specified {@code Property}
      */
@@ -53,6 +60,32 @@ public class AddClientCommand extends Command {
         this.hasImage = hasImage;
     }
 
+    /**
+     * Gets an updated sucess message based on the presence of missing properties or duplicate properties.
+     */
+    private String getUpdatedSuccessMessage(ArrayList<String> missingProperties,
+                ArrayList<String> duplicateProperties) {
+        String newSuccessMessage = MESSAGE_SUCCESS + ". ";
+
+        if (missingProperties.isEmpty() && duplicateProperties.isEmpty()) {
+            newSuccessMessage = newSuccessMessage + " No rejected property names.";
+        } else {
+            if (!missingProperties.isEmpty()) {
+                newSuccessMessage = newSuccessMessage + "Missing properties: " + missingProperties
+                        .stream()
+                        .collect(Collectors.joining(" "))
+                        + ". ";
+            }
+            if (!duplicateProperties.isEmpty()) {
+                newSuccessMessage = newSuccessMessage + "Duplicate properties: " + duplicateProperties
+                        .stream()
+                        .collect(Collectors.joining(" "))
+                        + ". ";
+            }
+        }
+        return newSuccessMessage;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -61,18 +94,27 @@ public class AddClientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
-        toAdd.setImageDirectoryPath(model.getUserPrefs().getUserImageDirectoryPath());
-        model.addClient(toAdd);
+
+        ParseClientInterestedProperties parser = new ParseClientInterestedProperties(
+            toAdd, model);
+
+        Client newClientToAdd = parser.getNewClient();
+        newClientToAdd.setImageDirectoryPath(model.getUserPrefs().getUserImageDirectoryPath());
+
+        String newMessageSuccess = getUpdatedSuccessMessage(parser.getMissingProperties(),
+            parser.getDuplicateProperties());
+
+        model.addClient(newClientToAdd);
 
         if (this.hasImage) {
             return new CommandResult(
-                String.format(MESSAGE_SUCCESS, toAdd),
+                String.format(newMessageSuccess, toAdd),
                 false,
                 false,
-                "client-" + toAdd.getCamelCaseName()
+                "client-" + newClientToAdd.getCamelCaseName()
             );
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(newMessageSuccess, newClientToAdd));
     }
 
     @Override
