@@ -29,7 +29,7 @@ ConnectNUS is a **desktop app for managing contacts, optimised for use via a Com
   - [Filtering Planned Modules](#filtering-planned-modules)
   - [Filtering Previous Modules](#filtering-previous-modules)
   - [Next Semester](#next-semester)
-  - [Undo / Redo](#undo-redo)
+  - [Undo / Redo](#undo--redo--undo-redo)
   - [Exiting the program](#exiting-the-program--exit)
 - [Command Summary](#command-summary)
 
