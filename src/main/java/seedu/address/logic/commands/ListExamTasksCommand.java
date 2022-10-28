@@ -20,7 +20,7 @@ public class ListExamTasksCommand extends Command {
 
     public static final String MESSAGE_USAGE = "e " + COMMAND_WORD
             + ": Show all tasks linked to a specific exam identified by the index number used in the exam list.\n"
-            + "Parameter: INDEX (must be a positive integer)\n"
+            + "Parameter: INDEX\n"
             + "Example: e " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks from exam: %1$s";

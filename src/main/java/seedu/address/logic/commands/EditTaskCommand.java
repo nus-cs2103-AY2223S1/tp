@@ -31,7 +31,7 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_USAGE = FULL_COMMAND_WORD + ": Edits the details of the task at the specified "
         + "INDEX in the displayed task list. "
         + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: INDEX (must be a positive integer) "
+        + "Parameters: INDEX "
         + "[" + PREFIX_MODULE + "MODULE]* "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]*\n"
         + "Example: " + FULL_COMMAND_WORD + " 1 "

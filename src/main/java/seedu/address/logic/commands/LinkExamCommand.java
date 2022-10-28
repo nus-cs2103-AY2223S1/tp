@@ -22,7 +22,8 @@ public class LinkExamCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String MESSAGE_USAGE = "e " + COMMAND_WORD + ": links the exam to the task.\n"
             + "Parameters: " + PREFIX_EXAM_INDEX + "EXAM_INDEX" + " "
-            + PREFIX_TASK_INDEX + "TASK_INDEX";
+            + PREFIX_TASK_INDEX + "TASK_INDEX\n"
+            + "Example: " + "e " + COMMAND_WORD + " t/1 e/1";
     public static final String EXAM_LINKED_SUCCESS = "The exam has been successfully linked to the task!";
     public static final String TASK_ALREADY_LINKED = "This task is already linked to an exam";
     public static final String DIFFERENT_MODULE_CODE = "This task has a different module code from the exam.";

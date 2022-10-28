@@ -20,7 +20,7 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = FULL_COMMAND_WORD
         + ": Indicates the task at the specified INDEX in the displayed task list is not completed.\n"
-        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Parameters: INDEX\n"
         + "Example: " + FULL_COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Successfully Marked Task: %1$s";

@@ -33,7 +33,7 @@ public class EditExamCommand extends Command {
     public static final String MESSAGE_USAGE = "e " + COMMAND_WORD + ": Edits the details of the exam identified "
             + "by the index number used in the displayed exam list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX "
             + "[" + PREFIX_MODULE + "MODULE]* "
             + "[" + PREFIX_EXAM_DESCRIPTION + "EXAM DESCRIPTION]* "
             + "[" + PREFIX_EXAM_DATE + "EXAM DATE]* " + "\n"

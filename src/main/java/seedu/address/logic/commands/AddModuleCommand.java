@@ -15,10 +15,12 @@ import seedu.address.model.module.Module;
 public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = "m " + COMMAND_WORD + ": adds a module to the module list.\n"
-            + "parameters: "
+            + "Parameters: "
             + PREFIX_MOD_CODE + "MODULE_CODE "
             + PREFIX_MOD_NAME + "MODULE_NAME "
-            + PREFIX_MOD_CREDIT + "MODULAR_CREDIT";
+            + PREFIX_MOD_CREDIT + "MODULAR_CREDIT\n"
+            + "Example: " + "m " + COMMAND_WORD + " " + PREFIX_MOD_CODE + "CS2100 "
+            + PREFIX_MOD_NAME + "Computer organisation " + PREFIX_MOD_CREDIT + "4";
     public static final String MODULE_ADDED_SUCCESS = "Module has been added successfully!";
 
     public static final String DUPLICATE_MODULE_DETECTED = "This module already exists! "
