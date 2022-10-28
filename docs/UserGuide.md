@@ -23,7 +23,7 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     4. [Listing all persons](#d-listing-all-persons--list) : `list`
     5. [Clearing all entries](#e-clearing-all-entries--clear) : `clear`
     6. [Find a person](#f-find-entries-by-keywords-of-fields--find-keyword-eg-find-john) : `find`
-    7. [Sorting entries by field](#g-sort-entries-by-field--sort-prefix-eg-sort-n) : `sort`
+    7. [Sorting entries by field](#g-sort-entries-by-field--sort-field_prefix-eg-sort-n) : `sort`
   * [Enhanced Features](#enhanced-features):
     1. [Quickly edit a person](#a-quickly-edit-a-persons-features)
     2. [Add a person to favorite](#b-add-a-person-to-favorite--fav) : `fav`
@@ -31,7 +31,9 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     4. [Remove a person from a group](#d-removing-a-person-from-a-group--ungroup) : `ungroup`
     5. [Open a group window](#e-opening-a-group-window--group) : `group`
     6. [Email all persons in a group](#f-email-all-persons-in-a-group--emailall) : `emailall`
-    7. [Find persons with a preferred social media](#g-find-persons-with-a-preferred-social-media--social) : `social`
+    7. [Add a person's social](#g-add-a-persons-socials--include) : `include`
+    8. [Set a person's preferred social media](#h-set-a-persons-preferred-social-media)
+    9. [Find persons with a preferred social media](#i-find-persons-with-a-preferred-social-media--social) : `social`
   * [General App Features](#general-app-features):
     1. [Viewing help](#a-viewing-help--help) : `help`
     2. [Viewing history](#b-viewing-history--history) : `history`
@@ -296,7 +298,13 @@ Format: `emailall GROUPNAME`
 Examples:
 * `emailall friends` opens the email client to all persons in the group `friends`.
 
-### g. Find persons with a preferred social media : `social`
+### g. Add a person's socials : `include`
+// HERE
+
+### h. Set a person's preferred social media
+// HERE
+
+### i. Find persons with a preferred social media : `social`
 
 Filters the current list to people who set their preferred social media to the input.
 
