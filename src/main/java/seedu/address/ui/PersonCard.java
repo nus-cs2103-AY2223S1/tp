@@ -8,6 +8,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 /**
  * An UI component that displays information of a {@code Person}.
  */
@@ -42,6 +44,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        address.setVisible(person.getAddress().isPresent());
         person.getAddress().ifPresent(a -> address.setText(a.value));
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
