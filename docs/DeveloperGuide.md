@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -52,7 +53,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -s id/A0123456X`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -s i/A0123456X`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -73,7 +74,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CompletedStudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -98,9 +99,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete -s id/A0123456X")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete -s i/A0123456X")` API call.
 
-![Interactions Inside the Logic Component for the `delete -s id/A0123456X` Command](images/DeleteStudentSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete -s i/A0123456X` Command](images/DeleteStudentSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -218,10 +219,10 @@ The following activity diagram summarizes what happens when a user executes a de
 #### Design considerations
 
 The delete student command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
-to find students taking machine learning projects before doing `delete -s id/A0123456X` to remove student from FYP Manager.
+to find students taking machine learning projects before doing `delete -s i/A0123456X` to remove student from FYP Manager.
 
 This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
-By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student id, users can delete the student from the FYPManager once he/she drops the FYP.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the student from the FYPManager once he/she drops the FYP.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -319,14 +320,14 @@ Step 1: The Professor launches the application for the first time. `FypManager` 
 current FypManager state.
 
 Step 2: The Professor tries adding a student to the FypManager by executing the command
-`add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
+`add i/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
 the project has just been added.
 
 ![MarkCommandState1](images/MarkCommandState1.png)
 
 Step 3: Suppose that the student Jane Doe has now started on the project. The Professor wishes to update the
 project status for Jane to be `IP` instead of `YTS`, hence the Professor will execute the command
-`mark id/A0123456G s/IP` to update the status accordingly.
+`mark i/A0123456G s/IP` to update the status accordingly.
 
 ![MarkCommandState2](images/MarkCommandState2.png)
 
@@ -418,7 +419,7 @@ implementation supports finding keywords in four fields:
 
 This is a new enhancement in v1.3, as older iterations only supported finding projects by their titles,
 while the newest iteration supports finding projects by any of the above four fields. We hope that this allows the user
-to be able to filter the projects more efficiently. (for instance, by specialisations:
+to be able to filter the projects more efficiently. (for instance, by project names:
 ***NeuralNetwork***, ***Blockchain***, etc.)
 
 The FindCommand feature takes in a specified field (one of the four aforementioned fields), and a keyword specified
@@ -476,29 +477,29 @@ The following sequence diagram shows how the FindCommand operation works:
 ### `Sort` Feature
 #### Proposed Implementation
 
-This feature allows professors to sort the FYP projects by their specialisation, or by
+This feature allows professors to sort the FYP projects by their project name, or by
 the project status in the order {YTS,IP,DONE}. 
 
 #### Implementation details
-The `Sort` feature is facilitated by 2 main Commands: `SortSpecialisationCommand` and `SortProjectStatusCommand`.
+The `Sort` feature is facilitated by 2 main Commands: `SortProjectNameCommand` and `SortProjectStatusCommand`.
 Both of these commands extend from the abstract `Command`class. Note that we have fixed the sorting order
 of `SortProjectStatusCommand` to be sorted in the order {YTS,IP,DONE} since projects that have YTS are more urgent,
 hence we have placed them at the front of our FYP manager, followed by those that are IP, and finally 
 those that are DONE which are of the least urgency.
 
-We give an example usage scenario of `SortSpecialisationCommand` and `SortProjectStatusCommand`
-* `SortSpecialisationCommand`
-    1. The user enters `sort -p` if he wishes to execute the `SortSpecialisationCommand`
-    2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
-    3. `LogicManager` executes the `SortSpecialisationCommand` using the `LogicManager#execute()` method.
-    4. `SortSpecialisationCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be
-       identified as a `SortSpecialisationCommand` so that our `MainWindow` will show the sorted List.
+We give an example usage scenario of `SortProjectNameCommand` and `SortProjectStatusCommand`
+* `SortProjectNameCommand`
+    1. The user enters `sort -p` if he wishes to execute the `SortProjectNameCommand`
+    2. FypManagerParser creates a new `SortProjectNameCommand` after preliminary check of user input.
+    3. `LogicManager` executes the `SortProjectNameCommand` using the `LogicManager#execute()` method.
+    4. `SortProjectNameCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be
+       identified as a `SortProjectNameCommand` so that our `MainWindow` will show the sorted List.
 
-![SortSpecialisationCommandSequenceDiagram](images/SortSpecialisationCommandSequenceDiagram.jpg)
+![SortProjectNameCommandSequenceDiagram](images/SortProjectNameCommandSequenceDiagram.jpg)
 
 * `SortProjectStatusCommand`
     1. The user enters `sort -s` if he wishes to execute the `SortProjectStatusCommand`
-    2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
+    2. FypManagerParser creates a new `SortProjectNameCommand` after preliminary check of user input.
     3. `LogicManager` executes the `SortProjectStatusCommand` using the `LogicManager#execute()` method.
     4. `SortProjectStatusCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be 
         identified as a `SortProjectStatusCommand` so that our `MainWindow` will show the sorted List.

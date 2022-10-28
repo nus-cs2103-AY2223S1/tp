@@ -6,18 +6,19 @@ import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import jeryl.fyp.model.Model;
 
 /**
- * Sorts all projects in the FYP manager by the specialisation, which is equivalent to the project name
+ * Sorts all projects in the FYP manager by project name.
  */
-public class SortSpecialisationCommand extends Command {
+public class SortProjectNameCommand extends Command {
 
     public static final String COMMAND_WORD = "sort -p";
 
+    public static final String ALTERNATIVE_COMMAND_WORD = "sort";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the FYP projects "
-            + "by the specialisation of the  projects followed by alphabetical order"
-            + "Note that the format is fixed, hence only " + COMMAND_WORD + " is accepted"
+            + "by the project names in alphabetical order.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Projects sorted by specialisation!";
+    public static final String MESSAGE_SUCCESS = "Projects sorted by project name!";
 
     @Override
     public CommandResult execute(Model model) {
@@ -34,12 +35,12 @@ public class SortSpecialisationCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SortSpecialisationCommand)) {
+        if (!(other instanceof SortProjectNameCommand)) {
             return false;
         }
 
         // state check
-        SortSpecialisationCommand e = (SortSpecialisationCommand) other;
+        SortProjectNameCommand e = (SortProjectNameCommand) other;
         return COMMAND_WORD.equals(e.COMMAND_WORD);
     }
 }

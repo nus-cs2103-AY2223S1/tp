@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -105,6 +106,33 @@ public class FypManagerTest {
         @Override
         public ObservableList<Student> getCompletedStudentList() {
             return students.filtered(student -> student.getProjectStatus().projectStatus.equals("DONE"));
+        }
+
+        @Override
+        public ObservableList<Student> getSortedByProjectNameUncompletedStudentList() {
+            return getUncompletedStudentList().sorted(Comparator.comparing(s -> s.getProjectName().toString()
+                    .toLowerCase()));
+        }
+
+        @Override
+        public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
+            return getUncompletedStudentList().sorted((a, b) -> {
+                int statusComp = b.getProjectStatus().toString().toLowerCase()
+                        .compareTo(a.getProjectStatus().toString().toLowerCase());
+
+                if (statusComp != 0) {
+                    return statusComp;
+                }
+
+                return a.getProjectName().toString().toLowerCase()
+                        .compareTo(b.getProjectName().toString().toLowerCase());
+            });
+        }
+
+        @Override
+        public ObservableList<Student> getSortedCompletedStudentList() {
+            return getCompletedStudentList().sorted(Comparator.comparing(s -> s.getProjectName().toString()
+                    .toLowerCase()));
         }
     }
 

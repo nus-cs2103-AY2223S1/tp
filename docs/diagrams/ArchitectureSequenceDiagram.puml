@@ -7,10 +7,10 @@ Participant ":Logic" as logic LOGIC_COLOR
 Participant ":Model" as model MODEL_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-user -[USER_COLOR]> ui : "delete -s id/A0123456X"
+user -[USER_COLOR]> ui : "delete -s i/A0123456X"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("delete -s id/A0123456X")
+ui -[UI_COLOR]> logic : execute("delete -s i/A0123456X")
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> model : deleteStudent(p)

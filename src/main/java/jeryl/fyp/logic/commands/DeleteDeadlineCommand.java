@@ -6,7 +6,6 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_DEADLINE_RANK;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 
 import jeryl.fyp.commons.core.Messages;
-import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.Deadline;
@@ -23,9 +22,9 @@ public class DeleteDeadlineCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the deadline identified by the student ID & rank provided.\n"
             + "Parameters: "
-            + PREFIX_STUDENT_ID + "STUDENT_ID"
-            + PREFIX_DEADLINE_RANK + "RANK\n"
-            + "(STUDENT_ID must be a valid student id that is already in the FYP manager)\n"
+            + PREFIX_STUDENT_ID + "STUDENT_ID "
+            + PREFIX_DEADLINE_RANK + "DEADLINE_RANK\n"
+            + "(STUDENT_ID must be a valid student ID that is already in the FYP manager)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_DEADLINE_RANK + "1";
@@ -37,8 +36,8 @@ public class DeleteDeadlineCommand extends Command {
 
     /**
      * Contructs a DeleteDeadlineCommand with specified student, and the rank of task to be deleted.
-     * @param studentId The student's Id.
-     * @param number rank of task to be deleted.
+     * @param studentId The student's ID.
+     * @param number Rank of task to be deleted.
      */
     public DeleteDeadlineCommand(StudentId studentId, Integer number) {
         this.studentId = studentId;
@@ -53,11 +52,10 @@ public class DeleteDeadlineCommand extends Command {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
 
-        int index = Index.fromOneBased(rank).getZeroBased();
-        if (index >= student.getDeadlineList().size() || index < 0) {
+        if ((rank < 1) || (rank > student.getDeadlineList().size())) {
             throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_RANK);
         }
-        Deadline deadlineToDelete = student.getDeadlineList().getDeadlineByRank(index);
+        Deadline deadlineToDelete = student.getDeadlineList().getDeadlineByRank(rank - 1);
         model.deleteDeadline(student, deadlineToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, deadlineToDelete));
     }

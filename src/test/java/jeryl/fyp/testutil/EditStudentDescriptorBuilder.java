@@ -43,7 +43,7 @@ public class EditStudentDescriptorBuilder {
     /**
      * Sets the {@code StudentName} of the {@code EditStudentDescriptor} that we are building.
      */
-    public EditStudentDescriptorBuilder withName(String name) {
+    public EditStudentDescriptorBuilder withStudentName(String name) {
         descriptor.setStudentName(new StudentName(name));
         return this;
     }

@@ -6,15 +6,14 @@ import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import jeryl.fyp.model.Model;
 
 /**
- * Sorts projects in the FYP manager by the project status, followed by alphabetical order
+ * Sorts projects in the FYP manager by the project status, followed by alphabetical order.
  */
 public class SortProjectStatusCommand extends Command {
 
     public static final String COMMAND_WORD = "sort -s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the FYP projects "
-            + "by the current project status, in the order YTS, IP followed by DONE"
-            + "Note that the format is fixed, hence only " + COMMAND_WORD + " is accepted\n"
+            + "by the current project status, in the order YTS before IP and DONE separately.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Projects sorted by project status!";

@@ -5,20 +5,13 @@ import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.index.Index;
-import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.model.student.Deadline;
-import jeryl.fyp.model.student.Email;
-import jeryl.fyp.model.student.ProjectName;
-import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
-import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.student.UniqueStudentList;
-import jeryl.fyp.model.tag.Tag;
 
 /**
  * Wraps all data at the FYP-manager level
@@ -106,26 +99,6 @@ public class FypManager implements ReadOnlyFypManager {
     }
 
     /**
-     * @param target the target student that we want change fields for
-     * @param editStudentDescriptor parameters to be changed to
-     */
-    public void editStudents(Student target, EditCommand.EditStudentDescriptor editStudentDescriptor) {
-        assert target != null;
-
-        StudentName updatedStudentName = editStudentDescriptor.getName().orElse(target.getStudentName());
-        StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(target.getStudentId());
-        Email updatedEmail = editStudentDescriptor.getEmail().orElse(target.getEmail());
-        ProjectName updatedProjectName = editStudentDescriptor.getProjectName().orElse(target.getProjectName());
-        ProjectStatus updatedProjectStatus =
-                target.getProjectStatus(); //edit does not allow editing of project status
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(target.getTags());
-
-        Student updatedStudent = new Student(updatedStudentName, updatedStudentId, updatedEmail,
-                updatedProjectName, updatedProjectStatus, updatedTags);
-        students.setStudent(target, updatedStudent);
-    }
-
-    /**
      * Returns unique Student if {@code students} contains the student with the specified studentId.
      */
     public Student getStudentByStudentId(StudentId studentId) {
@@ -145,6 +118,7 @@ public class FypManager implements ReadOnlyFypManager {
     }
 
     //// deadline-level operations
+
     /**
      * Returns true if a deadline with the same identity as {@code deadline} exists in the {@code student}.
      */
@@ -161,7 +135,6 @@ public class FypManager implements ReadOnlyFypManager {
         setStudent(student, student);
     }
 
-
     /**
      * Adds a deadline to this specified {@code student}.
      * The deadline must not already exist in this specified {@code student}.
@@ -170,6 +143,7 @@ public class FypManager implements ReadOnlyFypManager {
         student.getDeadlineList().add(deadline);
         setStudent(student, student);
     }
+
     /**
      * Replaces the given deadline {@code target} in the list with {@code editedDeadline}.
      * {@code target} must exist in the {@code student}.
@@ -182,49 +156,11 @@ public class FypManager implements ReadOnlyFypManager {
         setStudent(student, student);
     }
 
-    /**
-     * Sorts our Uncompleted student list by specialisation (which naturally sorts it by alphabetical order as well)
-     */
-    public ObservableList<Student> getSortedBySpecialisationUncompletedStudentList() {
-        return getUncompletedStudentList().sorted((Student a, Student b) -> a.getProjectName().toString()
-                .toLowerCase().compareTo(b.getProjectName().toString().toLowerCase()));
-    }
-
-    /**
-     * Sorts our Uncompleted student list by project Status(YTS, IP then DONE) then by alphabetical order
-     */
-    public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
-        return getUncompletedStudentList().sorted(new Comparator<Student>() {
-
-            public int compare(Student a, Student b) {
-                int statusComp = b.getProjectStatus().toString().toLowerCase()
-                        .compareTo(a.getProjectStatus().toString().toLowerCase());
-
-                if (statusComp != 0) {
-                    return statusComp;
-                }
-
-                return a.getProjectName().toString().toLowerCase()
-                        .compareTo(b.getProjectName().toString().toLowerCase());
-            }
-        });
-    }
-
-    /**
-     * Sorts our Completed student list by specialisation, which naturally sorts it in alphabetical order
-     */
-    public ObservableList<Student> getSortedCompletedStudentList() {
-        return getCompletedStudentList().sorted((Student a, Student b) -> a.getProjectName().toString()
-                .toLowerCase().compareTo(b.getProjectName().toString().toLowerCase()));
-    }
-
-
     //// util methods
 
     @Override
     public String toString() {
         return students.asUnmodifiableObservableList().size() + " students";
-        // TODO: refine later
     }
 
     @Override
@@ -240,6 +176,33 @@ public class FypManager implements ReadOnlyFypManager {
     @Override
     public ObservableList<Student> getCompletedStudentList() {
         return students.filter(student -> student.getProjectStatus().projectStatus.equals("DONE"));
+    }
+
+    @Override
+    public ObservableList<Student> getSortedByProjectNameUncompletedStudentList() {
+        return getUncompletedStudentList().sorted(Comparator.comparing(s -> s.getProjectName().toString()
+                .toLowerCase()));
+    }
+
+    @Override
+    public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
+        return getUncompletedStudentList().sorted((a, b) -> {
+            int statusComp = b.getProjectStatus().toString().toLowerCase()
+                    .compareTo(a.getProjectStatus().toString().toLowerCase());
+
+            if (statusComp != 0) {
+                return statusComp;
+            }
+
+            return a.getProjectName().toString().toLowerCase()
+                    .compareTo(b.getProjectName().toString().toLowerCase());
+        });
+    }
+
+    @Override
+    public ObservableList<Student> getSortedCompletedStudentList() {
+        return getCompletedStudentList().sorted(Comparator.comparing(s -> s.getProjectName().toString()
+                .toLowerCase()));
     }
 
     @Override

@@ -14,7 +14,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all the students in the FYP manager.";
 
-    public static final String MESSAGE_SUCCESS = "Listed all Students";
+    public static final String MESSAGE_SUCCESS = "Listed all Students!";
 
     @Override
     public CommandResult execute(Model model) {
