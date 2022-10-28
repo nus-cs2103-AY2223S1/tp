@@ -40,10 +40,10 @@ public class DeleteGroupMemberCommand extends Command {
      * @param name of the person in the filtered person list to add to group
      * @param group of the person to be added to
      */
-    public DeleteGroupMemberCommand(String group, String name) {
+    public DeleteGroupMemberCommand(PersonGroup group, Name name) {
         requireAllNonNull(name, group);
-        this.name = new Name(name);
-        this.personGroup = new PersonGroup(group);
+        this.name = name;
+        this.personGroup = group;
     }
 
     @Override

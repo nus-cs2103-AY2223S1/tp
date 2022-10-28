@@ -9,6 +9,8 @@ import java.util.NoSuchElementException;
 
 import seedu.address.logic.commands.DeleteGroupMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonGroup;
 
 /**
  * Parses input arguments and creates a new DeleteGroupMemberCommand object
@@ -25,15 +27,25 @@ public class DeleteGroupMemberCommandParser implements Parser<DeleteGroupMemberC
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_NAME);
 
-        String personGroup;
-        String name;
+        String personGroupString;
+        String nameString;
 
         try {
-            personGroup = argMultimap.getValue(PREFIX_GROUP).get();
-            name = argMultimap.getValue(PREFIX_NAME).get();
+            personGroupString = argMultimap.getValue(PREFIX_GROUP).get();
+            nameString = argMultimap.getValue(PREFIX_NAME).get();
         } catch (NoSuchElementException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteGroupMemberCommand.MESSAGE_USAGE), e);
+        }
+
+        PersonGroup personGroup;
+        Name name;
+
+        try {
+            personGroup = ParserUtil.parsePersonGroup(personGroupString);
+            name = ParserUtil.parseName(nameString);
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
         return new DeleteGroupMemberCommand(personGroup, name);
     }

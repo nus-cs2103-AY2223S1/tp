@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteGroupMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonGroup;
 
 public class DeleteGroupMemberCommandParserTest {
 
@@ -27,6 +29,6 @@ public class DeleteGroupMemberCommandParserTest {
     @Test
     public void parse_validInput_commandParseSuccess() {
         assertParseSuccess(parser, DeleteGroupMemberCommand.COMMAND_WORD + " g/group n/name",
-                new DeleteGroupMemberCommand("group", "name"));
+                new DeleteGroupMemberCommand(new PersonGroup("group"), new Name("name")));
     }
 }

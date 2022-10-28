@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.NoSuchElementException;
 
+import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddGroupMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -27,12 +28,20 @@ public class AddGroupMemberCommandParser implements Parser<AddGroupMemberCommand
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GROUP, PREFIX_NAME);
 
+        String personGroupString;
+        String nameString;
+        try {
+            personGroupString = argMultimap.getValue(PREFIX_GROUP).get();
+            nameString = argMultimap.getValue(PREFIX_NAME).get();
+        } catch (NoSuchElementException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddGroupMemberCommand.MESSAGE_USAGE));
+        }
+
         PersonGroup personGroup;
         Name name;
 
         try {
-            String personGroupString = argMultimap.getValue(PREFIX_GROUP).get();
-            String nameString = argMultimap.getValue(PREFIX_NAME).get();
             personGroup = ParserUtil.parsePersonGroup(personGroupString);
             name = ParserUtil.parseName(nameString);
         } catch (ParseException e) {

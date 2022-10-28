@@ -103,8 +103,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deletegroupmember() throws Exception {
-        String group = "Group";
-        String name = "Alex";
+        PersonGroup group = new PersonGroup("Group");
+        Name name = new Name("Alex");
         DeleteGroupMemberCommand command = (DeleteGroupMemberCommand) parser.parseCommand(
                 DeleteGroupMemberCommand.COMMAND_WORD + " " + PREFIX_GROUP + group
                         + " " + PREFIX_NAME + name);
