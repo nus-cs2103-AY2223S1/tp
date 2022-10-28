@@ -7,11 +7,10 @@ Are you a CS student struggling to keep track of your internship?
 Do you feel tired of using spreadsheets to keep track of your applications?
 We have just the right tool for you!
 
-Introducing PleaseHireUs (PHU), the internship tracking application made just for you!
+Introducing PleaseHireUs (PHU), the internship tracking application made just for you!<br>
 
-Here are its main features:
-* View the status of your individual application and assessment dates at a glance
-* View the overall statistics of the status of all your internship applications in a stacked bar chart
+![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
+
 
 Now you will never miss any internship application deadlines or interviews again!
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
@@ -25,7 +24,7 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. If you are unsure you can refer to [this](#appendix-installing-java-11)
 
 1. Download the latest `PleaseHireUs.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
 
@@ -34,25 +33,24 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all internships.
+    * **`list`** : Lists all internships.
 
-   * **`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`** : Adds a new internship to the internship tracker.
+    * **`add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`** : Adds a new internship to the internship tracker.
 
-   * **`delete 3`** : Deletes the 3rd internship shown in the current list.
+    * **`delete 3`** : Deletes the 3rd internship shown in the current list.
 
-   * **`clear`** : Deletes all internships.
+    * **`clear`** : Deletes all internships.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
-
 --------------------------------------------------------------------------------------------------------------------
 ## About this User Guide
 
-This guides aims to:
+This guides aims to: <br>
 1. Teach first-time users how to start using PleaseHireUs
 2. Show and explain to users how to use each command
 3. Provide users with a summary of the commands available
@@ -80,7 +78,7 @@ This guides aims to:
 
 **Keyboard Inputs**<br>
 
-<kbd>enter</kbd>   <kbd>&uarr;</kbd>   <kbd>&darr;</kbd>
+<button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
 ## Navigating the GUI
 ![Ui](images/navigate_ui.png)
@@ -90,7 +88,7 @@ Enter your command here.
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
-You can use <kbd>&uarr;</kbd> or <kbd>&darr;</kbd> to navigate through your command history
+You can use <button>&uarr;</button> or <button>&darr;</button> to navigate through your command history
 </div>
 
 **Result Display** <br>
@@ -143,9 +141,12 @@ The reminder panel displays the number of interviews, assessments or pending off
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
+
 </div>
 
 ## Features
+This section shows all features and commands which is supported by PleaseHireUs. 
 
 ### Viewing help : `help`
 
@@ -157,8 +158,8 @@ Format: `help`
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
-- Press <kbd>esc</kbd> to close the Help window <br>
-- Press <kbd>C</kbd> to copy the User Guide url into the clipboard when the Help window is opened
+- Press <button>esc</button> to close the Help window <br>
+- Press <button>C</button> to copy the User Guide url into the clipboard when the Help window is opened
 </div>
 
 ### Adding an internship: `add`
@@ -221,7 +222,7 @@ Examples:
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
 - `company_name` --> `c`<br>
-- `position`--> `p`<br>
+- `position` --> `p`<br>
 - `application_process` --> `pr`<br>
 - `date` --> `d`<br>
 
@@ -250,7 +251,7 @@ Examples:
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** Shortcuts for `CATEGORY`:<br>
 - `company_name` --> `c`<br>
-- `position`--> `p`<br>
+- `position` --> `p`<br>
 - `application_process` --> `pr`<br>
 - `date` --> `d`<br>
 - `tag` --> `t`<br>
@@ -262,7 +263,7 @@ Examples:
 
 Deletes the specified internship(s) from the list.
 
-Format: `delete INDEX...`
+Format: `delete INDEX…​`
 
 * Deletes the internship at the specified `INDEX`.
 * The index refers to the index number shown in the displayed internship list.
@@ -272,21 +273,6 @@ Format: `delete INDEX...`
 Examples:
 * `list` followed by `delete 1 3` deletes the 1st and 3rd internship from the list.
 * `find TikTok` followed by `delete 1` deletes the 1st internship in the results of the `find` command.
-
-### View details of an internship: `view`
-
-View details of list item at index
-
-Format: `view INDEX`
-
-* Only the index is searched.
-* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
-* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
-* More details about the company at the index will be displayed. 
-
-Examples:
-* `list` followed by `view 1` displays more details of the 1st internship in list.
-
 
 ### Editing internship : `edit`
 Edit details of an internship
@@ -299,6 +285,20 @@ Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DA
 Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find hrt` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
+
+### View details of an internship: `view`
+
+View details of list item at index
+
+Format: `view INDEX`
+
+* Only the index is searched.
+* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …​
+* More details about the company at the index will be displayed.
+
+Examples:
+* `list` followed by `view 1` displays more details of the 1st internship in list.
 
 ### Copy details of internship : `copy`
 
@@ -317,10 +317,9 @@ Undo the most recent command that modified the internship book.
 
 Format: `undo`
 
-**Information Box**
 <div markdown="block" class="alert alert-info">
-**:information_source: Info:** **NOTE:** <br>
-You can only undo `add`,`clear`,`delete`,`edit` commands
+**:information_source: Info:** <br>
+You can only undo `add`,`clear`,`delete`,`edit`,`redo` commands
 
 </div>
 
@@ -356,34 +355,26 @@ If your changes to the data file makes its format invalid, PleaseHireUs will dis
 
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+_Details coming soon …​_
 
 --------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PleaseHireUs home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
-| Action     | Undo               | Format, Examples                                                                                                                                                                                               |
-|------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                        |
-| **Clear**  | :heavy_check_mark: | `clear`                                                                                                                                                                                                        |
-| **Delete** | :heavy_check_mark: | `delete INDEX...`<br> e.g., `delete 1 3`                                                                                                                                                                       |
-| **View**   | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                |
-| **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
-| **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`                                                                                                                                                  |
-| **List**   | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                     |
-| **Help**   | :x:                | `help`                                                                                                                                                                                                         |
-| **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
-| **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
-| **Redo**   | :heavy_check_mark: | `redo`                                                                                                                                                                                                         |
+| Action                                          | Undo               | Format, Examples                                                                                                                                                                                             |
+|-------------------------------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                 | :x:                | `help`                                                                                                                                                                                                       |
+| [**Add**](#adding-an-internship-add)            | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                      |
+| [**List**](#listing-all-internships--list)      | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g,  `list c/d true`, `list c/date`                                                                                                                                   |
+| [**Find**](#locating-internships-by-find)       | :x:                | `find [c/CATEGORY] KEYWORDS…​`<br> e.g., `find c/p engineer`                                                                                                                                                 |
+| [**Delete**](#deleting-internships--delete)     | :heavy_check_mark: | `delete INDEX…​`<br> e.g., `delete 1 3`                                                                                                                                                                      |
+| [**Edit**](#editing-internship--edit)           | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]…​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
+| [**View**](#view-details-of-an-internship-view) | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                              |
+| [**Copy**](#copy-details-of-internship--copy)   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                             |
+| [**Undo**](#undo-previous-command--undo)        | :x:                | `undo`                                                                                                                                                                                                       |
+| [**Redo**](#redo-previous-undone-command--redo) | :heavy_check_mark: | `redo`                                                                                                                                                                                                       |
+| [**Clear**](#clearing-all-entries--clear)       | :heavy_check_mark: | `clear`                                                                                                                                                                                                      |
+| [**Exit**](#exiting-the-program--exit)          | :x:                | `exit`                                                                                                                                                                                                       |
 
-**Information Box**
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** Valid inputs for `CATEGORY` parameter in `list` and `find` <br>
 
@@ -408,8 +399,12 @@ Prefix | Symbolize
 **ph/** | Phone Number
 **e/** | Email
 **r/** | Remark
-**t/** | Tags
+**t/** | Tag
 **c/** | Category
+
+## FAQ
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PleaseHireUs home folder.
 
 ## Glossary
 
@@ -421,9 +416,17 @@ Prefix | Symbolize
 | Parameter                      | A component of a command for the user to input information. For PHU context, this refers to the internship application details.                    |
 | Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
 | Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
-
+| PHU                            | PleaseHireUs                                                                                                                                       |
+  
 ## Acknowledgements
 * This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
 * Undo and Redo commands are adapted and modified from  **[AddressBook 4(AB4)](https://github.com/se-edu/addressbook-level4)**
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
+
+## Appendix: Installing Java 11
+1. Check if you have installed the correct version of java by running `java -version` in your terminal.
+2. If Java is not installed in your computer or the Java version is different,
+   1. For Windows users, you may download Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11-windows)
+   2. For Mac users, you may download Java 11 from [here](https://www.oracle.com/java/technologies/downloads/#java11-mac)
+3. After installing, you may verify that the correct version of Java is installed by repeating step 1.
