@@ -20,6 +20,8 @@ public class ProfessorBuilder extends PersonBuilder {
     private Specialisation field;
     private OfficeHour officeHour;
 
+    private Specialisation specialisation;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */

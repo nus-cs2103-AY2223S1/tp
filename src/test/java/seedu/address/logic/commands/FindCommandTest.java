@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
@@ -62,11 +62,77 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroNames_noPersonFound() {
+    public void execute_zeroArguments_noPersonFound() {
+        PersonMatchesPredicate predicate;
+        FindCommand command;
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
-                .withNames(" ").build();
-        FindCommand command = new FindCommand(predicate);
+
+        //no names provided
+        predicate = new PersonMatchesPredicateBuilder().withNamesList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no emails provided
+        predicate = new PersonMatchesPredicateBuilder().withEmailsList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no phones provided
+        predicate = new PersonMatchesPredicateBuilder().withPhonesList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no types provided
+        predicate = new PersonMatchesPredicateBuilder().withTypesList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no ratings provided
+        predicate = new PersonMatchesPredicateBuilder().withRatingsList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no locations provided
+        predicate = new PersonMatchesPredicateBuilder().withLocationsList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no genders provided
+        predicate = new PersonMatchesPredicateBuilder().withGenderList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no specialisations provided
+        predicate = new PersonMatchesPredicateBuilder().withSpecList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no years provided
+        predicate = new PersonMatchesPredicateBuilder().withYearsList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no office hours provided
+        predicate = new PersonMatchesPredicateBuilder().withOfficeHoursList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -76,7 +142,7 @@ public class FindCommandTest {
     public void execute_multipleNames_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
-                .withNames("Kurz Elle Kunz").build();
+                .withNamesList(VALID_NAMES_LIST).build();
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
