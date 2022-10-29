@@ -377,8 +377,8 @@ FILENAME cannot contain any of `$%&` symbols.
 </div>
 
 Examples:
-* `export test`
-* `export myContacts`
+* `export test.csv`
+* `export myContacts.csv`
 
 Upon successfully exporting, users will see the CSV file:
 ![after export](images/CSVfile.png)

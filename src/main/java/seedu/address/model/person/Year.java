@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Year {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Year can take any integer from 1 to 4, and it should not be blank";
+            "Year can take any integer from 1 to 4, and it should not be blank.\n" +
+            "However when you are editing year field, y/ can be empty.";
 
     public static final String EMPTY_YEAR = "";
 
