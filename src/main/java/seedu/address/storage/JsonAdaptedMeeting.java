@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.DateTimeConverter;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -74,8 +73,7 @@ class JsonAdaptedMeeting {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
 
-        return new Meeting(person, meetingDescription,
-                DateTimeConverter.processFullDateToLocalDatetime(meetingDateAndTime), meetingLocation);
+        return new Meeting(person, meetingDescription, meetingDateAndTime, meetingLocation);
     }
 
 }
