@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,6 +20,7 @@ import seedu.address.model.module.link.Link;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonIsInModulePredicate;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -84,6 +86,12 @@ public class DeletePersonFromModuleCommand extends Command {
 
         assert moduleWithPersonDeleted != null;
         model.setModule(moduleToDeletePersonFrom, moduleWithPersonDeleted);
+
+        Boolean isNotHome = !model.getHomeStatusAsBoolean();
+        if (isNotHome) {
+            Predicate<Person> moduleContainsPersonPredicate = new PersonIsInModulePredicate(moduleWithPersonDeleted);
+            model.updateFilteredPersonList(moduleContainsPersonPredicate);
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_FROM_MODULE_SUCCESS,
                 moduleToDeletePersonFrom.getModuleCode(),
                 personToDeleteInModule.getName()));
