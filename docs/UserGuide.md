@@ -38,7 +38,7 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 
     1. `add task "tP v1.3" -d 2022-10-28`: Adds a task called iP week 6, with a deadline of 28/10/2022, to the module tracker.
 
-    1. `list`: Lists all the active tasks.
+    1. `list task`: Lists all the active tasks.
 
    1. `remove task 1`: Removes the first task of CS2103T.
 
@@ -135,6 +135,8 @@ Format: `add module <module code>`
 Shorthand: `add mod <module code>`
 
 - The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
+- The module name (if provided) must be enclosed in double-quotes (`""`) if it contains spaces.
+
 
 Examples:
 - `add module CS2103T`
