@@ -55,9 +55,9 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
 * For `Event` and `Profile` commands, option flags (-x where x is a placeholder for valid flags e.g. a, d, v) must be used after the `event` and `profile` command word.
 
-* For `Event` and `Profile` commands which require an `Index`, the `Index` must be provided after the option flag. <br>
+* For `Event` and `Profile` commands which require an `Index`, the `Index` must be provided after the option flag.
 
-* In addition, the `Index` provided must be a positive number less than 10000 as `NUScheduler` is designed to handle a maximum of 9999 entries for `Profile`s and `Event`s which covers the needs for most NUS students.
+* In addition, the `Index` provided must be a positive number less than 10000 as NUScheduler is designed to handle a maximum of 9999 entries for `Profile`s and `Event`s which covers the needs for most NUS students.
 
 * The other parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -246,13 +246,13 @@ Displays a list of upcoming events, ordered by the date, which starts in the nex
 Format: `event -u DAYS`
 
 * The days refer to the number of days after the current date. All events that start within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
-* The days **must be a positive integer less than 10000** 1, 2, 3, …​, 9999.
+* The days **must be a positive integer less than 10000** e.g. 1, 2, 3, …​, 9999.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about usage:**<br>
 
-DAYS entered is limited to 9999 days as this sufficiently covers the usage for most NUS students.
+* DAYS entered is limited to 9999 days as this sufficiently covers the usage for most NUS students.
 
 </div>
 
