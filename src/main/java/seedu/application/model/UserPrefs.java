@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path applicationBookFilePath = Paths.get("data" , "applicationbook.json");
+    private SortSetting sortSetting = SortSetting.BY_DATE; // Applications sorted by date by default
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,8 +37,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setApplicationBookFilePath(newUserPrefs.getApplicationBookFilePath());
+        setSortSetting(newUserPrefs.getSortSetting());
     }
 
+    @Override
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
@@ -47,6 +50,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    @Override
     public Path getApplicationBookFilePath() {
         return applicationBookFilePath;
     }
@@ -54,6 +58,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setApplicationBookFilePath(Path applicationBookFilePath) {
         requireNonNull(applicationBookFilePath);
         this.applicationBookFilePath = applicationBookFilePath;
+    }
+
+    @Override
+    public SortSetting getSortSetting() {
+        return sortSetting;
+    }
+
+    public void setSortSetting(SortSetting sortSetting) {
+        requireNonNull(sortSetting);
+        this.sortSetting = sortSetting;
     }
 
     @Override
@@ -68,12 +82,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && applicationBookFilePath.equals(o.applicationBookFilePath);
+                && applicationBookFilePath.equals(o.applicationBookFilePath)
+                && sortSetting.equals(o.sortSetting);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, applicationBookFilePath);
+        return Objects.hash(guiSettings, applicationBookFilePath, sortSetting);
     }
 
     @Override
@@ -81,6 +96,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + applicationBookFilePath);
+        sb.append("\nSort Setting: " + sortSetting);
         return sb.toString();
     }
 

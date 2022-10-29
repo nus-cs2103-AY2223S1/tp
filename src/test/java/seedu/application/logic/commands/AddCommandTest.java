@@ -20,6 +20,7 @@ import seedu.application.model.ApplicationBook;
 import seedu.application.model.Model;
 import seedu.application.model.ReadOnlyApplicationBook;
 import seedu.application.model.ReadOnlyUserPrefs;
+import seedu.application.model.SortSetting;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.testutil.ApplicationBuilder;
@@ -107,6 +108,16 @@ public class AddCommandTest {
 
         @Override
         public void setApplicationBookFilePath(Path applicationBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public SortSetting getSortSetting() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Application> getAllApplicationsInBook() {
             throw new AssertionError("This method should not be called.");
         }
 

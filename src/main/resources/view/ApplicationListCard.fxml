@@ -28,13 +28,34 @@
         </Label>
         <Label fx:id="company" styleClass="cell_big_label" text="\$company" />
         <Label alignment="CENTER" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
+        <Label fx:id="isArchived" text="archived" />
         <Label fx:id="status" text="\$status" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="contact" styleClass="cell_small_label" text="\$contact" />
-      <Label fx:id="position" styleClass="cell_small_label" text="\$position" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+            <Label styleClass="cell_small_label_fade" text="Contact" />
+               <Label fx:id="contact" styleClass="cell_small_label" text="\$contact" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+            <Label styleClass="cell_small_label_fade" text="Position" />
+               <Label fx:id="position" styleClass="cell_small_label" text="\$position" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+            <Label styleClass="cell_small_label_fade" text="E-mail" />
+               <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+            <Label styleClass="cell_small_label_fade" text="Date Applied" />
+               <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+            </children>
+         </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />

@@ -23,6 +23,7 @@ import seedu.application.logic.commands.RemindCommand;
 import seedu.application.logic.commands.RemoveInterviewCommand;
 import seedu.application.logic.commands.RetrieveCommand;
 import seedu.application.logic.commands.SortCommand;
+import seedu.application.logic.commands.StatsCommand;
 import seedu.application.logic.commands.UndoCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
 
@@ -102,6 +103,9 @@ public class ApplicationBookParser {
 
         case RetrieveCommand.COMMAND_WORD:
             return new RetrieveCommandParser().parse(arguments);
+
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

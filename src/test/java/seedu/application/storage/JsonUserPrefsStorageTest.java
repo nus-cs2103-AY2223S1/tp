@@ -14,6 +14,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.commons.exceptions.DataConversionException;
+import seedu.application.model.SortSetting;
 import seedu.application.model.UserPrefs;
 
 public class JsonUserPrefsStorageTest {
@@ -74,6 +75,7 @@ public class JsonUserPrefsStorageTest {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
         userPrefs.setApplicationBookFilePath(Paths.get("applicationbook.json"));
+        userPrefs.setSortSetting(SortSetting.BY_DATE);
         return userPrefs;
     }
 

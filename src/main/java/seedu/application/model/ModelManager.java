@@ -43,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplications = initialiseFilteredList(this.versionedApplicationBook);
         sortedFilteredApplications = new SortedList<>(filteredApplications);
+        initialiseSortOrder();
         applicationsWithInterview = filterApplicationsWithInterview();
         filteredApplicationsWithUpcomingInterviews = new FilteredList<>(applicationsWithInterview);
     }
@@ -56,6 +57,43 @@ public class ModelManager implements Model {
         FilteredList<Application> initialList = new FilteredList<>(versionedApplicationBook.getApplicationList());
         initialList.setPredicate(HIDE_ARCHIVE_IN_LIST);
         return initialList;
+    }
+
+    private void initialiseSortOrder() {
+        SortSetting sortSetting = getSortSetting();
+        requireNonNull(sortSetting);
+        switch (sortSetting) {
+        case BY_COMPANY:
+            sortApplicationListByCompany(false);
+            break;
+        case BY_COMPANY_REVERSE:
+            sortApplicationListByCompany(true);
+            break;
+        case BY_POSITION:
+            sortApplicationListByPosition(false);
+            break;
+        case BY_POSITION_REVERSE:
+            sortApplicationListByPosition(true);
+            break;
+        case BY_DATE:
+            sortApplicationListByDate(false);
+            break;
+        case BY_DATE_REVERSE:
+            sortApplicationListByDate(true);
+            break;
+        case BY_INTERVIEW:
+            sortApplicationListByInterview(false);
+            break;
+        case BY_INTERVIEW_REVERSE:
+            sortApplicationListByInterview(true);
+            break;
+        default:
+            // Execution should not reach here since every enum value (and null) has been handled.
+            // Only way execution can reach here is if a new enum value was added but this switch statement
+            // was not updated.
+            throw new RuntimeException("Unknown SortSetting found while initialising ModelManager.");
+        }
+
     }
 
     private ObservableList<Application> filterApplicationsWithInterview() {
@@ -102,6 +140,16 @@ public class ModelManager implements Model {
     public void setApplicationBookFilePath(Path applicationBookFilePath) {
         requireNonNull(applicationBookFilePath);
         userPrefs.setApplicationBookFilePath(applicationBookFilePath);
+    }
+
+    @Override
+    public SortSetting getSortSetting() {
+        return userPrefs.getSortSetting();
+    }
+
+    private void setSortSetting(SortSetting sortSetting) {
+        requireNonNull(sortSetting);
+        userPrefs.setSortSetting(sortSetting);
     }
 
     //=========== ApplicationBook ================================================================================
@@ -206,6 +254,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Application> getAllApplicationsInBook() {
+        return versionedApplicationBook.getApplicationList();
+    }
+
+    @Override
     public void updateFilteredApplicationsWithUpcomingInterviewList(Predicate<Application> predicate) {
         requireNonNull(predicate);
         filteredApplicationsWithUpcomingInterviews.setPredicate(predicate);
@@ -218,6 +271,7 @@ public class ModelManager implements Model {
             comparator = comparator.reversed();
         }
         sortedFilteredApplications.setComparator(comparator);
+        setSortSetting(shouldReverse ? SortSetting.BY_COMPANY_REVERSE : SortSetting.BY_COMPANY);
     }
 
     @Override
@@ -227,6 +281,7 @@ public class ModelManager implements Model {
             comparator = comparator.reversed();
         }
         sortedFilteredApplications.setComparator(comparator);
+        setSortSetting(shouldReverse ? SortSetting.BY_POSITION_REVERSE : SortSetting.BY_POSITION);
     }
 
     @Override
@@ -236,6 +291,7 @@ public class ModelManager implements Model {
             comparator = comparator.reversed();
         }
         sortedFilteredApplications.setComparator(comparator);
+        setSortSetting(shouldReverse ? SortSetting.BY_DATE_REVERSE : SortSetting.BY_DATE);
     }
 
     @Override
@@ -257,6 +313,7 @@ public class ModelManager implements Model {
         };
 
         sortedFilteredApplications.setComparator(comparator);
+        setSortSetting(shouldReverse ? SortSetting.BY_INTERVIEW_REVERSE : SortSetting.BY_INTERVIEW);
     }
 
     //=========== Undo & Redo =====================================================================================

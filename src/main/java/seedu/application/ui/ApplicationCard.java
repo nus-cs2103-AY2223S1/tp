@@ -39,6 +39,8 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
+    private Label isArchived;
+    @FXML
     private Label status;
     @FXML
     private FlowPane tags;
@@ -51,8 +53,8 @@ public class ApplicationCard extends UiPart<Region> {
         this.application = application;
         id.setText(displayedIndex + ". ");
         company.setText(application.getCompany().company);
-        status.setText(application.getStatus().getValue());
-        status.setStyle("-fx-background-color: " + application.getStatus().getColor());
+        isArchived.setVisible(application.isArchived());
+        setStatus();
         contact.setText(application.getContact().value);
         position.setText(application.getPosition().value);
         email.setText(application.getEmail().value);
@@ -60,6 +62,25 @@ public class ApplicationCard extends UiPart<Region> {
         application.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private void setStatus() {
+        status.setText(application.getStatus().getValue());
+        switch (application.getStatus()) {
+        case INTERVIEW:
+            status.setStyle("-fx-background-color: dodgerblue");
+            break;
+        case OFFERED:
+            status.setStyle("-fx-background-color: green");
+            break;
+        case PENDING:
+            status.setStyle("-fx-background-color: darkorange");
+            break;
+        case REJECTED:
+            status.setStyle("-fx-background-color: firebrick");
+            break;
+        default: // should not happen
+        }
     }
 
     @Override

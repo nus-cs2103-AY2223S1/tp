@@ -77,7 +77,16 @@ public class Application {
      * @param application Application that either contains empty interview or non-empty interview.
      */
     public Application(Application application) {
-        this(application, application.isArchived());
+        requireAllNonNull(application);
+        this.company = application.company;
+        this.contact = application.contact;
+        this.email = application.email;
+        this.position = application.position;
+        this.date = application.date;
+        this.status = application.status;
+        this.tags.addAll(application.tags);
+        this.isArchived = application.isArchived;
+        this.interview = Optional.empty();
     }
 
     /**
@@ -97,7 +106,7 @@ public class Application {
         this.tags.addAll(application.tags);
         interviewIsAfterApplication(interview, application);
         this.interview = Optional.of(interview);
-        this.isArchived = application.isArchived();
+        this.isArchived = application.isArchived;
     }
 
     public Company getCompany() {

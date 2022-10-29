@@ -1,37 +1,56 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: DARKSLATEGREY;
+    background-color: DARKSLATEGREY; /* Used in the default.html file */
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: DARKSLATEGREY;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: DARKSLATEGREY;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: derive(DARKCYAN, -50%);
+    -fx-background-radius: 10;
+
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: derive(DARKCYAN, -40%);
+    -fx-background-radius: 10;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: derive(LIGHTSEAGREEN, -30%);
+    -fx-background-radius: 10;
 }
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
+    -fx-border-radius: 10;
 }
 
 .list-cell .label {
     -fx-text-fill: white;
+}
+
+.cell_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+}
+
+.cell_small_label_fade {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: derive(GREY, 70%);
+    -fx-pref-width: 100;
 }

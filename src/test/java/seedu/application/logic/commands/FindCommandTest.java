@@ -79,7 +79,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(companyPredicate, positionPredicate);
         expectedModel.updateFilteredApplicationList(companyPredicate.or(positionPredicate));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET), model.getFilteredApplicationList());
+        assertEquals(Arrays.asList(JANE_STREET, BYTEDANCE, SHOPEE), model.getFilteredApplicationList());
     }
 
     /**
