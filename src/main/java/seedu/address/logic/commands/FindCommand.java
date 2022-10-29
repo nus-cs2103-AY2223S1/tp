@@ -25,11 +25,11 @@ public class FindCommand extends Command {
 
     public static final String INVALID_TYPES_MESSAGE = "Invalid types provided!";
 
-    public static final String INVALID_MODULES_MESSAGE = "Incorrect or empty module field format! " +
-            "OR search is m/[MODULE_LIST] ALL search is m/all/[MODULE_LIST]";
+    public static final String INVALID_MODULES_MESSAGE = "Incorrect or empty module field format! "
+            + "OR search is m/[MODULE_LIST] ALL search is m/all/[MODULE_LIST]";
 
-    public static final String INVALID_TAGS_MESSAGE = "Incorrect or empty tags field format! " +
-            "OR search is t/[TAG_LIST] ALL search is t/all/[TAG_LIST]";
+    public static final String INVALID_TAGS_MESSAGE = "Incorrect or empty tags field format! "
+            + "OR search is t/[TAG_LIST] ALL search is t/all/[TAG_LIST]";
     private final PersonMatchesPredicate predicate;
 
     public FindCommand(PersonMatchesPredicate predicate) {

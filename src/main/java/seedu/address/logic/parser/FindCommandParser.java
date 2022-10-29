@@ -194,8 +194,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     private boolean areTypesArgsValid() {
         String[] typesList = argMultimap.getValue(PREFIX_TYPE).get().split("\\s+");
-        return Arrays.stream(typesList).allMatch(type -> type.equalsIgnoreCase("stu") ||
-                type.equalsIgnoreCase("prof") || type.equalsIgnoreCase("ta"));
+        return Arrays.stream(typesList).allMatch(type -> type.equalsIgnoreCase("stu")
+                || type.equalsIgnoreCase("prof") || type.equalsIgnoreCase("ta"));
     }
 
     /**
