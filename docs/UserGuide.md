@@ -116,6 +116,7 @@ Fields in square brackets `[]` (i.e. `[r=REMARKS]`) is an optional field.
 Examples:
 
 * `add n=Bob p=95788172 e=bob@gmail.com a=Jurong East Jejantas r=Janitor`
+* `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi t=friend`
 * `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi`
 
 ### Deleting of a client : `delete`
