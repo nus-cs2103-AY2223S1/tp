@@ -1,12 +1,12 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s attributes matches any of the keywords given for each attribute.
