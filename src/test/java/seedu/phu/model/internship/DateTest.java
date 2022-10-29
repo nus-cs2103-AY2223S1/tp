@@ -40,10 +40,14 @@ public class DateTest {
         assertFalse(Date.isValidDate("32-13-1212")); // invalid date
         assertFalse(Date.isValidDate("29-2-2022")); // month should be 2 digits
         assertFalse(Date.isValidDate("9-02-2022")); // date should be 2 digits
+        assertFalse(Date.isValidDate("31-11-2022")); // invalid date boundary
+        assertFalse(Date.isValidDate("29-02-2022")); // invalid date boundary
+        assertFalse(Date.isValidDate("00-02-2022")); // invalid date boundary
 
         // valid date
         assertTrue(Date.isValidDate("12-12-1212"));
-        assertTrue(Date.isValidDate("09-02-2022"));
-        assertTrue(Date.isValidDate("29-02-2022"));
+        assertTrue(Date.isValidDate("01-02-2022"));
+        assertTrue(Date.isValidDate("29-02-2024")); // leap year
+        assertTrue(Date.isValidDate("30-11-2024"));
     }
 }

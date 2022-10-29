@@ -6,17 +6,19 @@ import static seedu.phu.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents the date of an internship in the list.
  */
 public class Date extends ComparableModel {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in dd-mm-yyyy format";
+            "Date should be a valid date in dd-mm-yyyy format";
 
-    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final DateTimeFormatter DEFAULT_FORMATTER =
+            DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(ResolverStyle.STRICT);
 
-    public static final DateTimeFormatter DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
+    public static final DateTimeFormatter DISPLAY_FORMATTER = DateTimeFormatter.ofPattern("dd MMM uuuu");
 
     public final LocalDate value;
 
