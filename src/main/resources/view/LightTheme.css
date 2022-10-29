@@ -231,7 +231,7 @@
 
 .list-view {
     -fx-background-insets: 0;
-    -fx-padding: 0;
+    -fx-padding: 0 0 1 0;
 }
 
 .list-cell {
@@ -329,7 +329,7 @@
     -fx-text-fill: #3F3F46;
 }
 
-.status-bar .command-container {
+.status-bar .command-hint-container {
     -fx-padding: 5 0 5 0;
 }
 
