@@ -174,7 +174,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteModule(Module target) {
         addressBook.removeModule(target);
-        isHome.set(0, true);
+        isHome.set(INDEX_OF_HOME_STATUS, true);
         assert isHome.size() == 1;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -183,7 +183,7 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
-        isHome.set(0, true);
+        isHome.set(INDEX_OF_HOME_STATUS, true);
         assert isHome.size() == 1;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
