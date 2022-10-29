@@ -18,16 +18,17 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.logic.commands.exceptions.CommandException;
-import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
-import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.ReadOnlyTravelr;
 import seedu.travelr.model.ReadOnlyUserPrefs;
 import seedu.travelr.model.SummaryVariables;
+import seedu.travelr.model.Travelr;
 import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
+
 
 public class AddCommandTest {
 
@@ -105,12 +106,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTravelrFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTravelrFilePath(Path travelrFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -125,12 +126,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTravelr(ReadOnlyTravelr travelr) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTravelr getTravelr() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -302,8 +303,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTravelr getTravelr() {
+            return new Travelr();
         }
 
         @Override

@@ -33,7 +33,7 @@ import seedu.travelr.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TravelrParser {
 
     /**
      * Used for initial separation of command word and args.

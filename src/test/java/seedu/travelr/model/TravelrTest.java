@@ -20,25 +20,25 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
 
-public class AddressBookTest {
+public class TravelrTest {
 
-    private final seedu.travelr.model.AddressBook addressBook = new seedu.travelr.model.AddressBook();
+    private final Travelr travelr = new Travelr();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getTripList());
+        assertEquals(Collections.emptyList(), travelr.getTripList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> travelr.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        Travelr newData = getTypicalAddressBook();
+        travelr.resetData(newData);
+        assertEquals(newData, travelr);
     }
 
     //Not working at the moment
@@ -57,37 +57,37 @@ public class AddressBookTest {
 
     @Test
     public void hasTrip_nullTrip_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasTrip(null));
+        assertThrows(NullPointerException.class, () -> travelr.hasTrip(null));
     }
 
     @Test
     public void hasTrip_tripNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasTrip(SUN));
+        assertFalse(travelr.hasTrip(SUN));
     }
 
     @Test
     public void hasTrip_tripInAddressBook_returnsTrue() {
-        addressBook.addTrip(SUN);
-        assertTrue(addressBook.hasTrip(SUN));
+        travelr.addTrip(SUN);
+        assertTrue(travelr.hasTrip(SUN));
     }
 
     @Test
     public void hasTrip_tripWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addTrip(SUN);
+        travelr.addTrip(SUN);
         Trip editedAlice = new TripBuilder(SUN).withDescription(VALID_DESCRIPTION_ANTARCTICA).withEvents(
                 VALID_EVENT_SIGHTSEEING).build();
-        assertTrue(addressBook.hasTrip(editedAlice));
+        assertTrue(travelr.hasTrip(editedAlice));
     }
 
     @Test
     public void getTripList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTripList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> travelr.getTripList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose trips list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AddressBookStub implements ReadOnlyTravelr {
         private final ObservableList<Trip> trips = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Trip> trips) {

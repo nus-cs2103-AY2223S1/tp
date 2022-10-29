@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.travelr.model.AddressBook;
+import seedu.travelr.model.Travelr;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -62,8 +62,8 @@ public class TypicalTrips {
     /**
      * Returns an {@code AddressBook} with all the typical trips.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Travelr getTypicalAddressBook() {
+        Travelr ab = new Travelr();
         for (Trip trip : getTypicalTrips()) {
             ab.addTrip(trip);
         }

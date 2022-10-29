@@ -15,18 +15,18 @@ import seedu.travelr.commons.util.ConfigUtil;
 import seedu.travelr.commons.util.StringUtil;
 import seedu.travelr.logic.Logic;
 import seedu.travelr.logic.LogicManager;
-import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ModelManager;
-import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.ReadOnlyTravelr;
 import seedu.travelr.model.ReadOnlyUserPrefs;
+import seedu.travelr.model.Travelr;
 import seedu.travelr.model.UserPrefs;
 import seedu.travelr.model.util.SampleDataUtil;
-import seedu.travelr.storage.AddressBookStorage;
-import seedu.travelr.storage.JsonAddressBookStorage;
+import seedu.travelr.storage.JsonTravelrStorage;
 import seedu.travelr.storage.JsonUserPrefsStorage;
 import seedu.travelr.storage.Storage;
 import seedu.travelr.storage.StorageManager;
+import seedu.travelr.storage.TravelrStorage;
 import seedu.travelr.storage.UserPrefsStorage;
 import seedu.travelr.ui.Ui;
 import seedu.travelr.ui.UiManager;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Travelr ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TravelrStorage travelrStorage = new JsonTravelrStorage(userPrefs.getTravelrFilePath());
+        storage = new StorageManager(travelrStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,27 +69,27 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s Travelr and {@code userPrefs}. <br>
+     * The data from the sample Travelr will be used instead if {@code storage}'s Travelr is not found,
+     * or an empty Travelr will be used instead if errors occur when reading {@code storage}'s Travelr.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         // Storage works here -- initial data contains the events
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTravelr> travelrOptional;
+        ReadOnlyTravelr initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            travelrOptional = storage.readTravelr();
+            if (!travelrOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Travelr");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            // if loading does not work, this works for demo: initialData = SampleDataUtil.getSampleAddressBook();
+            initialData = travelrOptional.orElseGet(SampleDataUtil::getSampleTravelr);
+            // if loading does not work, this works for demo: initialData = SampleDataUtil.getSampleTravelr();
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty Travelr");
+            initialData = new Travelr();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty Travelr");
+            initialData = new Travelr();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -153,7 +153,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Travelr");
             initializedPrefs = new UserPrefs();
         }
 
@@ -169,13 +169,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Travelr " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Travelr ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

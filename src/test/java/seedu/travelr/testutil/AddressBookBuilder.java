@@ -1,6 +1,6 @@
 package seedu.travelr.testutil;
 
-import seedu.travelr.model.AddressBook;
+import seedu.travelr.model.Travelr;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -10,13 +10,13 @@ import seedu.travelr.model.trip.Trip;
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private Travelr addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new Travelr();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(Travelr addressBook) {
         this.addressBook = addressBook;
     }
 
@@ -28,7 +28,7 @@ public class AddressBookBuilder {
         return this;
     }
 
-    public AddressBook build() {
+    public Travelr build() {
         return addressBook;
     }
 }

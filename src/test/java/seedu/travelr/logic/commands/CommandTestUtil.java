@@ -13,8 +13,8 @@ import java.util.List;
 
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.logic.commands.exceptions.CommandException;
-import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
+import seedu.travelr.model.Travelr;
 import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
 import seedu.travelr.model.trip.Trip;
 
@@ -84,11 +84,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        Travelr expectedAddressBook = new Travelr(actualModel.getTravelr());
         List<Trip> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTripList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedAddressBook, actualModel.getTravelr());
         assertEquals(expectedFilteredList, actualModel.getFilteredTripList());
     }
 

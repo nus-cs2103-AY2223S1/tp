@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.travelr.commons.exceptions.IllegalValueException;
-import seedu.travelr.model.AddressBook;
-import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.ReadOnlyTravelr;
+import seedu.travelr.model.Travelr;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
@@ -18,7 +18,7 @@ import seedu.travelr.model.trip.Trip;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableTravelr {
 
     public static final String MESSAGE_DUPLICATE_TRIP = "Trips list contains duplicate trip(s).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
@@ -27,12 +27,12 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedEvent> bucketList = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given trips.
+     * Constructs a {@code JsonSerializableTravelr} with the given trips.
      * TODO: Rename JsonProperty in local data file from persons to trips
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("bucketList") List<JsonAdaptedEvent> bucketList,
-                                       @JsonProperty("trips") List<JsonAdaptedTrip> trips) {
+    public JsonSerializableTravelr(@JsonProperty("bucketList") List<JsonAdaptedEvent> bucketList,
+                                   @JsonProperty("trips") List<JsonAdaptedTrip> trips) {
         this.trips.addAll(trips);
         this.bucketList.addAll(bucketList);
     }
@@ -40,9 +40,9 @@ class JsonSerializableAddressBook {
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableTravelr}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableTravelr(ReadOnlyTravelr source) {
         trips.addAll(source.getTripList().stream().map(JsonAdaptedTrip::new).collect(Collectors.toList()));
         bucketList.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
@@ -52,29 +52,29 @@ class JsonSerializableAddressBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public Travelr toModelType() throws IllegalValueException {
+        Travelr travelr = new Travelr();
         for (JsonAdaptedTrip jsonAdaptedTrip : trips) {
             Trip trip = jsonAdaptedTrip.toModelType();
-            if (addressBook.hasTrip(trip)) {
+            if (travelr.hasTrip(trip)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
             }
-            addressBook.addTrip(trip);
+            travelr.addTrip(trip);
             for (Event event : trip.getEvents()) {
-                if (addressBook.hasEvent(event)) {
+                if (travelr.hasEvent(event)) {
                     throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
                 }
-                addressBook.addEventToAllEventsList(event);
+                travelr.addEventToAllEventsList(event);
             }
         }
         for (JsonAdaptedEvent jsonAdaptedEvent : bucketList) {
             Event event = jsonAdaptedEvent.toModelType();
-            if (addressBook.hasEvent(event)) {
+            if (travelr.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
-            addressBook.addEventToBucketListAndAllEventsList(event);
+            travelr.addEventToBucketListAndAllEventsList(event);
         }
-        return addressBook;
+        return travelr;
     }
 
 }

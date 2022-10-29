@@ -25,7 +25,7 @@ import seedu.travelr.model.trip.TripCompletedPredicate;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Travelr travelr;
     private final UserPrefs userPrefs;
     private final FilteredList<Trip> filteredTrips;
     private final ObservableTrip selectedTrip;
@@ -41,16 +41,16 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTravelr travelr, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(travelr, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Travelr: " + travelr + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.travelr = new Travelr(travelr);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTrips = new FilteredList<>(this.addressBook.getTripList());
-        filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
-        bucketList = new FilteredList<>(this.addressBook.getEventList());
+        filteredTrips = new FilteredList<>(this.travelr.getTripList());
+        filteredEvents = new FilteredList<>(this.travelr.getAllEventList());
+        bucketList = new FilteredList<>(this.travelr.getEventList());
 
         // Initialize the selected trip
         selectedTrip = new ObservableTrip();
@@ -63,7 +63,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Travelr(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -91,49 +91,49 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTravelrFilePath() {
+        return userPrefs.getTravelrFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTravelrFilePath(Path travelrFilePath) {
+        requireNonNull(travelrFilePath);
+        userPrefs.setTravelrFilePath(travelrFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setTravelr(ReadOnlyTravelr travelr) {
+        this.travelr.resetData(travelr);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyTravelr getTravelr() {
+        return travelr;
     }
 
     @Override
     public boolean hasTrip(Trip trip) {
         requireNonNull(trip);
-        return addressBook.hasTrip(trip);
+        return travelr.hasTrip(trip);
     }
 
     @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
-        return addressBook.hasEvent(event);
+        return travelr.hasEvent(event);
     }
 
     @Override
     public boolean bucketlistHasEvent(Event event) {
         requireNonNull(event);
-        return addressBook.bucketlistHasEvent(event);
+        return travelr.bucketlistHasEvent(event);
     }
 
     @Override
     public void deleteTrip(Trip target) {
-        addressBook.removeTrip(target);
+        travelr.removeTrip(target);
         if (selectedTrip.isEqual(target)) {
             resetSelectedTrip();
         }
@@ -141,12 +141,12 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteEvent(Event e) {
-        addressBook.removeEvent(e);
+        travelr.removeEvent(e);
     }
 
     @Override
     public void addTrip(Trip trip) {
-        addressBook.addTrip(trip);
+        travelr.addTrip(trip);
     }
 
     /**
@@ -156,38 +156,38 @@ public class ModelManager implements Model {
      */
     @Override
     public void addEvent(Event event) {
-        addressBook.addEventToBucketListAndAllEventsList(event);
+        travelr.addEventToBucketListAndAllEventsList(event);
     }
 
     @Override
     public void returnToBucketList(Event event) {
-        addressBook.returnToBucketList(event);
+        travelr.returnToBucketList(event);
     }
 
     @Override
     public void removeFromBucketList(Event event) {
-        addressBook.removeFromBucketList(event);
+        travelr.removeFromBucketList(event);
     }
 
     public Event getEvent(Event event) {
-        return addressBook.getEvent(event);
+        return travelr.getEvent(event);
     }
 
     public Trip getTrip(Trip trip) {
-        return addressBook.getTrip(trip);
+        return travelr.getTrip(trip);
     }
 
     @Override
     public void setTrip(Trip target, Trip editedTrip) {
         requireAllNonNull(target, editedTrip);
 
-        addressBook.setTrip(target, editedTrip);
+        travelr.setTrip(target, editedTrip);
     }
 
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-        addressBook.setEvent(target, editedEvent);
+        travelr.setEvent(target, editedEvent);
     }
 
     //=========== Summary Variables Accessors =============================================================
@@ -289,19 +289,19 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return travelr.equals(other.travelr)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTrips.equals(other.filteredTrips);
     }
 
     @Override
     public void sortTripsByComparator(Comparator<Trip> comp) {
-        addressBook.sortTrips(comp);
+        travelr.sortTrips(comp);
     }
 
     @Override
     public void sortBucketList(Comparator<Event> comp) {
-        addressBook.sortBucketList(comp);
+        travelr.sortBucketList(comp);
     }
 
     @Override

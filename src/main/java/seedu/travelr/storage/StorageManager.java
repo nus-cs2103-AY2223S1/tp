@@ -7,24 +7,24 @@ import java.util.logging.Logger;
 
 import seedu.travelr.commons.core.LogsCenter;
 import seedu.travelr.commons.exceptions.DataConversionException;
-import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.ReadOnlyTravelr;
 import seedu.travelr.model.ReadOnlyUserPrefs;
 import seedu.travelr.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Travelr data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private TravelrStorage travelrStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TravelrStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(TravelrStorage travelrStorage, UserPrefsStorage userPrefsStorage) {
+        this.travelrStorage = travelrStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,34 +46,34 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Travelr methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getTravelrFilePath() {
+        return travelrStorage.getTravelrFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTravelr> readTravelr() throws DataConversionException, IOException {
+        return readTravelr(travelrStorage.getTravelrFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTravelr> readTravelr(Path filePath) throws DataConversionException, IOException {
         // No problems here with storage
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return travelrStorage.readTravelr(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveTravelr(ReadOnlyTravelr travelr) throws IOException {
+        saveTravelr(travelr, travelrStorage.getTravelrFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveTravelr(ReadOnlyTravelr travelr, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        travelrStorage.saveTravelr(travelr, filePath);
     }
 
 }
