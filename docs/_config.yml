@@ -16,6 +16,7 @@ github_icon: "images/github-icon.png"
 
 enable_features:
   admonitions: true
+  autoglossary: true
 
 defaults:
   - scope:
