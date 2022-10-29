@@ -11,9 +11,9 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
-    public static final String DEFAULT_NAME = "Some task";
-    public static final Optional<LocalDate> DEFAULT_DEADLINE = Optional.ofNullable(
-            LocalDate.of(2022, 1, 1));
+
+    public static final String DEFAULT_NAME = "Default task";
+    public static final Optional<LocalDate> DEFAULT_DEADLINE = Optional.ofNullable(null);
     public static final boolean DEFAULT_IS_DONE = false;
 
     private Name name;

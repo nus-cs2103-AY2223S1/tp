@@ -10,14 +10,15 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
-    public static final Task STUDY = new TaskBuilder().withName("Study for exam").withDeadline("2022-01-02")
+    public static final Task STUDY = new TaskBuilder().withName("Study for exam").withDeadline("02-01-2022")
             .withIsDone(false).build();
-    public static final Task COOK = new TaskBuilder().withName("Cook for the family").withDeadline("2022-10-24")
+    public static final Task COOK = new TaskBuilder().withName("Cook for 4 people").withDeadline("24-10-2022")
             .withIsDone(true).build();
+    public static final Task REVIEW = new TaskBuilder().withName("Review PR").withIsDone(false).build();
 
     private TypicalTasks() {} // prevents instantiation
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(STUDY, COOK));
+        return new ArrayList<>(Arrays.asList(STUDY, COOK, REVIEW));
     }
 }

@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/tjun-jie.png" width="200px">
 
-[[github](https://github.com/TJun_Jie)]
+[[github](https://github.com/TJun-Jie)]
 [[portfolio](team/tjun-jie.md)]
 
 * Role: Team Lead, Deliverables and Deadline, Scheduling and Tracking

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -168,9 +169,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName) {
+    public void editTask(Index teamIndex, Index taskIndex,
+                         seedu.address.model.task.Name newName, LocalDate newDeadline) {
         requireAllNonNull(teamIndex, taskIndex, newName);
-        addressBook.editTask(teamIndex, taskIndex, newName);
+        addressBook.editTask(teamIndex, taskIndex, newName, newDeadline);
         updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
@@ -360,12 +362,14 @@ public class ModelManager implements Model {
      */
     public boolean teamHasMember(Index p, Index t) {
         List<Team> teams = getFilteredTeamList();
+        List<Person> persons = getFilteredPersonList();
         requireNonNull(p);
         ObservableList<Person> memberList = null;
-        Team team = teams.get(t.getOneBased());
+        Team team = teams.get(t.getZeroBased());
+        Person person = persons.get(p.getZeroBased());
         memberList = team.getMemberList();
         for (int j = 0; j < memberList.size(); j++) {
-            if (memberList.contains(p)) {
+            if (memberList.contains(person)) {
                 return true;
             }
         }

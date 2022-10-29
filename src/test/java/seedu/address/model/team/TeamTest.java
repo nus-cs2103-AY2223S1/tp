@@ -77,7 +77,7 @@ public class TeamTest {
         // different type -> returns false
         assertFalse(FRONTEND.equals(5));
 
-        // different person -> returns false
+        // different team -> returns false
         assertFalse(FRONTEND.equals(BACKEND));
 
         // different name -> returns false

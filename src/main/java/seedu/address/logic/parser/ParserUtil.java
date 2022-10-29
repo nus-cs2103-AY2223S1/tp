@@ -25,7 +25,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd/MM/yyyy format.";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd-MM-yyyy format "
+            + "and must be a valid date.";
     public static final String DATE_FORMAT = "dd-MM-yyyy";
 
     /**
@@ -137,8 +138,8 @@ public class ParserUtil {
     public static seedu.address.model.task.Name parseTaskName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!seedu.address.model.task.Name.isValidName(trimmedName)) {
+            throw new ParseException(seedu.address.model.task.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.task.Name(trimmedName);
     }

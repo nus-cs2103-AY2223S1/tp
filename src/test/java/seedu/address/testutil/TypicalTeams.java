@@ -13,8 +13,6 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.team.Team;
 
-
-
 /**
  * A utility class containing a list of {@code Teams} objects to be used in tests.
  */

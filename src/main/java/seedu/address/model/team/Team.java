@@ -2,6 +2,7 @@ package seedu.address.model.team;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -159,8 +160,8 @@ public class Team {
      * @param index The index of the {@code task} to be deleted.
      * @param newName The new name of the task.
      */
-    public void editTask(int index, seedu.address.model.task.Name newName) {
-        tasks.edit(index, newName);
+    public void editTask(int index, seedu.address.model.task.Name newName, LocalDate newDeadline) {
+        tasks.edit(index, newName, newDeadline);
     }
 
     /**

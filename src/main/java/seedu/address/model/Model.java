@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -137,6 +138,6 @@ public interface Model {
 
     void deleteTask(Index teamIndex, Index taskIndex);
 
-    void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName);
+    void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName, LocalDate newDeadline);
 
 }

@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.isNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -46,8 +47,19 @@ public class Task {
         return this.name;
     }
 
-    public void editName(Name newName) {
+    /**
+     * Edits the taskname and deadline of the Task
+     *
+     * @param newName The new task name.
+     * @param newDeadline The new deadline provided.
+     */
+    public void editTaskDesc(Name newName, LocalDate newDeadline) {
         this.name = newName;
+        if (!isNull(newDeadline)) {
+            this.deadline = Optional.ofNullable(newDeadline);
+        } else {
+            this.deadline = this.deadline;
+        }
     }
 
     public Optional<LocalDate> getDeadline() {
@@ -107,7 +119,8 @@ public class Task {
         return other == this // short circuit if same object
                 || (other instanceof Task // instanceof handles nulls
                 && name.equals(((Task) other).getName())
-                && getDeadline().equals(((Task) other).getDeadline())); // state check
+                && getDeadline().equals(((Task) other).getDeadline()))
+                && getIsDone() == ((Task) other).getIsDone(); // state check
     }
 
     @Override
