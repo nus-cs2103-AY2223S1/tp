@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -8,9 +11,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.Hyperlink?>
-
 <?import javafx.scene.text.TextFlow?>
-<StackPane fx:id="detailPanel" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="detailPanel" xmlns="http://javafx.com/javafx/18">
     <children>
         <VBox spacing="16.0">
             <HBox fx:id="profileBoxContainer">

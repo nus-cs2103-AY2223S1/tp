@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -10,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -95,8 +98,21 @@ public class DetailPanel extends MainPanel {
 
     private void updatePersonDetail(Person person) {
         nameLabel.setText(person.getName().toString());
-        Image placeholder = new Image(this.getClass().getResourceAsStream("/images/user_placeholder.png"));
-        profileImageContainer.setFill(new ImagePattern(placeholder));
+
+        AtomicReference<Image> avatarImage =
+            new AtomicReference<>(new Image(
+                Objects.requireNonNull(
+                    this.getClass().getResourceAsStream("/images/user_placeholder.png")
+                )));
+
+        person.getGithubUser().ifPresent(u -> {
+            if (u.getAvatarImageFilePath().isPresent()) {
+                File avatarImageFile = u.getAvatarImageFilePath().get().toFile();
+                avatarImage.set(new Image(avatarImageFile.toURI().toString()));
+            }
+        });
+
+        profileImageContainer.setFill(new ImagePattern(avatarImage.get()));
 
         setInformation(person);
         setTags(person.getTags());
@@ -137,7 +153,7 @@ public class DetailPanel extends MainPanel {
             githubLink.setOnAction(e -> {
                 if (Desktop.isDesktopSupported()) {
                     try {
-                        Desktop.getDesktop().browse(new URI("https://github.com/" + u.getUsername()));
+                        Desktop.getDesktop().browse(new URI(u.getUrl()));
                     } catch (IOException ex) {
                         logger.severe("Error occurred when user clicked the link, " + ex.toString());
                         a.setContentText("An internal error has occurred, unable to open browser.");
@@ -181,6 +197,13 @@ public class DetailPanel extends MainPanel {
         // @see https://stackoverflow.com/a/28559958
         control.setManaged(visible);
         control.setVisible(visible);
+    }
+
+    private void setHyperlinkVisibility(Hyperlink hyperlink, boolean visible) {
+        // Remove node from tree so it doesn't occupy the space.
+        // @see https://stackoverflow.com/a/28559958
+        hyperlink.setManaged(visible);
+        hyperlink.setVisible(visible);
     }
 
     @Override

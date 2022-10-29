@@ -1,10 +1,19 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Logger;
+
 import org.ocpsoft.prettytime.PrettyTime;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.github.Repo;
 
 /**
@@ -13,11 +22,10 @@ import seedu.address.model.person.github.Repo;
 public class GithubRepoCard extends UiPart<Region> {
 
     private static final String FXML = "GithubRepoCard.fxml";
-
     public final Repo repo;
-
+    private final Logger logger = LogsCenter.getLogger(GithubRepoCard.class);
     @FXML
-    private Label name;
+    private Hyperlink name;
 
     @FXML
     private Label lastUpdated;
@@ -36,6 +44,23 @@ public class GithubRepoCard extends UiPart<Region> {
         repo.getDescription().ifPresent(text -> description.setText(text));
         PrettyTime p = new PrettyTime();
         lastUpdated.setText(p.format(repo.getLastUpdated()));
+
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        name.setOnAction(e -> {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI(repo.getRepoUrl()));
+                } catch (IOException ex) {
+                    logger.severe("Error occurred when user clicked the link, " + ex);
+                    a.setContentText("An internal error has occurred, unable to open browser.");
+                    a.show();
+                } catch (URISyntaxException ex) {
+                    logger.warning("Repo url is invalid " + ex);
+                    a.setContentText("Repo url is invalid, unable to open in browser.");
+                    a.show();
+                }
+            }
+        });
     }
 
     private void setLabelVisibility(Label label, boolean visible) {
@@ -60,6 +85,6 @@ public class GithubRepoCard extends UiPart<Region> {
         // state check
         GithubRepoCard card = (GithubRepoCard) other;
         return name.getText().equals(card.name.getText())
-                && repo.equals(card.repo);
+            && repo.equals(card.repo);
     }
 }
