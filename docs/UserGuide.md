@@ -12,18 +12,19 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
   * [Marking trips as not done: `unmark`](#marking-trips-as-not-done-unmark)
   * [Adding events to trips: `add-et`](#adding-events-to-trips-add-et)
   * [Removing events from trips: `delete-et`](#removing-events-from-trips-delete-et)
+  * [Select trip: `select`](#select-trip-select)
+  * [Sorting trips: `sort by/FACTOR r/`](#sorting-trips-sort-byfactor-r)
   * [View all completed trips and events: `completed`](#view-all-completed-trips-and-events-completed)
   * [View all trips and events: `view`](#view-all-trips-and-events-view)
   * [View lifetime summary: `summary`](#view-lifetime-summary-summary)
   * [Saving data](#saving-data)
-  * [Exiting the program: `exit`](#exiting-the-program-bye)
+  * [Exiting the program: `exit`](#exiting-the-program-exit)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `travelr.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-1/tp/releases).
+2. Download the latest `Travelr.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-1/tp/releases).
 3. Copy the file to the folder you want to use as the _home folder_ for Travelr.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -32,7 +33,7 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
 
    * **`list-e`** : Lists all events.
 
-   * **`add-e`**`Sightseeing/20-06-2030/Portugal/Visit Mountains` : Adds an event with the respective date, location, and activity into your event list.
+   * **`add-e`**`n/Sightseeing d/Visit Mountains` : Adds an event with the respective title and description into your event list.
 
    * **`delete -e`**`3` : Deletes the 3rd event shown in the current event list.
 
@@ -48,10 +49,10 @@ Words in UPPER_CASE are the parameters to be supplied by the user.
 e.g. in `add n/TITLE`, TITLE is a parameter which can be used as `add n/Switzerland Trip`
 
 Items in square brackets are optional.
-e.g NAME [t/TAG] can be used as John Doe t/Friend or as John Doe.
+e.g `NAME [t/TAG]` can be used as `John Doe t/Friend` or as `John Doe`.
 
 The relevant prefixes must be used to separate parameters supplied by the user.
-e.g. in `add-e n/TITLE d/DESCRIPTION`, ‘n/’  and 'd/' are two designated used to separate the two parameters supplied which can be used as `add-e n/Sightseeing d/Visit mountains`.
+e.g. in `add-e n/TITLE d/DESCRIPTION`, `n/`  and `d/` are two designated used to separate the two parameters supplied which can be used as `add-e n/Sightseeing d/Visit mountains`.
 
 Extraneous parameters for commands that do not take in parameters (such as bye) will be ignored.
 e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
@@ -89,7 +90,7 @@ Examples:
 - `delete-e 2` deletes the 2nd event in the bucket list.
 
 ### Viewing events list: `list-e`
-Shows a list of all events added.
+Shows a list of all events present in the bucket list.
 
 Format: `list-e`
 
@@ -120,7 +121,7 @@ Shows a list of all trips added.
 Format: `list`
 
 ### Marking trips as done: `mark`
-Mark the trip in the specified INDEX as done
+Mark the trip in the specified INDEX as done.
 
 Format: `mark INDEX`
 - Marks the trip at the specified INDEX as done.
@@ -131,7 +132,7 @@ Examples:
 - `mark 1` marks the first trip in the trip list as done.
 
 ### Marking trips as not done: `unmark`
-Mark the trip in the specified INDEX as not done
+Mark the trip in the specified INDEX as not done.
 
 Format: `unmark INDEX`
 - Marks the trip at the specified INDEX as not done.
@@ -165,6 +166,13 @@ Format: `delete-et n/EVENT NAME t/TRIP NAME`
 Examples:
 - `delete-et n/asd t/qwe` remove the event titled asd from the itinerary of the trip titled qwe's and returns it to the bucket list.
 
+### Select trip `select`
+Selects the trip in the specified INDEX and displays all events added to that trip in the events list panel.
+Format: `select INDEX`
+- Selects the trip at the specified INDEX.
+- The index refers to the index number shown in the current displayed trip list.
+- The index must be a positive integer 1, 2, 3, …
+
 ### Sorting trips: `sort by/FACTOR r/`
 Sorts the trips according to the provided factor.
 
@@ -181,7 +189,7 @@ Format: `sort by/FACTOR r/`
 | --- | --- |
 | nothing | Default sort will be used |
 | `title` | Sort by trips' title in alphabetical order |
-| `time` | Sort by trip's date in chronological order |
+| `time` | Sort by trips' date in chronological order |
 | `location` | Sort by trips' location in alphabetical order |
 | `eventcount` | Sort by trips' number of events in ascending order |
 
@@ -222,6 +230,7 @@ Travelr data are saved locally automatically after any command that changes the 
 
 ### Exiting the program: `exit`
 Exits the program.
+
 Format: `exit`
 
 ### Glossary
