@@ -30,6 +30,8 @@ public class TelegramTest {
         assertFalse(Telegram.isValidTelegram("he")); // <5 chars
         assertFalse(Telegram.isValidTelegram("lo-pie")); // special chars that are not underscores
         assertFalse(Telegram.isValidTelegram("lo__pie")); // consecutive underscores
+        assertFalse(Telegram.isValidTelegram("_lo_pie")); // starting with underscore
+        assertFalse(Telegram.isValidTelegram("lo_pie_")); // end with underscore
         assertFalse(Telegram.isValidTelegram("lopi&e")); // special chars that are not underscores
 
         // valid telegram

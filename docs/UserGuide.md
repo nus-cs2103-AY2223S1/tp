@@ -291,13 +291,13 @@ Data in Mass Linkers is saved in the hard disk automatically after executing any
 
 Below is the summary of requirements of each parameter for the various commands. 
 
-| Parameter       | Requirements                                                                                                                                                                                  |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name            | Only alphabetical with spaces allowed.                                                                                                                                                        |
-| Telegram handle | Case insensitive. Only contain `a-z`, `0-9`, underscores and have a minimum length of 5 characters.<br> Consecutive underscores are not allowed.                                                      |
-| Phone number    | Only numerical characters of at least length 3.                                                                                                                                               |
-| GitHub username | Case insensitive. Follows the requirements as stated [here](https://github.com/shinnn/github-username-regex#:~:text=Github%20username%20may%20only%20contain,Maximum%20is%2039%20characters.). |
-| Interest        | Only alphanumerical characters allowed.                                                                                                                                                       |
+| Parameter       | Requirements                                                                                                                                                                                                   |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name            | Only alphabetical with spaces allowed.                                                                                                                                                                         |
+| Telegram handle | Case insensitive. Only contain `a-z`, `0-9`, underscores and have a minimum length of 5 characters.<br> Consecutive underscores are not allowed. <br> Starting or/and ending with underscores are not allowed. |
+| Phone number    | Only numerical characters of at least length 3.                                                                                                                                                                |
+| GitHub username | Case insensitive. Follows the requirements as stated [here](https://github.com/shinnn/github-username-regex#:~:text=Github%20username%20may%20only%20contain,Maximum%20is%2039%20characters.).                 |
+| Interest        | Only alphanumerical characters allowed.                                                                                                                                                                        |
 
 --------------------------------------------------------------------------------------------------------------------
 
