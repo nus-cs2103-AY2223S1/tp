@@ -285,7 +285,7 @@ Example:
 
 Finds events whose title contain any of the given keywords or start times contain any of the given start times.
 
-Format: `event -f KEYWORD_OR_DATE [MORE]…`
+Format: `event -f KEYWORD_OR_DATE [MORE_KEYWORDS_OR_DATES]…`
 
 * Date search will occur when all inputs are [valid dates](#accepted-date-time-formats), otherwise, keyword search will occur.
 * The date search occurs only by date, ignoring the time, e.g. `11/10/2022 08:00` will match any events that start on `11/10/2022`.
