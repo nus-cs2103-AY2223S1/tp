@@ -52,13 +52,14 @@ public class SetCommandParser implements Parser<SetCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
                         PREFIX_ADDRESS, PREFIX_NAME, PREFIX_TAG, PREFIX_ROLE,
-                        PREFIX_TIMEZONE);
+                        PREFIX_TIMEZONE, PREFIX_GITHUB);
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
                 PREFIX_ADDRESS, PREFIX_NAME, PREFIX_TAG, PREFIX_ROLE,
-                PREFIX_TIMEZONE)) {
+                PREFIX_TIMEZONE, PREFIX_GITHUB)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetCommand.MESSAGE_USAGE));
         }
+
 
         SetPersonDescriptor setPersonDescriptor = new SetPersonDescriptor();
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
@@ -100,7 +101,7 @@ public class SetCommandParser implements Parser<SetCommand> {
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
             try {
                 setPersonDescriptor.setGithubUser(
-                    ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get()));
+                        ParserUtil.parseGithubUser(argMultimap.getValue(PREFIX_GITHUB).get()));
             } catch (UserInvalidException | NetworkConnectionException e) {
                 throw new ParseException(e.getMessage());
             }
