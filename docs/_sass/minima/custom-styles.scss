@@ -1,7 +1,68 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+h1 {
+  font-size: 5rem !important;
+  color: #005757;
+}
+
 h2, h3, h4, h5, h6 {
-  color: #e46c0a;
+  color: #2d5959;
+}
+
+#table-of-contents {
+  margin-top: 3rem !important;
+}
+
+.site-header {
+  line-height: 5rem !important;
+}
+
+h1 {
+  font-weight: 800;
+  margin-top: 1rem !important;
+}
+
+h2 {
+  font-weight: 900;
+  margin-top: 6rem !important;
+}
+
+h3, h4 {
+  font-weight: 800;
+  margin-top: 6rem !important;
+}
+
+h4 {
+  font-variant: all-small-caps;
+}
+
+body {
+  color: #484a43;
+}
+
+p {
+  margin-top: 1.25rem;
+  line-height: 1.6rem;
+}
+
+strong {
+  color: #408080;
+  font-weight: bold;
+}
+
+blockquote {
+  font-size: 14px;
+}
+
+img {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+code {
+  color: #505959;
+  background-color: rgba(51, 102, 102, 0.05);
+  font-variant: none;
 }
 
 // Bootstrap style alerts

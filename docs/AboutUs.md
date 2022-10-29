@@ -3,8 +3,6 @@ layout: page
 title: About Us
 ---
 
-# About Us
-
 ModtRekt is a tool for students of NUS to manage their modules and tasks.
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
