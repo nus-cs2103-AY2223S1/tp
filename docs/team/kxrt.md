@@ -3,15 +3,11 @@ layout: page
 title: Kartikeya's Project Portfolio Page
 ---
 
-# Project: AddressBook Level 3
-
-### Overview
+#### Overview
 
 checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 Given below are my contributions to the project.
-
-### Summary of Contributions
 
 #### Code contributed
 RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxrt&breakdown=true)

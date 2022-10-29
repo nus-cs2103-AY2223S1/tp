@@ -65,6 +65,14 @@ medication history.
                                                                                                                                                                                                                                                                                                                                   
 
 
+## Symbols
+| Symbol               | Meaning                                     |
+|----------------------|---------------------------------------------|
+| :bulb:               | Tip that may be useful to know.             |
+| :notebook:           | Information that may be useful to know.     |
+| +                    | Required field.                             |
+ | -                    | Optional field.                             |
+| *                    | Multiple inputs are allowed.                |
 
 ## Features
 
