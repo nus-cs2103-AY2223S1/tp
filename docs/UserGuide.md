@@ -512,7 +512,7 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 **A**: Yes, your data is saved automatically after every action.
 
 **Q**: My computer does not recognise the file type jar. How do I open the app?<br>
-**A**: Check if your computer already has Java 11 or above install from [8.1 Checking your system's Java version](#81-checking-your-systems-java-version). If not, follow the instructions to install Java.
+**A**: Check if your computer already has Java 11 or above installed from [8.1 Checking your system's Java version](#81-checking-your-systems-java-version). If not, follow the instructions to install Java.
 
 --------------------------------------------------------------------------------------------------------------------
 
