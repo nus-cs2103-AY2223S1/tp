@@ -192,7 +192,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleBack() {
         if (!mainPanelHistory.empty()) {
+            assert !mainPanelHistory.peek().equals(currentMainPanel): "Previous page must not same as current page.";
             switchMainPanel(mainPanelHistory.pop(), false);
+        } else {
+            resultDisplay.setFeedbackToUser("Page history is empty, unable to go back to previous page.");
         }
     }
 
