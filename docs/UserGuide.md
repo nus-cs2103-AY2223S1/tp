@@ -79,20 +79,11 @@ Examples:
 * `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
 * `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
 
-#### 3.1.2 Deleting a student: `delete student`
+#### 3.1.2 Listing all students: `list`
 
-Deletes the specified student from the list of students.
+Shows a list of all students.
 
-Format: `delete student INDEX`
-
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `list` followed by `delete student 2` deletes the 2nd student in the list of people.
-* `find n/Betsy` followed by `delete student 1` deletes the 1st student in the results of the `find` command.
-* `find m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the `find` command.
+Format: `list`
 
 #### 3.1.3 Editing a student: `edit student`
 
@@ -112,14 +103,7 @@ Examples:
 * `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 * `find m/CS2103T` followed by `edit student 2 n/Betsy Crower` Edits the name of the 2nd student to be `Betsy Crower` in the results of the `find` command.
 
-#### 3.1.4 Listing all students: `list`
-
-Shows a list of all students.
-
-Format: `list`
-
-
-#### 3.1.5 Locating students by their attributes: `find`
+#### 3.1.4 Locating students by their attributes: `find`
 
 Finds students by names, student ID, module or tutorial, by checking if respective attribute contains any of the given keywords.
 
@@ -134,7 +118,22 @@ Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find m/CS2103T` returns list of students in CS2103T<br>
+* `find m/CS2103T` returns list of students in CS2103T<br>\
+
+#### 3.1.5 Deleting a student: `delete student`
+
+Deletes the specified student from the list of students.
+
+Format: `delete student INDEX`
+
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `list` followed by `delete student 2` deletes the 2nd student in the list of people.
+* `find n/Betsy` followed by `delete student 1` deletes the 1st student in the results of the `find` command.
+* `find m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the `find` command.
 
 #### 3.1.6 Extracting student's emails : `extract emails`
 
@@ -154,7 +153,7 @@ Examples:
 
 #### 3.2.1 Adding a tutorial : `add tutorial`
 
-Adds a tutorial to the tutorial database.
+Adds a tutorial to the list of tutorials.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -164,20 +163,7 @@ Day should take in a number from 1 (Monday) to 7 (Sunday).
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
-#### 3.2.2 Deleting a tutorial: `delete tutorial`
-
-Deletes a specified tutorial from the tutorial database.
-
-Format: `delete tutorial INDEX`
-
-* Deletes the tutorial at the specified `INDEX`.
-* The index refers to the index number shown in the displayed tutorial list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `delete tutorial 3`
-
-#### 3.2.3 Editing a tutorial: `edit tutorial`
+#### 3.2.2 Editing a tutorial: `edit tutorial`
 
 Edits an existing student in a specified module.
 
@@ -192,6 +178,19 @@ Examples:
 * `edit tutorial 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
 * `edit tutorial 2 T/14:00-16:00 D/2` Edits the timeslot of the 2nd tutorial to be `14:00 to 16:00` and sets tutorial day to `Tue`.
 
+#### 3.2.3 Deleting a tutorial: `delete tutorial`
+
+Deletes a specified tutorial from the list of tutorials
+
+Format: `delete tutorial INDEX`
+
+* Deletes the tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `delete tutorial 3`
+
 ### 3.3 Consultation Features
 
 #### 3.3.1 Adding a consultation: `add consultation`
@@ -203,20 +202,7 @@ Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTIO
 Examples:
 * `add consultation n/JakeKim m/CS2103T D/2022-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
 
-#### 3.3.2 Deleting a consultation: `delete consultation`
-
-Deletes a specified consultation from the consultation database.
-
-Format: `delete consultation INDEX`
-
-* Deletes the consultation at the specified `INDEX`.
-* The index refers to the index number shown in the displayed consultation list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `delete consultation 3`
-
-#### 3.3.3 Editing a consultation: `edit consultation`
+#### 3.3.2 Editing a consultation: `edit consultation`
 
 Edits an existing student in a specified module.
 
@@ -231,19 +217,50 @@ Examples:
 * `edit consultation 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
 * `edit consultation 2 T/14:00-16:00 D/2022-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2022 Oct 10`.
 
+#### 3.3.3 Deleting a consultation: `delete consultation`
+
+Deletes a specified consultation from the consultation database.
+
+Format: `delete consultation INDEX`
+
+* Deletes the consultation at the specified `INDEX`.
+* The index refers to the index number shown in the displayed consultation list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `delete consultation 3`
+
 ### 3.4 Reminder Features
 
 #### 3.4.1 Adding a reminder : `add reminder`
 
 Adds a reminder to the list of reminders.
 
-Format: `add reminder n/NAME T/DEADLINE_TIME D/DEADLINE_DATE d/DESCRIPTION p/PRIORITY`
+Format: `add reminder n/NAME T/DEADLINE_TIME D/DEADLINE_DATE p/PRIORITY d/DESCRIPTION `
 
-* Adds a reminder with either `HIGH`, `MEDIUM` or `LOW` priority.
+Adds a reminder to the list of reminders.
+* `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
+
 
 Examples:
 * `add reminder n/Mark Midterms D/2022-01-01 T/15:00 d/300 papers to mark p/HIGH`
 
+#### 3.4.3 Editing a reminder: `edit reminder`
+
+Edits an existing reminder in the list of reminders.
+
+Format: `edit reminder INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [p/PRIORITY] [d/DESCRIPTION] `
+
+* Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing the time or the date, both fields must be given.
+* `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
+
+
+Examples:
+* `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
+* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd consultation to be `14:00` and sets deadline date to `2022 Oct 10`.
 
 #### 3.4.2 Deleting a reminder : `delete reminder`
 
@@ -257,21 +274,6 @@ Format: `delete reminder INDEX`
 
 Examples:
 * `delete reminder 3`
-
-#### 3.4.3 Editing a reminder: `edit reminder`
-
-Edits an existing reminder in the list of reminders.
-
-Format: `edit consultation INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [d/description] [p/PRIORITY]`
-
-* Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index **must be a positive integer** 1, 2, 3, …
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing the time or the date, both fields must be given.
-
-Examples:
-* `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
-* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd consultation to be `14:00` and sets deadline date to `2022 Oct 10`.
 
 #### 3.4.4 Mark a reminder : `mark reminder`
 
@@ -309,8 +311,11 @@ Sort reminders by a chosen criteria.
 Format: `sort reminder by/SORT_CRITERIA`
 
 * `SORT_CRITERIA` must either be `priority` or `deadline`.
-* Specifying `priority` will sort reminders by their priority, with `HIGH` on top of the list, followed by `MEDIUM` and `LOW`.
-* Specifying `deadline` will sort reminders by their deadline, with the earliest deadline on top of the list.
+* Specifying `priority` will sort reminders by their priority, with `HIGH` on top of the list, followed by `MEDIUM` and `LOW`. 
+Reminders with the same priority will then be sorted by date, from earliest to latest chronologically.
+* Specifying `deadline` will sort reminders by their deadline, with the earliest date on top of the list.
+Reminders with the same deadline will then be sorted by descending priority level, with the same order as stated above.
+* Reminders with the same priority and deadline will then be sorted lexicographically. 
 
 Examples:
 * `sort reminder by/priority`
@@ -376,20 +381,20 @@ _Details coming soon..._
 | Action                     | Format, Examples                                                                                                                                                                                                     |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Student**            | `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [t/TAG]…`<br> e.g., `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17` |
+| **Edit Student**           | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`
 | **Delete Student**         | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                             |
-| **Edit Student**           | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`                                                                                 |
 | **List All Students**      | `list`                                                                                                                                                                                                               |
 | **Find Student**           | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`<br> e.g., `find n/john m/CS2103T`                                                                                                                           |
 | **Extract Student Emails** | `extract emails`                                                                                                                                                                                                     |
 | **Add Tutorial**           | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                         |
-| **Delete Tutorial**        | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                |
 | **Edit Tutorial**          | `edit tutorial INDEX`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                                    |
+| **Delete Tutorial**        | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                |
 | **Add Consultation**       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                |
-| **Delete Consultation**    | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                        |
 | **Edit Consultation**      | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                   |
+| **Delete Consultation**    | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                        |
 | **Add Reminder**           | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark T/2022-03-21 p/HIGH d/300 papers to mark`                                                                                   |
-| **Delete Reminder**        | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                |
 | **Edit Reminder**          | `edit reminder INDEX`<br> e.g., `delete reminder 1 T/2022-01-01 14:00`                                                                                                                                               |
+| **Delete Reminder**        | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                |
 | **Mark Reminder**          | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                    |
 | **Unmark Reminder**        | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                |
 | **Sort Reminder**          | `sort reminder by/SORT_CRITERIA`<br> e.g., `sort reminder by/priority`                                                                                                                                               |
