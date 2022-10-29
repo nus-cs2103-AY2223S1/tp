@@ -37,14 +37,14 @@ An overview of the application's user interface can be found [here](#user-interf
     * [Sorting the transactions: `sort`](#sorting-the-address-book-sort)
   * [Remark Commands]()
     * [Creating a remark: `remark`](#creating-a-remark-remark)
-    * [Editing a remark: `edit`]()
-    * [Deleting a remark: `remark`]()
+    * [Editing a remark: `edit`](#editing-a-remark--edit)
+    * [Deleting a remark: `remark`](#deleting-a-remark--delete)
   * [Miscellaneous Commands]()
     * [Clearing all entries: `clear`](#clearing-all-entries--clear)
     * [Exiting the program: `exit`](#exiting-the-program--exit)
     * [Viewing help: `help`](#viewing-help--help)
     * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
-  * [Data Storage]()
+  * [Data Storage](#data-storage)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
     * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
@@ -137,10 +137,10 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 Below are some symbols that you may encounter in the User Guide.
 
-| Symbol                                                           | Meaning |
-|------------------------------------------------------------------|---------|
-| <div markdown="span" class="alert alert-danger">!</div>          | Warning |
-| <div markdown="span" class="alert alert-warning">:warning:</div> | Caution |
+| Symbol                                                                           | Meaning                                                                       |
+|----------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| <div markdown="span" class="alert alert-danger">❗ Danger Message                 | Warning, something that could cause irreversible damage when done incorrectly |
+| <div markdown="span" class="alert alert-warning">:warning: Warning Message</div> | Caution, something that could go wrong and should be noted                    |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -159,7 +159,7 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 * No restrictions on the phone input field and email input field, but a warning will be given if it deviates from the standard convention.
     * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or whitespaces!
+> <div markdown="span" class="alert alert-warning">:warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
 * `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com`
@@ -209,7 +209,7 @@ Example:
 
 * `clear` clears all Client's entries together with the Remarks and Transactions.
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved!
+> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved!
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -410,6 +410,35 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
+### Editing a remark : `edit`
+
+Edits a `remark` specified by the index number.
+
+Format: `edit INDEX m/remark REMARK`
+
+| Parameter    | Constraints                                                                                                                                                                            |
+|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`      | - Refers to the index number shown in the display remark list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `REMARK`     | - Refers to the new remark, it is a required field                                                                                                                                     |
+
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
+</div>
+
+### Deleting a remark : `delete`
+
+Deletes a `remark` specified by the index number.
+
+Format: `delete INDEX m/remark`
+
+* `INDEX` refers to the index number shown in the display remark list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
+
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
+</div>
+
+> <div markdown="span" class="alert alert-danger">❗ **Deleting a remark is an irreversible process! It will be gone forever**: Be very careful here!
+
+# Data Storage
+
 ### Saving the data
 
 JeeqTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -418,7 +447,7 @@ JeeqTracker data are saved in the hard disk automatically after any command that
 
 JeeqTracker data are saved as a JSON file `[JAR file location]/data/jeeqtracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+> <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
 </div>
 
