@@ -252,7 +252,7 @@ Displays a list of upcoming events, ordered by the date, for the next specified 
 
 Format: `event -u DAYS`
 
-* The days refer to the number of days from the current date. All events within this time frame will be displayed. Events oncurring on the day the command is entered will not be displayed.
+* The days refer to the number of days from the current date. All events within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
 * The days **must be a positive integer** 1, 2, 3, …​
 
 Example:
@@ -421,7 +421,7 @@ NUScheduler accepts date-time formats both with and without a time specified. Fo
 
 #### Date time formats
 
-The following time formats can be appended after a whitespace to the end of any of the above date formats.
+The following time formats can be appended after a whitespace to the end of the above date formats.
 
 - HH:mm
 - HHmm
