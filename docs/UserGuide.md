@@ -132,7 +132,7 @@ Examples:
 
 ### Viewing the information of a client : `show`
 
-Displays information of a client at the specified `INDEX` in a separate panel. This feature allows faster modification to the client information as other commands such as [edit](#editing-of-client-information--edit), [tag](#tagging-clients--tag) and [reminder](#creating-reminders-reminders) do not have to specify an INDEX.
+Displays information of a client at the specified `INDEX` in a separate panel. This feature allows faster modification to the client information as other commands such as [edit](#editing-of-client-information--edit), [tag](#tagging-clients--tag) and [reminder](#creating-reminders--reminders) do not have to specify an INDEX.
 
 Format: `show INDEX​`
 
