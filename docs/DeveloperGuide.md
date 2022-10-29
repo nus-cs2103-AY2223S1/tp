@@ -198,7 +198,7 @@ save both the new class and student.
 
 The following sequence diagram shows how the edit class operation works:
 
-![EditClassSequenceDiagram](images/DG-images/EditClassSequenceDiagram.png)
+<img src="images/DG-images/EditClassSequenceDiagram.png" width="550" />
 
 The following activity diagram summarizes what happens when a teacher executes an edit class command:
 
