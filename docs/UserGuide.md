@@ -325,9 +325,8 @@ Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
 
 * An Assignment task should always include a title, description that should not be left blank.
 * The `addStu/` **MUST** be present for the task to be an assignment.
-* The number of students input is zero or more, and each student is separated by a `,` comma.
+* The number of students input is zero or more, and each student is separated by a `,` comma, thus student names should not contain commas.
 * Both title and description should consist of only alphanumeric characters.
-* A date should strictly follow the format of YYYY-MM-DD.
 
 ### Editing Tasks
 
