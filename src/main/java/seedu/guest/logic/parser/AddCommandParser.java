@@ -46,29 +46,20 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Room room = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get());
+        DateRange dateRange = ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_DATE_RANGE).get());
+        NumberOfGuests numberOfGuests = ParserUtil
+                .parseNumberOfGuests(argMultimap.getValue(PREFIX_NUMBER_OF_GUESTS).get());
+        IsRoomClean isRoomClean = new IsRoomClean(DEFAULT_IS_ROOM_CLEAN);
+        Bill bill = new Bill();
         if (arePrefixesPresent(argMultimap, PREFIX_REQUEST)) {
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            Room room = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get());
-            DateRange dateRange = ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_DATE_RANGE).get());
-            NumberOfGuests numberOfGuests = ParserUtil
-                    .parseNumberOfGuests(argMultimap.getValue(PREFIX_NUMBER_OF_GUESTS).get());
-            IsRoomClean isRoomClean = new IsRoomClean(DEFAULT_IS_ROOM_CLEAN);
-            Bill bill = new Bill();
             Request request = ParserUtil.parseRequest(argMultimap.getValue(PREFIX_REQUEST).get());
             Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean, bill, request);
             return new AddCommand(guest);
         } else {
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            Room room = ParserUtil.parseRoom(argMultimap.getValue(PREFIX_ROOM).get());
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            DateRange dateRange = ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_DATE_RANGE).get());
-            NumberOfGuests numberOfGuests = ParserUtil
-                    .parseNumberOfGuests(argMultimap.getValue(PREFIX_NUMBER_OF_GUESTS).get());
-            IsRoomClean isRoomClean = new IsRoomClean(DEFAULT_IS_ROOM_CLEAN);
-            Bill bill = new Bill();
             Request request = new Request();
             Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean, bill, request);
             return new AddCommand(guest);
