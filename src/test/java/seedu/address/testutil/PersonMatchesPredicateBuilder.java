@@ -83,12 +83,12 @@ public class PersonMatchesPredicateBuilder {
         return this;
     }
 
-    public PersonMatchesPredicateBuilder withModulesList(Set<String> modulesList, boolean needsAll) {
+    public PersonMatchesPredicateBuilder withModulesSet(Set<String> modulesList, boolean needsAll) {
         predicate.setModulesSet(modulesList, needsAll);
         return this;
     }
 
-    public PersonMatchesPredicateBuilder withTagsList(Set<String> tagsList, boolean needsAll) {
+    public PersonMatchesPredicateBuilder withTagsSet(Set<String> tagsList, boolean needsAll) {
         predicate.setTagsSet(tagsList, needsAll);
         return this;
     }

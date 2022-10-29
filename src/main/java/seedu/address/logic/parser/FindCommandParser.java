@@ -65,6 +65,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
+            if (!areModulesArgsValid()) {
+                throw new ParseException(FindCommand.INVALID_MODULES_MESSAGE);
+            }
             setModulesList();
         }
 
@@ -86,7 +89,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
             if (!areTypesArgsValid()) {
-                throw new ParseException("Invalid types provided!");
+                throw new ParseException(FindCommand.INVALID_TYPES_MESSAGE);
             }
             predicate.setTypesList(getKeywordList(PREFIX_TYPE));
         }
@@ -96,6 +99,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            if (!areTagsArgsValid()) {
+                throw new ParseException(FindCommand.INVALID_TAGS_MESSAGE);
+            }
             setTagsList();
         }
 
@@ -131,8 +137,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else {
             hasEmptyFields = true;
             return presentArgs.get().allMatch(prefix ->
-                    argMultimap.getValue(prefix).get().trim().length() != 0)
-                    && areTagsArgsValid() && areModulesArgsValid();
+                    argMultimap.getValue(prefix).get().trim().length() != 0);
         }
     }
 
