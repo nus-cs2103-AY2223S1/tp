@@ -112,6 +112,9 @@ Format: `list`
 
 ![list](images/UserGuide/list.png) 
 
+:white_check_mark: **Input Shortcut:**
+You can replace `list` with `l` for convenience.
+
 ### Finding a contact `find`
 :white_check_mark: **Input Shortcut:**
 You can replace `find` with `f` for convenience.
@@ -223,11 +226,11 @@ Format: `description INDEX d/DESCRIPTION`
 
 ![description](images/UserGuide/description.png)     
 
-* INDEX is the index of the person in the currently displayed list.
+* `INDEX` is the index of the person in the currently displayed list.
 * Updating description of a contact can also be done through the 'update' command. See [Update command](#updating-a-person--update)
 
 :white_check_mark: **Input Shortcut:**
-You can replace `desc` with `d` for convenience.
+You can replace `description` with `desc` for convenience.
 Format: `desc INDEX d/DESCRIPTION`
 
 ### Assigning PDF file to a person: `filepath`
@@ -238,7 +241,7 @@ Format: `filepath INDEX f/FILEPATH`
 
 ![filepath](images/UserGuide/filepath.png) 
 
-* INDEX is the index of the person in the currently displayed list.
+* `INDEX` is the index of the person in the currently displayed list.
 * The filepath is the absolute path of the PDF on the local disk of the computer. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
 * Only file paths that lead to a PDF is allowed. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.docx` is an invalid filepath.
 * Moving or renaming the PDF file in the local disk does not change the person's assigned file path, so you would have to assign it manually.
@@ -254,7 +257,7 @@ Format: `file INDEX`
 
 ![file](images/UserGuide/file.png)
 
-* INDEX is the index of the person in the currently displayed list.
+* `INDEX` is the index of the person in the currently displayed list.
 * Moving or renaming the PDF file in the local disk will cause the command to not work, which will require you to reassign a file path to the person again.
 
 Examples:
@@ -266,8 +269,8 @@ Adds one or more meeting times to a person in your FABook.
    
 Format: `meeting INDEX mt/MEETINGTIME...`
    
-* INDEX is the index of the person in the currently displayed list.
-* MEETINGTIME should be in the format `DD-MM-YYYY-HH:MM`.
+* `INDEX` is the index of the person in the currently displayed list.
+* `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
 * mt/ should be put before each separate meeting time.
 * The person's existing meeting times remain unchanged.
    
@@ -281,8 +284,8 @@ Deletes a meeting from a person in your FABook.
 
 Format: `deletemeeting INDEX mt/MEETINGTIME`
    
-* INDEX is the index of the person in the currently displayed list.
-* MEETINGTIME should be in the format `DD-MM-YYYY-HH:MM`.
+* `INDEX` is the index of the person in the currently displayed list.
+* `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
 * If the given meeting time is not on the list, the person's meetings remain unchanged.
    
 Examples:
@@ -318,33 +321,35 @@ As this command syncs with your device's system clock, please make sure the curr
    
 ### Deleting a person : `delete`
 
-Deletes the specified person from the FABook.
+Deletes the specified person from your FABook.
 
 Format: `delete INDEX`
 
 ![delete](images/UserGuide/delete.png) 
 
 * INDEX is the index of the person in the currently displayed list.
-* Deletes the person with the specified index in the FABook.
+* Deletes the person with the specified index in your FABook.
 
 Examples:
-* `delete 2` deletes the second person in the currently displayed person list in the FABook.
+* `delete 2` deletes the second person in the currently displayed person list in your FABook.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the FABook.
+Clears all entries from your FABook.
 
 Format: `clear`
 
 ![clear](images/UserGuide/clear.png)   
 
 :heavy_exclamation_mark: **Important**
-If you run this command by accident, you can undo the command to restore all previously cleared entries.
-See [Undo](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#undoing-a-previous-command--undo)
+If you run this command by accident, you can [undo](#undoing-a-previous-command--undo) the command to restore all previously cleared entries.
+
+:white_check_mark: **Input Shortcut:**
+You can replace `clear` with `cl` for convenience.
 
 ### Undoing a previous command : `undo`                                      
 
-Undos the last command from the FABook.
+Undos your last command.
 
 Format: `undo`
 
@@ -355,11 +360,11 @@ Format: `undo`
 * Non-undoable commands are: 'exit', 'find */', 'help', 'list', 'file' and 'filepath'
 
 :heavy_exclamation_mark: **Important**
-You can undo a `redo` command. See [Redo](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#redoing-a-previous-command--redo)
+You can undo a [`redo` command](#redoing-a-previous-command--redo).
 
 ### Redoing a previous command : `redo`
 
-Redos the last undone command from the FABook.
+Redos your last undone command.
 
 Format: `redo`
 
@@ -371,17 +376,16 @@ Exits the program.
 
 Format: `exit`
 
-:white_check_mark: **Tip:**
-Input shortcut: `e` can be used in place of `exit`.
-Format: `e`
+:white_check_mark: **Input Shortcut:**
+You can replace `exit` with `e` for convenience.
 
 ### Saving the data
 
-FABook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Your FABook data are saved in the hard disk automatically after any command that changes the data. This means hassle free saving.
 
 ### Editing the data file
 
-FABook data are saved as a text file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FABook data are saved as a text file `[JAR file location]/data/addressbook.json`. If you are an advanced user, you are welcome to update data directly by editing that data file.
 
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
@@ -416,4 +420,3 @@ If your changes to the data file makes its format invalid, FABook will discard a
 | **Redo**                 | `redo`                                                                                                                                                            |          |
 | **Help**                 | `help`                                                                                                                                                            |          |
 | **Exit**                 | `exit`                                                                                                                                                            | e        |
-
