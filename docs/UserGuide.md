@@ -284,7 +284,7 @@ Examples:
 
 #### 5.1.5 Edit client: `editClient`
 
-Edit detail of the specified client.
+Edit details of the specified client.
 
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
