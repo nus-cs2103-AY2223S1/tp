@@ -209,4 +209,45 @@ public class DateTimeTest {
         // different format
         assertEquals(DateTime.getDifferenceString(dateOne, dateNine), "1 day, 1 hour, 30 minutes");
     }
+
+    @Test
+    public void compareTo_bothHaveTime() {
+        // Same Date and Time
+        assertEquals(new DateTime("22/02/2022 06:00").compareTo(new DateTime("22/02/2022 06:00")), 0);
+
+        // Compared to a later Date and Time
+        assertEquals(new DateTime("22/02/2022 06:00").compareTo(new DateTime("22/02/2022 07:00")), -1);
+        assertEquals(new DateTime("22/02/2022 06:00").compareTo(new DateTime("23/02/2022 06:00")), -1);
+
+        // Compared to an earlier Date and Time
+        assertEquals(new DateTime("22/02/2022 06:00").compareTo(new DateTime("22/02/2022 05:00")), 1);
+        assertEquals(new DateTime("22/02/2022 06:00").compareTo(new DateTime("21/02/2022 06:00")), 1);
+    }
+
+    @Test
+    public void compareTo_bothNoTime() {
+        // Same Date
+        assertEquals(new DateTime("22/02/2022").compareTo(new DateTime("22/02/2022")), 0);
+
+        // Compared to a later Date
+        assertEquals(new DateTime("22/02/2022").compareTo(new DateTime("23/02/2022")), -1);
+
+        // Compared to an earlier Date
+        assertEquals(new DateTime("22/02/2022").compareTo(new DateTime("21/02/2022")), 1);
+    }
+
+    @Test
+    public void compareTo_oneWithAnotherWithoutTime() {
+        // With time compared to another with time (Same Date)
+        assertEquals(new DateTime("22/02/2022").compareTo(new DateTime("22/02/2022 06:00")), -1);
+
+        // With time compared to another with time (Different Date)
+        assertEquals(new DateTime("22/02/2022").compareTo(new DateTime("21/02/2022 06:00")), 1);
+
+        // With time compared to another without time (Same Date)
+        assertEquals(new DateTime("22/02/2022 06:00").compareTo(new DateTime("22/02/2022")), 1);
+
+        // With time compared to another without time (Different Date)
+        assertEquals(new DateTime("21/02/2022 06:00").compareTo(new DateTime("22/02/2022")), -1);
+    }
 }
