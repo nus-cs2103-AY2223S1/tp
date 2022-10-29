@@ -22,6 +22,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentContainsKeywordsPredicate;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
@@ -44,10 +45,6 @@ public class CommandTestUtil {
     public static final String VALID_STUDENTID_BOB = "e0222222";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-
-    public static final String VALID_ATTENDANCE_AMY = "0";
-    public static final String VALID_ATTENDANCE_BOB = "1";
-
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -93,7 +90,6 @@ public class CommandTestUtil {
     public static final String DEADLINE_DATE_DESC = " " + PREFIX_DEADLINE_DATE + VALID_DEADLINE_DATE;
     public static final String ASSIGNMENT_ADD_STUDENTS_DESC =
             " " + PREFIX_ASSIGNMENT_ADD_STUDENTS + VALID_ASSIGNMENT_STUDENTS;
-
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
