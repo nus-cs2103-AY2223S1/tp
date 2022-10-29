@@ -92,7 +92,9 @@ public class GraphPanel extends UiPart<Region> {
         return this.entryType;
     }
 
-    public GraphType getGraphType() { return this.graphType;}
+    public GraphType getGraphType() {
+        return this.graphType;
+    }
 
 }
 

@@ -8,6 +8,8 @@ import seedu.pennywise.model.entry.GraphType;
  * on the displayed graph based on a user's command.
  */
 public class GraphConfiguration {
+    public static final GraphConfiguration UPDATE_CURR_GRAPH_CONFIG =
+            new GraphConfiguration(null, null, true);
     private final EntryType entryType;
     private final GraphType graphType;
     /** Whether the graph should be updated or not. */

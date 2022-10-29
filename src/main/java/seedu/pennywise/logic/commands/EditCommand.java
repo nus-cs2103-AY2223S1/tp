@@ -14,6 +14,7 @@ import seedu.pennywise.commons.core.Messages;
 import seedu.pennywise.commons.core.index.Index;
 import seedu.pennywise.commons.util.CollectionUtil;
 import seedu.pennywise.logic.commands.exceptions.CommandException;
+import seedu.pennywise.model.GraphConfiguration;
 import seedu.pennywise.model.Model;
 import seedu.pennywise.model.entry.Amount;
 import seedu.pennywise.model.entry.Date;
@@ -116,7 +117,10 @@ public class EditCommand extends Command {
             // should never reach here
             break;
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
+        return new CommandResult(String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry),
+                false,
+                false,
+                GraphConfiguration.UPDATE_CURR_GRAPH_CONFIG);
     }
 
     /**

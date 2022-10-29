@@ -8,6 +8,7 @@ import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.pennywise.logic.commands.exceptions.CommandException;
+import seedu.pennywise.model.GraphConfiguration;
 import seedu.pennywise.model.Model;
 import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.model.entry.EntryType;
@@ -69,7 +70,10 @@ public class AddCommand extends Command {
             // should never reach here
             return null;
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+                false,
+                false,
+                GraphConfiguration.UPDATE_CURR_GRAPH_CONFIG);
     }
 
     @Override
