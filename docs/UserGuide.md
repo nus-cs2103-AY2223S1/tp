@@ -7,6 +7,7 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
   * [Deleting events: `delete-e`](#deleting-events-delete-e)
   * [Viewing events list: `list-e`](#viewing-events-list-list-e)
   * [Adding trips: `add`](#adding-trips-add)
+  * [Delete trips: `delete`](#delete-trips-delete)
   * [Viewing trips list: `list`](#viewing-trips-list-list)
   * [Marking trips as done: `mark`](#marking-trips-as-done-mark)
   * [Marking trips as not done: `unmark`](#marking-trips-as-not-done-unmark)
@@ -17,7 +18,11 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
   * [Sorting events within Bucket List: `sort-e`](#sorting-events-within-bucket-list-sort-e)
   * [View all completed trips and events: `completed`](#view-all-completed-trips-and-events-completed)
   * [View all trips and events: `view`](#view-all-trips-and-events-view)
+  * [Display single trip: `display`](#display-single-trip-display)
+  * [Display single event: `display-e`](#display-single-event-display-e)
   * [View lifetime summary: `summary`](#view-lifetime-summary-summary)
+  * [Clearing all entries : `clear`](#clearing-all-entries-clear)
+  * [Viewing help : `help`](#viewing-help-help)
   * [Saving data](#saving-data)
   * [Exiting the program: `exit`](#exiting-the-program-exit)
 
@@ -36,7 +41,7 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 
    * **`add-e`**`n/Sightseeing d/Visit Mountains` : Adds an event with the respective title and description into your event list.
 
-   * **`delete -e`**`3` : Deletes the 3rd event shown in the current event list.
+   * **`delete-e`**`3` : Deletes the 3rd event shown in the current event list.
 
    * **`exit`** : Exits the app.
 6. Refer to the [Features](#features) below for details of each command.
@@ -56,8 +61,8 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 |**Input Box**|where you enter your commands.|
 |**Output Box**|where the results of your command are shown.
 |**Selected Trip Box**| where the current selected trip is shown.<br><br> Use `select` to select a trip.|
-|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the trips shown:<ul><li>`completed`</li><li>`view`</li><li>`list`</li></ul>See feature list for more information about the commands.|
-| **Event List Display** |where the Events stored in Travelr are shown.<br><br> Commands to change the events shown:<ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul>See feature list for more information about the commands.
+|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown:<ul><li>`completed`</li><li>`view`</li><li>`list`</li></ul>See feature list for more information about the commands.|
+| **Event List Display** |where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown:<ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul>See feature list for more information about the commands.
  
  </div>
  
@@ -241,7 +246,7 @@ date (if a date has been defined for the trip) of the trip at the specified INDE
 
 Format: `display INDEX`
 
-### Display single trip: `display-e`
+### Display single event: `display-e`
 Displays the full title, description of the event at the specified INDEX of the displayed events list in the command box.
 
 Format: `display-e INDEX`
@@ -259,14 +264,14 @@ Format: `summary`
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from Travelr, which includes the trips and the events.
 
 Format: `clear`
 
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a command summary as well as link to the User Guide page. The link can be copied by clicking the `Copy URL` button.
 
