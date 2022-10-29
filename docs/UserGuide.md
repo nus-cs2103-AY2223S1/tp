@@ -142,6 +142,9 @@ Examples:
 - `add module CS2103T`
 - `add mod CS2103T`
 
+Sample execution of command `add mod CS2100`:
+![add-mod-sample](images/UserGuidePictures/add-mod-sample.png)
+
 The app also supports the addition of customised modules, which may or may not be in NUSMods.
 This is useful for users with other commitments, such as internships, that they would like to track in the app.
 Note that if your customised module is not in NUSMods, you would still need to specify the module credits, for example, 0.
@@ -150,8 +153,14 @@ Format: `add module <module code> -n <custom module name> -cr <module credits>`
 
 Shorthand: `add mod <module code> -n <custom module name> -cr <module credits>`
 
-Sample execution of command `add mod CS2100`:
-![add-mod-sample](images/UserGuidePictures/add-mod-sample.png)
+- Note that the credits still need to be supplied, even if it is 0.
+
+Examples:
+- `add module CCA -n "Basketball Club" -cr 0`
+- `add mod CS10 -n "Non-credit Bearing Internship" -cr 0`
+
+Sample execution of command `add mod CCA -n Volleyball -cr 0`:
+![add-mod-verbose-sample](images/UserGuidePictures/add-mod-verbose-sample.png)
 
 #### Removing a module: `remove module`
 
