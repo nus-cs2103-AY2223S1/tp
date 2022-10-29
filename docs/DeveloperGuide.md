@@ -23,16 +23,16 @@ having the benefits of a Graphical User Interface (GUI). Fast typist would be ab
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
 
 --------------------------------------------------------------------------------------------------------------------
-## About this Developer Guide
+## **About this Developer Guide**
 
 This guides aims to: <br>
 
 1. Provide developers with a brief overview of the design architecture of our product.
 2. Explain some design considerations in the development of the application.
-3. Product interested developers with documentations to continue development of our product.
+3. Provide interested developers with documentations to continue development of our product.
 
 --------------------------------------------------------------------------------------------------------------------
-## Navigating the Developer Guide
+## **Navigating the Developer Guide**
 **Information Box**
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** Provides extra information that is useful
@@ -40,7 +40,7 @@ This guides aims to: <br>
 
 **Tip Box**
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** Provides pointers to enhance your experience using the application 
+**:bulb: Tip:** Provides pointers to enhance your experience 
 </div>
 
 **Warning Box**
@@ -144,6 +144,9 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
