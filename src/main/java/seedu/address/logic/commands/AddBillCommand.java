@@ -27,7 +27,7 @@ public class AddBillCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a bill that corresponds to an appointment to HealthContact.\n"
-            + "Parameters: INDEX_OF_APPOINTMENT (must be a positive integer)"
+            + "Parameters: INDEX_OF_APPOINTMENT (must be a positive integer) "
             + PREFIX_BILL_DATE + " DATE<yyyy-MM-dd> "
             + PREFIX_AMOUNT + " AMOUNT\n"
             + "Example: " + COMMAND_WORD + " 1 "
