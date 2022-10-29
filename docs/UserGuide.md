@@ -8,37 +8,49 @@ title: User Guide
 
 ![banner](images/ug-images/checkUp_banner.png)
 
-**checkUp** is a **desktop app for managing patient details, optimized for use via a Command Line Interface** (CLI) 
+**checkUp is a desktop app for managing patient details**, optimized for use via a Command Line Interface (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient 
-management tasks done faster than traditional GUI apps.
+management tasks done quicker than traditional GUI apps.
 
-checkUp is an app made for healthcare establishments. It allows clinics to track relevant details for their patients and
+**checkUp** is an app made for healthcare establishments. It allows clinics to track relevant details for their patients and
 hospitals to track details related a patient's stay at the hospital. Without an internet connection, checkUp stores
-patient details such as patient name, next-of-kin details, phone number, email, medical history, upcoming appointments 
-and past appointments locally on your device. Medication tags can be added to your patients to keep track of their 
-long-term medication history.
+patient details such as
+- patient name;
+- next-of-kin details;
+- phone number;
+- email;
+- medical history;
+- upcoming appointments; and 
+- past appointments.
+
+Also, medication tags can be added to your patients to keep track of their long-term medication history.
+
+We store this data locally on your device. This means that we can benefit from extremely quick loading times!
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer. To check this, run `java --version` in your command
+   line interface.
 
-2. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
+3. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
+4. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
 
-4. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup. 
-5. Note how the app contains some sample data.<br>
+5. Navigate to the home folder with `cd PATH_TO_FOLDER` in your command line interface.
+
+6. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup.
+
+7. Note how the app contains some sample data.<br>
    ![Ui](images/ug-images/Ui-explanations.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+8. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
     * **`add`**`n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690
-      m/panadol m/ibuprofen` :
-      Adds a contact named `Amy Toh` to checkUp. 
+      m/panadol m/ibuprofen` : Adds a contact named `Amy Toh` to checkUp. 
 
     * **`delete`** `3` : Deletes the 3rd contact shown in the current patient list panel.
 
@@ -47,7 +59,7 @@ long-term medication history.
 
     * **`view`** `1` : Views the 1st contact shown in the current patient list panel.
 
-7. Refer to the [Features](#features) below for details of each command.
+9. Refer to the [Features](#features) below for details of each command.
 
 ---
 ## Glossary
@@ -56,12 +68,12 @@ long-term medication history.
 |-------------------|-------------------------------------------------------------------------------------------|
 | **Appointment**   | An arrangement to consult the doctor at a particular date.                                |
 | **Diagnosis**     | The identification of diseases by the examination of symptoms and signs.                  |                                                                                                                                                                                                                                                                                    |
-| **Floor Number**  | The floor where the inpatient is on.                                                      |
-| **Hospital Wing** | The section of the hospital where the inpatient is in.                                    |
 | **Inpatient**     | A patient who stays in a hospital while under treatment.                                  |                                                                                                                                                                                                                                                                          |
+| **Outpatient**    | A patient who goes to a hospital or clinic for treatment without staying there overnight. |
+| **Hospital Wing** | The section of the hospital where the inpatient is in.                                    |
+| **Floor Number**  | The floor where the inpatient is on.                                                      |
 | **Medication**    | A drug or other form of medicine that is used to treat or prevent disease.                |
 | **Next-Of-Kin**   | The patient's closest living relative.                                                    |
-| **Outpatient**    | A patient who goes to a hospital or clinic for treatment without staying there overnight. |
 | **Ward Number**   | The ward where the inpatient is in.                                                       |
 
                                                                                                                                                                                                                                                                                                                                   
@@ -448,7 +460,7 @@ any data created or deleted from the application!
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
 
 ### Keyboard Shortcuts
-* Similar to other CLI interfaces, CheckUp supports a few keyboard shortcuts:
+* Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C` .
 
