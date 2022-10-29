@@ -44,6 +44,7 @@ public class EntryPane extends UiPart<Region> {
         this.incomeEntryPanel = incomeEntry;
         expenseEntryPlaceholder.getChildren().add(expenseEntry.getRoot());
         incomeEntryPlaceholder.getChildren().add(incomeEntry.getRoot());
+
     }
 
     /**
@@ -60,6 +61,14 @@ public class EntryPane extends UiPart<Region> {
     public void showIncomeEntryPanel() {
         logger.info("Showing income entry panel");
         tabPane.getSelectionModel().select(income);
+    }
+
+    public Tab getIncome() {
+        return income;
+    }
+
+    public Tab getExpenses() {
+        return expenses;
     }
 
     public EntryListPanel getExpenseEntryPanel() {

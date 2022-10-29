@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.pennywise.commons.core.LogsCenter;
 import seedu.pennywise.model.entry.EntryType;
+import seedu.pennywise.model.entry.GraphType;
 
 /**
  * Panel containing the pie chart diagram.
@@ -30,6 +31,7 @@ public class GraphPanel extends UiPart<Region> {
     @FXML
     private StackPane graphPlaceholder;
     private final EntryType entryType;
+    private final GraphType graphType;
 
     /**
      * Creates a {@code GraphPanel} with a default pie chart image.
@@ -37,6 +39,7 @@ public class GraphPanel extends UiPart<Region> {
     public GraphPanel(EntryType entryType, ObservableList<PieChart.Data> pieChartData) {
         super(FXML);
         this.entryType = entryType;
+        this.graphType = new GraphType(GraphType.GRAPH_TYPE_CATEGORY);
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             chartTitle.setText(EXPENSE_CHART_TITLE);
@@ -64,6 +67,7 @@ public class GraphPanel extends UiPart<Region> {
     public GraphPanel(EntryType entryType, XYChart.Series<String, Number> lineGraphData) {
         super(FXML);
         this.entryType = entryType;
+        this.graphType = new GraphType(GraphType.GRAPH_TYPE_MONTH);
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             chartTitle.setText(EXPENSE_CHART_TITLE);
@@ -87,6 +91,8 @@ public class GraphPanel extends UiPart<Region> {
     public EntryType getEntryType() {
         return this.entryType;
     }
+
+    public GraphType getGraphType() { return this.graphType;}
 
 }
 

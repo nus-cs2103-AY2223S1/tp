@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -18,9 +20,11 @@ import seedu.pennywise.commons.core.GuiSettings;
 import seedu.pennywise.commons.core.LogsCenter;
 import seedu.pennywise.logic.Logic;
 import seedu.pennywise.logic.commands.CommandResult;
+import seedu.pennywise.logic.commands.ViewCommand;
 import seedu.pennywise.logic.commands.exceptions.CommandException;
 import seedu.pennywise.logic.parser.exceptions.ParseException;
 import seedu.pennywise.model.GraphConfiguration;
+import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.model.entry.EntryType;
 import seedu.pennywise.model.entry.GraphType;
 
@@ -127,7 +131,16 @@ public class MainWindow extends UiPart<Stage> {
 
         entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
         entryPanePlaceholder.getChildren().add(entryPane.getRoot());
-
+        entryPane.getExpenses().setOnSelectionChanged((EventHandler<Event>) t -> {
+            GraphConfiguration expenditureGraphConfig = new GraphConfiguration(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE), this.currGraphPanel.getGraphType(), true);
+            CommandResult expenditureCommandResult = new CommandResult("", false, false, expenditureGraphConfig);
+            this.updateGraph(expenditureCommandResult);
+        });
+        entryPane.getIncome().setOnSelectionChanged((EventHandler<Event>) t -> {
+            GraphConfiguration incomeGraphConfig = new GraphConfiguration(new EntryType(EntryType.ENTRY_TYPE_INCOME), this.currGraphPanel.getGraphType(), true);
+            CommandResult incomeCommandResult = new CommandResult("", false, false, incomeGraphConfig);
+            this.updateGraph(incomeCommandResult);
+        });
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -142,6 +155,7 @@ public class MainWindow extends UiPart<Stage> {
 
         graphPanelPlaceholder.getChildren().add(this.currGraphPanel.getRoot());
     }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
