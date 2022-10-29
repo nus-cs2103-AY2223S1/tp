@@ -130,7 +130,7 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The index of the student must be specified and there should be exactly one INDEX parameter.<br>
 The index of the student can be seen from the student list.<br>
-The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment (PA), Midterm Test, and Final Examination, are in percentages from 0% to 100% inclusive, with decimals allowed.<br>
+The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment (PA), Midterm Test, and Final Examination, are in percentages between 0% to 100% inclusive, with up to 2 decimals allowed.<br>
 The scores are optional, but there should be at least one parameter.
 </div>
 
