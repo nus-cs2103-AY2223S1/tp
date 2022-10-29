@@ -164,7 +164,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Opens the image upload window or focuses on it if it's already opened.
      */
     @FXML
     public void handleImageUpload(String name) {
@@ -177,6 +177,7 @@ public class MainWindow extends UiPart<Stage> {
         );
 
         File file = fileChooser.showOpenDialog(primaryStage);
+        System.out.println(logic.getUserImageDirectoryPath());
         if (file != null) {
             try {
                 Files.copy(
@@ -185,6 +186,7 @@ public class MainWindow extends UiPart<Stage> {
                     StandardCopyOption.REPLACE_EXISTING
                 );
             } catch (IOException ex) {
+                ex.printStackTrace();
                 logger.warning("Could not handle file upload: " + name);
             }
         }
