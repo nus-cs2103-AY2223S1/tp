@@ -145,7 +145,7 @@ Ta-da! *MyInsuRec* is now installed on your system.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Quick start
+## 6. Quick Start
 
 ### 6.1 Basic features
 
@@ -620,6 +620,9 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 { glossary placeholder }
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## 12. Contact Us
 
-{ contact us placeholder}
+Our team is committed to delivering a high-quality product, so we'd love to hear from you if you have any feedback or enquiries! 
+
+Please feel free to contact us at [myinsurec@gmail.com](myinsurec@gmail.com).
