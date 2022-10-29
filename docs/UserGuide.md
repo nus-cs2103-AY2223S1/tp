@@ -152,7 +152,7 @@ For example,
     * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$1000` : Adds a client
       named `John Doe` in FinBook.
    
-    * **`edit`** `1 r/Low pl/NTUC Income Plan` : Edits the 1st client portfolio risk
+    * **`edit`**`1 r/Low pl/NTUC Income Plan` : Edits the 1st client portfolio risk
       and plans shown in the current list.
 
     * **`delete`**`3` : Deletes the 3rd client shown in the current list.
