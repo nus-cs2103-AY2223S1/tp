@@ -93,7 +93,7 @@ public class DetailPanel extends MainPanel {
         person.getAddress().ifPresent(a -> addressLabel.setText(a.toString()));
 
         setLabelVisibility(githubLabel, person.getGithubUser().isPresent());
-        person.getGithubUser().ifPresent(u -> githubLabel.setText(u.getUsername()));
+        person.getGithubUser().ifPresent(u -> githubLabel.setText("@" + u.getUsername()));
 
         // Hide the title when github user is empty
         setLabelVisibility(reposTitleLabel, person.getGithubUser().isPresent());
