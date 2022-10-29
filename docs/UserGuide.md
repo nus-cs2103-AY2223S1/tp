@@ -163,9 +163,20 @@ Examples:
 
 #### Editing an employee: `edit`
 
-Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
+There might be times when you have to change an employee's particulars and details after adding them into the database. 
+It could be a typo in the address, a mobile number change, maybe even a promotion...
+
+In any case, editing an employee's details can be done through a single command. 
+
+Simply provide the **index number** of the employee (not the Employee ID) based on the **employee list currently displayed**, along with the updated details you wish to change to.
+
+Any existing value, if it exists, will be overwritten by the updated value that is keyed in.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb:
+  <p>There must be <em>at least one</em> parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!</p>
+</div>
 
 Examples:
 
