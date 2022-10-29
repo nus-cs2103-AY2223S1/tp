@@ -22,27 +22,27 @@ An overview of the application's user interface can be found [here](#user-interf
 * [User Interface Overview](#user-interface-overview)
 * [How to use the User Guide](#how-to-use-the-user-guide)
 * [Features](#features)
-  * [Client Commands]()
+  * [Client Commands](#client-commands)
     * [Adding a client: `add`](#adding-a-client-add)
-    * [Listing all clients: `list`](#listing-all-clients--list)
-    * [Editing a client: `edit`]()
-    * [Deleting a client: `delete`]()
+    * [Listing all clients: `list`](#listing-all-clients-list)
+    * [Editing a client: `edit`](#editing-a-client-edit)
+    * [Deleting a client: `delete`](#deleting-a-client-delete)
     * [Locating clients by name: `find`](#locating-clients-by-name-find)
-    * [Viewing a client: `view`](#viewing-a-client--view)
-  * [Transaction Commands]()
+    * [Viewing a client: `view`](#viewing-a-client-view)
+  * [Transaction Commands](#transaction-commands)
     * [Creating a transaction: `buy` or `sell` ](#creating-a-transaction-buy-or-sell)
-    * [Editing a transaction: `edit`](#editing-a-transaction--edit)
-    * [Deleting a transaction: `delete`](#deleting-a-transaction--delete)
-    * [Filtering buy or sell transactions: `filter`](#filtering-the-transaction-display--filter)
-    * [Sorting the transactions: `sort`](#sorting-the-address-book-sort)
-  * [Remark Commands]()
+    * [Editing a transaction: `edit`](#editing-a-transaction-edit)
+    * [Deleting a transaction: `delete`](#deleting-a-transaction-delete)
+    * [Filtering buy or sell transactions: `filter`](#filtering-buy-or-sell-transactions-filter)
+    * [Sorting the transactions: `sort`](#sorting-the-transactions-sort)
+  * [Remark Commands](#remark-commands)
     * [Creating a remark: `remark`](#creating-a-remark-remark)
-    * [Editing a remark: `edit`](#editing-a-remark--edit)
-    * [Deleting a remark: `remark`](#deleting-a-remark--delete)
-  * [Miscellaneous Commands]()
-    * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-    * [Exiting the program: `exit`](#exiting-the-program--exit)
-    * [Viewing help: `help`](#viewing-help--help)
+    * [Editing a remark: `edit`](#editing-a-remark-edit)
+    * [Deleting a remark: `remark`](#deleting-a-remark-delete)
+  * [Miscellaneous Commands](#miscellaneous-commands)
+    * [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    * [Exiting the program: `exit`](#exiting-the-program-exit)
+    * [Viewing help: `help`](#viewing-help-help)
     * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
   * [Data Storage](#data-storage)
     * [Saving the data](#saving-the-data)
@@ -67,7 +67,6 @@ An overview of the application's user interface can be found [here](#user-interf
 
 5. Type the command in the command box and press Enter to execute it.<br> e.g. typing **`help`** and pressing Enter will show the list of commands.<br>
 
-
    Some example commands you can try:
 
    * **`list`** : Lists all clients.
@@ -82,7 +81,7 @@ An overview of the application's user interface can be found [here](#user-interf
 
    * **`exit`** : Exits the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -96,7 +95,7 @@ This application UI is split into `5 sections`.
 * `Input Command`: This is where you should key in your commands, and press enter to execute
 * `Application's Reply`: Errors or success messages will appear here after you execute any commands
 * `List Of Clients`: Every client that you have will appear here
-* `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client--view), or it will show all transactions with every client if you use the [filter command](#filtering-the-transaction-display--filter)
+* `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
 * `Remarks Of Specified Client`: Remarks of specified client will appear here
 
 [Back to Table of Contents](#table-of-contents)
@@ -117,7 +116,7 @@ The [table of contents](#table-of-contents) provides links to every command. But
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Alice`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -125,7 +124,7 @@ The [table of contents](#table-of-contents) provides links to every command. But
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/Alice n/Bob`, only `n/Bob` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
@@ -148,6 +147,8 @@ Below are some symbols that you may encounter in the User Guide.
 
 ## Features
 
+### Client Commands
+
 ### Adding a client: `add`
 
 Adds a client to the list.
@@ -169,7 +170,106 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Creating a Transaction: `buy` or `sell`
+### Listing all clients: `list`
+
+Lists all the clients stored in JeeqTracker.
+
+Format: `list`
+
+* Displays all the clients and their details in JeeqTracker.
+* If JeeqTracker is empty, the clients name section will be blank.
+
+Example:
+
+* `list` displays all stored clients name and details.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Editing a client: `edit`
+
+Edits the details of the `client` at the specified index number in the list displayed on the left panel.
+
+Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
+
+| Parameter | Description                                                                                                                                                        |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | Refers to the index number shown in the displayed list. <br/> - **Must be positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​ |
+| `FIELDS`  | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`            |
+
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
+</div>
+
+Examples:
+* `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
+* `list` followed by `edit 5 m/client a/Blk 333 Clementi Ave 1 p/8765432` replaces the 5<sup>th</sup> index client's address and phone number with the new inputs.
+* `find lee` followed by `edit 2 m/client e/lee123@gmail.com` replaces the 2<sup>nd</sup> client's email of the `find` result with the new inputs.
+* `list` followed by `view 2` displays the remarks and transactions of the 2<sup>nd</sup> client in the JeeqTracker.
+  Applying `edit 3 m/transaction price/1.9` edits the price of the 3<sup>rd</sup> transaction of the client.
+* `find lim` followed by `view 3` displays the remarks and transactions of the 3<sup>rd</sup> client of the `find`
+  result. Applying `edit 3 m/remark supplier` edits the 3<sup>rd</sup> remark of the client.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Deleting a client: `delete`
+> <div markdown="span" class="alert alert-danger">❗ :warning: **If you delete a client, it will be gone forever**: Be very careful here!
+
+Deletes the specified `client`from JeeqTracker.
+
+Format: `delete INDEX m/client`
+
+* The `INDEX` refers to the index number shown in the displayed list.
+* `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
+
+Examples:
+* `delete 1 m/client` deletes the 1<sup>st</sup> client in the JeeqTracker.
+* `list` followed by `delete 2 m/client` deletes the 2<sup>nd</sup> client in the JeeqTracker.
+* `find koh` followed by `delete 1 m/client` deletes the 1<sup>st</sup> client in the results of the `find` command.
+* `list` followed by `view 2` displays the remarks and transactions of the 2<sup>nd</sup> client in the JeeqTracker.
+  Applying `delete 3 m/transaction` deletes the 3<sup>rd</sup> transaction of the client.
+* `find john` followed by `view 1` displays the remarks and transactions of the 1<sup>st</sup> client of the `find`
+  result. Applying `delete 2 m/remark` deletes the 2<sup>nd</sup> remark of the client.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Locating clients by name: `find`
+
+Finds clients whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]...`
+
+* The search is case-insensitive. e.g. `alice` will match `Alice`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Jame` will not match `James`
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `John Bob Lim` will return `John Koh`, `Bob Tan`
+
+Examples:
+* `find John` return clients `John`, `John Lim`, `John Koh`
+* `find Tan` return clients `John Tan`, `Bob Tan`, `Alice Tan`
+
+[Back to Table of Contents](#table-of-contents)
+
+### Viewing a client: `view`
+
+Displays the remarks and transactions of the specified client.
+The client list will only display the specified client.
+
+Format: `view INDEX`
+
+* Views the client at the specified `INDEX`.
+* The `INDEX` refers to the index number shown in the displayed client list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` **must not contain any signs** e.g +1, -3, …​
+
+Example:
+* `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Transaction Commands
+
+### Creating a transaction: `buy` or `sell`
 
 Creates a  `buy` or `sell` transaction linked to a client.
 
@@ -196,110 +296,39 @@ the list on the 07/11/2000.
 
 [Back to Table of Contents](#table-of-contents)
 
-### Clearing all entries : `clear`
+### Editing a transaction: `edit`
 
-Clears all entries which include `clients`, `remarks` and `transactions` from JeeqTracker.
+Edits a `transaction` specified by the index number.
 
-Format: `clear`
+Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved.
- </div>
+| Parameter | Constraints                                                                                                                                                                                 |
+|:----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the display transaction list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `FIELDS`  | - Refers to the parameters to be changed for the entity. <br/> - Parameters allowed: `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`                                                        |
 
-Example:
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a transaction.
 
-* `clear` clears all Client's entries together with the Remarks and Transactions.
+### Deleting a transaction: `delete`
 
-> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved!
+Deletes a `transaction` specified by the index number.
 
-[Back to Table of Contents](#table-of-contents)
+Format: `delete INDEX m/remark`
 
-### Creating a Remark: `remark`
+* `INDEX` refers to the index number shown in the display transaction list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
 
-Creates a new remark for the specified client.
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
 
-Format: `remark INDEX REMARK [t/TAG]...`
+> <div markdown="span" class="alert alert-danger">❗ **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
 
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* `TAG` is optional.
-* Multiple `TAG` can be tagged to the client.
-* The parameter `REMARK` cannot be empty.
-
-Examples:
-* `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
-* `remark 5 fast and decisive t/favourite` adds the remark `fast and decisive` to the client at index 5. The remark 
-also has a tag `favourite`. 
-
-[Back to Table of Contents](#table-of-contents)
-
-### Deleting a client: `delete`
-> <div markdown="span" class="alert alert-danger">❗ :warning: **If you delete a client, it will be gone forever**: Be very careful here!
-
-Deletes the specified `client`from JeeqTracker.
-
-Format: `delete INDEX m/client`
-
-* The `INDEX` refers to the index number shown in the displayed list.
-* `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-
-Examples:
-* `delete 1 m/client` deletes the 1<sup>st</sup> client in the JeeqTracker.
-* `list` followed by `delete 2 m/client` deletes the 2<sup>nd</sup> client in the JeeqTracker.
-* `find koh` followed by `delete 1 m/client` deletes the 1<sup>st</sup> client in the results of the `find` command.
-* `list` followed by `view 2` displays the remarks and transactions of the 2<sup>nd</sup> client in the JeeqTracker. 
-Applying `delete 3 m/transaction` deletes the 3<sup>rd</sup> transaction of the client.
-* `find john` followed by `view 1` displays the remarks and transactions of the 1<sup>st</sup> client of the `find`
-result. Applying `delete 2 m/remark` deletes the 2<sup>nd</sup> remark of the client.
-
-[Back to Table of Contents](#table-of-contents)
-
-### Editing a client: `edit`
-
-Edits the details of the `client` at the specified index number in the list displayed on the left panel.
-
-Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
-
-| Parameter   | Description                                                                                                                                                          |
-|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX` | - Refers to the index number shown in the displayed list. <br/> - **Must be positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​ |
-| `FIELDS` | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`               |
-
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
-</div>
-
-Examples:
-* `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
-* `list` followed by `edit 5 m/client a/Blk 333 Clementi Ave 1 p/8765432` replaces the 5<sup>th</sup> index client's address and phone number with the new inputs.
-* `find lee` followed by `edit 2 m/client e/lee123@gmail.com` replaces the 2<sup>nd</sup> client's email of the `find` result with the new inputs.
-* `list` followed by `view 2` displays the remarks and transactions of the 2<sup>nd</sup> client in the JeeqTracker.
-Applying `edit 3 m/transaction price/1.9` edits the price of the 3<sup>rd</sup> transaction of the client.
-* `find lim` followed by `view 3` displays the remarks and transactions of the 3<sup>rd</sup> client of the `find` 
-result. Applying `edit 3 m/remark supplier` edits the 3<sup>rd</sup> remark of the client.
-
-[Back to Table of Contents](#table-of-contents)
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-* All entries will not be deleted.
-* All information edited will be saved.
-
-Example:
-* `exit` closes the program.
-
-[Back to Table of Contents](#table-of-contents)
-
-### Filtering the transaction display : `filter`
+### Filtering buy or sell transactions: `filter`
 
 Filters the buy or sell transactions of all the clients.
 
 Format: `filter TYPE`
 
-* The `TYPE` refers to the type of transactions to be displayed. 
-It can only be `buy` or `sell`.
+* The `TYPE` refers to the type of transactions to be displayed.
+  It can only be `buy` or `sell`.
 * If no clients made any transactions, the transaction section will be blank.
 * After calling the `filter` command, the client list panel will display all clients.
 
@@ -309,55 +338,7 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Getting the User Guide: `user_guide`
-
-Returns the url to this user guide.
-
-Format: `user_guide`
-
-* Displays a pop-up that contains the url to this user guide.
-* You can click on the `Copy URL` button to copy this url to your clipboard.
-
-Example:
-* `user_guide` returns the url of this user guide.
-
-[Back to Table of Contents](#table-of-contents)
-
-### Listing all clients : `list`
-
-Lists all the clients stored in JeeqTracker.
-
-Format: `list`
-
-* Displays all the clients and their details in JeeqTracker.
-* If JeeqTracker is empty, the clients name section will be blank.
-
-Example:
-
-* `list` displays all stored clients name and details.
-
-[Back to Table of Contents](#table-of-contents)
-
-### Locating clients by name: `find`
-
-Finds clients whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]...`
-
-* The search is case-insensitive. e.g `alice` will match `Alice`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Jame` will not match `James`
-* Clients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `John Bob Lim` will return `John Koh`, `Bob Tan`
-
-Examples:
-* `find John` return clients `John`, `John Lim`, `John Koh`
-* `find Tan` return clients `John Tan`, `Bob Tan`, `Alice Tan`
-
-[Back to Table of Contents](#table-of-contents)
-
-### Sorting the address book: `sort`
+### Sorting the transactions: `sort`
 
 Sorts the specified client's transaction by either the latest transaction or oldest transaction.
 
@@ -376,7 +357,90 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Viewing help : `help`
+### Remark Commands
+
+### Creating a remark: `remark`
+
+Creates a new remark for the specified client.
+
+Format: `remark INDEX REMARK [t/TAG]...`
+
+* The `INDEX` refers to the index number shown in the displayed client list.
+* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
+* `TAG` is optional.
+* Multiple `TAG` can be tagged to the client.
+* The parameter `REMARK` cannot be empty.
+
+Examples:
+* `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
+* `remark 5 fast and decisive t/favourite` adds the remark `fast and decisive` to the client at index 5. The remark
+  also has a tag `favourite`.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Editing a remark: `edit`
+
+Edits a `remark` specified by the index number.
+
+Format: `edit INDEX m/remark REMARK`
+
+| Parameter    | Constraints                                                                                                                                                                            |
+|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`      | - Refers to the index number shown in the display remark list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `REMARK`     | - Refers to the new remark, it is a required field                                                                                                                                     |
+
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Deleting a remark: `delete`
+
+Deletes a `remark` specified by the index number.
+
+Format: `delete INDEX m/remark`
+
+* `INDEX` refers to the index number shown in the display remark list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
+
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
+
+> <div markdown="span" class="alert alert-danger">❗ **Deleting a remark is an irreversible process! It will be gone forever**: Be very careful here!
+
+[Back to Table of Contents](#table-of-contents)
+
+### Miscellaneous Commands
+
+### Clearing all entries: `clear`
+
+Clears all entries which include `clients`, `remarks` and `transactions` from JeeqTracker.
+
+Format: `clear`
+
+> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved.
+ </div>
+
+Example:
+
+* `clear` clears all client's entries together with the remarks and transactions.
+
+> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved!
+
+[Back to Table of Contents](#table-of-contents)
+
+### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
+* All entries will not be deleted.
+* All information edited will be saved.
+
+Example:
+* `exit` closes the program.
+
+[Back to Table of Contents](#table-of-contents)
+
+### Viewing help: `help`
 
 `help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
 
@@ -393,72 +457,19 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Viewing a client : `view`
+### Getting the User Guide: `user_guide`
 
-Displays the remarks and transactions of the specified client. 
-The client list will only display the specified client.
+Returns the url to this user guide.
 
-Format: `view INDEX`
+Format: `user_guide`
 
-* Views the client at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
-* The `INDEX` **must not contain any signs** e.g +1, -3, …​
+* Displays a pop-up that contains the url to this user guide.
+* You can click on the `Copy URL` button to copy this url to your clipboard.
 
 Example:
-* `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
+* `user_guide` returns the url of this user guide.
 
 [Back to Table of Contents](#table-of-contents)
-
-### Editing a remark : `edit`
-
-Edits a `remark` specified by the index number.
-
-Format: `edit INDEX m/remark REMARK`
-
-| Parameter    | Constraints                                                                                                                                                                            |
-|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`      | - Refers to the index number shown in the display remark list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `REMARK`     | - Refers to the new remark, it is a required field                                                                                                                                     |
-
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
-
-### Deleting a remark : `delete`
-
-Deletes a `remark` specified by the index number.
-
-Format: `delete INDEX m/remark`
-
-* `INDEX` refers to the index number shown in the display remark list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
-
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
-
-> <div markdown="span" class="alert alert-danger">❗ **Deleting a remark is an irreversible process! It will be gone forever**: Be very careful here!
-
-### Editing a transaction : `edit`
-
-Edits a `transaction` specified by the index number.
-
-Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
-
-| Parameter | Constraints                                                                                                                                                                                 |
-|:----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`   | - Refers to the index number shown in the display transaction list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
-| `FIELDS`  | - Refers to the parameters to be changed for the entity. <br/> - Parameters allowed: `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`                                                        |
-
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a transaction.
-
-### Deleting a transaction : `delete`
-
-Deletes a `transaction` specified by the index number.
-
-Format: `delete INDEX m/remark`
-
-* `INDEX` refers to the index number shown in the display transaction list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
-
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
-
-> <div markdown="span" class="alert alert-danger">❗ **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
 
 ## Data Storage
 
