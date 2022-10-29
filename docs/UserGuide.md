@@ -237,11 +237,11 @@ Note how the first and third attendee under the first listed event `Discuss pres
 
 #### Viewing upcoming events: `event -u`
 
-Displays a list of upcoming events, ordered by the date, for the next specified number of days.
+Displays a list of upcoming events, ordered by the date, which starts in the next specified number of days.
 
 Format: `event -u DAYS`
 
-* The days refer to the number of days from the current date. All events within this time frame will be displayed. Events oncurring on the day the command is entered will not be displayed.
+* The days refer to the number of days after the current date. All events that start within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
 * The days **must be a positive integer** 1, 2, 3, …​
 
 Example:
