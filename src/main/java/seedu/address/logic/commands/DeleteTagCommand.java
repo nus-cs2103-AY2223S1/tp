@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -24,7 +25,6 @@ public class DeleteTagCommand extends TagCommandGroup {
             + "Example: " + COMMAND_WORD + " tag1 tag2 tag3";
 
     public static final String MESSAGE_SUCCESS = "Tags deleted: %1$s";
-    public static final String MESSAGE_TAGS_DONT_EXIST = "Tag(s) %1$s does not exist in Rapportbook!";
 
     private final Set<Tag> tagsToDelete;
 
@@ -47,7 +47,7 @@ public class DeleteTagCommand extends TagCommandGroup {
 
         String undeletedMessage = undeletedTags.isEmpty()
                 ? ""
-                : String.format(MESSAGE_TAGS_DONT_EXIST, Tag.toString(undeletedTags)) + "\n";
+                : String.format(Messages.MESSAGE_TAGS_NOT_FOUND, Tag.toString(undeletedTags)) + "\n";
         String successMessage = deletedTags.isEmpty()
                 ? ""
                 : String.format(MESSAGE_SUCCESS, Tag.toString(deletedTags));
