@@ -88,7 +88,7 @@ public class ParserUtil {
         requireNonNull(githubUser);
         String trimmedUser = githubUser.trim();
         if (!User.isValidUsername(trimmedUser)) {
-            throw new ParseException(User.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, githubUser, User.MESSAGE_CONSTRAINTS));
         }
         return githubApi.getUser(trimmedUser);
     }
