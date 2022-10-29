@@ -112,6 +112,9 @@ management tasks done faster than traditional GUI apps.
   and Deliverer.
 * Item refers to an Order or Pet. An Order refers to the order placed by Buyer. A Pet refers to the pet sold by a
   Supplier.
+* When you input a price range for your orders, the order of the lower bound of the price range and the upper bound does 
+not matter because our app will configure the lower bound of the price range to be the smaller input and the upper
+bound to be the larger input.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
