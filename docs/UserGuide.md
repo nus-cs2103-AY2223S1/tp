@@ -3,13 +3,26 @@ layout: page
 title: User Guide
 ---
 
-HobbyList is a **desktop app for managing hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps.
-
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Introduction
+
+### 1.1 What is HobbyList?
+HobbyList is a **desktop app for managing hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 2. About this User Guide
+
+### 2.1 How to use this user guide?
+to be added
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -29,7 +42,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
     
     * **`delete`**`3` : Deletes the 3rd hobby activity shown in the current list.
 
-    * **`find`**`keyword/1973-03` : Finds activities that contain the keyword or located in March of 1973.
+    * **`find`**`keyword/1973-03` : Finds activities that contain the keyword or located in March 1973.
 
     * **`exit`** : Exits the app.
 
@@ -40,11 +53,16 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
     * **`Help`** : To open a pop-up window containing more helping information.
     * **`Theme`** : To change different appearance of the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#5-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 4. HobbyList User Interface
+to be added
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -260,11 +278,15 @@ Example: `exit`
 
 If you do not like the names of the command, you can select `preferences` in the menu bar and `edit aliases` to rename any of the commands.
 
-### Saving the data
+--------------------------------------------------------------------------------------------------------------------
+
+## 6. Managing data
+
+### 6.1 Saving the data
 
 HobbyList data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 6.2 Editing the data file
 
 HobbyList data are saved as a JSON file `[JAR file location]/data/hobbylist.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -274,14 +296,14 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 7. FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HobbyList home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 8. Command summary
 
 | Action                            | Format                                                                                     | Examples                                                                               |
 |-----------------------------------|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
