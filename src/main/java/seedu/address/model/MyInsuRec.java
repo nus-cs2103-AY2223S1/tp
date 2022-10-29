@@ -123,7 +123,7 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     public void removeClient(Client client) {
         clients.remove(client);
         client.getMeetings().forEach(meetingToRemove -> {
-            if (meetings.contains(meetingToRemove)) {
+            if (meetings.containsSpecific(meetingToRemove)) {
                 meetings.remove(meetingToRemove);
             }
         });
