@@ -32,7 +32,6 @@ It helps to keep track of patient data, patient appointments and patient bills f
 * Select a patient (selectpatient)
 * Select a bill (selectbill)
 * Select an appointment (selectappointment)
-* Remark a patient (remark)
 * Set a bill to be paid (setpaid)
 * Set a bill to be unpaid (setunpaid)
 ---
@@ -57,7 +56,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 ### 1.1.1 Adding a patient `addpatient`, `ap`
 
-Adds a patient to the HealthContact with input information including name, phone number,
+Adds a patient to HealthContact with input information including name, phone number,
 email address, home address, remarks and tags. 
 
 * Name must be different from existing patient. 
@@ -106,7 +105,7 @@ to add such a patient because Bernice Yu already exists in HealthContact.
 
 ### 1.1.2 Adding an appointment of a patient `addappointment`, `aa`
 
-Adds an appointment to the HealthContact with input information including patient name, medical test,
+Adds an appointment to HealthContact with input information including patient name, medical test,
 slot, and doctor.
 
 * Name must be the name of an existing patient.
@@ -395,7 +394,7 @@ Format:
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 Examples:
-`findbill n\Ber p\unpaid` returns Bernice's unpaid bill
+`findbill n/Ber p/unpaid` returns Bernice's unpaid bill
 
 <img src="images/fb.png" width="800px" height ="400px">
 
@@ -576,24 +575,7 @@ Before:
 After:
 <img src="images/setunpaidcommandafter.png" width="800px" height ="500px">
 
-## 1.8 Remark `remark`
-
-Remarks a patient with a remark.
-
-Format: `remark <index> r/<remark>`
-
-* The index refers to the index number shown in the displayed patient list.
-* The index must be a positive integer 1, 2, 3, …​
-* The remark can be any characters except the empty string, and it will be trimmed.
-* If the remark is empty, the remark of the patient will be removed.
-* If the index is invalid, an error message will be shown.
-* If the remark is invalid, an error message will be shown.
-
-Examples:
-* `remark 1 r/Has fever` remarks the first patient in the patient list with the remark `Has fever`.
-<img src="images/remarkpatient.png" width="800px" height ="500px">
-
-## 1.9 Undo `undo`
+## 1.8 Undo `undo`
 
 Reverses the most recent command.
 
@@ -609,7 +591,7 @@ Examples:
 
 <img src="images/undo1.PNG" width="800px" height ="400px">
 
-## 1.10 Redo `redo`
+## 1.9 Redo `redo`
 
 Reverses the most recent undo command.
 
@@ -627,9 +609,9 @@ Examples:
 
 
 
-## 1.11 Clear `clear`
+## 1.10 Clear `clear`
 
-Deletes all patients, appointments and bills from the HealthContact.
+Deletes all patients, appointments and bills from HealthContact.
 
 ### Format
 
@@ -643,7 +625,7 @@ Deletes all patients, appointments and bills from the HealthContact.
 <img src="images/othercommands/clear.png" width="800px" height ="500px">
 
 
-## 1.12 List `list`, `ls`
+## 1.11 List `list`, `ls`
 
 Removes all conditions previously applied to the list and shows all patients, appointments and bills.
 
@@ -657,9 +639,9 @@ Removes all conditions previously applied to the list and shows all patients, ap
 
 <img src="images/othercommands/ls1.png" width="800px" height ="500px">
 
-## 1.13 Exit `exit`
+## 1.12 Exit `exit`
 
-Quits the HealthContact.
+Quits HealthContact.
 
 ### Format
 
@@ -669,7 +651,7 @@ Quits the HealthContact.
 
 * Executing `exit`, the program closes.
 
-## 1.14 Help `help`
+## 1.13 Help `help`
 
 Opens the Help Window.
 
