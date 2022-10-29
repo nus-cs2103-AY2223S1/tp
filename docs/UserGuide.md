@@ -43,12 +43,11 @@ title: FinBook User Guide
 
 ## 1.1. What is FinBook?
 
-FinBook is a **desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
+**FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
 secured.** With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well
-as many
-other features to make your daily workflow much more efficient!
+as many other features to make your daily workflow much **more efficient**!
 
-FinBook is optimized for use via a Command Line Interface (CLI), which means most of our commands are done by typing.
+FinBook is optimized for use via a **Command Line Interface (CLI)**, which means most of our commands are done by typing.
 If you can type fast, managing your clients will be a breeze with FinBook. Can't type fast? Don't worry! Our Graphical
 User Interface (GUI) will help you slowly adjust to using our CLI.
 
@@ -136,7 +135,7 @@ For example,
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `finbook.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-3/tp/releases).
+2. Download the latest `FinBook.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the home folder for your FinBook.
 
@@ -150,12 +149,15 @@ For example,
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
-      named `John Doe` to the FinBook.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$1000` : Adds a client
+      named `John Doe` in FinBook.
+   
+    * **`edit`** `1 r/Low pl/NTUC Income Plan` : Edits the 1st client portfolio risk
+      and plans shown in the current list.
 
-    * **`delete`**` 3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
-    * **`delete all`** : Deletes all contacts.
+    * **`delete all`** : Deletes all clients.
 
     * **`exit`** : Exits the app.
 
@@ -164,8 +166,6 @@ For example,
 --------------------------------------------------------------------------------------------------------------------
 
 # 4. Features
-
-----
 
 ## 4.1. Managing a client
 
@@ -227,7 +227,7 @@ Examples:
 
 #### Deleting multiple clients
 
-Deletes multiple specified clients from the FinBook.
+**Deletes multiple specified clients from the FinBook.**
 
 Format: `delete INDEX1, INDEX2, …`
 
@@ -237,8 +237,9 @@ Format: `delete INDEX1, INDEX2, …`
 Examples:
 
 * `list` followed by `delete 1, 2, 5` deletes the 1st, 2nd and 5th client in the FinBook.
+  <br/><br/>
 
-Deletes a range of clients from the FinBook.
+**Deletes a range of clients from the FinBook.**
 
 Format: `delete STARTINDEDX - ENDINDEX`
 
@@ -248,8 +249,9 @@ Format: `delete STARTINDEDX - ENDINDEX`
 Examples:
 
 * `list` followed by `delete 1-3` deletes the 1st, 2nd and 3rd client in the FinBook.
+  <br/><br/>
 
-Deletes all clients from the FinBook.
+**Deletes all clients from the FinBook.**
 
 Format: `delete all`
 
@@ -496,7 +498,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | Mainstream OS                | Common computer operating systems, Windows, Linux, Unix, OS-X.                                     |
 | Command-line Interface (CLI) | A application that users interact with by typing text.                                             |
 | Command                      | A sequence specified text typed by the user to perform an action.                                  |
-| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                      |                                                                                                  |
+| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                      |                                                                                                  
 | Parameter                    | Users input to a command.                                                                          |
 | Field                        | The data type of client. For example, Name and Income are fields of a client.                      |
 | CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values. |
@@ -519,5 +521,5 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                              |
 | **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                                                                                                    |
 | **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                                                                                                     |
-| **Sort**             | `sort PARAM`<br> e.g., `sort /n`                                                                                                                                                                                                                                                                                                                                |
+| **Sort**             | `sort PARAM`<br> e.g., `sort n/`                                                                                                                                                                                                                                                                                                                                |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                                                                                          |
