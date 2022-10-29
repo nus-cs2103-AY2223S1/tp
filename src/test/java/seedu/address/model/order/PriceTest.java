@@ -9,6 +9,15 @@ import org.junit.jupiter.api.Test;
 
 public class PriceTest {
     @Test
+    public void constructor_lowerBoundHigherThanUpperBound_swap() {
+        Price lowerBound = new Price(253.0);
+        Price upperBound = new Price(156.76);
+        PriceRange expected = new PriceRange(upperBound, lowerBound);
+        PriceRange result = new PriceRange(lowerBound, upperBound);
+        assertEquals(result, expected);
+    }
+
+    @Test
     public void getNotApplicablePrice() {
         Price notApplicablePrice = Price.getNotApplicablePrice();
         assertEquals(notApplicablePrice, new Price(-1));
