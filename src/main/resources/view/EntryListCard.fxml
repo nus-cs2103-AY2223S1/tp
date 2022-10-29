@@ -29,8 +29,8 @@
           </minWidth>
         </Label>
         <Label fx:id="description" styleClass="cell_big_label" text="\$first" wrapText="true" />
-            <Region prefHeight="17.0" prefWidth="17.0" HBox.hgrow="ALWAYS" />
-         <Label fx:id="amount" prefHeight="17.0" prefWidth="56.0" styleClass="cell_big_label" text="\$amount" wrapText="true" />
+            <Region HBox.hgrow="ALWAYS" />
+         <Label fx:id="amount" styleClass="cell_big_label" text="\$amount" wrapText="true" />
             <Label fx:id="id1" styleClass="cell_big_label">
                <minWidth>
                   <Region fx:constant="USE_PREF_SIZE" />
