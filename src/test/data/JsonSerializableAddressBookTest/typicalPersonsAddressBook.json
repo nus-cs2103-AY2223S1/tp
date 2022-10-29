@@ -9,7 +9,12 @@
     "hospitalWing": null,
     "floorNumber": null,
     "wardNumber": null,
-    "medications" : [ "Ibuprofen" ]
+    "medications" : [ "Ibuprofen" ],
+    "pastAppointments" : [
+      { "date" : "14-06-2022",
+        "diagnosis" : "Sick",
+        "medication": [ "Paracetamol", "Ibuprofen" ]
+      }]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
