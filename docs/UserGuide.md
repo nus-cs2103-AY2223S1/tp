@@ -27,7 +27,18 @@ Salesy is a desktop app for helping food vendors manage details of their clients
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Important Information
 
+- User has to input details for fields that are not in square brackets, but inputting details for fields in square brackets is optional.
+  - e.g. `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS [t/TAG]`
+  - The `NAME`, `PHONE`, `PRICE`, `ITEM` and `ADDRESS` fields are compulsory
+  - The `TAG` field is optional
+
+- Index numbers in commands, e.g. `delete <supplier index>` are compulsory
+  
+- When multiple similar prefixes are input by the user, e.g. `i/Chicken i/Egg i/Cups`,
+the rightmost prefix and its details, i.e. `Cups` will be taken as input.
+  
 ## Features
 
 ### Statistics Panel
@@ -78,17 +89,15 @@ Adds an item of a specified type with the given details
 
 ***Format:***
 
-`add [n/NAME] [p/PHONE] [pr/PRICE] [i/ITEM] [a/ADDRESS] [t/Supplier]` (supplier)
+`add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS [t/SUPPLIER]` (supplier)
 
-`addTask [d/TASKNAME] [dl/DEADLINE] [t/TAG_NAME]` (task)
-[t/tag_name] in this command is an optional field which can be omitted when
-entering the command. 
+`addTask d/TASKNAME dl/DEADLINE [t/TAG_NAME]` (task)
 
 Multiple tag_name is allowed. 
 
-An example is `addTask [d/TASKNAME] [dl/DEADLINE] [t/TAG_NAME1] [t/TAG_NAME2] [t/TAG_NAME3]`
+An example is `addTask d/TASKNAME dl/DEADLINE [t/TAG_NAME1] [t/TAG_NAME2] [t/TAG_NAME3]`
 
-`addItem <supplier index> [c/CURRENTSTOCK] [m/MINIMUMSTOCK]` (supply item)
+`addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK` (supply item)
 
 **Things you can add:**
 * Suppliers
@@ -191,6 +200,10 @@ Edit a specified item's details
 
 `editStock <item index> [c/NEWCURRENTSTOCK]` (supply item)
 
+<div markdown="span" class="alert alert-info">**Note:**
+At least one field has to be edited for the command to execute successfully.
+</div>
+
 **Things you can edit:**
 * Supplier details
 * Tasks
@@ -217,9 +230,9 @@ Find suppliers based on name or item
 
 ***Format:***
 
-`find [n/NAMEVALUE]` (supplier name)
+`find n/NAMEVALUE` (supplier name)
 
-`find [i/ITEMVALUE]` (supplier item)
+`find i/ITEMVALUE` (supplier item)
 
 **Examples**
 
