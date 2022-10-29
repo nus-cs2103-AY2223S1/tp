@@ -240,35 +240,35 @@ or decremented respectively by the value of your input.
 This command locates guests whose details contain any of the given keywords. This allows you to search for 
 guests with any of the specific guests' field.
 
-This command is typically used when searching for a guest of a specific characteristic. This command also allows for
+This command is typically used when searching for a guest of a **specific characteristic**. This command also allows for
 filtering of the guest list displayed. For example, the command `find no` will display all 
-the rooms that have room clean statuses set to "no".
+the rooms that have room clean statuses set to _"no"_.
 
 #### Format: `find KEYWORD [MORE_KEYWORDS]`
 
 #### Constraints of parameters:
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is **case-insensitive**. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Guests matching at least one keyword will be returned (i.e. `OR` search).
+* **Only full words** will be matched e.g. `Han` will not match `Hans`
+* Guests matching **at least one** keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 #### Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro` (refer to the image below for the details of the guests)<br>
+* `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro` (refer to the image below for the details of the _guests_)<br>
 <br>
 
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
 
 #### Common mistakes:
-* Searching for guests using partial field characteristics e.g. `170` will not match `170.00`.
+* Searching for guests using partial field characters e.g. `170` will **not** match `170.00`.
 
 ### Deleting a guest : `delete`
 
-This command deletes the specified guest from GuestBook. 
+This command deletes the specified guest _(with index in different scenario)_ from GuestBook. 
 
-This command is typically used when a guest has checked out of the hotel. Do note that this command 
-is irreversible. Once deleted, the specific guest's data cannot be retrieved. Please use this 
+This command is supposed to be used when a guest has checked out of the hotel. Do note that the `delete` command 
+is **IRRIVERSIBLE**. Once deleted, the specific guest's data cannot be retrieved. Please use this 
 command with caution.
 
 #### Format: `delete INDEX`
@@ -276,9 +276,9 @@ command with caution.
 * Deletes the guest at the specified `INDEX`.
 
 #### Examples:
-* `list` followed by `delete 2` deletes the 2nd guest in GuestBook.
+* `list` followed by `delete 2` deletes the _2nd guest_ in GuestBook.
 
-* `find Betsy` followed by `delete 1` deletes the 1st guest in the results of the `find` command.
+* `find Betsy` followed by `delete 1` deletes the _1st guest_ **in the results of** the `find` command.
 
 ### Marking all rooms as unclean: `markRoomsUnclean`
 
@@ -286,7 +286,7 @@ This command functions to mark the room clean statuses of all guests as "no".
 
 This command is typically used at the end or the start of the day when the hotel manager wishes to 
 update all the room clean statuses to "no" efficiently. This clean slate would allow the hotel 
-managers to keep abreast of the rooms that are cleaned or uncleaned for the day.
+managers to keep track on the rooms that are cleaned or uncleaned for the day.
 
 #### Format: `markRoomsUnclean`
 
@@ -296,10 +296,10 @@ managers to keep abreast of the rooms that are cleaned or uncleaned for the day.
 
 ### Clearing all entries : `clear`
 
-This command clears all entries from GuestBook. 
+This command clears **all entries** from GuestBook. 
 
 This command is typically used as a hard reset of all guest data in GuestBook. Do note that this command 
-is irreversible. Once cleared, all the guest data cannot be retrieved. Please use this command 
+is **IRRIVERSIBLE**. Once cleared, all the guest data cannot be retrieved. Please use this command 
 with utmost caution.
 
 #### Format: `clear`
@@ -312,11 +312,12 @@ This command exits the program.
 
 ### Saving the data
 
-GuestBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+GuestBook data are saved in the hard disk automatically after any command that changes the data. There is **no need** to save manually.
 
 ### Editing the data file
 
-GuestBook data are saved as a JSON file `[JAR file location]/data/guestbook.json`. Advanced users are welcome to update data directly by editing that data file.
+GuestBook data are saved as a _JSON file_ `[JAR file location]/data/guestbook.json`.<br>
+_Advanced users are welcome to update data directly by editing that data file._
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, GuestBook will discard all data and start with an empty data file at the next run.
@@ -331,7 +332,7 @@ If your changes to the data file makes its format invalid, GuestBook will discar
 Listed here are some frequently asked questions. Should you require any other assistance, feel free to [contact us](#contact-us).
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GuestBook home folder.
+**A**: Install the app in the other computer and **overwrite the empty data file** it creates with the file that contains the data of your previous GuestBook home folder.
 
 **Q**: Will my data be automatically saved?<br>
 **A**: Yes, GuestBook automatically saves your data after every command entered.
@@ -340,7 +341,7 @@ Listed here are some frequently asked questions. Should you require any other as
 **A**: Go to where you have downloaded your `guestbook.jar` file, there a `/data` folder will be created and the data will be saved under `guestbook.json`.
 
 **Q**: Can I rename my saved data file?<br>
-**A**: No, GuestBook currently only supports the use of `guestbook.json` as the name of the saved data file.
+**A**: **No**, GuestBook currently only supports the use of `guestbook.json` as the name of the saved data file.
 
 **Q**: Why are there no guests in my GuestBook?<br>
 **A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is corrupted, causing GuestBook to reset it to prevent any malicious files from being used.
