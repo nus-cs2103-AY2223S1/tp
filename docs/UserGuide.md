@@ -107,7 +107,7 @@ You can then either click on the link to open it in your default browser, or cli
 
 Adds the information of a client to Rapportbook.
 
-Format: `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS [r=REMARKS]​`
+Format: `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS [r=REMARKS] [t=TAG]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Recap:**
 Fields in square brackets `[]` (i.e. `[r=REMARKS]`) is an optional field.
@@ -147,11 +147,15 @@ Edits the information of a client within Rapportbook.
 * Edits the client at the specified `INDEX`, the number shown in the displayed client list.
 * The index can be left out if the client to edit is the target client from the [show](#viewing-the-information-of-a-client--show) command.
 
-Format: `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS]`
+Format: `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS] [t=TAG]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** (i.e. 1, 2, 3, …​)
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you choose to edit the tag, note that all tags the client had previously will be replaced.
+</div>
 
 Examples:
 
