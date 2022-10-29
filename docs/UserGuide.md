@@ -33,7 +33,7 @@ Table of Contents
 Whether you’re new to Rapportbook, or just want to learn more about the details -- this section has you covered. This section will provide an overview of Rapporbook and explain key concepts in simple terms.
 
 ### What is Rapportbook?
-Rapporbook is a free, and open-source application designed for financial advisors for client information management.
+Rapportbook is a free, and open-source application designed for financial advisors for client information management.
 
 If you’re working with a lot of people, you’ll eventually have too much information to stay on top of. For example, what appointments do you have tomorrow? Which client should you prioritize? How should you approach this client? What are his contacts?
 
@@ -80,7 +80,7 @@ In the user guide, you might come across some terms you might not understand. Th
   e.g. in `add n=NAME`, `NAME` is a parameter which can be used as `add n=Homer`.
 
 * Items in square brackets are optional.<br>
-  e.g `tag create TAG1 [TAG2]` can be used as `tag create potential` or as `tag create potential high-priority`.
+  e.g `tag create TAG1 [TAG2]` can be used as `tag create potential` or as `tag create potential highPriority`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n=NAME p=PHONE_NUMBER`, `p=PHONE_NUMBER n=NAME` is also acceptable.
@@ -107,7 +107,7 @@ You can then either click on the link to open it in your default browser, or cli
 
 Adds the information of a client to Rapportbook.
 
-Format: `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS po=POSTAL_CODE dob=DATE_OF_BIRTH [r=REMARKS]​`
+Format: `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS [r=REMARKS]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Recap:**
 Fields in square brackets `[]` (i.e. `[r=REMARKS]`) is an optional field.
@@ -115,8 +115,8 @@ Fields in square brackets `[]` (i.e. `[r=REMARKS]`) is an optional field.
 
 Examples:
 
-* `add n=Bob p=95788172 e=bob@gmail.com a=Jurong East Jejantas po=123123 dob=1/1/2000 r=Janitor`
-* `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi po=928572 dob=2/10/2001`
+* `add n=Bob p=95788172 e=bob@gmail.com a=Jurong East Jejantas r=Janitor`
+* `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi`
 
 ### Deleting of a client : `delete`
 
@@ -147,7 +147,7 @@ Edits the information of a client within Rapportbook.
 * Edits the client at the specified `INDEX`, the number shown in the displayed client list.
 * The index can be left out if the client to edit is the target client from the [show](#viewing-the-information-of-a-client--show) command.
 
-Format: `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [po=POSTAL_CODE] [dob=DATE_OF_BIRTH] [r=REMARKS]`
+Format: `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** (i.e. 1, 2, 3, …​)
 * At least one of the optional fields must be provided.
@@ -171,7 +171,7 @@ You can create multiple tags at once by just separating the different tag names 
 Examples:
 
 * `tag create potential` Creates a tag called `potential`
-* `tag create potential high-priority low-priority` Creates 3 tags called `potential`, `high-priority` and `low-priority`.
+* `tag create potential highPriority lowPriority` Creates 3 tags called `potential`, `highPriority` and `lowPriority`.
 
 ### Tagging clients : `tag`
 
@@ -190,7 +190,7 @@ You can assign multiple tags to a client at once by separating the different tag
 Example:
 
 * `tag 5 potential` Assigns the `potential` tag to the client entry at index 5.
-* `tag 5 potential high-prority` Assigns the `potential` and `high-priority` tags to the client entry at index 5.
+* `tag 5 potential highPriority` Assigns the `potential` and `highPriority` tags to the client entry at index 5.
 
 ### Removing tags from clients : `tag remove`
 
@@ -205,7 +205,7 @@ Like assignment of tags, you can also remove multiple tags from a client at once
 Example:
 
 * `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
-* `tag remove 5 potential high-priority` Removes the `potential` and `high-priority` tags from the client entry at index 5.
+* `tag remove 5 potential highPriority` Removes the `potential` and `highPriority` tags from the client entry at index 5.
 
 ### Deleting a tag : `tag delete`
 
@@ -220,7 +220,7 @@ Format: `tag delete TAG [TAG2] [TAG3] … [TAGN]`
 Example:
 
 - `tag delete potential` Deletes the `potential` tag from the address book.
-- `tag delete potential high-priority` Deletes the `potential` and `high-priority` tags from address book.
+- `tag delete potential highPriority` Deletes the `potential` and `highPriority` tags from address book.
 
 ### Filtering client entries : `filter`
 
@@ -236,10 +236,11 @@ Examples:
 
 * `filter n=Laufey` Shows clients with `Laufey` as name.
 * `filter n=Homer,Laufey` Shows all clients with `Homer` **or** `Laufey` as name.
-* `filter t=highPriority` Shows clients with highPriority names.
-* `filter t=highPriority,potential` Shows all clients with `highPriority` tag **or** `potential` tag.
-* `filter n=Homer t=potential` Shows all clients with `Homer` name **and** `potential` tag.
-* `filter n=Homer,Laufey t=potential,highPotential` Shows all clients with either `Homer` or `Laufey` as name **and** with either the `potential` or `highPrirority` tags.
+* `filter t=highPriority` Shows clients with the `highPriority` tag.
+* `filter t=highPriority,potential` Shows all clients with the `highPriority` tag **or** `potential` tag.
+* `filter n=Homer t=potential` Shows all clients with the name `Homer` **and** the `potential` tag.
+* `filter n=Homer,Laufey t=potential,highPotential` Shows all clients with names, `Homer` or `Laufey`, **and** with either the `potential` or `highPrirority` tags.
+
 
 ### Clearing filters : `filter clear`
 
