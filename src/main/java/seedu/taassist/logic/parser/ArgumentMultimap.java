@@ -69,7 +69,9 @@ public class ArgumentMultimap {
         List<String> inputStrings = argMultimap.get(prefix);
         List<String> uniqueStrings = new ArrayList<>();
 
-        for (String str: inputStrings) {
+        // Start from the end of the list, so that only the last occurrence will be taken
+        for (int i = inputStrings.size() - 1; i >= 0; i--) {
+            String str = inputStrings.get(i);
             if (visitedStrings.contains(str.toUpperCase())) {
                 continue;
             }

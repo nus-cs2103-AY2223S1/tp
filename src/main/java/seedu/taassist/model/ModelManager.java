@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -28,7 +29,6 @@ import seedu.taassist.model.student.StudentView;
  */
 public class ModelManager implements Model {
     private static final String DEFAULT_FOCUS_LABEL = "";
-    private static final String FOCUS_LABEL_FORMAT = "Focus: %s";
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
@@ -307,6 +307,12 @@ public class ModelManager implements Model {
     @Override
     public ModuleClass getFocusedClass() {
         return focusedClass;
+    }
+
+    @Override
+    public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        return taAssist.getModuleClassWithSameName(moduleClass);
     }
 
     @Override

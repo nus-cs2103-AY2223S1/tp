@@ -18,6 +18,7 @@ import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
 import seedu.taassist.model.stubs.ModelStub;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
@@ -37,7 +38,7 @@ class AssignCommandTest {
     }
 
     @Test
-    public void execute_indexOutOfRange_throwsCommandException() {
+    public void execute_indexOutOfRange_throwsCommandException() throws Exception {
         ModelStubWithOneStudent modelStub = new ModelStubWithOneStudent();
 
         List<Index> indices = new ArrayList<>();
@@ -46,7 +47,6 @@ class AssignCommandTest {
 
         AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
         String expectedMessage = Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
-
         assertThrows(CommandException.class, expectedMessage, () -> assignCommand.execute(modelStub));
     }
 
@@ -107,7 +107,7 @@ class AssignCommandTest {
     /**
      * A Model stub that pretends to have no module classes.
      */
-    private class ModelStubWithNoModuleClasses extends ModelStub {
+    private static class ModelStubWithNoModuleClasses extends ModelStub {
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
@@ -118,12 +118,17 @@ class AssignCommandTest {
         public ObservableList<ModuleClass> getModuleClassList() {
             return FXCollections.observableArrayList();
         }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            throw new ModuleClassNotFoundException();
+        }
     }
 
     /**
      * A Model stub with one filtered student. Always says it has a module.
      */
-    private class ModelStubWithOneStudent extends ModelStub {
+    private static class ModelStubWithOneStudent extends ModelStub {
 
         // ALICE with no module classes
         private Student student = new StudentBuilder(ALICE).withModuleClasses().build();
@@ -140,14 +145,19 @@ class AssignCommandTest {
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
-            return true;
+            throw new ModuleClassNotFoundException();
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            return moduleClass;
         }
     }
 
     /**
      * Model stub with multiple filtered students. Always says it has a module.
      */
-    private class ModelStubWithMultipleStudents extends ModelStub {
+    private static class ModelStubWithMultipleStudents extends ModelStub {
 
         private List<Student> students = new ArrayList<>();
 
@@ -170,6 +180,11 @@ class AssignCommandTest {
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
             return true;
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            return moduleClass;
         }
     }
 }

@@ -27,7 +27,7 @@ public class DeletecCommandParser implements Parser<DeletecCommand> {
                     DeletecCommand.MESSAGE_USAGE));
         }
 
-        List<String> moduleClassStrings = argMultimap.getAllValues(PREFIX_MODULE_CLASS);
+        List<String> moduleClassStrings = argMultimap.getAllValuesIgnoreCase(PREFIX_MODULE_CLASS);
         Set<ModuleClass> moduleClasses = ParserUtil.parseModuleClasses(moduleClassStrings);
         return new DeletecCommand(moduleClasses);
     }
