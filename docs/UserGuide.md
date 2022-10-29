@@ -134,7 +134,7 @@ Format: `class 1 c/CLASS`
 
 * Edits the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …
 * Existing class group will be updated to the input values.
-* You can remove a student's class group by typing c/ without specifying any value after it.
+* You can remove a student's class group by typing `c/` without specifying any value after it.
 
 Examples:
 * ```class 1 c/CS2030S Lab 32``` Edits the class group of the 1st student in the list to be CS2030S Lab 32.
