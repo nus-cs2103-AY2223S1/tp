@@ -11,4 +11,35 @@ layout: default
     {{ content }}
   </div>
 
+  {%- if page.title == "User Guide" or page.title == "Developer Guide" -%}
+  <a class="toc-button hidden-print" style="text-decoration: none" href="#markdown-toc">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+    </svg>
+    <span> Table of Contents </span>
+  </a>
+  {%- endif -%}
+
 </article>
+{%- if page.title == "User Guide" or page.title == "Developer Guide" -%}
+<script>
+  const button = document.querySelector(".toc-button")
+  button.style.opacity = "0";
+  const content = document.querySelector(".post-content")
+  const header = document.querySelector(".post-title")
+  let height = header.offsetHeight + 140 // adjustment for margins
+  for (let i = 0; i < content.children.length; ++i) {
+    if (content.children[i].tagName === "HR") {
+      break;
+    }
+    height += content.children[i].offsetHeight
+  }
+  window.onscroll = function () {
+    if (document.body.scrollTop > height || document.documentElement.scrollTop > height) {
+      button.style.opacity = "1";
+    } else {
+      button.style.opacity = "0";
+    }
+  }
+</script>
+{%- endif -%}

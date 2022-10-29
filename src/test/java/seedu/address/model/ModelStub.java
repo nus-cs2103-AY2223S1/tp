@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
+import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Profile;
 
 /**
@@ -125,6 +126,11 @@ public class ModelStub implements Model {
 
     @Override
     public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void refreshEvents(EventsAttending eventsToRefresh) {
         throw new AssertionError("This method should not be called.");
     }
 
