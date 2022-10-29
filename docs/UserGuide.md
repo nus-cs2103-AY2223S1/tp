@@ -5,8 +5,7 @@ title: User Guide
 
 HobbyList is a **desktop app for managing hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-  {:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -85,12 +84,13 @@ Adds a hobby activity to HobbyList.
 
 Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
 
+* `[t/TAG]...` only accepts alphanumeric with underscores.
 * `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** as STATUS. e.g. `s/ongoing`(case-insensitive).
 * If `STATUS` is not specified, it will be displayed as **Status: NONE** by default.
 
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
-* `add n/Badminton d/play badminton t/sport date/2022-10-19 s/completed`
+* `add n/Badminton d/play badminton t/sport entertainment_2 date/2022-10-19 s/completed`
 
 ### Rating an activity: `rate`
 
@@ -101,10 +101,11 @@ Format: `rate INDEX r/RATING [re/REVIEW]`
 * The `INDEX` refers to the index number shown in the displayed activity list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `RATING` only accepts integer numbers from 1 to 5 (inclusive).
+* `REVIEW` accepts both alphanumeric and special symbols.
 
 Example:
 * `rate 1 r/2`
-* `rate 2 r/4 r/Interesting movie`
+* `rate 2 r/4 re/Interesting movie`
 
 ### Listing all hobby activities : `list`
 
@@ -122,6 +123,8 @@ Format: `select INDEX`
 
 * Displays all the details of the selected activity.
 * Constraints for `INDEX` is similar to those above in **Rating an activity**
+
+Example: `select 1`
 
 ### Finding activities: `find`
 
@@ -159,6 +162,7 @@ Shows a list of all hobby activities whose rating is exactly the required value(
 Format: `find rate/VALUE`
 
 * `VALUE` only accepts integer numbers from 0 to 5 (inclusive).
+* If given `VALUE` is 0, HobbyList shows all activities which do not have a rating.
 
 Example: `find rate/3`
 
@@ -168,7 +172,7 @@ Shows a list of all hobby activities whose rating value is greater or equal than
 
 Format: `r/above VALUE`
 
-* `VALUE` only accepts integer numbers from 0 to 5 (inclusive).
+* `VALUE` only accepts integer numbers from 1 to 5 (inclusive).
 
 Example: `r/above 1`
 
@@ -178,7 +182,7 @@ Shows a list of all hobby activities whose tags match the one specified in the c
 
 Format: `findTag KEYWORDS`
 
-* The `KEYWORDS` are case-insensitive.
+* The `KEYWORDS` are case-sensitivity.
 
 Example:
 * `findTag book`
@@ -191,7 +195,7 @@ Shows a list of all hobby activities whose status match the status specified in 
 Format: `findStatus STATUS`
 
 * The feature only works with the `STATUS` being **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive).
-* If `STATUS` is different from the three statuses above, it is treated as **NONE**.
+* If input `STATUS` is different from the three statuses above, it is treated as **NONE** and HobbyList finds all the activities whose status is **NONE**.
 
 Example: 
 * `findStatus COMPLETED`
