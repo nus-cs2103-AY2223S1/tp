@@ -72,8 +72,7 @@ public class DeleteAttributeCommand extends Command {
      *
      * @return true if Detail Page, false otherwise.
      */
-    @Override
-    public boolean canExecuteAt(MainPanelName name) {
+    public static boolean canExecuteAt(MainPanelName name) {
         return name.equals(MainPanelName.Detail);
     }
 
