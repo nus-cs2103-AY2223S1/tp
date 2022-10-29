@@ -89,7 +89,7 @@ Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via 
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageUpdated.png)
 
 Format: `help`
 
