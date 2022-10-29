@@ -13,13 +13,13 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.addcommands.AddBuyerCommand;
-import seedu.address.logic.commands.addcommands.AddDelivererCommand;
-import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.addcommands.AddBuyerCommand;
+import seedu.address.logic.commands.addcommands.AddDelivererCommand;
+import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
 import seedu.address.logic.commands.deletecommands.DeleteDelivererCommand;
 import seedu.address.logic.commands.deletecommands.DeleteSupplierCommand;
@@ -44,9 +44,12 @@ import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
+//import seedu.address.testutil.EditPersonDescriptorBuilder;
+//import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
+//import seedu.address.testutil.TypicalIndexes;
 import seedu.address.testutil.TypicalPersonCategories;
 import seedu.address.testutil.TypicalSuppliers;
 
@@ -69,7 +72,7 @@ public class AddressBookParserTest {
                 AddDelivererCommand.COMMAND_WORD + " " + PersonUtil.getAddCommandBody(deliverer));
         assertEquals(new AddDelivererCommand(deliverer), command);
     }
-    
+
     @Test
     public void parseCommand_addSupplier() throws Exception {
         Supplier supplier = TypicalSuppliers.ALICE;
@@ -114,7 +117,6 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
-
      */
 
     @Test
