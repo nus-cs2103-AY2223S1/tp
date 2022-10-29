@@ -75,10 +75,12 @@ public class TypicalTasks {
         for (Task task : getTypicalTasks()) {
             ab.addTask(task);
         }
+        ab.addPerson(testPerson);
         return ab;
     }
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
 }
