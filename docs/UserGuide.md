@@ -59,7 +59,7 @@ type fast, FRIDAY can get your contact management tasks done faster than traditi
 
   e.g. if the command specifies `n/NAME t/TELEGRAM_HANDLE`, `t/TELEGRAM_HANDLE n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. Note that this does not apply to the `INDEX` parameter in commands that have it, namely the `delete`, `edit`, `remark`, `grade`, `mark` and `unmark` commands, as they expect exactly one `INDEX` parameter.<br>
 
   e.g. if you specify `t/johndoe t/johndoe123`, only `t/johndoe123` will be taken.
 
@@ -92,6 +92,7 @@ Deletes the student at the given index from FRIDAY.
 Format: `delete INDEX`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student must be specified and there should be exactly one INDEX parameter.<br>
 The index of the student can be seen from the student list.
 </div>
 
@@ -102,6 +103,7 @@ Edits a student's details in FRIDAY.
 Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student must be specified and there should be exactly one INDEX parameter.<br>
 The index of the student can be seen from the student list.<br>
 The name, Telegram handle, consultation, mastery check, and tag(s) are optional, but there should be at least one parameter.<br>
 A student can have any number of tags (including 0).
@@ -114,6 +116,7 @@ Adds a remark for a specified student.
 Format: `remark INDEX [r/REMARK]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student must be specified and there should be exactly one INDEX parameter.<br>
 The index of the student can be seen from the student list.<br>
 The remark is optional. Not including the remark (i.e. `remark INDEX`) will remove any existing remark from the student.<br>
 </div>
@@ -125,8 +128,9 @@ Records the grades of the assessments and examinations for a specified student.
 Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student must be specified and there should be exactly one INDEX parameter.<br>
 The index of the student can be seen from the student list.<br>
-The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment (PA), Midterm Test, and Final Examination, are in percentages from 0% to 100% inclusive, with decimals allowed.<br>
+The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment (PA), Midterm Test, and Final Examination, are in percentages between 0% to 100% inclusive, with up to 2 decimals allowed.<br>
 The scores are optional, but there should be at least one parameter.
 </div>
 
@@ -164,6 +168,7 @@ Marks the Mastery Check of a specified student as passed.
 Format: `mark INDEX`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student must be specified and there should be exactly one INDEX parameter.<br>
 The index of the student can be seen from the student list.<br>
 </div>
 
@@ -177,6 +182,7 @@ Unmarks the Mastery Check of a specified student.
 Format: `unmark INDEX`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student must be specified and there should be exactly one INDEX parameter.<br>
 The index of the student can be seen from the student list.<br>
 </div>
 
@@ -246,7 +252,7 @@ Format: `help`
 | Action                                       | Format                                                                                                   |
 |----------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | **Add a student**                            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`               |
-| **Delete a student**                         | `delete i/INDEX`                                                                                         |
+| **Delete a student**                         | `delete INDEX`                                                                                           |
 | **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`                |
 | **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                                |
 | **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
