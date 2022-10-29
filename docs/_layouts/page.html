@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+{% if site.enable_admonitions %}{% capture content %}{% include admonitions.liquid html=content %}{% endcapture %}{% endif %}
 <article class="post">
 
   <header class="post-header">
@@ -8,11 +9,7 @@ layout: default
   </header>
 
   <div class="post-content">
-    {% if site.enable_admonitions %}
-      {% include admonitions.liquid html=content %}
-    {% else %}
-      {{ content }}
-    {% endif %}
+    {{ content }}
   </div>
 
 </article>
