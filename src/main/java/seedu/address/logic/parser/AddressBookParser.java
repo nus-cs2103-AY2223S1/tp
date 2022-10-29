@@ -24,6 +24,7 @@ import seedu.address.logic.commands.ListInventoryCommand;
 import seedu.address.logic.commands.ListSupplierCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
+import seedu.address.logic.commands.RefreshStatsCommand;
 import seedu.address.logic.commands.UnMarkTaskCommand;
 import seedu.address.logic.commands.UpdateTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -111,6 +112,9 @@ public class AddressBookParser {
 
         case EditStockCommand.COMMAND_WORD:
             return new EditStockCommandParser().parse(arguments);
+
+        case RefreshStatsCommand.COMMAND_WORD:
+            return new RefreshStatsCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
