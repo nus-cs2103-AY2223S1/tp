@@ -154,23 +154,23 @@ For example, you can charge the third guest `30.35` by running the command below
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 This command shows a message explaining how to access the **help page**, which is this user guide you are reading.
 
 ![help message](images/helpMessage.png)
 
-#### Format: `help`
+**Format**: `help`
 
-### Adding a guest : `add`
+### Adding a guest: `add`
 
 This command adds a guest to GuestBook.
 
 This command is typically used to **check a guest in** to your hotel with their personal and room details.
 
-#### Format: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
+**Format**: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
 
-#### Constraints of parameters:
+**Constraints of parameters**:
 
 &nbsp;&nbsp;&nbsp;Unless stated otherwise, all fields should not be left blank.
 * `NAME` should only contain alphanumeric characters and spaces.
@@ -181,34 +181,34 @@ This command is typically used to **check a guest in** to your hotel with their 
 * `NUMBER_OF_GUESTS` should only contain numbers, and it should be at least 1 and at most 4.
 * `REQUEST` is an optional field, and it should be at most 500 characters long.
 
-#### Examples:
+**Examples**:
 * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/22 - 24/05/22 ng/3`
 * `add n/Betsy Crowe p/82297553 e/betsycrowe@example.com rm/Aloha5 dr/10/01/12 - 11/01/12 ng/1 rq/Extra towels`
 
-### Listing all guests : `list`
+### Listing all guests: `list`
 
 This command displays a list of all guests in GuestBook.
 
-#### Format: `list`
+**Format**: `list`
 
-### Editing a guest : `edit`
+### Editing a guest: `edit`
 
 This command edits an existing guest in GuestBook.
 
 The guest specified at the `INDEX` is the guest you wish to edit. The existing values will be **updated** to the new values
 you provide. The values that you **did not specify** to edit will remain **unchanged**.
 
-#### Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
 
-#### Constraints of parameters:
+**Constraints of parameters**:
 * Identical to the constraints of the `add` feature from above.
 * `IS_ROOM_CLEAN` should only contain `yes`, `no`, `y` or `n` (_case-insensitive_).
 
-#### Examples:
+**Examples**:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the first guest to `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower` Edits the name of the second guest to `Betsy Crower`.
 
-### Billing a guest : `bill`
+### Billing a guest: `bill`
 
 This command updates the bill of a guest in GuestBook. Note that the bill here refers to the **total additional charges incurred**
 by the guest during their stay at your hotel and should not include the cost of the room booking.
@@ -217,101 +217,102 @@ This command updates the bill of the guest at the specified `INDEX`.
 Depending on the sign (`+` or `-`) of your input, the existing bill value will be **increased** 
 or **decreased** respectively by the value you provide.
 
-#### Format: `bill INDEX b/BILL`
+**Format**: `bill INDEX b/BILL`
 
-#### Constraints of parameters:
+**Constraints of parameters**:
 * `BILL` should only contain numbers, and can have up to 2 decimal places.
 
-#### Examples:
+**Examples**:
 * `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the first guest.
 * `bill 2 b/-10` Subtracts 10 from the bill of the second guest.
 
-#### Common mistakes:
+**Common mistakes**:
 * Missing out the `b/` prefix in the bill command.
 * Editing the bill using the edit command instead of the bill command.
 
-### Locating guests : `find`
+### Locating guests: `find`
 
-This command locates guests whose details contain any of the given keywords. This allows you to search for 
-guests with any of the specific guests' field.
+This command locates guests whose details contain any of the given keywords. 
+This allows you to search through all guests' fields.
 
-This command is typically used when searching for a guest of a specific characteristic. This command also allows for
-filtering of the guest list displayed. For example, the command `find no` will display all 
-the rooms that have room clean statuses set to "no".
+This command is typically used when searching for a guest of a **specific characteristic**.
+For example, the command `find no` will display all 
+the rooms that have room clean statuses set to `no`.
 
-#### Format: `find KEYWORD [MORE_KEYWORDS]`
+**Format**: `find KEYWORD [MORE_KEYWORDS]`
 
-#### Constraints of parameters:
-* The search is case-insensitive. E.g., `hans` will match `Hans`
+**Constraints of parameters**:
+* The search is **case-insensitive**. E.g., `hans` will match `Hans`
 * The order of the keywords does not matter. E.g., `Hans Bo` will match `Bo Hans`
-* Only full words will be matched E.g., `Han` will not match `Hans`
-* Guests matching at least one keyword will be returned (i.e. `OR` search).
+* **Only full words** will be matched E.g., `Han` will not match `Hans`
+* Guests matching **at least one** keyword will be returned (i.e. `OR` search).
   E.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-#### Examples:
+**Examples**:
 * `find John` returns `john` and `John Doe`
 * `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro` (refer to the image below for the details of the guests)<br>
 <br>
 
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
 
-#### Common mistakes:
-* Searching for guests using partial field characteristics, e.g., `170` will not match `170.00`.
+**Common mistakes**:
+* Searching for guests using incomplete keywords e.g. `170` will **not** match `170.00`.
 
-### Deleting a guest : `delete`
+### Deleting a guest: `delete`
 
-This command deletes the specified guest from GuestBook. 
+This command deletes the specified guest _(with index in different scenario)_ from GuestBook. 
 
-This command is typically used when a guest has checked out of the hotel. Do note that this command 
-is irreversible. Once deleted, the specific guest's data cannot be retrieved. Please use this 
+This command is typically used when a guest has checked out of the hotel. Do note that the `delete` command 
+is **IRREVERSIBLE**. Once deleted, the specific guest's data cannot be retrieved. Please use this 
 command with caution.
 
-#### Format: `delete INDEX`
+**Format**: `delete INDEX`
 
 * Deletes the guest at the specified `INDEX`.
 
-#### Examples:
+**Examples**:
 * `list` followed by `delete 2` deletes the 2nd guest in GuestBook.
 
 * `find Betsy` followed by `delete 1` deletes the 1st guest in the results of the `find` command.
 
 ### Marking all rooms as unclean: `markRoomsUnclean`
 
-This command functions to mark the room clean statuses of all guests as "no".
+This command functions to mark the room clean statuses of all guests as `no`.
 
 This command is typically used at the end or the start of the day when the hotel manager wishes to 
-update all the room clean statuses to "no" efficiently. This clean slate would allow the hotel 
-managers to keep abreast of the rooms that are cleaned or uncleaned for the day.
+update all the room clean statuses to `no` efficiently. This clean slate would allow the hotel 
+managers to keep track of the rooms that are cleaned or uncleaned for the day.
 
-#### Format: `markRoomsUnclean`
+**Format**: `markRoomsUnclean`
 
-#### Common mistakes: 
-* Missing out the "s" after the "Rooms"
-* Capitalising the "m" in "mark"
+**Common mistakes**: 
+* Missing out the `s`: `markRoomUnclean`.
+* Capitalising the `m`: `MarkRoomsUnclean`.
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
-This command clears all entries from GuestBook. 
+This command clears **all entries** from GuestBook. 
 
-This command is typically used as a hard reset of all guest data in GuestBook. Do note that this command 
-is irreversible. Once cleared, all the guest data cannot be retrieved. Please use this command 
+This command is typically used as a **hard reset** of all guest data in GuestBook. Do note that this command 
+is **IRREVERSIBLE**. Once cleared, all the guest data cannot be retrieved. Please use this command 
 with utmost caution.
 
-#### Format: `clear`
+**Format**: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 This command exits the program.
 
-#### Format: `exit`
+**Format**: `exit`
 
 ### Saving the data
 
-GuestBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+GuestBook data is saved in the hard disk **automatically** after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-GuestBook data are saved as a JSON file `[JAR file location]/data/guestbook.json`. Advanced users are welcome to update data directly by editing that data file.
+GuestBook data is saved as a _JSON file_ `[JAR file location]/data/guestbook.json`.<br>
+Advanced users may change data directly by editing this data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, GuestBook will discard all data and start with an empty data file at the next run.
@@ -326,19 +327,19 @@ If your changes to the data file makes its format invalid, GuestBook will discar
 Listed here are some frequently asked questions. Should you require any other assistance, feel free to [contact us](#contact-us).
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GuestBook home folder.
+**A**: Install the app in the other computer and **overwrite the empty data file** it creates with the file that contains the data of your previous GuestBook home folder.
 
 **Q**: Will my data be automatically saved?<br>
-**A**: Yes, GuestBook automatically saves your data after every command entered.
+**A**: **Yes**, GuestBook automatically saves your data after every command entered.
 
 **Q**: Where is my data saved?<br>
 **A**: Go to where you have downloaded your `guestbook.jar` file, there a `/data` folder will be created and the data will be saved under `guestbook.json`.
 
 **Q**: Can I rename my saved data file?<br>
-**A**: No, GuestBook currently only supports the use of `guestbook.json` as the name of the saved data file.
+**A**: **No**, GuestBook currently only supports the use of `guestbook.json` as the name of the saved data file.
 
 **Q**: Why are there no guests in my GuestBook?<br>
-**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is corrupted, causing GuestBook to reset it to prevent any malicious files from being used.
+**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is **corrupted**, causing GuestBook to reset it to prevent any malicious files from being used.
 
 [Return to Table of Contents](#table-of-contents)
 
