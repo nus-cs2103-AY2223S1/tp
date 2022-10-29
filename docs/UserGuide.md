@@ -1,5 +1,5 @@
 # User Guide
-Travelr is a desktop app for managing trips and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Travelr can get your trip management tasks done faster than traditional GUI apps.
+Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, locations, and itineraries, all within the same app!
 
 - [Quick start](#quick-start)
 - [Features](#features)
@@ -13,7 +13,8 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
   * [Adding events to trips: `add-et`](#adding-events-to-trips-add-et)
   * [Removing events from trips: `delete-et`](#removing-events-from-trips-delete-et)
   * [Select trip: `select`](#select-trip-select)
-  * [Sorting trips: `sort by/FACTOR r/`](#sorting-trips-sort-byfactor-r)
+  * [Sorting trips: `sort`](#sorting-trips-sort)
+  * [Sorting events within Bucket List: `sort-e`](#sorting-events-within-bucket-list-sort-e)
   * [View all completed trips and events: `completed`](#view-all-completed-trips-and-events-completed)
   * [View all trips and events: `view`](#view-all-trips-and-events-view)
   * [View lifetime summary: `summary`](#view-lifetime-summary-summary)
@@ -42,6 +43,26 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Before Using
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Explanation of our User Interface:**<br>
+
+![UI_Explanation](images/UI_Explanation.png)
+ 
+|`Component`|`Explanation`|
+|:-:|:--|
+|**Input Box**|where you enter your commands.|
+|**Output Box**|where the results of your command are shown.
+|**Selected Trip Box**| where the current selected trip is shown.<br><br> Use `select` to select a trip.|
+|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the trips shown:<ul><li>`completed`</li><li>`view`</li><li>`list`</li></ul>See feature list for more information about the commands.|
+| **Event List Display** |where the Events stored in Travelr are shown.<br><br> Commands to change the events shown:<ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul>See feature list for more information about the commands.
+ 
+ </div>
+ 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 **Notes about the command format:**
 
@@ -64,6 +85,8 @@ e.g. if you specify `n/title1 n/title2`, only `n/title2` will be taken.
 
 `TITLE` is case-sensitive, so titles with the same letters and spacing but different capitalizations will be considered different.
 
+The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
+
 Events with the same title are considered duplicates, and duplicate events are not allowed.
 
 Trips with the same title are considered duplicates, and duplicate trips are not allowed.
@@ -72,7 +95,7 @@ Trips with the same title are considered duplicates, and duplicate trips are not
 ### Adding events: `add-e`
 Adds an event to the events list.
 
-Format: `add-e n/TITLE d/DESCRIPTION `
+Format: `add-e n/TITLE d/DESCRIPTION`
 
 Examples:
 - `add-e n/Skydiving d/Skydiving with crew`
@@ -97,12 +120,9 @@ Format: `list-e`
 ### Adding trips: `add`
 Adds a trip to the trip list.
 
-Format: `add n/TITLE d/DESCRIPTION [l/LOCATION] [D/DATE] `
-- Location and Date are optional fields.
+Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE`
+- All fields are compulsory.
 - Date must follow the format {dd-mm-yyyy}.
-- If you do not specify a location, it will be set to the value "No location set".
-- If you do not specify a date, it will be set to the value "01-01-0000".
-- Hence, any trip with the above location or date values will be assumed to have an unspecified location or date, and it will be reflected as such in the UI.
 
 Examples:
 - `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
@@ -173,17 +193,20 @@ Format: `select INDEX`
 - The index refers to the index number shown in the current displayed trip list.
 - The index must be a positive integer 1, 2, 3, …
 
-### Sorting trips: `sort by/FACTOR r/`
+### Sorting trips: `sort`
 Sorts the trips according to the provided factor.
 
-Format: `sort by/FACTOR r/`
+Format: `sort [by/FACTOR] [r/]`
 - Sorts the trip according to provided FACTOR.
+- FACTOR is case-insensitive
 - Marked and unmarked trips are sorted separately.
 - Order of sort reversed when the `r/` prefix is provided.
-- The parameters for this command are optional.
 - The trips will be sorted by their title in alphabetical order by default.
 - A valid FACTOR must be provided if the `by/` prefix is provided.
-- Extraneous parameters for `r/` prefix will be ignored and treated as just `r/`.
+- Extraneous parameters for `r/` prefix will be ignored.
+
+Examples:
+- `sort by/time r/` sorts the trip by reversed chronological order.
 
 | FACTOR | Description |
 | --- | --- |
@@ -192,6 +215,13 @@ Format: `sort by/FACTOR r/`
 | `time` | Sort by trips' date in chronological order |
 | `location` | Sort by trips' location in alphabetical order |
 | `eventcount` | Sort by trips' number of events in ascending order |
+
+### Sorting Events within Bucket List: `sort-e`
+Sorts the events in Bucket List according to alphabetical order.
+
+Format: `sort-e [r/]`
+- Order of sort reversed when the `r/` prefix is provided.
+- Extraneous parameters for `r/` prefix will be ignored.
 
 ### View all completed trips and events: `completed`
 Displays all completed trips and events.
@@ -215,15 +245,32 @@ Displays the full title, description of the event at the specified INDEX of the 
 Format: `display-e INDEX`
 
 ### View lifetime summary: `summary`
-Displays a summary window.
+Displays a summary window of your lifetime travels.
+
+![Summary_Window](images/SummaryScreenshot.png)
 
 Format: `summary`
 
+- Calculates the number of unique locations you visited.
 - Includes list of completed trips.
 - Total number of completed trips and events.
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
 
+### Clearing all entries : `clear`
+
+Clears all entries from Travelr, which includes the trips and the events.
+
+Format: `clear`
+
+
+### Viewing help : `help`
+
+Shows a command summary as well as link to the User Guide page. The link can be copied by clicking the `Copy URL` button.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Saving data
 Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
