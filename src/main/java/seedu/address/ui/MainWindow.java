@@ -158,7 +158,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setupUserInteraction() {
         this.getRoot().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
+            if (event.getCode().equals(KeyCode.ESCAPE)) {
                 handleBack();
             } else if (event.getCode().equals(KeyCode.F1)) {
                 handleHelp();
@@ -189,6 +189,10 @@ public class MainWindow extends UiPart<Stage> {
             if (isFirstPersonSelected && event.getCode().equals(KeyCode.UP)) {
                 detailPanel.clearSelectedRepo();
                 commandBox.focus();
+            }
+
+            if (event.getCode().equals(KeyCode.ESCAPE)) {
+                handleBack();
             }
         });
 
