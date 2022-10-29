@@ -15,7 +15,7 @@ can get your contact management tasks done faster than traditional GUI apps.
 
 #### Using this guide
 If this is the first time you are using this user guide, it is highly recommended for you to read the section on
-[Introducing PetCode](). Otherwise,
+[Introducing PetCode](#introducing-petcode). Otherwise,
 
 * If you are setting up, please take a look at our [Quick Start guide](#quick-start).
 * If you are unsure of how to use PetCode, the [Command Summary](#command-summary) table is a good starting point.
@@ -608,7 +608,11 @@ Examples:
 
 Format: `sort LIST_PARAMETER [ATTRIBUTES...]`
 
+<div markdown="span" class="alert alert-warning">
+
 :exclamation:**Note that different lists could have different supported sort attributes.**
+
+</div>
 
 Check out the acceptable List Parameters for different types of contacts /
 items [here](#list-key-types-table).
@@ -669,10 +673,14 @@ Supplier.
 
 Format: `check LIST_PARAMETER INDEX`
 
+<div markdown="span" class="alert alert-warning">
+
 :exclamation: **Please take note of the following:**
 
 * This command does not support the Deliverers list.
 * The input index has to be a valid index.
+
+</div>
 
 Check out the acceptable List Parameters for different types of contacts /
 items [here](#list-key-types-table).
