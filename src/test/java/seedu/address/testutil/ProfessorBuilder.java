@@ -55,4 +55,23 @@ public class ProfessorBuilder extends PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Rating} of the {@code Professor} that we are building.
+     */
+    public PersonBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Specialisation} of the {@code Professor} that we are building.
+     */
+    public PersonBuilder withSpecialisation(String specialisation) {
+        this.field = new Specialisation(specialisation);
+        return this;
+    }
+    public PersonBuilder withOfficeHour(String officeHour) {
+        this.officeHour = new OfficeHour(officeHour, true);
+        return this;
+    }
 }

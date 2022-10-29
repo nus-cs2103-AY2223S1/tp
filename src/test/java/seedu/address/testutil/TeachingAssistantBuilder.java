@@ -13,7 +13,7 @@ public class TeachingAssistantBuilder extends PersonBuilder {
 
     public static final String DEFAULT_RATING = "5";
 
-    private final ModuleCode moduleCode;
+    private ModuleCode moduleCode;
     private Rating rating;
 
     /**
@@ -39,6 +39,22 @@ public class TeachingAssistantBuilder extends PersonBuilder {
     public TeachingAssistant build() {
         return new TeachingAssistant(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(),
             getLocation(), getGithubUsername(), rating);
+    }
+
+    /**
+     * Sets the {@code Rating} of the {@code TeachingAssistant} that we are building.
+     */
+    public PersonBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ModuleCode} of the {@code TeachingAssistant} that we are building.
+     */
+    public PersonBuilder withModuleCode(String moduleCode) {
+        this.moduleCode = new ModuleCode(moduleCode);
+        return this;
     }
 
 }

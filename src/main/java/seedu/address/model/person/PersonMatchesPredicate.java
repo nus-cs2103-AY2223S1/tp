@@ -86,6 +86,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         if (!hasModulesList) {
             return true;
         }
+        modulesSet = modulesSet.stream().map(String::toLowerCase).collect(Collectors.toSet());
         return person.doModulesMatch(modulesSet, needsAllModules);
     }
 

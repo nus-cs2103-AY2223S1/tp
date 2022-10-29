@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -173,7 +174,7 @@ public class Professor extends Person {
     @Override
     public boolean doesSpecialisationMatch(List<String> specList) {
         return specList.stream().anyMatch(specialisation
-                -> specialisation.equals(this.getSpecialisation().value.toLowerCase()));
+                -> specialisation.equalsIgnoreCase(this.getSpecialisation().value));
     }
 
     @Override
