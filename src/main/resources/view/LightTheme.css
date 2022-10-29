@@ -402,3 +402,41 @@
     -fx-background-insets: 0;
     -fx-pref-width: 100;
 }
+
+#githubRepoListView .list-cell {
+    -fx-padding: 0 0 10 0;
+    -fx-label-padding: 0;
+    -fx-background-color: white;
+    -fx-graphic-text-gap : 0;
+    -fx-border-width: 1;
+    -fx-border-color: transparent;
+}
+
+#githubRepoListView .list-cell:filled {
+    -fx-border-color: transparent;
+}
+
+#githubRepoListView .list-cell:filled:selected {
+    -fx-border-color: #818CF8;
+    -fx-background-color: #EEF2FF;
+}
+
+#githubRepoListView .scroll-bar {
+    -fx-border-color: transparent;
+}
+
+#repoCard {
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+}
+
+#repoCard #name {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 12pt;
+}
+
+#repoCard #description {
+    -fx-font-family: "Segoe UI Light";
+    -fx-padding: 5 0 0 0;
+}
