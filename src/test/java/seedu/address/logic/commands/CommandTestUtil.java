@@ -68,15 +68,25 @@ public class CommandTestUtil {
     public static final String SLACK_DESC_AMY = " " + PREFIX_SLACK + VALID_SLACK_AMY;
     public static final String SLACK_DESC_BOB = " " + PREFIX_SLACK + VALID_SLACK_BOB;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_TIMEZONE_DESC = " " + PREFIX_TIMEZONE + "gmt +8"; // should be a number with sign
-    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "james"; // telegram starts with '@'
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "james gmail"; // email should have an '@'
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "1800-SAFETY"; // phone shouldn't have letters
-    public static final String INVALID_SLACK_DESC = " " + PREFIX_SLACK + "ReallyLoooongUsername"; // max slack length=20
-    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "Software-Engineer"; // role only alphanumeric
+    public static final String INVALID_NAME = "James&"; // '&' not allowed in names
+    public static final String INVALID_ADDRESS = ""; // empty string not allowed for addresses
+    public static final String INVALID_TAG = "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TIMEZONE = "gmt +8"; // should be a number with sign
+    public static final String INVALID_TELEGRAM = "james"; // telegram starts with '@'
+    public static final String INVALID_EMAIL = "james gmail"; // email should have an '@'
+    public static final String INVALID_PHONE = "1800-SAFETY"; // phone shouldn't have letters
+    public static final String INVALID_SLACK = "ReallyLoooongUsername"; // max slack length=20
+    public static final String INVALID_ROLE = "Software-Engineer"; // role only alphanumeric
+
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_NAME;
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS + INVALID_ADDRESS;
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + INVALID_TAG;
+    public static final String INVALID_TIMEZONE_DESC = " " + PREFIX_TIMEZONE + INVALID_TIMEZONE;
+    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + INVALID_TELEGRAM;
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + INVALID_EMAIL;
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + INVALID_PHONE;
+    public static final String INVALID_SLACK_DESC = " " + PREFIX_SLACK + INVALID_SLACK;
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + INVALID_ROLE;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
