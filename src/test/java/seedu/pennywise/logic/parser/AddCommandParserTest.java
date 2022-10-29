@@ -123,15 +123,6 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Entry expectedExpenditure = new ExpenditureBuilder(MOVIE).build();
-        assertParseSuccess(parser, TYPE_EXPENDITURE + DESC_MOVIE + AMT_MOVIE + DATE_MOVIE + TAG_MOVIE,
-                new AddCommand(expectedExpenditure, expenditureType));
-
-        Entry expectedIncome = new seedu.pennywise.testutil.IncomeBuilder(ALLOWANCE).build();
-        assertParseSuccess(parser, TYPE_INCOME + DESC_ALLOWANCE
-                + AMT_ALLOWANCE + DATE_ALLOWANCE + TAG_ALLOWANCE, new AddCommand(expectedIncome, incomeType));
-
         // no date specified
         Date today = new Date();
         String currentDate = " " + PREFIX_DATE + java.time.LocalDate.now()
