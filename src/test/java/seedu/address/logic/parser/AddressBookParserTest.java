@@ -7,14 +7,15 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-//import seedu.address.logic.commands.addcommand.AddBuyerCommand;
-//import seedu.address.logic.commands.addcommand.AddSupplierCommand;
+import seedu.address.logic.commands.addcommands.AddBuyerCommand;
+import seedu.address.logic.commands.addcommands.AddDelivererCommand;
+import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -43,38 +44,39 @@ import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
-//import seedu.address.testutil.PersonUtil;
-//import seedu.address.testutil.TypicalBuyers;
+import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TypicalBuyers;
+import seedu.address.testutil.TypicalDeliverers;
 import seedu.address.testutil.TypicalPersonCategories;
-//import seedu.address.testutil.TypicalSuppliers;
+import seedu.address.testutil.TypicalSuppliers;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
-    //    @Test
-    //    public void parseCommand_addBuyer() throws Exception {
-    //        Buyer buyer = TypicalBuyers.ALICE;
-    //        AddBuyerCommand command = (AddBuyerCommand) parser.parseCommand(PersonUtil.getAddCommand(buyer));
-    //        assertEquals(new AddBuyerCommand(buyer, new ArrayList<>()), command);
-    //    }
+    @Test
+    public void parseCommand_addBuyer() throws Exception {
+        Buyer buyer = TypicalBuyers.ALICE;
+        AddBuyerCommand command = (AddBuyerCommand) parser.parseCommand(AddBuyerCommand.COMMAND_WORD
+                    + " " + PersonUtil.getAddCommandBody(buyer));
+        assertEquals(new AddBuyerCommand(buyer, new ArrayList<>()), command);
+    }
 
-    /*
     @Test
     public void parseCommand_addDeliverer() throws Exception {
         Deliverer deliverer = TypicalDeliverers.BENSON;
-        AddDelivererCommand command = (AddDelivererCommand) parser.parseCommand(PersonUtil.getAddCommand(deliverer));
+        AddDelivererCommand command = (AddDelivererCommand) parser.parseCommand(
+                AddDelivererCommand.COMMAND_WORD + " " + PersonUtil.getAddCommandBody(deliverer));
         assertEquals(new AddDelivererCommand(deliverer), command);
     }
-
-     */
-
-    //    @Test
-    //    public void parseCommand_addSupplier() throws Exception {
-    //        Supplier supplier = TypicalSuppliers.ALICE;
-    //        AddSupplierCommand command = (AddSupplierCommand) parser.parseCommand(PersonUtil.getAddCommand(supplier));
-    //        assertEquals(new AddSupplierCommand(supplier, new ArrayList<>()), command);
-    //    }
+    
+    @Test
+    public void parseCommand_addSupplier() throws Exception {
+        Supplier supplier = TypicalSuppliers.ALICE;
+        AddSupplierCommand command = (AddSupplierCommand) parser.parseCommand(AddSupplierCommand.COMMAND_WORD
+                + " " + PersonUtil.getAddCommandBody(supplier));
+        assertEquals(new AddSupplierCommand(supplier, new ArrayList<>()), command);
+    }
 
     @Test
     public void parseCommand_clear() throws Exception {
