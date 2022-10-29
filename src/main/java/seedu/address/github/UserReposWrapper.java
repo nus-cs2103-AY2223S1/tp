@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,7 +22,7 @@ public class UserReposWrapper {
     private static final String ID_KEY = "id";
     private static final String NAME_KEY = "name";
     private static final String URL_KEY = "html_url";
-    private static final String FORKS_KEY = "forks_count";
+    private static final String DESCRIPTION_KEY = "description";
     private static final String UPDATED_KEY = "updated_at";
     private final UserReposRoute.UserReposRequest getUserReposRequest;
     private JSONArray reposJson;
@@ -55,8 +56,8 @@ public class UserReposWrapper {
 
     public String getRepoName(int id) {
         JSONObject obj;
-        for (int i = 0; i < this.reposJson.length(); i++) {
-            obj = (JSONObject) this.reposJson.get(i);
+        for (Object o : this.reposJson) {
+            obj = (JSONObject) o;
             if (obj.getInt("id") == id) {
                 return obj.getString(NAME_KEY);
             }
@@ -67,8 +68,8 @@ public class UserReposWrapper {
 
     public String getRepoUrl(int id) {
         JSONObject obj;
-        for (int i = 0; i < this.reposJson.length(); i++) {
-            obj = (JSONObject) this.reposJson.get(i);
+        for (Object o : this.reposJson) {
+            obj = (JSONObject) o;
             if (obj.getInt("id") == id) {
                 return obj.getString(URL_KEY);
             }
@@ -79,8 +80,8 @@ public class UserReposWrapper {
 
     public LocalDateTime getLastUpdated(int id) {
         JSONObject obj;
-        for (int i = 0; i < this.reposJson.length(); i++) {
-            obj = (JSONObject) this.reposJson.get(i);
+        for (Object o : this.reposJson) {
+            obj = (JSONObject) o;
             if (obj.getInt("id") == id) {
                 return LocalDateTime.parse(obj.getString(UPDATED_KEY), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
             }
@@ -89,14 +90,15 @@ public class UserReposWrapper {
         throw new RepoNotFoundException("Provided ID does not correspond to a repository owned by this user!");
     }
 
-    public int getRepoForkCount(int id) {
+    public Optional<String> getDescription(int id) {
         JSONObject obj;
-        for (int i = 0; i < this.reposJson.length(); i++) {
-            obj = (JSONObject) this.reposJson.get(i);
+        for (Object o : this.reposJson) {
+            obj = (JSONObject) o;
             if (obj.getInt("id") == id) {
-                return obj.getInt(FORKS_KEY);
+                return Optional.ofNullable(obj.optString(DESCRIPTION_KEY, null));
             }
         }
+
 
         throw new RepoNotFoundException("Provided ID does not correspond to a repository owned by this user!");
     }
@@ -104,9 +106,9 @@ public class UserReposWrapper {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof UserReposWrapper)
-                && getUserReposRequest.equals(((UserReposWrapper) other).getUserReposRequest)
-                && reposJson.equals(((UserReposWrapper) other).reposJson);
+            || (other instanceof UserReposWrapper)
+            && getUserReposRequest.equals(((UserReposWrapper) other).getUserReposRequest)
+            && reposJson.equals(((UserReposWrapper) other).reposJson);
     }
 
     @Override
