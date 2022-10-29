@@ -55,9 +55,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
-    @FXML
-    private StackPane statusbarPlaceholder;
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -86,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -123,9 +121,6 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -203,6 +198,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Handles a field in the detailed person view panel being clicked, by setting the command to edit.
+     *
      * @param prefix the click event.
      */
     private void handlePersonViewClick(Prefix prefix) {
@@ -215,6 +211,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the text in the CommandBox to the given String.
+     *
      * @param text the text to set the field to.
      */
     private void setCommandBoxText(String text) {
