@@ -1,7 +1,9 @@
 package seedu.taassist.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
@@ -173,6 +175,7 @@ class UnassignCommandTest {
 
         @Override
         public void setStudent(Student target, Student editedStudent) {
+            requireAllNonNull(target, editedStudent);
             students.set(students.indexOf(target), editedStudent);
         }
 
@@ -183,6 +186,7 @@ class UnassignCommandTest {
 
         @Override
         public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
             return moduleClass;
         }
     }

@@ -166,6 +166,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) throws ModuleClassNotFoundException {
+        requireNonNull(moduleClass);
         Optional<ModuleClass> foundModuleClass = moduleClasses.findElement(moduleClass);
         if (foundModuleClass.isEmpty()) {
             throw new ModuleClassNotFoundException();

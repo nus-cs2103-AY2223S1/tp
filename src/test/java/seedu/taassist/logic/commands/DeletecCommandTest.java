@@ -215,11 +215,13 @@ public class DeletecCommandTest {
 
         @Override
         public void setStudent(Student oldStudent, Student newStudent) {
+            requireAllNonNull(oldStudent, newStudent);
             this.student = newStudent;
         }
 
         @Override
         public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
             return moduleClass;
         }
     }
