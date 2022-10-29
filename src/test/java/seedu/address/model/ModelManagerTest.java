@@ -74,8 +74,51 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasProfile_nullProfile_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasProfile(null));
+    public void hasEmail_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasEmail(null));
+    }
+
+    @Test
+    public void hasEmail_emailNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasEmail(ALICE));
+    }
+
+    @Test
+    public void hasEmail_emailInAddressBook_returnsTrue() {
+        modelManager.addProfile(ALICE);
+        assertTrue(modelManager.hasEmail(ALICE));
+    }
+
+    @Test
+    public void hasPhone_nullPhone_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasPhone(null));
+    }
+
+    @Test
+    public void hasPhone_phoneNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasPhone(ALICE));
+    }
+
+    @Test
+    public void hasPhone_phoneInAddressBook_returnsTrue() {
+        modelManager.addProfile(ALICE);
+        assertTrue(modelManager.hasPhone(ALICE));
+    }
+
+    @Test
+    public void hasTelegram_nullTelegram_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTelegram(null));
+    }
+
+    @Test
+    public void hasTelegram_telegramNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTelegram(ALICE));
+    }
+
+    @Test
+    public void hasTelegram_telegramInAddressBook_returnsTrue() {
+        modelManager.addProfile(ALICE);
+        assertTrue(modelManager.hasTelegram(ALICE));
     }
 
     @Test
@@ -84,19 +127,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasProfile_profileNotInNuScheduler_returnsFalse() {
-        assertFalse(modelManager.hasProfile(ALICE));
-    }
-
-    @Test
     public void hasEvent_eventNotInNuScheduler_returnsFalse() {
         assertFalse(modelManager.hasEvent(PRESENTATION));
-    }
-
-    @Test
-    public void hasProfile_profileInNuScheduler_returnsTrue() {
-        modelManager.addProfile(ALICE);
-        assertTrue(modelManager.hasProfile(ALICE));
     }
 
     @Test

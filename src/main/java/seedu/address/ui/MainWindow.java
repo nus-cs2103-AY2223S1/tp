@@ -47,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private MenuItem linkedinMenuItem;
+    private MenuItem luminusMenuItem;
 
     @FXML
     private MenuItem canvasMenuItem;
@@ -91,6 +91,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(luminusMenuItem, KeyCombination.valueOf("F2"));
+        setAccelerator(canvasMenuItem, KeyCombination.valueOf("F3"));
+        setAccelerator(edurecMenuItem, KeyCombination.valueOf("F4"));
     }
 
     /**

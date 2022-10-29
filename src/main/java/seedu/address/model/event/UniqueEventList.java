@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.profile.Profile;
 
 /**
  * A list of events that enforces uniqueness between its elements and does not allow nulls.
@@ -27,6 +29,7 @@ public class UniqueEventList implements Iterable<Event> {
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final SortedList<Event> unmodifiableSortedList = internalUnmodifiableList.sorted(Event::compareTo);
 
     /**
      * Returns true if the list contains an equivalent event as the given argument.
@@ -71,12 +74,98 @@ public class UniqueEventList implements Iterable<Event> {
     /**
      * Removes the equivalent event from the list.
      * The event must exist in the list.
+     * Also removes event from all Profiles which contains event.
      */
     public void remove(Event toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new EventNotFoundException();
         }
+        toRemove.removeFromAttendees();
+    }
+
+    /**
+     * Adds profiles in {@code profilesToAdd} to the given event.
+     * The event must exist in the list.
+     */
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        requireAllNonNull(event, profilesToAdd);
+
+        int index = internalList.indexOf(event);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        internalList.get(index).addAttendees(profilesToAdd);
+    }
+
+    /**
+     * Deletes profiles in {@code profilesToDelete} from the given event.
+     * The event must exist in the list.
+     */
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+
+        int index = internalList.indexOf(event);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        internalList.get(index).removeAttendees(profilesToDelete);
+    }
+
+    /**
+     * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
+     * The event must exist in the list.
+     */
+    public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
+        requireAllNonNull(event, profilesToAddEventTo);
+
+        int index = internalList.indexOf(event);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        internalList.get(index).addToAllAttendees(profilesToAddEventTo);
+    }
+
+    /**
+     * Replaces the event {@code target} in the list with {@code editedEvent}.
+     * {@code target} must exist in the list.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the list.
+     * Ensures the change is updated for all event attendees.
+     */
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
+            throw new DuplicateEventException();
+        }
+
+        target.removeFromAttendees();
+        editedEvent.addToAllAttendees();
+        internalList.set(index, editedEvent);
+    }
+
+    /**
+     * Removes the event {@code target} from each profile in {@code profilesToEdit}.
+     * Profiles in {@code profilesToEdit} must exist in the address book.
+     * The event {@code target} must exist in the list.
+     */
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        internalList.get(index).removeFromAttendees(profilesToEdit);
     }
 
     public void setEvents(UniqueEventList replacement) {
@@ -101,7 +190,7 @@ public class UniqueEventList implements Iterable<Event> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Event> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return unmodifiableSortedList;
     }
 
     @Override
@@ -135,3 +224,4 @@ public class UniqueEventList implements Iterable<Event> {
         return true;
     }
 }
+

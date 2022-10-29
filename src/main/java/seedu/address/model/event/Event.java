@@ -1,19 +1,22 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.profile.Profile;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents an Event in the NUScheduler.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Event {
+public class Event implements Comparable<Event> {
 
     // Identity fields
     private final Title title;
@@ -22,6 +25,7 @@ public class Event {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
+    private final Attendees attendees;
 
     /**
      * Every field must be present and not null.
@@ -32,6 +36,19 @@ public class Event {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.tags.addAll(tags);
+        attendees = new Attendees();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Event(Title title, DateTime startDateTime, DateTime endDateTime, Set<Tag> tags, Attendees attendees) {
+        requireAllNonNull(title, startDateTime, endDateTime, tags, attendees);
+        this.title = title;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.tags.addAll(tags);
+        this.attendees = attendees;
     }
 
     public Title getTitle() {
@@ -53,6 +70,111 @@ public class Event {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
+    public Attendees getAttendees() {
+        return attendees;
+    }
+
+    public List<Profile> getAttendeesList() {
+        return attendees.getAttendeesList();
+    }
+
+    // attendee operations
+
+    /**
+     * Adds the specified profile to the event's list of attendees if it has not already been added.
+     */
+    public void addAttendee(Profile profileToAdd) {
+        requireNonNull(profileToAdd);
+        attendees.addProfile(profileToAdd);
+    }
+
+    /**
+     * Adds the specified profiles in {@code profilesToAdd} to the event's list of attendees if
+     * they have not already been added.
+     */
+    public void addAttendees(List<Profile> profilesToAdd) {
+        requireNonNull(profilesToAdd);
+        attendees.addProfiles(profilesToAdd);
+    }
+
+    /**
+     * Removes the specified profile from the event's list of attendees if exists in the list.
+     */
+    public void removeAttendee(Profile profileToRemove) {
+        requireNonNull(profileToRemove);
+        attendees.removeAttendee(profileToRemove);
+    }
+
+    /**
+     * Removes each specified profile in {@code profilesToRemove} from the event's list of attendees if
+     * they exist in the list.
+     */
+    public void removeAttendees(List<Profile> attendeesToRemove) {
+        requireNonNull(attendeesToRemove);
+        attendees.removeAttendees(attendeesToRemove);
+    }
+
+    public int numberOfAttendees() {
+        return attendees.size();
+    }
+
+    public Profile getAttendee(int index) {
+        return attendees.getAttendee(index);
+    }
+
+    /**
+     * Returns true if the specified profile is in the event's list of attendees.
+     */
+    public boolean hasAttendee(Profile profile) {
+        return attendees.hasAttendee(profile);
+    }
+
+    /**
+     * Removes the event from each attendee in its own list of attendees {@code attendees}.
+     */
+    public void removeFromAttendees() {
+        attendees.removeEventFromAttendees(this);
+    }
+
+    // profile operations
+
+    /**
+     * Removes the event from the list of eventsAttending of each attendee in {@code attendeesToRemoveFrom}
+     * if it exists in the list.
+     */
+    public void removeFromAttendees(List<Profile> attendeesToRemoveFrom) {
+        requireNonNull(attendeesToRemoveFrom);
+        attendeesToRemoveFrom.forEach(attendee -> attendee.removeAttendingEvent(this));
+    }
+
+    /**
+     * Adds the event to the list of eventsAttending of each profile in its own list of attendees
+     * if it has not already been added.
+     */
+    public void addToAllAttendees() {
+        attendees.addEventToAttendees(this);
+    }
+
+    /**
+     * Adds the event to the list of eventsAttending of each profile in {@code profilesToAddEventTo} if
+     * it has not already been added.
+     */
+    public void addToAllAttendees(Attendees profilesToAddEventTo) {
+        requireNonNull(profilesToAddEventTo);
+        profilesToAddEventTo.addEventToAttendees(this);
+    }
+
+    /**
+     * Adds the event to the list of eventsAttending of each profile in {@code profilesToAddEventTo} if
+     * it has not already been added.
+     */
+    public void addToAllAttendees(List<Profile> profilesToAddEventTo) {
+        requireNonNull(profilesToAddEventTo);
+        profilesToAddEventTo.forEach(profile -> profile.addAttendingEvent(this));
+    }
+
+    // equality checks
 
     /**
      * Returns true if both events have the same title, start, and end times.
@@ -124,7 +246,24 @@ public class Event {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        if (!attendees.isEmpty()) {
+            builder.append(System.lineSeparator())
+                    .append(attendees);
+        }
+
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Event other) {
+        int compareValue = this.getStartDateTime().compareTo(other.getStartDateTime());
+        if (compareValue == 0) {
+            compareValue = this.getEndDateTime().compareTo(other.getEndDateTime());
+        }
+        if (compareValue == 0) {
+            compareValue = this.getTitle().compareTo(other.getTitle());
+        }
+        return compareValue;
+    }
 }

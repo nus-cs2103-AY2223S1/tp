@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Optional;
@@ -18,7 +20,7 @@ import java.util.regex.Pattern;
  * Represents an Event's start or end datetime in the NUScheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
 
     public static final String RECOMMENDED_DATE_FORMAT = "dd/MM/yyyy";
     public static final String RECOMMENDED_TIME_FORMAT = "HH:mm";
@@ -180,6 +182,26 @@ public class DateTime {
         return Optional.ofNullable(generateLocalTime(hours, minutes, seconds));
     }
 
+    public static String getDifferenceString(DateTime start, DateTime end) {
+        LocalDateTime startTime = start.date.atTime(start.time.orElse(LocalTime.MIDNIGHT));
+        LocalDateTime endTime = end.date.atTime(end.time.orElse(LocalTime.MIDNIGHT));
+        long days = ChronoUnit.DAYS.between(startTime, endTime);
+        if (start.time.isEmpty() && end.time.isEmpty()) {
+            days += 1;
+        }
+        long hours = ChronoUnit.HOURS.between(startTime, endTime) % 24;
+        long minutes = ChronoUnit.MINUTES.between(startTime, endTime) % 60;
+        String res = "";
+        res += days != 0 ? String.format("%d day%s, ", days, days == 1 ? "" : "s") : "";
+        res += hours != 0 ? String.format("%d hour%s, ", hours, hours == 1 ? "" : "s") : "";
+        res += minutes != 0 ? String.format("%d minute%s, ", minutes, minutes == 1 ? "" : "s") : "";
+        res = res.replaceAll(", $", "");
+        if (res.isEmpty()) {
+            return "No Duration";
+        }
+        return res;
+    }
+
     /**
      * Returns true if a start DateTime is before or equal another DateTime.
      * Otherwise, returns false.
@@ -221,4 +243,30 @@ public class DateTime {
         return date.hashCode() ^ time.hashCode();
     }
 
+    /**
+     * Compares object with another DateTime object other.
+     * A DateTime with empty time field is deemed earlier than a DateTime of the same date with a time field.
+     * If a clear ordering exist, return -1 if object is earlier than other, and 1 if object is later than other.
+     * If both have same date and no time, return 0.
+     */
+    @Override
+    public int compareTo(DateTime other) {
+        int compareValue = this.date.compareTo(other.date);
+
+        if (compareValue == 0) {
+            boolean objectTimePresent = this.time.isPresent();
+            boolean otherTimePresent = other.time.isPresent();
+            if (!objectTimePresent && !otherTimePresent) {
+                compareValue = 0;
+            } else if (objectTimePresent && otherTimePresent) {
+                compareValue = this.time.get().compareTo(other.time.get());
+            } else if (objectTimePresent) {
+                compareValue = 1;
+            } else {
+                compareValue = -1;
+            }
+        }
+
+        return compareValue;
+    }
 }

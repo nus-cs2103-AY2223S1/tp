@@ -15,10 +15,12 @@ import seedu.address.testutil.TypicalNuScheduler;
 
 public class JsonSerializableNuSchedulerTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableNuSchedulerTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
     private static final Path TYPICAL_PROFILES_FILE = TEST_DATA_FOLDER.resolve("typicalProfilesNuScheduler.json");
-    private static final Path INVALID_PROFILE_FILE = TEST_DATA_FOLDER.resolve("invalidProfileNuScheduler.json");
-    private static final Path DUPLICATE_PROFILE_FILE = TEST_DATA_FOLDER.resolve("duplicateProfileNuScheduler.json");
+    private static final Path INVALID_PROFILE_FILE = TEST_DATA_FOLDER.resolve("invalidNameNuScheduler.json");
+    private static final Path SIMILAR_EMAIL_FILE = TEST_DATA_FOLDER.resolve("similarEmailNuScheduler.json");
+    private static final Path SIMILAR_PHONE_FILE = TEST_DATA_FOLDER.resolve("similarPhoneNuScheduler.json");
+    private static final Path SIMILAR_TELEGRAM_FILE = TEST_DATA_FOLDER.resolve("similarTelegramNuScheduler.json");
 
     @Test
     public void toModelType_typicalProfilesFile_success() throws Exception {
@@ -37,10 +39,26 @@ public class JsonSerializableNuSchedulerTest {
     }
 
     @Test
-    public void toModelType_duplicateProfiles_throwsIllegalValueException() throws Exception {
-        JsonSerializableNuScheduler dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PROFILE_FILE,
+    public void toModelType_similarEmail_throwsIllegalValueException() throws Exception {
+        JsonSerializableNuScheduler dataFromFile = JsonUtil.readJsonFile(SIMILAR_EMAIL_FILE,
                 JsonSerializableNuScheduler.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableNuScheduler.MESSAGE_DUPLICATE_PROFILE,
+        assertThrows(IllegalValueException.class, JsonSerializableNuScheduler.MESSAGE_SIMILAR_EMAIL,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_similarPhone_throwsIllegalValueException() throws Exception {
+        JsonSerializableNuScheduler dataFromFile = JsonUtil.readJsonFile(SIMILAR_PHONE_FILE,
+                JsonSerializableNuScheduler.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableNuScheduler.MESSAGE_SIMILAR_PHONE,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_similarTelegram_throwsIllegalValueException() throws Exception {
+        JsonSerializableNuScheduler dataFromFile = JsonUtil.readJsonFile(SIMILAR_TELEGRAM_FILE,
+                JsonSerializableNuScheduler.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableNuScheduler.MESSAGE_SIMILAR_TELEGRAM,
                 dataFromFile::toModelType);
     }
 

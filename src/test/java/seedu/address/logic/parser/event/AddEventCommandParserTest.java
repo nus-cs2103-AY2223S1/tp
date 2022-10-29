@@ -54,6 +54,7 @@ public class AddEventCommandParserTest {
         // multiple starts - last start accepted
         assertParseSuccess(parser, TITLE_DESC_PRACTICE + START_DESC_PRACTICE + END_DESC_PRESENTATION + END_DESC_PRACTICE
                + TAG_DESC_SWE, new AddEventCommand(expectedEvent));
+
         // multiple tags - all accepted
         Event expectedEventMultipleTags = new EventBuilder(PRACTICE).withTags(VALID_TAG_SWE, VALID_TAG_CCA)
                 .build();

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -93,9 +94,21 @@ public class ModelManager implements Model {
     //========== Profiles ====================================================================================
 
     @Override
-    public boolean hasProfile(Profile profile) {
+    public boolean hasEmail(Profile profile) {
         requireNonNull(profile);
-        return nuScheduler.hasProfile(profile);
+        return nuScheduler.hasEmail(profile);
+    }
+
+    @Override
+    public boolean hasPhone(Profile profile) {
+        requireNonNull(profile);
+        return nuScheduler.hasPhone(profile);
+    }
+
+    @Override
+    public boolean hasTelegram(Profile profile) {
+        requireNonNull(profile);
+        return nuScheduler.hasTelegram(profile);
     }
 
     @Override
@@ -129,6 +142,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+        nuScheduler.removeEventFromAttendees(target, profilesToEdit);
+    }
+
+    @Override
     public void addEvent(Event event) {
         nuScheduler.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
@@ -138,6 +157,31 @@ public class ModelManager implements Model {
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
         nuScheduler.setEvent(target, editedEvent);
+    }
+
+    @Override
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        nuScheduler.setEventForAttendees(target, editedEvent);
+    }
+
+    @Override
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        requireAllNonNull(event, profilesToAdd);
+        addEventToAttendees(event, profilesToAdd);
+        nuScheduler.addEventAttendees(event, profilesToAdd);
+    }
+
+    @Override
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+        nuScheduler.deleteEventAttendees(event, profilesToDelete);
+    }
+
+    @Override
+     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
+        requireAllNonNull(event, profilesToAddEventTo);
+        nuScheduler.addEventToAttendees(event, profilesToAddEventTo);
     }
 
     //=========== Filtered Profile List Accessors =============================================================

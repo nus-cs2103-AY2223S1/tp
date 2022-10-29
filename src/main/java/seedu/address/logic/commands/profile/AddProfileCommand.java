@@ -44,7 +44,6 @@ public class AddProfileCommand extends ProfileCommand {
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TELEGRAM + "TELEGRAM USERNAME] "
             + "[" + PREFIX_TAG + "TAG]...";
-    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the NUScheduler";
 
     private final Profile toAdd;
 
@@ -60,8 +59,16 @@ public class AddProfileCommand extends ProfileCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasProfile(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROFILE);
+        if (model.hasEmail(toAdd)) {
+            throw new CommandException(MESSAGE_SIMILAR_EMAIL);
+        }
+
+        if (model.hasPhone(toAdd)) {
+            throw new CommandException(MESSAGE_SIMILAR_PHONE);
+        }
+
+        if (model.hasTelegram(toAdd)) {
+            throw new CommandException(MESSAGE_SIMILAR_TELEGRAM);
         }
 
         model.addProfile(toAdd);

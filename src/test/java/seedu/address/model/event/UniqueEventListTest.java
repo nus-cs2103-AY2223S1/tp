@@ -41,9 +41,9 @@ public class UniqueEventListTest {
     @Test
     public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEventList.add(PRESENTATION);
-        Event editedAlice = new EventBuilder(PRESENTATION).withTags(VALID_TAG_HUSBAND)
+        Event editedPresentation = new EventBuilder(PRESENTATION).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueEventList.contains(editedAlice));
+        assertTrue(uniqueEventList.contains(editedPresentation));
     }
 
     @Test

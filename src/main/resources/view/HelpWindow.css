@@ -1,45 +1,38 @@
-#copyButton, #helpMessage {
-    -fx-text-fill: white;
+.hyperlink {
+    -fx-border-color: transparent;
+    -fx-padding: 0;
 }
 
-#copyButton {
-    -fx-background-color: dimgray;
-}
-
-#copyButton:hover {
-    -fx-background-color: gray;
-}
-
-#copyButton:armed {
-    -fx-background-color: darkgray;
+#helpMessage {
+    -fx-text-fill: #364378;
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#ffffff, 20%);
 }
 
 #helpHeaderContainer {
     -fx-border-style: hidden hidden solid hidden;
-    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-color: derive(#ffffff, 10%);
 }
 
 .help-label {
-    -fx-text-fill: white;
+    -fx-text-fill: #364378;
     -fx-font-size: 14;
     -fx-padding: 6 12 2 12;
 }
 
 /* Adapted from https://stackoverflow.com/questions/21451386/titled-pane-css-settings */
 .titled-pane {
-    -fx-text-fill: white;
+    -fx-text-fill: #364378;
 }
 
 .titled-pane .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #364378;
 }
 
 .titled-pane > .title {
-    -fx-background-color: #333;
+    -fx-background-color: #f1f2f6;
     -fx-background-insets: 0, 1, 2;
     -fx-padding: 5 10;
 }
@@ -52,7 +45,7 @@
 }
 
 .titled-pane > .title > .arrow-button .arrow {
-    -fx-background-color: white;
+    -fx-background-color: #364378;
     -fx-background-insets: 1 0 -1 0, 0;
     -fx-padding: 3 6 3 4;
     -fx-shape: "M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z";
@@ -63,7 +56,7 @@
 }
 
 .titled-pane > *.content {
-    -fx-background-color: derive(#1d1d1d, 10%);
+    -fx-background-color: derive(#ffffff, 10%);
     -fx-border-color: transparent;
     -fx-background-insets: 0, 0 1 1 1;
     -fx-padding: 4.0;

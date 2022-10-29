@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,38 +21,55 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code NuScheduler} with sample data.
  */
 public class SampleDataUtil {
+    private static Profile alex = new Profile(new Name("Alex Yeoh"), new Phone("87438807"),
+            new Email("alexyeoh@u.nus.edu"), new Telegram("lexyeoh"), getTagSet("friends"));
+    private static Profile bernice = new Profile(new Name("Bernice Yu"), new Phone("99272758"),
+            new Email("berniceyu@u.duke.nus.edu"), Telegram.EMPTY_TELEGRAM, getTagSet("colleagues", "friends"));
+    private static Profile roy = new Profile(new Name("Roy Balakrishnan"), new Phone("92624417"),
+            new Email("royb@u.nus.edu"), Telegram.EMPTY_TELEGRAM, getTagSet("colleagues"));
+    private static Event presentation = new Event(new Title("Discuss presentation"), new DateTime("11/10/2022 09:00"),
+            new DateTime("11/10/2022 10:00"), getTagSet("CS2103T"));
+    private static Event formalDinner = new Event(new Title("Formal dinner"), new DateTime("12/10/2022 19:00"),
+                    new DateTime("12/10/2022 23:00"), getTagSet("RC")
+            );
+
     public static Profile[] getSampleProfiles() {
         return new Profile[] {
-            new Profile(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@u.nus.edu"),
-                new Telegram("lexyeoh"), getTagSet("friends")),
-            new Profile(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@u.duke.nus.edu"),
-                Telegram.EMPTY_TELEGRAM, getTagSet("colleagues", "friends")),
+            alex, bernice,
             new Profile(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@nus.edu.sg"),
                 new Telegram("charlotte_ol1"), getTagSet("neighbours")),
             new Profile(new Name("David Li"), new Phone("91031282"), new Email("lidavid@comp.nus.edu.sg"),
                 Telegram.EMPTY_TELEGRAM, getTagSet("family")),
             new Profile(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@u.yale-nus.edu.sg"),
-                Telegram.EMPTY_TELEGRAM, getTagSet("classmates")),
-            new Profile(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@u.nus.edu"),
-                Telegram.EMPTY_TELEGRAM, getTagSet("colleagues"))
+                    Telegram.EMPTY_TELEGRAM, getTagSet("classmates")),
+            roy
         };
     }
 
     public static Event[] getSampleEvents() {
-        return new Event[] {
-            new Event(new Title("Discuss presentation"), new DateTime("11/10/2022 09:00"),
-                    new DateTime("11/10/2022 10:00"), getTagSet("CS2103T")),
+        return new Event[] {presentation,
             new Event(new Title("Practice"), new DateTime("11/10/2022 13:00"),
                     new DateTime("11/10/2022 14:00"), getTagSet("CCA")),
             new Event(new Title("Finish problem set"), new DateTime("12/10/2022 16:00"),
                     new DateTime("12/10/2022 17:00"), getTagSet("CS2109S")),
-            new Event(new Title("Formal dinner"), new DateTime("12/10/2022 19:00"),
-                    new DateTime("12/10/2022 23:00"), getTagSet("RC"))
+            formalDinner
         };
     }
 
-    public static ReadOnlyNuScheduler getSampleNuScheduler() {
+    private static void addAttendees() {
+        presentation.addAttendees(List.of(bernice, roy));
+        formalDinner.addAttendees(List.of(alex));
+    }
+
+    private static void addEventsAttending() {
+        formalDinner.addToAllAttendees(List.of(alex));
+        presentation.addToAllAttendees(List.of(bernice, roy));
+    }
+
+    public static ReadOnlyNuScheduler getSampleNUScheduler() {
         NuScheduler sampleAb = new NuScheduler();
+        addAttendees();
+        addEventsAttending();
         for (Profile sampleProfile : getSampleProfiles()) {
             sampleAb.addProfile(sampleProfile);
         }

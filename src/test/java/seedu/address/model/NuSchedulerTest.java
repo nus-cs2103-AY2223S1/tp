@@ -3,12 +3,18 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CCA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.PRESENTATION;
 import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
+import static seedu.address.testutil.TypicalProfiles.AMY;
+import static seedu.address.testutil.TypicalProfiles.BENSON;
+import static seedu.address.testutil.TypicalProfiles.BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +29,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.profile.Profile;
-import seedu.address.model.profile.exceptions.DuplicateProfileException;
+import seedu.address.model.profile.exceptions.SimilarProfileException;
 import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ProfileBuilder;
 
@@ -49,14 +55,39 @@ public class NuSchedulerTest {
     }
 
     @Test
-    public void resetData_withDuplicateProfiles_throwsDuplicateProfileException() {
-        // Two profiles with the same identity fields
-        Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withSimilarEmails_throwsSimilarProfileException() {
+        // Two profiles with the similar email
+        Profile bobWithAmyEmail = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Profile> newProfiles = Arrays.asList(ALICE, editedAlice);
+        List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyEmail);
         List<Event> emptyEvents = new ArrayList<>();
         NuSchedulerStub newData = new NuSchedulerStub(newProfiles, emptyEvents);
-        assertThrows(DuplicateProfileException.class, () -> nuScheduler.resetData(newData));
+
+        assertThrows(SimilarProfileException.class, () -> nuScheduler.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withSimilarPhones_throwsSimilarProfileException() {
+        // Two profiles with the similar phone
+        Profile bobWithAmyPhone = new ProfileBuilder(BOB).withPhone(VALID_PHONE_AMY).withTags(VALID_TAG_HUSBAND)
+                .build();
+        List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyPhone);
+        List<Event> emptyEvents = new ArrayList<>();
+        NuSchedulerStub newData = new NuSchedulerStub(newProfiles, emptyEvents);
+
+        assertThrows(SimilarProfileException.class, () -> nuScheduler.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withSimilarTelegrams_throwsSimilarProfileException() {
+        // Two profiles with the similar telegram
+        Profile bobWithAmyTelegram = new ProfileBuilder(BOB).withTelegram(VALID_TELEGRAM_AMY)
+                .withTags(VALID_TAG_HUSBAND).build();
+        List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyTelegram);
+        List<Event> emptyEvents = new ArrayList<>();
+        NuSchedulerStub newData = new NuSchedulerStub(newProfiles, emptyEvents);
+
+        assertThrows(SimilarProfileException.class, () -> nuScheduler.resetData(newData));
     }
 
     @Test
@@ -71,8 +102,18 @@ public class NuSchedulerTest {
     }
 
     @Test
-    public void hasProfile_nullProfile_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> nuScheduler.hasProfile(null));
+    public void hasEmail_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> nuScheduler.hasEmail(null));
+    }
+
+    @Test
+    public void hasPhone_nullPhone_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> nuScheduler.hasPhone(null));
+    }
+
+    @Test
+    public void hasTelegram_nullTelegram_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> nuScheduler.hasTelegram(null));
     }
 
     @Test
@@ -81,19 +122,41 @@ public class NuSchedulerTest {
     }
 
     @Test
-    public void hasProfile_profileNotInNuScheduler_returnsFalse() {
-        assertFalse(nuScheduler.hasProfile(ALICE));
+    public void hasEmail_emailNotInAddressBook_returnsFalse() {
+        assertFalse(nuScheduler.hasEmail(ALICE));
+    }
+
+    @Test
+    public void hasEmail_emailInAddressBook_returnsTrue() {
+        nuScheduler.addProfile(ALICE);
+        assertTrue(nuScheduler.hasEmail(ALICE));
+    }
+
+    @Test
+    public void hasPhone_phoneNotInAddressBook_returnsFalse() {
+        assertFalse(nuScheduler.hasPhone(ALICE));
+    }
+
+    @Test
+    public void hasPhone_phoneInAddressBook_returnsTrue() {
+        nuScheduler.addProfile(ALICE);
+        assertTrue(nuScheduler.hasPhone(ALICE));
+    }
+
+    @Test
+    public void hasTelegram_telegramNotInAddressBook_returnsFalse() {
+        assertFalse(nuScheduler.hasTelegram(ALICE));
+    }
+
+    @Test
+    public void hasTelegram_telegramInAddressBook_returnsTrue() {
+        nuScheduler.addProfile(ALICE);
+        assertTrue(nuScheduler.hasTelegram(ALICE));
     }
 
     @Test
     public void hasEvent_eventNotInNuScheduler_returnsFalse() {
         assertFalse(nuScheduler.hasEvent(PRESENTATION));
-    }
-
-    @Test
-    public void hasProfile_profileInNuScheduler_returnsTrue() {
-        nuScheduler.addProfile(ALICE);
-        assertTrue(nuScheduler.hasProfile(ALICE));
     }
 
     @Test
@@ -103,11 +166,27 @@ public class NuSchedulerTest {
     }
 
     @Test
-    public void hasProfile_profileWithSameIdentityFieldsInNuScheduler_returnsTrue() {
-        nuScheduler.addProfile(ALICE);
-        Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+    public void hasProfile_profileWithSameEmailFieldsInNuScheduler_returnsTrue() {
+        nuScheduler.addProfile(AMY);
+        Profile editedBenson = new ProfileBuilder(BENSON).withEmail(VALID_EMAIL_AMY)
                 .build();
-        assertTrue(nuScheduler.hasProfile(editedAlice));
+        assertTrue(nuScheduler.hasEmail(editedBenson));
+    }
+
+    @Test
+    public void hasProfile_profileWithSamePhoneFieldsInNuScheduler_returnsTrue() {
+        nuScheduler.addProfile(AMY);
+        Profile editedBenson = new ProfileBuilder(BENSON).withPhone(VALID_PHONE_AMY)
+                .build();
+        assertTrue(nuScheduler.hasPhone(editedBenson));
+    }
+
+    @Test
+    public void hasProfile_profileWithSameTelegramFieldsInNuScheduler_returnsTrue() {
+        nuScheduler.addProfile(AMY);
+        Profile editedBenson = new ProfileBuilder(BENSON).withTelegram(VALID_TELEGRAM_AMY)
+                .build();
+        assertTrue(nuScheduler.hasTelegram(editedBenson));
     }
 
     @Test

@@ -8,7 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.AddProfilesToEventCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
+import seedu.address.logic.commands.event.DeleteProfilesFromEventCommand;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.event.FindEventCommand;
@@ -66,6 +68,10 @@ public class EventCommandParser implements Parser<EventCommand> {
             return new ViewUpcomingEventsCommandParser().parse(args);
         case ViewEventsCommand.COMMAND_OPTION:
             return new ViewEventsCommandParser().parse(args);
+        case AddProfilesToEventCommand.COMMAND_OPTION:
+            return new AddProfilesToEventCommandParser().parse(args);
+        case DeleteProfilesFromEventCommand.COMMAND_OPTION:
+            return new DeleteProfilesFromEventCommandParser().parse(args);
         default:
             throw new ParseException(EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
         }
@@ -79,6 +85,10 @@ public class EventCommandParser implements Parser<EventCommand> {
             {
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + AddEventCommand.COMMAND_OPTION,
                         AddEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION
+                        + AddProfilesToEventCommand.COMMAND_OPTION, AddProfilesToEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION
+                        + DeleteProfilesFromEventCommand.COMMAND_OPTION, DeleteProfilesFromEventCommand.MESSAGE_HELP);
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + DeleteEventCommand.COMMAND_OPTION,
                         DeleteEventCommand.MESSAGE_HELP);
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + EditEventCommand.COMMAND_OPTION,

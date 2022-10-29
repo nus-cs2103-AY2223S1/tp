@@ -3,6 +3,8 @@ package seedu.address.logic.commands.profile;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
+import static seedu.address.testutil.TypicalProfiles.AMY;
+import static seedu.address.testutil.TypicalProfiles.FIRST_INDEX_TELEGRAM;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,12 +39,37 @@ public class AddProfileCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicateProfile_throwsCommandException() {
+    public void execute_similarEmail_throwsCommandException() {
         Profile profileInList = model.getNuScheduler().getProfileList().get(0);
+        Profile newProfile = new ProfileBuilder(AMY).withEmail(profileInList.getEmail().toString())
+                        .build();
         assertCommandFailure(
-                new AddProfileCommand(profileInList),
+                new AddProfileCommand(newProfile),
                 model,
-                AddProfileCommand.MESSAGE_DUPLICATE_PROFILE
+                AddProfileCommand.MESSAGE_SIMILAR_EMAIL
+        );
+    }
+
+    @Test
+    public void execute_similarPhone_throwsCommandException() {
+        Profile profileInList = model.getNuScheduler().getProfileList().get(0);
+        Profile newProfile = new ProfileBuilder(AMY).withPhone(profileInList.getPhone().toString())
+                .build();
+        assertCommandFailure(
+                new AddProfileCommand(newProfile),
+                model,
+                AddProfileCommand.MESSAGE_SIMILAR_PHONE
+        );
+    }
+
+    @Test
+    public void execute_similarTelegram_throwsCommandException() {
+        Profile newProfile = new ProfileBuilder(AMY).withTelegram(FIRST_INDEX_TELEGRAM)
+                .build();
+        assertCommandFailure(
+                new AddProfileCommand(newProfile),
+                model,
+                AddProfileCommand.MESSAGE_SIMILAR_TELEGRAM
         );
     }
 

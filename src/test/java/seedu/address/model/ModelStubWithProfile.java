@@ -19,8 +19,19 @@ public class ModelStubWithProfile extends ModelStub {
     }
 
     @Override
-    public boolean hasProfile(Profile profile) {
+    public boolean hasEmail(Profile profile) {
         requireNonNull(profile);
-        return this.profile.isSameProfile(profile);
+        return this.profile.isSameEmail(profile);
+    }
+
+    @Override
+    public boolean hasPhone(Profile profile) {
+        requireNonNull(profile);
+        return this.profile.isSamePhone(profile);
+    }
+    @Override
+    public boolean hasTelegram(Profile profile) {
+        requireNonNull(profile);
+        return this.profile.isSameTelegramNotEmpty(profile);
     }
 }

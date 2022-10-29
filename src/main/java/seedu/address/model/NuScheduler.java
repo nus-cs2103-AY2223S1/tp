@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.hash;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ import seedu.address.model.profile.Profile;
 import seedu.address.model.profile.UniqueProfileList;
 
 /**
- * Wraps all data at the nus-scheduler level
- * Duplicates are not allowed (by .isSameProfile comparison)
+ * Wraps all data at the NUScheduler level
+ * Similar Profiles are not allowed (by .isSameEmail, .isSamePhone and .isSameTelegramNotEmpty comparison)
  */
 public class NuScheduler implements ReadOnlyNuScheduler {
 
@@ -46,7 +47,7 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Replaces the contents of the profile list with {@code profiles}.
-     * {@code profiles} must not contain duplicate profiles.
+     * {@code profiles} must not contain similar profiles.
      */
     public void setProfiles(List<Profile> profiles) {
         this.profiles.setProfiles(profiles);
@@ -72,11 +73,27 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     //// profile-level operations
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the NUScheduler.
+     * Returns true if a profile with the same email as {@code profile} exists in the NUScheduler.
      */
-    public boolean hasProfile(Profile profile) {
+    public boolean hasEmail(Profile profile) {
         requireNonNull(profile);
-        return profiles.contains(profile);
+        return profiles.containsEmail(profile);
+    }
+
+    /**
+     * Returns true if a profile with the same phone as {@code profile} exists in the address book.
+     */
+    public boolean hasPhone(Profile profile) {
+        requireNonNull(profile);
+        return profiles.containsPhone(profile);
+    }
+
+    /**
+     * Returns true if a profile with the same telegram as {@code profile} exists in the address book.
+     */
+    public boolean hasTelegram(Profile profile) {
+        requireNonNull(profile);
+        return profiles.containsTelegram(profile);
     }
 
     /**
@@ -94,7 +111,6 @@ public class NuScheduler implements ReadOnlyNuScheduler {
      */
     public void setProfile(Profile target, Profile editedProfile) {
         requireNonNull(editedProfile);
-
         profiles.setProfile(target, editedProfile);
     }
 
@@ -104,6 +120,14 @@ public class NuScheduler implements ReadOnlyNuScheduler {
      */
     public void removeProfile(Profile key) {
         profiles.remove(key);
+    }
+
+    /**
+     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     */
+    public boolean hasProfile(Profile profile) {
+        requireNonNull(profile);
+        return profiles.contains(profile);
     }
 
     //// event-level operations
@@ -140,6 +164,57 @@ public class NuScheduler implements ReadOnlyNuScheduler {
      */
     public void removeEvent(Event key) {
         events.remove(key);
+    }
+
+    /**
+     * Adds profiles in {@code profilesToAdd} to the given event.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToAdd} must also exist in the address book.
+     */
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        requireAllNonNull(event, profilesToAdd);
+        events.addEventAttendees(event, profilesToAdd);
+    }
+
+    /**
+     * Deletes profiles in {@code profilesToDelete} from the given event.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToDelete} must also exist in the address book.
+     */
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+        events.deleteEventAttendees(event, profilesToDelete);
+    }
+
+    /**
+     * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToAddEventTo} must also exist in the address book.
+     */
+    public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
+        requireAllNonNull(event, profilesToAddEventTo);
+        events.addEventToAttendees(event, profilesToAddEventTo);
+    }
+
+    /**
+     * Replaces the given event {@code target} in the list with {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The event identity of {@code editedEvent} must not be the same as an existing event in the address book.
+     * Ensures the change is updated for all event attendees.
+     */
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        events.setEventForAttendees(target, editedEvent);
+    }
+
+    /**
+     * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
+     * {@code target} must exist in the address book.
+     * Profiles in {@code profilesToEdit} must also exist in the address book.
+     */
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+        events.removeEventFromAttendees(target, profilesToEdit);
     }
 
     //// util methods

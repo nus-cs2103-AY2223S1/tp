@@ -11,7 +11,7 @@ public interface ReadOnlyNuScheduler {
 
     /**
      * Returns an unmodifiable view of the profiles list.
-     * This list will not contain any duplicate profiles.
+     * This list will not contain any profiles with the same email, phone or telegram.
      */
     ObservableList<Profile> getProfileList();
 

@@ -20,7 +20,9 @@ import seedu.address.model.profile.Profile;
 @JsonRootName(value = "nuscheduler")
 class JsonSerializableNuScheduler {
 
-    public static final String MESSAGE_DUPLICATE_PROFILE = "Profiles list contains duplicate profile(s).";
+    public static final String MESSAGE_SIMILAR_EMAIL = "Profiles list contains similar email(s).";
+    public static final String MESSAGE_SIMILAR_PHONE = "Profiles list contains similar phone(s).";
+    public static final String MESSAGE_SIMILAR_TELEGRAM = "Profiles list contains similar telegram(s).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
     private final List<JsonAdaptedProfile> profiles = new ArrayList<>();
@@ -55,16 +57,23 @@ class JsonSerializableNuScheduler {
         NuScheduler nuScheduler = new NuScheduler();
         for (JsonAdaptedProfile jsonAdaptedProfile : profiles) {
             Profile profile = jsonAdaptedProfile.toModelType();
-            if (nuScheduler.hasProfile(profile)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PROFILE);
+            if (nuScheduler.hasEmail(profile)) {
+                throw new IllegalValueException(MESSAGE_SIMILAR_EMAIL);
+            }
+            if (nuScheduler.hasPhone(profile)) {
+                throw new IllegalValueException(MESSAGE_SIMILAR_PHONE);
+            }
+            if (nuScheduler.hasTelegram(profile)) {
+                throw new IllegalValueException(MESSAGE_SIMILAR_TELEGRAM);
             }
             nuScheduler.addProfile(profile);
         }
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
-            Event event = jsonAdaptedEvent.toModelType();
+            Event event = jsonAdaptedEvent.toModelType(nuScheduler);
             if (nuScheduler.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
+            event.addToAllAttendees();
             nuScheduler.addEvent(event);
         }
         return nuScheduler;

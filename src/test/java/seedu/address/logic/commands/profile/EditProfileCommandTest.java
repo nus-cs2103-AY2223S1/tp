@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showProfileAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROFILE;
 import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
+import static seedu.address.testutil.TypicalProfiles.SECOND_INDEX_TELEGRAM;
 
 import org.junit.jupiter.api.Test;
 
@@ -101,24 +102,75 @@ public class EditProfileCommandTest {
     }
 
     @Test
-    public void execute_duplicateProfileUnfilteredList_failure() {
+    public void execute_similarEmailUnfilteredList_failure() {
         Profile firstProfile = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
-        EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(firstProfile).build();
-        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_SECOND_PROFILE, descriptor);
+        Profile secondProfile = model.getFilteredProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
+        EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(firstProfile)
+                .withEmail(secondProfile.getEmail().toString()).build();
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE, descriptor);
 
-        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_PROFILE);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_EMAIL);
     }
 
     @Test
-    public void execute_duplicateProfileFilteredList_failure() {
+    public void execute_similarEmailFilteredList_failure() {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
-        // edit profile in filtered list into a duplicate in NUScheduler
+        // edit profile in filtered list into a profile with similar email in address book
+        Profile profileShown = model.getNuScheduler().getProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
         Profile profileInList = model.getNuScheduler().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
-                new EditProfileDescriptorBuilder(profileInList).build());
+                new EditProfileDescriptorBuilder(profileShown).withEmail(profileInList.getEmail().toString()).build());
 
-        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_PROFILE);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_EMAIL);
+    }
+
+    @Test
+    public void execute_similarPhoneUnfilteredList_failure() {
+        Profile firstProfile = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
+        Profile secondProfile = model.getFilteredProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
+        EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(firstProfile)
+                .withPhone(secondProfile.getPhone().toString()).build();
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE, descriptor);
+
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_PHONE);
+    }
+
+    @Test
+    public void execute_similarPhoneFilteredList_failure() {
+        showProfileAtIndex(model, INDEX_FIRST_PROFILE);
+
+        // edit profile in filtered list into a profile with similar phone in address book
+        Profile profileShown = model.getNuScheduler().getProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
+        Profile profileInList = model.getNuScheduler().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
+                new EditProfileDescriptorBuilder(profileShown).withPhone(profileInList.getPhone().toString()).build());
+
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_PHONE);
+    }
+
+    @Test
+    public void execute_similarTelegramUnfilteredList_failure() {
+        Profile firstProfile = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
+        Profile secondProfile = model.getFilteredProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
+        EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(firstProfile)
+                .withTelegram(SECOND_INDEX_TELEGRAM).build();
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE, descriptor);
+
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_TELEGRAM);
+    }
+
+    @Test
+    public void execute_similarTelegramFilteredList_failure() {
+        showProfileAtIndex(model, INDEX_FIRST_PROFILE);
+
+        // edit profile in filtered list into a profile with similar telegram in address book
+        Profile profileShown = model.getNuScheduler().getProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
+        Profile profileInList = model.getNuScheduler().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
+                new EditProfileDescriptorBuilder(profileShown).withTelegram(SECOND_INDEX_TELEGRAM).build());
+
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_TELEGRAM);
     }
 
     @Test
