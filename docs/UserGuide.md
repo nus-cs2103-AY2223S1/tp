@@ -81,7 +81,7 @@ Examples:
 
 #### 3.1.2 Listing all students: `list`
 
-Shows a list of all students.
+Shows a list of all students in ModQuik.
 
 Format: `list`
 
@@ -345,17 +345,22 @@ Format: `clear f/FIELD`
 Examples:
 * `clear f/all`
 
-### 3.7 Exiting the program: `exit`
+### 3.7 Viewing help: `help`
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
+### 3.8 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 3.8 Saving the data
+### 3.9 Saving the data
 
 All data in ModQuik is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
 
-### 3.9 Editing the data file
+### 3.10 Editing the data file
 
 All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -363,7 +368,7 @@ All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.js
 If your changes to the data file makes its format invalid, ModQuik will discard all data and start with an empty data file at the next run.
 </div>
 
-### 3.10 Archiving data files `[coming in v2.0]`
+### 3.11 Archiving data files `[coming in v2.0]`
 
 _Details coming soon..._
 
@@ -374,6 +379,9 @@ _Details coming soon..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModQuik home folder.
 
+**Q**: How do I toggle between tabs at the side panel  ?<br>
+**A**: Click on the `Tab` button, and it will toggle between all 4 tabs (**Student**, **Grade Chart**, **Consultation**, **Tutorial**) and the command line input too.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Command summary
@@ -381,10 +389,10 @@ _Details coming soon..._
 | Action                     | Format, Examples                                                                                                                                                                                                     |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Student**            | `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [t/TAG]…`<br> e.g., `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17` |
-| **Edit Student**           | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`
-| **Delete Student**         | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                             |
 | **List All Students**      | `list`                                                                                                                                                                                                               |
+| **Edit Student**           | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`
 | **Find Student**           | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`<br> e.g., `find n/john m/CS2103T`                                                                                                                           |
+| **Delete Student**         | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                             |
 | **Extract Student Emails** | `extract emails`                                                                                                                                                                                                     |
 | **Add Tutorial**           | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                         |
 | **Edit Tutorial**          | `edit tutorial INDEX`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                                    |
@@ -400,8 +408,8 @@ _Details coming soon..._
 | **Sort Reminder**          | `sort reminder by/SORT_CRITERIA`<br> e.g., `sort reminder by/priority`                                                                                                                                               |
 | **Switch Tabs**            | `switch f/FIELD`<br> e.g., `switch f/tutorial`                                                                                                                                                                       |
 | **Clear**                  | `clear f/FIELD`<br> e.g., `clear f/student`                                                                                                                                                                          |
-| **Exit**                   | `exit`                                                                                                                                                                                                               |
 | **Help**                   | `help`                                                                                                                                                                                                               |
+| **Exit**                   | `exit`                                                                                                                                                                                                               |
 
 ## 6. Prefix summary
 | Prefix    | Symbolise        |
