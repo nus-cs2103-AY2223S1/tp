@@ -29,6 +29,7 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 
 * Texts in UPPER_CASE are arguments provided by the user.
 * Arguments in square brackets are optional.
+* The `FOOD` parameter for commands `add`, `edit` and `find` can only take on alphanumeric values that contain at most 27 characters.
 
 </div>
 
@@ -74,12 +75,12 @@ Example:
 
 Edits a food item from the list of consumed food for the day.
 
-Format: `edit INDEX n/UPDATED_FOOD c/CALORIES t/MEAL_TYPE`
+Format: `edit INDEX n/FOOD c/CALORIES t/MEAL_TYPE`
 
 * Edits a food item in the list displayed at the specified index.
 * The index refers to the index shown in the displayed food lists.
 * The index **must be a positive** number.
-* Either the `UPDATED_FOOD`, `CALORIES`, or `MEAL_TYPE` must be supplied.
+* Either the `FOOD`, `CALORIES`, or `MEAL_TYPE` must be supplied.
 
 Example:
 
