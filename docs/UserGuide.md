@@ -195,7 +195,7 @@ Examples:
 
 #### 3.3.1 Adding a consultation: `add consultation`
 
-Adds a consultation to the consultation database.
+Adds a consultation to the list of consultations.
 
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
 
@@ -204,7 +204,7 @@ Examples:
 
 #### 3.3.2 Editing a consultation: `edit consultation`
 
-Edits an existing student in a specified module.
+Edits an existing consultation in the list of consultation.
 
 Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DATE] [d/DESCRIPTION]`
 
@@ -219,7 +219,7 @@ Examples:
 
 #### 3.3.3 Deleting a consultation: `delete consultation`
 
-Deletes a specified consultation from the consultation database.
+Deletes a specified consultation from the list of consultation.
 
 Format: `delete consultation INDEX`
 
