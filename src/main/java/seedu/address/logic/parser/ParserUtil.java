@@ -23,6 +23,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INDEX_TOO_LONG = "Index provided must be no longer than 4 characters";
     public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer";
     public static final String MESSAGE_DAYS_TOO_LONG = "Days provided must be no longer than 4 characters";
 
@@ -33,6 +34,9 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        if (oneBasedIndex.length() > 4) {
+            throw new ParseException(MESSAGE_DAYS_TOO_LONG);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }

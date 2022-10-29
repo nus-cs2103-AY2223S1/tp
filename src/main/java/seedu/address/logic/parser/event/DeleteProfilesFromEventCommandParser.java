@@ -2,6 +2,7 @@ package seedu.address.logic.parser.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
 
@@ -34,7 +35,7 @@ public class DeleteProfilesFromEventCommandParser implements Parser<DeleteProfil
         try {
             index = ParserUtil.parseIndex(argMultimap.getOptionArgs());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(MESSAGE_INVALID_INDEX_FORMAT,
                     DeleteProfilesFromEventCommand.MESSAGE_USAGE), pe);
         }
 

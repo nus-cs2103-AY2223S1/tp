@@ -82,7 +82,7 @@ Each profile is a set of contact information about a person in your NUS communit
 A profile must contain the following information:
 
 * Name, limited to 24 characters including spaces
-* Phone number
+* Phone number, limited to numeric characters
 * A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email domains
 
 A profile may also contain:

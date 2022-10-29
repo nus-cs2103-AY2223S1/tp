@@ -2,6 +2,7 @@ package seedu.address.logic.parser.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
@@ -16,6 +17,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.event.EditEventCommand.EditEventDescriptor;
+import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -40,10 +42,15 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
                         PREFIX_OPTION, PREFIX_NAME, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_TAG);
         Index index;
 
+        if (argMultimap.getOptionArgs().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditProfileCommand.MESSAGE_USAGE));
+        }
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getOptionArgs());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(MESSAGE_INVALID_INDEX_FORMAT,
                     EditEventCommand.MESSAGE_USAGE), pe);
         }
 

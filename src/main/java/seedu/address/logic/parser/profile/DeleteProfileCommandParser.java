@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.profile;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import seedu.address.commons.core.index.Index;
@@ -33,7 +34,7 @@ public class DeleteProfileCommandParser implements Parser<DeleteProfileCommand> 
             return new DeleteProfileCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProfileCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_INDEX_FORMAT, DeleteProfileCommand.MESSAGE_USAGE), pe);
         }
     }
 
