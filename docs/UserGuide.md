@@ -68,25 +68,32 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+    1. If you have installed Java before, check that you have the right version,  which is Java `11`.
+        - If you are using Windows, open up command prompt and type `java -version` and enter. 
+        - If you are using Mac, open up terminal and type `java -version` and enter.   
+    2. If you do not have Java `11`, you can install it from [here](https://www.oracle.com/java/technologies/downloads/).     
+    <br />
+        
+2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
-1. Download the latest `coydir.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
+3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+  <img src="./images/ui-screenshots/Ui.png"/>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - **`list`** : Lists all employees in the company.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds an employee named `John Doe` to Coydir.
+   - **`add`** `n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney` : Adds an employee named `John Doe`, with fields phone number, email, job title, department, address, total leaves, and tags to Coydir.
 
    - **`delete`**` 3` : Deletes employee with ID 3.
 
    - **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 ---
 
