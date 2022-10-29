@@ -139,6 +139,10 @@ The list of foods for the day will also be displayed.
 
 Format: `review`
 
+Example result after executing `review`:
+
+![review](images/review.png)
+
 ### Setting up a user profile: `setup`
 
 Sets up a user profile.
