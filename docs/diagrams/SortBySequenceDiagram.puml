@@ -10,7 +10,7 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":TeachersPet" as TeachersPet MODEL_COLOR
-participant "persons:UniqueStudentList" as UniqueStudentList MODEL_COLOR
+participant "students:UniqueStudentList" as UniqueStudentList MODEL_COLOR
 end box
 [-> LogicManager : execute("sort NAME ASC")
 activate LogicManager
