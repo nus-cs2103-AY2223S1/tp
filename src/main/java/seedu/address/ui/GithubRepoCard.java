@@ -25,13 +25,13 @@ public class GithubRepoCard extends UiPart<Region> {
     public final Repo repo;
     private final Logger logger = LogsCenter.getLogger(GithubRepoCard.class);
     @FXML
-    private Hyperlink name;
+    private Hyperlink nameLabel;
 
     @FXML
-    private Label lastUpdated;
+    private Label lastUpdatedLabel;
 
     @FXML
-    private Label description;
+    private Label descriptionLabel;
 
     /**
      * Creates a {@code GithubRepoCard} with the given {@code repo}.
@@ -39,14 +39,14 @@ public class GithubRepoCard extends UiPart<Region> {
     public GithubRepoCard(Repo repo) {
         super(FXML);
         this.repo = repo;
-        name.setText(repo.getRepoName());
-        setLabelVisibility(description, repo.getDescription().isPresent());
-        repo.getDescription().ifPresent(text -> description.setText(text));
+        nameLabel.setText(repo.getRepoName());
+        setLabelVisibility(descriptionLabel, repo.getDescription().isPresent());
+        repo.getDescription().ifPresent(text -> descriptionLabel.setText(text));
         PrettyTime p = new PrettyTime();
-        lastUpdated.setText(p.format(repo.getLastUpdated()));
+        lastUpdatedLabel.setText(p.format(repo.getLastUpdated()));
 
         Alert a = new Alert(Alert.AlertType.ERROR);
-        name.setOnAction(e -> {
+        nameLabel.setOnAction(e -> {
             if (Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().browse(new URI(repo.getRepoUrl()));
@@ -84,7 +84,7 @@ public class GithubRepoCard extends UiPart<Region> {
 
         // state check
         GithubRepoCard card = (GithubRepoCard) other;
-        return name.getText().equals(card.name.getText())
+        return nameLabel.getText().equals(card.nameLabel.getText())
             && repo.equals(card.repo);
     }
 }

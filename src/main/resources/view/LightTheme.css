@@ -426,7 +426,7 @@
     -fx-background-color: #EEF2FF;
 }
 
-#githubRepoListView .list-cell:filled:selected #repoCard #name {
+#githubRepoListView .list-cell:filled:selected #repoCard #nameLabel {
     -fx-text-fill: #818CF8 !important;
 }
 
@@ -440,13 +440,13 @@
     -fx-padding: 10;
 }
 
-#repoCard #name {
+#repoCard #nameLabel {
     -fx-font-family: "Segoe UI Bold";
     -fx-font-size: 12pt;
     -fx-padding: 0 -5 0 0;
 }
 
-#repoCard #description {
+#repoCard #descriptionLabel {
     -fx-font-family: "Segoe UI Light";
     -fx-padding: 5 0 0 0;
 }
