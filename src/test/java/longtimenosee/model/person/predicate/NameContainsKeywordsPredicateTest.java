@@ -1,4 +1,4 @@
-package longtimenosee.model.person;
+package longtimenosee.model.person.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 import longtimenosee.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {

@@ -17,12 +17,12 @@ import longtimenosee.model.person.Income;
 import longtimenosee.model.person.Name;
 import longtimenosee.model.person.Phone;
 import longtimenosee.model.person.RiskAppetite;
-import longtimenosee.model.person.predicate.AddressMatchesInputPredicate;
+import longtimenosee.model.person.predicate.AddressContainsInputPredicate;
 import longtimenosee.model.person.predicate.BirthdayMatchesInputPredicate;
 import longtimenosee.model.person.predicate.EmailMatchesInputPredicate;
 import longtimenosee.model.person.predicate.IncomeMatchesInputPredicate;
 import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
-import longtimenosee.model.person.predicate.PhoneMatchesNumberPredicate;
+import longtimenosee.model.person.predicate.PhoneContainsNumberPredicate;
 import longtimenosee.model.person.predicate.PolicyCompanyMatchesInputPredicate;
 import longtimenosee.model.person.predicate.PolicyCoverageMatchesInputPredicate;
 import longtimenosee.model.person.predicate.PolicyTitleContainsKeywordsPredicate;
@@ -71,17 +71,17 @@ public class FindCommandParserTest {
     public void parse_validPhoneArgs_returnsFindCommand() {
         // 8 digit number
         FindCommand expectedFindCommand =
-                new FindCommand(List.of(new PhoneMatchesNumberPredicate("87654321")));
+                new FindCommand(List.of(new PhoneContainsNumberPredicate("87654321")));
         assertParseSuccess(parser, " p/87654321", expectedFindCommand);
 
         // 10 digit number
         FindCommand secondExpectedFindCommand =
-                new FindCommand(List.of(new PhoneMatchesNumberPredicate("8765432112")));
+                new FindCommand(List.of(new PhoneContainsNumberPredicate("8765432112")));
         assertParseSuccess(parser, " p/8765432112", secondExpectedFindCommand);
 
         // 3 digit number
         FindCommand thirdExpectedFindCommand =
-                new FindCommand(List.of(new PhoneMatchesNumberPredicate("123")));
+                new FindCommand(List.of(new PhoneContainsNumberPredicate("123")));
         assertParseSuccess(parser, " p/123", thirdExpectedFindCommand);
     }
 
@@ -102,17 +102,17 @@ public class FindCommandParserTest {
     public void parse_validAddressArgs_returnsFindCommand() {
         // normal word input
         FindCommand expectedFindCommand =
-                new FindCommand(List.of(new AddressMatchesInputPredicate("Bedok")));
+                new FindCommand(List.of(new AddressContainsInputPredicate("Bedok")));
         assertParseSuccess(parser, " a/Bedok", expectedFindCommand);
 
         // number input
         FindCommand secondExpectedFindCommand =
-                new FindCommand(List.of(new AddressMatchesInputPredicate("55")));
+                new FindCommand(List.of(new AddressContainsInputPredicate("55")));
         assertParseSuccess(parser, " a/55", secondExpectedFindCommand);
 
         // symbol input
         FindCommand thirdExpectedFindCommand =
-                new FindCommand(List.of(new AddressMatchesInputPredicate("#01")));
+                new FindCommand(List.of(new AddressContainsInputPredicate("#01")));
         assertParseSuccess(parser, " a/#01", thirdExpectedFindCommand);
     }
 

@@ -22,12 +22,12 @@ import java.util.function.Predicate;
 import longtimenosee.logic.commands.FindCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.person.Person;
-import longtimenosee.model.person.predicate.AddressMatchesInputPredicate;
+import longtimenosee.model.person.predicate.AddressContainsInputPredicate;
 import longtimenosee.model.person.predicate.BirthdayMatchesInputPredicate;
 import longtimenosee.model.person.predicate.EmailMatchesInputPredicate;
 import longtimenosee.model.person.predicate.IncomeMatchesInputPredicate;
 import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
-import longtimenosee.model.person.predicate.PhoneMatchesNumberPredicate;
+import longtimenosee.model.person.predicate.PhoneContainsNumberPredicate;
 import longtimenosee.model.person.predicate.PolicyCompanyMatchesInputPredicate;
 import longtimenosee.model.person.predicate.PolicyCoverageMatchesInputPredicate;
 import longtimenosee.model.person.predicate.PolicyTitleContainsKeywordsPredicate;
@@ -104,7 +104,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             throws ParseException {
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String phoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()).value;
-            predicates.add(new PhoneMatchesNumberPredicate(phoneNumber));
+            predicates.add(new PhoneContainsNumberPredicate(phoneNumber));
         }
     }
 
@@ -112,7 +112,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             throws ParseException {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             String address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).value;
-            predicates.add(new AddressMatchesInputPredicate(address));
+            predicates.add(new AddressContainsInputPredicate(address));
         }
     }
 

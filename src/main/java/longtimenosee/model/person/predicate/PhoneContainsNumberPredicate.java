@@ -7,15 +7,15 @@ import longtimenosee.model.person.Person;
 /**
  * Tests that a {@code Person}'s {@code Phone} number matches the given number.
  */
-public class PhoneMatchesNumberPredicate implements Predicate<Person> {
+public class PhoneContainsNumberPredicate implements Predicate<Person> {
     private final String number;
 
     /**
      * Constructs a PhoneMatchesNumberPredicate object, which consists of a number input.
      *
-     * @param income is the input by the user to be compared.
+     * @param number is the input by the user to be compared.
      */
-    public PhoneMatchesNumberPredicate(String number) {
+    public PhoneContainsNumberPredicate(String number) {
         assert number.length() >= 3;
         this.number = number;
     }
@@ -30,8 +30,8 @@ public class PhoneMatchesNumberPredicate implements Predicate<Person> {
         if (other == this) {
             return true;
         } else {
-            if (other instanceof PhoneMatchesNumberPredicate) {
-                return number.equals(((PhoneMatchesNumberPredicate) other).number);
+            if (other instanceof PhoneContainsNumberPredicate) {
+                return number.equals(((PhoneContainsNumberPredicate) other).number);
             } else {
                 return false;
             }
