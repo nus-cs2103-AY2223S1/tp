@@ -56,7 +56,7 @@ public class StatsCard extends UiPart<Region> {
 
         if (task.isPresent()) {
             Task incompleteTask = task.get();
-            this.upcomingTask.setText(String.format("Task due soon on %s: %s",
+            this.upcomingTask.setText(String.format("Upcoming task @%s: %s",
                     incompleteTask.getDeadline(), incompleteTask.getTitle()));
         } else {
             this.upcomingTask.setText(String.format("No Tasks due soon"));

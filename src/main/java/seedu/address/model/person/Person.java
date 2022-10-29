@@ -76,7 +76,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && (otherPerson.getName().equals(getName())
+                && (otherPerson.getName().toLowerCase().equals(getName().toLowerCase())
                 || otherPerson.getPhone().equals(getPhone()));
     }
 
