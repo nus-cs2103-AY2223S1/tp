@@ -122,7 +122,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -190,9 +190,9 @@ The edit command consists of these following classes:
 
 - `EditCommand` which extends `Command`
 - `EditCommandParser` which extends `Parser<EditCommand>`
-  
+
 As with all other commands, the edit command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object.
-It allows the editing of a person's name, phone, email, address, class, remarks and tags.
+It allows the editing of a student's name, phone, email, address, class, remarks and tags.
 
 The command will be used as such:
 - `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CLASS] [rem/REMARK] [t/TAG]`
@@ -214,6 +214,22 @@ The command will be used as such:
 - sort by grade in ascending order - e.g.`sort asc`
 - sort by grade in descending order - e.g. `sort desc`
 
+### \[Implemented\] Grade feature
+
+#### current Implementation
+
+The Grade command consists of these following classes:
+
+- `GradeCommand` which extends `Command`
+- `GradeCommandParser` which extends `Parser<SortCommand>`
+
+As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It opens a new GUI window to start the grading process
+
+The command will be used as such:
+- entering grades for an `Assignment` using the follow command format - grade <subject_assignment_totalScore_weightage_difficulty>
+e.g.`grade MATH_CA1_100_0.4_0.1`
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -232,11 +248,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -244,7 +260,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -290,7 +306,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 - **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -332,10 +348,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a ... | I want to ... | so that I can ... |
 | -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
-| `* * *`  | policeman                              | find a person using part of their ID or name | I can retrieve the person's details quickly             |
+| `* * *`  | policeman                              | find a student using part of their ID or name | I can retrieve the student's details quickly             |
 | `* * *`  | backend law enforcement staff          | add people and their details into Watson   | these information can be quickly and easily accessible  |
-| `* * *`  | policeman                              | see a person's full criminal history         |                                                         |
-| `* * *`  | detective                              | edit a person's details in Watson          | I can update the system with new information            |
+| `* * *`  | policeman                              | see a student's full criminal history         |                                                         |
+| `* * *`  | detective                              | edit a student's details in Watson          | I can update the system with new information            |
 | `* *`    | law enforcement security officer       | allow only specific users into the system    | the information stored in Watson remains confidential |
 | `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Watson quickly                           |
 
@@ -345,16 +361,16 @@ _{User Stories to be updated according to new project direction}_
 
 (For all use cases below, the **System** is the `Watson` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **Preconditions: User is logged in**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Watson shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  Watson deletes the person.
+1.  User requests to list students.
+2.  Watson shows a list of students.
+3.  User requests to delete a specific student in the list.
+4.  Watson deletes the student.
 
     Use case ends.
 
@@ -370,15 +386,15 @@ _{User Stories to be updated according to new project direction}_
 
     Use case resumes at step 2.
 
-**Use case: Find a person**
+**Use case: Find a student**
 **Preconditions: User is logged in**
 
 **MSS**
 
-1.  User enters a person's partial/full ID or name.
-2.  Watson shows a list of persons with names/IDs corresponding to what was entered.
-3.  User selects the person that he/she is looking for.
-4.  Watson displays the full details of the person.
+1.  User enters a student's partial/full ID or name.
+2.  Watson shows a list of students with names/IDs corresponding to what was entered.
+3.  User selects the student that he/she is looking for.
+4.  Watson displays the full details of the student.
 
     Use case ends.
 
@@ -393,7 +409,7 @@ _{Use Cases to be updated according to new project direction}
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Non-authenticated users should not be able to access the system.
 
@@ -431,47 +447,47 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Finding persons
+### Finding students
 
-1. Finding persons that shares the same subject.
+1. Finding students that shares the same subject.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
     2. Test case: `findSubject math`<br>
-       Expected: All persons that have the subject `math` in the list will be shown in a new list. Timestamp in the status bar is updated.
+       Expected: All students that have the subject `math` in the list will be shown in a new list. Timestamp in the status bar is updated.
 
     3. Test case: `findSubject engrish`<br>
-       Expected: No person will be shown in a new list. Status bar remains the same.
+       Expected: No student will be shown in a new list. Status bar remains the same.
 
     4. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
        Expected: Similar to previous.
-2. Finding persons that belongs in the same class.
+2. Finding students that belongs in the same class.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
     2. Test case 1: `find c/1A`<br>
-        Expected: All persons that are in class 1A will be shown in a new list. Timestamp in the status bar is updated.
+        Expected: All students that are in class 1A will be shown in a new list. Timestamp in the status bar is updated.
 
     3. Test case 2: `find c/1a`<br>
        Expected: Same result as Test case 1. Keywords given by user after `c/` are not case sensitive.
 
     4. Test case 3: `find c/2b`<br>
-       Expected: No person will be shown in a new list as no one is in class 2B. Status bar remains the same.
+       Expected: No student will be shown in a new list as no one is in class 2B. Status bar remains the same.
 
     5. Other incorrect find commands to try: `find c/`, `find c/ `, `find c/x` (where x is a non-existent class)<br>
        Expected: Similar to Test case 3.
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

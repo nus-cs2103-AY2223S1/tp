@@ -8,11 +8,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
+
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
         </columnConstraints>
+
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15"/>
@@ -27,6 +31,7 @@
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
             </HBox>
             <FlowPane fx:id="tags"/>
+            <Label fx:id="indexNumber" styleClass="cell_small_label" text="\$indexNumber"/>
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
             <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
             <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
@@ -34,5 +39,8 @@
             <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance"/>
             <Label fx:id="subjects" styleClass="cell_small_label" text="\$subjects"/>
         </VBox>
+
     </GridPane>
+    <HBox alignment = "center"><ImageView fitWidth = "120" fitHeight = "120"><Image url = "@/images/reading-book.png"></Image></ImageView></HBox>
+
 </HBox>

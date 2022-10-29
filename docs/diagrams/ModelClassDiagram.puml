@@ -18,6 +18,13 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class SubjectClass
+Class SubjectHandler
+Class Subject
+Class Grades
+Class Assessment
+Class Remark
+Class IndexNumber
 Class Tag
 
 }
@@ -40,6 +47,12 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> SubjectHandler
+SubjectHandler *--> "*" Subject
+Subject *--> Grades
+Grades *--> "*" Assessment
+Person *--> "*" Remark
+Person *--> IndexNumber
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
