@@ -33,7 +33,7 @@ public class EditStockCommandParser implements Parser<EditStockCommand> {
         }
 
         EditStockDescriptor editStockDescriptor = new EditStockDescriptor();
-        Integer newCurrentStock = -1;
+        Integer newCurrentStock = null;
         if (argMultimap.getValue(PREFIX_CURRENTSTOCK).isPresent()) {
 
             try {
@@ -43,7 +43,7 @@ public class EditStockCommandParser implements Parser<EditStockCommand> {
             }
         }
 
-        if (newCurrentStock == -1) {
+        if (newCurrentStock == null) {
             throw new ParseException(EditStockCommand.MESSAGE_NOT_EDITED);
         }
 

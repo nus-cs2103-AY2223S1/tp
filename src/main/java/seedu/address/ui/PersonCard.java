@@ -51,10 +51,12 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        name.setWrapText(true);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         price.setText(person.getPrice().value);
         item.setText(person.getItem().value);
+        item.setWrapText(true);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

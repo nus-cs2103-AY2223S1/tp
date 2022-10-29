@@ -26,6 +26,7 @@ public class SupplyItemCard extends UiPart<Region> {
     private static final String FXML = "SupplyItemCard.fxml";
     private static final int MAX_LENGTH = 5;
     private static final String EMPTY_INPUT_MESSAGE = "Empty input detected. Updating terminated.";
+    private static final String MINIMUM_AMOUNT_TEXT = "Minimum Stock Level: ";
     private final Logger logger = LogsCenter.getLogger(getClass());
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -54,6 +55,8 @@ public class SupplyItemCard extends UiPart<Region> {
     @FXML
     private Label price;
     @FXML
+    private Label minimumAmount;
+    @FXML
     private FlowPane tags;
     @FXML
     private Button increase;
@@ -78,8 +81,14 @@ public class SupplyItemCard extends UiPart<Region> {
                 determineStockHealthColor(supplyItem.getCurrentStock(), supplyItem.getMinStock())));
         id.setText(displayedIndex + ". ");
         name.setText(supplyItem.getName());
+        name.setWrapText(true);
+        name.setPrefWidth(70);
         supplierName.setText(supplyItem.getSupplier().getName().fullName);
+        supplierName.setWrapText(true);
+        supplierName.setPrefWidth(360);
         currentStock.setText(getStringFromInt(supplyItem.getCurrentStock()));
+        minimumAmount.setText(MINIMUM_AMOUNT_TEXT + getStringFromInt(supplyItem.getMinStock()));
+        minimumAmount.setWrapText(true);
         price.setText(supplyItem.getPrice().value);
         supplyItem.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
