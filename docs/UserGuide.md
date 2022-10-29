@@ -508,6 +508,8 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 MyInsuRec comes with a light and dark color scheme. To change between the two, simple click on the View menu button and select the desired mode!
 
+![Dark Mode](images/DarkModeUi.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ
