@@ -88,4 +88,26 @@ public class EventTest {
         editedPresentation = new EventBuilder(PRESENTATION).withAttendees(AMY, BOB).build();
         assertTrue(PRESENTATION.equals(editedPresentation));
     }
+
+    @Test
+    public void compareTo() {
+        // same values
+        Event presentationCopy = new EventBuilder(PRESENTATION).build();
+        assertTrue(PRESENTATION.compareTo(presentationCopy) == 0);
+
+        // different start
+        Event editedLaterStartPresentation = new EventBuilder(PRESENTATION)
+                .withStartDateTime(VALID_START_PRACTICE).build();
+        assertTrue(PRESENTATION.compareTo(editedLaterStartPresentation) < 0);
+
+        // different end
+        Event editedLaterEndPresentation = new EventBuilder(PRESENTATION)
+                .withEndDateTime(VALID_END_PRACTICE).build();
+        assertTrue(PRESENTATION.compareTo(editedLaterEndPresentation) < 0);
+
+        // different name
+        Event editedPresentation = new EventBuilder(PRESENTATION)
+                .withTitle(VALID_TITLE_PRACTICE).build();
+        assertTrue(PRESENTATION.compareTo(editedPresentation) < 0);
+    }
 }
