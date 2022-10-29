@@ -174,18 +174,18 @@ Examples:
 
 Finds students whose student details contain any of the given keywords.
 
-Format: find KEYWORD [MORE_KEYWORDS]
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-* All fields are searched - NAME, STUDENT_ID, PHONE, CLASS, EMAIL.
+* All fields are searched - `NAME`, `STUDENT_ID`, `PHONE`, `CLASS`, `EMAIL`.
 * Partial words will also be matched e.g. Han will match Hans
 * Students matching at least one keyword will be returned (i.e. OR search).
-  e.g. Hans Bo will return Hans Gruber, Bo Yang
+  e.g. `find Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* find Jack returns jack tan and Jack Lee
-* find alex dav returns Wong Alex, David Lim<br>
+* `find Jack` returns `jack tan` and `Jack Lee`
+* `find alex dav` returns `Wong Alex, David Lim`
 
 
 ### Deleting a student : `delete`
@@ -322,13 +322,26 @@ Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
 
 _More details coming soon ..._
 
-### Editing Tasks `[coming in v1.3]`
+### Editing Tasks
 
-Edits an existing tasks with a list of students.
+Edits an existing tasks in the task list.
 
-Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
+Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
 
-_More details coming soon ..._
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* For task specific fields `by/`, `addStu/`, and `deleteStu/`, can only be edited if the task is of the correct type.
+    * `by/` is only accepted while editing a Deadline Task. The date follows the same format as [deadline tasks](#creating-deadline-tasks).
+    * `addStu/` and `deleteStu/` are only accepted while editing an Assignment Task.
+    * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang deleteStu/Zack Yu, Xenia Ng`
+  Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
+* `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
+* `edit-task 3 t/Mark Lab Worksheets d/CS2030S by/2022-10-30` Edits the title, description and deadline of the 3rd task
+  in the task list, provided that it is a deadline task, to be `Mark Lab Worksheets`, `CS2030S` and `Oct 30 2022` respectively.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -363,21 +376,22 @@ _More details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​` <br> e.g., `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
-| **Attendance Add** | `attendance add INDEX c/CLASS s/ATTENDANCESIZE` <br> e.g., `attendance add 1 c/CS2030 s/10`|
-| **Attendance Delete** | `attendance delete INDEX` <br> e.g., `attendance delete 1`|
-| **Attendance Mark** | `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE` <br> e.g., `attendance mark 1 l/1 m/1`|
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Task**   | `task t/TITLE d/DESC [by/YYYY-MM-DD]`  <br> e.g.,<br> `task t/Collect robot d/At MakersLab` ,<br> `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12` |
-| **Remove Task** | `remove-task INDEX` |
-| **Upload** | `upload-pic`| `upload-pic INDEX` <br> e.g., `upload-pic 1`|
-| **Help**   | `help`                                                                                                                                                                |
+| Action                | Format                                                                                                  | Examples                                                                                                          |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| **Add**               | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                                         | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague`                                 |
+| **Attendance Add**    | `attendance add INDEX c/CLASS s/ATTENDANCESIZE`                                                                   | `attendance add 1 c/CS2030 s/10`                                                                                  |
+| **Attendance Delete** | `attendance delete INDEX`                                                                                         | `attendance delete 1`                                                                                             |
+| **Attendance Mark**   | `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE`                                                                | `attendance mark 1 l/1 m/1`                                                                                       |
+| **Clear**             | `clear`                                                                                                           |                                                                                                                   |
+| **Delete**            | `delete INDEX`                                                                                                    | `delete 3`                                                                                                        |
+| **Edit**              | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`                          | `edit 2 n/James Lee e/jameslee@example.com`                                                                       |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]`                                                                                    | `find James Jake`                                                                                                 |
+| **List**              | `list`                                                                                                            |                                                                                                                   |
+| **Task**              | `task t/TITLE d/DESC [by/YYYY-MM-DD]`                                                                             | `task t/Collect robot d/At MakersLab`, `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12` |
+| **Edit Task**         | `edit-task [t/TITLE] [d/DESC] [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...] [deleteStu/STUDENT_1,STUDENT_2...]` | `edit-task 1 t/Mark Lab Worksheets d/CS2030S by/2022-10-30`                                                       | 
+| **Remove Task**       | `remove-task INDEX`                                                                                               | `remove-task 1`                                                                                                   |
+| **Upload**            | `upload-pic INDEX`                                                                                                | `upload-pic 1`                                                                                                    |
+| **Help**              | `help`                                                                                                            |                                                                                                                   |
 
 
 --------------------------------------------------------------------------------------------------------------------
