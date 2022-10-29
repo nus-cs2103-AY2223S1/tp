@@ -17,6 +17,8 @@ public class CommandUtil {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
+
+
     public static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
@@ -30,7 +32,7 @@ public class CommandUtil {
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(personToEdit.getTags());
         if (newTags.size() > 0) {
-            updatedTags.addAll(newTags);
+            updatedTags.removeAll(newTags);
         }
 
         return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
@@ -45,8 +47,11 @@ public class CommandUtil {
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Boolean updatedIsDone = editTaskDescriptor.getCompletionStatus().orElse(taskToEdit.getCompletionStatus());
-        Boolean updatedIsArchived = editTaskDescriptor.getArchivalStatus().orElse(taskToEdit.getArchivalStatus());
+
+        Boolean updatedIsDone = taskToEdit.getCompletionStatus();
+        Boolean updatedIsArchived = taskToEdit.getArchivalStatus();
+
+        // Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
         Set<Tag> updatedTags = new HashSet<>();
@@ -60,5 +65,6 @@ public class CommandUtil {
 
         return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedIsArchived, updatedTags, id);
     }
+
 
 }
