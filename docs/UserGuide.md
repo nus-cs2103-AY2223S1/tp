@@ -65,7 +65,9 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
 Shows a message explaining how to access the help page.
 
-Format: `help`
+![Help](images/helpMessage.png)
+
+Format: `help` or press `F1`
 
 ![help](images/UserGuide/help.png)
 
@@ -291,6 +293,20 @@ Removes every scheduled meeting time that has already passed.
    
 * This uses your device's present local time as reference. All meetings scheduled to be earlier than the present time will removed.
    
+:heavy_exclamation_mark: **Caution:**
+As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
+
+### Get upcoming meetings: `Upcoming Meetings`
+
+Returns a list of clients who has a scheduled meeting in the next 7 days.
+
+![Meetings](images/upcomingMeeting.png)
+
+* This uses your device's present local time as reference.
+* As long as a client has a meeting in the next 7 days, it will be shown.
+
+Format: Menu bar on the top of the application or press `F2`.
+
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
    
