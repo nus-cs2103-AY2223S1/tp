@@ -3,8 +3,6 @@ package friday.model.student;
 import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Locale;
-
 /**
  * Represents a Student's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}

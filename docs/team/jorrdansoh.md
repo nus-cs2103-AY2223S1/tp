@@ -42,7 +42,7 @@ Given below are my contributions to the project.
     * Added implementation details and design considerations for the `sort` feature [\#109](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/109)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/93), [\#110](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/110), [\#121](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/121)
+  * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/93), [\#110](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/110), [\#121](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/121), [\#163](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/163)
 
 * **Tools**:
   * Updated site-wide settings (Jekyll) for the project [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)
