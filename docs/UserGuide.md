@@ -491,7 +491,7 @@ If your changes to the data file makes its format invalid, *MyInsuRec* will disc
 #### 5.5.3 Creating and using data file backups
 
 This is the recommended method of storing backups of the `[JAR file location]/data/myinsurec.json` file.
-First, create a copy of the original file in the `[JAR file location]/data` folder and rename it to `myinsurec_date.json` where date identifies when the file was created (e.g. `myinsurec_01122022` for a file created on 1st December 2022).
+First, create a copy of the original file in the `[JAR file location]/data` folder and rename it to `myinsurec_DATE.json` where date identifies when the file was created (e.g. `myinsurec_01122022` for a file created on 1st December 2022).
 
 If you want to start *MyInsuRec* using a backup file, rename the backup to `myinsurec.json`.
 Then launch the app as usual.
