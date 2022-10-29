@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_BACKEND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalTasks.STUDY;
 import static seedu.address.testutil.TypicalTeams.BACKEND;
 import static seedu.address.testutil.TypicalTeams.FRONTEND;
 
@@ -22,7 +23,6 @@ import seedu.address.testutil.TeamBuilder;
 
 public class UniqueTeamListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
     private final UniqueTeamList uniqueTeamList = new UniqueTeamList();
 
     @Test
@@ -60,6 +60,12 @@ public class UniqueTeamListTest {
     }
 
     @Test
+    public void get_validIndex_returnTeam() {
+        uniqueTeamList.add(FRONTEND);
+        assertEquals(FRONTEND, uniqueTeamList.get(0));
+    }
+
+    @Test
     public void setTeamName_nullTargetTeam_throwsNullPointerException() {
         uniqueTeamList.add(FRONTEND);
         assertThrows(NullPointerException.class, ()
@@ -79,6 +85,17 @@ public class UniqueTeamListTest {
         UniqueTeamList expectedUniqueTeamList = new UniqueTeamList();
         expectedUniqueTeamList.add(FRONTEND);
         assertEquals(expectedUniqueTeamList, uniqueTeamList);
+    }
+
+    @Test
+    public void getTeam_containTeamWithNameInList_returnTeam() {
+        uniqueTeamList.add(FRONTEND);
+        assertEquals(FRONTEND, uniqueTeamList.getTeam(FRONTEND.getName()));
+    }
+
+    @Test
+    public void getTeam_noTeamWithTargetName_throwTeamNotFoundException() {
+        assertThrows(TeamNotFoundException.class, () -> uniqueTeamList.getTeam(FRONTEND.getName()));
     }
 
 
@@ -133,6 +150,17 @@ public class UniqueTeamListTest {
     public void setTeams_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Team> listWithDuplicatePersons = Arrays.asList(FRONTEND, FRONTEND);
         assertThrows(DuplicateTeamException.class, () -> uniqueTeamList.setTeams(listWithDuplicatePersons));
+    }
+
+    @Test
+    public void addTask_noTeamWithTargetIndex_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> uniqueTeamList.addTask(50, STUDY));
+    }
+
+    @Test
+    public void addTask_nullTask_throwsNullPointerException() {
+        uniqueTeamList.add(FRONTEND);
+        assertThrows(NullPointerException.class, () -> uniqueTeamList.addTask(0, null));
     }
 
     @Test
