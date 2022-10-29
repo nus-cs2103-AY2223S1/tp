@@ -1,6 +1,6 @@
 [![Java CI](https://github.com/AY2223S1-CS2103T-T15-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T15-1/tp/actions/workflows/gradle.yml)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/ui-screenshots/Ui.png)
 
 Coydir is a desktop application used by Human Resource Executives to manage their employee base and streamline data collection.
 
