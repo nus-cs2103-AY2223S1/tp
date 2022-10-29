@@ -38,6 +38,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String toLowerCase() {
+        return fullName.toLowerCase();
+    }
 
     @Override
     public String toString() {

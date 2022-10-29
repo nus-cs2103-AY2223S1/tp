@@ -23,6 +23,8 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Supplier: %1$s";
+    public static final String MESSAGE_SUPPLIER_IS_SUPPLYING = "This supplier is currently supplying an item in your "
+            + "inventory and cannot be deleted.";
 
     private final Index targetIndex;
 
@@ -40,6 +42,10 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (model.hasSupplyItemSuppliedBy(personToDelete)) {
+            throw new CommandException(MESSAGE_SUPPLIER_IS_SUPPLYING);
+        }
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }

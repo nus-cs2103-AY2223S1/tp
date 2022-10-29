@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "ABC Pte Ltd"
+            + PREFIX_NAME + "ABC Pte Ltd "
             + PREFIX_PHONE + "67089005 "
             + PREFIX_PRICE + "$1.00 "
             + PREFIX_ITEM + "Ginger "
