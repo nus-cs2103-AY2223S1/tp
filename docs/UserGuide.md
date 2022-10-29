@@ -113,7 +113,7 @@ Ta-da! *MyInsuRec* is now installed on your system.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Quick start
+## 4. Quick Start
 
 ### 4.1 Basic features
 
@@ -676,3 +676,10 @@ A file having the extension .jar which is usually used to share applications wri
 Value that should be provided to a command for it to execute.
 e.g. the `delClient` command requires the [`INDEX`](#index) value identifying a client in order to delete that client.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## 10. Contact Us
+
+Our team is committed to delivering a high-quality product, so we'd love to hear from you if you have any feedback or enquiries! 
+
+Please feel free to contact us at [myinsurec@gmail.com](myinsurec@gmail.com).
