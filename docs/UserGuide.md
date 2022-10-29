@@ -77,7 +77,7 @@ This user guide provides in-depth descriptions of all the available features in 
 Note that the app contains **sample data**.<br><br>
    ![Ui](images/Ui.png) <br><br>
 
-5. Type the command in the command box and press _Enter_ to execute it. e.g. typing **`help`** and pressing _Enter_ will open the help window.<br>
+5. Type the command in the command box and press _Enter_ to execute it. E.g., typing **`help`** and pressing _Enter_ will open the help window.<br>
 
 6. To kickstart your journey, you can add a guest, `John Doe`, to GuestBook using the **`add`** command.
    * **`add`** `n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook.
@@ -138,19 +138,19 @@ For example, you can charge the third guest `30.35` by running the command below
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the **parameters** to be supplied by you, the user.<br>
-  e.g., In `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  E.g., In `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are **optional**.<br>
-  e.g., `n/NAME [rq/REQUEST]` can be used as `n/John Doe rq/Extra towels` or as `n/John Doe`.
+  E.g., `n/NAME [rq/REQUEST]` can be used as `n/John Doe rq/Extra towels` or as `n/John Doe`.
 
 * Parameters can be in **any order**.<br>
-  e.g., If the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+  E.g., If the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once but is specified multiple times in the command, only the **last occurrence** of the parameter will be considered.<br>
-  e.g., If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  E.g., If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be **ignored**.<br>
-  e.g., If the command specifies `help 123`, it will be interpreted as `help`.
+  E.g., If the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -196,7 +196,7 @@ This command displays a list of all guests in GuestBook.
 This command edits an existing guest in GuestBook.
 
 The guest specified at the `INDEX` is the guest you wish to edit. The existing values will be **updated** to the new values
-you provide. The values that you did not specify to edit will **remain unchanged**.
+you provide. The values that you **did not specify** to edit will remain **unchanged**.
 
 #### Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
 
@@ -242,11 +242,11 @@ the rooms that have room clean statuses set to "no".
 #### Format: `find KEYWORD [MORE_KEYWORDS]`
 
 #### Constraints of parameters:
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g., `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g., `Han` will not match `Hans`
+* The search is case-insensitive. E.g., `hans` will match `Hans`
+* The order of the keywords does not matter. E.g., `Hans Bo` will match `Bo Hans`
+* Only full words will be matched E.g., `Han` will not match `Hans`
 * Guests matching at least one keyword will be returned (i.e. `OR` search).
-  e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  E.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 #### Examples:
 * `find John` returns `john` and `John Doe`
@@ -256,7 +256,7 @@ the rooms that have room clean statuses set to "no".
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
 
 #### Common mistakes:
-* Searching for guests using partial field characteristics e.g., `170` will not match `170.00`.
+* Searching for guests using partial field characteristics, e.g., `170` will not match `170.00`.
 
 ### Deleting a guest : `delete`
 
