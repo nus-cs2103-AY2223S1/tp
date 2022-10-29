@@ -188,7 +188,7 @@ public class ModelManager implements Model {
     @Override
     public void refreshEvents(EventsAttending eventsToRefresh) {
         requireNonNull(eventsToRefresh);
-        addressBook.refreshEvents(eventsToRefresh);
+        nuScheduler.refreshEvents(eventsToRefresh);
     }
 
     //=========== Filtered Profile List Accessors =============================================================
