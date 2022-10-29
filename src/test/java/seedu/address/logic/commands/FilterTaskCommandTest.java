@@ -46,9 +46,9 @@ public class FilterTaskCommandTest {
     @Test
     public void equals() {
         TaskCategoryAndDeadlinePredicate firstPredicate =
-                new TaskCategoryAndDeadlinePredicate(Optional.of(testCat),Optional.of(testDate));
+                new TaskCategoryAndDeadlinePredicate(Optional.of(testCat), Optional.of(testDate));
         TaskCategoryAndDeadlinePredicate secondPredicate =
-                new TaskCategoryAndDeadlinePredicate(Optional.of(testCat2),Optional.of(testDate2));
+                new TaskCategoryAndDeadlinePredicate(Optional.of(testCat2), Optional.of(testDate2));
         FilterTaskCommand.FilterTaskDescriptor descriptor1 = new FilterTaskCommand.FilterTaskDescriptor();
         descriptor1.setCategory(firstPredicate.getCategory());
         descriptor1.setDate(firstPredicate.getDate());
@@ -79,12 +79,12 @@ public class FilterTaskCommandTest {
     @Test
     public void execute_backend_noTaskFound() {
         String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 0);
-        TaskCategoryAndDeadlinePredicate predicate = preparePredicate(testCat2,testDate2);
+        TaskCategoryAndDeadlinePredicate predicate = preparePredicate(testCat2, testDate2);
         FilterTaskCommand.FilterTaskDescriptor testDescriptor = new FilterTaskCommand.FilterTaskDescriptor();
         testDescriptor.setCategory(predicate.getCategory());
         testDescriptor.setDate(predicate.getDate());
 
-        FilterTaskCommand command = new FilterTaskCommand(testDescriptor,testFilterInfo,
+        FilterTaskCommand command = new FilterTaskCommand(testDescriptor, testFilterInfo,
                 testFilterInfo);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -100,7 +100,7 @@ public class FilterTaskCommandTest {
         FilterTaskCommand.FilterTaskDescriptor testDescriptor = new FilterTaskCommand.FilterTaskDescriptor();
         testDescriptor.setCategory(predicate.getCategory());
         testDescriptor.setDate(predicate.getDate());
-        FilterTaskCommand command = new FilterTaskCommand(testDescriptor,testFilterInfo,
+        FilterTaskCommand command = new FilterTaskCommand(testDescriptor, testFilterInfo,
                 testFilterInfo);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
