@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,13 +17,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.order.Order;
 import seedu.address.testutil.TypicalOrders;
 import seedu.address.testutil.TypicalPets;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 public class MatchCommandTest {
     private Model model;
