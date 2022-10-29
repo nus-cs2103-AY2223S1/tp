@@ -21,7 +21,7 @@ If you are stuck, refer to the section on [Troubleshooting](#troubleshooting) or
 
 You can also refer to the [Glossary](#glossary) for definitions of commonly used terms in FoodRem.
 
-#### FoodRem Icons
+### FoodRem Icons
 
 Throughout FoodRem, you may find coloured boxes containing highlighted pieces of text. Please take note of the content within.
 
