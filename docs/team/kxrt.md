@@ -36,7 +36,7 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Updated documentation for `edit`, `add` and `find` commands to reflect changes made to them.
 - Updated command summary.
 - Rewrote introduction and added a section on the purpose of the application. 
-- Created banner [image](../images/checkUp_banner.png). 
+- Created banner [image](../images/ug-images/checkUp_banner.png). 
 
 #### Contributions to the DG
 

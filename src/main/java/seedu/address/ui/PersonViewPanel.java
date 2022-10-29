@@ -20,6 +20,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -103,18 +105,18 @@ public class PersonViewPanel extends UiPart<Region> {
 
     private void setPersonalDetails() {
         name.setText(person.getName().fullName);
-        name.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_NAME));
+        name.setOnMouseClicked(event -> checkClickType(event, PREFIX_NAME));
         email.setText(person.getEmail().toString());
-        email.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_EMAIL));
+        email.setOnMouseClicked(event -> checkClickType(event, PREFIX_EMAIL));
         phone.setText(person.getPhone().toString());
-        phone.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_PHONE));
+        phone.setOnMouseClicked(event -> checkClickType(event, PREFIX_PHONE));
         nokName.setText("Name: " + person.getNextOfKin().getNextOfKinName());
         nokRelationship.setText("Relationship: " + person.getNextOfKin().getNextOfKinRelationship());
         nokContact.setText("Contact: " + person.getNextOfKin().getNextOfKinContact());
-        nok.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_NEXT_OF_KIN));
+        nok.setOnMouseClicked(event -> checkClickType(event, PREFIX_NEXT_OF_KIN));
         if (person.getMedications().size() > 0) {
             medications.getChildren().add(new Label(person.getMedicationString()));
-            medications.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_MEDICATION));
+            medications.setOnMouseClicked(event -> checkClickType(event, PREFIX_MEDICATION));
         }
         identificationIcon.setImage(identificationImage);
         helplineIcon.setImage(helplineImage);
@@ -124,31 +126,37 @@ public class PersonViewPanel extends UiPart<Region> {
     private void setHospitalisationDetails() {
         patientType.setText(person.getPatientType().toString());
         hospitalbedIcon.setImage(hospitalbedImage);
-        patientType.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_PATIENT_TYPE));
+        patientType.setOnMouseClicked(event -> checkClickType(event, PREFIX_PATIENT_TYPE));
         person.getHospitalWing().ifPresentOrElse(hw -> {
             hospitalWing.setText(hw.toString());
-            hospitalWing.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_HOSPITAL_WING));
+            hospitalWing.setOnMouseClicked(event -> checkClickType(event, PREFIX_HOSPITAL_WING));
         }, () -> hospitalWing.setVisible(false));
         person.getFloorNumber().ifPresentOrElse(fn -> {
             floorNumber.setText(fn.toString());
-            floorNumber.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_FLOOR_NUMBER));
+            floorNumber.setOnMouseClicked(event -> checkClickType(event, PREFIX_FLOOR_NUMBER));
         }, () -> floorNumber.setVisible(false));
         person.getWardNumber().ifPresentOrElse(wn -> {
             wardNumber.setText(wn.toString());
-            wardNumber.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_WARD_NUMBER));
+            wardNumber.setOnMouseClicked(event -> checkClickType(event, PREFIX_WARD_NUMBER));
         }, () -> wardNumber.setVisible(false));
     }
 
     private void setAppointmentDetails() {
         person.getUpcomingAppointment().ifPresentOrElse(ua -> {
             upcomingAppointment.setText(ua.toString());
-            upcomingAppointment.setOnMouseClicked(event -> commandTextEditor.editText(PREFIX_UPCOMING_APPOINTMENT));
+            upcomingAppointment.setOnMouseClicked(event -> checkClickType(event, PREFIX_UPCOMING_APPOINTMENT));
         }, () -> upcomingAppointment.setVisible(false));
         ObservableList<PastAppointment> pastAppointmentsObservableList =
                 new ObservableListWrapper<>(person.getPastAppointments());
         pastAppointments.setItems(pastAppointmentsObservableList);
         pastAppointments.setCellFactory(item -> new PastAppointmentListViewCell());
         calendarIcon.setImage(calendarImage);
+    }
+
+    private void checkClickType(MouseEvent event, Prefix prefix) {
+        if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() >= 2) {
+            commandTextEditor.editText(prefix);
+        }
     }
 
     /**
