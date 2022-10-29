@@ -97,10 +97,21 @@ public class EditModuleCommand extends Command {
 
         Module newModule = new Module(newCode, newName, newCredit, newCount, isDone);
 
+        boolean isCurrentModule = false;
+        if (model.getCurrentModule().equals(targetModCode)) {
+            isCurrentModule = true;
+        }
+
         model.deleteModule(targetModule);
         model.addModule(newModule);
+
         if (!targetModCode.equals(newCode)) {
             model.updateTaskModule(targetModCode, newCode);
+        }
+
+        // If is current module, re-set it as selected
+        if (isCurrentModule) {
+            model.setCurrentModule(newCode);
         }
 
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, newModule));
