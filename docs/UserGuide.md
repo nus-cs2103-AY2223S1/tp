@@ -188,7 +188,7 @@ Example:
 
 ### Editing a client: `edit`
 
-Edits the details of the `client` at the specified index number in the list displayed on the left panel.
+Edits the details of the `client` at the specified index number in the displayed client list on the left panel.
 
 Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 
@@ -218,7 +218,7 @@ Deletes the specified `client`from JeeqTracker.
 
 Format: `delete INDEX m/client`
 
-* The `INDEX` refers to the index number shown in the displayed list.
+* The `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 
 Examples:
