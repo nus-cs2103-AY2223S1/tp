@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-FABook is a **desktop app for managing contacts, optimized for a financial adviser to use via a Command Line Interface (CLI)** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FABook can get your contact management tasks done faster than traditional GUI apps.
+FABook is your **dependable assistant** who **reminds you of meetings** and **consolidates crucial information** like financial plans and client information right at your fingertips! You can now focus on giving your full attention to your clients without having to worry about things slipping your mind.
+
+**FABook is optimized for a financial adviser to use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FABook can get your contact management tasks done faster than traditional GUI apps.
+
+This user guide will help you get started and understand how FABook can **seamlessly streamline your daily lives**.
 
 * Table of Contents
 {:toc}
@@ -16,12 +20,12 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
 2. Download the latest `FABook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-2/tp/releases).
 
-4. Copy the file to the folder you want to use as the _home folder_ for your FABook.
+3. Copy the file to the folder you want to use as the _home folder_ for your FABook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
@@ -30,7 +34,8 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Command Summary](#command-summary) for a quick summary of all commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -40,26 +45,33 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `create n/NAME`, `NAME` is a parameter which can be used as `create n/John Doe`.
+* Words in `UPPER_CASE` are the information supplied by you.
+  e.g `NAME` is a parameter in `create n/NAME`, where you can input `create n/John Doe`. 
+  <br>
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [a/HOME_ADDRESS]` can be used as `n/John Doe a/Blk 30 Geylang Street 29` or as `n/John Doe`.
+* Parameters in `[]` are optional.
+  e.g `HOME_ADDRESS` is an optional parameter in `create n/NAME [a/HOME_ADDRESS]`, where you can input `create n/John Doe a/Blk 30 Geylang Street 29` or just `create n/John Doe`.
+  <br>
 
-* Items with `…`​ after them can be used multiple times.<br>
-  e.g. `NAME…​` can be used as `Jon`, `Jon Jack` etc.
+* Items with `…`​ after them can be used multiple times.
+  e.g `NAME…​` can be used as `Jon`, `Jon Jack` etc.
+  <br>
 
 * `INDEX` represents the index of a specific person in the FABook
-  e.g. `delete INDEX` can be used as `delete 2`.
+  e.g You can use the command `delete INDEX` as `delete 2`.
+<br>
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/HP_NUMBER`, `p/HP_NUMBER n/NAME` is also acceptable.
+* Parameters can be in **any order**.
+  e.g You can input either `create n/NAME p/HP_NUMBER` or ` create p/HP_NUMBER n/NAME`.
+  <br>
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* Only the last occurrence of a parameter that is expected once will be taken **if you specify it more than once.**
+  e.g Given `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  <br>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear`, 'redo' and 'undo') will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear`, 'redo' and 'undo') will be ignored.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+ </div>
 
 ### Viewing help : `help`
 
@@ -295,7 +307,6 @@ FABook data are saved as a text file `[JAR file location]/data/addressbook.json`
 
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
