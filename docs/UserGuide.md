@@ -51,7 +51,7 @@ In the user guide, you might come across some terms you might not understand. Th
 | **Filter**           | A filter is a search condition you are looking for.                                                                                                                                  |
 | **Tag**              | A tag is a label that can be assigned to clients.                                                                                                                                    |
 | **Integer**          | An integer is a round, whole number. For example, `1` and `9` are integers but `1.5` and `hello` are not.                                                                            |
-| **Open-source**      | This means that the source code is made freely available online. If you are interested in contributing to Rapportbook, you can take at our [code repository](https://github.com/AY2223S1-CS2103T-T13-2/tp) and [developer guide](DeveloperGuide.html).  |
+| **Open-source**      | This means that the source code is made freely available online. If you are interested in contributing to Rapportbook, you can take a look at our [code repository](https://github.com/AY2223S1-CS2103T-T13-2/tp) and [developer guide](DeveloperGuide.html).  |
 
 ## Quick start
 
