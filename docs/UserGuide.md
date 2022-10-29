@@ -151,6 +151,9 @@ Format: `upload-pic INDEX`
 * If no picture exists for the student specified, the selected picture will be assigned to the student.
 * Existing picture will be updated to the input file picture.
 
+<div markdown="span" class="alert alert-warning">:information_source: **Note:**
+You are recommended to select an image of dimensions ratio of about 1:1 otherwise the selected picture may not appear nicely.
+</div>
 
 ### Editing student information : `edit`
 
