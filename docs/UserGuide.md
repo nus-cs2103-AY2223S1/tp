@@ -180,7 +180,7 @@ Locates and ranks the nearest gyms to user's location in NUS.
 
 Format: `locate LOCATION`
 
-Parameters: COM2 | S13 | S17 | CLB | USC | LT1 | AS6
+Parameters: COM2 | S13 | S17 | CLB | USC | LT1 | AS6 | IT | TCOMS | VENTUS
 
 Example:
 

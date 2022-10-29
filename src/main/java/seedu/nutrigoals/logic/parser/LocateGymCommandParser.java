@@ -7,7 +7,7 @@ import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.Location;
 
 /**
- *
+ * Parses input arguments and creates a new LocateGymCommand object
  */
 public class LocateGymCommandParser implements Parser<LocateGymCommand> {
     /**
