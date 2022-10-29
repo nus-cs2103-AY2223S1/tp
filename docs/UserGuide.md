@@ -25,7 +25,7 @@ This guide contains all you need to get started on working with GithubContact.
    7. [Set a person's details](#set-a-persons-details--set)
    8. [Delete a person's details](#delete-a-persons-details-delete)
    9. [Return to previous page](#return-to-previous-page--back-or-esc)
-   10. [Show help page](#show-help-page--help)
+   10. [Show help page](#show-help-page--help-or-f1)
 4. [FAQ](#faq)
 5. [Prefix Aliases](#prefix-aliases)
 
@@ -90,17 +90,17 @@ This guide contains all you need to get started on working with GithubContact.
 
 </div>
 
-| Action               | Format, Examples                                             |
-| -------------------- | ------------------------------------------------------------ |
+| Action               | Format, Examples                                                                                                                                                                                         |
+| -------------------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **add**              | `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `<br> `add name/John Doe address/27 Clementi` |
-| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                   |
-| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter` |
-| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi` |
-| **sort**             | `sort` <br> `sort name`, `sort name/desc`                    |
-| **find**             | `find KEYWORD` <br> `find Tex`, `find Engineer`              |
-| **reset**            | `reset`                                                      |
-| **back**             | `back` or `<ESC>` key                                        |
-| **help**             | `help` <br> `help`, `help add`                               |
+| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                                                                                                                                                               |
+| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter`                                                                                                                                  |
+| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`                          |
+| **sort**             | `sort` <br> `sort name`, `sort name/desc`                                                                                                                                                                |
+| **find**             | `find KEYWORD` <br> `find Tex`, `find Engineer`                                                                                                                                                          |
+| **reset**            | `reset`                                                                                                                                                                                                  |
+| **back**             | `back` or `<ESC>` key                                                                                                                                                                                    |
+| **help**             | `help` or `<F1>` key <br> `help`, `help add`                                                                                                                                                             |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -318,7 +318,7 @@ After the command is executed:
 
 <div style="page-break-after: always;"></div>
 
-#### Show help page : `help`
+#### Show help page : `help` or `<F1>`
 
 Shows the help page or usage instruction of specified command.
 
