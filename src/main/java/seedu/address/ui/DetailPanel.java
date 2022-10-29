@@ -107,7 +107,7 @@ public class DetailPanel extends MainPanel {
         // Hide the title when github user is empty
         setLabelVisibility(reposTitleLabel, person.getGithubUser().isPresent());
         if (githubUser != null) {
-            // Hide the titl when repo list has no repo
+            // Hide the title when repo list has no repo
             setLabelVisibility(reposTitleLabel, githubUser.getRepoList().size() != 0);
             githubRepoListView.setItems(FXCollections.observableList(githubUser.getRepoList()));
             githubRepoListView.setCellFactory(listView -> new GithubRepoListViewCell());
