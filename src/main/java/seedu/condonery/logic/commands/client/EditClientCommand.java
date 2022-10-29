@@ -96,6 +96,7 @@ public class EditClientCommand extends Command {
         Client editedClient = createEditedClient(clientToEdit, editClientDescriptor, imageDirectoryPath);
         // Parsed interested properties
         Client newEditedClient = new ParseClientInterestedProperties(editedClient, model).getNewClient();
+        newEditedClient.setImageDirectoryPath(imageDirectoryPath);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
