@@ -93,6 +93,7 @@ public class EventSortField {
      * @return boolean result of test.
      */
     public static boolean isValidSortField(String test) {
+        requireNonNull(test);
         return test.matches(VALIDATION_REGEX);
     }
 

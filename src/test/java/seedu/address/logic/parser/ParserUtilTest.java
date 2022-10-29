@@ -8,10 +8,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventSortField;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonSortField;
 import seedu.address.model.person.Phone;
 
 public class ParserUtilTest {
@@ -29,6 +31,9 @@ public class ParserUtilTest {
     private static final String VALID_GENDER = "Female";
 
     private static final String WHITESPACE = " \t\r\n";
+
+
+    //=========== parseIndex() Tests ==========================================================================
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -49,6 +54,130 @@ public class ParserUtilTest {
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
     }
+
+
+    //=========== parsePersonSortField() Tests ================================================================
+
+    @Test
+    public void parsePersonSortField_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePersonSortField((String) null));
+    }
+
+    @Test
+    public void parsePersonSortField_invalidValue_throwsParseException() {
+        // Invalid letter
+        assertThrows(ParseException.class, () -> ParserUtil.parsePersonSortField("x"));
+
+        // Multiple letters
+        assertThrows(ParseException.class, () -> ParserUtil.parsePersonSortField("xyz"));
+
+        // Whitespace
+        assertThrows(ParseException.class, () -> ParserUtil.parsePersonSortField(WHITESPACE));
+    }
+
+    @Test
+    public void parsePersonSortField_validValueWithoutWhitespace_returnsSortField() throws Exception {
+
+        String lowercaseName = "n";
+        String uppercaseName = "N";
+
+        String lowercaseGender = "g";
+        String uppercaseGender = "G";
+
+        String lowercaseDob = "d";
+        String uppercaseDob = "D";
+
+        // Lower case name
+        PersonSortField sortFieldLowercaseName = PersonSortField.createSortField(lowercaseName);
+        assertEquals(sortFieldLowercaseName, ParserUtil.parsePersonSortField(lowercaseName));
+
+        // Upper case name
+        PersonSortField sortFieldUppercaseName = PersonSortField.createSortField(uppercaseName);
+        assertEquals(sortFieldUppercaseName, ParserUtil.parsePersonSortField(uppercaseName));
+
+        // Lower case gender
+        PersonSortField sortFieldLowercaseGender = PersonSortField.createSortField(lowercaseGender);
+        assertEquals(sortFieldLowercaseGender, ParserUtil.parsePersonSortField(lowercaseGender));
+
+        // Upper case gender
+        PersonSortField sortFieldUppercaseGender = PersonSortField.createSortField(uppercaseGender);
+        assertEquals(sortFieldUppercaseGender, ParserUtil.parsePersonSortField(uppercaseGender));
+
+        // Lower case DOB
+        PersonSortField sortFieldLowercaseDob = PersonSortField.createSortField(lowercaseDob);
+        assertEquals(sortFieldLowercaseDob, ParserUtil.parsePersonSortField(lowercaseDob));
+
+        // Upper case DOB
+        PersonSortField sortFieldUppercaseDob = PersonSortField.createSortField(uppercaseDob);
+        assertEquals(sortFieldUppercaseDob, ParserUtil.parsePersonSortField(uppercaseDob));
+    }
+
+    @Test
+    public void parsePersonSortField_validValueWithWhitespace_returnsSortField() throws Exception {
+        String lowercaseName = "n";
+        String lowercaseNameWithWhitespace = WHITESPACE + lowercaseName + WHITESPACE;
+
+        PersonSortField sortFieldLowercaseName = PersonSortField.createSortField(lowercaseName);
+        assertEquals(sortFieldLowercaseName, ParserUtil.parsePersonSortField(lowercaseNameWithWhitespace));
+    }
+
+
+    //=========== parseEventSortField() Tests =================================================================
+
+    @Test
+    public void parseEventSortField_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventSortField((String) null));
+    }
+
+    @Test
+    public void parseEventSortField_invalidValue_throwsParseException() {
+        // Invalid letter
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventSortField("x"));
+
+        // Multiple letters
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventSortField("xyz"));
+
+        // Whitespace
+        assertThrows(ParseException.class, () -> ParserUtil.parseEventSortField(WHITESPACE));
+    }
+
+    @Test
+    public void parseEventSortField_validValueWithoutWhitespace_returnsSortField() throws Exception {
+
+        String lowercaseEventTitle = "e";
+        String uppercaseEventTitle = "E";
+
+        String lowercaseDate = "d";
+        String uppercaseDate = "D";
+
+        // Lower case event title
+        EventSortField sortFieldLowercaseEventTitle = EventSortField.createSortField(lowercaseEventTitle);
+        assertEquals(sortFieldLowercaseEventTitle, ParserUtil.parseEventSortField(lowercaseEventTitle));
+
+        // Upper case event title
+        EventSortField sortFieldUppercaseEventTitle = EventSortField.createSortField(uppercaseEventTitle);
+        assertEquals(sortFieldUppercaseEventTitle, ParserUtil.parseEventSortField(uppercaseEventTitle));
+
+        // Lower case date
+        EventSortField sortFieldLowercaseDate = EventSortField.createSortField(lowercaseDate);
+        assertEquals(sortFieldLowercaseDate, ParserUtil.parseEventSortField(lowercaseDate));
+
+        // Upper case date
+        EventSortField sortFieldUppercaseDate = EventSortField.createSortField(uppercaseDate);
+        assertEquals(sortFieldUppercaseDate, ParserUtil.parseEventSortField(uppercaseDate));
+    }
+
+    @Test
+    public void parseEventSortField_validValueWithWhitespace_returnsSortField() throws Exception {
+        String lowercaseEventTitle = "e";
+        String lowercaseEventTitleWithWhitespace = WHITESPACE + lowercaseEventTitle + WHITESPACE;
+
+        EventSortField sortFieldLowercaseEventTitle = EventSortField.createSortField(lowercaseEventTitle);
+        assertEquals(sortFieldLowercaseEventTitle, ParserUtil.parseEventSortField(lowercaseEventTitleWithWhitespace));
+    }
+
+
+    //=========== parseName() Tests ===========================================================================
 
     @Test
     public void parseName_null_throwsNullPointerException() {
@@ -73,6 +202,9 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
+
+    //=========== parsePhone() Tests ==========================================================================
+
     @Test
     public void parsePhone_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
@@ -95,6 +227,9 @@ public class ParserUtilTest {
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
+
+
+    //=========== parseAddress() Tests ========================================================================
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
@@ -119,6 +254,9 @@ public class ParserUtilTest {
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
+
+    //=========== parseEmail() Tests ==========================================================================
+
     @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
@@ -141,6 +279,10 @@ public class ParserUtilTest {
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
+
+
+    //=========== parseGender() Tests =========================================================================
+
     @Test
     public void parseGender_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseGender((String) null));
