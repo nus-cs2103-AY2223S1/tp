@@ -376,21 +376,22 @@ Examples:
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​` <br> e.g., `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
-| **Attendance Add** | `attendance add INDEX c/CLASS s/ATTENDANCESIZE` <br> e.g., `attendance add 1 c/CS2030 s/10`|
-| **Attendance Delete** | `attendance delete INDEX` <br> e.g., `attendance delete 1`|
-| **Attendance Mark** | `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE` <br> e.g., `attendance mark 1 l/1 m/1`|
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Task**   | `task t/TITLE d/DESC [by/YYYY-MM-DD]`  <br> e.g.,<br> `task t/Collect robot d/At MakersLab` ,<br> `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12` |
-| **Remove Task** | `remove-task INDEX` |
-| **Upload** | `upload-pic`| `upload-pic INDEX` <br> e.g., `upload-pic 1`|
-| **Help**   | `help`                                                                                                                                                                |
+| Action                | Format                                                                                                  | Examples                                                                                                          |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| **Add**               | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                                         | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague`                                 |
+| **Attendance Add**    | `attendance add INDEX c/CLASS s/ATTENDANCESIZE`                                                                   | `attendance add 1 c/CS2030 s/10`                                                                                  |
+| **Attendance Delete** | `attendance delete INDEX`                                                                                         | `attendance delete 1`                                                                                             |
+| **Attendance Mark**   | `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE`                                                                | `attendance mark 1 l/1 m/1`                                                                                       |
+| **Clear**             | `clear`                                                                                                           |                                                                                                                   |
+| **Delete**            | `delete INDEX`                                                                                                    | `delete 3`                                                                                                        |
+| **Edit**              | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`                          | `edit 2 n/James Lee e/jameslee@example.com`                                                                       |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]`                                                                                    | `find James Jake`                                                                                                 |
+| **List**              | `list`                                                                                                            |                                                                                                                   |
+| **Task**              | `task t/TITLE d/DESC [by/YYYY-MM-DD]`                                                                             | `task t/Collect robot d/At MakersLab`, `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12` |
+| **Edit Task**         | `edit-task [t/TITLE] [d/DESC] [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...] [deleteStu/STUDENT_1,STUDENT_2...]` | `edit-task 1 t/Mark Lab Worksheets d/CS2030S by/2022-10-30`                                                       | 
+| **Remove Task**       | `remove-task INDEX`                                                                                               | `remove-task 1`                                                                                                   |
+| **Upload**            | `upload-pic INDEX`                                                                                                | `upload-pic 1`                                                                                                    |
+| **Help**              | `help`                                                                                                            |                                                                                                                   |
 
 
 --------------------------------------------------------------------------------------------------------------------
