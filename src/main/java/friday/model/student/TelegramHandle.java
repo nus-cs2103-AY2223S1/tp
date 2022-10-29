@@ -87,7 +87,7 @@ public class TelegramHandle implements Comparable<TelegramHandle> {
         } else if (telegramHandle.isEmpty()) {
             return -1;
         }
-        return this.value.compareTo(telegramHandle.value);
+        return this.value.toLowerCase().compareTo(telegramHandle.value.toLowerCase());
     }
 
 }

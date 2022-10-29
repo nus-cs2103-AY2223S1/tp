@@ -3,6 +3,8 @@ package friday.model.student;
 import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Locale;
+
 /**
  * Represents a Student's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -48,7 +50,7 @@ public class Name implements Comparable<Name> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                && fullName.toLowerCase().equals(((Name) other).fullName.toLowerCase())); // state check
     }
 
     @Override
@@ -58,7 +60,7 @@ public class Name implements Comparable<Name> {
 
     @Override
     public int compareTo(Name name) {
-        return this.fullName.compareTo(name.fullName);
+        return this.fullName.toLowerCase().compareTo(name.fullName.toLowerCase());
     }
 
 }

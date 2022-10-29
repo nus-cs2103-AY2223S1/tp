@@ -246,7 +246,7 @@ Format: `help`
 | Action                                       | Format                                                                                                   |
 |----------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | **Add a student**                            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`               |
-| **Delete a student**                         | `delete i/INDEX`                                                                                         |
+| **Delete a student**                         | `delete INDEX`                                                                                         |
 | **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`                |
 | **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                                |
 | **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
