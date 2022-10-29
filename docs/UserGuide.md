@@ -3,31 +3,48 @@ layout: page
 title: User Guide
 ---
 
-JeeqTracker is a **desktop application created for home-based business owners / resellers that helps them manage the clients
-that they interact with by keeping track of their `BUY / SELL` transactions, and `REMARKS` of clients.**
+## Introduction
+
+JeeqTracker is a desktop application created for **home-based business owners / resellers** that helps them manage the clients
+that they interact with by keeping track of their **`BUY / SELL`** transactions, and **`REMARKS`** of clients.
+
 While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 If you can type fast, JeeqTracker can get business
 interactions recorded faster and simpler than traditional GUI applications.
 
+To get you started, you might want to read the section on [how to use this User Guide](#how-to-use-the-user-guide)!
+
+## Table of Contents
+
 * [Quick Start](#quick-start)
+* [How to use the User Guide](#how-to-use-the-user-guide)
 * [Features](#features)
-  * [Adding a client: `add`](#adding-a-client-add)
-  * [Creating a transaction: `buy` or `sell` ](#creating-a-transaction-buy-or-sell)
-  * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  * [Creating a remark: `remark`](#creating-a-remark-remark)
-  * [Deleting a client/transaction/remark: `delete`](#deleting-a-client--transaction--remark--delete)
-  * [Editing a client/transaction/remark: `edit`](#editing-a-client--transaction--remark--edit)
-  * [Exiting the program: `exit`](#exiting-the-program--exit)
-  * [Filtering buy or sell transactions: `filter`](#filtering-the-transaction-display--filter)
-  * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
-  * [Listing all clients: `list`](#listing-all-clients--list)
-  * [Locating clients by name: `find`](#locating-clients-by-name-find)
-  * [Sorting the address book: `sort`](#sorting-the-address-book-sort)
-  * [Viewing help: `help`](#viewing-help--help)
-  * [Viewing a client: `view`](#viewing-a-client--view)
-  * [Saving the data](#saving-the-data)
-  * [Editing the data file](#editing-the-data-file)
-  * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
+  * [Client Commands]()
+    * [Adding a client: `add`](#adding-a-client-add)
+    * [Listing all clients: `list`](#listing-all-clients--list)
+    * [Editing a client: `edit`]()
+    * [Deleting a client: `delete`]()
+    * [Locating clients by name: `find`](#locating-clients-by-name-find)
+    * [Viewing a client: `view`](#viewing-a-client--view)
+  * [Transaction Commands]()
+    * [Creating a transaction: `buy` or `sell` ](#creating-a-transaction-buy-or-sell)
+    * [Editing a transaction: `edit`]()
+    * [Deleting a transaction: `delete`]()
+    * [Filtering buy or sell transactions: `filter`](#filtering-the-transaction-display--filter)
+    * [Sorting the transactions: `sort`](#sorting-the-address-book-sort)
+  * [Remark Commands]()
+    * [Creating a remark: `remark`](#creating-a-remark-remark)
+    * [Editing a remark: `edit`]()
+    * [Deleting a remark: `remark`]()
+  * [Miscellaneous Commands]()
+    * [Clearing all entries: `clear`](#clearing-all-entries--clear)
+    * [Exiting the program: `exit`](#exiting-the-program--exit)
+    * [Viewing help: `help`](#viewing-help--help)
+    * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
+  * [Data Storage]()
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+    * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 * [Prefix Summary](#prefix-summary)
@@ -38,35 +55,38 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `jeeqtracker.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
+2. Download the latest `jeeqtracker.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your JeeqTracker.
+3. Copy the file to the folder you want to use as the _home folder_ for your JeeqTracker.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the application contains some sample data.<br><br>
+   ![Ui](images/QuickStart.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will show the list of commands.<br>
+5. Type the command in the command box and press Enter to execute it.<br> e.g. typing **`help`** and pressing Enter will show the list of commands.<br>
+
+
    Some example commands you can try:
 
    * **`list`** : Lists all clients.
 
-   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into the address book.
+   * **`add`**`n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into JeeqTracker.
 
-   * **`delete`**`1 m/client` : Deletes the client at the first index together with all their contacts and transactions in the current list.
+   * **`delete`**`1 m/client` : Deletes the client at the first index together with all their transactions and remarks in the current list.
 
-   * **`find`**`James` : Finds `James` from the list of clients and display all clients with name containing `James`.
-
-   * **`clear`** : Deletes all clients with all their remarks and transactions.
+   * **`find`**`Bernice` : Finds `Bernice` from the list of clients and display all clients with name containing `Bernice`. If there is only one find result, you will be able to see the transactions and remarks of `Bernice` as well.
 
    * **`view`**`2` : Views the second client in the list and shows your transactions and remarks with him.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## How to use the User Guide
+
+This user guide contains detailed explanation on how to use the application. It provides information like what each `command` does, warnings for certain commands, and how data is saved in the application.
+The [table of contents](#table-of-contents) provides links to every command. But before you head there, below are some notes on how to interpret each command format.
 
 <div markdown="block" class="alert alert-info">
 
@@ -92,6 +112,8 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 </div>
 
+## Features
+
 ### Adding a client: `add`
 
 Adds a client to the list.
@@ -103,11 +125,15 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 * No restrictions on the phone input field and email input field, but a warning will be given if it deviates from the standard convention.
     * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
 
-> :warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or white spaces!
+> <div markdown="span" class="alert alert-danger">❗ :warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or white spaces!
 
 Examples:
 * `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com`
 * `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier`
+
+![Ui](images/SampleAddCommand.png)
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Creating a Transaction: `buy` or `sell`
 
@@ -119,23 +145,23 @@ Formats:
 
 `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]`
 
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* The `INDEX` **must not contain any signs** e.g +1, -3, …​
-* The `QUANTITY` refers to the amount of the goods transacted.
-* The `QUANTITY` should only contain non-negative integers and be at least 1 digit long.
-* The `GOODS` refers to the name of the goods transacted.
-* The `GOODS` should only contain alphanumeric characters, and it should not be blank.
-* The `PRICE` refers to the price of the goods transacted.
-* The `PRICE` should be a positive number, and it should be at least 1 digit long.
-* The `DATE` refers to the date of the transaction.
-* The `DATE` should only be in the format of DD/MM/YYYY. If no `DATE` is entered,
-  the default date will be the current date that the user enters the transaction.
+Parameter constraints:
+
+| Parameter  | Constraints                                                                                                                                                                                                  |
+|:-----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`    | - Refers to the index number shown in the displayed client list. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/>  **must not contain any signs** e.g +1, -3, …​                                 |
+| `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - should only contain non-negative unsigned integers and be at least 1 digit long.                                                                     |
+| `GOODS` | Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                 |
+| `PRICE` | Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                    |
+| * The `DATE` | Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction.  |
+  
 
 Examples:
 * `buy 3 q/100 g/apples price/1.5` creates a buy transaction from the 3<sup>rd</sup> client in the list.
 * `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction to the 1<sup>st</sup> client in
 the list on the 07/11/2000.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Clearing all entries : `clear`
 
@@ -149,6 +175,11 @@ Format: `clear`
 Example:
 
 * `clear` clears all Client's entries together with the Remarks and Transactions.
+
+> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrie
+ </div>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Creating a Remark: `remark`
 
@@ -167,8 +198,10 @@ Examples:
 * `remark 5 fast and decisive t/favourite` adds the remark `fast and decisive` to the client at index 5. The remark 
 also has a tag `favourite`. 
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Deleting a client / transaction / remark : `delete`
-> :warning: **If you delete a client/transaction/remark, it will be gone forever**: Be very careful here!
+> <div markdown="span" class="alert alert-danger">❗ :warning: **If you delete a client/transaction/remark, it will be gone forever**: Be very careful here!
 
 Deletes the specified `client`, `transaction` or `remark` from JeeqTracker.
 
@@ -187,6 +220,8 @@ Examples:
 Applying `delete 3 m/transaction` deletes the 3<sup>rd</sup> transaction of the client.
 * `find john` followed by `view 1` displays the remarks and transactions of the 1<sup>st</sup> client of the `find`
 result. Applying `delete 2 m/remark` deletes the 2<sup>nd</sup> remark of the client.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Editing a client / transaction / remark : `edit`
 
@@ -212,6 +247,8 @@ Applying `edit 3 m/transaction price/1.9` edits the price of the 3<sup>rd</sup> 
 * `find lim` followed by `view 3` displays the remarks and transactions of the 3<sup>rd</sup> client of the `find` 
 result. Applying `edit 3 m/remark supplier` edits the 3<sup>rd</sup> remark of the client.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -223,6 +260,8 @@ Format: `exit`
 
 Examples:
 * `exit` closes the program.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Filtering the transaction display : `filter`
 
@@ -239,6 +278,8 @@ Examples:
 * `filter buy` displays all buy transactions.
 * `filter sell` displays all sell transactions.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Getting the User Guide: `user_guide`
 
 Returns the url to this user guide.
@@ -250,6 +291,8 @@ Format: `user_guide`
 
 Examples:
 * `user_guide` returns the url of this user guide.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Listing all clients : `list`
 
@@ -263,6 +306,8 @@ Format: `list`
 Examples:
 
 * `list` displays all stored clients name and details.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Locating clients by name: `find`
 
@@ -281,6 +326,8 @@ Examples:
 * `find John` return clients `John`, `John Lim`, `John Koh`
 * `find Tan` return clients `John Tan`, `Bob Tan`, `Alice Tan`
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Sorting the address book: `sort`
 
 Sorts the specified client's transaction by either the latest transaction or oldest transaction.
@@ -298,6 +345,8 @@ Examples:
 * `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
 * `sort 5 oldest` displays the 5<sup>th</sup> client transactions sorted by the oldest transaction on top.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Viewing help : `help`
 
 `help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
@@ -312,6 +361,8 @@ Examples:
 * `help` shows the list of valid commands.
 * `help find` shows the description of `find` command.
 * `help add` shows the description of `add` command.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Viewing a client : `view`
 
@@ -328,6 +379,8 @@ Format: `view INDEX`
 Examples:
 * `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Saving the data
 
 JeeqTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -343,6 +396,8 @@ If your changes to the data file makes its format invalid, JeeqTracker will disc
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -373,6 +428,8 @@ _Details coming soon ..._
 | **User Guide** | `user_guide`                                                                                                                                           |
 | **View**       | `view INDEX` <br> e.g., `view 5`                                                                                                                       |
 
+[Back to Table of Contents](#table-of-contents)
+
 ## Prefix Summary
 
 | Prefix     | Meaning                                        | Restrictions                                        | Example                       |
@@ -388,4 +445,4 @@ _Details coming soon ..._
 | **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`                          | `d/07/11/2022`                |
 | **t/**     | Tag applied on clients                         | Alphanumeric, single word                           | `t/friends`                   |
 
-[↑ Back to top](#quick-start)
+[Back to Table of Contents](#table-of-contents)
