@@ -65,4 +65,17 @@ public class MatchCommand extends Command {
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if (!(this instanceof MatchCommand)) {
+            return false;
+        }
+
+        return index.equals(((MatchCommand) object).index);
+    }
 }

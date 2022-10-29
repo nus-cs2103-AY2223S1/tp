@@ -6,6 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +20,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.addcommands.AddDelivererCommand;
 import seedu.address.logic.commands.addcommands.AddSupplierCommand;
@@ -50,7 +53,6 @@ import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
-//import seedu.address.testutil.TypicalIndexes;
 import seedu.address.testutil.TypicalPersonCategories;
 import seedu.address.testutil.TypicalSuppliers;
 
@@ -296,6 +298,27 @@ public class AddressBookParserTest {
         expected = new CheckCommand("ORDER", INDEX_FIRST);
         input = CheckCommand.COMMAND_WORD + " ORDER 1";
         result = (CheckCommand) parser.parseCommand(input);
+        assertEquals(result, expected);
+    }
+
+    @Test
+    public void parseCommand_matchCommand() throws Exception {
+        // index 1 -> success
+        MatchCommand expected = new MatchCommand(INDEX_FIRST);
+        String input = MatchCommand.COMMAND_WORD + " i/1";
+        MatchCommand result = (MatchCommand) parser.parseCommand(input);
+        assertEquals(result, expected);
+
+        // index 2 -> success
+        expected = new MatchCommand(INDEX_SECOND);
+        input = MatchCommand.COMMAND_WORD + " i/2";
+        result = (MatchCommand) parser.parseCommand(input);
+        assertEquals(result, expected);
+
+        // index 3 -> success
+        expected = new MatchCommand(INDEX_THIRD);
+        input = MatchCommand.COMMAND_WORD + " i/3";
+        result = (MatchCommand) parser.parseCommand(input);
         assertEquals(result, expected);
     }
 
