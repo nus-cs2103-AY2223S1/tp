@@ -91,6 +91,13 @@ Format: `help`
 
 Adds a task and its deadline to the task list, with an optional module.
 
+Format:
+`add {task_name} by/{deadline} [m/{module_code}]`
+
+Examples:
+* `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
+* `add finish SEP application by/2022-12-25 23:59`
+
 <div markdown="block" class="alert alert-primary">
 
 :bulb: Deadline Formats
@@ -101,12 +108,15 @@ For more information on valid deadline formats, check the jchronic documentation
 
 </div>
 
-Format:
-`add {task_name} by/{deadline} [m/{module_code}]`
+<div markdown="block" class="alert alert-primary">
 
-Examples:
-* `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
-* `add finish SEP application by/2022-12-25 23:59`
+:bulb: Flexible Module Format
+
+As a user, you might find yourself adding tasks that don't exactly belong to a module. For example, if you're a student applying for the Student Exchange Programme, you might have tasks like "Write Personal Statement" and "Submit Application". In this case, you could set the module field of both these tasks as `SEP` to increase searchability.
+
+However, only alphanumeric characters are allowed! (i.e. no spaces, special characters, etc.)
+
+</div>
 
 #### Editing a task: `edit`
 
@@ -118,6 +128,19 @@ Format:
 Examples:
 * `edit 2 n/Rewatch lecture 6` - Renames task at index 2 to "Rewatch lecture 6"
 * `edit 3 m/CS2040S by/2022-12-12 23:59` - Changes the module and deadline of the task at index 3
+
+<div markdown="block" class="alert alert-primary">
+
+:question: Field Prefixes
+
+`field_prefix` can be any task field stated in the [add task command](#adding-a-task-add).
+
+| Field          | Prefix  |
+|----------------|---------|
+| Name (of task) | `n/`    |
+| Module         | `m/`    |
+
+</div>
 
 #### Deleting a task: `del`
 
@@ -228,6 +251,26 @@ Format: `editc {contact_index} {field prefix + field description}`
 Examples:
 * `editc 2 n/ John Wong` - edits the name of the contact at index 2 in the contact list to `John Wong`.
 
+<div markdown="block" class="alert alert-primary">
+
+:question: Field Prefixes
+
+`field_prefix` can be any contact field stated in the [add contact command](#adding-a-contact-addc).
+
+| Field    | Prefix  |
+|----------|---------|
+| Name     | `n/`    |
+| Phone    | `p/`    |
+| Email    | `e/`    |
+| Address  | `a/`    |
+| Tag      | `t/`    |
+| Module   | `m/`    |
+| GitHub   | `gh/`   |
+| Telegram | `tele/` |
+| Task     | `ts`    |
+
+</div>
+
 #### Searching for contacts: `findc`
 
 Finds persons whose names contain any of the given keywords, or find persons who take a particular module.
@@ -295,19 +338,21 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                                                                                       |
-|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add task**       | `add {task_name} by/{deadline} [m/{module_code}]` <br> e.g. `add finish problem set 5 by/next week sunday m/CS2040S`                                                                                                                   |
-| **Edit task**      | `edit {task_index} {field prefix + field description}` <br> e.g. `edit 2 by/2022-12-12 23:59`                                                                                                                                          |
-| **Delete task**    | `del {task_index}` <br> e.g. `delete 5`                                                                                                                                                                                                |
-| **Mark task**      | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                                                                                                 |
-| **Unmark task**    | `unmark {task_index}` <br> e.g. `unmark 3`                                                                                                                                                                                             |
-| **Find tasks**     | `find n/ {task}` <br> `find m/ {module}`<br> e.g., `find n/ homework`, <br> `find m/ CS1101S`                                                                                                                                          |
-| **List tasks**     | `list` / `list time`                                                                                                                                                                                                                   |
-| **Add contact**    | `addc n/ {name} p/ {phone_number} [e/ {email}] [a/ {address}] [t/ {tag}]... [m/ {module_1} {module_2}...] [gh/ {github}] [tele/ {telegram}]` <br> e.g., `addc n/ Bob Martin p/ 98765432 tele/bobmartin00 m/ CS1101S CS1231S t/ friend` |
-| **Clear contacts** | `clear`                                                                                                                                                                                                                                |
-| **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`                                                                                                                                                                                            |
-| **Edit contact**   | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`                                                                                                                                              |
-| **Find contacts**  | `findc n/ {name}` <br> `findc m/ {module}`<br> `findc ts/ {task_index}` <br> e.g., `findc /n John`, `findc /m CS1231S`, `findc ts/ 3`                                                                                                  |
-| **List contacts**  | `listc`                                                                                                                                                                                                                                |
-| **Help**           | `help`                                                                                                                                                                                                                                 |
+| Action                     | Format, Examples                                                                                                                                                                                                                       |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                   | `help`                                                                                                                                                                                                                                 |
+| **Add task**               | `add {task_name} by/{deadline} [m/{module_code}]` <br> e.g. `add finish problem set 5 by/next week sunday m/CS2040S`                                                                                                                   |
+| **Edit task**              | `edit {task_index} {field prefix + field description}` <br> e.g. `edit 2 by/2022-12-12 23:59`                                                                                                                                          |
+| **Delete task**            | `del {task_index}` <br> e.g. `del 5`                                                                                                                                                                                                   |
+| **Delete completed tasks** | `clean`                                                                                                                                                                                                                                |
+| **Mark task**              | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                                                                                                 |
+| **Unmark task**            | `unmark {task_index}` <br> e.g. `unmark 3`                                                                                                                                                                                             |
+| **Find tasks**             | `find n/ {task}` <br> `find m/ {module}`<br> e.g., `find n/ homework`, <br> `find m/ CS1101S`                                                                                                                                          |
+| **List tasks**             | `list` / `list time`                                                                                                                                                                                                                   |
+| **Add contact**            | `addc n/ {name} p/ {phone_number} [e/ {email}] [a/ {address}] [t/ {tag}]... [m/ {module_1} {module_2}...] [gh/ {github}] [tele/ {telegram}]` <br> e.g., `addc n/ Bob Martin p/ 98765432 tele/bobmartin00 m/ CS1101S CS1231S t/ friend` |
+| **List contacts**          | `listc`                                                                                                                                                                                                                                |
+| **Delete contact**         | `delc {contact_index}`<br> e.g., `delc 3`                                                                                                                                                                                              |
+| **Edit contact**           | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`                                                                                                                                              |
+| **Find contacts**          | `findc n/ {name}` <br> `findc m/ {module}`<br> `findc ts/ {task_index}` <br> e.g., `findc /n John`, `findc /m CS1231S`, `findc ts/ 3`                                                                                                  |
+| **Quick contact search**   | `saveme`                                                                                                                                                                                                                               |
+| **Clear contacts**         | `clear`                                                                                                                                                                                                                                |
