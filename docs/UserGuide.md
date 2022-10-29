@@ -38,7 +38,7 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 
     1. `add task "tP v1.3" -d 2022-10-28`: Adds a task called iP week 6, with a deadline of 28/10/2022, to the module tracker.
 
-    1. `list`: Lists all the active tasks.
+    1. `list task`: Lists all the active tasks.
 
    1. `remove task 1`: Removes the first task of CS2103T.
 
@@ -75,8 +75,8 @@ Some commands even have **multiple parameters**, each separated by a space.
 In the example above, notice how the position of the main parameter does not matter.
 This is possible because every parameter has at most one value, so the command is still valid (and correct)!
 
-Also, notice how we have been enclosing some parameter values in quotes (`"` or `'`)—this is only necessary if your value
-contains a space.
+**Also, notice how we have been enclosing some parameter values in quotes (`"` or `'`)—this is only necessary if your value
+contains a space.**
 
 Some parameters are optional. By default all parameters in the command formats we specify are mandatory.
 We will surround **optional parameters** with square brackets (`[]`).
@@ -106,14 +106,15 @@ In this section, we will cover the features of ModtRekt, and introduce the comma
 <div markdown="block" class="alert alert-info"/>
 
 ### General
-`help`
+
+#### Help command: `help`
 
 Shows a message which provides a link to this user guide.
 
 Sample execution of command `help`:
 ![help-message](images/UserGuidePictures/help-message.png)
 
-`exit`
+#### Exit command: `exit`
 
 Exits the application.
 
@@ -135,10 +136,15 @@ Format: `add module <module code>`
 Shorthand: `add mod <module code>`
 
 - The module code is case-insensitive e.g. `cs2103t` will match **CS2103T**
+- The module name (if provided) must be enclosed in double-quotes (`""`) if it contains spaces.
+
 
 Examples:
 - `add module CS2103T`
 - `add mod CS2103T`
+
+Sample execution of command `add mod CS2100`:
+![add-mod-sample](images/UserGuidePictures/add-mod-sample.png)
 
 The app also supports the addition of customised modules, which may or may not be in NUSMods.
 This is useful for users with other commitments, such as internships, that they would like to track in the app.
@@ -148,8 +154,14 @@ Format: `add module <module code> -n <custom module name> -cr <module credits>`
 
 Shorthand: `add mod <module code> -n <custom module name> -cr <module credits>`
 
-Sample execution of command `add mod CS2100`:
-![add-mod-sample](images/UserGuidePictures/add-mod-sample.png)
+- Note that the credits still need to be supplied, even if it is 0.
+
+Examples:
+- `add module CCA -n "Basketball Club" -cr 0`
+- `add mod CS10 -n "Non-credit Bearing Internship" -cr 0`
+
+Sample execution of command `add mod CCA -n Volleyball -cr 0`:
+![add-mod-verbose-sample](images/UserGuidePictures/add-mod-verbose-sample.png)
 
 #### Removing a module: `remove module`
 
@@ -234,7 +246,7 @@ Marks a module as undone.
 
 Format: `undone module <module code>`
 
-Shorthand: `done mod <module code>`
+Shorthand: `undone mod <module code>`
 
 Examples:
 - `undone module CS1101S`
