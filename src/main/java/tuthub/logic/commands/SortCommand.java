@@ -18,11 +18,11 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the tutor list based on quantitative measures"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the tutor list based on quantitative measures "
             + "in ascending or descending order. "
             + "Parameters: "
-            + "a or d "
-            + PREFIX_TEACHINGNOMINATION + " or " + PREFIX_RATING + "\n"
+            + "(\"a\" or \"d\") "
+            + "(" + PREFIX_TEACHINGNOMINATION + " or " + PREFIX_RATING + ")\n"
             + "Example: " + COMMAND_WORD + " "
             + "a " + PREFIX_TEACHINGNOMINATION;
 
