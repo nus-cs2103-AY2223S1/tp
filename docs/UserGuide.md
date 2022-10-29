@@ -355,13 +355,14 @@ Examples:
 Sorts the specified client's transaction by either the latest transaction or oldest transaction.
 
 Format: `sort INDEX ORDER`
-
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* The `INDEX` **must not contain any signs** e.g +1, -3, …​
-* The `ORDER` refers to how the transaction will be sorted. It can only be sorted by
-  `oldest` or `latest`.
 * If no clients made any transactions, the transaction section will be blank.
+
+| Parameter | Constraints                                                                                                                                                                            |
+|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the display client list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `ORDER`   | - Refers to how the transaction will be sorted. <br/> - Order of sorting can only be `oldest` or `latest`.<br/>                                                                        |
+
+
 
 Examples:
 * `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
@@ -377,11 +378,12 @@ Creates a new remark for the specified client.
 
 Format: `remark INDEX REMARK [t/TAG]...`
 
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* `TAG` is optional.
-* Multiple `TAG` can be tagged to the client.
-* The parameter `REMARK` cannot be empty.
+| Parameter | Constraints                                                                                                                                                                            |
+|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the display client list.**<br/> <br/> - **Must be a positive integer within the range displayed  **- Must not contain any signs** e.g +1, -3, …​ |
+| `REMARK`  | - Refers to the new remark, it is a required field                                                                                                                                     |
+| `TAG`     | - Refers to the tag for the new remark, it is an optional field.  <br/> - Multiple tags can be tagged to the remark.                                                                   |
+
 
 Examples:
 * `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
@@ -427,7 +429,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-## Miscellaneous Commands
+## **Miscellaneous Commands**
 
 ### Clearing all entries: `clear`
 
