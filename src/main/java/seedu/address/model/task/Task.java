@@ -12,6 +12,13 @@ import java.util.Optional;
  */
 public class Task {
 
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd-MM-yyyy format "
+            + ", must be a valid date and in between year 1900 to 2100.";
+    public static final String MESSAGE_INVALID_DATE_VALUE = "Deadline must be in between the year 1900 to 2100";
+
+    private static final LocalDate EARLIEST_DATE = LocalDate.of(1899, 12, 31);
+    private static final LocalDate LATEST_DATE = LocalDate.of(2101, 1, 1);
+
     private Name name;
     private Optional<LocalDate> deadline;
     private boolean isDone;
@@ -64,6 +71,10 @@ public class Task {
 
     public Optional<LocalDate> getDeadline() {
         return this.deadline;
+    }
+
+    public static boolean isValidDeadline(LocalDate deadline) {
+        return deadline.isAfter(EARLIEST_DATE) && deadline.isBefore(LATEST_DATE);
     }
 
     public String getDeadlineString() {

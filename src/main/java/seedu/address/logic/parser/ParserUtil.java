@@ -20,6 +20,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -27,13 +28,12 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd-MM-yyyy format "
-            + ", must be a valid date and in between year 1900 to 2100.";
-    public static final String MESSAGE_INVALID_DATE_VALUE = "Deadline must be in between the year 1900 to 2100";
-    public static final String DATE_FORMAT = "dd-MM-uuuu";
-    private static final LocalDate EARLIEST_DATE = LocalDate.of(1899, 12, 31);
-    private static final LocalDate LATEST_DATE = LocalDate.of(2101, 1, 1);
 
+
+    private static final String DATE_FORMAT = "dd-MM-uuuu";
+
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern(DATE_FORMAT)
+            .withResolverStyle(ResolverStyle.STRICT);
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -178,19 +178,15 @@ public class ParserUtil {
         String trimmedDeadline = deadline.trim();
 
         try {
-            DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_FORMAT)
-                            .withResolverStyle(ResolverStyle.STRICT);
-
-            LocalDate date = LocalDate.parse(trimmedDeadline, format);
-
-            if (date.isBefore(EARLIEST_DATE) || date.isAfter(LATEST_DATE)) {
+            LocalDate date = LocalDate.parse(trimmedDeadline, DATE_TIME_FORMAT);
+            if (!Task.isValidDeadline(date)) {
                 throw new DateOutOfRangeException();
             }
             return Optional.ofNullable(date);
         } catch (DateOutOfRangeException e) {
-            throw new ParseException(MESSAGE_INVALID_DATE_VALUE);
+            throw new ParseException(Task.MESSAGE_INVALID_DATE_VALUE);
         } catch (DateTimeParseException e) {
-            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+            throw new ParseException(Task.MESSAGE_INVALID_DATE_FORMAT);
         }
     }
 }
