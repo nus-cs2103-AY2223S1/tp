@@ -9,6 +9,7 @@ import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionModel;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
@@ -34,8 +35,13 @@ public class PersonListPanel extends MainPanel {
     /**
      * Focus the list view and the first person in the view
      */
-    public void setFocus(boolean focus) {
+    public void focus() {
         personListView.requestFocus();
+        SelectionModel<Person> model = personListView.getSelectionModel();
+
+        if (model.isEmpty()) {
+            model.selectFirst();
+        }
     }
 
     public void setSelectedPerson(Person person) {

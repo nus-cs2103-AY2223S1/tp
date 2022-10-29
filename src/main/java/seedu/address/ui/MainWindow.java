@@ -172,7 +172,6 @@ public class MainWindow extends UiPart<Stage> {
                     || selectedPerson.equals(logic.getSortedFilteredPersonList().get(0));
 
             if (isFirstPersonSelected && event.getCode().equals(KeyCode.UP)) {
-                personListPanel.setFocus(false);
                 personListPanel.clearSelectedPerson();
                 commandBox.focus();
             }
@@ -200,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             boolean isEmpty = logic.getSortedFilteredPersonList().size() == 0;
             if (!isEmpty && event.getCode().equals(KeyCode.DOWN)) {
-                personListPanel.setFocus(true);
+                personListPanel.focus();
                 personListPanel.setSelectedPerson(logic.getSortedFilteredPersonList().get(0));
             }
         });
@@ -249,7 +248,7 @@ public class MainWindow extends UiPart<Stage> {
             switchMainPanel(to, false);
 
             if (backToListPanel) {
-                personListPanel.setFocus(true);
+                personListPanel.focus();
             }
         }
     }
