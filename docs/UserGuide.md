@@ -198,7 +198,7 @@ finds **any** task name or tag with either `Week` or `tutorial`.
 
 Allows you to remove a task from task list and store in archived file.
 
-Format: `archive TASK_NUMBER | DATE`
+Format: `archive TASK_NUMBER`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 
 Examples:
@@ -259,16 +259,6 @@ NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.js
 
 **Caution:**
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
-
-### Archiving data files : `archive`
-
-Allows you to remove a task from task list and store in archived file. 
-
-Format: `archive TASK_NUMBER`
-* `TASK_NUMBER`: This is the number of the task currently displayed.
-
-Examples: 
-* `archive 1`: archives first task in task list.
 
 ### Autocomplete
 
