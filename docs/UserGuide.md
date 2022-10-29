@@ -11,11 +11,11 @@ GuestBook is a **desktop app for managing guests in a hotel,
 optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 If you are a hotel manager who can type fast, GuestBook can get your
-guest management tasks done faster than traditional GUI apps.
+guest management tasks done **faster** than traditional GUI apps.
 
-You can use GuestBook to track guests and their details including name, email address, phone number, 
-room number, dates of stay, number of guests, bill, request, and whether their room has been cleaned. 
-By allowing you to add, edit, delete, and filter guests, GuestBook can fulfill all your hotel management needs.
+You can use GuestBook to track guests and their details including _name_, _email address_, _phone number_, 
+_room number_, _dates of stay_, _number of guests_, _bill_, _request_, and whether their _room has been cleaned_. 
+By allowing you to _add_, _edit_, _delete_, and _filter_ guests, GuestBook can fulfill all your hotel management needs.
 
 This user guide provides in-depth descriptions of all the available features in GuestBook and how to use them.
 
@@ -27,11 +27,11 @@ This user guide provides in-depth descriptions of all the available features in 
 
 --------------------------------------------------------------------------------------------------------------------
 ## How to use the User Guide
-* For a quick and easy way to get started with GuestBook, you can visit the [Quick Start](#quick-start) section.
-* To understand the terms we use in GuestBook, you can visit the [Glossary](#glossary) section.
-* To see the amazing features that GuestBook provides and how to use them, you can visit the [Features](#features) section.
-* Having issues? You can check out the [FAQ](#faq) section to see find solutions to your issues.
-* Have a question for us? Feel free to [contact us](#contact-us) and we will do our best to assist you.
+* For a quick and easy way to **get started** with GuestBook, you can visit the [Quick Start](#quick-start) section.
+* To **understand the terms** we use in GuestBook, you can visit the [Glossary](#glossary) section.
+* To see the **amazing features** that GuestBook provides and how to use them, you can visit the [Features](#features) section.
+* Having **issues**? You can check out the [FAQ](#faq) section to see find solutions to your issues.
+* Have a **question** for us? Feel free to [contact us](#contact-us), and we will do our best to assist you.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -44,20 +44,20 @@ This user guide provides in-depth descriptions of all the available features in 
 
 ### Use of the components
 
-| Component                              | Use                                                               |
-|----------------------------------------|-------------------------------------------------------------------|
-| **Command Box**                        | This is where you enter your commands.                            |
-| **Result Display**                     | This is where the detailed results of your command will be shown. |
-| **Guest Card**                         | This is where all your guest information will be shown.           |
-| **Status Bar**                         | This shows the path your save file is stored in.                  |
-| ![Phone](images/phone.png)             | This is the phone number of your guest.                           |
-| ![Email](images/email.png)             | This is the email address of your guest.                          |
-| ![Room](images/room.png)               | This is the room of your guest.                                   |
-| ![DateRange](images/dateRange.png)     | This is the date of stay of your guest.                           |
-| ![NumberOfGuests](images/group.png)    | This is the total number of guests in your guest's room.          |
-| ![IsRoomClean](images/isRoomClean.png) | This is the room cleaned status of your guest's room.             |
-| ![Bill](images/bill.png)               | This is the current bill of your guest.                           |
-| ![Request](images/request.png)         | This is the request made by your guest (if any).                  |
+| Component                              | Use                                                                  |
+|----------------------------------------|----------------------------------------------------------------------|
+| **Command Box**                        | This is where you **enter commands**.                                |
+| **Result Display**                     | This is where the detailed **results** of the command will be shown. |
+| **Guest Card**                         | This is where all **guest information** of a guest will be shown.    |
+| **Status Bar**                         | This shows the location of your **save file**.                       |
+| ![Phone](images/phone.png)             | This is the **phone number** of the guest.                           |
+| ![Email](images/email.png)             | This is the **email address** of the guest.                          |
+| ![Room](images/room.png)               | This is the **room** the guest is staying in.                        |
+| ![DateRange](images/dateRange.png)     | These are the **dates of stay** of the guest.                        |
+| ![NumberOfGuests](images/group.png)    | This is the total **number of guests** in the guest's room.          |
+| ![IsRoomClean](images/isRoomClean.png) | This shows whether the guest's **room has been cleaned**.            |
+| ![Bill](images/bill.png)               | This is the current **bill** of the guest.                           |
+| ![Request](images/request.png)         | This shows any **requests** made by the guest.                       |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -65,44 +65,49 @@ This user guide provides in-depth descriptions of all the available features in 
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have `Java 11` or above installed in your Computer.
 
 2. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br> <br>
    ![Ui](images/DownloadInstruction.png) <br><br>
-3. Copy the file to the folder you want to use as the _home folder_ for your GuestBook. <br> <br>
+
+3. Copy the file to the folder you want to use as the **home folder** for your GuestBook. <br> <br>
    ![Ui](images/GuestBookIcon.png) <br><br>
+
 4. Double-click on `guestbook.jar` to start the app. The GUI, similar to the image below, should pop up in a few seconds. 
-Note that the app contains sample data.<br><br>
+Note that the app contains **sample data**.<br><br>
    ![Ui](images/Ui.png) <br><br>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press _Enter_ to execute it. e.g. typing **`help`** and pressing _Enter_ will open the help window.<br>
 
 6. To kickstart your journey, you can add a guest, `John Doe`, to GuestBook using the **`add`** command.
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook.
+   * **`add`** `n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook.
 
-7. To find `John Doe`, you can use the **`find`** command, and search any of `John Doe`'s `fields`, such has his name or room. The command below can help you find guests that match the keywords you entered.
+7. To find `John Doe`, you can use the **`find`** command, and search through any of `John Doe`'s `fields`, such as his _name_ or _room_. The command below can help you find guests that match the keywords you entered.
+   * **`find`** `John Doe` : Finds all the guests who have at least one field containing `John` or `Doe` (_case-insensitive_).
 
-   * **`find`** `John Doe` : Finds all the guests where at least one of the fields contains `John` or `Doe` (case-insensitive).
+8. To make changes to `John Doe`, you can use the **`edit`** command. This changes the guest's fields based on the new values you provide. The other values will remain unchanged. <br>
+For example, if `John Doe` is the second guest in the list, and you want to change his room number to `05-55`, you can do this.
+    * **`edit`** `2` `rm/05-55`n: Changes the `Room` of `John Doe` to `05-55` in GuestBook.
 
-8. To make changes to `John Doe`, you can use the **`edit`** command. This changes the guest's fields based on the values you have inputted. The other values will remain the same. <br> For example, if `John Doe` is the second guest in the list, and you want to change his room number to 05-55, you can do this.
-    * **`edit`**`2` `rm/05-55`n: Changes the `Room` of `John Doe` to `05-55` in GuestBook.
+9. After executing a **`find`** command, you might realise that some of your guests are no longer visible, as they are not in the current list.<br>
+To see a list of all your guests, you can use the **`list`** command.
+     * **`list`**: List all the guests in GuestBook.
 
-9. After running a **`find`** function, you might realise that some of your guests are no longer visible, as they are not in the current list. To see a list of all your guests, you can use the **`list`** command.
-    * **`list`**: List all the guests in GuestBook.
+10. In the event that a guest orders room service, you can add charges to the guest's bill using the **`bill`** command.<br>
+For example, you can charge the third guest `30.35` by running the command below.
+    * **`bill`** `3` `b/+30.35`: Adds `30.35` to the bill of the third guest.
 
-10. In the situation that a guest purchases additional necessities, you can bill the guest using the **`bill`** command. For example, you can bill the third guest a service that costs 30.35 by running the command below.
-    * **`bill`** `3` `b/+30.35`: Adds 30.35 to the bill of the third guest.
+11. When a guest checks out of your hotel, you can remove the guest using the **`delete`** command.
+    * **`delete`** `3` : Deletes the third guest shown in the current list.
 
-11. When a guest checkouts, you might want to delete the guest. In that case, you can use the **`delete`** command.
-    * **`delete`**`3` : Deletes the third guest shown in the current list.
-
-12. To clear your GuestBook of all entries, you can use the **`clear`** command. Do be warn that it is irreversible, so use with caution!
+12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
+<span style="background-color: yellow; color: black">**WARNING:** This action is **irreversible**. Use with caution.</span>
     * **`clear`** : Deletes all guests.
 
-13. Finally, to quit GuestBook, you can run the **`exit`** command.
+14. Finally, to quit GuestBook, you can run the **`exit`** command.
     * **`exit`** : Exits the app.
 
-14. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you and hope you enjoy using GuestBook!
+15. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you and we hope you enjoy using GuestBook!
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -132,35 +137,26 @@ Note that the app contains sample data.<br><br>
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you, the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the **parameters** to be supplied by you, the user.<br>
+  e.g., In `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-[//]: # (Commented out as the features below are currently not in our application, but we can consider it)
-* Items in square brackets are optional.<br>
+* Items in square brackets are **optional**.<br>
+  e.g., `n/NAME [rq/REQUEST]` can be used as `n/John Doe rq/Extra towels` or as `n/John Doe`.
 
-  e.g `n/NAME [rq/REQUEST]` can be used as `n/John Doe rq/Extra towels` or as `n/John Doe`.
+* Parameters can be in **any order**.<br>
+  e.g., If the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
-[//]: # ()
-[//]: # (* Items with `…`​ after them can be used multiple times including zero times.<br>)
+* If a parameter is expected only once but is specified multiple times in the command, only the **last occurrence** of the parameter will be considered.<br>
+  e.g., If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-[//]: # (  e.g. `[t/TAG]…​` can be used as ` ` &#40;i.e. 0 times&#41;, `t/friend`, `t/friend t/family` etc.)
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
-
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be **ignored**.<br>
+  e.g., If the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 ### Viewing help : `help`
 
-This command shows a message explaining how to access the help page, which is this user guide you are reading.
+This command shows a message explaining how to access the **help page**, which is this user guide you are reading.
 
 ![help message](images/helpMessage.png)
 
@@ -170,8 +166,7 @@ This command shows a message explaining how to access the help page, which is th
 
 This command adds a guest to GuestBook.
 
-This command is typically used to check in a guest with their personal 
-and room details.
+This command is typically used to **check a guest in** to your hotel with their personal and room details.
 
 #### Format: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
 
@@ -200,14 +195,14 @@ This command displays a list of all guests in GuestBook.
 
 This command edits an existing guest in GuestBook.
 
-The guest specified at the `INDEX` is the guest you wish to edit. The existing values will be updated to the values
-that you have inputted. The values that you did not specify to edit will remain the same.
+The guest specified at the `INDEX` is the guest you wish to edit. The existing values will be **updated** to the new values
+you provide. The values that you did not specify to edit will **remain unchanged**.
 
 #### Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
 
 #### Constraints of parameters:
 * Identical to the constraints of the `add` feature from above.
-* `IS_ROOM_CLEAN` should only contain 'yes', 'no', 'y' or 'n' insensitive of case.
+* `IS_ROOM_CLEAN` should only contain `yes`, `no`, `y` or `n` (_case-insensitive_).
 
 #### Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the first guest to `91234567` and `johndoe@example.com` respectively.
@@ -215,24 +210,24 @@ that you have inputted. The values that you did not specify to edit will remain 
 
 ### Billing a guest : `bill`
 
-This command updates the bill of a guest in GuestBook. Note that the bill here refers to the total additional cost incurred
-by the guests during their stay at your hotel and should not include the cost of the room booking.
+This command updates the bill of a guest in GuestBook. Note that the bill here refers to the **total additional charges incurred**
+by the guest during their stay at your hotel and should not include the cost of the room booking.
 
 This command updates the bill of the guest at the specified `INDEX`. 
-Depending on the sign ('+' or '-') of your input, the existing bill value be incremented 
-or decremented respectively by the value of your input.
+Depending on the sign (`+` or `-`) of your input, the existing bill value will be **increased** 
+or **decreased** respectively by the value you provide.
 
 #### Format: `bill INDEX b/BILL`
 
 #### Constraints of parameters:
-* The bill value **must be either a whole number or a whole number with up to 2 decimal places.**
+* `BILL` should only contain numbers, and can have up to 2 decimal places.
 
 #### Examples:
 * `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the first guest.
 * `bill 2 b/-10` Subtracts 10 from the bill of the second guest.
 
 #### Common mistakes:
-* Missing out the b/ prefix in the bill command.
+* Missing out the `b/` prefix in the bill command.
 * Editing the bill using the edit command instead of the bill command.
 
 ### Locating guests : `find`
@@ -248,10 +243,10 @@ the rooms that have room clean statuses set to "no".
 
 #### Constraints of parameters:
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The order of the keywords does not matter. e.g., `Hans Bo` will match `Bo Hans`
+* Only full words will be matched e.g., `Han` will not match `Hans`
 * Guests matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 #### Examples:
 * `find John` returns `john` and `John Doe`
@@ -261,7 +256,7 @@ the rooms that have room clean statuses set to "no".
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
 
 #### Common mistakes:
-* Searching for guests using partial field characteristics e.g. `170` will not match `170.00`.
+* Searching for guests using partial field characteristics e.g., `170` will not match `170.00`.
 
 ### Deleting a guest : `delete`
 
