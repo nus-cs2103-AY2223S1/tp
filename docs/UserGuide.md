@@ -357,14 +357,17 @@ Use case:
 1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
 2. Organize all your meetings in a single place, so you don't have to worry about missing a meeting ever again.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-* You can use the `d/DATE` parameter optionally to view the list of meetings happening in that time period!
-* `DATE` is specified by keywords. The possible keywords are:
-  * `tomorrow` for a list of meetings happening tomorrow;
-  * `week` for a list of meetings happening in the next week;
-  * `month` for a list of meetings happening in the next month.
-* For example, `listMeeting d/week` will show a list of meetings happening in the next week.
-* This is an excellent feature if you want to get a quick overview of your upcoming schedule!
+<div markdown="span" class="alert alert-info">
+   
+**:information_source: Note:**<br>
+   
+* You can use the `d/DATE` parameter optionally to view the list of meetings happening in that time period!<br>
+* `DATE` is specified by keywords. The possible keywords are:<br>
+  * `tomorrow` for a list of meetings happening tomorrow;<br>
+  * `week` for a list of meetings happening in the next week;<br>
+  * `month` for a list of meetings happening in the next month.<br>
+* For example, `listMeeting d/week` will show a list of meetings happening in the next week.<br>
+* This is an excellent feature if you want to get a quick overview of your upcoming schedule!<br>
 </div>
 
 <div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
