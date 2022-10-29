@@ -25,7 +25,7 @@ patient details such as
 
 Also, medication tags can be added to your patients to keep track of their long-term medication history.
 
-We store this data locally on your device. This means that we can benefit from extremely quick loading times!
+We store this data locally on your device. This means that you can benefit from extremely quick loading times!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -34,18 +34,18 @@ We store this data locally on your device. This means that we can benefit from e
 1. Ensure you have Java `11` or above installed in your computer. To check this, run `java --version` in your command
    line interface.
 
-3. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
+2. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
 
-4. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
+3. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
 
-5. Navigate to the home folder with `cd PATH_TO_FOLDER` in your command line interface.
+4. Navigate to the home folder with `cd PATH_TO_FOLDER` in your command line interface.
 
-6. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup.
+5. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup.
 
-7. Note how the app contains some sample data.<br>
+6. Note how the app contains some sample data.<br>
    ![Ui](images/ug-images/Ui-explanations.png)
 
-8. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
    Some example commands you can try:
 
@@ -57,9 +57,9 @@ We store this data locally on your device. This means that we can benefit from e
     * **`get`** `/n Alex`: Retrieve contact's information based on the prefix you provided. In this case, patients
     with the name `Alex` will be displayed.
 
-    * **`view`** `1` : Views the 1st contact shown in the current patient list panel.
+    * **`view`** `1` : Views the 1st contact shown in the current patient list panel by displaying it on the patient details panel.
 
-9. Refer to the [Features](#features) below for details of each command.
+8. Refer to the [Features](#features) below for details of each command.
 
 ---
 ## Glossary
@@ -75,9 +75,6 @@ We store this data locally on your device. This means that we can benefit from e
 | **Medication**    | A drug or other form of medicine that is used to treat or prevent disease.                |
 | **Next-Of-Kin**   | The patient's closest living relative.                                                    |
 | **Ward Number**   | The ward where the inpatient is in.                                                       |
-
-                                                                                                                                                                                                                                                                                                                                  
-
 
 ## Symbols
 
@@ -99,10 +96,10 @@ We store this data locally on your device. This means that we can benefit from e
   e.g. in `get /n NAME`, `NAME` is a parameter which can be used as `get /n John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [m/MEDICATION]` can be used as `n/John Doe m/Ibuprofen` or as `n/John Doe`.
+  e.g. `n/NAME [m/MEDICATION]` can be used as `n/John Doe m/Ibuprofen` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[m/MEDICATION]…​` can be used as ` ` (i.e. 0 times), `m/ibuprofen`, `m/ibuprofen m/lozenges` etc.
+  e.g. `[m/MEDICATION]…​` can be used as ` ` (i.e. 0 times), `m/ibuprofen m/lozenges`, `m/ibuprofen` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -182,7 +179,7 @@ If patient type is outpatient: <br>
 
 ### Editing a patient: `edit`
 
-Edits the patient specified by the index number used in the patient list panel.
+Edits the details of the patient specified by the index number used in the patient list panel.
 
 Format: `edit INDEX {Prefix}/{Parameter}...`
 
@@ -213,8 +210,8 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
 * Existing values will be updated to the input values.
 * When editing medication, the existing medication of the patient will be removed i.e. adding of medication is not
   cumulative.
-* You can remove all the patient’s medications by typing `m/` without specifying any medication after it.
-* To remove upcoming appointments, just type `ua/` without specifying any date after it.
+* To remove all patient’s medications, just type `m/` without specifying any medication after it.
+* To remove all upcoming appointments, just type `ua/` without specifying any date after it.
 </details>
 
 #### Upon Execution
@@ -225,7 +222,7 @@ If not, please follow the error message given and format above to enter the corr
 
 <details>
 <summary><h4> Examples: </h4></summary> 
-
+                                                                                                   
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567`
   and `johndoe@example.com` respectively.
   ![edit John Doe Result](images/ug-images/editCommand/editJohnDoeResult.png)
@@ -239,15 +236,16 @@ If not, please follow the error message given and format above to enter the corr
 
 Deletes the patient specified by the index number used in the patient list panel.
 
+Format: `delete INDEX`
+
+* The index **must be a positive integer** 1, 2, 3, …​
+
 #### Upon Execution
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
 ![Edit Command Result Box](images/ug-images/deleteCommand/deleteCommandResultBox.png)
 
 If not, please follow the error message given and format above to enter the correct command.
 
-Format: `delete INDEX`
-
-* The index **must be a positive integer** 1, 2, 3, …​
 <details>
 <summary><h4> Examples: </h4></summary>
 
@@ -315,7 +313,7 @@ If not, please follow the error message given and format above to enter the corr
 </details>
 
 ### Consulting a patient: `consult`
-Creates a past appointment for the patient on the current date. If the patient has an upcoming appoint for the current 
+Creates a past appointment for the patient on the current date. If the patient has an upcoming appointment for the current 
 date, complete it and clear the upcoming appointment field.
 
 Format: `consult INDEX {Prefix}/{Parameter}...`
@@ -341,7 +339,7 @@ If not, please follow the error message given and format above to enter the corr
 
 * Assume `Alex Yeoh` is currently the first displayed person.
 * `consult 1 diag/Migraine m/Panadol` will create a past appointment for `Alex Yeoh` for the current date and also 
-* clear his upcoming appointment which was scheduled for the current date.
+clear his upcoming appointment which was scheduled for the current date.
   ![Consult Alex Yeoh](images/ug-images/consultCommand/consultAlexYeohCommandResult.png)
 </details>
 
@@ -371,17 +369,17 @@ Finds patients whose names contain any of the given keywords.
 
 Format: `get /n NAME`
 
-* The search is case-insensitive. e.g. `get /n hans` matches `get /n Hans`
-* The order of the keywords does not matter. e.g. `get /n Hans Bo` matches `get /n Bo Hans`
-* Only full words will be matched e.g. `get /n Han` will not match `get /n Hans`
+* The search is case-insensitive. e.g. `get /n hans` matches `get /n Hans`.
+* The order of the keywords does not matter. e.g. `get /n Hans Bo` matches `get /n Bo Hans`.
+* Only full words will be matched e.g. `get /n Han` will not match `get /n Hans`.
 * Patients with names that match at least one keyword will be displayed. e.g. `get /n Hans Bo` will display
-  `Hans Gruber` and `Bo Yang`
+  `Hans Gruber` and `Bo Yang`.
 
 <details>
 <summary><h4> Examples: </h4></summary>
 
-* `get /n john` displays `john` and `John Doe`
-* `get /n alex david` displays `Alex Yeoh`, `David Li`<br>
+* `get /n john` displays `john` and `John Doe`.
+* `get /n alex david` displays `Alex Yeoh`, `David Li`.<br>
   ![result for 'find alex david'](images/ug-images/getCommand/getByNameAlexDavidResult.png)
 </details>
 </details>
@@ -393,10 +391,10 @@ Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
 
 Format: `get /nok PATIENT_NAME`
 
-* The search is case-insensitive. e.g. `get /nok hans` matches `get /nok Hans`
-* The order of the keywords does not matter. e.g. `get /nok Hans Bo` matches `get /nok Bo Hans`
+* The search is case-insensitive. e.g. `get /nok hans` matches `get /nok Hans`.
+* The order of the keywords does not matter. e.g. `get /nok Hans Bo` matches `get /nok Bo Hans`.
 * Patients with names that match at least one keyword will have their next-of-kin details displayed. e.g.
-  `get /nok Hans Bo` will display `Sarar, 12345678, Mom`
+  `get /nok Hans Bo` will display `Sarar, 12345678, Mom`.
 </details>
 
 <details>
@@ -407,11 +405,11 @@ Finds all the patients in that particular hospital wing.
 Format: `get /hw HOSPITAL_WING`
 
 * `HOSPITAL_WING` only allows the following values: South, North, West, East.
-* The search is case-insensitive. e.g `get /hw souTh` matches `get /hw South`
+* The search is case-insensitive. e.g `get /hw souTh` matches `get /hw South`.
 * Only fully inputted values will be used. e.g. `get /hw South No` matches `get /hw south` as `No` does not match
   South, North, West or East.
 * `get /hw south /hw north` matches `get /hw south north`.
-* All the patients in that hospital wing will be displayed. e.g. `get /hw SOUTH` will display `John` `Peter` `Mary`
+* All the patients in that hospital wing will be displayed. e.g. `get /hw SOUTH` will display `John` `Peter` `Mary`.
 </details>
 
 <details>
@@ -422,8 +420,8 @@ Finds all the patients in that particular floor number.
 Format: `get /fn FLOOR_NUMBER`
 
 * `FLOOR_NUMBER` only allows positive integers.
-* All the patients in that floor number will be displayed. e.g. `get /fn 2` will display `John` `Peter` `Mary`
-* Multiple `FLOOR_NUMBER` can be inputted. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor
+* All the patients in that floor number will be displayed. e.g. `get /fn 2` will display `John` `Peter` `Mary`.
+* Multiple `FLOOR_NUMBER` can be inputted. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor.
 * `get /fn 1 /fn 3` matches `get /fn 1 3`.
 </details>
 
@@ -434,7 +432,7 @@ Finds all the patients in that particular ward number.
 
 Format: `get /wn WARD_NUMBER`
 
-* All the patients in that ward number will be displayed. e.g. `get /wn D12` will display `John` `Peter` `Mary`
+* All the patients in that ward number will be displayed. e.g. `get /wn D12` will display `John` `Peter` `Mary`.
 * Multiple `WARD_NUMBER` can be inputted. e.g. `get /wn D001 E301` will display all patients staying in the ward number
   D001 and E301.
 * `get /wn D12 /wn E13` matches `get /wn D12 E13`.
@@ -447,7 +445,8 @@ Finds all the patients by medication.
 
 Format: `get /m MEDICATION`
 
-e.g. `get /m ibuprofen` displays `John` `Peter` `Mary`
+Example:
+* `get /m ibuprofen` displays `John` `Peter` `Mary`.
 </details>
 
 <details>
@@ -458,7 +457,7 @@ Finds all the inpatients in checkUp.
 Format: `get /inp`
 
 Example:
-* `get /inp` displays `Alex`, `Charlotte` and `Roy`
+* `get /inp` displays `Alex`, `Charlotte` and `Roy`.
 </details>
 
 <details>
@@ -469,7 +468,7 @@ Finds all the outpatients in checkUp.
 Format: `get /outp`
 
 Example:
-* `get /outp` displays `Bernice`, `David` and `Irfan`
+* `get /outp` displays `Bernice`, `David` and `Irfan`.
 </details>
 
 <details>
@@ -482,8 +481,8 @@ Format: `get /appt INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Example: `get /appt 3` will display <br>
-`On: 12 Jun 2022; Diagnosis: Common viral flu; Prescribed Medication: [lozenges][panadol]`  <br>
-`On: 01 Jan 2001; Diagnosis: headache, medicine given for 3 days; Prescribed Medication: [ibuprofen]`
+`On: 12 Jun 2022; Diagnosis: Common viral flu; Prescribed Medication: [lozenges][panadol]`.<br>
+`On: 01 Jan 2001; Diagnosis: headache, medicine given for 3 days; Prescribed Medication: [ibuprofen]`.
 </details>
 
 
@@ -495,9 +494,9 @@ Finds all the patients that have an appointment on a particular date.
 Format: `get /appton APPOINTMENT_DATE`
 
 * `APPPOINTMENT_DATE` must be in `dd-MM-yyyy` format.
-* The appointment date refers to date the patient has an appointment with the clinic / hospital.
+* The appointment date refers to date the patient has an appointment with the clinic or hospital.
 * All the patients having appointments on that date will be displayed. e.g. `get /appton 12-12-2020` will display
-  `John` `Peter` `Mary`
+  `John` `Peter` `Mary`.
 </details>
 </details>
 
@@ -509,14 +508,14 @@ If not, please follow the error message given and format above to enter the corr
 
 ### Obtaining total patient count: `count`
 
-Gets total number of patients.
+Gets total number of patients. Also gets the total number of types of long-term medications prescribed to patients, and a breakdown of the number of patients
+taking each type of medication.
 
 Format: `count`
 
-* A count of all existing patients in the hospital will be displayed, along with a list of long-term medications that
-  are being prescribed to patients, with the number of patients being prescribed each medication.
 * The count will be a non-negative number (>= 0). e.g. `count` displays `452` when there are 452 patients noted within
-  the hospital. If 32 of those patients are on long-term antidepressants, the count will also display
+  the hospital.
+* If 32 of those patients are on long-term antidepressants, the count will also display
   `antidepressants: 32`.
 
 ---
@@ -524,19 +523,20 @@ Format: `count`
 
 ### Viewing a Patient : `view`
 
-Displays the details of a patient specified by the index number used in the patient list panel.
+Displays the details of a patient specified by the index number from the patient list panel.
 
 Format: `view INDEX`
 
-* The index **must be a positive integer**, eg. 1, 2, 3...
+* The index **must be a positive integer** 1, 2, 3, …​
+* Details are displayed on the patient details panel.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-On startup, the Detailed Patient View will always default to the first patient if present.
+On startup, the patient details panel will always default to the first patient if present.
 <br>
-It will also automatically focus onto the most recent patient added / edited.
+It will also automatically focus onto the most recent patient added or edited.
 <br>
-When the currently viewed person is removed, it defaults to the first patient if present, and 
-empty else.
+When the current person displayed on the patient details panel is removed, it defaults to viewing the first patient
+in the patient list panel if present, and empty otherwise.
 </div>
 
 #### Upon Execution
@@ -572,7 +572,7 @@ Format: `exit`
 ### Saving the data
 
 checkUp has been created in such a manner that you do not need to manually save data. Simply executing commands saves
-any data created or deleted from the application!
+any data created or deleted from the application.
 
 ### Editing the data file
 
@@ -581,30 +581,36 @@ any data created or deleted from the application!
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
 
 ### GUI Interaction
+
 Although CheckUp is built as a Command Line Interface application, it also supports the following GUI interactions:
 
 #### Person List Panel:
+
 * Clicking on patients in the Patient List Panel will automatically open their info in the Patient Details Panel.
 <details>
 <summary> Example: </summary>
-* Clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel
+
+* Clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel.
 
 ![Clicking on Patient List Panel Gif](images/ug-images/patientListPanel.gif)
 </details>
 
 #### Person Details Panel:
+
 * Clicking on the fields in the Patient Details Panel will automatically prepare them for editing in the Command Input Box.
 <details>
 <summary> Example: </summary>
+
 * If the patient is `Roy Balakrishnan`, clicking on his name will set the text in the Command Input Box to `edit 1 n/`.
 
 ![Clicking on Patient View Panel Gif](images/ug-images/patientViewPanel.gif)
 </details>
 
 ### Keyboard Shortcuts
+
 Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
-  * Clear the text currently in the command box with `Ctrl + Shift + C` .
+  * Clear the text currently in the command box with `Ctrl + Shift + C`.
 
 --------------------------------------------------------------------------------------------------------------------
 
