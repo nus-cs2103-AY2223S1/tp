@@ -33,6 +33,13 @@ public class Date {
     }
 
     /**
+     * Constructs a {@code Date} with the current date.
+     */
+    public Date() {
+        this.date = LocalDate.now();
+    }
+
+    /**
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {

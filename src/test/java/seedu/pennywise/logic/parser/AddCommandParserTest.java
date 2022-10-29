@@ -8,7 +8,6 @@ import static seedu.pennywise.logic.commands.CommandTestUtil.AMT_MOVIE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_ALLOWANCE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_DINNER;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_LUNCH;
-import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_MOVIE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_ALLOWANCE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_DINNER;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_LUNCH;
@@ -31,6 +30,7 @@ import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_DESC_LUNCH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_TYPE_EXPENDITURE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.VALID_TYPE_INCOME;
+import static seedu.pennywise.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.pennywise.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pennywise.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.pennywise.testutil.TypicalEntry.ALLOWANCE;
@@ -46,6 +46,7 @@ import seedu.pennywise.model.entry.Description;
 import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.model.entry.EntryType;
 import seedu.pennywise.testutil.ExpenditureBuilder;
+import seedu.pennywise.testutil.IncomeBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -121,12 +122,18 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tag
-        Entry expectedExpenditure = new ExpenditureBuilder(MOVIE).build();
-        assertParseSuccess(parser, TYPE_EXPENDITURE + DESC_MOVIE + AMT_MOVIE + DATE_MOVIE + TAG_MOVIE,
-                new AddCommand(expectedExpenditure, expenditureType));
+        // no date specified
+        Date today = new Date();
+        String currentDate = " " + PREFIX_DATE + java.time.LocalDate.now()
+                .format(java.time.format.DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-        // to add income
+        Entry expectedExpenditureToday = new ExpenditureBuilder(MOVIE).withDate(today.toString()).build();
+        assertParseSuccess(parser, TYPE_EXPENDITURE + DESC_MOVIE + AMT_MOVIE + currentDate + TAG_MOVIE,
+                new AddCommand(expectedExpenditureToday, expenditureType));
+
+        Entry expectedIncomeToday = new IncomeBuilder(ALLOWANCE).withDate(today.toString()).build();
+        assertParseSuccess(parser, TYPE_INCOME + DESC_ALLOWANCE + AMT_ALLOWANCE + currentDate + TAG_ALLOWANCE,
+                new AddCommand(expectedIncomeToday, incomeType));
     }
 
     @Test
@@ -162,16 +169,6 @@ public class AddCommandParserTest {
         assertParseFailure(
                 parser,
                 TYPE_INCOME + DESC_LUNCH + VALID_AMT_LUNCH + DATE_LUNCH + TAG_LUNCH,
-                expectedMessage);
-
-        // missing date prefix
-        assertParseFailure(
-                parser,
-                TYPE_EXPENDITURE + DESC_LUNCH + AMT_LUNCH + VALID_DATE_LUNCH + TAG_LUNCH,
-                expectedMessage);
-        assertParseFailure(
-                parser,
-                TYPE_INCOME + DESC_LUNCH + AMT_LUNCH + VALID_DATE_LUNCH + TAG_LUNCH,
                 expectedMessage);
 
         // all prefixes missingVALID_
