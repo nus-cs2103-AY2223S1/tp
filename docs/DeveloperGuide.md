@@ -180,7 +180,7 @@ Additionally, it implements the following operations:
 
 - `ClassStorage#saveClass()` — Saves the new class into its storage.
 
-- `ClassStorage#removeExistingClass()` — removes class from storage to free up the time slot.
+- `ClassStorage#removeExistingClass()` — Removes class from storage to free up the time slot.
 
 - `ClassStorage#hasConflict()` — Checks if there is a conflict between the class timings.
 
