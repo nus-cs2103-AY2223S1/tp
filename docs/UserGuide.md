@@ -464,7 +464,7 @@ Action | Format                                                                 
 **Edit** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                    | `find James Jake` <br> `find 8651`
 **Find Tag** | `findTag TAG [MORE_TAGS]`                                                                            | `findTag Operations Outreach`
-**Edit Loan** | `editLoan INDEX amt/AMOUNT reason/REASON` <br> `editLoan NAME amt/AMOUNT reason/REASON`                | `editLoan 1 amt/-20 reason/Buy Logistics` <br> `editLoan alex amt/30 reason reason/payment`
+**Edit Loan** | `editLoan INDEX amt/AMOUNT reason/REASON` <br> `editLoan NAME amt/AMOUNT reason/REASON`                | `editLoan 1 amt/-20 reason/Buy Logistics` <br> `editLoan alex amt/30 reason/payment`
 **List** | `list`                                                                                               | `list`
 **Inspect** | `inspect NAME <OR> INDEX`                                                                            | `inspect 1` or `inspect Alex`
 **Show Notes Panel** | `showNotes`                                                                                          | `showNotes`
