@@ -37,8 +37,8 @@ public class EntryLineChart extends UiPart<Region> {
     public EntryLineChart(XYChart.Series<String, Number> lineChartData) {
         super(FXML);
 
-        yAxis.setLabel(X_AXIS);
-        xAxis.setLabel(Y_AXIS);
+        yAxis.setLabel(Y_AXIS);
+        xAxis.setLabel(X_AXIS);
 
         lineChartData.getData().sort(Comparator.comparing(XYChart.Data::getXValue));
 
