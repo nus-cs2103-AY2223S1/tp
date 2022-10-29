@@ -12,20 +12,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
-import seedu.address.MainApp;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 
-import java.util.logging.Logger;
-
 /**
  * Parses input arguments and creates a new EditTaskCommand object
  */
 public class EditTaskCommandParser implements Parser<EditTaskCommand> {
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     /**
      * Parses the given {@code String} of arguments in the context of the EditTaskCommand
      * and returns an EditTaskCommand object for execution.
@@ -93,7 +88,6 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited() || !isEdited) {
-            logger.info("TEST");
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
         }
 
