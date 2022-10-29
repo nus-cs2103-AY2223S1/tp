@@ -32,7 +32,6 @@ public class GradeProgressCommand extends Command {
             + PREFIX_GRADE_PROGRESS + " MATH:A";
 
     public static final String MESSAGE_ADD_GRADE_PROGRESS_SUCCESS = "Added grade progress to Person: %1$s";
-    public static final String MESSAGE_DELETE_GRADE_PROGRESS_SUCCESS = "Removed grade progress from Person: %1$s";
 
     public static final String MESSAGE_IN_DAY_MODE = "You need to be in list or view mode to add a grade progress.";
 
@@ -78,19 +77,7 @@ public class GradeProgressCommand extends Command {
             String[] newNameKeywords = {personToEdit.getName().fullName};
             model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
         }
-        return new CommandResult(generateSuccessMessage(editedPerson));
-    }
-
-    /**
-     * Generates a command execution success message based on whether
-     * the gradeProgress is added to or removed from
-     * {@code personToEdit}.
-     */
-    private String generateSuccessMessage(Person personToEdit) {
-        String message = !gradeProgress.value.isEmpty()
-                ? MESSAGE_ADD_GRADE_PROGRESS_SUCCESS
-                : MESSAGE_DELETE_GRADE_PROGRESS_SUCCESS;
-        return String.format(message, personToEdit);
+        return new CommandResult(String.format(MESSAGE_ADD_GRADE_PROGRESS_SUCCESS, personToEdit));
     }
 
     @Override
