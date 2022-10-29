@@ -228,6 +228,45 @@ html {
   }
 }
 
+.def-tooltip {
+  position: relative;
+  display: inline-block;
+
+  > .popup {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    $width: 240%;
+    width: $width;
+    margin-left: calc(-#{$width} / 2);
+    box-sizing: border-box;
+    padding: 6px 10px;
+
+    background-color: rgba($color: black, $alpha: 0.9);
+    border-radius: 6px;
+    color: white;
+    font-size: small;
+
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    text-align: center;
+
+    :last-child {
+      font-size: smaller;
+      color: lightgray;
+    }
+
+    visibility: hidden;
+  }
+
+  &:hover > .popup {
+    visibility: visible;
+  }
+}
+
 article.post {
   a {
     color: #00769a;
