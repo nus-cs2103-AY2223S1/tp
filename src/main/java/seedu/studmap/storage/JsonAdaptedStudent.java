@@ -163,9 +163,6 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     StudentID.class.getSimpleName()));
         }
-        if (!StudentID.isValidStudentID(studentID)) {
-            throw new IllegalValueException(StudentID.MESSAGE_CONSTRAINTS);
-        }
         final StudentID modelId = new StudentID(studentID);
 
         if (gitName == null) {
