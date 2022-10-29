@@ -206,7 +206,7 @@ Examples:
 
 Edits an existing student in a specified module.
 
-Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DATE] [d/description]`
+Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DATE] [d/DESCRIPTION]`
 
 * Edits the consultation at the specified `INDEX`. The index refers to the index number shown in the displayed consultation list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -412,23 +412,23 @@ _Details coming soon..._
 | **Exit**                   | `exit`                                                                                                                                                                                                               |
 
 ## 6. Prefix summary
-| Prefix    | Symbolise        |
-|-----------|------------------|
-| **att/**  | attendance       |
-| **by/**   | sorting criteria |
-| **d/**    | description      |
-| **D/**    | date or day      |
-| **e/**    | email            |
-| **f/**    | field            |
-| **g/**    | grade            |
-| **i/**    | id               |
-| **m/**    | module           |
-| **n/**    | name             |
-| **p/**    | priority         |
-| **ph/**   | phone            |
-| **part/** | participation    |
-| **t/**    | tag              |
-| **T/**    | time             |
-| **tut/**  | tutorial         |
-| **tele/** | Telegram handle  |
-| **v/**    | venue            |
+| Prefix    | Symbolise        | Used in                                                                                |
+|-----------|------------------|----------------------------------------------------------------------------------------|
+| **att/**  | attendance       | add student</br> edit student                                                          |
+| **by/**   | sorting criteria | sort reminder                                                                          |
+| **d/**    | description      | add consultation</br> edit consultation</br> add reminder</br> edit reminder           |
+| **D/**    | date or day      | add consultation</br> edit consultation</br> add reminder</br> edit reminder           |
+| **e/**    | email            | add student</br> edit student                                                          |
+| **f/**    | field            | switch <br/> clear                                                                     |
+| **g/**    | grade            | add student</br> edit student                                                          |
+| **i/**    | id               | add student</br> edit student</br> find                                                |
+| **m/**    | module           | add student</br> edit student</br> find</br> add tutorial</br> edit tutorial</br> add consultation</br> edit consultation</br>|
+| **n/**    | name             | add student</br> edit student</br> find</br> add tutorial</br> edit tutorial</br> add consultation</br> edit consultation</br> add reminder</br> edit reminder</br> |
+| **p/**    | priority         | add reminder</br> edit reminder                                                        |
+| **ph/**   | phone            | add student</br> edit student                                                          |
+| **part/** | participation    | add student</br> edit student                                                          |
+| **t/**    | tag              | add student</br> edit student                                                          |
+| **T/**    | time             | add student</br> edit student                                                          |
+| **tut/**  | tutorial         | add student</br> edit student</br> find</br> add tutorial</br> edit tutorial</br>      |
+| **tele/** | Telegram handle  | add student</br> edit student                                                          |
+| **v/**    | venue            | add tutorial</br> edit tutorial</br> add consultation</br> edit consultation</br>      |
