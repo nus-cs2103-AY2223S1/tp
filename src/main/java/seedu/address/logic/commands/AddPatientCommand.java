@@ -20,7 +20,7 @@ public class AddPatientCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("addpatient", "ap");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a patient to the HealthContact. "
+            + ": Adds a patient to HealthContact.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

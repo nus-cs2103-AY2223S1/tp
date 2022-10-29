@@ -30,7 +30,6 @@ It helps to keep track of patient data, patient appointments and patient bills f
 * Help (help)
 * Clear all data (clear)
 * Select a patient (selectpatient)
-* Select a bill (selectbill)
 * Select an appointment (selectappointment)
 * Set a bill to be paid (setpaid)
 * Set a bill to be unpaid (setunpaid)
