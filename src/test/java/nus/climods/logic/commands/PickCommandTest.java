@@ -20,11 +20,18 @@ public class PickCommandTest {
     private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UniqueUserModuleList(),
             new UserPrefs());
 
+    /**
+     * Null module throws exception.
+     */
     @Test
     public void construct_nullModule_throwsException() {
         assertThrows(NullPointerException.class, () -> new PickCommand(null, null, null));
     }
 
+    /**
+     * Successful execution of PickCommand.
+     * @throws CommandException
+     */
     @Test
     public void execute_pick_success() throws CommandException {
         String expectedMessage = String.format(PickCommand.MESSAGE_SUCCESS, "CS1010J TUT 02");
@@ -57,4 +64,27 @@ public class PickCommandTest {
 
         assertThrows(CommandException.class, () -> pickCommand.execute(model));
     }
+
+    /**
+     * Lecture is unpickable for cs1010j.
+     * @throws CommandException
+     */
+    @Test
+    public void execute_addLessonIdUnpickable_throwsException() {
+        PickCommand pickCommand = new PickCommand("CS1010J", LessonTypeEnum.LEC, "15");
+
+        assertThrows(CommandException.class, () -> pickCommand.execute(model));
+    }
+
+    /**
+     * Missing module.
+     * @throws CommandException
+     */
+    @Test
+    public void execute_pickLessonForMissingModule_throwsException() {
+        PickCommand pickCommand = new PickCommand("CS2100", LessonTypeEnum.TUT, "15");
+
+        assertThrows(CommandException.class, () -> pickCommand.execute(model));
+    }
+
 }
