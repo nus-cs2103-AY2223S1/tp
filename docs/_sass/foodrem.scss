@@ -232,6 +232,11 @@ html {
   position: relative;
   display: inline-block;
 
+  > a {
+    color: inherit !important;
+    text-decoration: underline dotted;
+  }
+
   > .popup {
     -webkit-user-select: none;
     -moz-user-select: none;
