@@ -159,10 +159,10 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private Comparator<Student> getRa2Comparator(Order order) {
         return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getGradesList().getGrade("RA2").score
-                .compareTo(y.getGradesList().getGrade("RA2").score)
-                : y.getGradesList().getGrade("RA2").score
-                .compareTo(x.getGradesList().getGrade("RA2").score);
+                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("RA2").score),
+                  Integer.parseInt(y.getGradesList().getGrade("RA2").score))
+                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("RA2").score),
+                  Integer.parseInt(x.getGradesList().getGrade("RA2").score));
     }
 
     private Comparator<Student> getMidtermComparator(ArgumentMultimap argMultimap,
@@ -176,10 +176,10 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private Comparator<Student> getMidtermComparator(Order order) {
         return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getGradesList().getGrade("Midterm").score
-                .compareTo(y.getGradesList().getGrade("Midterm").score)
-                : y.getGradesList().getGrade("Midterm").score
-                .compareTo(x.getGradesList().getGrade("Midterm").score);
+                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("Midterm").score),
+                Integer.parseInt(y.getGradesList().getGrade("Midterm").score))
+                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("Midterm").score),
+                Integer.parseInt(x.getGradesList().getGrade("Midterm").score));
     }
 
     private Comparator<Student> getPracticalComparator(ArgumentMultimap argMultimap,
@@ -193,10 +193,10 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private Comparator<Student> getPracticalComparator(Order order) {
         return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getGradesList().getGrade("Practical").score
-                .compareTo(y.getGradesList().getGrade("Practical").score)
-                : y.getGradesList().getGrade("Practical").score
-                .compareTo(x.getGradesList().getGrade("Practical").score);
+                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("Practical").score),
+                Integer.parseInt(y.getGradesList().getGrade("Practical").score))
+                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("Practical").score),
+                Integer.parseInt(x.getGradesList().getGrade("Practical").score));
     }
 
     private Comparator<Student> getFinalsComparator(ArgumentMultimap argMultimap,
@@ -210,10 +210,10 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private Comparator<Student> getFinalsComparator(Order order) {
         return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getGradesList().getGrade("Finals").score
-                .compareTo(y.getGradesList().getGrade("Finals").score)
-                : y.getGradesList().getGrade("Finals").score
-                .compareTo(x.getGradesList().getGrade("Finals").score);
+                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("Finals").score),
+                Integer.parseInt(y.getGradesList().getGrade("Finals").score))
+                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("Finals").score),
+                Integer.parseInt(x.getGradesList().getGrade("Finals").score));
     }
 }
 
