@@ -112,7 +112,7 @@ To install *MyInsuRec*, simply follow the steps below:
 
 1. Ensure that your system meets the [system requirements](#31-system-requirements).
 
-1. Download the latest `MyInsuRec.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-4/tp/releases).
+1. Download the latest **MyInsuRec.jar** from [here](https://github.com/AY2223S1-CS2103T-W16-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your MyInsuRec.
 
@@ -514,7 +514,7 @@ MyInsuRec data are saved in the hard disk automatically after any command that c
 
 #### 5.5.2 Edit the data file
 
-MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
+MyInsuRec data are saved as a JSON file **[JAR file location]/data/myinsurec.json**. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
@@ -531,13 +531,13 @@ MyInsuRec comes with a light and dark color scheme. To change between the two, s
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app, then overwrite the `myinsurec.json` file created by the app with the version of the file from the previous computer.
+**A**: Install the app, then overwrite the **myinsurec.json** file created by the app with the version of the file from the previous computer. The **myinsurec.json** is located in **[JAR file location]/data/myinsurec.json**.
 
 **Q**: I accidentally closed the app, will my data still be there?<br>
 **A**: Yes, your data is saved automatically after every action.
 
 **Q**: My computer does not recognise the file type jar. How do I open the app?<br>
-**A**: Install Java version 11 and above from the official Java website.
+**A**: Check if your computer already has Java 11 or above installed from [8.1 Checking your system's Java version](#81-checking-your-systems-java-version). If not, follow the instructions to install Java.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -573,14 +573,14 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 
 1. Open your terminal.
    * Windows
-     * Use `Win` + `S` to open search.
+     * Use **Win** + **S** to open search.
      * Type in 'Terminal' to search for it and click on it to launch.
    * macOS
-     * Use `Cmd` + `Space` to open Spotlight search.
+     * Use **Cmd** + **Space** to open Spotlight search.
      * Type in 'Terminal' to search for it and click on it to launch.
    * Linux
-     * Use `Ctrl` + `Alt` + `T` to open the Terminal.
-2. In your terminal, type in `java --version` and click enter.
+     * Use **Ctrl** + **Alt** + **T** to open the Terminal.
+2. In your terminal, type in **java --version** and click enter.
 3. The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
 
 ![JavaVersionTroubleShoot](images/troubleshoot/JavaVersionTroubleShoot.png)
