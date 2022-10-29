@@ -1,9 +1,10 @@
 package seedu.address.ui;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import org.ocpsoft.prettytime.PrettyTime;
 import seedu.address.model.person.github.Repo;
 
 /**

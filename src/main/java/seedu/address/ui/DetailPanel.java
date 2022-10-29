@@ -18,8 +18,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.github.User;
 import seedu.address.model.person.github.Repo;
+import seedu.address.model.person.github.User;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
