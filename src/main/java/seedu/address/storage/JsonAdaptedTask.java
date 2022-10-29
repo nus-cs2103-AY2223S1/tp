@@ -70,6 +70,7 @@ public class JsonAdaptedTask {
         isDone = Task.covertIsDoneFromBooleanToString(source.isDone());
     }
 
+
     /**
      * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
      *
@@ -131,6 +132,9 @@ public class JsonAdaptedTask {
         final Boolean modelIsDone = Task.covertIsDoneFromStringToBoolean(isDone);
 
         Person modelPerson = null;
+        if (email == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        }
         if (email != null) {
             if (!Email.isValidEmail(email)) {
                 throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
