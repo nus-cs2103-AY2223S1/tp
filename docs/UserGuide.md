@@ -523,6 +523,18 @@ Examples:
 * `filter-o as/Negotiating p/90-900`
 * `filter-o ar/good with children os/Delivering p/80-100`
 
+Notes:
+
+* Having multiple prefixes of the same type is allowed. One example of this is:
+`filter-o os/Pending os/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
+* Note that Order Statuses are case-sensitive, so the input `filter-o os/delivering` may throw an error. To play safe, use the following words for Order status only:
+
+| Order Status | Input word | Usage                   |
+|--------------|------------|-------------------------|
+| PENDING      | Pending | filter-o os/Pending     |
+| NEGOTIATING  | Negotiating | filter-o os/Negotiating |
+| DELIVERING   | Delivering | filter-o os/Delivering |
+
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
