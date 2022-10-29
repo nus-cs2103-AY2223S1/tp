@@ -8,11 +8,12 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
  */
 public class Weight {
     public static final int MAX_WEIGHT = 200;
-    public static final int MIN_WEIGHT = 0;
+    public static final int MIN_WEIGHT = 9;
     public static final String DEFAULT_VALUE = "0";
     public static final String UNIT = "kg";
     public static final String VALIDATION_REGEX = "\\d+";
-    public static final String MESSAGE_CONSTRAINTS = "Weight must take on a positive number that is not too large.";
+    public static final String MESSAGE_CONSTRAINTS = "Weight must take on a positive number that "
+            + "is between 10 and 199.";
     public final String value;
 
     /**
