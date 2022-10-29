@@ -37,11 +37,12 @@ e.g.
 
 ### 2.2 Symbols
 
-| Symbol               | Meaning                                                                       |
-|----------------------|-------------------------------------------------------------------------------|
-| `command`            | Indicates some command or parameter that can be entered into MyInsuRec's CLI. |
-| :information_source: | Additional information that can be helpful.                                   |
-| :exclamation:        | Crucial information that you should be aware of.                              |
+| Symbol               | Meaning                                                                 |
+|----------------------|-------------------------------------------------------------------------|
+| `command`            | Indicates some command or parameter that can be entered into MyInsuRec. |
+| :information_source: | Additional information.                                                 |
+| :exclamation:        | Crucial information needed for proper use of MyInsuRec.                 |
+| :bulb:               | Tips and tricks.                                                        |
 
 
 ### 2.3 Terminologies
@@ -137,7 +138,7 @@ Here, we will be guiding you on the basic features of *MyInsuRec* and help you g
 
 ![AddClientTommy](images/quick-start/AddClientTommy.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">**:information_source: Note:**
 Both client name and their phone number are **needed** to add the client into *MyInsuRec*.
 </div>
 
@@ -147,7 +148,7 @@ Both client name and their phone number are **needed** to add the client into *M
 
 4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com b/09091973` also adds in the client's email and birthday directly.
 
-<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 See [addClient](#311-adding-a-client-addclient) for more variety of optional fields!
 </div>
 
@@ -165,7 +166,7 @@ See [addClient](#311-adding-a-client-addclient) for more variety of optional fie
 
 8. Suppose your company introduced a new product 'MyInsureCare' that you are interested to sell, and would like to add it into *MyInsuRec*! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product. The image below shows *MyInsuRec* after adding the product.
 
-<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 You can use `listClient`, `listMeeting` and `listProduct` to traverse between the different lists accordingly.
 </div>
 
@@ -175,7 +176,7 @@ You can use `listClient`, `listMeeting` and `listProduct` to traverse between th
 
 ![AddClientJunYiWithProduct](images/quick-start/AddClientJunYiWithProduct.png)
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
 Only products added already via `addProduct` can be used! This is to help ensure the cleanliness of *MyInsuRec*. So, add your product via `addProduct` before using it to add a client with that product! See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
@@ -239,7 +240,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * A client must have a `NAME` and a `PHONE_NUMBER`.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
 In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. 
 See [addProduct](#331-adding-a-product-addproduct).
 </div>
@@ -266,7 +267,7 @@ Examples:
 * `listClient pd/Product1`
 * `listClient b/week`
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. 
+<div markdown="block" class="alert alert-warning">**:exclamation: Caution:** Both filters cannot exist simultaneously. 
 A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
@@ -340,10 +341,8 @@ as shown by executing the [`listClient`](#512-list-clients-listclient) command.
 Examples:
 * `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal` 
 
-<div markdown="span" class="alert alert-success">:information_source: **Friendly Tip:**
-MyInsuRec can help you detect conflicting meeting times! For example, attempting
-to add a meeting from 1330 to 1430 when you already have one scheduled for 
-1300 to 1400 will display an error message.
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
+MyInsuRec can help you detect conflicting meeting times! For example, attempting to add a meeting from 1330 to 1430 when you already have one scheduled for 1300 to 1400 will display an error message.
 </div>
 
 #### 5.2.2 List meetings: `listMeeting`
@@ -356,20 +355,22 @@ Use case:
 1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
 2. Organize all your meetings in a single place, so you don't have to worry about missing a meeting ever again.
 
-<div markdown="span" class="alert alert-info">
-   
-**:information_source: Note:**<br>
-   
-* You can use the `d/DATE` parameter optionally to view the list of meetings happening in that time period!<br>
-* `DATE` is specified by keywords. The possible keywords are:<br>
-  * `tomorrow` for a list of meetings happening tomorrow;<br>
-  * `week` for a list of meetings happening in the next week;<br>
-  * `month` for a list of meetings happening in the next month.<br>
-* For example, `listMeeting d/week` will show a list of meetings happening in the next week.<br>
-* This is an excellent feature if you want to get a quick overview of your upcoming schedule!<br>
+<div markdown="block" class="alert alert-info">**:information_source: Note:**
+
+* You can use the `d/DATE` parameter optionally to view the list of meetings happening in that time period!
+
+* `DATE` is specified by keywords. The possible keywords are:
+  * `tomorrow` for a list of meetings happening tomorrow;
+  * `week` for a list of meetings happening in the next week;
+  * `month` for a list of meetings happening in the next month.
+
+* For example, `listMeeting d/week` will show a list of meetings happening in the next week.
+
+* This is an excellent feature if you want to get a quick overview of your upcoming schedule!
+
 </div>
 
-<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+<div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
 This command is used to get the index of a meeting. In order to perform commands related to a particular meeting such as `editMeeting`, you will have to first get its index by running `listMeeting`. So, expect to use this command a lot!
 </div>
 
@@ -477,11 +478,11 @@ Format: `delProduct i/INDEX`
 Use case:
 1. If you no longer offer this product and no clients have purchased it before, you can remove it from *MyInsuRec* and prevent it from cluttering up *MyInsuRec*!
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-* This command is usually preceded by `listProduct`. This is because the product's index number `INDEX` is required to use this command, and `listProduct` shows a list of all the products with their index numbers.
+<div markdown="span" class="alert alert-info">**:information_source: Note:**
+This command is usually preceded by `listProduct`. This is because the product's index number `INDEX` is required to use this command, and `listProduct` shows a list of all the products with their index numbers.
 </div>
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
 This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from MyInsuRec's product list, it also **removes the product from any association with your clients**.
 </div>
 
@@ -516,7 +517,7 @@ MyInsuRec data are saved in the hard disk automatically after any command that c
 
 MyInsuRec data are saved as a JSON file **[JAR file location]/data/myinsurec.json**. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
 
