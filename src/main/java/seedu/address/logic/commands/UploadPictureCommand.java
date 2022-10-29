@@ -55,6 +55,7 @@ public class UploadPictureCommand extends Command {
             throw new CommandException(IMAGE_CONSTRAINTS);
         }
         ImageStorage.uploadImage(studentToEdit, studentPicture);
+        model.updateFilteredStudentList(x -> x.equals(studentToEdit));
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
