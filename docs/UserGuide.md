@@ -89,7 +89,7 @@ email address, home address, remarks and tags.
 
 Notes on symbols in first column:
 
-`*`  Must have(If they are duplicate prefixes, only the last one will be taken into account)
+`*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
 
 `+`  Can have multiple
 
@@ -187,7 +187,7 @@ Notes on symbols in first column:
 
 `**` Must be directly after command word
 
-`*`  Must have(Accept last one when have multiple)
+`*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
 
 #### Examples:
 
