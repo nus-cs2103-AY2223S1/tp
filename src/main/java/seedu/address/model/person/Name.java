@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -38,6 +40,9 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String toLowerCase() {
+        return fullName.toLowerCase();
+    }
 
     @Override
     public String toString() {
