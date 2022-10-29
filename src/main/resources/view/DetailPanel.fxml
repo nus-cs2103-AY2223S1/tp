@@ -15,10 +15,10 @@
                     <Circle fx:id="profileImageContainer" radius="60.0"/>
                     <VBox spacing="8.0" HBox.hgrow="ALWAYS">
                         <children>
-                            <Label fx:id="nameLabel" />
-                            <Label fx:id="roleLabel" />
-                            <Label fx:id="timezoneLabel" />
-                            <Label fx:id="addressLabel" />
+                            <Label fx:id="nameLabel"/>
+                            <Label fx:id="roleLabel"/>
+                            <Label fx:id="timezoneLabel"/>
+                            <Label fx:id="addressLabel"/>
                         </children>
                     </VBox>
                 </children>
@@ -27,7 +27,10 @@
                 <Label styleClass="sub-header" text="CONTACTS"/>
                 <HBox spacing="10.0" fx:id="contactBoxContainer" VBox.vgrow="ALWAYS"/>
             </VBox>
-            <ListView fx:id="githubRepoListView" VBox.vgrow="ALWAYS" />
+            <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+                <Label styleClass="sub-header" text="REPOSITORIES"/>
+                <ListView fx:id="githubRepoListView" VBox.vgrow="ALWAYS"/>
+            </VBox>
         </VBox>
     </children>
 </StackPane>
