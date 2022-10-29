@@ -8,7 +8,6 @@ import static seedu.pennywise.logic.commands.CommandTestUtil.AMT_MOVIE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_ALLOWANCE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_DINNER;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_LUNCH;
-import static seedu.pennywise.logic.commands.CommandTestUtil.DATE_MOVIE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_ALLOWANCE;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_DINNER;
 import static seedu.pennywise.logic.commands.CommandTestUtil.DESC_LUNCH;
