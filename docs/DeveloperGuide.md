@@ -2,6 +2,14 @@
 layout: page
 title: Developer Guide
 ---
+
+PleaseHireUs (PHU) is an internship tracking application specially customised for CS students who are struggling to 
+keep track of their applications. PHU has been optimized for use via a Command Line Interface (CLI) while still 
+having the benefits of a Graphical User Interface (GUI). Fast typist would be able to work more efficiently.
+
+![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
+
+
 * Table of Contents
 {:toc}
 
@@ -15,7 +23,39 @@ title: Developer Guide
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
 
 --------------------------------------------------------------------------------------------------------------------
+## About this Developer Guide
 
+This guides aims to: <br>
+
+1. Provide developers with a brief overview of the design architecture of our product.
+2. Explain some design considerations in the development of the application.
+3. Product interested developers with documentations to continue development of our product.
+
+--------------------------------------------------------------------------------------------------------------------
+## Navigating the Developer Guide
+**Information Box**
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** Provides extra information that is useful
+</div>
+
+**Tip Box**
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Provides pointers to enhance your experience using the application 
+</div>
+
+**Warning Box**
+<div markdown="block" class="alert alert-danger">
+**:exclamation: Warning: Important messages**
+</div>
+
+**Highlights** <br>
+`commands` or `PARAMETERS`
+
+**Keyboard Inputs**<br>
+
+<button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -527,7 +567,7 @@ _{To be updated}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix A: Requirements**
 
 ### Product scope
 
@@ -785,12 +825,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-
+| Term                           | Description                                                                                                                                        |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
+| Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
+| Command                        | Instruction typed by the user for PHU to execute.                                                                                                  |
+| Parameter                      | A component of a command for the user to input information. For PHU context, this refers to the internship application details.                    |
+| Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
+| Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
+| PHU                            | PleaseHireUs                                                                                                                                       | 
+| Mainstream                     | Windows, Linux, Unix, OS-X                                                                                                                         | 
+| MSS                            | Main Success Scenario                                                                                                                              | 
+| MCV                            | Model Controller View. A commonly used software architectural pattern for developing user interfaces                                               | 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -805,8 +855,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
+   2. Double-click the jar file.<br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+ 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
@@ -857,20 +908,20 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing of internship(s)
 
-    1. Prerequisites: There are existing internship(s) stored in the application
+    1. Prerequisites: There are existing internship(s) stored in the application.
    
     2. Test case: `list`<br>
-       Expected: Shows the full list of internships
+       Expected: Shows the full list of internships.
    
     3. Test case: `list c/n`<br>
-       Expected: Shows the full list of internships sorted by the company name in lexicographically order
+       Expected: Shows the full list of internships sorted by the company name in lexicographically order.
    
     4. Test case: `list c/d true`<br>
-      Expected: Shows the full list of internships sorted by the date. Internships are sorted from the latest to earliest date
+      Expected: Shows the full list of internships sorted by the date. Internships are sorted from the latest to earliest date.
 
 ### Deleting internship(s)
 
-1. Deleting internship(s) while all internships are being shown
+1. Deleting internship(s) while all internships are being shown.
 
    1. Prerequisites: List all internships using the `list` command. The list is non-empty.
 
@@ -880,7 +931,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0 2`<br>
       Expected: No internship is deleted. Error details shown in the status message.
 
-1. Deleting internship(s) while only the selected internships are being shown
+1. Deleting internship(s) while only the selected internships are being shown.
 
    1. Prerequisites: List specific internships using the `find` command. The list is non-empty.
 
@@ -892,16 +943,16 @@ testers are expected to do more *exploratory* testing.
 
 ### Finding internship(s)
 1. Finding internship(s)
-    1. Prerequisites: Add internships using the add command. The list can be empty
+    1. Prerequisites: Add internships using the add command. The list can be empty.
     
     2. Test case: `find Shop`<br>
         Expected: List all internships with company name containing `Shop`.
    
     3. Test case: `find` <br>
-        Expected: The application shows an error message
+        Expected: The application shows an error message.
    
     4. Test case: `find c/unknown_category keyword`
-        Expected: The application shows an error message
+        Expected: The application shows an error message.
    
     5. Test case: `find c/p engineer`
         Expected: List all internships with position containing the word `engineer`.
@@ -916,14 +967,14 @@ testers are expected to do more *exploratory* testing.
         Expected: The application throws an error message since an invalid date format is given.
    
     9. Test case: `find c/pr APPLIED`
-        Expected: The application lists all application process in stage `APPLIED`
+        Expected: The application lists all application process in stage `APPLIED`.
    
     10. Test case: `find c/pr Unknown_Process`
         Expected: The applications throws an error message.
 
 ### Update internship
 
-1. Updating internship while all internships are being shown
+1. Updating internship while all internships are being shown.
     1. Prerequisites: List all internships using the `list` command. The list is non-empty.
 
     2. Test case: `edit 1 pr/OFFER`<br>
@@ -935,7 +986,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `edit 1 cuk/high salary`<br>
        Expected: No internship is edited. Error details shown in the status message.
    
-2. Updating internship while only the selected internships are being shown
+2. Updating internship while only the selected internships are being shown.
     1. Prerequisites: List specific internships using the `find` command. The list is non-empty.
    
     2. Test case: `edit 2 p/Quant researcher r/get free lunch`<br>
@@ -946,7 +997,7 @@ testers are expected to do more *exploratory* testing.
 
 ### View internship
 
-1. Viewing internship(s) while all internships are being shown
+1. Viewing internship(s) while all internships are being shown.
 
     1. Prerequisites: List all internships using the `list` command. The list is non-empty.
 
@@ -956,7 +1007,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `view 0`<br>
        Expected: No internship is viewed. Error details shown in the status message.
 
-2. Viewing internship(s) while only the selected internships are being shown
+2. Viewing internship(s) while only the selected internships are being shown.
 
     1. Prerequisites: List specific internships using the `find` command. The list is non-empty.
 

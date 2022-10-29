@@ -228,7 +228,6 @@ Examples:
 | **`position`**            | `p`        |
 | **`application_process`** | `pr`       |
 | **`date`**                | `d`        |
-| **`tag`**                 | `t`        |
 
 `list c/company_name` is equivalent to `list c/n`
 </div>
