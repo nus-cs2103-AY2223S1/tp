@@ -273,9 +273,16 @@ html {
     }
 
     visibility: hidden;
+    opacity: 0;
+    transition: opacity ease-in-out 150ms;
+
+    @media screen and (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
   }
 
   &:hover > .popup {
+    opacity: 1;
     visibility: visible;
   }
 }
