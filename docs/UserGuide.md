@@ -50,6 +50,16 @@ To get you started, you might want to read the section on [how to use this User 
 * [Prefix Summary](#prefix-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+## User Interface Overview
+
+![UiOverview](images/UiOverview.jpg)
+
+This application UI is split into `5 sections`. 
+* `Input Command`: This is where you should key in your commands, and press enter to execute
+* `Application's Reply`: Errors or success messages will appear here after you execute any commands
+* `List of Clients`: Every client that you have will appear here
+* `List of Transactions`: Transactions with a specific client will appear here if you use the [view command](#viewing-a-client--view), or it will show all transactions with every client if you use the [filter command](#filtering-the-transaction-display--filter)
+* `Remarks of specified client`: Remarks of specified client will appear here
 
 ## Quick start
 
