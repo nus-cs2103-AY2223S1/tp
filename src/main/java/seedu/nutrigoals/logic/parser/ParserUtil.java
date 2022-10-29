@@ -26,7 +26,7 @@ import seedu.nutrigoals.model.user.Weight;
  */
 public class ParserUtil {
 
-    public static final String DEFAULT_TIME = "T00:00:00";
+    public static final String DEFAULT_TIME = "T00:00";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**

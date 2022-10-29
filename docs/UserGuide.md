@@ -69,7 +69,7 @@ Format: `delete INDEX`
 Example:
 
 * `delete 1` deletes the first item in the food list.
-* `list 2022-10-23` followed by `delete 1` will delete the first food item recorded on 23 October 2022.
+* `list 2022-10-23` followed by `delete 1` will delete the first food item on the list for 23 October 2022.
 
 ### Editing a food item : `edit`
 
@@ -87,8 +87,7 @@ Example:
 * `edit 2 n/rice c/300 t/dinner` edits the 2nd food item for dinner to rice with 300 calories.
 * `edit 2 n/noodles` edits the name of 2nd food item to noodles.
 * `edit 2 c/100 n/bread` edits the name and calorie content of the first item to bread and 100 respectively.
-* `list 2022-10-10` followed by `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10
-to sushi.
+* `list 2022-09-15` followed by `edit 1 n/sushi` will edit the name of the first food item on the list for 15 September 2022 to sushi.
 
 ### Listing all foods for a day: `list`
 
@@ -103,7 +102,7 @@ Format: `list [DATE]`
 Example:
 
 * `list` shows a list of all food items and their calories for the current day.
-* `list 2022-11-27` shows a list of all food items and their calories for 27 November 2022.
+* `list 2022-10-23` shows a list of all food items and their calories recorded on 23 October 2022.
 
 ### Finding the calorie content of a food item: `find`
 
@@ -121,7 +120,7 @@ Example:
 
 ### Setting a target daily calorie intake: `target`
 
-Sets a target daily calorie intake.
+Sets a target calorie intake.
 
 Format: `target CALORIE`
 
