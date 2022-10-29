@@ -25,7 +25,7 @@ public class AddPersonToMeetingCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the list of people into the specified meeting based on the index from the displayed meetings.\n"
             + "Parameters: Meeting index ; NAMES OF PEOPLE (from address book) YOU ARE MEETING, (split names by , )\n"
-            + "Example: " + COMMAND_WORD + "1 ; Alex Yeoh, Anna Lim";
+            + "Example: " + COMMAND_WORD + " 1 ; Alex Yeoh, Anna Lim";
 
     public static final String MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS = "Added the list of persons";
 
