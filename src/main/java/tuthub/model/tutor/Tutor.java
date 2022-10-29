@@ -105,8 +105,15 @@ public class Tutor {
             return true;
         }
 
-        return otherTutor != null
-                && otherTutor.getName().equals(getName());
+        if (otherTutor != null && otherTutor.getStudentId().equals(getStudentId())) {
+            return true;
+        }
+
+        if (otherTutor != null && otherTutor.getEmail().equals(getEmail())) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
