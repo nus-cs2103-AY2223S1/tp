@@ -182,8 +182,9 @@ public class PersonMatchesPredicate implements Predicate<Person> {
             return true;
         }
         Set<String> personList = makeTagsList(person);
+        tagsSet = tagsSet.stream().map(String::toLowerCase).collect(Collectors.toSet());
         if (needsAllTags) {
-            return personList.equals(tagsSet);
+            return personList.containsAll(tagsSet) || personList.equals(tagsSet);
         } else {
             personList.retainAll(tagsSet);
             return !personList.isEmpty();

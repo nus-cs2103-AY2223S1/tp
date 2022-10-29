@@ -548,7 +548,6 @@ public class PersonMatchesPredicateTest {
         PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
                 .withModulesSet(new HashSet<>(List.of("CS1101S")), false).build();
 
-
         assertTrue(predicate.test(new StudentBuilder().withModuleCodes("CS1101S", "CS2222", "CS3333").build()));
         assertTrue(predicate.test(new ProfessorBuilder().withModuleCode("CS1101S").build()));
         assertTrue(predicate.test(new TeachingAssistantBuilder().withModuleCode("CS1101S").build()));
@@ -576,5 +575,116 @@ public class PersonMatchesPredicateTest {
         // ALL search mixed case
         predicate.setModulesSet(new HashSet<>(Arrays.asList("cs1101S", "cS2222", "Cs3333")), true);
         assertTrue(predicate.test(new StudentBuilder().withModuleCodes("CS1101S", "CS2222", "CS3333").build()));
+    }
+
+    @Test
+    public void test_moduleDoesNotContainKeywords_returnsFalse() {
+        // Zero keywords
+        PersonMatchesPredicate predicate = new PersonMatchesPredicate();
+        predicate.setModulesSet(new HashSet<>(), false);
+
+        assertFalse(predicate.test(new StudentBuilder().withModuleCodes("CS1101S").build()));
+        assertFalse(predicate.test(new ProfessorBuilder().withModuleCode("CS1231S").build()));
+        assertFalse(predicate.test(new TeachingAssistantBuilder().withModuleCode("CS2100").build()));
+
+        // Non-matching keyword
+        predicate.setModulesSet(new HashSet<>(Arrays.asList("CS1101S", "CS2222", "CS3333")), false);
+        assertFalse(predicate.test(new StudentBuilder().withModuleCodes("CS4444", "CS2121").build()));
+        assertFalse(predicate.test(new ProfessorBuilder().withModuleCode("CS7777").build()));
+        assertFalse(predicate.test(new TeachingAssistantBuilder().withModuleCode("CS3443").build()));
+
+        // ALL search - non-matching keyword
+        predicate.setModulesSet(new HashSet<>(Arrays.asList("CS1101S", "CS2222", "CS3333")), true);
+        assertFalse(predicate.test(new StudentBuilder().withModuleCodes("CS1101S", "CS2222").build()));
+        assertFalse(predicate.test(new ProfessorBuilder().withModuleCode("CS3333").build()));
+        assertFalse(predicate.test(new TeachingAssistantBuilder().withModuleCode("CS2222").build()));
+
+        // Keywords match other fields but not modules
+        PersonMatchesPredicate studentPredicate = PersonMatchesPredicateBuilder.buildStudentPredicate();
+                studentPredicate.setModulesSet(new HashSet<>(Arrays.asList("CS1101S", "CS2222", "CS3333")), false);
+
+        PersonMatchesPredicate professorPredicate = PersonMatchesPredicateBuilder.buildProfessorPredicate();
+        professorPredicate.setModulesSet(new HashSet<>(List.of("CS1101S")), false);
+        PersonMatchesPredicate taPredicate = PersonMatchesPredicateBuilder.buildTeachingAssistantPredicate();
+        taPredicate.setModulesSet(new HashSet<>(List.of("CS1231")), false);
+
+        assertFalse(studentPredicate.test(new StudentBuilder().withModuleCodes("CS1231S", "CS3333").build()));
+        assertFalse(professorPredicate.test(new ProfessorBuilder().withModuleCode("CS1431").build()));
+        assertFalse(taPredicate.test(new TeachingAssistantBuilder().withModuleCode("CS4323").build()));
+    }
+
+    @Test
+    public void test_tagContainsKeywords_returnsTrue() {
+        // One tag
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withTagsSet(new HashSet<>(List.of("friend")), false).build();
+
+        assertTrue(predicate.test(new StudentBuilder().withTags("friend", "goodCoder").build()));
+        assertTrue(predicate.test(new ProfessorBuilder().withTags("friend").build()));
+        assertTrue(predicate.test(new TeachingAssistantBuilder().withTags("friend", "buddy").build()));
+
+        // Only one matching tag
+        predicate.setTagsSet(new HashSet<>(Arrays.asList("friend", "nice", "cool")), false);
+        assertTrue(predicate.test(new StudentBuilder().withTags("friend").build()));
+        assertTrue(predicate.test(new ProfessorBuilder().withTags("nice").build()));
+        assertTrue(predicate.test(new TeachingAssistantBuilder().withTags("cool").build()));
+
+        // ALL search
+        predicate.setTagsSet(new HashSet<>(Arrays.asList("friend", "nice", "cool")), true);
+        assertTrue(predicate.test(new StudentBuilder().withTags("friend", "nice", "cool").build()));
+        assertTrue(predicate.test(new ProfessorBuilder().withTags("friend", "nice", "cool").build()));
+        assertTrue(predicate.test(new TeachingAssistantBuilder().withTags("friend", "nice", "cool").build()));
+        //ALL search with one tag
+        predicate.setTagsSet(new HashSet<>(List.of("friend")), true);
+        assertTrue(predicate.test(new StudentBuilder().withTags("friend", "nice", "cool").build()));
+        assertTrue(predicate.test(new ProfessorBuilder().withTags("friend", "nice", "cool").build()));
+        assertTrue(predicate.test(new TeachingAssistantBuilder().withTags("friend", "nice", "cool").build()));
+        // Mixed-case tags
+        predicate.setTagsSet(new HashSet<>(Arrays.asList("fRieNd", "nIce", "cOol")), false);
+        assertTrue(predicate.test(new StudentBuilder().withTags("friend").build()));
+        assertTrue(predicate.test(new ProfessorBuilder().withTags("nice").build()));
+        assertTrue(predicate.test(new TeachingAssistantBuilder().withTags("cool").build()));
+
+        // ALL search
+        predicate.setTagsSet(new HashSet<>(Arrays.asList("fRieNd", "nIce", "cOol")), true);
+        assertTrue(predicate.test(new StudentBuilder().withTags("friend", "nice", "cool").build()));
+        assertTrue(predicate.test(new ProfessorBuilder().withTags("friend", "nice", "cool").build()));
+        assertTrue(predicate.test(new TeachingAssistantBuilder().withTags("friend", "nice", "cool").build()));
+    }
+
+    @Test
+    public void test_tagDoesNotContainKeywords_returnsFalse() {
+        // Zero keywords
+        PersonMatchesPredicate predicate = new PersonMatchesPredicate();
+        predicate.setTagsSet(new HashSet<>(), false);
+
+        assertFalse(predicate.test(new StudentBuilder().withTags("friends", "goodCoder").build()));
+        assertFalse(predicate.test(new ProfessorBuilder().withTags("friendly").build()));
+        assertFalse(predicate.test(new TeachingAssistantBuilder().withTags("niceGuy").build()));
+
+        // Non-matching keyword
+        predicate.setTagsSet(new HashSet<>(Arrays.asList("friend", "nice", "cool")), false);
+        assertFalse(predicate.test(new StudentBuilder().withTags("friends", "goodCoder").build()));
+        assertFalse(predicate.test(new ProfessorBuilder().withTags("friendly", "fast").build()));
+        assertFalse(predicate.test(new TeachingAssistantBuilder().withTags("niceGuy", "strong").build()));
+
+        // ALL search - non-matching keyword
+        predicate.setTagsSet(new HashSet<>(Arrays.asList("friend", "nice", "cool")), true);
+        assertFalse(predicate.test(new StudentBuilder().withTags("friend", "cool").build()));
+        assertFalse(predicate.test(new ProfessorBuilder().withTags("friend", "nice").build()));
+        assertFalse(predicate.test(new TeachingAssistantBuilder().withTags("nice", "cool").build()));
+
+        // Keywords match other fields but not tags
+        PersonMatchesPredicate studentPredicate = PersonMatchesPredicateBuilder.buildStudentPredicate();
+        studentPredicate.setTagsSet(new HashSet<>(Arrays.asList("friend", "nice", "cool")), true);
+
+        PersonMatchesPredicate professorPredicate = PersonMatchesPredicateBuilder.buildProfessorPredicate();
+        professorPredicate.setTagsSet(new HashSet<>(Arrays.asList("friend", "nice", "cool")), true);
+        PersonMatchesPredicate taPredicate = PersonMatchesPredicateBuilder.buildTeachingAssistantPredicate();
+        taPredicate.setTagsSet(new HashSet<>(Arrays.asList("friend", "nice", "cool")), true);
+
+        assertFalse(studentPredicate.test(new StudentBuilder().withTags("friends", "goodCoder").build()));
+        assertFalse(professorPredicate.test(new ProfessorBuilder().withTags("friendly").build()));
+        assertFalse(taPredicate.test(new TeachingAssistantBuilder().withTags("niceGuy").build()));
     }
 }
