@@ -70,8 +70,8 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && isShowHelp() == otherCommandResult.isShowHelp()
-                && isExit() == otherCommandResult.isExit()
-                && getGraphConfiguration().equals(otherCommandResult.getGraphConfiguration());
+                && isExit() == otherCommandResult.isExit();
+        //      && getGraphConfiguration().equals(otherCommandResult.getGraphConfiguration());
     }
 
     @Override

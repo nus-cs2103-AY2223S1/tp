@@ -184,7 +184,10 @@ public class MainWindow extends UiPart<Stage> {
         if (!graphConfiguration.getShouldUpdateGraph()) {
             return;
         } else if (graphConfiguration.getEntryType() == null) {
-            graphConfiguration = new GraphConfiguration(this.currGraphPanel.getEntryType(), graphConfiguration.getGraphType(), true);
+            graphConfiguration = new GraphConfiguration(
+                    this.currGraphPanel.getEntryType(),
+                    graphConfiguration.getGraphType(),
+                    true);
         }
 
         GraphType graphType = graphConfiguration.getGraphType();

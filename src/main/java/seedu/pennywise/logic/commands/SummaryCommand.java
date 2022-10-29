@@ -10,7 +10,6 @@ import seedu.pennywise.model.GraphConfiguration;
 import seedu.pennywise.model.Model;
 import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.model.entry.EntryInYearMonthPredicate;
-import seedu.pennywise.model.entry.EntryType;
 import seedu.pennywise.model.entry.GraphType;
 
 
@@ -53,7 +52,10 @@ public class SummaryCommand extends Command {
         GraphConfiguration graphConfiguration = null;
         if (this.predicate != null) {
             model.updateFilteredEntryList(this.predicate);
-            graphConfiguration = new GraphConfiguration(null, new GraphType(GraphType.GRAPH_TYPE_MONTH), true);
+            graphConfiguration = new GraphConfiguration(
+                    null,
+                    new GraphType(GraphType.GRAPH_TYPE_MONTH),
+                    true);
         } else {
             graphConfiguration = new GraphConfiguration(null, null, false);
         }
@@ -69,7 +71,11 @@ public class SummaryCommand extends Command {
                 .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
                 .sum();
         Double totalBalance = totalIncome - totalExpenditure;
-        return new CommandResult(String.format(MESSAGE_SUCCESS, totalExpenditure, totalIncome, totalBalance), false, false, graphConfiguration);
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, totalExpenditure, totalIncome, totalBalance),
+                false,
+                false,
+                graphConfiguration);
     }
 
     @Override
