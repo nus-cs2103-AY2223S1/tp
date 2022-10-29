@@ -21,8 +21,8 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 3. Copy the file to the folder you want to use as the _home folder_.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![UiContacts](images/UiContacts.png)
-   ![UiTasks](images/UiTasks.png)
+    
+![UiOnStartup](images/UiOnStartup.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -67,6 +67,17 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
 </div>
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb: A Note on Indexes
+
+Several commands below require an `index` to be specified, as they operate on a task/contact specified by the user. For example, the deletion of a particular task.
+* Indexes are either `task_index` or `contact_index`
+* The index always refers to the index number of the task/contact in the **currently displayed lists**
+* This value ranges from 1, 2, 3...
+
+</div>
+
 
 ### Getting help
 
@@ -78,7 +89,17 @@ Format: `help`
 
 #### Adding a task: `add`
 
-Adds a task to the task list.
+Adds a task and its deadline to the task list, with an optional module.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: Deadline Formats
+
+CodeConnect uses the [jchronic] natural language date parser. This means that natural language inputs such as "tomorrow" or "next sunday" will be understood by CodeConnect!
+
+For more information on valid deadline formats, check the jchronic documentation [here](#).
+
+</div>
 
 Format:
 `add {task_name} by/{deadline} [m/{module_code}]`
@@ -89,7 +110,7 @@ Examples:
 
 #### Editing a task: `edit`
 
-Edit the specified task from the task list.
+Edits the specified task.
 
 Format:
 `edit {task_index} {field_prefix + field_description}`
@@ -100,7 +121,7 @@ Examples:
 
 #### Deleting a task: `del`
 
-Deletes a task from the task manager list.
+Deletes the specified task.
 
 Format:
 `del {task_index}`
@@ -110,25 +131,29 @@ Example:
 
 #### Deleting all completed tasks: `clean`
 
-Deletes all completed tasks from the task manager list.
+Deletes all completed tasks.
 
 Format: `clean`
 
-Note: This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which deletes all contacts.
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: Warning!<br>
+This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which deletes all contacts.
+</div>
 
 #### Marking a task: `mark`
 
-Marks a task as completed in the task manager list.
+Marks the specified task as complete.
 
 Format:
 `mark {task_index}`
 
 Example:
-`mark 3`
+`mark 2`
 
 #### Unmarking a task: `unmark`
 
-Marks a task as incomplete in the task manager list.
+Marks the specified task as incomplete.
 
 Format:
 `unmark {task_index}`
@@ -138,11 +163,7 @@ Example:
 
 #### Searching for tasks: `find`
 
-Find tasks whose names contain any of the given keywords, or find them by their tagged module.
-
-Keywords and modules are searched for in a case-insensitive manner.
-
-Keywords may also be used to search for a substring (see examples below).
+Search for tasks by their name or module. The search is done in a **case-insensitive** manner, and a search by task name **matches substrings**.
 
 Format:
 `find n/ {task}` `find m/ {module}`
@@ -177,13 +198,13 @@ Examples:
 
 #### Listing all contact : `listc`
 
-Shows a list of all persons in the address book.
+Shows a list of all contacts.
 
 Format: `listc`
 
 #### Deleting a contact : `delc`
 
-Deletes the specified contact from the contact list.
+Deletes the specified contact.
 
 Format: `delc {contact_index}`
 
@@ -196,7 +217,7 @@ Examples:
 
 #### Editing a contact : `editc`
 
-Edits the specified contact from the contact list.
+Edits the specified contact.
 
 Format: `editc {contact_index} {field prefix + field description}`
 
@@ -232,9 +253,16 @@ Example:
 
 #### Clearing all contacts : `clear`
 
-Deletes all entries from the address book.
+Deletes all contacts.
 
 Format: `clear`
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: Warning!<br>
+Deleted contacts are **unrecoverable**!
+
+</div>
 
 ### Finishing up
 
