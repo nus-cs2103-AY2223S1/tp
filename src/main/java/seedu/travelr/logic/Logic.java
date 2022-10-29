@@ -8,7 +8,7 @@ import seedu.travelr.logic.commands.CommandResult;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
-import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.ReadOnlyTravelr;
 import seedu.travelr.model.SummaryVariables;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.ObservableTrip;
@@ -32,9 +32,9 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getTravelr()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTravelr getTravelr();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Trip> getFilteredTripList();
@@ -45,7 +45,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTravelrFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

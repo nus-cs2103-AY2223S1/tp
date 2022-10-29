@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.travelr.model.AddressBook;
-import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.ReadOnlyTravelr;
+import seedu.travelr.model.Travelr;
 import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Location;
@@ -16,7 +16,7 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Travelr} with sample data.
  */
 public class SampleDataUtil {
     public static Trip[] getSampleTrips() {
@@ -36,8 +36,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyTravelr getSampleTravelr() {
+        Travelr sampleAb = new Travelr();
         for (Trip sampleTrip : getSampleTrips()) {
             sampleAb.addTrip(sampleTrip);
             for (Event e : sampleTrip.getEvents()) {

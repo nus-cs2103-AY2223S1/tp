@@ -15,7 +15,7 @@ public class UserPrefsTest {
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
         seedu.travelr.model.UserPrefs userPrefs = new UserPrefs();
-        assertThrows(NullPointerException.class, () -> userPrefs.setAddressBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> userPrefs.setTravelrFilePath(null));
     }
 
 }

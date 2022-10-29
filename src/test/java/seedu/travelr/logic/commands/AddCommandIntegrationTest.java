@@ -30,7 +30,7 @@ public class AddCommandIntegrationTest {
     public void execute_newTrip_success() {
         Trip validTrip = new TripBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTravelr(), new UserPrefs());
         expectedModel.addTrip(validTrip);
 
         assertCommandSuccess(new AddCommand(validTrip), model,
@@ -39,7 +39,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateTrip_throwsCommandException() {
-        Trip tripInList = model.getAddressBook().getTripList().get(0);
+        Trip tripInList = model.getTravelr().getTripList().get(0);
         assertCommandFailure(new AddCommand(tripInList), model, AddCommand.MESSAGE_DUPLICATE_TRIP);
     }
 

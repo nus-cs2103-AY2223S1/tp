@@ -14,7 +14,7 @@ import seedu.travelr.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path travelrFilePath = Paths.get("data" , "travelr.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setTravelrFilePath(newUserPrefs.getTravelrFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +47,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getTravelrFilePath() {
+        return travelrFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setTravelrFilePath(Path travelrFilePath) {
+        requireNonNull(travelrFilePath);
+        this.travelrFilePath = travelrFilePath;
     }
 
     @Override
@@ -68,19 +68,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && travelrFilePath.equals(o.travelrFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, travelrFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + travelrFilePath);
         return sb.toString();
     }
 

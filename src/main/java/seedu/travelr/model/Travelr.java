@@ -16,7 +16,7 @@ import seedu.travelr.model.trip.UniqueTripList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class Travelr implements ReadOnlyTravelr {
 
     private final BucketList bucketList;
     private final UniqueEventList allEventsList;
@@ -35,12 +35,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         allEventsList = new UniqueEventList();
     }
 
-    public AddressBook() {}
+    public Travelr() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an Travelr using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Travelr(ReadOnlyTravelr toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -71,7 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTravelr newData) {
         requireNonNull(newData);
         setAllEventsList(newData.getAllEventList());
         setTrips(newData.getTripList());
@@ -227,8 +227,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && trips.equals(((AddressBook) other).trips) && bucketList.equals(((AddressBook) other).bucketList));
+                || (other instanceof Travelr // instanceof handles nulls
+                && trips.equals(((Travelr) other).trips) && bucketList.equals(((Travelr) other).bucketList));
     }
 
     @Override

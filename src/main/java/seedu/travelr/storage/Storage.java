@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.travelr.commons.exceptions.DataConversionException;
-import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.ReadOnlyTravelr;
 import seedu.travelr.model.ReadOnlyUserPrefs;
 import seedu.travelr.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends TravelrStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTravelrFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTravelr> readTravelr() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveTravelr(ReadOnlyTravelr travelr) throws IOException;
 
 }

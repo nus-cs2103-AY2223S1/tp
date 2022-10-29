@@ -46,27 +46,27 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Travelr file path.
      */
-    Path getAddressBookFilePath();
+    Path getTravelrFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' Travelr file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTravelrFilePath(Path travelrFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces Travelr data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTravelr(ReadOnlyTravelr travelr);
 
     /**
      * Returns the AddressBook
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTravelr getTravelr();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the Travelr.
      */
     boolean hasTrip(Trip trip);
 
@@ -82,8 +82,8 @@ public interface Model {
     boolean bucketlistHasEvent(Event event);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given trip.
+     * The trip must exist in the Travelr.
      */
     void deleteTrip(Trip target);
 
@@ -99,7 +99,7 @@ public interface Model {
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in Travelr.
      */
     void addTrip(Trip trip);
 
@@ -122,9 +122,9 @@ public interface Model {
     void updateSelectedTrip(Trip trip);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given trip {@code target} with {@code editedTrip}.
+     * {@code target} must exist in the Travelr.
+     * The trip identity of {@code editedTrip} must not be the same as another existing trip in Travelr.
      */
     void setTrip(Trip target, Trip editedTrip);
 

@@ -20,9 +20,9 @@ import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
 import seedu.travelr.testutil.TripUtil;
 
-public class AddressBookParserTest {
+public class TravelrParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TravelrParser parser = new TravelrParser();
 
     @Test
     public void parseCommand_add() throws Exception {

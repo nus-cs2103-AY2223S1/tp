@@ -5,13 +5,13 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of Travelr
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyTravelr {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the trips list.
+     * This list will not contain any duplicate trips.
      */
     ObservableList<Trip> getTripList();
 

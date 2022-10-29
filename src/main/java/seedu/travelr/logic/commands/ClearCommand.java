@@ -2,8 +2,8 @@ package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
+import seedu.travelr.model.Travelr;
 
 /**
  * Clears Travelr.
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setTravelr(new Travelr());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
