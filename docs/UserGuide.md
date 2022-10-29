@@ -108,8 +108,8 @@ A property can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 h/HDB t/cheap`
-* `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 h/CONDO t/high-end`
+* `add -p n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 h/HDB t/cheap`
+* `add -p n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 h/CONDO t/high-end`
 
 The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the
 command.
