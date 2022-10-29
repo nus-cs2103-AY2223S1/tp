@@ -80,7 +80,7 @@ Format: `help`
 Adds a person to the address book. This command can only be used in list mode.
 A person is considered a duplicate only if the names are the same (non case-sensitive).
 
-Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN`
+Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...`
 
 Examples:
 * `add n/Farisa p/87159999 lp/Sec 4 Chemistry`
@@ -98,7 +98,10 @@ Format: `list`
 Edits an existing person in the address book. Can only be used in view mode.
 For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX.
 
-It requires at least one field:
+Format: `edit [n/NAME] [p/PHONE] [lp/LESSON_PLAN] [t/TAG]...`<br>
+`edit [h/ a/ g/ s/]INDEX NEW_FIELD`
+
+It requires at least one of the optional fields:
 - n/: To be followed by updated name of student
 - p/: To be followed by updated phone number of student
 - lp/: To be followed by updated lesson plan of student
@@ -106,10 +109,10 @@ It requires at least one field:
 - a/: To be followed by INDEX of attendance to be updated, then updated attendance
 - g/: To be followed by INDEX of grade to be updated, then updated grade
 - s/: To be followed by INDEX of session to be updated, then updated session
+- t/: To be followed by the person's tags, all tags can be removed by typing `t/` without specifying any tags after it
 
 
-Format: `edit [n/ p/ lp/]NEW_FIELD`<br>
-`edit [h/ a/ g/ s/]INDEX NEW_FIELD`
+
 
 Examples:
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
@@ -329,14 +332,14 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN` <br> e.g., `add n/James Ho p/96775567 lp/english`
+**Add** | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...` <br> e.g., `add n/James Ho p/96775567 lp/english`
 **Add Attendance** | `attendance INDEX a/ATTENDANCE`<br> e.g., `attendance 2 a/2022-12-08`
 **Add Grade** | `grade INDEX g/GRADE`<br> e.g., `grade 2 g/English: B+`
 **Add Homework** | `hw INDEX h/HOMEWORK`<br> e.g., `hw 1 h/Science worksheet`
 **Add Session** | `session INDEX s/SESSION` <br> e.g., `session 1 s/mon 09:00`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 1`
-**Edit** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN]`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit n/James Lee h/1 math`
+**Edit** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN] [t/TAG]...`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit n/James Lee h/1 math`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Help** | `help`
