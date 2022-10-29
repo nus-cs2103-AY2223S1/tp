@@ -263,8 +263,7 @@ Format: `filter list`
 
 ### Creating reminders : `reminder`
 
-Creates a reminder for a specific client. The description, date and time of the reminder must be specified. The
-index can be left out if the reminder is meant for the target client from the [show](#viewing-the-information-of-a-client--show) command.
+Creates a reminder for a specific client. The description, date and time of the reminder must be specified. The index can be left out if the reminder is meant for the target client from the [show](#viewing-the-information-of-a-client--show) command.
 
 Format: `reminder [INDEX] d=description dt=YY-M-D H:m`
 
