@@ -407,13 +407,10 @@ NUScheduler accepts date-time formats both with and without a time specified. Fo
 
 - `DAY/MONTH/YEAR`
 - `DAY-MONTH-YEAR`
-- `DAY MONTH YEAR`
 - `YEAR/MONTH/DAY`
 - `YEAR-MONTH-DAY`
-- `YEAR MONTH DAY`
 - `DAY/MONTH` (uses current year by default)
 - `DAY-MONTH` (uses current year by default)
-- `DAY MONTH` (uses current year by default)
 
 <div markdown="block" class="alert alert-info">
 
@@ -431,8 +428,6 @@ The following time formats can be appended after a whitespace to the end of the 
 
 - `HOUR:MINUTE`
 - `HOURMINUTE`
-- `HOUR:MINUTE:SECOND`
-- `HOURMINUTESECOND`
 
 Example:
 * `25/05/2015 10:00`
@@ -443,8 +438,7 @@ Example:
 **:information_source: Notes about the date format:**<br>
 
 * Time is specified in the 24-hour clock format.
-* `HOUR`, `MINUTE` and `SECOND` must be specified using two digits.
-* `DAY MONTH HOURMINUTE` is not supported, and will be recognised as `DAY MONTH YEAR`.
+* `HOUR` and `MINUTE` must be specified using two digits.
 
 </div>
 
