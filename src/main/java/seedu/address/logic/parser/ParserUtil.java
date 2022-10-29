@@ -2,9 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -12,6 +14,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.exceptions.DateOutOfRangeException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -26,8 +29,11 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd-MM-yyyy format "
-            + "and must be a valid date.";
-    public static final String DATE_FORMAT = "dd-MM-yyyy";
+            + ", must be a valid date and in between year 1900 to 2100.";
+    public static final String MESSAGE_INVALID_DATE_VALUE = "Deadline must be in between the year 1900 to 2100";
+    public static final String DATE_FORMAT = "dd-MM-uuuu";
+    private static final LocalDate EARLIEST_DATE = LocalDate.of(1899, 12, 31);
+    private static final LocalDate LATEST_DATE = LocalDate.of(2101,1, 1);
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -173,8 +179,17 @@ public class ParserUtil {
         String trimmedDeadline = deadline.trim();
 
         try {
-            LocalDate date = LocalDate.parse(trimmedDeadline, DateTimeFormatter.ofPattern(DATE_FORMAT));
+            DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_FORMAT).
+                    withResolverStyle(ResolverStyle.STRICT);
+
+            LocalDate date = LocalDate.parse(trimmedDeadline, format);
+
+            if (date.isBefore(EARLIEST_DATE) || date.isAfter(LATEST_DATE)) {
+                throw new DateOutOfRangeException();
+            }
             return Optional.ofNullable(date);
+        } catch (DateOutOfRangeException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_VALUE);
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }
