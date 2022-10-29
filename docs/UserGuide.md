@@ -32,10 +32,10 @@ Welcome to Coydir's User Guide!
     - [Listing all employees](#listing-all-employees--list)
     - [Finding an employee](#finding-an-employee--find)
   - [Managing Employee Leaves](#managing-employee-leaves)
-    - [Setting total leaves for an employee](#setting-total-leaves-for-an-employee)
-    - [Is this employee on leave today?](#is-this-employee-on-leave-today)
-    - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee--addleave)
-    - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee--deleteleave)
+    - [Controlling total leaves for an employee](#controlling-total-leave-for-an-employee)
+    - [Checking if an employee is on leave](#checking-if-an-employee-is-on-leave)
+    - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-add-leave)
+    - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-delete-leave)
   - [Managing Employee Performance](#managing-employee-performance)
     - [Rating the performance of an employee](#rating-the-performance-of-an-employee--rate)
     - [Employee Performance History](#employee-performance-history)
@@ -267,19 +267,23 @@ However, with Coydir, we can help you to ensure your **company operations run sm
 
 Here is how we support you in leave management.
 
-#### Setting total leave for an employee
+#### Controlling total leave for an employee
 
-You can set the total leave available for an employee when adding them to the database. This can be done by including the optional leave field, `l/`, when using the `add` command. 
+You can set the total leave available for an **incoming new** employee when adding them to the database. This can be done by including the optional leave field, `l/`, when using the `add` command. 
 
 Example: `add n/Yi Long Ma j/Chief Operating Officer d/General Management l/20` adds an employee, and specifies his **total leave** to be **20**.
+
+You can also edit the total leave available for an ****existing** employee by using the `edit` command, and editing the `l/` tag for an employee.
+
+Example: `edit 1 l/10` edits the total leave of the **first** employee in the current list to be **10**.
 
 #### Checking if an employee is on leave
 
 There are two ways to check for the live availability of employees. 
 
-First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
+1. First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
 
-The other is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field. 
+2. The other way is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field. 
 
 #### Adding a leave period for an employee: `add-leave`
 
@@ -290,7 +294,7 @@ This command results in one of two cases below:
 **Case 1: Valid ID, date and sufficient leaves**
 
 If the employee exists, the leave date given is valid,
-and the employee has sufficient leaves, the leave period will be added and shown in the table of leaves, and the total leaves remaining will be deducted accordingly. The employee's "On Leave" status will become "True" when the day of the leave arrives.
+and the employee has sufficient leaves, the leave period will be added and shown in the table of leaves The total leaves remaining will be deducted accordingly. The employee's "On Leave" status will become "True" when the timeframe is within the leave period.
 
 **Case 2: Invalid ID, date or insufficient leaves**
 
@@ -344,7 +348,7 @@ Example:
 
 <p align="center">
   <img src="./images/ui-screenshots/deleteLeaveCommandOutcome.png" />
-  <br><em>Result of adding leave successfully from example given</em>
+  <br><em>Result of deleting leave successfully from example given</em>
 </p> 
 
 ### Managing Employee Performance
