@@ -15,7 +15,7 @@
 
 <StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="detailPanel" xmlns="http://javafx.com/javafx/18">
     <children>
-        <VBox spacing="16.0">
+        <VBox spacing="16.0" fx:id="container">
             <HBox fx:id="profileBoxContainer">
                 <children>
                     <Circle fx:id="profileImageContainer" radius="60.0"/>

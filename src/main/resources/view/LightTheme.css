@@ -340,7 +340,7 @@
     -fx-text-fill: white;
 }
 
-#detailPanel {
+#detailPanel #container {
     -fx-padding: 20;
 }
 
@@ -432,6 +432,7 @@
 
 #githubRepoListView .scroll-bar {
     -fx-border-color: transparent;
+    -fx-padding: 0 -10 0 0;
 }
 
 #repoCard {

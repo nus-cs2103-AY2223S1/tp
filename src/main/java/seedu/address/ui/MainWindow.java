@@ -176,7 +176,7 @@ public class MainWindow extends UiPart<Stage> {
         });
 
         personListPanel.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            // Ignore tab navigation when the list view is empty
+            // Ignore tab navigation, use arrow keys to navigate instead
             if (event.getCode().equals(KeyCode.TAB)) {
                 event.consume();
             }
@@ -196,7 +196,7 @@ public class MainWindow extends UiPart<Stage> {
         });
 
         detailPanel.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            // Ignore tab navigation when the list view is empty
+            // Ignore tab navigation, use arrow keys to navigate instead
             if (event.getCode().equals(KeyCode.TAB)) {
                 event.consume();
             }
