@@ -43,7 +43,7 @@ This user guide will help you get started and understand how FABook can **seamle
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Overview of commands:**<br>
 
 * Words in `UPPER_CASE` are the information supplied by you.
   e.g `NAME` is a parameter in `create n/NAME`, where you can input `create n/John Doe`. 
@@ -75,80 +75,52 @@ This user guide will help you get started and understand how FABook can **seamle
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how you can access our user guide.
 
-![Help](images/helpMessage.png)
-
-Format: `help` or press `F1`
+Format: `help` or Press `F1`
 
 ![help](images/UserGuide/help.png)
 
+
 ### Creating a contact: `create`
 
-Creates a contact that is stored in the FABook and contains their contact information. Any contact information that is not available can be updated later.
+Creates a contact with their contact information in your FABook. Any contact information you don't have on hand can be updated later.
 
-Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
+Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
-![create](images/UserGuide/create.png) 
-                  
-* To input multiple meeting times, repeat the field `mt/TIME` as many times as you need. 
+![create](images/UserGuide/create.png)
 
 :bulb: **Note:**
-Name and Phone number are the only compulsory inputs. Parameters not provided will be left blank.
+`NAME` and `PHONE_NUMBER` are the only compulsory inputs. Other parameters can be left blank.
+                  
+* If you have multiple meeting times with your client, simply repeat the field `mt/TIME`. 
 
 Examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
-* `create n/Betsy Crowe a/Newgate Prison p/1234567`
+* `create n/Betsy Crowe a/Bugis MRT p/1234567`
 * `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 d/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
 
-:white_check_mark: **Tip:**
-Input shortcut: `c` can be used in place of `create`.
-Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
+:white_check_mark: **Input Shortcut:**
+You can replace `create` with `c` for convenience.
+Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the FABook.
+Shows a list of all persons in your FABook.
 
 Format: `list`
 
 ![list](images/UserGuide/list.png) 
 
-### Updating a person : `update`
+### Finding a contact `find`
+:white_check_mark: **Input Shortcut:**
+You can replace `find` with `f` for convenience.
 
-Updates the information of a contact stored in the FABook.
+#### Finding a contact by name
 
-Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]...`
-                        
-![update](images/UserGuide/update.png)  
+Find your contacts whose name contain any of the given keywords.
 
-:bulb: **Note:**
-Parameters not provided will stay unchanged.
-
-* Edits the person with the provided index.
-* INDEX is the index of the person in the currently displayed list.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* Updating description of a contact can also be done through the `description` command.
-  See [Description](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Giving-a-description-to-a-person--description)
-* Updating meeting time of a contact must be done through the `meeting`, `deletemeeting` and `sync` commands.
-  See [Meeting](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Add-meetings--meeting)
-  , [Delete Meeting](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Delete-meetings--deletemeeting)
-  and [Sync](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#Remove-past-meetings--sync)
-
-Example:
-* `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed person's 
- name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
-
-
-:white_check_mark: **Tip:**
-Input shortcut: `u` can be used in place of `update`.
-Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find n/NAME…`
+Format: `find n/NAME`
 
 ![findname](images/UserGuide/findname.png)
 
@@ -156,38 +128,36 @@ Format: `find n/NAME…`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched. e.g. `find n/Kent` won’t return contacts living on Kent Ridge Road
 * Partial words can be matched only if the whole name is included. e.g. `Jack` will match `Jackson`, but `Jackson` won’t match `Jack`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Contacts matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   
-:white_check_mark: **Tip:**
-Input shortcut: `f` can be used in place of `find`.
-Format: `f n/NAME…`
+:white_check_mark: **Input Shortcut:**
+Format: `f n/NAME`
   
-### Locating persons by phone number: `find`
+#### Finding a contact by phone number
 
-Finds persons whose stored number matches the given number.
-   
-Format: `find p/NUMBER...`
+Find your contacts whose phone number matches the given number.
+
+Format: `find p/NUMBER`
 
 ![findphone](images/UserGuide/findphone.png)     
 
 * Only full numbers will be matched e.g. `7654` will not match `80765432`
-* All persons matching the number will be returned. e.g. All contacts in the same household will be returned if they share a home number.
+* All contacts matching the number will be returned. e.g. All contacts in the same household will be returned if they share the same home number.
 
 Examples:
 * `find p/90333333` returns the person(s) with `90333333` stored as their number
 
-:white_check_mark: **Tip:**
-Input shortcut: `f` can be used in place of `find`.
-Format: `f p/NUMBER...`
+:white_check_mark: **Input Shortcut:**
+Format: `f p/NUMBER`
 
-### Locating persons by address: `find`
+#### Locating persons by address
 
-Format: `find a/ADDRESS...`
+Format: `find a/ADDRESS`
 
 ![findaddress](images/UserGuide/findaddress.png)     
 
@@ -203,11 +173,10 @@ Format: `find a/ADDRESS...`
 Examples:
 * `find a/Bedok` returns the person(s) with `Bedok` stored as their address
 
-:white_check_mark: **Tip:**
-Input shortcut: `f` can be used in place of `find`.
-Format: `f a/ADDRESS…`
+:white_check_mark: **Input Shortcut:**
+Format: `f a/ADDRESS`
 
-### Filter persons by tag: `find`
+#### Filter contacts by tag
 
 Format: `find t/TAG`
 
@@ -217,28 +186,53 @@ Format: `find t/TAG`
 Examples:
 * `find t/SECURED` displays the list of all `SECURED` contacts.
 
-:white_check_mark: **Tip:**
-Input shortcut: `f` can be used in place of `find`.
+:white_check_mark: **Input Shortcut:**
 Format: `f t/TAG`   
+
+### Updating a person : `update`
+
+Updates the information of a contact stored in your FABook.
+
+Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
+                        
+![update](images/UserGuide/update.png)  
+
+:bulb: **Note:**
+Only parameters you provide will be changed.
+
+* Edits the person with the provided index.
+* `INDEX` is the index of the person in the currently displayed list.<br>
+* You must provide **at least one** of the optional fields .
+* You can also update the description of a contact through the [`description` command](#giving-a-description-to-a-person-description).
+* You must update the meeting time of a contact through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
+
+
+Example:
+* `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the second listed person's 
+ name, phone number and address to be `John Doe`, `91234567` and `21 Lower Kent Ridge Rd` respectively.
+
+:white_check_mark: **Input Shortcut:**
+You can replace `update` with `u` for convenience.
+Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
 
 ### Giving a description to a person: `description`
 
-Updates the person with a description data field.
+Updates your contact with a description data field.
 
 Format: `description INDEX d/DESCRIPTION`
 
 ![description](images/UserGuide/description.png)     
 
 * INDEX is the index of the person in the currently displayed list.
-* Updating description of a contact can also be done through the 'update' command. See [Update](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#updating-a-person--update)
+* Updating description of a contact can also be done through the 'update' command. See [Update command](#updating-a-person--update)
 
-:white_check_mark: **Tip:**
-Input shortcut: `desc` can be used in place of `description`.
-Format: `desc INDEX d/DESCRIPTION…`
+:white_check_mark: **Input Shortcut:**
+You can replace `desc` with `d` for convenience.
+Format: `desc INDEX d/DESCRIPTION`
 
 ### Assigning PDF file to a person: `filepath`
 
-Assigns a PDF file to a person in the FABook.
+Assigns a PDF file to a contact in your FABook.
 
 Format: `filepath INDEX f/FILEPATH`
 
@@ -250,11 +244,11 @@ Format: `filepath INDEX f/FILEPATH`
 * Moving or renaming the PDF file in the local disk does not change the person's assigned file path, so you would have to assign it manually.
 
 Examples:
-* `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf` assigns second person on the displayed list with the PDF file located at the absolute path `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
+* `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
 
 ### Opening PDF file of a person: `file`
 
-Opens a person's assigned PDF file in user's PDF file viewer.
+Opens a person's assigned PDF file in your PDF file viewer.
 
 Format: `file INDEX`
 
@@ -264,11 +258,11 @@ Format: `file INDEX`
 * Moving or renaming the PDF file in the local disk will cause the command to not work, which will require you to reassign a file path to the person again.
 
 Examples:
-* `file 2` opens the PDF file assigned to the second person in the displayed list.
+* `file 2`
 
 ### Add meetings: `meeting`
    
-Adds one or more meeting times to a person in the FABook.
+Adds one or more meeting times to a person in your FABook.
    
 Format: `meeting INDEX mt/MEETINGTIME...`
    
@@ -283,7 +277,7 @@ Examples:
    
 ### Delete meetings: `deletemeeting`
    
-Deletes a meeting from a person in the FABook.
+Deletes a meeting from a person in your FABook.
 
 Format: `deletemeeting INDEX mt/MEETINGTIME`
    
