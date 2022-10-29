@@ -1,30 +1,12 @@
-# User Guide
-Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, locations, and itineraries, all within the same app!
+---
+layout: page
+title: User Guide
+---
+* Table of Contents 
+{:toc}
 
-- [Quick start](#quick-start)
-- [Features](#features)
-  * [Adding events: `add-e`](#adding-events-add-e)
-  * [Deleting events: `delete-e`](#deleting-events-delete-e)
-  * [Viewing events list: `list-e`](#viewing-events-list-list-e)
-  * [Adding trips: `add`](#adding-trips-add)
-  * [Delete trips: `delete`](#delete-trips-delete)
-  * [Viewing trips list: `list`](#viewing-trips-list-list)
-  * [Marking trips as done: `mark`](#marking-trips-as-done-mark)
-  * [Marking trips as not done: `unmark`](#marking-trips-as-not-done-unmark)
-  * [Adding events to trips: `add-et`](#adding-events-to-trips-add-et)
-  * [Removing events from trips: `delete-et`](#removing-events-from-trips-delete-et)
-  * [Select trip: `select`](#select-trip-select)
-  * [Sorting trips: `sort`](#sorting-trips-sort)
-  * [Sorting events within Bucket List: `sort-e`](#sorting-events-within-bucket-list-sort-e)
-  * [View all completed trips and events: `completed`](#view-all-completed-trips-and-events-completed)
-  * [View all trips and events: `view`](#view-all-trips-and-events-view)
-  * [Display single trip: `display`](#display-single-trip-display)
-  * [Display single event: `display-e`](#display-single-event-display-e)
-  * [View lifetime summary: `summary`](#view-lifetime-summary-summary)
-  * [Clearing all entries : `clear`](#clearing-all-entries-clear)
-  * [Viewing help : `help`](#viewing-help-help)
-  * [Saving data](#saving-data)
-  * [Exiting the program: `exit`](#exiting-the-program-exit)
+--------------------------------------------------------------------------------------------------------------------
+Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, locations, and itineraries, all within the same app!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -287,7 +269,7 @@ Exits the program.
 
 Format: `exit`
 
-### Glossary
+## Glossary
 
 * **Bucket list**: List of events that haven't been added to any trips
 * **Displayed events list**: List of events being displayed in the right panel of the UI
