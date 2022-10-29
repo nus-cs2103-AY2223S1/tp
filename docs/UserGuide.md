@@ -42,7 +42,7 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
    * <code class="language-plaintext highlighter-rouge"><b>profile -d</b> 2</code>: Deletes the 2nd profile shown in the current list.
 
-   * **`profile -v`** : Lists all profiles in NUScheduler.
+   * **`profile -v`**: Lists all profiles in NUScheduler.
 
 6. Refer to the [Features](#features) below for details of each command.
 
