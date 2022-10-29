@@ -43,7 +43,7 @@ Pupilist is a desktop address book application used for private tutors to handle
   * Enabled assertions for team code (Pull request [\#77](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/77))
 
 * **Review/mentoring contributions**:
-  * PR reviews (non-trivial comments) 
-  * PR reviews
+  * PR reviews (non-trivial comments): _{to be added}_
+  * PR reviews: _{to be added}_
 
 * **Contributions beyond the project team**: to be added soon

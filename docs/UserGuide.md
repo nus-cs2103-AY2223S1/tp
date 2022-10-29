@@ -53,8 +53,11 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/Tag]…​` can be used as ` ` (i.e. 0 times), `t/Math`, `t/Math t/Science` etc.
 
-* Parameters can be in any order.<br>
+* Parameters with prefixes can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* Index has to be supplied according to format given.<br>
+  e.g. if the command specifies `hw INDEX h/HOMEWORK`, `hw h/HOMEWORK INDEX` is not allowed.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -109,8 +112,8 @@ Format: `edit [n/ p/ lp/]NEW_FIELD`<br>
 `edit [h/ a/ g/ s/]INDEX NEW_FIELD`
 
 Examples:
-* `view 1` returns person in first index <br>
-  `edit h/2 math not done` updates 2nd field of *person at first index's* HOMEWORK to `math not done`
+* `view Alex Yeoh` returns `Alex Yeoh` <br>
+  `edit h/2 math not done` updates 2nd field of `Alex Yeoh`'s HOMEWORK to `math not done`
 
 ### Removing specific field in person: `remove`
 
@@ -126,10 +129,10 @@ Allows for edits of multiple fields in a single command. However, a single comma
 Format: `remove [h/ a/ g/ s/]INDEX`
 
 Examples:
-* `view 1` returns person in first index <br>
-  `remove h/2` removes person at first index's *homework at second index*
-* `view 1` returns person in first index <br>
-  `remove h/2 a/1` removes person at first index's *homework at second index* and *attendance at first index*
+* `view Alex Yeoh` returns `Alex Yeoh` <br>
+  `remove h/2` removes `Alex Yeoh`'s *homework at second index*
+* `view John Doe` returns `John Doe` <br>
+  `remove h/2 a/1` removes `John Doe`'s *homework at second index* and *attendance at first index*
 
 ### Marking specific field in person: `mark`
 
@@ -141,8 +144,8 @@ It requires one field:
 Format: `mark [h/ a/]INDEX`
 
 Examples:
-* `view 1` returns person in first index <br>
-  `mark a/1` marks person at first index's *attendance at first index*
+* `view Alex Yeoh` returns `Alex Yeoh` <br>
+  `mark a/1` marks `Alex Yeoh`'s *attendance at first index*
 
 ### Unmarking specific field in person: `unmark`
 
@@ -154,8 +157,8 @@ It requires one field:
 Format: `unmark [h/ a/]INDEX`
 
 Examples:
-* `view 2` returns person in second index <br>
-  `unmark h/4` unmarks person at second index's *homework at fourth index*
+* `view Alex Yeoh` returns `Alex Yeoh` <br>
+  `unmark h/4` unmarks `Alex Yeoh`'s *homework at fourth index*
 
 
 ### Locating persons by name: `find`
@@ -166,7 +169,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name or phone number is searched.
+* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -235,7 +238,7 @@ Examples:
 Adds a formatted description of dates students attended class in address book. Cannot be used in schedule mode.
 Does not check for duplicate entries.
 
-Format: `attendance INDEX h/ATTENDACE`
+Format: `attendance INDEX a/ATTENDANCE`
 
 * Adds attendance to student with the specified `INDEX`.<br>
 * Attendance must be in `YYYY-MM-DD` format
@@ -251,7 +254,7 @@ Does not check for duplicate entries.
 Format: `session INDEX s/TUITION_TIME`
 
 * Adds tuition time to student with the specified `INDEX`.<br>
-* Tuition time must be in `DDD HH:MM` format
+* Tuition time must be in `DDD HH:MM` format where `HH:MM` ranges from 00:00 to 23:59
 
 Examples:
 * `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
