@@ -3,7 +3,7 @@ layout: page
 title: Salesy User Guide v1.3
 ---
 
-Salesy is a desktop app for helping food vendors manage details of suppliers and inventory, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and remember the commands well, Salesy can get your management tasks done faster than traditional GUI apps.
+Salesy is an all-in-one tool for NUS canteen vendors whom want to keep track of their tasks, inventory and suppliers, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). With Salesy, you can expect a good visualization of your inventory and be as efficient as possible with your bookkeeping routines.
 
 ![Ui](images/Ui.png)
 
