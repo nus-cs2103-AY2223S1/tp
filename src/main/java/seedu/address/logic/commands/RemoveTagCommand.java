@@ -30,7 +30,6 @@ public class RemoveTagCommand extends TagCommandGroup {
             + "Example: " + COMMAND_WORD + " 1 friend";
 
     public static final String MESSAGE_SUCCESS = "Tags removed from user: %1$s";
-    public static final String MESSAGE_TAGS_NOT_FOUND = "Tags do not exist: %1$s";
     public static final String MESSAGE_TAGS_NOT_BELONG_TO_USER = "Tags do not belong to user: %1$s";
 
     private final Optional<Index> index;
@@ -70,7 +69,7 @@ public class RemoveTagCommand extends TagCommandGroup {
 
         Set<Tag> tagsNotFound = tagsToRemove.stream().filter(tag -> !model.hasTag(tag)).collect(Collectors.toSet());
         if (!tagsNotFound.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_TAGS_NOT_FOUND, Tag.toString(tagsNotFound)));
+            return new CommandResult(String.format(Messages.MESSAGE_TAGS_NOT_FOUND, Tag.toString(tagsNotFound)));
         }
 
         Set<Tag> tagsNotBelongingToUser = tagsToRemove.stream()
