@@ -242,14 +242,20 @@ the same convention as [adding a student](#adding-a-student-add).
 </div>
 
 4. Amount Paid:
+    - Amount Paid stands for the amount that has been paid by the Student.
+    - Format: `paid/` must be followed by an integer.
     - Amount paid can only be an integer.
     - Amount paid must be non-negative.
 
 5. Amount Owed:
+    - Amount Owed stands for the amount that has been owed by the Student.
+    - Format: `owed/` must be followed by an integer.
     - Amount owed can only be an integer.
     - Amount owed must be non-negative.
 
 6. Rates per Class:
+    - Rates per Class stands for the amount of charge per Class for the Student.
+    - Format: `rate/` must be followed by an integer.
     - Rates per Class can only be an integer.
     - Rates per Class must be non-negative.
 
