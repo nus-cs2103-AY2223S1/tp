@@ -99,8 +99,8 @@ Notes on symbols in first column:
 
 <img src="images/addcommand/ap1.png" width="800px" height ="500px">
 
-* `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable
-* to add such patient because Bernice Yu already exists in the address book.
+* `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable 
+to add such patient because Bernice Yu already exists in the health contact.
 
 <img src="images/addcommand/ap2.png" width="800px" height ="500px">
 
@@ -148,8 +148,8 @@ Notes on symbols in first column:
 <img src="images/addcommand/aa1.png" width="800px" height ="500px">
 
 * Executing `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` again is unable
-* to add such appointment because the appointment with the combination of the four inputs
-* parameters already exists in the address book.
+to add such appointment because the appointment with the combination of the four inputs
+parameters already exists in the health contact.
 
 <img src="images/addcommand/aa2.png" width="800px" height ="500px">
 
@@ -196,7 +196,7 @@ Notes on symbols in first column:
 <img src="images/addcommand/ab1.png" width="800px" height ="500px">
 
 * Executing `ab 1 a/1500.00 d/2021-11-13` is unable to add such bill because the first appointment
-* in the displayed list already has an attached bill.
+in the displayed list already has an attached bill.
 
 <img src="images/addcommand/ab2.png" width="800px" height ="500px">
 
