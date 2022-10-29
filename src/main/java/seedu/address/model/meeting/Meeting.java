@@ -4,18 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CreateMeetingCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.exceptions.ImpreciseMatchException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -24,7 +20,6 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.util.DateTimeConverter;
-import seedu.address.model.util.DateTimeProcessor;
 
 /**
  * Class for a new Meeting
@@ -37,11 +32,6 @@ public class Meeting implements Comparable<Meeting> {
     private String processedMeetingDateAndTime;
     private String meetingLocation;
 
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
-            .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
-            .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeProcessor validator = new DateTimeProcessor(dateFormatter, timeFormatter);
     /**
      * Constructor for a new Meeting
      *
@@ -55,11 +45,8 @@ public class Meeting implements Comparable<Meeting> {
         this.peopleToMeetArray = peopleToMeetArray;
         this.peopleToMeetList.setPersons(peopleToMeetArray);
         this.meetingDescription = meetingTitle;
-        try {
-            this.processedMeetingDateAndTime = validator.processDateTime(processedMeetingDateAndTime);
-        } catch (ParseException | java.text.ParseException e) {
-            this.processedMeetingDateAndTime = processedMeetingDateAndTime;
-        }
+        this.processedMeetingDateAndTime = processedMeetingDateAndTime;
+
         this.meetingLocation = meetingLocation;
     }
 
