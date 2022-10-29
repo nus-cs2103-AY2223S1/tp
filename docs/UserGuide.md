@@ -174,18 +174,18 @@ Examples:
 
 Finds students whose student details contain any of the given keywords.
 
-Format: find KEYWORD [MORE_KEYWORDS]
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-* All fields are searched - NAME, STUDENT_ID, PHONE, CLASS, EMAIL.
+* All fields are searched - `NAME`, `STUDENT_ID`, `PHONE`, `CLASS`, `EMAIL`.
 * Partial words will also be matched e.g. Han will match Hans
 * Students matching at least one keyword will be returned (i.e. OR search).
-  e.g. Hans Bo will return Hans Gruber, Bo Yang
+  e.g. `find Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* find Jack returns jack tan and Jack Lee
-* find alex dav returns Wong Alex, David Lim<br>
+* `find Jack` returns `jack tan` and `Jack Lee`
+* `find alex dav` returns `Wong Alex, David Lim`
 
 
 ### Deleting a student : `delete`
