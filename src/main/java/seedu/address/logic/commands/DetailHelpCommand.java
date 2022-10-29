@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 import seedu.address.ui.MainPanelName;
 
-import java.util.Set;
-
 /**
  * Format full help instructions for every command for display.
  */
