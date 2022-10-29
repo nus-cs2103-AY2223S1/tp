@@ -124,6 +124,13 @@ public class Event implements Comparable<Event> {
     }
 
     /**
+     * Returns true if the specified profile is in the event's list of attendees.
+     */
+    public boolean hasAttendee(Profile profile) {
+        return attendees.hasAttendee(profile);
+    }
+
+    /**
      * Removes the event from each attendee in its own list of attendees {@code attendees}.
      */
     public void removeFromAttendees() {

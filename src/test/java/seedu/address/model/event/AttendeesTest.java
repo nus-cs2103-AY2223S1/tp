@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.ProfileBuilder;
 

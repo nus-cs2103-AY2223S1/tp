@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.storage.JsonAdaptedEvent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
@@ -98,7 +97,6 @@ public class JsonAdaptedEventTest {
 
         try {
             assertEquals(PRESENTATION, event.toModelType(ADDRESS_BOOK));
-            assertTrue(PRESENTATION.getAttendees().equals(event.toModelType(ADDRESS_BOOK).getAttendees()));
         } catch (IllegalValueException e) {
             throw new AssertionError("There should not be an error converting the event.", e);
         }
