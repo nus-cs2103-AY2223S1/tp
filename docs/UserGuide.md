@@ -1,5 +1,5 @@
 # User Guide
-Travelr is a desktop app for managing trips and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Travelr can get your trip management tasks done faster than traditional GUI apps.
+Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, locations, and itineraries, all within the same app!
 
 - [Quick start](#quick-start)
 - [Features](#features)
