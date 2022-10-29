@@ -69,6 +69,7 @@ public class MarkCommand extends Command {
         Person personToMark = lastShownList.get(index.getZeroBased());
         Person markedPerson = createMarkedPerson(personToMark, markPersonDescriptor);
 
+        markedPerson.setFullView();
         model.setPerson(personToMark, markedPerson);
         return new CommandResult(String.format(MESSAGE_MARKED_PERSON_SUCCESS, markedPerson));
     }
