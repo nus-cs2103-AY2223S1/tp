@@ -64,6 +64,7 @@ public class StudentTest {
         editedBob = new StudentBuilder(BOB)
                 .withName(nameWithTrailingSpaces)
                 .build();
+
         assertTrue(BOB.isSameStudent(editedBob));
     }
 
