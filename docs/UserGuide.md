@@ -97,6 +97,7 @@ This application UI is split into `5 sections`.
 * `List Of Clients`: Every client that you have will appear here
 * `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
 * `Remarks Of Specified Client`: Remarks of specified client will appear here
+* `Net amount` : This section displays the net amount transacted with all clients currently displayed in the `List Of Clients` panel on the left.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -187,7 +188,7 @@ Example:
 
 ### Editing a client: `edit`
 
-Edits the details of the `client` at the specified index number in the list displayed on the left panel.
+Edits the details of the `client` at the specified index number in the displayed client list on the left panel.
 
 Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 
@@ -197,7 +198,7 @@ Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 | `FIELDS`  | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`            |
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a client.
-</div>
+
 
 Examples:
 * `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
@@ -211,13 +212,13 @@ Examples:
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting a client: `delete`
-> <div markdown="span" class="alert alert-danger">❗ :warning: **If you delete a client, it will be gone forever**: Be very careful here!
+> <div markdown="span" class="alert alert-danger">❗ **If you delete a client, it will be gone forever**: Be very careful here!
 
 Deletes the specified `client`from JeeqTracker.
 
 Format: `delete INDEX m/client`
 
-* The `INDEX` refers to the index number shown in the displayed list.
+* The `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 
 Examples:
@@ -435,7 +436,6 @@ Clears all entries which include `clients`, `remarks` and `transactions` from Je
 Format: `clear`
 
 > <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved.
- </div>
 
 Example:
 
