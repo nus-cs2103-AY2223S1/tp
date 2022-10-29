@@ -30,7 +30,7 @@ public class PickCommandParser implements Parser<PickCommand> {
         LessonTypeParameter ltp = new LessonTypeParameter(args);
         LessonTypeEnum lt = ltp.getArgValue();
 
-        String classNo = arg[3].trim();
+        String classNo = arg[3].trim().toUpperCase();
 
         return new PickCommand(mc, lt, classNo);
     }
