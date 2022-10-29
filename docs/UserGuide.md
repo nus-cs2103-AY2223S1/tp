@@ -22,10 +22,9 @@ title: User Guide
 
 Welcome to *_MyInsuRec_ User Guide*!
 
-Our team would like to thank you for choosing to use _MyInsuRec_! <br>
+Thank you for choosing to use _MyInsuRec_! <br>
 
-In order to smoothen the learning curve for you,
-this guide would allow you to effectively learn how to use _MyInsuRec_.
+In order to smoothen the learning curve for you, this guide would allow you to effectively learn how to use _MyInsuRec_.
 
 Before we go on further, look out for these symbols in the User Guide as they provide some important message you might want to know!
 
@@ -42,19 +41,19 @@ If you have **not installed** _MyInsuRec_, you can follow the [installation guid
 </div>
 
 After you have installed _MyInsuRec_, you can
-1. Familiarise yourself with our [Terminologies](#23-terminologies) that are used throughout this User Guide.
-2. Understand the [layout of the interface](#24-user-interface) you will be interacting with.
+1. Familiarize yourself with our [Terminologies](#23-terminologies) that are used throughout this User Guide.
+2. Get to know the [layout of the interface](#24-user-interface) you will be interacting with.
 3. Follow this [step-by-step tutorial](#4-quick-start) to learn the basic features of _MyInsuRec_.
-4. Check out other advance features under [Features](#5-features) once you got the hang of the basic features.
-5. View our [glossary](#8-glossary) when you come across a unfamiliar term used.
+4. Check out other advanced features under [Features](#5-features) once you got the hang of the basic features.
+5. Refer to our [glossary](#8-glossary) when you come across a unfamiliar term used.
 
 <div markdown="block" class="alert alert-info">:information_source:
-For **experienced user**, you can look at the [Command Summary](#7-command-summary) for a summarised table of all the commands available.
+For **experienced users**, you can look at the [Command Summary](#7-command-summary) for a summarized table of all the commands available.
 </div>
 
 In the event where you encounter any trouble or issues, refer to our [FAQ section](#6-faq) or feel free to [contact us](#9-contact-us).
 
-We hopefully that this guide is helpful in smoothing out the learn curve for you!
+We hope that this guide is helpful in smoothing out the learning curve for you!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -207,7 +206,7 @@ Only products added already via `addProduct` can be used! This is to help ensure
 
 And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have more advanced features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#5-features) where all the commands and their details can be found.
 
-To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't get panicked!
+To get started with a clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't panic if you see all your data are wiped off!
 
 Welcome to your new and organized life, and happy (financial) advising!
 
@@ -329,7 +328,7 @@ Format: `delClient i/INDEX`
 
 * `INDEX` refers to the index number shown by executing [`listClient`](#312-list-clients-listclient) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* If `INDEX` is a non-positive integer or not shown in `listClient`, an error will be thrown!
+* If `INDEX` is a non-positive integer or not shown in `listClient`, an error will be shown!
 
 Examples:
 
@@ -439,7 +438,7 @@ Format: `delMeeting i/INDEX`
 * Delete the meeting at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
-* If `INDEX` is a non-positive integer or not shown in `listMeeting`, an error will be thrown!
+* If `INDEX` is a non-positive integer or not shown in `listMeeting`, an error will be shown!
 
 Examples:
 * Suppose the second meeting in `listMeeting` was cancelled, you can remove them by using,
