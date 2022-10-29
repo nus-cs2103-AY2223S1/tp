@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% if site.enable_admonitions %}{% capture content %}{% include admonitions.liquid html=content %}{% endcapture %}{% endif %}
+{% if site.enable_features.admonitions %}{% capture content %}{% include admonitions.liquid html=content %}{% endcapture %}{% endif %}
 <article class="post">
   <header class="post-header">
     <h1 class="post-title">{{ page.title | escape }}</h1>
