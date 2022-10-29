@@ -45,7 +45,7 @@ public class DeletePersonFromMeetingCommand extends Command {
         ArrayList<Person> arrayOfPeopleToDelete = Meeting.convertNameToPerson(model, newPeople);
         Meeting meetingToUpdate = model.getFilteredMeetingList().get(meetingIndex);
         if (meetingToUpdate.getNumPersons() == 1) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_ONLY_ONE_LEFT);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
         model.deleteMeeting(meetingToUpdate);
         meetingToUpdate.deletePersons(arrayOfPeopleToDelete);

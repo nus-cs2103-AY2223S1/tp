@@ -39,7 +39,7 @@ public class AddPersonToMeetingCommand extends Command {
         int meetingIndex = parseInt(newPeopleInformation[0].strip());
 
         if (meetingIndex < 0 || meetingIndex >= model.getFilteredMeetingList().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX, MESSAGE_USAGE));
         }
 
         ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, newPeople);
