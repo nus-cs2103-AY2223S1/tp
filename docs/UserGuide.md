@@ -41,11 +41,11 @@ In this *User Guide*, we will take you through the many useful features and func
 
 * Items in square brackets are optional.<br>
   Example:
-  * `n/NAME t/TELEGRAM [i/INTEREST]` can be used as `n/John Doe t/johnxyz i/AI` or as `n/John Doe t/johnxyz` without using `i/INTEREST`.
+  * `n/NAME t/TELEGRAM [i/INTEREST]` can be used as `n/John Doe t/johnxyz i/ai` or as `n/John Doe t/johnxyz` without using `i/INTEREST`.
 
 * Items with `...` after them can be used multiple times.<br>
   Examples:
-  * `[i/INTEREST]...` can be used as `i/AI`, `i/algo i/SWE` etc.<br>
+  * `[i/INTEREST]...` can be used as `i/ai`, `i/algo i/swe` etc.<br>
   * `[MORE_MODULES]...` can be used as `cs2100`, `cs2103t cs2101 cs2105` etc.
 
 * Parameters can be in any order.<br>
@@ -84,7 +84,7 @@ Format: `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m
 
 Examples:
 * `add n/John Doe t/johnxyz` adds a batchmate named `John Doe` with telegram handle `johnxyz` to the list.
-* `add n/John Doe t/johnxyz g/johndoe p/98765432 e/johnd@example.com i/AI i/SWE` adds a batchmate named `John Doe` with telegram handle `johnxyz`, github username `johndoe`, phone number `98765432`, email address `johnd@example.com` and interests in `AI` and `SWE` to the list. 
+* `add n/John Doe t/johnxyz g/johndoe p/98765432 e/johnd@example.com i/ai i/swe` adds a batchmate named `John Doe` with telegram handle `johnxyz`, github username `johndoe`, phone number `98765432`, email address `johnd@example.com` and interests in `ai` and `swe` to the list. 
 * `add n/John Doe t/johnxyz m/cs2103t m/cs2101` adds a batchmate named `John Doe` with telegram handle `johnxyz` and modules `cs2103t` and `cs2101` to the list.
 
 ### List all batchmates: `list`
@@ -146,7 +146,7 @@ Format: `addInt INDEX INTEREST [MORE_INTERESTS]...`
 
 Examples:
 * `addInt 1 algo` adds the interest `algo` to the 1st batchmate in the currently displayed list.
-* `addInt 3 database SWE MachineLearning` adds the interests `database`, `SWE` and `MachineLearning` to the 3rd batchmate in the currently displayed list.
+* `addInt 3 database swe machinelearning` adds the interests `database`, `swe` and `machinelearning` to the 3rd batchmate in the currently displayed list.
 
 ### Delete interests: `deleteInt`
 
@@ -157,8 +157,8 @@ Format: `deleteInt INDEX INTEREST [MORE_INTERESTS]...`
 * Deletes interest(s) from the batchmate at the specific INDEX in the __currently displayed list__ in the Students panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `deleteInt 1 AI` deletes the interest `AI` from the 1st batchmate in the currently displayed list.
-* `deleteInt 3 AI SWE` deletes the interests `AI` and `SWE` from the 3rd batchmate in the currently displayed list.
+* `deleteInt 1 ai` deletes the interest `ai` from the 1st batchmate in the currently displayed list.
+* `deleteInt 3 ai swe` deletes the interests `ai` and `swe` from the 3rd batchmate in the currently displayed list.
 
 ### Find batchmates by interests: `findInt`
 
@@ -166,12 +166,12 @@ Finds batchmates whose interests contain __all__ the specified interests.
 
 Format: `findInt INTEREST [MORE_INTERESTS]...`
 
-* The search is case-insensitive. e.g. `machinelearning` will match `MachineLearning`.
-* Only exact words will be matched. e.g. `sw` will not match `SWE`.
+* The search is case-insensitive. e.g. `machinelearning` will match `machinelearning`.
+* Only exact words will be matched. e.g. `sw` will not match `swe`.
 
 Examples:
-* `findInt AI` returns all batchmates whose interests contain `AI`.
-* `findInt swe security` returns all batchmates whose interests contain both `SWE` and `security`.
+* `findInt ai` returns all batchmates whose interests contain `ai`.
+* `findInt swe security` returns all batchmates whose interests contain both `swe` and `security`.
 
 ### Delete a batchmate: `delete`
 
@@ -335,13 +335,13 @@ _Module prefix refers to the first two characters of every module name._
 | Action                           | Format                                                                                                                                                           | Examples                      |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
 | **Help**                         | `help`                                                             | `help`                                                                                                                      |
-| **Add**                          | `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...`| `add n/John Doe t/johnxyz g/johndoe p/98765432 e/johnd@example.com i/AI i/SWE m/cs2103t m/cs2101`         |
+| **Add**                          | `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...`| `add n/John Doe t/johnxyz g/johndoe p/98765432 e/johnd@example.com i/AI i/swe m/cs2103t m/cs2101`         |
 | **List**                         | `list`| `list`                                                                                                                                                                                   |
 | **Edit**                         | `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`| `edit 1 g/johndoe p/91234567 e/johndoe@example.com`                                                          |
 | **Find**                         | `find KEYWORD [MORE_KEYWORDS]...`| `find Alex david`                                                                                                                                             |
-| **Add interest**                 | `addInt INDEX INTEREST [MORE_INTERESTS]...`| `addInt 3 algo AI SWE`                                                                                                                              |
-| **Delete interest**              | `deleteInt INDEX INTEREST [MORE_INTERESTS]...` | `deleteInt 3 AI SWE`                                                                                                                            |
-| **Find by interest**             | `findInt INTEREST [MORE_INTEREST]...` | `findInt AI SWE`                                                                                                                                         |
+| **Add interest**                 | `addInt INDEX INTEREST [MORE_INTERESTS]...`| `addInt 3 algo ai swe`                                                                                                                              |
+| **Delete interest**              | `deleteInt INDEX INTEREST [MORE_INTERESTS]...` | `deleteInt 3 ai swe`                                                                                                                            |
+| **Find by interest**             | `findInt INTEREST [MORE_INTEREST]...` | `findInt ai swe`                                                                                                                                         |
 | **Delete**                       | `delete INDEX` | `delete 2`                                                                                                                                                                      |
 | **Add module**                   | `mod add INDEX MODULE [MORE_MODULES]...` | `mod add 3 cs2100 cs2103t cs2101 cs2105`                                                                                                              |
 | **Delete module**                | `mod delete INDEX MODULE [MORE_MODULES]...`| `mod delete 3 cs2100 cs2103t cs2101 cs2105`                                                                                                         |

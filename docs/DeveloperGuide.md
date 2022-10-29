@@ -190,8 +190,8 @@ The following activity diagram summarises what happens when a student enters a `
 **Aspect: How `findInt` executes:**
 
 * **Alternative 1 (current choice):** Finds all batchmates whose interests match all interests specified (i.e. a superset of those specified).
-    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `AI` and `SWE` will result in a batchmate whose interests are `AI`, `SWE` and `algo` to be displayed).
-    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `AI` and `SWE` will not result in a batchmate whose only interest is `AI` to be displayed).
+    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `ai` and `swe` will result in a batchmate whose interests are `ai`, `swe` and `algo` to be displayed).
+    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `ai` and `swe` will not result in a batchmate whose only interest is `ai` to be displayed).
 
 * **Alternative 2:** Finds all batchmates whose interests match at least one of the interests specified.
     * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
@@ -653,8 +653,8 @@ testers are expected to do more *exploratory* testing.
           Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers. 
        Uniqueness is verified using two of the mandatory fields - the ```Student```'s name and telegram handle.
 
-    2. Test case: `add n/John t/john i/AI g/john`.<br>
-       Expected: A new batchmate with the name `John`, telegram handle `john`, interests `AI` and GitHub `john` is added at the bottom of the students pane in Mass Linkers.
+    2. Test case: `add n/John t/john i/ai g/john`.<br>
+       Expected: A new batchmate with the name `John`, telegram handle `john`, interests `ai` and GitHub `john` is added at the bottom of the students pane in Mass Linkers.
        The status message indicates that a batchname named `John` has been successfully added.
 
     3. Test case: `add n/John`.<br>
