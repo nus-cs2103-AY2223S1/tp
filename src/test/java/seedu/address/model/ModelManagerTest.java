@@ -358,28 +358,30 @@ public class ModelManagerTest {
         // Model default is at home.
         assertEquals(isAtHome, modelManager.getHomeStatus());
 
-        // Model stays at home when filtered list is updated.
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ZERO_PERSON);
-        assertEquals(isAtHome, modelManager.getHomeStatus());
-
-        // Model stays at home after adding person.
-        modelManager.addPerson(AMY);
-        assertEquals(isAtHome, modelManager.getHomeStatus());
-
-        // Model stays at home after removing person.
-        modelManager.deletePerson(AMY);
-        assertEquals(isAtHome, modelManager.getHomeStatus());
-
-        // Model stays at home after adding module.
-        modelManager.addModule(CS2106_WITH_TYPICAL_TASKS);
-        assertEquals(isAtHome, modelManager.getHomeStatus());
-
-        // Model stays at home after removing module.
-        modelManager.deleteModule(CS2106_WITH_TYPICAL_TASKS);
-        assertEquals(isAtHome, modelManager.getHomeStatus());
-
         // Leave home.
         modelManager.setHomeStatus(false);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // Test that modelManager does not update home status via its methods except goToHomePage.
+
+        // When filtered list is updated.
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ZERO_PERSON);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // After adding person.
+        modelManager.addPerson(AMY);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // After removing person via modelManager.
+        modelManager.deletePerson(AMY);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // After adding module via modelManger.
+        modelManager.addModule(CS2106_WITH_TYPICAL_TASKS);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // After removing module via modelManager.
+        modelManager.deleteModule(CS2106_WITH_TYPICAL_TASKS);
         assertEquals(isNotAtHome, modelManager.getHomeStatus());
 
         // Model returns to home after running goToHomePage.

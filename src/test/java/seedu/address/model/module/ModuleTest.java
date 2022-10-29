@@ -3,6 +3,7 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -23,6 +24,12 @@ public class ModuleTest {
         assertThrows(UnsupportedOperationException.class, () -> module.getTasks().remove(0));
     }
 
+    @Test
+    public void getModuleTitleAsUpperCaseString_returnsValidTitleString() {
+        Module cs2106Copy = new ModuleBuilder(CS2106).build();
+        assertTrue(cs2106Copy.getModuleTitleAsUpperCaseString().equals(VALID_CS2106_MODULE_TITLE.toUpperCase()));
+
+    }
     @Test
     public void isSameModule() {
         // same object -> returns true
