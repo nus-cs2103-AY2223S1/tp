@@ -24,7 +24,7 @@ import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.addcommands.AddDelivererCommand;
 //import seedu.address.logic.commands.addcommands.AddPetCommand;
-import seedu.address.logic.commands.addcommands.AddSupplierCommand;
+//import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
 import seedu.address.logic.commands.deletecommands.DeleteDelivererCommand;
 import seedu.address.logic.commands.deletecommands.DeleteSupplierCommand;
@@ -56,7 +56,7 @@ import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
 import seedu.address.testutil.TypicalPersonCategories;
-import seedu.address.testutil.TypicalSuppliers;
+//import seedu.address.testutil.TypicalSuppliers;
 
 public class AddressBookParserTest {
 
@@ -78,6 +78,7 @@ public class AddressBookParserTest {
         assertEquals(new AddDelivererCommand(deliverer), command);
     }
 
+    /*
     @Test
     public void parseCommand_addSupplier() throws Exception {
         Supplier supplier = TypicalSuppliers.ALICE;
@@ -85,6 +86,8 @@ public class AddressBookParserTest {
                 + " " + PersonUtil.getAddCommandBody(supplier));
         assertEquals(new AddSupplierCommand(supplier, new ArrayList<>()), command);
     }
+
+     */
 
     /*
     @Test
