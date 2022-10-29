@@ -81,6 +81,8 @@ To get you started, you might want to read the section on [how to use this User 
 
 7. Refer to the [Features](#features) below for details of each command.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## How to use the User Guide
@@ -109,6 +111,8 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+
+[Back to Table of Contents](#table-of-contents)
 
 </div>
 
@@ -151,9 +155,9 @@ Parameter constraints:
 |:-----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `INDEX`    | - Refers to the index number shown in the displayed client list. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/>  **must not contain any signs** e.g +1, -3, …​                                 |
 | `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - should only contain non-negative unsigned integers and be at least 1 digit long.                                                                     |
-| `GOODS` | Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                 |
-| `PRICE` | Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                    |
-| * The `DATE` | Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction.  |
+| `GOODS`    | Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                 |
+| `PRICE`    | Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                    |
+| `DATE`     | Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction.  |
   
 
 Examples:
