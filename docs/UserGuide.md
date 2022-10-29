@@ -236,7 +236,7 @@ Marks a module as undone.
 
 Format: `undone module <module code>`
 
-Shorthand: `done mod <module code>`
+Shorthand: `undone mod <module code>`
 
 Examples:
 - `undone module CS1101S`
