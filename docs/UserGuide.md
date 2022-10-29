@@ -18,7 +18,7 @@ TrackO is a **desktop app built for small business owners to help them manage or
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TrackO.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`listo`** and pressing Enter will show a list of existing orders.<br>
@@ -304,6 +304,10 @@ Clears all data (in both `Order List` and `Inventory List`) from TrackO.
 
 :bulb: The keywords `confirm` and `done` are case-sensitive. Thus, only the keywords in lower case are accepted.
 
+### Getting help: `help`
+
+Shows a window with a link to the user guide.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -327,4 +331,5 @@ Format: `exit`
 | **Mark An Order**            | `marko INDEX [-p] [-d]` <br> e.g., `marko 2 -d`, `marko 3 -p -d`                                                                                                                                                                                           |
 | **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                                                 |
 | **Clear**                    | `clear`<br/> followed by `confirm` or `cancel` when prompted                                                                                                                                                                                               |
+| **Getting Help**             | `help`                                                                                                                                                                                                                                                     |
 | **Exit**                     | `exit`                                                                                                                                                                                                                                                     |
