@@ -81,7 +81,7 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     }
 
     /**
-     * Returns true if a profile with the same phone as {@code profile} exists in the address book.
+     * Returns true if a profile with the same phone as {@code profile} exists in the NUScheduler.
      */
     public boolean hasPhone(Profile profile) {
         requireNonNull(profile);
@@ -89,7 +89,7 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     }
 
     /**
-     * Returns true if a profile with the same telegram as {@code profile} exists in the address book.
+     * Returns true if a profile with the same telegram as {@code profile} exists in the NUScheduler.
      */
     public boolean hasTelegram(Profile profile) {
         requireNonNull(profile);
@@ -123,7 +123,7 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     }
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the address book.
+     * Returns true if a profile with the same identity as {@code profile} exists in the NUScheduler.
      */
     public boolean hasProfile(Profile profile) {
         requireNonNull(profile);
@@ -168,8 +168,8 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Adds profiles in {@code profilesToAdd} to the given event.
-     * {@code event} must exist in the address book.
-     * Profiles in {@code profilesToAdd} must also exist in the address book.
+     * {@code event} must exist in the NUScheduler.
+     * Profiles in {@code profilesToAdd} must also exist in the NUScheduler.
      */
     public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
         requireAllNonNull(event, profilesToAdd);
@@ -178,8 +178,8 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Deletes profiles in {@code profilesToDelete} from the given event.
-     * {@code event} must exist in the address book.
-     * Profiles in {@code profilesToDelete} must also exist in the address book.
+     * {@code event} must exist in the NUScheduler.
+     * Profiles in {@code profilesToDelete} must also exist in the NUScheduler.
      */
     public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
         requireAllNonNull(event, profilesToDelete);
@@ -188,8 +188,8 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
-     * {@code event} must exist in the address book.
-     * Profiles in {@code profilesToAddEventTo} must also exist in the address book.
+     * {@code event} must exist in the NUScheduler.
+     * Profiles in {@code profilesToAddEventTo} must also exist in the NUScheduler.
      */
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
@@ -198,8 +198,8 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Replaces the given event {@code target} in the list with {@code editedEvent}.
-     * {@code target} must exist in the address book.
-     * The event identity of {@code editedEvent} must not be the same as an existing event in the address book.
+     * {@code target} must exist in the NUScheduler.
+     * The event identity of {@code editedEvent} must not be the same as an existing event in the NUScheduler.
      * Ensures the change is updated for all event attendees.
      */
     public void setEventForAttendees(Event target, Event editedEvent) {
@@ -209,8 +209,8 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
-     * {@code target} must exist in the address book.
-     * Profiles in {@code profilesToEdit} must also exist in the address book.
+     * {@code target} must exist in the NUScheduler.
+     * Profiles in {@code profilesToEdit} must also exist in the NUScheduler.
      */
     public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
         requireAllNonNull(target, profilesToEdit);

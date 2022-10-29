@@ -116,7 +116,7 @@ public class EditProfileCommandTest {
     public void execute_similarEmailFilteredList_failure() {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
-        // edit profile in filtered list into a profile with similar email in address book
+        // edit profile in filtered list into a profile with similar email in NUScheduler
         Profile profileShown = model.getNuScheduler().getProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
         Profile profileInList = model.getNuScheduler().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
@@ -140,7 +140,7 @@ public class EditProfileCommandTest {
     public void execute_similarPhoneFilteredList_failure() {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
-        // edit profile in filtered list into a profile with similar phone in address book
+        // edit profile in filtered list into a profile with similar phone in NUScheduler
         Profile profileShown = model.getNuScheduler().getProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
         Profile profileInList = model.getNuScheduler().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
@@ -164,7 +164,7 @@ public class EditProfileCommandTest {
     public void execute_similarTelegramFilteredList_failure() {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
-        // edit profile in filtered list into a profile with similar telegram in address book
+        // edit profile in filtered list into a profile with similar telegram in NUScheduler
         Profile profileShown = model.getNuScheduler().getProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
         Profile profileInList = model.getNuScheduler().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,

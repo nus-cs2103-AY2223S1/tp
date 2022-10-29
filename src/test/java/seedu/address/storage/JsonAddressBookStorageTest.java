@@ -20,7 +20,7 @@ import seedu.address.model.NuScheduler;
 import seedu.address.model.ReadOnlyNuScheduler;
 
 public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonNuSchedulerStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -47,7 +47,7 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatNuScheduler.json"));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempNuScheduler.json");
         NuScheduler original = getTypicalNuScheduler();
         JsonNuSchedulerStorage jsonAddressBookStorage = new JsonNuSchedulerStorage(filePath);
 
@@ -88,24 +88,24 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveNuScheduler_nullNuScheduler_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveNuScheduler(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyNuScheduler addressBook, String filePath) {
+    private void saveNuScheduler(ReadOnlyNuScheduler nuScheduler, String filePath) {
         try {
             new JsonNuSchedulerStorage(Paths.get(filePath))
-                    .saveNuScheduler(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveNuScheduler(nuScheduler, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new NuScheduler(), null));
+    public void saveNuScheduler_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveNuScheduler(new NuScheduler(), null));
     }
 }

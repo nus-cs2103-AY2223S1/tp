@@ -189,7 +189,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s NUScheduler.
      */
     public static void showEventAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());

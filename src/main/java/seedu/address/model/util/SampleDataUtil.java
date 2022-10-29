@@ -66,7 +66,7 @@ public class SampleDataUtil {
         presentation.addToAllAttendees(List.of(bernice, roy));
     }
 
-    public static ReadOnlyNuScheduler getSampleNUScheduler() {
+    public static ReadOnlyNuScheduler getSampleNuScheduler() {
         NuScheduler sampleAb = new NuScheduler();
         addAttendees();
         addEventsAttending();

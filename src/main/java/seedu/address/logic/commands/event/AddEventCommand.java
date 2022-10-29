@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Adds an event to the address book.
+ * Adds an event to the NUScheduler.
  */
 public class AddEventCommand extends EventCommand {
 
@@ -35,7 +35,7 @@ public class AddEventCommand extends EventCommand {
             + PREFIX_TAG + "Evening";
 
     public static final String MESSAGE_SUCCESS = "New event added:\n%1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the NUScheduler";
     public static final String MESSAGE_HELP = "Adds an event to NUScheduler.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " "
             + PREFIX_NAME + "TITLE "

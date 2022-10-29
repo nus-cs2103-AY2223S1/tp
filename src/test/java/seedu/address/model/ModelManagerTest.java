@@ -79,12 +79,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasEmail_emailNotInAddressBook_returnsFalse() {
+    public void hasEmail_emailNotInNuScheduler_returnsFalse() {
         assertFalse(modelManager.hasEmail(ALICE));
     }
 
     @Test
-    public void hasEmail_emailInAddressBook_returnsTrue() {
+    public void hasEmail_emailInNuScheduler_returnsTrue() {
         modelManager.addProfile(ALICE);
         assertTrue(modelManager.hasEmail(ALICE));
     }
@@ -95,12 +95,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPhone_phoneNotInAddressBook_returnsFalse() {
+    public void hasPhone_phoneNotInNuScheduler_returnsFalse() {
         assertFalse(modelManager.hasPhone(ALICE));
     }
 
     @Test
-    public void hasPhone_phoneInAddressBook_returnsTrue() {
+    public void hasPhone_phoneInNuScheduler_returnsTrue() {
         modelManager.addProfile(ALICE);
         assertTrue(modelManager.hasPhone(ALICE));
     }
@@ -111,12 +111,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasTelegram_telegramNotInAddressBook_returnsFalse() {
+    public void hasTelegram_telegramNotInNuScheduler_returnsFalse() {
         assertFalse(modelManager.hasTelegram(ALICE));
     }
 
     @Test
-    public void hasTelegram_telegramInAddressBook_returnsTrue() {
+    public void hasTelegram_telegramInNuScheduler_returnsTrue() {
         modelManager.addProfile(ALICE);
         assertTrue(modelManager.hasTelegram(ALICE));
     }

@@ -15,7 +15,7 @@ import seedu.address.testutil.TypicalNuScheduler;
 
 public class JsonSerializableNuSchedulerTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableNuSchedulerTest");
     private static final Path TYPICAL_PROFILES_FILE = TEST_DATA_FOLDER.resolve("typicalProfilesNuScheduler.json");
     private static final Path INVALID_PROFILE_FILE = TEST_DATA_FOLDER.resolve("invalidNameNuScheduler.json");
     private static final Path SIMILAR_EMAIL_FILE = TEST_DATA_FOLDER.resolve("similarEmailNuScheduler.json");

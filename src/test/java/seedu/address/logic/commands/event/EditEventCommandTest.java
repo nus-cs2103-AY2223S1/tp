@@ -114,7 +114,7 @@ public class EditEventCommandTest {
     public void execute_duplicateEventFilteredList_failure() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
-        // edit event in filtered list into a duplicate in address book
+        // edit event in filtered list into a duplicate in NUScheduler
         Event eventInList = model.getNuScheduler().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
         EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT,
                 new EditEventDescriptorBuilder(eventInList).build());
@@ -133,13 +133,13 @@ public class EditEventCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of NUScheduler
      */
     @Test
     public void execute_invalidEventIndexFilteredList_failure() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of NUScheduler list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getNuScheduler().getEventList().size());
 
         EditEventCommand editEventCommand = new EditEventCommand(outOfBoundIndex,

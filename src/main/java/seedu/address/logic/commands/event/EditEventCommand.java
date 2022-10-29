@@ -27,7 +27,7 @@ import seedu.address.model.event.Title;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing event in the address book.
+ * Edits the details of an existing event in the NUScheduler.
  */
 public class EditEventCommand extends EventCommand {
 
@@ -53,7 +53,7 @@ public class EditEventCommand extends EventCommand {
             + "[" + PREFIX_END_DATE + "END] "
             + "[" + PREFIX_TAG + "TAG]...\n";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the NUScheduler.";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;

@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROFILE;
+import static seedu.address.testutil.TypicalNuScheduler.getTypicalNuScheduler;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.BENSON;
 
@@ -20,9 +20,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.NuScheduler;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
@@ -34,7 +34,7 @@ import seedu.address.testutil.ProfileBuilder;
  */
 class AddProfilesToEventCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalNuScheduler(), new UserPrefs());
 
     @Test
     public void execute_addNewAttendeesUnfilteredList_success() {
@@ -49,7 +49,7 @@ class AddProfilesToEventCommandTest {
 
         String expectedMessage = String.format(AddProfilesToEventCommand.MESSAGE_EDIT_ATTENDEES_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
         expectedModel.setEventForAttendees(model.getFilteredEventList().get(1), editedEvent);
 
         assertCommandSuccess(addProfilesToEventCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ class AddProfilesToEventCommandTest {
 
         String expectedMessage = String.format(AddProfilesToEventCommand.MESSAGE_EDIT_ATTENDEES_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
         assertCommandSuccess(addProfilesToEventCommand, model, expectedMessage, expectedModel);
@@ -84,7 +84,7 @@ class AddProfilesToEventCommandTest {
 
         String expectedMessage = String.format(AddProfilesToEventCommand.MESSAGE_EDIT_ATTENDEES_SUCCESS, editedEvent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new NuScheduler(model.getNuScheduler()), new UserPrefs());
         expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
         assertCommandSuccess(addProfilesToEventCommand, model, expectedMessage, expectedModel);
@@ -123,8 +123,8 @@ class AddProfilesToEventCommandTest {
     public void execute_invalidEventIndexFilteredList_failure() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getEventList().size());
+        // ensures that outOfBoundIndex is still in bounds of NUScheduler list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getNuScheduler().getEventList().size());
 
         AddProfilesToEventCommand addProfilesToEventCommand = new AddProfilesToEventCommand(outOfBoundIndex,
                 Set.of(INDEX_FIRST_PROFILE, INDEX_SECOND_PROFILE));

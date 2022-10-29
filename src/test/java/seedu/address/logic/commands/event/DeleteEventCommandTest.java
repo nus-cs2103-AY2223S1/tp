@@ -68,7 +68,7 @@ public class DeleteEventCommandTest {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of NUScheduler list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getNuScheduler().getEventList().size());
 
         DeleteEventCommand deleteCommand = new DeleteEventCommand(outOfBoundIndex);

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.NuScheduler;
 import seedu.address.model.event.Attendees;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
@@ -70,7 +70,7 @@ class JsonAdaptedEvent {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
-    public Event toModelType(AddressBook addressBook) throws IllegalValueException {
+    public Event toModelType(NuScheduler nuScheduler) throws IllegalValueException {
         final List<Tag> eventTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             eventTags.add(tag.toModelType());
@@ -106,9 +106,9 @@ class JsonAdaptedEvent {
         final Attendees modelAttendees = new Attendees();
         for (JsonAdaptedProfile attendee : attendees) {
             Profile p = attendee.toModelType();
-            if (addressBook.hasProfile(p)) {
-                int index = addressBook.getProfileList().indexOf(p);
-                p = addressBook.getProfileList().get(index);
+            if (nuScheduler.hasProfile(p)) {
+                int index = nuScheduler.getProfileList().indexOf(p);
+                p = nuScheduler.getProfileList().get(index);
                 modelAttendees.addProfile(p);
             }
         }
