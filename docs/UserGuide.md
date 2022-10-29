@@ -266,7 +266,7 @@ Format: `clear`
 
 ### Viewing help : `help`
 
-Shows a command summary as well as link to the User Guide page. The link can be copied by clickiing the `Copy URL` button.
+Shows a command summary as well as link to the User Guide page. The link can be copied by clicking the `Copy URL` button.
 
 ![help message](images/helpMessage.png)
 
