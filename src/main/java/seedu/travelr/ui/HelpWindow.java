@@ -21,52 +21,51 @@ import seedu.travelr.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String WELCOME_MESSAGE = "Welcome to TravelR!!";
-    public static final String MESSAGE = "Refer to the following table for a "
-            + "quick guide on the commands to use this app.";
+    public static final String MESSAGE = "The following table contains the app's command summary";
     public static final String UG_URL = "https://ay2223s1-cs2103t-w17-1.github.io/tp/UserGuide.html";
     public static final String USER_GUIDE_MESSAGE = "For more details refer to the user guide: " + UG_URL;
     public static final String COMMAND_SUMMARY =
-            "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Action                      | Format                                                      |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Add a trip                  | add n/TITLE d/DESCRIPTION                                   |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Add an event                | add-e n/TITLE d/DESCRIPTION                                 |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Delete an event             | delete-e INDEX                                              |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Delete a trip               | delete INDEX                                                |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Add an event to a trip      | add-et n/EVENT_TITLE t/TRIP_TITLE                           |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Remove an event from trip   | delete-et n/EVENT_TITLE t/TRIP_TITLE                        |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| View trips list             | list                                                        |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| View events list            | list-e                                                      |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Mark a trip as done         | mark INDEX                                                  |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Mark a trip as not done     | unmark INDEX                                                |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| View completed events and   | completed                                                   |\n"
-                    + "| trips                       |                                                             |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| View all trips and events   | view                                                        |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| View lifetime summary       | summary                                                     |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| View events in a trip       | select INDEX                                                |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Clear the storage and data  | clear                                                       |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Sort events in bucket list  | sort-e                                                      |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| Sort Trips                  | sort                                                        |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+\n"
-                    + "| List available commands     | help                                                        |\n"
-                    + "| and link to User Guide      |                                                             |\n"
-                    + "+-----------------------------+-------------------------------------------------------------+";
+            "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Action                      | Format                                            |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Add a trip                  | add n/TITLE d/DESCRIPTION                         |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Add an event                | add-e n/TITLE d/DESCRIPTION                       |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Delete an event             | delete-e INDEX                                    |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Delete a trip               | delete INDEX                                      |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Add an event to a trip      | add-et n/EVENT_TITLE t/TRIP_TITLE                 |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Remove an event from trip   | delete-et n/EVENT_TITLE t/TRIP_TITLE              |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| View trips list             | list                                              |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| View events list            | list-e                                            |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Mark a trip as done         | mark INDEX                                        |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Mark a trip as not done     | unmark INDEX                                      |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| View completed events and   | completed                                         |\n"
+                    + "| trips                       |                                                   |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| View all trips and events   | view                                              |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| View lifetime summary       | summary                                           |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| View events in a trip       | select INDEX                                      |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Clear the storage and data  | clear                                             |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Sort events in bucket list  | sort-e                                            |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| Sort Trips                  | sort                                              |\n"
+                    + "+-----------------------------+---------------------------------------------------+\n"
+                    + "| List available commands     | help                                              |\n"
+                    + "| and link to User Guide      |                                                   |\n"
+                    + "+-----------------------------+---------------------------------------------------+";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -77,17 +76,16 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label message;
 
+    //@@author AY2223S1-CS2103T-W17-4
+
     @FXML
     private Label welcomeMessage;
-
 
     @FXML
     private Label userGuideMessage;
 
     @FXML
     private Label commandSummary;
-    @FXML
-    private Label commandSummaryIntro;
 
     /**
      * Creates a new HelpWindow.
@@ -131,7 +129,9 @@ public class HelpWindow extends UiPart<Stage> {
     public void show() {
         logger.fine("Showing help page about the application.");
         getRoot().show();
-        // getRoot().setMaximized(true);
+        getRoot().setHeight(650);
+        getRoot().setMaxWidth(900);
+        //getRoot().setMaximized(true);
         getRoot().centerOnScreen();
     }
 

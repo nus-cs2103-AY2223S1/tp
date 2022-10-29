@@ -1,3 +1,8 @@
+/*
+Author: AY2223S1-CS2103T-W17-4, Rachel-AG
+Author URI: https://github.com/AY2223S1-CS2103T-W17-4/tp
+*/
+
 #copyButton, #userGuideMessage, #welcomeMessage, #commandSummary, #message, #commandSummaryIntro {
     -fx-text-fill: white;
     -fx-font-size: 13;
