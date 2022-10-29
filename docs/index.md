@@ -6,7 +6,7 @@ title: checkUp
 [![CI Status](https://github.com/AY2223S1-CS2103T-W16-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W16-3/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W16-3/tp/branch/master/graph/badge.svg?token=KXLMFZTCKN)](https://codecov.io/gh/AY2223S1-CS2103T-W16-3/tp)
 
-![Ui](images/ug-images/Ui.png)
+![Ui](images/Ui.png)
 
 **checkUp is a desktop application for managing your patients' details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
