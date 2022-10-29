@@ -143,6 +143,8 @@ Format: `list`
 ### Marking trips as done: `mark`
 Mark the trip in the specified INDEX as done.
 
+![MarkCompletedUi](images/MarkCompletedUi.png)
+
 Format: `mark INDEX`
 - Marks the trip at the specified INDEX as done.
 - The index refers to the index number shown in the trip list.
