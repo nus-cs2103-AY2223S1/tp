@@ -316,8 +316,6 @@ Example:
 the mark command. This increases the amount owed but frees up that time slot for another student.
 </div>
 
-
-
 [↑ Back to top](#table-of-contents)
 
 ---
