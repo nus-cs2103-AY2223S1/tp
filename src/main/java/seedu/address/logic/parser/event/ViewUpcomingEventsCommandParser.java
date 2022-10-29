@@ -30,6 +30,11 @@ public class ViewUpcomingEventsCommandParser implements Parser<ViewUpcomingEvent
                     ViewUpcomingEventsCommand.MESSAGE_USAGE));
         }
 
+        if (daysInput.length() > 4) {
+            throw new ParseException(String.format(ViewUpcomingEventsCommand.MESSAGE_DAYS_TOO_LONG,
+                    ViewUpcomingEventsCommand.MESSAGE_USAGE));
+        }
+
         try {
             int days = ParserUtil.parseDays(daysInput);
             LocalDate currentDate = java.time.LocalDate.now();
