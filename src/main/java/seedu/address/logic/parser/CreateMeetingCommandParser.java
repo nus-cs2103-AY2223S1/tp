@@ -41,13 +41,12 @@ public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> 
             String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
             String meetingTitle = newMeetingInformation[1].strip();
             String meetingDateAndTime = newMeetingInformation[2].strip();
+            String processedMeetingDateAndTime = DATE_TIME_VALIDATOR.processDateTime(meetingDateAndTime);
             String meetingLocation = newMeetingInformation[3].strip();
 
             if ((Objects.equals(meetingTitle, "")) || (Objects.equals(meetingLocation, ""))) {
                 throw new ParseException(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS);
             }
-
-            String processedMeetingDateAndTime = DATE_TIME_VALIDATOR.processDateTime(meetingDateAndTime);
 
             return new CreateMeetingCommand(peopleToMeet, meetingTitle, processedMeetingDateAndTime, meetingLocation);
 
