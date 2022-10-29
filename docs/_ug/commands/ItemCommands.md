@@ -19,7 +19,7 @@ Example of an [Item](#item):
 * The default values for `QUANTITY` and `PRICE` is `0`.
 * The default values for `UNIT` is blank.
 * The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
-* The value of `REMARKS` will be `No Remarks` if not provided.
+* The value of `REMARKS` will be `-` if not provided.
 * `PRICE` do not require you to include the currency. Only include the value.
 * You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
@@ -42,7 +42,7 @@ Quantity: 70 kg
 Bought Date: 22-02-2022
 Expiry Date: 22-03-2022
 Price: $0
-Remarks: No Remarks
+Remarks: -
 Tags: {}
 ```
 
@@ -148,8 +148,8 @@ Item List Box:
 
 ```text
 1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-1. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
-1. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
+2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
+3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
 ```
 
 ---
@@ -180,7 +180,7 @@ Quantity: 8 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 
@@ -214,7 +214,7 @@ Quantity: 11 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 
@@ -247,7 +247,7 @@ Quantity: 7 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 
@@ -270,7 +270,6 @@ Tags: {vegetables}
 * The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
 * The value of `REMARKS` will be `No Remarks` if not provided.
 * `PRICE` do not require you to include the currency. Only include the value.
-* You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
 ```
 
@@ -291,7 +290,7 @@ Quantity: 100 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 
@@ -354,7 +353,7 @@ Quantity: 100 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 

@@ -61,7 +61,7 @@ For example, after creating the potatoes item, you decided to buy 40 kg more of 
 
 **Format:** `inc INDEX [qty/QUANTITY]`
 
-Suppose the `INDEX` for potatoes is `1` in the application, the command you would like to enter into the [Command Input Box)(#layout) would be:
+Suppose the `INDEX` for potatoes is `1` in the application, the command you would like to enter into the [Command Input Box](#layout) would be:
 
 `inc 1 qty/40`
 
