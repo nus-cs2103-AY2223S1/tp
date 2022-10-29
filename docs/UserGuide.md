@@ -315,8 +315,6 @@ Commands like `add` and `edit` accept fields, their constraints are specified be
 
 There are no constraints for a field if the constraints box is empty for that field.
 
-add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]
-
 | Field                   | Constraints                                                                                    |
 |-------------------------|------------------------------------------------------------------------------------------------|
 | `c/COMPANY`             |                                                                                                |
@@ -354,12 +352,12 @@ For `APPLIED_DATE`, the formats allowed:
 
 For `INTERVIEW_DATE_TIME`, the formats allowed:
 
-| Format               | Input               | Remark                                                                                                                    |
-|----------------------|---------------------|---------------------------------------------------------------------------------------------------------------------------|
-| `d MMM yyyy HH:mm`   | 7 Oct 2022 15:00    |                                                                                                                           |
-| `d/M/yyyy HH:mm`     | 7/10/2022 15:00     |                                                                                                                           |
-| `d MMM yyyy, h:mm a` | 7 Oct 2022, 3:00 pm | <ul><li>Take note of the **comma after the date**</li><li>Take note of the **space between the time and AM/PM**</li></ul> |
-| `d/M/yyyy, h:mm a`   | 7/10/2022, 3:00 pm  | <ul><li>Take note of the **comma after the date**</li><li>Take note of the **space between the time and AM/PM**</li></ul> |
+| Format               | Input               | Remark                                                                                 |
+|----------------------|---------------------|----------------------------------------------------------------------------------------|
+| `d MMM yyyy HH:mm`   | 7 Oct 2022 15:00    |                                                                                        |
+| `d/M/yyyy HH:mm`     | 7/10/2022 15:00     |                                                                                        |
+| `d MMM yyyy, h:mm a` | 7 Oct 2022, 3:00 pm | Take note of the **comma after the date** and the **space between the time and AM/PM** |
+| `d/M/yyyy, h:mm a`   | 7/10/2022, 3:00 pm  | Take note of the **comma after the date** and the **space between the time and AM/PM** |
 
 --------------------------------------------------------------------------------------------------------------------
 
