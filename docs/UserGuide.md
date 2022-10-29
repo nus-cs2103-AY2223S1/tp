@@ -14,10 +14,13 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 To get you started, you might want to read the section on [how to use this User Guide](#how-to-use-the-user-guide)!
 
+The overview of the application's user interface can be found [here](#user-interface-overview).
+
 ## Table of Contents
 
 * [Quick Start](#quick-start)
 * [How to use the User Guide](#how-to-use-the-user-guide)
+* [User Interface Overview](#user-interface-overview)
 * [Features](#features)
   * [Client Commands]()
     * [Adding a client: `add`](#adding-a-client-add)
@@ -57,9 +60,9 @@ To get you started, you might want to read the section on [how to use this User 
 This application UI is split into `5 sections`. 
 * `Input Command`: This is where you should key in your commands, and press enter to execute
 * `Application's Reply`: Errors or success messages will appear here after you execute any commands
-* `List of Clients`: Every client that you have will appear here
-* `List of Transactions`: Transactions with a specific client will appear here if you use the [view command](#viewing-a-client--view), or it will show all transactions with every client if you use the [filter command](#filtering-the-transaction-display--filter)
-* `Remarks of specified client`: Remarks of specified client will appear here
+* `List Of Clients`: Every client that you have will appear here
+* `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client--view), or it will show all transactions with every client if you use the [filter command](#filtering-the-transaction-display--filter)
+* `Remarks Of Specified Client`: Remarks of specified client will appear here
 
 ## Quick start
 
@@ -95,7 +98,8 @@ This application UI is split into `5 sections`.
 
 ## How to use the User Guide
 
-This user guide contains detailed explanation on how to use the application. It provides information like what each `command` does, warnings for certain commands, and how data is saved in the application.
+This user guide contains detailed explanation on how to use the application. It provides information like what each `command` does, **warnings** for certain commands, and how data is saved in the application.
+
 The [table of contents](#table-of-contents) provides links to every command. But before you head there, below are some notes on how to interpret each command format.
 
 <div markdown="block" class="alert alert-info">
@@ -121,6 +125,17 @@ The [table of contents](#table-of-contents) provides links to every command. But
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
+
+### Symbols
+
+Below are some symbols that you may encounter in the User Guide.
+
+| Symbol                                                           | Meaning |
+|------------------------------------------------------------------|---------|
+| <div markdown="span" class="alert alert-danger">!</div>          | Warning |
+| <div markdown="span" class="alert alert-warning">:warning:</div> | Caution |
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Features
 
@@ -157,13 +172,13 @@ Formats:
 
 Parameter constraints:
 
-| Parameter  | Constraints                                                                                                                                                                                                  |
-|:-----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`    | - Refers to the index number shown in the displayed client list. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/>  **must not contain any signs** e.g +1, -3, …​                                 |
-| `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - should only contain non-negative unsigned integers and be at least 1 digit long.                                                                     |
-| `GOODS` | Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                 |
-| `PRICE` | Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                    |
-| * The `DATE` | Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction.  |
+| Parameter    | Constraints                                                                                                                                                                                                 |
+|:-------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`      | - Refers to the index number shown in the displayed client list. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/>  **must not contain any signs** e.g +1, -3, …​                                |
+| `QUANTITY`   | - Refers to the amount of the goods transacted. <br/> - should only contain non-negative unsigned integers and be at least 1 digit long.                                                                    |
+| `GOODS`      | Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                |
+| `PRICE`      | Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                   |
+| * The `DATE` | Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction. |
   
 
 Examples:
