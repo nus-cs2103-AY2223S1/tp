@@ -24,6 +24,10 @@ FindMyIntern helps students who are applying for internships keep track of their
     - [Editing the data](#editing-the-data)
   - [UI elements](#ui-elements)
 - [FAQ](#faq)
+- [Appendix](#appendix)
+  - [Field constraints](#field-constraints)
+  - [Application status](#application-status)
+  - [Date/time formats](#datetime-formats)
 - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -106,38 +110,22 @@ Adds an internship application to the tracker.
 
 Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…`
 
-* Default application status is "Applied".
-* `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change application status to "Shortlisted".
+* Default [application status](#application-status) is "Applied".
+* `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change [application status](#application-status) to "Shortlisted".
 * `TAG` is optional, but can be used multiple times.
+* See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Changing application status**:
-To change application status, see [`mark` command](#marking-an-internship-application-status-mark).
+To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
 
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
-:warning: **Date/time formats**
-
-The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
-
-For `APPLIED_DATE`, the formats allowed:
-
-| Format       | Input      |
-|--------------|------------|
-| `d MMM yyyy` | 7 Oct 2022 |
-| `d/M/yyyy`   | 7/10/2022  |
-
-For `INTERVIEW_DATE_TIME`, the formats allowed:
-
-| Format               | Input               |
-|----------------------|---------------------|
-| `d MMM yyyy HH:mm`   | 7 Oct 2022 15:00    |
-| `d/M/yyyy HH:mm`     | 7/10/2022 15:00     |
-| `d MMM yyyy, h:mm a` | 7 Oct 2022, 3:00 pm |
-| `d/M/yyyy, h:mm a`   | 7/10/2022, 3:00 pm  |
+:warning: **Date/time formats**:
+See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
   
 </div>
 
@@ -156,24 +144,26 @@ Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INT
 
 * At least one of the optional fields must be provided.
 
-* When editing `INTERVIEW_DATE_TIME`, the application status will change to "Shortlisted".
+* When editing `INTERVIEW_DATE_TIME`, the [application status](#application-status) will change to "Shortlisted".
 
-* When editing tags, the existing tags will removed and replaced with the input tags.
+* When editing tags, the existing tags will be removed and replaced with the input tags.
 
 * Tags can be removed by typing `t/` without specifying any tags after it.
+
+* See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
+
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Changing application status**:
-To change application status, see [`mark` command](#marking-an-internship-application-status-mark).
+To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
 
 </div>
 
 <div markdown="block" class="alert alert-warning">
 
-:warning: **Date/time formats**
-
-For the formats allowed, see under [`add` command](#adding-an-internship-application-add).
+:warning: **Date/time formats**:
+See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
 
 </div>
 
@@ -181,31 +171,25 @@ Examples:
 * `edit 1 d/Data analyst intern` - Edits the description of the 1st internship application
   in the list to `Data analyst intern`.
 * `edit 2 i/23/11/2022 15:00` - Edits the interview date/time of the 2nd internship application
-  to `23 Nov 2022, 3:00 PM`, and changes the application status to "Shortlisted".
+  to `23 Nov 2022, 3:00 PM`, and changes the [application status](#application-status) to "Shortlisted".
 * `edit 3 t/frontend t/summer` - Edits the tags of the 3rd internship application, removing existing tags and
   adding `frontend` and `summer` tags
 
 #### Marking an internship application status: `mark` 
 
-Marks an internship application status.
+Marks an internship [application status](#application-status).
 
 Format: `mark INDEX s/APPLICATION_STATUS`
 
 * Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed 
   internship application list. The index **must be a positive integer** 1, 2, 3…
 
-* Updates the internship application to the specified `APPLICATION_STATUS`. 
-  The application status refers to the current status of the application. 
-  The status must differ from the current application status and **must be one of the following**:
-  * `applied`
-  * `shortlisted`
-  * `interviewed`
-  * `accepted`
-  * `rejected`
+* Updates the internship application to the specified [`APPLICATION_STATUS`](#application-status).
+
 
 Examples:
-* `mark 3 s/interviewed` - Marks the 3rd internship application status to be `interviewed`
-* `mark 2 s/accepted` - Marks the 2nd internship application status to be `accepted`
+* `mark 3 s/interviewed` - Marks the 3rd internship [application status](#application-status) to be `interviewed`
+* `mark 2 s/accepted` - Marks the 2nd internship [application status](#application-status) to be `accepted`
 
 #### Listing all internship applications: `list`
 
@@ -230,7 +214,7 @@ Examples:
 
 Format: `filter APPLICATION_STATUS`
 
-* Filters for internship applications of the specified `APPLICATION_STATUS`.
+* Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
 
 Examples:
 * `filter accepted` - Shows a list of internship applications marked as `accepted`
@@ -320,6 +304,62 @@ A tooltip containing the additional tags is shown when the count is hovered.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FindMyIntern home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix
+
+### Field constraints
+
+Commands like `add` and `edit` accept fields, their constraints are specified below.
+
+There are no constraints for a field if the constraints box is empty for that field.
+
+add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]
+
+| Field                   | Constraints                                                                                    |
+|-------------------------|------------------------------------------------------------------------------------------------|
+| `c/COMPANY`             |                                                                                                |
+| `l/LINK`                | Links must be of the format `HOSTNAME.PATH`, where both `HOSTNAME` and `PATH` are alphanumeric |
+| `d/DESCRIPTION`         |                                                                                                |
+| `a/APPLIED_DATE`        | See [date/time formats](#datetime-formats)                                                     |
+| `i/INTERVIEW_DATE_TIME` | See [date/time formats](#datetime-formats)                                                     |
+| `t/TAG`                 | Must only contain alphabets and spaces                                                         |
+
+### Application status
+
+Application status refers to the current status of an internship application. 
+Each internship application is tagged with an application status.
+
+Application status as an input field **must be one of the following**:
+
+| Application status | Explanation                                               | Remark                                                                                                              |
+|--------------------|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| `applied`          | You have applied for this internship                      | Default application status                                                                                          |
+| `shortlisted`      | Company has shortlisted you for interview                 | Adding/editing the interview date/time of an internship application will change application status to "Shortlisted" |
+| `interviewed`      | You have been interviewed for this internship application |                                                                                                                     |                                      
+| `accepted`         | You have accepted this internship                         |                                                                                                                     |
+| `rejected`         | You have rejected this internship                         |                                                                                                                     |
+
+### Date/time formats
+
+The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
+
+For `APPLIED_DATE`, the formats allowed:
+
+| Format       | Input      |
+|--------------|------------|
+| `d MMM yyyy` | 7 Oct 2022 |
+| `d/M/yyyy`   | 7/10/2022  |
+
+For `INTERVIEW_DATE_TIME`, the formats allowed:
+
+| Format               | Input               | Remark                                                                                                                    |
+|----------------------|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `d MMM yyyy HH:mm`   | 7 Oct 2022 15:00    |                                                                                                                           |
+| `d/M/yyyy HH:mm`     | 7/10/2022 15:00     |                                                                                                                           |
+| `d MMM yyyy, h:mm a` | 7 Oct 2022, 3:00 pm | <ul><li>Take note of the **comma after the date**</li><li>Take note of the **space between the time and AM/PM**</li></ul> |
+| `d/M/yyyy, h:mm a`   | 7/10/2022, 3:00 pm  | <ul><li>Take note of the **comma after the date**</li><li>Take note of the **space between the time and AM/PM**</li></ul> |
 
 --------------------------------------------------------------------------------------------------------------------
 
