@@ -22,7 +22,7 @@ public class TeachingAssistantBuilder extends PersonBuilder {
     public TeachingAssistantBuilder() {
         super();
         this.moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
-        this.rating = new Rating(DEFAULT_RATING);
+        this.rating = new Rating(DEFAULT_RATING, false);
     }
 
     /**

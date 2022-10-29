@@ -49,6 +49,7 @@ import seedu.address.model.person.Name;
 // import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Professor;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ProfessorBuilder;
@@ -97,7 +98,7 @@ public class AddCommandParserTest {
     //    }
 
     public void profParse_allFieldsPresent_success() {
-        Person expectedPerson = new ProfessorBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Professor expectedPerson = (Professor) new ProfessorBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(profParser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + MODULE_CODE_DESC_BOB
@@ -121,8 +122,9 @@ public class AddCommandParserTest {
             + VALID_GENDER_AMY + VALID_GENDER_BOB + TAG_DESC_FRIEND, new ProfCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new ProfessorBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-            .build();
+        Professor expectedPersonMultipleTags = (Professor) new ProfessorBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .build();
         assertParseSuccess(profParser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new ProfCommand(expectedPersonMultipleTags));
     }
@@ -165,13 +167,6 @@ public class AddCommandParserTest {
             new TaCommand((TeachingAssistant) expectedPersonMultipleTags));
     }
 
-    //    @Test
-    //    public void parse_optionalFieldsMissing_success() {
-    //        // zero tags
-    //        Person expectedPerson = new StudentBuilder(AMY).withTags().build();
-    //        assertParseSuccess(studentParser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + GENDER_DESC_AMY,
-    //                new StudentCommand((Student) expectedPerson));
-    //    }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
