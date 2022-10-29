@@ -831,20 +831,6 @@ Extensions:
 
 <br>
 
-System: RC4HDB <br>
-Use case: UC11 - Exporting data to [CSV](#glossary) file <br>
-Actor: User <br>
-MSS:
-
-1. User wants the data in a [**CSV**](#glossary) file.
-2. User exports the file.
-3. RC4HDB creates a new [**CSV**](#glossary) file using user input.
-4. RC4HDB shows a success message.
-
-    Use case ends.
-
-<br>
-
 [comment]: <> (*{More to be added}*)
 
 ### Non-Functional Requirements
