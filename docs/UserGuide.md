@@ -330,11 +330,11 @@ Examples:
 * `add title/Club meeting soon! content/Remind club members to attend meeting.`
 * `add title/T-Shirt payment due content/Collect money tag/Juniors`
 
-### Listing Notes `listNote`
+### Listing Notes `listNotes`
 
 Shows a list of all notes in the SectresBook.
 
-Format: `listNote`
+Format: `listNotes`
 
 ### Editing Notes `editNote`
 
@@ -379,7 +379,7 @@ Format: `deleteNote INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listNote` followed by `deleteNote 2` deletes the 2nd note in the SectresBook.
+* `listNotes` followed by `deleteNote 2` deletes the 2nd note in the SectresBook.
 
 ### Hiding notes panel : `hideNotes`
 
@@ -479,5 +479,5 @@ Action | Format                                                                 
 **Add Note** | `addNote title/TITLE content/CONTENT [tag/TAG]...`                       | `addNote title/Create Excel Sheet content/Create sheet for blockchain department`
 **Edit Note** | `editNote INDEX <OR> TITLE [title/TITLE] [content/CONTENT] [tag/TAG]...` | `editNote 1 title/Check meeting availability tag/president`
 **Delete Note** | `deleteNote INDEX`                                                       | `deleteNote 1`
-**List Notes** | `listNote`                                                               | `listNote`
+**List Notes** | `listNotes`                                                              | `listNotes`
 **Find Note** | `findNote KEYWORD [MORE_KEYWORDS]`                                       | `findNote meeting`
