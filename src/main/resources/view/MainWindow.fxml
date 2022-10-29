@@ -31,7 +31,7 @@
                     <padding>
                         <Insets bottom="10" left="10" right="10"/>
                     </padding>
-                    <StackPane HBox.hgrow="ALWAYS" style="command-pane">
+                    <StackPane HBox.hgrow="ALWAYS">
                         <VBox HBox.hgrow="ALWAYS">
                             <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER"/>
                             <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER" styleClass="result-bar"/>
@@ -62,7 +62,7 @@
                         </StackPane>
                     </VBox>
 
-                    <StackPane fx:id="tutorDetailsPanelPlaceholder" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" style="details-base"/>
+                    <StackPane fx:id="tutorDetailsPanelPlaceholder" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
                 </HBox>
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>
