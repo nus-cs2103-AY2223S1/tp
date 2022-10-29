@@ -181,29 +181,29 @@ Formats:
 
 Parameter constraints:
 
-| Parameter    | Constraints                                                                                                                                                                                                   |
-|:-------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`      | - Refers to the index number shown in the displayed client list. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/>  **must not contain any signs** e.g +1, -3, …​                                  |
-| `QUANTITY`   | - Refers to the amount of the goods transacted. <br/> - Should only contain non-negative unsigned integers and be at least 1 digit long.                                                                      |
-| `GOODS`      | - Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                |
-| `PRICE`      | - Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                   |
-| * The `DATE` | - Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction. |
-  
+| Parameter  | Constraints                                                                                                                                                                                                   |
+|:-----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`    | - Refers to the index number shown in the displayed client list. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                                 |
+| `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - should only contain non-negative unsigned integers and be at least 1 digit long.                                                                      |
+| `GOODS`    | - Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                |
+| `PRICE`    | - Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                   |
+| `DATE`     | - Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction. |
 
 Examples:
-* `buy 3 q/100 g/apples price/1.5` creates a buy transaction from the 3rd client in the list.
-* `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction to the 1st client in
+* `buy 3 q/100 g/apples price/1.5` creates a buy transaction from the 3<sup>rd</sup> client in the list.
+* `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction to the 1<sup>st</sup> client in
 the list on the 07/11/2000.
 
 [Back to Table of Contents](#table-of-contents)
 
 ### Clearing all entries : `clear`
 
-Clear all entries which include `clients`, `remarks` and `transactions` from JeeqTracker.
+Clears all entries which include `clients`, `remarks` and `transactions` from JeeqTracker.
 
 Format: `clear`
 
-* All entries that are cleared cannot be retrieved.
+> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved.
+ </div>
 
 Example:
 
@@ -243,13 +243,13 @@ Format: `delete INDEX m/client`
 * `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 
 Examples:
-* `delete 1 m/client` deletes the 1st client in the JeeqTracker.
-* `list` followed by `delete 2 m/client` deletes the 2nd client in the JeeqTracker.
-* `find koh` followed by `delete 1 m/client` deletes the 1st client in the results of the `find` command.
-* `list` followed by `view 2` displays the remarks and transactions of the 2nd client in the JeeqTracker. 
-Applying `delete 3 m/transaction` deletes the 3rd transaction of the client.
-* `find john` followed by `view 1` displays the remarks and transactions of the 1st client of the `find`
-result. Applying `delete 2 m/remark` deletes the 2nd remark of the client.
+* `delete 1 m/client` deletes the 1<sup>st</sup> client in the JeeqTracker.
+* `list` followed by `delete 2 m/client` deletes the 2<sup>nd</sup> client in the JeeqTracker.
+* `find koh` followed by `delete 1 m/client` deletes the 1<sup>st</sup> client in the results of the `find` command.
+* `list` followed by `view 2` displays the remarks and transactions of the 2<sup>nd</sup> client in the JeeqTracker. 
+Applying `delete 3 m/transaction` deletes the 3<sup>rd</sup> transaction of the client.
+* `find john` followed by `view 1` displays the remarks and transactions of the 1<sup>st</sup> client of the `find`
+result. Applying `delete 2 m/remark` deletes the 2<sup>nd</sup> remark of the client.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -268,13 +268,13 @@ Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 </div>
 
 Examples:
-* `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1st client's address with the new input.
-* `list` followed by `edit 5 m/client a/Blk 333 Clementi Ave 1 p/8765432` replaces the 5th index client's address and phone number with the new inputs.
-* `find lee` followed by `edit 2 m/client e/lee123@gmail.com` replaces the 2nd client's email of the `find` result with the new inputs.
-* `list` followed by `view 2` displays the remarks and transactions of the 2nd client in the JeeqTracker.
-Applying `edit 3 m/transaction price/1.9` edits the price of the 3rd transaction of the client.
-* `find lim` followed by `view 3` displays the remarks and transactions of the 3rd client of the `find` 
-result. Applying `edit 3 m/remark supplier` edits the 3rd remark of the client.
+* `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
+* `list` followed by `edit 5 m/client a/Blk 333 Clementi Ave 1 p/8765432` replaces the 5<sup>th</sup> index client's address and phone number with the new inputs.
+* `find lee` followed by `edit 2 m/client e/lee123@gmail.com` replaces the 2<sup>nd</sup> client's email of the `find` result with the new inputs.
+* `list` followed by `view 2` displays the remarks and transactions of the 2<sup>nd</sup> client in the JeeqTracker.
+Applying `edit 3 m/transaction price/1.9` edits the price of the 3<sup>rd</sup> transaction of the client.
+* `find lim` followed by `view 3` displays the remarks and transactions of the 3<sup>rd</sup> client of the `find` 
+result. Applying `edit 3 m/remark supplier` edits the 3<sup>rd</sup> remark of the client.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -287,7 +287,7 @@ Format: `exit`
 * All entries will not be deleted.
 * All information edited will be saved.
 
-Examples:
+Example:
 * `exit` closes the program.
 
 [Back to Table of Contents](#table-of-contents)
@@ -318,7 +318,7 @@ Format: `user_guide`
 * Displays a pop-up that contains the url to this user guide.
 * You can click on the `Copy URL` button to copy this url to your clipboard.
 
-Examples:
+Example:
 * `user_guide` returns the url of this user guide.
 
 [Back to Table of Contents](#table-of-contents)
@@ -332,7 +332,7 @@ Format: `list`
 * Displays all the clients and their details in JeeqTracker.
 * If JeeqTracker is empty, the clients name section will be blank.
 
-Examples:
+Example:
 
 * `list` displays all stored clients name and details.
 
@@ -340,7 +340,7 @@ Examples:
 
 ### Locating clients by name: `find`
 
-Find clients whose names contain any of the given keywords.
+Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
@@ -371,8 +371,8 @@ Format: `sort INDEX ORDER`
 * If no clients made any transactions, the transaction section will be blank.
 
 Examples:
-* `sort 1 latest` displays the 1st client transactions sorted by the latest transaction on top.
-* `sort 5 oldest` displays the 5th client transactions sorted by the oldest transaction on top.
+* `sort 1 latest` displays the 1<sup>st</sup> client transactions sorted by the latest transaction on top.
+* `sort 5 oldest` displays the 5<sup>th</sup> client transactions sorted by the oldest transaction on top.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -396,7 +396,7 @@ Examples:
 ### Viewing a client : `view`
 
 Displays the remarks and transactions of the specified client. 
-The client list will be only display the specified client.
+The client list will only display the specified client.
 
 Format: `view INDEX`
 
@@ -405,8 +405,8 @@ Format: `view INDEX`
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 
-Examples:
-* `view 5` displays the remarks and transactions of the client at the 5th index.
+Example:
+* `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -447,7 +447,8 @@ JeeqTracker data are saved in the hard disk automatically after any command that
 
 JeeqTracker data are saved as a JSON file `[JAR file location]/data/jeeqtracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
-> <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
+
 If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
 </div>
 
