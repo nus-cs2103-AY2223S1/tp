@@ -255,9 +255,11 @@ Example:
 
 ### Lists the filter parameters : `filter list`
 
-Shows the list of parameters (name and tags) in the filter command.
+Shows the list of filters (name and tags) that are currently applied.
 
 Format: `filter list`
+
+![Filter list result](images/filterListResult.png)
 
 ### Creating reminders : `reminder`
 
