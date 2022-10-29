@@ -55,7 +55,8 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public boolean containsGitHub(GitHub toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(x -> x.getGitHub().equals(toCheck));
+        return internalList.stream().anyMatch(x -> x.getGitHub() != null
+                && x.getGitHub().equals(toCheck));
     }
 
     /**
@@ -65,7 +66,8 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public boolean containsEmail(Email toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(x -> x.getEmail().equals(toCheck));
+        return internalList.stream().anyMatch(x -> x.getEmail() != null
+                && x.getEmail().equals(toCheck));
     }
 
     /**
@@ -75,7 +77,8 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public boolean containsPhone(Phone toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(x -> x.getPhone().equals(toCheck));
+        return internalList.stream().anyMatch(x -> x.getPhone() != null
+                && x.getPhone().equals(toCheck));
     }
 
     /**

@@ -82,7 +82,6 @@ public class EditCommand extends Command {
         GitHub editedGitHub = editStudentDescriptor.getGitHub().orElse(null);
         Email editedEmail = editStudentDescriptor.getEmail().orElse(null);
         Phone editedPhone = editStudentDescriptor.getPhone().orElse(null);
-
         if ((editedTelegram != null && model.hasTelegram(editedTelegram))
             || (editedGitHub != null && model.hasGitHub(editedGitHub))
             || (editedEmail != null && model.hasEmail(editedEmail))
