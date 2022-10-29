@@ -14,8 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Student;
 import seedu.address.model.timeRange.TimeRange;
 
 /**
@@ -26,8 +26,8 @@ public class ModelManager implements Model {
 
     private final TeachersPet teachersPet;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Person> filteredSchedule;
+    private final FilteredList<Student> filteredStudents;
+    private final FilteredList<Student> filteredSchedule;
     private final ArrayList<ReadOnlyTeachersPet> teachersPetHistory;
 
     /**
@@ -40,7 +40,7 @@ public class ModelManager implements Model {
 
         this.teachersPet = new TeachersPet(teachersPet);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.teachersPet.getPersonList());
+        filteredStudents = new FilteredList<>(this.teachersPet.getStudentList());
         filteredSchedule = new FilteredList<>(this.teachersPet.getScheduleList());
         this.teachersPetHistory = new ArrayList<>();
     }
@@ -97,27 +97,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return teachersPet.hasPerson(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return teachersPet.hasStudent(student);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        teachersPet.removePerson(target);
+    public void deleteStudent(Student target) {
+        teachersPet.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        teachersPet.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addStudent(Student student) {
+        teachersPet.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-        teachersPet.setPerson(target, editedPerson);
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        teachersPet.setStudent(target, editedStudent);
     }
 
     @Override
@@ -127,41 +127,41 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortPersons(Comparator<Person> comparator) {
+    public void sortStudents(Comparator<Student> comparator) {
         requireNonNull(comparator);
-        teachersPet.sortPersons(comparator);
+        teachersPet.sortStudents(comparator);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedTeachersPet}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     //=========== Filtered Schedule List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the schedule of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the schedule of {@code Student} backed by the internal list of
      * {@code versionedTeachersPet}
      */
     @Override
-    public ObservableList<Person> getFilteredScheduleList() {
+    public ObservableList<Student> getFilteredScheduleList() {
         return filteredSchedule;
     }
 
     @Override
-    public void updateFilteredScheduleList(Predicate<Person> predicate) {
+    public void updateFilteredScheduleList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredSchedule.setPredicate(predicate);
     }
@@ -182,7 +182,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return teachersPet.equals(other.teachersPet)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents);
     }
 
     //=========== Undo Accessors =================================================================================

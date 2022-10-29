@@ -11,15 +11,15 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TeachersPet;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Student;
 
 /**
  * Manages storage of TeachersPet class data.
  */
 public class ClassStorage {
 
-    private static HashMap<LocalDate, List<Person>> classes;
+    private static HashMap<LocalDate, List<Student>> classes;
     private static TeachersPet teachersPet;
     private static Model model;
 
@@ -35,25 +35,25 @@ public class ClassStorage {
     }
 
     /**
-     * Updates the person in the List of Person in the HashMap classes.
+     * Updates the student in the List of Student in the HashMap classes.
      *
-     * @param personToEdit Person object without the edited fields.
-     * @param editedPerson Person object with the edited fields.
+     * @param studentToEdit Student object without the edited fields.
+     * @param editedStudent Student object with the edited fields.
      */
-    public static void updatePerson(Person personToEdit, Person editedPerson) {
-        if (!personToEdit.hasEmptyClass()) {
-            classes.get(personToEdit.getAClass().date).remove(personToEdit);
-            classes.get(personToEdit.getAClass().date).add(editedPerson);
+    public static void updateStudent(Student studentToEdit, Student editedStudent) {
+        if (!studentToEdit.hasEmptyClass()) {
+            classes.get(studentToEdit.getAClass().date).remove(studentToEdit);
+            classes.get(studentToEdit.getAClass().date).add(editedStudent);
         }
     }
 
     /**
-     * Gets a list of persons who are attending classes on a particular date.
+     * Gets a list of students who are attending classes on a particular date.
      *
      * @param date LocalDate object.
-     * @return List of Person objects.
+     * @return List of Student objects.
      */
-    public static List<Person> getListOfPerson(LocalDate date) {
+    public static List<Student> getListOfStudent(LocalDate date) {
         return classes.get(date);
     }
 
@@ -62,18 +62,18 @@ public class ClassStorage {
      *
      * @return HashMap object.
      */
-    public static HashMap<LocalDate, List<Person>> initialiseClass() {
-        HashMap<LocalDate, List<Person>> map = new HashMap<>();
-        ObservableList<Person> listOfPersons = teachersPet.getPersonList();
-        for (Person person : listOfPersons) {
-            Class classOfPerson = person.getAClass();
-            if (!classOfPerson.isEmpty()) {
-                if (!map.containsKey(classOfPerson.date)) {
-                    List<Person> newListOfPersons = new ArrayList<>();
-                    newListOfPersons.add(person);
-                    map.put(classOfPerson.date, newListOfPersons);
+    public static HashMap<LocalDate, List<Student>> initialiseClass() {
+        HashMap<LocalDate, List<Student>> map = new HashMap<>();
+        ObservableList<Student> listOfStudents = teachersPet.getStudentList();
+        for (Student student : listOfStudents) {
+            Class classOfStudent = student.getAClass();
+            if (!classOfStudent.isEmpty()) {
+                if (!map.containsKey(classOfStudent.date)) {
+                    List<Student> newListOfStudents = new ArrayList<>();
+                    newListOfStudents.add(student);
+                    map.put(classOfStudent.date, newListOfStudents);
                 } else {
-                    map.get(classOfPerson.date).add(person);
+                    map.get(classOfStudent.date).add(student);
                 }
             }
         }
@@ -83,30 +83,30 @@ public class ClassStorage {
     /**
      * Saves added classes into storage if there is no conflict between the timings of the classes.
      *
-     * @param editedPerson Person object.
-     * @param indexOfEditedPerson One-based index of the person in the list.
+     * @param editedStudent Student object.
+     * @param indexOfEditedStudent One-based index of the student in the list.
      * @throws CommandException if there is a conflict between the timings of the classes.
      */
-    public static void saveClass(Person editedPerson, int indexOfEditedPerson) throws CommandException {
-        LocalDate date = editedPerson.getAClass().date;
-        LocalTime start = editedPerson.getAClass().startTime;
-        LocalTime end = editedPerson.getAClass().endTime;
+    public static void saveClass(Student editedStudent, int indexOfEditedStudent) throws CommandException {
+        LocalDate date = editedStudent.getAClass().date;
+        LocalTime start = editedStudent.getAClass().startTime;
+        LocalTime end = editedStudent.getAClass().endTime;
         if (!classes.containsKey(date)) {
-            List<Person> newListOfPersons = new ArrayList<>();
-            newListOfPersons.add(editedPerson);
-            classes.put(date, newListOfPersons);
+            List<Student> newListOfStudents = new ArrayList<>();
+            newListOfStudents.add(editedStudent);
+            classes.put(date, newListOfStudents);
         } else {
-            // Gets the list of person who have classes with same date
-            List<Person> listOfPerson = classes.get(date);
-            for (Person currPerson : listOfPerson) {
-                LocalTime startOfCurrClass = currPerson.getAClass().startTime;
-                LocalTime endOfCurrClass = currPerson.getAClass().endTime;
+            // Gets the list of student who have classes with same date
+            List<Student> listOfStudents = classes.get(date);
+            for (Student currStudent : listOfStudents) {
+                LocalTime startOfCurrClass = currStudent.getAClass().startTime;
+                LocalTime endOfCurrClass = currStudent.getAClass().endTime;
                 if (hasConflict(start, end, startOfCurrClass, endOfCurrClass)
-                        && indexOfEditedPerson != getIndex(currPerson)) {
+                        && indexOfEditedStudent != getIndex(currStudent)) {
                     throw new CommandException(EditCommand.MESSAGE_CLASS_CONFLICT);
                 }
             }
-            listOfPerson.add(editedPerson);
+            listOfStudents.add(editedStudent);
         }
     }
 
@@ -134,25 +134,25 @@ public class ClassStorage {
      * Removes the existing class from storage.
      * This frees up the class slot for other students to take.
      *
-     * @param personToEdit Person object.
+     * @param studentToEdit Student object.
      */
-    public static void removeExistingClass(Person personToEdit) {
-        if (!personToEdit.hasEmptyClass()) {
-            LocalDate date = personToEdit.getAClass().date;
+    public static void removeExistingClass(Student studentToEdit) {
+        if (!studentToEdit.hasEmptyClass()) {
+            LocalDate date = studentToEdit.getAClass().date;
             // Removes the pre-existing class from storage to prevent future conflicts
-            ClassStorage.classes.get(date).remove(personToEdit);
+            ClassStorage.classes.get(date).remove(studentToEdit);
         }
     }
 
     /**
-     * Returns the index of person in the current list shown on left UI panel.
+     * Returns the index of student in the current list shown on left UI panel.
      *
-     * @param person Person object.
+     * @param student Student object.
      * @return int.
      */
-    public static int getIndex(Person person) {
-        for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
-            if (model.getFilteredPersonList().get(i).isSamePerson(person)) {
+    public static int getIndex(Student student) {
+        for (int i = 0; i < model.getFilteredStudentList().size(); i++) {
+            if (model.getFilteredStudentList().get(i).isSameStudent(student)) {
                 return i + 1;
             }
         }

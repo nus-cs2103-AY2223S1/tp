@@ -18,13 +18,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
 import seedu.address.model.TeachersPet;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 public class ClassStorageTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTeachersPetTest");
-    private static final Path PERSONS_FILE = TEST_DATA_FOLDER.resolve("personsTeachersPet.json");
+    private static final Path PERSONS_FILE = TEST_DATA_FOLDER.resolve("studentsTeachersPet.json");
 
     @Test
     public void execute_hasConflictSuccess() {
@@ -47,7 +47,7 @@ public class ClassStorageTest {
 
     @Test
     public void execute_saveClassFailure() throws Exception {
-        Person person = new PersonBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
+        Student student = new StudentBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
                 .withEmail("cornelia@example.com").withAddress("10th street")
                 .withClass("2022-05-05 1200-1400").build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
@@ -55,13 +55,13 @@ public class ClassStorageTest {
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
-        // Throws an exception because Alex Yeoh in personsTeachersPet has class timing conflict with Daniel Tan.
-        assertThrows(CommandException.class, () -> classStorage.saveClass(person, 3));
+        // Throws an exception because Alex Yeoh in studentsTeachersPet has class timing conflict with Daniel Tan.
+        assertThrows(CommandException.class, () -> classStorage.saveClass(student, 3));
     }
 
     @Test
     public void execute_getIndexSuccess() throws Exception {
-        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438807").withNokPhone("67192213")
+        Student student = new StudentBuilder().withName("Alex Yeoh").withPhone("87438807").withNokPhone("67192213")
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400")
                 .build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
@@ -69,13 +69,13 @@ public class ClassStorageTest {
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
-        assertEquals(1, ClassStorage.getIndex(person));
+        assertEquals(1, ClassStorage.getIndex(student));
     }
 
     @Test
     public void execute_getIndexZero() throws Exception {
         // phone number here intentionally be wrong
-        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438811").withNokPhone("67192213")
+        Student student = new StudentBuilder().withName("Alex Yeoh").withPhone("87438811").withNokPhone("67192213")
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400")
                 .build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
@@ -83,30 +83,30 @@ public class ClassStorageTest {
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
-        // returns 0 since there is no same person found
-        assertEquals(0, ClassStorage.getIndex(person));
+        // returns 0 since there is no same student found
+        assertEquals(0, ClassStorage.getIndex(student));
     }
 
     @Test
-    public void execute_updatePerson() throws Exception {
-        Person personToEdit = new PersonBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
-                .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
-                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("Remind student to submit homework")
-                .withRatesPerClass(40).build();
-        Person editedPerson = new PersonBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
-                .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
-                .withMoneyOwed(20).withMoneyPaid(10).withAdditionalNotes("Remind student to submit homework")
-                .withRatesPerClass(40).build();
+    public void execute_updateStudent() throws Exception {
+        Student studentToEdit = new StudentBuilder().withName("Daniel Tan").withPhone("81201230")
+                .withNokPhone("97228333").withEmail("cornelia@example.com").withAddress("10th street")
+                .withClass("2022-05-05 1400-1430").withMoneyOwed(0).withMoneyPaid(0)
+                .withAdditionalNotes("Remind student to submit homework").withRatesPerClass(40).build();
+        Student editedStudent = new StudentBuilder().withName("Daniel Tan").withPhone("81201230")
+                .withNokPhone("97228333").withEmail("cornelia@example.com").withAddress("10th street")
+                .withClass("2022-05-05 1400-1430").withMoneyOwed(20).withMoneyPaid(10)
+                .withAdditionalNotes("Remind student to submit homework").withRatesPerClass(40).build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
-        // edit money owed and money paid of Daniel Tan (last person on personsTeachersPet list)
-        ClassStorage.updatePerson(personToEdit, editedPerson);
-        List<Person> listOfPerson = ClassStorage.getListOfPerson(LocalDate.of(2022, 5, 5));
+        // edit money owed and money paid of Daniel Tan (last student on studentsTeachersPet list)
+        ClassStorage.updateStudent(studentToEdit, editedStudent);
+        List<Student> listOfStudents = ClassStorage.getListOfStudent(LocalDate.of(2022, 5, 5));
 
-        assert listOfPerson.size() == 3;
-        assertEquals(editedPerson, listOfPerson.get(2));
+        assert listOfStudents.size() == 3;
+        assertEquals(editedStudent, listOfStudents.get(2));
     }
 }

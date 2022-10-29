@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.getTypicalTeachersPet;
+import static seedu.address.testutil.TypicalStudents.AMY;
+import static seedu.address.testutil.TypicalStudents.getTypicalTeachersPet;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,9 +18,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Money;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for PayCommand.
@@ -31,7 +31,7 @@ public class PayCommandTest {
     private Model model = new ModelManager(getTypicalTeachersPet(), new UserPrefs());
 
     @Test
-    public void execute_invalidPersonIndexScheduledList_failure() {
+    public void execute_invalidStudentIndexScheduledList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredScheduleList().size() + 1);
         PayCommand markCommand = new PayCommand(outOfBoundIndex, VALID_MONEY);
 
@@ -39,45 +39,45 @@ public class PayCommandTest {
     }
 
     @Test
-    public void create_newPaidPerson_success() throws CommandException {
-        Person personPaying = new PersonBuilder(AMY).withMoneyOwed(VALID_MONEY.value).build();
-        Person expectedPaidPerson = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
+    public void create_newPaidStudent_success() throws CommandException {
+        Student studentPaying = new StudentBuilder(AMY).withMoneyOwed(VALID_MONEY.value).build();
+        Student expectedPaidStudent = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(0),
                 AMY.getMoneyPaid().addTo(VALID_MONEY), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
                 AMY.getMarkStatus(), AMY.getDisplayedClass());
 
-        Person paidPerson = PayCommand.createPaidPerson(personPaying, VALID_MONEY);
-        assertEquals(expectedPaidPerson, paidPerson);
+        Student paidStudent = PayCommand.createPaidStudent(studentPaying, VALID_MONEY);
+        assertEquals(expectedPaidStudent, paidStudent);
     }
 
     @Test
-    public void create_paidPersonWithMaximumPaidAmount_failure() {
-        Person person = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
+    public void create_paidStudentWithMaximumPaidAmount_failure() {
+        Student student = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(Integer.MAX_VALUE),
                 VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
                 AMY.getMarkStatus(), AMY.getDisplayedClass());
 
-        assertThrows(CommandException.class, () -> PayCommand.createPaidPerson(person, new Money(Integer.MAX_VALUE)));
+        assertThrows(CommandException.class, () -> PayCommand.createPaidStudent(student, new Money(Integer.MAX_VALUE)));
     }
 
     @Test
-    public void create_paidPersonWithZeroDebt_failure() {
-        Person person = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
+    public void create_paidStudentWithZeroDebt_failure() {
+        Student student = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(0),
                 VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
                 AMY.getMarkStatus(), AMY.getDisplayedClass());
 
-        assertThrows(CommandException.class, () -> PayCommand.createPaidPerson(person, VALID_MONEY));
+        assertThrows(CommandException.class, () -> PayCommand.createPaidStudent(student, VALID_MONEY));
     }
 
     @Test
-    public void create_paidPersonWithLowDebt_failure() {
-        Person person = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
+    public void create_paidStudentWithLowDebt_failure() {
+        Student student = new Student(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(299),
                 VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
                 AMY.getMarkStatus(), AMY.getDisplayedClass());
 
-        assertThrows(CommandException.class, () -> PayCommand.createPaidPerson(person, VALID_MONEY));
+        assertThrows(CommandException.class, () -> PayCommand.createPaidStudent(student, VALID_MONEY));
     }
 
     @Test

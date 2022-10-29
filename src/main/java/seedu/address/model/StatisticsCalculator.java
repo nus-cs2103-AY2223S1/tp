@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * A calculator that calculates the statistics of a particular TeachersPet.
@@ -29,7 +29,7 @@ public class StatisticsCalculator {
      * @return the number of people stored in TeachersPet.
      */
     public int getSize() {
-        return teachersPet.getPersonList().size();
+        return teachersPet.getStudentList().size();
     }
 
     /**
@@ -38,11 +38,11 @@ public class StatisticsCalculator {
      * @return the total amount of money owed.
      */
     public String getAmountOwed() {
-        ObservableList<Person> personList = teachersPet.getPersonList();
+        ObservableList<Student> studentList = teachersPet.getStudentList();
         int moneyOwed = 0;
         try {
-            for (Person person : personList) {
-                moneyOwed = Math.addExact(moneyOwed, person.getMoneyOwed().value);
+            for (Student student : studentList) {
+                moneyOwed = Math.addExact(moneyOwed, student.getMoneyOwed().value);
             }
         } catch (ArithmeticException e) {
             return "Owed amount too large to calculate.";
@@ -56,11 +56,11 @@ public class StatisticsCalculator {
      * @return the total amount of money paid.
      */
     public String getAmountPaid() {
-        ObservableList<Person> personList = teachersPet.getPersonList();
+        ObservableList<Student> studentList = teachersPet.getStudentList();
         int moneyPaid = 0;
         try {
-            for (Person person : personList) {
-                moneyPaid = Math.addExact(moneyPaid, person.getMoneyPaid().value);
+            for (Student student : studentList) {
+                moneyPaid = Math.addExact(moneyPaid, student.getMoneyPaid().value);
             }
         } catch (ArithmeticException e) {
             return "Paid amount too large to calculate.";

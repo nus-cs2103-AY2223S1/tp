@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.PayCommand;
-import seedu.address.model.person.Money;
+import seedu.address.model.student.Money;
 
 public class PayCommandParserTest {
 

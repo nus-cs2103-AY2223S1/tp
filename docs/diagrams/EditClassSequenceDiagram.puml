@@ -49,16 +49,16 @@ deactivate TeachersPetParser
 LogicManager -> EditCommand : execute()
 activate EditCommand
 
-EditCommand -> Model : getFilteredPersonList
+EditCommand -> Model : getFilteredStudentList
 activate Model
 
-Model --> EditCommand : List<Person>
+Model --> EditCommand : List<Student>
 deactivate Model
 
-EditCommand -> EditCommand : createEditedPerson
+EditCommand -> EditCommand : createEditedStudent
 activate EditCommand
 
-EditCommand --> EditCommand : Person
+EditCommand --> EditCommand : Student
 deactivate EditCommand
 
 create ClassStorage
@@ -77,13 +77,13 @@ ClassStorage --> EditCommand
 deactivate ClassStorage
 
 
-EditCommand -> Model : setPerson
+EditCommand -> Model : setStudent
 activate Model
 
 Model --> EditCommand
 deactivate Model
 
-EditCommand -> Model : updateFilteredPersonList
+EditCommand -> Model : updateFilteredStudentList
 activate Model
 
 Model --> EditCommand

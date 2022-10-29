@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalTeachersPet;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.HOON;
+import static seedu.address.testutil.TypicalStudents.IDA;
+import static seedu.address.testutil.TypicalStudents.getTypicalTeachersPet;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonTeachersPetStorageTest {
     }
 
     @Test
-    public void readTeachersPet_invalidPersonTeachersPet_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTeachersPet("invalidPersonTeachersPet.json"));
+    public void readTeachersPet_invalidStudentTeachersPet_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTeachersPet("invalidStudentTeachersPet.json"));
     }
 
     @Test
-    public void readTeachersPet_invalidAndValidPersonTeachersPet_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTeachersPet("invalidAndValidPersonTeachersPet.json"));
+    public void readTeachersPet_invalidAndValidStudentTeachersPet_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTeachersPet("invalidAndValidStudentTeachersPet.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonTeachersPetStorageTest {
         assertEquals(original, new TeachersPet(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addStudent(HOON);
+        original.removeStudent(ALICE);
         jsonTeachersPetStorage.saveTeachersPet(original, filePath);
         readBack = jsonTeachersPetStorage.readTeachersPet(filePath).get();
         assertEquals(original, new TeachersPet(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addStudent(IDA);
         jsonTeachersPetStorage.saveTeachersPet(original); // file path not specified
         readBack = jsonTeachersPetStorage.readTeachersPet().get(); // file path not specified
         assertEquals(original, new TeachersPet(readBack));

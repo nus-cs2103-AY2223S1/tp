@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 /**
  * Represents a TimeRange when searching for the next available time slot.
- * Guarantees: immmutable;
+ * Guarantees: immutable;
  */
 public class TimeRange {
     public static final String MESSAGE_CONSTRAINTS = "TimeRange can take any string"
