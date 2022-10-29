@@ -116,6 +116,8 @@ command.
 
 The `h/PROPERTY_TYPE` flag specifies the type of property. It can only be either HDB, CONDO, or LANDED.
 
+The `s/PROPERTY_STATUS` is optional, if not specified, will default to `AVAILABLE` status.
+
 ![file_chooser](images/fileChooser.png)
 
 ### Listing all properties : `list -p`
