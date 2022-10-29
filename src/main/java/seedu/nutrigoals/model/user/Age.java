@@ -8,7 +8,7 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
  */
 public class Age {
     public static final String VALIDATION_REGEX = "\\d+";
-    public static final String MESSAGE_CONSTRAINTS = "Age must take on a positive integer than is not too large.";
+    public static final String MESSAGE_CONSTRAINTS = "Age must take on a positive integer that is smaller than 100.";
     public static final String DEFAULT_VALUE = "0";
     public static final int MAX_AGE = 100;
     public static final int MIN_AGE = 0;

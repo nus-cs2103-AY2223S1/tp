@@ -12,7 +12,8 @@ public class Weight {
     public static final String DEFAULT_VALUE = "0";
     public static final String UNIT = "kg";
     public static final String VALIDATION_REGEX = "\\d+";
-    public static final String MESSAGE_CONSTRAINTS = "Weight must take on a positive number that is not too large.";
+    public static final String MESSAGE_CONSTRAINTS = "Weight must take on a positive number that "
+            + "is between 10 and 199.";
     public final String value;
 
     /**
