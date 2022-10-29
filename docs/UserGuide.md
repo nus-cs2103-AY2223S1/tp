@@ -18,23 +18,34 @@ Welcome to Coydir's User Guide!
 
 - [Introduction](#introduction)
 - [Using this Guide](#using-this-guide)
-    - [Navigating the User Guide](#navigating-the-user-guide)
-    - [The User Interface](#the-user-interface)
+  - [Navigating the User Guide](#navigating-the-user-guide)
+  - [The User Interface](#the-user-interface)
 - [Quick Start](#quick-start)
 - [Features](#features)
-  - [Adding an employee](#adding-an-employee-add)
-  - [Adding multiple employees at once](#adding-multiple-employees-at-once-batchadd)
-  - [Listing all employees](#listing-all-employees--list)
-  - [View details of an employee](#view-details-of-an-employee-view)
-  - [Deleting an employee](#deleting-an-employee--delete)
-  - [Finding an employee](#finding-an-employee--find)
-  - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-addleave)
-  - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-deleteleave)
-  - [View details of a department](#view-details-of-a-department-viewdepartment)
-  - [Exiting the program](#exiting-the-program--exit)
-  - [Clearing the data](#clearing-the-data--clear)
-  - [Saving the data](#saving-the-data)
-  - [Editing the data file](#editing-the-data-file)
+  - [Coydir Commands Format](#coydir-commands-format)
+  - [Managing Employee Profiles](#managing-employee-profiles)
+    - [Adding an employee](#adding-an-employee--add)
+    - [Editing an employee](#editing-an-employee--edit)
+    - [Deleting an employee](#deleting-an-employee--delete)
+    - [Adding multiple employees at once](#adding-multiple-employees-at-once--batchadd)
+    - [View details of an employee](#view-details-of-an-employee--view)
+    - [Listing all employees](#listing-all-employees--list)
+    - [Finding an employee](#finding-an-employee--find)
+  - [Managing Employee Leaves](#managing-employee-leaves)
+    - [Setting total leaves for an employee](#setting-total-leaves-for-an-employee)
+    - [Is this employee on leave today?](#is-this-employee-on-leave-today)
+    - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee--addleave)
+    - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee--deleteleave)
+  - [Managing Employee Performance](#managing-employee-performance)
+    - [Rating the performance of an employee](#rating-the-performance-of-an-employee--rate)
+    - [Employee Performance History](#employee-performance-history)
+  - [Managing Departments](#managing-departments)
+    - [View details of a department](#view-details-of-a-department--viewdepartment)
+  - [Additional Features](#additional-features)
+    - [Exiting the program](#exiting-the-program--exit)
+    - [Clearing the data](#clearing-the-data--clear)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -48,9 +59,11 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
 ### Navigating the User Guide
 
+**[To be updated]**
 
 ### The User Interface
 
+**[To be updated]**
 
 ## Quick start
 
@@ -79,11 +92,22 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+With our powerful features, it has never been more convenient to perform HR tasks in companies of all sizes.
 
-Coydir v1.2 supports 3 user functions that allow for complete control of your company’s employee data.
+Coydir empowers you to take more control with less hassle, through data management and analytics features targeting 4 main fields:
 
-**Notes about the command format:**<br>
+1. [Employee particulars and details](#managing-employee-profiles)
+2. [Employee leaves](#managing-employee-leaves)
+3. [Employee performance](#managing-employee-performance)
+4. [Department macro-view](#managing-departments)
+
+Coydir also has other miscellaneous features for a smooth and comfortable use of the application, that we will cover in:
+
+- [Additional Features](#additional-features)
+
+We will explore each of these fields in great detail as we continue along, but before we get into that, let us take a look at how you can use the commands in Coydir's CLI-based interface.
+
+### Coydir Commands Format
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -105,9 +129,19 @@ Coydir v1.2 supports 3 user functions that allow for complete control of your co
 
 :warning: **Integer input values cannot be too large**: any values greater than $2^{32}-1$ is not supported.
 
-</div>
+### Managing Employee Profiles
 
-### Adding an employee: `add`
+What's Human Resources without the Human aspect? (*P.S. It's not "Resources"*)
+
+The **core** of any management tool is the **collection and tracking of data**. 
+Recognising this, Coydir offers several features for the manipulation of data on your company's employees. 
+
+As a *HR professional*, Coydir makes it easy for you to **add and remove data**, **change past entries**, and **look for exactly the information you need**. 
+All this, while keeping your data packed neatly as individual employee profiles for a clean, organised viewing.
+
+Next, let us look at each feature in detail.
+
+#### Adding an employee: `add`
 
 Adds an employee to Coydir.
 
@@ -127,7 +161,7 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney`
 - `add n/Peter Mars j/Chief Operating Officer d/General Management`
 
-### Editing an employee: `edit`
+#### Editing an employee: `edit`
 
 Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
 
@@ -138,7 +172,27 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com`
 - `edit 2 p/91234567 l/20 t/colleagues`
 
-### Adding multiple employees at once: `batchadd`
+#### Deleting an employee : `delete`
+
+Deletes the specified employee from Coydir, given the employee ID.
+
+This command results in one of two cases below:
+
+**Case 1: Unique entry**
+
+If Coydir has just 1 unique entry that matches the specified name, Coydir will delete it.
+
+**Case 2: Multiple entries**
+
+Otherwise, if Coydir has more than 1 entry that matches the specified name, Coydir will prompt users with a list of the matching entries, and await user confirmation for which entry to delete.
+
+Format: `delete ID`
+
+Example:
+
+- `delete 1` deletes the employee with employee ID of 1.
+
+#### Adding multiple employees at once: `batchadd`
 
 Adds multiple employees to Coydir all at once.
 
@@ -168,13 +222,7 @@ Example:
 Sample CSV file as such:
 ![](./images/Sample_CSV.png)
 
-### Listing all employees : `list`
-
-Shows a list of all employees in the company.
-
-Format: `list`
-
-### View details of an employee: `view`
+#### View details of an employee: `view`
 
 Views the details of an existing employee in the current list.
 
@@ -184,27 +232,13 @@ Example:
 
 - `view 2` returns the details of the second employee in the current list.
 
-### Deleting an employee : `delete`
+#### Listing all employees : `list`
 
-Deletes the specified employee from Coydir, given the employee ID.
+Shows a list of all employees in the company.
 
-This command results in one of two cases below:
+Format: `list`
 
-**Case 1: Unique entry**
-
-If Coydir has just 1 unique entry that matches the specified name, Coydir will delete it.
-
-**Case 2: Multiple entries**
-
-Otherwise, if Coydir has more than 1 entry that matches the specified name, Coydir will prompt users with a list of the matching entries, and await user confirmation for which entry to delete.
-
-Format: `delete ID`
-
-Example:
-
-- `delete 1` deletes the employee with employee ID of 1.
-
-### Finding an employee : `find`
+#### Finding an employee : `find`
 
 Finds employees by searching for specified keywords. You can search for a specific name, position, or department, or with any combination of the aforementioned.
 
@@ -218,7 +252,23 @@ Example:
 
 - `find n/John j/engineer d/Tech` displays the employee "John Doe", who is a "Software Engineer" in the "Information Technology" department.
 
-### Adding a leave period for an employee: `addleave`
+### Managing Employee Leaves
+
+Employee leave management can sometimes be a surprisingly *tedious* matter to tackle.
+
+However, with Coydir, we can help you to ensure your **company operations run smoothly**, while your **employees get adequate opportunities** to rest and attend to personal matters.
+
+Here is how we support you in leave management.
+
+#### Setting total leaves for an employee
+
+**[Insert description of using `add` and `edit` to set `totalLeave`]**
+
+<h4 id="is-this-employee-on-leave-today">Is this employee on leave today?</h4>
+
+**[Insert description of how Coydir enables live tracking of `isOnLeave`]**
+
+#### Adding a leave period for an employee: `addleave`
 
 Adds a leave period to an employee given the employee ID and a start and end date.
 
@@ -243,7 +293,7 @@ Example:
 
 - `addleave id/1 sd/01-01-2022 ed/02-01-2022` adds a leave period to an employee of ID 1 with a leave period from 01-01-2022 to 02-01-2022 of 2 days.
 
-### Deleting a leave period for an employee: `deleteleave`
+#### Deleting a leave period for an employee: `deleteleave`
 
 Removes a leave period for an employee given the employee ID and index of leave in the table.
 
@@ -263,19 +313,16 @@ Example:
 
 - `deleteleave id/1 i/3` deletes the third leave period for an employee of ID 1 in the list of leaves.
 
-### View details of a department: `viewdepartment`
+### Managing Employee Performance
 
-View the summarized details of a department given the name of the department.
+Understanding the performance of your employees is crucial for *talent development* in the company.
 
-Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department and their corresponding performance ratings.
+Key performance indicators, productivity, and progression policies may differ from company to company. 
+Here, Coydir offers a **simple yet powerful** way of keeping track of and making sense of your employees' performance in the company.
 
-Format: `viewdepartment DEPARTMENT`
+**[Insert a brief overview of the 1-5 rating system]**
 
-Example:
-
-- `viewdepartment Finance` displays a brief summary of the Finance department's details on the right panel.
-
-### Rating the performance of an employee: `rate`
+#### Rating the performance of an employee: `rate`
 
 Rate the performance of an employee given the employee ID and a numeric rating.
 Ratings can take any values from 1 - 5, and it should not be blank.
@@ -299,25 +346,55 @@ Example:
 
 - `rate id/1 r/3` adds a performance rating to an employee of ID 1 with a rating of 3: Satisfactory.
 
-### Exiting the program : `exit`
+#### Employee Performance History
+
+**[Insert description of the performance history chart]**
+
+### Managing Departments
+
+Apart from supporting the core HR functions, Coydir also supports *department-level management*, for other manpower staff and executives (*department heads, operations planning, etc.*).
+
+With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory. 
+Complete with **real-time statistics and analytics**, Coydir makes department management much simpler.
+
+**[Insert details on how we have fixed departments for now]**
+
+#### View details of a department: `viewdepartment`
+
+View the summarized details of a department given the name of the department.
+
+Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department and their corresponding performance ratings.
+
+Format: `viewdepartment DEPARTMENT`
+
+Example:
+
+- `viewdepartment Finance` displays a brief summary of the Finance department's details on the right panel.
+
+### Additional Features
+
+To wrap up, let us take a look at a couple of additional features that give *a little boost* to your HR management on Coydir.
+These features and techniques serve to make your usage of the application **smoother, easier, and more flexible**.
+
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Clearing the data : `clear`
+#### Clearing the data : `clear`
 
 Clears all the data currently stored in the database.
 
 Format: `clear`
 
-### Saving the data
+#### Saving the data
 
 Coydir data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
-Coydir data are saved as a JSON file `[JAR file location]/data/coydir.json`. Advanced users are welcome to update data directly by editing that data file.
+Coydir data are saved as a JSON file `[JAR file location]/data/database.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
