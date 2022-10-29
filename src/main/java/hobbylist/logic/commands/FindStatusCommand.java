@@ -13,10 +13,10 @@ import hobbylist.model.activity.StatusMatchesGivenStatus;
 public class FindStatusCommand extends Command {
     private static String commandWord = "findStatus";
 
-    public static final String MESSAGE_USAGE = commandWord + ": Finds all activities whose status matches"
+    public static final String MESSAGE_USAGE = commandWord + ": Finds all activities whose status matches "
             + "the given status (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: STATUS...\n"
-            + "Example: " + commandWord + "ONGOING";
+            + "Example: " + commandWord + " ONGOING";
 
     private final StatusMatchesGivenStatus predicate;
 
@@ -44,8 +44,14 @@ public class FindStatusCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredActivityList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW, model.getFilteredActivityList().size()));
+        int listSize = model.getFilteredActivityList().size();
+        String displayedMessage;
+        if (listSize == 1) {
+            displayedMessage = Messages.MESSAGE_ACTIVITY_LISTED_OVERVIEW;
+        } else {
+            displayedMessage = Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW;
+        }
+        return new CommandResult(String.format(displayedMessage, listSize));
     }
 
     @Override
