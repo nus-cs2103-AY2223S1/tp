@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,12 +21,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleDescription;
 import seedu.address.model.module.ModuleName;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
@@ -99,6 +103,12 @@ public class EditModuleCommand extends Command {
 
         model.setModule(moduleToEdit, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+
+        //update students and teaching assistants
+        if (!editedModule.getCode().equals(this.moduleCode)) {
+            changeStudentDetails(this.moduleCode, editedModule.getCode(), model);
+        }
+
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 
@@ -118,6 +128,56 @@ public class EditModuleCommand extends Command {
         Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
 
         return new Module(updatedName, updatedCode, updatedDescription, updatedTags);
+    }
+
+    /**
+     * Updates the student details to reflect the new Module Code.
+     *
+     * @param oldModuleCode The old module code.
+     * @param updatedModuleCode The new module code.
+     * @param model The model.
+     */
+    private void changeStudentDetails(ModuleCode oldModuleCode, ModuleCode updatedModuleCode, Model model) {
+        List<Person> personList = model.getAllPersonList();
+        for (Person person : personList) {
+            if (person instanceof Student) {
+                Student temp = (Student) person;
+                Set<ModuleCode> studentSet = temp.getStudentModuleInfo();
+                Set<ModuleCode> teachingSet = temp.getTeachingAssistantInfo();
+                EditStuCommand.EditStudentDescriptor editStudentDescriptor =
+                        new EditStuCommand.EditStudentDescriptor();
+                if (studentSet.contains(oldModuleCode)) {
+                    Set<ModuleCode> editedSet = new HashSet<>();
+                    editedSet.addAll(studentSet);
+                    editedSet.remove(oldModuleCode);
+                    editedSet.add(updatedModuleCode);
+                    editStudentDescriptor.setStudentModuleInfo(editedSet);
+                }
+                if (teachingSet.contains(oldModuleCode)) {
+                    Set<ModuleCode> editedSet = new HashSet<>();
+                    editedSet.addAll(studentSet);
+                    editedSet.remove(oldModuleCode);
+                    editedSet.add(updatedModuleCode);
+                    editStudentDescriptor.setTeachingAssistantInfo(editedSet);
+                }
+
+                Student editedStudent = EditStuCommand.createEditedStudent(temp, editStudentDescriptor);
+                model.setPerson(person, editedStudent);
+                if (editedStudent.isTeachingAssistant()) {
+                    if (temp.isTeachingAssistant()) {
+                        model.setTutor(temp, editedStudent);
+                    } else {
+                        model.addTutor(editedStudent);
+                    }
+                } else {
+                    if (temp.isTeachingAssistant()) {
+                        model.deleteTutor(temp);
+                    }
+                }
+            }
+        }
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
     }
 
     @Override

@@ -178,7 +178,7 @@ public class ParserUtil {
         requireNonNull(info);
         final Set<ModuleCode> moduleSet = new HashSet<>();
         for (String moduleCode: info) {
-            moduleSet.add(parseModuleCode(parseModule(moduleCode)));
+            moduleSet.add(parseModuleCode(moduleCode));
         }
         return moduleSet;
     }
@@ -194,7 +194,7 @@ public class ParserUtil {
         requireNonNull(info);
         final Set<ModuleCode> moduleSet = new HashSet<>();
         for (String moduleCode: info) {
-            moduleSet.add(parseModuleCode(parseModule(moduleCode)));
+            moduleSet.add(parseModuleCode(moduleCode));
         }
         return moduleSet;
     }
