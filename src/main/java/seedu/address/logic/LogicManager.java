@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -80,10 +82,12 @@ public class LogicManager implements Logic {
     public ObservableList<Buyer> getFilteredBuyerList() {
         return model.getFilteredBuyerList();
     }
+
     @Override
     public ObservableList<Supplier> getFilteredSupplierList() {
         return model.getFilteredSupplierList();
     }
+
     @Override
     public ObservableList<Deliverer> getFilteredDelivererList() {
         return model.getFilteredDelivererList();
@@ -121,19 +125,36 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Order> getOrderAsObservableListFromBuyer(Buyer buyer) {
-        List<Order> ordersFromBuyer = model.getOrdersFromBuyer(buyer);
+        List<UniqueId> ids = buyer.getOrderIds();
+        List<Order> filteredOrders = model.getFilteredOrderList();
+        List<Order> ordersFromBuyer = filteredOrders.stream()
+                .filter(order -> ids.stream()
+                        .anyMatch(order::hasId))
+                .collect(Collectors.toList());
+
         return FXCollections.observableList(ordersFromBuyer);
     }
 
     @Override
     public ObservableList<Order> getOrderAsObservableListFromDeliverer(Deliverer deliverer) {
-        List<Order> ordersFromDeliverer = model.getOrdersFromDeliverer(deliverer);
+        List<UniqueId> ids = deliverer.getOrders();
+        List<Order> filteredOrders = model.getFilteredOrderList();
+        List<Order> ordersFromDeliverer = filteredOrders.stream()
+                .filter(order -> ids.stream()
+                        .anyMatch(order::hasId))
+                .collect(Collectors.toList());
+
         return FXCollections.observableList(ordersFromDeliverer);
     }
 
     @Override
     public ObservableList<Pet> getPetAsObservableListFromSupplier(Supplier supplier) {
-        List<Pet> petsFromSupplier = model.getPetsFromSupplier(supplier);
+        List<UniqueId> ids = supplier.getPetIds();
+        List<Pet> filteredPets = model.getFilteredPetList();
+        List<Pet> petsFromSupplier = filteredPets.stream()
+                .filter(pet -> ids.stream()
+                        .anyMatch(pet::hasId))
+                .collect(Collectors.toList());
         return FXCollections.observableList(petsFromSupplier);
     }
 }
