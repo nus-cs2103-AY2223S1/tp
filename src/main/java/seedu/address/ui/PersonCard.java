@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -26,11 +27,17 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private Label name;
+    private Label idLabel;
+
     @FXML
-    private Label id;
+    private Label nameLabel;
+
     @FXML
-    private Label address;
+    private Label githubUsernameLabel;
+
+    @FXML
+    private Label informationLabel;
+
     @FXML
     private FlowPane tags;
 
@@ -40,13 +47,38 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        address.setVisible(person.getAddress().isPresent());
-        person.getAddress().ifPresent(a -> address.setText(a.value));
-        person.getTags().stream()
-            .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        idLabel.setText(displayedIndex + ". ");
+        nameLabel.setText(person.getName().fullName);
+
+        if (person.getGithubUser().isPresent()) {
+            githubUsernameLabel.setText("@" + person.getGithubUser().get().getUsername());
+        }
+
+        ArrayList<String> information = new ArrayList<>();
+
+        person.getRole().ifPresent(r -> information.add(r.toString()));
+        person.getTimezone().ifPresent(t -> information.add(t.toString()));
+        person.getAddress().ifPresent(a -> information.add(a.toString()));
+
+        setLabelVisibility(informationLabel, information.size() != 0);
+        if (information.size() > 0) {
+            informationLabel.setText(String.join(" • ", information));
+        }
+
+        if (!person.getTags().isEmpty()) {
+            person.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        } else {
+            tags.setManaged(false);
+        }
+    }
+
+    private void setLabelVisibility(Label label, boolean visible) {
+        // Remove node from tree so it doesn't occupy the space.
+        // @see https://stackoverflow.com/a/28559958
+        label.setManaged(visible);
+        label.setVisible(visible);
     }
 
     @Override
@@ -63,7 +95,7 @@ public class PersonCard extends UiPart<Region> {
 
         // state check
         PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
+        return idLabel.getText().equals(card.idLabel.getText())
             && person.equals(card.person);
     }
 }
