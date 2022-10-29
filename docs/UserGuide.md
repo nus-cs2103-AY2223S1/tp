@@ -13,7 +13,8 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
   * [Adding events to trips: `add-et`](#adding-events-to-trips-add-et)
   * [Removing events from trips: `delete-et`](#removing-events-from-trips-delete-et)
   * [Select trip: `select`](#select-trip-select)
-  * [Sorting trips: `sort by/FACTOR r/`](#sorting-trips-sort-byfactor-r)
+  * [Sorting trips: `sort`](#sorting-trips-sort)
+  * [Sorting events within Bucket List: `sort-e`](#sorting-events-within-bucket-list-sort-e)
   * [View all completed trips and events: `completed`](#view-all-completed-trips-and-events-completed)
   * [View all trips and events: `view`](#view-all-trips-and-events-view)
   * [View lifetime summary: `summary`](#view-lifetime-summary-summary)
@@ -63,6 +64,8 @@ If a parameter is expected only once in the command but you specified it multipl
 e.g. if you specify `n/title1 n/title2`, only `n/title2` will be taken.
 
 `TITLE` is case-sensitive, so titles with the same letters and spacing but different capitalizations will be considered different.
+
+The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
 
 Events with the same title are considered duplicates, and duplicate events are not allowed.
 
@@ -173,17 +176,20 @@ Format: `select INDEX`
 - The index refers to the index number shown in the current displayed trip list.
 - The index must be a positive integer 1, 2, 3, …
 
-### Sorting trips: `sort by/FACTOR r/`
+### Sorting trips: `sort`
 Sorts the trips according to the provided factor.
 
-Format: `sort by/FACTOR r/`
+Format: `sort [by/FACTOR] [r/]`
 - Sorts the trip according to provided FACTOR.
+- FACTOR is case-insensitive
 - Marked and unmarked trips are sorted separately.
 - Order of sort reversed when the `r/` prefix is provided.
-- The parameters for this command are optional.
 - The trips will be sorted by their title in alphabetical order by default.
 - A valid FACTOR must be provided if the `by/` prefix is provided.
-- Extraneous parameters for `r/` prefix will be ignored and treated as just `r/`.
+- Extraneous parameters for `r/` prefix will be ignored.
+
+Examples:
+- `sort by/time r/` sorts the trip by reversed chronological order.
 
 | FACTOR | Description |
 | --- | --- |
@@ -192,6 +198,13 @@ Format: `sort by/FACTOR r/`
 | `time` | Sort by trips' date in chronological order |
 | `location` | Sort by trips' location in alphabetical order |
 | `eventcount` | Sort by trips' number of events in ascending order |
+
+### Sorting Events within Bucket List: `sort-e`
+Sorts the events in Bucket List according to alphabetical order.
+
+Format: `sort-e [r/]`
+- Order of sort reversed when the `r/` prefix is provided.
+- Extraneous parameters for `r/` prefix will be ignored.
 
 ### View all completed trips and events: `completed`
 Displays all completed trips and events.
