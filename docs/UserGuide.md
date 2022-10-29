@@ -145,7 +145,7 @@ Examples:
 
 Finds properties whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find -p KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `bishan` will match `Bishan`
 * The order of the keywords does not matter. e.g. `PINNACLE@DUXTON Bishan` will match `Bishan PINNACLE@DUXTON`
