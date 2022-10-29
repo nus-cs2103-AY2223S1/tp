@@ -470,7 +470,7 @@ JeeqTracker data are saved in the hard disk automatically after any command that
 
 JeeqTracker data are saved as a JSON file `[JAR file location]/data/jeeqtracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:warning: **Caution:** If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
+> <div markdown="span" class="alert alert-danger">:exclamation: If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
 
 ### Archiving data files `[coming in v2.0]`
 
