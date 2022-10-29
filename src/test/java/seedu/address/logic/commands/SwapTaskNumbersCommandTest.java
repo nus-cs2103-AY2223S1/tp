@@ -85,12 +85,12 @@ public class SwapTaskNumbersCommandTest {
     @Test
     public void execute_nonExistentTaskNumber_throwsCommandException() {
         Index validTaskNumber = Index.fromOneBased(1);
-        Index nonExistentTaskNumberNinetyNine = Index.fromOneBased(99);
+        Index nonExistentTaskNumberFour = Index.fromOneBased(4);
         Index nonExistentTaskNumberHundred = Index.fromOneBased(100);
         // one valid task number
         SwapTaskNumbersDescriptor descriptorWithOneValidTaskNumber =
                 new SwapTaskNumbersDescriptorBuilder(CS2106_WITH_TYPICAL_TASKS,
-                        validTaskNumber, nonExistentTaskNumberNinetyNine).build();
+                        validTaskNumber, nonExistentTaskNumberFour).build();
         SwapTaskNumbersCommand swapTaskCommandWithOneValidTaskNumber =
                 new SwapTaskNumbersCommand(descriptorWithOneValidTaskNumber);
         assertThrows(CommandException.class,
@@ -100,7 +100,7 @@ public class SwapTaskNumbersCommandTest {
         // no valid task numbers
         SwapTaskNumbersDescriptor descriptorWithNoValidTaskNumber =
                 new SwapTaskNumbersDescriptorBuilder(CS2106_WITH_TYPICAL_TASKS,
-                        nonExistentTaskNumberHundred, nonExistentTaskNumberNinetyNine).build();
+                        nonExistentTaskNumberHundred, nonExistentTaskNumberFour).build();
         SwapTaskNumbersCommand swapTaskCommandWithNoValidTaskNumber =
                 new SwapTaskNumbersCommand(descriptorWithNoValidTaskNumber);
         assertThrows(CommandException.class,
