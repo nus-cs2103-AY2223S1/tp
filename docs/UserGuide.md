@@ -72,10 +72,13 @@ Adds a student to the specified module.
 
 Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0)
+A student can have any number of tags (including 0).
+
+You can add a student more than once if they take different modules. The attendance, participation and grade score entered will then belong to the specified module.
 </div>
 
 * The `ROLE` of the person can only be either student or TA.
+* `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
 
 Examples:
 * `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
@@ -100,7 +103,7 @@ Examples:
 
 Edits an existing student in a specified module.
 
-Format: `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`
+Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/TELEGRAM_HANDLE] [m/MODULE] [tut/TUTORIAL] [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -108,6 +111,9 @@ Format: `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`
 * When editing tags, the existing tags of the student will be removed i.e. adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without
   specifying any tags after it.
+* If nothing is given to `GRADE` even though `g/` is typed into the command box, it will automatically be set to `PENDING...`.
+* If nothing is given to `ATTENDANCE` even though `att/` is typed into the command box, it will automatically be set to `0`.
+* If nothing is given to `PARTICIPATION` even though `part/` is typed into the command box, it will automatically be set to `0`.
 
 Examples:
 * `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
@@ -117,6 +123,8 @@ Examples:
 #### 3.1.4 Listing all students: `list`
 
 Shows a list of all students.
+
+* Command will only display the list if you navigate to the `Student` tab
 
 Format: `list`
 
