@@ -314,13 +314,17 @@ GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
 </div>
 
-### Creating Assignment Tasks `[coming in v1.3]`
+### Creating Assignment Tasks
 
-Create assignment tasks with a list of students.
+Adds an ***Assignment*** (A type of Task) to the Task List.
 
 Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
 
-_More details coming soon ..._
+* An Assignment task should always include a title, description that should not be left blank.
+* The `addStu/` **MUST** be present for the task to be an assignment.
+* The number of students input is zero or more, and each student is separated by a `,` comma.
+* Both title and description should consist of only alphanumeric characters.
+* A date should strictly follow the format of YYYY-MM-DD.
 
 ### Editing Tasks
 
