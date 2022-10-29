@@ -69,7 +69,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'pleasehireus.jar'
+    archiveFileName = 'PleaseHireUs.jar'
 }
 
 run {
