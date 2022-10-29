@@ -276,6 +276,28 @@ The person model now contains a `Net Worth` field.
   amount. 
     * Pros: Flexibility in creating a contact.
     * Cons: No means of comparison between a contact of different currency.
+
+### Upcoming Meetings
+
+#### Implementation
+The Upcoming Meetings function is facilitated by the `MeetingsWindow`, `MeetingCard` and `MeetingListPane` classes.
+`MeetingsWindow` extends `UIPart<Stage>` and is linked to an FXML Menu Item `meetingsMenuItem` in `MainWindow`
+During construction of `MainWindow` object, a `MeetingsWindow` object is instantiated and `setAccelerator()` is 
+called. 
+
+The `MainWindow#setAccelerator()` function sets a shortcut that links the call of `MeetingsWindow` to `F2`.
+
+The construction of a `MeetingsWindow` object, will create a `MeetingsListPanel` and a `private` `meetingsMessage` 
+`label` that takes in a `MEETINGS_MESSAGE`
+
+
+#### Design
+<fxml portion>
+
+#### Styling
+<What css used>
+
+#### Alternatives
     
 --------------------------------------------------------------------------------------------------------------------
 

@@ -231,7 +231,7 @@ Returns a list of clients who has a scheduled meeting in the next 7 days.
 * This uses your device's present local time as reference.
 * As long as a client has a meeting in the next 7 days, it will be shown.
 
-Format: Menu bar on the top of the application or press `F2`
+Format: Menu bar on the top of the application or press `F2`.
 
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
