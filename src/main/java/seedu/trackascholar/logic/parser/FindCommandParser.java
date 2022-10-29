@@ -119,8 +119,13 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         List<String> userInputs = argumentMultimap.getAllValues(prefix);
-        List<String> keywords = new ArrayList<>();
+        boolean hasEmptyUserInput = userInputs.stream().anyMatch(String::isEmpty);
 
+        if (hasEmptyUserInput) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        List<String> keywords = new ArrayList<>();
         userInputs.forEach(input -> keywords.addAll(Arrays.asList(input.split("\\s+"))));
 
         return keywords;

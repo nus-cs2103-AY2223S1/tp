@@ -21,10 +21,10 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applicants who contain any of the "
             + "specified attribute keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: must contain at least one prefix "
+            + "Parameters: must contain at least one prefix with non empty input "
             + "[" + PREFIX_NAME + "NAME]... "
-            + "[" + PREFIX_SCHOLARSHIP + "JOB]... "
-            + "[" + PREFIX_MAJOR + "ROUND]... \n"
+            + "[" + PREFIX_SCHOLARSHIP + "SCHOLARSHIP]... "
+            + "[" + PREFIX_MAJOR + "MAJOR]... \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Sam "
             + PREFIX_SCHOLARSHIP + "NUS Merit Scholarship "

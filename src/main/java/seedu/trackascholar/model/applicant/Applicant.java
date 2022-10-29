@@ -125,7 +125,7 @@ public class Applicant {
         }
 
         return otherApplicant != null
-                && otherApplicant.getName().equals(getName());
+                && otherApplicant.getName().equalsIgnoreCase(getName());
     }
 
     /**
