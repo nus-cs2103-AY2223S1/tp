@@ -12,7 +12,8 @@ idENTify - ENT doctors treat patients who often have chronic conditions and our 
 Given below are my contributions to the project.
 
 
-Code contributed: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicholastyd&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+Code contributed: 
+- [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicholastyd&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 
 Enhancements implemented:
@@ -46,4 +47,4 @@ Review/mentoring contributions:
 
 
 Contributions beyond the project team:
-[Bugs reported during PE-D](https://github.com/NicholasTYD/ped/issues)
+- [Bugs reported during PE-D](https://github.com/NicholasTYD/ped/issues)
