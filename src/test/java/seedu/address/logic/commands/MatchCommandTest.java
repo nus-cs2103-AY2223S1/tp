@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -11,6 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -58,9 +59,14 @@ public class MatchCommandTest {
 
     @Test
     public void execute() {
-        //Index is 1
         MatchCommand command = new MatchCommand(INDEX_FIRST);
         CommandResult commandResult = new CommandResult(MatchCommand.MESSAGE_SUCCESS);
         assertCommandSuccess(command, model, commandResult, expectedModel);
+    }
+
+    @Test
+    public void execute_largeIndex_throwsCommandException() {
+        MatchCommand command = new MatchCommand(Index.fromOneBased(Integer.MAX_VALUE));
+        assertThrows(CommandException.class, () -> command.execute(model));
     }
 }
