@@ -56,7 +56,7 @@ Beyond individual clients, you can also:
 
 #### 2.3.2 Meetings
 
-*MyInsuRec* eases a financial advisor's mental load by helping them track any upcoming meetings. You can do meeting-specific tasks such as:
+*MyInsuRec* eases a financial advisor's mental load by helping them track any upcoming meetings with clients. You can do meeting-specific tasks such as:
 
 * add a meeting to a client in *MyInsuRec*.
 * view a meeting in greater details.
@@ -135,28 +135,28 @@ Both client name and their phone number are **needed** to add the client into *M
 
 ![EditClientTommy](images/quick-start/EditClientTommy.png)
 
-4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com b/09091973` also adds in the client's email and birthday directly.
+4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com b/09091973` also adds in the client's email and birthday directly. 
 
 <div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
-See [addClient](#311-adding-a-client-addclient) for more variety of optional fields!
+See [addClient](#511-adding-a-client-addclient) for more variety of optional fields!
 </div>
 
 5. Now we would like to add in an upcoming meeting with our client 'Bernice Yu' (index 2 in our sample data). We can do that by doing `addMeeting i/2 d/27102022 st/1400 et/1600 dn/Review Product 2` (You can replace `d/27102022` with today's date in the DDMMYYYY format)! When we hit enter, *MyInsuRec* will show us the list of meetings, including the one we just added. The image below shows the list of meetings after adding the meeting with Bernice.
 
 ![AddMeetingBernice](images/quick-start/AddMeetingBernice.png)
 
-6. We would like to get Bernice's contact number and message about her upcoming meeting! We can call `viewMeeting i/1` to help us. This brings up a more detailed view of the meeting, with information such as description of the meeting and Bernice's contact number. The image below shows *MyInsuRec* after using the `viewMeeting` command.
+6. We would like to get Bernice's contact number and message about her upcoming meeting! We can call `viewMeeting i/1` to help us. This brings up a more detailed view of the meeting, with information such as description of the meeting and Bernice's contact number. The image below shows *MyInsuRec* after using the [`viewMeeting`](#523-view-meeting-viewmeeting) command.
 
 ![ViewMeetingBernice](images/quick-start/ViewMeetingBernice.png)
 
-7. Now, to go back to the list of clients, simply type in `listClient`. This brings us back to the list of clients. The image below shows the current state of *MyInsuRec* after following all the previous steps.
+7. Now, to go back to the list of clients, simply type in [`listClient`](#512-list-clients-listclient). This brings us back to the list of clients. The image below shows the current state of *MyInsuRec* after following all the previous steps.
 
 ![ListClient](images/quick-start/ListClient.png)
 
-8. Suppose your company introduced a new product 'MyInsureCare' that you are interested to sell, and would like to add it into *MyInsuRec*! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product. The image below shows *MyInsuRec* after adding the product.
+8. Suppose your company introduced a new product 'MyInsureCare' that you are interested to sell, and would like to add it into *MyInsuRec*! We can do so via `addProduct pd/MyInsureCare`. This adds a product 'MyInsureCare' and also brings us to the list of product with the newly added product. The image below shows *MyInsuRec* after adding the product. 
 
 <div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
-You can use `listClient`, `listMeeting` and `listProduct` to traverse between the different lists accordingly.
+You can use [`listClient`](#512-list-clients-listclient), [`listMeeting`](#522-list-meetings-listmeeting) and [`listProduct`](#532-list-products-listproduct) to traverse between the different lists accordingly.
 </div>
 
 ![AddProductMyInsureCare](images/quick-start/AddProductMyInsureCare.png)
@@ -175,13 +175,17 @@ Only products added already via `addProduct` can be used! This is to help ensure
 
 And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have more advanced features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#5-features) where all the commands and their details can be found.
 
-To get started with a clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't get panicked! 
+To get started with a clean state of *MyInsuRec*, type in the command [`clear`](#543-clear-myinsurec-clear). This removes all the sample data from *MyInsuRec*, so don't get panicked! 
 
 Welcome to your new and organized life, and happy (financial) advising!
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Features
+
+This section guides you on how to use features available in *MyInsuRec*. We lay out the command and parameters needed to use the feature, show an example input as well as its expected behaviour. We also include some tips and tricks (yay!) on how you can better use the feature and *MyInsuRec*.
+
+Do take some time to read the following note to better understand how you can use this section!
 
 <div markdown="block" class="alert alert-info">
 
@@ -207,12 +211,14 @@ Welcome to your new and organized life, and happy (financial) advising!
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/28092022 d/30092022`, only `d/30092022` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `exit` and `help`) will be ignored.<br>
-  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+* Extraneous parameters for commands that do not take in parameters (such as [`exit`](#542-exit-myinsurec-exit) and [`help`](#541-view-help-help)) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as [`exit`](#542-exit-myinsurec-exit).
 
 </div>
 
 ### 5.1 Client commands
+
+This subsection covers all client-related commands.
 
 #### 5.1.1 Add client: `addClient`
 
@@ -289,9 +295,11 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 Examples:
 Suppose *MyInsuRec* contains only one client 'John Tan' having phone number '0123456789':
 * `editClient i/1 n/John Smith` changes the name of this client to 'John Smith'.
-* `editClient i/1 e/johntan@insurec.com`adds the email 'johntan@insurec.com' to the client.
+* `editClient i/1 e/johntan@insurec.com` adds the email 'johntan@insurec.com' to the client.
 
 ### 5.2 Meeting commands
+
+This subsection covers all meeting-related commands.
 
 #### 5.2.1 Add meeting: `addMeeting`
 
@@ -317,20 +325,35 @@ to add a meeting from 1330 to 1430 when you already have one scheduled for
 
 #### 5.2.2 List meetings: `listMeeting`
 
-Show the list of meetings in MyInsuRec.
-If used with the optional parameter `[d/DATE]`, *MyInsuRec* will show only meetings happening in that time period.
+Shows a list of meetings in MyInsuRec.
 
 Format: `listMeeting [d/DATE]`
 
+Use case:
+1. Get an overview of all your upcoming meetings. This is especially useful for if you have a busy and packed schedule, and want to ease your mental load of having to recall all of your upcoming meetings!
+2. Organize all your meetings in a single place, so you don't have to worry about missing a meeting ever again.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+* You can use the `d/DATE` parameter optionally to view the list of meetings happening in that time period!
 * `DATE` is specified by keywords. The possible keywords are:
-  * `tomorrow` for a list of meetings happening today or tomorrow;
-  * `week` for a list of meetings happening today or in the next 7 days;
-  * `month` for a list of meetings happening this month.
+  * `tomorrow` for a list of meetings happening tomorrow;
+  * `week` for a list of meetings happening in the next week;
+  * `month` for a list of meetings happening in the next month. 
+* For example, `listMeeting d/week` will show a list of meetings happening in the next week.
+* This is an excellent feature if you want to get a quick overview of your upcoming schedule!
+</div>
+
+<div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
+This command is used to get the index of a meeting. In order to perform commands related to a particular meeting such as [`editMeeting`](#525-edit-meeting-editmeeting), you will have to first get its index by running `listMeeting`. So, expect to use this command a lot!
+</div>
 
 Examples:
-* `listMeeting`
-* `listMeeting d/tomorrow`
-* `listMeeting d/month`
+
+* List all meetings
+    * `listMeeting`
+
+* List meetings happening in the next month
+    * `listMeeting d/month`
 
 #### 5.2.3 View meeting: `viewMeeting`
 
@@ -372,6 +395,8 @@ since the start time is later than end time.
 
 ### 5.3 Product commands
 
+This subsection covers all product-related commands.
+
 #### 5.3.1 Add product: `addProduct`
 
 Add a new product to *MyInsuRec*.
@@ -390,22 +415,37 @@ Show a list of all products in *MyInsuRec*.
 
 Format: `listProduct`
 
-#### 5.3.3 Delete product: `delProduct`
+Use case:
+1. Get an overview of all the products you are offering!
+2. This feature is used to get the index of a product, which is needed for most product-related commands.
 
-Delete a product from *MyInsuRec*.
+Examples:
 
-This feature will remove the product from association with any client.
+* List all products
+  * `listProduct`
+
+#### 5.3.3 Delete a product : `delProduct`
+
+Deletes a product from *MyInsuRec*.  
+This command removes this product from all the clients as well.
 
 Format: `delProduct i/INDEX`
 
-* Delete the product at the specified [`INDEX`](#index).
+Use case:
+1. If you no longer offer this product and no clients have purchased it before, you can remove it from *MyInsuRec* and prevent it from cluttering up *MyInsuRec*!
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+* This command is usually preceded by `listProduct`. This is because the product's index number [`INDEX`](#index) is required to use this command, and `listProduct` shows a list of all the products with their index numbers.
+</div>
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 This feature should only be used if there is a need to delete a product, which is unlikely in most scenarios! Use with caution as this not only removes the product from *MyInsuRec*'s product list, it also **removes the product from any association with your clients**.
 </div>
 
 Examples:
-* `delProduct i/2`
+
+* Delete the product with index number 2
+    * `delProduct i/2`
 
 ### 5.4 General commands
 
@@ -474,7 +514,7 @@ Remember to save the original `myinsurec.json` file before renaming the backup!
 **A**: Install Java version 11 and above from the official Java website.
 
 **Q**: Why can't I add a product to my client?<br>
-**A**: First check that the product has been created (use the [`listProduct` command](#532-list-products-listproduct). 
+**A**: First check that the product has been created (use the [`listProduct`](#532-list-products-listproduct) command. 
 Create the product suing the [`addProduct`](#531-add-product-addproduct) command if it is not there.
 Add the product to the client using the [`editClient`](#515-edit-client-editclient)  or [`addClient`](#511-add-client-addclient) command.
 
@@ -602,18 +642,18 @@ Number indicating the position of a client, meeting, or product in their respect
 
 In all commands `INDEX` **must be a positive integer** 1, 2, 3, …​`
 
-In `editClient`, `delClient`, and `viewClient` commands, `INDEX` refers to the  number shown by executing [`listClient`](#512-list-clients-listclient) command.
+In [`editClient`](#515-edit-client-editclient), [`delClient`](#514-delete-client-delclient), and [`viewClient`](#513-view-client-viewclient) commands, `INDEX` refers to the  number shown by executing [`listClient`](#512-list-clients-listclient) command.
 
 e.g. David Li has position of 4 in the shown [client list](#512-list-clients-listclient)
 ![](images/listClient.png)
 
 
-In `viewMeeting`, `delMeeting`, and `editMeeting` commands, `INDEX` refers to the number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
+In [`viewMeeting`](#523-view-meeting-viewmeeting), [`delMeeting`](#524-delete-meeting-delmeeting), and [`editMeeting`](#525-edit-meeting-editmeeting) commands, `INDEX` refers to the number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
 
 e.g. The meeting shown has position of 1 in [meeting list](#522-list-meetings-listmeeting)
 ![](images/listMeeting.png)
 
-In `delProduct` command, `INDEX` refers to the number shown by executing [`listProduct`](#532-list-products-listproduct) command. 
+In [`delProduct`](#533-delete-a-product--delproduct) command, `INDEX` refers to the number shown by executing [`listProduct`](#532-list-products-listproduct) command. 
 
 e.g. Product6 has position of 5 in the shown [product list](#332-listing-products-listproduct):
 ![](images/listProduct.png)
