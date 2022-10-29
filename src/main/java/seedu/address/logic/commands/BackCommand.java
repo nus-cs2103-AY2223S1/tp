@@ -23,8 +23,7 @@ public class BackCommand extends Command {
      * @param name of the given panel.
      * @return true
      */
-    @Override
-    public boolean canExecuteAt(MainPanelName name) {
+    public static boolean canExecuteAt(MainPanelName name) {
         return true;
     }
 

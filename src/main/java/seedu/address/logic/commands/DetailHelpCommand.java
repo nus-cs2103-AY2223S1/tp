@@ -6,22 +6,19 @@ import seedu.address.ui.MainPanelName;
 /**
  * Format full help instructions for every command for display.
  */
-public class HelpCommand extends Command {
+public class DetailHelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "If you want to show help for specific command, pass command word as parameter.\n"
-            + "Parameter: [" + AddCommand.COMMAND_WORD + "|"
+            + "Parameter: ["
             + BackCommand.COMMAND_WORD + "|"
-            + ClearCommand.COMMAND_WORD + "|"
-            + DeleteCommand.COMMAND_WORD + "|"
-            + ExitCommand.COMMAND_WORD + "|"
-            + FindCommand.COMMAND_WORD + "|"
-            + SortCommand.COMMAND_WORD + "|"
-            + ResetCommand.COMMAND_WORD + "|"
-            + HelpCommand.COMMAND_WORD + "]\n"
-            + "Example: " + COMMAND_WORD + ", " + COMMAND_WORD + " add";
+            + DeleteAttributeCommand.COMMAND_WORD + "|"
+            + SetCommand.COMMAND_WORD + "|"
+            + DetailHelpCommand.COMMAND_WORD + "|"
+            + ExitCommand.COMMAND_WORD + "]\n"
+            + "Example: " + COMMAND_WORD + ", " + COMMAND_WORD + " " + SetCommand.COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
@@ -32,7 +29,7 @@ public class HelpCommand extends Command {
     /**
      * Creates an HelpCommand to show help message and help panel.
      */
-    public HelpCommand() {
+    public DetailHelpCommand() {
         this.helpMessage = SHOWING_HELP_MESSAGE;
         this.showHelpPanel = true;
     }
@@ -40,7 +37,7 @@ public class HelpCommand extends Command {
     /**
      * Creates an HelpCommand to show usage instruction.
      */
-    public HelpCommand(String helpMessage) {
+    public DetailHelpCommand(String helpMessage) {
         this.helpMessage = helpMessage;
         this.showHelpPanel = false;
     }
@@ -53,6 +50,6 @@ public class HelpCommand extends Command {
     }
 
     public static boolean canExecuteAt(MainPanelName name) {
-        return name.equals(MainPanelName.List) || name.equals(MainPanelName.Help);
+        return name.equals(MainPanelName.Detail) || name.equals(MainPanelName.DetailHelp);
     }
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
+<?import javafx.scene.control.ListView?>
 <StackPane fx:id="detailPanel" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox spacing="16.0">
@@ -15,16 +15,22 @@
                     <Circle fx:id="profileImageContainer" radius="60.0"/>
                     <VBox spacing="8.0" HBox.hgrow="ALWAYS">
                         <children>
-                            <Label fx:id="nameLabel" text="Name"/>
-                            <Label fx:id="roleLabel" text="Role"/>
-                            <Label fx:id="timezoneLabel" text="Timezone"/>
+                            <Label fx:id="nameLabel"/>
+                            <Label fx:id="githubLabel"/>
+                            <Label fx:id="roleLabel"/>
+                            <Label fx:id="timezoneLabel"/>
+                            <Label fx:id="addressLabel"/>
                         </children>
                     </VBox>
                 </children>
             </HBox>
             <VBox spacing="8.0" fx:id="contactsSection">
-                <Label styleClass="sub-header" text="CONTACTS"/>
+                <Label styleClass="sub-header" fx:id="contactsTitleLabel" text="CONTACTS"/>
                 <HBox spacing="10.0" fx:id="contactBoxContainer" VBox.vgrow="ALWAYS"/>
+            </VBox>
+            <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+                <Label styleClass="sub-header" fx:id="reposTitleLabel" text="REPOSITORIES"/>
+                <ListView fx:id="githubRepoListView" VBox.vgrow="ALWAYS"/>
             </VBox>
         </VBox>
     </children>

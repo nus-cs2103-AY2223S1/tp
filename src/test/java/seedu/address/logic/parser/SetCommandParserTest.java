@@ -1,17 +1,27 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ARGUMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SLACK;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SLACK_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TELEGRAM;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TELEGRAM_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIMEZONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIMEZONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -70,25 +80,67 @@ public class SetCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-        assertParseFailure(parser, INVALID_TIMEZONE_DESC, Timezone.MESSAGE_CONSTRAINTS); // invalid time
-        assertParseFailure(parser, INVALID_TELEGRAM_DESC, Telegram.MESSAGE_CONSTRAINTS); // invalid tele
-        assertParseFailure(parser, INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, INVALID_SLACK_DESC, Slack.MESSAGE_CONSTRAINTS); // invalid slack
-        assertParseFailure(parser, INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, INVALID_ROLE_DESC, Role.MESSAGE_CONSTRAINTS); // invalid role
+        assertParseFailure(parser, INVALID_NAME_DESC, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                INVALID_NAME,
+                Name.MESSAGE_CONSTRAINTS)); // invalid name
+
+        assertParseFailure(parser, INVALID_ADDRESS_DESC, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                INVALID_ADDRESS,
+                Address.MESSAGE_CONSTRAINTS)); // invalid address
+
+        assertParseFailure(parser, INVALID_TAG_DESC, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                INVALID_TAG,
+                Tag.MESSAGE_CONSTRAINTS)); // invalid tag
+
+        assertParseFailure(parser, INVALID_TIMEZONE_DESC, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                INVALID_TIMEZONE,
+                Timezone.MESSAGE_CONSTRAINTS)); // invalid time
+
+        assertParseFailure(parser, INVALID_TELEGRAM_DESC, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                INVALID_TELEGRAM,
+                Telegram.MESSAGE_CONSTRAINTS)); // invalid tele
+        assertParseFailure(parser, INVALID_PHONE_DESC, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                INVALID_PHONE,
+                Phone.MESSAGE_CONSTRAINTS)); // invalid phone
+        assertParseFailure(parser, INVALID_SLACK_DESC, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                INVALID_SLACK,
+                Slack.MESSAGE_CONSTRAINTS)); // invalid slack
+        assertParseFailure(parser, INVALID_EMAIL_DESC, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                INVALID_EMAIL,
+                Email.MESSAGE_CONSTRAINTS)); // invalid email
+        assertParseFailure(parser, INVALID_ROLE_DESC, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                INVALID_ROLE,
+                Role.MESSAGE_CONSTRAINTS)); // invalid role
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                "",
+                Tag.MESSAGE_CONSTRAINTS));
+        assertParseFailure(parser, TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                "",
+                Tag.MESSAGE_CONSTRAINTS));
+        assertParseFailure(parser, TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, String.format(
+                MESSAGE_INVALID_ARGUMENT,
+                "",
+                Tag.MESSAGE_CONSTRAINTS));
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC + VALID_TAG_FRIEND,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ADDRESS_DESC + VALID_TAG_FRIEND, String.format(
+                        MESSAGE_INVALID_ARGUMENT,
+                        INVALID_NAME,
+                        Name.MESSAGE_CONSTRAINTS));
     }
 
     @Test

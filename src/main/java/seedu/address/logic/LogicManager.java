@@ -49,10 +49,6 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText, mainPanelName);
-
-        if (!command.canExecuteAt(mainPanelName)) {
-            throw new CommandException("Command not found.");
-        }
         commandResult = command.execute(model);
 
         try {

@@ -124,8 +124,7 @@ public class SetCommand extends Command {
         return new Person(name, address, tags, newContacts, role, timezone, githubUser);
     }
 
-    @Override
-    public boolean canExecuteAt(MainPanelName name) {
+    public static boolean canExecuteAt(MainPanelName name) {
         return name.equals(MainPanelName.Detail);
     }
 
