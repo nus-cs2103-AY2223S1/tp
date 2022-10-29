@@ -427,6 +427,8 @@ Format: `edit INDEX m/remark REMARK`
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
 </div>
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Deleting a remark : `delete`
 
 Deletes a `remark` specified by the index number.
@@ -440,7 +442,9 @@ Format: `delete INDEX m/remark`
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a remark is an irreversible process! It will be gone forever**: Be very careful here!
 
-# Data Storage
+[Back to Table of Contents](#table-of-contents)
+
+## Data Storage
 
 ### Saving the data
 
@@ -466,6 +470,8 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous JeeqTracker home folder.
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
