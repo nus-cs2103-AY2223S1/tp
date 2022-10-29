@@ -74,7 +74,7 @@ email address, home address, remarks and tags.
 
 #### Format
 
-`Command word + <prefix><input> ...`
+`Command word <prefix><input> ...`
 
 #### Parameter List
 
@@ -120,11 +120,11 @@ slot, and doctor.
 
 #### Command word
 
-`addpatient`, `ap`
+`addappointment`, `aa`
 
 #### Format
 
-`Command word + <prefix><input> ...`
+`Command word <prefix><input> ...`
 
 #### Parameter List
 
@@ -173,7 +173,7 @@ Adds a bill attached to an appointment with input information including amount a
 
 #### Format
 
-`Command word + <index of appointment> + <prefix><input> ...`
+`Command word <index of appointment> <prefix><input> ...`
 
 #### Parameter List
 
