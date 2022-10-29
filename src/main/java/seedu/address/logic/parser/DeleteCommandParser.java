@@ -32,9 +32,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             Collections.sort(stringOfIndexesList, new Comparator<String>() {
                 @Override
                 public int compare(String indexString1, String indexString2) {
-                    int n1=Integer.parseInt(indexString1);
-                    int n2=Integer.parseInt(indexString2);
-                    if (n1<=n2){
+                    int n1 = Integer.parseInt(indexString1);
+                    int n2 = Integer.parseInt(indexString2);
+                    if (n1 <= n2) {
                         return 1;
                     }
                     return -1;
