@@ -19,8 +19,8 @@ The overview of the application's user interface can be found [here](#user-inter
 ## Table of Contents
 
 * [Quick Start](#quick-start)
-* [How to use the User Guide](#how-to-use-the-user-guide)
 * [User Interface Overview](#user-interface-overview)
+* [How to use the User Guide](#how-to-use-the-user-guide)
 * [Features](#features)
   * [Client Commands]()
     * [Adding a client: `add`](#adding-a-client-add)
@@ -53,16 +53,6 @@ The overview of the application's user interface can be found [here](#user-inter
 * [Prefix Summary](#prefix-summary)
 
 --------------------------------------------------------------------------------------------------------------------
-## User Interface Overview
-
-![UiOverview](images/UiOverview.jpg)
-
-This application UI is split into `5 sections`. 
-* `Input Command`: This is where you should key in your commands, and press enter to execute
-* `Application's Reply`: Errors or success messages will appear here after you execute any commands
-* `List Of Clients`: Every client that you have will appear here
-* `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client--view), or it will show all transactions with every client if you use the [filter command](#filtering-the-transaction-display--filter)
-* `Remarks Of Specified Client`: Remarks of specified client will appear here
 
 ## Quick start
 
@@ -93,6 +83,21 @@ This application UI is split into `5 sections`.
    * **`exit`** : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## User Interface Overview
+
+![UiOverview](images/UiOverview.jpg)
+
+This application UI is split into `5 sections`.
+* `Input Command`: This is where you should key in your commands, and press enter to execute
+* `Application's Reply`: Errors or success messages will appear here after you execute any commands
+* `List Of Clients`: Every client that you have will appear here
+* `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client--view), or it will show all transactions with every client if you use the [filter command](#filtering-the-transaction-display--filter)
+* `Remarks Of Specified Client`: Remarks of specified client will appear here
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -140,6 +145,8 @@ Below are some symbols that you may encounter in the User Guide.
 | <div markdown="span" class="alert alert-warning">:warning:</div> | Caution |
 
 [Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
