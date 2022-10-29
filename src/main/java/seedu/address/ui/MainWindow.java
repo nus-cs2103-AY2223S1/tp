@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -8,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -77,7 +80,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        primaryStage.getScene().setOnMouseClicked(e -> resultDisplayPlaceholder.requestFocus());
+        scene.setOnMouseClicked(e -> resultDisplayPlaceholder.requestFocus());
     }
 
     public Stage getPrimaryStage() {
@@ -140,6 +143,20 @@ public class MainWindow extends UiPart<Stage> {
 
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         resultDisplayPlaceholder.prefWidthProperty().bind(scene.widthProperty());
+
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, t -> {
+            if (t.getCode() == KeyCode.SPACE && !commandBox.getCommandTextField().isFocused()) {
+                commandBox.getCommandTextField().setEditable(false);
+                commandBox.getCommandTextField().requestFocus();
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        commandBox.getCommandTextField().setEditable(true);
+                        commandBox.getCommandTextField().selectEnd();
+                    }
+                }, 10);
+            }
+        });
 
         scene.heightProperty().addListener((ob, oldVal, newVal) ->
                 windowAnchorPane.resizeElements(scene.getHeight(),
