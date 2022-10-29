@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_OPEN_COMMISSION_SUCCESS;
-import static seedu.address.commons.core.Messages.MESSAGE_OPEN_COMMISSION_TAB_SUCCESS;
 
 import java.util.List;
 import java.util.Objects;
@@ -47,7 +46,7 @@ public class OpenCommissionCommand extends Command {
         model.selectTab(GuiTab.COMMISSION);
 
         if (targetIndex == null) {
-            return new CommandResult(MESSAGE_OPEN_COMMISSION_TAB_SUCCESS);
+            return new CommandResult(MESSAGE_USAGE);
         }
 
         List<Commission> lastShownList = model.getFilteredCommissionList();
