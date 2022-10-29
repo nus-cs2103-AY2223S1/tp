@@ -226,7 +226,6 @@ public class Student {
 
         return hasOverlaps;
     }
-
     /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.

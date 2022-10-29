@@ -2,10 +2,10 @@
 [![CI Status](https://github.com/AY2223S1-CS2103T-T11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T11-4/tp/actions)
 ![](docs/images/Ui.png)
 ## About
-* Mass Linkers is a powerful Desktop application tool that provides a centralised platform for Computer Science (CS) students to find study support from batchmates with common modules.<br>
+* Mass Linkers is a powerful Desktop application tool that helps Computer Science (CS) students find study support from batchmates, making it easier to form study groups and look for module-related guidance.<br>
   Example usage:
-  * save your CS batchmates’ contact details in one place
-  * find common modules and form study groups
+  * save your CS batchmates’ module and contact details
+  * search for batchmates with common interests or who are taking similar modules
 * It is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## Installation
