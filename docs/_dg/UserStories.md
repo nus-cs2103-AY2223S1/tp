@@ -131,13 +131,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |    `***`     | :PURCHASING_MANAGER: | :C_SORT_BOUGHT_DATE: | :ST_SORT_BOUGHT_DATE: |
 |    `***`     | :PURCHASING_MANAGER: | :C_SORT_EXPIRY_DATE: | :ST_SORT_EXPIRY_DATE: |
 |    `***`     | :PURCHASING_MANAGER: | :C_SORT_PRICE:       | :ST_SORT_PRICE:       |
-|    `**`      | :PURCHASING_MANAGER: | :C_SORT_REMARKS:     | :C_SORT_REMARKS:      |
-|    `***`     | :PURCHASING_MANAGER: | :C_LIST_TAGS:        | :C_LIST_TAGS:         |
-|    `***`     | :PURCHASING_MANAGER: | :C_CREATE_TAG:       | :C_CREATE_TAG:        |
-|    `***`     | :PURCHASING_MANAGER: | :C_RENAME_TAG:       | :C_RENAME_TAG:        |
-|    `***`     | :PURCHASING_MANAGER: | :C_DELETE_TAG:       | :C_DELETE_TAG:        |
-|    `***`     | :PURCHASING_MANAGER: | :C_TAG_ITEM:         | :C_TAG_ITEM:          |
-|    `***`     | :PURCHASING_MANAGER: | :C_UNTAG_ITEM:       | :C_UNTAG_ITEM:        |
+|    `**`      | :PURCHASING_MANAGER: | :C_SORT_REMARKS:     | :ST_SORT_REMARKS:     |
+|    `***`     | :PURCHASING_MANAGER: | :C_LIST_TAGS:        | :ST_LIST_TAGS:        |
+|    `***`     | :PURCHASING_MANAGER: | :C_CREATE_TAG:       | :ST_CREATE_TAG:       |
+|    `***`     | :PURCHASING_MANAGER: | :C_RENAME_TAG:       | :ST_RENAME_TAG:       |
+|    `***`     | :PURCHASING_MANAGER: | :C_DELETE_TAG:       | :ST_DELETE_TAG:       |
+|    `***`     | :PURCHASING_MANAGER: | :C_TAG_ITEM:         | :ST_TAG_ITEM:         |
+|    `***`     | :PURCHASING_MANAGER: | :C_UNTAG_ITEM:       | :ST_UNTAG_ITEM:       |
 
 {% endcapture %}
 
