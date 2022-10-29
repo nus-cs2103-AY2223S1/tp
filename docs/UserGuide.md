@@ -461,11 +461,11 @@ exit
 
 ### Saving the data
 
-TrackAScholar data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TrackAScholar data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-TrackAScholar data are saved as a JSON file `[JAR file location]/data/trackAScholar.json`. Advanced users are welcome to update data directly by editing that data file.
+TrackAScholar data is saved as a JSON file `[JAR file location]/data/trackAScholar.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TrackAScholar will discard all data and start with an empty data file at the next run.
