@@ -80,7 +80,7 @@ In the user guide, you might come across some terms you might not understand. Th
   e.g. in `add n=NAME`, `NAME` is a parameter which can be used as `add n=Homer`.
 
 * Items in square brackets are optional.<br>
-  e.g `tag create TAG1 [TAG2]` can be used as `tag create potential` or as `tag create potential high-priority`.
+  e.g `tag create TAG1 [TAG2]` can be used as `tag create potential` or as `tag create potential highPriority`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n=NAME p=PHONE_NUMBER`, `p=PHONE_NUMBER n=NAME` is also acceptable.
@@ -171,7 +171,7 @@ You can create multiple tags at once by just separating the different tag names 
 Examples:
 
 * `tag create potential` Creates a tag called `potential`
-* `tag create potential high-priority low-priority` Creates 3 tags called `potential`, `high-priority` and `low-priority`.
+* `tag create potential highPriority lowPriority` Creates 3 tags called `potential`, `highPriority` and `lowPriority`.
 
 ### Tagging clients : `tag`
 
@@ -190,7 +190,7 @@ You can assign multiple tags to a client at once by separating the different tag
 Example:
 
 * `tag 5 potential` Assigns the `potential` tag to the client entry at index 5.
-* `tag 5 potential high-prority` Assigns the `potential` and `high-priority` tags to the client entry at index 5.
+* `tag 5 potential highPriority` Assigns the `potential` and `highPriority` tags to the client entry at index 5.
 
 ### Removing tags from clients : `tag remove`
 
@@ -205,7 +205,7 @@ Like assignment of tags, you can also remove multiple tags from a client at once
 Example:
 
 * `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
-* `tag remove 5 potential high-priority` Removes the `potential` and `high-priority` tags from the client entry at index 5.
+* `tag remove 5 potential highPriority` Removes the `potential` and `highPriority` tags from the client entry at index 5.
 
 ### Deleting a tag : `tag delete`
 
@@ -220,7 +220,7 @@ Format: `tag delete TAG [TAG2] [TAG3] … [TAGN]`
 Example:
 
 - `tag delete potential` Deletes the `potential` tag from the address book.
-- `tag delete potential high-priority` Deletes the `potential` and `high-priority` tags from address book.
+- `tag delete potential highPriority` Deletes the `potential` and `highPriority` tags from address book.
 
 ### Filtering client entries : `filter`
 
@@ -236,8 +236,8 @@ Examples:
 
 * `filter n=Laufey` Shows clients with `Laufey` as name.
 * `filter n=Homer,Laufey` Shows all clients with `Homer` **or** `Laufey` as name.
-* `filter t=high-priority` Shows clients with high-priority names.
-* `filter t=high-priority,potential` Shows all clients with `high-priority` tag **or** `potential` tag.
+* `filter t=highPriority` Shows clients with high-priority names.
+* `filter t=highPriority,potential` Shows all clients with `highPriority` tag **or** `potential` tag.
 * `filter n=Homer t=potential` Shows all clients with `Homer` name **or** `potential` tag.
 
 ### Clearing filters : `filter clear`
