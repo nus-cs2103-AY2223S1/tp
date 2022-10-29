@@ -26,14 +26,17 @@ public class AddBillCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("addbill", "ab");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a bill that corresponds to an appointment to the HealthContact. "
+            + ": Adds a bill that corresponds to an appointment to HealthContact.\n"
             + "Parameters: INDEX_OF_APPOINTMENT (must be a positive integer)"
             + PREFIX_BILL_DATE + " DATE<yyyy-MM-dd> "
-            + PREFIX_AMOUNT + " AMOUNT ";
+            + PREFIX_AMOUNT + " AMOUNT\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_BILL_DATE + "2022-11-12 "
+            + PREFIX_AMOUNT + "100";
     public static final String MESSAGE_SUCCESS = "New bill added: %1$s";
-    public static final String MESSAGE_DUPLICATE_BILL = "This bill already exists in the HealthContact";
+    public static final String MESSAGE_DUPLICATE_BILL = "This bill already exists in HealthContact";
     public static final String MESSAGE_APPOINTMENT_NOT_EXIST =
-            "This appointment does not exist in the HealthContact";
+            "This appointment does not exist in HealthContact";
 
     private final Index indexOfAppointment;
     private final BillDate billDate;
