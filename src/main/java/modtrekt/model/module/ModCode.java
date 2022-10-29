@@ -9,8 +9,9 @@ import static modtrekt.commons.util.AppUtil.checkArgument;
  */
 public class ModCode implements Comparable<ModCode> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Code should contain alphanumeric characters and no white space";
-    private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
+    public static final String MESSAGE_CONSTRAINTS =
+            "Code should contain alphanumeric characters, no white space, and 6 to 9 characters long";
+    private static final String ALPHANUMERIC_NO_UNDERSCORE = "^[a-zA-Z0-9]{6,9}$";
     public static final String VALIDATION_REGEX = ALPHANUMERIC_NO_UNDERSCORE;
 
     private final String value;
