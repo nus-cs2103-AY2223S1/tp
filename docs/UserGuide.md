@@ -237,6 +237,20 @@ Format: `summary`
 - Progress indicator for trips and events.
 - Command must be used again to view updates to the summary.
 
+### Clearing all entries : `clear`
+
+Clears all entries from Travelr, which includes the trips and the events.
+
+Format: `clear`
+
+
+### Viewing help : `help`
+
+Shows a command summary as well as link to the User Guide page. The link can be copied by clickiing the `Copy URL` button.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Saving data
 Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
