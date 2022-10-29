@@ -11,14 +11,14 @@ import seedu.address.model.student.Student;
 public interface ReadOnlyTeachersPet {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the students list.
+     * This list will not contain any duplicate students.
      */
     ObservableList<Student> getStudentList();
 
     /**
      * Returns an unmodifiable view of the schedule list.
-     * This list will not contain any duplicate persons.
+     * This list will not contain any duplicate students.
      */
     ObservableList<Student> getScheduleList();
 

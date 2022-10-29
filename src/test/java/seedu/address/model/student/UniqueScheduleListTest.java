@@ -29,18 +29,18 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_studentNotInList_returnsFalse() {
         assertFalse(uniqueScheduleList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_studentInList_returnsTrue() {
         uniqueScheduleList.add(ALICE);
         assertTrue(uniqueScheduleList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueScheduleList.add(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertTrue(uniqueScheduleList.contains(editedAlice));
@@ -113,7 +113,7 @@ public class UniqueScheduleListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsStudentNotFoundException() {
+    public void remove_studentDoesNotExist_throwsStudentNotFoundException() {
         assertThrows(StudentNotFoundException.class, () -> uniqueScheduleList.remove(ALICE));
     }
 

@@ -61,18 +61,18 @@ public class TeachersPetTest {
     }
 
     @Test
-    public void hasStudent_personNotInTeachersPet_returnsFalse() {
+    public void hasStudent_studentNotInTeachersPet_returnsFalse() {
         assertFalse(teachersPet.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_personInTeachersPet_returnsTrue() {
+    public void hasStudent_studentInTeachersPet_returnsTrue() {
         teachersPet.addStudent(ALICE);
         assertTrue(teachersPet.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_personWithSameIdentityFieldsInTeachersPet_returnsTrue() {
+    public void hasStudent_studentWithSameIdentityFieldsInTeachersPet_returnsTrue() {
         teachersPet.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();

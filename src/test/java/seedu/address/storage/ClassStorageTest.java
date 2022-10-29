@@ -55,7 +55,7 @@ public class ClassStorageTest {
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
-        // Throws an exception because Alex Yeoh in personsTeachersPet has class timing conflict with Daniel Tan.
+        // Throws an exception because Alex Yeoh in studentsTeachersPet has class timing conflict with Daniel Tan.
         assertThrows(CommandException.class, () -> classStorage.saveClass(student, 3));
     }
 

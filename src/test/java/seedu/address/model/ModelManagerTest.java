@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasStudent_personNotInTeachersPet_returnsFalse() {
+    public void hasStudent_studentNotInTeachersPet_returnsFalse() {
         assertFalse(modelManager.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_personInTeachersPet_returnsTrue() {
+    public void hasStudent_studentInTeachersPet_returnsTrue() {
         modelManager.addStudent(ALICE);
         assertTrue(modelManager.hasStudent(ALICE));
     }
