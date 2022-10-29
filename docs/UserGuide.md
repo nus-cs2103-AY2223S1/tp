@@ -143,6 +143,8 @@ Examples:
 
 ![Ui](images/SampleAddCommand.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Creating a Transaction: `buy` or `sell`
 
 Creates a  `buy` or `sell` transaction linked to a client.
@@ -169,6 +171,8 @@ Examples:
 * `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction to the 1st client in
 the list on the 07/11/2000.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Clearing all entries : `clear`
 
 Clear all entries which include `clients`, `remarks` and `transactions` from JeeqTracker.
@@ -183,6 +187,8 @@ Example:
 
 > <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrie
  </div>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Creating a Remark: `remark`
 
@@ -200,6 +206,8 @@ Examples:
 * `remark 1 punctual buyer` adds the remark `punctual buyer` to the client at index 1.
 * `remark 5 fast and decisive t/favourite` adds the remark `fast and decisive` to the client at index 5. The remark 
 also has a tag `favourite`. 
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Deleting a client / transaction / remark : `delete`
 > <div markdown="span" class="alert alert-danger">❗ :warning: **If you delete a client/transaction/remark, it will be gone forever**: Be very careful here!
@@ -221,6 +229,8 @@ Examples:
 Applying `delete 3 m/transaction` deletes the 3rd transaction of the client.
 * `find john` followed by `view 1` displays the remarks and transactions of the 1st client of the `find`
 result. Applying `delete 2 m/remark` deletes the 2nd remark of the client.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Editing a client / transaction / remark : `edit`
 
@@ -246,6 +256,8 @@ Applying `edit 3 m/transaction price/1.9` edits the price of the 3rd transaction
 * `find lim` followed by `view 3` displays the remarks and transactions of the 3rd client of the `find` 
 result. Applying `edit 3 m/remark supplier` edits the 3rd remark of the client.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -257,6 +269,8 @@ Format: `exit`
 
 Examples:
 * `exit` closes the program.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Filtering the transaction display : `filter`
 
@@ -273,6 +287,8 @@ Examples:
 * `filter buy` displays all buy transactions.
 * `filter sell` displays all sell transactions.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Getting the User Guide: `user_guide`
 
 Returns the url to this user guide.
@@ -284,6 +300,8 @@ Format: `user_guide`
 
 Examples:
 * `user_guide` returns the url of this user guide.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Listing all clients : `list`
 
@@ -297,6 +315,8 @@ Format: `list`
 Examples:
 
 * `list` displays all stored clients name and details.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Locating clients by name: `find`
 
@@ -315,6 +335,8 @@ Examples:
 * `find John` return clients `John`, `John Lim`, `John Koh`
 * `find Tan` return clients `John Tan`, `Bob Tan`, `Alice Tan`
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Sorting the address book: `sort`
 
 Sorts the specified client's transaction by either the latest transaction or oldest transaction.
@@ -332,6 +354,8 @@ Examples:
 * `sort 1 latest` displays the 1st client transactions sorted by the latest transaction on top.
 * `sort 5 oldest` displays the 5th client transactions sorted by the oldest transaction on top.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Viewing help : `help`
 
 `help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
@@ -346,6 +370,8 @@ Examples:
 * `help` shows the list of valid commands.
 * `help find` shows the description of `find` command.
 * `help add` shows the description of `add` command.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Viewing a client : `view`
 
@@ -362,6 +388,8 @@ Format: `view INDEX`
 Examples:
 * `view 5` displays the remarks and transactions of the client at the 5th index.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Saving the data
 
 JeeqTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -377,6 +405,8 @@ If your changes to the data file makes its format invalid, JeeqTracker will disc
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -407,6 +437,8 @@ _Details coming soon ..._
 | **User Guide** | `user_guide`                                                                                                                                           |
 | **View**       | `view INDEX` <br> e.g., `view 5`                                                                                                                       |
 
+[Back to Table of Contents](#table-of-contents)
+
 ## Prefix Summary
 
 | Prefix     | Meaning                                        | Restrictions                                        | Example                       |
@@ -421,3 +453,5 @@ _Details coming soon ..._
 | **m/**     | Mode of the command                            | Must be either `client`, `transaction`, or `remark` | `m/client`                    |
 | **d/**     | Date of transaction                            | In the format `dd/mm/yyyy`                          | `d/07/11/2022`                |
 | **t/**     | Tag applied on clients                         | Alphanumeric, single word                           | `t/friends`                   |
+
+[Back to Table of Contents](#table-of-contents)
