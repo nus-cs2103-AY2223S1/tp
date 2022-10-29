@@ -30,12 +30,25 @@ This user guide will help you get started and understand how FABook can **seamle
 
    * **`list`** : Lists all contacts.
 
-   * **`create`**`n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the FABook.
+   * **`create`**`n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to your FABook.
 
    * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 7. Refer to the [Command Summary](#command-summary) for a quick summary of all commands.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Familiarise with User Interface
+
+![Ui Breakdown](images/UIBreakDown.png)
+
+1. **Menu Bar**: Access the file, help or upcoming meetings here.
+2. **Search Bar**: Type in your commands here.
+3. **Command Display**: The execution of your commands appear here.
+4. **Result Display**: The result of your command execution appears here.
+5. **Contact Information**: The full contact information of a client appears here.
+6. **Data Storage**: This is where the data is stored and loaded from.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -57,7 +70,7 @@ This user guide will help you get started and understand how FABook can **seamle
   e.g `NAME…​` can be used as `Jon`, `Jon Jack` etc.
   <br>
 
-* `INDEX` represents the index of a specific person in the FABook
+* `INDEX` represents the index of a specific person in your FABook.
   e.g You can use the command `delete INDEX` as `delete 2`.
 <br>
 
