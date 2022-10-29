@@ -1,20 +1,41 @@
 package seedu.address.ui;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Control;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.contact.Contact;
+import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.person.github.Repo;
+import seedu.address.model.person.github.User;
+import seedu.address.model.tag.Tag;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -22,6 +43,7 @@ import seedu.address.model.person.Person;
 public class DetailPanel extends MainPanel {
 
     private static final String FXML = "DetailPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(DetailPanel.class);
 
     @FXML
     private Circle profileImageContainer;
@@ -30,16 +52,28 @@ public class DetailPanel extends MainPanel {
     private ImageView profileImageView;
 
     @FXML
+    private Label contactsTitleLabel;
+
+    @FXML
     private Label nameLabel;
 
     @FXML
-    private Label roleLabel;
+    private Label informationLabel;
 
     @FXML
-    private Label timezoneLabel;
+    private Hyperlink githubLink;
 
     @FXML
     private HBox contactBoxContainer;
+
+    @FXML
+    private Label reposTitleLabel;
+
+    @FXML
+    private ListView<Repo> githubRepoListView;
+
+    @FXML
+    private FlowPane tags;
 
     /**
      * Initialises the DetailPanel.
@@ -63,26 +97,117 @@ public class DetailPanel extends MainPanel {
         Image placeholder = new Image(this.getClass().getResourceAsStream("/images/user_placeholder.png"));
         profileImageContainer.setFill(new ImagePattern(placeholder));
 
-        roleLabel.setVisible(person.getRole().isPresent());
-        person.getRole().ifPresent(r -> roleLabel.setText(r.toString()));
+        setInformation(person);
+        setTags(person.getTags());
+        setContacts(person.getContacts());
 
-        timezoneLabel.setVisible(person.getTimezone().isPresent());
-        person.getTimezone().ifPresent(t -> timezoneLabel.setText(t.toString()));
+        setGithubLink(person.getGithubUser());
+        setGithubRepos(person.getGithubUser());
+    }
 
+    private void setInformation(Person person) {
+        ArrayList<String> information = new ArrayList<>();
+
+        person.getRole().ifPresent(r -> information.add(r.toString()));
+        person.getTimezone().ifPresent(t -> information.add(t.toString()));
+        person.getAddress().ifPresent(a -> information.add(a.toString()));
+
+        setVisibility(informationLabel, information.size() != 0);
+        if (information.size() > 0) {
+            informationLabel.setText(String.join(" • ", information));
+        }
+    }
+
+    private void setTags(Set<Tag> tagSet) {
+        tags.setManaged(!tagSet.isEmpty());
+        tags.getChildren().clear();
+        if (!tagSet.isEmpty()) {
+            tagSet.stream().sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        }
+    }
+
+    private void setGithubLink(Optional<User> user) {
+        setVisibility(githubLink, user.isPresent());
+        user.ifPresent(u -> {
+            githubLink.setText("@" + u.getUsername());
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            githubLink.setOnAction(e -> {
+                if (Desktop.isDesktopSupported()) {
+                    try {
+                        Desktop.getDesktop().browse(new URI("https://github.com/" + u.getUsername()));
+                    } catch (IOException ex) {
+                        logger.severe("Error occurred when user clicked the link, " + ex.toString());
+                        a.setContentText("An internal error has occurred, unable to open browser.");
+                        a.show();
+                    } catch (URISyntaxException ex) {
+                        logger.warning("Github url is invalid " + ex.toString());
+                        a.setContentText("Given url is invalid, please confirm your contact information again.");
+                        a.show();
+                    }
+                }
+            });
+        });
+    }
+
+    private void setGithubRepos(Optional<User> user) {
+        // Hide the title when github user is empty
+        setVisibility(reposTitleLabel, user.isPresent());
+        githubRepoListView.setItems(FXCollections.emptyObservableList());
+        if (user.isPresent()) {
+            User githubUser = user.get();
+
+            // Hide the title when repo list has no repo
+            setVisibility(reposTitleLabel, githubUser.getRepoList().size() != 0);
+            githubRepoListView.setItems(FXCollections.observableList(githubUser.getRepoList()));
+            githubRepoListView.setCellFactory(listView -> new GithubRepoListViewCell());
+        }
+    }
+
+    private void setContacts(Map<ContactType, Contact> contacts) {
+        setVisibility(contactsTitleLabel, contacts.size() != 0);
         List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
-                person.getContacts()
-                        .values().stream()
-                        .map(ContactBox::new)
-                        .collect(Collectors.toList()));
+                contacts.values().stream().map(ContactBox::new).collect(Collectors.toList()));
 
         contactBoxContainer.getChildren().clear();
-        contactBoxContainer.getChildren().addAll(contactBoxList.stream()
-                .map(ContactBox::getRoot)
-                .collect(Collectors.toList()));
+        contactBoxContainer.getChildren()
+                .addAll(contactBoxList.stream().map(ContactBox::getRoot).collect(Collectors.toList()));
+    }
+
+    private void setVisibility(Control control, boolean visible) {
+        // Remove node from tree so it doesn't occupy the space.
+        // @see https://stackoverflow.com/a/28559958
+        control.setManaged(visible);
+        control.setVisible(visible);
     }
 
     @Override
     public MainPanelName getPanelName() {
         return MainPanelName.Detail;
+    }
+
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Repo} using a {@code GithubRepoCard}.
+     */
+    class GithubRepoListViewCell extends ListCell<Repo> {
+
+        GithubRepoListViewCell() {
+            super();
+            prefWidthProperty().bind(githubRepoListView.widthProperty().subtract(20));
+            setMaxWidth(USE_PREF_SIZE);
+        }
+
+        @Override
+        protected void updateItem(Repo repo, boolean empty) {
+            super.updateItem(repo, empty);
+
+            if (empty || repo == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new GithubRepoCard(repo).getRoot());
+            }
+        }
     }
 }

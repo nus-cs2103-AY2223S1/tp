@@ -86,18 +86,6 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-.cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
-}
-
-.cell_small_label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #010504;
-}
-
 .context-menu {
     -fx-background-color: white;
 }
@@ -275,6 +263,18 @@
     -fx-spacing: 6;
 }
 
+#cardPane #nameLabel, #cardPane #idLabel {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+}
+
+#cardPane .label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+}
+
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
@@ -284,9 +284,9 @@
     -fx-text-fill: black;
     -fx-border-color: black;
     -fx-background-color: transparent;
-    -fx-padding: 1 5 1 5;
+    -fx-padding: 1 8 1 8;
     -fx-border-radius: 50%;
-    -fx-font-size: 11;
+    -fx-font-size: 10pt;
 }
 
 .scroll-bar {
@@ -344,24 +344,29 @@
     -fx-padding: 20;
 }
 
-#profileBoxContainer {
+#detailPanel #profileBoxContainer {
     -fx-spacing: 20;
     -fx-text-fill: black;
 }
 
-#profileImageContainer {
+#detailPanel #profileImageContainer {
     -fx-stroke-type: inside;
 }
 
-#nameLabel {
+#detailPanel #nameLabel {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 28pt;
     -fx-text-fill: black;
 }
 
-#roleLabel, #timezoneLabel {
+#detailPanel #githubLabel {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 18pt;
+}
+
+#detailPanel #informationLabel {
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 12pt;
+    -fx-font-size: 14pt;
 }
 
 .sub-header {
@@ -401,4 +406,42 @@
     -fx-background-color: transparent;
     -fx-background-insets: 0;
     -fx-pref-width: 100;
+}
+
+#githubRepoListView .list-cell {
+    -fx-padding: 0 0 10 0;
+    -fx-label-padding: 0;
+    -fx-background-color: white;
+    -fx-graphic-text-gap : 0;
+    -fx-border-width: 1;
+    -fx-border-color: transparent;
+}
+
+#githubRepoListView .list-cell:filled {
+    -fx-border-color: transparent;
+}
+
+#githubRepoListView .list-cell:filled:selected #repoCard {
+    -fx-border-color: #818CF8;
+    -fx-background-color: #EEF2FF;
+}
+
+#githubRepoListView .scroll-bar {
+    -fx-border-color: transparent;
+}
+
+#repoCard {
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+}
+
+#repoCard #name {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 12pt;
+}
+
+#repoCard #description {
+    -fx-font-family: "Segoe UI Light";
+    -fx-padding: 5 0 0 0;
 }

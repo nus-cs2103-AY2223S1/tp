@@ -243,13 +243,16 @@ public class MainWindow extends UiPart<Stage> {
     private void handleBack() {
         if (!mainPanelHistory.empty()) {
             MainPanelName to = mainPanelHistory.pop();
-            boolean backToListPanel = to.equals(MainPanelName.List) && currentMainPanel.equals(MainPanelName.Detail);
+            assert !to.equals(currentMainPanel) : "Previous page must not same as current page.";
 
+            boolean backToListPanel = to.equals(MainPanelName.List) && currentMainPanel.equals(MainPanelName.Detail);
             switchMainPanel(to, false);
 
             if (backToListPanel) {
                 personListPanel.focus();
             }
+        } else {
+            resultDisplay.setFeedbackToUser("Page history is empty, unable to go back to previous page.");
         }
     }
 

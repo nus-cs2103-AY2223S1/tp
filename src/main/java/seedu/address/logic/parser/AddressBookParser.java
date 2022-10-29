@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND_AT_PANEL;
 
 import java.util.Arrays;
 import java.util.List;
@@ -102,11 +103,19 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-
+        boolean belongsToOtherPanel = false;
         for (CommandFactory commandFactory : AVAILABLE_COMMANDS) {
-            if (commandFactory.match(commandWord, mainPanelName)) {
-                return commandFactory.build(arguments);
+            if (commandFactory.match(commandWord)) {
+                if (commandFactory.canExecuteAt(mainPanelName)) {
+                    return commandFactory.build(arguments);
+                } else {
+                    belongsToOtherPanel = true;
+                }
             }
+        }
+
+        if (belongsToOtherPanel) {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND_AT_PANEL);
         }
 
         throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -128,18 +137,22 @@ public class AddressBookParser {
             this.builder = commandBuilder;
         }
 
-        public boolean match(String userCommandWord, MainPanelName name) {
-            return commandWord.equals(userCommandWord) && canExecute.apply(name);
+        public boolean match(String userCommandWord) {
+            return commandWord.equals(userCommandWord);
+        }
+
+        public boolean canExecuteAt(MainPanelName name) {
+            return this.canExecute.apply(name);
         }
 
         public Command build(String args) throws ParseException {
-            return builder.apply(args);
+            return builder.build(args);
         }
     }
 
     @FunctionalInterface
     private interface CommandBuilder {
-        Command apply(String args) throws ParseException;
+        Command build(String args) throws ParseException;
     }
 
 }
