@@ -84,7 +84,7 @@ public class SwapTaskNumbersCommand extends Command {
                                          List<Index> taskIndexesToSwap) throws CommandException {
         int numberOfTasksInTaskList = moduleToSwapTaskNumbers.getTasks().size();
         for (Index taskIndex : taskIndexesToSwap) {
-            if (taskIndex.getZeroBased() > numberOfTasksInTaskList) {
+            if (taskIndex.getOneBased() > numberOfTasksInTaskList) {
                 throw new CommandException(MESSAGE_NO_SUCH_TASK_NUMBER);
             }
         }
