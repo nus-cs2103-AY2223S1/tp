@@ -20,19 +20,19 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a supplier to the address book. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_PRICE + "PRICE "
             + PREFIX_ITEM + "ITEM "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "ABC Pte Ltd "
-            + PREFIX_PHONE + "67089005 "
-            + PREFIX_PRICE + "$1.00 "
+            + "[" + PREFIX_TAG + "Supplier]"
+            + "\nExample: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Yoyo Pte Ltd "
+            + PREFIX_PHONE + "67090808 "
+            + PREFIX_PRICE + "$1.20 "
             + PREFIX_ITEM + "Ginger "
-            + PREFIX_ADDRESS + "Blk 30 Geylang Street 29,#06-40 "
+            + PREFIX_ADDRESS + "Blk 42 Hougang Street 29,#01-40 "
             + PREFIX_TAG + "Supplier ";
 
     public static final String MESSAGE_SUCCESS = "New supplier added: %1$s";
