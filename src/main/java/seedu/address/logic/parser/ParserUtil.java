@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ARGUMENT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -56,7 +57,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, name, Name.MESSAGE_CONSTRAINTS));
         }
         return new Name(trimmedName);
     }
@@ -71,7 +72,7 @@ public class ParserUtil {
         requireNonNull(role);
         String trimmedRole = role.trim();
         if (!Role.isValidRole(trimmedRole)) {
-            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, role, Role.MESSAGE_CONSTRAINTS));
         }
         return new Role(trimmedRole);
     }
@@ -102,7 +103,7 @@ public class ParserUtil {
         requireNonNull(timezone);
         String trimmedTimezone = timezone.trim();
         if (!Timezone.isValidTimezone(trimmedTimezone)) {
-            throw new ParseException(Timezone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, timezone, Timezone.MESSAGE_CONSTRAINTS));
         }
         return new Timezone(trimmedTimezone);
     }
@@ -117,7 +118,7 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, phone, Phone.MESSAGE_CONSTRAINTS));
         }
         return new Phone(trimmedPhone);
     }
@@ -132,7 +133,7 @@ public class ParserUtil {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, address, Address.MESSAGE_CONSTRAINTS));
         }
         return new Address(trimmedAddress);
     }
@@ -147,7 +148,7 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, email, Email.MESSAGE_CONSTRAINTS));
         }
         return new Email(trimmedEmail);
     }
@@ -162,7 +163,7 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, tag, Tag.MESSAGE_CONSTRAINTS));
         }
         return new Tag(trimmedTag);
     }
@@ -189,7 +190,7 @@ public class ParserUtil {
         requireNonNull(slack);
         String trimmedSlack = slack.trim();
         if (!Slack.isValidSlack(trimmedSlack)) {
-            throw new ParseException(Slack.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, slack, Slack.MESSAGE_CONSTRAINTS));
         }
         return new Slack(trimmedSlack);
     }
@@ -204,7 +205,7 @@ public class ParserUtil {
         requireNonNull(telegram);
         String trimmedTele = telegram.trim();
         if (!Telegram.isValidTelegram(trimmedTele)) {
-            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENT, telegram, Telegram.MESSAGE_CONSTRAINTS));
         }
         return new Telegram(trimmedTele);
     }
