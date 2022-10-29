@@ -277,21 +277,17 @@ View details associated with a client, such as the client's name and phone numbe
 Format: `viewClient i/INDEX`
 
 * Display information about the client at the specific `INDEX`.
-* The index refers to the index number shown by executing [`listClient`](#512-list-clients-listclient) command.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown by executing [`listClient`](#512-list-clients-listclient) command.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Use case:
 
-1. View more specific details related to the client such as address and birthday which are not shown in clients panel. This will help you foster a stronger relationship with your clients because you can wish them happy birthday!
+1. View more specific details related to the client such as address and birthday which are not shown in the list of clients. This will help you foster a stronger relationship with your clients because you can wish them happy birthday!
 
 Examples:
 
 * View client at index 1
   * `viewClient i/1`
-
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-Note that the index is referenced from the clients list using `listClient` without any filters. If you have used a filter such as `listClient b/week` and wish to view the first client from the filtered list, `viewClient i/1` **might** not be giving the accurate result. You will still have to use `listClient` to check the index of the client whom you want to view.
-</div>
 
 #### 5.1.4 Delete client: `delClient`
 
@@ -301,7 +297,7 @@ Format: `delClient i/INDEX`
 
 * Delete the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#512-list-clients-listclient) command.
-* `Index` **must be a positive integer** 1, 2, 3, …​
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `delClient i/2`
@@ -389,8 +385,8 @@ View details associated with a meeting, such as the meeting's date and time.
 Format: `viewMeeting i/INDEX`
 
 * Display information about the meeting at the specific `INDEX` and details of the client whom you are meeting.
-* The index refers to the index number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
-* The index **must be a positive integer** 1, 2, 3, …
+* The `INDEX` refers to the index number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …
 
 Use Case:
 
@@ -398,10 +394,6 @@ Use Case:
 
 Examples:
 * `viewMeeting i/1`
-
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-Note that the index is referenced from the meetings list using `listMeeting` without any filters. If you have used a filter such as `listMeeting d/week` and wish to view the first meeting from the filtered list, `viewMeeting i/1` **might** not be giving the accurate result. You will still have to use `listMeeting` to check the index of the meeting whom you want to view.
-</div>
 
 #### 5.2.4 Delete meeting: `delMeeting`
 
