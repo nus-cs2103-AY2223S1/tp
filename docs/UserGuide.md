@@ -57,11 +57,11 @@ We hope that this guide is helpful in smoothing out the learning curve for you!
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3 Terminologies
+## 3. Terminologies
 
 The following explains some terminology and main features of *MyInsuRec*:
 
-#### 3.1 Clients
+### 3.1 Clients
 
 At the heart of *MyInsuRec* is the ability to help you organize and keep track of clients.
 
@@ -78,7 +78,7 @@ Beyond individual clients, you can also:
 * **filter and display** a summarized list of clients with upcoming birthdays to help boost your customer relations.
 * **filter and display** a summarized list of clients who purchased a specific product.
 
-#### 3.2 Meetings
+### 3.2 Meetings
 
 *MyInsuRec* eases a financial advisor's mental load by helping them track of any upcoming meetings with clients. You can do meeting-specific tasks such as:
 
@@ -94,7 +94,7 @@ Beyond individual meetings, you can also:
 * **display** a summarized list of all meetings with their important details such as meeting date and time.
 * **filter and display** a summarized list of upcoming meeting to help facilitate your follow-up with your clients.
 
-#### 3.3 Products
+### 3.3 Products
 
 *MyInsuRec* also includes the ability for you to define your products to track products your clients might have purchased.
 
@@ -109,9 +109,37 @@ Beyond individual products, you can also:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 4 User Interface
+## 4. User Interface
 
-{ replace with a diagram of MyInsuRec and arrows and notes describing the different components of MyInsuRec }
+### 4.1 Client List
+
+This is the view after executing the `listClient` command!
+
+![listClientWithDescription](images/ui-description/listClientWithDescription.png)
+
+### 4.2 Meeting List
+
+This is the view after executing the `listMeeting` command!
+
+![listMeetingWithDescription](images/ui-description/listMeetingWithDescription.png)
+
+### 4.3 Product List
+
+This is the view after executing the `listProduct` command!
+
+![listProductWithDescription](images/ui-description/listProductWithDescription.png)
+
+### 4.4 Detailed Client List
+
+This is the view after executing the `viewClient` command!
+
+![viewClientWithDescription](images/ui-description/viewClientWithDescription.png)
+
+### 4.5 Detailed Meeting View
+
+This is the view after executing the `viewMeeing` command!
+
+![viewMeetingWithDescription](images/ui-description/viewMeetingWithDescription.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
