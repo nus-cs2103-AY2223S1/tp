@@ -2,17 +2,19 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
 ## **Overview**
 
-* Mass Linkers is a powerful Desktop application tool that helps Computer Science (CS) students find study support from batchmates, making it easier to form study groups and look for module-related guidance. 
+* Mass Linkers is a powerful Desktop application tool that helps Computer Science (CS) students find study support from batchmates, making it easier to form study groups and look for module-related guidance.
 * It provides a centralised platform for CS students to save their batchmates’ contact and module details and search for batchmates with common interests or who are taking similar modules conveniently.
 * It is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 * This *Developer Guide* provides general information for developers who are interested in understanding the design and implementation of Mass Linkers for further developments.
 
+
+--------------------------------------------------------------------------------------------------------------------
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
