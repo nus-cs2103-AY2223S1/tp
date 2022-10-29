@@ -1,8 +1,12 @@
 package seedu.address.model.person;
 
+import seedu.address.model.tag.Tag;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Tests that a {@code Person}'s attributes matches any of the keywords given for each attribute.
@@ -59,24 +63,20 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
                 .anyMatch(containsIgnoreCase(person.getRace().toString()));
         boolean containsReligion = religionList.isEmpty() || religionList.stream()
                 .anyMatch(containsIgnoreCase(person.getReligion().toString()));
-        boolean containsSurvey = surveysList.isEmpty() || surveysList.stream()
-                .anyMatch(keyword -> person.getSurveys().stream()
-                        .flatMap(survey -> {
-                            String surveyName = survey.toString()
-                                    .replaceAll("\\[", "")
-                                    .replaceAll("\\]", "");
-                            return Arrays.stream(surveyName.split("\\s+"));
-                        })
-                        .anyMatch(keyword::equalsIgnoreCase));
-        boolean containsTags = tagsList.isEmpty() || tagsList.stream()
-                .anyMatch(keyword -> person.getTags().stream()
-                        .flatMap(tag -> {
-                            String tagName = tag.toString()
-                                    .replaceAll("\\[", "")
-                                    .replaceAll("\\]", "");
-                            return Arrays.stream(tagName.split("\\s+"));
-                        })
-                        .anyMatch(keyword::equalsIgnoreCase));
+        boolean containsSurvey = surveysList.isEmpty();
+        for (Survey survey : person.getSurveys()) {
+            if (surveysList.stream().anyMatch(containsIgnoreCase(survey.survey))) {
+                containsSurvey = true;
+                break;
+            }
+        }
+        boolean containsTags = tagsList.isEmpty();
+        for (Tag tag : person.getTags()) {
+            if (tagsList.stream().anyMatch(containsIgnoreCase(tag.tagName))) {
+                containsTags = true;
+                break;
+            }
+        }
 
         return (containsName && containsPhone && containsEmail && containsAddress && containsGender
                 && containsBirthdate && containsRace && containsReligion && containsSurvey
@@ -84,13 +84,37 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
     }
 
     /**
-     * Checks whether a given {@code String} contains a word (case-insensitive).
-     * @return A predicate for whether a string contains a word.
+     * Checks whether a given {@code String} contains a word or phrase (case-insensitive).
+     * @return A predicate for whether a string contains a word or phrase.
      */
     public static Predicate<String> containsIgnoreCase(String targetString) {
         return keyword -> Arrays.stream(targetString.split("\\s+"))
-                .anyMatch(targetWord -> targetWord.equalsIgnoreCase(keyword)
-                        || (keyword.contains(" ") && targetString.contains(keyword)));
+                .anyMatch(targetWord -> targetWord.equalsIgnoreCase(keyword))
+                || (keyword.contains(" ")
+                && containsSubstringIgnoreCase(targetString, keyword)
+                && containWordsIgnoreCase(targetString, keyword));
+    }
+
+    /**
+     * Checks whether a given {@code String} contains a {@code String} as a substring (case-insensitive).
+     * @return A boolean for whether a string contains the substring.
+     */
+    public static boolean containsSubstringIgnoreCase(String supersetString, String subsetString) {
+        return supersetString.toLowerCase().contains(subsetString.toLowerCase());
+    }
+
+    /**
+     * Checks whether a given {@code String} contains a {@code String} as a phrase (case-insensitive).
+     * @return A boolean for whether a string contains a phrase.
+     */
+    public static boolean containWordsIgnoreCase(String supersetString, String subsetString) {
+        List<String> supersetStringArray = Stream.of(supersetString.split("\\s+"))
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+        List<String> subsetStringArray = Stream.of(subsetString.split("\\s+"))
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+        return supersetStringArray.containsAll(subsetStringArray);
     }
 
     @Override

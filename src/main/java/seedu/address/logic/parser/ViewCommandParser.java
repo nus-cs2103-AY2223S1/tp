@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SURVEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -27,6 +28,8 @@ import seedu.address.model.person.PersonContainsAttributePredicate;
  * Parses input arguments and creates a new ViewCommand object
  */
 public class ViewCommandParser implements Parser<ViewCommand> {
+
+    public static final String MESSAGE_EMPTY_STRING = "Please specify at least one word for each prefix entered!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
@@ -46,6 +49,12 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                 || !argMultimap.getPreamble().isEmpty()
                 || args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        }
+
+        if (!areAllPrefixValuesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_GENDER, PREFIX_BIRTHDATE, PREFIX_RACE, PREFIX_RELIGION, PREFIX_SURVEY,
+                PREFIX_TAG)) {
+            throw new ParseException(MESSAGE_EMPTY_STRING);
         }
 
         List<String> nameList = getKeywordsAsList(argMultimap.getValue(PREFIX_NAME));
@@ -83,6 +92,9 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     //Solution below adapted from https://stackoverflow.com/a/7804472
     private static List<String> parseWithQuotations(String input) {
+        if (input.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
         ArrayList<String> parsedArray = new ArrayList<>();
         Matcher m = Pattern.compile("\\s*([^\"]\\S*|\".+?\")\\s*").matcher(input);
         while (m.find()) {
@@ -97,6 +109,16 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if some prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean areAllPrefixValuesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes)
+                .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
+                .noneMatch(prefix -> argumentMultimap.getValue(prefix).get().trim().isEmpty());
     }
 
 }
