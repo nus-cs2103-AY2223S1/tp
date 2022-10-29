@@ -43,12 +43,11 @@ title: FinBook User Guide
 
 ## 1.1. What is FinBook?
 
-FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
-secured. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well
-as many
-other features to make your daily workflow much more efficient!
+**FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
+secured.** With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well
+as many other features to make your daily workflow much **more efficient**!
 
-FinBook is optimized for use via a Command Line Interface (CLI), which means most of our commands are done by typing.
+FinBook is optimized for use via a **Command Line Interface (CLI)**, which means most of our commands are done by typing.
 If you can type fast, managing your clients will be a breeze with FinBook. Can't type fast? Don't worry! Our Graphical
 User Interface (GUI) will help you slowly adjust to using our CLI.
 
@@ -111,10 +110,10 @@ For example,
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/VIPClient` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/VIPClient`, `t/VIPClient t/DoeFamily` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -136,7 +135,7 @@ For example,
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `finbook.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-3/tp/releases).
+2. Download the latest `FinBook.jar` from [here](https://github.com/AY2223S1-CS2103T-F11-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the home folder for your FinBook.
 
@@ -150,12 +149,15 @@ For example,
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
-      named `John Doe` to the FinBook.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$1000` : Adds a client
+      named `John Doe` in FinBook.
+   
+    * **`edit`**`1 r/Low pl/NTUC Income Plan` : Edits the 1st client portfolio risk
+      and plans shown in the current list.
 
-    * **`delete`**` 3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
-    * **`clear`** : Deletes all contacts.
+    * **`delete all`** : Deletes all clients.
 
     * **`exit`** : Exits the app.
 
@@ -167,29 +169,25 @@ For example,
 
 ## 4.1. Managing a client
 
-----
-
 ### 4.1.1. Adding a client: `add`
 
 Adds a client to the FinBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES
-t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS note/ADDITIONAL_NOTES​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS r/RISK_LEVEL]
+         [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 16:30 t/VIPClient
   r/high pl/Prudential Health note/Client is currently having COVID`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
-
-----
+* `add n/Betsy Crowe t/VIPPClient e/betsycrowe@example.com a/ABC street p/1234567 i/$10 m/23 Feb 2022 r/low pl/NTUC Income Plan`
 
 ### 4.1.2. Editing a client : `edit`
 
 Edits an existing client in the FinBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/MONTHLY_INCOME] [m/UPCOMING_MEETING_DATES]
-[t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
+        [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -202,8 +200,6 @@ Examples:
   and `johndoe@example.com` respectively and automatically displays the updated portfolio of the 1st client.
 * `edit 2 n/Betsy Crower` Edits the name of the 2nd client to be `Betsy Crower` and automatically displays the updated portfolio of `Betsy Crower`.
 
-----
-
 ### 4.1.3. Deleting a client : `delete`
 
 Four formats of deleting a client.
@@ -215,8 +211,6 @@ Four formats of deleting a client.
 
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
-
-----
 
 #### Deleting a single client
 
@@ -231,11 +225,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the FinBook.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-----
-
 #### Deleting multiple clients
 
-Deletes multiple specified clients from the FinBook.
+**Deletes multiple specified clients from the FinBook.**
 
 Format: `delete INDEX1, INDEX2, …`
 
@@ -245,8 +237,9 @@ Format: `delete INDEX1, INDEX2, …`
 Examples:
 
 * `list` followed by `delete 1, 2, 5` deletes the 1st, 2nd and 5th client in the FinBook.
+  <br/><br/>
 
-Deletes a range of clients from the FinBook.
+**Deletes a range of clients from the FinBook.**
 
 Format: `delete STARTINDEDX - ENDINDEX`
 
@@ -256,8 +249,9 @@ Format: `delete STARTINDEDX - ENDINDEX`
 Examples:
 
 * `list` followed by `delete 1-3` deletes the 1st, 2nd and 3rd client in the FinBook.
+  <br/><br/>
 
-Deletes all clients from the FinBook.
+**Deletes all clients from the FinBook.**
 
 Format: `delete all`
 
@@ -267,15 +261,11 @@ Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
 
-----
-
 ### 4.1.4. Listing all clients : `list`
 
 Shows a list of all clients in the FinBook.
 
 Format: `list`
-
-----
 
 ### 4.1.5. Finding a client : `find`
 
@@ -292,9 +282,7 @@ Format: `find [n/NAME] [t/TAG]`
 Examples:
 
 * `find n/John n/alex` will find all clients with John or Alex in their names.
-* `find t/friends t/colleagues` will find all clients with either `friends` or `colleagues` tags.
-
-----
+* `find t/VIPClient t/YuFamily` will find all clients with either `VIPClient` or `YuFamily` tags.
 
 ### 4.1.6. Viewing Portfolio of a specific client: `view`
 
@@ -325,8 +313,6 @@ Format: `lock`
 **:information_source: If a password has not been set, leave the password field empty to unlock the application**
 </div>
 
----
-
 ### 4.2.2. Setting or updating the password : `password`
 
 Sets or updates the FinBook password
@@ -347,8 +333,6 @@ Examples:
 **:information_source: It is recommended to take note of the warnings and follow the suggestions, if there are any**
 </div>
 
----
-
 ### 4.2.3. Resetting the password
 
 Steps to reset the password:
@@ -358,8 +342,6 @@ Steps to reset the password:
 3. Open `preferences.json` with a text editor
 4. Change the line `"passwordHash" : "$argon2id$xxxxxxxx"` to `"passwordHash" : ""`
 5. Save `preferences.json`
-
----
 
 ### 4.2.4. Hiding sensitive data
 
@@ -411,7 +393,7 @@ Imports data from a `JSON` or `CSV` file
         * `risk`
         * `plans`
         * The data in each corresponding column must be valid
-            * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
+            * `tags` must be separated by commas `,` without spaces (e.g. `VIPPClient,YuFamily`)
             * `plans` must be separated by commas `,` without spaces (
               e.g. `prudential income,NTUC income,prudential health`)
 
@@ -479,8 +461,6 @@ Examples:
 * `sort n/` Sorts clients in ascending order according to name.
 * `sort m/` Sorts clients according to their meeting dates in chronological order.
 
----
-
 ### 4.3.6. Changing Light/Dark mode
 
 Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
@@ -494,8 +474,6 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 
 **:information_source: Your mode preference will be automatically saved**
 </div>
-
----
 
 ### 4.3.7. Exiting the application : `exit`
 
@@ -520,7 +498,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | Mainstream OS                | Common computer operating systems, Windows, Linux, Unix, OS-X.                                     |
 | Command-line Interface (CLI) | A application that users interact with by typing text.                                             |
 | Command                      | A sequence specified text typed by the user to perform an action.                                  |
-| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                      |                                                                                                  |
+| Prefix                       | A tag to specify the field of data added. Each prefix always ends with a `/`.                      |                                                                                                  
 | Parameter                    | Users input to a command.                                                                          |
 | Field                        | The data type of client. For example, Name and Income are fields of a client.                      |
 | CSV                          | A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values. |
@@ -529,19 +507,19 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 
 # 7. Command summary
 
-| Action               | Format, Examples                                                                                                                                                                                                                                                                                                                                      |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS note/ADDITIONAL_NOTES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 t/VIPClient r/high pl/Prudential Health note/Client is currently having COVID` |
-| **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                                                                                                                                                             |
-| **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                    |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                  |
-| **List**             | `list`                                                                                                                                                                                                                                                                                                                                                |
-| **Find**             | `find [n/NAME] [t/TAG]` <br> e.g., `find t/friends`                                                                                                                                                                                                                                                                                                   | 
-| **View Portfolio**   | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                                                                                      |
-| **Lock application** | `lock`                                                                                                                                                                                                                                                                                                                                                |
-| **Password**         | `password [old/OLDPASSWORD] new/NEWPASSWORD`<br> e.g.,`password old/foobar new/barfoo`                                                                                                                                                                                                                                                                |
-| **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                    |
-| **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                                                                                          |
-| **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                                                                                           |
-| **Sort**             | `sort PARAM`<br> e.g., `sort /n`                                                                                                                                                                                                                                                                                                                      |
-| **Exit application** | `exit`                                                                                                                                                                                                                                                                                                                                                |
+| Action               | Format, Examples                                                                                                                                                                                                                                                                                                                                                |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME [m/UPCOMING_MEETING_DATES] [t/TAGS] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12 Jan 2022 t/VIPClient r/high pl/Prudential Health note/Client is currently having COVID` |
+| **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                                                                                                                                                                       |
+| **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                              |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS] [note/ADDITIONAL_NOTES]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                            |
+| **List**             | `list`                                                                                                                                                                                                                                                                                                                                                          |
+| **Find**             | `find [n/NAME] [t/TAG]` <br> e.g., `find t/VIPClient`                                                                                                                                                                                                                                                                                                           | 
+| **View Portfolio**   | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                                                                                                |
+| **Lock application** | `lock`                                                                                                                                                                                                                                                                                                                                                          |
+| **Password**         | `password [old/OLDPASSWORD] new/NEWPASSWORD`<br> e.g.,`password old/foobar new/barfoo`                                                                                                                                                                                                                                                                          |
+| **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                                                                                              |
+| **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                                                                                                    |
+| **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                                                                                                     |
+| **Sort**             | `sort PARAM`<br> e.g., `sort n/`                                                                                                                                                                                                                                                                                                                                |
+| **Exit application** | `exit`                                                                                                                                                                                                                                                                                                                                                          |
