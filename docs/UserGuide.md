@@ -6,7 +6,7 @@ title: User Guide
 {:toc}
 ---
 
-![banner](images/checkUp_banner.png)
+![banner](images/ug-images/checkUp_banner.png)
 
 **checkUp** is a **desktop app for managing patient details, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient management
@@ -30,7 +30,7 @@ long-term medication history.
 
 4. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup. 
 5. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/ug-images/Ui-explanations.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -102,9 +102,9 @@ long-term medication history.
 
 **The features of CheckUp can be split into 3 main categories:**
 
-* Creating Patient Info
-* Retrieving Patient Info
-* General Commands
+* [Creating Patient Info](#creating-patient-info)
+* [Retrieving Patient Info](#retrieving-patient-info)
+* [General Commands](#general-commands)
 
 ---
 ## Creating Patient Info
@@ -148,10 +148,12 @@ Examples:
 
 If patient type is inpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol m/ibuprofen`
+![Add John Doe Inpatient Result](images/ug-images/addJohnDoeInpatientResult.png)
 <br>
 
 If patient type is outpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/outpatient m/panadol m/ibuprofen`
+![Add John Doe Outpatient Result](images/ug-images/addJohnDoeOutpatientResult.png)
 
 ### Editing a patient: `edit`
 
@@ -190,7 +192,12 @@ Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567`
   and `johndoe@example.com` respectively.
+  ![edit John Doe Result](images/ug-images/editJohnDoeResult.png)
+<br>
+
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
+  ![edit Betsy Crower Result](images/ug-images/editBetsyCrowerResult.png)
+
 
 #### GUI Integration:
 * The individual fields on the Detailed Patient View Panel are clickable to streamline the editing process.
@@ -273,7 +280,7 @@ Examples:
 
 * `get /n john` returns `john` and `John Doe`
 * `get /n alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/ug-images/getByNameAlexDavidResult.png)
 
 #### by next-of-kin data: `/nok`
 
@@ -453,26 +460,26 @@ the data of your previous checkUp home folder.
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                                                                                                                                                             |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT pt/PATIENT_TYPE [hw/HOSPITAL_WING] [fn/FLOOR_NUMBER] [wn/WARD_NUMBER] [ua/UPCOMING_APPOINTMENT] [m/MEDICATION]…`<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/2 m/panadol m/ibuprofen` |                                                                                                                                                                                                                                                                          |
-| **edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT] [pt/PATIENT_TYPE] [hw/HOSPITAL_WING] [fn/FLOOR_NUMBER] [wn/WARD_NUMBER] [ua/UPCOMING_APPOINTMENT] [m/MEDICATION]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                             |
-| **delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                          |
-| **appt**        | `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICATION]...` <br> e.g., `appt 1 on/12-06-2022 diag/Common cold, viral flu m/panadol m/lozenges`                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                    |
-| **delappt**     | `delappt INDEX` <br> e.g., `delappt 1`                                                                                                                                                                                                                                                                                                       |
-| **list**        | `list`                                                                                                                                                                                                                                                                                                                                       |
-| **get /n**      | `get /n NAME`<br> e.g., `get /n John`                                                                                                                                                                                                                                                                                                        |
-| **get /nok**    | `get /nok PATIENT_NAME`<br> e.g., `get /nok John`                                                                                                                                                                                                                                                                                            |
-| **get /hw**     | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`                                                                                                                                                                                                                                                                                            |
-| **get /fn**     | `get /fn FLOOR_NUMBER` <br> e.g., `get /fn 2`                                                                                                                                                                                                                                                                                                |
-| **get /wn**     | `get /wn WARD_NUMBER` <br> e.g., `get /wn D12`                                                                                                                                                                                                                                                                                               |
-| **get /inp**    | `get /inp`                                                                                                                                                                                                                                                                                                                                   |
-| **get /outp**   | `get /outp`                                                                                                                                                                                                                                                                                                                                  |
-| **get /m**      | `get /m MEDICATION` <br> e.g., `get /m ibuprofen`                                                                                                                                                                                                                                                                                            |
-| **get /appt**   | `get /appt INDEX` <br> e.g., `get /appt 3`                                                                                                                                                                                                                                                                                                   |
-| **get /appton** | `get /appton APPOINTMENT_DATE` <br> e.g., `get /appton 21-05-2020`                                                                                                                                                                                                                                                                           |
-| **count**       | `count`                                                                                                                                                                                                                                                                                                                                      |
-| **view**        | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                                                                             |
-| **clear**       | `clear`                                                                                                                                                                                                                                                                                                                                      |
-| **help**        | `help`                                                                                                                                                                                                                                                                                                                                       |
-| **exit**        | `exit`                                                                                                                                                                                                                                                                                                                                       |
+| Action                                                        | Format, Examples                                                                                                                                                                                                                                                                                                                             |
+|---------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**add**](#adding-a-patient-add)                              | `add n/NAME p/PHONE_NUMBER e/EMAIL nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT pt/PATIENT_TYPE [hw/HOSPITAL_WING] [fn/FLOOR_NUMBER] [wn/WARD_NUMBER] [ua/UPCOMING_APPOINTMENT] [m/MEDICATION]…`<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/2 m/panadol m/ibuprofen` |                                                                                                                                                                                                                                                                          |
+| [**edit**](#editing-a-patient-edit)                           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT] [pt/PATIENT_TYPE] [hw/HOSPITAL_WING] [fn/FLOOR_NUMBER] [wn/WARD_NUMBER] [ua/UPCOMING_APPOINTMENT] [m/MEDICATION]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                             |
+| [**delete**](#deleting-a-patient-delete)                      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                          |
+| [**appt**](#creating-past-appointment-for-patient-appt)       | `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICATION]...` <br> e.g., `appt 1 on/12-06-2022 diag/Common cold, viral flu m/panadol m/lozenges`                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                    |
+| [**delappt**](#deleting-past-appointment-for-patient-delappt) | `delappt INDEX` <br> e.g., `delappt 1`                                                                                                                                                                                                                                                                                                       |
+| [**list**](#listing-all-patients-list)                        | `list`                                                                                                                                                                                                                                                                                                                                       |
+| [**get /n**](#by-name-n)                                      | `get /n NAME`<br> e.g., `get /n John`                                                                                                                                                                                                                                                                                                        |
+| [**get /nok**](#by-next-of-kin-data-nok)                      | `get /nok PATIENT_NAME`<br> e.g., `get /nok John`                                                                                                                                                                                                                                                                                            |
+| [**get /hw**](#by-hospital-wing-hw)                           | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`                                                                                                                                                                                                                                                                                            |
+| [**get /fn**](#by-floor-number-fn)                            | `get /fn FLOOR_NUMBER` <br> e.g., `get /fn 2`                                                                                                                                                                                                                                                                                                |
+| [**get /wn**](#by-ward-number-wn)                             | `get /wn WARD_NUMBER` <br> e.g., `get /wn D12`                                                                                                                                                                                                                                                                                               |
+| [**get /inp**](#by-patient-type-inp)                          | `get /inp`                                                                                                                                                                                                                                                                                                                                   |
+| [**get /outp**](#by-patient-type-outp)                        | `get /outp`                                                                                                                                                                                                                                                                                                                                  |
+| [**get /m**](#by-medication-m)                                | `get /m MEDICATION` <br> e.g., `get /m ibuprofen`                                                                                                                                                                                                                                                                                            |
+| [**get /appt**](#by-appointments-appt)                        | `get /appt INDEX` <br> e.g., `get /appt 3`                                                                                                                                                                                                                                                                                                   |
+| [**get /appton**](#by-appointment-date-appton)                | `get /appton APPOINTMENT_DATE` <br> e.g., `get /appton 21-05-2020`                                                                                                                                                                                                                                                                           |
+| [**count**](#obtaining-total-patient-count-count)             | `count`                                                                                                                                                                                                                                                                                                                                      |
+| [**view**](#viewing-a-patient-view)                           | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                                                                             |
+| [**clear**](#clearing-all-entries--clear)                     | `clear`                                                                                                                                                                                                                                                                                                                                      |
+| [**help**](#open-the-help-page--help)                         | `help`                                                                                                                                                                                                                                                                                                                                       |
+| [**exit**](#exiting-the-program--exit)                        | `exit`                                                                                                                                                                                                                                                                                                                                       |
