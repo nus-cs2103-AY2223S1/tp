@@ -62,7 +62,7 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
 * Items with `…`​ after them can be used multiple times, including zero times for optional items.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-  e.g. `pr/PROFILE_INDEX...` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
+  e.g. `pr/PROFILE_INDEX…​` must be used at least once, such as `pr/1`, `pr/3 pr/5` etc.
 
 * For Event and Profile commands, option flags (-x where x is a placeholder for valid flags e.g. a, d, v) must be used after the event and profile command word.
 
@@ -71,6 +71,8 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* Command words and option flags are case-sensitive i.e. `profile -v` will work, but not `PROFILE -v` and `profile -V`. 
 
 **:information_source: Notes about the display:**<br>
 
