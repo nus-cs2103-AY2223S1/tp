@@ -48,15 +48,15 @@ public class InternshipStatus {
             assert shortcut.length() == 1;
             switch (shortcut) {
             case "B":
-                return State.valueOf("BOOKMARKED");
+                return State.BOOKMARKED;
             case "P":
-                return State.valueOf("PENDING");
+                return State.PENDING;
             case "A":
-                return State.valueOf("ACCEPTED");
+                return State.ACCEPTED;
             case "C":
-                return State.valueOf("COMPLETED");
+                return State.COMPLETED;
             case "R":
-                return State.valueOf("REJECTED");
+                return State.REJECTED;
             default:
                 return null;
             }
