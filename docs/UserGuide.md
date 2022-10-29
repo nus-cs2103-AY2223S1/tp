@@ -147,13 +147,13 @@ Formats:
 
 Parameter constraints:
 
-| Parameter  | Constraints                                                                                                                                                                                                  |
-|:-----------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`    | - Refers to the index number shown in the displayed client list. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/>  **must not contain any signs** e.g +1, -3, …​                                 |
-| `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - should only contain non-negative unsigned integers and be at least 1 digit long.                                                                     |
-| `GOODS` | Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                 |
-| `PRICE` | Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                    |
-| * The `DATE` | Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction.  |
+| Parameter  | Constraints                                                                                                                                                                                                   |
+|:-----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`    | - Refers to the index number shown in the displayed client list. <br/> - **Must be a positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​                                 |
+| `QUANTITY` | - Refers to the amount of the goods transacted. <br/> - should only contain non-negative unsigned integers and be at least 1 digit long.                                                                      |
+| `GOODS` | - Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                |
+| `PRICE` | - Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                   |
+| * The `DATE` | - Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction. |
   
 
 Examples:
@@ -257,7 +257,7 @@ Format: `exit`
 * All entries will not be deleted.
 * All information edited will be saved.
 
-Examples:
+Example:
 * `exit` closes the program.
 
 [Back to Table of Contents](#table-of-contents)
@@ -288,7 +288,7 @@ Format: `user_guide`
 * Displays a pop-up that contains the url to this user guide.
 * You can click on the `Copy URL` button to copy this url to your clipboard.
 
-Examples:
+Example:
 * `user_guide` returns the url of this user guide.
 
 [Back to Table of Contents](#table-of-contents)
@@ -302,7 +302,7 @@ Format: `list`
 * Displays all the clients and their details in JeeqTracker.
 * If JeeqTracker is empty, the clients name section will be blank.
 
-Examples:
+Example:
 
 * `list` displays all stored clients name and details.
 
@@ -366,7 +366,7 @@ Examples:
 ### Viewing a client : `view`
 
 Displays the remarks and transactions of the specified client. 
-The client list will be only display the specified client.
+The client list will only display the specified client.
 
 Format: `view INDEX`
 
@@ -375,7 +375,7 @@ Format: `view INDEX`
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
 
-Examples:
+Example:
 * `view 5` displays the remarks and transactions of the client at the 5<sup>th</sup> index.
 
 [Back to Table of Contents](#table-of-contents)
@@ -388,7 +388,7 @@ JeeqTracker data are saved in the hard disk automatically after any command that
 
 JeeqTracker data are saved as a JSON file `[JAR file location]/data/jeeqtracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:warning: **Caution:**
 If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
 </div>
 
