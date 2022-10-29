@@ -131,7 +131,8 @@ public class EditStuCommand extends Command {
                 }
                 if (!isValid) {
                     throw new CommandException(Messages.MESSAGE_MODULE_DOES_NOT_EXIST
-                            + " Module not found: " + lastViewedCode);
+                            + " Module not found: " + lastViewedCode + ".\nPlease create the module first using "
+                            + "the madd command or specify an existing module!");
                 }
             }
         }

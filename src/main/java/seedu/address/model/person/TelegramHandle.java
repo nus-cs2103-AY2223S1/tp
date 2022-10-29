@@ -16,7 +16,7 @@ public class TelegramHandle {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[@]\\w{6,}";
+    public static final String VALIDATION_REGEX = "[@]\\w{5,}";
 
     public final String telegramHandle;
 
