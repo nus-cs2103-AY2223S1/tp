@@ -16,9 +16,6 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (model.isInFocusMode()) {
-            model.exitFocusMode();
-        }
         model.setTaAssist(new TaAssist());
         return new CommandResult(MESSAGE_SUCCESS, false, false, false, true);
     }
