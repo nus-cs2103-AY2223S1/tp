@@ -19,8 +19,8 @@ import seedu.address.model.student.Student;
  */
 public class AttendanceMarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
-    public static final String MESSAGE_ADD_ATTENDANCE_SUCCESS = "Marked attendance of Student: %1$s";
-    public static final String MESSAGE_DELETE_ATTENDANCE_SUCCESS = "Unmarked attendance of Student: %1$s";
+    public static final String MESSAGE_MARK_ATTENDANCE_SUCCESS = "Marked attendance of Student: %1$s";
+    public static final String MESSAGE_UNMARK_ATTENDANCE_SUCCESS = "Unmarked attendance of Student: %1$s";
     public static final String MESSAGE_USAGE = ATTENDANCE_COMMAND_WORD + " "
             + COMMAND_WORD
             + ": marks the lesson index of the student identified "
@@ -77,8 +77,8 @@ public class AttendanceMarkCommand extends Command {
      */
     private String generateSuccessMessage(Student studentToEdit) {
         String message = attendance.value.equals("1")
-                ? MESSAGE_ADD_ATTENDANCE_SUCCESS
-                : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
+                ? MESSAGE_MARK_ATTENDANCE_SUCCESS
+                : MESSAGE_UNMARK_ATTENDANCE_SUCCESS;
         return String.format(message, studentToEdit);
     }
 
@@ -98,7 +98,7 @@ public class AttendanceMarkCommand extends Command {
         AttendanceMarkCommand e = (AttendanceMarkCommand) other;
         return studentIndex.equals(e.studentIndex)
                 && attendance.equals(e.attendance)
-                && lessonIndex.equals(lessonIndex);
+                && lessonIndex.equals(e.lessonIndex);
     }
 
 }

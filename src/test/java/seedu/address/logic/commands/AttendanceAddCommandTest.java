@@ -24,7 +24,7 @@ import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 class AttendanceAddCommandTest {
     private static final String aliceMod = "CS2030";
-    private static final String bobMod = "CS2040";
+    private static final String bensonMod = "CS2040";
     private static final String size = "5";
 
     private static final String invalidSize = "13";
@@ -50,19 +50,19 @@ class AttendanceAddCommandTest {
     @Test
     public void execute_invalidStudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        AttendanceAddCommand attendanceAddCommand = new AttendanceAddCommand(outOfBoundIndex, bobMod, size);
+        AttendanceAddCommand attendanceAddCommand = new AttendanceAddCommand(outOfBoundIndex, bensonMod, size);
 
         assertCommandFailure(attendanceAddCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidStudentIndexFilteredList_failure() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
 
-        AttendanceAddCommand attendanceAddCommand = new AttendanceAddCommand(outOfBoundIndex, bobMod, size);
+        AttendanceAddCommand attendanceAddCommand = new AttendanceAddCommand(outOfBoundIndex, bensonMod, size);
 
         assertCommandFailure(attendanceAddCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
@@ -96,9 +96,9 @@ class AttendanceAddCommandTest {
         // different index -> returns false
         assertFalse(standardCommand.equals(new AttendanceAddCommand(INDEX_SECOND_STUDENT, aliceMod, size)));
         // different mod -> return false
-        assertFalse(standardCommand.equals(new AttendanceAddCommand(INDEX_FIRST_STUDENT, bobMod, size)));
+        assertFalse(standardCommand.equals(new AttendanceAddCommand(INDEX_FIRST_STUDENT, bensonMod, size)));
 
         // different size -> return false
-        assertFalse(standardCommand.equals(new AttendanceAddCommand(INDEX_FIRST_STUDENT, bobMod, "1")));
+        assertFalse(standardCommand.equals(new AttendanceAddCommand(INDEX_FIRST_STUDENT, bensonMod, "1")));
     }
 }
