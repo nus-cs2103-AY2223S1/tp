@@ -7,7 +7,7 @@ import longtimenosee.model.person.Person;
 /**
  * Tests that a {@code Person}'s {@code Address} matches the input given.
  */
-public class AddressMatchesInputPredicate implements Predicate<Person> {
+public class AddressContainsInputPredicate implements Predicate<Person> {
     private final String address;
 
     /**
@@ -15,7 +15,7 @@ public class AddressMatchesInputPredicate implements Predicate<Person> {
      *
      * @param address is the input by the user to be compared.
      */
-    public AddressMatchesInputPredicate(String address) {
+    public AddressContainsInputPredicate(String address) {
         assert address.length() != 0;
         this.address = address;
     }
@@ -30,8 +30,8 @@ public class AddressMatchesInputPredicate implements Predicate<Person> {
         if (other == this) {
             return true;
         } else {
-            if (other instanceof AddressMatchesInputPredicate) {
-                return address.equals(((AddressMatchesInputPredicate) other).address);
+            if (other instanceof AddressContainsInputPredicate) {
+                return address.equals(((AddressContainsInputPredicate) other).address);
             } else {
                 return false;
             }
