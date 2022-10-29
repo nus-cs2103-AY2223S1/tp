@@ -22,7 +22,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.Event;
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Name;
@@ -103,16 +102,10 @@ public class EditProfileCommand extends ProfileCommand {
             throw new CommandException(MESSAGE_SIMILAR_TELEGRAM);
         }
 
-        List<Event> events = profileToEdit.getEventsAttendingList();
+        EventsAttending eventsToRefresh = profileToEdit.getEventsToAttend();
+
         model.setProfile(profileToEdit, editedProfile);
-
-        // trigger re-render
-        for (Event e : events) {
-            Event eventCopy = new Event(e.getTitle(), e.getStartDateTime(), e.getEndDateTime(),
-                    e.getTags(), e.getAttendees());
-            model.setEvent(e, eventCopy);
-        }
-
+        model.refreshEvents(eventsToRefresh);
         model.updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile));

@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
+import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Profile;
 
 /**
@@ -162,6 +163,12 @@ public interface Model {
      * Profiles in {@code profilesToEdit} must also exist in the address book.
      */
     void removeEventFromAttendees(Event target, List<Profile> profilesToEdit);
+
+    /**
+     * Replaces the events in {@code eventsToRefresh} with another copy
+     * to refresh the UI.
+     */
+    void refreshEvents(EventsAttending eventsToRefresh);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
