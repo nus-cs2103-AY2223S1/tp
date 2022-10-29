@@ -55,7 +55,7 @@ In this *User Guide*, we will take you through the many useful features and func
 **:information_source: Notes about parameters:**<br>
 
 * For all commands involving `INDEX`, `INDEX` refers to the index number shown in the currently displayed list.<br>
-  * ___Beware!!!___ This may not be the full list of batchmates you have in Mass Linkers! For example, you may have entered the [find command](#finding-a-batchmate-by-name-find), so the currently displayed list will be the result of `find` which is not the full list.
+  * ___Beware!!!___ This may not be the full list of batchmates you have in Mass Linkers! For example, you may have entered the [find command](#find-a-batchmate-find), so the currently displayed list will be the result of `find` which is not the full list.
   * The index __must be a positive integer__, e.g. 1, 2, 3 … and be smaller than or equal to the number of batchmates in the currently displayed list.
 
 
@@ -82,7 +82,7 @@ Adds a batchmate to the list of batchmates in Mass Linkers.
 Format: `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...`
 
 * Only unique batchmate can be added. It is considered a duplicate if an existing batchmate and the current batchmate to be added have identical names, telegram handle and other optional information fields (if applicable).
-* Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Others`.
+* Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`.
 
 Examples:
 * `add n/John Doe t/johnxyz` adds a batchmate named `John Doe` with telegram handle `johnxyz` to the list.
@@ -96,6 +96,10 @@ Shows a list of all batchmates.
 Format: `list`
 
 ### Edit a batchmate: `edit`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To edit a module, simply delete that module using [mod delete](#delete-module-from-a-batchmate-mod-delete) and add the new module using [mod add](#add-module-to-a-batchmate-mod-add).
+</div>
 
 Edits the information of a specified batchmate.
 
@@ -295,13 +299,13 @@ Modules are automatically categorised upon creation.
 
 Below is the categorisation:
 
-| Category                  | Module Prefix      |
-|---------------------------|--------------------|
-| Computing Modules         | CS, IS, CP         |
-| Math Modules              | ST, MA             |
-| Science Modules           | LS, CM, PC         |
-| General Education Modules | GE, UT             |
-| Unrestricted Electives    | All other prefixes |
+| Category              | Module Prefix      |
+|-----------------------|--------------------|
+| Computer Science      | CS, IS, CP         |
+| Mathematics           | ST, MA             |
+| Science               | LS, CM, PC         |
+| General Education     | GE, UT             |
+| Unrestricted Elective | All other prefixes |
 
 _Module prefix refers to the first two characters of every module name._
 
