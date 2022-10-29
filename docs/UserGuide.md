@@ -186,9 +186,13 @@ General Format for add command: `add-KEY prefix/PARAMETERS...`, where:
 
 Kindly refer to the [Summaries](#summaries) section for more information.
 
-:exclamation:If you are a beginner, we highly recommend you to use
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** If you are a beginner, we highly recommend you to use
 the [Add Command using the popup window](#adding-a-person-with-a-popup-window--add)
 instead of the usual CLI interface.
+
+</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -202,14 +206,18 @@ Format: `add-b n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** A person can have any number of tags (including 0)
+:bulb: **Tip:** A person can have any number of tags (including 0).
+
+</div>
 
 After meeting a new customer with an order and would like to add her/him to your list of contacts, we have a
 nice feature for you to add a buyer and his/her orders in one shot! Check it out below :point_down:
 
 Format: `add-b n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ o/add-o(order1 prefixes and fields) o/add-o(order2 prefixes and fields)…​`
 
-:exclamation: Note that you can input as many `o/add-o` prefixes as you need. After each `add-o`, simply enter the
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Note that you can input as many `o/add-o` prefixes as you need. After each `add-o`, simply enter the
 details for
 the order, and you don't have to specify the index of the associated buyer this time. For more
 information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o) section.
@@ -252,10 +260,14 @@ supplier in one shot! Check it out below :point_down:
 
 Format: `add-s n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ pt/add-pt(pet1 prefixeds and fields) pt/add-pt(pet2 prefixeds and fields)…​`
 
-:exclamation: Note that you can input as many `pt/add-pt` prefixes as you need. After each `add-pt`, simply enter the
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Note that you can input as many `pt/add-pt` prefixes as you need. After each `add-pt`, simply enter the
 details
 for the pet, and you don't have to specify the index of the associated supplier this time. For more information,
-you can refer to the [Add Pet](#adding-a-pet-to-supplier--add-pt) section.
+you can refer to the [Add Pet](#adding-a-pet-to-a-supplier--add-pt) section.
+
+</div>
 
 Examples:
 
@@ -279,9 +291,13 @@ Format: `add-o i/INDEX_OF_BUYER o_s/STATUS o_r/add-r o_a/AGE o_s/SPECIES o_c/COL
 in the displayed buyer list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the buyer,
 if you have filtered the list.
 
-:exclamation: Please ensure that `o_r/` is followed by `add-r` immediately and that there are no other prefixes
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution**: Please ensure that `o_r/` is followed by `add-r` immediately and that there are no other prefixes
 between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_s/`. This is because they as a whole specify how the requested pet
 should be like. In the future, you may be able to define your own requests as templates for generating orders.
+
+</div>
 
 For more information about the prefixes, kindly navigate to the summary table [here](#list-of-prefixes).
 
@@ -327,6 +343,8 @@ The followings are two ways to use this command:
 
   Format: `add supplier`
 
+<div markdown="block" class="alert alert-info">
+
 :information_source: **Useful keyboard shortcuts for the pop-up window:**
 
 | Keyboard shortcut | Associated action                                                                      |
@@ -336,6 +354,8 @@ The followings are two ways to use this command:
 |     CTRL + A      | Adds an order/pet to the buyer/supplier                                                |
 |     CTRL + D      | Deletes the last order/pet under the buyer/supplier in the pop-up window               |
 |     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the pop-p window |
+
+</div>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -571,11 +591,11 @@ Notes:
 `filter-o os/Pending os/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
 * Note that Order Statuses are case-sensitive, so the input `filter-o os/delivering` may throw an error. To play safe, use the following words for Order status only:
 
-| Order Status | Input word | Usage                   |
-|--------------|------------|-------------------------|
-| PENDING      | Pending | filter-o os/Pending     |
+| Order Status | Input word  | Usage                   |
+|--------------|-------------|-------------------------|
+| PENDING      | Pending     | filter-o os/Pending     |
 | NEGOTIATING  | Negotiating | filter-o os/Negotiating |
-| DELIVERING   | Delivering | filter-o os/Delivering |
+| DELIVERING   | Delivering  | filter-o os/Delivering  |
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -675,10 +695,7 @@ Format: `check LIST_PARAMETER INDEX`
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Please take note of the following:**
-
-* This command does not support the Deliverers list.
-* The input index has to be a valid index.
+:exclamation: **Caution:** This command **does not support** the Deliverers list. The input index has to be a **valid index**.
 
 </div>
 
@@ -723,7 +740,6 @@ Format: `exit`
 [Go back to [Commands](#commands)]
 
 ## How data is stored
-
 ### Saving the data
 
 PetCode data is saved into your computer's hard disk automatically after any command that changes the data.
@@ -760,7 +776,6 @@ the data of your previous PetCode home folder.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Summaries
-
 ### List of Prefixes
 
 These prefixes are for you to indicate different fields when you add a new person, a new order, or a new pet.
