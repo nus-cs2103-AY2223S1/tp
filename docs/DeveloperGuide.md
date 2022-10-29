@@ -20,7 +20,7 @@ title: Developer Guide
   * [Use Cases](#use-cases)
     * [Use case: **Delete a student**](#use-case-delete-a-student)
     * [Use case: **Edit a student's contact number**](#use-case-edit-a-students-contact-number)
-    * [Use case: **Edit a student's class date**](#use-case-edit-a-students-class-date-)
+    * [Use case: **Edit a student's class date**](#use-case-edit-a-students-class-date)
     * [Use case: **Find student by class date**](#use-case-find-student-by-class-date)
     * [Use case: **Find student by names**](#use-case-find-student-by-name)
     * [Use case: **Find student by address**](#use-case-find-student-by-address)
@@ -64,7 +64,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -178,11 +178,11 @@ The edit class mechanism is facilitated by ClassStorage. It stores the date of t
 
 Additionally, it implements the following operations:
 
-ClassStorage#saveClass() — Saves the new class into its storage.
+- `ClassStorage#saveClass()` — Saves the new class into its storage.
 
-ClassStorage#removeExistingClass() — Removes class from storage to free up the time slot.
+- `ClassStorage#removeExistingClass()` — removes class from storage to free up the time slot.
 
-ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
+- `ClassStorage#hasConflict()` — Checks if there is a conflict between the class timings.
 
 The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer,
 a `ParseException` will be thrown.
@@ -220,7 +220,7 @@ The following activity diagram summarizes what happens when a teacher executes a
 ### Next Available Class Feature
 
 This feature allows the teacher to find then next available class by specifying the time range and the duration that
-he or she is looking at. For example, if the teacher wants to have a 1 hour class in the range of 1000-1600, but is not
+he or she is looking at. For example, if the teacher wants to have a 1-hour class in the range of 1000-1600, but is not
 sure when is the next available date, he or she can simply run `avail 1000-1600 60` and the first available class would
 be output to the teacher.
 
@@ -253,7 +253,7 @@ The following activity diagram summarizes what happens when a teacher executes a
 
 * **Alternative 1**: avail
     * Pros: Easy to implement.
-    * Cons: It will be hard coded to find the next available class of a one hour slot. Inflexible.
+    * Cons: It will be hard coded to find the next available class of a one-hour slot. Inflexible.
 
 * **Alternative 2**: avail 0000-2359 0 (in minutes)
     * Pros: More flexible, allowing teacher to specify what the time range is and the duration of class interested in.
@@ -367,9 +367,9 @@ This feature allows the user(teacher) to sort the students from Teacher's Pet by
 #### Implementation Details
 
 The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
-The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
-list of student as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortStudents(ComparatorM<Student>)` -- Updates the `students` by sorting the list with the given `Comparator`
+The `SortCommand` object will be creating a comparator based on the argument received and pass it to `TeachersPet` so that it will return the
+list of students as per usual. Additionally, it implements the following operation:
+- `TeachersPet#SortStudents(ComparatorM<Student>)` -- Updates the `students` by sorting the list with the given `Comparator`.
 
 The following diagram illustrates how the operation works:
 
@@ -423,14 +423,16 @@ This feature allows the user (teacher) to find a list of students from Teacher's
 #### Proposed Implementation
 
 The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
-There are 4 different variations of `find`:
+There are 7 different variations of `find`:
 1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
-3. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
-4. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
-5. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
-6. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
+2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
+3. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+4. Find by student's contact number: Find the matching student with a particular contact number using `find p/CONTACT_NUMBER`.
+5. Find by next of kin's contact number: Find all matching student(s) with a particular next of kin's contact number using `find np/NEXT_OF_KIN_CONTACT_NUMBER`.
+6. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
+7. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The 4 variations cannot be mixed with one another.</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The 7 variations cannot be mixed with one another.</div>
 
 The following activity diagram summarizes what happens when a user executes a find command:
 
