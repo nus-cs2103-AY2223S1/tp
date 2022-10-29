@@ -212,7 +212,7 @@ At least one field has to be edited for the command to execute successfully.
 
 * Edit supplier details
 
-> `edit 3 pr/NEW PRICE`
+> `edit 3 pr/$2.50`
 
 * Edit task details
 

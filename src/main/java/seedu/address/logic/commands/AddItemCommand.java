@@ -39,8 +39,13 @@ public class AddItemCommand extends Command {
     public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplyItem from same"
             + " supplier already exists in inventory";
 
-    public static final String MESSAGE_INVALID_CURRENT_STOCK = "Current Stock field must be provided";
-    public static final String MESSAGE_INVALID_MINIMUM_STOCK = "Minimum Stock field must be provided";
+    public static final String MESSAGE_MISSING_CURRENT_STOCK = "Current Stock field must be provided";
+    public static final String MESSAGE_MISSING_MINIMUM_STOCK = "Minimum Stock field must be provided";
+    public static final String MESSAGE_INVALID_STOCK = "Stock fields provided must be positive";
+
+
+
+
 
 
 
