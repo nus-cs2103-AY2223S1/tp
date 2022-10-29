@@ -10,11 +10,18 @@ title: User Guide
 
 ## 1. Introduction
 
-*MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further. *MyInsuRec* can also boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your customer relations.
+*MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better 
+manage your clients, meetings and products details, then look no further! *MyInsuRec* can boost your productivity 
+with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you 
+improve your relationships with clients.
 
-*MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *MyInsuRec* can get your client, meeting and product management tasks done faster than traditional GUI apps.
+*MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User 
+Interface (GUI). If you can type fast, *MyInsuRec* can get your client, meeting and product management tasks done 
+faster than traditional GUI apps!
 
-*MyInsuRec* is available for the Windows, macOS and Linux operating systems.
+*MyInsuRec* is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the 
+[installation guide](#3-installation-guide). This user guide can also serve as a reference for experienced 
+users, with a convenient [command summary](#7-command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
