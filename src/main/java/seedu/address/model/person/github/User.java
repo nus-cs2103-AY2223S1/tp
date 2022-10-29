@@ -19,12 +19,13 @@ import seedu.address.model.person.contact.Email;
  */
 public class User {
 
-    public static final String MESSAGE_CONSTRAINTS = "GitHub usernames should be of the format @username "
-        + "and adhere to the following constraints:\n"
-        + "1. Username may only contain alphanumeric characters or hyphens\n"
-        + "2. Username cannot have multiple consecutive hyphens\n"
-        + "3. Username cannot begin or end with a hyphen\n"
-        + "4. Username can have a maximum of 39 characters";
+    public static final String MESSAGE_CONSTRAINTS =
+        "GitHub usernames should contain only alphanumeric characters or dashes and adhere to the following "
+            + "constraints:\n"
+            + "1. Username may only contain alphanumeric characters or hyphens\n"
+            + "2. Username cannot have multiple consecutive hyphens\n"
+            + "3. Username cannot begin or end with a hyphen\n"
+            + "4. Username can have a maximum of 39 characters";
     private static final String BASE_GITHUB_URL = "https://github.com/";
     private static final String VALIDATION_REGEX = "^[a-zA-Z\\d](?:[a-zA-Z\\d]|-(?=[a-zA-Z\\d])){0,38}$";
     private final String username;
