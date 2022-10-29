@@ -2,6 +2,8 @@ package seedu.address.model.person.github;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.Optional;
 
 import seedu.address.github.UserInfoWrapper;
 import seedu.address.github.UserReposWrapper;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.contact.Email;
@@ -33,6 +36,7 @@ public class User {
     private final Name name;
     private final Email email;
     private final Address address;
+    private final Path avatarImageFilePath;
     private final List<Repo> repoList = new ArrayList<>();
 
     /**
@@ -48,8 +52,10 @@ public class User {
         this.email = userInfoWrapper.getEmail().isPresent() ? new Email(userInfoWrapper.getEmail().get()) : null;
         this.address =
             userInfoWrapper.getLocation().isPresent() ? new Address(userInfoWrapper.getLocation().get()) : null;
+
         userInfoWrapper.downloadAvatar();
         updateRepoList(userReposWrapper);
+        this.avatarImageFilePath = getAvatarPathIfExists(userInfoWrapper.getAvatarImageFilePath());
     }
 
     /**
@@ -64,6 +70,7 @@ public class User {
         this.repoList.addAll(repoList);
         this.email = null;
         this.address = null;
+        this.avatarImageFilePath = getAvatarFilePathFromUsername(username);
     }
 
     /**
@@ -71,6 +78,18 @@ public class User {
      */
     public static boolean isValidUsername(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    private Path getAvatarFilePathFromUsername(String username) {
+        String imageFileName = username + ".png";
+        UserPrefs userPrefs = new UserPrefs();
+        Path avatarImageFilePath =
+            Paths.get(userPrefs.getAddressBookFilePath().getParent().toString(), "images", imageFileName);
+        return getAvatarPathIfExists(avatarImageFilePath);
+    }
+
+    private Path getAvatarPathIfExists(Path avatarImageFilePath) {
+        return avatarImageFilePath.toFile().exists() ? avatarImageFilePath : null;
     }
 
     public Name getName() {
@@ -95,6 +114,10 @@ public class User {
 
     public List<Repo> getRepoList() {
         return Collections.unmodifiableList(this.repoList);
+    }
+
+    public Optional<Path> getAvatarImageFilePath() {
+        return Optional.ofNullable(avatarImageFilePath);
     }
 
     private void updateRepoList(UserReposWrapper userReposWrapper) {

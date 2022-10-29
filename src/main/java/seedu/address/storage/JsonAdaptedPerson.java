@@ -139,7 +139,6 @@ class JsonAdaptedPerson {
             } catch (NetworkConnectionException ignored) {
                 // Ignore if there is a network error, use information stored in cache
             }
-            System.out.println(modelGithubUser.getAddress());
         }
 
         return new Person(modelName, modelAddress, modelTags, modelContacts, modelRole, modelTimezone, modelGithubUser);
