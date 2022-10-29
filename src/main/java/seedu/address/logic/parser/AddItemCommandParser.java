@@ -27,6 +27,8 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CURRENTSTOCK, PREFIX_MINIMUMSTOCK);
         Index index;
+        int currentStock;
+        int minimumstock;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CURRENTSTOCK, PREFIX_MINIMUMSTOCK)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
@@ -38,11 +40,30 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE), e);
         }
 
-        int currentStock = parseInt(argMultimap.getValue(PREFIX_CURRENTSTOCK).get());
-        int minimumstock = parseInt(argMultimap.getValue(PREFIX_MINIMUMSTOCK).get());
+        String currentStockValue = argMultimap.getValue(PREFIX_CURRENTSTOCK).get();
+        String minimumStockValue = argMultimap.getValue(PREFIX_MINIMUMSTOCK).get();
+
+        if (currentStockValue.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddItemCommand.MESSAGE_MISSING_CURRENT_STOCK));
+        }
+
+        if (minimumStockValue.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddItemCommand.MESSAGE_MISSING_MINIMUM_STOCK));
+        }
+
+        try {
+            currentStock = parseInt(currentStockValue);
+            minimumstock = parseInt(minimumStockValue);
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddItemCommand.MESSAGE_USAGE));
+        }
 
         if (currentStock <= 0 || minimumstock <= 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddItemCommand.MESSAGE_INVALID_STOCK));
         }
 
         return new AddItemCommand(index, currentStock, minimumstock);
