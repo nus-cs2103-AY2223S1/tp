@@ -34,7 +34,7 @@ If this is the first time you are using this user guide, it is highly recommende
         + [Adding a supplier](#adding-a-supplier-add-s)
         + [Adding an order to a buyer](#adding-an-order-to-a-buyer-add-o)
         + [Adding a pet to a supplier](#adding-a-pet-to-a-supplier--add-pt)
-        + [Adding a person with a popup window](#adding-a-person-with-a-popup-window--add) [BEGINNER-FRIENDLY]
+        + [Adding a person with a popup window](#adding-a-person-with-a-popup-window--add) 
     * [Matching oets to an order](#matching-pets-to-an-order--match)
     * [Listing contacts or items](#listing-contacts-or-items--list)
     * [Deleting a contact or item](#deleting-a-contact-or-item--delete)
@@ -224,6 +224,12 @@ information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o)
 
 </div>
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+
+</div>
+
 Examples:
 
 * To add a single buyer: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore`
@@ -244,6 +250,12 @@ Format: `add-d n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 Examples:
 
 * To add a single deliverer: `add-d n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore`
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+
+</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -266,6 +278,12 @@ Format: `add-s n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ pt/add-pt(p
 details
 for the pet, and you don't have to specify the index of the associated supplier this time. For more information,
 you can refer to the [Add Pet](#adding-a-pet-to-a-supplier--add-pt) section.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
 
 </div>
 
@@ -299,7 +317,11 @@ should be like. In the future, you may be able to define your own requests as te
 
 </div>
 
-For more information about the prefixes, kindly navigate to the summary table [here](#list-of-prefixes).
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+
+</div>
 
 Examples:
 
@@ -320,7 +342,11 @@ index just in the display list. You may want to use the [List Command](#listing-
 supplier,
 if you have filtered the list.
 
-For more information about the prefixes, kindly navigate to the summary table [here](#list-of-prefixes).
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+
+</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -778,7 +804,7 @@ the data of your previous PetCode home folder.
 ## Summaries
 ### List of Prefixes
 
-These prefixes are for you to indicate different fields when you add a new person, a new order, or a new pet.
+These prefixes are for you to indicate different fields when you add a new [buyer](#adding-a-buyer-add-b), a new [deliverer](#adding-a-deliverer-add-d), a new [supplier](#adding-a-supplier-add-s), a new [order](#adding-an-order-to-a-buyer-add-o), or a new [pet](#adding-a-pet-to-a-supplier--add-pt).
 
 | Prefix     | Category        | Meaning                          | Usage                                                                                                                                                                                                                                                                                                                              | Example                                          |
 |------------|-----------------|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
@@ -815,23 +841,23 @@ These prefixes are for you to indicate different fields when you add a new perso
 ### Command Summary
 
 
-|                                  Action                                   | Format                                                                                       | Examples                                                                                      |
-|:-------------------------------------------------------------------------:|----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-|                 **[Add](#adding-a-contact-or-item-add)**                  | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…` | `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
-| **[Add](#adding-a-person-with-a-popup-window--add)** (using popup window) | `add buyer`, `add supplier`                                                                  |                                                                                               |
-|                 **[Clear](#clearing-all-entries--clear)**                 | `clear`                                                                                      |                                                                                               |
-|             **[Delete](#deleting-a-contact-or-item--delete)**             | `delete-KEY INDEX`                                                                           | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`                          |
-|            **[Edit](#editing-attributes-of-a-contact--edit)**             | `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`                                   | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p//884321`                                               |
-|            **[Find](#finding-contacts-using-keywords--find)**             | `find PREFIX/KEYWORD`                                                                        | `find n/James Jake`                                                                           |
-|                **[Find Buyer](#finding-a-buyer--find-b)**                 | `find-b PREFIX/KEYWORD`                                                                      | `find-b n/James Jake`                                                                         |
-|            **[Find Deliverer](#finding-a-deliverer--find-d)**             | `find-d PREFIX/KEYWORD`                                                                      | `find-d n/James Jake`                                                                         |
-|             **[Find Supplier](#finding-a-supplier--find-s)**              | `find-s PREFIX/KEYWORD`                                                                      | `find-s n/James Jake`                                                                         |
-|           **[Filter](#filtering-items-by-attributes--filter)**            | `filter t/INPUT`                                                                             | `filter t/dog t/second-hand`                                                                  |
-|             **[Filter Orders](#filtering-orders--filter-o)**              | `filter-o PREFIX/KEYWORD`                                                                    | `filter-o ar/good with children pr/10-100`                                                    |
-|               **[Filter Pets](#filtering-pets--filter-p)**                | `filter-p PREFIX/KEYWORD`                                                                    | `filter-p c/white s/capybara`                                                                 |
-|                      **[Help](#viewing-help--help)**                      | `help`                                                                                       |                                                                                               |
-|               **[List](#listing-contacts-or-items--list)**                | `list all`, `list buyer`, `list supplier`, <br>`list deliverer`, `list order`, `list pet`    |                                                                                               |
-|                    **[Sort](#sorting-contacts--sort)**                    | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                        | `sort pet price height weight`                                                                |
-|     **[Check](#checking-which-item-belongs-to-which-contact--check)**     | `check LIST_TYPE INDEX`                                                                      | `check buyer 1`                                                                               |
+|                                  Action                                   | Format                                                                                    | Examples                                                                         |
+|:-------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+|                 **[Add](#adding-a-contact-or-item-add)**                  | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`                       | `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore` |
+| **[Add](#adding-a-person-with-a-popup-window--add)** (using popup window) | `add buyer`, `add supplier`                                                               |                                                                                  |
+|                 **[Clear](#clearing-all-entries--clear)**                 | `clear`                                                                                   |                                                                                  |
+|             **[Delete](#deleting-a-contact-or-item--delete)**             | `delete-KEY INDEX`                                                                        | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`             |
+|            **[Edit](#editing-attributes-of-a-contact--edit)**             | `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`                                | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p/884321`                                   |
+|            **[Find](#finding-contacts-using-keywords--find)**             | `find PREFIX/KEYWORD`                                                                     | `find n/James Jake`                                                              |
+|                **[Find Buyer](#finding-a-buyer--find-b)**                 | `find-b PREFIX/KEYWORD`                                                                   | `find-b n/James Jake`                                                            |
+|            **[Find Deliverer](#finding-a-deliverer--find-d)**             | `find-d PREFIX/KEYWORD`                                                                   | `find-d n/James Jake`                                                            |
+|             **[Find Supplier](#finding-a-supplier--find-s)**              | `find-s PREFIX/KEYWORD`                                                                   | `find-s n/James Jake`                                                            |
+|           **[Filter](#filtering-items-by-attributes--filter)**            | `filter t/INPUT`                                                                          | `filter t/dog t/second-hand`                                                     |
+|             **[Filter Orders](#filtering-orders--filter-o)**              | `filter-o PREFIX/KEYWORD`                                                                 | `filter-o ar/good with children pr/10-100`                                       |
+|               **[Filter Pets](#filtering-pets--filter-p)**                | `filter-p PREFIX/KEYWORD`                                                                 | `filter-p c/white s/capybara`                                                    |
+|                      **[Help](#viewing-help--help)**                      | `help`                                                                                    |                                                                                  |
+|               **[List](#listing-contacts-or-items--list)**                | `list all`, `list buyer`, `list supplier`, <br>`list deliverer`, `list order`, `list pet` |                                                                                  |
+|                    **[Sort](#sorting-contacts--sort)**                    | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                     | `sort pet price height weight`                                                   |
+|     **[Check](#checking-which-item-belongs-to-which-contact--check)**     | `check LIST_TYPE INDEX`                                                                   | `check buyer 1`                                                                  |
 
 [Go back to [Table of Contents](#table-of-contents)]
