@@ -207,8 +207,8 @@ Format: `delete INDEX m/MODE`
 
 * The `INDEX` refers to the index number shown in the displayed list.
 * The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
-* `view` command must be used before the deletion of `remark` or `transaction` as the deletion can only happen when they are visible in the application.
+* The `MODE` refers to which entity is being deleted. **It must be** `client`, `transaction` or `remark`.
+* `view` command **must** be used before the deletion of `remark` or `transaction` as the deletion can only happen when they are visible in the application.
 
 Examples:
 * `delete 1 m/client` deletes the 1st client in the JeeqTracker.
@@ -230,11 +230,11 @@ Format: `edit INDEX m/MODE FIELDS [MORE_FIELDS]...`
 * The `INDEX` refers to the index number shown in the displayed list.
 * The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
-* The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
+* The `MODE` refers to which entity is being deleted. **It must be** `client`, `transaction` or `remark`.
 * The `FIELDS` refers to the parameters to be changed for the entity. E.g:
   * client has `[n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]`
   * transaction has `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`.
-* `view` command must be used before editing `remark` or `transaction` as the edit can only happen when they are visible in the application.
+* `view` command **must** be used before editing `remark` or `transaction` as the edit can only happen when they are visible in the application.
 
 Examples:
 * `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1st client's address with the new input.
