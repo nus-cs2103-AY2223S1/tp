@@ -244,65 +244,59 @@ shows the updated Sequence diagram for the executing of our `delete` command.
 <img src="images/DeleteSequenceDiagram2.png" />
 
 
-#### Changes in Displaying Results
+### Displaying Data
 
-In `AB3`, the `PersonListPanel` and `PersonCard` components were responsible for displaying results on the `MainWindow`.
-The `PersonCard` component dictates the arrangement of fields belonging to a `Person`, and the `PersonListPanel` component
-dictates the configuration of these `PersonCard` objects.
+In RC4HDB, there are two main types of data that is being stored and displayed, they are the `Resident`, and the `Booking` class.
+As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTab` and a `BookingTab`, which are
+responsible for displaying the respective information.
 
-Graphically, this was represented as a single-column list with each row corresponding to a `Person` in `AB3`.
+#### Resident Information
 
-In `RC4HDB`, we reworked the entire configuration for displaying results. We replaced `PersonListPanel` and `PersonCard`
-by a `ResidentTableView` component.
+The `ResidentTab` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented
+as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
 
-<img src="images/UiClassDiagram.png" width="550" />
+##### Design considerations
 
-`ResidentTableView` is implemented via the `TableView` class of `JavaFX`. Graphically, `ResidentTableView` is presented
-as a table. Each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
+Aspect: Display format
 
-From the users' viewpoint, the data generated in `ResidentTableView` is a single unit, but it is logically separated
-into two distinct parts. The first part being the first column which is the `IndexColumn` and the second being all other
-columns, also known as `FieldColumns`.
+Alternative 1 (current choice): Table
 
-The main reason for this distinction is *method to generate the cell values*.
-- The indices in the `IndexColumn` are generated independently to the `FieldColumns`. This is because fields within
-  `Resident` do not affect its index within the table. In two different commands, the same `Resident` could
-  have different indices in the results.
-- In contrast, in the generation of values for each cell in `FieldColumn`, values are obtained by iterating
-through a list of `Residents` and setting each cell to it. As the iterator does not modify the ordering of `Residents`,
-  the same technique is applied to obtain the values for other `FieldColumns`.
+Pros:
+* Ability to display condensed information clearly
+* Ability to manipulate the data that can be displayed by showing and hiding field columns
+* Ability for the user to view large amounts of information at a glance
+* Powerful TableView implementation allows us to dynamically obtain resident field, and update the table when the Model changes
 
-As a consequence, fields of a `Resident` will always collectively be together in the same row, though it may appear in
-two different indices in the results of two different commands.
+Cons:
+* Possible information overload on the user
+* Possible performance issues in terms of memory usage when the number of columns exceed 60
 
-<br>
+For more information on how the TableView implementation is powerful, we refer you to the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html)
+on *method matching*, which is what we heavily used to fetch resident data.
 
-##### Obtaining `Resident` fields
+For more information on possible performance issue, we refer you to the GitHub issue [here](https://github.com/javafxports/openjdk-jfx/issues/409).
 
-From the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableColumn.html), a
-`TableView` is made up of a number of `TableColumn` instances. `TableColumn` provided us with a method to
-`setCellValueFactory` which allows us to iterate through the list of `Residents` and obtain the value dynamically.
+* Alternative 2: List
 
-In using the `setCellValueFactory` method, we also used the `PropertyValueFactory` class. The implementation of
-`PropertyValueFactory` has enabled us to easily obtain fields due to its *method matching*
-[functionality](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html).
+Pros:
+* Ability to customize the layout of the data to be displayed
+* Ability for the user to more focused by viewing lesser amounts of information at a glance
 
-For example, by constructing `nameCol.setCellValueFactory(new PropertyValueFactory<Resident, String>("name")`,
-the "name" string is used as a reference to an assumed `Resident::getName` in `Resident.java`.
-As a consequence of this, for all fields in `Resident`, we have to implement and have implemented suitable methods to
-take advantage of this functionality. The only caveat to this is potentially the complexity of fields that a `Resident`
-could possess. But for our purposes, our fields are mainly represented as `String`, and there are no issues thus far.
+Cons:
+* Possible lack of information displayed at a glance
+* Less intuitive for handling large numbers of entries
 
-<br>
 
-##### Differences in Updating Data
+For the purposes of the user, who has to deal with large amounts of residential information, we opted the use of the table.
 
-Another difference between `PersonListPanel` and `ResidentTableView` is the behavior in propagating changes in the
-`Model` component to the `Ui` component. In `ResidentTableView` modifications to any fields of a `Resident` would not require explicit
-invocation of a method to update the Ui. This design was possible as `TableView` automatically adds an observer
-to the returned value from `setCellValueFactory`, as mentioned in the [section above](#obtaining-resident-fields).
-As a result, any updates to `ObservableList<Resident>` would be reflected immediately in all cells of the Table.
 
+#### Booking Information
+
+Similar to the display of resident information, the `BookingTab` contains a `BookingTableView` which was also implemented
+via the `TableView` class of `JavaFX`. Here, each row corresponds to the `Day`, and each column corresponds to the `TimePeriod`.
+
+Unlike the `ResidentTableView`, we did not discuss any other alternatives as to how booking information should be displayed as
+we thought that the use of a Table was sufficently proficient in displaying a time table.
 
 <br>
 
@@ -451,6 +445,24 @@ Due to file creation and deletion not requiring an update to `Model`, but requir
 Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
 
 <br>
+
+### Command history
+
+`CommandHistory` allows the user to access past successfully executed commands by using the `UP_ARROW_KEY` and `DOWN_ARROW_KEY`.
+As our implementation of `CommandHistory` only tracks past successfully executed commands, the `CommandHistory` does not have any
+dependencies to `Model` and `Storage`, but it does to `Logic`.
+
+The class diagram of `CommandHistory` is as follows.
+
+![CommandHistoryClassDiagram](images/CommandHistoryClassDiagram-0.png)
+
+To illustrate how `CommandHistory` works, an activity diagram when using the `UP_ARROW_KEY` is provided below.
+
+![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram-0.png)
+
+Internally, the `CommandHistory` is implemented using two stacks, which pops and pushes the most recently browsed command
+between the two, thereby maintaining its ordering.
+
 
 ### \[Proposed\] Undo/redo feature
 
