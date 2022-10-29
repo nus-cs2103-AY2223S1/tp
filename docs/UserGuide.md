@@ -269,7 +269,7 @@ Exits the program.
 
 Format: `exit`
 
-### Glossary
+## Glossary
 
 * **Bucket list**: List of events that haven't been added to any trips
 * **Displayed events list**: List of events being displayed in the right panel of the UI
