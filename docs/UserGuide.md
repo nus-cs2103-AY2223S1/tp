@@ -279,6 +279,8 @@ Format: `exit`
 
 Data in Mass Linkers is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Parameter Requirements
 
 Below is the summary of requirements of each parameter for the various commands. 
