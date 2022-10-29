@@ -178,7 +178,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteTask(Index index) {
-        Index indexInSourceList = Index.fromZeroBased(filteredSupplyItems.getSourceIndex(index.getZeroBased()));
+        Index indexInSourceList = Index.fromZeroBased(filteredTasks.getSourceIndex(index.getZeroBased()));
         taskList.deleteTask(indexInSourceList);
     }
 
