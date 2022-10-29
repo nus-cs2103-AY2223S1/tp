@@ -197,11 +197,12 @@ An event may also contain:
 
 #### Adding an event: `event -a`
 
-Adds an event with a name, a start timing and end timing.
+Adds an event with a name, a start date and end date.
 
 Format: `event -a n/TITLE s/START e/END [t/TAG]…`
 
 * The start and end dates can be specified in various different formats, see [Accepted Date Time Format](#accepted-date-time-formats) for the full list.
+* The start and end dates must both contain either date only or date and time.
 * The start date must occur before or on the same day and time as the end date.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
