@@ -15,7 +15,9 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 
 2. Download the latest `nutrigoals.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases).
 
-3. Double-click the file to start the app.
+3. Double-click the file to start the app. For first-time users, the app will contain sample food items for these 3 days: 
+15 September 2022, 23 October 2022 and the current day. Below is an example of the starting screen showing the list of foods added for the day:
+![sampleUi](images/sampleUi.png)
 
 4. Refer to the [Features](#features) below for details of each command.
 
@@ -120,7 +122,7 @@ Example:
 
 ### Setting a target daily calorie intake: `target`
 
-Sets a target calorie intake.
+Sets a target calorie intake for the current day.
 
 Format: `target CALORIE`
 
@@ -194,9 +196,9 @@ Suggests a random tip to help the user adopt a healthier lifestyle.
 
 Format: `tip`
 
-### Clearing all entries: `clear`
+### Clearing all food items: `clear`
 
-Clears all entries from NutriGoals.
+Clears all food items from NutriGoals.
 
 Format: `clear`
 
