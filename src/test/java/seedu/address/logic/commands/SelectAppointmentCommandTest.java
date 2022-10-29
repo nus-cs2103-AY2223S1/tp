@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentsAddressBook;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentsHealthContact;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 
@@ -24,7 +24,7 @@ import seedu.address.model.appointment.Appointment;
  */
 public class SelectAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAppointmentsAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAppointmentsHealthContact(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class SelectAppointmentCommandTest {
 
         String expectedMessage = String.format(SelectAppointmentCommand.MESSAGE_SUCCESS, appointmentToSelect);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
         expectedModel.selectAppointment(appointmentToSelect);
 
         assertCommandSuccess(selectAppointmentCommand, model, expectedMessage, expectedModel);
@@ -55,7 +55,7 @@ public class SelectAppointmentCommandTest {
 
         String expectedMessage = String.format(SelectAppointmentCommand.MESSAGE_SUCCESS, appointmentToSelect);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHealthContact(), new UserPrefs());
         expectedModel.selectAppointment(appointmentToSelect);
         showNoAppointment(expectedModel);
 
@@ -66,8 +66,8 @@ public class SelectAppointmentCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showAppointmentAtIndex(model, INDEX_FIRST_PATIENT);
         Index outOfBoundIndex = INDEX_SECOND_PATIENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAppointmentList().size());
+        // ensures that outOfBoundIndex is still in bounds of HealthContact list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getHealthContact().getAppointmentList().size());
 
         SelectAppointmentCommand selectAppointmentCommand = new SelectAppointmentCommand(outOfBoundIndex);
 

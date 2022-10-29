@@ -3,7 +3,7 @@ package seedu.address.model.patient;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Patient's remark in the address book.
+ * Represents a Patient's remark in the HealthContact.
  * Guarantees: immutable; is always valid
  */
 public class Remark {

@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.bill.Bill;
 
 /**
- * Deletes a bill identified using it's displayed index from the address book.
+ * Deletes a bill identified using it's displayed index from the HealthContact.
  */
 public class DeleteBillCommand extends Command {
 

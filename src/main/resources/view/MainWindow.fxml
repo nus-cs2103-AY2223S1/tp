@@ -15,7 +15,7 @@
 <fx:root minHeight="700.0" minWidth="1000.0" onCloseRequest="#handleExit" title="HealthContact"
          type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/health_contact_32.png" />
   </icons>
   <scene>
     <Scene>
