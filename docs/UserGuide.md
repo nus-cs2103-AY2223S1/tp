@@ -81,20 +81,6 @@ Beyond individual products, you can also:
 
 ### 2.4 User Interface
 
-*MyInsuRec* comes with a simple [GUI](#gui) to help you see your clients and meetings easily.
-The user interface consists of a main window, command result window, [CLI](#cli),and toolbar.
-
-Below the GUI title, you will see a toolbar which can be used to change light/dark mode, open the help window, and exit the app.
-
-The main window shows the list of clients, meetings or products on executing a list command.
-It also shows a lists of details associated with a client, meeting, or product on executing a view command.
-
-All commands are accepted from the user via the [CLI](#cli).
-
-The result of executing a command is shown in the command result window just above the CLI.
-Here you will see help, command success, and warning messages.
-
-![Ui](images/annotatedGui.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -465,7 +451,7 @@ If your changes to the data file makes its format invalid, *MyInsuRec* will disc
 #### 5.5.3 Creating and using data file backups
 
 This is the recommended method of storing backups of the `[JAR file location]/data/myinsurec.json` file.
-First, create a copy of the original file in the `[JAR file location]/data` folder and rename it to `myinsurec_date.json` where date identifies when the file was created.
+First, create a copy of the original file in the `[JAR file location]/data` folder and rename it to `myinsurec_date.json` where date identifies when the file was created (e.g. `myinsurec_01122022` for a file created on 1st December 2022).
 
 If you want to start *MyInsuRec* using a backup file, rename the backup to `myinsurec.json`.
 Then launch the app as usual.
@@ -552,15 +538,15 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 Here are a few reasons why this may have occurred:
 
 1. The data file is empty:
-    * Locate the [date file](#6-faq).
+    * Locate the [data file](#6-faq).
     * If the file is empty ,i.e. contains no data, then *MyInsuRec* did not load any data on start up.
     * How to recover? :
-    * [Swap the file with your backup](#553-creating-and-using-data-file-backups).
+      * [Swap the file with your backup](#553-creating-and-using-data-file-backups).
 2. The data file was corrupt before starting the app:
-    * This issue is harder to detect since the app will only empty the file if the data in it was corrupt before starting.
+    * This issue is harder to detect since the app will only empty the file if the data in it was corrupt before starting. Before launching the app, remember to [fix any corruption issues](#83-my-data-file-is-corrupt). 
     * How to avoid this issue? :
-    * [Create backups](#553-creating-and-using-data-file-backups) of your `myinsurec.json` file and ensure that they are not corrupt.
-    * See the [section below](#83-my-data-file-is-corrupt) on how to detect and recover from file corruption.
+      * [Create backups](#553-creating-and-using-data-file-backups) of your `myinsurec.json` file and ensure that they are not corrupt.
+      * See the [section below](#83-my-data-file-is-corrupt) on how to detect and recover from file corruption.
 
 ### 8.3 My data file is corrupt
 
@@ -568,13 +554,14 @@ Do not launch the app if you detect this issue, since the `myinsurec.json` file 
 To recover:
 
 1. [create a backup](#553-creating-and-using-data-file-backups) of the file.
-2. Edit all invalid fields and format issues manually in the backup file.
-    * What should I look out for while editing? :
-    * Check that the structure of the file is correct (no missing semicolons, commas, brackets, and data fields). <br> It helps to be familiar with the [JSON file](#json-file) format here, but most users can quickly pick up the basics by referring to a working copy of the data file.
-    * Some invalid data values to look out for :
-    * invalid dates for client birthday, or meeting date e.g. 00000000 (invalid DDMMYYYY), 1212202020 (too many digits),
-    * Invalid meeting start time or end time e.g. 2500 (invalid HHMM).
-3. [Use this edited file](#553-creating-and-using-data-file-backups) when launching *MyInsuRec*.
+2. Edit all invalid fields and format issues manually in the backup file:
+   * What should I look out for while editing? :
+     * Check that the structure of the file is correct (no missing semicolons, commas, brackets, and data fields). It helps to be familiar with the [JSON file](#json-file) format here, but most users can quickly pick up the basics by referring to a working copy of the data file.
+     * Some invalid data values to look out for : 
+       * Invalid dates for client birthday, or meeting date e.g. 00000000 (invalid DDMMYYYY), 1212202020 (too many digits), <br>
+       * Invalid meeting start time or end time e.g. 2500 (invalid HHMM).
+
+3. [Use this edited file](#553-creating-and-using-data-file-backups) that your created when launching *MyInsuRec*.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -590,7 +577,7 @@ We thank the CS2103T and CS2101 teaching team and all our classmates for support
 
 - [CLI](#cli)
 - [GUI](#gui)
-- [INDEX](#)
+- [INDEX](#index)
 - [JSON file](#json-file)
 - [JAR file](#jar-file)
 - [Parameter](#parameter)
@@ -635,7 +622,7 @@ e.g. Product6 has position of 5 in the shown [product list](#332-listing-product
 
 ##### JSON file
 
-A file that stores data that has been structured according to the JSON data format.
+A file that stores data that has been structured according to the JSON data format. Refer to this article by [W3Schools](https://www.w3schools.com/js/js_json_intro.asp) for more information. 
 
 ##### JAR file
 
