@@ -10,11 +10,11 @@ title: User Guide
 
 ## 1. Introduction
 
-*MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further. *MyInsuRec* can also boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your customer relations.
+*MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further! *MyInsuRec* can boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your relationships with clients.
 
-*MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *MyInsuRec* can get your client, meeting and product management tasks done faster than traditional GUI apps.
+*MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *MyInsuRec* can get your client, meeting and product management tasks done faster than traditional GUI apps!
 
-*MyInsuRec* is available for the Windows, macOS and Linux operating systems.
+*MyInsuRec* is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [installation guide](#3-installation-guide). This user guide can also serve as a reference for experienced users, with a convenient [command summary](#7-command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ To install *MyInsuRec*, simply follow the steps below:
 
 1. Ensure that your system meets the [system requirements](#31-system-requirements).
 
-1. Download the latest `MyInsuRec.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-4/tp/releases).
+1. Download the latest **MyInsuRec.jar** from [here](https://github.com/AY2223S1-CS2103T-W16-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your MyInsuRec.
 
@@ -267,7 +267,7 @@ Examples:
 * `listClient pd/Product1`
 * `listClient b/week`
 
-<div markdown="block" class="alert alert-info">**:exclamation: Caution:** Both filters cannot exist simultaneously. 
+<div markdown="block" class="alert alert-warning">**:exclamation: Caution:** Both filters cannot exist simultaneously. 
 A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
@@ -278,11 +278,17 @@ View details associated with a client, such as the client's name and phone numbe
 Format: `viewClient i/INDEX`
 
 * Display information about the client at the specific `INDEX`.
-* The index refers to the index number shown in the displayed clients' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown by executing [`listClient`](#512-list-clients-listclient) command.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Use case:
+
+1. View more specific details related to the client such as address and birthday which are not shown in the list of clients. This will help you foster a stronger relationship with your clients because you can wish them happy birthday!
 
 Examples:
-* `viewClient i/1`
+
+* View client at index 1
+  * `viewClient i/1`
 
 #### 5.1.4 Delete client: `delClient`
 
@@ -292,14 +298,14 @@ Format: `delClient i/INDEX`
 
 * Delete the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#512-list-clients-listclient) command.
-* `Index` **must be a positive integer** 1, 2, 3, …​
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `delClient i/2`
 
 #### 5.1.5 Edit client: `editClient`
 
-Edit detail of the specified client.
+Edit details of the specified client.
 
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
@@ -378,13 +384,17 @@ Examples:
 
 #### 5.2.3 View meeting: `viewMeeting`
 
-View details associated with a meeting, such as meeting's date and time.
+View details associated with a meeting, such as the meeting's date and time.
 
 Format: `viewMeeting i/INDEX`
 
-* Display information about the meeting at the specific `INDEX`.
-* The index refers to the index number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
-* The index **must be a positive integer** 1, 2, 3, …
+* Display information about the meeting at the specific `INDEX` and details of the client whom you are meeting.
+* The `INDEX` refers to the index number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …
+
+Use Case:
+
+1. Get an overview of the meeting and the client you are meeting with. This helps you become more prepared for the meeting and you will not have to remember every single small detail of the meeting!
 
 Examples:
 * `viewMeeting i/1`
@@ -398,6 +408,7 @@ Format: `delMeeting i/INDEX`
 * Delete the meeting at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
+
 
 Examples:
 * `delMeeting i/2`
@@ -433,6 +444,11 @@ Format: `addProduct pd/PRODUCT`
 
 * Add a product having name `PRODUCT`.
 * A product must have a product name which is `PRODUCT`.
+* A product name can only be **alphanumeric** and contain spaces. Other symbols are strictly not allowed.
+
+Use Case:
+
+1. You can define your own insurance products that you sell and tag them to clients who have bought the product. Now you will not have to worry about forgetting which product did the client buy!
 
 Examples:
 * `addProduct pd/Product1`
@@ -452,7 +468,7 @@ Examples:
 * List all products
   * `listProduct`
 
-#### 5.3.3 Delete a product : `delProduct`
+#### 5.3.3 Delete product: `delProduct`
 
 Deletes a product from *MyInsuRec*.  
 This command removes this product from all the clients as well.
@@ -499,24 +515,30 @@ MyInsuRec data are saved in the hard disk automatically after any command that c
 
 #### 5.5.2 Edit the data file
 
-MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
+MyInsuRec data are saved as a JSON file **[JAR file location]/data/myinsurec.json**. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
+
+#### 5.5.3 Change the color scheme
+
+MyInsuRec comes with a light and dark color scheme. To change between the two, simple click on the View menu button and select the desired mode!
+
+![Dark Mode](images/DarkModeUi.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app, then overwrite the `myinsurec.json` file created by the app with the version of the file from the previous computer.
+**A**: Install the app, then overwrite the **myinsurec.json** file created by the app with the version of the file from the previous computer. The **myinsurec.json** is located in **[JAR file location]/data/myinsurec.json**.
 
 **Q**: I accidentally closed the app, will my data still be there?<br>
 **A**: Yes, your data is saved automatically after every action.
 
 **Q**: My computer does not recognise the file type jar. How do I open the app?<br>
-**A**: Install Java version 11 and above from the official Java website.
+**A**: Check if your computer already has Java 11 or above installed from [8.1 Checking your system's Java version](#81-checking-your-systems-java-version). If not, follow the instructions to install Java.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -552,14 +574,14 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 
 1. Open your terminal.
    * Windows
-     * Use `Win` + `S` to open search.
+     * Use **Win** + **S** to open search.
      * Type in 'Terminal' to search for it and click on it to launch.
    * macOS
-     * Use `Cmd` + `Space` to open Spotlight search.
+     * Use **Cmd** + **Space** to open Spotlight search.
      * Type in 'Terminal' to search for it and click on it to launch.
    * Linux
-     * Use `Ctrl` + `Alt` + `T` to open the Terminal.
-2. In your terminal, type in `java --version` and click enter.
+     * Use **Ctrl** + **Alt** + **T** to open the Terminal.
+2. In your terminal, type in **java --version** and click enter.
 3. The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
 
 ![JavaVersionTroubleShoot](images/troubleshoot/JavaVersionTroubleShoot.png)
