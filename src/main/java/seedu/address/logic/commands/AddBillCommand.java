@@ -34,7 +34,8 @@ public class AddBillCommand extends Command {
             + PREFIX_BILL_DATE + "2022-11-11 "
             + PREFIX_AMOUNT + "100.00 ";
     public static final String MESSAGE_SUCCESS = "New bill added: %1$s";
-    public static final String MESSAGE_DUPLICATE_BILL = "This bill already exists in the HealthContact";
+    public static final String MESSAGE_DUPLICATE_BILL =
+            "The appointment with this index already has a bill in the HealthContact";
     public static final String MESSAGE_APPOINTMENT_NOT_EXIST =
             "This appointment does not exist in the HealthContact";
 
