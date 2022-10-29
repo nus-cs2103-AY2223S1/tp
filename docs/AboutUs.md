@@ -52,8 +52,8 @@ You can reach us at the email `climods[at]comp.nus.edu.sg`
 
 <img src="images/sarrrdin.png" width="200px">
 
-[[github](https://github.com/sarrrdin]
-[[portfolio](team/ChewHongJin.md)]
+[[github](https://github.com/sarrrdin)]
+[[portfolio](team/sarrrdin.md)]
 
 * Role: Developer
 * Responsibilities: UX
