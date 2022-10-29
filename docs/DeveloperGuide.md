@@ -862,6 +862,9 @@ MSS:
 #### Technical
 * The system must be able to handle approximately 300 to 500 entries without a noticeable sluggishness in performance for typical usage
 * The system must be flexible and extensible for potential overhaul or changes to the [**RC4**](#glossary) housing management system
+* The system must not lose any data if the exit command is triggered by the user.
+* The system must not lose any data if the system is forcibly closed via other means than the exit command.
+* Installing a new update shall not in any way, modify or erase existing data and value from the previous version, and the new update should be compatible with the data produced earlier within the system.
 
 *{More to be added}*
 
