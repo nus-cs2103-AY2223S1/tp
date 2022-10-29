@@ -26,7 +26,6 @@ public class SupplyItemCard extends UiPart<Region> {
     private static final String FXML = "SupplyItemCard.fxml";
     private static final int MAX_LENGTH = 5;
     private static final String EMPTY_INPUT_MESSAGE = "Empty input detected. Updating terminated.";
-    private static final String MINIMUM_AMOUNT_TEXT = "Minimum Stock Level: ";
     private final Logger logger = LogsCenter.getLogger(getClass());
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
