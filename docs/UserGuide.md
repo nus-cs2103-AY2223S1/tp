@@ -31,8 +31,8 @@ An overview of the application's user interface can be found [here](#user-interf
     * [Viewing a client: `view`](#viewing-a-client--view)
   * [Transaction Commands]()
     * [Creating a transaction: `buy` or `sell` ](#creating-a-transaction-buy-or-sell)
-    * [Editing a transaction: `edit`]()
-    * [Deleting a transaction: `delete`]()
+    * [Editing a transaction: `edit`](#editing-a-transaction--edit)
+    * [Deleting a transaction: `delete`](#deleting-a-transaction--delete)
     * [Filtering buy or sell transactions: `filter`](#filtering-the-transaction-display--filter)
     * [Sorting the transactions: `sort`](#sorting-the-address-book-sort)
   * [Remark Commands]()
@@ -137,10 +137,10 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 Below are some symbols that you may encounter in the User Guide.
 
-| Symbol                                                                           | Meaning                                                                       |
-|----------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| <div markdown="span" class="alert alert-danger">❗ Danger Message                 | Warning, something that could cause irreversible damage when done incorrectly |
-| <div markdown="span" class="alert alert-warning">:warning: Warning Message</div> | Caution, something that could go wrong and should be noted                    |
+| Symbol                                                                             | Meaning                                                                      |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| <div markdown="span" class="alert alert-danger">:exclamation: Danger Message</div> | Danger, something that could cause irreversible damage when done incorrectly |
+| <div markdown="span" class="alert alert-warning">:warning: Warning Message</div>   | Warning, something that could go wrong and should be noted                   |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -424,8 +424,7 @@ Format: `edit INDEX m/remark REMARK`
 | `INDEX`      | - Refers to the index number shown in the display remark list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
 | `REMARK`     | - Refers to the new remark, it is a required field                                                                                                                                     |
 
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
-</div>
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
 
 ### Deleting a remark : `delete`
 
@@ -435,10 +434,34 @@ Format: `delete INDEX m/remark`
 
 * `INDEX` refers to the index number shown in the display remark list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
 
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
-</div>
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a remark is an irreversible process! It will be gone forever**: Be very careful here!
+
+### Editing a transaction : `edit`
+
+Edits a `transaction` specified by the index number.
+
+Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
+
+| Parameter | Constraints                                                                                                                                                                                 |
+|:----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`   | - Refers to the index number shown in the display transaction list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `FIELDS`  | - Refers to the parameters to be changed for the entity. <br/> - Parameters allowed: `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`                                                        |
+
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a transaction.
+
+### Deleting a transaction : `delete`
+
+Deletes a `transaction` specified by the index number.
+
+Format: `delete INDEX m/remark`
+
+* `INDEX` refers to the index number shown in the display transaction list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
+
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
+
+> <div markdown="span" class="alert alert-danger">❗ **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
 
 # Data Storage
 
@@ -452,7 +475,6 @@ JeeqTracker data are saved as a JSON file `[JAR file location]/data/jeeqtracker.
 
 > <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
-</div>
 
 ### Archiving data files `[coming in v2.0]`
 
