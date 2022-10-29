@@ -68,8 +68,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addDeliverer() throws Exception {
         Deliverer deliverer = TypicalDeliverers.BENSON;
-        AddDelivererCommand command = (AddDelivererCommand) parser.parseCommand(
-                AddDelivererCommand.COMMAND_WORD + " " + PersonUtil.getAddCommandBody(deliverer));
+        AddDelivererCommand command = (AddDelivererCommand) parser
+                .parseCommand(AddDelivererCommand.COMMAND_WORD + " "
+                        + PersonUtil.getAddCommandBody(deliverer));
         assertEquals(new AddDelivererCommand(deliverer), command);
     }
 
