@@ -322,13 +322,26 @@ Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
 
 _More details coming soon ..._
 
-### Editing Tasks `[coming in v1.3]`
+### Editing Tasks
 
-Edits an existing tasks with a list of students.
+Edits an existing tasks in the task list.
 
-Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
+Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
 
-_More details coming soon ..._
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* For task specific fields `by/`, `addStu/`, and `deleteStu/`, can only be edited if the task is of the correct type.
+    * `by/` is only accepted while editing a Deadline Task. The date follows the same format as [deadline tasks](#creating-deadline-tasks).
+    * `addStu/` and `deleteStu/` are only accepted while editing an Assignment Task.
+    * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang deleteStu/Zack Yu, Xenia Ng`
+  Edits the title, description and student list of the 1st task in the list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
+* `edit 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task to delete the name `Jackie Chan`. All other students in the list are not affected.
+* `edit-task 3 t/Mark Lab Worksheets d/CS2030S by/2022-10-30` Edits the title, description and deadline of the 3rd task
+  in the list, provided that it is a deadline task, to be `Mark Lab Worksheets`, `CS2030S` and `Oct 30 2022` respectively.
 
 --------------------------------------------------------------------------------------------------------------------
 
