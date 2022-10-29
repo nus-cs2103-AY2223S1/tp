@@ -204,9 +204,8 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName()) && otherStudent.getTelegram().equals(getTelegram());
+                && otherStudent.getTelegram().equals(getTelegram());
     }
-
     /**
      * Returns true if both students have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
