@@ -6,13 +6,13 @@ import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_3;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_4;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_5;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_6;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentsAddressBook;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentsHealthContact;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.HealthContact;
 import seedu.address.model.bill.Bill;
 
 /**
@@ -44,10 +44,10 @@ public class TypicalBills {
     private TypicalBills() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical patients.
+     * Returns an {@code HealthContact} with all the typical patients.
      */
-    public static AddressBook getTypicalBillsAddressBook() {
-        AddressBook ab = getTypicalAppointmentsAddressBook();
+    public static HealthContact getTypicalBillsHealthContact() {
+        HealthContact ab = getTypicalAppointmentsHealthContact();
 
         for (Bill bill : getTypicalBills()) {
             ab.addBill(bill);

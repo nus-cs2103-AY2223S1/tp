@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_1;
 import static seedu.address.testutil.TypicalPatients.ALICE;
-import static seedu.address.testutil.TypicalPatients.getTypicalPatientsAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalPatientsHealthContact;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,26 +30,26 @@ import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.PatientBuilder;
 
-public class AddressBookTest {
+public class HealthContactTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final HealthContact healthContact = new HealthContact();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPatientList());
-        assertEquals(Collections.emptyList(), addressBook.getAppointmentList());
+        assertEquals(Collections.emptyList(), healthContact.getPatientList());
+        assertEquals(Collections.emptyList(), healthContact.getAppointmentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> healthContact.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalPatientsAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyHealthContact_replacesData() {
+        HealthContact newData = getTypicalPatientsHealthContact();
+        healthContact.resetData(newData);
+        assertEquals(newData, healthContact);
     }
 
     @Test
@@ -58,9 +58,9 @@ public class AddressBookTest {
         Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPatients, null);
+        HealthContactStub newData = new HealthContactStub(newPatients, null);
 
-        assertThrows(DuplicatePatientException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePatientException.class, () -> healthContact.resetData(newData));
     }
 
     @Test
@@ -71,81 +71,81 @@ public class AddressBookTest {
         List<Patient> newPatients = Arrays.asList(ALICE);
         List<Appointment> appointments = Arrays.asList(
                 APPOINTMENT_1, new AppointmentBuilder(APPOINTMENT_1).build());
-        AddressBookStub newData = new AddressBookStub(newPatients, appointments);
-        assertThrows(DuplicateAppointmentException.class, () -> addressBook.resetData(newData));
+        HealthContactStub newData = new HealthContactStub(newPatients, appointments);
+        assertThrows(DuplicateAppointmentException.class, () -> healthContact.resetData(newData));
     }
 
     @Test
     public void hasPatient_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPatient((Patient) null));
-        assertThrows(NullPointerException.class, () -> addressBook.hasPatient((Name) null));
+        assertThrows(NullPointerException.class, () -> healthContact.hasPatient((Patient) null));
+        assertThrows(NullPointerException.class, () -> healthContact.hasPatient((Name) null));
     }
 
     @Test
     public void hasAppointment_nullAppointment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasAppointment(null));
+        assertThrows(NullPointerException.class, () -> healthContact.hasAppointment(null));
     }
 
     @Test
-    public void hasPatientPatient_patientNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPatient(ALICE));
+    public void hasPatientPatient_patientNotInHealthContact_returnsFalse() {
+        assertFalse(healthContact.hasPatient(ALICE));
     }
 
     @Test
-    public void hasPatientName_patientNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPatient(ALICE.getName()));
+    public void hasPatientName_patientNotInHealthContact_returnsFalse() {
+        assertFalse(healthContact.hasPatient(ALICE.getName()));
     }
 
     @Test
-    public void hasAppointment_appointmentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasAppointment(APPOINTMENT_1));
+    public void hasAppointment_appointmentNotInHealthContact_returnsFalse() {
+        assertFalse(healthContact.hasAppointment(APPOINTMENT_1));
     }
 
     @Test
-    public void hasPatientPatient_patientInAddressBook_returnsTrue() {
-        addressBook.addPatient(ALICE);
-        assertTrue(addressBook.hasPatient(ALICE));
+    public void hasPatientPatient_patientInHealthContact_returnsTrue() {
+        healthContact.addPatient(ALICE);
+        assertTrue(healthContact.hasPatient(ALICE));
     }
 
     @Test
-    public void hasPatientName_patientInAddressBook_returnsTrue() {
-        addressBook.addPatient(ALICE);
-        assertTrue(addressBook.hasPatient(ALICE.getName()));
+    public void hasPatientName_patientInHealthContact_returnsTrue() {
+        healthContact.addPatient(ALICE);
+        assertTrue(healthContact.hasPatient(ALICE.getName()));
     }
 
     @Test
-    public void hasAppointment_appointmentInAddressBook_returnsTrue() {
-        addressBook.addAppointment(APPOINTMENT_1);
-        assertTrue(addressBook.hasAppointment(APPOINTMENT_1));
+    public void hasAppointment_appointmentInHealthContact_returnsTrue() {
+        healthContact.addAppointment(APPOINTMENT_1);
+        assertTrue(healthContact.hasAppointment(APPOINTMENT_1));
     }
 
     @Test
-    public void hasPatient_patientWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPatient(ALICE);
+    public void hasPatient_patientWithSameIdentityFieldsInHealthContact_returnsTrue() {
+        healthContact.addPatient(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPatient(editedAlice));
+        assertTrue(healthContact.hasPatient(editedAlice));
     }
 
     @Test
     public void getPatientList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPatientList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> healthContact.getPatientList().remove(0));
     }
 
     @Test
     public void getAppointmentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getAppointmentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> healthContact.getAppointmentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose patients list can violate interface constraints.
+     * A stub ReadOnlyHealthContact whose patients list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class HealthContactStub implements ReadOnlyHealthContact {
         private final ObservableList<Patient> patients = FXCollections.observableArrayList();
         private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
         private final ObservableList<Bill> bills = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Patient> patients, Collection<Appointment> appointments) {
+        HealthContactStub(Collection<Patient> patients, Collection<Appointment> appointments) {
             this.patients.setAll(patients);
             this.appointments.setAll(Optional.ofNullable(appointments).orElse(new ArrayList<>()));
         }

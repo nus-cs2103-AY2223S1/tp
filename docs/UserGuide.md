@@ -4,6 +4,8 @@ title: User Guide
 ---
 # HealthContact User Guide
 
+HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
+It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
 
 ## Features
 * Add a patient (addpatient)
@@ -33,10 +35,6 @@ title: User Guide
 * Remark a patient (remark)
 * Set a bill to be paid (setpaid)
 * Set a bill to be unpaid (setunpaid)
-
-HealthContact is a software for the receptionist of a family clinic who arranges telemedicine services between doctors and patients.
-It helps to keep track of patient data, patient appointments and patient bills for the family clinic.
-
 ---
 # Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
@@ -51,7 +49,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
-6. Refer to the [Features](#1.-Features) below for details of each command.
+6. Refer to the __Features__ below for details of each command.
 
 # 1. Features
 
@@ -59,7 +57,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 
 ### 1.1.1 Adding a patient `addpatient`, `ap`
 
-Adds a patient to the address book with input information including name, phone number,
+Adds a patient to the HealthContact with input information including name, phone number,
 email address, home address, remarks and tags. 
 
 * Name must be different from existing patient. 
@@ -99,15 +97,16 @@ Notes on symbols in first column:
 
 <img src="images/addcommand/ap1.png" width="800px" height ="500px">
 
+
 * `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable 
-to add such patient because Bernice Yu already exists in the HealthContact.
+to add such a patient because Bernice Yu already exists in HealthContact.
 
 <img src="images/addcommand/ap2.png" width="800px" height ="500px">
 
 
 ### 1.1.2 Adding an appointment of a patient `addappointment`, `aa`
 
-Adds an appointment to the address book with input information including patient name, medical test,
+Adds an appointment to the HealthContact with input information including patient name, medical test,
 slot, and doctor.
 
 * Name must be the name of an existing patient.
@@ -148,8 +147,8 @@ Notes on symbols in first column:
 <img src="images/addcommand/aa1.png" width="800px" height ="500px">
 
 * Executing `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` again is unable
-to add such appointment because the appointment with the combination of the four inputs
-parameters already exists in the HealthContact.
+to add such an appointment because the appointment with the combination of the four inputs
+parameters already exists in HealthContact.
 
 <img src="images/addcommand/aa2.png" width="800px" height ="500px">
 

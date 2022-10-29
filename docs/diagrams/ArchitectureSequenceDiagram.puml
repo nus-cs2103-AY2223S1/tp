@@ -29,7 +29,7 @@ deactivate model
 model -[MODEL_COLOR]-> logic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
+logic -[LOGIC_COLOR]> storage : saveHealthContact(healthContact)
 activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file

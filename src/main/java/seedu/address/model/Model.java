@@ -42,50 +42,50 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' HealthContact file path.
      */
-    Path getAddressBookFilePath();
+    Path getHealthContactFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' HealthContact file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setHealthContactFilePath(Path healthContactFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces HealthContact data with the data in {@code healthContact}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setHealthContact(ReadOnlyHealthContact healthContact);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the HealthContact */
+    ReadOnlyHealthContact getHealthContact();
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the HealthContact.
      */
     boolean hasPatient(Patient patient);
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the HealthContact.
      */
     boolean hasPatient(Name name);
 
     /**
      * Deletes the given patient.
-     * The patient must exist in the address book.
+     * The patient must exist in the HealthContact.
      */
     void deletePatient(Patient target);
 
     /**
      * Adds the given patient.
-     * {@code patient} must not already exist in the address book.
+     * {@code patient} must not already exist in the HealthContact.
      */
     void addPatient(Patient patient);
 
     /**
      * Replaces the given patient {@code target} with {@code editedPatient}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the HealthContact.
      * The patient identity of {@code editedPatient} must not be the same as
-     * another existing patient in the address book.
+     * another existing patient in the HealthContact.
      */
     void setPatient(Patient target, Patient editedPatient);
 
@@ -112,27 +112,27 @@ public interface Model {
     void updateFilteredPatientList(Predicate<? super Patient> predicate);
 
     /**
-     * Returns true if an appointment with the same identity as {@code appointment} exists in the address book.
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the HealthContact.
      */
     boolean hasAppointment(Appointment appointment);
 
     /**
      * Deletes the given appointment.
-     * The appointment must exist in the address book.
+     * The appointment must exist in the HealthContact.
      */
     void deleteAppointment(Appointment target);
 
     /**
      * Adds the given appointment.
-     * {@code appointment} must not already exist in the address book.
+     * {@code appointment} must not already exist in the HealthContact.
      */
     void addAppointment(Appointment appointment);
 
     /**
      * Replaces the given appointment {@code target} with {@code editedAppointment}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the HealthContact.
      * The appointment identity of {@code editedAppointment} must not be the same as
-     * another existing appointment in the address book.
+     * another existing appointment in the HealthContact.
      */
     void setAppointment(Appointment target, Appointment editedAppointment);
 
@@ -148,27 +148,27 @@ public interface Model {
     void deleteRelativeAppointments(Patient patient);
 
     /**
-     * Returns true if a bill with the same identity as {@code bill} exists in the address book.
+     * Returns true if a bill with the same identity as {@code bill} exists in the HealthContact.
      */
     boolean hasBill(Bill bill);
 
     /**
      * Deletes the given bill.
-     * The bill must exist in the address book.
+     * The bill must exist in the HealthContact.
      */
     void deleteBill(Bill target);
 
     /**
      * Adds the given bill.
-     * {@code bill} must not already exist in the address book.
+     * {@code bill} must not already exist in the HealthContact.
      */
     void addBill(Bill bill);
 
     /**
      * Replaces the given bill {@code target} with {@code editedBill}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the HealthContact.
      * The bill identity of {@code editedBill} must not be the same as
-     * another existing bill in the address book.
+     * another existing bill in the HealthContact.
      */
     void setBill(Bill target, Bill editedBill);
 
@@ -208,23 +208,23 @@ public interface Model {
     void sortBills(Comparator<Bill> comparator, boolean isAscending);
 
     /**
-     * Updates previous state of the address book.
+     * Updates previous state of the HealthContact.
      */
-    void updateAddressBookHistory();
+    void updateHealthContactHistory();
 
     /**
-     * Updates state of the address book when undo command is executed.
+     * Updates state of the HealthContact when undo command is executed.
      */
-    void updateRedoAddressBookHistory();
+    void updateRedoHealthContactHistory();
 
     /**
-     * Undo last change made to state of address book.
+     * Undo last change made to state of HealthContact.
      */
     void undo() throws CommandException;
 
 
     /**
-     * Redo last change made to state of address book.
+     * Redo last change made to state of HealthContact.
      */
     void redo() throws CommandException;
 
