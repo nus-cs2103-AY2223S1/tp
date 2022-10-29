@@ -9,7 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Specialisation {
 
-    public static final String MESSAGE_CONSTRAINTS = "Specialisation can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Specialisation can take any values, and it should not be blank.\n"
+            + "However when you are editing Specialisation field, s/ can be empty";
 
     /*
      * The first character of the specialisation must not be a whitespace,
