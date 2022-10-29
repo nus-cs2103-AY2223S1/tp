@@ -212,12 +212,14 @@ public class MainWindow extends UiPart<Stage> {
      * Switch to students page.
      */
     @FXML
-    public void handleShowTabStudents() {
-        personListPanel = new PersonListPanel(logic.getAllPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        allTutorsPanel = new TutorListPanel(logic.getAllTutorList());
-        allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
-        tabPane.getSelectionModel().select(STUDENTLIST);
+    public void handleShowTabStudents() throws CommandException, ParseException {
+        logic.execute("list");
+//        personListPanel = new PersonListPanel(logic.getAllPersonList());
+//        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+//        allTutorsPanel = new TutorListPanel(logic.getAllTutorList());
+//        allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
+//        tabPane.getSelectionModel().select(STUDENTLIST);
+//        resultDisplay.setFeedbackToUser("Show all students!");
     }
 
 
@@ -225,13 +227,14 @@ public class MainWindow extends UiPart<Stage> {
      * Switch to students page with all students.
      */
     @FXML
-    public void handleShowTabAllStudents() {
+    public void handleShowTabAllStudents() throws CommandException, ParseException {
+        logic.execute("list");
         personListPanel = new PersonListPanel(logic.getAllPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         allTutorsPanel = new TutorListPanel(logic.getAllTutorList());
         allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
         tabPane.getSelectionModel().select(STUDENTLIST);
-        resultDisplay.setFeedbackToUser("Show all students!");
+//        resultDisplay.setFeedbackToUser("Show all students!");
     }
 
     /**
