@@ -18,14 +18,7 @@ public class HomeCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setHomeStatus(true);
-        updateFilteredList(model);
+        model.goToHomePage();
         return new CommandResult(MESSAGE_SUCCESS);
-    }
-
-    private void updateFilteredList(Model model) {
-        requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 }
