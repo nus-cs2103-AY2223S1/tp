@@ -1,5 +1,7 @@
 package seedu.trackascholar.model.applicant;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.trackascholar.commons.util.AppUtil.checkArgument;
 
@@ -71,6 +73,7 @@ public class Name implements Comparable<Name> {
 
     @Override
     public int compareTo(Name other) {
-        return this.fullName.compareTo(other.fullName);
+
+        return this.fullName.compareToIgnoreCase(other.fullName);
     }
 }
