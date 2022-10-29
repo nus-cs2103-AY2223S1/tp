@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.github.User;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -60,8 +62,16 @@ public class DetailPanel extends MainPanel {
 
     private void updatePersonDetail(Person person) {
         nameLabel.setText(person.getName().toString());
-        Image placeholder = new Image(this.getClass().getResourceAsStream("/images/user_placeholder.png"));
-        profileImageContainer.setFill(new ImagePattern(placeholder));
+
+        User githubUser = person.getGithubUser().orElse(null);
+        Image avatarImage = new Image(this.getClass().getResourceAsStream("/images/user_placeholder.png"));
+        if (githubUser != null) {
+            if (githubUser.getAvatarImageFilePath().isPresent()) {
+                File avatarImageFile = githubUser.getAvatarImageFilePath().get().toFile();
+                avatarImage = new Image(avatarImageFile.toURI().toString());
+            }
+        }
+        profileImageContainer.setFill(new ImagePattern(avatarImage));
 
         roleLabel.setVisible(person.getRole().isPresent());
         person.getRole().ifPresent(r -> roleLabel.setText(r.toString()));
@@ -70,15 +80,15 @@ public class DetailPanel extends MainPanel {
         person.getTimezone().ifPresent(t -> timezoneLabel.setText(t.toString()));
 
         List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
-                person.getContacts()
-                        .values().stream()
-                        .map(ContactBox::new)
-                        .collect(Collectors.toList()));
+            person.getContacts()
+                .values().stream()
+                .map(ContactBox::new)
+                .collect(Collectors.toList()));
 
         contactBoxContainer.getChildren().clear();
         contactBoxContainer.getChildren().addAll(contactBoxList.stream()
-                .map(ContactBox::getRoot)
-                .collect(Collectors.toList()));
+            .map(ContactBox::getRoot)
+            .collect(Collectors.toList()));
     }
 
     @Override
