@@ -29,6 +29,7 @@ public class TelegramTest {
         assertFalse(Telegram.isValidTelegram(" ")); // spaces only
         assertFalse(Telegram.isValidTelegram("he")); // <5 chars
         assertFalse(Telegram.isValidTelegram("lo-pie")); // special chars that are not underscores
+        assertFalse(Telegram.isValidTelegram("lo__pie")); // consecutive underscores
         assertFalse(Telegram.isValidTelegram("lopi&e")); // special chars that are not underscores
 
         // valid telegram
@@ -36,5 +37,6 @@ public class TelegramTest {
         assertTrue(Telegram.isValidTelegram("jammy12")); // words and numbers
         assertTrue(Telegram.isValidTelegram("JAMMdfg")); // caps
         assertTrue(Telegram.isValidTelegram("12345")); // numbers
+        assertTrue(Telegram.isValidTelegram("lo_pie")); // an underscore
     }
 }
