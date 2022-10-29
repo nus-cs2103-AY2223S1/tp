@@ -3,7 +3,7 @@ layout: page
 title: Salesy User Guide v1.3
 ---
 
-Salesy is a desktop app for helping food vendors manage details of their clients and suppliers, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and remember the commands well, Salesy can get your contact management tasks done faster than traditional GUI apps.
+Salesy is a desktop app for helping food vendors manage details of suppliers and inventory, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and remember the commands well, Salesy can get your management tasks done faster than traditional GUI apps.
 
 ![Ui](images/Ui.png)
 
@@ -67,10 +67,9 @@ Inventory Cards for Items
 
 | Color          | Meaning                                                          | How is it determined ?                                                                              |
 |----------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| 🔴&nbsp;Red    | Running at `near or below minimum`, restock as soon as possible. | **Less than 120%** of minimum stock specified.                                                      |
+| ️🍎&nbsp;Red   | Running at `near or below minimum`, restock as soon as possible. | **Less than 120%** of minimum stock specified.                                                      |
 | 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon.     | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
 | 🟢&nbsp;Green  | Running at a `healthy` level no worries about restocking.        | **More than and equal to 165%** of minimum stock specified.                                         |
-
 
 ### Add supplier/task/supply item: `add`
 
