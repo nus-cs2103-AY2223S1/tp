@@ -132,8 +132,8 @@ The prefixes and their respective parameters are as follows:
 
 * **local-part**: Alphanumeric characters and `+`, `_`, `.`, `-` only.
 * **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only 
-    and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo` 
-    and before `gmail` is empty).
+  and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo` 
+  and before `gmail` is empty).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of medications (including 0)!
@@ -178,9 +178,10 @@ The prefixes and their respective parameters are as follows:
 | `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                               |
 
 * **local-part**: Alphanumeric characters and `+`, `_`, `.`, `-` only.
-* **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only
-  and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo`
+* **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only 
+  and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo` 
   and before `gmail` is empty).
+
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing medication, the existing medication of the patient will be removed i.e. adding of medication is not
@@ -271,10 +272,9 @@ Format: `get /n NAME`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
-  , `Bo Yang`
+* Patients with names that match at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber` and 
+  `Bo Yang`
 
 Examples:
 
@@ -290,7 +290,8 @@ Format: `get /nok PATIENT_NAME`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The patient's next-of-kin details matching the keyword will be returned. e.g. `Hans Bo` will return `Sarar, 12345678, Mom`
+* Patients with names that match at least one keyword will have their next-of-kin details returned. e.g. `Hans Bo` will 
+  return `Sarar, 12345678, Mom`
 
 #### by hospital wing: `/hw`
 
@@ -298,9 +299,10 @@ Finds all the patients in that particular hospital wing.
 
 Format: `get /hw HOSPITAL_WING`
 
-* `HOSPITAL_WING` only allows the following values: South, North, West, East
+* `HOSPITAL_WING` only allows the following values: South, North, West, East.
 * The search is case-insensitive. e.g `souTh` will match `South`
-* Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `South No` will match `south`
+* Only fully inputted values will be used. e.g. `South No` will match `south` as `No` does not match South, North, West
+  or East.
 * `get /hw south /hw north` matches `get /hw south north`.
 * All the patients in that hospital wing will be returned. e.g. `get /hw SOUTH` will return `John` `Peter` `Mary`
 
@@ -310,10 +312,11 @@ Finds all the patients in that particular floor number.
 
 Format: `get /fn FLOOR_NUMBER`
 
-* `FLOOR_NUMBER` only allows positive numbers. 
-* Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `1 3` will match `1 OR 3`
-* `get /fn 1 /fn 3` matches `get /fn 1 3`.
+* `FLOOR_NUMBER` only allows positive integers. 
 * All the patients in that floor number will be returned. e.g. `get /fn 2` will return `John` `Peter` `Mary`
+* Multiple `FLOOR_NUMBER` can be inputted. e.g. `1 3` will return all patients staying in the 1st and 3rd floor
+* `get /fn 1 /fn 3` matches `get /fn 1 3`.
+
 
 
 #### by ward number: `/wn`
@@ -322,9 +325,11 @@ Finds all the patients in that particular ward number.
 
 Format: `get /wn WARD_NUMBER`
 
-* Patients matching at least one keyword will be returned (i.e. `OR` search). e.g. `D1 E31` will match `D1 OR E31`
-* `get /wn D12 /wn E13` matches `get /wn D12 E13`. 
 * All the patients in that ward number will be returned. e.g. `get /wn D12` will return `John` `Peter` `Mary`
+* Multiple `WARD_NUMBER` can be inputted. e.g. `D001 E301` will return all patients staying in the ward number D001 and
+  E301.
+* `get /wn D12 /wn E13` matches `get /wn D12 E13`. 
+
 
 #### by medication: `/m`
 
@@ -332,7 +337,6 @@ Finds all the patients by medication.
 
 Format: `get /m MEDICATION`
 
-All the patients being prescribed that medication will be returned.
 e.g. `get /m ibuprofen` will return `John` `Peter` `Mary`
 
 #### by patient type: `/inp`
