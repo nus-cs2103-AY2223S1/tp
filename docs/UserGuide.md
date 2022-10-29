@@ -277,11 +277,17 @@ View details associated with a client, such as the client's name and phone numbe
 Format: `viewClient i/INDEX`
 
 * Display information about the client at the specific `INDEX`.
-* The index refers to the index number shown in the displayed clients' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown by executing [`listClient`](#512-list-clients-listclient) command.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Use case:
+
+1. View more specific details related to the client such as address and birthday which are not shown in the list of clients. This will help you foster a stronger relationship with your clients because you can wish them happy birthday!
 
 Examples:
-* `viewClient i/1`
+
+* View client at index 1
+  * `viewClient i/1`
 
 #### 5.1.4 Delete client: `delClient`
 
@@ -291,7 +297,7 @@ Format: `delClient i/INDEX`
 
 * Delete the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listClient`](#512-list-clients-listclient) command.
-* `Index` **must be a positive integer** 1, 2, 3, …​
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `delClient i/2`
@@ -374,13 +380,17 @@ Examples:
 
 #### 5.2.3 View meeting: `viewMeeting`
 
-View details associated with a meeting, such as meeting's date and time.
+View details associated with a meeting, such as the meeting's date and time.
 
 Format: `viewMeeting i/INDEX`
 
-* Display information about the meeting at the specific `INDEX`.
-* The index refers to the index number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
-* The index **must be a positive integer** 1, 2, 3, …
+* Display information about the meeting at the specific `INDEX` and details of the client whom you are meeting.
+* The `INDEX` refers to the index number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …
+
+Use Case:
+
+1. Get an overview of the meeting and the client you are meeting with. This helps you become more prepared for the meeting and you will not have to remember every single small detail of the meeting!
 
 Examples:
 * `viewMeeting i/1`
@@ -394,6 +404,7 @@ Format: `delMeeting i/INDEX`
 * Delete the meeting at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#522-list-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …
+
 
 Examples:
 * `delMeeting i/2`
@@ -429,6 +440,11 @@ Format: `addProduct pd/PRODUCT`
 
 * Add a product having name `PRODUCT`.
 * A product must have a product name which is `PRODUCT`.
+* A product name can only be **alphanumeric** and contain spaces. Other symbols are strictly not allowed.
+
+Use Case:
+
+1. You can define your own insurance products that you sell and tag them to clients who have bought the product. Now you will not have to worry about forgetting which product did the client buy!
 
 Examples:
 * `addProduct pd/Product1`
@@ -448,7 +464,7 @@ Examples:
 * List all products
   * `listProduct`
 
-#### 5.3.3 Delete a product : `delProduct`
+#### 5.3.3 Delete product: `delProduct`
 
 Deletes a product from *MyInsuRec*.  
 This command removes this product from all the clients as well.
