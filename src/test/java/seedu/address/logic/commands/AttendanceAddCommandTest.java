@@ -26,7 +26,6 @@ class AttendanceAddCommandTest {
     private static final String aliceMod = "CS2030";
     private static final String bensonMod = "CS2040";
     private static final String size = "5";
-
     private static final String invalidSize = "13";
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskBookWithToDos(), new UserPrefs());
@@ -72,8 +71,8 @@ class AttendanceAddCommandTest {
         AttendanceAddCommand attendanceAddCommand = new AttendanceAddCommand(INDEX_FIRST_STUDENT,
                 aliceMod, invalidSize);
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_ATTENDANCE_LIST_INDEX);
-        assertThrows(CommandException.class, expectedMessage,
-                () -> attendanceAddCommand.execute(model));
+        assertThrows(CommandException.class, expectedMessage, ()
+                -> attendanceAddCommand.execute(model));
     }
 
     @Test

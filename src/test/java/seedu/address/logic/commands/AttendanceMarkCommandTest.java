@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
@@ -67,7 +69,8 @@ class AttendanceMarkCommandTest {
     @Test
     public void execute_invalidStudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        AttendanceMarkCommand attendanceMarkCommand = new AttendanceMarkCommand(outOfBoundIndex, validLessonIndex, emptyAttendance);
+        AttendanceMarkCommand attendanceMarkCommand = new AttendanceMarkCommand(outOfBoundIndex,
+                validLessonIndex, emptyAttendance);
         assertCommandFailure(attendanceMarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
     @Test
@@ -77,31 +80,36 @@ class AttendanceMarkCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
 
-        AttendanceMarkCommand attendanceMarkCommand = new AttendanceMarkCommand(outOfBoundIndex, validLessonIndex, emptyAttendance);
+        AttendanceMarkCommand attendanceMarkCommand = new AttendanceMarkCommand(outOfBoundIndex,
+                validLessonIndex, emptyAttendance);
 
         assertCommandFailure(attendanceMarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidAttendanceList_failure() {
-        AttendanceMarkCommand attendanceMarkCommand = new AttendanceMarkCommand(INDEX_FIRST_STUDENT, validLessonIndex, markedAttendance);
+        AttendanceMarkCommand attendanceMarkCommand = new AttendanceMarkCommand(INDEX_FIRST_STUDENT,
+                validLessonIndex, markedAttendance);
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_ATTENDANCE_LIST_INDEX);
-        assertThrows(CommandException.class, expectedMessage,
-                () -> attendanceMarkCommand.execute(model));
+        assertThrows(CommandException.class, expectedMessage, ()
+                -> attendanceMarkCommand.execute(model));
     }
 
     @Test
     public void execute_invalidLessonIndex_failure() {
-        AttendanceMarkCommand attendanceMarkCommand = new AttendanceMarkCommand(INDEX_SECOND_STUDENT, invalidLessonIndex, markedAttendance);
+        AttendanceMarkCommand attendanceMarkCommand = new AttendanceMarkCommand(INDEX_SECOND_STUDENT,
+                invalidLessonIndex, markedAttendance);
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_ATTENDANCE_LIST_INDEX);
-        assertThrows(CommandException.class, expectedMessage,
-                () -> attendanceMarkCommand.execute(model));
+        assertThrows(CommandException.class, expectedMessage, ()
+                -> attendanceMarkCommand.execute(model));
     }
 
     @Test
     public void equals() {
-        final AttendanceMarkCommand standardCommand = new AttendanceMarkCommand(INDEX_SECOND_STUDENT, validLessonIndex, markedAttendance);
-        AttendanceMarkCommand commandWithSameValues = new AttendanceMarkCommand(INDEX_SECOND_STUDENT, validLessonIndex, markedAttendance);
+        final AttendanceMarkCommand standardCommand = new AttendanceMarkCommand(INDEX_SECOND_STUDENT,
+                validLessonIndex, markedAttendance);
+        AttendanceMarkCommand commandWithSameValues = new AttendanceMarkCommand(INDEX_SECOND_STUDENT,
+                validLessonIndex, markedAttendance);
 
         // same values -> returns true
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -116,11 +124,14 @@ class AttendanceMarkCommandTest {
         assertFalse(standardCommand.equals(new HelpCommand()));
 
         // different student index -> returns false
-        assertFalse(standardCommand.equals(new AttendanceMarkCommand(INDEX_FIRST_STUDENT, validLessonIndex, markedAttendance)));
+        assertFalse(standardCommand.equals(new AttendanceMarkCommand(INDEX_FIRST_STUDENT,
+                validLessonIndex, markedAttendance)));
         // different lesson index -> return false
-        assertFalse(standardCommand.equals(new AttendanceMarkCommand(INDEX_SECOND_STUDENT, "2", markedAttendance)));
+        assertFalse(standardCommand.equals(new AttendanceMarkCommand(INDEX_SECOND_STUDENT,
+                "2", markedAttendance)));
 
         // different markedAttendance -> return false
-        assertFalse(standardCommand.equals(new AttendanceMarkCommand(INDEX_SECOND_STUDENT, validLessonIndex, emptyAttendance)));
+        assertFalse(standardCommand.equals(new AttendanceMarkCommand(INDEX_SECOND_STUDENT,
+                validLessonIndex, emptyAttendance)));
     }
 }

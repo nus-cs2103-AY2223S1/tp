@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.student.Phone;
 
 public class AttendanceTest {
     @Test
@@ -47,11 +46,11 @@ public class AttendanceTest {
     }
 
     @Test
-    public void constructor_invalid_attendance_throwsIllegalArgumentException() {
+    public void constructor_invalidAttendance_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> new Attendance("3"));
     }
     @Test
-    public void constructor_null_attendance_throwsNullPointerException() {
+    public void constructor_nullAttendance_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Attendance(null));
     }
 }

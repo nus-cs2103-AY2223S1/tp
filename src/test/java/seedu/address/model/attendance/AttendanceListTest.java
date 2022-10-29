@@ -1,13 +1,16 @@
 package seedu.address.model.attendance;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 public class AttendanceListTest {
 
-    public static AttendanceList EMPTY_ATTENDANCE = new AttendanceList();
-    public static AttendanceList TEST_ATTENDANCE = new AttendanceList("CS2040","12");
+    private static AttendanceList emptyAttendance = new AttendanceList();
+    private static AttendanceList testAttendance = new AttendanceList("CS2040", "12");
     @Test
     public void equals() {
         AttendanceList attendanceList = new AttendanceList("CS2040", "10");
@@ -48,30 +51,30 @@ public class AttendanceListTest {
 
     @Test
     public void isEmpty() {
-        assertFalse(TEST_ATTENDANCE.isEmpty());
-        assertTrue(EMPTY_ATTENDANCE.isEmpty());
+        assertFalse(testAttendance.isEmpty());
+        assertTrue(emptyAttendance.isEmpty());
     }
 
     @Test
     public void getSize() {
-        assertEquals(EMPTY_ATTENDANCE.getSize(), 0);
-        assertEquals(TEST_ATTENDANCE.getSize(), 12);
+        assertEquals(emptyAttendance.getSize(), 0);
+        assertEquals(testAttendance.getSize(), 12);
     }
 
     @Test
     public void getAttendanceList() {
-        assertEquals(new AttendanceList().getAttendanceList(),EMPTY_ATTENDANCE.getAttendanceList());
+        assertEquals(new AttendanceList().getAttendanceList(), emptyAttendance.getAttendanceList());
     }
 
     @Test
     public void getMod() {
-        assertEquals(EMPTY_ATTENDANCE.getMod(), "NA");
-        assertEquals(TEST_ATTENDANCE.getMod(), "CS2040");
+        assertEquals(emptyAttendance.getMod(), "NA");
+        assertEquals(testAttendance.getMod(), "CS2040");
     }
 
     @Test
     public void mark() {
-        TEST_ATTENDANCE.mark("1", new Attendance("1"));
-        assertEquals(TEST_ATTENDANCE.toString(), "(CS2040)[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]");
+        testAttendance.mark("1", new Attendance("1"));
+        assertEquals(testAttendance.toString(), "(CS2040)[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]");
     }
 }
