@@ -125,22 +125,22 @@ public class ProfileTest {
 
     @Test
     public void compareTo_sameNameSamePhone_isEqual() {
-        assertEquals(AMY.compareTo(AMY), 0);
-        assertEquals(AMY_DIFFERENT_PHONE.compareTo(AMY_DIFFERENT_PHONE), 0);
+        assertEquals(0, AMY.compareTo(AMY));
+        assertEquals(0, AMY_DIFFERENT_PHONE.compareTo(AMY_DIFFERENT_PHONE));
     }
 
     @Test
     public void compareTo_sameNameDifferentPhone_isNotEqual() {
-        assertEquals(AMY.compareTo(AMY_DIFFERENT_PHONE), -1);
+        assertEquals(-1, AMY.compareTo(AMY_DIFFERENT_PHONE));
     }
 
     @Test
     public void compareTo_differentNameSamePhone_isNotEqual() {
-        assertNotEquals(AMY.compareTo(AMY_LOWER_CAPS), 0);
+        assertNotEquals(0, AMY.compareTo(AMY_LOWER_CAPS));
     }
 
     @Test
     public void compareTo_differentNamedifferentPhone_isNotEqual() {
-        assertNotEquals(AMY.compareTo(ALICE), 0);
+        assertNotEquals(0, AMY.compareTo(ALICE));
     }
 }

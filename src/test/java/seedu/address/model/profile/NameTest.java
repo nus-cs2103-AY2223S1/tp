@@ -45,13 +45,13 @@ public class NameTest {
 
     @Test
     public void compareTo_sameCapitalisationAndSpelling_isEqual() {
-        assertEquals(new Name("Aaron").compareTo(new Name("Aaron")), 0);
-        assertEquals(new Name("65aaron").compareTo(new Name("65aaron")), 0);
+        assertEquals(0, new Name("Aaron").compareTo(new Name("Aaron")));
+        assertEquals(0, new Name("65aaron").compareTo(new Name("65aaron")));
     }
 
     @Test
     public void compareTo_differentCapitalisationSameSpelling_isNotEqual() {
-        assertNotEquals(new Name("aaron").compareTo(new Name("Aaron")), 0);
-        assertNotEquals(new Name("A").compareTo(new Name("AA")), 0);
+        assertNotEquals(0, new Name("aaron").compareTo(new Name("Aaron")));
+        assertNotEquals(0, new Name("A").compareTo(new Name("AA")));
     }
 }

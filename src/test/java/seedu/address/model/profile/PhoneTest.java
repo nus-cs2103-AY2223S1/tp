@@ -41,12 +41,12 @@ public class PhoneTest {
 
     @Test
     public void compareTo_sameValue_isEqual() {
-        assertEquals(new Phone("12345").compareTo(new Phone("12345")), 0);
+        assertEquals(0, new Phone("12345").compareTo(new Phone("12345")));
     }
 
     @Test
     public void compareTo_differentValue_isNotEqual() {
-        assertEquals(new Phone("12345").compareTo(new Phone("12346")), -1);
-        assertEquals(new Phone("99999999").compareTo(new Phone("11111111")), 1);
+        assertEquals(-1, new Phone("12345").compareTo(new Phone("12346")));
+        assertEquals(1, new Phone("99999999").compareTo(new Phone("11111111")));
     }
 }
