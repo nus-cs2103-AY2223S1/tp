@@ -888,13 +888,19 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launching RC4HDB
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+<br>
+
+### Exiting RC4HDB
+
+Prerequisite: RC4HDB window is already opened.
 
 1. Saving window preferences
 
@@ -903,7 +909,12 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Exiting via command-line
+
+   1. Test case: `exit`<br>
+      Expected: Window closes.
+
+<br>
 
 ### Deleting a person
 
@@ -920,7 +931,8 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+<br>
 
 ### Saving data
 
@@ -928,4 +940,77 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+<br>
+
+### Navigating recently-used commands
+   
+Prerequisites: List all residents using the `list` command, followed by adding a resident using the `add` command. The following
+test cases are to be done sequentially.
+
+1. Test case: Pressing `UP_ARROW_KEY`<br>
+   Expected: `add` command is copied onto the input command box.
+
+
+2. Test case: Pressing `UP_ARROW_KEY`<br>
+   Expected: `add` command is replaced and `list` command is copied onto the input command box.
+   
+
+3. Test case: Pressing `DOWN_ARROW_KEY`<br>
+   Expected: `list` command is replaced and `add` command is copied onto the input command box.
+   
+
+4. Test case: Pressing `DOWN_ARROW_KEY`<br>
+   Expected: `add` command is replaced and ` ` is copied onto the input command box. i.e. no command
+
+<br>
+
+### Opening the Help Window
+
+Prerequisites: Help Window is not currently opened.
+
+1. Test case: `help`
+   Expected: Help Window pops up. 
+
+
+2. Test case: Pressing `F1`<br>
+   Expected: Help Window pops up.
+
+<br>
+
+### Closing the Help Window
+
+Prerequisites: Help Window is currently opened.
+
+1. Test case: Pressing `X` of the Help Window.<br>
+   Expected: Help Window closes.
+
+
+2. Test case: Pressing `ESC`<br>
+   Expected: Help Window closes.
+
+<br>   
+
+### Accessing the command input box 
+
+Prerequisites: Command input box is not in focus.
+
+1. Test case: Pressing `F3`<br>
+   Expected: Command input box is in focus and ready for user command.
+
+<br>
+   
+### Switching from Residents tab to the Bookings tab 
+
+Prerequisites: Currently on the Resident tab.
+
+1. Test case: Pressing `CTRL-TAB`<br>
+   Expected: Bookings tabs is displayed.
+
+<br>
+
+### Switching from Bookings tab to the Residents tab 
+
+Prerequisites: Currently on the Resident tab.
+
+1. Test case: Pressing `CTRL-TAB`<br>
+   Expected: Residents tabs is displayed.
