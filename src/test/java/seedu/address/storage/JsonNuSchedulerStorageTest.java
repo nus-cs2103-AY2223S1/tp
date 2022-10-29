@@ -52,12 +52,13 @@ public class JsonNuSchedulerStorageTest {
 
     @Test
     public void readNuScheduler_invalidProfileNuScheduler_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readNuScheduler("invalidProfileNuScheduler.json"));
+        assertThrows(DataConversionException.class, () -> readNuScheduler("invalidNameNuScheduler.json"));
     }
 
     @Test
     public void readNuScheduler_invalidAndValidProfileNuScheduler_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readNuScheduler("invalidAndValidProfileNuScheduler.json"));
+        assertThrows(DataConversionException.class, () ->
+                readNuScheduler("invalidPhoneAndValidProfileNuScheduler.json"));
     }
 
     @Test
