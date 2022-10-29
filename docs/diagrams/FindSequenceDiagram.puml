@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant ":FindCommandParser" as FindParser LOGIC_COLOR
 participant "FindableCategoryParser" as CategoryParser LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("find c/n Shop")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("find c/n Shop")
-activate AddressBookParser
+LogicManager -> InternshipBookParser : parseCommand("find c/n Shop")
+activate InternshipBookParser
 
 create FindParser
-AddressBookParser -> FindParser
+InternshipBookParser -> FindParser
 activate FindParser
 
-FindParser --> AddressBookParser
+FindParser --> InternshipBookParser
 deactivate FindParser
 
-AddressBookParser -> FindParser : parse("find c/n Shop")
+InternshipBookParser -> FindParser : parse("find c/n Shop")
 activate FindParser
 
 FindParser -> CategoryParser : parse("n")
@@ -49,11 +49,14 @@ activate FindCommand
 FindCommand --> FindParser
 deactivate FindCommand
 
-FindParser --> AddressBookParser : f
-deactivate FindParser
+FindParser --> InternshipBookParser : f
+deactivate  FindParser
 
-AddressBookParser --> LogicManager : f
-deactivate AddressBookParser
+FindParser -[hidden]> InternshipBookParser : f
+destroy FindParser
+
+InternshipBookParser --> LogicManager : f
+deactivate InternshipBookParser
 
 LogicManager -> FindCommand : execute()
 activate FindCommand

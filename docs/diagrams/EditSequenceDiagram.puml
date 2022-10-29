@@ -43,6 +43,9 @@ deactivate EditCommand
 EditCommandParser --> InternshipBookParser
 deactivate EditCommandParser
 
+EditCommandParser -[hidden]-> InternshipBookParser
+destroy EditCommandParser
+
 InternshipBookParser --> LogicManager
 deactivate InternshipBookParser
 
@@ -53,7 +56,8 @@ EditCommand -> Descriptor
 activate Descriptor
 Descriptor --> EditCommand : edited
 deactivate Descriptor
-
+Descriptor -[hidden]-> EditCommand
+destroy Descriptor
 EditCommand -> Model : setInternship(toEdit, edited)
 activate Model
 
@@ -66,8 +70,11 @@ deactivate InternshipBook
 Model --> EditCommand
 deactivate Model
 
-EditCommand --> LogicManager
+EditCommand --> LogicManager : result
 deactivate EditCommand
+
+EditCommand -[hidden]-> LogicManager
+destroy EditCommand
 
 [<--LogicManager
 @enduml

@@ -145,9 +145,6 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -196,6 +193,9 @@ Classes used by multiple components are in the `seedu.phu.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for some components should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Add feature
 
@@ -293,29 +293,6 @@ specified category.
 The following sequence diagram shows how the find command works.
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
-
-Given below is an example usage scenario and how the list mechanism behaves at each step
-
-Step 1. The user launches the application for the first time. There are some example internships initialised.
-
-Step 2. The user input the command `list c/n true`. The `LogicManager#execute` method is called to execute the command.
-
-Step 3. The `LogicManager#execute` method calls the `InternshipBookParser#parseCommand` method which matches the input
-to `list` as the command and `c\n true` as the arguments.
-
-Step 4. `InternshipBookParser#parseCommand` method initialise a `ListCommandParser` class and calls the
-`ListCommandParser#parse` method, passing the arguments along.
-
-Step 5. `ListCommandParser#parse` method initialise a `ComparableCategoryParser` class and calls
-`ComparableCategoryParser#parse` method, passing the `CATEGORY` to be parsed.
-
-Step 6. The `ComparableCategoryParser#parse` method returns the `CATEGORY` the `list` command is to be sorted by, 
-the `ListCommandParser#parse` method returns the `ListCommand` to be executed.
-
-Step 7. The `ListCommand` is returned to the `LogicManager` class where `ListCommand#execute` is called.
-`ListCommand` calls the `Model#sortList` method to sort the internship list by the `COMPANY_NAME` category.
-
-Step 8. The `ListCommand` initialise a `CommandResult` and returns to the `LogicManager`.
 
 
 #### Design Considerations
@@ -419,10 +396,6 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
 The `redo` command does the opposite — it calls `Model#redoInternshipBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the internship book to that state.
 
 The following sequence diagram shows how the redo command works:
@@ -455,7 +428,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the internship being deleted).
   * Cons: Quite hard to implement as we must ensure that the implementation of each individual command are correct
 
 
@@ -538,7 +511,7 @@ The following sequence diagram shows how the Bar Chart works when a change is tr
 
 #### Design Considerations
 **Data to be processed**:
-* **Alternative 1 (current choice)**: Only process the displated data
+* **Alternative 1 (current choice)**: Only process the displayed data
   * Pros: More flexible, easier to implement
   * Cons: Might confuse users initially
 
@@ -552,7 +525,7 @@ The following sequence diagram shows how the Bar Chart works when a change is tr
 
 ### \[Proposed\] Data archiving
 
-_{To be updated}_
+_{To be updated in v2.0}_
 
 
 --------------------------------------------------------------------------------------------------------------------
