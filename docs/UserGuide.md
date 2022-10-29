@@ -462,7 +462,7 @@ You can simply install the app in the other computer and overwrite the data file
 
 ## Command summary
 
-| Action                             | Format, Examples                                                                       |
+| Action                             | Format                                                                                 |
 |------------------------------------|----------------------------------------------------------------------------------------|
 | **Add Profile**                    | `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`             |
 | **Delete Profile**                 | `profile -d INDEX`                                                                     |
