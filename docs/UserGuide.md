@@ -48,7 +48,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
   e.g. `add -p` is used to add properties in the property directory while `add -c` is used to add clients in the client directory.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -p n/NAME`, `NAME` is a parameter which can be used as `add n/PINNACLE@DUXTON`.
+  e.g. in `add -p n/NAME`, `NAME` is a parameter which can be used as `add -p n/PINNACLE@DUXTON`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/PINNACLE@DUXTON t/luxury` or as `n/PINNACLE@DUXTON`.
