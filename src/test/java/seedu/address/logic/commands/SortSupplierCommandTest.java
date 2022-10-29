@@ -29,6 +29,7 @@ public class SortSupplierCommandTest {
         assertThrows(NullPointerException.class, () -> new SortSupplierCommand(null));
     }
 
+    /*
     @Test
     public void execute_noAttributes_noDifference() {
         CommandResult expectedResult = new CommandResult(SortSupplierCommand.MESSAGE_SUCCESS);
@@ -42,6 +43,8 @@ public class SortSupplierCommandTest {
             assert false;
         }
     }
+
+     */
 
     @Test
     public void execute_oneAttribute_accordingToThatAttribute() {
