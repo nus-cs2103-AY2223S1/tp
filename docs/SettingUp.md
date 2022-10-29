@@ -3,10 +3,7 @@ layout: page
 title: Setting up and getting started
 ---
 
-* Table of Contents
-  {:toc}
-
----
+{% include toc.md header=true %}
 
 ## Setting Up The Project in Your Computer
 
