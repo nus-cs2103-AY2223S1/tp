@@ -270,7 +270,6 @@ Tags: {vegetables}
 * The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
 * The value of `REMARKS` will be `No Remarks` if not provided.
 * `PRICE` do not require you to include the currency. Only include the value.
-* You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
 ```
 
