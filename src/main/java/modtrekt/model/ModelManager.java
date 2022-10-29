@@ -180,6 +180,9 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteModule(Module target) {
+        if (target.getCode().equals(currentModule)) {
+            setCurrentModule(null);
+        }
         moduleList.removeModule(target);
     }
 
