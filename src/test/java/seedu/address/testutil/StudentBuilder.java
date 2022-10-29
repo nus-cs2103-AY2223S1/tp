@@ -26,7 +26,7 @@ public class StudentBuilder extends PersonBuilder {
         super();
         this.moduleCodes = new HashSet<>();
         this.moduleCodes.add(new ModuleCode(DEFAULT_MODULE_CODE));
-        this.year = new Year(DEFAULT_YEAR, true);
+        this.year = new Year(DEFAULT_YEAR, false);
     }
 
     /**
@@ -44,6 +44,14 @@ public class StudentBuilder extends PersonBuilder {
      */
     public StudentBuilder withModuleCodes(String ... moduleCodes) {
         this.moduleCodes = SampleDataUtil.getModuleCodeSet(moduleCodes);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Year} of the {@code Student} that we are building.
+     */
+    public PersonBuilder withYear(String year) {
+        this.year = new Year(year);
         return this;
     }
 

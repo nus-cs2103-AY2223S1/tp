@@ -25,7 +25,6 @@ import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.OfficeHour;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
@@ -48,7 +47,7 @@ public class ProfCommandParser implements Parser<ProfCommand> {
                         PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_RATING,
                         PREFIX_SPECIALISATION, PREFIX_OFFICEHOUR);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_GENDER, PREFIX_OFFICEHOUR)
+                PREFIX_GENDER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ProfCommand.MESSAGE_USAGE));
         }
@@ -75,7 +74,7 @@ public class ProfCommandParser implements Parser<ProfCommand> {
         OfficeHour officeHour = ParserUtil.parseOfficeHour(argMultimap.getValue(PREFIX_OFFICEHOUR)
                 .orElse(OfficeHour.EMPTY_OFFICE_HOUR), argMultimap.getValue(PREFIX_OFFICEHOUR).isPresent());
 
-        Person person = new Professor(name, moduleCode, phone, email, gender, tagList, location, username, rating,
+        Professor person = new Professor(name, moduleCode, phone, email, gender, tagList, location, username, rating,
                 field, officeHour);
 
         return new ProfCommand(person);

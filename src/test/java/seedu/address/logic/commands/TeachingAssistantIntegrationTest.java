@@ -11,43 +11,19 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
-import seedu.address.testutil.ProfessorBuilder;
-import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TeachingAssistantBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class TeachingAssistantIntegrationTest {
 
     private Model model;
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    }
-
-    @Test
-    public void execute_newStudent_success() {
-        Student validPerson = new StudentBuilder().build();
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
-
-        assertCommandSuccess(new StudentCommand(validPerson), model,
-            String.format(StudentCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
-    }
-
-    @Test
-    public void execute_newProfessor_success() {
-        Person validPerson = new ProfessorBuilder().build();
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
-
-        assertCommandSuccess(new ProfCommand(validPerson), model,
-            String.format(ProfCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
     }
 
     @Test
@@ -63,9 +39,9 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        assertCommandFailure(new StudentCommand((Student) personInList), model,
-            StudentCommand.MESSAGE_DUPLICATE_PERSON);
+        Person personInList = model.getAddressBook().getPersonList().get(5);
+        assertCommandFailure(new TaCommand((TeachingAssistant) personInList), model,
+            TaCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }
