@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Profile;
 import seedu.address.model.profile.UniqueProfileList;
 
@@ -215,6 +216,15 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
         requireAllNonNull(target, profilesToEdit);
         events.removeEventFromAttendees(target, profilesToEdit);
+    }
+
+    /**
+     * Replaces each event in {@code eventsToRefresh} with another copy.
+     * Events in {@code eventsToRefresh} must exist in the address book.
+     */
+    public void refreshEvents(EventsAttending eventsToRefresh) {
+        requireNonNull(eventsToRefresh);
+        events.refreshEvents(eventsToRefresh);
     }
 
     //// util methods

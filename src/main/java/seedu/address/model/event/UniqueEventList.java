@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Profile;
 
 /**
@@ -166,6 +167,22 @@ public class UniqueEventList implements Iterable<Event> {
         }
 
         internalList.get(index).removeFromAttendees(profilesToEdit);
+    }
+
+    /**
+     * Replaces each event in {@code eventsToRefresh} with another copy in the list.
+     * Events in {@code eventsToRefresh} must exist in the list.
+     */
+    public void refreshEvents(EventsAttending eventsToRefresh) {
+        requireNonNull(eventsToRefresh);
+        List<Event> eventList = eventsToRefresh.getEventsList();
+
+        for (Event e : eventList) {
+            Event eventCopy = new Event(e.getTitle(), e.getStartDateTime(), e.getEndDateTime(),
+                    e.getTags(), e.getAttendees());
+            setEvent(e, eventCopy);
+        }
+
     }
 
     public void setEvents(UniqueEventList replacement) {

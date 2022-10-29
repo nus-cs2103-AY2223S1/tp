@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
+import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Profile;
 
 /**
@@ -182,6 +183,12 @@ public class ModelManager implements Model {
      public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
         nuScheduler.addEventToAttendees(event, profilesToAddEventTo);
+    }
+
+    @Override
+    public void refreshEvents(EventsAttending eventsToRefresh) {
+        requireNonNull(eventsToRefresh);
+        addressBook.refreshEvents(eventsToRefresh);
     }
 
     //=========== Filtered Profile List Accessors =============================================================

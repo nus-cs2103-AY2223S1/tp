@@ -34,40 +34,31 @@ public class DateTime implements Comparable<DateTime> {
     public static final String REGEX_YEAR = "(?<yearGroup>\\d{4})";
     public static final String REGEX_MONTH = "(?<monthGroup>" + "(\\d{1,2})" + "|" + "[A-Za-z]{3,}" + ")";
     public static final String REGEX_DAY = "(?<dayGroup>\\d{1,2})";
-    public static final String REGEX_SECONDS = "(?<secondsGroup>\\d{2})";
     public static final String REGEX_MINUTES = "(?<minutesGroup>\\d{2})";
     public static final String REGEX_HOURS = "(?<hoursGroup>\\d{2})";
     public static final String REGEX_TIME_COLON =
-            "(" + REGEX_HOURS + ":" + REGEX_MINUTES + "(:" + REGEX_SECONDS + ")?)";
+            "(" + REGEX_HOURS + ":" + REGEX_MINUTES + ")";
     public static final String REGEX_TIME_NO_SPACE =
-            "(" + REGEX_HOURS + REGEX_MINUTES + "(" + REGEX_SECONDS + ")?)";
+            "(" + REGEX_HOURS + REGEX_MINUTES + ")";
 
     public static final HashSet<String> REGEX_DATES = new LinkedHashSet<>() {
         {
-            add("((?<dateGroup>" + REGEX_DAY + "\\s" + REGEX_MONTH + "(\\s" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
-            add("((?<dateGroup>" + REGEX_DAY + "\\s" + REGEX_MONTH + "(\\s" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
-            add("((?<dateGroup>" + REGEX_YEAR + "\\s" + REGEX_MONTH + "\\s" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
-            add("((?<dateGroup>" + REGEX_YEAR + "\\s" + REGEX_MONTH + "\\s" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_DAY + "-" + REGEX_MONTH + "(-" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_COLON + "))?");
             add("((?<dateGroup>" + REGEX_DAY + "-" + REGEX_MONTH + "(-" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "-" + REGEX_MONTH + "-" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_COLON + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "-" + REGEX_MONTH + "-" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_DAY + "/" + REGEX_MONTH + "(/" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_COLON + "))?");
             add("((?<dateGroup>" + REGEX_DAY + "/" + REGEX_MONTH + "(/" + REGEX_YEAR + ")?))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "/" + REGEX_MONTH + "/" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_COLON + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "/" + REGEX_MONTH + "/" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+                    + "(\\s+(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
         }
     };
 
@@ -89,13 +80,9 @@ public class DateTime implements Comparable<DateTime> {
     /**
      * Returns a LocalTime object for an input time in the valid formats.
      */
-    private static LocalTime generateLocalTime(String hours, String minutes,
-                                               String seconds) throws DateTimeParseException {
-        if (seconds == null) {
-            return LocalTime.parse(hours + ":" + minutes, DateTimeFormatter.ofPattern("HH:mm"));
-        }
-        return LocalTime.parse(hours + ":" + minutes + ":" + seconds,
-                DateTimeFormatter.ofPattern("HH:mm:ss"));
+    private static LocalTime generateLocalTime(String hours, String minutes) throws DateTimeParseException {
+        return LocalTime.parse(hours + ":" + minutes,
+                DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     /**
@@ -177,9 +164,8 @@ public class DateTime implements Comparable<DateTime> {
 
         String hours = matcher.group("hoursGroup");
         String minutes = matcher.group("minutesGroup");
-        String seconds = matcher.group("secondsGroup");
 
-        return Optional.ofNullable(generateLocalTime(hours, minutes, seconds));
+        return Optional.ofNullable(generateLocalTime(hours, minutes));
     }
 
     public static String getDifferenceString(DateTime start, DateTime end) {

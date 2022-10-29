@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.Event;
+import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Profile;
 
 /**
@@ -46,16 +46,10 @@ public class DeleteProfileCommand extends ProfileCommand {
         }
 
         Profile profileToDelete = lastShownList.get(targetIndex.getZeroBased());
-        List<Event> events = profileToDelete.getEventsAttendingList();
+        EventsAttending eventsToRefresh = profileToDelete.getEventsToAttend();
+
         model.deleteProfile(profileToDelete);
-
-        // trigger re-render
-        for (Event e : events) {
-            Event eventCopy = new Event(e.getTitle(), e.getStartDateTime(), e.getEndDateTime(),
-                    e.getTags(), e.getAttendees());
-            model.setEvent(e, eventCopy);
-        }
-
+        model.refreshEvents(eventsToRefresh);
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_DELETE_PROFILE_SUCCESS, profileToDelete));
     }
