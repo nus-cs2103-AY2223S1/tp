@@ -10,7 +10,7 @@ PetCode is a software app that aims to facilitate better working experience and 
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to sort the items in buyer/supplier/deliverer/order/pet list.
-    * What it does: It allows user to sort different list by different supported keys in ascending order. 
+    * What it does: It allows user to sort different list by the supported keys in ascending order. 
     * Justification: This feature improves the product significantly because originally any new order/pet/contact added to the program will be automatically appended to the end of their respective list, there were no ways to reorder the items in the list. If the user wants to prioritize the orders that are more urgent, he/she has to scroll through the entire order list to manually compare and choose. Therefore, the application should provide a convenient way to save the hassle.
     * Highlights: This feature supports entering multiple keys for sorting a single list. The later keys are used to break ties arise from sorting using previous keys. For instance, `sort pet height weight` will sort the pets by their heights, for two pets with the same height, their relative sequence will be decided by their weights. 
 
