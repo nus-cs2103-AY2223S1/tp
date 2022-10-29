@@ -248,7 +248,7 @@ Edits an existing student in the list.
     - Amount owed can only be an integer.
     - Amount owed must be non-negative.
 
-<div markdown="span" class="alert alert-success">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
+<div markdown="span" class="alert alert-info">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
 </div>
 
 6. Rates per Class (`rate/`):
@@ -309,7 +309,7 @@ Example:
 
 ![UiMark](images/UG-screenshots/UiMark.png)
 
-<div markdown="span" class="alert alert-success">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
+<div markdown="span" class="alert alert-info">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
 </div>
 
 <div markdown="span" class="alert alert-success">💡 **Tip:** If you want to charge the student for missing the class, you can do so by executing
