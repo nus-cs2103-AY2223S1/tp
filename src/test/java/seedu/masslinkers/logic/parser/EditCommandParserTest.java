@@ -1,6 +1,7 @@
 package seedu.masslinkers.logic.parser;
 
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_MISSING_ARGUMENTS;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.INTEREST_DESC_AI;
@@ -57,28 +58,28 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, EditCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 o/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 o/ string", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test

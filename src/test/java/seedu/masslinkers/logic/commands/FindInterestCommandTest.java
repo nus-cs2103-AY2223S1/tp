@@ -3,6 +3,7 @@ package seedu.masslinkers.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_ONE_STUDENT_LISTED_OVERVIEW;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.masslinkers.testutil.TypicalStudents.ALICE;
@@ -79,7 +80,7 @@ public class FindInterestCommandTest {
 
     @Test
     public void execute_multipleKeywords_oneStudentFound() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_ONE_STUDENT_LISTED_OVERVIEW, 1);
         StudentContainsInterestPredicate predicate = preparePredicate("AI SWE");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);

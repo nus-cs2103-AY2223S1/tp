@@ -3,6 +3,7 @@ package seedu.masslinkers.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INCOMPLETE_COMMAND_FORMAT;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -99,7 +100,8 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             index = ParserUtil.parseIndex(indexFromCommand);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX,
+                    ModAddCommand.MESSAGE_USAGE), pe);
         }
         return new ModAddCommand(index, mods.get());
     }
