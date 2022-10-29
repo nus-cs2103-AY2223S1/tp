@@ -49,7 +49,7 @@ This guides aims to: <br>
 </div>
 
 **Highlights** <br>
-`commands` or `PARAMETERS`
+`commands` or `PARAMETERS` or `Class` or `Component`
 
 **Keyboard Inputs**<br>
 
