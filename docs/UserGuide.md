@@ -256,7 +256,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
-* If a pair of `Name` and `PHONE_NUMBER` already exist in _MyInsuRec_, adding the same pair of `NAME` and `PHONE_NUMBER` will result in an error!
+* If a `Name` already exist in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. 
@@ -270,8 +270,8 @@ Examples:
   * `addClient n/John Tan p/12345678 b/12122000`
 * Suppose John provides all his particular, you can add him using, 
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
-* Suppose `John Tan` with the phone number `12345678` is **already in** _MyInsuRec_, adding the following command will result in an error!
-  * `addClient n/John Tan p/12345678`
+* Suppose `John Tan` is **already in** _MyInsuRec_, adding the following command will result in an error!
+  * `addClient n/John Tan p/87654321`
 
 #### 7.1.2 List clients: `listClient`
 
