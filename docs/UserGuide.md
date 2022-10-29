@@ -89,7 +89,7 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
    - **`add`** `n/John Doe p/98765432 e/johnd@example.com j/Recruiter d/Human Resources a/311, Clementi Ave 2, #02-25 l/20 t/friends t/owesMoney` : Adds an employee named `John Doe`, with fields phone number, email, job title, department, address, total leaves, and tags to Coydir.
 
-   - **`delete`**` 3` : Deletes employee with ID 3.
+   - **`delete`**`3` : Deletes employee with ID 3.
 
    - **`exit`** : Exits the app.
 
@@ -267,20 +267,19 @@ However, with Coydir, we can help you to ensure your **company operations run sm
 
 Here is how we support you in leave management.
 
-#### Setting total leaves for an employee
+#### Setting total leave for an employee
 
-You can set the total leave available to an employee when adding them to the database. This can be done by specifying the leaves in the `l/` tag for the `add` command. 
+You can set the total leave available for an employee when adding them to the database. This can be done by including the optional leave field, `l/`, when using the `add` command. 
 
 Example: `add n/Yi Long Ma j/Chief Operating Officer d/General Management l/20` adds an employee, and specifies his **total leave** to be **20**.
 
 #### Checking if an employee is on leave
 
-There are two ways to check for availability of employees. 
+There are two ways to check for the live availability of employees. 
 
-First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the dedpartment. The number of employees available or on leave will be shown. 
+First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
 
-The other is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field. 
-**[Insert description of how Coydir enables live tracking of `isOnLeave`]**
+The other is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field. 
 
 #### Adding a leave period for an employee: `add-leave`
 
@@ -291,7 +290,7 @@ This command results in one of two cases below:
 **Case 1: Valid ID, date and sufficient leaves**
 
 If the employee exists, the leave date given is valid,
-and the employee has sufficient leaves, the leave period will be added and the total leaves remaining will be deducted accordingly.
+and the employee has sufficient leaves, the leave period will be added and shown in the table of leaves, and the total leaves remaining will be deducted accordingly. The employee's "On Leave" status will become "True" when the day of the leave arrives.
 
 **Case 2: Invalid ID, date or insufficient leaves**
 
@@ -336,7 +335,7 @@ Field |TAG | Description | Requirement| Default Value
 
 Example:
 
-- `delete-leave id/1 i/3` deletes the third leave period for an employee of ID 1 in the list of leaves.
+- `delete-leave id/1 i/3` deletes the third leave period for an employee of ID 1 in the table of leaves.
 
 ### Managing Employee Performance
 
