@@ -48,6 +48,11 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
 
+        if (trimmedIndex.contains(" ")) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INTEGER_INDEX);
         }
