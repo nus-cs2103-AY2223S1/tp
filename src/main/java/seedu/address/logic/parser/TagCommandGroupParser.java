@@ -74,6 +74,9 @@ public class TagCommandGroupParser implements Parser<TagCommandGroup> {
      */
     private Set<Tag> parseArgs(String[] args) throws ParseException {
         String trimmedArgs = String.join(" ", args).trim();
+        if (trimmedArgs == "") {
+            throw new ParseException("No tags were provided");
+        }
         String[] tagNames = trimmedArgs.split("\\s+");
 
         return parseTags(Arrays.asList(tagNames));
