@@ -327,7 +327,7 @@ Format: `message generate PERSON_INDEX MESSAGE_INDEX`
 
 Example:
 
-- `message generate 1 4` Assigns the `potential` tag to the client entry at index 5.
+- `message generate 1 4` Generates a personalized message for the 1st client using the 4th message template
 
 ### Deleting message templates : `message delete`
 
