@@ -46,6 +46,10 @@ public class CreateMeetingCommand extends Command {
         + "matches more than one person in the address book! \n"
         + "Please include a more precise name.";
 
+    public static final String INVALID_DATE_AND_TIME_FORMAT = "%1$s\nOops! Make sure the date and time of the meeting "
+        + "are in the correct format! \n"
+        + "(note: use 0000 instead of 2400 to represent 12am)";
+
     private final String[] peopleToMeet;
     private final String meetingTitle;
     private final String processedMeetingDateAndTime;
