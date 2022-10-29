@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.github.repo.Repo;
+import seedu.address.model.person.github.Repo;
 
 /**
  * Jackson-friendly version of {@link Repo}.
@@ -15,7 +15,7 @@ public class JsonAdaptedGithubRepo {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Repo's %s field is missing!";
     private final String name;
     private final String url;
-    private final int numberForks;
+    private final String description;
     private final LocalDateTime lastUpdated;
 
 
@@ -24,11 +24,11 @@ public class JsonAdaptedGithubRepo {
      */
     @JsonCreator
     public JsonAdaptedGithubRepo(@JsonProperty("Name") String name, @JsonProperty("URL") String url,
-                                 @JsonProperty("numberForks") int numberForks,
+                                 @JsonProperty("Description") String description,
                                  @JsonProperty("lastUpdated") LocalDateTime lastUpdated) {
         this.name = name;
         this.url = url;
-        this.numberForks = numberForks;
+        this.description = description;
         this.lastUpdated = lastUpdated;
     }
 
@@ -38,7 +38,7 @@ public class JsonAdaptedGithubRepo {
     public JsonAdaptedGithubRepo(Repo source) {
         name = source.getRepoName();
         url = source.getRepoUrl();
-        numberForks = source.getNumberForks();
+        description = source.getDescription().orElse(null);
         lastUpdated = source.getLastUpdated();
     }
 
@@ -58,6 +58,6 @@ public class JsonAdaptedGithubRepo {
         if (lastUpdated == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "last updated"));
         }
-        return new Repo(name, url, numberForks, lastUpdated);
+        return new Repo(name, url, description, lastUpdated);
     }
 }

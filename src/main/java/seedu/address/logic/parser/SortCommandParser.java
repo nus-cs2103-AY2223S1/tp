@@ -50,6 +50,11 @@ public class SortCommandParser implements Parser<SortCommand> {
         Prefix prefix = getFirstPresentPrefix(argMultimap);
         Comparator<Person> comparator = PREFIX_COMPARATOR_MAP.get(prefix);
 
+        // The value can only be "" or "desc"
+        if (!argMultimap.getValue(prefix).get().equals("") && !argMultimap.getValue(prefix).get().equals("desc")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
+
         if (argMultimap.getValue(prefix).get().equals("desc")) {
             comparator = reverseComparator(comparator);
         }
