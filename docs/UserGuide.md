@@ -339,7 +339,7 @@ Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
 Examples:
 * `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang deleteStu/Zack Yu, Xenia Ng`
   Edits the title, description and student list of the 1st task in the list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
-* `edit 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task to delete the name `Jackie Chan`. All other students in the list are not affected.
+* `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task to delete the name `Jackie Chan`. All other students in the list are not affected.
 * `edit-task 3 t/Mark Lab Worksheets d/CS2030S by/2022-10-30` Edits the title, description and deadline of the 3rd task
   in the list, provided that it is a deadline task, to be `Mark Lab Worksheets`, `CS2030S` and `Oct 30 2022` respectively.
 
