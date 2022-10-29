@@ -21,7 +21,7 @@ public class AddProfileCommand extends ProfileCommand {
     public static final String COMMAND_OPTION = "a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
-            + ": Adds a profile to the address book. "
+            + ": Adds a profile to the address book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
