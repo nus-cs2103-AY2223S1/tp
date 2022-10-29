@@ -3,6 +3,7 @@ package seedu.address.model.util;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -47,9 +48,8 @@ public class DateTimeConverter {
      * @throws DateTimeParseException if it fails to parse IE it's in the wrong format
      */
     public static String processFullDateToLocalDatetime(String date) throws DateTimeParseException {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy hh:mm a");
-        DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy hh:mm a").withResolverStyle(ResolverStyle.STRICT);
+        DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm").withResolverStyle(ResolverStyle.STRICT);
         return LocalDateTime.parse(date, format).format(newPattern);
     }
 
