@@ -141,7 +141,7 @@ Example after entering `grade 1 ra1/90 ra2/80 pa/100 mt/85 ft/78`:
 
 View a particular student's details.
 
-Format: `find k/Keywords`
+Format: `find KEYWORDS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
@@ -256,7 +256,7 @@ Format: `help`
 | **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`                |
 | **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                                |
 | **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
-| **Find a student's details**                 | `find k/keyword`                                                                                         |
+| **Find a student's details**                 | `find KEYWORDS`                                                                                          |
 | **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                             |
 | **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                           |
 | **View all students**                        | `list`                                                                                                   |
