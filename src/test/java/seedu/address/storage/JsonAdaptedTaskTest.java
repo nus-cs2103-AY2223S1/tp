@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -16,8 +17,6 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
-
-import javafx.collections.ObservableList;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
