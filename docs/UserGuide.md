@@ -186,10 +186,13 @@ Format: `mark INDEX s/APPLICATION_STATUS`
 
 * Updates the internship application to the specified [`APPLICATION_STATUS`](#application-status).
 
+* `APPLICATION_STATUS` is case-insensitive.
+
 
 Examples:
-* `mark 3 s/interviewed` - Marks the 3rd internship [application status](#application-status) to be `interviewed`
-* `mark 2 s/accepted` - Marks the 2nd internship [application status](#application-status) to be `accepted`
+* `mark 3 s/interviewed` - Marks the 3rd internship [application status](#application-status) as `interviewed`
+* `mark 2 s/Accepted` - Marks the 2nd internship [application status](#application-status) as `accepted`
+* `mark 4 s/rejecteD` - Marks the 4th internship [application status](#application-status) as `rejected`
 
 #### Listing all internship applications: `list`
 
@@ -216,9 +219,11 @@ Format: `filter APPLICATION_STATUS`
 
 * Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
 
+* `APPLICATION_STATUS` is case-insensitive.
+
 Examples:
 * `filter accepted` - Shows a list of internship applications marked as `accepted`
-* `filter rejected` - Shows a list of internship applications marked as `rejected`
+* `filter Rejected` - Shows a list of internship applications marked as `rejected`
 
 #### Finding for internship applications or tags: `find`
 
