@@ -176,7 +176,6 @@ Example:
 * `clear` clears all Client's entries together with the Remarks and Transactions.
 
 > <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved
- </div>
 
 [Back to Table of Contents](#table-of-contents)
 
