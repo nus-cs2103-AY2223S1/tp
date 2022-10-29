@@ -44,7 +44,7 @@ A brief display of important information for **inventory** and **tasks**.
 * **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has deadline that is
 past today's date.
   * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
-* **(C)** `Upcoming` tasks refers to tasks that have deadline of today's date and the dates after today and are `Not Done`.
+* **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
   * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or after**_, this will be counted as `Upcoming`.
 
 ### Colors used for Inventory
@@ -266,6 +266,12 @@ Lists all items.
 
 ### List all suppliers/tasks/inventory
 
+Refreshes and lists all suppliers/tasks/inventory.
+
+**Example of a possible use case**
+1. After using the `find` command for supplier contact, `listAll` / `listSuppliers` will list all
+contacts in Salesy's address book.
+
 ### List all suppliers: `listSuppliers`
 
 Lists all suppliers
@@ -330,12 +336,22 @@ Sorts and displays items based on sorting criteria
 
 > `sortSupplier /address ascending`
 
+
+### Clear Supplier Address Book: `clear`
+
+Clears and deletes all suppliers in Salesy. 
+
+> ⚠️(**WARNING**) This command is used to reset only the suppliers in the Suppliers panel. Running this command will remove all
+> suppliers from Salesy. To regain the sample data again, delete `addressbook.json` from the source folder of the app and 
+> re-run Salesy.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 | Action                       | Format                                                                | Examples                                                                           |
 |------------------------------|-----------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **clear** (supplier)         | `clear`                                                               | `clear`                                                                            |
 | **list** (supplier)          | `listSuppliers`                                                       | `listSuppliers`                                                                    |
 | **add**  (supplier)          | `add [n/NAME] [p/PHONE] [pr/PRICE] [i/ITEM] [a/ADDRESS] [t/Supplier]` | `add n/ABC PTE LTD p/67009000 pr/$1.10 i/Egg a/Blk 140 Woodlands Ave 3 t/Supplier` |
 | **delete** (supplier)        | `delete <supplier index>`                                             | `delete 1`                                                                         |
