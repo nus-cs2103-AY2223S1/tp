@@ -98,6 +98,8 @@ public class EditCommand extends Command {
         }
 
         editedPerson.setFullView();
+        String[] newNameKeywords = {newName};
+        model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
         model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
