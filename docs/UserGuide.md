@@ -129,7 +129,7 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 * No restrictions on the phone input field and email input field, but a warning will be given if it deviates from the standard convention.
     * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or white spaces!
+> <div markdown="span" class="alert alert-danger">❗ :warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
 * `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com`
@@ -179,8 +179,7 @@ Example:
 
 * `clear` clears all Client's entries together with the Remarks and Transactions.
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrie
- </div>
+> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved!
 
 [Back to Table of Contents](#table-of-contents)
 
