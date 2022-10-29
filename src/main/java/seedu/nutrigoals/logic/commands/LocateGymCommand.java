@@ -13,6 +13,7 @@ import seedu.nutrigoals.model.Model;
  */
 public class LocateGymCommand extends Command {
     public static final String COMMAND_WORD = "locate";
+    // Remember to update the User guide
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Finds the nearest gym to your stated location\n"
         + "Parameters: COM2 | S13 | S17 | CLB | USC | LT1 | AS6\n"
