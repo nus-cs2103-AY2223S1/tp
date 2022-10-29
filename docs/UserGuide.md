@@ -237,11 +237,10 @@ or decremented respectively by the value of your input.
 
 ### Locating guests : `find`
 
-This command locates guests whose details contain any of the given keywords. This allows you to search for 
-guests with any of the specific guests' field.
-
-This command is typically used when searching for a guest of a **specific characteristic**. 
+This command locates guests whose details contain any of the given keywords. 
 This allows you to search through all guests' fields.
+
+This command is typically used when searching for a guest of a **specific characteristic**.
 For example, the command `find no` will display all 
 the rooms that have room clean statuses set to `no`.
 
