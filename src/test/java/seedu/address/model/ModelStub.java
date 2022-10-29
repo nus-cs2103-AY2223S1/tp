@@ -11,7 +11,7 @@ import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Profile;
 
 /**
- * A default model stub that have all of the methods failing.
+ * A default model stub that has all of the methods failing.
  */
 public class ModelStub implements Model {
     @Override
