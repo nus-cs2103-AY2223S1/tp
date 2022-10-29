@@ -134,7 +134,7 @@ Format: `delete INDEX`
 
 Examples:
 * list followed by `delete 2` deletes the 2nd person in the address book.
-* find Betsy followed by `delete 1` deletes the 1st person in the results of the find command.
+* find Betsy followed by `delete 1` deletes the 1st person in the results of the find command, which should be Betsy.
 
 ### Viewing help : `help`
 
@@ -172,6 +172,7 @@ If your changes to the data file makes its format invalid, HackAssist will disca
 ### Adding a task: `addTask`
 
 Adds a task to the tasklist.
+* You cannot add a task same as one that currently exists in the taskList (this would result in duplicates)
 
 Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE [pe/EMAIL OF PERSON ASSIGNED]`
 
@@ -209,6 +210,8 @@ Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK
 * Edits the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* At least one field of the task must be changed in order for the editTask command to be accepted
+* You cannot edit a task to be the same as one that currently exists in the taskList (this would result in duplicates)
 
 Examples:
 *  `edit 1 n/Create UI pr/high` Edits the name and priority of the 1st task to be Create UI and HIGH respectively.
