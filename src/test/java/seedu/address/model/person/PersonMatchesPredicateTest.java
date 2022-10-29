@@ -5,38 +5,40 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.PersonMatchesPredicateBuilder;
 import seedu.address.testutil.StudentBuilder;
 
 public class PersonMatchesPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateNamesList = Collections.singletonList("firstName");
-        Set<String> firstPredicateModuleList = Collections.singleton("firstModule");
-        List<String> secondPredicateNamesList = Arrays.asList("secondName1", "secondName2");
-        Set<String> secondPredicateModuleList = new HashSet<>(Arrays.asList("secondModule1", "secondModule2"));
+        PersonMatchesPredicate firstPredicate = new PersonMatchesPredicateBuilder()
+                .withNamesList(Collections.singletonList("name1")).withEmailsList(Collections.singletonList("email1"))
+                .withGenderList(Collections.singletonList("gender1")).withLocationsList(Collections.singletonList("location1"))
+                .withModulesList(Collections.singleton("module1"), true).withPhonesList(Collections.singletonList("111"))
+                .withOfficeHoursList(Collections.singletonList("officeHour1")).withRatingsList(Collections.singletonList("1"))
+                .withSpecList(Collections.singletonList("spec1")).withTypesList(Collections.singletonList("type1"))
+                .withTagsList(Collections.singleton("tag1"), true).withYearsList(Collections.singletonList("year1"))
+                .withUserNamesList(Collections.singletonList("username1")).build();
 
-        PersonMatchesPredicate firstPredicate = new PersonMatchesPredicate();
-        PersonMatchesPredicate secondPredicate = new PersonMatchesPredicate();
-        firstPredicate.setNamesList(firstPredicateNamesList);
-        firstPredicate.setModulesList(firstPredicateModuleList, false);
-        secondPredicate.setNamesList(secondPredicateNamesList);
-        secondPredicate.setModulesList(secondPredicateModuleList, true);
+        PersonMatchesPredicate secondPredicate = new PersonMatchesPredicateBuilder()
+                .withNamesList(Collections.singletonList("name2")).withEmailsList(Collections.singletonList("email2"))
+                .withGenderList(Collections.singletonList("gender2")).withLocationsList(Collections.singletonList("location2"))
+                .withModulesList(Collections.singleton("module2"), true).withPhonesList(Collections.singletonList("222"))
+                .withOfficeHoursList(Collections.singletonList("officeHour2")).withRatingsList(Collections.singletonList("2"))
+                .withSpecList(Collections.singletonList("spec2")).withTypesList(Collections.singletonList("type2"))
+                .withTagsList(Collections.singleton("tag2"), true).withYearsList(Collections.singletonList("year2"))
+                .withUserNamesList(Collections.singletonList("username1")).build();
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
         assertTrue(secondPredicate.equals(secondPredicate));
 
         // same values -> returns true
-        PersonMatchesPredicate firstPredicateCopy = new PersonMatchesPredicate();
-        firstPredicateCopy.setNamesList(firstPredicateNamesList);
-        firstPredicateCopy.setModulesList(firstPredicateModuleList, false);
+        PersonMatchesPredicate firstPredicateCopy = new PersonMatchesPredicateBuilder(firstPredicate).build();
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

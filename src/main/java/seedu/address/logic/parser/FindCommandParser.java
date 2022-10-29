@@ -38,6 +38,8 @@ public class FindCommandParser implements Parser<FindCommand> {
     private boolean needsAllTags = false;
     private boolean needsAllModules = false;
 
+    private boolean hasEmptyFields = false;
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -49,9 +51,12 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME,
                 PREFIX_RATING, PREFIX_SPECIALISATION, PREFIX_YEAR, PREFIX_OFFICEHOUR);
 
-        if (!(areAllArgsValid(PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
+        if (!(areAllArgsNonEmpty(PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME,
                 PREFIX_RATING, PREFIX_SPECIALISATION, PREFIX_YEAR, PREFIX_OFFICEHOUR))) {
+            if (hasEmptyFields) {
+                throw new ParseException((FindCommand.EMPTY_FIELDS_MESSAGE));
+            }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
@@ -80,6 +85,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+            if (!areTypesArgsValid()) {
+                throw new ParseException("Invalid types provided!");
+            }
             predicate.setTypesList(getKeywordList(PREFIX_TYPE));
         }
 
@@ -115,12 +123,13 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap} and the modules and tag fields have the correct format.
      */
-    private boolean areAllArgsValid(Prefix... prefixes) {
+    private boolean areAllArgsNonEmpty(Prefix... prefixes) {
         Supplier<Stream<Prefix>> presentArgs = () ->
                 Stream.of(prefixes).filter(prefix -> argMultimap.getValue(prefix).isPresent());
         if (presentArgs.get().count() == 0) {
             return false;
         } else {
+            hasEmptyFields = true;
             return presentArgs.get().allMatch(prefix ->
                     argMultimap.getValue(prefix).get().trim().length() != 0)
                     && areTagsArgsValid() && areModulesArgsValid();
@@ -170,7 +179,18 @@ public class FindCommandParser implements Parser<FindCommand> {
     private List<String> getSpecialisationList() {
         String[] keyWordsString = argMultimap.getValue(PREFIX_SPECIALISATION).get().toLowerCase()
                 .trim().split("\\s*,\\s*");
+
+        for (int i = 0; i < keyWordsString.length; i++) {
+            keyWordsString[i] = keyWordsString[i].replaceAll("\\s+", " ");
+        }
+
         return Arrays.asList(keyWordsString);
+    }
+
+    private boolean areTypesArgsValid() {
+        String[] typesList = argMultimap.getValue(PREFIX_TYPE).get().split("\\s+");
+        return Arrays.stream(typesList).allMatch(type -> type.equalsIgnoreCase("stu") ||
+                type.equalsIgnoreCase("prof") || type.equalsIgnoreCase("ta"));
     }
 
     /**
@@ -184,10 +204,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (needsAllTags) {
             tagsKeywordsList = new HashSet<>(Arrays.asList(tagsKeywords.replace("all/", "")
                     .trim().toLowerCase().split("\\s+")));
-            predicate.setTagsList(tagsKeywordsList, needsAllTags);
+            predicate.setTagsSet(tagsKeywordsList, needsAllTags);
         } else {
             tagsKeywordsList = new HashSet<>(Arrays.asList(tagsKeywords.toLowerCase().split("\\s+")));
-            predicate.setTagsList(tagsKeywordsList, needsAllTags);
+            predicate.setTagsSet(tagsKeywordsList, needsAllTags);
         }
 
     }
@@ -204,10 +224,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (needsAllModules) {
             modulesKeywordsList = new HashSet<>(Arrays.asList(modulesKeywords.replace("all/", "")
                     .trim().toLowerCase().split("\\s+")));
-            predicate.setModulesList(modulesKeywordsList, needsAllModules);
+            predicate.setModulesSet(modulesKeywordsList, needsAllModules);
         } else {
             modulesKeywordsList = new HashSet<>(Arrays.asList(modulesKeywords.toLowerCase().split("\\s+")));
-            predicate.setModulesList(modulesKeywordsList, needsAllModules);
+            predicate.setModulesSet(modulesKeywordsList, needsAllModules);
         }
 
     }

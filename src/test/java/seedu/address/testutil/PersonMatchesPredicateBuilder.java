@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -10,12 +9,27 @@ import seedu.address.model.person.PersonMatchesPredicate;
  * A utility class to help with building PersonMatchesPredicate objects.
  */
 public class PersonMatchesPredicateBuilder {
-    private PersonMatchesPredicate predicate;
+    private PersonMatchesPredicate predicate = new PersonMatchesPredicate();
 
     public PersonMatchesPredicateBuilder() {
-        predicate = new PersonMatchesPredicate();
+
     }
 
+    public PersonMatchesPredicateBuilder(PersonMatchesPredicate predicateToCopy) {
+        predicate.setNamesList(predicateToCopy.getNamesList());
+        predicate.setEmailsList(predicateToCopy.getEmailsList());
+        predicate.setTypesList(predicateToCopy.getTypesList());
+        predicate.setPhonesList(predicateToCopy.getPhonesList());
+        predicate.setTagsSet(predicateToCopy.getTagsSet(), predicateToCopy.getNeedsAllTags());
+        predicate.setGendersList(predicateToCopy.getGendersList());
+        predicate.setModulesSet(predicateToCopy.getModulesSet(), predicateToCopy.getNeedsAllModules());
+        predicate.setRatingsList(predicateToCopy.getRatingsList());
+        predicate.setSpecList(predicateToCopy.getSpecList());
+        predicate.setOfficeHoursList(predicateToCopy.getOfficeHoursList());
+        predicate.setUserNamesList(predicateToCopy.getUserNamesList());
+        predicate.setYearsList(predicateToCopy.getYearsList());
+        predicate.setLocationsList(predicateToCopy.getLocationsList());
+    }
     /**
      * Sets the List of Names for the PersonMatchesPredicate we are building.
      */
@@ -70,12 +84,17 @@ public class PersonMatchesPredicateBuilder {
     }
 
     public PersonMatchesPredicateBuilder withModulesList(Set<String> modulesList, boolean needsAll) {
-        predicate.setModulesList(modulesList, needsAll);
+        predicate.setModulesSet(modulesList, needsAll);
         return this;
     }
 
     public PersonMatchesPredicateBuilder withTagsList(Set<String> tagsList, boolean needsAll) {
-        predicate.setModulesList(tagsList, needsAll);
+        predicate.setTagsSet(tagsList, needsAll);
+        return this;
+    }
+
+    public PersonMatchesPredicateBuilder withUserNamesList(List<String> userNamesList) {
+        predicate.setUserNamesList(userNamesList);
         return this;
     }
 

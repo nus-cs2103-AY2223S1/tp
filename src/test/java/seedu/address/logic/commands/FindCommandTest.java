@@ -30,13 +30,23 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        PersonMatchesPredicate firstPredicate = new PersonMatchesPredicate();
-        firstPredicate.setNamesList(Collections.singletonList("firstNamesList"));
-        firstPredicate.setModulesList(Collections.singleton("firstModulesSet"), false);
+        PersonMatchesPredicate firstPredicate = new PersonMatchesPredicateBuilder()
+                .withNamesList(Collections.singletonList("name1")).withEmailsList(Collections.singletonList("email1"))
+                .withGenderList(Collections.singletonList("gender1")).withLocationsList(Collections.singletonList("location1"))
+                .withModulesList(Collections.singleton("module1"), true).withPhonesList(Collections.singletonList("111"))
+                .withOfficeHoursList(Collections.singletonList("officeHour1")).withRatingsList(Collections.singletonList("1"))
+                .withSpecList(Collections.singletonList("spec1")).withTypesList(Collections.singletonList("type1"))
+                .withTagsList(Collections.singleton("tag1"), true).withYearsList(Collections.singletonList("year1"))
+                .withUserNamesList(Collections.singletonList("username1")).build();
 
-        PersonMatchesPredicate secondPredicate = new PersonMatchesPredicate();
-        secondPredicate.setNamesList(Collections.singletonList("secondNamesList"));
-        secondPredicate.setModulesList(Collections.singleton("secondModulesSet"), false);
+        PersonMatchesPredicate secondPredicate = new PersonMatchesPredicateBuilder()
+                .withNamesList(Collections.singletonList("name2")).withEmailsList(Collections.singletonList("email2"))
+                .withGenderList(Collections.singletonList("gender2")).withLocationsList(Collections.singletonList("location2"))
+                .withModulesList(Collections.singleton("module2"), true).withPhonesList(Collections.singletonList("222"))
+                .withOfficeHoursList(Collections.singletonList("officeHour2")).withRatingsList(Collections.singletonList("2"))
+                .withSpecList(Collections.singletonList("spec2")).withTypesList(Collections.singletonList("type2"))
+                .withTagsList(Collections.singleton("tag2"), true).withYearsList(Collections.singletonList("year2"))
+                .withUserNamesList(Collections.singletonList("username1")).build();
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);

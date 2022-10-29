@@ -21,6 +21,8 @@ public class FindCommand extends Command {
             + " Example: " + COMMAND_WORD
             + " n/alice bob charlie m/cs2100 cs2103t p/1234567 t/friends";
 
+    public static final String EMPTY_FIELDS_MESSAGE = "One or more fields are empty!";
+
     private final PersonMatchesPredicate predicate;
 
     public FindCommand(PersonMatchesPredicate predicate) {

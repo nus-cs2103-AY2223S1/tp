@@ -270,7 +270,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasNamesList = true;
     }
 
-    public void setModulesList(Set<String> otherList, boolean needsAllModules) {
+    public void setModulesSet(Set<String> otherList, boolean needsAllModules) {
         this.modulesSet = otherList;
         hasModulesList = true;
         this.needsAllModules = needsAllModules;
@@ -291,7 +291,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasGendersList = true;
     }
 
-    public void setTagsList(Set<String> tagsList, boolean needsAllTags) {
+    public void setTagsSet(Set<String> tagsList, boolean needsAllTags) {
         this.tagsSet = tagsList;
         this.needsAllTags = needsAllTags;
         hasTagsList = true;
@@ -395,6 +395,54 @@ public class PersonMatchesPredicate implements Predicate<Person> {
 
     public List<String> getTypesList() {
         return typesList;
+    }
+
+    public List<String> getUserNamesList() {
+        return userNamesList;
+    }
+
+    public List<String> getRatingsList() {
+        return ratingsList;
+    }
+
+    public List<String> getYearsList() {
+        return yearsList;
+    }
+
+    public List<String> getSpecList() {
+        return specList;
+    }
+
+    public List<String> getOfficeHoursList() {
+        return officeHoursList;
+    }
+
+    public boolean getNeedsAllModules() {
+        return needsAllModules;
+    }
+
+    public boolean getNeedsAllTags() {
+        return needsAllTags;
+    }
+
+    public boolean getHasUserNamesList() {
+        return hasUserNamesList;
+    }
+
+    public boolean getHasRatingsList() {
+        return hasRatingsList;
+    }
+
+    public boolean getHasYearsList() {
+        return hasYearsList;
+    }
+
+    public boolean getHasSpecList() {
+        return hasSpecList;
+    }
+
+    public boolean getHasOfficeHoursList() {
+        return hasOfficeHoursList;
     }
 
     @Override
