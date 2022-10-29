@@ -10,11 +10,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.PRACTICE;
 import static seedu.address.testutil.TypicalEvents.PRESENTATION;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.AMY;
 import static seedu.address.testutil.TypicalProfiles.BENSON;
 import static seedu.address.testutil.TypicalProfiles.BOB;
+import static seedu.address.testutil.TypicalProfiles.FIONA;
+import static seedu.address.testutil.TypicalProfiles.GEORGE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -205,6 +208,32 @@ public class AddressBookTest {
     @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getEventList().remove(0));
+    }
+
+    @Test
+    public void addEventAttendees_addNewProfiles_profilesAdded() {
+        addressBook.addEvent(PRESENTATION);
+        addressBook.addProfile(FIONA);
+        addressBook.addProfile(GEORGE);
+        assertFalse(PRESENTATION.hasAttendee(FIONA));
+        assertFalse(PRESENTATION.hasAttendee(GEORGE));
+
+        addressBook.addEventAttendees(PRESENTATION, List.of(FIONA, GEORGE));
+        assertTrue(PRESENTATION.hasAttendee(FIONA));
+        assertTrue(PRESENTATION.hasAttendee(GEORGE));
+    }
+
+    @Test
+    public void addEventToAttendees_addNewEvent_eventAdded() {
+        addressBook.addProfile(FIONA);
+        addressBook.addProfile(GEORGE);
+        addressBook.addEvent(PRACTICE);
+        assertFalse(FIONA.isAttendingEvent(PRACTICE));
+        assertFalse(GEORGE.isAttendingEvent(PRACTICE));
+
+        addressBook.addEventToAttendees(PRACTICE, List.of(FIONA, GEORGE));
+        assertTrue(FIONA.isAttendingEvent(PRACTICE));
+        assertTrue(GEORGE.isAttendingEvent(PRACTICE));
     }
 
     /**
