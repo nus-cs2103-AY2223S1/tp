@@ -242,7 +242,7 @@ Displays a list of upcoming events, ordered by the date, which starts in the nex
 Format: `event -u DAYS`
 
 * The days refer to the number of days after the current date. All events that start within this time frame will be displayed. Events occurring on the day the command is entered will not be displayed.
-* The days **must be a positive integer** 1, 2, 3, …​
+* The days **must be a positive integer less than 10000** 1, 2, 3, …​, 9999.
 
 Example:
 * `event -u 5` when used on `22-10-2022` displays all events taking place in the next 5 days from `23-10-22` to `27-10-22` with both dates included.

@@ -22,7 +22,6 @@ public class ViewUpcomingEventsCommand extends EventCommand {
     public static final String MESSAGE_INVALID_EVENT_UPCOMING_DAYS =
             "The days provided is invalid.\n%1$s";
     public static final String MESSAGE_MISSING_DAYS = "Days must be specified!\n%1$s";
-    public static final String MESSAGE_DAYS_TOO_LONG = "Days provided must be less than 10000.";
 
     public static final String MESSAGE_SUCCESS_MULTIPLE_EVENTS = "You have these upcoming events ";
     public static final String MESSAGE_SUCCESS_SINGLE_EVENT = "You have 1 event ";

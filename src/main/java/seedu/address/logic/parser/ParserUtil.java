@@ -24,6 +24,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer";
+    public static final String MESSAGE_DAYS_TOO_LONG = "Days provided must be no longer than 4 characters";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -153,6 +154,9 @@ public class ParserUtil {
     public static int parseDays(String days) throws ParseException {
         requireNonNull(days);
         String trimmedDays = days.trim();
+        if (days.length() > 4) {
+            throw new ParseException(MESSAGE_DAYS_TOO_LONG);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedDays)) {
             throw new ParseException(MESSAGE_INVALID_DAYS);
         }
