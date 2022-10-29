@@ -14,7 +14,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 To get you started, you might want to read the section on [how to use this User Guide](#how-to-use-the-user-guide)!
 
-The overview of the application's user interface can be found [here](#user-interface-overview).
+An overview of the application's user interface can be found [here](#user-interface-overview).
 
 ## Table of Contents
 
@@ -130,8 +130,6 @@ The [table of contents](#table-of-contents) provides links to every command. But
 
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
-
-[Back to Table of Contents](#table-of-contents)
 
 </div>
 
