@@ -444,7 +444,7 @@ Example:
 
 </div>
 
-### Accepted Email Formats
+### Accepted email formats
 
 NUScheduler checks the emails of your profiles against a list of valid NUS email domains.
 
@@ -453,6 +453,10 @@ NUScheduler checks the emails of your profiles against a list of valid NUS email
 * `@nus.edu.sg`
 * `@comp.nus.edu.sg`
 * `@u.yale-nus.edu.sg`
+
+### Transfer data to another computer
+
+You can simply install the app in the other computer and overwrite the data file it creates with the file that contains the data of your previous NUScheduler home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
