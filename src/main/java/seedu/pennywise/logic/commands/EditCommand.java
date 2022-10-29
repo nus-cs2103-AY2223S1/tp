@@ -25,7 +25,7 @@ import seedu.pennywise.model.entry.Income;
 import seedu.pennywise.model.entry.Tag;
 
 /**
- * Edits the details of an existing entry in the penny wise application.
+ * Edits the details of an existing entry in the PennyWise application.
  */
 public class EditCommand extends Command {
 
@@ -54,7 +54,7 @@ public class EditCommand extends Command {
 
     /**
      * @param index               of the entry in the filtered entry list to edit
-     * @param editEntryDescriptor details to edit the entry with
+     * @param editEntryDescriptor Details to edit the entry with
      */
     public EditCommand(Index index, EditEntryDescriptor editEntryDescriptor) {
         requireNonNull(index);
@@ -73,7 +73,6 @@ public class EditCommand extends Command {
         return lastShownList.get(targetIndex.getZeroBased());
     }
 
-    // TODO: Might have to edit
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

@@ -124,7 +124,7 @@ public class MainApp extends Application {
             initializedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        // Update config file in case it was missing to begin with or there are new/unused fields
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
@@ -155,7 +155,7 @@ public class MainApp extends Application {
             initializedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        // Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {

@@ -9,6 +9,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.collections.FXCollections?>
+<?import seedu.pennywise.ui.HelpWindowCell?>
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
@@ -20,8 +26,48 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
-        <children>
+      <VBox alignment="CENTER" fx:id="helpMessageContainer">
+        <VBox>
+          <children>
+                <TableView fx:id="table" fixedCellSize="50.00">
+                  <columns>
+                    <TableColumn text="Action" prefWidth="130" style="-fx-wrap-text: true;">
+                      <cellValueFactory><PropertyValueFactory property="action" />
+                      </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Format" prefWidth="400" style="-fx-wrap-text: true;">
+                      <cellValueFactory><PropertyValueFactory property="format" />
+                      </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Example" prefWidth="260" style="-fx-wrap-text: true;">
+                      <cellValueFactory><PropertyValueFactory property="example" />
+                      </cellValueFactory>
+                    </TableColumn>
+                  </columns>
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <HelpWindowCell action="Add" format="add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY"
+                                      example="add t/e d/Lunch a/15.60 da/10-10-2022 c/Food"/>
+                      <HelpWindowCell action="Delete" format="del INDEX_OF_ENTRY t/ENTRY_TYPE"
+                                      example="del 2 t/e"/>
+                      <HelpWindowCell action="Edit" format="edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]"
+                                      example="edit 2 t/i a/150.00 da/22-10-2022"/>
+                      <HelpWindowCell action="Summary" format="summary [mo/MONTH]"
+                                      example="summary mo/2022-09"/>
+                      <HelpWindowCell action="View (Category)" format="view t/ENTRY_TYPE"
+                                      example="view t/e"/>
+                      <HelpWindowCell action="View (Month)" format="view t/ENTRY_TYPE [mo/MONTH]"
+                                      example="view t/e mo/2022-10"/>
+                      <HelpWindowCell action="Clear" format="clear"
+                                      example="-"/>
+                      <HelpWindowCell action="Exit" format="exit"
+                                      example="-"/>
+                    </FXCollections>
+                  </items>
+                </TableView>
+          </children>
+        </VBox>
+        <HBox>
           <Label fx:id="helpMessage" text="Label">
             <HBox.margin>
               <Insets right="5.0" />
@@ -32,14 +78,14 @@
               <Insets left="5.0" />
             </HBox.margin>
           </Button>
-        </children>
+        </HBox>
         <opaqueInsets>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
         </opaqueInsets>
         <padding>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
         </padding>
-      </HBox>
+      </VBox>
     </Scene>
   </scene>
 </fx:root>

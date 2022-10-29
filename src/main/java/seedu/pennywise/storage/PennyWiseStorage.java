@@ -19,8 +19,9 @@ public interface PennyWiseStorage {
     Path getPennyWiseFilePath();
 
     /**
-     * Returns PennyWise data as a {@link ReadOnlyPennyWise}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns PennyWise data as a {@link ReadOnlyPennyWise} or an {@code Optional.empty()}
+     * if storage file is not found.
+     *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -33,6 +34,7 @@ public interface PennyWiseStorage {
 
     /**
      * Saves the given {@link ReadOnlyPennyWise} to the storage.
+     *
      * @param pennyWise cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */

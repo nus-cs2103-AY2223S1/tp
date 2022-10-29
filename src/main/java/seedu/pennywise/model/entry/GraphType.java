@@ -19,8 +19,9 @@ public class GraphType {
             + GRAPH_TYPE_MONTH
             + "' for bar graph";
     public static final String VALIDATION_REGEX = "^\\s*([cm])\\s*$";
+
     /**
-     * Types that can be used
+     * Types that can be used.
      */
     public enum Type {
         CATEGORY() {
@@ -37,7 +38,9 @@ public class GraphType {
         };
 
         /**
-         * Factory method that creates a returns a {@code Type} with the input of {@code entryType}
+         * Creates a {@code Type} with the input of {@code graphType}.
+         *
+         * @return Created graph type enumeration based on the given string.
          */
         public static Type of(String graphType) {
             boolean isCategoryGraph = graphType.equals(GRAPH_TYPE_CATEGORY);
@@ -55,9 +58,9 @@ public class GraphType {
     private final Type graphType;
 
     /**
-     * Constructs a {@code EntryType}.
+     * Constructs a {@code GraphType}.
      *
-     * @param graphType A valid entry type.
+     * @param graphType A valid graph type.
      */
     public GraphType(String graphType) {
         requireNonNull(graphType);
@@ -66,7 +69,7 @@ public class GraphType {
     }
 
     /**
-     * Returns true if a given string is a valid entry type.
+     * Returns true if a given string is a valid graph type.
      */
     public static boolean isValidGraphType(String test) {
         return test.matches(VALIDATION_REGEX);

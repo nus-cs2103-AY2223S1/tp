@@ -58,6 +58,7 @@ public class ViewCommandParserTest {
                 parser,
                 "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+
         assertParseFailure(
                 parser,
                 TYPE_MONTH,

@@ -8,7 +8,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents an Entry's date in the penny wise application.
+ * Represents an {@code Entry}'s date in the PennyWise application.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {

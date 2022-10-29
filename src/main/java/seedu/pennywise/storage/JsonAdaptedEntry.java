@@ -21,7 +21,7 @@ public abstract class JsonAdaptedEntry {
     protected final String tagged;
 
     /**
-     * Constructs a {@code JsonAdaptedEntry} with the given Entry details.
+     * Constructs a {@code JsonAdaptedEntry} with the given {@code Entry} details.
      */
     @JsonCreator
     public JsonAdaptedEntry(@JsonProperty("description") String description, @JsonProperty("amount") String amount,
@@ -39,12 +39,13 @@ public abstract class JsonAdaptedEntry {
         description = source.getDescription().fullDescription;
         amount = source.getAmount().toString();
         date = source.getDate().toString();
-        tagged = source.getTag().tagName;
+        tagged = source.getTag().getTagName();
     }
 
     /**
-     * Checks the JsonEntry for validity
-     * @throws IllegalValueException if the json entry is not valid
+     * Checks the {@code JsonEntry} for validity
+     *
+     * @throws IllegalValueException if the JSON entry is not valid
      */
     public void checkIsValidJsonEntry() throws IllegalValueException {
         if (description == null) {

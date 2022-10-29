@@ -84,7 +84,7 @@ private Label address;
 ...
 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
 <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-<Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+<Label fx:id="email" styleClass="cell_small_label" text="\email" />
 ...
 ```
 

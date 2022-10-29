@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.pennywise.model.entry.Entry;
 
 /**
- * An UI component that displays information of a {@code entry}.
+ * A UI component that displays information of a {@code entry}.
  */
 public class EntryCard extends UiPart<Region> {
 
@@ -47,7 +47,7 @@ public class EntryCard extends UiPart<Region> {
         description.setText(entry.getDescription().fullDescription);
         amount.setText(entry.getAmount().toFormattedString());
         date.setText(entry.getDate().toString());
-        tags.getChildren().add(new Label(entry.getTag().tagName));
+        tags.getChildren().add(new Label(entry.getTag().getTagName()));
         // entry.getTag().stream()
         //         .sorted(Comparator.comparing(tag -> tag.tagName))
         //         .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

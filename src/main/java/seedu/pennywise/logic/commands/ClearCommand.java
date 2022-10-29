@@ -6,7 +6,7 @@ import seedu.pennywise.model.Model;
 import seedu.pennywise.model.PennyWise;
 
 /**
- * Clears the penny wise application
+ * Clears the PennyWise application
  */
 public class ClearCommand extends Command {
 

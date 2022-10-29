@@ -5,7 +5,7 @@ package seedu.pennywise.model.entry;
  */
 public class Income extends Entry {
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. This condition is verified in the parent {@code Entry} constructor.
      */
     public Income(Description description, Date date, Amount amount, Tag tag) {
         super(description, date, amount, tag);
@@ -21,6 +21,7 @@ public class Income extends Entry {
                 .append(getAmount())
                 .append("; Tag: ")
                 .append(getTag());
+
         return builder.toString();
     }
 }

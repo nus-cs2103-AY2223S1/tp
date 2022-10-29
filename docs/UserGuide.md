@@ -121,8 +121,8 @@ Danger zone! Do pay attention to the information here carefully.
 ![UserInterfaceExplaination](images/UserInterfaceExplaination.png)
 
 - For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. 
-  The following table shows the`Expenditure` and `Income` entries categories. The category names are <ins>case sensitive</ins>.
-
+  The following table shows the`Expenditure` and `Income` entries categories. The category names are <ins>case insensitive</ins>.
+  
 |   `Expenditure`   |    `Income`     |
 |:-----------------:|:---------------:|
 |     **Food**      |   **Salary**    |
@@ -210,9 +210,9 @@ The default date is the current date on your computer!
      * Expected: <br/>
        <pre>
        Financials Summarized
-       Total Expenditure: 154.49
-       Total Income: 250.00
-       Total Balance: 95.51
+       Total Expenditure: $154.49
+       Total Income: $250.00
+       Total Balance: $95.51
        </pre>
      ![SummaryCommand1](images/SummaryCommand1.png)
 2. Summary of all entries the specified month
@@ -220,9 +220,9 @@ The default date is the current date on your computer!
     * Expected: <br/>
       <pre>
       Financials Summarized
-      Total Expenditure: 4.20
-      Total Income: 250.00
-      Total Balance: 245.80
+      Total Expenditure: $4.20
+      Total Income: $250.00
+      Total Balance: $245.80
       </pre>
     ![SummaryCommand2](images/SummaryCommand2.png)
 

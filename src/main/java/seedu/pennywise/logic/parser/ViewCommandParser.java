@@ -10,13 +10,13 @@ import seedu.pennywise.logic.commands.ViewCommand.ViewEntriesDescriptor;
 import seedu.pennywise.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ViewCommand object
+ * Parses input arguments and creates a new {@code ViewCommand} object.
  */
 public class ViewCommandParser implements Parser<ViewCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ViewCommand
-     * object and returns a ViewCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code ViewCommand}
+     * object and returns a {@code ViewCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
@@ -36,6 +36,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                 viewEntriesDescriptor.setYearMonth(
                         ParserUtil.parseYearMonth(argMultimap.getValue(PREFIX_MONTH).get()));
             }
+
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);

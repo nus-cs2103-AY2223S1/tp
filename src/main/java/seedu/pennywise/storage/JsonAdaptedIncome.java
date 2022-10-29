@@ -17,9 +17,9 @@ import seedu.pennywise.model.entry.Tag;
  */
 public class JsonAdaptedIncome extends JsonAdaptedEntry {
     /**
-     * Constructs a {@code JsonAdaptedEntry} with the given income details.
+     * Constructs a {@code JsonAdaptedIncome} with the given {@code Income} details.
      */
-    protected static EntryType type = new EntryType("i");
+    protected static EntryType type = new EntryType(EntryType.ENTRY_TYPE_INCOME);
 
     @JsonCreator
     public JsonAdaptedIncome(@JsonProperty("description") String description,

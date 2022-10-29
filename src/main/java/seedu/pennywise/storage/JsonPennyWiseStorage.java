@@ -15,7 +15,7 @@ import seedu.pennywise.commons.util.JsonUtil;
 import seedu.pennywise.model.ReadOnlyPennyWise;
 
 /**
- * A class to access PennyWise data stored as a json file on the hard disk.
+ * A class to access PennyWise data stored as a JSON file on the hard disk.
  */
 public class JsonPennyWiseStorage implements PennyWiseStorage {
 
@@ -39,7 +39,7 @@ public class JsonPennyWiseStorage implements PennyWiseStorage {
     /**
      * Similar to {@link #readPennyWise()}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param filePath Non-null location of the data.
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyPennyWise> readPennyWise(Path filePath) throws DataConversionException {
@@ -47,7 +47,7 @@ public class JsonPennyWiseStorage implements PennyWiseStorage {
 
         Optional<JsonSerializablePennyWise> jsonPennyWise = JsonUtil.readJsonFile(
             filePath, JsonSerializablePennyWise.class);
-        if (!jsonPennyWise.isPresent()) {
+        if (jsonPennyWise.isEmpty()) {
             return Optional.empty();
         }
 
@@ -67,7 +67,7 @@ public class JsonPennyWiseStorage implements PennyWiseStorage {
     /**
      * Similar to {@link #savePennyWise(ReadOnlyPennyWise)}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param filePath Non-null location of the data.
      */
     public void savePennyWise(ReadOnlyPennyWise pennyWise, Path filePath) throws IOException {
         requireNonNull(pennyWise);

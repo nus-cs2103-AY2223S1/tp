@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     private final FilteredList<Entry> filteredIncome;
 
     /**
-     * Initializes a ModelManager with the given pennywise and userPrefs.
+     * Initializes a ModelManager with the given {@code pennyWise} and {@code userPrefs}.
      */
     public ModelManager(ReadOnlyPennyWise pennyWise, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(pennyWise, userPrefs);

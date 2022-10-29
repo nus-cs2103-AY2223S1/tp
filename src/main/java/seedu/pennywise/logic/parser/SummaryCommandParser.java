@@ -11,12 +11,12 @@ import seedu.pennywise.model.entry.EntryInYearMonthPredicate;
 
 
 /**
- * Parses input arguments and create a new SummaryCommand object
+ * Parses input arguments and create a new {@code SummaryCommand} object.
  */
 public class SummaryCommandParser implements Parser<SummaryCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the SummaryCommand
-     * object and returns a SummaryCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code SummaryCommand}
+     * object and returns a {@code SummaryCommand} object for execution.
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     @Override

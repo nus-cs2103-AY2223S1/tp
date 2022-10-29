@@ -129,7 +129,6 @@ public interface Model {
     /** Returns an unmodifiable list of line chart data for income */
     XYChart.Series<String, Number> getIncomeLineChartData();
 
-    // todo remove updateFilteredEntryList after 'find' command has been implemented
     /**
      * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
      *

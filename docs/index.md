@@ -3,8 +3,8 @@ layout: page
 title: PennyWise
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/AY2223S1-CS2103T-W17-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-W17-2/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W17-2/tp/branch/master/graph/badge.svg?token=A2FU6P932B)](https://codecov.io/gh/AY2223S1-CS2103T-W17-2/tp)
 
 ![Ui](images/Ui.png)
 

@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
- * Represents an Entry in the PennyWise application.
+ * Represents an {@code Entry} in the PennyWise application.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public abstract class Entry {
@@ -23,6 +23,7 @@ public abstract class Entry {
      * Every field must be present and not null.
      */
     public Entry(Description description, Date date, Amount amount, Tag tag) {
+        // Check the preconditions
         requireAllNonNull(date, amount, description, tag);
         this.date = date;
         this.amount = amount;
@@ -82,9 +83,15 @@ public abstract class Entry {
         if (otherEntry == this) {
             return true;
         }
+        if (!(otherEntry instanceof Entry)) {
+            return false;
+        }
 
-        return otherEntry != null
-                && otherEntry.getDescription().equals(getDescription());
+        Entry otherEntryCopy = (Entry) otherEntry;
+        return otherEntryCopy.getDescription().equals(getDescription())
+                && otherEntryCopy.getDate().equals(getDate())
+                && otherEntryCopy.getAmount().equals(getAmount())
+                && otherEntryCopy.getTag().equals(getTag());
     }
 
     /**
@@ -107,21 +114,4 @@ public abstract class Entry {
                 && otherEntry.getAmount().equals(getAmount())
                 && otherEntry.getTag().equals(getTag());
     }
-
-    //    @Override
-    //    public String toString() {
-    //        final StringBuilder builder = new StringBuilder();
-    //        builder.append(getDescription())
-    //                .append("; Date: ")
-    //                .append(getDate())
-    //                .append("; Amount: ")
-    //                .append(getAmount());
-    //
-    //        Tag tag = getTag();
-    //        if (tag != null) {
-    //            builder.append("; Tag: ");
-    //            builder.append(tag);
-    //        }
-    //        return builder.toString();
-    //    }
 }

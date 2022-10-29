@@ -19,8 +19,8 @@ import seedu.pennywise.model.entry.Entry;
 @JsonRootName(value = "pennywise")
 class JsonSerializablePennyWise {
 
-    // todo modify message duplicates for  both income/expenditure.
-    public static final String MESSAGE_DUPLICATE_ENTRY = "Entries list contains duplicate entry(s).";
+    public static final String MESSAGE_DUPLICATE_EXPENDITURE = "Expenditure list contains duplicate entry(s).";
+    public static final String MESSAGE_DUPLICATE_INCOME = "Income list contains duplicate entry(s).";
 
     private final List<JsonAdaptedExpenditure> expenditures = new ArrayList<>();
     private final List<JsonAdaptedIncome> incomes = new ArrayList<>();
@@ -47,25 +47,25 @@ class JsonSerializablePennyWise {
     }
 
     /**
-     * Converts this pennywise book into the model's {@code PennyWise} object.
+     * Converts this PennyWise into the model's {@code PennyWise} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public PennyWise toModelType() throws IllegalValueException {
         PennyWise pennyWise = new PennyWise();
         for (JsonAdaptedExpenditure jsonAdaptedExpenditure : expenditures) {
-            Entry e = jsonAdaptedExpenditure.toModelType();
-            if (pennyWise.hasExpenditure(e)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ENTRY);
+            Entry expenditure = jsonAdaptedExpenditure.toModelType();
+            if (pennyWise.hasExpenditure(expenditure)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EXPENDITURE);
             }
-            pennyWise.addExpenditure(e);
+            pennyWise.addExpenditure(expenditure);
         }
         for (JsonAdaptedIncome jsonAdaptedIncome : incomes) {
-            Entry e = jsonAdaptedIncome.toModelType();
-            if (pennyWise.hasIncome(e)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ENTRY);
+            Entry income = jsonAdaptedIncome.toModelType();
+            if (pennyWise.hasIncome(income)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_INCOME);
             }
-            pennyWise.addIncome(e);
+            pennyWise.addIncome(income);
         }
         return pennyWise;
     }
