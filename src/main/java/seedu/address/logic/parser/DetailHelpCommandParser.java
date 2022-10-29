@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.BackCommand;
 import seedu.address.logic.commands.DeleteAttributeCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DetailHelpCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SetCommand;
@@ -40,11 +41,11 @@ public class DetailHelpCommandParser implements Parser<HelpCommand> {
         case SetCommand.COMMAND_WORD:
             helpMessage = SetCommand.MESSAGE_USAGE;
             break;
-        case HelpCommand.COMMAND_WORD:
-            helpMessage = HelpCommand.MESSAGE_USAGE;
+        case DetailHelpCommand.COMMAND_WORD:
+            helpMessage = DetailHelpCommand.MESSAGE_USAGE;
             break;
         default:
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailHelpCommand.MESSAGE_USAGE));
         }
 
         return new HelpCommand(helpMessage);

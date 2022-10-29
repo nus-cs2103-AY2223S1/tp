@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 import seedu.address.ui.MainPanelName;
 
+import java.util.Set;
+
 /**
  * Format full help instructions for every command for display.
  */
@@ -12,15 +14,13 @@ public class DetailHelpCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "If you want to show help for specific command, pass command word as parameter.\n"
-            + "Parameter: [" + AddCommand.COMMAND_WORD + "|"
+            + "Parameter: ["
             + BackCommand.COMMAND_WORD + "|"
-            + ClearCommand.COMMAND_WORD + "|"
-            + DeleteCommand.COMMAND_WORD + "|"
-            + ExitCommand.COMMAND_WORD + "|"
-            + FindCommand.COMMAND_WORD + "|"
-            + ResetCommand.COMMAND_WORD + "|"
-            + SetCommand.COMMAND_WORD + "]\n"
-            + "Example: " + COMMAND_WORD + ", " + COMMAND_WORD + " add";
+            + DeleteAttributeCommand.COMMAND_WORD + "|"
+            + SetCommand.COMMAND_WORD + "|"
+            + DetailHelpCommand.COMMAND_WORD + "|"
+            + ExitCommand.COMMAND_WORD + "]\n"
+            + "Example: " + COMMAND_WORD + ", " + COMMAND_WORD + " " + SetCommand.COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 

@@ -18,8 +18,9 @@ public class HelpCommand extends Command {
             + DeleteCommand.COMMAND_WORD + "|"
             + ExitCommand.COMMAND_WORD + "|"
             + FindCommand.COMMAND_WORD + "|"
+            + SortCommand.COMMAND_WORD + "|"
             + ResetCommand.COMMAND_WORD + "|"
-            + SetCommand.COMMAND_WORD + "]\n"
+            + HelpCommand.COMMAND_WORD + "]\n"
             + "Example: " + COMMAND_WORD + ", " + COMMAND_WORD + " add";
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
