@@ -35,10 +35,10 @@ medication history.
    open the help window.<br>
    Some example commands you can try:
 
-    * **`add`**`n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol m/ibuprofen ` :
+    * **`add`**`n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol m/ibuprofen` :
       Adds a contact named `Amy Toh` to checkUp. 
 
-    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`** `3` : Deletes the 3rd contact shown in the current list.
 
     * **`get`** `/n Alex`: Retrieve contact's information based on the prefix you provided. In this case, patients
     with the name `Alex` will be retrieved.
@@ -65,6 +65,15 @@ medication history.
                                                                                                                                                                                                                                                                                                                                   
 
 
+## Symbols
+
+| Symbol     | Meaning                                 |
+|------------|-----------------------------------------|
+| :bulb:     | Tip that may be useful to know.         |
+| :notebook: | Information that may be useful to know. |
+| `+`        | Required field.                         |
+ | `-`        | Optional field.                         |
+| `*`        | Multiple inputs are allowed.            |
 
 ## Features
 
@@ -103,10 +112,22 @@ medication history.
 
 Adds a patient to checkUp.
 
-Format: `add n/NAME p/PHONE e/EMAIL nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT pt/PATIENT_TYPE hw/HOSPITAL_WING fn/FLOOR_NUMBER wn/WARD_NUMBER [ua/UPCOMING_APPOINTMENT] [m/MEDICATION]…​`
+Format: `add {Prefix}/{Parameter}…​`
 
-* Medication tags are for assigning long-term medication to patients.
-* Use multiple m/ prefixes if multiple medicines are prescribed.
+The prefixes and their respective parameters are as follows:
+
+| Status  | Prefix | Parameter                               | Description                                                                |
+|---------|--------|-----------------------------------------|----------------------------------------------------------------------------|
+| `+`     | n/     | NAME                                    | Patient's name.                                                            |
+| `+`     | p/     | PHONE                                   | Patient's phone number.                                                    |
+| `+`     | e/     | EMAIL                                   | Patient's email address.                                                   |
+| `+`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | Patient's next-of-kin's name, relationship and contact number.             |
+| `+`     | pt/    | PATIENT_TYPE                            | Patient's type. Can be either `inpatient` or `outpatient`.                 |
+| `-`     | hw/    | HOSPITAL_WING                           | Patient's hospital wing. Can be either `north`, `south`, `east` or `west`. |
+| `-`     | fn/    | FLOOR_NUMBER                            | Patient's floor number.                                                    |
+| `-`     | wn/    | WARD_NUMBER                             | Patient's ward number.                                                     |
+| `-`     | ua/    | UPCOMING_APPOINTMENT                    | Patient's upcoming appointment.                                            |
+| `-` `*` | m/     | MEDICATION                              | Patient's long-term medication.                                            |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of medications (including 0)!
@@ -130,8 +151,23 @@ If patient type is outpatient: <br>
 
 Edits a patient in checkUp.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT] [pt/PATIENT_TYPE] [hw/HOSPITAL_WING]
-[fn/FLOOR_NUMBER] [wn/WARD_NUMBER] [ua/UPCOMING_APPOINTMENT] [m/MEDICATION]...`
+Format: `edit INDEX {Prefix}/{Parameter}...`
+
+The prefixes and their respective parameters are as follows:
+
+| Status  | Prefix | Parameter                               | Description                                                                |
+|---------|--------|-----------------------------------------|----------------------------------------------------------------------------|
+| `+`     |        | INDEX                                   | Index of the patient in the displayed patient list.                        |
+| `-`     | n/     | NAME                                    | Patient's name.                                                            |
+| `-`     | p/     | PHONE                                   | Patient's phone number.                                                    |
+| `-`     | e/     | EMAIL                                   | Patient's email address.                                                   |
+| `-`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | Patient's next-of-kin's name, relationship and contact number.             |
+| `-`     | pt/    | PATIENT_TYPE                            | Patient's type. Can be either `inpatient` or `outpatient`.                 |
+| `-`     | hw/    | HOSPITAL_WING                           | Patient's hospital wing. Can be either `north`, `south`, `east` or `west`. |
+| `-`     | fn/    | FLOOR_NUMBER                            | Patient's floor number.                                                    |
+| `-`     | wn/    | WARD_NUMBER                             | Patient's ward number.                                                     |
+| `-`     | ua/    | UPCOMING_APPOINTMENT                    | Patient's upcoming appointment.                                            |
+| `-` `*` | m/     | MEDICATION                              | Patient's long-term medication.                                            |
 
 * Edits the details of the patient at the specified `INDEX`. The index refers to the index number shown in the
   displayed patient list. The index **must be a positive integer** 1, 2, 3, ...
@@ -172,7 +208,16 @@ Examples:
 
 Creates a past appointment for the specified patient in checkUp.
 
-Format: `appt INDEX on/DATE diag/DIAGNOSIS [m/MEDICATION]...`
+Format: `appt INDEX {Prefix}/{Parameter}...`
+
+The prefixes and their respective parameters are as follows:
+
+| Status  | Prefix | Parameter                               | Description                                            |
+|---------|--------|-----------------------------------------|--------------------------------------------------------|
+| `+`     |        | INDEX                                   | Index of the patient in the displayed patient list.    |
+| `+`     | on/    | DATE                                    | Date of the appointment.                               |
+| `+`     | diag/  | DIAGNOSIS                               | Diagnosis of the patient.                              |
+| `-` `*` | m/     | MEDICATION                              | Medication (long or short term) prescribed to patient. |
 
 * Past appointment is created for a patient at the specified `INDEX`.
 * The index refers to the index number showed in the displayed patient list.
