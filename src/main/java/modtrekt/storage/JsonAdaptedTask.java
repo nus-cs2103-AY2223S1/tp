@@ -2,6 +2,7 @@ package modtrekt.storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +83,8 @@ public class JsonAdaptedTask {
         if (dueDate == null) {
             return new Task(modelDescription, modCode, isDone, modelPriority);
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d")
+                .withResolverStyle(ResolverStyle.STRICT);
         LocalDate dueDateObj = LocalDate.parse(dueDate, formatter);
         return new Deadline(modelDescription, modCode, dueDateObj, isDone, modelPriority);
     }

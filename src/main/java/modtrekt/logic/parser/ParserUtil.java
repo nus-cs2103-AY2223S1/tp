@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.stream.Stream;
 
 import modtrekt.commons.core.index.Index;
@@ -59,7 +60,8 @@ public class ParserUtil {
         requireNonNull(date);
         String trimmedDate = date.trim();
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d")
+                    .withResolverStyle(ResolverStyle.STRICT);
             return LocalDate.parse(trimmedDate, formatter);
         } catch (DateTimeParseException exception) {
             throw new ParseException("Invalid date, date must be in YYYY-MM-DD format");
