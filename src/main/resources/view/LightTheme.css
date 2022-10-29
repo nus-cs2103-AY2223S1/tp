@@ -359,7 +359,7 @@
     -fx-text-fill: black;
 }
 
-#detailPanel #githubLabel {
+#detailPanel #githubLink     {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 18pt;
 }
