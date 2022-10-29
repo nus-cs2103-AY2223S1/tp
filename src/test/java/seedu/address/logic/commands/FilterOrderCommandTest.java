@@ -133,7 +133,7 @@ public class FilterOrderCommandTest {
     }
 
     @Test
-    public void generatePredicate_matchingOrderStatus_twoOrdersFound() {
+    public void generatePredicate_matchingOrderStatus_oneOrderFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
 
         OrderStatusPredicate<Order> orderStatusPredicate = new OrderStatusPredicate<>(OrderStatus.PENDING);

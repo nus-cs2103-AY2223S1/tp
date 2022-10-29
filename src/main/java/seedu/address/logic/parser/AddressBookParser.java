@@ -27,11 +27,9 @@ import seedu.address.logic.commands.deletecommands.DeleteSupplierCommand;
 import seedu.address.logic.commands.editcommands.EditBuyerCommand;
 import seedu.address.logic.commands.editcommands.EditDelivererCommand;
 import seedu.address.logic.commands.editcommands.EditSupplierCommand;
-import seedu.address.logic.commands.filtercommands.FilterLocCommand;
 import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
 import seedu.address.logic.commands.filtercommands.FilterPetCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
-import seedu.address.logic.commands.findcommands.FindPetCommand;
 import seedu.address.logic.commands.sortcommands.SortCommand;
 import seedu.address.logic.parser.addcommandparser.AddBuyerCommandParser;
 import seedu.address.logic.parser.addcommandparser.AddCommandWithPopupParser;
@@ -48,13 +46,11 @@ import seedu.address.logic.parser.editcommandparser.EditBuyerCommandParser;
 import seedu.address.logic.parser.editcommandparser.EditDelivererCommandParser;
 import seedu.address.logic.parser.editcommandparser.EditSupplierCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.filtercommandparser.FilterLocCommandParser;
 import seedu.address.logic.parser.filtercommandparser.FilterOrderCommandParser;
 import seedu.address.logic.parser.filtercommandparser.FilterPetCommandParser;
 import seedu.address.logic.parser.findcommandparser.FindBuyerCommandParser;
 import seedu.address.logic.parser.findcommandparser.FindCommandParser;
 import seedu.address.logic.parser.findcommandparser.FindDelivererCommandParser;
-import seedu.address.logic.parser.findcommandparser.FindPetCommandParser;
 import seedu.address.logic.parser.findcommandparser.FindSupplierCommandParser;
 
 /**
@@ -138,9 +134,6 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case FindPetCommand.COMMAND_WORD:
-            return new FindPetCommandParser().parse(arguments);
-
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
@@ -164,9 +157,6 @@ public class AddressBookParser {
 
         case FilterOrderCommand.COMMAND_WORD:
             return new FilterOrderCommandParser().parse(arguments);
-
-        case FilterLocCommand.COMMAND_WORD:
-            return new FilterLocCommandParser().parse(arguments);
 
         case MatchCommand.COMMAND_WORD:
             return new MatchCommandParser().parse(arguments);

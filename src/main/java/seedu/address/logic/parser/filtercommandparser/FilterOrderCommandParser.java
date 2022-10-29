@@ -45,7 +45,7 @@ public class FilterOrderCommandParser implements Parser<FilterOrderCommand> {
         Predicate<Order> orderStatusPredicate = defaultPredicate;
         Predicate<Order> priceRangePredicate = defaultPredicate;
 
-        for (int i = 1; i < nameKeywords.length; i++) {
+        for (int i = 0; i < nameKeywords.length; i++) {
             String arg = nameKeywords[i];
             arg = arg.trim();
 

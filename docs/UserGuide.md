@@ -26,8 +26,7 @@ management tasks done faster than traditional GUI apps.
         + [Finding a buyer](#finding-a-buyer--find-b)
         + [Finding a supplier](#finding-a-supplier--find-s)
         + [Finding a deliverer](#finding-a-supplier--find-s)
-    * [Filtering lists by tags](#filtering-lists-by-tags--filter)
-        + [Filtering contacts](#filtering-contacts--filter)
+    * [Filtering lists by attributes](#filtering-lists-by-tags--filter)
         + [Filtering orders](#filtering-orders--filter-o)
         + [Filtering pets](#filtering-pets--filter-p)
     * [Sorting contacts](#sorting-contacts--sort)
@@ -428,7 +427,7 @@ find contacts based on a keyword.
 There are five possible attributes for finding contact(s):
 Address, Email, Location, Name, Phone.
 
-Format: `find [PREFIX]/INPUT`
+Format: `find PREFIX/INPUT`
 
 #### Attributes and Their Corresponding Prefixes Table
 
@@ -455,7 +454,7 @@ Displays all buyers who match ONE specific attribute. Check out
 the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
-Format: `find-b [PREFIX]/INPUT`
+Format: `find-b PREFIX/INPUT`
 
 Examples:
 
@@ -472,7 +471,7 @@ Displays all deliverers who match ONE specific attribute. Check out
 the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
-Format: `find-d [PREFIX]/INPUT`
+Format: `find-d PREFIX/INPUT`
 
 Examples:
 
@@ -489,7 +488,7 @@ Displays all suppliers who match ONE specific attribute. Check out
 the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
-Format: `find-s [PREFIX]/INPUT`
+Format: `find-s PREFIX/INPUT`
 
 Examples:
 
@@ -516,13 +515,25 @@ requests, Order status, Price range.
 | Order Status        | os     | os/KEYWORD                 | os/Negotating   |
 | Price Range         | pr     | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
 
-Format: `filter-o [PREFIX]/INPUT`
+Format: `filter-o PREFIX/INPUT`
 
 Examples:
 
 * `filter-o os/Pending`
 * `filter-o as/Negotiating p/90-900`
 * `filter-o ar/good with children os/Delivering p/80-100`
+
+Notes:
+
+* Having multiple prefixes of the same type is allowed. One example of this is:
+`filter-o os/Pending os/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
+* Note that Order Statuses are case-sensitive, so the input `filter-o os/delivering` may throw an error. To play safe, use the following words for Order status only:
+
+| Order Status | Input word | Usage                   |
+|--------------|------------|-------------------------|
+| PENDING      | Pending | filter-o os/Pending     |
+| NEGOTIATING  | Negotiating | filter-o os/Negotiating |
+| DELIVERING   | Delivering | filter-o os/Delivering |
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -540,7 +551,7 @@ Price, Species, Vaccination status.
 | Species            | s      | s/KEYWORD | s/ostrich       |
 | Vaccination Status | v      | v/KEYWORD | v/false         |
 
-Format: `filter-p [PREFIX]/INPUT`
+Format: `filter-p PREFIX/INPUT`
 
 Examples:
 

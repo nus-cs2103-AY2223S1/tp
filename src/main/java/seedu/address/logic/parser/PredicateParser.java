@@ -196,7 +196,6 @@ public class PredicateParser {
             } else if (query.equals(OrderStatus.PENDING.toString())) {
                 return new OrderStatusPredicate<>(OrderStatus.PENDING);
             }
-
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         case PRICE_RANGE_PREFIX:

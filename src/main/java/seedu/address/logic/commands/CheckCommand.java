@@ -62,4 +62,18 @@ public class CheckCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+
+        if (!(object instanceof CheckCommand)) {
+            return false;
+        }
+
+        return this.checkType.equals(((CheckCommand) object).checkType)
+                && this.index.equals(((CheckCommand) object).index);
+    }
 }

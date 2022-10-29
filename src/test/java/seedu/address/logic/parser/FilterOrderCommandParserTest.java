@@ -29,8 +29,8 @@ public class FilterOrderCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFilterOrderCommand() {
-        String input = FilterOrderCommand.COMMAND_WORD + " ar/fluffy os/Delivering pr/10.1-59.4";
-        String inputWithSpaces = FilterOrderCommand.COMMAND_WORD + "\n ar/fluffy \t os/Delivering \n pr/10.1-59.4 \n";
+        String input = "ar/fluffy os/Delivering pr/10.1-59.4";
+        String inputWithSpaces = "\n ar/fluffy \t os/Delivering \n pr/10.1-59.4 \n";
         FilterOrderCommand expectedCommand = new FilterOrderCommand(
                 new AdditionalRequestPredicate<>(Arrays.asList("fluffy")),
                 new OrderStatusPredicate<>(OrderStatus.DELIVERING),
@@ -51,8 +51,8 @@ public class FilterOrderCommandParserTest {
             }
         };
 
-        String input = FilterOrderCommand.COMMAND_WORD + " ar/fluffy";
-        String inputWithSpaces = FilterOrderCommand.COMMAND_WORD + "\n ar/fluffy \t \n";
+        String input = "ar/fluffy";
+        String inputWithSpaces = "\n ar/fluffy \t \n";
         FilterOrderCommand expectedCommand = new FilterOrderCommand(
                 new AdditionalRequestPredicate<>(Arrays.asList("fluffy")), defaultPredicate, defaultPredicate);
         assertParseSuccess(parser, input, expectedCommand);
@@ -71,8 +71,8 @@ public class FilterOrderCommandParserTest {
             }
         };
 
-        String input = FilterOrderCommand.COMMAND_WORD + " os/Delivering";
-        String inputWithSpaces = FilterOrderCommand.COMMAND_WORD + "\n \t os/Delivering \n \n";
+        String input = "os/Delivering";
+        String inputWithSpaces = "\n \t os/Delivering \n \n";
         FilterOrderCommand expectedCommand = new FilterOrderCommand(defaultPredicate,
                 new OrderStatusPredicate<>(OrderStatus.DELIVERING), defaultPredicate);
         assertParseSuccess(parser, input, expectedCommand);
@@ -91,8 +91,8 @@ public class FilterOrderCommandParserTest {
             }
         };
 
-        String input = FilterOrderCommand.COMMAND_WORD + " pr/10.1-59.4";
-        String inputWithSpaces = FilterOrderCommand.COMMAND_WORD + "\n \t \n pr/10.1-59.4 \n";
+        String input = "pr/10.1-59.4";
+        String inputWithSpaces = "\n \t \n pr/10.1-59.4 \n";
         FilterOrderCommand expectedCommand = new FilterOrderCommand(defaultPredicate, defaultPredicate,
                 new PriceRangePredicate<>(new Price(10.1), new Price(59.4)));
         assertParseSuccess(parser, input, expectedCommand);
