@@ -3,6 +3,7 @@ package seedu.address.model.util;
 import static seedu.address.commons.util.DateUtil.getLocalDate;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -57,19 +58,29 @@ public class SampleDataUtil {
                     false, getTagSet("Food")),
             new Task("Stock up on Cooking Oil", getLocalDate("2022-10-05"),
                     false, getTagSet("Fuel")),
+            new Task("Change supplier for Eggs", getLocalDate("2022-11-21"),
+                    false, new HashSet<>())
         };
     }
 
     public static SupplyItem[] getSampleSupplyItems() {
         return new SupplyItem[]{
-            new SupplyItem("Ginger", 5, 2, new Person(new Name("ABC Pte Ltd"),
+            new SupplyItem("Ginger", 105, 100, new Person(new Name("ABC Pte Ltd"),
                 new Phone("67089005"), new Price("$1.00"), new Item("Ginger"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("Supplier")), getTagSet("Item")),
-            new SupplyItem("Egg", 5, 2, new Person(new Name("Ya Shu Egg"),
+            new SupplyItem("Egg", 500, 150, new Person(new Name("Ya Shu Egg"),
                 new Phone("63450864"), new Price("$1.10"), new Item("Egg"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("Supplier")), getTagSet("Item"))
+                getTagSet("Supplier")), getTagSet("Item")),
+            new SupplyItem("Chicken", 16, 15, new Person(new Name("Soho Singapore"),
+                new Phone("64300567"), new Price("$1.85"), new Item("Chicken"),
+                new Address("Blk 47 Tampines Street 20, #17-35"),
+                getTagSet("Supplier")), new HashSet<>()),
+            new SupplyItem("Garlic", 300, 200, new Person(new Name("Goh Supplies"),
+                new Phone("69008045"), new Price("$1.50"), new Item("Garlic"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                getTagSet("Supplier")), new HashSet<>()),
         };
     }
 

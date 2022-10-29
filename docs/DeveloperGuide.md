@@ -275,7 +275,7 @@ Then, multiple processes occur to parse, validate and execute the command.
 
 **Implementation**
 
-This feature allow us to `Tasks` to be added to the `TaskList` for vendors to keep track of tasks they need to do.
+This feature allows `Tasks` to be added to the `TaskList` for vendors to keep track of tasks they need to do.
 
 The proposed addTask feature is facilitated by `AddTaskCommand` and `AddTaskCommandParser` classes
 
@@ -332,6 +332,129 @@ The user flow is illustrated in the *Activity Diagram* below.
 
 _{more aspects and alternatives to be added}_
 
+### \[Developed\] Display Task in a sorted manner based on deadline
+
+**Implementation**
+
+This feature allow `Tasks` to be displayed according to deadline where the earliest 
+dateline will be shown at the top and the latest deadline at the bottom.
+
+The sorting of `Tasks` is supported by the `TaskList` class.
+
+The feature will be implemented with the help of the following operations:
+* `TaskList#findIndexOfTask(Task task)` this method will return the index to be inserted into the task list based on
+the deadline of the task to maintain sorted position.
+
+* `TaskList#binarySearch(int start, int end, Task task)` this method is a helper function
+that will perform binary search based on the deadline and return the index that will insert the `Task`
+in ascending order. Given that there are multiple task of the same deadline, this function will
+return the index most left of the task that has the same deadline.
+
+* `LocalDate#isAfter(LocalDate other)` and `LocalDate#isEqual(LocalDate other)` are methods used to facilitate 
+comparing 2 LocalDate instances so that we can maintain order between those 2
+LocalDate instances
+
+Given below is an example of how a sorted Task is maintained.
+
+There are only 2 scenarios that can affect the order of the list.
+
+1. AddTask command is called.
+2. UpdateTask command is called.
+
+**Steps for AddTask Command**
+
+Step 1. The user enters the `addTask d/Buy Chicken dl/2020-12-12 t/Food` command.
+d/ represents the task description, dl/ represents deadline and t/ represents tag.
+
+Step 2. The `AddTaskCommandParser` parses the input and ensures that command is valid.
+For it to be valid, all compulsory field such as deadline and descriptions must be present.
+Tag field is optional. Further checks are that date given are in the correct format of
+`yyyy-mm-dd`. Also date given must be a valid gregorian calendar date.
+Which means **01 <= dd <= 28/29/30/31** depending on month especially February.
+**01 <= mm <= 12** for month.
+If these checks are not valid, an exception will be thrown.
+If checks are valid, a new Task instance will be created and a `AddTaskCommand` with the argument
+containing the new Task will be created.
+
+Step 3. The execute method in `AddTaskCommand` is being called. Then `Model#addTask(Task task)`
+method is being called.
+
+Step 4. `TaskList#findIndexOfTask(Task task)` method will be called by `Model#addTask(Task task)`
+to find the position we should insert this new `Task`.
+
+Step 5. `Task` will be inserted to the `taskList` at the position returned by `TaskList#findIndexOfTask(Task task)`
+method.
+
+Step 6. `CommandResult` is then returned, notifying the user that the `Task` is successfully added.
+
+**Activity Diagram**
+The user flow is illustrated in the *Activity Diagram* below.
+
+![SortedTaskListActivityDiagramAddTask](images/SortedTaskListActivityDiagramAddTask.png)
+
+**Steps for UpdateTask Command**
+
+Step 1. The user enters the `editTask 1 d/Buy Chicken dl/2020-12-12 t/Food` command.
+d/ represents the task description, dl/ represents deadline, t/ represents tag and 1 is the index to be edited.
+
+Step 2. The `UpdateTaskCommandParser` parses the input and ensures that command is valid.
+For it to be valid, all compulsory field such as deadline and descriptions must be present.
+Tag field is optional. Further checks are that date given are in the correct format of
+`yyyy-mm-dd`. Also date given must be a valid gregorian calendar date.
+Which means **01 <= dd <= 28/29/30/31** depending on month especially February.
+**01 <= mm <= 12** for month.
+If these checks are not valid, an exception will be thrown.
+If checks are valid, a new Task instance will be created.
+
+Step 3. The execute method in `UpdateTaskCommand` is being called. Then `Model#setTask(Task task, Index index)`
+method is being called.
+
+Step 4. The old Task at the specified index will be removed.
+
+Step 5. Then the `Model#addTask(Task task)` will be called. Which will call `TaskList#findIndexOfTask(Task task)`
+that returns the position for the new Task to be inserted.
+
+Step 6. `Task` will be inserted to the `taskList` at the position returned by `TaskList#findIndexOfTask(Task task)`
+method.
+
+Step 7. `CommandResult` is then returned, notifying the user that the `Task` is successfully updated.
+
+**Activity Diagram**
+The user flow is illustrated in the *Activity Diagram* below.
+
+![SortedTaskListActivityDiagramUpdateTask](images/SortedTaskListActivityDiagramUpdateTask.png)
+
+**Design considerations**
+
+**Aspect: How do we maintain a sorted `taskList` based on deadline**
+
+* **Alternative 1 (current choice):** Every insertion to the TaskList will require binary Search to
+maintain the sorted order in the `taskList`.
+  * Pros: Each insertion will cost O(log(n)) time complexity where n is the number of `Task` which is
+  faster compared to naive solution like linear search.
+  * Pros: In the event where we scale up and have a lot of `Task` in our `TaskList`, 
+  adding and updating of task will be faster compared to linear search.
+  * Cons: Implementation of a binary search is easily prone to errors thus it will require more
+  testing of code to prevent bugs.
+
+* **Alternative 2:** ArrayList is Sorted by using the 
+sort() method of the Collections Class in Java. Sorting is done after every insertion of `Tasks`
+or done after every `updateTask` Command
+  * Pros: Simple to implement since we are only required to pass in the comparator and 
+  add `Collections#sort()` method after adding or updating `Tasks` in the TaskList.
+  * Pros: Less prone to bugs since line of code is few compared to binary search where bug
+  occur more frequently.
+  * Cons: Adding and updating of `Task` will now be O(nlog(n)) where n is the size of `TaskList`
+  which is slower as compared to using binary search which cost O(log(n)).
+
+* **Alternative 3:** Every insertion to the TaskList will require linear search to find the position
+before adding to maintain the order in the `taskList`.
+  * Pros: Easy to implement and it is less prone to bugs as we are only iterating through 
+  an ArrayList with a single condition to check whether it able to be inserted in the `TaskList`
+  * Cons: Adding of `Task` will now be O(log(n)) where n is the size of `TaskList`
+    which is slower as compared to using binary search which cost O(log(n)).
+
+_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Undo/redo feature
 
