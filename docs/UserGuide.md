@@ -48,7 +48,7 @@ After you have installed _MyInsuRec_, you can
 4. Check out other advance features under [Features](#5-features) once you got the hang of the basic features.
 5. View our [glossary](#8-glossary) when you come across a unfamiliar term used.
 
-<div markdown="block" class="alert alert-info">:information_source: 
+<div markdown="block" class="alert alert-info">:information_source:
 For **experienced user**, you can look at the [Command Summary](#7-command-summary) for a summarised table of all the commands available.
 </div>
 
@@ -64,7 +64,7 @@ The following explains some terminology and main features of *MyInsuRec*:
 
 #### 3.1 Clients
 
-At the heart of *MyInsuRec* is the ability to help you organize and keep track of clients. 
+At the heart of *MyInsuRec* is the ability to help you organize and keep track of clients.
 
 You can do client-specific tasks such as:
 
@@ -97,7 +97,7 @@ Beyond individual meetings, you can also:
 
 #### 3.3 Products
 
-*MyInsuRec* also includes the ability for you to define your products to track products your clients might have purchased. 
+*MyInsuRec* also includes the ability for you to define your products to track products your clients might have purchased.
 
 You can do product-specific tasks such as:
 
@@ -149,7 +149,7 @@ Ta-da! *MyInsuRec* is now installed on your system.
 
 ### 6.1 Basic features
 
-Are you new to *MyInsuRec*? This section is the place to start! 
+Are you new to *MyInsuRec*? This section is the place to start!
 
 Here, we will be guiding you on the basic features of *MyInsuRec* and help you get familiarized with it.
 
@@ -207,7 +207,7 @@ Only products added already via `addProduct` can be used! This is to help ensure
 
 And there we have it! We have just gone through the basic bookkeeping features of *MyInsuRec*. Beyond that, we also have more advanced features such as getting a quick glance of all your upcoming meetings, filtering clients by products. To find out and learn more about these features, head to the [Features section](#5-features) where all the commands and their details can be found.
 
-To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't get panicked! 
+To get started with an clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't get panicked!
 
 Welcome to your new and organized life, and happy (financial) advising!
 
@@ -231,9 +231,9 @@ Do take some time to read the following note to better understand how you can us
   * `addClient n/John Tan p/12345678`
   * `addClient n/John p/12345678 e/John@abc.com b/12122000`
 
-* This symbol `||` indicates that only one of the optional parameters can be used. <br> 
+* This symbol `||` indicates that only one of the optional parameters can be used. <br>
   **Using more than one optional parameter is strictly not allowed.** <br>
-  e.g. `listClient [pd/PRODUCT || b/BIRTHDAY]` can be used as 
+  e.g. `listClient [pd/PRODUCT || b/BIRTHDAY]` can be used as
   * `listClient pd/Product1`
   * `listClient b/week`
 
@@ -256,8 +256,8 @@ This subsection covers all client-related commands.
 
 Add a new client to _MyInsuRec_.
 
-Use case: 
-1. Suppose you found a potential client, you can use this command to add their particulars into _MyInsuRec_ so that you would not forget! 
+Use case:
+1. Suppose you found a potential client, you can use this command to add their particulars into _MyInsuRec_ so that you would not forget!
 
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
@@ -266,7 +266,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 * If a `Name` already exist in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. 
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
 See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
@@ -276,7 +276,7 @@ Examples:
   * `addClient n/John Tan p/12345678`
 * Suppose John also provides his birthday, you can add him using,
   * `addClient n/John Tan p/12345678 b/12122000`
-* Suppose John provides all his particular, you can add him using, 
+* Suppose John provides all his particular, you can add him using,
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
 * Suppose `John Tan` is **already in** _MyInsuRec_, adding the following command will result in an error!
   * `addClient n/John Tan p/87654321`
@@ -298,7 +298,7 @@ Examples:
 * `listClient pd/Product1`
 * `listClient b/week`
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously. 
+<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously.
 A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
@@ -320,7 +320,7 @@ Examples:
 Delete the specified client from _MyInsuRec_.
 
 Use case:
-1. Suppose your client no longer requires your services and would like you to remove their personal information, 
+1. Suppose your client no longer requires your services and would like you to remove their personal information,
 you can use this command to remove their details from _MyInsuRec_.
 
 Format: `delClient i/INDEX`
@@ -369,16 +369,16 @@ Format: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 as shown by executing the [`listClient`](#512-list-clients-listclient) command.
 * `DATE` should be given in the format DDMMYYYY. For example, 01022022 represents
 1 February 2022.
-* `START_TIME` and `END_TIME` should be give in the format HHMM. For example, 
+* `START_TIME` and `END_TIME` should be give in the format HHMM. For example,
 1234 represents the 12:34PM.
 * A meeting contains the `INDEX` of the client in the clients list, the `DATE` and `TIME` for the meeting, and the `DESCRIPTION` of the meeting.
 
 Examples:
-* `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal` 
+* `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal`
 
 <div markdown="span" class="alert alert-success">:bulb: **Tips and tricks:**
 MyInsuRec can help you detect conflicting meeting times! For example, attempting
-to add a meeting from 1330 to 1430 when you already have one scheduled for 
+to add a meeting from 1330 to 1430 when you already have one scheduled for
 1300 to 1400 will display an error message.
 </div>
 
@@ -438,7 +438,7 @@ Format: `delMeeting i/INDEX`
 
 * Delete the meeting at the specified `INDEX`.
 * `INDEX` refers to the index number shown by executing [`listMeeting`](#322-list-meetings-listmeeting) command.
-* `INDEX` **must be a positive integer** 1, 2, 3, … 
+* `INDEX` **must be a positive integer** 1, 2, 3, …
 * If `INDEX` is a non-positive integer or not shown in `listMeeting`, an error will be thrown!
 
 Examples:
@@ -463,7 +463,7 @@ Examples:
 Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#521-add-meeting-addmeeting) command:
 
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
-* `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, 
+* `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time,
 since the start time is later than end time.
 
 ### 7.3 Product commands
@@ -499,7 +499,7 @@ Examples:
 
 #### 5.3.3 Delete a product : `delProduct`
 
-Deletes a product from *MyInsuRec*.  
+Deletes a product from *MyInsuRec*.
 This command removes this product from all the clients as well.
 
 Format: `delProduct i/INDEX`
