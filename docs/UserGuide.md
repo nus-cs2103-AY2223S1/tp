@@ -511,6 +511,10 @@ MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
 
+#### 5.5.3 Change the color scheme
+
+MyInsuRec comes with a light and dark color scheme. To change between the two, simple click on the View menu button and select the desired mode!
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ
