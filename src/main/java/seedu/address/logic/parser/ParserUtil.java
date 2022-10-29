@@ -158,7 +158,7 @@ public class ParserUtil {
     public static int parseDays(String days) throws ParseException {
         requireNonNull(days);
         String trimmedDays = days.trim();
-        if (days.length() > 4) {
+        if (trimmedDays.length() > 4) {
             throw new ParseException(MESSAGE_DAYS_TOO_LONG);
         }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedDays)) {
