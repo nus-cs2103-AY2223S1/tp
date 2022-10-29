@@ -427,7 +427,7 @@ find contacts based on a keyword.
 There are five possible attributes for finding contact(s):
 Address, Email, Location, Name, Phone.
 
-Format: `find [PREFIX]/INPUT`
+Format: `find PREFIX/INPUT`
 
 #### Attributes and Their Corresponding Prefixes Table
 
@@ -454,7 +454,7 @@ Displays all buyers who match ONE specific attribute. Check out
 the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
-Format: `find-b [PREFIX]/INPUT`
+Format: `find-b PREFIX/INPUT`
 
 Examples:
 
@@ -471,7 +471,7 @@ Displays all deliverers who match ONE specific attribute. Check out
 the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
-Format: `find-d [PREFIX]/INPUT`
+Format: `find-d PREFIX/INPUT`
 
 Examples:
 
@@ -488,7 +488,7 @@ Displays all suppliers who match ONE specific attribute. Check out
 the [Attributes and Their Corresponding Prefixes Table](#attributes-and-their-corresponding-prefixes-table)
 for more information.
 
-Format: `find-s [PREFIX]/INPUT`
+Format: `find-s PREFIX/INPUT`
 
 Examples:
 
@@ -515,7 +515,7 @@ requests, Order status, Price range.
 | Order Status        | os     | os/KEYWORD                 | os/Negotating   |
 | Price Range         | pr     | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
 
-Format: `filter-o [PREFIX]/INPUT`
+Format: `filter-o PREFIX/INPUT`
 
 Examples:
 
@@ -539,7 +539,7 @@ Price, Species, Vaccination status.
 | Species            | s      | s/KEYWORD | s/ostrich       |
 | Vaccination Status | v      | v/KEYWORD | v/false         |
 
-Format: `filter-p [PREFIX]/INPUT`
+Format: `filter-p PREFIX/INPUT`
 
 Examples:
 
