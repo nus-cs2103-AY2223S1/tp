@@ -11,14 +11,15 @@
 <VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
       alignment="TOP_LEFT" GridPane.columnIndex="0">
     <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="idLabel" styleClass="cell_big_label">
             <minWidth>
                 <!-- Ensures that the label text is never truncated -->
                 <Region fx:constant="USE_PREF_SIZE"/>
             </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
+        <Label fx:id="nameLabel" text="\$first" styleClass="cell_big_label"/>
+        <Label fx:id="githubUsernameLabel"/>
     </HBox>
-    <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
+    <Label fx:id="informationLabel" wrapText="true" styleClass="cell_small_label" />
     <FlowPane fx:id="tags"/>
 </VBox>

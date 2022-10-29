@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -41,16 +43,10 @@ public class DetailPanel extends MainPanel {
     private Label nameLabel;
 
     @FXML
-    private Label roleLabel;
+    private Label informationLabel;
 
     @FXML
     private Label githubLabel;
-
-    @FXML
-    private Label timezoneLabel;
-
-    @FXML
-    private Label addressLabel;
 
     @FXML
     private HBox contactBoxContainer;
@@ -60,6 +56,9 @@ public class DetailPanel extends MainPanel {
 
     @FXML
     private ListView<Repo> githubRepoListView;
+
+    @FXML
+    private FlowPane tags;
 
     /**
      * Initialises the DetailPanel.
@@ -83,29 +82,44 @@ public class DetailPanel extends MainPanel {
         Image placeholder = new Image(this.getClass().getResourceAsStream("/images/user_placeholder.png"));
         profileImageContainer.setFill(new ImagePattern(placeholder));
 
-        setLabelVisibility(roleLabel, person.getRole().isPresent());
-        person.getRole().ifPresent(r -> roleLabel.setText(r.toString()));
+        // Information
+        ArrayList<String> information = new ArrayList<>();
 
-        setLabelVisibility(timezoneLabel, person.getTimezone().isPresent());
-        person.getTimezone().ifPresent(t -> timezoneLabel.setText(t.toString()));
+        person.getRole().ifPresent(r -> information.add(r.toString()));
+        person.getTimezone().ifPresent(t -> information.add(t.toString()));
+        person.getAddress().ifPresent(a -> information.add(a.toString()));
 
-        setLabelVisibility(addressLabel, person.getAddress().isPresent());
-        person.getAddress().ifPresent(a -> addressLabel.setText(a.toString()));
+        setLabelVisibility(informationLabel, information.size() != 0);
+        if (information.size() > 0) {
+            informationLabel.setText(String.join(" • ", information));
+        }
 
+        // Tags
+        tags.setManaged(!person.getTags().isEmpty());
+        tags.getChildren().clear();
+        if (!person.getTags().isEmpty()) {
+            person.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        }
+
+        // Github
         setLabelVisibility(githubLabel, person.getGithubUser().isPresent());
         person.getGithubUser().ifPresent(u -> githubLabel.setText("@" + u.getUsername()));
 
         // Hide the title when github user is empty
         setLabelVisibility(reposTitleLabel, person.getGithubUser().isPresent());
+        githubRepoListView.setItems(FXCollections.emptyObservableList());
         if (person.getGithubUser().isPresent()) {
             User githubUser = person.getGithubUser().get();
 
-            // Hide the titl when repo list has no repo
+            // Hide the title when repo list has no repo
             setLabelVisibility(reposTitleLabel, githubUser.getRepoList().size() != 0);
             githubRepoListView.setItems(FXCollections.observableList(githubUser.getRepoList()));
             githubRepoListView.setCellFactory(listView -> new GithubRepoListViewCell());
         }
 
+        // Contacts
         setLabelVisibility(contactsTitleLabel, person.getContacts().size() != 0);
         List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
                 person.getContacts()

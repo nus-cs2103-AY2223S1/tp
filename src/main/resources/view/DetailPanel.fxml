@@ -5,21 +5,23 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.FlowPane?>
+
 <StackPane fx:id="detailPanel" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox spacing="16.0">
             <HBox fx:id="profileBoxContainer">
                 <children>
                     <Circle fx:id="profileImageContainer" radius="60.0"/>
-                    <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                    <VBox spacing="12.0" HBox.hgrow="ALWAYS">
                         <children>
-                            <Label fx:id="nameLabel"/>
-                            <Label fx:id="githubLabel"/>
-                            <Label fx:id="roleLabel"/>
-                            <Label fx:id="timezoneLabel"/>
-                            <Label fx:id="addressLabel"/>
+                            <HBox alignment="BASELINE_LEFT" spacing="10">
+                                <Label fx:id="nameLabel"/>
+                                <Label fx:id="githubLabel"/>
+                            </HBox>
+                            <Label fx:id="informationLabel"/>
+                            <FlowPane fx:id="tags"/>
                         </children>
                     </VBox>
                 </children>
