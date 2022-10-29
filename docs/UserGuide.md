@@ -66,6 +66,7 @@ medication history.
 
 
 ## Symbols
+
 | Symbol     | Meaning                                 |
 |------------|-----------------------------------------|
 | :bulb:     | Tip that may be useful to know.         |
