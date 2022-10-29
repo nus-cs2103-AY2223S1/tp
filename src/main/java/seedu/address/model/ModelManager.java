@@ -295,7 +295,6 @@ public class ModelManager implements Model {
 
     @Override
     public void goToHomePage() {
-        // Need do up test
         assert isHome.size() == 1;
         isHome.set(INDEX_OF_HOME_STATUS, true);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
