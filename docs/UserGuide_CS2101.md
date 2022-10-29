@@ -64,7 +64,7 @@ To check if you have Java `11` or above installed, follow the steps for your ope
 - Press the Start button and type *cmd* then press the Enter button on your keyboard.
 - Once you have Command Prompt running, type `java --version` and if you have Java installed properly, you should
   see an output like the following.
-  ![UI introduction](images/UG-screenshots/Java11CheckMac.png)
+  ![UI introduction](images/UG-screenshots/Java11CheckWindows.png)
 ##### If you are using Mac:
 - Open up terminal by hitting Command + Space bar on your keyboard and typing *terminal* then press the return 
   button on your keyboard. 
