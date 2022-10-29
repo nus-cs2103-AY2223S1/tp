@@ -21,7 +21,7 @@ FoodRem can only hold up to 10,000 items and 100 tags!
 
 ### Inventory Analysis
 
-FoodRem tracks data that helps you streamline your business decisions through **statistics**.
+FoodRem tracks data that helps you streamline your business decisions through **statistics**:
 
 1. Track your **most expensive items**.
 1. View items that are **expiring** in the next 10 days.
