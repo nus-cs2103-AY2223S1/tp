@@ -275,18 +275,18 @@
     -fx-text-fill: #010504;
 }
 
-#cardPane #tags {
+#tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#cardPane #tags .label {
+#tags .label {
     -fx-text-fill: black;
     -fx-border-color: black;
     -fx-background-color: transparent;
-    -fx-padding: 1 5 1 5;
+    -fx-padding: 1 8 1 8;
     -fx-border-radius: 50%;
-    -fx-font-size: 11;
+    -fx-font-size: 10pt;
 }
 
 .scroll-bar {
@@ -359,9 +359,14 @@
     -fx-text-fill: black;
 }
 
-#detailPanel #roleLabel, #detailPanel #timezoneLabel {
+#detailPanel #githubLabel {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 18pt;
+}
+
+#detailPanel #informationLabel {
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 12pt;
+    -fx-font-size: 14pt;
 }
 
 .sub-header {
@@ -416,7 +421,7 @@
     -fx-border-color: transparent;
 }
 
-#githubRepoListView .list-cell:filled:selected {
+#githubRepoListView .list-cell:filled:selected #repoCard {
     -fx-border-color: #818CF8;
     -fx-background-color: #EEF2FF;
 }
