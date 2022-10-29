@@ -150,9 +150,18 @@ public class ParserUtil {
         for (String major : majors) {
             majorSet.add(parseMajor(major));
         }
-        if (majorSet.size() > Major.MAXIMUM_NUMBER_OF_MAJORS) {
+        if (majorSet.size() > Major.MAXIMUM_NUMBER_OF_MAJORS || hasDuplicate(majorSet)) {
             throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
         return majorSet;
+    }
+
+    /**
+     * Returns true if {@code Set<Major> majorSet} has a duplicate major.
+     */
+    private static boolean hasDuplicate(Set<Major> majorSet) {
+        return majorSet.stream()
+                .anyMatch(currentMajor -> majorSet.stream()
+                        .anyMatch(otherMajor -> otherMajor != currentMajor && otherMajor.isSameMajor(currentMajor)));
     }
 }

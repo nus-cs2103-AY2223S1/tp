@@ -43,6 +43,15 @@ public class Major {
         return major;
     }
 
+    /**
+     * Returns true if both majors have the same name.
+     * This defines a weaker notion of equality between two majors.
+     */
+    public boolean isSameMajor(Major otherMajor) {
+        return otherMajor != null
+                && otherMajor.getMajorName().equalsIgnoreCase(this.getMajorName());
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

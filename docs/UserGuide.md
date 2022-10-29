@@ -144,7 +144,7 @@ Duplicate names are not allowed in TrackAScholar, as such any attempts to add an
 </div>
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
-An applicant can have at most 2 majors(including 0).
+An applicant can have at most 2 majors (including 0).
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
