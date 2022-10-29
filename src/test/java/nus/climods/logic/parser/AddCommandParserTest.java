@@ -52,7 +52,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_moduleNotOfferedInSemesterType_throwsParseException() {
+    public void parse_addCommandSuccess() {
         AddCommand expectedAddCommand = new AddCommand("CS1010J", SemestersEnum.S1);
 
         String input = "CS1010J s1";
