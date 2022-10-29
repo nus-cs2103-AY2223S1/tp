@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Profile's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class Phone implements Comparable<Phone> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -43,6 +43,13 @@ public class Phone {
         return other == this // short circuit if same object
                 || (other instanceof Phone // instanceof handles nulls
                 && value.equals(((Phone) other).value)); // state check
+    }
+
+    @Override
+    public int compareTo(Phone other) {
+        Integer thisValue = Integer.parseInt(value);
+        Integer otherValue = Integer.parseInt(other.value);
+        return thisValue.compareTo(otherValue);
     }
 
     @Override

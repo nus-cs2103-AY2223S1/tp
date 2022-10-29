@@ -223,7 +223,11 @@ public class Profile implements Comparable<Profile> {
 
     @Override
     public int compareTo(Profile other) {
-        return this.getName().compareTo(other.getName());
+        int compareName = this.getName().compareTo(other.getName());
+        if (compareName != 0) {
+            return compareName;
+        }
+        return this.getPhone().compareTo(other.getPhone());
     }
 
     @Override
