@@ -214,12 +214,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleShowTabStudents() throws CommandException, ParseException {
         logic.execute("list");
-//        personListPanel = new PersonListPanel(logic.getAllPersonList());
-//        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-//        allTutorsPanel = new TutorListPanel(logic.getAllTutorList());
-//        allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
-//        tabPane.getSelectionModel().select(STUDENTLIST);
-//        resultDisplay.setFeedbackToUser("Show all students!");
+        personListPanel = new PersonListPanel(logic.getAllPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        allTutorsPanel = new TutorListPanel(logic.getAllTutorList());
+        allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
+        tabPane.getSelectionModel().select(STUDENTLIST);
     }
 
 
