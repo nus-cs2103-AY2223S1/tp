@@ -3,6 +3,7 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
@@ -19,7 +20,6 @@ import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
 import seedu.taassist.model.stubs.ModelStub;
 import seedu.taassist.model.stubs.ModelStubWithNoModuleClass;
 import seedu.taassist.model.student.Student;
@@ -121,12 +121,14 @@ class AssignCommandTest {
 
         @Override
         public void setStudent(Student target, Student editedStudent) {
+            requireAllNonNull(target, editedStudent);
             student = editedStudent;
         }
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
-            throw new ModuleClassNotFoundException();
+            requireNonNull(moduleClass);
+            return true;
         }
 
         @Override
@@ -156,11 +158,13 @@ class AssignCommandTest {
 
         @Override
         public void setStudent(Student target, Student editedStudent) {
+            requireAllNonNull(target, editedStudent);
             students.set(students.indexOf(target), editedStudent);
         }
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
             return true;
         }
 

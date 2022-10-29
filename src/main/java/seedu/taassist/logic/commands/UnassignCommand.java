@@ -51,9 +51,9 @@ public class UnassignCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ModuleClass moduleClass;
+        ModuleClass existingModuleClass;
         try {
-            moduleClass = model.getModuleClassWithSameName(moduleClassToUnassign);
+            existingModuleClass = model.getModuleClassWithSameName(moduleClassToUnassign);
         } catch (ModuleClassNotFoundException mcnfe) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
                     model.getModuleClassList()));
@@ -67,9 +67,9 @@ public class UnassignCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        studentsToUnassign.forEach(s -> model.setStudent(s, s.removeModuleClass(moduleClass)));
+        studentsToUnassign.forEach(s -> model.setStudent(s, s.removeModuleClass(existingModuleClass)));
 
-        return new CommandResult(getSuccessMessage(studentsToUnassign, moduleClass));
+        return new CommandResult(getSuccessMessage(studentsToUnassign, existingModuleClass));
     }
 
     public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
