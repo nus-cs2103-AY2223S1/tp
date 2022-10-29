@@ -189,8 +189,6 @@ Parameter constraints:
 | `PRICE`    | - Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                   |
 | `DATE`     | - Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction. |
 
-  
-
 Examples:
 * `buy 3 q/100 g/apples price/1.5` creates a buy transaction from the 3<sup>rd</sup> client in the list.
 * `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction to the 1<sup>st</sup> client in
@@ -234,17 +232,15 @@ also has a tag `favourite`.
 
 [Back to Table of Contents](#table-of-contents)
 
-### Deleting a client / transaction / remark : `delete`
-> <div markdown="span" class="alert alert-danger">❗ **If you delete a client/transaction/remark, it will be gone forever**: Be very careful here!
+### Deleting a client: `delete`
+> <div markdown="span" class="alert alert-danger">❗ :warning: **If you delete a client, it will be gone forever**: Be very careful here!
 
-Deletes the specified `client`, `transaction` or `remark` from JeeqTracker.
+Deletes the specified `client`from JeeqTracker.
 
-Format: `delete INDEX m/MODE`
+Format: `delete INDEX m/client`
 
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* The `MODE` refers to which entity is being deleted. **It must be** `client`, `transaction` or `remark`.
-* `view` command **must** be used before the deletion of `remark` or `transaction` as the deletion can only happen when they are visible in the application.
+* The `INDEX` refers to the index number shown in the displayed list.
+* `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 
 Examples:
 * `delete 1 m/client` deletes the 1<sup>st</sup> client in the JeeqTracker.
@@ -257,22 +253,19 @@ result. Applying `delete 2 m/remark` deletes the 2<sup>nd</sup> remark of the cl
 
 [Back to Table of Contents](#table-of-contents)
 
-### Editing a client / transaction / remark : `edit`
+### Editing a client: `edit`
 
-Edits the details of the `client`, `transaction` or `remark` specified by the index number.
+Edits the details of the `client` at the specified index number in the list displayed on the left panel.
 
-Format: `edit INDEX m/MODE FIELDS [MORE_FIELDS]...`
+Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* The `INDEX` **must not contain any signs** e.g +1, -3, …​
+| Parameter   | Description                                                                                                                                                          |
+|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX` | - Refers to the index number shown in the displayed list. <br/> - **Must be positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​ |
+| `FIELDS` | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`               |
 
-* The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
-* The `FIELDS` refers to the parameters to be changed for the entity. e.g:
-
-  * client has `[n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]`
-  * transaction has `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`.
-* `view` command **must** be used before editing `remark` or `transaction` as the edit can only happen when they are visible in the application.
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
+</div>
 
 Examples:
 * `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
