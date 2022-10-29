@@ -331,13 +331,13 @@ public class ModelManagerTest {
         assertTrue(modelManager.getHomeStatusAsBoolean());
         assertTrue(modelManager.hasPersonInFilteredList(AMY));
         assertTrue(modelManager.hasModuleInFilteredList(CS2106));
-
     }
 
     @Test
     public void setHomeStatus() {
         ObservableList<Boolean> isAtHome = FXCollections.observableArrayList(true);
         ObservableList<Boolean> isNotAtHome = FXCollections.observableArrayList(false);
+
         // Model default is at home.
         assertEquals(isAtHome, modelManager.getHomeStatus());
 
@@ -382,10 +382,9 @@ public class ModelManagerTest {
         modelManager.setHomeStatus(false);
         assertEquals(isNotAtHome, modelManager.getHomeStatus());
 
-        // Model returns to home after running goToHome
+        // Model returns to home after running goToHomePage.
         modelManager.goToHomePage();
         assertEquals(isAtHome, modelManager.getHomeStatus());
-
     }
 
     @Test
