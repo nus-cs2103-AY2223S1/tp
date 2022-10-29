@@ -1,5 +1,5 @@
 > :warning: Prerequisite:
-> * This guide assumes that the reader is familiar with using [Java](https://www.java.com/)
+> - This guide assumes that the reader is familiar with using [Java](https://www.java.com/)
 
 # Table of Contents
 
@@ -28,7 +28,7 @@ Already an expert? Jump right straight to the [features](#features) section to s
 2. Download the latest [pennywise.jar](https://github.com/AY2223S1-CS2103T-W17-2/tp/releases) application file.
 3. Copy the file to the folder you want to use as the home folder for PennyWise.
 4. Double-click the file to start the app. You should see a user interface similar to what is shown below in a few seconds.
-    * The application contains some sample data that provides some examples on how you can use the application.
+   - The application contains some sample data that provides some examples on how you can use the application.
    
    ![Ui](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
@@ -194,10 +194,6 @@ Adds an entry to the specified list.
 | **`da/DATE`**       | Date where the entry is added in `dd-mm-YYYY` format, e.g. `01-01-2022` for 1st January 2022 |
 | **`c/CATEGORY`**    | [Category](#categorising-your-expenses-and-income) that the entry belongs to                 |
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The default date is the current date on your computer!
-</div>
-
 #### Add an expense entry to the expenditure list
 - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`
   - Here, we record our $15.60 `Lunch` expenses on 10th October 2022, and tag the entry under `Food`. 
@@ -338,8 +334,8 @@ The command format is provided below:
    ![ViewCommandExpenditureMonth](images/ug/ViewCommandExpenditureMonth.png)
    
 2. View a LineGraph of all incomes in a specified month
-   * Examples: `view t/i mo/2022-01` <br>
-   Expected: `Show graphically all income by month` and a LineGraph on the right of the application
+   - Examples: `view t/i mo/2022-01`
+   - Expected: `Show graphically all income by month` and a LineGraph on the right of the application
 
 - The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown, accompanied by a LineGraph on the right of the application. If no month is specified, the application displays an error.
 
