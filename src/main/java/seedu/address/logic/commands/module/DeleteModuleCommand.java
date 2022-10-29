@@ -20,7 +20,6 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
-import seedu.address.model.person.StudentId;
 
 /**
  * Deletes a person identified using it's displayed index from profNus.
