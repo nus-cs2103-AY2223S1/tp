@@ -127,6 +127,16 @@ public class EditExamCommand extends Command {
         private ExamDescription description;
         private ExamDate examDate;
 
+        public EditExamDescriptor() {}
+
+        /**
+         * Copy constructor.
+         */
+        public EditExamDescriptor(EditExamDescriptor toCopy) {
+            setExamDate(toCopy.examDate);
+            setDescription(toCopy.description);
+            setModule(toCopy.module);
+        }
         /**
          * Returns true if at least one field is edited.
          */

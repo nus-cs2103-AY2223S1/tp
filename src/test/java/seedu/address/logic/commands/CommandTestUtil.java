@@ -19,6 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditExamDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -36,6 +37,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DESCRIPTION_EXAMONE = "Exam one";
+    public static final String VALID_DESCRIPTION_EXAMTWO = "Exam two";
+    public static final String VALID_MODULE_EXAMONE = "CS2030S";
+    public static final String VALID_MODULE_EXAMTWO = "CS2040S";
+    public static final String VALID_DATE_EXAMONE = "20-08-2023";
+    public static final String VALID_DATE_EXAMTWO = "20-10-2023";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -59,6 +66,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditExamCommand.EditExamDescriptor DESC_EXAMONE;
+    public static final EditExamCommand.EditExamDescriptor DESC_EXAMTWO;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -67,6 +76,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_EXAMONE = new EditExamDescriptorBuilder().withModule(VALID_MODULE_EXAMONE).
+                withDescription(VALID_DESCRIPTION_EXAMONE).withDate(VALID_DATE_EXAMONE).build();
+        DESC_EXAMTWO = new EditExamDescriptorBuilder().withModule(VALID_MODULE_EXAMTWO).
+                withDescription(VALID_DESCRIPTION_EXAMTWO).withDate(VALID_DATE_EXAMTWO).build();
     }
 
     /**
