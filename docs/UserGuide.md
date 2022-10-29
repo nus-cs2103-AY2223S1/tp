@@ -403,20 +403,20 @@ NUScheduler accepts date-time formats both with and without a time specified. Fo
 
 #### Date-only formats
 
-- dd/MM/yyyy
-- dd-MM-yyyy
-- dd MM yyyy
-- dd/MM (uses current year by default)
-- dd-MM (uses current year by default)
-- dd MM (uses current year by default)
+- `DAY/MONTH/YEAR`
+- `DAY-MONTH-YEAR`
+- `DAY MONTH YEAR`
+- `DAY/MONTH` (uses current year by default)
+- `DAY-MONTH` (uses current year by default)
+- `DAY MONTH` (uses current year by default)
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the date format:**<br>
 
-* Days can be specified with either one or two digits. e.g. `5` and `05` both refer to the same day.
-* Months can be specified with either digits or letters. e.g. `3`, `03`, `mar` and `march` all refer to the same month.
-* Years must be specified with four digits. e.g. `2022`
+* `DAY` can be specified with either one or two digits. e.g. `5` and `05` both refer to the same day.
+* `MONTH` can be specified with either digits or letters. e.g. `3`, `03`, `mar` and `march` all refer to the same month.
+* `YEAR` must be specified with four digits. e.g. `2022`
 
 </div>
 
