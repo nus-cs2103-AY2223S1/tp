@@ -16,7 +16,14 @@ public class HeightTest {
     public void constructor_invalidThrowsIllegalArgumentException() {
         String invalidHeight = " ";
         assertThrows(IllegalArgumentException.class, () -> new Height(invalidHeight));
-        assertThrows(IllegalArgumentException.class, () -> new Height("0"));
+
+        // EP: [min_int...99]
+        assertThrows(IllegalArgumentException.class, () -> new Height("-100"));
+        assertThrows(IllegalArgumentException.class, () -> new Height("99"));
+
+        // EP: [220...max_int]
+        assertThrows(IllegalArgumentException.class, () -> new Height("220"));
+        assertThrows(IllegalArgumentException.class, () -> new Height("500"));
     }
 
     @Test
