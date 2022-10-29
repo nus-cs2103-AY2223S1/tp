@@ -359,7 +359,7 @@
     -fx-text-fill: black;
 }
 
-#detailPanel #githubLink     {
+#detailPanel #githubLink {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 18pt;
 }
@@ -426,6 +426,10 @@
     -fx-background-color: #EEF2FF;
 }
 
+#githubRepoListView .list-cell:filled:selected #repoCard #name {
+    -fx-text-fill: #818CF8 !important;
+}
+
 #githubRepoListView .scroll-bar {
     -fx-border-color: transparent;
 }
@@ -439,6 +443,7 @@
 #repoCard #name {
     -fx-font-family: "Segoe UI Bold";
     -fx-font-size: 12pt;
+    -fx-padding: 0 -5 0 0;
 }
 
 #repoCard #description {

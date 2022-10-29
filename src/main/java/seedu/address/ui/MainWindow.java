@@ -7,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -18,6 +16,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.github.Repo;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -175,18 +174,6 @@ public class MainWindow extends UiPart<Stage> {
                 personListPanel.clearSelectedPerson();
                 commandBox.focus();
             }
-
-            if (event.getCode().equals(KeyCode.ENTER)) {
-                selectPerson(selectedPerson);
-            }
-        });
-
-        personListPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if (event.getButton().equals(MouseButton.PRIMARY)) {
-                if (event.getClickCount() == 2) {
-                    selectPerson(personListPanel.getSelectedPerson());
-                }
-            }
         });
 
         personListPanel.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -196,11 +183,37 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
 
+        detailPanel.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            int selectedIndex = detailPanel.getSelectedRepoIndex();
+            boolean isFirstPersonSelected = selectedIndex <= 0;
+            if (isFirstPersonSelected && event.getCode().equals(KeyCode.UP)) {
+                detailPanel.clearSelectedRepo();
+                commandBox.focus();
+            }
+        });
+
+        detailPanel.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            // Ignore tab navigation when the list view is empty
+            if (event.getCode().equals(KeyCode.TAB)) {
+                event.consume();
+            }
+        });
+
         commandBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            boolean isEmpty = logic.getSortedFilteredPersonList().size() == 0;
-            if (!isEmpty && event.getCode().equals(KeyCode.DOWN)) {
-                personListPanel.focus();
-                personListPanel.setSelectedPerson(logic.getSortedFilteredPersonList().get(0));
+            if (currentMainPanel.equals(MainPanelName.List)) {
+                boolean notEmpty = logic.getSortedFilteredPersonList().size() > 0;
+                if (notEmpty && event.getCode().equals(KeyCode.DOWN)) {
+                    personListPanel.focus();
+                }
+            } else if (currentMainPanel.equals(MainPanelName.Detail)) {
+                boolean notEmpty = logic.getSelectedPerson().get()
+                        .getGithubUser()
+                        .map(u -> u.getRepoList().size() > 0)
+                        .orElse(false);
+
+                if (notEmpty && event.getCode().equals(KeyCode.DOWN)) {
+                    detailPanel.focus();
+                }
             }
         });
 

@@ -20,6 +20,9 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Control;
@@ -27,8 +30,13 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
@@ -94,6 +102,54 @@ public class DetailPanel extends MainPanel {
                 updatePersonDetail(newPerson);
             }
         });
+
+        githubRepoListView.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                Repo repo = githubRepoListView.getSelectionModel().getSelectedItem();
+                openUrl(repo.getRepoUrl());
+            }
+        });
+
+        githubRepoListView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 2) {
+                    Repo repo = githubRepoListView.getSelectionModel().getSelectedItem();
+                    openUrl(repo.getRepoUrl());
+                }
+            }
+        });
+    }
+
+
+    /**
+     * Focus the list view and the first person in the view
+     */
+    public void focus() {
+        githubRepoListView.requestFocus();
+        SelectionModel<Repo> model = githubRepoListView.getSelectionModel();
+
+        if (model.isEmpty()) {
+            model.selectFirst();
+        }
+    }
+
+    public void clearSelectedRepo() {
+        githubRepoListView.getSelectionModel().clearSelection();
+    }
+
+    /**
+     * Returns the selected person in the list
+     */
+    public int getSelectedRepoIndex() {
+        return githubRepoListView.getSelectionModel().getSelectedIndex();
+    }
+
+    public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<? super T> eventHandler) {
+        githubRepoListView.addEventHandler(eventType, eventHandler);
+    }
+
+    public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<? super T> eventHandler) {
+        githubRepoListView.addEventFilter(eventType, eventHandler);
     }
 
     private void updatePersonDetail(Person person) {
@@ -149,23 +205,26 @@ public class DetailPanel extends MainPanel {
         setVisibility(githubLink, user.isPresent());
         user.ifPresent(u -> {
             githubLink.setText("@" + u.getUsername());
-            Alert a = new Alert(Alert.AlertType.ERROR);
             githubLink.setOnAction(e -> {
-                if (Desktop.isDesktopSupported()) {
-                    try {
-                        Desktop.getDesktop().browse(new URI(u.getUrl()));
-                    } catch (IOException ex) {
-                        logger.severe("Error occurred when user clicked the link, " + ex.toString());
-                        a.setContentText("An internal error has occurred, unable to open browser.");
-                        a.show();
-                    } catch (URISyntaxException ex) {
-                        logger.warning("Github url is invalid " + ex.toString());
-                        a.setContentText("Given url is invalid, please confirm your contact information again.");
-                        a.show();
-                    }
-                }
             });
         });
+    }
+
+    private void openUrl(String url) {
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(new URI(url));
+            } catch (IOException ex) {
+                logger.severe("Error occurred when user clicked the link, " + ex.toString());
+                a.setContentText("An internal error has occurred, unable to open browser.");
+                a.show();
+            } catch (URISyntaxException ex) {
+                logger.warning("Github url is invalid " + ex.toString());
+                a.setContentText("Given url is invalid, please confirm your contact information again.");
+                a.show();
+            }
+        }
     }
 
     private void setGithubRepos(Optional<User> user) {

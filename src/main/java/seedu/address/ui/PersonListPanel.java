@@ -10,6 +10,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionModel;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -31,6 +35,21 @@ public class PersonListPanel extends MainPanel {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        personListView.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                switcher.execute(getSelectedPerson());
+            }
+        });
+
+        // Double click to open person detail panel
+        personListView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 2) {
+                    switcher.execute(getSelectedPerson());
+                }
+            }
+        });
     }
 
     /**
@@ -43,10 +62,6 @@ public class PersonListPanel extends MainPanel {
         if (model.isEmpty()) {
             model.selectFirst();
         }
-    }
-
-    public void setSelectedPerson(Person person) {
-        personListView.getSelectionModel().select(person);
     }
 
     public void clearSelectedPerson() {
