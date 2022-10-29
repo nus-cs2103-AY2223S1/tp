@@ -261,10 +261,11 @@ public class MainWindow extends UiPart<Stage> {
             MainPanelName to = mainPanelHistory.pop();
             assert !to.equals(currentMainPanel) : "Previous page must not same as current page.";
 
-            boolean backToListPanel = to.equals(MainPanelName.List) && currentMainPanel.equals(MainPanelName.Detail);
             switchMainPanel(to, false);
 
-            if (backToListPanel) {
+            boolean backToListPanel = to.equals(MainPanelName.List);
+            boolean hasSelectedPerson = personListPanel.getSelectedPerson() != null;
+            if (backToListPanel && hasSelectedPerson) {
                 personListPanel.focus();
             }
         } else {
