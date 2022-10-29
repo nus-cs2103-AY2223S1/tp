@@ -124,7 +124,7 @@ Sets a target daily calorie intake.
 
 Format: `target CALORIE`
 
-* `CALORIE` can only take on integer values.
+* `CALORIE` can only take on integer values in between 0 and 2,147,483,647 inclusively.
 * The initial target calorie intake is set at 2000 calories.
 * The percentage for the progress bar display will be based on the target calorie intake. 
 
