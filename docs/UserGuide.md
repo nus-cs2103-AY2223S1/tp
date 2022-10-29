@@ -16,6 +16,7 @@ food options in NUS and thus make an informed decision on where to eat._
   * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) / [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
   * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
   * [Add](#add-eatery-add) / [Delete](#delete-eatery--delete)
+  * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -100,7 +101,7 @@ _Search for eateries with names that match the keywords._
 
 **Format:** `find NAME…​ [-r NUMBER] [-h]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary"> :bulb:  **Tip:**
 You can leave NAME empty if you are using the wildcard (-r) feature
 </div>
 
@@ -166,8 +167,8 @@ Note:
 * Eateries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findLocation engineering science` will eateries stalls at either location.
 
-Example: `findLocation utown -r 2`<br>
-Example:`findLocation utown`
+Example: `findLocation University Town -r 2`<br>
+Example: `findLocation University Town`
 
 <br>
 
@@ -188,8 +189,8 @@ Note:
 * Eateries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findCuisine Western Japanese` will return eateries that sell either cuisine.
 
-Example: `findCuisine chinese -r 2`<br>
-Example: `findCuisine chinese`
+Example: `findCuisine Chinese -r 2`<br>
+Example: `findCuisine Chinese`
 
 <br>
 
@@ -211,7 +212,7 @@ Note:
   e.g. `findCuisine $ $$` will return eateries that have either of the price.
 
 Example: `findPrice $ -r 2`<br>
-Example:`findPrice $`
+Example: `findPrice $`
 
 <br>
 
@@ -284,11 +285,34 @@ Note how the eatery at index 70 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
 <br><br>
 
-### Favourite/Unfavourite `[coming in later versions]`
+### Favourite Eatery : `fav`
 
-_... Details coming soon ..._
+_Favourites an eatery from NUSEatWhere's database_
+
+**Format:** `fav ID [-h]`
+
+**Arguments:**<br>
+
+`ID`: ID of the eatery to favourite. <br>
+`-h`: displays help message (specfic to fav)<br><br>
+Example: `fav 3`
 
 <br>
+
+### Unfavourite Eatery : `unfav`
+
+_Unfavourites an eatery from NUSEatWhere's database_
+
+**Format:** `unfav ID [-h]`
+
+**Arguments:**<br>
+
+`ID`: ID of the eatery to favourite. <br>
+`-h`: displays help message (specfic to fav)<br><br>
+Example: `unfav 3`
+
+<br>
+
 
 ### Manage ratings & personal comments `[coming in later versions]`
 
