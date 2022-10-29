@@ -2,11 +2,11 @@ package seedu.address.logic.parser.consultation;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.commons.core.index.Index;
@@ -31,7 +31,7 @@ public class EditConsultationCommandParser implements Parser<EditConsultationCom
     public EditConsultationCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DAY, PREFIX_TIMESLOT,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DATE_DAY, PREFIX_TIME,
                         PREFIX_DESCRIPTION);
 
         Index index;
@@ -57,9 +57,9 @@ public class EditConsultationCommandParser implements Parser<EditConsultationCom
             editConsultDescriptor.setVenue(
                     ConsultationParserUtil.parseConsultationVenue(argMultimap.getValue(PREFIX_VENUE).get()));
         }
-        if (argMultimap.getValue(PREFIX_DAY).isPresent() && argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
-            String date = argMultimap.getValue(PREFIX_DAY).get();
-            String timeslot = argMultimap.getValue(PREFIX_TIMESLOT).get();
+        if (argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            String date = argMultimap.getValue(PREFIX_DATE_DAY).get();
+            String timeslot = argMultimap.getValue(PREFIX_TIME).get();
             DatetimeRange datetime = DatetimeCommonUtils.parseDatetimeRange(date, timeslot);
             editConsultDescriptor.setTimeSlot(datetime);
         }
@@ -69,11 +69,11 @@ public class EditConsultationCommandParser implements Parser<EditConsultationCom
                             argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         //Only day
-        if (argMultimap.getValue(PREFIX_DAY).isPresent() && !argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+        if (argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && !argMultimap.getValue(PREFIX_TIME).isPresent()) {
             throw new ParseException(EditConsultationCommand.MESSAGE_DATETIME_CONSULTATION);
         }
         //Only timeslot
-        if (!argMultimap.getValue(PREFIX_DAY).isPresent() && argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+        if (!argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && argMultimap.getValue(PREFIX_TIME).isPresent()) {
             throw new ParseException(EditConsultationCommand.MESSAGE_DATETIME_CONSULTATION);
         }
         if (!editConsultDescriptor.isAnyFieldEdited()) {

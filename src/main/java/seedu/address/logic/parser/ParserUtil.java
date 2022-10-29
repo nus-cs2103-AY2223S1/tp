@@ -34,15 +34,15 @@ public class ParserUtil {
      * Throws ParseException if any of the prefixes are not present in the given
      * {@code ArgumentMultimap}.
      */
-    public static void assertAllPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes)
-            throws AllPrefixesMissingException {
+    public static void assertAllPrefixesPresent(ArgumentMultimap argumentMultimap, String messageUsage,
+                                                Prefix... prefixes) throws AllPrefixesMissingException {
         Prefix[] missingPrefixes = Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
                 .map(prefix -> new Prefix(prefix.getPrefix()))
                 .toArray(Prefix[]::new);
 
         if (missingPrefixes.length != 0) {
-            throw new AllPrefixesMissingException(missingPrefixes);
+            throw new AllPrefixesMissingException(missingPrefixes, messageUsage);
         }
     }
 
@@ -50,15 +50,15 @@ public class ParserUtil {
      * Throws ParseException if at none of the prefixes has non-empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    public static void assertAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes)
-            throws SomePrefixesMissingException {
+    public static void assertAnyPrefixesPresent(ArgumentMultimap argumentMultimap, String messageUsage,
+                                                Prefix... prefixes) throws SomePrefixesMissingException {
         Prefix[] missingPrefixes = Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
                 .map(prefix -> new Prefix(prefix.getPrefix()))
                 .toArray(Prefix[]::new);
 
         if (missingPrefixes.length == prefixes.length) {
-            throw new SomePrefixesMissingException(prefixes);
+            throw new SomePrefixesMissingException(prefixes, messageUsage);
         }
     }
 
@@ -66,15 +66,15 @@ public class ParserUtil {
      * Throws ParseException if a prefix that is present has non-empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    public static void assertPrefixesPresentNotEmpty(ArgumentMultimap argumentMultimap, Prefix... prefixes)
-            throws PrefixesEmptyException {
+    public static void assertPrefixesPresentNotEmpty(ArgumentMultimap argumentMultimap, String messageUsage,
+                                                     Prefix... prefixes) throws PrefixesEmptyException {
         Prefix[] prefixesPresentNotEmpty = Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
                 .filter(prefix -> argumentMultimap.getValue(prefix).get().equals(""))
                 .toArray(Prefix[]::new);
 
         if (prefixesPresentNotEmpty.length != 0) {
-            throw new PrefixesEmptyException(prefixesPresentNotEmpty);
+            throw new PrefixesEmptyException(prefixesPresentNotEmpty, messageUsage);
         }
     }
 }

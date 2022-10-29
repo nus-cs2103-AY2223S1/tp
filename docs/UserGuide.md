@@ -59,7 +59,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -86,7 +86,7 @@ Examples:
 
 #### 3.1.2 Deleting a student: `delete student`
 
-Deletes the specified student from the list of people.
+Deletes the specified student from the list of students.
 
 Format: `delete student INDEX`
 
@@ -172,7 +172,7 @@ Day should take in a number from 1 (Monday) to 7 (Sunday).
 </div>
 
 Examples:
-* `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`
+* `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
 #### 3.2.2 Deleting a tutorial: `delete tutorial`
 
@@ -247,12 +247,12 @@ Examples:
 
 Adds a reminder to the list of reminders.
 
-Format: `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION`
+Format: `add reminder n/NAME T/DEADLINE_TIME D/DEADLINE_DATE d/DESCRIPTION p/PRIORITY`
 
 * Adds a reminder with either `HIGH`, `MEDIUM` or `LOW` priority.
 
 Examples:
-* `add reminder n/mark midterms T/2022-10-26 20:00 p/high d/300 papers to mark`
+* `add reminder n/Mark Midterms D/2022-01-01 T/15:00 d/300 papers to mark p/HIGH`
 
 
 #### 3.4.2 Deleting a reminder : `delete reminder`
@@ -268,23 +268,42 @@ Format: `delete reminder INDEX`
 Examples:
 * `delete reminder 3`
 
+#### 3.4.3 Editing a reminder: `edit reminder`
 
-#### 3.4.3 Mark a reminder : `mark reminder`
+Edits an existing reminder in the list of reminders.
+
+Format: `edit consultation INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [d/description] [p/PRIORITY]`
+
+* Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing the time or the date, both fields must be given.
+
+Examples:
+* `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
+* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd consultation to be `14:00` and sets deadline date to `2022 Oct 10`.
+
+#### 3.4.4 Mark a reminder : `mark reminder`
 
 Marks a reminder as complete.
 
 Format: `mark reminder INDEX`
 
 Examples:
-* `mark reminder 1`
+* `mark reminder 2`
 
-![Before marking reminder](images/UnmarkedReminder.png)
-_Figure 1. Before executing command: `mark reminder 1`_
+<table>
+  <tr>
+    <td>Before executing mark command</td>
+    <td>After executing mark command</td>
+  </tr>
+  <tr>
+    <td><img src="images/UnmarkedReminder.png" width=350 height=400></td>
+    <td><img src="images/MarkedReminder.png" width=350 height=400></td>
+  </tr>
+ </table>
 
-![After marking reminder](images/MarkedReminder.png)
-_Figure 1.2. After executing command: `mark reminder 1`_
-
-#### 3.4.4 Unmark a reminder : `unmark reminder`
+#### 3.4.5 Unmark a reminder : `unmark reminder`
 
 Unmarks a reminder as incomplete.
 
@@ -293,7 +312,7 @@ Format: `unmark reminder INDEX`
 Examples:
 * `unmark reminder 3`
 
-#### 3.4.5 Sort reminders: `sort reminder`
+#### 3.4.6 Sort reminders: `sort reminder`
 
 Sort reminders by a chosen criteria.
 
@@ -318,7 +337,7 @@ Examples:
 * `switch f/tutorial` will switch tabs and display the tutorial list.
 * `switch f/grade` with switch tabs and display a pie chart showing an overview of the number of students in each grade category.
 
-![Grade Chart Tab](images/SwitchGrade.png)
+![Grade Chart Tab](images/GradeChart.png)
 _Figure 2. Grade Chart Tab_
 
 ### 3.6 Clearing all data: `clear`

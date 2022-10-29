@@ -113,7 +113,7 @@ public class Consultation {
                 .append(getVenue())
                 .append("; Timeslot: ")
                 .append(getTimeslot())
-                .append("; Decription: ")
+                .append("; Description: ")
                 .append(getDescription());
 
         return builder.toString();
