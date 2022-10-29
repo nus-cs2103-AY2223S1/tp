@@ -20,7 +20,11 @@ import seedu.masslinkers.model.MassLinkers;
 import seedu.masslinkers.model.Model;
 import seedu.masslinkers.model.ReadOnlyMassLinkers;
 import seedu.masslinkers.model.ReadOnlyUserPrefs;
+import seedu.masslinkers.model.student.Email;
+import seedu.masslinkers.model.student.GitHub;
+import seedu.masslinkers.model.student.Phone;
 import seedu.masslinkers.model.student.Student;
+import seedu.masslinkers.model.student.Telegram;
 import seedu.masslinkers.testutil.StudentBuilder;
 
 public class AddCommandTest {
@@ -145,6 +149,22 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public boolean hasTelegram(Telegram telegram) {
+            throw new AssertionError("This method should not be called.");
+        }
+        public boolean hasGitHub(GitHub gitHub) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public boolean hasEmail(Email email) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        public boolean hasPhone(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
     }

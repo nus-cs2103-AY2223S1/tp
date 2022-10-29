@@ -39,6 +39,49 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
+     * Returns true if the telegram handle is owned by a student in the list.
+     * @param toCheck Telegram handle
+     * @return boolean indicating if someone in the list has the telegram handle.
+     */
+    public boolean containsTelegram(Telegram toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(x -> x.getTelegram().equals(toCheck));
+    }
+
+    /**
+     * Returns true if the GitHub username is owned by a student in the list.
+     * @param toCheck GitHub username
+     * @return boolean indicating if someone in the list has the GitHub username.
+     */
+    public boolean containsGitHub(GitHub toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(x -> x.getGitHub() != null
+                && x.getGitHub().equals(toCheck));
+    }
+
+    /**
+     * Returns true if the email is owned by a student in the list.
+     * @param toCheck email
+     * @return boolean indicating if someone in the list has the email.
+     */
+    public boolean containsEmail(Email toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(x -> x.getEmail() != null
+                && x.getEmail().equals(toCheck));
+    }
+
+    /**
+     * Returns true if the phone number is owned by a student in the list.
+     * @param toCheck phone number
+     * @return boolean indicating if someone in the list has the phone number.
+     */
+    public boolean containsPhone(Phone toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(x -> x.getPhone() != null
+                && x.getPhone().equals(toCheck));
+    }
+
+    /**
      * Adds a student to the list.
      * The student must not already exist in the list.
      */

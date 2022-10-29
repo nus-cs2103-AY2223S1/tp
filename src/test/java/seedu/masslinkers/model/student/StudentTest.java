@@ -3,6 +3,7 @@ package seedu.masslinkers.model.student;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -31,23 +32,39 @@ public class StudentTest {
         // null -> returns false
         assertFalse(ALICE.isSameStudent(null));
 
-        // same name, all other attributes different -> returns true
-        Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withInterests(VALID_TELEGRAM_BOB).withInterests(VALID_INTEREST_SWE).build();
+        //different object, with same name and same attribute -> returns true
+        Student editedAlice = new StudentBuilder(ALICE).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
-        // different name, but same telegram and all other attributes same -> returns true
-        // telegram should be unique
-        editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // same name, all other attributes different -> returns false
+        editedAlice = new StudentBuilder(ALICE)
+                .withTelegram(VALID_TELEGRAM_BOB)
+                .withGitHub(VALID_GITHUB_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withInterests(VALID_TELEGRAM_BOB)
+                .withInterests(VALID_INTEREST_SWE)
+                .build();
+        assertFalse(ALICE.isSameStudent(editedAlice));
+
+        // different name, all other attributes same -> returns true
+        editedAlice = new StudentBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
+                .build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // name differs in case, all other attributes same -> returns true
-        Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Student editedBob = new StudentBuilder(BOB)
+                .withName(VALID_NAME_BOB.toLowerCase())
+                .build();
         assertTrue(BOB.isSameStudent(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        editedBob = new StudentBuilder(BOB)
+                .withName(nameWithTrailingSpaces)
+                .build();
+
         assertTrue(BOB.isSameStudent(editedBob));
     }
 

@@ -89,6 +89,50 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTelegram_telegramNotInMassLinkers_returnsFalse() {
+        assertFalse(modelManager.hasTelegram(BENSON.getTelegram()));
+    }
+
+    @Test
+    public void hasTelegram_telegramInMassLinkers_returnsTrue() {
+        modelManager.addStudent(ALICE);
+        assertTrue(modelManager.hasTelegram(ALICE.getTelegram()));
+    }
+
+    @Test
+    public void hasGitHub_gitHubNotInMassLinkers_returnsFalse() {
+        assertFalse(modelManager.hasGitHub(BENSON.getGitHub()));
+    }
+
+    @Test
+    public void hasGitHub_gitHubInMassLinkers_returnsTrue() {
+        modelManager.addStudent(ALICE);
+        assertTrue(modelManager.hasGitHub(ALICE.getGitHub()));
+    }
+
+    @Test
+    public void hasEmail_emailNotInMassLinkers_returnsFalse() {
+        assertFalse(modelManager.hasEmail(BENSON.getEmail()));
+    }
+
+    @Test
+    public void hasEmail_emailInMassLinkers_returnsTrue() {
+        modelManager.addStudent(ALICE);
+        assertTrue(modelManager.hasEmail(ALICE.getEmail()));
+    }
+
+    @Test
+    public void hasPhone_phoneNotInMassLinkers_returnsFalse() {
+        assertFalse(modelManager.hasPhone(BENSON.getPhone()));
+    }
+
+    @Test
+    public void hasPhone_phoneInMassLinkers_returnsTrue() {
+        modelManager.addStudent(ALICE);
+        assertTrue(modelManager.hasPhone(ALICE.getPhone()));
+    }
+
+    @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
     }
