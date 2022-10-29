@@ -3,12 +3,23 @@ layout: page
 title: User Guide
 ---
 
-![Coydir Logo](./images/Coydir_Logo.png)
+<p align="center">
+  <img src="./images/Coydir_Logo.png" />
+  <h1 align="center"><font size="7">Coydir</font><br><em>The Ultimate Company Directory</em></h1>
+</p> 
 
-Coydir is a desktop app to manage the employee details within a company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates based on the changes of the company structure.
+Welcome to Coydir's User Guide! 
 
-**Table of Contents**
+**[Insert some catchy phrase here]**
 
+---
+
+### Table of Contents
+
+- [Introduction](#introduction)
+- [Using this Guide](#using-this-guide)
+    - [Navigating the User Guide](#navigating-the-user-guide)
+    - [The User Interface](#the-user-interface)
 - [Quick Start](#quick-start)
 - [Features](#features)
   - [Adding an employee](#adding-an-employee-add)
@@ -28,6 +39,18 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 - [Command summary](#command-summary)
 
 ---
+
+## Introduction
+
+Coydir is a desktop app to manage the employee details within a company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates based on the changes of the company structure.
+
+## Using this Guide
+
+### Navigating the User Guide
+
+
+### The User Interface
+
 
 ## Quick start
 
