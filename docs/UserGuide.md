@@ -79,9 +79,10 @@ Format: `help`
 
 ### Displaying the full list : `showall`
 
-Displays the full list of patients when the patient list is displayed, or
-the full list of records when the record list is displayed.
-* Not to be confused with `list` command.
+Clears search parameters of a find or rfind command to undo the search.
+
+* If the patient list is displayed, the unfiltered patient list will be shown instead.
+* If the record list is displayed, the unfiltered record list will be shown instead.
 
 Format: `showall`
 
@@ -134,11 +135,11 @@ Examples:
 
 ### Listing all patients: `list`
 
-Shows a list of all patients in the patient database.
-* Not to be confused with the `showall` command.
+Returns to the patient list from the record list screen.
+
+* The record list screen must be shown for this command to be valid.
 
 Format: `list`
-* To be used only when the list of records is displayed, in order to return to the main display.
 
 ### Editing a patient : `edit`
 
@@ -294,23 +295,25 @@ Examples:
 
 ### Locating records by keyword: `rfind`
 
-Find records with a description that matches the keyword(s) specified in the records database. This command is only valid after using the rlist command to list out the records for a specified patient.
+> Finds all records that match the search constraint provided
 
-Format: `rfind [d/DATA] [r/DATA] [m/MEDICATION]`
-* 
-* * The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
+Format: `rfind [d/DATE] [r/DATA] [m/MEDICATION]`
+
+* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
 * The search is case-insensitive. e.g `h1n1` will match `H1N1`
 * The order of the keywords does not matter. e.g. `r/Has SARS` will match `SARS Has` stored in record data
 * Only full words will be matched e.g. `Covid` will not match `Covid-19`.
 * The order that the fields are specified does not matter. eg. `r/SARS m/Panadol` is equivalent to `m/Panadol r/SARS`
-* Records with fields matching at least one keyword will be returned (i.e. OR search **within** the specified prefix). 
-  * e.g. `r/Hello World` will return records with data of `Hello Hello`, `World World`.
-* Records with that matches at least one keyword from each field specified will be returned (i.e. AND search **between** all specified prefixes)
-  * eg. `r/Hello` `m/cold`will return only records that match both `Hello` in record data and `cold` in record medication.
+* PREFIXES specify the field of a record that the keywords will be matched to.
+  * If the specified field of a record contains at least one matching keyword, the record is returned.
+  * e.g. `m/Paracetamol Benzonatate` will return records with medications of `Benzonatate Benzonatate`, `Paracetamol Paracetamol`.
+* Specifying more PREFIXES increases the constraint of the search.
+  * If all fields of a record that is specified by the PREFIX contains at least one matching keyword each, the record is returned.
+  * e.g. `r/Covid-19 m/cold` will only return records that contains both `Covid-19` in record data and `cold` in record medication.
 
 Examples:
-* `rfind r/hello` returns a record with `hello` and `Hello World` stored in its record data field.
-* `rfind r/cold d/10-2022` returns a record that matches both `cold` in record data field, and has a date within Oct 2022.
+* `rfind r/Covid-19` returns a record with `Covid-19` and `Contracted covid-19` stored in its record data field.
+* `rfind r/cold d/10-2022` returns a record that matches both `cold` in the record data field, and has a date within Oct 2022.
 
 ### Clearing all patient records : `rclear`
 
@@ -366,7 +369,7 @@ _Details coming soon ..._
 | **Delete Record**        | `rdelete INDEX`                                                                                                                                                                         |
 | **List Records**         | `rlist INDEX`                                                                                                                                                                           |
 | **Edit Record**          | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever m/Paracetamol`                                                                             |
-| **Find Record**          | `rfind KEYWORD [MORE_KEYWORDS]`<br> e.g., `rfind foo bar`                                                                                                                               |
+| **Find Record**          | `rfind [d/DATE] [r/DATA] [m/MEDICATION] `<br> e.g., `rfind d/10-2022 r/Covid-19 m/Panadol`                                                                                              |
 | **Clear Records**        | `rclear`                                                                                                                                                                                |
                                                                                                                                                     |
                                                                  
