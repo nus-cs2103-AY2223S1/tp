@@ -155,89 +155,97 @@ Classes used by multiple components are in the `fridaybook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+[comment]: <> (### \[Proposed\] Undo/redo feature)
 
-#### Proposed Implementation
+[comment]: <> (#### Proposed Implementation)
 
-The proposed undo/redo mechanism is facilitated by `VersionedFriday`. It extends `Friday` with an undo/redo history, stored internally as an `FridayStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+[comment]: <> (The proposed undo/redo mechanism is facilitated by `VersionedFriday`. It extends `Friday` with an undo/redo history, stored internally as an `FridayStateList` and `currentStatePointer`. Additionally, it implements the following operations:)
 
-* `VersionedFriday#commit()` — Saves the current FRIDAY state in its history.
-* `VersionedFriday#undo()` — Restores the previous FRIDAY state from its history.
-* `VersionedFriday#redo()` — Restores a previously undone FRIDAY state from its history.
+[comment]: <> (* `VersionedFriday#commit&#40;&#41;` — Saves the current FRIDAY state in its history.)
 
-These operations are exposed in the `Model` interface as `Model#commitFriday()`, `Model#undoFriday()` and `Model#redoFriday()` respectively.
+[comment]: <> (* `VersionedFriday#undo&#40;&#41;` — Restores the previous FRIDAY state from its history.)
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+[comment]: <> (* `VersionedFriday#redo&#40;&#41;` — Restores a previously undone FRIDAY state from its history.)
 
-Step 1. The user launches the application for the first time. The `VersionedFriday` will be initialized with the initial FRIDAY state, and the `currentStatePointer` pointing to that single FRIDAY state.
+[comment]: <> (These operations are exposed in the `Model` interface as `Model#commitFriday&#40;&#41;`, `Model#undoFriday&#40;&#41;` and `Model#redoFriday&#40;&#41;` respectively.)
 
-![UndoRedoState0](images/UndoRedoState0.png)
+[comment]: <> (Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitFriday()`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.
+[comment]: <> (Step 1. The user launches the application for the first time. The `VersionedFriday` will be initialized with the initial FRIDAY state, and the `currentStatePointer` pointing to that single FRIDAY state.)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+[comment]: <> (![UndoRedoState0]&#40;images/UndoRedoState0.png&#41;)
 
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified FRIDAY state to be saved into the `addressBookStateList`.
+[comment]: <> (Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitFriday&#40;&#41;`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.)
 
-![UndoRedoState2](images/UndoRedoState2.png)
+[comment]: <> (![UndoRedoState1]&#40;images/UndoRedoState1.png&#41;)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the FRIDAY state will not be saved into the `addressBookStateList`.
+[comment]: <> (Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook&#40;&#41;`, causing another modified FRIDAY state to be saved into the `addressBookStateList`.)
 
-</div>
+[comment]: <> (![UndoRedoState2]&#40;images/UndoRedoState2.png&#41;)
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FRIDAY state, and restores the FRIDAY to that state.
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook&#40;&#41;`, so the FRIDAY state will not be saved into the `addressBookStateList`.)
 
-![UndoRedoState3](images/UndoRedoState3.png)
+[comment]: <> (</div>)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+[comment]: <> (Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook&#40;&#41;`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FRIDAY state, and restores the FRIDAY to that state.)
 
-</div>
+[comment]: <> (![UndoRedoState3]&#40;images/UndoRedoState3.png&#41;)
 
-The following sequence diagram shows how the undo operation works:
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather)
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+[comment]: <> (than attempting to perform the undo.)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+[comment]: <> (</div>)
 
-</div>
+[comment]: <> (The following sequence diagram shows how the undo operation works:)
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FRIDAY to that state.
+[comment]: <> (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram.png&#41;)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest FRIDAY state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
 
-</div>
+[comment]: <> (</div>)
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the FRIDAY, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+[comment]: <> (The `redo` command does the opposite — it calls `Model#redoAddressBook&#40;&#41;`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FRIDAY to that state.)
 
-![UndoRedoState4](images/UndoRedoState4.png)
+[comment]: <> (<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size&#40;&#41; - 1`, pointing to the latest FRIDAY state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook&#40;&#41;` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all FRIDAY states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+[comment]: <> (</div>)
 
-![UndoRedoState5](images/UndoRedoState5.png)
+[comment]: <> (Step 5. The user then decides to execute the command `list`. Commands that do not modify the FRIDAY, such as `list`, will usually not call `Model#commitAddressBook&#40;&#41;`, `Model#undoAddressBook&#40;&#41;` or `Model#redoAddressBook&#40;&#41;`. Thus, the `addressBookStateList` remains unchanged.)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+[comment]: <> (![UndoRedoState4]&#40;images/UndoRedoState4.png&#41;)
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+[comment]: <> (Step 6. The user executes `clear`, which calls `Model#commitAddressBook&#40;&#41;`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all FRIDAY states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.)
 
-#### Design considerations:
+[comment]: <> (![UndoRedoState5]&#40;images/UndoRedoState5.png&#41;)
 
-**Aspect: How undo & redo executes:**
+[comment]: <> (The following activity diagram summarizes what happens when a user executes a new command:)
 
-* **Alternative 1 (current choice):** Saves the entire FRIDAY.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+[comment]: <> (<img src="images/CommitActivityDiagram.png" width="250" />)
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+[comment]: <> (#### Design considerations:)
 
-_{more aspects and alternatives to be added}_
+[comment]: <> (**Aspect: How undo & redo executes:**)
 
-### \[Proposed\] Data archiving
+[comment]: <> (* **Alternative 1 &#40;current choice&#41;:** Saves the entire FRIDAY.)
 
-_{Explain here how the data archiving feature will be implemented}_
+[comment]: <> (  * Pros: Easy to implement.)
+
+[comment]: <> (  * Cons: May have performance issues in terms of memory usage.)
+
+[comment]: <> (* **Alternative 2:** Individual command knows how to undo/redo by)
+
+[comment]: <> (  itself.)
+
+[comment]: <> (  * Pros: Will use less memory &#40;e.g. for `delete`, just save the student being deleted&#41;.)
+
+[comment]: <> (  * Cons: We must ensure that the implementation of each individual command are correct.)
+
+[comment]: <> (_{more aspects and alternatives to be added}_)
+
+[comment]: <> (### \[Proposed\] Data archiving)
+
+[comment]: <> (_{Explain here how the data archiving feature will be implemented}_)
 
 
 ### Sort feature
@@ -246,9 +254,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to
 parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents`
-in `ModelManager`, and is updated every time `SortCommand` is run. To assist with the sorting, classes `Name`, `TelegramHandle`,
-`Consultation`, and `MasteryCheck` implement the `Comparable` interface, where the natural ordering of `String` and `LocalDate`
-are used to implement the `compareTo` method.
+in `ModelManager`, and is updated every time `SortCommand` is run. 
+
+To assist with the sorting, classes `Name`, `TelegramHandle`, `Consultation`, and `MasteryCheck` implement the `Comparable` 
+interface, where the natural ordering of `String` and `LocalDate` are used to implement the `compareTo` method. The `Grade`
+class does not implement the interface as its attributes are public. 
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
@@ -293,9 +303,9 @@ _{To add activity diagram}_
     * Cons: Top of the list may be cluttered with empty details when sorted in descending order.
 
 
-### \[Proposed\] Alias feature
+### Alias feature
 
-#### Proposed Implementation
+#### Implementation
 
 The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `UniqueAliasList`, while
 in-built command names (e.g. add, delete) will be stored in a constant `reservedCommandList`.
@@ -397,7 +407,7 @@ student inside the student class and return the student if there is a successful
 **Target user profile**:
 
 * CS1101S Teaching Assistants
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -407,7 +417,7 @@ student inside the student class and return the student if there is a successful
 2. Makes TA’s lives easier by removing the need to manually filter students
 3. Easier and more convenient to manage and schedule meetings with students
 4. Manage students faster than a typical mouse/GUI driven app
-5. Constraint: won’t be able to actually grade submissions using FRIDAY
+5. Constraint: won’t be able to actually grade assignments using FRIDAY
 
 
 ### User stories

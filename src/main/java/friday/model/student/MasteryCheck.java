@@ -4,14 +4,15 @@ import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Student's desired date for their Mastery Check.
  */
 public class MasteryCheck implements Comparable<MasteryCheck> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Check should be valid dates in the format: "
-            + "YYYY-MM-DD";
+    public static final String MESSAGE_CONSTRAINTS = "Desired dates for Mastery Check should be valid dates in the "
+        + "format: YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
 
     // The empty value for when there is no mastery check date attached to a student
@@ -56,6 +57,11 @@ public class MasteryCheck implements Comparable<MasteryCheck> {
      * Returns true if a given string is a valid Mastery Check.
      */
     public static boolean isValidMasteryCheck(String test) {
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

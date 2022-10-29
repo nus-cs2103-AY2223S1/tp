@@ -4,6 +4,7 @@ import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Student's consultations in FRIDAY.
@@ -11,8 +12,8 @@ import java.time.LocalDate;
  */
 public class Consultation implements Comparable<Consultation> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Desired dates for consultation should be valid dates in the format: "
-            + "YYYY-MM-DD";
+    public static final String MESSAGE_CONSTRAINTS = "Desired dates for consultation should be valid dates in the "
+        + "format: YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
 
     // The empty value for when there is no consultation date attached to a student
@@ -42,6 +43,11 @@ public class Consultation implements Comparable<Consultation> {
      * Returns if a given string is a valid consultation.
      */
     public static boolean isValidConsultation(String test) {
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
