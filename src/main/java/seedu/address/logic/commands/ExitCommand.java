@@ -17,8 +17,7 @@ public class ExitCommand extends Command {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
     }
 
-    @Override
-    public boolean canExecuteAt(MainPanelName name) {
+    public static boolean canExecuteAt(MainPanelName name) {
         return true;
     }
 }

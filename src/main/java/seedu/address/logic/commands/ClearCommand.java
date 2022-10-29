@@ -23,8 +23,7 @@ public class ClearCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
-    public boolean canExecuteAt(MainPanelName name) {
+    public static boolean canExecuteAt(MainPanelName name) {
         return name.equals(MainPanelName.List);
     }
 }

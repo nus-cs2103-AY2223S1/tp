@@ -25,6 +25,8 @@ public abstract class Command {
      * @param name of the given panel.
      * @return boolean to indicate whether the command can be executed
      */
-    public abstract boolean canExecuteAt(MainPanelName name);
+    public static boolean canExecuteAt(MainPanelName name) {
+        return false;
+    }
 
 }

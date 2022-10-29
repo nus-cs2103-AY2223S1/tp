@@ -45,8 +45,7 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
-    @Override
-    public boolean canExecuteAt(MainPanelName name) {
+    public static boolean canExecuteAt(MainPanelName name) {
         return name.equals(MainPanelName.List);
     }
 

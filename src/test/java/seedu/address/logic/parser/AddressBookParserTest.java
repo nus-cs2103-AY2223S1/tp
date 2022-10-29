@@ -101,7 +101,7 @@ public class AddressBookParserTest {
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder(person).build();
         SetCommand command = (SetCommand) parser.parseCommand(SetCommand.COMMAND_WORD + " "
                 + PersonUtil.getSetPersonDescriptorDetails(descriptor),
-                MainPanelName.List);
+                MainPanelName.Detail);
         assertEquals(new SetCommand(descriptor), command);
     }
 

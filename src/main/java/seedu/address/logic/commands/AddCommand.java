@@ -75,8 +75,7 @@ public class AddCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
-    @Override
-    public boolean canExecuteAt(MainPanelName name) {
+    public static boolean canExecuteAt(MainPanelName name) {
         return name.equals(MainPanelName.List);
     }
 
