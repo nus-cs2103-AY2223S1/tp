@@ -240,9 +240,10 @@ or decremented respectively by the value of your input.
 This command locates guests whose details contain any of the given keywords. This allows you to search for 
 guests with any of the specific guests' field.
 
-This command is typically used when searching for a guest of a **specific characteristic**. This command also allows for
-filtering of the guest list displayed. For example, the command `find no` will display all 
-the rooms that have room clean statuses set to _"no"_.
+This command is typically used when searching for a guest of a **specific characteristic**. 
+This allows you to search through all guests' fields.
+For example, the command `find no` will display all 
+the rooms that have room clean statuses set to "no".
 
 #### Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -255,20 +256,20 @@ the rooms that have room clean statuses set to _"no"_.
 
 #### Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro` (refer to the image below for the details of the _guests_)<br>
+* `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro` (refer to the image below for the details of the guests)<br>
 <br>
 
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
 
 #### Common mistakes:
-* Searching for guests using partial field characters e.g. `170` will **not** match `170.00`.
+* Searching for guests using incomplete keywords e.g. `170` will **not** match `170.00`.
 
 ### Deleting a guest : `delete`
 
 This command deletes the specified guest _(with index in different scenario)_ from GuestBook. 
 
-This command is supposed to be used when a guest has checked out of the hotel. Do note that the `delete` command 
-is **IRRIVERSIBLE**. Once deleted, the specific guest's data cannot be retrieved. Please use this 
+This command is typically used when a guest has checked out of the hotel. Do note that the `delete` command 
+is **IRREVERSIBLE**. Once deleted, the specific guest's data cannot be retrieved. Please use this 
 command with caution.
 
 #### Format: `delete INDEX`
@@ -276,9 +277,9 @@ command with caution.
 * Deletes the guest at the specified `INDEX`.
 
 #### Examples:
-* `list` followed by `delete 2` deletes the _2nd guest_ in GuestBook.
+* `list` followed by `delete 2` deletes the 2nd guest in GuestBook.
 
-* `find Betsy` followed by `delete 1` deletes the _1st guest_ **in the results of** the `find` command.
+* `find Betsy` followed by `delete 1` deletes the 1st guest in the results of the `find` command.
 
 ### Marking all rooms as unclean: `markRoomsUnclean`
 
@@ -286,7 +287,7 @@ This command functions to mark the room clean statuses of all guests as "no".
 
 This command is typically used at the end or the start of the day when the hotel manager wishes to 
 update all the room clean statuses to "no" efficiently. This clean slate would allow the hotel 
-managers to keep track on the rooms that are cleaned or uncleaned for the day.
+managers to keep track of the rooms that are cleaned or uncleaned for the day.
 
 #### Format: `markRoomsUnclean`
 
@@ -299,7 +300,7 @@ managers to keep track on the rooms that are cleaned or uncleaned for the day.
 This command clears **all entries** from GuestBook. 
 
 This command is typically used as a hard reset of all guest data in GuestBook. Do note that this command 
-is **IRRIVERSIBLE**. Once cleared, all the guest data cannot be retrieved. Please use this command 
+is **IRREVERSIBLE**. Once cleared, all the guest data cannot be retrieved. Please use this command 
 with utmost caution.
 
 #### Format: `clear`
@@ -312,12 +313,12 @@ This command exits the program.
 
 ### Saving the data
 
-GuestBook data are saved in the hard disk automatically after any command that changes the data. There is **no need** to save manually.
+GuestBook data are saved in the hard disk **automatically** after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
 GuestBook data are saved as a _JSON file_ `[JAR file location]/data/guestbook.json`.<br>
-_Advanced users are welcome to update data directly by editing that data file._
+_Advanced users may change data directly by editing that data file._
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, GuestBook will discard all data and start with an empty data file at the next run.
