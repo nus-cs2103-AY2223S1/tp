@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+
+start
+:User executes the SuggestCommand;
+:NutriGoalsParser parses the input;
+:SuggestCommand is executed;
+
+if () then ([!isUserCreated])
+    :Display error message;
+else ([else])
+    :Calculate an estimated suggested amount of calorie;
+    :Display success message and the estimated amount of calorie;
+endif
+stop
+
+@enduml

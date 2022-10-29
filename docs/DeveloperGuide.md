@@ -370,6 +370,37 @@ The following sequence diagram illustrates how the review operation works:
 
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png)
 
+### Suggest feature
+
+#### Implementation
+
+The suggest mechanism is facilitated by `SuggestCommand`, which extends `Command`. It overrides the following operation:
+
+* `SuggestCommand#execute()`: Calculates a suggested amount of calories a user should consume per day.
+
+The following illustrates what objects are created when `suggest` is executed.
+
+![SuggestObjectDiagram](images/SuggestObjectDiagram.png)
+
+Given below is an example usage scenario and how the suggest mechanism behaves at each step.
+
+Step 1. The user launches the application today.
+
+Step 2. The user executes `suggest` command, which creates a `SuggestCommand` object.
+
+Step 3. The `SuggestCommand` created is executed by `SuggestCommand#execute()`
+
+Step 4. `SuggestCommand#execute()` then calls the following methods from `Model`:
+
+* `Model#isUserCreated()`
+* `Model#calculateSuggestedCalorie()`
+
+Step 5. `SuggestCommand#execute()` returns a `CommandResult` that displays an estimated suggested amount of calories the user should consume per day.
+
+The following activity diagram outlines what happens when a user executes the `suggest` command:
+
+![SuggestActivityDiagram](images/SuggestActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -569,6 +600,23 @@ specified otherwise)
     * 1b1. NutriGoals displays a default message.
 
       Use case ends.
+
+**Use case: UC-9 Get a suggested amount of calorie to consume daily**
+
+**MSS**
+
+1. User requests to get an estimated suggested amount of calorie to consume daily.
+2. NutriGoals shows the suggested amount of calorie to consume.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User profile is not created.
+
+  * 1a1. NutriGoals requests user to <ins>create a profile first (UC-5).
+    
+    Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
