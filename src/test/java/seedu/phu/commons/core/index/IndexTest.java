@@ -57,4 +57,13 @@ public class IndexTest {
         // different index -> returns false
         assertFalse(fifthInternshipIndex.equals(Index.fromOneBased(1)));
     }
+
+    @Test
+    public void hash() {
+        int fifthIndexHashCode = Index.fromOneBased(5).hashCode();
+
+        // same values -> same hashCode
+        assertEquals(fifthIndexHashCode, Index.fromOneBased(5).hashCode());
+        assertEquals(fifthIndexHashCode, Index.fromZeroBased(4).hashCode());
+    }
 }
