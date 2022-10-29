@@ -113,6 +113,7 @@ public class DetailPanel extends MainPanel {
         person.getTimezone().ifPresent(t -> information.add(t.toString()));
         person.getAddress().ifPresent(a -> information.add(a.toString()));
 
+        informationLabel.prefWidthProperty().bind(this.getRoot().widthProperty().subtract(180));
         setVisibility(informationLabel, information.size() != 0);
         if (information.size() > 0) {
             informationLabel.setText(String.join(" • ", information));
