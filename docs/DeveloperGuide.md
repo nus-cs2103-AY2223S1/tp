@@ -180,7 +180,7 @@ Additionally, it implements the following operations:
 
 - `ClassStorage#saveClass()` — Saves the new class into its storage.
 
-- `ClassStorage#removeExistingClass()` — removes class from storage to free up the time slot.
+- `ClassStorage#removeExistingClass()` — Removes class from storage to free up the time slot.
 
 - `ClassStorage#hasConflict()` — Checks if there is a conflict between the class timings.
 
@@ -198,7 +198,7 @@ save both the new class and student.
 
 The following sequence diagram shows how the edit class operation works:
 
-![EditClassSequenceDiagram](images/DG-images/EditClassSequenceDiagram.png)
+<img src="images/DG-images/EditClassSequenceDiagram.png" width="850" />
 
 The following activity diagram summarizes what happens when a teacher executes an edit class command:
 

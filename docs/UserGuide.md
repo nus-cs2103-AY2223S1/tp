@@ -679,7 +679,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON     |
 | INDEX       | The index number shown in the Student's Details panel list |
 | INDEX-s     | The index number shown in the Schedule panel list          |
-| Prefix      | e.g., `n/`, `p/`, `np`                                     |
+| Prefix      | e.g., `n/`, `p/`, `np/`                                    |
 | Parameter   | e.g., `NAME`, `EMAIL`, `ADDRESS`                           |
 
 [↑ Back to top](#table-of-contents)
