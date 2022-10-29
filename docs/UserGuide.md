@@ -419,7 +419,6 @@ Clears all entries which include `clients`, `remarks` and `transactions` from Je
 Format: `clear`
 
 > <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved.
- </div>
 
 Example:
 
