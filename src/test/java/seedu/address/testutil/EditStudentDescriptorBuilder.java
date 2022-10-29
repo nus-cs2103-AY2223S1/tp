@@ -40,6 +40,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setClassGroup(student.getClassGroup());
         descriptor.setStudentId(student.getStudentId());
         descriptor.setTags(student.getTags());
+
     }
 
     /**

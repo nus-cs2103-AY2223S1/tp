@@ -29,7 +29,7 @@ public class TypicalStudents {
             .withStudentId("e0123456").withEmail("alice@example.com")
             .withPhone("94351253").withClassGroup("CS2030 Lab 2")
             .withTags("friends")
-            .withAttendanceList("CS2030", "0")
+            .withAttendanceList("NA", "0")
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withStudentId("e0354264").withClassGroup("CS2040 Tutorial 32")
