@@ -17,7 +17,7 @@ import seedu.travelr.model.trip.Trip;
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "travelr")
 class JsonSerializableTravelr {
 
     public static final String MESSAGE_DUPLICATE_TRIP = "Trips list contains duplicate trip(s).";
