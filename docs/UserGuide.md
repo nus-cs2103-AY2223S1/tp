@@ -286,10 +286,11 @@ Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DA
 
 * Edit the details of internship at the specified `INDEX`.
 * Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …​
 
 Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
-* `find hrt` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
+* `find google` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
 ### View details of an internship: `view`
 
