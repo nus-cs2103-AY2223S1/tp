@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Add markRoomsUnclean command
   * Allows the user to set the room clean status of all the guest in the hotel to "no" in a single command.
-  * This feature greatly aids with GuestBook's efficient. Typing in one command to change all guests' room
+  * This feature greatly aids with GuestBook's efficiency. Typing in one command to change all guests' room
 clean statuses saves the user an incredible amount of time compared to individually editing each guest's 
 details.
 
