@@ -132,7 +132,7 @@ Format: `delete INDEX` OR `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GE
 Example:
 
 - `list` followed by `delete 2` deletes the 2nd person in the app.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+- `view n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `view` command.
 - `delete ra/Chinese re/christian` Deletes all surveyees that are Chinese and Christian.
 
 ### Clone a person : `clone`
@@ -295,14 +295,22 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                  | Format, Examples                                                                                                                                                    |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action                  | Format, Examples                                                                                                                                                                                                                                                                  |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**                 | `n/NAME p/PHONE e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION [s/SURVEY]... [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/male b/1998-11-28 ra/Chinese re/Christian s/Shopping survey t/friends t/owesMoney` |
-| **Clear**               | `clear`                                                                                                                                                             |
-| **Delete**              | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                  |
-| **Delete by attribute** | `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`<br> e.g. `delete ra/Chinese`                  |
-| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **View**                | `view n/NAME p/PHONE e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION s/SURVEY `<br> e.g., `view g/female ra/chinese re/christian`                                              |
-| **Clone**               | `clone INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `clone 1 n/James Lee p/91234567 e/jameslee@example.com`                                                |
-| **List**                | `list`                                                                                                                                                              |
-| **Help**                | `help`                                                                                                                                                              |
+| **Clear**               | `clear`                                                                                                                                                                                                                                                                           |
+| **Delete**              | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                                                                |
+| **Delete by attribute** | `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`<br> e.g. `delete ra/Chinese`                                                                                                                                |
+| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                         |
+| **Exit**                | `exit`                                                                                                                                                                                                                                                                            |
+| **View**                | `view n/NAME p/PHONE e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION s/SURVEY `<br> e.g., `view g/female ra/chinese re/christian`                                                                                                                                      |
+| **Undo**                | `undo`                                                                                                                                                                                                                                                                            |
+| **Theme**               | `theme`                                                                                                                                                                                                                                                                           |
+| **Mark**                | `mark INDEX [s/NAME OF SURVEY]`<br> e.g., `mark 1 s/Shopping Survey`                                                                                                                                                                                                              |
+| **Unmark**              | `unmark INDEX [s/NAME OF SURVEY]`<br> e.g., `unmark 1 s/Shopping Survey`                                                                                                                                                                                                          |
+| **Append**              | `append INDEX [s/SURVEY]... [t/TAG]...`<br> e.g., `append 1 s/Food Survey s/Environment Survey t/friend t/student`                                                                                                                                                                |
+| **Unappend**            | `unappend INDEX [s/SURVEY]... [t/TAG]...`<br> e.g., `unappend 1 s/Food Survey s/Environment Survey t/friend t/student`                                                                                                                                                            |
+| **Toggle list mode**    | `toggle-list-mode`                                                                                                                                                                                                                                                                |
+| **Clone**               | `clone INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `clone 1 n/James Lee p/91234567 e/jameslee@example.com`                                                                                                                                                              |
+| **List**                | `list`                                                                                                                                                                                                                                                                            |
+| **Help**                | `help` and `help [NAME_OF_COMMAND]`                                                                                                                                                                                                                                               |
