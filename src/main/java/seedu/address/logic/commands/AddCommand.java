@@ -26,19 +26,11 @@ public class AddCommand extends Command {
             + PREFIX_PRICE + "PRICE "
             + PREFIX_ITEM + "ITEM "
             + PREFIX_ADDRESS + "ADDRESS "
-<<<<<<< HEAD
             + "[" + PREFIX_TAG + "Supplier]"
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Yoyo Pte Ltd "
             + PREFIX_PHONE + "67090808 "
             + PREFIX_PRICE + "$1.20 "
-=======
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "ABC Pte Ltd "
-            + PREFIX_PHONE + "67089005 "
-            + PREFIX_PRICE + "$1.00 "
->>>>>>> fee394e9304e8925d3fa3338285b5fb1fa76f0d6
             + PREFIX_ITEM + "Ginger "
             + PREFIX_ADDRESS + "Blk 42 Hougang Street 29,#01-40 "
             + PREFIX_TAG + "Supplier ";
