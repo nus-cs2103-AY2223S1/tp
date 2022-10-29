@@ -15,8 +15,9 @@ public class FindTagCommand extends Command {
 
     public static final String COMMAND_WORD = "findTag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons and notes that are tagged with any of "
-            + "the specified tags (case-insensitive) and displays them as a person list and note list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons and notes "
+            + "that are tagged with any of the specified tags (case-insensitive) and displays "
+            + "them as a person list and note list with index numbers.\n"
             + "Parameters: TAG [MORE_TAGS]...\n"
             + "Example: " + COMMAND_WORD + " Finance Tech";
 
