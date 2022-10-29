@@ -55,8 +55,6 @@ public class SupplyItemCard extends UiPart<Region> {
     @FXML
     private Label price;
     @FXML
-    private Label minimumAmount;
-    @FXML
     private FlowPane tags;
     @FXML
     private Button increase;
@@ -87,8 +85,6 @@ public class SupplyItemCard extends UiPart<Region> {
         supplierName.setWrapText(true);
         supplierName.setPrefWidth(360);
         currentStock.setText(getStringFromInt(supplyItem.getCurrentStock()));
-        minimumAmount.setText(MINIMUM_AMOUNT_TEXT + getStringFromInt(supplyItem.getMinStock()));
-        minimumAmount.setWrapText(true);
         price.setText(supplyItem.getPrice().value);
         supplyItem.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

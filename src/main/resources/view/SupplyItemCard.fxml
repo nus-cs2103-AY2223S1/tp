@@ -42,7 +42,6 @@
             <Label fx:id="supplierName" styleClass="cell_medium_label" text="\$supplierName"
                    wrapText="true" textOverrun="CLIP"/>
             <Label fx:id="price" styleClass="cell_small_label" text="\$price" />
-            <Label fx:id="minimumAmount" styleClass="cell_small_label" text="\$minimumAmount" wrapText="true"/>
         </VBox>
     </GridPane>
 </HBox>
