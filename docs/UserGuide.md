@@ -69,7 +69,8 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page, and a list of basic commands.
+Shows a message explaining how to access the help page, and a list of basic commands.<br>
+**Usage**: All modes
 
 ![help message](images/helpMessage.png)
 
@@ -77,8 +78,8 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book. This command can only be used in list mode.
-A person is considered a duplicate only if the names are the same (non case-sensitive).
+Adds a person to the address book. A person is considered a duplicate only if the names are the same (non case-sensitive).
+**Usage**: List mode only
 
 Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...`
 
@@ -89,14 +90,16 @@ Examples:
 
 Shows a list of all persons in the address book. Changes the address book to list mode.
 Also allows you to see the next session for you to attend along with the person you 
-are going to be teaching next.
+are going to be teaching next.<br>
+**Usage**: All modes
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book. Can only be used in view mode.
-For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX.
+Edits an existing person in the address book.
+For fields requiring an INDEX, existing fields have to contain a value before editing is allowed, else there will be no INDEX.<br>
+**Usage**: View mode only
 
 Format: `edit [n/NAME] [p/PHONE] [lp/LESSON_PLAN] [t/TAG]...`<br>
 `edit [h/ a/ g/ s/]INDEX NEW_FIELD`
@@ -111,16 +114,15 @@ It requires at least one of the optional fields:
 - s/: To be followed by INDEX of session to be updated, then updated session
 - t/: To be followed by the person's tags, all tags can be removed by typing `t/` without specifying any tags after it
 
-
-
-
 Examples:
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
   `edit h/2 math not done` updates 2nd field of `Alex Yeoh`'s HOMEWORK to `math not done`
 
 ### Removing specific field in person: `remove`
 
-Removes a specific field of a person in the address book at the specified index. Can only be used in View Mode.<br>
+Removes a specific field of a person in the address book at the specified index.<br>
+**Usage**: View mode only
+
 It requires one field:
 - h/: To be followed by INDEX of homework to be removed
 - a/: To be followed by INDEX of attendance to be removed
@@ -139,7 +141,9 @@ Examples:
 
 ### Marking specific field in person: `mark`
 
-Marks a specific field of a person in the address book. Can only be used in View Mode.<br>
+Marks a specific field of a person in the address book.<br>
+**Usage**: View mode only
+
 It requires one field:
 - h/: To be followed by INDEX of homework to be marked
 - a/: To be followed by INDEX of attendance to be marked
@@ -152,7 +156,9 @@ Examples:
 
 ### Unmarking specific field in person: `unmark`
 
-Unmarks a specific field of a person in the address book. Can only be used in View Mode.<br>
+Unmarks a specific field of a person in the address book.<br>
+**Usage**: View mode only
+
 It requires one field:
 - h/: To be followed by INDEX of homework to be unmarked
 - a/: To be followed by INDEX of attendance to be unmarked
@@ -166,7 +172,8 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose names contain any of the given keywords.<br>
+**Usage**: All modes
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -186,6 +193,7 @@ Examples:
 
 View details of a person. Required to `edit` or `remove` person's details.
 You can only view one person's details at one time.
+**Usage**: All modes
 
 Format: `view NAME` 
 
@@ -197,85 +205,99 @@ Format: `view NAME`
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book. Cannot be used in schedule mode.
+Deletes the specified person from the address book.<br>
+**Usage**: View or list mode only
 
 Format: `delete INDEX` 
 
 * Deletes the person with the specified `INDEX`.
+* In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
 * `delete 1` removes the first student in the address book.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the address book.<br>
+**Usage**: All modes
 
 Format: `clear`
 
 ### Adding Homework to student: `hw`
 
-Adds a description of homework to student in address book. Cannot be used in schedule mode.
-Does not check for duplicate homework entries.
+Adds a description of homework to student in address book.
+Does not check for duplicate homework entries.<br>
+**Usage**: View or list mode only
 
 Format: `hw INDEX h/HOMEWORK`
 
 * Adds homework to student with the specified `INDEX`.
+* In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
 * `hw 1 h/math assignment` adds math assignment to first student in address book.
 
 ### Adding Grade Progress to student: `grade`
 
-Adds a description of grade progress to student in address book. Cannot be used in schedule mode.
-GRADE_PROGRESS does not require a fixed format and is up to the user to manually standardise. Does not check for duplicate entries. 
+Adds a description of grade progress to student in address book.
+GRADE_PROGRESS does not require a fixed format and is up to the user to manually standardise. Does not check for duplicate entries.<br>
+**Usage**: View or list mode only 
 
 Format: `grade INDEX g/GRADE_PROGRESS`
 
 * Adds grade progress to student with the specified `INDEX`.
+* In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
 * `grade 1 g/Math: D+` adds Math: D+ grade to first student in address book.
 
 ### Adding Attendance to student : `attendance`
 
-Adds a formatted description of dates students attended class in address book. Cannot be used in schedule mode.
-Does not check for duplicate entries.
+Adds a formatted description of dates students attended class in address book.
+Does not check for duplicate entries.<br>
+**Usage**: View or list mode only
 
 Format: `attendance INDEX a/ATTENDANCE`
 
 * Adds attendance to student with the specified `INDEX`.<br>
 * Attendance must be in `YYYY-MM-DD` format
+* In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
 * `attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in address book.
 
 ### Adding Session to student: `session`
 
-Adds a formatted session timing to student, expected to repeat weekly. Cannot be used in schedule mode.
-Does not check for duplicate entries.
+Adds a formatted session timing to student, expected to repeat weekly.
+Does not check for duplicate entries.<br>
+**Usage**: View or list mode only
 
 Format: `session INDEX s/TUITION_TIME`
 
 * Adds tuition time to student with the specified `INDEX`.<br>
 * Tuition time must be in `DDD HH:MM` format where `HH:MM` ranges from 00:00 to 23:59
+* In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
 * `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
 
 ### Update Lesson Plan for student: `lesson`
 
-Updates a student's lesson plan by overwriting the current one. Cannot be used in schedule mode.
+Updates a student's lesson plan by overwriting the current one.<br>
+**Usage**: View or list mode only
 
 Format: `lesson INDEX lp/LESSON_PLAN`
 
 * Updates lesson plan of student with the specified `INDEX`.<br>
+* In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
 * `lesson 1 lp/science` changes lesson plan of first student to science.
 
 ### Viewing daily schedule: `show`
 
-Displays all sessions scheduled on a certain day of the week. Changes address book to schedule mode.
+Displays all sessions scheduled on a certain day of the week. Changes address book to schedule mode.<br>
+**Usage**: All modes
 
 Format: `show [DDD]`
 
@@ -284,7 +306,8 @@ Examples:
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the program.<br>
+**Usage**: All modes
 
 Format: `exit`
 
