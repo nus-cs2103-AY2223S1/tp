@@ -32,76 +32,76 @@ import static seedu.watson.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.watson.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.watson.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.watson.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.watson.testutil.TypicalPersons.AMY;
-import static seedu.watson.testutil.TypicalPersons.BOB;
+import static seedu.watson.testutil.TypicalStudents.AMY;
+import static seedu.watson.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.watson.logic.commands.AddCommand;
-import seedu.watson.model.person.Address;
-import seedu.watson.model.person.Email;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.Person;
-import seedu.watson.model.person.Phone;
+import seedu.watson.model.student.Address;
+import seedu.watson.model.student.Email;
+import seedu.watson.model.student.Name;
+import seedu.watson.model.student.Phone;
+import seedu.watson.model.student.Student;
 import seedu.watson.model.tag.Tag;
-import seedu.watson.testutil.PersonBuilder;
+import seedu.watson.testutil.StudentBuilder;
 
 public class AddCommandParserTest {
     private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).build();
+        Student expectedStudent = new StudentBuilder(BOB).build();
 
         // New fields are added to the back of the userInput parameter to avoid confusion
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + INDEX_NUMBER_DESC_BOB
                                    + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_FRIEND
                                    + STUDENTCLASS_DUMMY + REMARK_ICE_CREAM,
-                           new AddCommand(expectedPerson));
+                           new AddCommand(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + INDEX_NUMBER_DESC_BOB
                                    + PHONE_DESC_BOB + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + STUDENTCLASS_DUMMY + REMARK_ICE_CREAM,
-                           new AddCommand(expectedPerson));
+                           new AddCommand(expectedStudent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + INDEX_NUMBER_DESC_BOB
                                    + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + STUDENTCLASS_DUMMY + REMARK_ICE_CREAM,
-                           new AddCommand(expectedPerson));
+                           new AddCommand(expectedStudent));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + INDEX_NUMBER_DESC_BOB + PHONE_DESC_BOB
                                    + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                                    + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + STUDENTCLASS_DUMMY + REMARK_ICE_CREAM,
-                           new AddCommand(expectedPerson));
+                           new AddCommand(expectedStudent));
 
         // multiple addresses - last watson accepted
         assertParseSuccess(parser, NAME_DESC_BOB + INDEX_NUMBER_DESC_BOB + PHONE_DESC_BOB
                                    + EMAIL_DESC_BOB + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB
                                    + TAG_DESC_FRIEND + STUDENTCLASS_DUMMY + REMARK_ICE_CREAM,
-                           new AddCommand(expectedPerson));
+                           new AddCommand(expectedStudent));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                                                                  .withRemarks(VALID_REMARK_ICE_CREAM).build();
+        Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                                                                     .withRemarks(VALID_REMARK_ICE_CREAM).build();
 
         assertParseSuccess(parser, NAME_DESC_BOB + INDEX_NUMBER_DESC_BOB + PHONE_DESC_BOB
                                    + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
                                    + STUDENTCLASS_DUMMY + REMARK_ICE_CREAM,
-                           new AddCommand(expectedPersonMultipleTags));
+                           new AddCommand(expectedStudentMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().withRemarks()
-                .withSubjectHandler(VALID_SUBJECTHANDLER).build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags().withRemarks()
+                                                         .withSubjectHandler(VALID_SUBJECTHANDLER).build();
         assertParseSuccess(parser, NAME_DESC_AMY + INDEX_NUMBER_DESC_AMY + PHONE_DESC_AMY
                                    + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + STUDENTCLASS_DUMMY,
-                           new AddCommand(expectedPerson));
+                           new AddCommand(expectedStudent));
     }
 
     @Test

@@ -12,16 +12,16 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.watson.logic.commands.exceptions.CommandException;
 import seedu.watson.model.Model;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 
 /**
- * Adds a person to the watson book.
+ * Adds a student to the watson book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the watson book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the watson book. "
                                                + "Parameters: "
                                                + PREFIX_NAME + "NAME "
                                                + PREFIX_INDEX_NUMBERS + "INDEX NUMBER "
@@ -41,17 +41,17 @@ public class AddCommand extends Command {
                                                + PREFIX_TAG + "friends "
                                                + PREFIX_REMARK + "likes to eat ice cream ";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the watson book";
+    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the watson book";
 
-    private final Person toAdd;
+    private final Student toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Student}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Student student) {
+        requireNonNull(student);
+        toAdd = student;
     }
 
     @Override

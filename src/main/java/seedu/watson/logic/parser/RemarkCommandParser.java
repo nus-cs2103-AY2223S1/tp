@@ -7,7 +7,7 @@ import seedu.watson.commons.core.index.Index;
 import seedu.watson.logic.commands.FindCommand;
 import seedu.watson.logic.commands.RemarkCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
-import seedu.watson.model.person.Remark;
+import seedu.watson.model.student.Remark;
 
 /**
  * Parses input arguments and creates a new RemarkCommand object

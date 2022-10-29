@@ -7,7 +7,7 @@ import static seedu.watson.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.watson.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.watson.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.watson.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.watson.testutil.TypicalPersons.getTypicalDatabase;
+import static seedu.watson.testutil.TypicalStudents.getTypicalDatabase;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ import seedu.watson.commons.core.index.Index;
 import seedu.watson.model.Model;
 import seedu.watson.model.ModelManager;
 import seedu.watson.model.UserPrefs;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,13 +28,13 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student studentToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(studentToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -51,13 +51,13 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student studentToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         System.out.println(model.getDatabase().getPersonList());
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete);
 
         Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(studentToDelete);
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -94,7 +94,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

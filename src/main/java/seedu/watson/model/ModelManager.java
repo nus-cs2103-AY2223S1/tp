@@ -12,8 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.watson.commons.core.GuiSettings;
 import seedu.watson.commons.core.LogsCenter;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Name;
+import seedu.watson.model.student.Student;
 
 /**
  * Represents the in-memory model of the watson book data.
@@ -23,7 +23,7 @@ public class ModelManager implements Model {
 
     private final Database database;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
 
     /**
      * Initializes a ModelManager with the given database and userPrefs.
@@ -35,7 +35,7 @@ public class ModelManager implements Model {
 
         this.database = new Database(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.database.getPersonList());
+        filteredStudents = new FilteredList<>(this.database.getPersonList());
     }
 
     public ModelManager() {
@@ -90,56 +90,56 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return database.hasPerson(person);
+    public boolean hasPerson(Student student) {
+        requireNonNull(student);
+        return database.hasPerson(student);
     }
 
     @Override
-    public Person getPersonByName(Name name) {
+    public Student getPersonByName(Name name) {
         requireNonNull(name);
-        ObservableList<Person> personList = database.getPersonList();
-        for (Person person : personList) {
-            if (person.getName().equals(name)) {
-                return person;
+        ObservableList<Student> studentList = database.getPersonList();
+        for (Student student : studentList) {
+            if (student.getName().equals(name)) {
+                return student;
             }
         }
         throw new NoSuchElementException();
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deletePerson(Student target) {
         database.removePerson(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        database.addPerson(person);
+    public void addPerson(Student student) {
+        database.addPerson(student);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setPerson(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
 
-        database.setPerson(target, editedPerson);
+        database.setPerson(target, editedStudent);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredPersonList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     /**
@@ -152,7 +152,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Predicate<Person> createPersonIsInClassPredicate(String studentClass) {
+    public Predicate<Student> createPersonIsInClassPredicate(String studentClass) {
         return person -> person.getStudentClass().isSameClass(studentClass);
     }
 
@@ -172,7 +172,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return database.equals(other.database)
                && userPrefs.equals(other.userPrefs)
-               && filteredPersons.equals(other.filteredPersons);
+               && filteredStudents.equals(other.filteredStudents);
     }
 
 }

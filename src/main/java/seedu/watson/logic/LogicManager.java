@@ -14,7 +14,7 @@ import seedu.watson.logic.parser.DatabaseParser;
 import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.Model;
 import seedu.watson.model.ReadOnlyDatabase;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 import seedu.watson.storage.Storage;
 
 /**
@@ -76,7 +76,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
+    public ObservableList<Student> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 

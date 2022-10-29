@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.watson.commons.exceptions.IllegalValueException;
-import seedu.watson.model.person.Remark;
+import seedu.watson.model.student.Remark;
 
 /**
  * Jackson-friendly version of {@link Remark}.

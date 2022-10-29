@@ -1,7 +1,7 @@
 package seedu.watson.logic.commands;
 
 import static seedu.watson.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.watson.testutil.TypicalPersons.getTypicalDatabase;
+import static seedu.watson.testutil.TypicalStudents.getTypicalDatabase;
 
 import org.junit.jupiter.api.Test;
 

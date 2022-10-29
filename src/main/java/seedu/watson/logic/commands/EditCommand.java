@@ -22,27 +22,27 @@ import seedu.watson.commons.core.index.Index;
 import seedu.watson.commons.util.CollectionUtil;
 import seedu.watson.logic.commands.exceptions.CommandException;
 import seedu.watson.model.Model;
-import seedu.watson.model.person.Address;
-import seedu.watson.model.person.Attendance;
-import seedu.watson.model.person.Email;
-import seedu.watson.model.person.IndexNumber;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.Person;
-import seedu.watson.model.person.Phone;
-import seedu.watson.model.person.Remark;
-import seedu.watson.model.person.StudentClass;
-import seedu.watson.model.person.subject.SubjectHandler;
+import seedu.watson.model.student.Address;
+import seedu.watson.model.student.Attendance;
+import seedu.watson.model.student.Email;
+import seedu.watson.model.student.IndexNumber;
+import seedu.watson.model.student.Name;
+import seedu.watson.model.student.Phone;
+import seedu.watson.model.student.Remark;
+import seedu.watson.model.student.Student;
+import seedu.watson.model.student.StudentClass;
+import seedu.watson.model.student.subject.SubjectHandler;
 import seedu.watson.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the watson book.
+ * Edits the details of an existing student in the watson book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-                                               + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+                                               + "by the index number used in the displayed student list. "
                                                + "Existing values will be overwritten by the input values.\n"
                                                + "Parameters: INDEX (must be a positive integer) "
                                                + "[" + PREFIX_NAME + "NAME] "
@@ -57,16 +57,16 @@ public class EditCommand extends Command {
                                                + PREFIX_PHONE + "91234567 "
                                                + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the watson book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the watson book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index                of the student in the filtered student list to edit
+     * @param editPersonDescriptor details to edit the student with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -77,26 +77,26 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        IndexNumber updatedIndexNumber = editPersonDescriptor.getIndexNumber().orElse(personToEdit.getIndexNumber());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
+        IndexNumber updatedIndexNumber = editPersonDescriptor.getIndexNumber().orElse(studentToEdit.getIndexNumber());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
         StudentClass updatedStudentClass =
-            editPersonDescriptor.getStudentClass().orElse(personToEdit.getStudentClass());
-        Attendance updatedAttendance = editPersonDescriptor.getAttendance().orElse(personToEdit.getAttendance());
+            editPersonDescriptor.getStudentClass().orElse(studentToEdit.getStudentClass());
+        Attendance updatedAttendance = editPersonDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
         SubjectHandler updatedSubjectHandler =
-                editPersonDescriptor.getSubjectHandler().orElse(personToEdit.getSubjectHandler());
-        Set<Remark> updatedRemarks = editPersonDescriptor.getRemarks().orElse(personToEdit.getRemarks());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+                editPersonDescriptor.getSubjectHandler().orElse(studentToEdit.getSubjectHandler());
+        Set<Remark> updatedRemarks = editPersonDescriptor.getRemarks().orElse(studentToEdit.getRemarks());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Person(updatedName, updatedIndexNumber, updatedPhone, updatedEmail, updatedAddress,
+        return new Student(updatedName, updatedIndexNumber, updatedPhone, updatedEmail, updatedAddress,
                           updatedStudentClass, updatedAttendance, updatedRemarks, updatedSubjectHandler,
                           updatedTags);
     }
@@ -104,22 +104,22 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 
     @Override
@@ -141,8 +141,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
      */
     public static class EditPersonDescriptor {
         private Name name;
@@ -255,7 +255,7 @@ public class EditCommand extends Command {
 
         /**
          * A SubjectHandler handles the addition of new subjects and the editing of current subjects.
-         * When editing a Person, to edit the Person's subjects, a new SubjectHandler is created
+         * When editing a Student, to edit the Student's subjects, a new SubjectHandler is created
          * with the old subjects and the new changes.
          *
          * @param subjectHandler the new SubjectHandler

@@ -8,10 +8,10 @@ import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import seedu.watson.logic.algorithm.PredictionUtil;
 import seedu.watson.logic.commands.exceptions.CommandException;
 import seedu.watson.model.Model;
-import seedu.watson.model.person.Attendance;
-import seedu.watson.model.person.Name;
-import seedu.watson.model.person.Person;
-import seedu.watson.model.person.subject.Subject;
+import seedu.watson.model.student.Attendance;
+import seedu.watson.model.student.Name;
+import seedu.watson.model.student.Student;
+import seedu.watson.model.student.subject.Subject;
 
 /**
  * Gets the predicted score for a given student's next assessment for a subject
@@ -48,7 +48,7 @@ public class PredictionCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Person target = model.getPersonByName(name);
+        Student target = model.getPersonByName(name);
         Attendance attendance = target.getAttendance();
         Subject targetSubject = target.getSubjectHandler().getSubject(subjectName);
         double gradePredicted = PredictionUtil.predictGrade(targetSubject.getGrades(), attendance, difficulty);

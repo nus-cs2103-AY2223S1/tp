@@ -1,7 +1,7 @@
 package seedu.watson.testutil;
 
 import seedu.watson.model.Database;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 
 /**
  * A utility class to help with building Database objects.
@@ -21,10 +21,10 @@ public class DatabaseBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code Database} that we are building.
+     * Adds a new {@code Student} to the {@code Database} that we are building.
      */
-    public DatabaseBuilder withPerson(Person person) {
-        database.addPerson(person);
+    public DatabaseBuilder withPerson(Student student) {
+        database.addPerson(student);
         return this;
     }
 

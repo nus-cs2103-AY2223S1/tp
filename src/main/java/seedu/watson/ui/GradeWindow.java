@@ -12,9 +12,9 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import seedu.watson.commons.core.LogsCenter;
 import seedu.watson.logic.Logic;
-import seedu.watson.model.person.Person;
-import seedu.watson.model.person.subject.Assessment;
-import seedu.watson.model.person.subject.Subject;
+import seedu.watson.model.student.Student;
+import seedu.watson.model.student.subject.Assessment;
+import seedu.watson.model.student.subject.Subject;
 import seedu.watson.storage.Storage;
 
 /**
@@ -25,7 +25,7 @@ public class GradeWindow extends UiPart<Stage> {
     private static final String FXML = "GradeWindow.fxml";
     private String assessmentString;
     private int index = 0;
-    private List<Person> personList;
+    private List<Student> studentList;
     private final Logic logic;
     private final Storage storage;
 
@@ -102,9 +102,9 @@ public class GradeWindow extends UiPart<Stage> {
      *                               </li>
      *                               </ul>
      */
-    public void show(List<Person> personList, String assessmentString) {
+    public void show(List<Student> studentList, String assessmentString) {
         logger.fine("Showing the grading page.");
-        this.personList = personList;
+        this.studentList = studentList;
         this.assessmentString = assessmentString;
         getRoot().show();
         getRoot().centerOnScreen();
@@ -113,10 +113,10 @@ public class GradeWindow extends UiPart<Stage> {
     }
 
     /**
-     * updates UI Labels to the next person to be updated
+     * updates UI Labels to the next student to be updated
      */
     public void updateUI() {
-        if (index > personList.size() - 1) {
+        if (index > studentList.size() - 1) {
             getRoot().hide();
             return;
         }
@@ -126,13 +126,13 @@ public class GradeWindow extends UiPart<Stage> {
         String name = parsedString[1].trim();
         String totalScore = parsedString[2].trim();
         String weightage = parsedString[3].trim();
-        Person currentPerson = personList.get(index);
+        Student currentStudent = studentList.get(index);
         assessmentSubject.setText("Subject: " + subject);
         assessmentName.setText("Assessment: " + name);
         assessmentWeightage.setText("Weightage: " + weightage);
         assessmentTotalScore.setText("Total Score: " + totalScore);
-        studentName.setText("Student Name: " + currentPerson.getName().toString());
-        studentClass.setText("Student Class: " + currentPerson.getStudentClass());
+        studentName.setText("Student Name: " + currentStudent.getName().toString());
+        studentClass.setText("Student Class: " + currentStudent.getStudentClass());
     }
 
     /**
@@ -149,11 +149,11 @@ public class GradeWindow extends UiPart<Stage> {
         double weightage = Double.parseDouble(parsedString[3].trim());
         double difficulty = Double.parseDouble(parsedString[4].trim());
         Assessment newAssessment = new Assessment(name, weightage, score, totalScore, difficulty);
-        Person currentPerson = personList.get(index);
-        Subject subject = currentPerson.getSubjectHandler().getSubject(subjectName);
+        Student currentStudent = studentList.get(index);
+        Subject subject = currentStudent.getSubjectHandler().getSubject(subjectName);
         subject.updateGradeAssessment(newAssessment);
 
-        logic.getModel().setPerson(currentPerson, currentPerson);
+        logic.getModel().setPerson(currentStudent, currentStudent);
         storage.saveDatabase(logic.getModel().getDatabase());
     }
     /**

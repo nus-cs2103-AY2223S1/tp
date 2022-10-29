@@ -3,10 +3,10 @@ package seedu.watson.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.watson.testutil.Assert.assertThrows;
-import static seedu.watson.testutil.TypicalPersons.ALICE;
-import static seedu.watson.testutil.TypicalPersons.HOON;
-import static seedu.watson.testutil.TypicalPersons.IDA;
-import static seedu.watson.testutil.TypicalPersons.getTypicalDatabase;
+import static seedu.watson.testutil.TypicalStudents.ALICE;
+import static seedu.watson.testutil.TypicalStudents.HOON;
+import static seedu.watson.testutil.TypicalStudents.IDA;
+import static seedu.watson.testutil.TypicalStudents.getTypicalDatabase;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -52,12 +52,12 @@ public class JsonDatabaseStorageTest {
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDatabase("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readDatabase("invalidStudentAddressBook.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDatabase("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readDatabase("invalidAndValidStudentAddressBook.json"));
     }
 
     @Test

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.watson.commons.exceptions.IllegalValueException;
 import seedu.watson.model.Database;
 import seedu.watson.model.ReadOnlyDatabase;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 
 /**
  * An Immutable Database that is serializable to JSON format.
@@ -19,15 +19,15 @@ import seedu.watson.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableDatabase {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate student(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedStudent> persons = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableDatabase} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableDatabase(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableDatabase(@JsonProperty("persons") List<JsonAdaptedStudent> persons) {
         this.persons.addAll(persons);
     }
 
@@ -37,7 +37,7 @@ class JsonSerializableDatabase {
      * @param source future changes to this will not affect the created {@code JsonSerializableDatabase}.
      */
     public JsonSerializableDatabase(ReadOnlyDatabase source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableDatabase {
      */
     public Database toModelType() throws IllegalValueException {
         Database database = new Database();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (database.hasPerson(person)) {
+        for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
+            Student student = jsonAdaptedStudent.toModelType();
+            if (database.hasPerson(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            database.addPerson(person);
+            database.addPerson(student);
         }
         return database;
     }

@@ -2,8 +2,8 @@ package seedu.watson.logic.algorithm;
 
 import java.util.Arrays;
 
-import seedu.watson.model.person.Attendance;
-import seedu.watson.model.person.subject.Grades;
+import seedu.watson.model.student.Attendance;
+import seedu.watson.model.student.subject.Grades;
 
 /**
  * Utility class to handle grade prediction algorithm

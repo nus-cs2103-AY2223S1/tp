@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.watson.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.watson.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.watson.testutil.Assert.assertThrows;
-import static seedu.watson.testutil.TypicalPersons.ALICE;
-import static seedu.watson.testutil.TypicalPersons.getTypicalDatabase;
+import static seedu.watson.testutil.TypicalStudents.ALICE;
+import static seedu.watson.testutil.TypicalStudents.getTypicalDatabase;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.watson.model.person.Person;
-import seedu.watson.model.person.exceptions.DuplicatePersonException;
-import seedu.watson.testutil.PersonBuilder;
+import seedu.watson.model.student.Student;
+import seedu.watson.model.student.exceptions.DuplicateStudentException;
+import seedu.watson.testutil.StudentBuilder;
 
 public class DatabaseTest {
 
@@ -45,13 +45,13 @@ public class DatabaseTest {
 
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        // Two students with the same identity fields
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                                                      .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        DatabaseStub newData = new DatabaseStub(newPersons);
+        List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
+        DatabaseStub newData = new DatabaseStub(newStudents);
 
-        assertThrows(DuplicatePersonException.class, () -> database.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> database.resetData(newData));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class DatabaseTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         database.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                                                      .build();
         assertTrue(database.hasPerson(editedAlice));
     }
@@ -84,18 +84,18 @@ public class DatabaseTest {
     }
 
     /**
-     * A stub ReadOnlyDatabase whose persons list can violate interface constraints.
+     * A stub ReadOnlyDatabase whose students list can violate interface constraints.
      */
     private static class DatabaseStub implements ReadOnlyDatabase {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        DatabaseStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        DatabaseStub(Collection<Student> students) {
+            this.students.setAll(students);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Student> getPersonList() {
+            return students;
         }
     }
 

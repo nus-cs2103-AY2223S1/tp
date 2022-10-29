@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.watson.commons.core.Messages;
 import seedu.watson.logic.commands.exceptions.CommandException;
 import seedu.watson.model.Model;
-import seedu.watson.model.person.FindCommandPredicate;
+import seedu.watson.model.student.FindCommandPredicate;
 
 /**
  * Finds and lists all persons in watson book whose name contains any of the argument keywords.
@@ -28,7 +28,7 @@ public class FindCommand extends Command {
     private final FindCommandPredicate predicate;
 
     /**
-     * Creates a FindCommand to find the specified {@code Person} with a given {@code FindCommandPredicate}.
+     * Creates a FindCommand to find the specified {@code Student} with a given {@code FindCommandPredicate}.
      * @param predicate The predicate to filter the list of persons with.
      */
     public FindCommand(FindCommandPredicate predicate) {

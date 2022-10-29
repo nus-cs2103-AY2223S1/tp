@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.watson.model.Model;
-import seedu.watson.model.person.Person;
-
+import seedu.watson.model.student.Student;
 
 
 /**
@@ -45,9 +44,9 @@ public class GradeCommand extends Command {
         model.updateFilteredPersonList(person ->
             person.getSubjectHandler().getSubjectsTaken().toString().contains(subject));
 
-        List<Person> personList = new ArrayList<>(model.getFilteredPersonList());
+        List<Student> studentList = new ArrayList<>(model.getFilteredPersonList());
 
-        return new CommandResult(MESSAGE_SUCCESS, true, personList, assessmentString);
+        return new CommandResult(MESSAGE_SUCCESS, true, studentList, assessmentString);
     }
 
 }

@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.watson.model.Model;
-import seedu.watson.model.person.Person;
+import seedu.watson.model.student.Student;
 
 /**
  * Marks the attendance of persons in address book with studentClass and indexNumber corresponding to the
@@ -57,18 +57,18 @@ public class MarkAttendanceCommand extends Command {
         // Now we're iterating through the whole list of saved people in Watsons and checking against their
         // indexNumber and studentClass to check if they should be marked attendance. Not the most efficient.
 
-        //Predicate<Person> personIsInClassPredicate = model.createPersonIsInClassPredicate(studentClass);
+        //Predicate<Student> personIsInClassPredicate = model.createPersonIsInClassPredicate(studentClass);
         //model.updateFilteredPersonList(personIsInClassPredicate);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
-        List<Person> latestList = model.getFilteredPersonList();
-        for (Person person: latestList) {
-            if (indexNumbers.stream().anyMatch(ind -> ind.equals(person.getIndexNumberValue()))) {
-                if (person.getStudentClass().isSameClass(studentClass)) {
-                    person.getAttendance().updateAttendance(date + " 1");
+        List<Student> latestList = model.getFilteredPersonList();
+        for (Student student : latestList) {
+            if (indexNumbers.stream().anyMatch(ind -> ind.equals(student.getIndexNumberValue()))) {
+                if (student.getStudentClass().isSameClass(studentClass)) {
+                    student.getAttendance().updateAttendance(date + " 1");
                     anyStudentsAttendanceMarked = true;
-                    markedAttendance = markedAttendance + person.getName().toString()
-                                       + " " + person.getAttendance().toString() + ", ";
+                    markedAttendance = markedAttendance + student.getName().toString()
+                                       + " " + student.getAttendance().toString() + ", ";
                 }
             }
         }

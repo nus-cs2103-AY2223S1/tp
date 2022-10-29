@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.watson.commons.exceptions.IllegalValueException;
-import seedu.watson.model.person.subject.Subject;
+import seedu.watson.model.student.subject.Subject;
 
 /**
  * Jackson-friendly version of {@link Subject}.

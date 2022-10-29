@@ -7,8 +7,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.watson.model.person.Attendance;
-import seedu.watson.model.person.subject.Grades;
+import seedu.watson.model.student.Attendance;
+import seedu.watson.model.student.subject.Grades;
 
 public class PredictionTest {
 
