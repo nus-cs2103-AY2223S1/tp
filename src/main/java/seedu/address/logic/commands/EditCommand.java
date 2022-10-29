@@ -97,6 +97,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        editedPerson.setFullView();
         String[] newNameKeywords = {newName};
         model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
         model.setPerson(personToEdit, editedPerson);
