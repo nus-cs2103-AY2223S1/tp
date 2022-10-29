@@ -3,7 +3,8 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.github.repo.Repo;
+import org.ocpsoft.prettytime.PrettyTime;
+import seedu.address.model.person.github.Repo;
 
 /**
  * An UI component that displays information of a {@code Repo}.
@@ -30,8 +31,17 @@ public class GithubRepoCard extends UiPart<Region> {
         super(FXML);
         this.repo = repo;
         name.setText(repo.getRepoName());
-        description.setText(repo.getRepoName());
-        lastUpdated.setText(repo.getLastUpdated().toString());
+        setLabelVisibility(description, repo.getDescription().isPresent());
+        repo.getDescription().ifPresent(text -> description.setText(text));
+        PrettyTime p = new PrettyTime();
+        lastUpdated.setText(p.format(repo.getLastUpdated()));
+    }
+
+    private void setLabelVisibility(Label label, boolean visible) {
+        // Remove node from tree so it doesn't occupy the space.
+        // @see https://stackoverflow.com/a/28559958
+        label.setManaged(visible);
+        label.setVisible(visible);
     }
 
     @Override

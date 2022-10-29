@@ -430,3 +430,13 @@
     -fx-border-width: 1;
     -fx-padding: 10;
 }
+
+#repoCard #name {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 12pt;
+}
+
+#repoCard #description {
+    -fx-font-family: "Segoe UI Light";
+    -fx-padding: 5 0 0 0;
+}

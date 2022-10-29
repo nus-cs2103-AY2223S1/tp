@@ -19,7 +19,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.github.User;
-import seedu.address.model.person.github.repo.Repo;
+import seedu.address.model.person.github.Repo;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -85,7 +85,7 @@ public class DetailPanel extends MainPanel {
 
         if (person.getGithubUser().isPresent()) {
             User githubUser = person.getGithubUser().get();
-            githubRepoListView.setItems(FXCollections.observableList(githubUser.getRepoList().getRepos()));
+            githubRepoListView.setItems(FXCollections.observableList(githubUser.getRepoList()));
             githubRepoListView.setCellFactory(listView -> new GithubRepoListViewCell());
         }
 
@@ -118,6 +118,13 @@ public class DetailPanel extends MainPanel {
      * Custom {@code ListCell} that displays the graphics of a {@code Repo} using a {@code GithubRepoCard}.
      */
     class GithubRepoListViewCell extends ListCell<Repo> {
+
+        GithubRepoListViewCell() {
+            super();
+            prefWidthProperty().bind(githubRepoListView.widthProperty().subtract(20));
+            setMaxWidth(USE_PREF_SIZE);
+        }
+
         @Override
         protected void updateItem(Repo repo, boolean empty) {
             super.updateItem(repo, empty);

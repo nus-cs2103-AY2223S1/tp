@@ -41,8 +41,8 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
-    String jUnitVersion = '5.4.0'
-    String javaFxVersion = '11'
+    String jUnitVersion = '5.9.0'
+    String javaFxVersion = '19'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -57,10 +57,12 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.4.2'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.13.4'
 
-    implementation 'com.konghq:unirest-java:3.11.09'
+    implementation 'com.konghq:unirest-java:3.13.11'
+
+    implementation 'org.ocpsoft.prettytime:prettytime:5.0.4.Final'
 
     implementation 'org.json:json:20220924'
 
