@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.ui.PersonProfile;
-
 /**
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -45,13 +43,6 @@ public class Name {
      */
     public String getFullName() {
         return fullName;
-    }
-
-    /**
-     * Returns fullName if not null else, EMPTY_DISPLAY_VALUE.
-     */
-    public String getFullDisplayName() {
-        return fullName.equals(Person.EMPTY_FIELD_VALUE) ? PersonProfile.EMPTY_DISPLAY_VALUE : fullName;
     }
 
     /**

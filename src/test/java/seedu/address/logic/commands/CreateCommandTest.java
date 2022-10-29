@@ -21,6 +21,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.Observer;
 
 public class CreateCommandTest {
 
@@ -177,6 +178,16 @@ public class CreateCommandTest {
 
         @Override
         public void syncMeetingTimes() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addUi(Observer observer) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void notifyUIs(Person updatedPerson) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagramV2.png" width="450" />
 
 
 The `Model` component,
@@ -129,7 +129,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagramV2.png" width="450" />
 
 </div>
 
@@ -138,7 +138,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagramV2.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -254,8 +254,9 @@ Step 4. `OpenPersonFileCommand#execute(Model)` is called by the Logic Manager wh
 
 ### Person Enhancement
 
+#### Enhancement 1
 The person model now contains a `Net Worth` field.
-`Net Worth` is implemented as a class where it contains a `final string` `value`, `final static string` 
+`Net Worth` is implemented as a class where it contains a `final string value`, `final static string` 
 `MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
 
 #### Design Considerations
@@ -299,6 +300,27 @@ The construction of a `MeetingsWindow` object, will create a `MeetingsListPanel`
 
 #### Alternatives
     
+#### Enhancement 2
+
+The person model now contains a `Meeting Time` field.
+`Meeting Time` is implemented as a class with five attributes:
+- `final String value`
+- `final String displayValue`
+- `final LocalDateTime date`
+- `final static String MESSAGE_CONSTRAINTS`
+- `final static String VALIDATION_REGEX`
+
+#### Design Considerations
+- Use of Java API `java.time.LocalDateTime` to parse and format any valid given `String meetingTime` into the following 
+  format of 'dd-MM-yyyy-HH:mm'
+- `displayValue`, `value` and `date` serve different usages.
+  - `displayValue` serves to return a nicer string representation of the meeting time, where the full name of the 
+  month is displayed instead of its numeric form e.g. `12-OCTOBER-2022-12:00` instead of `12-10-2022-12:00`
+  - `value` is used for parsing and passed around the program as a string.
+  - `date` is stored as a LocalDateTime to allow comparisons between LocalDateTime objects.
+- Meeting Time `VALIDATION_REGEX` ensures that a valid date is given.
+- Under `VALIDATION_REGEX`, if a valid date is given that is out of the calendar dates, it will be parsed to the nearest valid
+  date within the month e.g. Using the input `31-02-2022-15:00` will be parsed into `28-02-2022-15:00`
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

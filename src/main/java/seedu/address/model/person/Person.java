@@ -2,11 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
+
+import org.jetbrains.annotations.Nullable;
 
 import seedu.address.model.tag.Tag;
 
@@ -133,6 +137,40 @@ public class Person {
     public static void syncMeetingTimes(Person toSync) {
         Predicate<MeetingTime> predicate = new MeetingTimePastPredicate();
         toSync.meetingTimes.removeIf(predicate);
+    }
+
+    /**
+     * Returns the earliest meeting time from the person's meeting times.
+     * @return The earliest Meeting Time object
+     */
+    public MeetingTime getEarliestMeeting() {
+        Set<MeetingTime> copyMeetingTimes = new HashSet<>();
+        copyMeetingTimes.addAll(meetingTimes);
+        MeetingTime earliestMeeting = removeFirst(copyMeetingTimes);
+        for (int i = 0; copyMeetingTimes.size() > 0; i++) {
+            MeetingTime temp = removeFirst(copyMeetingTimes);
+            if (temp.getDate().isBefore(earliestMeeting.getDate())) {
+                earliestMeeting = temp;
+            }
+        }
+        return earliestMeeting;
+    }
+
+    /**
+     * Removes and returns the first item from the collection of type T.
+     * @param c Collection of items to remove the first item from.
+     * @param <T> Generic type of the collection.
+     * @return The first item from the collection of type T.
+     */
+    @Nullable
+    public static <T> T removeFirst(Collection<? extends T> c) {
+        Iterator<? extends T> it = c.iterator();
+        if (!it.hasNext()) {
+            return null;
+        }
+        T removed = it.next();
+        it.remove();
+        return removed;
     }
 
     /**

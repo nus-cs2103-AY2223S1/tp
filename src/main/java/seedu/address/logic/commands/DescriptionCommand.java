@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
 /**
  * Changes the description of an existing person in the address book.
  */
-public class DescriptionCommand extends Command {
+public class DescriptionCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "description";
 
@@ -26,15 +26,21 @@ public class DescriptionCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing description will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DESCRIPTION + "[REMARK]\n"
+            + PREFIX_DESCRIPTION + "[DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Likes to swim.";
 
-    public static final String MESSAGE_ADD_DESCRIPTION_SUCCESS = "Added description to Person: %1$s";
-    public static final String MESSAGE_DELETE_DESCRIPTION_SUCCESS = "Removed description from Person: %1$s";
+    public static final String MESSAGE_ADD_DESCRIPTION_SUCCESS = "Updated description to: %1$s for Person: %2$s";
+    public static final String MESSAGE_DELETE_DESCRIPTION_SUCCESS = "Removed description from Person: %2$s";
+    public static final String MESSAGE_UNDO_RESET = "Re-set description to: %1$s for Person: %2$s";
+    public static final String MESSAGE_REDO = "Re-update description to: %1$s for Person: %2$s";
+    public static final String MESSAGE_REDO_DELETE = "Re-removed description from Person: %2$s";
 
     private final Index index;
     private final Description description;
+
+    private Person personToEdit;
+    private Person editedPerson;
 
     /**
      * @param index of the person in the filtered person list to edit the description
@@ -54,8 +60,8 @@ public class DescriptionCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        personToEdit = lastShownList.get(index.getZeroBased());
+        editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), description, personToEdit.getNetWorth(), personToEdit.getMeetingTimes(),
                 personToEdit.getFilePath(), personToEdit.getTags());
 
@@ -73,7 +79,26 @@ public class DescriptionCommand extends Command {
     private String generateSuccessMessage(Person personToEdit) {
         String message = !description.value.isEmpty() ? MESSAGE_ADD_DESCRIPTION_SUCCESS
                 : MESSAGE_DELETE_DESCRIPTION_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, description, personToEdit);
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+
+        model.setPerson(editedPerson, personToEdit);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return personToEdit.getDescription().value.isEmpty()
+                ? new CommandResult(String.format(MESSAGE_DELETE_DESCRIPTION_SUCCESS, description, personToEdit))
+                : new CommandResult(String.format(MESSAGE_UNDO_RESET, personToEdit.getDescription(), personToEdit));
+    }
+
+    @Override
+    public CommandResult redo(Model model) {
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return description.value.isEmpty()
+                ? new CommandResult(String.format(MESSAGE_REDO_DELETE, description, editedPerson))
+                : new CommandResult(String.format(MESSAGE_REDO, description, editedPerson));
     }
 
     @Override

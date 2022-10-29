@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays summarised information of a {@code Person}.
@@ -43,14 +44,66 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        setCardFields();
+        cardPane.setOnMouseClicked(event -> updateMainDisplay());
+    }
+
+    /**
+     * Sets all the fields in person card.
+     */
+    private void setCardFields() {
+        setNameField();
+        setMeetingsField();
+        setTagsField();
+    }
+
+    /**
+     * Sets name value in name if value is not empty.
+     */
+    private void setNameField() {
+        if (person.getName().isEmpty()) {
+            name.setManaged(false);
+            return;
+        }
         name.setText(person.getName().getFullName());
-        person.getMeetingTimes().stream()
-                .sorted(Comparator.comparing(meetingTime -> meetingTime.displayValue))
-                .forEach(meetingTime -> meetingTimes.getChildren().add(new Label(meetingTime.displayValue)));
+    }
+
+    /**
+     * Sets person meetingTimes in meetingTimes if meetingTimes is not empty.
+     */
+    private void setMeetingsField() {
+        if (person.getMeetingTimes().isEmpty()) {
+            meetingTimes.setManaged(false);
+            return;
+        }
+        meetingTimes.getChildren().add(new Label(person.getEarliestMeeting().displayValue));
+    }
+
+    /**
+     * Sets person tags in tags if tags is not empty.
+     */
+    private void setTagsField() {
+        if (person.getTags().isEmpty()) {
+            tags.setManaged(false);
+            return;
+        }
+        Tag firstTag = person.getTags().iterator().next();
+        setTagStyle(firstTag);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        cardPane.setOnMouseClicked(event -> updateMainDisplay());
+    }
+
+    /**
+     * Sets style of tags based on potential or secured client.
+     * @param firstTag first tag in Tag Set
+     */
+    public void setTagStyle(Tag firstTag) {
+        if (firstTag.isPotential()) {
+            tags.setId("potentialTags");
+        } else if (firstTag.isSecured()) {
+            tags.setId("securedTags");
+        }
     }
 
     /**

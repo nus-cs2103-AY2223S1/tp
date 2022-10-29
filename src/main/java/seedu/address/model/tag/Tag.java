@@ -55,4 +55,17 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    /**
+     * Returns true if it is Potential Tag
+     */
+    public boolean isPotential() {
+        return tagName.equals(CustomerStatus.POTENTIAL.toString());
+    }
+
+    /**
+     * Returns true if it is Secured Tag
+     */
+    public boolean isSecured() {
+        return tagName.equals(CustomerStatus.SECURED.toString());
+    }
 }
