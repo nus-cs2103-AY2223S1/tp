@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalTeachersPet;
+import static seedu.address.testutil.TypicalStudents.getTypicalTeachersPet;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ public class SortCommandTest {
         SortCommand sortCommand = new SortCommand(Type.NAME, Order.ASC);
         String expectedMessage = SortCommand.MESSAGE_SUCCESS;
         ModelManager expectedModel = new ModelManager(model.getTeachersPet(), new UserPrefs());
-        expectedModel.sortPersons(SortCommand.generateComparator(Type.NAME, Order.ASC));
+        expectedModel.sortStudents(SortCommand.generateComparator(Type.NAME, Order.ASC));
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
 

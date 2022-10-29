@@ -6,19 +6,19 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.UniqueScheduleList;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueScheduleList;
+import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.timeRange.TimeRange;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class TeachersPet implements ReadOnlyTeachersPet {
 
-    private final UniquePersonList persons;
+    private final UniqueStudentList students;
     private final UniqueScheduleList schedule;
 
     /*
@@ -29,14 +29,14 @@ public class TeachersPet implements ReadOnlyTeachersPet {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        students = new UniqueStudentList();
         schedule = new UniqueScheduleList();
     }
 
     public TeachersPet() {}
 
     /**
-     * Creates an TeachersPet using the Persons in the {@code toBeCopied}
+     * Creates an TeachersPet using the Students in the {@code toBeCopied}
      */
     public TeachersPet(ReadOnlyTeachersPet toBeCopied) {
         this();
@@ -46,19 +46,19 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the student list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setStudents(List<Student> students) {
+        this.students.setStudents(students);
     }
 
     /**
-     * Replaces the contents of the schedule list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the schedule list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
-    public void setSchedule(List<Person> persons) {
-        this.schedule.setPersons(persons);
+    public void setSchedule(List<Student> students) {
+        this.schedule.setStudents(students);
     }
 
     /**
@@ -67,47 +67,47 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     public void resetData(ReadOnlyTeachersPet newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
-        setSchedule(newData.getPersonList());
+        setStudents(newData.getStudentList());
+        setSchedule(newData.getStudentList());
     }
 
-    //// person-level operations
+    //// student-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return students.contains(student);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a student to the address book.
+     * The student must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addStudent(Student p) {
+        students.add(p);
         schedule.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in Teacher's Pet.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
 
-        persons.setPerson(target, editedPerson);
-        schedule.setPerson(target, editedPerson);
+        students.setStudent(target, editedStudent);
+        schedule.setStudent(target, editedStudent);
     }
 
     /**
      * Removes {@code key} from this {@code TeachersPet}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removeStudent(Student key) {
+        students.remove(key);
         schedule.remove(key);
     }
 
@@ -116,45 +116,45 @@ public class TeachersPet implements ReadOnlyTeachersPet {
      * @return the first available class.
      */
     public Class findAvailableClass(TimeRange timeRange) {
-        return persons.findAvailableClass(timeRange);
+        return students.findAvailableClass(timeRange);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return students.asUnmodifiableObservableList().size() + " students";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Student> getStudentList() {
+        return students.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Person> getInternalList() {
-        return persons.getInternalList();
+    public ObservableList<Student> getInternalList() {
+        return students.getInternalList();
     }
 
     @Override
-    public ObservableList<Person> getScheduleList() {
+    public ObservableList<Student> getScheduleList() {
         return schedule.asUnmodifiableObservableList();
     }
 
     @Override
-    public void sortPersons(Comparator<Person> comparator) {
-        persons.sortPersons(comparator);
+    public void sortStudents(Comparator<Student> comparator) {
+        students.sortStudents(comparator);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TeachersPet // instanceof handles nulls
-                && persons.equals(((TeachersPet) other).persons));
+                && students.equals(((TeachersPet) other).students));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return students.hashCode();
     }
 }

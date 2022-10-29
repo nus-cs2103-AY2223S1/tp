@@ -64,7 +64,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -88,7 +88,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 ### Logic component
 
@@ -101,7 +101,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TeachersPetParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+3. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -127,12 +127,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the teacher's pet data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the teacher's pet data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TeachersPet`, which `Person` references. This allows `TeachersPet` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TeachersPet`, which `Student` references. This allows `TeachersPet` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/DG-images/BetterModelClassDiagram.png" width="450" />
 
@@ -189,7 +189,7 @@ a `ParseException` will be thrown.
 If the index is valid, `ParserUtil` will then check that both the date and time are valid before creating an `EditCommand`.
 
 During the execution of `EditCommand`, if the given index is not within the range of the list, a `CommandException` will be thrown.
-Otherwise, the model will then obtain the student using getFilteredPersonList.
+Otherwise, the model will then obtain the student using getFilteredStudentList.
 
 Before assigning the class to the student, `ClassStorage` will check that there is no conflict between the timings of the new class
 and the existing classes. `ClassStorage` will also check if the student has a pre-existing class. If yes, the pre-existing class
@@ -220,13 +220,13 @@ The following activity diagram summarizes what happens when a teacher executes a
 ### Next Available Class Feature
 
 This feature allows the teacher to find then next available class by specifying the time range and the duration that
-he or she is looking at. For example, if the teacher wants to have a 1 hour class in the range of 1000-1600, but is not
+he or she is looking at. For example, if the teacher wants to have a 1-hour class in the range of 1000-1600, but is not
 sure when is the next available date, he or she can simply run `avail 1000-1600 60` and the first available class would
 be output to the teacher.
 
 #### Implementation Details
 
-The main logic of the available class resides in `UniquePersonlist::getAvailableClass`, where it takes a given
+The main logic of the available class resides in `UniqueStudentlist::getAvailableClass`, where it takes a given
 `TimeRange` parameter and outputs the next available class.
 
 The `TimeRange` class stores the `startTimeRange`, `endTimeRange` and `duration` (in minutes).
@@ -237,7 +237,7 @@ exceptions being thrown, `AvailCommandParser` will create an `AvailCommand`.
 
 During the execution of `AvailCommand`, a call will be made to `Model` in order to get the available class. `Model`
 will then call `TeachersPet::getAvailableClass`. The `TeachersPet::getAvailableClass` will then call 
-`UniquePersonList::getAvailableClass` which will subsequently return a `Class` object, which will be displayed to 
+`UniqueStudentList::getAvailableClass` which will subsequently return a `Class` object, which will be displayed to 
 the user.
 
 The following sequence diagram shows how the avail operation works:
@@ -253,7 +253,7 @@ The following activity diagram summarizes what happens when a teacher executes a
 
 * **Alternative 1**: avail
     * Pros: Easy to implement.
-    * Cons: It will be hard coded to find the next available class of a one hour slot. Inflexible.
+    * Cons: It will be hard coded to find the next available class of a one-hour slot. Inflexible.
 
 * **Alternative 2**: avail 0000-2359 0 (in minutes)
     * Pros: More flexible, allowing teacher to specify what the time range is and the duration of class interested in.
@@ -278,19 +278,19 @@ When a user command gets executed, the 3 operations are performed once to displa
 How the individual operations work:
 - `StatisticsCalculator#getSize()`
   1. When `StatisticsCalculator#getSize()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
-  2. After getting the list of students in the form of `ObservableList<Person>`, StatisticsCalculator returns the `size` of the `ObservableList<Person>`.
+  2. After getting the list of students in the form of `ObservableList<Student>`, StatisticsCalculator returns the `size` of the `ObservableList<Student>`.
   
   ![StatisticsCalculatorGetSizeSequenceDiagram](images/DG-images/StatisticsCalculatorGetSizeSequenceDiagram.png)
 
 - `StatisticsCalculator#getAmountOwed()`
   1. When `StatisticsCalculator#getAmountOwed()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
-  2. After getting the list of students in the form of `ObservableList<Person>`, StatisticsCalculator iterates across all students in the list and sums the total amount owed.
+  2. After getting the list of students in the form of `ObservableList<Student>`, StatisticsCalculator iterates across all students in the list and sums the total amount owed.
 
   ![StatisticsCalculatorGetAmountOwedSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountOwedSequenceDiagram.png)
 
 - `StatisticsCalculator#getAmountPaid()`
   1. When `StatisticsCalculator#getAmountPaid()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
-  2. After getting the list of students in the form of `ObservableList<Person>`, StatisticsCalculator iterates across all students in the list and sums the total amount paid.
+  2. After getting the list of students in the form of `ObservableList<Student>`, StatisticsCalculator iterates across all students in the list and sums the total amount paid.
   
   ![StatisticsCalculatorGetAmountPaidSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountPaidSequenceDiagram.png)
 
@@ -304,7 +304,7 @@ How the individual operations work:
 * **Alternative 2**: Call a single statistics function which returns an array of statistical values
     * Pros: 
         1. Fewer repetition of code.
-        2. More optimised solution as `ObservableList<Person>` needs to be iterated only once. 
+        2. More optimised solution as `ObservableList<Student>` needs to be iterated only once. 
     * Cons: Violates Single Responsibility Principle (SRP) as the function would have multiple responsibilities.
 
 ### Schedule List Feature
@@ -324,9 +324,9 @@ This `UniqueScheduleList` would store the filtered version of the original `Addr
 
 #### Design Considerations
 #### Aspect: Determining how to design ScheduleList:
-* Alternative 1: Reusing `UniquePersonList` to store the `ScheduleList` under `AddressBook`
+* Alternative 1: Reusing `UniqueStudentList` to store the `ScheduleList` under `AddressBook`
   * Pros: Minimise code duplication since class is reused
-  * Cons: UniquePersonList insufficient in design to support the needs of holding untouched state and filtered state
+  * Cons: UniqueStudentList insufficient in design to support the needs of holding untouched state and filtered state
 * Alternative 2: Creating a dedicated `UniqueScheduleList` 
   * Pros: Achieved our purpose of a `ScheduleList`
   * Cons: Code duplication
@@ -340,10 +340,10 @@ This feature allows the teacher to mark a student as present for class, which in
 This command executes 3 main actions, they are:
 1. Display a cross beside the student's name in the Schedule list.
    - `ScheduleCard.java` contains a `Label` called `markStatus` to display the cross if the student is marked.
-   - `ScheduleCard#setMarkStatus(Person person)` sets the text of `markStatus` to be `[X]` if the `person` is marked, else `[ ]`.
+   - `ScheduleCard#setMarkStatus(Student student)` sets the text of `markStatus` to be `[X]` if the `student` is marked, else `[ ]`.
 
 2. Increment the money owed by the student.
-   - This action will add `ratesPerClass` field to `moneyOwed` field in `Person`.
+   - This action will add `ratesPerClass` field to `moneyOwed` field in `Student`.
    - The addition of money is called through `Money#addTo(Money money)` method.
    - To prevent integer overflow from happening, `Money#addTo(Money money)` throws a `CommandException` if it occurs.
 
@@ -367,12 +367,9 @@ This feature allows the user(teacher) to sort the students from Teacher's Pet by
 #### Implementation Details
 
 The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
-The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
-list of person as per usual.
-
-Additionally, it implements the following operation:
-
-- `TeachersPet#SortPersons(ComparatorM<Person>)` — Updates the `persons` by sorting the list with the given `Comparator`
+The `SortCommand` object will be creating a comparator based on the argument received and pass it to `TeachersPet` so that it will return the
+list of students as per usual. Additionally, it implements the following operation:
+- `TeachersPet#SortStudents(ComparatorM<Student>)` -- Updates the `students` by sorting the list with the given `Comparator`.
 
 The following diagram illustrates how the operation works:
 
@@ -414,7 +411,7 @@ The following sequence diagram shows how the undo operation works:
 
 * **Alternative 2:** Individual command knows how to undo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 ---
@@ -666,7 +663,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 1. Teacher requests to find the next available slot for class.
 2. Teacher discusses with the student about whether the proposed slot is possible.
-3. Teacher [edits](#use-case-edit-a-student-contact-detail) the student record with the next class date.
+3. Teacher [edits](#use-case-edit-a-students-class-date) the student record with the next class date.
 
 **Extensions**
 

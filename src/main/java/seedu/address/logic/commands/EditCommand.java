@@ -25,27 +25,27 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.AdditionalNotes;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Mark;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.student.AdditionalNotes;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Mark;
+import seedu.address.model.student.Money;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.ClassStorage;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing student in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+            + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -63,95 +63,95 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
     public static final String MESSAGE_CLASS_CONFLICT = "There is a conflict between the class timings.";
     private static final String MESSAGE_MULTIPLE_CLASSES_PER_DAY = "A student cannot have multiple classes per day";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit.
-     * @param editPersonDescriptor details to edit the person with.
+     * @param index of the student in the filtered student list to edit.
+     * @param editStudentDescriptor details to edit the student with.
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
 
-        if (!editPersonDescriptor.hasEmptyClass()) {
-            if (editedPerson.hasMultipleClasses()) {
+        if (!editStudentDescriptor.hasEmptyClass()) {
+            if (editedStudent.hasMultipleClasses()) {
                 throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
             }
-            editedPerson.setDisplayClass(editedPerson.getAClass());
-            ClassStorage.saveClass(editedPerson, index.getOneBased());
-            ClassStorage.removeExistingClass(personToEdit);
-        } else if (!personToEdit.hasEmptyClass()) {
-            editedPerson.setClass(personToEdit.getAClass());
-            editedPerson.setDisplayClass(personToEdit.getDisplayedClass());
-            if (editedPerson.hasMultipleClasses()) {
+            editedStudent.setDisplayClass(editedStudent.getAClass());
+            ClassStorage.saveClass(editedStudent, index.getOneBased());
+            ClassStorage.removeExistingClass(studentToEdit);
+        } else if (!studentToEdit.hasEmptyClass()) {
+            editedStudent.setClass(studentToEdit.getAClass());
+            editedStudent.setDisplayClass(studentToEdit.getDisplayedClass());
+            if (editedStudent.hasMultipleClasses()) {
                 throw new CommandException(MESSAGE_MULTIPLE_CLASSES_PER_DAY);
             }
-            ClassStorage.updatePerson(personToEdit, editedPerson);
+            ClassStorage.updateStudent(studentToEdit, editedStudent);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}.
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}.
+     * edited with {@code editStudentDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
+        assert studentToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Phone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(personToEdit.getNokPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
-        Money updatedMoneyOwed = editPersonDescriptor.getMoneyOwed().orElse(personToEdit.getMoneyOwed());
-        Money updatedMoneyPaid = editPersonDescriptor.getMoneyPaid().orElse(personToEdit.getMoneyPaid());
-        Money updatedRatesPerClass = editPersonDescriptor.getRatesPerClass().orElse(personToEdit.getRatesPerClass());
-        AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
-                .orElse(personToEdit.getAdditionalNotes());
-        Optional<AdditionalNotes> appendedAdditionalNotes = editPersonDescriptor.getAppendedAdditionalNotes();
+        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
+        Phone updatedNokPhone = editStudentDescriptor.getNokPhone().orElse(studentToEdit.getNokPhone());
+        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Class updatedClassDateTime = editStudentDescriptor.getAClass().orElse(studentToEdit.getAClass());
+        Money updatedMoneyOwed = editStudentDescriptor.getMoneyOwed().orElse(studentToEdit.getMoneyOwed());
+        Money updatedMoneyPaid = editStudentDescriptor.getMoneyPaid().orElse(studentToEdit.getMoneyPaid());
+        Money updatedRatesPerClass = editStudentDescriptor.getRatesPerClass().orElse(studentToEdit.getRatesPerClass());
+        AdditionalNotes updatedNotes = editStudentDescriptor.getAdditionalNotes()
+                .orElse(studentToEdit.getAdditionalNotes());
+        Optional<AdditionalNotes> appendedAdditionalNotes = editStudentDescriptor.getAppendedAdditionalNotes();
         if (!appendedAdditionalNotes.isEmpty()) {
             updatedNotes.appendNotes(appendedAdditionalNotes.get());
         }
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
         // Unmodifiable states by the user
-        Mark markStatus = personToEdit.getMarkStatus();
-        Class displayedClass = personToEdit.getDisplayedClass();;
+        Mark markStatus = studentToEdit.getMarkStatus();
+        Class displayedClass = studentToEdit.getDisplayedClass();;
 
-        return new Person(updatedName, updatedPhone, updatedNokPhone, updatedEmail, updatedAddress,
+        return new Student(updatedName, updatedPhone, updatedNokPhone, updatedEmail, updatedAddress,
                 updatedClassDateTime, updatedMoneyOwed, updatedMoneyPaid, updatedRatesPerClass, updatedNotes,
                 updatedTags, markStatus, displayedClass);
     }
@@ -171,14 +171,14 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
      */
-    public static class EditPersonDescriptor {
+    public static class EditStudentDescriptor {
         private Name name;
         private Phone phone;
         private Phone nokPhone;
@@ -192,14 +192,14 @@ public class EditCommand extends Command {
         private AdditionalNotes appendedAdditionalNotes;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {
+        public EditStudentDescriptor() {
         }
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setNokPhone(toCopy.nokPhone);
@@ -348,12 +348,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

@@ -10,20 +10,20 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.AdditionalNotes;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Class;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Mark;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.student.AdditionalNotes;
+import seedu.address.model.student.Address;
+import seedu.address.model.student.Class;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Mark;
+import seedu.address.model.student.Money;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.ClassStorage;
 
 /**
- * Marks an existing person as present for his/her class.
+ * Marks an existing student as present for his/her class.
  */
 public class MarkCommand extends Command {
 
@@ -58,51 +58,51 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredScheduleList();
+        List<Student> lastShownList = model.getFilteredScheduleList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_SCHEDULE_INDEX);
         }
 
-        Person personToMark = lastShownList.get(targetIndex.getZeroBased());
-        Person markedPerson = createMarkedPerson(personToMark);
+        Student studentToMark = lastShownList.get(targetIndex.getZeroBased());
+        Student markedStudent = createMarkedStudent(studentToMark);
 
-        if (markedPerson.equals(personToMark)) {
+        if (markedStudent.equals(studentToMark)) {
             throw new CommandException(MESSAGE_MARKED_PREVIOUSLY);
         }
 
-        ClassStorage.saveClass(markedPerson, this.targetIndex.getZeroBased());
-        ClassStorage.removeExistingClass(personToMark);
+        ClassStorage.saveClass(markedStudent, this.targetIndex.getZeroBased());
+        ClassStorage.removeExistingClass(studentToMark);
 
-        model.setPerson(personToMark, markedPerson);
+        model.setStudent(studentToMark, markedStudent);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
     /**
-     * Creates and returns a marked {@code Person} with the details of {@code personToMark}.
+     * Creates and returns a marked {@code Student} with the details of {@code studentToMark}.
      */
-    static Person createMarkedPerson(Person personToMark) throws CommandException {
-        assert personToMark != null;
+    static Student createMarkedStudent(Student studentToMark) throws CommandException {
+        assert studentToMark != null;
 
-        if (personToMark.getMarkStatus().isMarked() == true) {
-            return personToMark;
+        if (studentToMark.getMarkStatus().isMarked() == true) {
+            return studentToMark;
         }
 
-        Name currentName = personToMark.getName();
-        Phone currentPhone = personToMark.getPhone();
-        Phone currentNokPhone = personToMark.getNokPhone();
-        Email currentEmail = personToMark.getEmail();
-        Address currentAddress = personToMark.getAddress();
-        Class currentClassDateTime = personToMark.getAClass();
-        Money currentMoneyOwed = personToMark.getMoneyOwed();
-        Money currentMoneyPaid = personToMark.getMoneyPaid();
-        Money currentRatesPerClass = personToMark.getRatesPerClass();
-        AdditionalNotes currentNotes = personToMark.getAdditionalNotes();
-        Set<Tag> currentTags = personToMark.getTags();
+        Name currentName = studentToMark.getName();
+        Phone currentPhone = studentToMark.getPhone();
+        Phone currentNokPhone = studentToMark.getNokPhone();
+        Email currentEmail = studentToMark.getEmail();
+        Address currentAddress = studentToMark.getAddress();
+        Class currentClassDateTime = studentToMark.getAClass();
+        Money currentMoneyOwed = studentToMark.getMoneyOwed();
+        Money currentMoneyPaid = studentToMark.getMoneyPaid();
+        Money currentRatesPerClass = studentToMark.getRatesPerClass();
+        AdditionalNotes currentNotes = studentToMark.getAdditionalNotes();
+        Set<Tag> currentTags = studentToMark.getTags();
         Class displayedClass = currentClassDateTime;
         Class updatedClassDateTime = currentClassDateTime.addDays(DAYS_IN_A_WEEK);
         Mark updatedMarkStatus = new Mark(Boolean.TRUE);
@@ -114,7 +114,7 @@ public class MarkCommand extends Command {
             throw new CommandException(e.getMessage() + MESSAGE_CLEAR_STUDENT_DEBT);
         }
 
-        return new Person(currentName, currentPhone, currentNokPhone, currentEmail, currentAddress,
+        return new Student(currentName, currentPhone, currentNokPhone, currentEmail, currentAddress,
                 updatedClassDateTime, updatedMoneyOwed, currentMoneyPaid, currentRatesPerClass, currentNotes,
                 currentTags, updatedMarkStatus, displayedClass);
     }

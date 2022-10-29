@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * An UI component that displays information of a {@code Schedule}.
@@ -22,7 +22,7 @@ public class ScheduleCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Student student;
     @FXML
     private HBox scheduleCardPane;
     @FXML
@@ -39,41 +39,41 @@ public class ScheduleCard extends UiPart<Region> {
     private Label markStatus;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Student} and index to display.
      */
-    public ScheduleCard(Person person, int displayedIndex) {
+    public ScheduleCard(Student student, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.student = student;
         id.setText(displayedIndex + ". ");
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        classTime.setText(person.getDisplayedClass().toTimeString());
-        setWarningIfOwed(person);
-        setMarkStatus(person);
+        phone.setText(student.getPhone().value);
+        address.setText(student.getAddress().value);
+        classTime.setText(student.getDisplayedClass().toTimeString());
+        setWarningIfOwed(student);
+        setMarkStatus(student);
     }
 
     /**
-     * Sets off warning indication if the person owes money.
+     * Sets off warning indication if the student owes money.
      *
-     * @param person to set warning if he/she owes money.
+     * @param student to set warning if he/she owes money.
      */
-    private void setWarningIfOwed(Person person) {
-        if (person.isOwingMoney()) {
-            String nameWithAmount = person.getName().fullName + " - To collect $" + person.getMoneyOwed().value;
+    private void setWarningIfOwed(Student student) {
+        if (student.isOwingMoney()) {
+            String nameWithAmount = student.getName().fullName + " - To collect $" + student.getMoneyOwed().value;
             name.setText(nameWithAmount);
             name.setStyle(COLOUR_OF_DEBTOR);
         } else {
-            name.setText(person.getName().fullName);
+            name.setText(student.getName().fullName);
         }
     }
 
     /**
-     * Toggles the mark indicator based on the status of the person.
+     * Toggles the mark indicator based on the status of the student.
      *
-     * @param person to check whether he/she is marked.
+     * @param student to check whether he/she is marked.
      */
-    private void setMarkStatus(Person person) {
-        if (person.getMarkStatus().isMarked()) {
+    private void setMarkStatus(Student student) {
+        if (student.getMarkStatus().isMarked()) {
             markStatus.setText("[X]");
         } else {
             markStatus.setText("[  ]");
@@ -95,6 +95,6 @@ public class ScheduleCard extends UiPart<Region> {
         // state check
         ScheduleCard card = (ScheduleCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && student.equals(card.student);
     }
 }

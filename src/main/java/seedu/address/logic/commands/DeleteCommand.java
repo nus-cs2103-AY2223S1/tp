@@ -9,18 +9,18 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 import seedu.address.storage.ClassStorage;
 
 /**
- * Deletes a person identified using its displayed index from the student list.
+ * Deletes a student identified using its displayed index from the student list.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed student list.\n"
+            + ": Deletes the student identified by the index number used in the displayed student list.\n"
             + "Parameters: INDEX [OPTIONAL INDEXES] (must be positive integer(s))\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -30,9 +30,9 @@ public class DeleteCommand extends Command {
     private final List<Index> targetIndexes;
 
     /**
-     * Creates a DeleteCommand to delete the specified {@code Person}(s).
+     * Creates a DeleteCommand to delete the specified {@code Student}(s).
      *
-     * @param targetIndexes of the person(s) to delete.
+     * @param targetIndexes of the student(s) to delete.
      */
     public DeleteCommand(List<Index> targetIndexes) {
         Collections.sort(targetIndexes);
@@ -42,9 +42,9 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
-        if (model.getFilteredPersonList().size() == 0) {
+        if (model.getFilteredStudentList().size() == 0) {
             throw new CommandException(STUDENT_LIST_EMPTY_ERROR);
         }
 
@@ -53,9 +53,9 @@ public class DeleteCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_INDEXES);
             }
-            Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            model.deletePerson(personToDelete);
-            ClassStorage.removeExistingClass(personToDelete);
+            Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
+            model.deleteStudent(studentToDelete);
+            ClassStorage.removeExistingClass(studentToDelete);
         }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS));
     }

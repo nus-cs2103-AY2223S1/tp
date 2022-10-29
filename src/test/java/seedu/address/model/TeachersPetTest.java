@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalTeachersPet;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.getTypicalTeachersPet;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,9 +19,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
+import seedu.address.testutil.StudentBuilder;
 
 public class TeachersPetTest {
 
@@ -29,7 +29,7 @@ public class TeachersPetTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), teachersPet.getPersonList());
+        assertEquals(Collections.emptyList(), teachersPet.getStudentList());
     }
 
     @Test
@@ -45,68 +45,68 @@ public class TeachersPetTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
+        // Two students with the same identity fields
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        TeachersPetStub newData = new TeachersPetStub(newPersons);
+        List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
+        TeachersPetStub newData = new TeachersPetStub(newStudents);
 
-        assertThrows(DuplicatePersonException.class, () -> teachersPet.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> teachersPet.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> teachersPet.hasPerson(null));
+    public void hasStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> teachersPet.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInTeachersPet_returnsFalse() {
-        assertFalse(teachersPet.hasPerson(ALICE));
+    public void hasStudent_studentNotInTeachersPet_returnsFalse() {
+        assertFalse(teachersPet.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInTeachersPet_returnsTrue() {
-        teachersPet.addPerson(ALICE);
-        assertTrue(teachersPet.hasPerson(ALICE));
+    public void hasStudent_studentInTeachersPet_returnsTrue() {
+        teachersPet.addStudent(ALICE);
+        assertTrue(teachersPet.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInTeachersPet_returnsTrue() {
-        teachersPet.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasStudent_studentWithSameIdentityFieldsInTeachersPet_returnsTrue() {
+        teachersPet.addStudent(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(teachersPet.hasPerson(editedAlice));
+        assertTrue(teachersPet.hasStudent(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> teachersPet.getPersonList().remove(0));
+    public void getStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> teachersPet.getStudentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyTeachersPet whose persons list can violate interface constraints.
+     * A stub ReadOnlyTeachersPet whose students list can violate interface constraints.
      */
     private static class TeachersPetStub implements ReadOnlyTeachersPet {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Person> schedule = FXCollections.observableArrayList();
-        TeachersPetStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
-            this.schedule.setAll(persons);
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
+        private final ObservableList<Student> schedule = FXCollections.observableArrayList();
+        TeachersPetStub(Collection<Student> students) {
+            this.students.setAll(students);
+            this.schedule.setAll(students);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Student> getStudentList() {
+            return students;
         }
 
         @Override
-        public ObservableList<Person> getScheduleList() {
+        public ObservableList<Student> getScheduleList() {
             return schedule;
         }
 
         @Override
-        public void sortPersons(Comparator<Person> comparator) {}
+        public void sortStudents(Comparator<Student> comparator) {}
     }
 
 }

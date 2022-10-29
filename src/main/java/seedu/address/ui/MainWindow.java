@@ -113,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredStudentList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         // replace this with getSchedule() method to be implemented
