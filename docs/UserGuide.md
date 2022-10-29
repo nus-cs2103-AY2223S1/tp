@@ -106,11 +106,11 @@ Example:
 
 ### Finding the calorie content of a food item: `find`
 
-Finds the calorie content of a food item for 1 serving in kcal.
+Finds the calorie content of a food item.
 
 Format: `find FOOD`
 
-* Only the calorie contents of some common food items are included.
+* Only the calorie contents of some food items are included. Refer to the list of food items [here](#food-items).
 * If the user has entered a specific food item before, the `find` command will return the average calories of 
 that specific food item that the user has specified
 
@@ -206,8 +206,21 @@ Format: `exit`
 
 NutriGoals data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+--------------------------------------------------------------------------------------------------------------------
 
-_Details coming soon ..._
+## Food items
+
+List of food items for the [find](#finding-the-calorie-content-of-a-food-item-find) feature:
+* ban mian
+* bubble tea
+* chicken rice
+* fried rice
+* laksa
+* nasi lemak
+* potato chips
+* rice
+* wanton noodles
+* white bread
 
 --------------------------------------------------------------------------------------------------------------------
 
