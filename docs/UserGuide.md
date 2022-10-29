@@ -92,7 +92,7 @@ Each profile is a set of contact information about a person in your NUS communit
 
 A profile must contain the following information:
 
-* Name, limited to 24 characters including spaces
+* Name, limited to 24 alphanumeric characters including spaces
 * Phone number
 * A valid NUS email, e.g. `u.nus.edu`, see [Accepted Email Formats](#accepted-email-formats) for the full list of accepted email domains
 
@@ -144,7 +144,7 @@ Examples:
 
 #### Finding profiles by name: `profile -f`
 
-Find profiles whose names contain any of the given keywords.
+Finds profiles whose names contain any of the given keywords.
 
 Format: `profile -f KEYWORD [MORE_KEYWORDS]…`
 
@@ -202,7 +202,7 @@ Adds an event with a name, a start date and end date.
 Format: `event -a n/TITLE s/START e/END [t/TAG]…`
 
 * The start and end dates can be specified in various different formats, see [Accepted Date Time Format](#accepted-date-time-formats) for the full list.
-* The start and end dates must both contain either date only or date and time.
+* The start and end dates must both contain either date only or date and time i.e. time is optional.
 * The start date must occur before or on the same day and time as the end date.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -283,7 +283,7 @@ Example:
 
 #### Finding events by date or title: `event -f`
 
-Find events whose title contain any of the given keywords or start times contain any of the given start times.
+Finds events whose title contain any of the given keywords or start times contain any of the given start times.
 
 Format: `event -f KEYWORD_OR_DATE [MORE]…`
 
