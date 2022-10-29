@@ -106,19 +106,19 @@ public class LogicManagerTest {
     @Test
     public void getAddressBook() {
         ReadOnlyAddressBook expectedAddressBook = new AddressBook();
-        assertEquals(expectedAddressBook, model.getAddressBook());
+        assertEquals(expectedAddressBook, logic.getAddressBook());
     }
 
     @Test
     public void getAddressBookFilePath() {
         Path expectedAddressBookFilePath = new UserPrefs().getAddressBookFilePath();
-        assertEquals(expectedAddressBookFilePath, model.getAddressBookFilePath());
+        assertEquals(expectedAddressBookFilePath, logic.getAddressBookFilePath());
     }
 
     @Test
     public void getGuiSettings() {
         GuiSettings expectedGuiSettings = new UserPrefs().getGuiSettings();
-        assertEquals(expectedGuiSettings, model.getGuiSettings());
+        assertEquals(expectedGuiSettings, logic.getGuiSettings());
     }
 
 
@@ -128,7 +128,7 @@ public class LogicManagerTest {
         UserPrefs expectedUserPrefs = new UserPrefs();
         expectedUserPrefs.setGuiSettings(expectedGuiSettings);
         Model expectedModel = new ModelManager(new AddressBook(), expectedUserPrefs);
-        model.setGuiSettings(expectedGuiSettings);
+        logic.setGuiSettings(expectedGuiSettings);
         assertEquals(expectedModel, model);
     }
 
