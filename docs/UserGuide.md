@@ -88,9 +88,9 @@ This section will explain the parameters and the format of commands.
   e.g. if the command specifies `student n/NAME e/EMAIL`, then `student e/EMAIL n/NAME` is also acceptable.
   e.g. if the command specifies `edit INDEX n/NAME`, then `edit n/NAME INDEX` is not acceptable.
 
-  * If a parameter is expected only once in the command, but you specified it multiple times, only
-    the last occurrence of the parameter will be taken. <br>
-    e.g. if you specify `n/Alice n/Bob`, only Bob will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only
+  the last occurrence of the parameter will be taken. <br>
+  e.g. if you specify `n/Alice n/Bob`, only Bob will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as help, list, exit, clear-confirm, sort ) will be ignored.
   e.g. if the command specifies help 123, it will be interpreted as help.
