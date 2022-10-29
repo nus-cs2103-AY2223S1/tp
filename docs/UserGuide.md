@@ -197,7 +197,6 @@ Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 | `FIELDS`  | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`            |
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
-</div>
 
 Examples:
 * `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
@@ -309,6 +308,8 @@ Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a transaction.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### Deleting a transaction: `delete`
 
 Deletes a `transaction` specified by the index number.
@@ -320,6 +321,8 @@ Format: `delete INDEX m/remark`
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Filtering buy or sell transactions: `filter`
 
