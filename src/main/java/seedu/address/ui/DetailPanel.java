@@ -35,10 +35,16 @@ public class DetailPanel extends MainPanel {
     private ImageView profileImageView;
 
     @FXML
+    private Label contactsTitleLabel;
+
+    @FXML
     private Label nameLabel;
 
     @FXML
     private Label roleLabel;
+
+    @FXML
+    private Label githubLabel;
 
     @FXML
     private Label timezoneLabel;
@@ -48,6 +54,9 @@ public class DetailPanel extends MainPanel {
 
     @FXML
     private HBox contactBoxContainer;
+
+    @FXML
+    private Label reposTitleLabel;
 
     @FXML
     private ListView<Repo> githubRepoListView;
@@ -83,12 +92,21 @@ public class DetailPanel extends MainPanel {
         setLabelVisibility(addressLabel, person.getAddress().isPresent());
         person.getAddress().ifPresent(a -> addressLabel.setText(a.toString()));
 
+        setLabelVisibility(githubLabel, person.getGithubUser().isPresent());
+        person.getGithubUser().ifPresent(u -> githubLabel.setText(u.getUsername()));
+
+        // Hide the title when github user is empty
+        setLabelVisibility(reposTitleLabel, person.getGithubUser().isPresent());
         if (person.getGithubUser().isPresent()) {
             User githubUser = person.getGithubUser().get();
+
+            // Hide the titl when repo list has no repo
+            setLabelVisibility(reposTitleLabel, githubUser.getRepoList().size() != 0);
             githubRepoListView.setItems(FXCollections.observableList(githubUser.getRepoList()));
             githubRepoListView.setCellFactory(listView -> new GithubRepoListViewCell());
         }
 
+        setLabelVisibility(contactsTitleLabel, person.getContacts().size() != 0);
         List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
                 person.getContacts()
                         .values().stream()

@@ -16,6 +16,7 @@
                     <VBox spacing="8.0" HBox.hgrow="ALWAYS">
                         <children>
                             <Label fx:id="nameLabel"/>
+                            <Label fx:id="githubLabel"/>
                             <Label fx:id="roleLabel"/>
                             <Label fx:id="timezoneLabel"/>
                             <Label fx:id="addressLabel"/>
@@ -24,11 +25,11 @@
                 </children>
             </HBox>
             <VBox spacing="8.0" fx:id="contactsSection">
-                <Label styleClass="sub-header" text="CONTACTS"/>
+                <Label styleClass="sub-header" fx:id="contactsTitleLabel" text="CONTACTS"/>
                 <HBox spacing="10.0" fx:id="contactBoxContainer" VBox.vgrow="ALWAYS"/>
             </VBox>
             <VBox spacing="8.0" VBox.vgrow="ALWAYS">
-                <Label styleClass="sub-header" text="REPOSITORIES"/>
+                <Label styleClass="sub-header" fx:id="reposTitleLabel" text="REPOSITORIES"/>
                 <ListView fx:id="githubRepoListView" VBox.vgrow="ALWAYS"/>
             </VBox>
         </VBox>
