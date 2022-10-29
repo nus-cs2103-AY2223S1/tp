@@ -142,10 +142,10 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private Comparator<Student> getRa1Comparator(Order order) {
         return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getGradesList().getGrade("RA1").score
-                .compareTo(y.getGradesList().getGrade("RA1").score)
-                : y.getGradesList().getGrade("RA1").score
-                .compareTo(x.getGradesList().getGrade("RA1").score);
+                ? Integer.compareUnsigned(Integer.parseInt( x.getGradesList().getGrade("RA1").score),
+                Integer.parseInt(y.getGradesList().getGrade("RA1").score))
+                : Integer.compareUnsigned(Integer.parseInt( y.getGradesList().getGrade("RA1").score),
+                Integer.parseInt(x.getGradesList().getGrade("RA1").score));
     }
 
     private Comparator<Student> getRa2Comparator(ArgumentMultimap argMultimap,
