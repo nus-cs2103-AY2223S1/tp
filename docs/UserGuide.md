@@ -100,7 +100,7 @@ The following table describes the sections in detail:
 
 :bulb: **Tips:**
 
-* Parameters can be in any order.<br>
+* Parameters with a prefix can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>

@@ -204,21 +204,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code order} into an {@code String} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code order} into a {@code String} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified order is invalid (not a or d).
      */
-    public static String parseOrder(String order) throws ParseException {
+    public static String parseOrder(String order) {
         String trimmedOrder = order.trim();
         return trimmedOrder;
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code prefix} into a {@code Prefix} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Prefix parseSortPrefix(Prefix prefix) throws ParseException {
+    public static Prefix parseSortPrefix(Prefix prefix) {
         String trimmedPrefix = prefix.getPrefix().trim();
         return new Prefix(trimmedPrefix);
     }
