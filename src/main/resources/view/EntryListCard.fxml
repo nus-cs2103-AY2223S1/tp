@@ -13,46 +13,45 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" spacing="8.0" GridPane.columnIndex="0">
-            <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
-            </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="description" styleClass="cell_big_label" text="\$first" wrapText="true" />
-                <Region prefHeight="17.0" prefWidth="17.0" HBox.hgrow="ALWAYS" />
-                <Label fx:id="amount" prefHeight="17.0" prefWidth="56.0" styleClass="cell_big_label" text="\$amount" wrapText="true" />
-                <Label fx:id="id1" styleClass="cell_big_label">
-                    <minWidth>
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-            </HBox>
-            <FlowPane fx:id="tags" />
-            <HBox prefHeight="17.0" prefWidth="116.0" spacing="8.0">
-                <children>
-                    <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <!-- Icon obtained from https://www.streamlinehq.com/icons/plump-duo?search=calendar -->
-                            <Image url="@../images/calendar.png" />
-                        </image>
-                    </ImageView>
-                    <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-                </children>
-            </HBox>
-        </VBox>
-        <rowConstraints>
-            <RowConstraints />
-        </rowConstraints>
-    </GridPane>
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="105" spacing="8.0" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="description" styleClass="cell_big_label" text="\$first" wrapText="true" />
+            <Region prefHeight="17.0" prefWidth="17.0" HBox.hgrow="ALWAYS" />
+         <Label fx:id="amount" prefHeight="17.0" prefWidth="56.0" styleClass="cell_big_label" text="\$amount" wrapText="true" />
+            <Label fx:id="id1" styleClass="cell_big_label">
+               <minWidth>
+                  <Region fx:constant="USE_PREF_SIZE" />
+               </minWidth>
+            </Label>
+      </HBox>
+      <FlowPane fx:id="tags" />
+         <HBox prefHeight="17.0" prefWidth="116.0" spacing="8.0">
+            <children>
+               <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <!-- Icon obtained from https://www.streamlinehq.com/icons/plump-duo?search=calendar -->
+                     <Image url="@../images/calendar.png" />
+                  </image>
+               </ImageView>
+            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+            </children>
+         </HBox>
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
 </HBox>
-g
