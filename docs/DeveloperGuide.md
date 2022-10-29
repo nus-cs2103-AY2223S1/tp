@@ -663,7 +663,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 1. Teacher requests to find the next available slot for class.
 2. Teacher discusses with the student about whether the proposed slot is possible.
-3. Teacher [edits](#use-case-edit-a-student-contact-detail) the student record with the next class date.
+3. Teacher [edits](#use-case-edit-a-students-class-date) the student record with the next class date.
 
 **Extensions**
 
