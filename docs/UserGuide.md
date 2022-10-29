@@ -226,11 +226,9 @@ There are two ways to show person details
 
 1. Keyboard-friendly way
 
-   1. Double tap the `<TAB>` button to begin navigating the list of persons.
+   1. Use the arrow keys to navigate to the desired person.
 
-   2. Use the arrow keys to navigate to the desired person.
-
-   3. Press `<ENTER>` to show the person's details.
+   2. Press `<ENTER>` to show the person's details.
 
 2. General usage
 
