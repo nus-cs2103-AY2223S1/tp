@@ -5,8 +5,6 @@ import static seedu.address.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT
 import static seedu.address.testutil.TypicalTasks.ALICE;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
-import javafx.collections.ObservableList;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -18,6 +16,8 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
+
+import javafx.collections.ObservableList;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
