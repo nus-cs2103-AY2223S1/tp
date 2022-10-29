@@ -248,10 +248,13 @@ Displays the full title, description of the event at the specified INDEX of the 
 Format: `display-e INDEX`
 
 ### View lifetime summary: `summary`
-Displays a summary window.
+Displays a summary window of your lifetime travels.
+
+![Summary_Window](images/SummaryScreenshot.png)
 
 Format: `summary`
 
+- Calculates the number of unique locations you visited.
 - Includes list of completed trips.
 - Total number of completed trips and events.
 - Progress indicator for trips and events.
