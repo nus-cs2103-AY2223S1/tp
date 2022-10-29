@@ -24,13 +24,13 @@ information overload of their clients.<br>
   * Meeting and scheduling reminder.
   * Information storage.
 ## User guide:
-  * To find out more information about FABook, please take a look at our [User Guide](docs/UserGuide.md)!
+  * To find out more information about FABook, please take a look at our [User Guide](https://ay2223s1-cs2103t-t10-2.github.io/tp/UserGuide.html)!
 
 ## Developer Guide:
-  * To find out more technical information or if you want to help us improve your experience with FABook, please take a look at our [Developer Guide](docs/DeveloperGuide.md)!
+  * To find out more technical information or if you want to help us improve your experience with FABook, please take a look at our [Developer Guide](https://ay2223s1-cs2103t-t10-2.github.io/tp/DeveloperGuide.html)!
 
 ## About us
-  * Want to find out more about our team's dynamics and roles? Take a look at [our team](docs/AboutUs.md).
+  * Want to find out more about our team's dynamics and roles? Take a look at [our team](https://ay2223s1-cs2103t-t10-2.github.io/tp/AboutUs.html).
 
 ## Acknowledgments
   * This project is a part of the **se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.

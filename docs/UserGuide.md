@@ -82,7 +82,7 @@ This user guide will help you get started and understand how FABook can **seamle
   e.g Given `p/12341234 p/56785678`, only `p/56785678` will be taken.
   <br>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear`, 'redo' and 'undo') will be ignored.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`,`clear`, `redo` and `undo`) will be ignored.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
  </div>
 
@@ -289,7 +289,7 @@ Format: `meeting INDEX mt/MEETINGTIME...`
    
 Examples:
 * `meeting 2 mt/09-10-2023-23:50 mt/28-02-2020-15:16` adds two meetings to the second person in the displayed list, 
-   one at 9 November 2023 23:50, the other at 28 February 2020 15:16.
+   one at 9 October 2023 23:50, the other at 28 February 2020 15:16.
    
 ### Delete meetings: `deletemeeting`
    
@@ -302,7 +302,7 @@ Format: `deletemeeting INDEX mt/MEETINGTIME`
 * If the given meeting time is not on the list, the person's meetings remain unchanged.
    
 Examples:
-* `deletemeeting 2 mt/09-10-2023-23:50` deletes the meeting at 9 November 2023 23:50 from to the second person in the displayed list,
+* `deletemeeting 2 mt/09-10-2023-23:50` deletes the meeting at 9 October 2023 23:50 from the second person in the displayed list,
    if such a meeting was scheduled.
 
 ### Remove past meetings: `sync`
@@ -419,10 +419,10 @@ If your changes to the data file makes its format invalid, FABook will discard a
 | **Create**               | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
 | **Clear**                | `clear`                                                                                                                                                           | cl       |
 | **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               | d        |
-| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`edit 2 p/91234567 a/21 Lower Kent Ridge Rd`        | u        |
+| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`        | u        |
 | **Description**          | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                                                                     | desc     |
 | **Find**                 | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`                                      | f        |
-| **Filter**               | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                        | f        |
+| **Find**               | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                        | f        |
 | **List**                 | `list`                                                                                                                                                            | l        |
 | **Open File**            | `file INDEX`<br/> e.g. `file 2`                                                                                                                                   |          |
 | **Assign File**          | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                   |          |
