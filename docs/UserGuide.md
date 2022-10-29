@@ -310,7 +310,12 @@ Field |TAG | Description | Requirement| Default Value
 
 Example:
 
-- `add-leave id/1 sd/01-01-2022 ed/02-01-2022` adds a leave period to an employee of ID 1 with a leave period from 01-01-2022 to 02-01-2022 of 2 days.
+- `add-leave id/1 sd/01-01-2022 ed/01-01-2022` adds a leave period to an employee of ID 1 with a leave period from 01-01-2022 to 01-01-2022 of 1 day.
+
+<p align="center">
+  <img src="./images/ui-screenshots/addLeaveCommandOutcome.png" />
+  <br><em>Result of adding leave successfully from example given</em>
+</p> 
 
 #### Deleting a leave period for an employee: `delete-leave`
 
@@ -335,7 +340,12 @@ Field |TAG | Description | Requirement| Default Value
 
 Example:
 
-- `delete-leave id/1 i/3` deletes the third leave period for an employee of ID 1 in the table of leaves.
+- `delete-leave id/1 i/1` deletes the first leave period for an employee of ID 1 in the table of leaves.
+
+<p align="center">
+  <img src="./images/ui-screenshots/deleteLeaveCommandOutcome.png" />
+  <br><em>Result of adding leave successfully from example given</em>
+</p> 
 
 ### Managing Employee Performance
 
