@@ -29,12 +29,14 @@ public class GraphPanel extends UiPart<Region> {
 
     @FXML
     private StackPane graphPlaceholder;
+    private final EntryType entryType;
 
     /**
      * Creates a {@code GraphPanel} with a default pie chart image.
      */
     public GraphPanel(EntryType entryType, ObservableList<PieChart.Data> pieChartData) {
         super(FXML);
+        this.entryType = entryType;
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             chartTitle.setText(EXPENSE_CHART_TITLE);
@@ -61,6 +63,7 @@ public class GraphPanel extends UiPart<Region> {
      */
     public GraphPanel(EntryType entryType, XYChart.Series<String, Number> lineGraphData) {
         super(FXML);
+        this.entryType = entryType;
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             chartTitle.setText(EXPENSE_CHART_TITLE);
@@ -79,6 +82,10 @@ public class GraphPanel extends UiPart<Region> {
 
         this.lineChart = new EntryLineChart(lineGraphData);
         graphPlaceholder.getChildren().add(lineChart.getRoot());
+    }
+
+    public EntryType getEntryType() {
+        return this.entryType;
     }
 
 }

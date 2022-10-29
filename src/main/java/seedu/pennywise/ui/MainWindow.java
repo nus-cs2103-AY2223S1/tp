@@ -60,6 +60,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane graphPanelPlaceholder;
 
+    private GraphPanel currGraphPanel;
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -136,9 +137,10 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        GraphPanel graphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
+        this.currGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
                 logic.getExpensePieChartData());
-        graphPanelPlaceholder.getChildren().add(graphPanel.getRoot());
+
+        graphPanelPlaceholder.getChildren().add(this.currGraphPanel.getRoot());
     }
 
     /**
@@ -181,6 +183,8 @@ public class MainWindow extends UiPart<Stage> {
         GraphConfiguration graphConfiguration = commandResult.getGraphConfiguration();
         if (!graphConfiguration.getShouldUpdateGraph()) {
             return;
+        } else if (graphConfiguration.getEntryType() == null) {
+            graphConfiguration = new GraphConfiguration(this.currGraphPanel.getEntryType(), graphConfiguration.getGraphType(), true);
         }
 
         GraphType graphType = graphConfiguration.getGraphType();
@@ -223,6 +227,7 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         assert graphPanel != null;
+        this.currGraphPanel = graphPanel;
         graphPanelPlaceholder.getChildren().add(graphPanel.getRoot());
     }
 
@@ -265,7 +270,7 @@ public class MainWindow extends UiPart<Stage> {
             if (graphConfiguration.getShouldUpdateGraph()) {
                 updateGraph(commandResult);
             }
-            EntryType entryType = graphConfiguration.getEntryType();
+            EntryType entryType = this.currGraphPanel.getEntryType();
             switch (entryType.getEntryType()) {
             case EXPENDITURE:
                 entryPane.showExpenseEntryPanel();

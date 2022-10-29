@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.pennywise.logic.commands.exceptions.CommandException;
+import seedu.pennywise.model.GraphConfiguration;
 import seedu.pennywise.model.Model;
 import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.model.entry.EntryInYearMonthPredicate;
+import seedu.pennywise.model.entry.EntryType;
+import seedu.pennywise.model.entry.GraphType;
 
 
 /**
@@ -47,9 +50,14 @@ public class SummaryCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        GraphConfiguration graphConfiguration = null;
         if (this.predicate != null) {
             model.updateFilteredEntryList(this.predicate);
+            graphConfiguration = new GraphConfiguration(null, new GraphType(GraphType.GRAPH_TYPE_MONTH), true);
+        } else {
+            graphConfiguration = new GraphConfiguration(null, null, false);
         }
+        assert graphConfiguration != null;
         List<Entry> expenditureList = model.getFilteredExpenditureList();
         List<Entry> incomeList = model.getFilteredIncomeList();
         Double totalExpenditure = expenditureList
@@ -61,7 +69,7 @@ public class SummaryCommand extends Command {
                 .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
                 .sum();
         Double totalBalance = totalIncome - totalExpenditure;
-        return new CommandResult(String.format(MESSAGE_SUCCESS, totalExpenditure, totalIncome, totalBalance));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, totalExpenditure, totalIncome, totalBalance), false, false, graphConfiguration);
     }
 
     @Override
