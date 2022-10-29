@@ -14,9 +14,12 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 To get you started, you might want to read the section on [how to use this User Guide](#how-to-use-the-user-guide)!
 
+An overview of the application's user interface can be found [here](#user-interface-overview).
+
 ## Table of Contents
 
 * [Quick Start](#quick-start)
+* [User Interface Overview](#user-interface-overview)
 * [How to use the User Guide](#how-to-use-the-user-guide)
 * [Features](#features)
   * [Client Commands]()
@@ -34,14 +37,14 @@ To get you started, you might want to read the section on [how to use this User 
     * [Sorting the transactions: `sort`](#sorting-the-address-book-sort)
   * [Remark Commands]()
     * [Creating a remark: `remark`](#creating-a-remark-remark)
-    * [Editing a remark: `edit`]()
-    * [Deleting a remark: `remark`]()
+    * [Editing a remark: `edit`](#editing-a-remark--edit)
+    * [Deleting a remark: `remark`](#deleting-a-remark--delete)
   * [Miscellaneous Commands]()
     * [Clearing all entries: `clear`](#clearing-all-entries--clear)
     * [Exiting the program: `exit`](#exiting-the-program--exit)
     * [Viewing help: `help`](#viewing-help--help)
     * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
-  * [Data Storage]()
+  * [Data Storage](#data-storage)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
     * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
@@ -85,9 +88,25 @@ To get you started, you might want to read the section on [how to use this User 
 
 --------------------------------------------------------------------------------------------------------------------
 
+## User Interface Overview
+
+![UiOverview](images/UiOverview.jpg)
+
+This application UI is split into `5 sections`.
+* `Input Command`: This is where you should key in your commands, and press enter to execute
+* `Application's Reply`: Errors or success messages will appear here after you execute any commands
+* `List Of Clients`: Every client that you have will appear here
+* `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client--view), or it will show all transactions with every client if you use the [filter command](#filtering-the-transaction-display--filter)
+* `Remarks Of Specified Client`: Remarks of specified client will appear here
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## How to use the User Guide
 
-This user guide contains detailed explanation on how to use the application. It provides information like what each `command` does, warnings for certain commands, and how data is saved in the application.
+This user guide contains detailed explanation on how to use the application. It provides information like what each `command` does, **warnings** for certain commands, and how data is saved in the application.
+
 The [table of contents](#table-of-contents) provides links to every command. But before you head there, below are some notes on how to interpret each command format.
 
 <div markdown="block" class="alert alert-info">
@@ -112,9 +131,20 @@ The [table of contents](#table-of-contents) provides links to every command. But
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
+</div>
+
+### Symbols
+
+Below are some symbols that you may encounter in the User Guide.
+
+| Symbol                                                                           | Meaning                                                                       |
+|----------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| <div markdown="span" class="alert alert-danger">❗ Danger Message                 | Warning, something that could cause irreversible damage when done incorrectly |
+| <div markdown="span" class="alert alert-warning">:warning: Warning Message</div> | Caution, something that could go wrong and should be noted                    |
+
 [Back to Table of Contents](#table-of-contents)
 
-</div>
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
@@ -129,7 +159,7 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 * No restrictions on the phone input field and email input field, but a warning will be given if it deviates from the standard convention.
     * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or whitespaces!
+> <div markdown="span" class="alert alert-warning">:warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
 * `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com`
@@ -158,6 +188,7 @@ Parameter constraints:
 | `GOODS`    | - Refers to the name of the goods transacted. <br/> - Should only contain alphanumeric characters, and it should not be blank.                                                                                |
 | `PRICE`    | - Refers to the price of the goods transacted. <br/> - Should be a positive number, and it should be at least 1 digit long.                                                                                   |
 | `DATE`     | - Refers to the date of the transaction. <br/> - Should only be in the format of DD/MM/YYYY. <br/> - If no `DATE` is entered, the default date will be the current date that the user enters the transaction. |
+
   
 
 Examples:
@@ -180,7 +211,7 @@ Example:
 
 * `clear` clears all Client's entries together with the Remarks and Transactions.
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved!
+> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved!
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -204,7 +235,7 @@ also has a tag `favourite`.
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting a client / transaction / remark : `delete`
-> <div markdown="span" class="alert alert-danger">❗ :warning: **If you delete a client/transaction/remark, it will be gone forever**: Be very careful here!
+> <div markdown="span" class="alert alert-danger">❗ **If you delete a client/transaction/remark, it will be gone forever**: Be very careful here!
 
 Deletes the specified `client`, `transaction` or `remark` from JeeqTracker.
 
@@ -212,8 +243,8 @@ Format: `delete INDEX m/MODE`
 
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
-* The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
-* `view` command must be used before the deletion of `remark` or `transaction` as the deletion can only happen when they are visible in the application.
+* The `MODE` refers to which entity is being deleted. **It must be** `client`, `transaction` or `remark`.
+* `view` command **must** be used before the deletion of `remark` or `transaction` as the deletion can only happen when they are visible in the application.
 
 Examples:
 * `delete 1 m/client` deletes the 1<sup>st</sup> client in the JeeqTracker.
@@ -235,11 +266,13 @@ Format: `edit INDEX m/MODE FIELDS [MORE_FIELDS]...`
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** e.g 1, 2, 3, …​
 * The `INDEX` **must not contain any signs** e.g +1, -3, …​
+
 * The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
 * The `FIELDS` refers to the parameters to be changed for the entity. e.g:
+
   * client has `[n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]`
   * transaction has `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`.
-* `view` command must be used before editing `remark` or `transaction` as the edit can only happen when they are visible in the application.
+* `view` command **must** be used before editing `remark` or `transaction` as the edit can only happen when they are visible in the application.
 
 Examples:
 * `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
@@ -384,6 +417,35 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
+### Editing a remark : `edit`
+
+Edits a `remark` specified by the index number.
+
+Format: `edit INDEX m/remark REMARK`
+
+| Parameter    | Constraints                                                                                                                                                                            |
+|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`      | - Refers to the index number shown in the display remark list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
+| `REMARK`     | - Refers to the new remark, it is a required field                                                                                                                                     |
+
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
+</div>
+
+### Deleting a remark : `delete`
+
+Deletes a `remark` specified by the index number.
+
+Format: `delete INDEX m/remark`
+
+* `INDEX` refers to the index number shown in the display remark list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
+
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
+</div>
+
+> <div markdown="span" class="alert alert-danger">❗ **Deleting a remark is an irreversible process! It will be gone forever**: Be very careful here!
+
+# Data Storage
+
 ### Saving the data
 
 JeeqTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -393,6 +455,7 @@ JeeqTracker data are saved in the hard disk automatically after any command that
 JeeqTracker data are saved as a JSON file `[JAR file location]/data/jeeqtracker.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:warning: **Caution:**
+
 If your changes to the data file makes its format invalid, JeeqTracker will discard all data and start with an empty data file at the next run.
 </div>
 
