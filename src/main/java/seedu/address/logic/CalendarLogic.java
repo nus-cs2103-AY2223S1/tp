@@ -191,10 +191,14 @@ public class CalendarLogic {
         updateCalendarMonth();
     }
 
-    private GregorianCalendar getJumpMonth(Calendar cal) {
+    private GregorianCalendar getJumpMonth(Calendar cal) throws DateTimeParseException {
 
         String inputDate = jumpText.getText();
         jumpText.clear();
+        if (inputDate.startsWith("0")) {
+            textValidation.setTextValidation(WRONG_FORMAT_MESSAGE);
+            return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
+        }
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-uuuu");
             formatter = formatter.withResolverStyle(ResolverStyle.LENIENT);
