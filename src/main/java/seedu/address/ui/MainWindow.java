@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -34,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private final DetailHelpPanel detailHelpPanel;
     private final Stack<MainPanelName> mainPanelHistory = new Stack<>();
     // Independent Ui parts residing in this Ui container
+    private CommandBox commandBox;
     private PersonListPanel personListPanel;
     private DetailPanel detailPanel;
     private ResultDisplay resultDisplay;
@@ -70,8 +73,6 @@ public class MainWindow extends UiPart<Stage> {
 
         helpPanel = new HelpPanel();
         detailHelpPanel = new DetailHelpPanel();
-
-        setupUserInteraction();
     }
 
     public Stage getPrimaryStage() {
@@ -95,8 +96,10 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        setupUserInteraction();
     }
 
     /**
@@ -158,6 +161,54 @@ public class MainWindow extends UiPart<Stage> {
         this.getRoot().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 handleBack();
+            } else if (event.getCode().equals(KeyCode.F1)) {
+                handleHelp();
+            }
+        });
+
+        personListPanel.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            Person selectedPerson = personListPanel.getSelectedPerson();
+            boolean isFirstPersonSelected = logic.getSortedFilteredPersonList().size() == 0
+                    || selectedPerson.equals(logic.getSortedFilteredPersonList().get(0));
+
+            if (isFirstPersonSelected && event.getCode().equals(KeyCode.UP)) {
+                personListPanel.setFocus(false);
+                personListPanel.clearSelectedPerson();
+                commandBox.focus();
+            }
+
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                selectPerson(selectedPerson);
+            }
+        });
+
+        personListPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 2) {
+                    selectPerson(personListPanel.getSelectedPerson());
+                }
+            }
+        });
+
+        personListPanel.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            // Ignore tab navigation when the list view is empty
+            if (event.getCode().equals(KeyCode.TAB)) {
+                event.consume();
+            }
+        });
+
+        commandBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            boolean isEmpty = logic.getSortedFilteredPersonList().size() == 0;
+            if (!isEmpty && event.getCode().equals(KeyCode.DOWN)) {
+                personListPanel.setFocus(true);
+                personListPanel.setSelectedPerson(logic.getSortedFilteredPersonList().get(0));
+            }
+        });
+
+        commandBox.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            // Ignore tab navigation when the list view is empty
+            if (event.getCode().equals(KeyCode.TAB)) {
+                event.consume();
             }
         });
     }
@@ -192,7 +243,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleBack() {
         if (!mainPanelHistory.empty()) {
-            switchMainPanel(mainPanelHistory.pop(), false);
+            MainPanelName to = mainPanelHistory.pop();
+            boolean backToListPanel = to.equals(MainPanelName.List) && currentMainPanel.equals(MainPanelName.Detail);
+
+            switchMainPanel(to, false);
+
+            if (backToListPanel) {
+                personListPanel.setFocus(true);
+            }
         }
     }
 
