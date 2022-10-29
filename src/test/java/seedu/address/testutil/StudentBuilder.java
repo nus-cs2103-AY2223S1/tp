@@ -50,7 +50,7 @@ public class StudentBuilder extends PersonBuilder {
     /**
      * Sets the {@code Year} of the {@code Student} that we are building.
      */
-    public PersonBuilder withYear(String year) {
+    public StudentBuilder withYear(String year) {
         this.year = new Year(year);
         return this;
     }

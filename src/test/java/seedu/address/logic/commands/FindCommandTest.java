@@ -5,19 +5,31 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ANDERSON;
+import static seedu.address.testutil.TypicalPersons.BEN;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CABE;
 import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.COLIN;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonMatchesPredicate;
 import seedu.address.testutil.PersonMatchesPredicateBuilder;
 
@@ -146,6 +158,20 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no usernames provided
+        predicate = new PersonMatchesPredicateBuilder().withUserNamesList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+
+        //no types provided
+        predicate = new PersonMatchesPredicateBuilder().withTypesList(EMPTY_LIST).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
@@ -159,5 +185,152 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
+    @Test
+    public void execute_multiplePhones_multiplePersonsFound() {
+        List<String> VALID_PHONES_LIST = List.of("94351253", "98765432", "87652533");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
 
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withPhonesList(VALID_PHONES_LIST).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        ObservableList<Person> list  = model.getFilteredPersonList();
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleEmails_multiplePersonsFound() {
+        List<String> VALID_EMAILS_LIST = List.of("werner@example.com", "lydia@example.com", "anna@example.com");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withEmailsList(VALID_EMAILS_LIST).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleGenders_multiplePersonsFound() {
+        List<String> VALID_GENDER_LIST = List.of("F");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withGenderList(VALID_GENDER_LIST).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleLocations_multiplePersonsFound() {
+        List<String> VALID_LOCATIONS_LIST = List.of("SMU", "NUS", "NTU");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withLocationsList(VALID_LOCATIONS_LIST).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, DANIEL, ELLE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleUsernames_multiplePersonsFound() {
+        List<String> VALID_USERNAMES_LIST = List.of("ben10", "callin", "cabe");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withUserNamesList(VALID_USERNAMES_LIST).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, BEN, COLIN, CABE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleTags_multiplePersonsFound() {
+        //some tags
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withTagsSet(new HashSet<>(List.of("cool", "smart")), false).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, DANIEL, ELLE), model.getFilteredPersonList());
+
+        //ALL tags
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        predicate = new PersonMatchesPredicateBuilder()
+                .withTagsSet(new HashSet<>(List.of("cool", "smart")), true).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(ELLE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleModules_multiplePersonsFound() {
+        //some modules match
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withModulesSet(new HashSet<>(List.of("CS1000", "CS9999")), false).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FIONA, GEORGE), model.getFilteredPersonList());
+
+        //ALL modules match
+        expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        predicate = new PersonMatchesPredicateBuilder()
+                .withModulesSet(new HashSet<>(List.of("CS1000", "CS9999")), true).build();
+        command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleOfficeHours_multiplePersonsFound() {
+        List<String> VALID_OFFICE_HOURS_LIST = List.of("1-11:00-2", "2-12:00-2");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withOfficeHoursList(VALID_OFFICE_HOURS_LIST).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BEN, COLIN), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleSpecialisations_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withSpecList(List.of("Networks")).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ANDERSON), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleRatings_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withRatingsList(List.of("1", "2")).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ELLE, FIONA), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleYears_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
+                .withYearsList(List.of("3", "4")).build();
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
+    }
 }

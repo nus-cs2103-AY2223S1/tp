@@ -1,18 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICEHOUR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
-
 import java.util.Set;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -25,6 +12,8 @@ import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.tag.Tag;
+
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Person.
@@ -143,13 +132,65 @@ public class PersonUtil {
         String commandDetails = "";
         if (predicate.getHasNamesList()) {
             commandDetails += PREFIX_NAME + String.join(" ", predicate.getNamesList()) + " ";
-
         }
 
         if (predicate.getHasModulesList()) {
-            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModulesSet());
+            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModulesSet()) + " ";
         }
 
+        if (predicate.getHasEmailsList()) {
+            commandDetails += PREFIX_EMAIL + String.join(" ", predicate.getEmailsList()) + " ";
+        }
+
+        if (predicate.getHasPhonesList()) {
+            commandDetails += PREFIX_PHONE + String.join(" ", predicate.getPhonesList()) + " ";
+        }
+
+        if (predicate.getHasLocationsList()) {
+            commandDetails += PREFIX_LOCATION + String.join(" ", predicate.getLocationsList()) + " ";
+        }
+
+        if (predicate.getHasGendersList()) {
+            commandDetails += PREFIX_GENDER + String.join(" ", predicate.getGendersList()) + " ";
+        }
+
+        if (predicate.getHasOfficeHoursList()) {
+            commandDetails += PREFIX_OFFICEHOUR + String.join(" ", predicate.getOfficeHoursList()) + " ";
+        }
+
+        if (predicate.getHasUserNamesList()) {
+            commandDetails += PREFIX_GITHUBUSERNAME + String.join(" ", predicate.getUserNamesList()) + " ";
+        }
+
+        if (predicate.getHasRatingsList()) {
+            commandDetails += PREFIX_RATING + String.join(" ", predicate.getRatingsList()) + " ";
+        }
+
+        if (predicate.getHasSpecList()) {
+            commandDetails += PREFIX_SPECIALISATION + String.join(" ", predicate.getOfficeHoursList()) + " ";
+        }
+
+        if (predicate.getHasTagsList()) {
+            commandDetails += PREFIX_TAG + String.join(" ", predicate.getTagsSet()) + " ";
+        }
+
+        if (predicate.getHasTypesList()) {
+            commandDetails += PREFIX_TYPE + String.join(" ", predicate.getTypesList()) + " ";
+        }
+
+        if (predicate.getHasSpecsList()) {
+            commandDetails += PREFIX_SPECIALISATION + String.join(" ", predicate.getSpecList()) + " ";
+        }
+
+        if (predicate.getHasTagsList()) {
+            commandDetails += PREFIX_TAG + String.join(" ", predicate.getTagsSet()) + " ";
+        }
+
+        if (predicate.getHasYearsList()) {
+            commandDetails += PREFIX_YEAR + String.join(" ", predicate.getYearsList()) + " ";
+        }
+
+        System.out.println(commandDetails);
         return commandDetails;
     }
 }

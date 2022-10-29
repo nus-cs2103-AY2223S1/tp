@@ -50,7 +50,7 @@ public class ProfessorBuilder extends PersonBuilder {
     /**
      * Sets the {@code ModuleCode} of the {@code Professor} that we are building.
      */
-    public PersonBuilder withModuleCode(String moduleCode) {
+    public ProfessorBuilder withModuleCode(String moduleCode) {
         this.moduleCode = new ModuleCode(moduleCode);
         return this;
     }
@@ -58,7 +58,7 @@ public class ProfessorBuilder extends PersonBuilder {
     /**
      * Sets the {@code Rating} of the {@code Professor} that we are building.
      */
-    public PersonBuilder withRating(String rating) {
+    public ProfessorBuilder withRating(String rating) {
         this.rating = new Rating(rating);
         return this;
     }
@@ -66,12 +66,13 @@ public class ProfessorBuilder extends PersonBuilder {
     /**
      * Sets the {@code Specialisation} of the {@code Professor} that we are building.
      */
-    public PersonBuilder withSpecialisation(String specialisation) {
+    public ProfessorBuilder withSpecialisation(String specialisation) {
         this.field = new Specialisation(specialisation);
         return this;
     }
-    public PersonBuilder withOfficeHour(String officeHour) {
+    public ProfessorBuilder withOfficeHour(String officeHour) {
         this.officeHour = new OfficeHour(officeHour, true);
+        System.out.println(officeHour);
         return this;
     }
 }

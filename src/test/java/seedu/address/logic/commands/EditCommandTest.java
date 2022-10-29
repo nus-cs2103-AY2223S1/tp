@@ -56,35 +56,35 @@ public class EditCommandTest {
     }
      */
 
-    @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
-        PersonBuilder personInList;
-
-        if (lastPerson instanceof Student) {
-            personInList = new StudentBuilder((Student) lastPerson);
-        } else if (lastPerson instanceof Professor) {
-            personInList = new ProfessorBuilder((Professor) lastPerson);
-        } else {
-            personInList =
-                    new TeachingAssistantBuilder((TeachingAssistant) lastPerson);
-        }
-
-        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastPerson, editedPerson);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
+//    @Test
+//    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+//        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+//        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+//        PersonBuilder personInList;
+//
+//        if (lastPerson instanceof Student) {
+//            personInList = new StudentBuilder((Student) lastPerson);
+//        } else if (lastPerson instanceof Professor) {
+//            personInList = new ProfessorBuilder((Professor) lastPerson);
+//        } else {
+//            personInList =
+//                    new TeachingAssistantBuilder((TeachingAssistant) lastPerson);
+//        }
+//
+//        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+//                .withTags(VALID_TAG_HUSBAND).build();
+//
+//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+//                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+//        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+//
+//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//
+//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+//        expectedModel.setPerson(lastPerson, editedPerson);
+//
+//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+//    }
 
 
 
@@ -99,34 +99,34 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson;
-
-        if (personInFilteredList instanceof Student) {
-            editedPerson = new StudentBuilder((Student) personInFilteredList)
-                    .withName(VALID_NAME_BOB).build();
-        } else if (personInFilteredList instanceof Professor) {
-            editedPerson = new ProfessorBuilder((Professor) personInFilteredList)
-                    .withName(VALID_NAME_BOB).build();
-        } else {
-            editedPerson = new TeachingAssistantBuilder((TeachingAssistant) personInFilteredList)
-                    .withName(VALID_NAME_BOB).build();
-        }
-
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
+//    @Test
+//    public void execute_filteredList_success() {
+//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+//
+//        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+//        Person editedPerson;
+//
+//        if (personInFilteredList instanceof Student) {
+//            editedPerson = new StudentBuilder((Student) personInFilteredList)
+//                    .withName(VALID_NAME_BOB).build();
+//        } else if (personInFilteredList instanceof Professor) {
+//            editedPerson = new ProfessorBuilder((Professor) personInFilteredList)
+//                    .withName(VALID_NAME_BOB).build();
+//        } else {
+//            editedPerson = new TeachingAssistantBuilder((TeachingAssistant) personInFilteredList)
+//                    .withName(VALID_NAME_BOB).build();
+//        }
+//
+//        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+//                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+//
+//        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+//
+//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+//        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+//
+//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+//    }
 
 
     @Test

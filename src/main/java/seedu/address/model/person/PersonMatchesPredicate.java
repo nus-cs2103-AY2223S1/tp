@@ -86,7 +86,6 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         if (!hasModulesList) {
             return true;
         }
-        modulesSet = modulesSet.stream().map(String::toLowerCase).collect(Collectors.toSet());
         return person.doModulesMatch(modulesSet, needsAllModules);
     }
 
@@ -182,7 +181,6 @@ public class PersonMatchesPredicate implements Predicate<Person> {
             return true;
         }
         Set<String> personList = makeTagsList(person);
-        tagsSet = tagsSet.stream().map(String::toLowerCase).collect(Collectors.toSet());
         if (needsAllTags) {
             return personList.containsAll(tagsSet) || personList.equals(tagsSet);
         } else {
@@ -273,7 +271,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     }
 
     public void setModulesSet(Set<String> otherList, boolean needsAllModules) {
-        this.modulesSet = otherList;
+        this.modulesSet = otherList.stream().map(String::toLowerCase).collect(Collectors.toSet());
         hasModulesList = true;
         this.needsAllModules = needsAllModules;
     }
@@ -294,7 +292,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     }
 
     public void setTagsSet(Set<String> tagsList, boolean needsAllTags) {
-        this.tagsSet = tagsList;
+        this.tagsSet = tagsList.stream().map(String::toLowerCase).collect(Collectors.toSet());
         this.needsAllTags = needsAllTags;
         hasTagsList = true;
     }
@@ -365,6 +363,10 @@ public class PersonMatchesPredicate implements Predicate<Person> {
 
     public boolean getHasTypesList() {
         return hasTypesList;
+    }
+
+    public boolean getHasSpecsList() {
+        return hasSpecList;
     }
 
     public List<String> getNamesList() {

@@ -110,7 +110,6 @@ public class CommandTestUtil {
 
     public static final List<String> VALID_NAMES_LIST = Arrays.asList(VALID_NAMES.split("\\s+"));
 
-
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withGender(VALID_GENDER_AMY)

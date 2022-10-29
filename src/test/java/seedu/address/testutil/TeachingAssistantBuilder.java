@@ -44,7 +44,7 @@ public class TeachingAssistantBuilder extends PersonBuilder {
     /**
      * Sets the {@code Rating} of the {@code TeachingAssistant} that we are building.
      */
-    public PersonBuilder withRating(String rating) {
+    public TeachingAssistantBuilder withRating(String rating) {
         this.rating = new Rating(rating);
         return this;
     }
@@ -52,7 +52,7 @@ public class TeachingAssistantBuilder extends PersonBuilder {
     /**
      * Sets the {@code ModuleCode} of the {@code TeachingAssistant} that we are building.
      */
-    public PersonBuilder withModuleCode(String moduleCode) {
+    public TeachingAssistantBuilder withModuleCode(String moduleCode) {
         this.moduleCode = new ModuleCode(moduleCode);
         return this;
     }

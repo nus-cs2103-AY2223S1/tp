@@ -111,7 +111,7 @@ public class PersonMatchesPredicateBuilder {
 
     public static PersonMatchesPredicate buildStudentPredicate() {
         String DEFAULT_MODULE_CODE = "CS1101S";
-        String DEFAULT_YEAR = "";
+        String DEFAULT_YEAR = "1";
         PersonMatchesPredicate predicate = new PersonMatchesPredicate();
 
         predicate.setNamesList(List.of(DEFAULT_NAME.split("\\s+")));
