@@ -185,13 +185,13 @@ Deletes the specified employee from Coydir, given the employee ID.
 
 This command results in one of two cases below:
 
-**Case 1: Unique entry**
+**Case 1: Employee with ID exists**
 
-If Coydir has just 1 unique entry that matches the specified name, Coydir will delete it.
+If Coydir has an employee with the respective ID, Coydir will delete it.
 
-**Case 2: Multiple entries**
+**Case 2: Employee with ID does not exist**
 
-Otherwise, if Coydir has more than 1 entry that matches the specified name, Coydir will prompt users with a list of the matching entries, and await user confirmation for which entry to delete.
+Otherwise, if Coydir has no employee with ID that matches the specified name, Coydir will prompt users that the employee ID entered is invalid.
 
 Format: `delete ID`
 
@@ -269,15 +269,22 @@ Here is how we support you in leave management.
 
 #### Setting total leaves for an employee
 
-**[Insert description of using `add` and `edit` to set `totalLeave`]**
+You can set the total leave available to an employee when adding them to the database. This can be done by specifying the leaves in the `l/` tag for the `add` command. 
 
-<h4 id="is-this-employee-on-leave-today">Is this employee on leave today?</h4>
+Example: `add n/Yi Long Ma j/Chief Operating Officer d/General Management l/20` adds an employee, and specifies his **total leave** to be **20**.
 
+#### Checking if an employee is on leave
+
+There are two ways to check for availability of employees. 
+
+First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the dedpartment. The number of employees available or on leave will be shown. 
+
+The other is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field. 
 **[Insert description of how Coydir enables live tracking of `isOnLeave`]**
 
-#### Adding a leave period for an employee: `addleave`
+#### Adding a leave period for an employee: `add-leave`
 
-Adds a leave period to an employee given the employee ID and a start and end date.
+This adds a leave period to an employee given the employee ID and a start and end date. The leave period will also be displayed in a table which can be seen when viewing the employee's particulars. 
 
 This command results in one of two cases below:
 
@@ -291,18 +298,24 @@ and the employee has sufficient leaves, the leave period will be added and the t
 If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
 
 <div markdown="span" class="alert alert-primary">:bulb:
-Leaves are ordered by reverse chronological order.
+Leaves are ordered by reverse chronological order in the table view.
 </div>
 
-Format: `addleave id/ID sd/START_DATE ed/END_DATE`
+Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`ID`|id/|Employee ID|**Compulsory**| N.A.
+`START_DATE` |sd/|Start date of leave, in dd-MM-YYYY format|**Compulsory**| N.A.
+`END_DATE` |ed/|End date of leave, in dd-MM-YYYY format|**Compulsory**| N.A.
 
 Example:
 
-- `addleave id/1 sd/01-01-2022 ed/02-01-2022` adds a leave period to an employee of ID 1 with a leave period from 01-01-2022 to 02-01-2022 of 2 days.
+- `add-leave id/1 sd/01-01-2022 ed/02-01-2022` adds a leave period to an employee of ID 1 with a leave period from 01-01-2022 to 02-01-2022 of 2 days.
 
-#### Deleting a leave period for an employee: `deleteleave`
+#### Deleting a leave period for an employee: `delete-leave`
 
-Removes a leave period for an employee given the employee ID and index of leave in the table.
+Added a wrong leave period or the employee wants to change their leave application? Fret not, `delete-leave` helps you to removes a leave period for an employee given the employee ID and index of leave in the table. The leave period deleted will then be removed from the leave table.
 
 This command results in one of two cases below:
 
@@ -314,11 +327,16 @@ If the employee exists, the index given is valid, the leave period at that index
 
 If the employee ID, or the index is invalid, Coydir will prompt the users accordingly, and the command will not execute.
 
-Format: `deleteleave id/ID i/INDEX`
+Format: `delete-leave id/ID i/INDEX`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`ID`|id/|Name|**Compulsory**| N.A.
+`INDEX` |i/|Index of leave in the leave table|**Compulsory**| N.A.
 
 Example:
 
-- `deleteleave id/1 i/3` deletes the third leave period for an employee of ID 1 in the list of leaves.
+- `delete-leave id/1 i/3` deletes the third leave period for an employee of ID 1 in the list of leaves.
 
 ### Managing Employee Performance
 
