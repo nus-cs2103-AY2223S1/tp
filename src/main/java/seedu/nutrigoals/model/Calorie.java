@@ -47,7 +47,11 @@ public class Calorie {
      * @return the calorie value.
      */
     public int getCalorieValue() {
-        return Integer.parseInt(value);
+        return Integer.parseInt(getValue());
+    }
+
+    public String getValue() {
+        return value;
     }
 
     /**
@@ -106,13 +110,13 @@ public class Calorie {
 
     @Override
     public String toString() {
-        return value + " calories";
+        return getValue() + " calories";
     }
 
     @Override
     public boolean equals(Object other) {
         if (other instanceof Calorie) {
-            return this.value.equals(((Calorie) other).value);
+            return getValue().equals(((Calorie) other).getValue());
         }
         return false;
     }
