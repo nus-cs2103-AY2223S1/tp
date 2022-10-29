@@ -6,7 +6,7 @@ title: User Guide
 {:toc}
 ---
 
-![banner](images/checkUp_banner.png)
+![banner](images/ug-images/checkUp_banner.png)
 
 **checkUp** is a **desktop app for managing patient details, optimized for use via a Command Line Interface** (CLI) while still
 having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient management
@@ -29,7 +29,7 @@ medication history.
 
 4. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup. 
 5. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui-explanations.png)
+   ![Ui](images/ug-images/Ui-explanations.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -142,10 +142,12 @@ Examples:
 
 If patient type is inpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol m/ibuprofen`
+![Add John Doe Inpatient Result](images/ug-images/addJohnDoeInpatientResult.png)
 <br>
 
 If patient type is outpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/outpatient m/panadol m/ibuprofen`
+![Add John Doe Outpatient Result](images/ug-images/addJohnDoeOutpatientResult.png)
 
 ### Editing a patient: `edit`
 
@@ -183,7 +185,12 @@ Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567`
   and `johndoe@example.com` respectively.
+  ![edit John Doe Result](images/ug-images/editJohnDoeResult.png)
+<br>
+
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
+  ![edit Betsy Crower Result](images/ug-images/editBetsyCrowerResult.png)
+
 
 #### GUI Integration:
 * The individual fields on the Detailed Patient View Panel are clickable to streamline the editing process.
@@ -277,7 +284,7 @@ Examples:
 
 * `get /n john` returns `john` and `John Doe`
 * `get /n alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/ug-images/getByNameAlexDavidResult.png)
 
 #### by next-of-kin data: `/nok`
 
