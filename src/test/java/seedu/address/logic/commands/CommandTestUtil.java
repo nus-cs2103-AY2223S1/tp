@@ -152,7 +152,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the health contact, filtered patient list and selected patient in {@code actualModel} remain unchanged
+     * - the HealthContact, filtered patient list and selected patient in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -166,7 +166,7 @@ public class CommandTestUtil {
     }
     /**
      * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
-     * {@code model}'s health contact.
+     * {@code model}'s HealthContact.
      */
     public static void showPatientAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
@@ -180,7 +180,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the appointment at the given {@code targetIndex} in the
-     * {@code model}'s health contact.
+     * {@code model}'s HealthContact.
      */
     public static void showAppointmentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());

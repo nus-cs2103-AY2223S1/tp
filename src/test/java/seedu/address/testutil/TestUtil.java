@@ -55,8 +55,8 @@ public class TestUtil {
     }
 
     /**
-     * Returns a typical health contact having typical patients and typical appointments
-     * @return The typical health contact.
+     * Returns a typical HealthContact having typical patients and typical appointments
+     * @return The typical HealthContact.
      */
     public static HealthContact getTypicalHealthContact() {
         HealthContact healthContact = new HealthContact();

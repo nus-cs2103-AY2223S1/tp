@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents an Appointment's slot in the health contact.
+ * Represents an Appointment's slot in the HealthContact.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime (String)}
  */
 public class Slot {

@@ -5,7 +5,7 @@ title: "Tutorial: Adding a command"
 
 Let's walk you through the implementation of a new command — `remark`.
 
-This command allows users of the HealthContact application to add optional remarks to people in their health contact and edit it if required. The command should have the following format:
+This command allows users of the HealthContact application to add optional remarks to people in their HealthContact and edit it if required. The command should have the following format:
 
 `remark INDEX r/REMARK` (e.g., `remark 2 r/Likes baseball`)
 
@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing patient in the health contact.
+ * Changes the remark of an existing patient in the HealthContact.
  */
 public class RemarkCommand extends Command {
 
@@ -295,7 +295,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete HealthContact’s storage file located at `/data/healthcontact.json` before running it! Not doing so will cause HealthContact to default to an empty health contact!
+:exclamation: You must delete HealthContact’s storage file located at `/data/healthcontact.json` before running it! Not doing so will cause HealthContact to default to an empty HealthContact!
 
 </div>
 

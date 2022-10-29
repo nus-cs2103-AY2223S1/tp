@@ -68,7 +68,7 @@ public class DeletePatientCommandTest {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
         Index outOfBoundIndex = INDEX_SECOND_PATIENT;
-        // ensures that outOfBoundIndex is still in bounds of health contact list
+        // ensures that outOfBoundIndex is still in bounds of HealthContact list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getHealthContact().getPatientList().size());
 
         DeletePatientCommand deletePatientCommand = new DeletePatientCommand(outOfBoundIndex);

@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s health contact and {@code userPrefs}. <br>
-     * The data from the sample health contact will be used instead if {@code storage}'s health contact is not found,
-     * or an empty health contact will be used instead if errors occur when reading {@code storage}'s health contact.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s HealthContact and {@code userPrefs}. <br>
+     * The data from the sample HealthContact will be used instead if {@code storage}'s HealthContact is not found,
+     * or an empty HealthContact will be used instead if errors occur when reading {@code storage}'s HealthContact.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyHealthContact> healthContactOptional;
@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Health Contact ] =============================");
+        logger.info("============================ [ Stopping HealthContact ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

@@ -21,7 +21,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
 /**
- * Represents the in-memory model of the health contact data.
+ * Represents the in-memory model of the HealthContact data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyHealthContact healthContact, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(healthContact, userPrefs);
 
-        logger.fine("Initializing with health contact: " + healthContact + " and user prefs " + userPrefs);
+        logger.fine("Initializing with HealthContact: " + healthContact + " and user prefs " + userPrefs);
 
         this.healthContact = new HealthContact(healthContact);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -181,7 +181,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns true if a bill with the same identity as {@code bill} exists in the health contact.
+     * Returns true if a bill with the same identity as {@code bill} exists in the HealthContact.
      * Always returns false since assumption that bills will not be duplicate
      * @param bill
      */
@@ -193,7 +193,7 @@ public class ModelManager implements Model {
 
     /**
      * Deletes the given bill.
-     * The bill must exist in the health contact.
+     * The bill must exist in the HealthContact.
      *
      * @param target
      */
@@ -204,7 +204,7 @@ public class ModelManager implements Model {
 
     /**
      * Adds the given bill.
-     * {@code bill} must not already exist in the health contact.
+     * {@code bill} must not already exist in the HealthContact.
      *
      * @param bill
      */
@@ -216,9 +216,9 @@ public class ModelManager implements Model {
 
     /**
      * Replaces the given bill {@code target} with {@code editedBill}.
-     * {@code target} must exist in the health contact.
+     * {@code target} must exist in the HealthContact.
      * The bill identity of {@code editedBill} must not be the same as
-     * another existing bill in the health contact.
+     * another existing bill in the HealthContact.
      *
      * @param target
      * @param editedBill
@@ -316,7 +316,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Sets the bill in the health contact data as UNPAID
+     * Sets the bill in the HealthContact data as UNPAID
      * @param bill
      */
     @Override

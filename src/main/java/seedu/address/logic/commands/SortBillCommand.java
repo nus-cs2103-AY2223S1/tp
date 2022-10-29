@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.bill.Bill;
 
 /**
- * Sorts Bill data in Health Contact.
+ * Sorts Bill data in HealthContact.
  */
 public class SortBillCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("sortbill", "sob");

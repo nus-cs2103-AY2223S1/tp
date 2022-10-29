@@ -42,7 +42,7 @@ public interface Logic {
     ObservableList<Bill> getFilteredBillList();
 
     /**
-     * Returns the user prefs' health contact file path.
+     * Returns the user prefs' HealthContact file path.
      */
     Path getHealthContactFilePath();
 

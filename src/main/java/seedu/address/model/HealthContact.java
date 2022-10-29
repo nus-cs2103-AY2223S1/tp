@@ -87,7 +87,7 @@ public class HealthContact implements ReadOnlyHealthContact {
     //// patient-level operations
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the health contact.
+     * Returns true if a patient with the same identity as {@code patient} exists in the HealthContact.
      */
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
@@ -95,7 +95,7 @@ public class HealthContact implements ReadOnlyHealthContact {
     }
 
     /**
-     * Returns true if a patient with the same identity as {@code name} exists in the health contact.
+     * Returns true if a patient with the same identity as {@code name} exists in the HealthContact.
      */
     public boolean hasPatient(Name name) {
         requireNonNull(name);
@@ -103,8 +103,8 @@ public class HealthContact implements ReadOnlyHealthContact {
     }
 
     /**
-     * Adds a patient to the health contact.
-     * The patient must not already exist in the health contact.
+     * Adds a patient to the HealthContact.
+     * The patient must not already exist in the HealthContact.
      */
     public void addPatient(Patient p) {
         patients.add(p);
@@ -112,9 +112,9 @@ public class HealthContact implements ReadOnlyHealthContact {
 
     /**
      * Replaces the given patient {@code target} in the list with {@code editedPatient}.
-     * {@code target} must exist in the health contact.
+     * {@code target} must exist in the HealthContact.
      * The patient identity of {@code editedPatient} must not be the same as another
-     * existing patient in the health contact.
+     * existing patient in the HealthContact.
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
@@ -124,7 +124,7 @@ public class HealthContact implements ReadOnlyHealthContact {
 
     /**
      * Removes {@code key} from this {@code HealthContact}.
-     * {@code key} must exist in the health contact.
+     * {@code key} must exist in the HealthContact.
      */
     public void removePatient(Patient key) {
         patients.remove(key);
@@ -133,7 +133,7 @@ public class HealthContact implements ReadOnlyHealthContact {
     //// appointment-level operations
 
     /**
-     * Returns true if an appointment with the same identity as {@code appointment} exists in the health contact.
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the HealthContact.
      */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
@@ -141,8 +141,8 @@ public class HealthContact implements ReadOnlyHealthContact {
     }
 
     /**
-     * Adds an appointment to the health contact.
-     * The appointment must not already exist in the health contact.
+     * Adds an appointment to the HealthContact.
+     * The appointment must not already exist in the HealthContact.
      */
     public void addAppointment(Appointment a) {
         appointments.add(a);
@@ -150,9 +150,9 @@ public class HealthContact implements ReadOnlyHealthContact {
 
     /**
      * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
-     * {@code target} must exist in the health contact.
+     * {@code target} must exist in the HealthContact.
      * The appointment identity of {@code editedAppointment} must not be the same as
-     * another existing appointment in the health contact.
+     * another existing appointment in the HealthContact.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireNonNull(editedAppointment);
@@ -162,7 +162,7 @@ public class HealthContact implements ReadOnlyHealthContact {
 
     /**
      * Removes {@code key} from this {@code HealthContact}.
-     * {@code key} must exist in the health contact.
+     * {@code key} must exist in the HealthContact.
      */
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
@@ -171,7 +171,7 @@ public class HealthContact implements ReadOnlyHealthContact {
     //// bill-level operations
 
     /**
-     * Returns true if an bill with the same identity as {@code bill} exists in the health contact.
+     * Returns true if an bill with the same identity as {@code bill} exists in the HealthContact.
      */
     public boolean hasBill(Bill bill) {
         requireNonNull(bill);
@@ -179,8 +179,8 @@ public class HealthContact implements ReadOnlyHealthContact {
     }
 
     /**
-     * Adds an bill to the health contact.
-     * The bill must not already exist in the health contact.
+     * Adds an bill to the HealthContact.
+     * The bill must not already exist in the HealthContact.
      */
     public void addBill(Bill bill) {
         bills.add(bill);
@@ -188,9 +188,9 @@ public class HealthContact implements ReadOnlyHealthContact {
 
     /**
      * Replaces the given bill {@code target} in the list with {@code editedBill}.
-     * {@code target} must exist in the health contact.
+     * {@code target} must exist in the HealthContact.
      * The bill identity of {@code editedBill} must not be the same as
-     * another existing bill in the health contact.
+     * another existing bill in the HealthContact.
      */
     public void setBill(Bill target, Bill editedBill) {
         requireNonNull(editedBill);
@@ -200,7 +200,7 @@ public class HealthContact implements ReadOnlyHealthContact {
 
     /**
      * Removes {@code key} from this {@code HealthContact}.
-     * {@code key} must exist in the health contact.
+     * {@code key} must exist in the HealthContact.
      */
     public void removeBill(Bill key) {
         bills.remove(key);

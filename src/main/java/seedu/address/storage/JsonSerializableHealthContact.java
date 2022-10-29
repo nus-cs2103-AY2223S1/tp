@@ -58,7 +58,7 @@ class JsonSerializableHealthContact {
     }
 
     /**
-     * Converts this health contact into the model's {@code HealthContact} object.
+     * Converts this HealthContact into the model's {@code HealthContact} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

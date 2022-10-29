@@ -112,7 +112,7 @@ public class EditPatientCommandTest {
     public void execute_duplicatePatientFilteredList_failure() {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
-        // edit patient in filtered list into a duplicate in health contact
+        // edit patient in filtered list into a duplicate in HealthContact
         Patient patientInList = model.getHealthContact().getPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
         EditPatientCommand editPatientCommand = new EditPatientCommand(INDEX_FIRST_PATIENT,
                 new EditPatientDescriptorBuilder(patientInList).build());
@@ -132,13 +132,13 @@ public class EditPatientCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of health contact
+     * but smaller than size of HealthContact
      */
     @Test
     public void execute_invalidPatientIndexFilteredList_failure() {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
         Index outOfBoundIndex = INDEX_SECOND_PATIENT;
-        // ensures that outOfBoundIndex is still in bounds of health contact list
+        // ensures that outOfBoundIndex is still in bounds of HealthContact list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getHealthContact().getPatientList().size());
 
         EditPatientCommand editPatientCommand = new EditPatientCommand(outOfBoundIndex,

@@ -6,7 +6,7 @@ import seedu.address.model.bill.Bill;
 import seedu.address.model.patient.Patient;
 
 /**
- * Unmodifiable view of a health contact
+ * Unmodifiable view of a HealthContact
  */
 public interface ReadOnlyHealthContact {
 

@@ -11,14 +11,14 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Adds an appointment to the health contact.
+ * Adds an appointment to the HealthContact.
  */
 public class AddAppointmentCommand extends Command {
 
     public static final CommandWord COMMAND_WORD = new CommandWord("addappointment", "aa");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an appointment to the health contact. "
+            + ": Adds an appointment to the HealthContact. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MEDICAL_TEST + "MEDICAL TEST"
@@ -30,8 +30,8 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_SLOT + "2022-11-12 12:34 "
             + PREFIX_DOCTOR + "Muhammad Wong";;
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the health contact";
-    public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the health contact";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the HealthContact";
+    public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the HealthContact";
 
     private final Appointment toAdd;
 
