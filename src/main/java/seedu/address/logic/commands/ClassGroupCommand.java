@@ -23,9 +23,9 @@ public class ClassGroupCommand extends Command {
             + "by the index number used in the last student listing. "
             + "Existing class will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "c/ [CLASS]\n"
+            + "c/[CLASS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "c/ AY2223S1-CS2103T-W12";
+            + "c/AY2223S1-CS2103T-W12";
 
     public static final String MESSAGE_ADD_CLASS_GROUP_SUCCESS = "Added class to Student: %1$s";
     public static final String MESSAGE_DELETE_CLASS_GROUP_SUCCESS = "Removed class from Student: %1$s";
