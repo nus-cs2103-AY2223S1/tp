@@ -196,7 +196,7 @@ Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 | `INDEX`   | Refers to the index number shown in the displayed list. <br/> - **Must be positive integer** e.g 1, 2, 3, …​ <br/> - **Must not contain any signs** e.g +1, -3, …​ |
 | `FIELDS`  | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`            |
 
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a client.
 </div>
 
 Examples:
@@ -317,7 +317,7 @@ Format: `delete INDEX m/remark`
 
 * `INDEX` refers to the index number shown in the display transaction list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
 
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can delete a transaction.
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
 
@@ -401,7 +401,7 @@ Format: `delete INDEX m/remark`
 
 * `INDEX` refers to the index number shown in the display remark list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
 
-> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
+> <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can delete a remark.
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a remark is an irreversible process! It will be gone forever**: Be very careful here!
 
@@ -415,14 +415,12 @@ Clears all entries which include `clients`, `remarks` and `transactions` from Je
 
 Format: `clear`
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved.
+> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved.
  </div>
 
 Example:
 
 * `clear` clears all client's entries together with the remarks and transactions.
-
-> <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved!
 
 [Back to Table of Contents](#table-of-contents)
 
