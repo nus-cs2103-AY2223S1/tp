@@ -11,8 +11,8 @@ public class Phone implements Comparable<Phone> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone numbers should only contain numbers, and it should be at least 3 digits and at most 15 digits long";
+    public static final String VALIDATION_REGEX = "\\d{3,15}";
     public final String value;
 
     /**
@@ -47,8 +47,8 @@ public class Phone implements Comparable<Phone> {
 
     @Override
     public int compareTo(Phone other) {
-        Integer thisValue = Integer.parseInt(value);
-        Integer otherValue = Integer.parseInt(other.value);
+        Long thisValue = Long.parseLong(value);
+        Long otherValue = Long.parseLong(other.value);
         return thisValue.compareTo(otherValue);
     }
 
