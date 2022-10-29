@@ -31,6 +31,19 @@ public class IndexesTest {
     }
 
     @Test
+    public void createIndexesByParsing_sameInputAppearsMultipleTimes() {
+        try {
+            String[] unParsedIndexes = {"1", "3", "1", "1", "2", "2"};
+            Indexes createdInddexes = new Indexes(unParsedIndexes);
+            Indexes expectedIndexes = new Indexes(Set.of(Index.fromOneBased(1), Index.fromOneBased(3),
+                    Index.fromOneBased(2)));
+            assertTrue(expectedIndexes.equals(createdInddexes));
+        } catch (ParseException error) {
+            fail("Should not have thrown exception!");
+        }
+    }
+
+    @Test
     public void createIndexesByParsing_invalidInput_throwsParseException() {
         String[] invalidUnParsedIndexes = {"0"};
         assertThrows(ParseException.class, () -> new Indexes(invalidUnParsedIndexes));
