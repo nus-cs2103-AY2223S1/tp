@@ -72,7 +72,7 @@ email address, home address, remarks and tags.
 
 #### Format
 
-`Command word + <prefix><input> ...`
+`Command word <prefix><input> ...`
 
 #### Parameter List
 
@@ -87,7 +87,7 @@ email address, home address, remarks and tags.
 
 Notes on symbols in first column:
 
-`*`  Must have(If they are duplicate prefixes, only the last one will be taken into account)
+`*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
 
 `+`  Can have multiple
 
@@ -97,8 +97,9 @@ Notes on symbols in first column:
 
 <img src="images/addcommand/ap1.png" width="800px" height ="500px">
 
-* `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable
-* to add such patient because Bernice Yu already exists in the HealthContact.
+
+* `ap n/Bernice Yu a/#01-01, blk 1, Changi Villege e/b.yu@ntu.edu.sg p/80880011 t/NTU t/staff` is unable 
+to add such a patient because Bernice Yu already exists in HealthContact.
 
 <img src="images/addcommand/ap2.png" width="800px" height ="500px">
 
@@ -118,11 +119,11 @@ slot, and doctor.
 
 #### Command word
 
-`addpatient`, `ap`
+`addappointment`, `aa`
 
 #### Format
 
-`Command word + <prefix><input> ...`
+`Command word <prefix><input> ...`
 
 #### Parameter List
 
@@ -131,11 +132,11 @@ slot, and doctor.
 | `*` | `n/`   | Name         | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
 | `*` | `s/`   | Slot         | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
 | `*` | `d/`   | Doctor name  | `local-part@domain`                                                                     |
-| `*` | `t/`   | Home address | Non-empty characters                                                                    |
+| `*` | `t/`   | Medical test | Non-empty characters                                                                    |
 
 Notes on symbols in first column:
 
-`*`  Must have(If they are duplicate prefixes, only the last one will be taken into account)
+`*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
 
 `+`  Can have multiple
 
@@ -146,8 +147,8 @@ Notes on symbols in first column:
 <img src="images/addcommand/aa1.png" width="800px" height ="500px">
 
 * Executing `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` again is unable
-* to add such appointment because the appointment with the combination of the four inputs
-* parameters already exists in the HealthContact.
+to add such an appointment because the appointment with the combination of the four inputs
+parameters already exists in HealthContact.
 
 <img src="images/addcommand/aa2.png" width="800px" height ="500px">
 
@@ -171,7 +172,7 @@ Adds a bill attached to an appointment with input information including amount a
 
 #### Format
 
-`Command word + <index of appointment> + <prefix><input> ...`
+`Command word <index of appointment> <prefix><input> ...`
 
 #### Parameter List
 
@@ -185,7 +186,7 @@ Notes on symbols in first column:
 
 `**` Must be directly after command word
 
-`*`  Must have(Accept last one when have multiple)
+`*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
 
 #### Examples:
 
@@ -194,7 +195,7 @@ Notes on symbols in first column:
 <img src="images/addcommand/ab1.png" width="800px" height ="500px">
 
 * Executing `ab 1 a/1500.00 d/2021-11-13` is unable to add such bill because the first appointment
-* in the displayed list already has an attached bill.
+in the displayed list already has an attached bill.
 
 <img src="images/addcommand/ab2.png" width="800px" height ="500px">
 
