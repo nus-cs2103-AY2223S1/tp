@@ -644,12 +644,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a batchmate to the data.
 
-    1. Test case: `add n/John t/john`.<br>
-       Expected: A new batchmate with the name `John` and telegram handle `john` is added at the bottom of the students pane in Mass Linkers.
+    1. Test case: `add n/John t/johnnn`.<br>
+       Expected: A new batchmate with the name `John` and telegram handle `johnnn` is added at the bottom of the students pane in Mass Linkers.
        The status message indicates that a batchmate named `John` has been successfully added.
 
-       1. Prerequisite: A batchmate with the name `Tom` and the telegram `tom` is already in Mass Linkers. <br>
-          Test case: `add n/Tom t/tom`.<br>
+       1. Prerequisite: A batchmate with the name `Tom` and the telegram `tommmm` is already in Mass Linkers. <br>
+          Test case: `add n/Tom t/tommmm`.<br>
           Expected: No batchmate is added. The status message indicates that the batchmate already exists in Mass Linkers. 
        Uniqueness is verified using two of the mandatory fields - the ```Student```'s name and telegram handle.
 
@@ -660,7 +660,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `add n/John`.<br>
        Expected: No batchmate is added. The status message indicates that the command is of an invalid format.
 
-    4. Other incorrect `add` commands to try: `add`, `add n/John t/john x/invalid`, `...` (where x is any invalid prefix).<br>
+    4. Other incorrect `add` commands to try: `add`, `add n/John t/johnnn x/invalid`, `...` (where x is any invalid prefix).<br>
        Expected: Similar to previous.
 
 

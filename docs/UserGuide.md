@@ -84,7 +84,7 @@ Format: `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m
 
 Examples:
 * `add n/John Doe t/johnxyz` adds a batchmate named `John Doe` with telegram handle `johnxyz` to the list.
-* `add n/John Doe t/johnxyz g/john_doe p/98765432 e/johnd@example.com i/AI i/SWE` adds a batchmate named `John Doe` with telegram handle `johnxyz`, github username `john_doe`, phone number `98765432`, email address `johnd@example.com` and interests in `AI` and `SWE` to the list. 
+* `add n/John Doe t/johnxyz g/johndoe p/98765432 e/johnd@example.com i/AI i/SWE` adds a batchmate named `John Doe` with telegram handle `johnxyz`, github username `johndoe`, phone number `98765432`, email address `johnd@example.com` and interests in `AI` and `SWE` to the list. 
 * `add n/John Doe t/johnxyz m/cs2103t m/cs2101` adds a batchmate named `John Doe` with telegram handle `johnxyz` and modules `cs2103t` and `cs2101` to the list.
 
 ### List all batchmates: `list`
@@ -110,7 +110,7 @@ Format: `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTE
 * You can remove all the batchmate’s interests by typing `i/` without specifying any interests after it.
 
 Examples:
-*  `edit 1 g/john_doe p/91234567 e/johndoe@example.com` edits the github username, phone number and email address of the 1st batchmate in the currently displayed list to be `john_doe`, `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 g/johndoe p/91234567 e/johndoe@example.com` edits the github username, phone number and email address of the 1st batchmate in the currently displayed list to be `johndoe`, `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Bob Tan i/` edits the name of the 2nd batchmate in the currently displayed list to be `Bob Tan` and clears all existing interests.
 
 ### Find a batchmate: `find`
@@ -291,13 +291,13 @@ Data in Mass Linkers is saved in the hard disk automatically after executing any
 
 Below is the summary of requirements of each parameter for the various commands. 
 
-| Parameter       | Requirements                                        |
-|-----------------|-----------------------------------------------------|
-| Name            | Only alphabetical with spaces allowed.              |
-| Telegram handle | Only alphanumerical and special characters allowed. |
-| Phone number    | Only numerical characters of at least length 3.     |
-| GitHub username | Only alphanumerical and special characters allowed. |
-| Interest        | Only alphanumerical characters allowed.             |
+| Parameter       | Requirements                                                                                                                                                                                   |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name            | Only alphabetical with spaces allowed.                                                                                                                                                         |
+| Telegram handle | Case insensitive. Only contain a-z, 0-9, underscores and have a minimum length of 5 characters.                                                                                                |
+| Phone number    | Only numerical characters of at least length 3.                                                                                                                                                |
+| GitHub username | Case insensitive. Follows the requirements as stated [here](https://github.com/shinnn/github-username-regex#:~:text=Github%20username%20may%20only%20contain,Maximum%20is%2039%20characters.). |
+| Interest        | Only alphanumerical characters allowed.                                                                                                                                                        |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -335,9 +335,9 @@ _Module prefix refers to the first two characters of every module name._
 | Action                           | Format                                                                                                                                                           | Examples                      |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
 | **Help**                         | `help`                                                             | `help`                                                                                                                      |
-| **Add**                          | `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...`| `add n/John Doe t/johnxyz g/john_doe p/98765432 e/johnd@example.com i/AI i/SWE m/cs2103t m/cs2101`         |
+| **Add**                          | `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...`| `add n/John Doe t/johnxyz g/johndoe p/98765432 e/johnd@example.com i/AI i/SWE m/cs2103t m/cs2101`         |
 | **List**                         | `list`| `list`                                                                                                                                                                                   |
-| **Edit**                         | `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`| `edit 1 g/john_doe p/91234567 e/johndoe@example.com`                                                          |
+| **Edit**                         | `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`| `edit 1 g/johndoe p/91234567 e/johndoe@example.com`                                                          |
 | **Find**                         | `find KEYWORD [MORE_KEYWORDS]...`| `find Alex david`                                                                                                                                             |
 | **Add interest**                 | `addInt INDEX INTEREST [MORE_INTERESTS]...`| `addInt 3 algo AI SWE`                                                                                                                              |
 | **Delete interest**              | `deleteInt INDEX INTEREST [MORE_INTERESTS]...` | `deleteInt 3 AI SWE`                                                                                                                            |

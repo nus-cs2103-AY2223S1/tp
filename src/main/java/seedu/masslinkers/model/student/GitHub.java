@@ -11,7 +11,8 @@ public class GitHub {
 
     // GitHub username constraints adapted from https://github.com/shinnn/github-username-regex
     public static final String MESSAGE_CONSTRAINTS =
-                    "Github username may only contain alphanumeric characters or hyphens.\n"
+                    "GitHub username is case insensitive.\n"
+                    + "Github username may only contain alphanumeric characters or hyphens.\n"
                     + "Github username cannot have multiple consecutive hyphens.\n"
                     + "Github username cannot begin or end with a hyphen.\n"
                     + "Between 1 to 39 characters.";
