@@ -131,8 +131,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof seedu.address.model.meeting.UniqueMeetingList // instanceof handles nulls
-            && internalList.sorted()
-            .equals(((seedu.address.model.meeting.UniqueMeetingList) other).internalList.sorted()));
+            && internalList.equals(((seedu.address.model.meeting.UniqueMeetingList) other).internalList));
     }
 
     @Override
