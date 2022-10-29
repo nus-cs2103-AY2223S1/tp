@@ -61,7 +61,7 @@ This provides some additional information that may be useful for Jedi users.
 
 ### Tip Box
 
-<div markdown="block" class="alert alert-success">:bulb: **Tip:**
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 This provides some quick and convenient hacks that you can use to optimize your experience with PennyWise.
 </div>
 
@@ -199,7 +199,7 @@ Edits an entry, at least **1** of the optional fields must be present.
    * The income at index 2 will have its amount and date edited <br>
    Expected: `Edited Entry: CafeSalary; Date: 22-10-2022; Amount: 150.00; Tag: Salary`
    ![EditCommand2](images/EditCommand2.png)
-<div markdown="span" class="alert alert-success">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The default date is the current date on your computer!
 </div>
 
