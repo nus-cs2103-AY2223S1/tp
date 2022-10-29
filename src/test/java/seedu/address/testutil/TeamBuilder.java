@@ -56,7 +56,7 @@ public class TeamBuilder {
     /**
      * Inserts the {@code tasks} into a {@code UniqueTaskList} and set it to the {@code Team} that we are building.
      */
-    public TeamBuilder withTask(Task... tasks) {
+    public TeamBuilder withTasks(Task... tasks) {
         this.tasks = new UniqueTaskList();
         for (Task t : tasks) {
             this.tasks.add(t);
