@@ -49,7 +49,7 @@ public class TelegramHandleTest {
         assertTrue(new Name("Tommyyyy").compareTo(new Name("Tommy")) > 0);
         // All digits come before all alphabets
         assertTrue(new TelegramHandle("90000").compareTo(new TelegramHandle("aether")) < 0);
-        // Capital letters are smaller
-        assertTrue(new Name("Candice123").compareTo(new Name("candice123")) < 0);
+        // Comparison is case-insensitive
+        assertTrue(new Name("Candice123").compareTo(new Name("bandice123")) > 0);
     }
 }
