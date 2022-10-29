@@ -567,7 +567,7 @@ Exits checkUp.
 
 Format: `exit`
 
-* GUI settings (window height and width) are reset during this process.
+* GUI settings (window height and width) are preserved during this process.
 
 ### Saving the data
 
