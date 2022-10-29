@@ -16,8 +16,8 @@ class JsonAdaptedHomework {
      * Constructs a {@code JsonAdaptedHomework} with the given {@code homeworkName}.
      */
     @JsonCreator
-    public JsonAdaptedHomework(String tagName) {
-        this.homeworkName = tagName;
+    public JsonAdaptedHomework(String homeworkName) {
+        this.homeworkName = homeworkName;
     }
 
     /**
