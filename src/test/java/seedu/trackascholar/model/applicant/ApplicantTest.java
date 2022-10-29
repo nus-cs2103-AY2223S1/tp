@@ -44,9 +44,9 @@ public class ApplicantTest {
         editedAlice = new ApplicantBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameApplicant(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Applicant editedBob = new ApplicantBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameApplicant(editedBob));
+        assertTrue(BOB.isSameApplicant(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
