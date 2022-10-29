@@ -194,6 +194,10 @@ Adds an entry to the specified list.
 | **`da/DATE`**       | Date where the entry is added in `dd-mm-YYYY` format, e.g. `01-01-2022` for 1st January 2022 |
 | **`c/CATEGORY`**    | [Category](#categorising-your-expenses-and-income) that the entry belongs to                 |
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The default date is the current date on your computer!
+</div>
+
 #### Add an expense entry to the expenditure list
 - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`
   - Here, we record our $15.60 `Lunch` expenses on 10th October 2022, and tag the entry under `Food`. 
