@@ -30,7 +30,7 @@ public class AddItemCommand extends Command {
             + "INDEX (must be a positive integer) "
             + PREFIX_CURRENTSTOCK + "CURRENTSTOCK "
             + PREFIX_MINIMUMSTOCK + "MINIMUMSTOCK "
-            +  "\nExample: " + COMMAND_WORD + " 4 c/5 m/2";
+            + "\nExample: " + COMMAND_WORD + " 4 c/5 m/2";
 
     public static final String MESSAGE_SUCCESS = "New supplyItem added: %1$s";
 
