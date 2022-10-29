@@ -43,6 +43,22 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Before Using
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Explanation of our User Interface:**<br>
+
+|`Component`|`Explanation`|
+|:-:|:--|
+|**Input Box**|where you enter your commands.|
+|**Output Box**|where the results of your command are shown.
+|**Selected Trip Box**| where the current selected trip is shown.<br><br> Use `select` to select a trip.|
+|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the trips shown:<ul><li>`completed`</li><li>`view`</li><li>`list`</li></ul>See feature list for more information about the commands.|
+| **Event List Display** |where the Events stored in Travelr are shown.<br><br> Commands to change the events shown:<ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul>See feature list for more information about the commands.
+ 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 **Notes about the command format:**
 
