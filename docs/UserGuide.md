@@ -358,24 +358,24 @@ Access the previous commands you've made within each session.
 
 </div>
 
-#### Tag Aliases
+#### Tag Shortcuts
 
-Use aliases to quickly enter tags.
+Use shortcuts to quickly enter tags.
 
 Example: 
 
 * `profile -a n/Damith e/damith@comp.nus.edu.sg p/65164359 t/prof` Creates a profile with the name `Damith` and tag `professor`.
 * `event -e 1 t/tut` Edits the tag of the 1st event shown to `tutorial`.  
 
-| Alias | Result       | 
-|-------|--------------|
-| assm  | assignment   |
-| lec   | lecture      |
-| pres  | presentation |
-| prof  | professor    |
-| rec   | recitation   |
-| ta    | tutor        |
-| tut   | tutorial     |
+| Shortcut | Result       | 
+|----------|--------------|
+| assm     | assignment   |
+| lec      | lecture      |
+| pres     | presentation |
+| prof     | professor    |
+| rec      | recitation   |
+| ta       | tutor        |
+| tut      | tutorial     |
 
 
 #### Quick Links
