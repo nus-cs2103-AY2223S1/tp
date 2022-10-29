@@ -94,7 +94,7 @@ Here is everything you need to install and set up *MyInsuRec*. For the best poss
 * macOS
 * Linux
 
-You will also require Java 11 or above to run *MyInsuRec*. If you don't already have Java 11 or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). To tell if you already have the correct version of Java installed on your system, refer to [8.1 Checking your system's Java version](#81-checking-your-systems-java-version).
+You will also require [Java 11](#java-11) or above to run *MyInsuRec*. If you don't already have [Java 11](#java-11) or above on your system, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/). To tell if you already have the correct version of Java installed on your system, refer to [8.1 Checking your system's Java version](#81-checking-your-systems-java-version).
 
 ### 3.2 Installation Instructions
 
@@ -135,7 +135,7 @@ Both client name and their phone number are **needed** to add the client into *M
 
 ![EditClientTommy](images/quick-start/EditClientTommy.png)
 
-4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com b/09091973` also adds in the client's email and birthday directly. 
+4. We can also directly add these optional fields (email, address, etc.) when we are adding the client for the first time! So, `addClient n/Tammy Lim p/90127654 e/tammylim@hotmail.com b/09091973` also adds in the client's email and birthday directly.
 
 <div markdown="span" class="alert alert-success">:exclamation: **Tips and tricks:**
 See [addClient](#511-adding-a-client-addclient) for more variety of optional fields!
@@ -286,6 +286,10 @@ Examples:
 
 Edit details of the specified client.
 
+Use case:
+1. Once you get to know your client better, add the client's personal particulars using this command.
+2. If a client's personal particulars such as email or address are now outdated, use this command to update the relevant details.
+
 Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
 * Edit the client at the specified [`INDEX`](#index) in the client list.
@@ -294,8 +298,8 @@ Format: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/B
 
 Examples:
 Suppose *MyInsuRec* contains only one client 'John Tan' having phone number '0123456789':
-* `editClient i/1 n/John Smith` changes the name of this client to 'John Smith'.
-* `editClient i/1 e/johntan@insurec.com` adds the email 'johntan@insurec.com' to the client.
+  * `editClient i/1 n/John Smith` changes the name of this client to 'John Smith'.
+  * `editClient i/1 e/johntan@insurec.com` adds the email 'johntan@insurec.com' to the client.
 
 ### 5.2 Meeting commands
 
@@ -383,15 +387,21 @@ Edit details of the specified meeting.
 
 Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPTION]`
 
+Use Case:
+1. Change which day a meeting is to be held.
+2. Change what time the meeting will start or end.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 * Edit information about the meeting at the specific [`INDEX`](#index).
 * At least one optional detail must be modified.
 * Details that are not edited will be kept as is.
+* Meeting date and time should not overlap with any other meeting already existing in *MyInsuRec*
+</div>
 
 Examples:
 Suppose *MyInsuRec* contains only one meeting as created in the [`addMeeting`](#521-add-meeting-addmeeting) command:
-* `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
-* `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, 
-since the start time is later than end time.
+  * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
+  * `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, since the start time is later than end time.
 
 ### 5.3 Product commands
 
@@ -465,20 +475,24 @@ Format: `exit`
 
 #### 5.4.3 Clear *MyInsuRec*: `clear`
 
+Clear all data in *MyInsuRec*.
+
 Format: `clear`
 
+Use Case:
+1. *MyInsuRec* comes with default data to help you get started with using the application. But, you  may want to clear this data in order to add your own clients and meetings instead. So, this commands allows you to clear default data shipped with *MyInsuRec*.
+2. Restarting the app from an empty version.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 This is a one-shot way of removing all data stored in *MyInsuRec*.
 Only clear when you are sure you do not need the data anymore, or else make a [backup](#553-creating-and-using-data-file-backups).
-
-Example usage: 
-* Clearing default data shipped with *MyInsuRec*
-* Restarting the app from an empty version
+</div>
 
 ### 5.5 Others
 
 #### 5.5.1 Save the data
 
-*MyInsuRec* data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+*MyInsuRec* data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 #### 5.5.2 Edit the data file
 
@@ -552,7 +566,7 @@ This section covers technical issues you may run into while using *MyInsuRec*.
 
 ### 8.1 Checking your system's Java version
 
-To check that your system has the correct Java version (Java 11 and above) to run *MyInsuRec*, you can follow the steps below:
+To check that your system has the correct Java version ([Java 11](#java-11) and above) to run *MyInsuRec*, you can follow the steps below:
 
 1. Open your terminal.
    * Windows
@@ -620,6 +634,7 @@ We thank the CS2103T and CS2101 teaching team and all our classmates for support
 - [INDEX](#index)
 - [JSON file](#json-file)
 - [JAR file](#jar-file)
+- [Java 11](#java-11)
 - [Parameter](#parameter)
 
 ### *C*
@@ -668,6 +683,10 @@ A file that stores data that has been structured according to the JSON data form
 
 A file having the extension .jar which is usually used to share applications written in Java.
 *MyInsuRec* can be downloaded and executed as a JAR file.
+
+##### Java 11
+
+Java 11 is a release version of Java which is required to run *MyInsuRec*.
 
 ### *P*
 
