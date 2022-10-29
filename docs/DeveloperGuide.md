@@ -212,6 +212,41 @@ The following activity diagram summarizes what happens when a user executes a ne
 - The Review adding commands are straight-to-the-point and efficient for users to add Review for Stall in FoodWhere.
 - The prefixes allow users to understand what the different types of data fields Review need in order to be created.
 
+### Finding stalls and reviews feature
+
+#### What is finding stalls and reviews feature about?
+
+This feature is used to find stalls and reviews in `AddressBook` by name and/ or by tags. It uses the following two commands:
+* `sfind`: Finds stalls
+* `rfind`: Finds reviews
+
+`sfind` allows users to find stalls in `AddressBook` by names, through matching of input keyword(s) with stall names. Additionally, users can find stalls by tags, through matching of input keyword(s) with stall tags.
+
+`rfind` allows users to find reviews in `AddressBook` by names, through matching of input keyword(s) with review names. Additionally, users can find reviews by tags, through matching of input keyword(s) with review tags.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
+* `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
+
+#### Implementation Flow of finding stalls and reviews feature
+
+Given below is an example usage scenario and how the finding stalls and reviews mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user executes `sfind n/eatery` command to find all stalls where stall name contains the word 'eatery'.
+
+![AddTodo1](images/sfind.png)
+
+#### UML Diagram for finding stalls/ reviews
+
+The following activity diagram summarizes what happens when a user executes a new `sfind` or `rfind` command:
+
+<img src="images/FindActivityDiagram.png" width="250" />
+
+#### Design considerations:
+- Allow usage of multiple attributes (name and/ or tag) as search term to filter out stalls/ reviews that has the specified keywords
+- Users can enter multiple search keywords to find all relevant stalls/ reviews
 
 ### \[Proposed\] Undo/redo feature
 
