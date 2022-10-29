@@ -211,22 +211,21 @@ Example:
 
 Edits an existing student in the list.
 
-- Student’s Name
-- Student's Contact Number
-- Next of Kin’s Contact Number
-- Address
-- Email
-- Class Date
-- Amount Paid
-- Amount Owed
-- Rates per Class
-- Additional Notes
-- Tag
+- Student’s Name - `n/`
+- Student's Contact Number - `p/`
+- Next of Kin’s Contact Number - `np/` 
+- Address - `a/`
+- Email - `e/`
+- Class Date - `dt/`
+- Amount Paid - `paid/`
+- Amount Owed - `owed/`
+- Rates per Class - `rate/`
+- Additional Notes - `nt/`
+- Tag - `t/`
 
-1. Student's Name, Student's Contact Number, Next of Kin’s Contact Number, Email, Address and Tag follow
-the same convention as [adding a student](#adding-a-student-add).
+1. Student's Name (`n/`), Student's Contact Number (`p/`), Next of Kin’s Contact Number (`np/`), Email (`e/`), Address (`a/`) and Tag (`t/`) follow the same convention as [adding a student](#adding-a-student-add).
 
-2. Class Date:
+2. Class Date (`dt/`):
     - Class date can be left empty.
     - Formats: `dt/` must be followed by either one of the below options.
         1. `yyyy-MM-dd 0000-2359`
@@ -241,15 +240,18 @@ the same convention as [adding a student](#adding-a-student-add).
 <div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
 </div>
 
-4. Amount Paid:
+4. Amount Paid (`paid/`):
     - Amount paid can only be an integer.
     - Amount paid must be non-negative.
 
-5. Amount Owed:
+5. Amount Owed (`owed/`):
     - Amount owed can only be an integer.
     - Amount owed must be non-negative.
 
-6. Rates per Class:
+<div markdown="span" class="alert alert-success">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
+</div>
+
+6. Rates per Class (`rate/`):
     - Rates per Class can only be an integer.
     - Rates per Class must be non-negative.
 
@@ -257,7 +259,7 @@ the same convention as [adding a student](#adding-a-student-add).
   independent of each other.</div>
 
 
-7. Additional Notes:
+7. Additional Notes (`nt/`):
     - Additional notes can be left empty.
     - Additional notes can take in any types of character.
     - Use `nt/` to set the additional notes.
@@ -296,17 +298,25 @@ The student's next class will be set a week later at the same time, provided if 
 Format: `mark INDEX-s`
 
 - Marks the student as present at the specified `INDEX-s`.
-- The index refers to the index number shown in the Schedule panel (bottom right).
-- The index must be a positive integer. e.g., `1, 2, 3, ...`.
+- The `INDEX-s` refers to the index number shown in the Schedule panel (bottom right).
+- The `INDEX-s` must be a positive integer. e.g., `1, 2, 3, ...`.
+
+<div markdown="span" class="alert alert-success">💡 **Tip:** If you want to unmark a student, you may do so via the `undo` command.
+</div>
 
 Example:
 - `mark 2` marks the 2nd student in the Schedule panel.
 
 ![UiMark](images/UG-screenshots/UiMark.png)
 
+<div markdown="span" class="alert alert-success">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
+</div>
+
 <div markdown="span" class="alert alert-success">💡 **Tip:** If you want to charge the student for missing the class, you can do so by executing
 the mark command. This increases the amount owed but frees up that time slot for another student.
 </div>
+
+
 
 [↑ Back to top](#table-of-contents)
 
@@ -321,9 +331,9 @@ The application will reduce the student's owed amount by the amount paid.
 Format: `pay INDEX-s AMOUNT_PAID`
 
 - Marks the student as present at the specified `INDEX-s`.
-- The index refers to the index number shown in the Schedule panel (bottom right).
-- The index must be a positive integer. e.g., `1, 2, 3, ...`.
-- The amount paid must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
+- The `INDEX-s` refers to the index number shown in the Schedule panel (bottom right).
+- The `INDEX-s` must be a positive integer. e.g., `1, 2, 3, ...`.
+- The `AMOUNT_PAID` must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
 
 Example:
 - `pay 2 40` indicates that the 2nd student in the Schedule panel has paid $40.
@@ -593,8 +603,8 @@ Deletes the specified student(s) from the student list.
 Format: `delete INDEX [MORE_INDEXES]`
 
 - Deletes the student(s) at the specified `INDEX(ES)`.
-- The index(es) refers to the index numbers shown in the Student's Details panel (bottom left section of the display).
-- The index(es) must be a positive integer within the size of the displayed student list. e.g., `1, 2, 3, ...`.
+- The `INDEX(ES)` refers to the index numbers shown in the Student's Details panel (bottom left section of the display).
+- The `INDEX(ES)` must be a positive integer within the size of the displayed student list. e.g., `1, 2, 3, ...`.
 
 Examples:
 - `list` followed by `delete 1 2` deletes the 1st and 2nd student in the Student's Details panel.
