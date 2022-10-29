@@ -2,18 +2,30 @@
 layout: page
 title: User Guide
 ---
+{:toc}
 
 ## Introduction
+
+### About GREWZ
 Tired of opening multiple applications for your teaching needs? Look no further!
 
-GREWZ is your all-in-one **address book desktop application designed for university teaching assistants** to manage their personal homework and their students. It manages attendance of your students, organises your contacts and keeps track of your own homework! 
+GREWZ is your all-in-one **address book desktop application designed for university teaching assistants** to manage their personal homework and their students. It manages attendance of your students, organises your contacts and keeps track of your own homework!
 
-GREWZ boasts a timeless, compartmentalised Graphical User Interface(GUI) while utilising a clean Command Line Interface(CLI) - this means that the faster you can type, the faster you can get your work done. 
+GREWZ boasts a timeless, compartmentalised Graphical User Interface(GUI) while utilising a clean Command Line Interface(CLI) - this means that the faster you can type, the faster you can get your work done.
 
-Hopefully our application has grown on you! Jump over to [Quick start](#quick-start) to continue.
+Hopefully our application has grown on you! 
 
-* Table of Contents
-{:toc}
+### Navigation
+The aim of this User Guide is to provide you with all the information needed to fully utilise GREWZ. We understand the steep difficulty curve when learning Command Line Interface (CLI) programs and have tried our best to ease you in. 
+
+If you need help setting up GREWZ, jump over to [Quick start](#quick-start) to continue.
+
+If you want to find out more about GREWZ features and commands, jump over to [Features](#features).
+
+If you want the quick overview of GREWZ commands, jump over to [Command Summary](#command-summary)
+
+Take note of the following symbols and formatting used in this document:
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -197,7 +209,7 @@ Adds an attendance to a student in the class list
 Format: `attendance add INDEX c/CLASS s/ATTENDANCESIZE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-Maximum attendance list size is 12, if the size is 0, the attendance list will be N.A. 
+Maximum attendance list size is 12, if the size is 0, the attendance list will be N.A.
 </div>
 
 Examples:
@@ -211,7 +223,7 @@ Marks attendance of given student in class list
 Format: `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-Lesson number starts from 1. 
+Lesson number starts from 1.
 Attendance value is 0 for absent, 1 for present.
 </div>
 
@@ -234,12 +246,12 @@ Clears all entries from the student list.
 
 Format: `clear`
 
-# Task Commands 
+# Task Commands
 ---
 
 ### Adding a Task : `task`
 
-Adds a task to the Task List. 
+Adds a task to the Task List.
 There is two different types of Task - ***ToDo*** and ***Deadline***.
 
 #### Adding a ToDo
@@ -354,8 +366,8 @@ _More details coming soon ..._
 | Action     | Format, Examples                                                                                                                                                      |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​` <br> e.g., `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
-| **Attendance Add** | `attendance add INDEX c/CLASS s/ATTENDANCESIZE` <br> e.g., `attendance add 1 c/CS2030 s/10`| 
-| **Attendance Delete** | `attendance delete INDEX` <br> e.g., `attendance delete 1`| 
+| **Attendance Add** | `attendance add INDEX c/CLASS s/ATTENDANCESIZE` <br> e.g., `attendance add 1 c/CS2030 s/10`|
+| **Attendance Delete** | `attendance delete INDEX` <br> e.g., `attendance delete 1`|
 | **Attendance Mark** | `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE` <br> e.g., `attendance mark 1 l/1 m/1`|
 | **Clear**  | `clear`                                                                                                                                                               |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |

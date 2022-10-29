@@ -216,11 +216,12 @@ The following is a more detailed explanation on how ```AttendanceAddCommand``` w
 2. Following which, ```AttendanceAddCommand#execute(Model model)``` method is called which validates the attendance list.
 3. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the format of adding attendance contains error(s), GREWZ will display either an unknown command or wrong formatting error message.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the format of adding attendance contains error(s), GREWZ will display either an unknown command or wrong formatting error message.</div>
 
 4. The method `Model#setStudent(studentToEdit, editedStudent)` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
 **Mark Attendance command**
+
 Implementation:
 
 The following is a more detailed explanation on how `AttendanceMarkCommand` works.
@@ -231,6 +232,7 @@ The following is a more detailed explanation on how `AttendanceMarkCommand` work
 4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message.
 
 **Delete Attendance command**
+
 Implementation:
 
 The following is a more detailed explanation on how `AttendanceDeleteCommand` works.
@@ -241,9 +243,9 @@ The following is a more detailed explanation on how `AttendanceDeleteCommand` wo
 4. The method ```Model#setStudent(studentToEdit, editedStudent)``` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
 ![attendance delete activity](images/AttendanceDeleteActivityDiagram.png)
-Figure No. Activity diagram for AttendanceDeleteCommand
+Activity diagram for AttendanceDeleteCommand
 ![attendance delete sequence](images/AttendanceDeleteSequenceDiagram.png)
-Figure No. Sequence diagram for AttendanceDeleteCommand
+Sequence diagram for AttendanceDeleteCommand
 #### Design considerations:
 
 **Aspect: Command Syntax**
@@ -272,9 +274,9 @@ The following is a more detailed explanation of how the `UploadPictureCommand` w
 5. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
 
 ![picture upload activity](images/PictureUploadActivityDiagram.png)
-Figure No. Activity diagram for PictureUploadCommand
+Activity diagram for PictureUploadCommand
 ![picture upload sequence](images/PictureUploadSequenceDiagram.png)
-Figure No. Sequence diagram for PictureUploadCommand
+Sequence diagram for PictureUploadCommand
 
 
 #### Design considerations:
@@ -283,7 +285,7 @@ Figure No. Sequence diagram for PictureUploadCommand
 - Current implementation: A file chooser window is opened.
 - Pros: User can navigate visually through the files.
 - Cons: User will need to use a mouse instead of typing only.
-- Alternatives considered: We considered passing in a ```String``` for the file path that indicates the location of the picture to upload as a way of selecting the picture. 
+- Alternatives considered: We considered passing in a ```String``` for the file path that indicates the location of the picture to upload as a way of selecting the picture.
 - Pros: Users only needs to type.
 - Cons: File paths can be very lengthy and if their file names are similar it is very easy to make a mistake when typing it out.
 
@@ -321,11 +323,11 @@ The following is a more detailed explanation on how the `TaskCommand` works.
 
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
-Figure No. Sequence diagram for TaskCommand
+Sequence diagram for TaskCommand
 
 ![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
-Figure No. Activity diagram for TaskCommand
+Activity diagram for TaskCommand
 
 The following is a more detailed explanation on how the `RemoveTaskCommand` works.
 1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
@@ -426,12 +428,12 @@ _{more aspects and alternatives to be added}_
 
 ### \[Enhanced\] ***Add*** Feature
 
-This feature was enhanced to help teacher assistants add students' profiles with ease. 
-The feature uses the command : 
+This feature was enhanced to help teacher assistants add students' profiles with ease.
+The feature uses the command :
 * `add` n/NAME, i/STUDENTID, [p/PHONE], [e/EMAIL], [c/CLASSGROUP], [t/TAGS]
 
 
-#### Feature Updates 
+#### Feature Updates
 * ~~Compulsory~~ Optional Fields to Fill in (Fields in Square Bracket are Optional).
 * ***Only*** Name and Student ID are a must.
 * Provides a **more flexibly way** of adding students' profiles.
@@ -448,11 +450,11 @@ The following is a more detailed explanation on how the new `add` feature works.
 4. If the student's data is already there, the input will throw an error saying "This student already exists."
 
 ![AddCommand Sequence Diagram](images/AddCommandSequenceDiagram.png)
-Figure No. Sequence Diagram for Improved AddCommand Feature
+Sequence Diagram for Improved AddCommand Feature
 ![AddCommand Activity Diagram](images/AddCommandActivityDiagram.png)
-Figure No. Activity Diagram for Improved AddCommand Feature
+Activity Diagram for Improved AddCommand Feature
 
-#### Design considerations 
+#### Design considerations
 
 **Aspect: Wrapping 'NA' into Type X**
 * Current implementation : Making 'NA' into a new X type when Information for X is not available where X can be Email, Phone or Class Group Type.
@@ -567,9 +569,9 @@ Use case ends.
     Use case resumes in step 2
 
 **Use case: UC05 - Delete attendance of a Student**
- 
+
 **Guarantees:**  An attendance is deleted from the Student.
- 
+
 **MSS**
 1. Tutor deletes attendance to student by entering command with student index.
 2. GREWZ deletes the attendance of the student.
@@ -580,7 +582,7 @@ Use case ends.
     * 1a2. User enters command with correct student index and command
     * Repeat steps until data is correct
     Use case resumes in step 2
- 
+
 **Use case: UC06 - Mark attendance of Student**
 
 **Guarantees:**  An attendance is deleted from the Student.
@@ -621,7 +623,23 @@ Use case ends.
     * Repeat steps until data is correct
     Use case resumes in step 2
 
-**Use case: UC09 - Adding a Deadline Task**
+**Use case: UC09 - Add a ToDo Task**
+
+**Guarantees:** A tutor can add a ToDo task to the TaskBook with a given title and description.
+
+**MSS**
+1. Tutor enters correct command with title and description into the command input.
+2. GREWZ adds the ToDo task to the TaskBook and displays it.
+Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given command format.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User re-enters the command with title and description
+    * Repeat steps until command input is correct
+    Use case resumes in step 2
+
+**Use case: UC10 - Add a Deadline Task**
 
 **Guarantees:**  A tutor can add a task to the TaskBook along with a given deadline.
 
@@ -638,6 +656,43 @@ Use case ends.
       Use case resumes in step 2
 
 
+**Use case: UC11 - Uploading a Student Picture**
+
+**MSS**
+1. Tutor enters a upload picture command with the index of student.
+2. File chooser is opened.
+3. Tutor selects picture to upload.
+4. Picture is uploaded and saved in images folder.
+5. Use case ends
+
+**Extensions**
+* 1a. GREWZ detects an invalid index.
+  * 1a1. GREWZ responds with an error message.
+  * 1a2. User enters command with corrected index.
+  * Repeat steps until index is correct.
+    Use case resumes in step 2
+
+* 3a. Picture is not of JPG format.
+  * 3a1. GREWZ detects invalid file.
+  * 3a2. GREWZ responds with an error message.
+  Use case ends
+
+**Use case: UC12 - Remove a Task**
+
+**Guarantees:** A tutor can remove a task from the TaskBook with the given index.
+
+**MSS**
+1. Tutor removes task from TaskBook by entering command with given task index.
+2. GREWZ removes the specified task from TaskBook.
+
+**Extensions**
+* 1a. GREWZ detects an invalid task index.
+  * 1a1. GREWZ responds with an error message
+  * 1a2. User enters command with correct task index
+  * Repat steps until index is valid
+  Use case resumes in step 2
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -650,10 +705,11 @@ Use case ends.
 *{More to be added}*
 
 ### Glossary
-
+* **CLI**: Command Line Interface
+* **CLI**: Graphical User Interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Command**
+* **Command**: 
 
 --------------------------------------------------------------------------------------------------------------------
 

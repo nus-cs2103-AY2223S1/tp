@@ -18,3 +18,4 @@ Wanting to help fellow teacher assistants, we are working together to develop a 
 - This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
 - Libraries: [JavaFX](https://openjfx.io/), [JUnit5](https://junit.org/junit5/)
 - Feature: [Input history](https://github.com/AY2122S2-CS2103T-W13-3/tp)
+- Icon taken from https://www.flaticon.com/free-icons/leaf
