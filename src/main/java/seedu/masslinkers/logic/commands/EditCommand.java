@@ -78,7 +78,15 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+        Telegram editedTelegram = editStudentDescriptor.getTelegram().orElse(null);
+        GitHub editedGitHub = editStudentDescriptor.getGitHub().orElse(null);
+        Email editedEmail = editStudentDescriptor.getEmail().orElse(null);
+        Phone editedPhone = editStudentDescriptor.getPhone().orElse(null);
+
+        if ((editedTelegram != null && model.hasTelegram(editedTelegram))
+            || (editedGitHub != null && model.hasGitHub(editedGitHub))
+            || (editedEmail != null && model.hasEmail(editedEmail))
+            || (editedPhone != null && model.hasPhone(editedPhone))) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 

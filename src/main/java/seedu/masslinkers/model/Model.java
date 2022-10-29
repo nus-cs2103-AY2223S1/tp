@@ -5,7 +5,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.masslinkers.commons.core.GuiSettings;
+import seedu.masslinkers.model.student.Email;
+import seedu.masslinkers.model.student.GitHub;
+import seedu.masslinkers.model.student.Phone;
 import seedu.masslinkers.model.student.Student;
+import seedu.masslinkers.model.student.Telegram;
 
 /**
  * The API of the Model component.
@@ -56,6 +60,38 @@ public interface Model {
      * Returns true if a student with the same identity as {@code student} exists in the mass linkers.
      */
     boolean hasStudent(Student student);
+
+    /**
+     * Returns true if a student with Telegram handle that is same as {@code telegram} exists in
+     * the mass linkers.
+     * @param telegram the telegram
+     * @return boolean indicating if such telegram is owned by anyone in the mass linkers.
+     */
+    public boolean hasTelegram(Telegram telegram);
+
+    /**
+     * Returns true if a student with GitHub that is same as {@code gitHub} exists in
+     * the mass linkers.
+     * @param gitHub the gitHub
+     * @return boolean indicating if such gitHub is owned by anyone in the mass linkers.
+     */
+    public boolean hasGitHub(GitHub gitHub);
+
+    /**
+     * Returns true if a student with email that is same as {@code email} exists in
+     * the mass linkers.
+     * @param email the email
+     * @return boolean indicating if such email is owned by anyone in the mass linkers.
+     */
+    public boolean hasEmail(Email email);
+
+    /**
+     * Returns true if a student with phone number that is same as {@code phone} exists in
+     * the mass linkers.
+     * @param phone the phone number
+     * @return boolean indicating if such phone number is owned by anyone in the mass linkers.
+     */
+    public boolean hasPhone(Phone phone);
 
     /**
      * Deletes the given student.

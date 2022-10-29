@@ -5,7 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.masslinkers.model.student.Email;
+import seedu.masslinkers.model.student.GitHub;
+import seedu.masslinkers.model.student.Phone;
 import seedu.masslinkers.model.student.Student;
+import seedu.masslinkers.model.student.Telegram;
 import seedu.masslinkers.model.student.UniqueStudentList;
 
 /**
@@ -62,6 +66,50 @@ public class MassLinkers implements ReadOnlyMassLinkers {
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return students.contains(student);
+    }
+
+    /**
+     * Returns true if a student with Telegram handle that is same as {@code telegram} exists in
+     * the mass linkers.
+     * @param telegram the telegram
+     * @return boolean indicating if such telegram is owned by anyone in the mass linkers.
+     */
+    public boolean hasTelegram(Telegram telegram) {
+        requireNonNull(telegram);
+        return students.containsTelegram(telegram);
+    }
+
+    /**
+     * Returns true if a student with GitHub that is same as {@code gitHub} exists in
+     * the mass linkers.
+     * @param gitHub the gitHub
+     * @return boolean indicating if such gitHub is owned by anyone in the mass linkers.
+     */
+    public boolean hasGitHub(GitHub gitHub) {
+        requireNonNull(gitHub);
+        return students.containsGitHub(gitHub);
+    }
+
+    /**
+     * Returns true if a student with email that is same as {@code email} exists in
+     * the mass linkers.
+     * @param email the email
+     * @return boolean indicating if such email is owned by anyone in the mass linkers.
+     */
+    public boolean hasEmail(Email email) {
+        requireNonNull(email);
+        return students.containsEmail(email);
+    }
+
+    /**
+     * Returns true if a student with phone number that is same as {@code phone} exists in
+     * the mass linkers.
+     * @param phone the phone number
+     * @return boolean indicating if such phone number is owned by anyone in the mass linkers.
+     */
+    public boolean hasPhone(Phone phone) {
+        requireNonNull(phone);
+        return students.containsPhone(phone);
     }
 
     /**
