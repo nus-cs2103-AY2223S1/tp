@@ -191,6 +191,9 @@ The prefixes and their respective parameters are as follows:
 * You can remove all the patient’s medications by typing `m/` without specifying any medication after it.
 * To remove upcoming appointments, just type `ua/` without specifying any date after it.
 
+If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
+![Edit Command Result Box](images/ug-images/editCommandResultBox.png)
+
 Examples:
 
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567`
