@@ -197,7 +197,7 @@ Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 | `FIELDS`  | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`            |
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a client.
-</div>
+
 
 Examples:
 * `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
@@ -435,7 +435,6 @@ Clears all entries which include `clients`, `remarks` and `transactions` from Je
 Format: `clear`
 
 > <div markdown="span" class="alert alert-danger">❗ Information cleared by clear command cannot be retrieved.
- </div>
 
 Example:
 
