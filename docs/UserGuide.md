@@ -224,11 +224,12 @@ Examples:
 
 | Category                  | Short-form |
 |---------------------------|------------|
-| **`company_name`**        | `c`        |
+| **`company_name`**        | `n`        |
 | **`position`**            | `p`        |
 | **`application_process`** | `pr`       |
 | **`date`**                | `d`        |
 | **`tag`**                 | `t`        |
+
 `list c/company_name` is equivalent to `list c/n`
 </div>
 
@@ -256,11 +257,12 @@ Examples:
 
 | Category                  | Short-form |
 |---------------------------|------------|
-| **`company_name`**        | `c`        |
+| **`company_name`**        | `n`        |
 | **`position`**            | `p`        |
 | **`application_process`** | `pr`       |
 | **`date`**                | `d`        |
 | **`tag`**                 | `t`        |
+
 `find c/position engineer` is equivalent to `find c/p engineer`
 </div>
 
