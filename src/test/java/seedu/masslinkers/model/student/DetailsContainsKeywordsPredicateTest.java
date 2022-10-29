@@ -64,19 +64,19 @@ public class DetailsContainsKeywordsPredicateTest {
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street",
                 "AliceInTheWonderLand"));
         assertTrue(predicate.test(new StudentBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withEmail("alice@email.com").withTelegram("MainStreet")
                 .withGitHub("AliceInTheWonderLand").build()));
 
         // Keywords matching github username
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("aliceinthewonderland"));
         assertTrue(predicate.test(new StudentBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withEmail("alice@email.com").withTelegram("MainStreet")
                 .withGitHub("AliceInTheWonderLand").build()));
 
         // Keywords containing partially-matching github username
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("wonderland"));
         assertTrue(predicate.test(new StudentBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withEmail("alice@email.com").withTelegram("MainStreet")
                 .withGitHub("AliceInTheWonderLand").build()));
 
         // Keywords containing partially-matching telegram handle
@@ -106,13 +106,13 @@ public class DetailsContainsKeywordsPredicateTest {
         // Array containing no matching keyword
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("jonasGoh"));
         assertFalse(predicate.test(new StudentBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withEmail("alice@email.com").withTelegram("MainStreet")
                 .withGitHub("AliceInTheWonderLand").build()));
 
         // Array containing no matching keyword
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("999"));
         assertFalse(predicate.test(new StudentBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withTelegram("Main Street")
+                .withEmail("alice@email.com").withTelegram("MainStreet")
                 .withGitHub("AliceInTheWonderLand").build()));
 
     }

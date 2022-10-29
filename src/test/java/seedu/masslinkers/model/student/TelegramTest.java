@@ -14,23 +14,27 @@ public class TelegramTest {
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Telegram(invalidAddress));
+    public void constructor_invalidTelegram_throwsIllegalArgumentException() {
+        String invalidTelegram = "";
+        assertThrows(IllegalArgumentException.class, () -> new Telegram(invalidTelegram));
     }
 
     @Test
     public void isValidTelegram() {
-        // null address
+        // null telegram
         assertThrows(NullPointerException.class, () -> Telegram.isValidTelegram(null));
 
-        // invalid addresses
+        // invalid telegram
         assertFalse(Telegram.isValidTelegram("")); // empty string
         assertFalse(Telegram.isValidTelegram(" ")); // spaces only
+        assertFalse(Telegram.isValidTelegram("he")); // <5 chars
+        assertFalse(Telegram.isValidTelegram("lo-pie")); // special chars that are not underscores
+        assertFalse(Telegram.isValidTelegram("lopi&e")); // special chars that are not underscores
 
-        // valid addresses
-        assertTrue(Telegram.isValidTelegram("fnnn"));
-        assertTrue(Telegram.isValidTelegram("-")); // one character
-        assertTrue(Telegram.isValidTelegram("jammy12")); // long address
+        // valid telegram
+        assertTrue(Telegram.isValidTelegram("fnnnn")); // exactly 5 chars
+        assertTrue(Telegram.isValidTelegram("jammy12")); // words and numbers
+        assertTrue(Telegram.isValidTelegram("JAMMdfg")); // caps
+        assertTrue(Telegram.isValidTelegram("12345")); // numbers
     }
 }

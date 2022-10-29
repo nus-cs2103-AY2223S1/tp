@@ -44,14 +44,14 @@ public class TypicalStudents {
             .withEmail("werner@example.com").withGitHub("goldl8ol").withTelegram("ellie")
             .withMods("CS2100", "CS1231S").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withGitHub("EDXs").withTelegram("fionalim")
+            .withEmail("lydia@example.com").withGitHub("fiona").withTelegram("fionalim")
             .withMods("CS2100").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withTelegram("georgesim").withGitHub("pizzac0der")
             .withMods("CS2100").build();
 
     // Only optional fields filled
-    public static final Student TOM = new StudentBuilder().withName("Tom").withTelegram("tom").build();
+    public static final Student TOM = new StudentBuilder().withName("Tom").withTelegram("tommm").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
