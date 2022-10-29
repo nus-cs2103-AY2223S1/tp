@@ -94,6 +94,8 @@ This application UI is split into `5 sections`.
 
 7. Refer to the [Features](#features) below for details of each command.
 
+[Back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## How to use the User Guide
@@ -124,6 +126,8 @@ The [table of contents](#table-of-contents) provides links to every command. But
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
+[Back to Table of Contents](#table-of-contents)
+
 </div>
 
 ### Symbols
@@ -150,7 +154,7 @@ Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`
 * No restrictions on the phone input field and email input field, but a warning will be given if it deviates from the standard convention.
     * This facilitates more freedom to input phone numbers like `+606 89987755 (HOME)` and emails like `alice@company.com (WORK)`
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or white spaces!
+> <div markdown="span" class="alert alert-danger">❗ :warning: **You cannot add a client with a name that already exists in JeeqTracker**: Names are considered duplicates even if they differ by case sensitivity or whitespaces!
 
 Examples:
 * `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com`
@@ -200,8 +204,7 @@ Example:
 
 * `clear` clears all Client's entries together with the Remarks and Transactions.
 
-> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrie
- </div>
+> <div markdown="span" class="alert alert-danger">❗ :warning: Information cleared by clear command cannot be retrieved!
 
 [Back to Table of Contents](#table-of-contents)
 
