@@ -2,11 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-// import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.CreateMeetingCommand;
+import seedu.address.logic.commands.DeletePersonFromMeetingCommand;
 
 /**
  * Copied over from DeleteCommandParserTest:
@@ -17,19 +17,19 @@ import seedu.address.logic.commands.CreateMeetingCommand;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class CreateMeetingCommandParserTest {
+public class DeletePersonFromMeetingCommandParserTest {
 
-    private CreateMeetingCommandParser parser = new CreateMeetingCommandParser();
+    private DeletePersonFromMeetingCommandParser parser = new DeletePersonFromMeetingCommandParser();
 
-    //    @Test
-    //    public void parse_validArgs_returnsCreateMeetingCommand() {
-    //        assertParseSuccess(parser, "  Alex }} Yu ;;; Study session ;;; 20-11-2022 1520 ;;; Central Library  ",
-    //            new CreateMeetingCommand("Alex }} Yu ;;; Study session ;;; 20-11-2022 1520 ;;; Central Library"));
-    //    }
+    @Test
+    public void parse_validArgs_returnsCreateMeetingCommand() {
+        assertParseSuccess(parser, "  0; Alice  ",
+                new DeletePersonFromMeetingCommand("0; Alice"));
+    }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "",
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateMeetingCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePersonFromMeetingCommand.MESSAGE_USAGE));
     }
 }

@@ -6,7 +6,6 @@ package seedu.address.testutil;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -67,7 +66,7 @@ public class MeetingBuilder {
     public MeetingBuilder(Meeting meetingToCopy) {
         this.personsToMeetArray = meetingToCopy.getArrayListPersonToMeet();
         this.meetingDescription = meetingToCopy.getDescription();
-        this.meetingDateAndTime = meetingToCopy.getDateAndTime();
+        this.meetingDateAndTime = meetingToCopy.getNonProcessedDateAndTime();
         this.meetingLocation = meetingToCopy.getLocation();
     }
 
@@ -108,13 +107,8 @@ public class MeetingBuilder {
      * Builds a Meeting
      */
     public Meeting build() {
-        try {
-            return new Meeting(this.personsToMeetArray, this.meetingDescription,
-                this.meetingDateAndTime, this.meetingLocation);
-        } catch (ParseException | java.text.ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return new Meeting(this.personsToMeetArray, this.meetingDescription,
+            this.meetingDateAndTime, this.meetingLocation);
     }
 
 }

@@ -4,23 +4,22 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CreateMeetingCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.exceptions.ImpreciseMatchException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.util.DateTimeConverter;
-import seedu.address.model.util.DateTimeProcessor;
 
 /**
  * Class for a new Meeting
@@ -30,29 +29,23 @@ public class Meeting implements Comparable<Meeting> {
     private final ArrayList<Person> peopleToMeetArray;
     private final UniquePersonList peopleToMeetList = new UniquePersonList();
     private String meetingDescription;
-    private String meetingDateAndTime;
+    private String processedMeetingDateAndTime;
     private String meetingLocation;
-
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
-        .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
-        .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeProcessor validator = new DateTimeProcessor(dateFormatter, timeFormatter);
 
     /**
      * Constructor for a new Meeting
      *
      * @param peopleToMeetArray the people whom the user is meeting with
      * @param meetingTitle the description/ title of the meeting
-     * @param meetingDateAndTime the date and time of meeting
+     * @param processedMeetingDateAndTime the date and time of meeting
      * @param meetingLocation the location of the meeting
      */
     public Meeting(ArrayList<Person> peopleToMeetArray, String meetingTitle,
-        String meetingDateAndTime, String meetingLocation) throws ParseException, java.text.ParseException {
+                   String processedMeetingDateAndTime, String meetingLocation) {
         this.peopleToMeetArray = peopleToMeetArray;
         this.peopleToMeetList.setPersons(peopleToMeetArray);
         this.meetingDescription = meetingTitle;
-        this.meetingDateAndTime = validator.processDateTime(meetingDateAndTime);
+        this.processedMeetingDateAndTime = processedMeetingDateAndTime;
         this.meetingLocation = meetingLocation;
     }
 
@@ -63,10 +56,14 @@ public class Meeting implements Comparable<Meeting> {
      * @param peopleToMeet the array of people names
      */
     public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet)
-            throws PersonNotFoundException {
+            throws PersonNotFoundException, DuplicatePersonException {
 
         if (Objects.equals(peopleToMeet[0], "")) {
             throw new PersonNotFoundException();
+        }
+
+        if (checkDuplicates(peopleToMeet)) {
+            throw new DuplicatePersonException();
         }
 
         ArrayList<Person> output = new ArrayList<>();
@@ -81,7 +78,10 @@ public class Meeting implements Comparable<Meeting> {
             ObservableList<Person> listOfPeople = model.getFilteredPersonList();
 
             if (listOfPeople.isEmpty()) {
+                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 throw new PersonNotFoundException();
+            } else if (listOfPeople.size() > 1) {
+                throw new ImpreciseMatchException();
             } else { // get the first person in the address book whose name matches
                 output.add(listOfPeople.get(0));
             }
@@ -93,6 +93,22 @@ public class Meeting implements Comparable<Meeting> {
     }
 
     /**
+     * checks for duplicate names in array
+     *
+     * @param names list of people
+     */
+    public static boolean checkDuplicates(String[] names) {
+        Set<String> set = new HashSet<String>();
+        for (String i : names) {
+            if (set.contains(i.strip())) {
+                return true;
+            }
+            set.add(i.strip());
+        }
+        return false;
+    }
+
+    /**
      * modifies the location of the meeting
      *
      * @param location of the meeting
@@ -100,7 +116,6 @@ public class Meeting implements Comparable<Meeting> {
     public void setMeetingLocation(String location) {
         this.meetingLocation = location;
     }
-
 
     /**
      * Adds the array of persons to the unique persons list
@@ -137,11 +152,11 @@ public class Meeting implements Comparable<Meeting> {
     }
 
     public String getDateAndTime() {
-        return this.meetingDateAndTime;
+        return this.processedMeetingDateAndTime;
     }
 
     public String getNonProcessedDateAndTime() {
-        return DateTimeConverter.processFullDateToLocalDatetime(this.meetingDateAndTime);
+        return DateTimeConverter.processFullDateToLocalDatetime(this.processedMeetingDateAndTime);
     }
 
     public String getDescription() {
@@ -200,7 +215,7 @@ public class Meeting implements Comparable<Meeting> {
     public String toString() {
         return String.format("%1$s", CreateMeetingCommand.peopleToNameAndTagList(this.peopleToMeetArray))
             + "For: " + this.meetingDescription + "\n"
-            + "On: " + this.meetingDateAndTime + "\n"
+            + "On: " + this.processedMeetingDateAndTime + "\n"
             + "At: " + this.meetingLocation + "\n";
     }
 
@@ -220,7 +235,7 @@ public class Meeting implements Comparable<Meeting> {
     public int compareTo(Meeting m) {
         requireNonNull(m);
         LocalDateTime currObj = DateTimeConverter
-            .processedStringToLocalDatetime(this.meetingDateAndTime);
+            .processedStringToLocalDatetime(this.processedMeetingDateAndTime);
         LocalDateTime compObj = DateTimeConverter
             .processedStringToLocalDatetime(m.getDateAndTime());
         return currObj.compareTo(compObj);

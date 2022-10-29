@@ -62,6 +62,14 @@ public class MeetingList implements ReadOnlyMeetingList {
     }
 
     /**
+     * Adds a meeting to the meeting list.
+     * The meeting must not already exist in the meeting list.
+     */
+    public void addMeeting(Meeting newMeeting, int idx) {
+        this.meetings.add(newMeeting, idx);
+    }
+
+    /**
      * Replaces the given Meeting {@code target} in the list with {@code editedMeeting}.
      * {@code target} must exist in the address book.
      * {@code editedMeeting} must not be the same

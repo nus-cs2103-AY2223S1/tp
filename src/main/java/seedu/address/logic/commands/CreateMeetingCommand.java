@@ -3,13 +3,12 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
+import seedu.address.model.meeting.exceptions.ImpreciseMatchException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -43,10 +42,30 @@ public class CreateMeetingCommand extends Command {
     public static final String DUPLICATE_PERSON_TO_MEET = "It looks like you are adding the same "
         + "person to a meeting twice!";
 
-    private final String meetingInfo;
+    public static final String IMPRECISE_NAME_PREDICATE = "Oops! The name of one of the persons you are meeting "
+        + "matches more than one person in the address book! \n"
+        + "Please include a more precise name.";
 
-    public CreateMeetingCommand(String meetingInfo) {
-        this.meetingInfo = meetingInfo;
+    private final String[] peopleToMeet;
+    private final String meetingTitle;
+    private final String processedMeetingDateAndTime;
+    private final String meetingLocation;
+
+    /**
+     * Constructor for CreateMeetingCommand.
+     * Takes in the relevant information of a meeting.
+     *
+     * @param peopleToMeet Array of the names of the people to meet in String.
+     * @param meetingTitle The title/ description of the meeting
+     * @param processedMeetingDateAndTime the date and time of the meeting in "EEEE, dd MMMM yyyy hh:mm a" format
+     * @param meetingLocation the location of the meeting
+     */
+    public CreateMeetingCommand(String[] peopleToMeet, String meetingTitle, String processedMeetingDateAndTime,
+                                String meetingLocation) {
+        this.peopleToMeet = peopleToMeet;
+        this.meetingTitle = meetingTitle;
+        this.processedMeetingDateAndTime = processedMeetingDateAndTime;
+        this.meetingLocation = meetingLocation;
     }
 
     /**
@@ -69,20 +88,9 @@ public class CreateMeetingCommand extends Command {
 
         try {
             requireNonNull(model);
-            String[] newMeetingInformation = this.meetingInfo.split(";;;");
-            String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
-            String meetingTitle = newMeetingInformation[1].strip();
-            String meetingDateAndTime = newMeetingInformation[2].strip();
-            String meetingLocation = newMeetingInformation[3].strip();
-
-            if ((Objects.equals(meetingTitle, "")) || (Objects.equals(meetingLocation, ""))) {
-                return new CommandResult(INCORRECT_NUMBER_OF_ARGUMENTS);
-            }
-
             ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, peopleToMeet);
-
             Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle,
-                meetingDateAndTime, meetingLocation);
+                processedMeetingDateAndTime, meetingLocation);
             model.addMeeting(newMeeting);
 
             return new CommandResult(
@@ -92,12 +100,6 @@ public class CreateMeetingCommand extends Command {
                     + String.format("At: %1$s\n", meetingLocation)
             );
 
-        } catch (ParseException | java.text.ParseException e) {
-            return new CommandResult(e.getMessage());
-
-        } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS);
-
         } catch (PersonNotFoundException e) {
             return new CommandResult(CreateMeetingCommand.PERSON_NOT_FOUND);
 
@@ -106,6 +108,9 @@ public class CreateMeetingCommand extends Command {
 
         } catch (DuplicatePersonException e) {
             return new CommandResult(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
+
+        } catch (ImpreciseMatchException e) {
+            return new CommandResult(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE);
         }
     }
 
@@ -113,7 +118,10 @@ public class CreateMeetingCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof CreateMeetingCommand // instanceof handles nulls
-            && this.meetingInfo.equals(((CreateMeetingCommand) other).meetingInfo)); // state check
+            && this.peopleToMeet.equals(((CreateMeetingCommand) other).peopleToMeet)
+            && this.meetingTitle.equals(((CreateMeetingCommand) other).meetingTitle)
+            && this.processedMeetingDateAndTime.equals(((CreateMeetingCommand) other).processedMeetingDateAndTime)
+            && this.meetingLocation.equals(((CreateMeetingCommand) other).meetingLocation)); // state check
     }
 
 }

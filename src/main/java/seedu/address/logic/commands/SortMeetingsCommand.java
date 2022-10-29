@@ -37,4 +37,10 @@ public class SortMeetingsCommand extends Command {
         model.sortMeetingListByDate(isInAscending);
         return new CommandResult(Messages.MESSAGE_MEETINGS_SORTED);
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortMeetingsCommand // instanceof handles nulls
+                && isInAscending == ((SortMeetingsCommand) other).isInAscending); // state check
+    }
 }

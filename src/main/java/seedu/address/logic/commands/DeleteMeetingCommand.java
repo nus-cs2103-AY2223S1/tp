@@ -15,7 +15,7 @@ import seedu.address.model.meeting.Meeting;
  */
 public class DeleteMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "delMeeting";
+    public static final String COMMAND_WORD = "deletemeeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the meeting identified by the index number used in the displayed meeting cards.\n"

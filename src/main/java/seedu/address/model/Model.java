@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
@@ -113,8 +112,7 @@ public interface Model {
      * @return a new meeting
      */
     Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
-                             String meetingDateAndTime, String meetingLocation)
-            throws ParseException, seedu.address.logic.parser.exceptions.ParseException;
+                             String meetingDateAndTime, String meetingLocation);
 
     /**
      * Checks if a meeting exists in the address book.
@@ -131,6 +129,13 @@ public interface Model {
     void addMeeting(Meeting newMeeting);
 
     /**
+     * Adds a new meeting to the address book to the specified index.
+     *
+     * @param newMeeting the new meeting to add to address book
+     */
+    void addMeeting(Meeting newMeeting, int idx);
+
+    /*
      * Replaces the given meeting {@code target} with {@code editedMeeting}.
      * {@code target} must exist in the address book.
      * The meeting identity of {@code editedMeeting} must not be the same as
