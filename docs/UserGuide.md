@@ -3,7 +3,7 @@ layout: page
 title: Salesy User Guide v1.3
 ---
 
-Salesy is a desktop app for helping food vendors manage details of their clients and suppliers, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and remember the commands well, Salesy can get your contact management tasks done faster than traditional GUI apps.
+Salesy is an all-in-one tool for NUS canteen vendors whom want to keep track of their tasks, inventory and suppliers, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). With Salesy, you can expect a good visualization of your inventory and be as efficient as possible with your bookkeeping routines.
 
 ![Ui](images/Ui.png)
 
@@ -55,7 +55,7 @@ A brief display of important information for **inventory** and **tasks**.
 * **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has deadline that is
   past today's date.
   * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
-* **(C)** `Upcoming` tasks refers to tasks that have deadline of today's date and the dates after today and are `Not Done`.
+* **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
   * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or after**_, this will be counted as `Upcoming`.
 
 ### Colors used for Inventory
@@ -78,10 +78,9 @@ Inventory Cards for Items
 
 | Color          | Meaning                                                          | How is it determined ?                                                                              |
 |----------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| 🔴&nbsp;Red    | Running at `near or below minimum`, restock as soon as possible. | **Less than 120%** of minimum stock specified.                                                      |
+| ️🍎&nbsp;Red   | Running at `near or below minimum`, restock as soon as possible. | **Less than 120%** of minimum stock specified.                                                      |
 | 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon.     | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
 | 🟢&nbsp;Green  | Running at a `healthy` level no worries about restocking.        | **More than and equal to 165%** of minimum stock specified.                                         |
-
 
 ### Add supplier/task/supply item: `add`
 
@@ -286,6 +285,12 @@ Lists all items.
 
 ### List all suppliers/tasks/inventory
 
+Refreshes and lists all suppliers/tasks/inventory.
+
+**Example of a possible use case**
+1. After using the `find` command for supplier contact, `listAll` / `listSuppliers` will list all
+contacts in Salesy's address book.
+
 ### List all suppliers: `listSuppliers`
 
 Lists all suppliers
@@ -332,12 +337,21 @@ Lists whole inventory.
 
 > `listInventory`
 
+### Clear Supplier Address Book: `clear`
+
+Clears and deletes all suppliers in Salesy. 
+
+> ⚠️(**WARNING**) This command is used to reset only the suppliers in the Suppliers panel. Running this command will remove all
+> suppliers from Salesy. To regain the sample data again, delete `addressbook.json` from the source folder of the app and 
+> re-run Salesy.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 | Action                       | Format                                                                | Examples                                                                           |
 |------------------------------|-----------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| **clear** (supplier)         | `clear`                                                               | `clear`                                                                            |
 | **list** (supplier)          | `listSuppliers`                                                       | `listSuppliers`                                                                    |
 | **add**  (supplier)          | `add [n/NAME] [p/PHONE] [pr/PRICE] [i/ITEM] [a/ADDRESS] [t/Supplier]` | `add n/ABC PTE LTD p/67009000 pr/$1.10 i/Egg a/Blk 140 Woodlands Ave 3 t/Supplier` |
 | **delete** (supplier)        | `delete <supplier index>`                                             | `delete 1`                                                                         |
