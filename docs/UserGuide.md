@@ -16,8 +16,10 @@ checkUp stores patient details directly on your device, allowing you to keep tra
 internet connection. You can store details such as patient name, next-of-kin details, phone number, email, medical history, upcoming
 appointments and past appointments. You can also add medication tags to your patients to keep track of their long-term
 medication history.
-
---------------------------------------------------------------------------------------------------------------------
+---
+* Table of Contents
+  {:toc}
+---
 
 ## Quick start
 
