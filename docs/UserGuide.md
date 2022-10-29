@@ -108,7 +108,7 @@ A student can have multiple module codes and tags. But a student must have at le
 
 Examples:
 * `student n/John Doe y/1 m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M t/friends t/owesMoney l/UTown Residences git/johnnyd`
-* `add n/Betsy Crowe t/friend m/CS2100 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `student n/Betsy Crowe t/friend m/CS2100 g/F e/betsycrowe@example.com p/1234567 t/criminal`
 
 ### 3.1.2 Add a new Professor Contact: `prof`
 
@@ -154,7 +154,7 @@ Format: `delete INDEX1 INDEX2...`
 * The order of the indexes does not matter as long as they are valid i.e. they are not out of bounds.
 
 Example:
-* `Delete 1 2 3`
+* `delete 1 2 3`
 
 ### 3.2.2 Edit contacts: `edit`
 Edits an existing person in contact list.
