@@ -256,7 +256,8 @@ This subsection covers all client-related commands.
 
 Add a new client to _MyInsuRec_.
 
-Suppose you found a potential client, you can use this command to add their particulars into _MyInsuRec_ so that you would not forget! 
+Use case: 
+1. Suppose you found a potential client, you can use this command to add their particulars into _MyInsuRec_ so that you would not forget! 
 
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
@@ -270,6 +271,7 @@ See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
 Examples:
+
 * Suppose you just met John, and he provided you with only his name and phone number, you can add him in using,
   * `addClient n/John Tan p/12345678`
 * Suppose John also provides his birthday, you can add him using,
@@ -317,7 +319,8 @@ Examples:
 
 Delete the specified client from _MyInsuRec_.
 
-Suppose your client no longer requires your services and would like you to remove their personal information, 
+Use case:
+1. Suppose your client no longer requires your services and would like you to remove their personal information, 
 you can use this command to remove their details from _MyInsuRec_.
 
 Format: `delClient i/INDEX`
@@ -329,6 +332,7 @@ Format: `delClient i/INDEX`
 * If `INDEX` is a non-positive integer or not shown in `listClient`, an error will be thrown!
 
 Examples:
+
 * Suppose the second client in `listClient` request to have their information remove, you can remove them by using,
   * `delClient i/2`
 * Suppose there is a total of 5 clients shown in your `listClient` , the following command will result in an error!
@@ -427,7 +431,8 @@ Examples:
 
 Delete a meeting from _MyInsuRec_.
 
-Suppose a meeting was cancelled, you can use this command to remove the scheduled meeting.
+Use case:
+1. Suppose a meeting was cancelled, you can use this command to remove the scheduled meeting.
 
 Format: `delMeeting i/INDEX`
 
