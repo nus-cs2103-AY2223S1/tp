@@ -93,6 +93,17 @@ public class EditCommand extends Command {
                 .orElseGet(() -> model.getTargetPerson());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
+        Set<Tag> notFound = new HashSet<>();
+        for (Tag tag: editedPerson.getTags()) {
+            if (!model.hasTag(tag)) {
+                notFound.add(tag);
+            }
+        }
+        if (!notFound.isEmpty()) {
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_TAGS_NOT_FOUND, Tag.toString(notFound)));
+        }
+
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
