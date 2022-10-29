@@ -6,7 +6,7 @@ title: User Guide
 {:toc}
 ---
 
-![banner](images/ug-images/checkUp_banner.png)
+![banner](images/ug-images/editCommand/checkUp_banner.png)
 
 **checkUp is a desktop app for managing patient details**, optimized for use via a Command Line Interface (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient 
@@ -128,7 +128,8 @@ Adds a patient to checkUp.
 
 Format: `add {Prefix}/{Parameter}…​`
 
-The prefixes and their respective parameters are as follows:
+<details open>
+<summary><h4> The prefixes and their respective parameters are as follows: </h4></summary>
 
 | Status  | Prefix | Parameter                               | Restrictions                                                                 |
 |---------|--------|-----------------------------------------|------------------------------------------------------------------------------|
@@ -144,9 +145,10 @@ The prefixes and their respective parameters are as follows:
 | `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                     |
 
 * **local-part**: Alphanumeric characters and `+`, `_`, `.`, `-` only.
-* **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only 
-  and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo` 
+* **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only
+  and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo`
   and before `gmail` is empty).
+</details>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of medications (including 0)!
@@ -157,17 +159,26 @@ If patient type is outpatient, user should not input the prefixes and any value 
 hospital wing, floor number, and ward number. 
 </div>
 
-Examples:
+#### Upon Execution
+If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
+![Edit Command Result Box](images/ug-images/addCommand/addCommandResultBox.png)
+
+If not, please follow the error message given and format above to enter the correct command.
+
+<details>
+<summary><h4>Examples:</h4></summary>
 
 If patient type is inpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690 m/panadol
 m/ibuprofen`
-![Add John Doe Inpatient Result](images/ug-images/addJohnDoeInpatientResult.png)
+![Add John Doe Inpatient Result](images/ug-images/addCommand/addJohnDoeInpatientResult.png)
 <br>
 
 If patient type is outpatient: <br>
 `add n/John Doe p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/outpatient m/panadol m/ibuprofen`
-![Add John Doe Outpatient Result](images/ug-images/addJohnDoeOutpatientResult.png)
+![Add John Doe Outpatient Result](images/ug-images/addCommand/addJohnDoeOutpatientResult.png)
+
+</details>
 
 ### Editing a patient: `edit`
 
@@ -175,7 +186,9 @@ Edits the patient specified by the index number used in the patient list panel.
 
 Format: `edit INDEX {Prefix}/{Parameter}...`
 
-The prefixes and their respective parameters are as follows:
+<details>
+<summary><h4> The prefixes and their respective parameters are as follows: </h4></summary>
+
 
 | Status  | Prefix | Parameter                               | Restrictions                                                                |
 |---------|--------|-----------------------------------------|-----------------------------------------------------------------------------|
@@ -202,38 +215,50 @@ The prefixes and their respective parameters are as follows:
   cumulative.
 * You can remove all the patient’s medications by typing `m/` without specifying any medication after it.
 * To remove upcoming appointments, just type `ua/` without specifying any date after it.
+</details>
 
+#### Upon Execution
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
-![Edit Command Result Box](images/ug-images/editCommandResultBox.png)
+![Edit Command Result Box](images/ug-images/editCommand/editCommandResultBox.png)
 
-Examples:
+If not, please follow the error message given and format above to enter the correct command.
+
+<details>
+<summary><h4> Examples: </h4></summary> 
 
 * `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567`
   and `johndoe@example.com` respectively.
-  ![edit John Doe Result](images/ug-images/editJohnDoeResult.png)
-<br>
+  ![edit John Doe Result](images/ug-images/editCommand/editJohnDoeResult.png)
+
 
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
-  ![edit Betsy Crower Result](images/ug-images/editBetsyCrowerResult.png)
-
-
-#### GUI Integration:
-* The individual fields on the Detailed Patient View Panel are clickable to streamline the editing process.
-* e.g.: If the first patient is `Alex Yeoh` Click on his name will update the Command Input to `edit 1 n/`.
+  ![edit Betsy Crower Result](images/ug-images/editCommand/editBetsyCrowerResult.png)
+</details>
 
 ### Deleting a patient : `delete`
 
 Deletes the patient specified by the index number used in the patient list panel.
 
+#### Upon Execution
+If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
+![Edit Command Result Box](images/ug-images/deleteCommand/deleteCommandResultBox.png)
+
+If not, please follow the error message given and format above to enter the correct command.
+
 Format: `delete INDEX`
 
 * The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
+<details>
+<summary><h4> Examples: </h4></summary>
 
 * `list` followed by `delete 2` deletes the 2nd patient in checkUp.
+![Delete John Doe](images/ug-images/deleteCommand/deleteJohnDoeCommandResult.png)
+
+
 * `get /n Betsy` followed by `delete 1` deletes the 1st patient displayed in the patient list panel after the `get /n` 
   command.
+![Delete Betsy Crower](images/ug-images/deleteCommand/deleteBetsyCrowerCommandResult.png)
+</details>
 
 ### Creating past appointment for patient: `appt`
 
@@ -241,7 +266,8 @@ Creates a past appointment for the patient specified by the index number used in
 
 Format: `appt INDEX {Prefix}/{Parameter}...`
 
-The prefixes and their respective parameters are as follows:
+<details>
+<summary><h4> The prefixes and their respective parameters are as follows: </h4></summary>
 
 | Status  | Prefix | Parameter             | Restrictions                                  |
 |---------|--------|-----------------------|-----------------------------------------------|
@@ -249,12 +275,22 @@ The prefixes and their respective parameters are as follows:
 | `+`     | on/    | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`). |
 | `+`     | diag/  | DIAGNOSIS             | -                                             |
 | `-` `*` | m/     | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
+</details>
 
-Examples:
+#### Upon Execution
+If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
+![Create Appointment Command Result Box](images/ug-images/apptCommand/apptCommandResultBox.png)
 
-* `get /n John` displays `John` at index 1 and `John Doe` at index 2.
+If not, please follow the error message given and format above to enter the correct command.
+
+<details>
+<summary><h4> Examples: </h4></summary>
+
+* `get /n John` displays `John Doe` at index 1 and `John` at index 2.
 * Following this, `appt 1 on/12-06-2022 diag/Common cold, viral flu m/Panadol m/Lozenges` will create a past appointment
-  for `John`.
+  for `John Doe`.
+![Create Appointment for John Doe](images/ug-images/apptCommand/apptJohnDoeCommandResult.png)
+</details>
 
 ### Deleting past appointment for patient: `delappt`
 
@@ -264,10 +300,50 @@ Format: `delappt INDEX`
 
 * The index **must be a positive integer**, eg. 1, 2, 3...
 
-Examples:
+#### Upon Execution
+If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
+![Delete Appointment Command Result Box](images/ug-images/delapptCommand/delapptCommandResultBox.png)
 
-* `get /n John` displays `John` at index 1 and `John Doe` at index 2.
-* Following this, `delappt 1` will remove `John`'s most recent past appointment.
+If not, please follow the error message given and format above to enter the correct command.
+
+<details>
+<summary><h4> Examples: </h4></summary>
+
+* `get /n John` displays `John Doe` at index 1 and `John` at index 2.
+* Following this, `delappt 1` will remove `John Doe`'s most recent past appointment.
+![Delete Appointment for John Doe](images/ug-images/delapptCommand/delapptJohnDoeCommandResult.png)
+</details>
+
+### Consulting a patient: `consult`
+Creates a past appointment for the patient on the current date. If the patient has an upcoming appoint for the current 
+date, complete it and clear the upcoming appointment field.
+
+Format: `consult INDEX {Prefix}/{Parameter}...`
+
+<details>
+<summary><h4> The prefixes and their respective parameters are as follows: </h4></summary>
+
+| Status  | Prefix | Parameter             | Restrictions                                  |
+|---------|--------|-----------------------|-----------------------------------------------|
+| `+`     |        | INDEX                 | Positive integer only.                        |
+| `+`     | diag/  | DIAGNOSIS             | -                                             |
+| `-` `*` | m/     | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
+</details>
+
+#### Upon Execution
+If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
+![Consult Command Result Box](images/ug-images/consultCommand/consultCommandResultBox.png)
+
+If not, please follow the error message given and format above to enter the correct command.
+
+<details>
+<summary><h4> Examples: </h4></summary>
+
+* Assume `Alex Yeoh` is currently the first displayed person.
+* `consult 1 diag/Migraine m/Panadol` will create a past appointment for `Alex Yeoh` for the current date and also 
+* clear his upcoming appointment which was scheduled for the current date.
+  ![Consult Alex Yeoh](images/ug-images/consultCommand/consultAlexYeohCommandResult.png)
+</details>
 
 ---
 ## Retrieving Patient Info
@@ -281,8 +357,15 @@ Format: `list`
 * This command resets any filters applied via the `get` command below.
 
 ### Locating patients: `get`
+Finds patients based on the filters and keywords you input.
 
-#### by name: `/n`
+Format `get /PREDICATE [KEYWORDS]`
+
+<details>
+<summary><h4> The filters you can use to get the patients by are as follows: </h4></summary>
+
+<details>
+<summary><h4> by name: `/n` </h4></summary>
 
 Finds patients whose names contain any of the given keywords.
 
@@ -291,16 +374,20 @@ Format: `get /n NAME`
 * The search is case-insensitive. e.g. `get /n hans` matches `get /n Hans`
 * The order of the keywords does not matter. e.g. `get /n Hans Bo` matches `get /n Bo Hans`
 * Only full words will be matched e.g. `get /n Han` will not match `get /n Hans`
-* Patients with names that match at least one keyword will be displayed. e.g. `get /n Hans Bo` will display 
+* Patients with names that match at least one keyword will be displayed. e.g. `get /n Hans Bo` will display
   `Hans Gruber` and `Bo Yang`
 
-Examples:
+<details>
+<summary><h4> Examples: </h4></summary>
 
 * `get /n john` displays `john` and `John Doe`
 * `get /n alex david` displays `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/ug-images/getByNameAlexDavidResult.png)
+  ![result for 'find alex david'](images/ug-images/getCommand/getByNameAlexDavidResult.png)
+</details>
+</details>
 
-#### by next-of-kin data: `/nok`
+<details>
+<summary><h4>by next-of-kin data: `/nok`</h4></summary>
 
 Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
 
@@ -310,8 +397,10 @@ Format: `get /nok PATIENT_NAME`
 * The order of the keywords does not matter. e.g. `get /nok Hans Bo` matches `get /nok Bo Hans`
 * Patients with names that match at least one keyword will have their next-of-kin details displayed. e.g.
   `get /nok Hans Bo` will display `Sarar, 12345678, Mom`
+</details>
 
-#### by hospital wing: `/hw`
+<details>
+<summary><h4> by hospital wing: `/hw` </h4></summary>
 
 Finds all the patients in that particular hospital wing.
 
@@ -319,45 +408,50 @@ Format: `get /hw HOSPITAL_WING`
 
 * `HOSPITAL_WING` only allows the following values: South, North, West, East.
 * The search is case-insensitive. e.g `get /hw souTh` matches `get /hw South`
-* Only fully inputted values will be used. e.g. `get /hw South No` matches `get /hw south` as `No` does not match 
+* Only fully inputted values will be used. e.g. `get /hw South No` matches `get /hw south` as `No` does not match
   South, North, West or East.
 * `get /hw south /hw north` matches `get /hw south north`.
 * All the patients in that hospital wing will be displayed. e.g. `get /hw SOUTH` will display `John` `Peter` `Mary`
+</details>
 
-#### by floor number: `/fn`
+<details>
+<summary><h4> by floor number: `/fn` </h4></summary>
 
 Finds all the patients in that particular floor number.
 
 Format: `get /fn FLOOR_NUMBER`
 
-* `FLOOR_NUMBER` only allows positive integers. 
+* `FLOOR_NUMBER` only allows positive integers.
 * All the patients in that floor number will be displayed. e.g. `get /fn 2` will display `John` `Peter` `Mary`
 * Multiple `FLOOR_NUMBER` can be inputted. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor
 * `get /fn 1 /fn 3` matches `get /fn 1 3`.
+</details>
 
-
-
-#### by ward number: `/wn`
+<details>
+<summary><h4>by ward number: `/wn`</h4></summary>
 
 Finds all the patients in that particular ward number.
 
 Format: `get /wn WARD_NUMBER`
 
 * All the patients in that ward number will be displayed. e.g. `get /wn D12` will display `John` `Peter` `Mary`
-* Multiple `WARD_NUMBER` can be inputted. e.g. `get /wn D001 E301` will display all patients staying in the ward number 
+* Multiple `WARD_NUMBER` can be inputted. e.g. `get /wn D001 E301` will display all patients staying in the ward number
   D001 and E301.
-* `get /wn D12 /wn E13` matches `get /wn D12 E13`. 
+* `get /wn D12 /wn E13` matches `get /wn D12 E13`.
+</details>
 
-
-#### by medication: `/m`
+<details>
+<summary><h4>by medication: `/m`</h4></summary>
 
 Finds all the patients by medication.
 
 Format: `get /m MEDICATION`
 
 e.g. `get /m ibuprofen` displays `John` `Peter` `Mary`
+</details>
 
-#### by patient type: `/inp`
+<details>
+<summary><h4>by patient type: `/inp`</h4></summary>
 
 Finds all the inpatients in checkUp.
 
@@ -365,8 +459,10 @@ Format: `get /inp`
 
 Example:
 * `get /inp` displays `Alex`, `Charlotte` and `Roy`
+</details>
 
-#### by patient type: `/outp`
+<details>
+<summary><h4> by patient type: `/outp` </h4></summary> 
 
 Finds all the outpatients in checkUp.
 
@@ -374,8 +470,10 @@ Format: `get /outp`
 
 Example:
 * `get /outp` displays `Bernice`, `David` and `Irfan`
+</details>
 
-#### by appointments: `/appt`
+<details>
+<summary><h4> by appointments: `/appt` </h4></summary>
 
 Finds all past appointments of a patient specified by the index number used in the patient list panel.
 
@@ -386,18 +484,28 @@ Format: `get /appt INDEX`
 Example: `get /appt 3` will display <br>
 `On: 12 Jun 2022; Diagnosis: Common viral flu; Prescribed Medication: [lozenges][panadol]`  <br>
 `On: 01 Jan 2001; Diagnosis: headache, medicine given for 3 days; Prescribed Medication: [ibuprofen]`
+</details>
 
 
-#### by appointment date: `/appton`
+<details>
+<summary><h4> by appointment date: `/appton` </h4></summary>
 
 Finds all the patients that have an appointment on a particular date.
 
 Format: `get /appton APPOINTMENT_DATE`
 
 * `APPPOINTMENT_DATE` must be in `dd-MM-yyyy` format.
-* The appointment date refers to date the patient has an appointment with the clinic / hospital. 
-* All the patients having appointments on that date will be displayed. e.g. `get /appton 12-12-2020` will display 
+* The appointment date refers to date the patient has an appointment with the clinic / hospital.
+* All the patients having appointments on that date will be displayed. e.g. `get /appton 12-12-2020` will display
   `John` `Peter` `Mary`
+</details>
+</details>
+
+#### Upon Execution
+If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
+![Get Appointment Command Result Box](images/ug-images/getCommand/getCommandResultBox.png)
+
+If not, please follow the error message given and format above to enter the correct command.
 
 ### Obtaining total patient count: `count`
 
@@ -422,10 +530,20 @@ Format: `view INDEX`
 
 * The index **must be a positive integer**, eg. 1, 2, 3...
 
-#### GUI Integration:
-* On startup, the Detailed Patient View will always default to the first patient if present. 
-* It will also focus onto the most recent patient added / edited.
-* Clicking on patients in the patient List Panel will automatically open their info in the Detailed Patient View Panel.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+On startup, the Detailed Patient View will always default to the first patient if present.
+<br>
+It will also automatically focus onto the most recent patient added / edited.
+<br>
+When the currently viewed person is removed, it defaults to the first patient if present, and 
+empty else.
+</div>
+
+#### Upon Execution
+If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
+![View Appointment Command Result Box](images/ug-images/viewCommand/viewCommandResultBox.png)
+
+If not, please follow the error message given and format above to enter the correct command.
 
 ### Clearing all entries : `clear`
 
@@ -462,8 +580,29 @@ any data created or deleted from the application!
 * The data file can be found in `data/checkup.json` in the home folder where checkUp's `jar` file is stored.
 * Care needs to be taken to follow data storage formats properly, or else the application will **reject** the data file.
 
+### GUI Interaction
+Although CheckUp is built as a Command Line Interface application, it also supports the following GUI interactions:
+
+#### Person List Panel:
+* Clicking on patients in the Patient List Panel will automatically open their info in the Patient Details Panel.
+<details>
+<summary> Example: </summary>
+* Clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel
+
+![Clicking on Patient List Panel Gif](images/ug-images/patientListPanel.gif)
+</details>
+
+#### Person Details Panel:
+* Clicking on the fields in the Patient Details Panel will automatically prepare them for editing in the Command Input Box.
+<details>
+<summary> Example: </summary>
+* If the patient is `Roy Balakrishnan`, clicking on his name will set the text in the Command Input Box to `edit 1 n/`.
+
+![Clicking on Patient View Panel Gif](images/ug-images/patientViewPanel.gif)
+</details>
+
 ### Keyboard Shortcuts
-* Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
+Similar to other CLI applications, CheckUp supports a few keyboard shortcuts:
   * Navigate past commands with the `UP` and `DOWN` arrow keys.
   * Clear the text currently in the command box with `Ctrl + Shift + C` .
 
