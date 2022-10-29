@@ -1,5 +1,6 @@
 package seedu.taassist.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.taassist.testutil.Assert.assertThrows;
@@ -20,6 +21,7 @@ import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.moduleclass.exceptions.ModuleClassNotFoundException;
 import seedu.taassist.model.stubs.ModelStub;
+import seedu.taassist.model.stubs.ModelStubWithNoModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
 
@@ -27,7 +29,7 @@ class AssignCommandTest {
 
     @Test
     public void execute_noModuleClass_throwsCommandException() {
-        ModelStubWithNoModuleClasses modelStub = new ModelStubWithNoModuleClasses();
+        ModelStubWithNoModuleClass modelStub = new ModelStubWithNoModuleClass();
         List<Index> indices = new ArrayList<>();
 
         AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
@@ -105,27 +107,6 @@ class AssignCommandTest {
     }
 
     /**
-     * A Model stub that pretends to have no module classes.
-     */
-    private static class ModelStubWithNoModuleClasses extends ModelStub {
-
-        @Override
-        public boolean hasModuleClass(ModuleClass moduleClass) {
-            return false;
-        }
-
-        @Override
-        public ObservableList<ModuleClass> getModuleClassList() {
-            return FXCollections.observableArrayList();
-        }
-
-        @Override
-        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
-            throw new ModuleClassNotFoundException();
-        }
-    }
-
-    /**
      * A Model stub with one filtered student. Always says it has a module.
      */
     private static class ModelStubWithOneStudent extends ModelStub {
@@ -150,6 +131,7 @@ class AssignCommandTest {
 
         @Override
         public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
             return moduleClass;
         }
     }
@@ -184,6 +166,7 @@ class AssignCommandTest {
 
         @Override
         public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
             return moduleClass;
         }
     }

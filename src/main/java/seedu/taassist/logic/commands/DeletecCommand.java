@@ -47,7 +47,8 @@ public class DeletecCommand extends Command {
 
         for (ModuleClass moduleClass : moduleClasses) {
             if (model.hasModuleClass(moduleClass)) {
-                existingClasses.add(moduleClass);
+                ModuleClass existingModuleClass = model.getModuleClassWithSameName(moduleClass);
+                existingClasses.add(existingModuleClass);
             } else {
                 nonExistentClasses.add(moduleClass);
             }

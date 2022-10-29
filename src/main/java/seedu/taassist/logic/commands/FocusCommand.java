@@ -39,7 +39,9 @@ public class FocusCommand extends Command {
         }
 
         model.enterFocusMode(targetClass);
-        return new CommandResult(String.format(MESSAGE_ENTERED_FOCUS_MODE, targetClass), false, false, true, false);
+        String focusedClassName = model.getFocusedClass().getClassName();
+        return new CommandResult(String.format(MESSAGE_ENTERED_FOCUS_MODE, focusedClassName),
+                false, false, true, false);
     }
 
     @Override

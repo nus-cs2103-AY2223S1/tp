@@ -35,7 +35,7 @@ class FocusCommandTest {
 
         assertEquals(String.format(FocusCommand.MESSAGE_ENTERED_FOCUS_MODE, moduleClass),
                 commandResult.getFeedbackToUser());
-        assertTrue(modelStub.isFocusedModuleClass(moduleClass));
+        assertEquals(modelStub.getFocusedClass(), moduleClass);
     }
 
     @Test
@@ -96,8 +96,9 @@ class FocusCommandTest {
             focusedClass = classToFocus;
         }
 
-        public boolean isFocusedModuleClass(ModuleClass moduleClass) {
-            return this.focusedClass.isSame(moduleClass);
+        @Override
+        public ModuleClass getFocusedClass() {
+            return focusedClass;
         }
     }
 }

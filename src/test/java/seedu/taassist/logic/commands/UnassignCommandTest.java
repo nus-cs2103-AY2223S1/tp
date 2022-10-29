@@ -19,6 +19,7 @@ import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.stubs.ModelStub;
+import seedu.taassist.model.stubs.ModelStubWithNoModuleClass;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
 
@@ -26,7 +27,7 @@ class UnassignCommandTest {
 
     @Test
     public void execute_noModuleClass_throwsCommandException() {
-        ModelStubWithNoModuleClasses modelStub = new ModelStubWithNoModuleClasses();
+        ModelStubWithNoModuleClass modelStub = new ModelStubWithNoModuleClass();
         List<Index> indices = new ArrayList<>();
 
         UnassignCommand unassignCommand = new UnassignCommand(indices, CS1101S);
@@ -113,22 +114,6 @@ class UnassignCommandTest {
     }
 
     /**
-     * A Model stub that pretends to have no module classes.
-     */
-    private class ModelStubWithNoModuleClasses extends ModelStub {
-
-        @Override
-        public boolean hasModuleClass(ModuleClass moduleClass) {
-            return false;
-        }
-
-        @Override
-        public ObservableList<ModuleClass> getModuleClassList() {
-            return FXCollections.observableArrayList();
-        }
-    }
-
-    /**
      * A Model stub with one filtered student with an assigned class: CS1101S.
      * Always says it has a module.
      */
@@ -154,6 +139,11 @@ class UnassignCommandTest {
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
             return true;
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            return moduleClass;
         }
     }
 
@@ -189,6 +179,11 @@ class UnassignCommandTest {
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
             return true;
+        }
+
+        @Override
+        public ModuleClass getModuleClassWithSameName(ModuleClass moduleClass) {
+            return moduleClass;
         }
     }
 }
