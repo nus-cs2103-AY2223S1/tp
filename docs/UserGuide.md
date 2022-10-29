@@ -12,10 +12,11 @@ title: User Guide
 having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient management
 tasks done faster than traditional GUI apps.
 
-checkUp stores patient details directly on your device, allowing you to keep track of your patients' details without an
-internet connection. You can store details such as patient name, next-of-kin details, phone number, email, medical history, upcoming
-appointments and past appointments. You can also add medication tags to your patients to keep track of their long-term
-medication history.
+checkUp is an app made for healthcare establishments. It allows clinics to track relevant details for their patients and
+hospitals to track details related a patient's stay at the hospital. Without an internet connection, checkUp stores
+patient details such as patient name, next-of-kin details, phone number, email, medical history, upcoming appointments 
+and past appointments locally on your device. Medication tags can be added to your patients to keep track of their 
+long-term medication history.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -52,7 +53,7 @@ medication history.
 
 | Term              | Definition                                                                      |
 |-------------------|---------------------------------------------------------------------------------|
-| **Appointment**   | An arrangement to consult the doctor at a particular time.                      |
+| **Appointment**   | An arrangement to consult the doctor at a particular date.                      |
 | **Diagnosis**     | The identification of diseases by the examination of symptoms and signs.        |                                                                                                                                                                                                                                                                                    |
 | **Floor Number**  | The floor where the inpatient is on.                                            |
 | **Hospital Wing** | The section of the hospital where the inpatient is in.                          |
@@ -72,7 +73,7 @@ medication history.
 | :bulb:     | Tip that may be useful to know.         |
 | :notebook: | Information that may be useful to know. |
 | `+`        | Required field.                         |
- | `-`        | Optional field.                         |
+| `-`        | Optional field.                         |
 | `*`        | Multiple inputs are allowed.            |
 
 ## Features
@@ -116,25 +117,30 @@ Format: `add {Prefix}/{Parameter}…​`
 
 The prefixes and their respective parameters are as follows:
 
-| Status  | Prefix | Parameter                               | Description                                                                |
-|---------|--------|-----------------------------------------|----------------------------------------------------------------------------|
-| `+`     | n/     | NAME                                    | Patient's name.                                                            |
-| `+`     | p/     | PHONE                                   | Patient's phone number.                                                    |
-| `+`     | e/     | EMAIL                                   | Patient's email address.                                                   |
-| `+`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | Patient's next-of-kin's name, relationship and contact number.             |
-| `+`     | pt/    | PATIENT_TYPE                            | Patient's type. Can be either `inpatient` or `outpatient`.                 |
-| `-`     | hw/    | HOSPITAL_WING                           | Patient's hospital wing. Can be either `north`, `south`, `east` or `west`. |
-| `-`     | fn/    | FLOOR_NUMBER                            | Patient's floor number.                                                    |
-| `-`     | wn/    | WARD_NUMBER                             | Patient's ward number.                                                     |
-| `-`     | ua/    | UPCOMING_APPOINTMENT                    | Patient's upcoming appointment.                                            |
-| `-` `*` | m/     | MEDICATION                              | Patient's long-term medication.                                            |
+| Status  | Prefix | Parameter                               | Restrictions                                                                           |
+|---------|--------|-----------------------------------------|----------------------------------------------------------------------------------------|
+| `+`     | n/     | NAME                                    | Alphanumeric characters and spaces only.                                               |
+| `+`     | p/     | PHONE                                   | Numbers only and at least 3 digits.                                                    |
+| `+`     | e/     | EMAIL                                   | **local-part**@**domain**. See below for more information.                             |
+| `+`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets only. <br/>CONTACT: Numbers only and at least 3 digits. |
+| `+`     | pt/    | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                            |
+| `-`     | hw/    | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.                                             |
+| `-`     | fn/    | FLOOR_NUMBER                            | Positive integer only.                                                                 |
+| `-`     | wn/    | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.                                      |
+| `-`     | ua/    | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                          |
+| `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                               |
+
+* **local-part**: Alphanumeric characters and `+`, `_`, `.`, `-` only.
+* **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only 
+    and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo` 
+    and before `gmail` is empty).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of medications (including 0)!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If patient type is outpatient, user should not supply any values to
+If patient type is outpatient, user should not input the prefixes and any value for
 hospital wing, floor number, and ward number. 
 </div>
 
@@ -149,34 +155,35 @@ If patient type is outpatient: <br>
 
 ### Editing a patient: `edit`
 
-Edits a patient in checkUp.
+Edits the patient specified by the index number used in the patient list panel.
 
 Format: `edit INDEX {Prefix}/{Parameter}...`
 
 The prefixes and their respective parameters are as follows:
 
-| Status  | Prefix | Parameter                               | Description                                                                |
-|---------|--------|-----------------------------------------|----------------------------------------------------------------------------|
-| `+`     |        | INDEX                                   | Index of the patient in the displayed patient list.                        |
-| `-`     | n/     | NAME                                    | Patient's name.                                                            |
-| `-`     | p/     | PHONE                                   | Patient's phone number.                                                    |
-| `-`     | e/     | EMAIL                                   | Patient's email address.                                                   |
-| `-`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | Patient's next-of-kin's name, relationship and contact number.             |
-| `-`     | pt/    | PATIENT_TYPE                            | Patient's type. Can be either `inpatient` or `outpatient`.                 |
-| `-`     | hw/    | HOSPITAL_WING                           | Patient's hospital wing. Can be either `north`, `south`, `east` or `west`. |
-| `-`     | fn/    | FLOOR_NUMBER                            | Patient's floor number.                                                    |
-| `-`     | wn/    | WARD_NUMBER                             | Patient's ward number.                                                     |
-| `-`     | ua/    | UPCOMING_APPOINTMENT                    | Patient's upcoming appointment.                                            |
-| `-` `*` | m/     | MEDICATION                              | Patient's long-term medication.                                            |
+| Status  | Prefix | Parameter                               | Restrictions                                                                           |
+|---------|--------|-----------------------------------------|----------------------------------------------------------------------------------------|
+| `+`     |        | INDEX                                   | Positive integer only.                                                                 |
+| `-`     | n/     | NAME                                    | Alphanumeric characters and spaces only.                                               |
+| `-`     | p/     | PHONE                                   | Numbers only and at least 3 digits.                                                    |
+| `-`     | e/     | EMAIL                                   | **local-part**@**domain**. See below for more information.                             |
+| `-`     | nok/   | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets only. <br/>CONTACT: Numbers only and at least 3 digits. |
+| `-`     | pt/    | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                            |
+| `-`     | hw/    | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.                                             |
+| `-`     | fn/    | FLOOR_NUMBER                            | Positive integer only.                                                                 |
+| `-`     | wn/    | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.                                      |
+| `-`     | ua/    | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                          |
+| `-` `*` | m/     | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                               |
 
-* Edits the details of the patient at the specified `INDEX`. The index refers to the index number shown in the
-  displayed patient list. The index **must be a positive integer** 1, 2, 3, ...
+* **local-part**: Alphanumeric characters and `+`, `_`, `.`, `-` only.
+* **domain**: Consists of domain labels separated by `-` or `.`. Domain labels consist of alphanumeric characters only
+  and each domain label must be present (i.e. `johndoe@yahoo-.gmail` is not allowed as the domain label after `yahoo`
+  and before `gmail` is empty).
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing medication, the existing medication of the patient will be removed i.e adding of medication is not
+* When editing medication, the existing medication of the patient will be removed i.e. adding of medication is not
   cumulative.
 * You can remove all the patient’s medications by typing `m/` without specifying any medication after it.
-* When editing upcoming appointment dates, the date must be in `dd-MM-yyyy` format, eg. `12-06-2022`.
 * To remove upcoming appointments, just type `ua/` without specifying any date after it.
 
 Examples:
@@ -191,12 +198,10 @@ Examples:
 
 ### Deleting a patient : `delete`
 
-Deletes the specified patient from the address book.
+Deletes the patient specified by the index number used in the patient list panel.
 
 Format: `delete INDEX`
 
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -206,25 +211,18 @@ Examples:
 
 ### Creating past appointment for patient: `appt`
 
-Creates a past appointment for the specified patient in checkUp.
+Creates a past appointment for the patient specified by the index number used in the patient list panel.
 
 Format: `appt INDEX {Prefix}/{Parameter}...`
 
 The prefixes and their respective parameters are as follows:
 
-| Status  | Prefix | Parameter                               | Description                                            |
-|---------|--------|-----------------------------------------|--------------------------------------------------------|
-| `+`     |        | INDEX                                   | Index of the patient in the displayed patient list.    |
-| `+`     | on/    | DATE                                    | Date of the appointment.                               |
-| `+`     | diag/  | DIAGNOSIS                               | Diagnosis of the patient.                              |
-| `-` `*` | m/     | MEDICATION                              | Medication (long or short term) prescribed to patient. |
-
-* Past appointment is created for a patient at the specified `INDEX`.
-* The index refers to the index number showed in the displayed patient list.
-* The index **must be a positive integer**, eg. 1, 2, 3...
-* The date can only be input in the `dd-MM-yyyy` format.
-* The `DIAGNOSIS` field **cannot be empty**.
-* The `MEDICATION` field(s) is/are optional. Use multiple `m/` prefixes if multiple medications are prescribed.
+| Status  | Prefix | Parameter             | Restrictions                                  |
+|---------|--------|-----------------------|-----------------------------------------------|
+| `+`     |        | INDEX                 | Positive integer only.                        |
+| `+`     | on/    | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`). |
+| `+`     | diag/  | DIAGNOSIS             | -                                             |
+| `-` `*` | m/     | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
 
 Examples:
 
@@ -234,12 +232,10 @@ Examples:
 
 ### Deleting past appointment for patient: `delappt`
 
-Deletes the specified patient most recent past appointment in checkUp.
+Deletes the most recent past appointment of the patient specified by the index number used in the patient list panel.
 
 Format: `delappt INDEX`
 
-* Past appointment is removed for a patient at the specified `INDEX`.
-* The index refers to the index number showed in the displayed patient list.
 * The index **must be a positive integer**, eg. 1, 2, 3...
 
 Examples:
@@ -352,9 +348,13 @@ Example:
 
 #### by appointments: `/appt`
 
-Finds all the appointments of a certain patient.
+Finds all past appointments of a certain patient.
 
 Format: `get /appt INDEX`
+
+* Returns the past appointments of the patient at the specified `INDEX`.
+* The index refers to the index number shown in the patient list panel.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Example: `get /appt 3` will return <br>
 `On: 12 Jun 2022; Diagnosis: Common viral flu; Prescribed Medication: [lozenges][panadol]`  <br>
@@ -393,7 +393,7 @@ Displays the detailed information of a patient in the Detailed Patient View Pane
 Format: `view INDEX`
 
 * Displays the detailed information of a patient at the specified `INDEX`.
-* The index refers to the index number showed in the displayed patient list.
+* The index refers to the index number showed in the patient list panel.
 * The index **must be a positive integer**, eg. 1, 2, 3...
 
 #### GUI Integration:
