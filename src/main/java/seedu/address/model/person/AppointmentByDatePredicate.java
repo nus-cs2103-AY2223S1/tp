@@ -35,15 +35,15 @@ public class AppointmentByDatePredicate implements Predicate<Person> {
         }
 
         if (isPresentUpcomingAppointment(person)) {
-            hasMatchUpcomingAppointments = appointments.stream().anyMatch(
-                   keyword -> person.getUpcomingAppointment().stream()
-                            .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
+            hasMatchUpcomingAppointments = appointments.stream()
+                    .anyMatch(appointment -> appointment.compareTo(
+                            person.getUpcomingAppointment().get().getDate()) == 0);
         }
         return hasMatchUpcomingAppointments || hasMatchPastAppointments;
     }
 
     private boolean isPresentUpcomingAppointment(Person person) {
-        return person.getUpcomingAppointment().get().value != null;
+        return !person.getUpcomingAppointment().get().toString().equals("Upcoming Appointment Date: None");
     }
 
     private boolean isPresentPastAppointment(Person person) {
