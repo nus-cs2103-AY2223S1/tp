@@ -131,7 +131,7 @@ slot, and doctor.
 |-----|--------|--------------|-----------------------------------------------------------------------------------------|
 | `*` | `n/`   | Name         | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
 | `*` | `s/`   | Slot         | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
-| `*` | `d/`   | Doctor name  | `local-part@domain`                                                                     |
+| `*` | `d/`   | Doctor name  | Non-empty alphanumeric characters and spaces                                            |
 | `*` | `t/`   | Medical test | Non-empty characters                                                                    |
 
 Notes on symbols in first column:
