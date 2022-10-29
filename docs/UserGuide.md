@@ -595,6 +595,21 @@ Exit the program.
 
 Format: `exit`
 
+#### 7.4.3 Clear *MyInsuRec*: `clear`
+
+Clear all data in *MyInsuRec*.
+
+Format: `clear`
+
+Use Case:
+1. *MyInsuRec* comes with default data to help you get started with using the application. But, you  may want to clear this data in order to add your own clients and meetings instead. So, this commands allows you to clear default data shipped with *MyInsuRec*.
+2. Restarting the app from an empty version.
+
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+This is a one-shot way of removing all data stored in *MyInsuRec*.
+Only clear when you are sure you do not need the data anymore, or else make a [backup](#553-creating-and-using-data-file-backups).
+</div>
+
 ### 7.5 Others
 
 #### 7.5.1 Save the data
@@ -622,11 +637,19 @@ MyInsuRec comes with light and dark color schemes. To change between the two, si
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app, then overwrite the **myinsurec.json** file created by the app with the version of the file from the previous computer. The **myinsurec.json** is located in **[JAR file location]/data/myinsurec.json**.
 
+**Q**: Where is my data file located?<br>
+**A**: The data file is located at `[JAR file location]/data/myinsurec.json`.
+
 **Q**: I accidentally closed the app, will my data still be there?<br>
 **A**: Yes, your data is saved automatically after every action.
 
 **Q**: My computer does not recognise the file type jar. How do I open the app?<br>
 **A**: Check if your computer already has Java 11 or above installed from [8.1 Checking your system's Java version](#101-checking-your-systems-java-version). If not, follow the instructions to install Java.
+
+**Q**: Why can't I add a product to my client?<br>
+**A**: First check that the product has been created use the [`listProduct`](#732-list-products-listproduct) command.
+Create the product suing the [`addProduct`](#731-add-product-addproduct) command if it is not there.
+Add the product to the client using the [`editClient`](#715-edit-client-editclient)  or [`addClient`](#711-add-client-addclient) command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -649,6 +672,8 @@ MyInsuRec comes with light and dark color schemes. To change between the two, si
 | [**Delete product**](#733-delete-product-delproduct) | `delProduct i/INDEX`                                                                           | • `delProduct i/1`                                                                                                                               |
 | [**Help**](#741-view-help-help)                      | `help`                                                                                         | `help`                                                                                                                                           |
 | [**Exit**](#742-exit-myinsurec-exit)                 | `exit`                                                                                         | `exit`                                                                                                                                           |
+| [**Clear**](#743-clear-myinsurec-clear)              | `clear`                                                                                        | `clear`                                                                                                                                          |
+
 
 --------------------------------------------------------------------------------------------------------------------
 
