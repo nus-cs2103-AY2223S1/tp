@@ -128,7 +128,9 @@ public class TaAssist implements ReadOnlyTaAssist {
      */
     public void addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
-        moduleClasses.add(moduleClass);
+        if (!moduleClasses.contains(moduleClass)) {
+            moduleClasses.add(moduleClass);
+        }
     }
 
     /**

@@ -25,7 +25,7 @@ public class DeletesCommandParser implements Parser<DeletesCommand> {
                     DeletesCommand.MESSAGE_USAGE));
         }
 
-        Set<Session> sessions = ParserUtil.parseSessions(argMultimap.getAllValues(PREFIX_SESSION));
+        Set<Session> sessions = ParserUtil.parseSessions(argMultimap.getAllValuesIgnoreCase(PREFIX_SESSION));
 
         return new DeletesCommand(sessions);
     }

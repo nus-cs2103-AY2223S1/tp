@@ -25,7 +25,7 @@ public class AddcCommandParser implements Parser<AddcCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddcCommand.COMMAND_WORD,
                     AddcCommand.MESSAGE_USAGE));
         }
-        List<String> moduleClassNames = argMultimap.getAllValues(PREFIX_MODULE_CLASS);
+        List<String> moduleClassNames = argMultimap.getAllValuesIgnoreCase(PREFIX_MODULE_CLASS);
         Set<ModuleClass> moduleClasses = ParserUtil.parseModuleClasses(moduleClassNames);
         return new AddcCommand(moduleClasses);
     }
