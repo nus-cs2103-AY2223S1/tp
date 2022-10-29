@@ -27,6 +27,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicolelim02&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=zoom&zA=nicolelim02&zR=AY2223S1-CS2103T-T17-2%2Ftp%5Bmaster%5D&zACS=209.4038267875126&zS=2022-09-16&zFS=&zU=2022-10-21&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
 * **Project management**:
+  * Managed the release of `v1.3.1` on GitHub.
 
 * **Enhancements to existing feature**: Modify the design of the Help Window.
   * What is does: Includes information regarding the commands usage without opening the user guide. Instead of having a `copyButton`, the user guide link is also converted into a hyperlink that redirects users to the user guide on their browser when clicked.
@@ -59,5 +60,6 @@ Given below are my contributions to the project.
       * Add implementation details for `edit` and `profile` features, together with UML diagrams.
 
 * **Community**:
+  * PRs reviewed (with non-trivial review comments): [\#41](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/41), [\#73](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/73), [\#93](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/93).
 
 * **Tools**:
