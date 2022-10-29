@@ -36,7 +36,11 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        String description = argMultimap.getValue(PREFIX_DESCRIPTION).get().replaceAll("\\s+", " ");
+
+        if (description.isEmpty()) {
+            throw new ParseException("Task description provided is empty. Try again with a valid task description !");
+        }
 
         if (!isGenericLocalDateString(argMultimap.getValue(PREFIX_DEADLINE).get())) {
             throw new ParseException("Date provided is invalid. Try again with yyyy-mm-dd !");
