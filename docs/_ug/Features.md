@@ -16,7 +16,7 @@ FoodRem allows you to track your inventory during your daily operations.
 1. **Filter** your inventory items by name and tag.
 
 ```warning
-FoodRem can hold up to 10,000 items and 100 tags!
+FoodRem can only hold up to 10,000 items and 100 tags!
 ```
 
 ### Inventory Analysis
