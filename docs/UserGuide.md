@@ -12,9 +12,10 @@ title: User Guide
 having the benefits of a Graphical User Interface (GUI). If you can type fast, checkUp can get your patient management
 tasks done faster than traditional GUI apps.
 
-checkUp stores patient details directly on your device, allowing you to keep track of your patients' details without an
-internet connection. You can store details such as patient name, address, phone number, email, medical history, upcoming
-appointments and past appointments. You can also add medication tags to your patients to keep track of their long-term
+checkUp is an app made for healthcare establishments. It allows clinics to track relevant details for their patients and 
+hospitals to track details related a patient's stay at the hospital. Without an internet connection, checkUp stores 
+patient details such as patient name, address, phone number, email, medical history, upcoming appointments and past
+appointments locally on your device. Medication tags can be added to your patients to keep track of their long-term 
 medication history.
 
 --------------------------------------------------------------------------------------------------------------------
