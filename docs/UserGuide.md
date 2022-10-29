@@ -75,8 +75,8 @@ Some commands even have **multiple parameters**, each separated by a space.
 In the example above, notice how the position of the main parameter does not matter.
 This is possible because every parameter has at most one value, so the command is still valid (and correct)!
 
-Also, notice how we have been enclosing some parameter values in quotes (`"` or `'`)—this is only necessary if your value
-contains a space.
+**Also, notice how we have been enclosing some parameter values in quotes (`"` or `'`)—this is only necessary if your value
+contains a space.**
 
 Some parameters are optional. By default all parameters in the command formats we specify are mandatory.
 We will surround **optional parameters** with square brackets (`[]`).
@@ -106,14 +106,15 @@ In this section, we will cover the features of ModtRekt, and introduce the comma
 <div markdown="block" class="alert alert-info"/>
 
 ### General
-`help`
+
+#### Help command: `help`
 
 Shows a message which provides a link to this user guide.
 
 Sample execution of command `help`:
 ![help-message](images/UserGuidePictures/help-message.png)
 
-`exit`
+#### Exit command: `exit`
 
 Exits the application.
 
