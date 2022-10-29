@@ -27,8 +27,16 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 
 **:information_source: Notes about the command format:**<br>
 
-* Texts in UPPER_CASE are arguments provided by the user.
+* Texts in `UPPER_CASE` are arguments provided by the user.
+  * E.g. in `add n/FOOD c/CALORIE t/MEAL_TYPE`, `FOOD`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
 * Arguments in square brackets are optional.
+* The parameters can be in any order.
+  * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
+* Integer values are values between 1 and 2147483647 (inclusive).
+* Commands that require an `INDEX` will only accept positive integer values as the `INDEX`.
+  * E.g. `edit 2147483648` is an invalid command regardless of the inputs provided.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
+  * E.g. `help 123` will be interpreted as `help`.
 
 </div>
 
@@ -63,12 +71,12 @@ Removes a food item from the list of consumed food.
 Format: `delete INDEX`
 
 * Deletes a food item at the specified index.
-* The index **must be a positive** number.
+* The index **must be a positive** integer.
 
 Example:
 
 * `delete 1` deletes the first item in the food list.
-* `list 2022-10-23` followed by `delete 1` will delete the first food item recorded on 23 October 2022.
+* Executing `list 2022-10-23`, then `delete 1` will delete the first food item recorded on 23 October 2022. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
 
 ### Editing a food item : `edit`
 
@@ -78,7 +86,7 @@ Format: `edit INDEX n/UPDATED_FOOD c/CALORIES t/MEAL_TYPE`
 
 * Edits a food item in the list displayed at the specified index.
 * The index refers to the index shown in the displayed food lists.
-* The index **must be a positive** number.
+* The index **must be a positive** integer.
 * Either the `UPDATED_FOOD`, `CALORIES`, or `MEAL_TYPE` must be supplied.
 
 Example:
@@ -86,8 +94,7 @@ Example:
 * `edit 2 n/rice c/300 t/dinner` edits the 2nd food item for dinner to rice with 300 calories.
 * `edit 2 n/noodles` edits the name of 2nd food item to noodles.
 * `edit 2 c/100 n/bread` edits the name and calorie content of the first item to bread and 100 respectively.
-* `list 2022-10-10` followed by `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10
-to sushi.
+* Executing `list 2022-10-10`, then `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10 to sushi. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
 
 ### Listing all foods for a day: `list`
 
@@ -147,9 +154,9 @@ Format: `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE`
 
 * Sets up the user profile using the information provided by the user.
 * `GENDER` can only take 2 values: M or F (case-insensitive).
-* `WEIGHT` and `IDEAL_WEIGHT` can only take on integer values less than 200 (in kg).
-* `HEIGHT` can only take on integer values less than 220 (in cm).
-* `AGE` can only take on integer values (in years).
+* `WEIGHT` and `IDEAL_WEIGHT` can only take on integer values between 10 and 199 (in kg).
+* `HEIGHT` can only take on integer values between 100 and 219 (in cm).
+* `AGE` can only take on integer values between 1 and 99 (in years).
 
 Example:
 
