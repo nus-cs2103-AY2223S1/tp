@@ -1,5 +1,6 @@
 package seedu.address.model.team;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TEAM_NAME_BACKEND;
@@ -17,11 +18,19 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TeamBuilder;
 
-
-
-
-
 public class TeamTest {
+
+    @Test
+    public void emptyTeamConstructor() {
+        Name db = new Name("Database");
+        Team team = new Team(db);
+        assertEquals(team.getName(), db);
+    }
+
+    @Test
+    public void nullTeamNameConstructor_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Team(null));
+    }
 
     @Test
     public void asObservableList_modifyList_throwsPersonNotFoundException() {
