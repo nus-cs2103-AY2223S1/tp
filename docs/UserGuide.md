@@ -243,7 +243,7 @@ guests with any of the specific guests' field.
 This command is typically used when searching for a guest of a **specific characteristic**. 
 This allows you to search through all guests' fields.
 For example, the command `find no` will display all 
-the rooms that have room clean statuses set to "no".
+the rooms that have room clean statuses set to `no`.
 
 #### Format: `find KEYWORD [MORE_KEYWORDS]`
 
