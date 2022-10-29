@@ -147,7 +147,7 @@ Below are some symbols that you may encounter in the User Guide.
 
 ## Features
 
-### Client Commands
+## **Client Commands**
 
 ### Adding a client: `add`
 
@@ -197,7 +197,6 @@ Format: `edit INDEX m/client FIELDS [MORE_FIELDS]...`
 | `FIELDS`  | Refers to the parameters to be changed for the client <br/> - `[n/NAME]` <br/> - `[a/ADDRESS]` <br/> - `[p/PHONE]` <br/> - `[e/EMAIL]`<br/> - `[t/TAG]`            |
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark
-</div>
 
 Examples:
 * `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1<sup>st</sup> client's address with the new input.
@@ -267,7 +266,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Transaction Commands
+## **Transaction Commands**
 
 ### Creating a transaction: `buy` or `sell`
 
@@ -307,19 +306,31 @@ Format: `edit INDEX m/transaction FIELDS [MORE_FIELDS]...`
 | `INDEX`   | - Refers to the index number shown in the display transaction list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
 | `FIELDS`  | - Refers to the parameters to be changed for the entity. <br/> - Parameters allowed: `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`                                                        |
 
+Example:
+
+`edit 1 m/transaction q/100 g/Apples price/1.5`
+
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a transaction.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Deleting a transaction: `delete`
 
 Deletes a `transaction` specified by the index number.
 
-Format: `delete INDEX m/remark`
+Format: `delete INDEX m/transaction`
 
 * `INDEX` refers to the index number shown in the display transaction list. `It must be a positive integer within the range display, and must not contain any signs e.g. +1, -3`.
+
+Example:
+
+`delete 1 m/transaction`
 
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a transaction is an irreversible process! It will be gone forever**: Be very careful here!
+
+[Back to Table of Contents](#table-of-contents)
 
 ### Filtering buy or sell transactions: `filter`
 
@@ -357,7 +368,7 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
-### Remark Commands
+## **Remark Commands**
 
 ### Creating a remark: `remark`
 
@@ -389,6 +400,10 @@ Format: `edit INDEX m/remark REMARK`
 | `INDEX`      | - Refers to the index number shown in the display remark list. <br/> - **Must be a positive integer within the range displayed**<br/>  **- Must not contain any signs** e.g +1, -3, …​ |
 | `REMARK`     | - Refers to the new remark, it is a required field                                                                                                                                     |
 
+Example:
+
+`edit 1 m/remark Client replies very fast`
+
 > <div markdown="span" class="alert alert-warning">:warning:  You must use "view" command first before you can edit a remark.
 
 [Back to Table of Contents](#table-of-contents)
@@ -405,9 +420,13 @@ Format: `delete INDEX m/remark`
 
 > <div markdown="span" class="alert alert-danger">❗ **Deleting a remark is an irreversible process! It will be gone forever**: Be very careful here!
 
+Example:
+
+`delete 1 m/remark`
+
 [Back to Table of Contents](#table-of-contents)
 
-### Miscellaneous Commands
+## Miscellaneous Commands
 
 ### Clearing all entries: `clear`
 
@@ -471,7 +490,7 @@ Example:
 
 [Back to Table of Contents](#table-of-contents)
 
-## Data Storage
+## **Data Storage**
 
 ### Saving the data
 
