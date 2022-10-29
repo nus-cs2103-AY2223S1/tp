@@ -68,7 +68,7 @@ public class TaskCategoryAndDeadlinePredicate implements Predicate<Task> {
     }
 
     public TaskCategory getCategory() {
-        if(this.category.isPresent()) {
+        if (this.category.isPresent()) {
             return this.category.get();
         } else {
             return null;
@@ -76,7 +76,7 @@ public class TaskCategoryAndDeadlinePredicate implements Predicate<Task> {
     }
 
     public TaskDate getDate() {
-        if(this.date.isPresent()) {
+        if (this.date.isPresent()) {
             return this.date.get();
         } else {
             return null;
