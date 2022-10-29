@@ -321,13 +321,29 @@
 .status-bar {
     -fx-border-color: #E5E7EB;
     -fx-border-width: 1 0 0 0;
+    -fx-padding: 2 10 2 10;
+}
+
+.status-bar #saveLocationStatus {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #3F3F46;
+}
+
+.status-bar .command-container {
+    -fx-padding: 5 0 5 0;
+}
+
+.status-bar .kbd {
+    -fx-padding: 0 5 0 5;
+    -fx-background-color: #E5E7EB;
+    -fx-background-radius: 2px;
+    -fx-font-size: 10pt;
+    -fx-max-height: 18px;
+    -fx-text-fill: #4B5563 !important;
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: #3F3F46;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
+    -fx-font-size: 10pt;
 }
 
 .status-bar-with-border {
