@@ -34,7 +34,7 @@ Adds an item of a specified type with the given details
 
 ***Format:*** 
 
-`add [n/NAME] [p/PHONE] [pr/PRICE] [i/ITEM] [a/ADDRESS] [t/Supplier]` (supplier)
+`add [n/NAME] [p/PHONE(8 digits)] [pr/PRICE] [i/ITEM] [a/ADDRESS] [t/Supplier]` (supplier)
 
 `addTask [d/TASKNAME] [dl/DEADLINE] [t/TAG_NAME]` (task)
 
