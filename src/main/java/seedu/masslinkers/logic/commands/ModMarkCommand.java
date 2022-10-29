@@ -18,7 +18,7 @@ import seedu.masslinkers.model.student.Student;
 public class ModMarkCommand extends ModCommand {
 
     public static final String COMMAND_WORD = "mark";
-    public static final String MESSAGE_SUCCESS = "Successfully marked the specified mods.";
+    public static final String MESSAGE_SUCCESS = "Successfully marked the specified mod(s).";
     public static final String MESSAGE_INVALID_MOD = "This batchmate is not taking all of the modules specified.\n"
             + "Please check the list of mods and try again.";
     private final Index targetIndex;

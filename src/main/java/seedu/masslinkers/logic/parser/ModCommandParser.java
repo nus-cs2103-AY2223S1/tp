@@ -127,7 +127,8 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             index = ParserUtil.parseIndex(indexFromCommand);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModDeleteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX,
+                    ModAddCommand.MESSAGE_USAGE), pe);
         }
         return new ModDeleteCommand(index, mods.get());
     }
@@ -154,11 +155,11 @@ public class ModCommandParser implements Parser<ModCommand> {
 
         } else {
             try {
-                index = ParserUtil.parseIndex(indexOrAll);
+                String indexFromCommand = getIndexFromCommand(trimmedArgs);
+                index = ParserUtil.parseIndex(indexFromCommand);
             } catch (ParseException pe) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE),
-                        pe);
+                throw new ParseException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX,
+                        ModAddCommand.MESSAGE_USAGE), pe);
             }
             return new ModMarkCommand(index, mods.get());
         }
@@ -185,7 +186,8 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             index = ParserUtil.parseIndex(indexFromCommand);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX,
+                    ModAddCommand.MESSAGE_USAGE), pe);
         }
         return new ModUnmarkCommand(index, mods.get());
     }
@@ -207,7 +209,6 @@ public class ModCommandParser implements Parser<ModCommand> {
         boolean isTaken = keywords[0].equalsIgnoreCase(MOD_TAKEN_COMMAND_WORD);
         boolean isTaking = keywords[0].equalsIgnoreCase(MOD_TAKING_COMMAND_WORD);
         String[] keywordsWithoutFirstElement = Arrays.copyOfRange(keywords, 1, keywords.length);
-
         if ((isTaken || isTaking) && keywordsWithoutFirstElement.length == 0) {
             throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
         }

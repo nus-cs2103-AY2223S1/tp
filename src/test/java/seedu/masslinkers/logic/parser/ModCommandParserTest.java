@@ -163,7 +163,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndexModDelete_throwParseException() {
         assertParseFailure(parser, ModDeleteCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModDeleteCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -296,7 +296,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndexModMark_throwParseException() {
         assertParseFailure(parser, ModMarkCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -370,7 +370,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndexModUnmark_throwParseException() {
         assertParseFailure(parser, ModUnmarkCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModUnmarkCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
