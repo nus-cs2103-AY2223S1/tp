@@ -97,6 +97,7 @@ This application UI is split into `5 sections`.
 * `List Of Clients`: Every client that you have will appear here
 * `Transaction details`: A list of transactions with a specific client will appear here if you use the [view command](#viewing-a-client-view), or it will show all transactions with every client if you use the [filter command](#filtering-buy-or-sell-transactions-filter)
 * `Remarks Of Specified Client`: Remarks of specified client will appear here
+* `Net amount` : This section displays the net amount transacted with all clients currently displayed in the `List Of Clients` panel on the left.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -211,7 +212,7 @@ Examples:
 [Back to Table of Contents](#table-of-contents)
 
 ### Deleting a client: `delete`
-> <div markdown="span" class="alert alert-danger">❗ :warning: **If you delete a client, it will be gone forever**: Be very careful here!
+> <div markdown="span" class="alert alert-danger">❗ **If you delete a client, it will be gone forever**: Be very careful here!
 
 Deletes the specified `client`from JeeqTracker.
 
