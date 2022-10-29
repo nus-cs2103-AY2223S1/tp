@@ -43,17 +43,30 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
 
 ## Features
 **Notes about the command format:**
+
 Words in UPPER_CASE are the parameters to be supplied by the user.
-e.g. in `add -t TITLE`, TITLE is a parameter which can be used as `add -t Switzerland Trip`.
+e.g. in `add n/TITLE`, TITLE is a parameter which can be used as `add n/Switzerland Trip`
 
 Items in square brackets are optional.
 e.g NAME [t/TAG] can be used as John Doe t/Friend or as John Doe.
 
 The relevant prefixes must be used to separate parameters supplied by the user.
-E.g. in `add-e n/TITLE d/DESCRIPTION`, ‘n/’  and 'd/' are two designated used to separate the two parameters supplied which can be used as `add-e n/Sightseeing d/Visit mountains`.
+e.g. in `add-e n/TITLE d/DESCRIPTION`, ‘n/’  and 'd/' are two designated used to separate the two parameters supplied which can be used as `add-e n/Sightseeing d/Visit mountains`.
 
 Extraneous parameters for commands that do not take in parameters (such as bye) will be ignored.
 e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+
+Parameters can be in any order. e.g. if the command specifies `n/TITLE d/DESCRIPTION`, `d/DESCRIPTION n/TITLE` is also acceptable.
+
+If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+e.g. if you specify `n/title1 n/title2`, only `n/title2` will be taken.
+
+`TITLE` is case-sensitive, so titles with the same letters and spacing but different capitalizations will be considered different.
+
+Events with the same title are considered duplicates, and duplicate events are not allowed.
+
+Trips with the same title are considered duplicates, and duplicate trips are not allowed.
+
 
 ### Adding events: `add-e`
 Adds an event to the events list.
@@ -73,7 +86,7 @@ Format: `delete-e INDEX`
 - The index must be a positive integer 1, 2, 3, …
 
 Examples:
-- `list-e` followed by `delete-e 2` deletes the 2nd event in the bucket list.
+- `delete-e 2` deletes the 2nd event in the bucket list.
 
 ### Viewing events list: `list-e`
 Shows a list of all events added.
@@ -86,7 +99,7 @@ Adds a trip to the trip list.
 Format: `add n/TITLE d/DESCRIPTION [l/LOCATION] [D/DATE] `
 - Location and Date are optional fields.
 - Date must follow the format {dd-mm-yyyy}.
-- If you do not specify a location, it will be set to the value "Default".
+- If you do not specify a location, it will be set to the value "No location set".
 - If you do not specify a date, it will be set to the value "01-01-0000".
 - Hence, any trip with the above location or date values will be assumed to have an unspecified location or date, and it will be reflected as such in the UI.
 

@@ -18,7 +18,7 @@ public class Location {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private static final String DEFAULT_LOCATION_NAME = "Default";
+    private static final String DEFAULT_LOCATION_NAME = "No location set";
 
     public final String locationName;
 
