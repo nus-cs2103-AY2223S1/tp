@@ -54,9 +54,16 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
-        sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        if (!person.getUsername().value.equals("")) {
+            sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        }
         sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
-        sb.append(PREFIX_YEAR + person.getYear().value + " ");
+        if (!person.getUsername().value.equals("")) {
+            sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        }
+        if (!person.getYear().value.equals("")) {
+            sb.append(PREFIX_YEAR + person.getYear().value + " ");
+        }
         person.getModuleCodes().stream().forEach(
                 s -> sb.append(PREFIX_MODULE_CODE + s.value + " ")
         );
@@ -73,9 +80,13 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
-        sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        if (!person.getUsername().value.equals("")) {
+            sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        }
         sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
-        sb.append(PREFIX_RATING + person.getRating().value + " ");
+        if (!person.getRating().value.equals("")) {
+            sb.append(PREFIX_RATING + person.getRating().value + " ");
+        }
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -89,11 +100,19 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
-        sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        if (!person.getUsername().value.equals("")) {
+            sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        }
         sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
-        sb.append(PREFIX_SPECIALISATION + person.getSpecialisation().value + " ");
-        sb.append(PREFIX_RATING + person.getRating().value + " ");
-        sb.append(PREFIX_OFFICEHOUR + "2-18:00-3" + " ");
+        if (!person.getSpecialisation().value.equals("")) {
+            sb.append(PREFIX_SPECIALISATION + person.getSpecialisation().value + " ");
+        }
+        if (!person.getRating().value.equals("")) {
+            sb.append(PREFIX_RATING + person.getRating().value + " ");
+        }
+        if (!person.getOfficeHour().value.equals("")) {
+            sb.append(PREFIX_OFFICEHOUR + "2-18:00-3" + " ");
+        }
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

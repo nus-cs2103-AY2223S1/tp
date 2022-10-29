@@ -9,8 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class GithubUsername {
 
-    public static final String MESSAGE_CONSTRAINTS = "Github username must follow the following rules: \n"
-            + " - Github username cannot be blank.\n"
+    public static final String MESSAGE_CONSTRAINTS =
+            "Github username must follow the following rules: \n"
+            + " - When adding Github username cannot be blank, but when editing Github Username it can be empty.\n"
             + " - Github username cannot have multiple consecutive hyphens.\n"
             + " - Github username cannot begin or end with a hyphen.\n"
             + " - Maximum length is 39 characters.";
