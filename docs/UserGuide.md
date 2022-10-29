@@ -36,7 +36,7 @@ Before we go on further, look out for these symbols in the User Guide as they pr
 
 Now we can move on to talk more about _MyInsuRec_!
 
-<div markdown="block" class="alert alert-info">:exclamation:
+<div markdown="span" class="alert alert-info">**:information_source: NOTE:**
 If you have **not installed** _MyInsuRec_, you can follow the [installation guide](#32-installation-instructions) here!
 </div>
 
@@ -47,7 +47,7 @@ After you have installed _MyInsuRec_, you can
 4. Check out other advanced features under [Features](#5-features) once you got the hang of the basic features.
 5. Refer to our [glossary](#8-glossary) when you come across a unfamiliar term used.
 
-<div markdown="block" class="alert alert-info">:information_source:
+<div markdown="span" class="alert alert-info">**:information_source: NOTE:**
 For **experienced users**, you can look at the [Command Summary](#7-command-summary) for a summarized table of all the commands available.
 </div>
 
@@ -96,7 +96,7 @@ Beyond individual meetings, you can also:
 
 ### 3.3 Products
 
-*MyInsuRec* also includes the ability for you to define your products to track products your clients might have purchased.
+*MyInsuRec* also includes the ability for you to define your products to track products your clients have purchased.
 
 You can do product-specific tasks such as:
 
@@ -267,6 +267,9 @@ Do take some time to read the following note to better understand how you can us
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* Suppose you entered the same command multiple times, only the last command will be executed.
+  e.g. if you specify `viewMeeting i/2viewMeeting i/2viewMeeting i/3`, only `viewMeeting i/3` will be taken.
+
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/28092022 d/30092022`, only `d/30092022` will be taken.
 
@@ -290,7 +293,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
-* If a `Name` already exist in _MyInsuRec_, adding the same `NAME` will result in an error!
+* If a `PHONE_NUMBER` already exist in _MyInsuRec_, adding the same `PHONE_NUMBER` will result in an error!
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`.
@@ -305,8 +308,8 @@ Examples:
   * `addClient n/John Tan p/12345678 b/12122000`
 * Suppose John provides all his particular, you can add him using,
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
-* Suppose `John Tan` is **already in** _MyInsuRec_, adding the following command will result in an error!
-  * `addClient n/John Tan p/87654321`
+* Suppose the phone number `12345678` is **already in** _MyInsuRec_, adding the following command will result in an error!
+  * `addClient n/John Tan p/12345678`
 
 #### 7.1.2 List clients: `listClient`
 
@@ -325,7 +328,7 @@ Examples:
 * `listClient pd/Product1`
 * `listClient b/week`
 
-<div markdown="block" class="alert alert-info">:exclamation: **Caution:** Both filters cannot exist simultaneously.
+<div markdown="span" class="alert alert-warning">**:exclamation: Caution:** Both filters cannot exist simultaneously.
 A user can only apply one filter at each time. For example, `listClient pd/Product1 b/week` is strictly not allowed.
 </div>
 
@@ -362,7 +365,7 @@ Examples:
 
 * Suppose the second client in `listClient` request to have their information remove, you can remove them by using,
   * `delClient i/2`
-* Suppose there is a total of 5 clients shown in your `listClient` , the following command will result in an error!
+* Suppose there is a total of 5 clients shown in your `listClient`, the following command will result in an error!
   * `delClient i/6`
 
 #### 7.1.5 Edit client: `editClient`
@@ -404,9 +407,7 @@ Examples:
 * `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal`
 
 <div markdown="span" class="alert alert-success">:bulb: **Tips and tricks:**
-MyInsuRec can help you detect conflicting meeting times! For example, attempting
-to add a meeting from 1330 to 1430 when you already have one scheduled for
-1300 to 1400 will display an error message.
+MyInsuRec can help you detect conflicting meeting times! For example, attempting to add a meeting from 1330 to 1430 when you already have one scheduled for 1300 to 1400 will display an error message.
 </div>
 
 #### 7.2.2 List meetings: `listMeeting`
@@ -490,8 +491,7 @@ Examples:
 Suppose MyInsuRec contains only one meeting as created in the [`addMeeting`](#521-add-meeting-addmeeting) command:
 
 * `editMeeting i/1 dn/Follow up team meeting` changes the description of this meeting.
-* `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time,
-since the start time is later than end time.
+* `editMeeting i/1 st/1500 et/1200` will show an error stating an invalid time, since the start time is later than end time.
 
 ### 7.3 Product commands
 
