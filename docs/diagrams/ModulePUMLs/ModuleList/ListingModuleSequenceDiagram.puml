@@ -1,0 +1,71 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
+participant ":ListModulesCommand" as ListModulesCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(cmd)
+activate LogicManager
+
+LogicManager -> ModtrektParser : parseCommand(cmd)
+activate ModtrektParser
+
+create ListModulesCommand
+ModtrektParser -> ListModulesCommand
+activate ListModulesCommand
+
+ListModulesCommand --> ModtrektParser
+deactivate ListModulesCommand
+
+ModtrektParser --> LogicManager : command
+deactivate ModtrektParser
+
+LogicManager -> ListModulesCommand : execute()
+activate ListModulesCommand
+
+ListModulesCommand -> Model : getCurrentModule()
+activate Model
+
+Model --> ListModulesCommand
+deactivate Model
+
+alt -a flag is present
+
+    ListModulesCommand -> Model : updateFilteredModuleList(SHOW_ALL_MODULES)
+    activate Model
+
+    Model --> ListModulesCommand
+    deactivate Model
+
+else else
+
+    ListModulesCommand -> Model : updateFilteredModuleList(HIDE_DONE_MODULES)
+    activate Model
+
+    Model --> ListModulesCommand
+    deactivate Model
+
+end
+
+create CommandResult
+ListModulesCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListModulesCommand : result
+deactivate CommandResult
+
+ListModulesCommand --> LogicManager : result
+deactivate ListModulesCommand
+
+[<--LogicManager : result
+deactivate LogicManager
+@enduml
