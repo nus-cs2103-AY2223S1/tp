@@ -303,7 +303,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/
 
 * A client **must** have a `NAME` and a `PHONE_NUMBER`.
 * `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
-* If a `PHONE_NUMBER` already exist in _MyInsuRec_, adding the same `PHONE_NUMBER` will result in an error!
+* If a `NAME` already exist in _MyInsuRec_, adding the same `NAME` will result in an error!
 
 Use case:
 1. You have just found a potential client! You can use this command to add their particulars into _MyInsuRec_ to help remember their contact information and other details.
