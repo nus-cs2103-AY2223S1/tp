@@ -4,7 +4,7 @@
 
 **Format**: `help [COMMAND_WORD]`
 
-> Displays help for FoodRem.
+> Displays help for FoodRem
 
 ```note
 COMMAND_WORD is strictly any of the following:
@@ -52,7 +52,7 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 **Format**: `reset`
 
-> Clears all items and tags in FoodRem.
+> Clears all items and tags in FoodRem
 
 **Example Input:**
 
@@ -74,8 +74,11 @@ FoodRem has been reset!
 
 **Format**: `exit`
 
-> Exits FoodRem.
+> Exits FoodRem
 
+```warning
+The data file is only saved when you exit the application using this command.
+```
 **Example Input:**
 
 ```text

@@ -3,7 +3,7 @@
 
 **Format**: `stats`
 
-> Displays all statistics collected by FoodRem.
+> Displays all statistics collected by FoodRem
 
 ```note
 These statistics include:

@@ -7,7 +7,7 @@ Example of an [Item](#item):
 
 **Format**: `new n/ITEM_NAME [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
 
-> Creates a new item with the provided item name
+> Creates a new item with the provided information
 
 ```info
 * All fields apart from `ITEM_NAME` are optional.
@@ -52,7 +52,7 @@ Tags: {}
 
 **Format**: `list`
 
-> List all items in FoodRem.
+> List all items in FoodRem
 
 ```info
 * This command is useful to view all items again after using the [Find Command](#Find)
@@ -234,7 +234,7 @@ Tags: {vegetables}
 #### Decrement the quantity of an item: `dec`
 
 **Format:**: `dec INDEX [qty/QUANTITY]`
-> Decrements the quantity of the item at the specified index.
+> Decrements the quantity of the item at the specified index
 
 ```info
 * If a quantity is not provided, the item quantity will be decremented by 1.
@@ -276,10 +276,6 @@ Tags: {vegetables}
   * dd: Day of the month. For example, "10" would represent the 10th day of the month.
   * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
   * yyyy: The current year. For example, "2019" would represent the year 2019.
-* The default values for `QUANTITY` and `PRICE` is `0`.
-* The default values for `UNIT` is blank.
-* The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
-* The value of `REMARKS` will be `No Remarks` if not provided.
 * `PRICE` do not require you to include the currency. Only include the value.
 * If two or more of the same parameters are provided, the last parameter will be taken.
 ```
@@ -345,7 +341,7 @@ Tags: {vegetables}
 
 **Format**: `del INDEX`
 
-> Deletes the item at the specified index.
+> Deletes the item at the specified index
 
 **Example Input:**
 
