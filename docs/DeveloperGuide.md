@@ -355,16 +355,16 @@ Given below is an example usage scenario and how the edit operation is handled b
 7. `EditCommand#execute()` finishes with returning a `CommandResult` containing details about the applicant's successful edit and the applicant's details in TrackAScholar.
 
 
-[//]: # (The following sequence diagram shows how the edit operation works:)
+The following sequence diagram shows how the edit operation works:
 
-[//]: # ()
-[//]: # (![Interactions Inside the Logic Component for the `edit` Command example]&#40;images/EditSequenceDiagram.png&#41;)
 
-[//]: # ()
-[//]: # (The following activity diagram summarizes what happens when a user executes a edit command:)
+![Interactions Inside the Logic Component for the `edit` Command example](images/EditSequenceDiagram.png)
 
-[//]: # ()
-[//]: # (![Edit command activity diagram]&#40;images/EditCommandActivityDiagram.png&#41;)
+
+The following activity diagram summarizes what happens when a user executes a edit command:
+
+
+![Edit command activity diagram](images/EditCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
