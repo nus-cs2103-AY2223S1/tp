@@ -3,16 +3,20 @@ layout: page
 title: **Teacher's Pet** User Guide
 subtitle: Everything you need to know about **Teacher's Pet**
 ---
-**Teacher’s Pet** is a desktop application built for Private 1-to-1 Tutors in order to manage contacts of students and 
-classes, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User 
-Interface (GUI). If you can type fast, Teacher’s Pet can get your contact and class management tasks done faster than 
-traditional GUI apps.
+**Teacher’s Pet** is an all-in-one desktop application for private 1-to-1 tutors to manage the details of students,
+payment and scheduling of classes. While optimised for use via a Command Line Interface (CLI),
+Teacher’s Pet still retains the benefits of a Graphical User Interface (GUI).
+Whether you can type fast or prefer to use a mouse, Teacher’s Pet caters to your needs. It minimizes the time needed for
+tedious administrative work, leaving more space for you to do what is important.
+
 
 **Teacher’s Pet** allows you to manage your schedule and keep track of your students.
 The app stores basic information about your students, such as `Name`, `Contact Number`, `Class Date` and more.
 
-Before you get started, you may want to read [how to get started with this User Guide](#reading-the-user-guide)!
-To get started with using our application, jump straight to the [Quick Start](#quick-start) section.
+Before you get started, you may want to know [how to navigate this User Guide](#reading-the-user-guide).
+
+To get started with using the application, jump straight to the [Quick Start](#quick-start) section.
+
 For a full list of commands and detailed instructions, head to the [Features](#features) section.
 
 ## Table of contents
@@ -55,20 +59,20 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 
 ## Quick start
 
-There are a couple of things that need to be setup first before you start ****Teacher's Pet**** for the first time. This will
-ensure that **Teacher's Pet** works as expected and runs smoothly on your computer.
+There are a couple of things that need to be set up first before you start using **Teacher's Pet** for the first time. This will
+ensure that the application works as expected and runs smoothly on your computer.
 
 ### Step 1: Ensure you have Java `11` or above installed in your Computer
 To check if you have Java `11` or above installed, follow the steps for your operating system
 ##### If you are using Windows:
-- Press the Start button and type *cmd* then press the Enter button on your keyboard.
-- Once you have Command Prompt running, type `java --version` and if you have Java installed properly, you should
+1. Press the Start button and type *cmd* then press the Enter button on your keyboard.
+2. Once you have Command Prompt running, type `java --version` and if you have Java installed properly, you should
   see an output like the following.
   ![UI introduction](images/UG-screenshots/Java11CheckWindows.png)
 ##### If you are using Mac:
-- Open up terminal by hitting Command + Space bar on your keyboard and typing *terminal* then press the return 
+1. Open up terminal by hitting Command + Space bar on your keyboard and typing *terminal* then press the return 
   button on your keyboard. 
-- Once you have terminal running, type `java --version` and if you have Java installed properly, you should see
+2. Once you have terminal running, type `java --version` and if you have Java installed properly, you should see
   an output like the following.
   ![UI introduction](images/UG-screenshots/Java11CheckMac.png)
 #### If you do not see an output like the one above, it means that you do not have Java `11` installed 
@@ -89,8 +93,6 @@ https://github.com/AY2223S1-CS2103T-T09-4/tp/releases.
 
 ## UI Overview
 
-![Partition](images/UG-screenshots/UiPartition.png)
-
 **Teacher's Pet** is divided into 5 areas to maximise productivity:
 
 1. Input Command - The dialog box where you will input your desired commands.
@@ -101,16 +103,18 @@ https://github.com/AY2223S1-CS2103T-T09-4/tp/releases.
 the money collected/owed.
 5. Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time.
 
+![Partition](images/UG-screenshots/UiPartition.png)
+
 Basic Instructions:
-1. Type the following command in the [Input Command](#ui-overview) and press the Enter button on your keyboard to execute it. For 
-   example, typing `help` and pressing Enter will open the help window. Some example commands you can try:
+1. Type the following command in the [Input Command](#ui-overview) section, and press the Enter on your keyboard to execute it. For 
+   example, typing `help` and pressing Enter will open the help window. Below are some example commands you can start with:
     - `list`: Lists all students.
     - `add n/John Doe p/98765432 np/81239090 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
       `John Doe` to the student list.
     - `delete 3`: Deletes the 3rd student shown in the current list.
     - `clear`: Deletes all students.
     - `exit`: Exits the app.
-2. Refer to the Features below for details of each command.
+2. Refer to the [Features](#features) section below for details of each command.
 
 [↑ Back to top](#table-of-contents)
 
