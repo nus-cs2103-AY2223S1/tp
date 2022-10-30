@@ -38,10 +38,32 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-* Tag names must only be from the following: `ear`, `nose`, `throat` (not case-sensitive). <br>
-  e.g. `t/sick` will cause an error message.
 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command parameters:**<br>
+
+* `NAME` can only accept alphanumeric characters i.e. "a, b, c..." & "1, 2, 3..."
+* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
+  e.g. `t/sick` will cause an error message.
+* Phone numbers must only contain numbers, and it should be at least 3 digits long.
+* Emails should be of the format `local-part@domain-name` and adhere to the following constraints:
+  - The `local-part` must:
+      - Only contain alphanumeric characters and these special characters, excluding the parentheses, `(+_.-)`.
+      - Not start or end with any special characters.
+  - The`domain-name` is made up of domain labels separated by `.`, and must:
+      - End with a domain label at least 2 characters long.
+      - Have each domain label start and end with alphanumeric characters.
+      - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  - Examples:
+      - `John@example.com` is valid. It contains the domain labels `examples` and `com` which satisfies the constraints.
+      - `John@example` is valid.
+      - `John` is invalid, as it is missing a `@` and a `domain-name`.
+      - `John@^s^` is invalid, as the domain label `^s^` does not start and end with alphanumeric characters.
+      - `John@x` is invalid, as the domain label `x` is not at least 2 characters long.
 </div>
+
 
 ### Important Commands
 
@@ -64,8 +86,12 @@ Adds a patient into idENTify.
 
 Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any 0 to 3 tags.
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** <br>
+
+* A patient can have 0 to 3 number of tags. <br>
+* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
+   e.g. `t/sick` will cause an error message.
 </div>
 
 Examples:
@@ -101,7 +127,8 @@ Format: `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Dates **must be inputted** in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
-* Input at least a Y, M or D value for the time period. Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
+* Input at least a Y, M or D value for the time period. Value **must be inserted in the order** Y -> M -> D. 
+* Time Period Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
 * Default time period is set to 0Y0M0D if no time period is inputted.
 
 Examples:
@@ -160,7 +187,9 @@ Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​`
 * When editing tags, the existing tags of the appointment will be removed i.e. adding of tags is not cumulative.
 * You can remove all the appointment’s tags by typing `t/` without
   specifying any tags after it. <br>
-  e.g. `edit appts  1 t/`
+  e.g. `edit appts 1 t/`
+* You can set the appointment to be non-recurring by typing `pe/` without specifying any values after it. <br>
+  e.g. `edit appts 1 pe/`
 
 Examples:
 * `edit appts 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first appointment to be `Cough` and `2022-12-10 16:30`
@@ -251,7 +280,7 @@ Format:
 
 #### Hiding patients by name or tag: `hide patients`
 
-By name:
+**By name:**
 Filters out (hides) patients whose names contain any of the given keywords.
 
 Format: `hide patients n/NAME [n/MORE_NAMES]...`
@@ -260,8 +289,7 @@ Examples:
 * `hide patients n/John` hides `john` and `John Doe`
 * `hide patients n/alex n/david` hides `Alex Yeoh`, `David Li`<br>
 
-By tag:
-
+**By tag:**
 Hides patients whose names contain any of the given tags.
 
 Format: `hide patients t/TAG [t/MORE_TAGS]...`
@@ -274,7 +302,7 @@ Examples:
 
 #### Unhiding patients by name or tag: `unhide patients`
 
-By name:
+**By name:**
 Shows (unhides) patients that were previously hidden whose names contain any of the given keywords.
 
 Format: `unhide patients n/NAME [n/MORE_NAMES]...`
@@ -283,9 +311,8 @@ Examples:
 * `unhide patients n/John` unhides `john` and `John Doe`
 * `unhide patients n/alex n/david` unhides `Alex Yeoh`, `David Li`<br>
 
-By tag:
-
-Unhides patients that were previously hidden whose names contain any of the given tags.
+**By tag:**
+Unhides patients that were previously hidden who contain any of the given tags.
 
 Format: `unhide patients t/TAG [t/MORE_TAGS]...`
 
@@ -297,16 +324,15 @@ Examples:
 
 #### Hiding appointments by reason, tag, or marked status: `hide appts`
 
-By reason:
-Filters out (hides) appointments that has a reason that matches the given keyword.
+**By reason:**
+Filters out (hides) appointments that has contains at least 1 of the given keyword(s).
 
 Format: `hide appts r/REASON [r/MORE_REASONS]...`
 
 Examples:
 * `hide appts r/nose` hides all appointments with "nose" in the reason.
 
-By tag:
-
+**By tag:**
 Hides appointments which contain any of the given tags.
 
 Format: `hide appts t/TAG [t/MORE_TAGS]...`
@@ -317,7 +343,7 @@ Format: `hide appts t/TAG [t/MORE_TAGS]...`
 Examples:
 * `hide appts t/ear t/nose` hides all appointments with a ear OR nose tag.
 
-By marked/unmarked status:
+**By marked/unmarked status:**
 Hides appointments which are marked/unmarked.
 
 Format: `hide appts s/STATUS` <br>
@@ -327,19 +353,29 @@ Examples:
 * `hide appts s/marked` hides all appointments that has been marked.
 * `hide appts s/um` hides all appointments that has been ummarked.
 
+Visual Example:
+
+Before hide: (Initially with 11 appointments)
+![before_Hide](images/beforeHide.png)
+
+After hide:
+![after_Hide](images/afterHide.png)
+
 #### Unhiding appointments by reason, tag or status: `unhide appts`
 
-By reason:
-Unhides hidden appointments that contains `REASON` (and `MORE_REASONS`).
+**By reason:**
+Unhides hidden appointments that contains `REASON` (OR `MORE_REASONS`). 
 
 Format: `unhide appts r/REASON [r/MORE_REASONS]...`
 
+* The reasons are case-insensitive. e.g. `PAIN` will match `pain`
+
 Examples:
-* `unhide appts r/pain` unhides all appointments with "pain" as part of the reason.
+* `unhide appts r/pain` unhides all hidden appointments with "pain" as part of the reason.
+* 'unhide appts r/pain r/problem' unhides all hidden appointments with "pain" or "problem" as part of the reason.
 
-By tag:
-
-Unhides hidden appointments that contains `TAG` (and `MORE_TAGS`).
+**By tag:**
+Unhides hidden appointments that contains `TAG` (OR `MORE_TAGS`).
 
 Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 
@@ -349,14 +385,16 @@ Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 Examples:
 * `unhide appts t/nose t/ear` unhides all appointments with a nose OR ear tag.
 
-By marked/unmarked status:
+**By marked/unmarked status:**
 Unhides hidden appointments which were marked or unmarked.
 
 Format: `unhide appts s/marked` or `unhide appts s/m` <br>
 Alternative: `unhide appts s/unmarked` or `unhide appts s/um`
+* The condition is case-insensitive. e.g. `MARKed` will work in the same way as `marked`.
 
 Examples:
 * `unhide appts s/marked` unhides all appointments that has been marked.
+* `unhide appts s/UNMARKED` unhides all appointments that has been unmarked.
 
 #### Find results that satisify an input criteria: `find`
 Finds patients and appointments that matches all the given criteria specified.
@@ -369,7 +407,7 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
 * `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` and `[ta/APPOINTMENT_TAG]` are fields to find information about appointments (appointment criteria).
   * `[ds/DATE_START]` searches for appointments occurring at or after `DATE_START`.
   * `[ds/DATE_END]` searches for appointments occurring at or before `DATE_END`.
-* Only unhidden patients and appointments that satisfies all criteria will be displayed.
+* Only currently displayed patients and appointments that satisfies all criteria will be displayed.
   * A patient must satisify all patient criteria and have at least 1 appointment that satisfies all the appointment criteria to be displayed.
   * An appointment must satisify all appointment criteria and belong to a patient that satisfies all the patient criteria to be displayed.
 * All fields except `[ds/DATE_START]`, `[de/DATE_END]`, `[t/PATIENT_TAG]` and `[ta/APPOINTMENT_TAG]` supports partial match.
@@ -392,8 +430,9 @@ Examples:
 
 Shows the most recent 10 commands that was inputted.
 Allows cycling through those commands to reduce the need of retyping similar commands fully.
+The history is looped, meaning that when you reach the end, the next cycle will bring it back to the start.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Every new valid command will reset the index back to the top of the history. 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Every new valid command will reset the index back to the top of the history.
 Click Down Arrow to get the most recent command immediately and Up Arrow to get the last command in the history.
 </div>
 
@@ -441,9 +480,9 @@ Action | Format, Examples
 **Hide Patients** | `hide patients CONDITION` <br> eg. `hide patients t/nose`
 **Hide Appointments** | `hide appts CONDITION` <br> eg. `hide appts s/marked`
 **Unhide Patients** | `unhide patients CONDITION` <br> eg. `unhide patients t/nose`
-**Unhide Appointments** | `unhide appointments CONDITION` <br> eg. `unhide appts r/pain`
+**Unhide Appointments** | `unhide appts CONDITION` <br> eg. `unhide appts r/pain`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `edit patients 1 n/Bernice Yu`
 **Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `edit appts 1 r/Cough`
-**List** | `list patients` <br> `list appointments` <br> `list all`
+**List** | `list patients` <br> `list appts` <br> `list all`
 **Help** | `help`
 **Exit** | `exit`
