@@ -520,7 +520,7 @@ Format: `editMeeting i/INDEX [d/DATE] [st/START TIME] [et/END TIME] [dn/DESCRIPT
 * Details that are not edited will be kept as is.
 
 Use case:
-1. A meeting got pushed back! Update the meeting details instead of having to removing the old record and creating a new record.
+1. A meeting got pushed back! Update the meeting details instead of having to remove the old record and create a new record.
 
 Examples:
 * Edit the description of the meeting with an `INDEX` of 1.
@@ -542,7 +542,7 @@ Format: `addProduct pd/PRODUCT`
 
 Use Case:
 
-1. You can define your own insurance products that you sell and tag them to clients who have bought the product. Now you will not have to worry about forgetting which product did the client buy!
+1. You can define your own insurance products that you sell and tag them to clients who have bought the product. Now, you will not have to worry about forgetting which product the client bought!
 
 Examples:
 * Add product with product name of 'Product1'
@@ -564,7 +564,7 @@ Examples:
 
 #### 7.3.3 Delete product: `delProduct`
 
-Deletes a product from *MyInsuRec*.
+Delete a product from *MyInsuRec*.
 This command removes this product from all the clients as well.
 
 Format: `delProduct i/INDEX`
