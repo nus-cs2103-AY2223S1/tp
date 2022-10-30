@@ -438,8 +438,9 @@ If your changes to the data file makes its format invalid, GREWZ will discard al
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
-| Word                | Definition                                                                                                                                                                                   |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+| Word                                           | Definition                                                                                                                                                                                   |
+|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Command Line Interface (CLI)**               | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                 |
 | **Graphical user interface (GUI)**             | Graphical user interface (GUI) is a form of user interface that allows users to interact with electronic devices through graphical icons.                                          |
 | **Teaching assistant**            | Teaching assistant is an individual who assists a professor with instructional responsibilities.
