@@ -56,7 +56,7 @@ import seedu.address.logic.parser.teams.TeamCommandParser;
 public class AddressBookParser {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Pattern NAME_CHECK = Pattern.compile("([a-zA-Z][a-zA-Z0-9]*)");
+    private static final Pattern NAME_CHECK = Pattern.compile("([a-zA-Z][a-zA-Z0-9_\\-]*)");
     private static AddressBookParser bp = null;
     private static Map<String, ThrowFunction<String, Command>> defaultMapper;
 

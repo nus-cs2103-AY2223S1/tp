@@ -64,8 +64,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     @Override
     public Optional<Attribute<?>> getAttribute(String type) {
         return getAttributes().stream()
-            .filter(attr -> attr.getAttributeType().toLowerCase()
-                .equals(type.toLowerCase()))
+            .filter(attr -> attr.isNameMatch(type))
             .findFirst();
     }
 

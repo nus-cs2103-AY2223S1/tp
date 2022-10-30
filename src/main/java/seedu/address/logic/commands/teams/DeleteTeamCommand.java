@@ -12,7 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 
-//@@author mohamedsaf1
+// @@author mohamedsaf1
 /**
  * Deletes a team from Contactmation
  */
@@ -20,9 +20,9 @@ public class DeleteTeamCommand extends TeamCommand {
     public static final String SUBCOMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUBCOMMAND_WORD
-            + ": Delete the team with the specified index\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + SUBCOMMAND_WORD + " 1\n";
+        + ": Delete the team with the specified index\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " " + SUBCOMMAND_WORD + " 1\n";
 
     public static final String SWITCH_SUCCESS = " Deleted %s%n";
 
@@ -63,5 +63,33 @@ public class DeleteTeamCommand extends TeamCommand {
             return;
         }
         this.toDelete = (Group) additionalData;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof DeleteTeamCommand) {
+            return false;
+        }
+        if (this == other) {
+            return true;
+        }
+        DeleteTeamCommand c = (DeleteTeamCommand) other;
+        if (targetIndex == null) {
+            if (c.targetIndex != null) {
+                return false;
+            }
+        } else if (!targetIndex.equals(c.targetIndex)) {
+            return false;
+        }
+
+        if (toDelete == null) {
+            if (c.toDelete != null) {
+                return false;
+            }
+        } else if (!toDelete.equals(c.toDelete)) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -22,8 +22,8 @@ public class DeleteTaskCommand extends TaskCommand {
     public static final String SUBCOMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
-            + ": Delete the selected task\n"
-            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n";
+        + ": Delete the selected task\n"
+        + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n";
 
     public static final String DELETE_SUCCESS = " task %s is deleted%n";
 
@@ -52,4 +52,33 @@ public class DeleteTaskCommand extends TaskCommand {
         model.deleteTask(task);
         return new CommandResult(String.format(DELETE_SUCCESS, task));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof DeleteTaskCommand) {
+            return false;
+        }
+        if (this == other) {
+            return true;
+        }
+        DeleteTaskCommand c = (DeleteTaskCommand) other;
+        if (targetIndex == null) {
+            if (c.targetIndex != null) {
+                return false;
+            }
+        } else if (!targetIndex.equals(c.targetIndex)) {
+            return false;
+        }
+
+        if (task == null) {
+            if (c.task != null) {
+                return false;
+            }
+        } else if (!task.equals(c.task)) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

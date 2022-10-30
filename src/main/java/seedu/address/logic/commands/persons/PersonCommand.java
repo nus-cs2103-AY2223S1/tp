@@ -13,8 +13,7 @@ public abstract class PersonCommand extends Command {
     protected Person person = null;
 
     /**
-     * Returns the complete command phrase for the task command with given
-     * subCommand
+     * Returns the complete command phrase for the task command with given subCommand
      *
      * @param subcommand The subcommand to be added
      * @return The complete command phrase
@@ -25,7 +24,7 @@ public abstract class PersonCommand extends Command {
 
     @Override
     public void setInput(Object additionalData) throws CommandException {
-        if (additionalData == null || additionalData instanceof Person) {
+        if (additionalData == null || !(additionalData instanceof Person)) {
             person = null;
             return;
         }

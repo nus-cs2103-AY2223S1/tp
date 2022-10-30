@@ -20,9 +20,9 @@ public class DeleteCommand extends PersonCommand {
     public static final String SUBCOMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = getFullCommand(SUBCOMMAND_WORD)
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + getFullCommand(SUBCOMMAND_WORD) + " 1";
+        + ": Deletes the person identified by the index number used in the displayed person list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + getFullCommand(SUBCOMMAND_WORD) + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -55,8 +55,29 @@ public class DeleteCommand extends PersonCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                        && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+        if (other instanceof DeleteCommand) {
+            return false;
+        }
+        if (this == other) {
+            return true;
+        }
+        DeleteCommand c = (DeleteCommand) other;
+        if (targetIndex == null) {
+            if (c.targetIndex != null) {
+                return false;
+            }
+        } else if (!targetIndex.equals(c.targetIndex)) {
+            return false;
+        }
+
+        if (person == null) {
+            if (c.person != null) {
+                return false;
+            }
+        } else if (!person.equals(c.person)) {
+            return false;
+        }
+
+        return true;
     }
 }
