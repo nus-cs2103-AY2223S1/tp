@@ -10,7 +10,7 @@ import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.PropertyTypeContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new TypePropertyCommand object
  */
 public class TypePropertyCommandParser implements Parser<TypePropertyCommand> {
 

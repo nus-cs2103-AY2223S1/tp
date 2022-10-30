@@ -15,9 +15,9 @@ import seedu.condonery.model.tag.Tag;
  */
 public class TypicalClients {
 
-    public static final Client ALICE_CLIENT = new ClientBuilder().withName("Alice")
-            .withAddress("123, Jurong West Ave 6, #08-111")
-            .withTags("friends").build();
+    public static final Client AMY_CLIENT = new ClientBuilder().withName("Amy Bee")
+            .withAddress("Block 312, Amy Street 1")
+            .withTags("husband").build();
 
     public static final Client BOB_CLIENT = new ClientBuilder().withName("Bob")
             .withAddress("311, Clementi Ave 2, #02-25")
@@ -57,7 +57,7 @@ public class TypicalClients {
     }
 
     public static List<Client> getTypicalClients() {
-        return new ArrayList<>(Arrays.asList(ALICE_CLIENT, BOB_CLIENT, CARL_CLIENT, DANIEL_CLIENT,
+        return new ArrayList<>(Arrays.asList(AMY_CLIENT, BOB_CLIENT, CARL_CLIENT, DANIEL_CLIENT,
                 ELLE_CLIENT, FIONA_CLIENT, GEORGE_CLIENT));
     }
 }
