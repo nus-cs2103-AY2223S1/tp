@@ -44,7 +44,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_INCOME = BENSON.getIncome().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_RISKTAG = BENSON.getRiskTag().toString();
-    private static final String VALID_PLANTAG = BENSON.getPlanTag().toString();
+    private static final String VALID_PLANTAG = BENSON.getPlanTag().tagName;
     private static final String VALID_CLIENTTAG = BENSON.getClientTag().toString();
     private static final String VALID_MONTHLY = BENSON.getMonthly().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()

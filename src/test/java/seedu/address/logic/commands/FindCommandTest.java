@@ -2,9 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -219,6 +221,10 @@ public class FindCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
 
+        //resets the FilteredPersonList
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new CommandHistory());
+
         String secondExpectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         ArrayList<FindPredicate> secondPredicate = new ArrayList<>();
         secondPredicate.add(preparePredicate("Meier"));
@@ -228,6 +234,10 @@ public class FindCommandTest {
         assertCommandSuccess(secondCommand, model, secondExpectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
 
+        //resets the FilteredPersonList
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new CommandHistory());
+
         String thirdExpectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         ArrayList<FindPredicate> thirdPredicate = new ArrayList<>();
         thirdPredicate.add(preparePredicate("Meier"));
@@ -236,6 +246,29 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(thirdPredicate);
         assertCommandSuccess(thirdCommand, model, thirdExpectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_subsequentFindCommand_displaysPersonsBasedOnCurrentList() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        ArrayList<FindPredicate> predicate = new ArrayList<>();
+        predicate.add(preparePredicate("Kurz Elle Kunz"));
+        predicate.add(prepareRiskPredicate("MEDIUM"));
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+
+        //Alice, Carl, Daniel have "LOW" RISK_APPETITE
+        //However, filteredPersons consist of Carl, Elle, Fiona hence only Carl will be displayed
+        String secondExpectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        ArrayList<FindPredicate> secondPredicate = new ArrayList<>();
+        secondPredicate.add(prepareRiskPredicate("LOW"));
+        FindCommand secondCommand = new FindCommand(secondPredicate);
+        expectedModel.updateFilteredPersonList(secondPredicate);
+        assertCommandSuccess(secondCommand, model, secondExpectedMessage, expectedModel);
+        assertNotEquals(Arrays.asList(ALICE, CARL, DANIEL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
     }
 
     /**

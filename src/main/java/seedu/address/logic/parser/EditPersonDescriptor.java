@@ -119,7 +119,7 @@ public class EditPersonDescriptor {
     public void setIncome(IncomeLevel income) {
         this.income = income;
     }
-    private Optional<IncomeLevel> getIncome() {
+    public Optional<IncomeLevel> getIncome() {
         return Optional.ofNullable(income);
     }
 

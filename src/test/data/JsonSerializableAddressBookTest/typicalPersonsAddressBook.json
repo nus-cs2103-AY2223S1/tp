@@ -18,7 +18,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "riskTag": "HIGH",
     "planTag": "Savings Plan",
-    "clientTag": "CURRENT",
+    "clientTag": "POTENTIAL",
     "income": "$1000",
     "monthly": "$100",
     "tagged" : [ "owesMoney", "friends" ]
@@ -29,7 +29,7 @@
     "address" : "wall street",
     "riskTag": "LOW",
     "planTag": "Savings Plan",
-    "clientTag": "POTENTIAL",
+    "clientTag": "CURRENT",
     "income": "$1000",
     "monthly": "$200",
     "tagged" : [ ]

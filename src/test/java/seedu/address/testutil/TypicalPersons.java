@@ -94,7 +94,7 @@ public class TypicalPersons {
             .withRiskTag("LOW")
             .withTags("friends")
             .withPlanTag("Savings Plan")
-            .withClientTag("POTENTIAL")
+            .withClientTag("CURRENT")
             .build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
@@ -104,7 +104,7 @@ public class TypicalPersons {
             .withIncome("$6000")
             .withMonthly("$250")
             .withRiskTag("MEDIUM")
-            .withClientTag("CURRENT")
+            .withClientTag("POTENTIAL")
             .withPlanTag("Savings Plan")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_22_JAN_2023)
