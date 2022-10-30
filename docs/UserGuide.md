@@ -16,7 +16,7 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 ![start_up](images/IdENTifyStartUp.png)
 
 ## UI Components
-![SampleUiImage](images/SampleUi.png)
+![SampleUiImage](images/SampleUI.png)
 
 ### General UI information
 Component | Purpose
@@ -38,7 +38,7 @@ Component | Purpose
 ### Appointment Card
 ![AppointmentCardDetail](images/AppointmentCard.png)
 * The status of an appointment is `[]` when uncompleted, and `[X]` when completed.
-* More information about recurrence duration [here](#book-an-appointment:-`book`).
+* More information about recurrence duration can be found [here](#book-an-appointment--book).
 
 ## Features
 
