@@ -5,34 +5,35 @@ title: Nicole's Project Portfolio Page
 
 ### Project: NutriGoals
 
-NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. Studies have shown the benefits of keeping track of your daily food consumption – the more consistent you are, the more likely you are to achieve the various fitness goals that you have set for yourself! However, without the right tools, tracking what you have consumed can be tedious and at times disorganised. With NutriGoals, you can keep track of your consumption quickly and easily, without worrying about organising your data.
+NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. By offering users recommendations on exercise and healthier eating selections, NutriGoals also aids in the adoption of a healthy lifestyle. 
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability for the user to view his/her profile.
+* **New Feature**: Added the ability for the user to view his/her profile (Pull request [\#65](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/65)).
   * What it does: Allows the user to view the profile created.
   * Justification: Every application that allows the user to set up a profile should allow the user to view the information he/she keyed in previously.
   * Highlights: This enhancement allows the user to check if the current information stored is correct.
 
-* **New Feature**: Added the ability to calculate the user's BMI.
+* **New Feature**: Added the ability to calculate the user's BMI (Pull request [\#65](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/65)).
   * What it does: Calculates the user's BMI immediately after setting up a profile.
   * Justification: This application aims to encourage healthy eating habits. The BMI is a useful (although imperfect) indicator of the user's health status.
   * Highlights: This enhancement automatically calculates the user's BMI when the user creates a profile or updates existing information.
 
-* **New Feature**: Added the ability to suggest a recommended calorie intake for the user.
+* **New Feature**: Added the ability to suggest a recommended calorie intake for the user (Pull requests [\#67](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/67) and [\#107](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/107)). 
   * What it does: Suggests an estimated recommended daily calorie intake so that the user can reach his/her ideal weight.
-  * Justification: The application allows the user to set a target calorie intake, but the user may not be aware of the amount of calories he / she should be consuming to reach his/her ideal weight. This feature can provide the user with an estimated amount of calorie he / she should consume.
-  * Highlights: This enhancement allows the user the get a rough estimate of the amount of calories he / she should consume in a day. This command complements the `target` command.
+  * Justification: The application allows the user to set a target calorie intake, but the user may not be aware of the amount of calories the user should be consuming to reach his/her ideal weight. This feature can provide the user with an estimated amount of calorie the user should consume.
+  * Highlights: This enhancement allows the user the get a rough estimate of the amount of calories the user should consume in a day. This command complements the `target` command implemented by [Tan Ping Zhi](https://github.com/TanPingZhi).
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicolelim02&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=zoom&zA=nicolelim02&zR=AY2223S1-CS2103T-T17-2%2Ftp%5Bmaster%5D&zACS=209.4038267875126&zS=2022-09-16&zFS=&zU=2022-10-21&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+* **Code contributed**: 
+  * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicolelim02&breakdown=true)
 
 * **Project management**:
-  * Managed the release of `v1.3.1` on GitHub.
+  * Managed the release of `v1.3.1` on [GitHub](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases/tag/v1.3.1).
 
-* **Enhancements to existing feature**: Modify the design of the Help Window.
+* **Enhancements to existing feature**: Modify the design of the Help Window (Pull request [\#90](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/90)).
   * What is does: Includes information regarding the commands usage without opening the user guide. Instead of having a `copyButton`, the user guide link is also converted into a hyperlink that redirects users to the user guide on their browser when clicked.
   * Justification: The application is meant to be used without an internet connection, hence it would be better if the help window displays basic information regarding the app's usage without being connected to the internet. Having a hyperlink that redirects the user to the user guide will also be more convenient as the user will be redirected to the user guide on the browser automatically.
-  * Highlights: These enhancements made to the Help Window will make it easier for the user to use the application.
+  * Highlights: These enhancements made to the Help Window makes the user guide more accessible. Basic information regarding commands usages can also be accessed without navigating the user guide.
 
 * **Enhancements to existing feature**: Wrote additional test cases for existing features.
   * What it does: Tests the modified functionalities.
@@ -56,10 +57,15 @@ Given below are my contributions to the project.
     * Developer Guide:
       * Add use cases.
       * Update user stories.
-      * Modify existing UML diagrams to match the project.
-      * Add implementation details for `edit` and `profile` features, together with UML diagrams.
+      * Modify existing UML diagrams and links to match the project.
+      * Add implementation details for `edit`, `profile` and `suggest` features, together with UML diagrams.
+        * `edit`: Sequence diagram
+        * `profile`: Activity diagram
+        * `suggest`: Object and activity diagrams
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#41](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/41), [\#73](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/73), [\#93](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/93).
-
-* **Tools**:
+  * Report [bugs](https://github.com/nicolelim02/ped) found in CS2103T-F12-4's product during the practical exam dry run.
+  * Fix issues that my team members face in the following pull requests: 
+    * [\#48](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/48): Identify bugs in test cases. 
+    * [\#1](https://github.com/ruiqi7/tp/pull/1): Fix the width of the components (Result box and list container) to be 50% each, relative to the size of the main window. 
