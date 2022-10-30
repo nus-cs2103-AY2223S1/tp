@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_NAME_VIEW;
@@ -57,9 +56,8 @@ public class ViewCommandTest {
         String expectedMessage = MESSAGE_INVALID_PERSON_NAME_VIEW;
         NameIsKeywordsPredicate predicate = preparePredicate(" ");
         ViewCommand command = new ViewCommand(predicate);
-        model.updateFilteredPersonList(predicate);
+
         assertCommandFailure(command, model, expectedMessage);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
@@ -67,9 +65,8 @@ public class ViewCommandTest {
         String expectedMessage = MESSAGE_INVALID_PERSON_NAME_VIEW;
         NameIsKeywordsPredicate predicate = preparePredicate("Alice Pauline Benson Meier");
         ViewCommand command = new ViewCommand(predicate);
-        model.updateFilteredPersonList(predicate);
+
         assertCommandFailure(command, model, expectedMessage);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
@@ -77,7 +74,9 @@ public class ViewCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSON_FULL_VIEW, "alice Pauline");
         NameIsKeywordsPredicate ignoreCasePredicate = preparePredicate("alIcE PaUlIne");
         NameIsKeywordsPredicate predicate = preparePredicate("Alice Pauline");
+
         ViewCommand command = new ViewCommand(ignoreCasePredicate);
+
         model.updateFilteredPersonList(ignoreCasePredicate);
         expectedModel.updateFilteredPersonList(predicate);
 
