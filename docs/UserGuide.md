@@ -114,10 +114,10 @@ Adds a student to the class list.
 Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/TAG]…​`
 
 
-* ~~Compulsory~~ Optional Fields to Fill in (Fields in Square Bracket are Optional).
+* Fields in Square Bracket are Optional.
 * The fields can be written in any order.
 * ***Only*** Name and Student ID are a must.
-* Name must only consist of alphanumeric characters.
+* Name must only consist of alphanumeric characters and spaces, as well as special characters such as `, ' .`
 * Student ID must take the format of e0XXXXXX where X is a digit from 0 to 9.
 * A student can have any number of tags (including 0).
 
@@ -272,6 +272,10 @@ Examples:
 Adds a task to the Task List.
 There is two different types of Task - ***ToDo*** and ***Deadline***.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
+You can have multiple same tasks as tasks can be duplicated.
+</div>
+
 #### Adding a ToDo
 
 Adds a ***ToDo*** (A type of Task) to the Task List.
@@ -341,7 +345,7 @@ Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
 * An Assignment task should always include a title, description that should not be left blank.
 * The `addStu/` **MUST** be present for the task to be an assignment.
 * The number of students input is zero or more, and each student is separated by a `,` comma, thus student names should not contain commas.
-* Both title and description should consist of only alphanumeric characters.
+* Both title and description should not be left blank.
 
 Examples:
 * `task t/Assignment 1 d/Description here addStu/Adam Tan, Wong Zhu Yi, Robin Hood`
