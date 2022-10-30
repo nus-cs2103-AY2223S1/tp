@@ -900,6 +900,14 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+### Table of contents for manual testing
+
+* [Launch and shutdown](#launch-and-shutdown)
+* [Modifying residents](#modifying-residents)
+* [Viewing residents](#viewing-residents)
+* [File management](#file-management)
+* [Venue management](#venue-management)
+
 ### Launch and shutdown
 
 #### Initial launch
@@ -1069,7 +1077,7 @@ testers are expected to do more *exploratory* testing.
 
 <br>
 
-### Venue booking
+### Venue management
 
 #### Adding a venue
 
