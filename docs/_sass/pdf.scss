@@ -39,5 +39,19 @@
       string-set: section_title content();
       page-break-after: avoid;
     }
+
+    table {
+      td {
+        // FIXME: Remove hardcoding + hacky way
+        img {
+          max-width: 300px;
+          display: inline-block;
+        }
+
+        &:has(img) {
+          text-align: center;
+        }
+      }
+    }
   }
 }
