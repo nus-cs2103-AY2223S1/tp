@@ -14,19 +14,19 @@ Survin is a desktop application for surveyors to use to keep track of people the
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `Survin.jar` from [here](https://github.com/AY2223S1-CS2103-F13-2/tp).
+2. Download the latest `Survin.jar` from [here](https://github.com/AY2223S1-CS2103-F13-2/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for the app.
+3. Copy the file to the folder you want to use as the _home folder_ for the app.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     - **`list`** : Lists all contacts.
 
-    - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to Survin.
+    - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/male b/1989-10-1 ra/White American re/Christian s/Environment Survey` : Adds a contact named `John Doe` to Survin.
 
     - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -34,7 +34,7 @@ Survin is a desktop application for surveyors to use to keep track of people the
 
     - **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 ---
 
@@ -59,8 +59,8 @@ Survin is a desktop application for surveyors to use to keep track of people the
 -   If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
     e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-- Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+-   Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
+    e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
 
@@ -80,7 +80,7 @@ Format: `help [COMMAND_NAME]`
 
 Adds a person to the app.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION [s/SURVEY]… [t/TAG]…`
+Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION [s/SURVEY]… [t/TAG]…`
 
 -   Adds a surveyee with the all the descriptions listed.
 -   All descriptors have to be specified and follow their own specified format.
@@ -209,6 +209,8 @@ Append surveys or tags to the person identified by the index number in the comma
 
 Format: `INDEX [s/SURVEYS]... [t/TAGS]...`
 
+-   Person should not already have any of the surveys or tags that you are appending.
+-   The append command is case-sensitive. e.g. you can append both `Food Survey` and `food survey`.
 -   At least one of the optional fields has to be provided.
 -   Able to append multiple surveys and tags in a single command.
 -   Fields must be non-empty.
@@ -221,6 +223,7 @@ Unappend surveys or tags from the person identified by the index number in the c
 
 Format: `INDEX [s/SURVEYS]... [t/TAGS]...`
 
+-   The unappend command is case-sensitive. e.g. you can only unappend `Food Survey` by typing `Food Survey` and not `food survey`.
 -   At least one of the optional fields has to be provided.
 -   Able to unappend multiple surveys and tags in a single command.
 -   Fields must be non-empty.
@@ -342,3 +345,24 @@ _Details coming soon ..._
 | **Clone**               | `clone INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `clone 1 n/James Lee p/91234567 e/jameslee@example.com`                                                                                                                                                              |
 | **List**                | `list`                                                                                                                                                                                                                                                                            |
 | **Help**                | `help` and `help [NAME_OF_COMMAND]`                                                                                                                                                                                                                                               |
+
+## Parameters format
+
+**NAME**: Names should only contain alphanumeric characters and spaces, and it should not be blank.
+**PHONE**: Phone numbers should only contain numbers, and it should be at least 3 digits long.
+**EMAIL**: Emails should be of the format local-part@domain and adhere to the following constraints:
+
+1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+3. The domain name must:
+    - end with a domain label at least 2 characters long
+    - have each domain label start and end with alphanumeric characters
+    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+**ADDRESS**: Addresses can take any values, and it should not be blank.
+**GENDER**: Gender should only be 'male', 'female', or 'others', and it should not be blank.
+**BIRTHDATE**: Birthdate should be in the format of yyyy-mm-dd, it should be a valid date, and it should not be blank. Birthdate should also not be in the future.
+**RACE**: Race should only contain alphabetical characters and spaces, and it should not be blank.
+**RELIGION**: Religion should only contain alphabetical characters and spaces, and it should not be blank.
+**SURVEY**: Survey should only contain alphanumeric characters and spaces, and it should not be blank.
+**TAG**: Tags names should be alphanumeric.
