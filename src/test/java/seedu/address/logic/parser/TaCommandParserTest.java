@@ -115,7 +115,7 @@ public class TaCommandParserTest {
     @Test
     public void parse_optionalGithubFieldMissing_success() {
         Person expectedPerson = new TeachingAssistantBuilder(CABE).withRating(VALID_RATING_CABE)
-                .withModuleCode(VALID_MODULE_CODE_CABE).withTags(VALID_TAG_FRIEND)
+                .withModuleCode(VALID_MODULE_CODE_CABE).withTags(VALID_TAG_FRIEND).withGithubUsername("")
                 .withLocation(VALID_LOCATION_CABE).build();
         System.out.println(expectedPerson.getUsername());
         assertParseSuccess(taParser, NAME_DESC_CABE + PHONE_DESC_CABE + EMAIL_DESC_CABE + GENDER_DESC_CABE
