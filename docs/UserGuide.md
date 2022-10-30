@@ -10,7 +10,7 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1 Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -38,7 +38,7 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 2 Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -64,43 +64,29 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
 </div>
 
-### Switch to light mode : `light`
+### 2.1 UI
+
+#### 2.1.1 Switch to light mode : `light`
 
 Switch to light mode.
 
 Format: `light`
 
-### Switch to dark mode : `dark`
+#### 2.1.2 Switch to dark mode : `dark`
 
 Switch to dark mode.
 
 Format: `dark`
 
-### Viewing help : `help`
+#### 2.1.3 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a student/teaching assistant: `add`
+### 2.2 Modules
 
-Adds a student/teaching assistant to the module.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
-
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** A student can have any number of tags, modules, ta modules and class groups (including 0).
-:bulb: **Tip:** A student should not be a teaching assistant and a student of the same module!
-
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Adam Doink e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 c/CS1101S cg/CS1101S:Tut07`
-* `add n/David Lim e/ad4md01nk@example.com a/Tembusu College p/82738419 c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
-
-
-### Adding a module: `madd`
+#### 2.2.1 Adding a module: `madd`
 
 Adds a module to the ProfNUS.
 
@@ -114,18 +100,7 @@ Examples:
 * `madd n/Introduction to SWE c/CS2103T d/Teach students SWE principles and practices t/ModuleCoordinator`
 * `madd n/Introduction to Cybersecurity c/CS2107 d/Cryptography practices t/NEW t/URGENT`
 
-### Listing all students : `list`
-
-Shows a list of all the students and teaching assistants in ProfNUS with their contact information in the application.
-
-Format: `list`
-
-Examples:
-
-![list](images/userguide/list.png)
-
-
-### Viewing list of modules : `mlist`
+#### 2.2.2 Viewing list of modules : `mlist`
 
 Shows a list of all modules in the ProfNUS application.
 You can click on each module to view more details about the module.
@@ -134,7 +109,7 @@ You can click on each module to view more details about the module.
 
 Format: `mlist`
 
-### Viewing more details of a module in the list of modules : `vtarget`
+#### 2.2.3 Viewing more details of a module in the list of modules : `vtarget`
 
 You can also choose to use a CLI-command to get more information about a module in the ProfNUS application
 at your specified `INDEX`.
@@ -145,7 +120,7 @@ Format: `vtarget INDEX`
 
 Examples: `vtarget 3`
 
-### Viewing module details : `mview`
+#### 2.2.4 Viewing module details : `mview`
 
 Shows a list of students and tutors in the module.
 
@@ -158,7 +133,36 @@ Format: `mview [c/MODULE_CODE]`
 Examples:
 *  `mview c/CS1101S` Views the list of students and tutors in CS1101S.
 
-### Editing a student : `editstu`
+#### 2.2.5 Deleting a module: `mdel`
+
+Deletes a module stored in the ProfNUS.
+
+Format: `mdel c/MODULE CODE`
+
+Examples:
+* `mdel c/CS2103T`
+
+
+### 2.3 Students
+
+#### 2.3.1 Adding a student/teaching assistant: `add`
+
+Adds a student/teaching assistant to the module.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/STUDENT_ID h/TELEGRAM [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** A student can have any number of tags, modules, ta modules and class groups (including 0).
+:bulb: **Tip:** A student should not be a teaching assistant and a student of the same module!
+
+</div>
+
+Examples:
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/A0175749U h/@good_user`
+* `add n/Adam Doink e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 i/A0175776U h/@adam_doink c/CS1101S cg/CS1101S:Tut07`
+* `add n/David Lim e/ad4md01nk@example.com a/Tembusu College p/82738419 i/A0175079D h/@david_the_best c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
+
+#### 2.3.2 Editing a student : `editstu`
 
 Edits an existing student in the ProfNUS application.
 
@@ -169,14 +173,14 @@ Format: `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c
 * Existing values will be updated to the input values.
 * When editing tags, modules, ta modules and class groups, the existing information of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `editstu 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `editstu 2 n/Betsy Crower ta/` Edits the name of the 2nd student to be `Betsy Crower` and clears all ta modules.
 
 
-### Editing a teaching assistant : `editta`
+#### 2.3.3 Editing a teaching assistant : `editta`
 
 Edits an existing teaching assistant in the ProfNUS application.
 
@@ -193,8 +197,35 @@ Examples:
 *  `editta 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teaching assistant to be `91234567` and `johndoe@example.com` respectively.
 *  `editta 2 n/Betsy Crower ta/` Edits the name of the 2nd teaching assistant to be `Betsy Crower` and clears all ta modules.
 
+#### 2.3.4 Deleting a student : `delstu`
 
-### Locating students by name: `find`
+Deletes the specified student from the ProfNUS application.
+
+Format: `delstu INDEX`
+
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd student in the list of students.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+#### 2.3.5 Deleting a teaching assistant : `delta`
+
+Deletes the specified teaching assistant from the ProfNUS application.
+
+Format: `delta INDEX`
+
+* Deletes the teaching assistant at the specified `INDEX`.
+* The index refers to the index number shown in the displayed teaching assistant list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delta 2` deletes the 2nd teaching assistant in the list of teaching assistants.
+* `find Betsy` followed by `delta 1` deletes the 1st teaching assistant in the results of the `find` command.
+
+#### 2.3.6 Locating students by name: `find`
 
 Finds students/teaching assistants whose names contain any of the given keywords.
 
@@ -211,44 +242,19 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-### Deleting a student : `delstu`
+#### 2.3.7 Listing all students : `list`
 
-Deletes the specified student from the ProfNUS application.
+Shows a list of all the students and teaching assistants in ProfNUS with their contact information in the application.
 
-Format: `delstu INDEX`
-
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `list`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in the list of students.
-* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Deleting a teaching assistant : `delta`
+![list](images/userguide/list.png)
 
-Deletes the specified teaching assistant from the ProfNUS application.
+### 2.4 Schedules
 
-Format: `delta INDEX`
-
-* Deletes the teaching assistant at the specified `INDEX`.
-* The index refers to the index number shown in the displayed teaching assistant list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delta 2` deletes the 2nd teaching assistant in the list of teaching assistants.
-* `find Betsy` followed by `delta 1` deletes the 1st teaching assistant in the results of the `find` command.
-
-### Deleting a module: `mdel`
-
-Deletes a module stored in the ProfNUS.
-
-Format: `mdel c/MODULE CODE`
-
-Examples:
-* `mdel c/CS2103T`
-
-### Add a teaching schedule `sadd`
+#### 2.4.1 Add a teaching schedule `sadd`
 
 Adds a schedule of a module in the ProfNUS.
 
@@ -272,7 +278,7 @@ If the schedule to be added conflicts with any existing schedule, the ProfNUS wi
 ![sadd](images/userguide/sadd.png)
 
 
-### Edit a schedule `sedit`
+#### 2.4.2 Edit a schedule `sedit`
 
 Edits a schedule in the ProfNUS.
 
@@ -287,7 +293,7 @@ Edits a schedule in the ProfNUS.
 ![sedit](images/userguide/sedit.png)
 
 
-### Delete a schedule `sdelete`
+#### 2.4.3 Delete a schedule `sdelete`
 
 Deletes a schedule from the ProfNUS.
 
@@ -300,7 +306,7 @@ Deletes a schedule from the ProfNUS.
 ![sdelete](images/userguide/sdelete.png)
 
 
-### Clear your teaching schedule: `sclear`
+#### 2.4.4 Clear your teaching schedule: `sclear`
 
 Clears some selected schedules/all schedules from the ProfNUS.
 
@@ -314,7 +320,7 @@ Clears some selected schedules/all schedules from the ProfNUS.
 
 **Example**: `sclear m/CS2103T m/CS2103`
 
-### View your teaching schedule: `view`
+#### 2.4.5 View your teaching schedule: `view`
 
 Shows the list of some selected schedules/all schedules from the ProfNUS.
 
@@ -330,7 +336,7 @@ Shows the list of some selected schedules/all schedules from the ProfNUS.
 
 ![view by module](images/userguide/view by module.png)
 
-### View your teaching schedule: `tview`
+#### 2.4.6 View your teaching schedule: `tview`
 
 Shows the timetable of all schedules from the ProfNUS.
 
@@ -339,36 +345,36 @@ Shows the timetable of all schedules from the ProfNUS.
 
 ![tview](images/userguide/tview.png)
 
-### Clearing all entries : `clear`
+### 2.5 Clearing all entries : `clear`
 
 Clears all entries from the ProfNUS application.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### 2.6 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### 2.7 Saving the data
 
 ProfNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data
+### 2.8 Editing the data
 ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### 2.9 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 3 FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ProfNUS home folder.
@@ -376,7 +382,7 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 
-## Command summary
+## 4 Command summary
 
 | Action                                | Format                                                                                                             | Example                                                                                                                                                                     |
 |---------------------------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
