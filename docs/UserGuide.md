@@ -15,7 +15,7 @@ Focusing on speed and efficiency, you can interact with SectresBook using the **
 
 This User Guide is an in-depth guide to help you start managing your contacts, notes and finances. It includes the **installation, features and how to use them, and FAQ for troubleshooting**, ensuring a smooth pickup of the SectresBook.
 
-- [SectresBook](#sectresbook)
+- Table of Contents
   * [Introduction to SectresBook](#introduction-to-sectresbook)
   * [Using this guide](#using-this-guide)
   * [Quick start](#quick-start)
@@ -44,6 +44,7 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
       - [Viewing help : `help`](#viewing-help----help-)
       - [Inspecting a person : `inspect`](#inspecting-a-person----inspect-)
       - [Locating persons by tag: `findTag`](#locating-persons-by-tag---findtag-)
+      - [Clearing all entries : `clear`](#clearing-all-entries----clear-)
       - [Exiting the program : `exit`](#exiting-the-program----exit-)
       - [Saving the data](#saving-the-data)
       - [Editing the data file](#editing-the-data-file)
@@ -57,7 +58,6 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
       - [Locating persons by name or contact number: `find`](#locating-persons-by-name-or-contact-number---find-)
       - [Editing loan of a person: `editLoan`](#editing-loan-of-a-person---editloan-)
       - [Deleting a person : `delete`](#deleting-a-person----delete-)
-      - [Clearing all entries : `clear`](#clearing-all-entries----clear-)
       - [Sorting by property: `sort` `[coming in v2.0]`](#sorting-by-property---sort----coming-in-v20--)
     + [Note Features](#note-features)
       - [Adding Notes `addNote`](#adding-notes--addnote-)
@@ -71,8 +71,10 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
   * [FAQ](#faq)
   * [Glossary](#glossary)
   * [Command summary](#command-summary)
-    + [AddressBook Commands](#addressbook-commands)
-    + [Note Commands](#note-commands)
+    + [General Commands](#general-commands)
+    + [Person Commands](#person-commands)
+    + [Notes Commands](#notes-commands)
+
 
 
 --------------------------------------------------------------------------------------------------------------------
