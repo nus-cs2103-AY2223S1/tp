@@ -78,13 +78,14 @@ We store this data locally on your device. This means that you can benefit from 
 
 ## Symbols
 
-| Symbol     | Meaning                                 |
-|------------|-----------------------------------------|
-| :bulb:     | Tip that may be useful to know.         |
-| :notebook: | Information that may be useful to know. |
-| `+`        | Required field.                         |
-| `-`        | Optional field.                         |
-| `*`        | Multiple inputs are allowed.            |
+| Symbol        | Meaning                                 |
+|---------------|-----------------------------------------|
+| :bulb:        | Tip that may be useful to know.         |
+| :notebook:    | Information that may be useful to know. |
+| :exclamation: | Dangerous commands - use with care.     |
+| `+`           | Required field.                         |
+| `-`           | Optional field.                         |
+| `*`           | Multiple inputs are allowed.            |
 
 ## Features
 
@@ -224,7 +225,7 @@ If not, please follow the error message given and format above to enter the corr
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
   ![edit Betsy Crower Result](images/ug-images/editCommand/editBetsyCrowerResult.png)
 
-### Deleting a patient : `delete`
+### :exclamation: Deleting a patient : `delete`
 
 Deletes the patient specified by the index number used in the patient list panel.
 
@@ -501,7 +502,7 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
-### Clearing all entries : `clear`
+### :exclamation: Clearing all entries : `clear`
 
 Empties checkUp of all patients stored.
 
