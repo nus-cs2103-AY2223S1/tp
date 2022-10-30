@@ -85,10 +85,10 @@ public class AddReminderCommandParserTest {
 
         // missing description prefix
         userInput = NAME_DESC_REMINDER1 + TIME_DESC_REMINDER1 + DATE_DESC_REMINDER1 + PRIORITY_DESC_REMINDER1;
-                assertParseFailure(parser, userInput,
+        assertParseFailure(parser, userInput,
                 String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_DESCRIPTION}),
                         AddReminderCommand.MESSAGE_USAGE));
-        
+
 
         // all prefixes missing
         userInput = VALID_NAME_REMINDER2 + VALID_DATE_REMINDER2 + VALID_TIME_REMINDER2 + VALID_PRIORITY_REMINDER2
@@ -102,8 +102,8 @@ public class AddReminderCommandParserTest {
 
     @Test
     public void parse_invalidDatetimeFormat_throwsParseException() {
-        String userInput = NAME_DESC_REMINDER1 + INVALID_DATE_FORMAT_DESC + TIME_DESC_REMINDER1 + PRIORITY_DESC_REMINDER1
-                + DESCRIPTION_DESC_REMINDER1;
+        String userInput = NAME_DESC_REMINDER1 + INVALID_DATE_FORMAT_DESC + TIME_DESC_REMINDER1
+                + PRIORITY_DESC_REMINDER1 + DESCRIPTION_DESC_REMINDER1;
         assertParseFailure(parser, userInput, DatetimeCommonUtils.DATETIME_MESSAGE_CONSTRAINTS);
     }
 
