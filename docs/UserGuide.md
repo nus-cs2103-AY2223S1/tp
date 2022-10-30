@@ -54,6 +54,8 @@ In the event where you encounter any trouble or issues, refer to our [FAQ sectio
 
 We hope that this guide is helpful in smoothing out the learning curve for you!
 
+[Return to the top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Terminologies
