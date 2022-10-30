@@ -90,9 +90,13 @@ Before proceeding, do make sure that you can understand our notation for command
 
 Displays list of commands and information about NotionUS.
 
+![Screenshot of Help Window](images/user-guide/HelpDemo.png)
+
 Format: `help`
 
-![Screenshot of Help Window](images/user-guide/HelpDemo.png)
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Shortcut key: <kbd>fn</kbd> + <kbd>F1</kbd> 
+</div>
 
 ### Adding a task: `add`
 
@@ -108,8 +112,8 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
 Examples:
 * `add -n Tutorial 12 -m CS2103T -d 2022-10-28 -t tutorial`
 
-![Before image of Add Command](images/user-guide/AddCommandBefore.png)
-![After image of Add Command](images/user-guide/AddCommandAfter.png)
+![Before image of Add Command](images/user-guide/AddCommandBefore1'.png)
+![After image of Add Command](images/user-guide/AddCommandAfter1.png)
 
 ### Marking a task as completed: `mark`
 
