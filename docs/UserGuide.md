@@ -114,7 +114,9 @@ Deletes all completed tasks from the task manager list.
 
 Format: `clean`
 
-Note: This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which deletes all contacts.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which **deletes all contacts**.
+</div>
 
 #### Marking a task: `mark`
 
