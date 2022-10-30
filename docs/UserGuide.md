@@ -321,7 +321,6 @@ Format: `task find <q/QUERY x/DONE a/ASSIGNMENT>`
 * DONE is either X or O, representing 'Done' and 'Not done' respectively.
 * Note that adding a new task will reset the UI back to the full list of tasks.
 
-
 <div markdown="block" class="alert alert-warning">
 
 **:alarm_clock: Reminder:**<br>
