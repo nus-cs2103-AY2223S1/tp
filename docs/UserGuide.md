@@ -162,7 +162,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Customers matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* When searching for names, fuzzy search based on Soundex will be used
+* When searching for names, fuzzy search based on [Soundex](https://en.wikipedia.org/wiki/Soundex) will be used
   e.g. `Aschcroft` will match `Aschcraft`
 * No need to type in the whole word. e.g `9927` will match `27859927`
 * For precise searching, specify the corresponding attribute (phone number or email)
