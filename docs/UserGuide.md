@@ -24,6 +24,7 @@ No other technical knowledge is required.
 * [Getting started](#getting-started)
 * [User interface breakdown](#user-interface-breakdown)
 * [Managing your Minecraft friends](#managing-your-minecraft-friends)
+* [FAQ](#FAQ)
 * [Summary of commands](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -31,7 +32,7 @@ No other technical knowledge is required.
 ## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `minefriends.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases/download/v1.3/addressbook.jar).
+2. Download the latest `minefriends.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases/tag/v1.3).
 3. Create a folder called `Minefriends`.
 4. Put the `minefriends.jar` file inside the folder.
 5. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.<br>
@@ -347,6 +348,15 @@ command that changes the data. There is no need to save manually.
 **A**: 
 Install the app in the other computer and overwrite the empty data file it creates with the file that
 contains the data of your previous Minefriends home folder.
+
+**Q: What is the recommended window size?** <br>
+
+**A**:
+The recommended window size is 1280 x 720 pixels, anything smaller may cause the UI to be distorted.
+
+**Q: How long can the parameters be?** <br>
+
+As long as you want, however please note that the UI will be distorted if these parameters are too long.
 
 --------------------------------------------------------------------------------------------------------------------
 
