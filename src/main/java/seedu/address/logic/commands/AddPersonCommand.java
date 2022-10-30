@@ -48,6 +48,7 @@ public class AddPersonCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.goToHomePage();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

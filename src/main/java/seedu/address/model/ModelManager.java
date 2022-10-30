@@ -120,7 +120,6 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -174,19 +173,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteModule(Module target) {
         addressBook.removeModule(target);
-        isHome.set(INDEX_OF_HOME_STATUS, true);
-        assert isHome.size() == 1;
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
-        isHome.set(INDEX_OF_HOME_STATUS, true);
-        assert isHome.size() == 1;
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
