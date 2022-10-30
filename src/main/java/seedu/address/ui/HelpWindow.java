@@ -17,6 +17,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-w09-4.github.io/tp/UserGuide.html";
     public static final String BUFFER_LINE = "-------------------------------------------------------------------\n";
+    //move copyButton in HelpWindow FXML if changed
     public static final String BASIC_COMMANDS = "1. To add a new student:\n"
             + "> add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN\n"
             + "2. To find a student in your address book:\n" + "> find NAME\n"

@@ -51,6 +51,10 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
             removePersonDescriptor.setSessionIndex(sessionIndex);
         }
 
+        if (!removePersonDescriptor.isAnyFieldRemoved()) {
+            throw new ParseException(RemoveCommand.MESSAGE_NOT_REMOVED);
+        }
+
         return new RemoveCommand(removePersonDescriptor);
     }
 }
