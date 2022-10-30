@@ -25,7 +25,7 @@ public class DeletePersonFromMeetingCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ":Deletes the list of people from the specified meeting based on the index from the displayed meetings.\n"
             + "Parameters: Meeting index ; NAMES OF PEOPLE (from address book) YOU WANT TO DELETE, (split names by ,)\n"
-            + "Example: " + COMMAND_WORD + "1 ; Alex Yeoh, Anna Lim";
+            + "Example: " + COMMAND_WORD + " 1 ; Alex Yeoh, Anna Lim";
 
     public static final String MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS = "Deleted the list of persons";
 
