@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import seedu.watson.commons.core.LogsCenter;
 import seedu.watson.commons.exceptions.DataConversionException;
-import seedu.watson.commons.exceptions.IllegalValueException;
 import seedu.watson.commons.util.FileUtil;
 import seedu.watson.commons.util.JsonUtil;
 import seedu.watson.model.ReadOnlyDatabase;
