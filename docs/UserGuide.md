@@ -109,6 +109,8 @@ pay attention to. </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** used to highlight dangers and things to look out for. </div>
 
+In addition, for better readability, icons in this guide have been colored black. In the actual application, colors may be inverted, but their shape will remain the same.
+
 [Back to Top](#sectresbook)
 
 ## Quick start
@@ -829,6 +831,9 @@ After executing `showNotes`:
 
 **Q** I work in a highly classified/important organisation and we have large volumes of monetary transactions and tasks we need to keep track of. Can we use this version of the app to manage our operations?<br>
 **A** No, the current version of SectresBook is not designed for such intensive and critical operations. It does not support any form of encryption or security and has a maximum cap on total amounts recorded. We do not suggest using this app in places where information loss or leaks may result in catastrophic consequences.
+
+**Q** I cannot see any images in this document, what is wrong?<br>
+**A** You are likely viewing the file in dark mode. The images are in black as their main color, please view this document in light mode instead.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SectresBook home folder.
