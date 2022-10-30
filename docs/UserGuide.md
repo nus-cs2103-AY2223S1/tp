@@ -260,7 +260,7 @@ Format: `edit reminder INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [p/PRI
 
 Examples:
 * `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
-* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd consultation to be `14:00` and sets deadline date to `2022 Oct 10`.
+* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2022 Oct 10`.
 
 #### 3.4.3 Mark a reminder : `mark reminder`
 
@@ -383,6 +383,7 @@ _Details coming soon..._
 **A**: Click on the `Tab` button, and it will toggle between all 4 tabs (**Student**, **Grade Chart**, **Consultation**, **Tutorial**) and the command line input too.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 
@@ -410,6 +411,8 @@ _Details coming soon..._
 | **Clear**                  | `clear f/FIELD`<br> e.g., `clear f/student`                                                                                                                                                                          |
 | **Help**                   | `help`                                                                                                                                                                                                               |
 | **Exit**                   | `exit`                                                                                                                                                                                                               |
+
+<div style="page-break-after: always;"></div>
 
 ## 6. Prefix summary
 | Prefix    | Symbolise        | Used in                                                                                                                                                                          |
