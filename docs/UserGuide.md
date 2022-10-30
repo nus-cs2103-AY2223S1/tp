@@ -1,6 +1,6 @@
 # Contactmation User Guide
 
-## Table of contents
+## **Table of contents**
 
 1. [Introduction](#introduction)
 2. [About](#about)
@@ -48,7 +48,7 @@
    4. [Task commands](#task-commands-summary)
    5. [Advanced commands](#advanced-commands-summary)
 --------------------------------------------------------------------------------------------------------------------
-## Introduction
+## **Introduction**
 
 >**What is Contactmation?**
 
@@ -64,7 +64,7 @@ each projects' group and subgroup, and delegate tasks to each group.
 Contactmation is for **project managers and supervisors** that want to maintain an organised view of their
 projects and streamline the management of their projects.
 --------------------------------------------------------------------------------------------------------------------
-## About
+## **About**
 
 ### Graphic User Interface
 
@@ -75,14 +75,14 @@ We will be referring to these terminologies throughout the user guide:
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 
 - Ensure that `Java 11` and above is installed on your device. If you do not have `Java 11` installed, please refer to
   this [Java 11 installation guide](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk).
 
 ---
 
-## Quick start
+## **Quick start**
 
 1. Ensure that the [prerequisites](#prerequisites) are met before installing Contactmation.
 
@@ -100,9 +100,7 @@ We will be referring to these terminologies throughout the user guide:
 
 ![Contactmation ui main window](images/ContactmationUiClean.png)
 
-> **Note:** 
-
-> If you wish to clear all default entries, use the [clear](#clear-command-clear) command.
+> **Note:** If you wish to clear all default entries, use the [clear](#clear-command-clear) command.
 
 5. You may begin by referring to the [basic features](#basic-features) section to get started on using
    Contactmation. For additional, more powerful commands, refer to our [advanced features](#advanced-features),
@@ -141,7 +139,7 @@ There may also be many subgroups under a group, similar to how there may be many
 Adding to the analogy, your contacts can be thought of as files on your desktop. Contacts can thus be
 added to a group or a subgroup, similar to how files can be added into folders.
 
-## Basic features
+## **Basic features**
 
 ## General commands
 
@@ -149,14 +147,15 @@ added to a group or a subgroup, similar to how files can be added into folders.
 
 Clears all group, contact and task entries from the application.
 
-> **Warning**
-> **THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION!**
-
 **Format:** `clear`
+
+> **Warning:**
+> This action is **IRREVERSIBLE!** Run this command at your own discretion!
+
 
 ### Find command: `find`
 
-**CURRENTLY A WORK IN PROGRESS DUE TO BUGS**
+(**CURRENTLY A WORK IN PROGRESS DUE TO BUGS**)
 
 Searches for a contact, group or task that matches the given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
 to further narrow the search for a contact, subgroup or task within the current [scope](#scoping).
@@ -168,7 +167,7 @@ to further narrow the search for a contact, subgroup or task within the current 
 - `find John Doe`
 - `find task1 task2`
 
-### Exits the program: `exit`
+### Exit command: `exit`
 
 Exits the current session and closes the application.
 
@@ -186,7 +185,6 @@ The following contact commands comply with these placeholder constraints:
 - The `PHONE_NUMBER` of the contact must be at least 3 digits long.
 - The `EMAIL` of the contact must be in the format `local-part@domain`.
 
-<<<<<<< HEAD
     - `local-part`: Only contain alphanumeric characters and these special characters, excluding
       the parentheses, (+_.-). The local-part may not start or end with any special characters.
     - `domain`:
@@ -200,7 +198,7 @@ The following contact commands comply with these placeholder constraints:
   application.
 - The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
 
-### Add a contact: `person new`
+### Adding a contact: `person new`
 
 Adds a new contact with a name within the current [scope](#scoping). Additionally, other contact details such
 as the phone number, email, address and multiple tags may be included during the creation of the contact.
@@ -212,7 +210,7 @@ as the phone number, email, address and multiple tags may be included during the
 - `person new n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
 - `person new n/Betty White`
 
-### Delete a contact: `person delete`
+### Deleting a contact: `person delete`
 
 Delete a contact from the contact list by their listed `INDEX` within the current [scope](#scoping).
 
@@ -228,7 +226,6 @@ Lists all current contacts in your contact list within the current [scope](#scop
 
 **Format:** `list`
 
-<<<<<<< HEAD
 ### Select command
 
 Refer to the [select](#select-command-select) command for more information.
@@ -237,24 +234,24 @@ Refer to the [select](#select-command-select) command for more information.
 
 ### Constraints on team information
 
-The following group commands comply with these placeholder constraints:
+The following team commands comply with these placeholder constraints:
 
-- The `GROUP NAME` must be alphanumeric.
+- The `TEAM NAME` must be alphanumeric.
 - The `INDEX` must be a positive integer which cannot exceed the number of contacts / groups currently displayed
   in the application.
 
 ### Creating a group: `team new`
 
-Creates a new group with the specified group name within the current [scope](#scoping). This new group
+Creates a new team with the specified team name within the current [scope](#scoping). This new group
 will thus be a subgroup of the group you are currently scoped in.
 
-**Format:** `team new <GROUP NAME>`
+**Format:** `team new <TEAM NAME>`
 
 **Example:**
 
 - `team new namingIsHard`
 
-### Deleting a group: `team delete`
+### Deleting a team: `team delete`
 
 Removes an existing group from the current [scope](#scoping). All subgroups of the group you are currently
 deleting will also be deleted.
@@ -288,8 +285,7 @@ the application window.
 
 ### Group scope commands
 
-> **Note:** 
-
+> **Note:**
 > Please look at how [scoping](#scoping) works before continuing.
 
 ### Changing the group scope: `cg`
@@ -298,7 +294,6 @@ Updates the group scope that is currently being displayed in the application. Th
 into a folder on your desktop, or stepping out of it.
 
 **Formats:**
-
 - `cg <INDEX>`
 - `cg ..` changes the group scope to its parent group. This is similar to stepping out of a folder once.
 - `cg /` changes the group scope to the root group. This is similar to moving your current context to the
@@ -306,7 +301,7 @@ into a folder on your desktop, or stepping out of it.
 
 ## Task commands
 
-### Adding a task to a group: `task add`
+### Adding a task to a team: `task add`
 
 Adds a new task to an existing group scope. This group cannot be the root group.
 
@@ -316,7 +311,7 @@ Adds a new task to an existing group scope. This group cannot be the root group.
 
 - `task add t/Complete all CS2103T homework d/Give description here`
 
-### Deleting a task from group: `task delete`
+### Deleting a task from team: `task delete`
 
 Deletes an existing task from a group by their `INDEX` within the current [scope](#scoping).
 
@@ -326,7 +321,7 @@ Example:
 
 - `task delete 1`
 
-### Set progress for tasks: `task progress`
+### Setting progress for tasks: `task progress`
 
 **THIS FEATURE IS CURRENTLY IN PROGRESS**
 
@@ -338,7 +333,6 @@ Format: `task progress i/<INDEX> <LEVEL>`
 - Level indicates the progress level, and can only be set to 25%, 50%, 75%, 100%.
 
 Example:
-
 - `task progress 1 25%`
 
 This sets the progress of the first task in the list as 25%.
@@ -372,6 +366,7 @@ commands together like such:
 - `seq <command 1> [; command 3]...`
 
 Whenever a pipe symbol (`|`) is encountered, the output of the previous commands is then passed to the next command. 
+
 Whenever (`;`) is used, the output of the previous commands are not passed on.
 
 All commands that produce an output supports the use of `|` to “pipe” their output to the subsequent commands.
