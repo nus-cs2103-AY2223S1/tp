@@ -23,7 +23,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.addcommands.AddDelivererCommand;
-import seedu.address.logic.commands.addcommands.AddSupplierCommand;
+//import seedu.address.logic.commands.addcommands.AddPetCommand;
+//import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
 import seedu.address.logic.commands.deletecommands.DeleteDelivererCommand;
 import seedu.address.logic.commands.deletecommands.DeleteSupplierCommand;
@@ -43,6 +44,7 @@ import seedu.address.model.order.predicates.PriceRangePredicate;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
+//import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
@@ -54,7 +56,7 @@ import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
 import seedu.address.testutil.TypicalPersonCategories;
-import seedu.address.testutil.TypicalSuppliers;
+//import seedu.address.testutil.TypicalSuppliers;
 
 public class AddressBookParserTest {
 
@@ -76,6 +78,7 @@ public class AddressBookParserTest {
         assertEquals(new AddDelivererCommand(deliverer), command);
     }
 
+    /*
     @Test
     public void parseCommand_addSupplier() throws Exception {
         Supplier supplier = TypicalSuppliers.ALICE;
@@ -83,6 +86,32 @@ public class AddressBookParserTest {
                 + " " + PersonUtil.getAddCommandBody(supplier));
         assertEquals(new AddSupplierCommand(supplier, new ArrayList<>()), command);
     }
+
+     */
+
+    /*
+    @Test
+    public void parseCommand_addPet() throws Exception {
+        Pet pet = new PetBuilder().withName("NyankoSensei").build();
+
+        String input = AddPetCommand.COMMAND_WORD
+                + "  i/1 "
+                + " pt_n/" + pet.getName()
+                + " pt_d/" + pet.getDateOfBirth()
+                + " pt_c/" + pet.getColor()
+                + " pt_cp/" + pet.getColorPattern()
+                + " pt_h/" + pet.getHeight()
+                + " pt_w/" + pet.getWeight()
+                + " pt_s/" + pet.getSpecies()
+                + " pt_v/" + pet.getVaccinationStatus()
+                + " pt_p" + pet.getPrice();
+
+        String input = AddPetCommand.COMMAND_WORD + " i/1" + " n/NyankoSensei";
+        AddPetCommand command = (AddPetCommand) parser.parseCommand(input);
+        AddPetCommand expected = new AddPetCommand(pet, INDEX_FIRST);
+        assertEquals(command, expected);
+    }
+    */
 
     @Test
     public void parseCommand_clear() throws Exception {

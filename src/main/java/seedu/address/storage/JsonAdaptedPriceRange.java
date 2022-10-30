@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Price;
 import seedu.address.model.order.PriceRange;
 
@@ -33,7 +34,10 @@ public class JsonAdaptedPriceRange {
     /**
      * Converts this Jackson-friendly adapted PriceRange object into the model's {@code PriceRange} object.
      */
-    public PriceRange toModelType() {
+    public PriceRange toModelType() throws ParseException {
+        if (lowerBound == null || upperBound == null || lowerBound < 0 || upperBound < 0) {
+            throw new ParseException(PriceRange.MESSAGE_USAGE);
+        }
         Price modelUpperBound = new Price(upperBound);
         Price modelLowerBound = new Price(lowerBound);
         return new PriceRange(modelUpperBound, modelLowerBound);

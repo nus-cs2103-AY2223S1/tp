@@ -15,8 +15,8 @@ import static seedu.address.testutil.TypicalSuppliers.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TypicalDeliverers;
-import seedu.address.testutil.TypicalPersons;
+//import seedu.address.testutil.TypicalDeliverers;
+//import seedu.address.testutil.TypicalPersons;
 //import seedu.address.testutil.TypicalPets;
 
 public class SupplierTest {
@@ -60,6 +60,7 @@ public class SupplierTest {
         assertFalse(BOB.isSamePerson(editedBob));
     }
 
+    /*
     @Test
     public void equals() {
         // same values -> returns true
@@ -98,6 +99,8 @@ public class SupplierTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).buildSupplier();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+     */
 
     //    @Test
     //    public void toString_withPetsOnSale() {
