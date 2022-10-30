@@ -9,11 +9,11 @@ import java.util.Set;
 import javafx.scene.Node;
 import seedu.address.model.attribute.Address;
 import seedu.address.model.attribute.Attribute;
-import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Field;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
-import seedu.address.model.attribute.exceptions.AttributeException;
+import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Name name;
     private List<Attribute<?>> attrs;
     private Set<Tag> tags;
-    private AttributeList fields;
+    private Fields fields;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,7 +40,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         attrs = new ArrayList<>();
         tags = new HashSet<>();
-        fields = new AttributeList();
+        fields = new Fields();
     }
 
     /**
@@ -50,7 +50,6 @@ public class PersonBuilder {
         name = personToCopy.getName();
         attrs = new ArrayList<>(personToCopy.getAttributes());
         tags = new HashSet<>(personToCopy.getTags());
-        fields = personToCopy.getFields();
     }
 
     /**
@@ -62,8 +61,8 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
-     * {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are
+     * building.
      */
     public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -71,7 +70,8 @@ public class PersonBuilder {
     }
 
     /**
-     * Adds custom attribute to the person
+     * Adds a custom attribute.
+     *
      * @param name
      * @param data
      * @param <U>
@@ -90,11 +90,6 @@ public class PersonBuilder {
             }
 
             @Override
-            public boolean isNameMatch(String name) {
-                return false;
-            }
-
-            @Override
             public boolean isVisibleInMenu() {
                 return true;
             }
@@ -106,13 +101,11 @@ public class PersonBuilder {
 
             @Override
             public boolean isAllFlagMatch(int flag) {
-                // TODO Auto-generated method stub
                 return false;
             }
 
             @Override
             public boolean isAnyFlagMatch(int flag) {
-                // TODO Auto-generated method stub
                 return false;
             }
 
@@ -150,6 +143,11 @@ public class PersonBuilder {
             public Map<String, Object> toSaveableData() {
                 return null;
             }
+
+            @Override
+            public boolean isNameMatch(String name) {
+                return false;
+            }
         });
         return this;
     }
@@ -157,29 +155,30 @@ public class PersonBuilder {
     /**
      * Sets the {@code Fields} of the {@code Person} that we are building.
      */
-    public PersonBuilder withFields(String... fieldNames) throws AttributeException {
-        fields = new AttributeList();
+    public PersonBuilder withFields(String... fieldNames) {
+        fields = new Fields();
         for (String fieldName : fieldNames) {
-            fields.addAttribute(fieldName, "dummy content");
+            Field field = new Field(fieldName);
+            fields.addField(field);
         }
         return this;
     }
 
     /**
      * Returns a person with specified attributes in builder.
+     *
      * @return
      */
     public Person build() {
-        Person p = new Person(new Name(name.fullName), fields);
+        Person p = new Person(name.fullName);
         p.setTags(tags);
-        if (!fields.toList().isEmpty()) {
-            fields.toList().forEach(p::addAttribute);
-        }
+        attrs.forEach(attr -> p.addAttribute(attr));
         return p;
     }
 
     /**
      * Adds address attribute to person
+     *
      * @param string address
      * @return
      */
@@ -190,6 +189,7 @@ public class PersonBuilder {
 
     /**
      * Adds email attribute to person
+     *
      * @param string email
      * @return
      */
@@ -199,8 +199,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Adds a Phone attribute to the PersonBuilder instance
-     * @param string
+     * Adds phone attribute to person
+     *
+     * @param string phone number
      * @return
      */
     public PersonBuilder withPhone(String string) {

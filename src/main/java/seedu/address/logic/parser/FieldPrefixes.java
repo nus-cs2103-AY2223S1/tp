@@ -47,9 +47,11 @@ public class FieldPrefixes {
      * Adds a prefix and a corresponding field name to the model.
      *
      * @param prefix The Prefix instance representing the prefix of the field.
-     * @param name The name of the field.
-     * @param model {@code Model} which the prefix and field name should be added on.
-     * @throws ParseException if the prefix or the field has been declared previously.
+     * @param name   The name of the field.
+     * @param model  {@code Model} which the prefix and field name should be added
+     *               on.
+     * @throws ParseException if the prefix or the field has been declared
+     *                        previously.
      */
     public void addPrefix(Prefix prefix, String name, Model model) throws ParseException {
         if (matchesDefaultPrefixes(prefix) || prefixes.contains(prefix)) {
@@ -59,7 +61,6 @@ public class FieldPrefixes {
             throw new ParseException("Field has been stored previously. Enter a different field");
         }
         prefixes.add(prefix);
-        model.addField(name);
         map.put(prefix, name);
     }
 
@@ -81,7 +82,7 @@ public class FieldPrefixes {
      * Removes a field from the known list of fields.
      *
      * @param fieldName The name of the field to be removed.
-     * @param model {@code Model} which the field name should be removed from.
+     * @param model     {@code Model} which the field name should be removed from.
      * @throws ParseException if the field name can not be found.
      */
     public void removeField(String fieldName, Model model) throws ParseException {
@@ -96,7 +97,6 @@ public class FieldPrefixes {
         prefix = lst.get(0);
         map.remove(prefix);
         prefixes.remove(prefix);
-        model.removeField(fieldName);
     }
 
     /**

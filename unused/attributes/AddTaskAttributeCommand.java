@@ -1,3 +1,4 @@
+// @@author jasonchristopher21
 package seedu.address.logic.commands.attributes;
 
 import static java.util.Objects.requireNonNull;
@@ -7,38 +8,39 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attribute.exceptions.AttributeException;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonOutOfBoundException;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskOutOfBoundException;
 
 /**
- * Adds a person attribute to the address book.
+ * Adds a task attribute to the address book.
  */
-public class EditPersonAttributeCommand extends EditAttributeCommand {
+public class AddTaskAttributeCommand extends AddAttributeCommand {
 
     public static final String MESSAGE_SUCCESS = "New field added: %s, with value: %s";
 
-    private final Index personIndex; // change this to UUID later
+    private final Index taskIndex; // change this to UUID later
 
     /**
-     * Constructs an AddPersonAttributeCommand instance.
-     * @param personIndex index of the person.
+     * Constructs an AddTaskAttributeCommand instance.
+     *
+     * @param taskIndex index of the task.
      * @param attributeName the name of the attribute to be added.
      * @param attributeContent the content of the attribute to be added.
      */
-    public EditPersonAttributeCommand(Index personIndex, String attributeName, String attributeContent) {
+    public AddTaskAttributeCommand(Index taskIndex, String attributeName, String attributeContent) {
         super(attributeName, attributeContent);
-        requireNonNull(personIndex);
-        this.personIndex = personIndex;
+        requireNonNull(taskIndex);
+        this.taskIndex = taskIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            Person person = model.getFromFilteredPerson(personIndex);
-            person.editAttribute(attributeName, attributeContent);
-        } catch (PersonOutOfBoundException | AttributeException e) {
-            throw new CommandException(e.getMessage());
+            Task task = model.getFromFilteredTasks(taskIndex);
+            task.addAttribute(attributeName, attributeContent);
+        } catch (TaskOutOfBoundException | AttributeException ae) {
+            throw new CommandException(ae.getMessage());
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, attributeName, attributeContent));
     }
@@ -46,8 +48,8 @@ public class EditPersonAttributeCommand extends EditAttributeCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                && (other instanceof EditPersonAttributeCommand
-                && personIndex.equals(((EditPersonAttributeCommand) other).personIndex)));
+            || (super.equals(other)
+                && (other instanceof AddTaskAttributeCommand
+                    && taskIndex.equals(((AddTaskAttributeCommand) other).taskIndex)));
     }
 }

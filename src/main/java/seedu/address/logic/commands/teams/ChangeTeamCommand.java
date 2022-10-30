@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractSingleItem;
 
-//@@author autumn-sonata
+// @@author autumn-sonata
 /**
  * Changes a current working context of the team
  */
@@ -21,11 +21,11 @@ public class ChangeTeamCommand extends TeamInputCommand {
     public static final String COMMAND_WORD = "cg";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Changes the current context to the index specified\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1\n"
-            + "To go back to the previous context, use\n"
-            + COMMAND_WORD + " ..";
+        + ": Changes the current context to the index specified\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " 1\n"
+        + "To go back to the previous context, use\n"
+        + COMMAND_WORD + " ..";
 
     public static final String SWITCH_SUCCESS = " switched to %s%n";
 
@@ -37,11 +37,17 @@ public class ChangeTeamCommand extends TeamInputCommand {
     // -1 - traverse to root
     // 2 - use setter
 
+    /**
+     * Constructor for cg command
+     */
     public ChangeTeamCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         status = 1;
     }
 
+    /**
+     * Constructor when cg is expected to receive an input
+     */
     public ChangeTeamCommand(int status) {
         this.targetIndex = null;
         this.status = status;

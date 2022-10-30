@@ -8,6 +8,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+/**
+ * Command for user to delete a user defined command
+ */
 public class DeleteCustomCommand extends PureCommand {
 
     public static final String COMMAND_WORD = "rmMacro";
@@ -29,6 +32,9 @@ public class DeleteCustomCommand extends PureCommand {
         return new CommandResult(String.format("%s has been removed!", key), false, false);
     }
 
+    /**
+     * Creates a parser to parse user input for delete custom user command command
+     */
     public static Parser<DeleteCustomCommand> parser() {
         return new Parser<DeleteCustomCommand>() {
             @Override

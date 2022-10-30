@@ -27,8 +27,8 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
      */
     @JsonCreator
     public JsonAdaptedGroup(@JsonProperty("name") String name, @JsonProperty("uid") String uid,
-                            @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
     }
 
@@ -36,8 +36,8 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
      * Converts a given {@code Group} into this class for Jackson use.
      */
     public JsonAdaptedGroup(Group source) {
-        super(source.getName().fullName, source.getUuid().toString(),
-                source.getAttributes().stream()
+        super(source.getName().fullName, source.getUid().toString(),
+                source.getSavedAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),
                 source.getTags().stream()
@@ -69,15 +69,13 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
+        if (!Group.isValidGroupName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
 
-        final Name modelName = new Name(name);
         final Set<Tag> modelTags = new HashSet<>(groupTags);
 
-        Name groupName = new Name(modelName.fullName);
-        Group group = new Group(groupName);
+        Group group = new Group(name);
         group.setTags(modelTags);
         modelAttributes.forEach(attribute -> group.addAttribute(attribute));
         return group;

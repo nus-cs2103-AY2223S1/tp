@@ -11,6 +11,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parser to parse user input for SelectPerson Command
+ */
 public class SelectPersonCommandParser implements Parser<SelectPersonCommand> {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<index>[0-9]+)\\s+(?<commands>.*)");
 
@@ -28,7 +31,7 @@ public class SelectPersonCommandParser implements Parser<SelectPersonCommand> {
             return new SelectPersonCommand(index, matcher.group("commands"));
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectPersonCommand.MESSAGE_USAGE), pe);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectPersonCommand.MESSAGE_USAGE), pe);
         }
     }
 }

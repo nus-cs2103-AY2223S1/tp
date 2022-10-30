@@ -1,3 +1,4 @@
+// @@author jasonchristopher21
 package seedu.address.logic.commands.attributes;
 
 import static java.util.Objects.requireNonNull;
@@ -11,22 +12,22 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.GroupOutOfBoundException;
 
 /**
- * Adds a group attribute to the address book.
+ * Removes an existing attribute from a Person in the AddressBook.
  */
-public class EditGroupAttributeCommand extends EditAttributeCommand {
+public class RemoveGroupAttributeCommand extends RemoveAttributeCommand {
 
-    public static final String MESSAGE_SUCCESS = "New field added: %s, with value: %s";
+    public static final String MESSAGE_SUCCESS = "Field removed successfully: %s";
 
     private final Index groupIndex; // change this to UUID later
 
     /**
-     * Constructs an EditGroupAttributeCommand instance.
-     * @param groupIndex index of the group.
+     * Constructs an RemoveGroupAttributeCommand instance.
+     *
+     * @param groupIndex index of the person.
      * @param attributeName the name of the attribute to be added.
-     * @param attributeContent the content of the attribute to be added.
      */
-    public EditGroupAttributeCommand(Index groupIndex, String attributeName, String attributeContent) {
-        super(attributeName, attributeContent);
+    public RemoveGroupAttributeCommand(Index groupIndex, String attributeName) {
+        super(attributeName);
         requireNonNull(groupIndex);
         this.groupIndex = groupIndex;
     }
@@ -36,18 +37,18 @@ public class EditGroupAttributeCommand extends EditAttributeCommand {
         requireNonNull(model);
         try {
             Group group = model.getFromFilteredTeams(groupIndex);
-            group.editAttribute(attributeName, attributeContent);
-        } catch (GroupOutOfBoundException | AttributeException ae) {
-            throw new CommandException(ae.getMessage());
+            group.removeAttribute(attributeName);
+        } catch (GroupOutOfBoundException | AttributeException e) {
+            throw new CommandException(e.getMessage());
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, attributeName, attributeContent));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, attributeName));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                && (other instanceof EditGroupAttributeCommand
-                && groupIndex.equals(((EditGroupAttributeCommand) other).groupIndex)));
+            || (super.equals(other)
+                && (other instanceof RemoveGroupAttributeCommand
+                    && groupIndex.equals(((RemoveGroupAttributeCommand) other).groupIndex)));
     }
 }

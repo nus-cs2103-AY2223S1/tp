@@ -1,3 +1,4 @@
+// @@author jasonchristopher21
 package seedu.address.logic.commands.attributes;
 
 import static java.util.Objects.requireNonNull;
@@ -21,6 +22,7 @@ public class RemoveTaskAttributeCommand extends RemoveAttributeCommand {
 
     /**
      * Constructs an EditTaskAttributeCommand instance.
+     *
      * @param taskIndex index of the task.
      * @param attributeName the name of the attribute to be added.
      */
@@ -45,8 +47,8 @@ public class RemoveTaskAttributeCommand extends RemoveAttributeCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
+            || (super.equals(other)
                 && (other instanceof RemoveTaskAttributeCommand
-                && taskIndex.equals(((RemoveTaskAttributeCommand) other).taskIndex)));
+                    && taskIndex.equals(((RemoveTaskAttributeCommand) other).taskIndex)));
     }
 }
