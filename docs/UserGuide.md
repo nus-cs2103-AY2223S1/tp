@@ -14,6 +14,33 @@ myStudents is **a desktop app for managing students of a tuition center, optimiz
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+
+<div markdown="block" class="alert alert-info">
+
+:pencil2: **Configuring the app**  
+Users can change the default configurations of the app in the `preference.json` file located in the same place where they download the app into.  
+A `preference.json` file will be created when you first run the application. Users can then edit the file to suit their needs.  
+
+**What users can change:**
+* The size of the window such as its height and width (in pixels).
+* At which part of the screen the app will be displayed.
+* The default theme.
+* Where data will be loaded from and stored into.
+
+| Settings 	                            | Default Value 	                       |
+|---------------------------------------|---------------------------------------|
+| Window Width 	                        | 670px 	                               |
+| Window Height 	                       | 950px 	                               |
+| Window Coordinates 	                  | null 	                                |
+| Theme 	                               | Light Theme 	                         |
+| Student Address Book Location 	       | data\\\studentaddressbook.json 	      |
+| Tutor Address Book Location 	         | data\\\tutoraddressbook.json 	        |
+| Tuition Class Address Book Location 	 | data\\\tuitionclassaddressbook.json 	 |
+
+</div>
+
+
 ## Layout
 
 <p align="center">
