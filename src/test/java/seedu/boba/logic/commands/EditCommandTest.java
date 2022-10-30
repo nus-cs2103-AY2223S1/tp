@@ -22,10 +22,9 @@ import org.junit.jupiter.api.Test;
 import seedu.boba.commons.core.Messages;
 import seedu.boba.commons.core.index.Index;
 import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.boba.model.BobaBot;
-import seedu.boba.model.Model;
-import seedu.boba.model.ModelManager;
-import seedu.boba.model.UserPrefs;
+import seedu.boba.model.*;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
@@ -33,11 +32,11 @@ import seedu.boba.testutil.CustomerBuilder;
 import seedu.boba.testutil.EditCustomerDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the BobaBotModel) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
 
     @Test
     public void execute_phoneAllFieldsSpecifiedUnfilteredList_success() {
@@ -47,10 +46,10 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new BobaBot(model.getBobaBot()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
 
     @Test
@@ -61,16 +60,16 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new BobaBot(model.getBobaBot()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Customer lastCustomer = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Index indexLastPerson = Index.fromOneBased(bobaBotModel.getFilteredPersonList().size());
+        Customer lastCustomer = bobaBotModel.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         CustomerBuilder personInList = new CustomerBuilder(lastCustomer);
         Customer editedCustomer = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -82,86 +81,86 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new BobaBot(model.getBobaBot()), new UserPrefs());
-        expectedModel.setPerson(lastCustomer, editedCustomer);
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        expectedBobaBotModel.setPerson(lastCustomer, editedCustomer);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
 
     @Test
     public void execute_phoneNoFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(PHONE_FIRST_PERSON, new EditPersonDescriptor());
-        Customer editedCustomer = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Customer editedCustomer = bobaBotModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new BobaBot(model.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
 
     @Test
     public void execute_emailNoFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(EMAIL_FIRST_PERSON, new EditPersonDescriptor());
-        Customer editedCustomer = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Customer editedCustomer = bobaBotModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new BobaBot(model.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
 
     @Test
     public void execute_phoneFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(bobaBotModel, INDEX_FIRST_PERSON);
 
-        Customer customerInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Customer customerInFilteredList = bobaBotModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Customer editedCustomer = new CustomerBuilder(customerInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(PHONE_FIRST_PERSON,
                 new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new BobaBot(model.getBobaBot()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
 
     @Test
     public void execute_emailFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(bobaBotModel, INDEX_FIRST_PERSON);
 
-        Customer customerInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Customer customerInFilteredList = bobaBotModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Customer editedCustomer = new CustomerBuilder(customerInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(EMAIL_FIRST_PERSON,
                 new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new BobaBot(model.getBobaBot()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
 
     @Test
     public void execute_phoneDuplicatePersonUnfilteredList_failure() {
-        Customer firstCustomer = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Customer firstCustomer = bobaBotModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder(firstCustomer).build();
         EditCommand editCommand = new EditCommand(PHONE_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CUSTOMER);
+        assertCommandFailure(editCommand, bobaBotModel, EditCommand.MESSAGE_DUPLICATE_CUSTOMER);
     }
 
     @Test
     public void execute_emailDuplicatePersonUnfilteredList_failure() {
-        Customer firstCustomer = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Customer firstCustomer = bobaBotModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder(firstCustomer).build();
         EditCommand editCommand = new EditCommand(EMAIL_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CUSTOMER);
+        assertCommandFailure(editCommand, bobaBotModel, EditCommand.MESSAGE_DUPLICATE_CUSTOMER);
     }
 
     @Test
@@ -170,7 +169,7 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundPhone, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
+        assertCommandFailure(editCommand, bobaBotModel, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
     }
 
     @Test
@@ -179,7 +178,7 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundEmail, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
+        assertCommandFailure(editCommand, bobaBotModel, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
     }
 
     @Test

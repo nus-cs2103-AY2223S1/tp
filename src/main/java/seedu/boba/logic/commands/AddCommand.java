@@ -12,7 +12,7 @@ import static seedu.boba.model.customer.Customer.BIRTHDAY_TAG;
 import java.time.LocalDate;
 
 import seedu.boba.logic.commands.exceptions.CommandException;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.customer.Customer;
 
 /**
@@ -53,10 +53,10 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+    public CommandResult execute(BobaBotModel bobaBotModel) throws CommandException {
+        requireNonNull(bobaBotModel);
 
-        if (model.hasPerson(toAdd)) {
+        if (bobaBotModel.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
 
@@ -70,7 +70,7 @@ public class AddCommand extends Command {
             toAdd.addBirthdayTag();
         }
 
-        model.addPerson(toAdd);
+        bobaBotModel.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

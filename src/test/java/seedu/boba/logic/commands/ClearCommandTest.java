@@ -6,27 +6,27 @@ import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
 import org.junit.jupiter.api.Test;
 
 import seedu.boba.model.BobaBot;
-import seedu.boba.model.Model;
-import seedu.boba.model.ModelManager;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.UserPrefs;
 
 public class ClearCommandTest {
 
     @Test
     public void execute_emptyBobaBot_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+        BobaBotModel bobaBotModel = new BobaBotModelManager();
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), bobaBotModel, ClearCommand.MESSAGE_SUCCESS, expectedBobaBotModel);
     }
 
     @Test
     public void execute_nonEmptyBobaBot_success() {
-        Model model = new ModelManager(getTypicalBobaBot(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalBobaBot(), new UserPrefs());
-        expectedModel.setBobaBot(new BobaBot());
+        BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+        expectedBobaBotModel.setBobaBot(new BobaBot());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), bobaBotModel, ClearCommand.MESSAGE_SUCCESS, expectedBobaBotModel);
     }
 
 }

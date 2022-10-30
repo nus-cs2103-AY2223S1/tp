@@ -3,7 +3,7 @@ package seedu.boba.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.boba.logic.commands.exceptions.CommandException;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.exceptions.NextStateNotFoundException;
 import seedu.boba.model.exceptions.PreviousStateNotFoundException;
 
@@ -25,11 +25,11 @@ public class UndoCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+    public CommandResult execute(BobaBotModel bobaBotModel) throws CommandException {
+        requireNonNull(bobaBotModel);
 
         try {
-            model.undoBobaBot();
+            bobaBotModel.undoBobaBot();
         } catch (PreviousStateNotFoundException | NextStateNotFoundException e) {
             throw new CommandException(e.getMessage());
         }

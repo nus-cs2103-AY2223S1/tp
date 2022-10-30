@@ -1,6 +1,6 @@
 package seedu.boba.logic.commands;
 
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 
 /**
  * Format full help instructions for every command for display.
@@ -15,7 +15,7 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(BobaBotModel bobaBotModel) {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false, false, false, false);
     }
 }

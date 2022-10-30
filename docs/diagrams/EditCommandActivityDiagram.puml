@@ -22,7 +22,7 @@ if () then ([command is valid])
         if () then ([Customer already in database])
             :Throws an error message;
         else ([else])
-            :Model sets the Customer to edit to the edited Customer;
+            :BobaBotModel sets the Customer to edit to the edited Customer;
             :Edited Customer is reflected on the GUI;
         endif
     endif

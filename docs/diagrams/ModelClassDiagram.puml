@@ -4,12 +4,12 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package BobaBotModel <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nBobaBotModel" as BobaBotModel
 Class AddressBook
-Class ModelManager
+Class BobaBotModelManager
 Class UserPrefs
 
 Class UniquePersonList
@@ -23,15 +23,15 @@ Class Tag
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> BobaBotModel
 
 AddressBook .up.|> ReadOnlyAddressBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+BobaBotModelManager .up.|> BobaBotModel
+BobaBotModel .right.> ReadOnlyUserPrefs
+BobaBotModel .left.> ReadOnlyAddressBook
+BobaBotModelManager -left-> "1" AddressBook
+BobaBotModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
@@ -46,5 +46,5 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+BobaBotModelManager -->"~* filtered" Person
 @enduml

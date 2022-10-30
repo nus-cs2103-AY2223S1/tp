@@ -5,16 +5,16 @@ import static seedu.boba.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.boba.model.Model;
-import seedu.boba.model.ModelManager;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
 
 public class HelpCommandTest {
-    private Model model = new ModelManager();
-    private Model expectedModel = new ModelManager();
+    private BobaBotModel bobaBotModel = new BobaBotModelManager();
+    private BobaBotModel expectedBobaBotModel = new BobaBotModelManager();
 
     @Test
     public void execute_help_success() {
         CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false, false, false);
-        assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(new HelpCommand(), bobaBotModel, expectedCommandResult, expectedBobaBotModel);
     }
 }

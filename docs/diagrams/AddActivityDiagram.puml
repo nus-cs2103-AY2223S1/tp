@@ -18,7 +18,7 @@ if () then ([valid command format])
       :Check if Person with same phone
        or email address already exists;
       if () then ([does not exist yet])
-        :Model adds customer;
+        :BobaBotModel adds customer;
         :Returns CommandResult to LogicManager;
         :Saves changes to Storage on bobaBot;
       else ([else])

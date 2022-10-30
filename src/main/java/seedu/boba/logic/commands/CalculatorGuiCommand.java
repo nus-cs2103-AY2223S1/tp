@@ -1,6 +1,6 @@
 package seedu.boba.logic.commands;
 
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 
 /**
  * Format full help instructions for every command for display.
@@ -15,7 +15,7 @@ public class CalculatorGuiCommand extends Command {
     public static final String SHOWING_CALC_MESSAGE = "Opened calculator.";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(BobaBotModel bobaBotModel) {
         return new CommandResult(SHOWING_CALC_MESSAGE, false, false, false, false, true);
     }
 }

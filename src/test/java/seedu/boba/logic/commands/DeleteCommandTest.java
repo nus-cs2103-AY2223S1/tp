@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.boba.commons.core.Messages;
 import seedu.boba.commons.core.index.Index;
-import seedu.boba.model.Model;
-import seedu.boba.model.ModelManager;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.UserPrefs;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
@@ -19,12 +19,12 @@ import seedu.boba.model.customer.Phone;
 
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
+ * Contains integration tests (interaction with the BobaBotModel) and unit tests for
  * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
 
     @Test
     public void execute_validPhoneArg_success() {
@@ -33,19 +33,19 @@ public class DeleteCommandTest {
         deletePersonDescriptor.setPhone(new Phone("94351253"));
 
         // Gets the index of Customer (ALICE) within the list via her phone number
-        int index = model.findNum(deletePersonDescriptor.getPhone());
+        int index = bobaBotModel.findNum(deletePersonDescriptor.getPhone());
         Index targetIndex = Index.fromZeroBased(index);
 
         // Gets ALICE
-        Customer customerToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Customer customerToDelete = bobaBotModel.getFilteredPersonList().get(targetIndex.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, customerToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getBobaBot(), new UserPrefs());
+        BobaBotModelManager expectedModel = new BobaBotModelManager(bobaBotModel.getBobaBot(), new UserPrefs());
         expectedModel.deletePerson(customerToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, bobaBotModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class DeleteCommandTest {
         // Throws a CommandException due to no corresponding Customer found
         DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
+        assertCommandFailure(deleteCommand, bobaBotModel, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
     }
 
     @Test
@@ -67,19 +67,19 @@ public class DeleteCommandTest {
         deletePersonDescriptor.setEmail(new Email("heinz@example.com"));
 
         // Gets the index of Customer (CARL) within the list via his email
-        int index = model.findEmail(deletePersonDescriptor.getEmail());
+        int index = bobaBotModel.findEmail(deletePersonDescriptor.getEmail());
         Index targetIndex = Index.fromZeroBased(index);
 
         // Gets CARL
-        Customer customerToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Customer customerToDelete = bobaBotModel.getFilteredPersonList().get(targetIndex.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, customerToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getBobaBot(), new UserPrefs());
+        BobaBotModelManager expectedModel = new BobaBotModelManager(bobaBotModel.getBobaBot(), new UserPrefs());
         expectedModel.deletePerson(customerToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, bobaBotModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class DeleteCommandTest {
         // Throws a CommandException due to no corresponding Customer found
         DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
+        assertCommandFailure(deleteCommand, bobaBotModel, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
     }
 
     @Test

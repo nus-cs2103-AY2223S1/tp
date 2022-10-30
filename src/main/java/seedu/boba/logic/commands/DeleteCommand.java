@@ -1,14 +1,14 @@
 package seedu.boba.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.boba.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
 import seedu.boba.commons.core.Messages;
 import seedu.boba.commons.core.index.Index;
 import seedu.boba.logic.commands.exceptions.CommandException;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
@@ -37,26 +37,26 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+    public CommandResult execute(BobaBotModel bobaBotModel) throws CommandException {
+        requireNonNull(bobaBotModel);
         // Refresh the list to show everyone before each delete
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        bobaBotModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         int index;
         try {
             if (deletePersonDescriptor.isPhoneEmpty) {
-                index = model.findEmail(deletePersonDescriptor.getEmail());
+                index = bobaBotModel.findEmail(deletePersonDescriptor.getEmail());
             } else {
-                index = model.findNum(deletePersonDescriptor.getPhone());
+                index = bobaBotModel.findNum(deletePersonDescriptor.getPhone());
             }
         } catch (PersonNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
         }
 
         this.targetIndex = Index.fromZeroBased(index);
-        List<Customer> lastShownList = model.getFilteredPersonList();
+        List<Customer> lastShownList = bobaBotModel.getFilteredPersonList();
 
         Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(customerToDelete);
+        bobaBotModel.deletePerson(customerToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, customerToDelete));
     }
 

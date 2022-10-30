@@ -65,7 +65,7 @@ class JsonAdaptedCustomer {
     }
 
     /**
-     * Converts this Jackson-friendly adapted customer object into the model's {@code Customer} object.
+     * Converts this Jackson-friendly adapted customer object into the bobaBotModel's {@code Customer} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted customer.
      */

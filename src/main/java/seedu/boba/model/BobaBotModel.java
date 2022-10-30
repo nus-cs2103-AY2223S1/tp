@@ -15,9 +15,9 @@ import seedu.boba.model.exceptions.NextStateNotFoundException;
 import seedu.boba.model.exceptions.PreviousStateNotFoundException;
 
 /**
- * The API of the Model component.
+ * The API of the BobaBotModel component.
  */
-public interface Model {
+public interface BobaBotModel {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Customer> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 

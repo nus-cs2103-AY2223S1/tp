@@ -15,12 +15,8 @@ import seedu.boba.commons.util.ConfigUtil;
 import seedu.boba.commons.util.StringUtil;
 import seedu.boba.logic.Logic;
 import seedu.boba.logic.LogicManager;
-import seedu.boba.model.BobaBot;
-import seedu.boba.model.Model;
-import seedu.boba.model.ModelManager;
-import seedu.boba.model.ReadOnlyBobaBot;
-import seedu.boba.model.ReadOnlyUserPrefs;
-import seedu.boba.model.UserPrefs;
+import seedu.boba.model.*;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.util.SampleDataUtil;
 import seedu.boba.storage.BobaBotStorage;
 import seedu.boba.storage.JsonBobaBotStorage;
@@ -43,7 +39,7 @@ public class MainApp extends Application {
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
-    protected Model model;
+    protected BobaBotModel bobaBotModel;
     protected Config config;
 
     @Override
@@ -61,19 +57,19 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        bobaBotModel = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(bobaBotModel, storage);
 
         ui = new UiManager(logic);
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code BobaBotModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private BobaBotModel initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyBobaBot> addressBookOptional;
         ReadOnlyBobaBot initialData;
         try {
@@ -90,7 +86,7 @@ public class MainApp extends Application {
             initialData = new BobaBot();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new BobaBotModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -175,7 +171,7 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Address Book ] =============================");
         try {
-            storage.saveUserPrefs(model.getUserPrefs());
+            storage.saveUserPrefs(bobaBotModel.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

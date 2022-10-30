@@ -16,7 +16,7 @@ skinparam class {
 }
 
 abstract "{abstract}\nCommand" as Command {
-    {abstract} +execute(model: Model): CommandResult
+    {abstract} +execute(model: BobaBotModel): CommandResult
 }
 
 package Commands <<Rectangle>>{
@@ -37,7 +37,7 @@ package Parsers <<Rectangle>> {
     Class FindCommandParser
 }
 
-package Model/Person <<Rectangle>> {
+package BobaBotModel/Person <<Rectangle>> {
     Class MultiSearchPredicate
     Class AllInfoContainsKeywordsPredicate
     Class NameSoundsSimilarPredicate

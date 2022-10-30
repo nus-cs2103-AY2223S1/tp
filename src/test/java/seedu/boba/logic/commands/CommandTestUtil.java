@@ -18,7 +18,7 @@ import seedu.boba.commons.core.index.Index;
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.BobaBot;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.NameContainsKeywordsPredicate;
 import seedu.boba.testutil.EditCustomerDescriptorBuilder;
@@ -81,57 +81,57 @@ public class CommandTestUtil {
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
-     * - the {@code actualModel} matches {@code expectedModel}
+     * - the {@code actualBobaBotModel} matches {@code expectedBobaBotModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, BobaBotModel actualBobaBotModel, CommandResult expectedCommandResult,
+                                            BobaBotModel expectedBobaBotModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualBobaBotModel);
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel, actualModel);
+            assertEquals(expectedBobaBotModel, actualBobaBotModel);
         } catch (CommandException | ParseException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, BobaBotModel, CommandResult, BobaBotModel)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, BobaBotModel actualBobaBotModel, String expectedMessage,
+                                            BobaBotModel expectedBobaBotModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+        assertCommandSuccess(command, actualBobaBotModel, expectedCommandResult, expectedBobaBotModel);
     }
 
     /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered customer list and selected customer in {@code actualModel} remain unchanged
+     * - the address book, filtered customer list and selected customer in {@code actualBobaBotModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
+    public static void assertCommandFailure(Command command, BobaBotModel actualBobaBotModel, String expectedMessage) {
+        // we are unable to defensively copy the bobaBotModel for comparison later, so we can
         // only do so by copying its components.
-        BobaBot expectedBobaBot = new BobaBot(actualModel.getBobaBot());
-        List<Customer> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        BobaBot expectedBobaBot = new BobaBot(actualBobaBotModel.getBobaBot());
+        List<Customer> expectedFilteredList = new ArrayList<>(actualBobaBotModel.getFilteredPersonList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedBobaBot, actualModel.getBobaBot());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualBobaBotModel));
+        assertEquals(expectedBobaBot, actualBobaBotModel.getBobaBot());
+        assertEquals(expectedFilteredList, actualBobaBotModel.getFilteredPersonList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the customer at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code bobaBotModel}'s filtered list to show only the customer at the given {@code targetIndex} in the
+     * {@code bobaBotModel}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showPersonAtIndex(BobaBotModel bobaBotModel, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < bobaBotModel.getFilteredPersonList().size());
 
-        Customer customer = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Customer customer = bobaBotModel.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = customer.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        bobaBotModel.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, bobaBotModel.getFilteredPersonList().size());
     }
 
 }

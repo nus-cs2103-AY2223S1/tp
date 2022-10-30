@@ -15,17 +15,17 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.boba.model.Model;
-import seedu.boba.model.ModelManager;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.UserPrefs;
 import seedu.boba.model.customer.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the BobaBotModel) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalBobaBot(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel expectedBobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -59,9 +59,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        expectedBobaBotModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, bobaBotModel, expectedMessage, expectedBobaBotModel);
+        assertEquals(Collections.emptyList(), bobaBotModel.getFilteredPersonList());
     }
 
     @Test
@@ -69,9 +69,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        expectedBobaBotModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, bobaBotModel, expectedMessage, expectedBobaBotModel);
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), bobaBotModel.getFilteredPersonList());
     }
 
     /**

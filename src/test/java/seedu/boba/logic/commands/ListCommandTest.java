@@ -8,32 +8,32 @@ import static seedu.boba.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.boba.model.Model;
-import seedu.boba.model.ModelManager;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the BobaBotModel) and unit tests for ListCommand.
  */
 public class ListCommandTest {
 
-    private Model model;
-    private Model expectedModel;
+    private BobaBotModel bobaBotModel;
+    private BobaBotModel expectedBobaBotModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalBobaBot(), new UserPrefs());
-        expectedModel = new ModelManager(model.getBobaBot(), new UserPrefs());
+        bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+        expectedBobaBotModel = new BobaBotModelManager(bobaBotModel.getBobaBot(), new UserPrefs());
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), bobaBotModel, ListCommand.MESSAGE_SUCCESS, expectedBobaBotModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        showPersonAtIndex(bobaBotModel, INDEX_FIRST_PERSON);
+        assertCommandSuccess(new ListCommand(), bobaBotModel, ListCommand.MESSAGE_SUCCESS, expectedBobaBotModel);
     }
 }
