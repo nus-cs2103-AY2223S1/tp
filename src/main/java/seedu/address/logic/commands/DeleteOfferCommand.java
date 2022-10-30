@@ -15,7 +15,7 @@ import seedu.address.model.offer.Offer;
  */
 public class DeleteOfferCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteO";
+    public static final String COMMAND_WORD = "delO";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the offer identified by the index number used in the displayed offer list.\n"

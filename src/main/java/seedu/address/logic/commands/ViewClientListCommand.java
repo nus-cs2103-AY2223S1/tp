@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ViewClientListCommand extends Command {
 
-    public static final String COMMAND_WORD = "client list";
+    public static final String COMMAND_WORD = "listC";
 
     public static final String MESSAGE_SUCCESS = "Listed all clients";
 

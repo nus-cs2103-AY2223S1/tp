@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalClients.CARL;
+import static seedu.address.testutil.TypicalClients.ELLE;
+import static seedu.address.testutil.TypicalClients.FIONA;
+import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,7 +23,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindPersonCommandTest {
+public class FindClientCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -34,14 +34,14 @@ public class FindPersonCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindPersonCommand findFirstCommand = new FindPersonCommand(firstPredicate);
-        FindPersonCommand findSecondCommand = new FindPersonCommand(secondPredicate);
+        FindClientCommand findFirstCommand = new FindClientCommand(firstPredicate);
+        FindClientCommand findSecondCommand = new FindClientCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindPersonCommand findFirstCommandCopy = new FindPersonCommand(firstPredicate);
+        FindClientCommand findFirstCommandCopy = new FindClientCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -50,28 +50,28 @@ public class FindPersonCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different client -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noClientFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindPersonCommand command = new FindPersonCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        FindClientCommand command = new FindClientCommand(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleClientsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindPersonCommand command = new FindPersonCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        FindClientCommand command = new FindClientCommand(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
 
     /**

@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
  */
 public class ViewListingClientsCommand extends Command {
 
-    public static final String COMMAND_WORD = "listing clients";
+    public static final String COMMAND_WORD = "listLC";
 
     public static final String MESSAGE_SUCCESS = "Listed all listing clients";
 

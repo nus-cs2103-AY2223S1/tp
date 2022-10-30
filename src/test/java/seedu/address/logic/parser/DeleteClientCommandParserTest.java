@@ -3,11 +3,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.logic.commands.DeleteClientCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -16,19 +16,19 @@ import seedu.address.logic.commands.DeletePersonCommand;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeletePersonCommandParserTest {
+public class DeleteClientCommandParserTest {
 
-    private DeletePersonCommandParser parser = new DeletePersonCommandParser();
+    private DeleteClientCommandParser parser = new DeleteClientCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeletePersonCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteClientCommand(INDEX_FIRST_CLIENT));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        DeletePersonCommand.MESSAGE_USAGE));
+                        DeleteClientCommand.MESSAGE_USAGE));
     }
 }
