@@ -111,7 +111,7 @@ Before proceeding, do make sure that you can understand our notation for command
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the command format:**
 
 * Words in `lower_case` are commands or flags to be typed as-is 
   * e.g. in `ls -t TAG_NAME`, `ls -t` must be typed as-is and is case-sensitive 
@@ -121,19 +121,28 @@ Before proceeding, do make sure that you can understand our notation for command
   * e.g. in `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]*`, `[-d DATE]` and `[--tag TAG_NAME]*` can be omitted 
 * Words that are followed by `*` are parameters that can be used multiple times including zero times 
   * e.g. in `tag TASK_NUMBER -t TAG_NAME*`, `TAG_NAME` can be included 0 or multiple times. 
-
-**:information_source: Additional information about commands:**<br>
-* Dates must be written in the `YYYY-MM-DD` format
-* Command parameters (e.g. `-a`, `-m`) can be made in any order. 
+* Command parameters (e.g. `-a`, `-m`) can be made in any order.
   * e.g. `ls -u --module CS2103T` and `ls --module CS2103T -u` will give the same result
 * If a parameter is expected only once in a command but was specified multiple times, the last occurrence of it will be taken
   * e.g. if you enter `edit 1 -d 2022-10-22 -d 2022-10-30`, this will be interpreted as `edit 1 -d 2022-10-30`
 * Extraneous parameters for commands (i.e. `help`, `showarchive`, etc.) or flags (i.e. `-a`, `-u`, etc.) that do not take in parameters will be ignored
-  * e.g. if you enter `showarchive 2103`, this will be interpreted as `showarchive` 
+  * e.g. if you enter `showarchive 2103`, this will be interpreted as `showarchive`
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Additional information about task constraints:**
+
+* Task names can only contain letters, numbers and spaces. For example, `Assignment-5` is not a valid name as it
+  contains a hypen.
+* Dates must be written in the format YYYY-MM-DD, eg `2022-10-30`.
+* Module names and tags can only contain letters and numbers, no spaces allowed.
+
 * Commands that filter for names find names that **contain** the keyword. (`ls -n`, `find`)
 * Commands that filter for tags find tags that **match** the keyword. (`ls -t`, `find`)
 
 </div>
+
 
 ### Getting help : `help`
 
@@ -144,33 +153,74 @@ Displays list of commands and information about NotionUS.
 Format: `help`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Shortcut key: <kbd>fn</kbd> + <kbd>F1</kbd> 
+Shortcut key: <kbd>F1</kbd> 
 </div>
 
 ### Adding a task: `add`
 
-Adds a task to the task list. However, if you try to add in a task with the same name and module as an existing task,
-we will inform you that such a task already exists within the task tracker.
+Adds a task to the task list.
 
 Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]...`
-* `TASK_NAME` can contain spaces
-* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
-* `DATE`: Must be in the format of YYYY-MM-DD.
-* `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
+
+<div markdown="block" class="alert alert-info">
+Notes:
+* **Duplicate detection** - If you try to add in a task with the same name and module as an existing task,
+  we will inform you that such a task already exists within the task list and reject your command
+* **Optional deadlines** - Tasks with no deadlines are treated as being due "far in the future", meaning they
+  will be placed at the end of the task list.
+* **Ordering of tasks** - Tasks are first ordered by their deadlines, followed by the module name and then the task
+  name, in alphabetical order.
+</div>
+
 
 Examples:
+* `add -n Task 1 -m CS2103T -d 2022-10-15 -t homework`
+* `add -n Tutorial 3 -m CS2103T`
 * `add -n Tutorial 12 -m CS2103T -d 2022-10-28 -t tutorial`
 
 ![Before image of Add Command](images/user-guide/AddCommandBefore.png)
 ![After image of Add Command](images/user-guide/AddCommandAfter.png)
 
+### Editing a task : `edit`
+
+Edits an existing task in the task list, at least one field needs to be edited.
+
+Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME*]`
+
+<div markdown="block" class="alert alert-info">
+Notes:
+* **Duplicate detection** - If you try to edit the task such that it will have the same name and module as another task,
+  we will inform you that such a task already exists within the task list and reject your command
+* **Deadline removal** - Run the edit command with `-d` without specifying a date, eg `edit 1 -d`.
+* **Tags deletion** - Similar to above, run the edit command with `-t` without specifying a tag, eg `edit 3 -t`
+</div>
+
+Examples:
+* `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
+
+![Example image of Edot Command](images/user-guide/EditCommandDemo.png)
+
+### Deleting a task : `delete`
+
+Allows user to delete a task from task list.
+
+Format: `delete TASK_NUMBER`
+
+Examples:
+* `delete 3`
+    * Deletes third task in the task list.
+    * Remaining tasks’ `TASK_NUMBER` will be automatically updated.
+
+![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
+![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
+
 ### Marking a task as completed: `mark`
 
 Mark a task as complete.
+
 Note: Using `mark` on a task already marked as complete will not change its completion status.
 
 Format: `mark TASK_NUMBER`
-* `TASK_NUMBER`: This is the number of the task currently displayed.
 
 Example: `mark 2`
 
@@ -179,10 +229,10 @@ Example: `mark 2`
 ### Unmarking a task: `unmark`
 
 Unmark a task, ie mark a task as incomplete.
+
 Note: Using `unmark` on a task that is not complete will not change its completion status.
 
 Format: `unmark TASK_NUMBER`
-* `TASK_NUMBER`: This is the number of the task currently displayed.
 
 Example: `unmark 2`
 
@@ -197,6 +247,13 @@ Format : `tag TASK_NUMBER -t TAG_NAME*`
 Example: `tag 1 -t optional`
 
 ![Example image of Tag Command](images/user-guide/TagCommandDemo.png)
+
+### Clearing all entries : `clear`
+
+Clears all entries of tasks in the task list.
+
+Format: `clear`
+
 
 ### List : `ls`
 
@@ -258,6 +315,9 @@ Example: `ls -t highPriority` will find tags with `highpriority` (case-insensiti
 
 Shows a list of all tasks with deadline on or after the inputted date.
 
+As tasks with no deadline can be considered to be due "far in the future", this command will always list tasks with no
+deadlines.
+
 Format: `ls -d DATE`
 * `DATE`: Must be in the format of YYYY-MM-DD.
 
@@ -313,49 +373,6 @@ Displays a list of archived tasks.
 ![Screenshot of Archived Window](images/user-guide/ArchivedDemo.png)
 
 Format: `showArchive`
-
-### Editing a task : `edit`
-
-Edits an existing task in the task list, at least one field needs to be edited. 
-
-Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME*]`
-
-* `TASK_NUMBER`: This is the number of the task currently displayed.
-
-* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
-* (Optional)`DATE`: Must be in the format of YYYY-MM-DD.
-* (Optional)`TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-The edit command accepts optional date and optional tags similar to the add command, where any original dates or tags
-will be removed if no date or tag is given. 
-<br><br></div>
-
-Examples:
-* `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
-
-![Example image of Edot Command](images/user-guide/EditCommandDemo.png)
-
-### Deleting a task : `delete`
-
-Allows user to delete a task from task list. 
-
-Format: `delete TASK_NUMBER`
-* `TASK_NUMBER`: This is the number of the task currently displayed.
-
-Examples: 
-* `delete 3`
-  * Deletes third task in the task list.
-  * Remaining tasks’ `TASK_NUMBER` will be automatically updated.
-
-![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
-![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
-  
-### Clearing all entries : `clear`
-
-Clears all entries of tasks in the task list. 
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
