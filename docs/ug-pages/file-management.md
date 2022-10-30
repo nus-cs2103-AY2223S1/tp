@@ -3,7 +3,7 @@ layout: page
 title: File Management
 ---
 
-#### [← Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 To provide a streamlined way of managing **RC4** related data, **RC4HDB** provides users with the ability to organise their files using our file management commands.
 

@@ -3,7 +3,7 @@ layout: page
 title: Getting help
 ---
 
-#### [← Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 Viewing the command summary from the user guide can be a hassle to some. As an alternative, we have incorporated it
 directly into **RC4HDB**.

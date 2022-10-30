@@ -2,7 +2,7 @@
 layout: page
 title: Command summary
 ---
-#### [← Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 ## Command summary
 

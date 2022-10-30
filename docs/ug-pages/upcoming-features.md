@@ -3,7 +3,7 @@ layout: page
 title: Upcoming Features
 ---
 
-#### [← Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 This section lists some of our upcoming features that we are excited to bring to you!
 

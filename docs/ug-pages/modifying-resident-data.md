@@ -3,7 +3,7 @@ layout: page
 title: Modifying Residents
 ---
 
-#### [← Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear`
 to help you manipulate residents within **RC4HDB**.

@@ -3,7 +3,7 @@ layout: page
 title: Viewing Residents
 ---
 
-#### [← Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 You might find yourself overloaded with information. These commands can help to include, and exclude
 fields from being seen, find specific residents, and search residents whose fields match a specific keyword.
@@ -61,7 +61,7 @@ table looks like. Calling the same command again will not change the table view 
 
 
 
-[↑ Back to Top](#-back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -107,7 +107,7 @@ Note:
 Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.
 </div>
 
-[↑ Back to Top](#-back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -150,7 +150,7 @@ Note:
 Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.
 </div>
 
-[↑ Back to Top](#-back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -168,7 +168,7 @@ Note:
 - Any input entered after the `reset` command will be ignored.
 - This command is different from the `list` command in that it does not affect the list of residents being displayed.
 
-[↑ Back to Top](#-back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -197,7 +197,7 @@ Examples:
 * `find char li` returns `Charlotte Oliveiro`, `David Li`<br>
   <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
 
-[↑ Back to Top](#-back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -222,6 +222,6 @@ Examples:
 * `filter /all h/D g/M` returns residents who are in Draco house, **and** are Male.
 * `filter /any g/M t/Head` returns residents who have a tag corresponding to a head, **or** are male.
 
-[↑ Back to Top](#-back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---

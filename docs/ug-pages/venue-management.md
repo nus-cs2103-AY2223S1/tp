@@ -3,7 +3,7 @@ layout: page
 title: Venue Management
 ---
 
-#### [← Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 Along with the ability to manage residents, we have also provided you with the ability to manage
 the venues in **RC4HDB** through a booking system. This will allow you to add, remove available venues, as well as
