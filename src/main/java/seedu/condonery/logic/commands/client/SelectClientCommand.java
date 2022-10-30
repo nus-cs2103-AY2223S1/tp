@@ -34,6 +34,7 @@ public class SelectClientCommand extends Command {
      * Creates a SelectCommand to select the specified {@code Client}
      */
     public SelectClientCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
