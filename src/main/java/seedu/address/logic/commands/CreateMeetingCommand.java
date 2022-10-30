@@ -40,7 +40,7 @@ public class CreateMeetingCommand extends Command {
         + "the same person(s) at the same time";
 
     public static final String DUPLICATE_PERSON_TO_MEET = "It looks like you are adding the same "
-        + "person to a meeting twice!";
+        + "person to a meeting more than once!";
 
     public static final String IMPRECISE_NAME_PREDICATE = "Oops! The name of one of the persons you are meeting "
         + "matches more than one person in the address book! \n"
@@ -105,7 +105,7 @@ public class CreateMeetingCommand extends Command {
             );
 
         } catch (PersonNotFoundException e) {
-            return new CommandResult(CreateMeetingCommand.PERSON_NOT_FOUND);
+            return new CommandResult(e.getMessage() + "\n" + CreateMeetingCommand.PERSON_NOT_FOUND);
 
         } catch (DuplicateMeetingException e) {
             return new CommandResult(CreateMeetingCommand.DUPLICATE_MEETINGS);

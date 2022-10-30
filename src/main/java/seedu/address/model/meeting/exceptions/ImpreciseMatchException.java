@@ -14,9 +14,5 @@ public class ImpreciseMatchException extends RuntimeException {
     public ImpreciseMatchException(String impreciseName) {
         super(String.format("Name of person to meet: %1$s matches multiple contacts", impreciseName));
     }
-//
-//    @Override
-//    public String toString() {
-//        return
-//    }
+
 }

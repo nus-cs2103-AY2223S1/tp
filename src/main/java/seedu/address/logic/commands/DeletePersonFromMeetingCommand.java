@@ -63,7 +63,7 @@ public class DeletePersonFromMeetingCommand extends Command {
             model.deleteMeeting(meetingToUpdate);
             model.addMeeting(meetingToUpdate, meetingIndex.getZeroBased());
         } catch (PersonNotFoundException e) {
-            throw new CommandException(CreateMeetingCommand.PERSON_NOT_FOUND);
+            throw new CommandException(e.getMessage() + "\n" + CreateMeetingCommand.PERSON_NOT_FOUND);
         } catch (DuplicatePersonException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_DUPLICATE_NAMES);
         }

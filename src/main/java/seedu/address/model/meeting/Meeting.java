@@ -59,7 +59,7 @@ public class Meeting implements Comparable<Meeting> {
             throws PersonNotFoundException, DuplicatePersonException {
 
         if (Objects.equals(peopleToMeet[0], "")) {
-            throw new PersonNotFoundException();
+            throw new PersonNotFoundException(PersonNotFoundException.NO_PERSON_DETECTED);
         }
 
         if (checkDuplicates(peopleToMeet)) {
@@ -80,7 +80,8 @@ public class Meeting implements Comparable<Meeting> {
 
             if (listOfPeople.isEmpty()) {
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-                throw new PersonNotFoundException();
+                throw new PersonNotFoundException(String.format(PersonNotFoundException.PERSON_NOT_FOUND,
+                    strippedPersonName));
 
             } else if (listOfPeople.size() == 1) {
                 output.add(listOfPeople.get(0));
