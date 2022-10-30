@@ -104,6 +104,8 @@ Displays the list of internships.
 **View Panel** <br>
 The panel displays the internship being viewed in greater detail. 
 
+<div style="page-break-after: always;"></div>
+
 **Statistic Panel** <br>
 ![Bar Chart](images/BarChart.png)
 
@@ -248,6 +250,8 @@ Examples:
 * `list c/date true`
 * `list c/position false`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** `DESCENDING` parameter will always default to `false` if the input is misspelt
 </div>
@@ -285,6 +289,8 @@ Format: `find [c/CATEGORY] KEYWORDS…`
 Examples:
 * `find c/position engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
 * `find sea shop` returns a list of internships with company name of Sea Labs, Shopee, and Shopback
+
+<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** 
