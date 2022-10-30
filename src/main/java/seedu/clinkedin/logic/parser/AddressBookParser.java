@@ -18,6 +18,7 @@ import seedu.clinkedin.logic.commands.CreateTagTypeCommand;
 import seedu.clinkedin.logic.commands.DeleteCommand;
 import seedu.clinkedin.logic.commands.DeleteLinkCommand;
 import seedu.clinkedin.logic.commands.DeleteNoteCommand;
+import seedu.clinkedin.logic.commands.DeleteRateCommand;
 import seedu.clinkedin.logic.commands.DeleteTagCommand;
 import seedu.clinkedin.logic.commands.DeleteTagTypeCommand;
 import seedu.clinkedin.logic.commands.EditCommand;
@@ -137,6 +138,9 @@ public class AddressBookParser {
 
         case AddRateCommand.COMMAND_WORD:
             return new AddRateCommandParser().parse(arguments);
+
+        case DeleteRateCommand.COMMAND_WORD:
+            return new DeleteRateCommandParser().parse(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);

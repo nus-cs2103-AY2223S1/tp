@@ -1,6 +1,8 @@
 package seedu.clinkedin.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -39,5 +41,31 @@ public class AddNoteCommandTest {
         Person personToEdit = model.getFilteredPersonList().get(0);
         AddNoteCommand addNoteCommand = new AddNoteCommand(Index.fromOneBased(1), personToEdit.getNote());
         assertThrows(DuplicateNoteException.class, () -> addNoteCommand.execute(model));
+    }
+
+    @Test
+    public void equals_sameObject() {
+        AddNoteCommand command1 = new AddNoteCommand(Index.fromOneBased(1), new Note("3"));
+        assertTrue(command1.equals(command1));
+
+    }
+
+    @Test
+    public void equals_diffObjectSameParameters() {
+        AddNoteCommand command1 = new AddNoteCommand(Index.fromOneBased(1), new Note("3"));
+        AddNoteCommand command2 = new AddNoteCommand(Index.fromOneBased(1), new Note("3"));
+        assertTrue(command1.equals(command2));
+    }
+
+    @Test
+    public void notEqual_null() {
+        AddNoteCommand command1 = new AddNoteCommand(Index.fromOneBased(1), new Note("3"));
+        assertFalse(command1.equals(null));
+    }
+
+    @Test
+    public void notEqual_differentType() {
+        AddNoteCommand command1 = new AddNoteCommand(Index.fromOneBased(1), new Note("3"));
+        assertFalse(command1.equals(5));
     }
 }

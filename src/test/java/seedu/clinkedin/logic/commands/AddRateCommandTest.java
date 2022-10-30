@@ -1,6 +1,8 @@
 package seedu.clinkedin.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -42,4 +44,29 @@ public class AddRateCommandTest {
         assertThrows(CommandException.class, () -> rateCommand.execute(model));
     }
 
+    @Test
+    public void equals_sameObject() {
+        AddRateCommand command1 = new AddRateCommand(Index.fromOneBased(1), new Rating("3"));
+        assertTrue(command1.equals(command1));
+
+    }
+
+    @Test
+    public void equals_diffObjectSameParameters() {
+        AddRateCommand command1 = new AddRateCommand(Index.fromOneBased(1), new Rating("3"));
+        AddRateCommand command2 = new AddRateCommand(Index.fromOneBased(1), new Rating("3"));
+        assertTrue(command1.equals(command2));
+    }
+
+    @Test
+    public void notEqual_null() {
+        AddRateCommand command1 = new AddRateCommand(Index.fromOneBased(1), new Rating("3"));
+        assertFalse(command1.equals(null));
+    }
+
+    @Test
+    public void notEqual_differentType() {
+        AddRateCommand command1 = new AddRateCommand(Index.fromOneBased(1), new Rating("3"));
+        assertFalse(command1.equals(5));
+    }
 }
