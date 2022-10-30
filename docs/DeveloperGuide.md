@@ -621,7 +621,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Student**: The main user.
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix: Future Developments**
+Due to time and manpower constraints, several good-to-have features were considered for future developments.
 
+### 1. Undo Command
+Several of the commands can create drastic changes to the data in Mass Linkers, such as `mod mark` which would mark every module for all students as taken and `clear` which would delete all the data existing in Mass Linkers. 
+
+Having an `undo` feature would be valuable to help users overcome the problem of executing these commands unintentionally and needing to revert the changes made. 
+
+### 2. Selecting a batchmate using CLI
+Mass Linkers is targeted at users who can type fast and prefer typing as the primary form of input. 
+
+Currently, the selection of a batchmate in the _Student panel_ to view their modules can only be done via the GUI interface to click on the particular batchmate.
+
+Having a `mod view INDEX` command would give users an option to select a batchmate with index ```INDEX``` using the CLI, helping Mass Linkers align more to its typing-preferred characteristic.
+
+### 3. Auto-scroll when a batchmate is added
+Currently, the _Student panel_ does not scroll to the bottom when a batchmate is added and the row exceeds the currently displayed list of batchmates in the Students panel. 
+
+Implementing the _Student panel_ to display the most-recently added batchmate would help in enhancing the user experience and users do not need to manually scroll to the bottom each time.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
