@@ -11,34 +11,37 @@ Graphical User Interface (GUI). If you can type fast, SETA enables you to track 
 note down questions more effectively than traditional GUI apps.
 
 * Table of Contents
-    * **Student**
-        * Adding a student: [`addstu`](#adding-a-student--addstu)
-        * Editing a student: [`editstu`](#editing-a-student-editstu)
-        * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
-        * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
-        * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
-        * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
-        * Finding a student: [`findstu`](#finding-a-student-findstu)
-        * Listing all students: [`liststu`](#listing-all-students-liststu)
-    * **Question**
-        * Adding a question: [`addq`](#adding-a-question--addq)
-        * Marking a question as important: [`markq`](#marking-a-question--markq)
-        * Marking a question as unimportant: [`unmarkq`](#unmarking-a-question--unmarkq)
-        * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
-    * **Tutorial**
-        * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
-        * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
-        * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
-        * Unmarking a tutorial: [`unmarktut`](#unmarking-a-tutorial-unmarktut)
-    * **Exiting the program**: [`exit`](#exiting-the-program--exit)
+    * **[Quick Start](#quick-start)**
+    * **[Features](#features)**
+      * **Students**
+          * Adding a student: [`addstu`](#adding-a-student--addstu)
+          * Editing a student: [`editstu`](#editing-a-student-editstu)
+          * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
+          * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
+          * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
+          * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
+          * Finding a student: [`findstu`](#finding-a-student-findstu)
+          * Listing all students: [`liststu`](#listing-all-students-liststu)
+      * **Questions**
+          * Adding a question: [`addq`](#adding-a-question--addq)
+          * Marking a question: [`markq`](#marking-a-question--markq)
+          * Unmarking a question: [`unmarkq`](#unmarking-a-question--unmarkq)
+          * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
+      * **Tutorials**
+          * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
+          * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
+          * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+      * **Exiting the program**: [`exit`](#exiting-the-program--exit)
+    * **[FAQ](#faq)**
+    * **[Command Summary](#command-summary)**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `seta.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
+1. Download the latest `SETA.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SETA.
 
@@ -86,6 +89,8 @@ Some example commands you can try:
 
 </div>
 
+### <ins>Students</ins>
+
 ### Adding a student : `addstu`
 
 Adds a student to the student list.
@@ -105,7 +110,7 @@ Examples:
 
 Edits an existing student in the student list.
 
-Format: `edit INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
+Format: `editstu INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
 
 * Edits the student at the specified INDEX. The index represents the index number of the student in the student list.
   The index must be a positive integer 0, 1, 2…
@@ -127,11 +132,11 @@ Format: `attendance INDEX`
 
 * Increment attendance to the student at the specified INDEX.
 * The index refers to the index number shown in the displayed student list.
-* The index must be a positive integer 1, 2. 3, ….
+* The index must be a positive integer 1, 2, 3, ….
 
 Examples:
 
-* `attendance 1 
+* `attendance 1`
 
 ### Adding student's response: `addresponse`
 
@@ -195,6 +200,8 @@ Example:
 
 * `liststu`
 
+### <ins>Questions</ins>
+
 ### Adding a question : `addq`
 
 Adds a question to the question list.
@@ -253,6 +260,7 @@ Examples:
 
 * `deleteq 1` deletes the first question from the question list
 
+### <ins>Tutorials</ins>
 
 ### Adding a tutorial : `addtut`
 
@@ -349,7 +357,7 @@ the data of your previous SETA home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action         | Format, Examples                           |
 |----------------|--------------------------------------------|
