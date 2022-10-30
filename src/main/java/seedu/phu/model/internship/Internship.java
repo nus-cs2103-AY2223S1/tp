@@ -174,7 +174,7 @@ public class Internship {
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("\nTags: ");
+            builder.append(" \nTags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
