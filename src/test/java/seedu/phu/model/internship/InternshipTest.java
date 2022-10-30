@@ -2,11 +2,7 @@ package seedu.phu.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
+import static seedu.phu.logic.commands.CommandTestUtil.*;
 import static seedu.phu.testutil.Assert.assertThrows;
 import static seedu.phu.testutil.TypicalInternships.AMAZON;
 import static seedu.phu.testutil.TypicalInternships.BLACKROCK;
@@ -31,9 +27,11 @@ public class InternshipTest {
         // null -> returns false
         assertFalse(AMAZON.isSameInternship(null));
 
-        // same name, all other attributes different -> returns true
+        // same name and position, all other attributes different -> returns true
         Internship editedAmazon = new InternshipBuilder(AMAZON).withPhone(VALID_PHONE_BLACKROCK)
-                .withEmail(VALID_EMAIL_BLACKROCK).withRemark(VALID_REMARK_BLACKROCK)
+                .withEmail(VALID_EMAIL_BLACKROCK).withDate(VALID_DATE_BLACKROCK)
+                .withApplicationProcess(VALID_APPLICATION_PROCESS_BLACKROCK)
+                .withRemark(VALID_REMARK_BLACKROCK).withWebsite(VALID_WEBSITE_BLACKROCK)
                 .withTags(VALID_TAG_TRANSPORT).build();
         assertTrue(AMAZON.isSameInternship(editedAmazon));
 
@@ -41,10 +39,19 @@ public class InternshipTest {
         editedAmazon = new InternshipBuilder(AMAZON).withName(VALID_NAME_BLACKROCK).build();
         assertFalse(AMAZON.isSameInternship(editedAmazon));
 
-        // name differs in case, all other attributes same -> returns false
+        // different position, all other attributes same -> returns false
+        editedAmazon = new InternshipBuilder(AMAZON).withPosition(VALID_POSITION_BLACKROCK).build();
+        assertFalse(AMAZON.isSameInternship(editedAmazon));
+
+        // name differs in case, all other attributes same -> returns true
         Internship editedBlackrock = new InternshipBuilder(BLACKROCK)
                 .withName(VALID_NAME_BLACKROCK.toLowerCase()).build();
-        assertFalse(BLACKROCK.isSameInternship(editedBlackrock));
+        assertTrue(BLACKROCK.isSameInternship(editedBlackrock));
+
+        // position differs in case, all other attributes same -> returns true
+        editedBlackrock = new InternshipBuilder(BLACKROCK)
+                .withPosition(VALID_POSITION_BLACKROCK.toLowerCase()).build();
+        assertTrue(BLACKROCK.isSameInternship(editedBlackrock));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BLACKROCK + " ";
