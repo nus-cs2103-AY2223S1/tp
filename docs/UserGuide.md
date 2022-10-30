@@ -702,9 +702,8 @@ Format: `delete INDEX <OR> NAME`
 
 
 * Deleting by **NAME**:
-    * Delete the entry of the person who has the given name.
+    * Delete the entry of the person by name with the given keyword, only if the keywords specified are unique to that person's name.
     * Will not perform any operation if the name of the person does not exist.
-    * The `NAME` portion has to be the person’s First or Last name in complete words.
     * If the SectresBook contains more than one person that can be found by the keyword specified, the delete command will not execute but will return a list of all people with the given name. From here, you may choose to delete by index.
 
 Examples:
