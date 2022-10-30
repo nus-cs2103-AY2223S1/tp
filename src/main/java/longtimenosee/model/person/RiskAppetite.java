@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  *  Encapsulation for a client's RiskAppetite
  */
@@ -63,6 +65,7 @@ public class RiskAppetite {
      * @param riskLevel
      */
     public RiskAppetite(String riskLevel) {
+        requireNonNull(riskLevel);
         value = riskLevel;
         rl = parseRiskLevel(riskLevel);
     }
