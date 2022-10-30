@@ -16,7 +16,11 @@ public class FormatDate {
     public static final String MESSAGE_CONSTRAINTS =
             "The date given should be in the format of YYYY-MM-DD. Leading zeros are required as well.";
 
-    public static final String VALIDATION_REGEX = "^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$";
+    public static final String VALIDATION_REGEX =
+                "^(((\\d{3}[1-9]|\\d{2}[1-9]\\d|\\d[1-9]\\d{2}|[1-9]\\d{3})(\\-)(((0[13578]|1[02])(\\-)" +
+                    "(0[1-9]|[12]\\d|3[01]))|((0[469]|11)(\\-)" +
+                    "(0[1-9]|[12]\\d|30))|(02(\\-)(0[1-9]|[1]\\d|2[0-8]))))|(((\\d{2})" +
+                    "(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))(\\-)02(\\-)29))$";
     public final LocalDate formatDate;
 
     /**
