@@ -3,15 +3,15 @@
 
 **Format**: `stats`
 
-> Displays relevant statistics collected by FoodRem.
+> Displays all statistics collected by FoodRem.
 
 ```note
 These statistics include:
-* Total cost of wasted items
-* Top 3 most commonly used tags in your inventory
-* Top 3 most costly items in your inventory
+* **Total cost** of wasted items
+* Top 3 **most commonly** used tags in your inventory
+* Top 3 **most costly** items in your inventory
 
-The cost of an item is the price of the item multiplied by the number of those items in your inventory.
+The cost of an item is the price of the item multiplied by the quantity of the item in your inventory.
 ```
 
 **Example Input:**

@@ -300,7 +300,7 @@ Tags: {vegetables}
 
 **Format**: `rmk INDEX [r/REMARKS]`
 
-> Adds a remark to the item at the specified index
+> Add a remark to the item at the specified index
 
 ```info
 * If no remark is provided, the current remark will be cleared.
