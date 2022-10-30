@@ -202,9 +202,29 @@ public class Student {
         if (otherStudent == this) {
             return true;
         }
+        if (otherStudent == null) {
+            return false;
+        }
 
-        return otherStudent != null
-                && otherStudent.getTelegram().equals(getTelegram());
+        boolean hasOverlaps = false;
+
+        if (otherStudent.getTelegram() != null) {
+            hasOverlaps = hasOverlaps || otherStudent.getTelegram().equals(getTelegram());
+        }
+
+        if (otherStudent.getEmail() != null) {
+            hasOverlaps = hasOverlaps || otherStudent.getEmail().equals(getEmail());
+        }
+
+        if (otherStudent.getGitHub() != null) {
+            hasOverlaps = hasOverlaps || otherStudent.getGitHub().equals(getGitHub());
+        }
+
+        if (otherStudent.getPhone() != null) {
+            hasOverlaps = hasOverlaps || otherStudent.getPhone().equals(getPhone());
+        }
+
+        return hasOverlaps;
     }
     /**
      * Returns true if both students have the same identity and data fields.
@@ -223,6 +243,7 @@ public class Student {
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
                 && Optional.ofNullable(otherStudent.getPhone()).equals(Optional.ofNullable(getPhone()))
+                && Optional.ofNullable(otherStudent.getGitHub()).equals(Optional.ofNullable(getGitHub()))
                 && Optional.ofNullable(otherStudent.getEmail()).equals(Optional.ofNullable(getEmail()))
                 && otherStudent.getTelegram().equals(getTelegram())
                 && otherStudent.getInterests().equals(getInterests())

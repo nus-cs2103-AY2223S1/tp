@@ -3,7 +3,10 @@ package seedu.masslinkers.model.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
 import static seedu.masslinkers.testutil.TypicalStudents.ALICE;
@@ -40,12 +43,81 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void contains_studentWithSameIdentityFieldsInList_returnsFalse() {
+    public void contains_studentWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStudentList.add(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
                 .withInterests(VALID_INTEREST_SWE)
                 .build();
-        assertFalse(uniqueStudentList.contains(editedAlice));
+        //editedAlice contains same GitHub, email and phone number as ALICE.
+        assertTrue(uniqueStudentList.contains(editedAlice));
+    }
+
+    @Test
+    public void contains_studentWithSameNameButDifferentIdentityFields_returnsFalse() {
+        uniqueStudentList.add(ALICE);
+        Student editedALice = new StudentBuilder(ALICE)
+                .withTelegram(VALID_TELEGRAM_BOB)
+                .withGitHub(VALID_GITHUB_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .build();
+        assertFalse(uniqueStudentList.contains(editedALice));
+    }
+
+    @Test
+    public void containsTelegram_listContainsStudentWithGivenTelegram_returnsTrue() {
+        Telegram aliceTelegram = ALICE.getTelegram();
+        uniqueStudentList.add(ALICE);
+        assertTrue(uniqueStudentList.containsTelegram(aliceTelegram));
+    }
+
+    @Test
+    public void containsTelegram_listWithoutStudentWithGivenTelegram_returnsFalse() {
+        Telegram bobTelegram = BOB.getTelegram();
+        uniqueStudentList.add(ALICE);
+        assertFalse(uniqueStudentList.containsTelegram(bobTelegram));
+    }
+
+    @Test
+    public void containsGitHub_listContainsStudentWithGivenGitHub_returnsTrue() {
+        GitHub aliceGitHub = ALICE.getGitHub();
+        uniqueStudentList.add(ALICE);
+        assertTrue(uniqueStudentList.containsGitHub(aliceGitHub));
+    }
+
+    @Test
+    public void containsGitHub_listWithoutStudentWithGivenGitHub_returnsFalse() {
+        GitHub bobGitHub = BOB.getGitHub();
+        uniqueStudentList.add(ALICE);
+        assertFalse(uniqueStudentList.containsGitHub(bobGitHub));
+    }
+
+    @Test
+    public void containsEmail_listContainsStudentWithGivenEmail_returnsTrue() {
+        Email aliceEmail = ALICE.getEmail();
+        uniqueStudentList.add(ALICE);
+        assertTrue(uniqueStudentList.containsEmail(aliceEmail));
+    }
+
+    @Test
+    public void containsEmail_listWithoutStudentWithGivenEmail_returnsFalse() {
+        Email bobEmail = BOB.getEmail();
+        uniqueStudentList.add(ALICE);
+        assertFalse(uniqueStudentList.containsEmail(bobEmail));
+    }
+
+    @Test
+    public void containsPhoneNumber_listContainsStudentWithGivenPhoneNumber_returnsTrue() {
+        Phone alicePhone = ALICE.getPhone();
+        uniqueStudentList.add(ALICE);
+        assertTrue(uniqueStudentList.containsPhone(alicePhone));
+    }
+
+    @Test
+    public void containsPhoneNumber_listWithoutStudentWithGivenPhoneNumber_returnsFalse() {
+        Phone bobPhone = BOB.getPhone();
+        uniqueStudentList.add(ALICE);
+        assertFalse(uniqueStudentList.containsPhone(bobPhone));
     }
 
     @Test

@@ -11,7 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.masslinkers.commons.core.GuiSettings;
 import seedu.masslinkers.commons.core.LogsCenter;
+import seedu.masslinkers.model.student.Email;
+import seedu.masslinkers.model.student.GitHub;
+import seedu.masslinkers.model.student.Phone;
 import seedu.masslinkers.model.student.Student;
+import seedu.masslinkers.model.student.Telegram;
+
 
 /**
  * Represents the in-memory model of the mass linkers data.
@@ -91,6 +96,30 @@ public class ModelManager implements Model {
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return massLinkers.hasStudent(student);
+    }
+
+    @Override
+    public boolean hasTelegram(Telegram telegram) {
+        requireNonNull(telegram);
+        return massLinkers.hasTelegram(telegram);
+    }
+
+    @Override
+    public boolean hasGitHub(GitHub gitHub) {
+        requireNonNull(gitHub);
+        return massLinkers.hasGitHub(gitHub);
+    }
+
+    @Override
+    public boolean hasEmail(Email email) {
+        requireNonNull(email);
+        return massLinkers.hasEmail(email);
+    }
+
+    @Override
+    public boolean hasPhone(Phone phone) {
+        requireNonNull(phone);
+        return massLinkers.hasPhone(phone);
     }
 
     @Override

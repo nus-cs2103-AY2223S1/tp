@@ -18,8 +18,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.masslinkers.model.student.Email;
+import seedu.masslinkers.model.student.GitHub;
 import seedu.masslinkers.model.student.Mod;
+import seedu.masslinkers.model.student.Phone;
 import seedu.masslinkers.model.student.Student;
+import seedu.masslinkers.model.student.Telegram;
 import seedu.masslinkers.model.student.exceptions.DuplicateStudentException;
 import seedu.masslinkers.testutil.StudentBuilder;
 
@@ -73,12 +77,41 @@ public class MassLinkersTest {
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInMassLinkers_returnsFalse() {
+    public void hasStudent_studentWithSameIdentityFieldsInMassLinkers_returnsTrue() {
         massLinkers.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
                 .withInterests(VALID_INTEREST_SWE)
                 .build();
-        assertFalse(massLinkers.hasStudent(editedAlice));
+        //GitHub, email and phone number of editedAlice same as those of ALICE
+        assertTrue(massLinkers.hasStudent(editedAlice));
+    }
+
+    @Test
+    public void hasTelegram_studentWithSameTelegramInMassLinkers_returnsTrue() {
+        Telegram aliceTelegram = ALICE.getTelegram();
+        massLinkers.addStudent(ALICE);
+        assertTrue(massLinkers.hasTelegram(aliceTelegram));
+    }
+
+    @Test
+    public void hasGitHub_studentWithSameGitHubInMassLinkers_returnsTrue() {
+        GitHub aliceGitHub = ALICE.getGitHub();
+        massLinkers.addStudent(ALICE);
+        assertTrue(massLinkers.hasGitHub(aliceGitHub));
+    }
+
+    @Test
+    public void hasEmail_studentWithSameEmailInMassLinkers_returnsTrue() {
+        Email aliceEmail = ALICE.getEmail();
+        massLinkers.addStudent(ALICE);
+        assertTrue(massLinkers.hasEmail(aliceEmail));
+    }
+
+    @Test
+    public void hasPhone_studentWithSamePhoneInMassLinkers_returnsTrue() {
+        Phone alicePhone = ALICE.getPhone();
+        massLinkers.addStudent(ALICE);
+        assertTrue(massLinkers.hasPhone(alicePhone));
     }
 
     @Test
