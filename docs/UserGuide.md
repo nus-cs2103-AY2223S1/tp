@@ -98,16 +98,15 @@ This command will require one flag, and one flag is optional:
 
 [comment]: # (Inspiration behind the table obtained from https://ay2223s1-cs2103-f14-2.github.io/tp/UserGuide.html)
 
-| Field                       | Parameter | Constraints                                             |
-|-----------------------------|-----------|---------------------------------------------------------|
-| **Module Code**             | `m/`      | Can only be non-empty string of alphanumeric characters |
-| **Module Title (Optional)** | `t/`      | Can be any string of characters                         |
+| Field                       | Flag | Constraints                                             |
+|-----------------------------|------|---------------------------------------------------------|
+| **Module Code**             | `m/` | Can only be non-empty string of alphanumeric characters |
+| **Module Title (Optional)** | `t/` | Can be any string of characters                         |
 
 Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
 * Module code will be automatically treated as uppercase. For example, `cs1231s` will be treated 
   as `CS1231S`.
-* If provided module title is empty, then Plannit 
-interprets it as that there is no module title. 
+* If provided module title is empty, then Plannit interprets it as that there is no module title. 
 * You cannot add a duplicate module code.
 
 Examples:
@@ -129,10 +128,14 @@ In the above example, we are adding a module `CS2103T` which has the title `Soft
 You can delete the module with the indicated module code from Plannit.
 
 This command will require one flag:
-* `m/`: To be followed by the module code of the module to be deleted from Plannit.
+
+[comment]: # (Inspiration behind the table obtained from https://ay2223s1-cs2103-f14-2.github.io/tp/UserGuide.html)
+
+| Field           | Flag | Constraints                                                                          |
+|-----------------|------|--------------------------------------------------------------------------------------|
+| **Module Code** | `m/` | Can only correspond to currently displayed module on screen (case-insensitive match) |
 
 Format: `delete-module m/MODULE_CODE`
-* You cannot delete a non-existent module code.
 
 Example:
 
@@ -145,8 +148,13 @@ In the above example, we are deleting module `CS2103T` from Plannit.
 You can edit a module on Plannit using the `edit-module` command.
 
 This command will require an index and at least one of the following flags:
-* `m/`: To be followed by the new module code of the module to be edited on Plannit.
-* `t/`: To be followed by the new module title of the module to be edited on Plannit.
+
+[comment]: # (Inspiration behind the table obtained from https://ay2223s1-cs2103-f14-2.github.io/tp/UserGuide.html)
+
+| Field            | Flag | Constraints                                             |
+|------------------|------|---------------------------------------------------------|
+| **Module Code**  | `m/` | Can only be non-empty string of alphanumeric characters |
+| **Module Title** | `t/` | Can be any string of characters                         |
 
 Format: `edit-module INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`
 * `INDEX` is the currently displayed index number of the module you are editing for on the screen.
