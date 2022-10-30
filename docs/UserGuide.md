@@ -114,7 +114,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com m/1 r/0 `
     <details>
 
-    ![AddCommand1](images/screenshots/AddCommand/AddCommand1.png)
+    <img src="images/screenshots/AddCommand/AddCommand1.png">
 
     </details>
 
