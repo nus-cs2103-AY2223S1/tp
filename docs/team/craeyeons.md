@@ -45,10 +45,13 @@ Given below are my contributions to the project.
       ([#110](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/110))
     - Updated documentation for the `add` and `delete` command, in the initial UG draft. Was subsequently added to the
       official UG by Yap Zhi Heng. ([#22](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/22))
+    - Added screenshots to UG. ([#174](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/174))
 - **Contributions to the DG**:
   - Updated design considerations on the Remark and Tag command. 
   ([#75](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/75),
   [#80](https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/80))
+  - Updated user stories. ([#176]https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/176)
+  - Updated glossary. ([#175]https://github.com/AY2223S1-CS2103T-T13-2/tp/pull/175)
 - **Contributions beyond the project team**
   - Reported 13 bugs and left suggestions to the reviewed project in PE-D. 
   ([link to PE-D](https://github.com/craeyeons/ped/issues))
