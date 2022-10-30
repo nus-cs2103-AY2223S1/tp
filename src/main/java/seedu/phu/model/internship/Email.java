@@ -9,6 +9,7 @@ import static seedu.phu.commons.util.AppUtil.checkArgument;
  */
 public class Email {
     public static final String DEFAULT_VALUE = "NA";
+    public static final int MAX_LENGTH = 254;
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -33,7 +34,7 @@ public class Email {
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.){1,}" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
-    public static final int MAX_LENGTH = 254;
+
     public final String value;
 
     /**
