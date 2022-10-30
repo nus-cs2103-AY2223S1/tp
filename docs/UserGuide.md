@@ -15,11 +15,26 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 
 2. Download the latest `nutrigoals.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases).
 
-3. Double-click the file to start the app. For first-time users, the app will contain sample food items for these 3 days: 
-15 September 2022, 23 October 2022 and the current day. Below is an example of the starting screen showing the list of foods added for the day:
+3. Copy the file to the folder you want to use as the _home folder_ for your NutriGoals.
+
+4. Double-click the file to start the app. A screen similar to the below should appear in a few seconds. 
+Note how the app contains some sample data.
 ![sampleUi](images/sampleUi.png)
 
-4. Refer to the [Features](#features) below for details of each command.
+5. Type the command in the command box and press Enter to execute it. For example, typing `help` and pressing Enter will open 
+the help window.
+
+6. Refer to the [Features](#features) below for details of each command.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+For first-timer users, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and
+the current day. For example, you can try entering `list 2022-09-15` to view the sample food items on 15 September 2022.
+To delete food items from all days, enter `clear`.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -99,7 +114,15 @@ Format: `list [DATE]`
 
 * Food items will be listed according to meal type, in the order: breakfast, lunch, dinner.
 * Shows the food list for the current day if no `DATE` is supplied.
-* `DATE` must be in the format **yyyy-MM-dd** if supplied.
+* `DATE` must be in the format `yyyy-MM-dd` if supplied.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+`DATE` must be a valid date for the command to be executed. For example, `list 2022-02-31` is an invalid command.
+
+</div>
 
 Example:
 
@@ -114,7 +137,7 @@ Format: `find FOOD`
 
 * Only the calorie contents of some food items are included. Refer to the list of food items [here](#food-items).
 * If the user has entered a specific food item before, the `find` command will return the average calories of 
-that specific food item that the user has specified
+that specific food item that the user has specified.
 
 Example:
 
@@ -141,8 +164,7 @@ The list of foods for the day will also be displayed.
 
 Format: `review`
 
-Example result after executing `review`:
-
+Example after entering `review`:
 ![review](images/review.png)
 
 ### Setting up a user profile: `setup`
@@ -198,7 +220,7 @@ Format: `tip`
 
 ### Clearing all food items: `clear`
 
-Clears all food items from NutriGoals.
+Clears all food items on all days from NutriGoals.
 
 Format: `clear`
 
@@ -227,6 +249,8 @@ List of food items for the [find](#finding-the-calorie-content-of-a-food-item-fi
 * rice
 * wanton noodles
 * white bread
+
+_More food items coming soon in a future release..._
 
 --------------------------------------------------------------------------------------------------------------------
 
