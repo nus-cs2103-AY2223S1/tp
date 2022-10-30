@@ -192,7 +192,7 @@ the abstraction of commands.
 
 The `Model` component,
 
-* stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object).
+* stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object), and the venue book data, i.e. all `Venue` objects (which are contained in a `UniqueVenueList` object)
 * stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
 * stores an `ObservableList<Venue>` and an `ObservableList<Booking>` of venues and bookings to display in the UI. 
@@ -341,7 +341,7 @@ between the UI and the model components, which would make integration and reuse 
 
 Our solution was to store lists of fields to show and hide in *both* `ModelManager` and the `ResidentTableView` classes.
 Using listeners to propagate changes in the `ModelManager` field lists to the `ResidentTableView` field lists, we were
-able to minimise coupling between both the Model and the UI components. 
+able to minimise coupling between both components. 
 
 Additionally, the use of `ObservableList<String>` as our choice of field lists allowed us to use the Observer pattern 
 in our application. Moving forward, our design for the Observer pattern could be better improved, 
@@ -961,7 +961,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Listing residents
 
-1. Listing all residents in the resident list after calling `find` or `filter`
+1. Listing all residents in the resident list after calling `find` or `filter` (sequential testing)
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons already in the list.
 
@@ -989,7 +989,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 
-2. Listing all resident fields after calling `showonly` or `hideonly`
+2. Listing all resident fields after calling `showonly` or `hideonly` (sequential testing)
 
     1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
        the full set of resident fields.
@@ -1011,7 +1011,7 @@ testers are expected to do more *exploratory* testing.
        
 ### Showing/hiding and resetting resident fields
 
-1. Using `showonly` to show only some resident fields + `reset`
+1. Using `showonly` to show only some resident fields + `reset` (sequential testing)
 
     1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
        the full set of resident fields.
@@ -1036,7 +1036,7 @@ testers are expected to do more *exploratory* testing.
        message. 
 
 
-2. Using `hideonly` to hide only some resident fields + `reset`
+2. Using `hideonly` to hide only some resident fields + `reset` (sequential testing)
 
     1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
        the full set of resident fields.
