@@ -11,12 +11,16 @@ Class "<<interface>>\nStorageCommand" as StorageCommand
 Class "<<interface>>\nFileCommand" as FileCommand
 Class "<<interface>>\nMiscCommand" as MiscCommand
 Class "<<interface>>\nCommand" as Command
+Class "{abstract}\nVenueCommand" as VenueCommand
+Class "{abstract}\nColumnManipulatorCommand" as ColumnManipulatorCommand
 }
 
 ModelCommand .up.|> Command
 FileCommand .up.|> Command
 MiscCommand .up.|> Command
 StorageCommand .up.|> Command
+VenueCommand .up.|> Command
+ColumnManipulatorCommand .up.|> ModelCommand
 
 @enduml
 
