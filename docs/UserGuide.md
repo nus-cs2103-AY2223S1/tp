@@ -69,6 +69,10 @@ Adds an item to the list of tracked inventory.
 Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An inventory item's name must be more than 1 character long.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An inventory item can have any number of tags (including 0)
 </div>
 
