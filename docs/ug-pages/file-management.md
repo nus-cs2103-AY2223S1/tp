@@ -3,7 +3,7 @@ layout: page
 title: File Management
 ---
 
-#### [Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 To provide a streamlined way of managing **RC4** related data, **RC4HDB** provides users with the ability to organise their files using our file management commands.
 
@@ -12,6 +12,8 @@ To provide a streamlined way of managing **RC4** related data, **RC4HDB** provid
 * [**Deletion**](#deleting-an-existing-data-file--file-delete) of old data folders
 * [**Switching**](#switching-to-a-different-data-file--file-switch) between different data folders
 * [**Importing**](#importing-from-csv-file--file-import) of resident data from a [CSV](glossary.md#csv) file.
+
+:information_source: All file commands operate in the [data directory]().
 
 ---
 
@@ -68,7 +70,7 @@ RC4HDB saves your data after every command. There is no need to save manually.
   * `rc4/data/2022` has forward slashes.
   * `rc4\data\2022` has backslashes.
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -79,12 +81,12 @@ Creates a new [**sub**](#finding-your-data) folder with the specified `FOLDER_NA
 Format: `file create FOLDER_NAME`
 * Does not create a new folder if the folder already exists.
 
-:information source: `FOLDER_NAME` must follow this [format](#file-command-format).
+:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data **resident** and **venue** data files.
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -95,12 +97,12 @@ RC4HDB provides users with the ability to delete their [**sub**](#finding-your-d
 Format: `file delete FOLDER_NAME`
 * Does not delete the folder if it is currently open. You may switch to a different folder before deleting the previously open folder.
 
-:information source: `FOLDER_NAME` must follow this [format](#file-command-format).
+:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -111,12 +113,12 @@ Examples:
 Format: `file switch FOLDER_NAME`
 * Does not create a new folder if the specified folder does not exist.
 
-:information source: `FOLDER_NAME` must follow this [format](#file-command-format).
+:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file switch rc4_data_2022` will switch the currently used folder to `rc4_data_2022`.
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -131,7 +133,7 @@ Format: `file import FOLDER_NAME`
 Examples:
 * `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` folder in the **main** data folder.
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -148,6 +150,6 @@ Format:
 | John Doe     | 91234567     | johnDoe@example.com     |    5-8     | M      | D      | A9876543B     | NIL                 |
 | Maggie Smith | 98765432     | maggieSmith@example.com |    4-1     | F      | A      | A3456789B     | WelfareHead Captain |
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---

@@ -79,7 +79,7 @@ If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate
 workflow as a RC4 housing management staff member.
 </div>
 
-[Back to Top](#welcome-to-rc4hdb-user-guide)
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
 
@@ -102,7 +102,7 @@ pay attention to. </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** used to highlight dangers. </div>
 
-[Back to Top](#welcome-to-rc4hdb-user-guide)
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
 
@@ -139,7 +139,7 @@ Try typing `help` into the command box where it says "Enter Command here..." and
 
 For more details on commands, refer to our [Command Guide](#command-guide) below.
 
-[Back to Top](#welcome-to-rc4hdb-user-guide)
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
 
@@ -173,6 +173,6 @@ may have typed a command incorrectly as **RC4HDB** will warn you in the event th
 
 </div>
 
-[Back to Top](#welcome-to-rc4hdb-user-guide)
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---

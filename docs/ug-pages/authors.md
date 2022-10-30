@@ -3,12 +3,12 @@ layout: page
 title: Authors
 ---
 
-#### [Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 # Authors
 
-This User Guide was co-written by Alvin, Jordan, Neale, Nicholas, and Naren, the developers behind RC4HDB. 
-For more information, please refer to our [about us](../AboutUs.md) page. 
+This User Guide was co-written by Alvin, Jordan, Neale, Nicholas, and Naren, the developers behind RC4HDB.
+For more information, please refer to our [about us](../AboutUs.md) page.
 
 
 <!-- Perhaps we can add the features implemented by each author here? Please see the proposed template below. -->

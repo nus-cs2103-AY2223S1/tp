@@ -3,7 +3,7 @@ layout: page
 title: Viewing Residents
 ---
 
-#### [Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 You might find yourself overloaded with information. These commands can help to include, and exclude
 fields from being seen, find specific residents, and search residents whose fields match a specific keyword.
@@ -80,7 +80,7 @@ Note:
 
 
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -129,7 +129,7 @@ Note:
 
 [comment]: <> (</div>)
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -175,7 +175,7 @@ Note:
 
 [comment]: <> (</div>)
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -194,7 +194,7 @@ Note:
 - This command is different from the `list` command in that it does not affect the list of residents being displayed.
 However, both commands cause the full set of resident fields to be displayed in the table.
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -223,7 +223,7 @@ Examples:
 * `find char li` returns `Charlotte Oliveiro`, `David Li`<br>
   <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 <br>
 
@@ -249,6 +249,6 @@ Examples:
 * `filter /any h/D h/A` returns residents belonging to either `Draco` **or** `Aquila` house.
 * `filter g/M` returns residents who are male.
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---

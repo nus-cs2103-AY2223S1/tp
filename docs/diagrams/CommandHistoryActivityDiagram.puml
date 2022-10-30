@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+
+start
+:User presses up arrow key;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([has previous commands])
+        :Replace content in CommandBox\nwith the previous command;
+else ([else])
+    :Replace content in CommandBox\n with empty text;
+
+endif
+stop
+@enduml
