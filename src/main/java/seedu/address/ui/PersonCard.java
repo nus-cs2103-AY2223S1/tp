@@ -91,7 +91,8 @@ public class PersonCard extends UiPart<Region> {
         address.setText("Address: " + person.getAddress().value);
         email.setText("Email: " + person.getEmail().value);
         gender.setText("Gender: " + person.getGender().gender);
-        birthdate.setText("Birthdate: " + person.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
+        birthdate.setText("Birthdate: "
+                + person.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)));
         race.setText("Race: " + person.getRace().race);
         religion.setText("Religion: " + person.getReligion().religion);
         person.getTags().stream()

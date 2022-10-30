@@ -46,6 +46,12 @@ public class Birthdate {
         return true;
     }
 
+    /**
+     * Returns true if given string which is assumed to be a valid date of the format y-M-d
+     * is in the future. Meaning the date has not passed, and it is not today.
+     * @param test string which is assumed to be a valid date of the format y-M-d
+     * @return true of given date is in the future
+     */
     public static boolean isDateInTheFuture(String test) {
         LocalDate dateNow = LocalDate.now();
         LocalDate parsedDate = LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_FORMAT));

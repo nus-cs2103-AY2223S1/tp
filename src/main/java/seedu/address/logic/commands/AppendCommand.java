@@ -101,7 +101,7 @@ public class AppendCommand extends Command {
     }
 
     private boolean doesOldSurveysContainNewSurveys(Set<Survey> oldSurveys, Set<Survey> newSurveys) {
-        for(Survey oldSurvey : oldSurveys) {
+        for (Survey oldSurvey : oldSurveys) {
             for (Survey newSurvey : newSurveys) {
                 if (oldSurvey.survey.equals(newSurvey.survey)) {
                     return true;
@@ -112,7 +112,7 @@ public class AppendCommand extends Command {
     }
 
     private boolean doesOldTagsContainNewTags(Set<Tag> oldTags, Set<Tag> newTags) {
-        for(Tag oldTag : oldTags) {
+        for (Tag oldTag : oldTags) {
             for (Tag newTag : newTags) {
                 if (oldTag.tagName.equals(newTag.tagName)) {
                     return true;
