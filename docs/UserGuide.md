@@ -30,9 +30,9 @@ the help window.
 
 :information_source: **Note:**<br>
 
-For first-timer users, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and
-the current day. For example, you can try entering `list 2022-09-15` to view the sample food items on 15 September 2022.
-To delete food items from all days, enter `clear`.
+* For first-timers, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and the current day. 
+* For example, you can try entering `list 2022-09-15` to view the sample food items on 15 September 2022. 
+* To delete food items from all days, enter `clear`.
 
 </div>
 
@@ -53,8 +53,16 @@ as `nutrigoals.jar`. Do not delete or edit these files.
 
 **:information_source: Notes about the command format:**<br>
 
-* Texts in UPPER_CASE are arguments provided by the user.
+* Texts in `UPPER_CASE` are arguments provided by the user.
+  * E.g. in `add n/FOOD c/CALORIE t/MEAL_TYPE`, `FOOD`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
 * Arguments in square brackets are optional.
+* The parameters can be in any order.
+  * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
+* Integer values are values between 1 and 2147483647 (inclusive).
+* Commands that require an `INDEX` will only accept positive integer values as the `INDEX`.
+  * E.g. `edit 2147483648` is an invalid command regardless of the inputs provided.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
+  * E.g. `help 123` will be interpreted as `help`.
 * The `FOOD` parameter for commands `add`, `edit` and `find` can only take on alphanumeric values that contain at most 27 characters.
 
 </div>
@@ -90,30 +98,30 @@ Removes a food item from the displayed list of foods.
 Format: `delete INDEX`
 
 * Deletes a food item at the specified index.
-* The index **must be a positive** number.
+* The index **must be a positive** integer.
 
 Example:
 
 * `delete 1` deletes the first item in the food list.
-* `list 2022-10-23` followed by `delete 1` will delete the first food item on the list for 23 October 2022.
+* `list 2022-10-23`, then `delete 1` will delete the first food item recorded on 23 October 2022. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
 
 ### Editing a food item : `edit`
 
 Edits a food item from the displayed list of foods.
 
-Format: `edit INDEX n/FOOD c/CALORIES t/MEAL_TYPE`
+Format: `edit INDEX [n/FOOD] [c/CALORIES] [t/MEAL_TYPE]`
 
 * Edits a food item in the list displayed at the specified index.
 * The index refers to the index shown in the displayed food lists.
-* The index **must be a positive** number.
-* Either the `FOOD`, `CALORIES`, or `MEAL_TYPE` must be supplied.
+* The index **must be a positive** integer.
+* At least one of the optional fields must be provided.
 
 Example:
 
 * `edit 2 n/rice c/300 t/dinner` edits the 2nd food item for dinner to rice with 300 calories.
 * `edit 2 n/noodles` edits the name of 2nd food item to noodles.
 * `edit 2 c/100 n/bread` edits the name and calorie content of the first item to bread and 100 respectively.
-* `list 2022-09-15` followed by `edit 1 n/sushi` will edit the name of the first food item on the list for 15 September 2022 to sushi.
+* `list 2022-10-10` followed by `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10 to sushi. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
 
 ### Listing all foods for a day: `list`
 
@@ -125,6 +133,11 @@ Format: `list [DATE]`
 * Shows the food list for the current day if no `DATE` is supplied.
 * `DATE` must be in the format `yyyy-MM-dd` if supplied.
 
+Example:
+
+* `list` shows a list of all food items and their calories for the current day.
+* `list 2022-10-23` shows a list of all food items and their calories recorded on 23 October 2022.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
@@ -134,11 +147,6 @@ Format: `list [DATE]`
 * E.g. `list 2022-02-31` is an invalid command.
 
 </div>
-
-Example:
-
-* `list` shows a list of all food items and their calories for the current day.
-* `list 2022-10-23` shows a list of all food items and their calories recorded on 23 October 2022.
 
 ### Finding the calorie content of a food item: `find`
 
@@ -160,7 +168,7 @@ Example:
 
 `FOOD` is case-insensitive.
 
-* E.g. `find rice` is the same as find `rIcE`.
+* E.g. `find rice` is the same as find `find rIcE`.
 
 </div>
 
@@ -176,16 +184,16 @@ Format: `target CALORIE`
 
 Example:
 
-* `target 2500` sets a target calorie intake of 2500 calories for the day and displays the list of foods for the day.
+* `target 2500` sets a target calorie intake of 2500 calories for the current day and displays the list of foods for the current day.
 
 ### Viewing a summary of the daily calorie intake: `review`
 
-Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day. 
-The list of foods for the day will also be displayed.
+Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day. The list of foods for the day will also be displayed.
 
 Format: `review`
 
 Example after entering `review`:
+
 ![review](images/review.png)
 
 ### Setting up a user profile: `setup`
@@ -196,9 +204,9 @@ Format: `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE`
 
 * Sets up the user profile using the information provided by the user.
 * `GENDER` can only take 2 values: M or F (case-insensitive).
-* `WEIGHT` and `IDEAL_WEIGHT` can only take on integer values less than 200 (in kg).
-* `HEIGHT` can only take on integer values less than 220 (in cm).
-* `AGE` can only take on integer values (in years).
+* `WEIGHT` and `IDEAL_WEIGHT` can only take on integer values between 10 and 199 (in kg).
+* `HEIGHT` can only take on integer values between 100 and 219 (in cm).
+* `AGE` can only take on integer values between 1 and 99 (in years).
 
 Example:
 
@@ -209,11 +217,17 @@ with an ideal weight of 70kg.
 
 ### Viewing the user's profile: `profile`
 
-Displays the user's information stored during setup.
+Displays the user's information stored during [setup](#setting-up-a-user-profile-setup).
 
 Format: `profile`
 
-* A user can only view his/her profile after setup. 
+* A user can only view his/her profile after [setup](#setting-up-a-user-profile-setup). 
+
+Example after entering `profile`:
+
+* The user's details are listed on the right.
+
+![profile](images/profile.png)
 
 ### Suggesting a daily calorie intake: `suggest`
 
@@ -289,7 +303,7 @@ _More food items coming soon in a future release..._
 | **Help**    | `help`                                                  | `help`                           |
 | **Add**     | `add n/FOOD c/CALORIE t/MEAL_TYPE`                      | `add n/donut c/1000 t/breakfast` |
 | **Delete**  | `delete INDEX`                                          | `delete 1`                       |
-| **Edit**    | `edit INDEX n/UPDATED_FOOD c/CALORIES t/MEAL_TYPE`      | `edit 2 n/rice c/300 t/dinner`   |
+| **Edit**    | `edit INDEX [n/FOOD] [c/CALORIES] [t/MEAL_TYPE]`        | `edit 2 n/rice c/300 t/dinner`   |
 | **Find**    | `find FOOD`                                             | `find chicken rice`              |
 | **Target**  | `target`                                                | `target 2000`                    |
 | **Review**  | `review`                                                | `review`                         |
