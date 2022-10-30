@@ -11,7 +11,7 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers follows the following formats: [+COUNTRY_CODE] PHONE_NUMBER"
+            "Phone numbers follows the following format: [+COUNTRY_CODE] PHONE_NUMBER\n"
                     + "They must adhere to the following constraints:\n"
                     + "1. Country code is optional. "
                     + "You may include + at the beginning of your phone number to denote the country code.\n"
