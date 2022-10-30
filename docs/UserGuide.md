@@ -177,7 +177,7 @@ Adds a task to the task list.
 
 Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE [pe/EMAIL OF PERSON ASSIGNED]`
 
-Refer to the [Task Parameters](#task-parameters) section for more details. 
+Refer to the [Task Parameters](#task-parameters) section for more details.
 
 Examples:
 
@@ -230,7 +230,7 @@ Filters the task list based on either **TASK_CATEGORY** or **TASK_DEADLINE** or 
 
 Format: `filter [c/TASK_CATEGORY] [dl/DEADLINE]`
 
-* Filters the task based on the user input. 
+* Filters the task based on the user input.
 * At least one of the optional fields must be provided.
 * Filtered tasks will be displayed in the task list.
 * To list all tasks, call the `listTasks` command.
@@ -282,7 +282,7 @@ Examples:
 | c/CATEGORY              | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others` |
 | dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
 | pe/PERSON EMAIL ADDRESS | Should be the email address of an existing member (case-insensitive). For the `editTask` command, it can also be empty, e.g. `pe/`.                    |
-| do/ISDONE               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                           
+| do/ISDONE               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary

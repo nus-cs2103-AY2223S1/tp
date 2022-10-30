@@ -224,5 +224,4 @@ public class JsonAdaptedTaskTest {
         }
         assertEquals(expectedMessage, message);
     }
-    
 }
