@@ -108,7 +108,7 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
 Examples:
 * `add -n Tutorial 12 -m CS2103T -d 2022-10-28 -t tutorial`
 
-![Demonstration of Add Command](images/user-guide/AddCommnandDemo.png)
+![Demonstration of Add Command](images/user-guide/AddCommandDemo.png)
 
 ### Marking a task as completed: `mark`
 
