@@ -905,12 +905,15 @@ Word | Definition
 ## Command summary
 
 ### General Commands
+
 Action | Format                    | Examples
 -------|---------------------------|----------|
 **Inspect** | `inspect NAME <OR> INDEX` | `inspect 1` or `inspect Alex`
 **Help** | `help`                    | `help`
-**Clear all data** | `clear`  | `clear`
+**Clear all data** | `clear`                   | `clear`
 **Exit** | `exit`                    | `exit`
+
+[Back to Top](#sectresbook)
 
 ### Person Commands
 
@@ -924,6 +927,8 @@ Action | Format | Examples
 **Edit loan of a person** | `editLoan INDEX amt/AMOUNT reason/REASON`                                                            | `editLoan 1 amt/-20 reason/Buy Logistics`
 **List all person** | `list`                                                                                               | `list`
 
+[Back to Top](#sectresbook)
+
 ### Notes Commands
 
 Action | Format | Examples
@@ -936,3 +941,4 @@ Action | Format | Examples
 **List Notes** | `listNotes`                                                              | `listNotes`
 **Find Note** | `findNote KEYWORD [MORE_KEYWORDS]`                                      | `findNote meeting`
 
+[Back to Top](#sectresbook)
