@@ -9,4 +9,10 @@ Rapportbook is a desktop address book application used for teaching Software Eng
 
 Given below are my contributions to the project.
 
-- **Code contributed**: [RepoSense link]()
+- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=weiquany&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+- Reminders feature - mainly backend
+- ShowCommand feature and integration with other commands
+- Command aliasing
+- Some code reviews
+- Some small bug fixes for other features not listed here
+- Some DG and UG changes
