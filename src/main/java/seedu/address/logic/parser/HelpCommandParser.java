@@ -9,7 +9,6 @@ import seedu.address.logic.commands.CloneCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
@@ -50,9 +49,6 @@ public class HelpCommandParser implements Parser<HelpCommand> {
 
         case ClearCommand.COMMAND_WORD:
             return new HelpCommand(ClearCommand.COMMAND_WORD);
-
-        case FindCommand.COMMAND_WORD:
-            return new HelpCommand(FindCommand.COMMAND_WORD);
 
         case ListCommand.COMMAND_WORD:
             return new HelpCommand(ListCommand.COMMAND_WORD);

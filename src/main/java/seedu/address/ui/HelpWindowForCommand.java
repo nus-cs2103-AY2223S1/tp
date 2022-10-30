@@ -13,7 +13,6 @@ import seedu.address.logic.commands.CloneCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
@@ -132,10 +131,6 @@ public class HelpWindowForCommand extends UiPart<Stage> {
 
         case ClearCommand.COMMAND_WORD:
             helpMessageString = ClearCommand.MESSAGE_USAGE;
-            break;
-
-        case FindCommand.COMMAND_WORD:
-            helpMessageString = FindCommand.MESSAGE_USAGE;
             break;
 
         case ListCommand.COMMAND_WORD:
