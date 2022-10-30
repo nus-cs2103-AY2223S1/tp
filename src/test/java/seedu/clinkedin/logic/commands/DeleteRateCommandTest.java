@@ -1,6 +1,8 @@
 package seedu.clinkedin.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -48,6 +50,33 @@ public class DeleteRateCommandTest {
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
         assertCommandSuccess(rateCommand, model, expectedMessage, expectedModel);
+    }
+
+
+    @Test
+    public void equals_sameObject() {
+        DeleteRateCommand command1 = new DeleteRateCommand(Index.fromOneBased(1));
+        assertTrue(command1.equals(command1));
+
+    }
+
+    @Test
+    public void equals_diffObjectSameParameters() {
+        DeleteRateCommand command1 = new DeleteRateCommand(Index.fromOneBased(1));
+        AddRateCommand command2 = new AddRateCommand(Index.fromOneBased(1), new Rating("3"));
+        assertTrue(command1.equals(command2));
+    }
+
+    @Test
+    public void notEqual_null() {
+        AddRateCommand command1 = new AddRateCommand(Index.fromOneBased(1), new Rating("3"));
+        assertFalse(command1.equals(null));
+    }
+
+    @Test
+    public void notEqual_differentType() {
+        AddRateCommand command1 = new AddRateCommand(Index.fromOneBased(1), new Rating("3"));
+        assertFalse(command1.equals(5));
     }
 
 }
