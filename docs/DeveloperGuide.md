@@ -632,14 +632,14 @@ Having an `undo` feature would be valuable to help users overcome the problem of
 ### 2. Selecting a batchmate using CLI
 Mass Linkers is targeted at users who can type fast and prefer typing as the primary form of input. 
 
-Currently, the selection of a batchmate in the _Student panel_ to view their modules can only be done via the GUI interface to click on the particular batchmate.
+Currently, the selection of a batchmate in the _Students panel_ to view their modules can only be done via the GUI interface to click on the particular batchmate.
 
 Having a `mod view INDEX` command would give users an option to select a batchmate with index ```INDEX``` using the CLI, helping Mass Linkers align more to its typing-preferred characteristic.
 
 ### 3. Auto-scroll when a batchmate is added
-Currently, the _Student panel_ does not scroll to the bottom when a batchmate is added and the row exceeds the currently displayed list of batchmates in the Students panel. 
+Currently, the _Students panel_ does not scroll to the bottom when a batchmate is added and the row exceeds the currently displayed list of batchmates in the _Students panel_. 
 
-Implementing the _Student panel_ to display the most-recently added batchmate would help in enhancing the user experience and users do not need to manually scroll to the bottom each time.
+Implementing the _Students panel_ to display the most-recently added batchmate would help in enhancing the user experience and users do not need to manually scroll to the bottom each time.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Instructions for manual testing**
@@ -672,7 +672,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a batchmate to the data.
 
     1. Test case: `add n/John t/johnnn`.<br>
-       Expected: A new batchmate with the name `John` and telegram handle `johnnn` is added at the bottom of the students pane in Mass Linkers.
+       Expected: A new batchmate with the name `John` and telegram handle `johnnn` is added at the bottom of the _Students panel_ in Mass Linkers.
        The status message indicates that a batchmate named `John` has been successfully added.
 
        1. Prerequisite: A batchmate with the name `Tom` and the telegram `tommmm` is already in Mass Linkers. <br>
@@ -681,7 +681,7 @@ testers are expected to do more *exploratory* testing.
        Uniqueness is verified using two of the mandatory fields - the ```Student```'s name and telegram handle.
 
     2. Test case: `add n/John t/john i/ai g/john`.<br>
-       Expected: A new batchmate with the name `John`, telegram handle `john`, interests `ai` and GitHub `john` is added at the bottom of the students pane in Mass Linkers.
+       Expected: A new batchmate with the name `John`, telegram handle `john`, interests `ai` and GitHub `john` is added at the bottom of the _Students panel_ in Mass Linkers.
        The status message indicates that a batchname named `John` has been successfully added.
 
     3. Test case: `add n/John`.<br>
@@ -714,12 +714,12 @@ testers are expected to do more *exploratory* testing.
 
     2. Prerequisite: There exists a batchmate with telegram handle `charlie`.<br>
        Test case: `find char`.<br>
-       Expected: The batchmate with telegram handle `charlie` appears in the student panel after executing the command.
+       Expected: The batchmate with telegram handle `charlie` appears in the _Students panel_ after executing the command.
    
     3. Prerequisite: There exists a batchmate with telegram handle `charlie` and a batchmate with name `Tom`.<br>
        Test case: `find char Tom`.<br>
        Expected: The batchmate with telegram handle `charlie` and batchmate named `Tom`
-       appear in the student panel after executing the command.
+       appear in the _Students panel_ after executing the command.
 
     4. Other incorrect `find` commands to try: `find` (no keywords provided).<br>
        Expected: The status message will indicate that the command is invalid.
@@ -758,7 +758,7 @@ testers are expected to do more *exploratory* testing.
        run Mass Linkers, modify the data, and exit. The data file should be present in the directory.
     2. Attempt to corrupt the data by deleting a closing brace `}` at the end of the file.
     3. Reopen Mass Linkers. <br>
-       Expected: Mass Linkers will run and start with an empty data file. No batchmates will be shown on the student pane.
+       Expected: Mass Linkers will run and start with an empty data file. No batchmates will be shown on the _Students panel_.
 
 2. All data saved.
 
