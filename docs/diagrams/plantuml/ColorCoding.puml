@@ -1,0 +1,10 @@
+@startuml
+!include ../style.puml
+
+Class Model MODEL_COLOR
+Class Logic LOGIC_COLOR
+Class Storage STORAGE_COLOR
+Class UI UI_COLOR
+
+Model -[hidden]right-> Logic
+@enduml

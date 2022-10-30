@@ -109,6 +109,11 @@ using a computer. For users who type fast, RC4HDB will be highly efficient and q
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
+:bulb: **Tip:** For the rest of the Developer Guide, `Model`, `Logic`, `Storage`, and `UI` will be standardised with 
+the following colours.
+
+![Colors for UML diagrams](./images/ColorCoding.png)
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -206,25 +211,21 @@ the abstraction of commands.
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/LatestModelClassDiagram.png" width="450" />
+![UML diagram for Model component](./images/LatestModelClassDiagram.png)
 
 
 The `Model` component,
 
-* stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object).
+* stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object), and the venue book data, i.e. all `Venue` objects (which are contained in a `UniqueVenueList` object)
 * stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* stores two `ObservableList<String>` attributes of table columns to show and hide in the UI. The UI is able to listen to changes in these lists, and automatically update the column visibilities in the table.
-* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` which is also used to update changes in `Venue` or `Booking` in the UI.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` of venues and bookings to display in the UI. 
+* stores two `ObservableList<String>` objects of columns to show and hide in the UI.
 * does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ResidentBook`, which `Resident` references. This allows `ResidentBook` to only require one `Tag` object per unique tag, instead of each `Resident` needing their own `Tag` objects.<br>
 
-<img src="images/UpdatedBetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -352,33 +353,28 @@ of any sizeable overhead.
 
 ### Show/hide feature for resident fields
 
-**Challenges faced with UI:**
+**Changes to Model component:**
 
-The original UI represented a `Person` field as a nested FXML `Label` within a `PersonCard`, which was used to populate the `ListView` panel. Calling `setVisible` on a `Label` resulted in blank gaps in the panel because the `Label` was ultimately still intact, just *invisible*. Hence, there was a need to find another method to hide and collapse rows/columns.
-
-**Gaps in** `ListView` **panel:**
-
-![ListViewMissingField](images/ListViewMissingField.png)
-
-To achieve this, we modified our UI to use a `TableView`, where using `setVisible` on a `TableColumn` allowed us to remove the specified columns as intended. One possible reason as to why this works is that `TableColumn` does not extend from `Node`, unlike `Label`. As suggested in this [thread](https://stackoverflow.com/questions/28558165/javafx-setvisible-hides-the-element-but-doesnt-rearrange-adjacent-nodes), `setVisible` in `TableColumn` probably has a different implementation from that in `Node`.
-
-<br>
-
-**Challenges faced with linking components:**
-
-The next challenge was linking up the `Model` with the `ResidentTableView` class, such that the list of fields to hide could be updated based on user commands. There is no equivalent of React Context in Java, and references from parent to child classes are unidirectional, so I had to get creative with the implementation. There were two field lists, one in `ModelManager` and one in `ResidentViewTable`, which had to be synchronized somehow.
+For the show/hide features, we wanted to allow the `ResidentTableView` class in the UI to automatically update its 
+columns based on user commands that affected the model. There needed to be some way for the `ResidentTableView` class 
+to synchronise its columns with the corresponding field lists in `ModelManager`. From the below diagram, we can see
+that there is no reference between `ModelManager` and `ResidentTableView`. 
 
 ![MainWindowRelationships](images/MainWindowRelationships.png)
 
-The final design involved using a `ListChangeListener` to cascade the updates from one list to the other. Since `LogicManager` held a reference to a `ModelManager`, and `MainWindow` held a reference to both a `LogicManager` and the `ResidentTableView` class, I used a listener in `MainWindow` to track changes in the `Model` field list and updated the `ResidentTableView` field list accordingly. Finally, one more listener was used within `ResidentTableView` to update the column visibilities whenever the field list changed.
+One possible implementation was to store a reference to the `ResidentTableView` in `ModelManager`, to update the 
+UI directly whenever a command modified the field lists in `ModelManager`. However, this would increase the coupling 
+between the UI and the model components, which would make integration and reuse of the module significantly harder. 
 
-<br>
+Our solution was to store lists of fields to show and hide in *both* `ModelManager` and the `ResidentTableView` classes.
+Using listeners to propagate changes in the `ModelManager` field lists to the `ResidentTableView` field lists, we were
+able to minimise coupling between both components. 
 
-**Further improvements:**
+Additionally, the use of `ObservableList<String>` as our choice of field lists allowed us to use the Observer pattern 
+in our application. Moving forward, our design for the Observer pattern could be better improved, 
+for example, by combining `Observer` and `Observable` interfaces to remove the need to instantiate listeners 
+in separate classes.
 
-Currently, the commands for showing and hiding columns are extensions of the `list` command: `list /i <fields_to_include>` and `list /e <fields_to_exclude>`. While this syntax works as intended, we will be changing the command to use `show` and `hide` respectively for clarity.
-
-<br>
 
 ### Filter feature to filter residents according to fields
 
@@ -715,10 +711,11 @@ MSS:
 
 Extensions:
 
-&ensp; 1a. The user wants to view only certain fields in the list. <br>
-&ensp; &emsp; &nbsp; 1a1. The user specifies which fields he wants to see or hide. <br>
-&ensp; &emsp; &nbsp; Use case resumes at step 2.
+[comment]: <> (&ensp; 1a. The user wants to view only certain fields in the list. <br>)
 
+[comment]: <> (&ensp; &emsp; &nbsp; 1a1. The user specifies which fields he wants to see or hide. <br>)
+
+[comment]: <> (&ensp; &emsp; &nbsp; Use case resumes at step 2.)
 
 &ensp; 2a. The list is empty. <br>
 &ensp; &emsp; &nbsp; Use case ends.
@@ -726,7 +723,50 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC4 - Editing a single resident’s information <br>
+Use case: UC4 - Hiding resident information from view <br>
+Actor: User <br>
+Precondition: There is at least one resident field being displayed in RC4HDB. <br>
+MSS:
+
+1. User wants to see only some resident fields on his/her screen.
+2. User requests for RC4HDB to show or hide certain fields from the current view.
+3. RC4HDB displays the residents' details with some fields omitted.
+
+    Use case ends.
+
+Extensions:
+
+&ensp; 2a. The user specifies invalid fields to show or hide. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB displays an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+&ensp; 2b. The user tries to show zero fields or hide all fields. <br>
+&ensp; &emsp; &nbsp; 2b1. RC4HDB displays an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC5 - Resetting resident information that was hidden from view <br>
+Actor: User <br>
+MSS:
+
+1. User wants to see the full set of resident fields on his/her screen.
+2. User requests for RC4HDB to display the full set of resident fields.
+3. RC4HDB displays the residents' details with the full set of fields shown.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. The full set of fields is already displayed. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB displays residents' details with the same full set of fields shown. <br>
+&ensp; &emsp; &nbsp; Use case ends.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC6 - Editing a single resident’s information <br>
 Actor: User <br>
 MSS:
 
@@ -751,7 +791,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC5 - Finding a resident’s information by their name <br>
+Use case: UC7 - Finding a resident’s information by their name <br>
 Actor: User <br>
 MSS:
 
@@ -776,7 +816,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC6 - Filtering the list of all residents by specific fields <br>
+Use case: UC8 - Filtering the list of all residents by specific fields <br>
 Actor: User <br>
 MSS:
 
@@ -807,7 +847,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC7 - Deleting a single resident <br>
+Use case: UC9 - Deleting a single resident <br>
 Actor: User <br>
 MSS:
 
@@ -827,7 +867,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC8 - Deleting multiple residents <br>
+Use case: UC10 - Deleting multiple residents <br>
 Actor: User <br>
 MSS:
 
@@ -847,7 +887,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC9 - Clearing all data <br>
+Use case: UC11 - Clearing all data <br>
 Actor: User <br>
 MSS:
 
@@ -860,7 +900,7 @@ MSS:
 <br>
 
 System: RC4HDB <br>
-Use case: UC10 - Exiting the application <br>
+Use case: UC12 - Exiting the application <br>
 Actor: User <br>
 MSS:
 
@@ -879,7 +919,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC11 - Importing data from [CSV](#glossary) file <br>
+Use case: UC13 - Importing data from [CSV](#glossary) file <br>
 Actor: User <br>
 MSS:
 
@@ -905,7 +945,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC12 - Add a single venue <br>
+Use case: UC14 - Add a single venue <br>
 Actor: User <br>
 MSS:
 
@@ -925,7 +965,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC13 - Deleting a single venue <br>
+Use case: UC15 - Deleting a single venue <br>
 Actor: User <br>
 MSS:
 
@@ -945,7 +985,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC14 - Viewing a venue <br>
+Use case: UC16 - Viewing a venue <br>
 Actor: User <br>
 MSS:
 
@@ -965,7 +1005,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC15 - Add a single booking <br>
+Use case: UC17 - Add a single booking <br>
 Actor: User <br>
 MSS:
 
@@ -989,7 +1029,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC16 - Deleting a single booking <br>
+Use case: UC18 - Deleting a single booking <br>
 Actor: User <br>
 MSS:
 
@@ -1100,21 +1140,6 @@ testers are expected to do more *exploratory* testing.
 
 #### Starting up with missing/corrupted data files
 
-1. Starting up with missing data files.
-   1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which automatically generates the folder.
-
-   2. Test case: delete the whole `ROOT/data` directory before starting up <br>
-       Expected: Starting up RC4HDB results in a new data directory, with a data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
-
-2. Starting up with corrupted data files.
-   1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which automatically generates the folder.
-
-   2. Test case: edit the `ROOT/data/data_folder/resident_data.json` file into a non-JSON format <br>
-       Expected: Starting up RC4HDB results in an empty `resident_data.json` file.
-
-   3. Test case: edit the `ROOT/data/data_folder/venue_data.json` file into a non-JSON format <br>
-       Expected: Starting up RC4HDB results in an empty `venue_data.json` file.
-
 #### Exiting RC4HDB
 
 1. Exiting via command-line
@@ -1127,9 +1152,116 @@ testers are expected to do more *exploratory* testing.
     1. Test case: Pressing `ESC`<br>
        Expected: Window closes.
 
-<br>
+### Viewing residents
 
-### Deleting a resident
+#### Listing residents
+
+1. Listing all residents in the resident list after calling `find` or `filter` (sequential testing)
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons already in the list.
+
+    2. First, enter `add  n/Peter Senge p/90798012 e/ps@email.com r/16-19 g/M h/D m/A0238871H`.
+       Expected: `Peter Senge` is added to the list. The full list is displayed after adding the resident.
+       
+    3. Next, enter `add  n/Teng Mui Kiat p/88032012 e/tmk@email.com r/08-19 g/M h/D m/A0198211G`.
+       Expected: `Teng Mui Kiat` is added to the list. The full list is displayed after adding the resident.
+       
+    4. Now, enter `find eng`. Expected: At least two residents are displayed in the list, i.e. `Peter Senge` and `Teng
+       Mui Kiat`. This means that the list of residents shown is no longer the full list.
+       
+       - Alternatively, enter `filter /all h/D`. Expected: Same as *iv*.
+       
+    5. Enter `list`. Expected: The full list of residents should be displayed, along with `Peter Senge` and `Teng
+       Mui Kiat`.
+
+    6. Note the incorrect command: `find`<br>
+       Expected: The list of residents displayed does not change. Error details shown in the status message. 
+    
+    7. Note the incorrect command: `filter` or `filter /all`<br>
+       Expected: The list of residents displayed does not change. Error details shown in the status message. 
+       
+    8. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
+       Expected: Similar to previous.
+
+2. Listing all resident fields after calling `showonly` or `hideonly` (sequential testing)
+
+    1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
+       the full set of resident fields.
+       
+    2. Enter `showonly n p e`.
+       Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email` 
+       columns are shown in the table.
+       
+        - Alternatively, enter `hideonly i r g m h t`. Expected: Same as *ii*.
+    
+    3. Enter `list`. Expected: The full set of resident fields is displayed in the table, along with the full list of 
+       residents.
+       
+    4. Note the incorrect command: `showonly` or `hideonly`.
+       Expected: The set of fields displayed does not change. Error details shown in the status message.
+       
+    5. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
+       Expected: Similar to previous.
+       
+#### Showing/hiding and resetting resident fields
+
+1. Using `showonly` to show only some resident fields + `reset` (sequential testing)
+
+    1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
+       the full set of resident fields.
+       
+    2. Enter `showonly n p e`.
+       Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email`
+       columns are shown in the table.
+       
+    3. Enter `showonly r m g h`.
+       Expected: The set of resident fields being displayed does not change as the specified fields are not present
+       in the current table. Error details are shown in the status message. 
+       
+    4. Enter `showonly n`.
+       Expected: The list of residents being displayed does not change, but only the `name` column is shown in 
+       the table.
+       
+    5. Enter `reset`.
+       Expected: The full set of resident fields is displayed in the table.
+       
+    6. Note the incorrect command: `showonly`
+       Expected: The set of resident fields being displayed does not change. Error details are shown in the status 
+       message. 
+
+
+2. Using `hideonly` to hide only some resident fields + `reset` (sequential testing)
+
+    1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
+       the full set of resident fields.
+
+    2. Enter `hideonly i r m g h t`.
+       Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email`
+       columns are shown in the table.
+
+    3. Enter `hideonly r h`.
+       Expected: The set of resident fields being displayed does not change as the specified fields are not present
+       in the current table. Error details are shown in the status message.
+
+    4. Enter `hideonly p e`.
+       Expected: The list of residents being displayed does not change, but only the `name` column is shown in
+       the table.
+       
+    5. Enter `hideonly n`.
+       Expected: The set of resident fields being displayed does not change as users cannot hide all columns. Error
+       details are shown in the status message.
+       the table.
+
+    6. Enter `reset`.
+       Expected: The full set of resident fields is displayed in the table.
+
+    7. Note the incorrect command: `hideonly`
+       Expected: The set of resident fields being displayed does not change. Error details are shown in the status
+       message.
+       
+### Modifying residents
+
+#### Deleting a resident
 
 1. Deleting a resident while all persons are being shown
 
