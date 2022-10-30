@@ -60,19 +60,19 @@ While reading this user guide, these symbols will inform you if there is some im
 5. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
-    * **`contact list`** : Lists all contacts, including ones hidden by a previous command.
+    * `contact list` : Lists all contacts, including ones hidden by a previous command.
 
-    * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contact list.
+    * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contact list.
 
-    * **`contact delete`**`i/3` : Deletes the 3rd contact currently shown in the displayed contact list.
+    * `contact delete i/3` : Deletes the 3rd contact currently shown in the displayed contact list.
 
-    * **`task list`** : Lists all tasks, including ones hidden by a previous command.
+    * `task list` : Lists all tasks, including ones hidden by a previous command.
 
-    * **`task todo`**`m/John d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
+    * `task todo m/John Doe d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
 
-    * **`task delete`**`i/3` : Deletes the 3rd task currently shown in the displayed task list.
+    * `task delete i/3` : Deletes the 3rd task currently shown in the displayed task list.
 
-    * **`bye`** : Exits the app.
+    * `bye` : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -83,6 +83,8 @@ While reading this user guide, these symbols will inform you if there is some im
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+
+* Commands, parameters and arguments are case-sensitive, unless otherwise specified.
 
 * Flags consisting of a character and `/` specify the type of parameter to be supplied.
   e.g. in `n/NAME`, `n/` is the flag for the `NAME` parameter.
@@ -108,6 +110,8 @@ While reading this user guide, these symbols will inform you if there is some im
 * Extraneous parameters for commands that do not take in parameters (such as `task list`, `contact list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
+</div>
+
 ### Accepted Date Formats
 
 The following date formats are accepted:
@@ -116,8 +120,6 @@ The following date formats are accepted:
 * MMM dd yyyy (Oct 31 2022)
 * MM dd yyyy (10 31 2022)
 * dd MMM yyyy (31 Oct 2022)
-
-</div>
 
 ### Viewing help : `help`
 
@@ -246,14 +248,15 @@ Edits the specified task in your task list.
 
 Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
 
-* Edits the contact at the specified `INDEX` with the parameters provided.
-* The index refers to the index number shown in the displayed contact list.
+* Edits the task at the specified `INDEX` with the parameters provided.
+* The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Include only the parameters you wish to be edited, however you include within the `<>` **must** be changed from the original.
 * Only one of assignor `m/` or assignee `o/` can be specified.
     * A task can be **re-assigned to** "Person Y" by providing parameter `o/Person Y`.
     * A task can be **re-assigned by** "Person X" by providing parameter `m/Person X`.
     * If neither `m/` or `o/` is specified, the current **assignor** or **assignee** will not be changed.
+* Dates `t/` can only be edited if the task is a **deadline** or **event**.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -316,7 +319,7 @@ Displays all tasks matching the arguments provided by you.
 
 Format: `task find <q/QUERY x/DONE a/ASSIGNMENT>`
 
-* QUERY is not case sensitive.
+* QUERY is not case-sensitive.
 * ASSIGNMENT is either FROM or TO, representing "m/" and "o/", or 'Assigned by' and 'Assigned to', respectively.
 * DONE is either X or O, representing 'Done' and 'Not done' respectively.
 * Note that adding a new task will reset the UI back to the full list of tasks.
@@ -399,7 +402,14 @@ Examples:
 
 Undoes the previous command and reverts your TaskBook to the previous state. A _minimum_ of 15 previous states are guaranteed to be kept in the history, if there are that many commands executed.
 
-Note: Commands that do not cause a change in state cannot be undone.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about Undo:**<br>
+
+* Commands that do not cause a change in state cannot be undone.
+* Undo does not reset the view changes caused by filter or sort. See [contact list](#listing-all-contacts--contact-list) and [task list](#listing-all-tasks--task-list) instead.
+
+</div>
 
 Format: `undo`
 
