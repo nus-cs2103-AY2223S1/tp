@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SORTING_CRITERIA;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -38,6 +39,8 @@ public class SortReminderCommand extends Command {
         case CRITERIA_DEADLINE:
             model.sortReminderByDeadline();
             break;
+        default:
+            throw new CommandException(MESSAGE_INVALID_SORTING_CRITERIA);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS_TEMPLATE, criteria));
     }

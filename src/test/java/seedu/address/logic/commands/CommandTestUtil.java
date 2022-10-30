@@ -16,6 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CRITERIA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -26,6 +27,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.reminder.EditReminderCommand;
+import seedu.address.logic.commands.reminder.SortReminderCommand;
 import seedu.address.logic.commands.student.EditCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -88,27 +90,36 @@ public class CommandTestUtil {
     // Reminder
     public static final String VALID_NAME_REMINDER1 = "Set HW 1";
     public static final String VALID_NAME_REMINDER2 = "Mark Finals";
-    public static final String VALID_DEADLINE_REMINDER1 = "2000-03-22 14:00";
-    public static final String VALID_DEADLINE_REMINDER2 = "2000-03-23 17:00";
+    public static final String VALID_DATE_REMINDER1 = "2000-03-22";
+    public static final String VALID_DATE_REMINDER2 = "2000-03-23";
+    public static final String VALID_TIME_REMINDER1 = "14:00";
+    public static final String VALID_TIME_REMINDER2 = "17:00";
+    public static final String VALID_DEADLINE_REMINDER1 = VALID_DATE_REMINDER1 + " " + VALID_TIME_REMINDER1;
+    public static final String VALID_DEADLINE_REMINDER2 = VALID_DATE_REMINDER2 + " " + VALID_TIME_REMINDER2;
     public static final String VALID_PRIORITY_REMINDER1 = "MEDIUM";
     public static final String VALID_PRIORITY_REMINDER2 = "HIGH";
     public static final String VALID_DESCRIPTION_REMINDER1 = "5 questions to set";
     public static final String VALID_DESCRIPTION_REMINDER2 = "300 papers to mark";
-    public static final String VALID_SORTING_CRITERIA_PRIORITY = "priority";
-    public static final String VALID_SORTING_CRITERIA_DEADLINE = "deadline";
 
     public static final String NAME_DESC_REMINDER1 = " " + PREFIX_NAME + VALID_NAME_REMINDER1;
     public static final String NAME_DESC_REMINDER2 = " " + PREFIX_NAME + VALID_NAME_REMINDER2;
-    public static final String DEADLINE_DESC_REMINDER1 = " " + PREFIX_DATE_DAY + VALID_NAME_REMINDER1;
-    public static final String DEADLINE_DESC_REMINDER2 = " " + PREFIX_DATE_DAY + VALID_NAME_REMINDER2;
-    public static final String PRIORITY_DESC_REMINDER1 = " " + PREFIX_PRIORITY + VALID_NAME_REMINDER1;
-    public static final String PRIORITY_DESC_REMINDER2 = " " + PREFIX_PRIORITY + VALID_NAME_REMINDER2;
-    public static final String DESCRIPTION_DESC_REMINDER1 = " " + PREFIX_DESCRIPTION + VALID_NAME_REMINDER1;
-    public static final String DESCRIPTION_DESC_REMINDER2 = " " + PREFIX_DESCRIPTION + VALID_NAME_REMINDER2;
-    public static final String SORTING_DESC_PRIORITY = " " + PREFIX_SORT_CRITERIA + VALID_SORTING_CRITERIA_PRIORITY;
-    public static final String SORTING_DESC_DEADLINE = " " + PREFIX_SORT_CRITERIA + VALID_SORTING_CRITERIA_DEADLINE;
+    public static final String DATE_DESC_REMINDER1 = " " + PREFIX_DATE_DAY + VALID_DATE_REMINDER1;
+    public static final String DATE_DESC_REMINDER2 = " " + PREFIX_DATE_DAY + VALID_DATE_REMINDER2;
+    public static final String TIME_DESC_REMINDER1 = " " + PREFIX_TIME + VALID_TIME_REMINDER1;
+    public static final String TIME_DESC_REMINDER2 = " " + PREFIX_TIME + VALID_TIME_REMINDER2;
+    public static final String PRIORITY_DESC_REMINDER1 = " " + PREFIX_PRIORITY + VALID_PRIORITY_REMINDER1;
+    public static final String PRIORITY_DESC_REMINDER2 = " " + PREFIX_PRIORITY + VALID_PRIORITY_REMINDER2;
+    public static final String DESCRIPTION_DESC_REMINDER1 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_REMINDER1;
+    public static final String DESCRIPTION_DESC_REMINDER2 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_REMINDER2;
+    public static final String SORTING_DESC_PRIORITY = " " + PREFIX_SORT_CRITERIA
+            + SortReminderCommand.CRITERIA_PRIORITY;
+    public static final String SORTING_DESC_DEADLINE = " " + PREFIX_SORT_CRITERIA
+            + SortReminderCommand.CRITERIA_DEADLINE;
 
     public static final String INVALID_SORT_DESC = " " + PREFIX_SORT_CRITERIA + "apple";
+    public static final String INVALID_DATE_FORMAT_DESC = " " + PREFIX_DATE_DAY + "2000-03-";
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE_DAY + "2000-03-33";
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "13:70";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
