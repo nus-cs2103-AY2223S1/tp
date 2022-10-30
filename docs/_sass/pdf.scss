@@ -101,5 +101,13 @@
         }
       }
     }
+
+    .def-tooltip {
+      > a {
+        // For PrinceXML compatibility
+        text-decoration: underline;
+        text-underline-style: dotted;
+      }
+    }
   }
 }
