@@ -4,6 +4,7 @@ import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.Locale;
+import java.util.stream.Stream;
 
 import seedu.watson.logic.commands.SortCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
@@ -12,8 +13,20 @@ import seedu.watson.logic.parser.exceptions.ParseException;
  * Parses input argument and creates a new SortCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
     @Override
     public SortCommand parse(String userInput) throws ParseException {
+        if (!userInput.contains(PREFIX_SUBJECT.toString())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
         String userInputTrimmed = userInput.trim();
         String[] split = userInputTrimmed.split(PREFIX_SUBJECT.getPrefix());
         String subjectName = split[1].trim().toUpperCase(Locale.ROOT);
