@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 {:toc}
 
 ## Introduction
@@ -441,16 +442,16 @@ If your changes to the data file makes its format invalid, GREWZ will discard al
 
 | Word                                           | Definition                                                                                                                                                                                   |
 |------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Command Line Interface (CLI)**               | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                 |
-| **Graphical user interface (GUI)**             | Graphical user interface (GUI) is a form of user interface that allows users to interact with electronic devices through graphical icons.                                          |
-| **Teaching assistant**            | Teaching assistant is an individual who assists a professor with instructional responsibilities.
-| **JavaScript Object Notation (JSON)** | JavaScript Object Notation (JSON) is used for storing and transfering data.  |
-| **Joint Photographic Experts Group (JPG)**  | Joint Photographic Experts Group (JPG) is an image file type and used for compression of digital images.                                                                                                                        |
-| **User input history**| User input history is the previous inputs the user has keyed in.                                                                                                     |
-| **Task** | Task is a piece of work to be done and the category Todo, Deadline and Assignment is under.                                                                      |
-| **Todo** | Todo is a task with a description and title.                                                                                                              |
-| **Deadline**  | Deadline is a task with a due date.                                                                                         |
-| **Assignment**  | Assignment is a task with a list of students that needs to finish the task.                                                                                           |
-| **Attendance List** | Attendance list is a record of the student's attendance for his class.                                                                                                                
+| **Command Line Interface (CLI)**               | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                               |
+| **Graphical user interface (GUI)**             | Graphical user interface (GUI) is a form of user interface that allows users to interact with electronic devices through graphical icons.                                                    |
+| **Teaching assistant**                         | Teaching assistant is an individual who assists a professor with instructional responsibilities.                                                                                             |
+| **JavaScript Object Notation (JSON)**          | JavaScript Object Notation (JSON) is used for storing and transfering data.                                                                                                                  |
+| **Joint Photographic Experts Group (JPG)**    | Joint Photographic Experts Group (JPG) is an image file type and used for compression of digital images.                                                                                      |
+| **User input history**                        | User input history is the previous inputs the user has keyed in.                                                                                                                              |
+| **Task**                                      | Task is a piece of work to be done and the category Todo, Deadline and Assignment is under.                                                                                                   |
+| **Todo**                                      | Todo is a task with a description and title.                                                                                                                                                  |
+| **Deadline**                                  | Deadline is a task with a due date.                                                                                                                                                           |
+| **Assignment**                                | Assignment is a task with a list of students that needs to finish the task.                                                                                                                   |
+| **Attendance List**                           | Attendance list is a record of the student's attendance for his class.                                                                                                                
 
 [back to top](#introduction)
