@@ -915,7 +915,15 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
+3. Starting up with missing/corrupted data files
+
+    1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which automatically generates the folder.
+
+    2. Test case: delete the whole `ROOT/data` directory before starting up <br>
+        Expected: Starting up RC4HDB results in a new data directory, with a data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
+
+    3. Test case: delete **only** the `ROOT/data/data_folder` directory before starting up <br>
+        Expected: Starting up RC4HDB results in a new data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
 
 <br>
 
@@ -999,18 +1007,6 @@ testers are expected to do more *exploratory* testing.
 ### Importing from CSV file
 
 [Comment]: <> (To be added)
-
-### Saving data
-
-[Comment]: <> (To be updated)
-
-1. Dealing with missing/corrupted data files
-
-   1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which generates the file.
-   
-   2. 
-
-2. _{ more test cases …​ }_
 
 <br>
 
