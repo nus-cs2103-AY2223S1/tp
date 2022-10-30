@@ -57,4 +57,20 @@ public class TeachingAssistantBuilder extends PersonBuilder {
             getLocation(), getGithubUsername(), rating);
     }
 
+    /**
+     * Sets the {@code Rating} of the {@code TeachingAssistant} that we are building.
+     */
+    public TeachingAssistantBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ModuleCode} of the {@code TeachingAssistant} that we are building.
+     */
+    public TeachingAssistantBuilder withModuleCode(String moduleCode) {
+        this.moduleCode = new ModuleCode(moduleCode);
+        return this;
+    }
+
 }

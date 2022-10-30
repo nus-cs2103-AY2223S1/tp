@@ -21,6 +21,8 @@ public class ProfessorBuilder extends PersonBuilder {
     private Specialisation field;
     private OfficeHour officeHour;
 
+    private Specialisation specialisation;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -73,9 +75,33 @@ public class ProfessorBuilder extends PersonBuilder {
     /**
      * Sets the {@code ModuleCode} of the {@code Professor} that we are building.
      */
-    public PersonBuilder withModuleCode(String moduleCode) {
+    public ProfessorBuilder withModuleCode(String moduleCode) {
         this.moduleCode = new ModuleCode(moduleCode);
         return this;
     }
 
+    /**
+     * Sets the {@code Rating} of the {@code Professor} that we are building.
+     */
+    public ProfessorBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Specialisation} of the {@code Professor} that we are building.
+     */
+    public ProfessorBuilder withSpecialisation(String specialisation) {
+        this.field = new Specialisation(specialisation);
+        return this;
+    }
+
+    /**
+     * Sets the {@code OfficeHour} of the {@code Professor} that we are building.
+     */
+    public ProfessorBuilder withOfficeHour(String officeHour) {
+        this.officeHour = new OfficeHour(officeHour, true);
+        System.out.println(officeHour);
+        return this;
+    }
 }
