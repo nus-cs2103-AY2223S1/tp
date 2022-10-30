@@ -94,7 +94,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code LocalDateTime} of the {@code Order} that we are building.
+     * Sets the {@code timeCreated} of the {@code Order} that we are building.
      */
     public OrderBuilder withTimeCreated(LocalDateTime timeCreated) {
         this.timeCreated = timeCreated;
@@ -102,7 +102,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the default {@code LocalDateTime} of the {@code Order} that we are building.
+     * Sets the default {@code timeCreated} of the {@code Order} that we are building.
      */
     public OrderBuilder withDefaultTimeCreated() {
         this.timeCreated = DEFAULT_TIME_CREATED;
@@ -130,6 +130,22 @@ public class OrderBuilder {
      */
     public OrderBuilder withItemQuantityPair(ItemQuantityPair itemQuantityPair) {
         itemList.add(itemQuantityPair);
+        return this;
+    }
+
+    /**
+     * Sets the {@code isPaid} status of the {@code Order} that we are building.
+     */
+    public OrderBuilder withPaidStatus(Boolean status) {
+        this.isPaid = status;
+        return this;
+    }
+
+    /**
+     * Sets the {@code isDelivered} status of the {@code Order} that we are building.
+     */
+    public OrderBuilder withDeliveredStatus(Boolean status) {
+        this.isDelivered = status;
         return this;
     }
 
