@@ -22,19 +22,26 @@ public class PhoneTest {
     @Test
     public void isValidPhone() {
         // null phone number
-        assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
+        assertThrows(NullPointerException.class, () -> Phone.isCorrect(null));
 
-        // invalid phone numbers
-        assertFalse(Phone.isValidPhone("")); // empty string
-        assertFalse(Phone.isValidPhone(" ")); // spaces only
-        assertFalse(Phone.isValidPhone("91")); // less than 3 numbers
-        assertFalse(Phone.isValidPhone("phone")); // non-numeric
-        assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
-        assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
+        // empty phone numbers (after trimming)
+        assertTrue(Phone.isEmptyPhone(""));
+        assertTrue(Phone.isEmptyPhone("         "));
 
-        // valid phone numbers
-        assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
-        assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+        // valid phone numbers which passes the Regex pattern match
+        assertTrue(Phone.isCorrect("12345678")); // exactly 8 numbers
+        assertTrue(Phone.isCorrect("93121534"));
+        assertTrue(Phone.isCorrect("+1234567")); // acceptable international number
+        assertTrue(Phone.isCorrect("+12345674534534")); // acceptable international number
+
+        // "incorrect" phone numbers that are actually still considered valid inputs
+        assertFalse(Phone.isCorrect("")); // empty string
+        assertFalse(Phone.isCorrect(" ")); // spaces only
+        assertFalse(Phone.isCorrect("91")); // less than 7 digits
+        assertFalse(Phone.isCorrect("93121534444444444444444")); // more than 16 digits
+        assertFalse(Phone.isCorrect("this is a phone")); // non-numeric
+        assertFalse(Phone.isCorrect("9011p041")); // alphabets within digits
+        assertFalse(Phone.isCorrect("9312 1534")); // spaces within digits
+
     }
 }

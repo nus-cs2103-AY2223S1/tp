@@ -8,7 +8,9 @@ import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_BOB_WARN;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -75,6 +77,50 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
+
+        Model expectedModel = new ModelManager(new MassLinkers(model.getMassLinkers()), new UserPrefs());
+        expectedModel.setStudent(lastStudent, editedStudent);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                false, false, true, false);
+    }
+
+    //correct phone number edit to another correct phone number
+    //do not expect warning
+    @Test
+    public void execute_correctPhoneUnfilteredList_success() {
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
+        Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
+
+        StudentBuilder studentInList = new StudentBuilder(lastStudent);
+        Student editedStudent = studentInList.withPhone(VALID_PHONE_AMY).build(); //expected student
+
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
+
+        Model expectedModel = new ModelManager(new MassLinkers(model.getMassLinkers()), new UserPrefs());
+        expectedModel.setStudent(lastStudent, editedStudent);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel,
+                false, false, true, false);
+    }
+
+    //correct phone number edit to incorrect phone number (but still valid)
+    //expected warning
+    @Test
+    public void execute_incorrectPhoneUnfilteredList_warn() {
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
+        Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
+
+        StudentBuilder studentInList = new StudentBuilder(lastStudent);
+        Student editedStudent = studentInList.withPhone(VALID_PHONE_BOB_WARN).build(); //expected student
+
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB_WARN).build();
+        EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS_WARN, editedStudent);
 
         Model expectedModel = new ModelManager(new MassLinkers(model.getMassLinkers()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudent);

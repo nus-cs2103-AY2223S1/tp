@@ -1,6 +1,7 @@
 package seedu.masslinkers.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_PHONE_WARNING;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_INTEREST;
@@ -48,6 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_INTEREST + "INTEREST]...";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS_WARN = MESSAGE_PHONE_WARNING + MESSAGE_EDIT_STUDENT_SUCCESS;
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "The Telegram handle/"
             + "GitHub username/email/phone number already exist(s) in Mass Linkers.";
@@ -92,6 +94,10 @@ public class EditCommand extends Command {
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        if (editedStudent.hasIncorrectPhone()) { //warns whenever the edited student has an incorrect phone
+            return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS_WARN, editedStudent),
+                    false, false, true, false);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, true, false);
     }

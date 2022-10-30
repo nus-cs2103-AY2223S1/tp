@@ -21,7 +21,7 @@ import seedu.masslinkers.model.student.Telegram;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PHONE = "    ";
     private static final String INVALID_TELEGRAM = " ";
     private static final String INVALID_GITHUB = " ";
     private static final String INVALID_EMAIL = "example.com";

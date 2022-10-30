@@ -1,6 +1,7 @@
 package seedu.masslinkers.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_PHONE_WARNING;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_INTEREST;
@@ -29,6 +30,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_INTEREST + "INTEREST]...";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_SUCCESS_WARN = MESSAGE_PHONE_WARNING + MESSAGE_SUCCESS;
     public static final String MESSAGE_DUPLICATE_STUDENT = "The Telegram handle/"
             + "GitHub username/email/phone number already exist(s) in Mass Linkers.";
 
@@ -49,8 +51,10 @@ public class AddCommand extends Command {
         if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
-
         model.addStudent(toAdd);
+        if (toAdd.hasIncorrectPhone()) { //if phone is "incorrect", successfully add it in but warn student
+            return new CommandResult(String.format(MESSAGE_SUCCESS_WARN, toAdd));
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

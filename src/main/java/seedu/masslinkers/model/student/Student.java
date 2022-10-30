@@ -32,6 +32,7 @@ public class Student {
     private final Set<Interest> interests = new HashSet<>();
     private final ObservableList<Mod> mods =
             FXCollections.observableArrayList();
+    private boolean hasIncorrectPhone = false;
 
     /**
      * Every field must be present and not null.
@@ -41,6 +42,7 @@ public class Student {
         requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
+        this.hasIncorrectPhone = phone != null && phone.hasIncorrectNumber();
         this.email = email;
         this.handle = handle;
         this.interests.addAll(interests);
@@ -66,6 +68,13 @@ public class Student {
 
     public GitHub getGitHub() {
         return gitHub;
+    }
+
+    /**
+     * Returns true if student has an incorrect phone number (but still valid)
+     */
+    public boolean hasIncorrectPhone() {
+        return this.hasIncorrectPhone;
     }
 
     /**
