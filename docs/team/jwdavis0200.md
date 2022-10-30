@@ -32,12 +32,21 @@ It is written in Java.
     * Integration of `ModelManager` with `LogicManager` and `MainWindow` to support feature.
     * Implemented logic of getting the next session timing with local machine time as reference.
 
-* **Contributions to the UG**: `to be added soon`
+* **Contributions to the UG**:
+  * Added next session feature.
+    * Updated other relevant commands where the feature is relevant.
+    * Added image for next session feature.
+  * Added more examples to make use cases of commands clearer to users.
+  * Fixed bugs in UG that caused rendering issues.
+  * Added updated images for Pupilist UI.
+  * Helped to improve accuracy of UG for better user understanding.
+
 * **Contributions to the DG**:
   * Updated skeletal DG to match product specifications.
     * Added user stories matching Pupilist project.
   * Fixed layout rendering issues of table.
   * Included Session feature.
+
 * **Review/mentoring contributions**: `to be added soon`
 * **Contributions beyond the project team**: `to be added soon`
 
