@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test;
 import seedu.boba.commons.core.Messages;
 import seedu.boba.commons.core.index.Index;
 import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
-
 import seedu.boba.model.BobaBot;
 import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.BobaBotModelManager;

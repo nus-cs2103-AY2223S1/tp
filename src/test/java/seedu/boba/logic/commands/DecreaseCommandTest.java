@@ -14,7 +14,6 @@ import static seedu.boba.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.boba.commons.core.Messages;
-
 import seedu.boba.model.BobaBot;
 import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.BobaBotModelManager;
