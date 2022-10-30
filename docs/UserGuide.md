@@ -27,6 +27,25 @@ use its text-based commands. Get started now by heading over to [How to use the 
 
 ## **How to use the User Guide**
 
+If you have not installed Swift+, head over to the [Installation](#installation) section.
+
+After installing Swift+, you can refer to our [Getting Started](#getting-started) section on the basics of using Swift+. This includes the app's,
+- graphical [layout](#layout)
+- [command format](#command-format)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
+If you are using Swift+ for the first time, we **highly recommend** that you read through the [Getting Started](#getting-started) 
+section first before the other sections.
+</div>
+
+To view each command in detail, you can head over to the [Commands](#commands) section.
+
+If you are an experienced user, you can refer to the [Command Summary](#command-summary) for a quick overview of the commands in Swift+.
+
+If you have any questions while using the app, please refer to our [FAQ](#faq) section.
+
+For any further queries or suggestions, you may reach out to us [here](/AboutUs)!
+
 ### Icons
 
 Throughout this website, you may find colored boxes that contain useful information. The icon at the top of the box represents
