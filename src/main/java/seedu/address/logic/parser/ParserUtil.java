@@ -185,7 +185,8 @@ public class ParserUtil {
         Optional<PriorityEnum> priorityEnum = PriorityEnum.getFromString(trimmedPriority);
 
         if (priorityEnum.isEmpty()) {
-            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+            throw new ParseException( "\"" + priority + "\"" + " is not a valid priority! " +
+                    Priority.MESSAGE_CONSTRAINTS);
         }
         return new Priority(priorityEnum.get());
     }
@@ -200,7 +201,8 @@ public class ParserUtil {
         String trimmedCategory = taskCategory.trim().toLowerCase();
         Optional<TaskCategoryType> categoryEnum = TaskCategoryType.getFromString(trimmedCategory);
         if (categoryEnum.isEmpty()) {
-            throw new ParseException(TaskCategory.MESSAGE_CONSTRAINTS);
+            throw new ParseException( "\"" + taskCategory + "\"" + " is not a valid category! " +
+             TaskCategory.MESSAGE_CONSTRAINTS);
         }
         return new TaskCategory(categoryEnum.get()); // TODO: remove hardcoded category level
     }
