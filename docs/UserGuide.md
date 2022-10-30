@@ -241,17 +241,18 @@ Edits an existing student in the list.
 </div>
 
 4. Amount Paid (`paid/`):
+    - Amount Paid stands for the amount that has been paid by the Student.
     - Amount paid can only be an integer.
     - Amount paid must be non-negative.
 
 5. Amount Owed (`owed/`):
+    - Amount Owed stands for the amount that has been owed by the Student.
+    - Format: `owed/` must be followed by an integer.
     - Amount owed can only be an integer.
     - Amount owed must be non-negative.
 
-<div markdown="span" class="alert alert-info">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
-</div>
-
 6. Rates per Class (`rate/`):
+    - Rates per Class stands for the amount of charge per Class for the Student.
     - Rates per Class can only be an integer.
     - Rates per Class must be non-negative.
 
@@ -703,7 +704,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Receive money from a student      | pay INDEX-s AMOUNT_PAID e.g., `pay 2 300`                                                                                                                                                                                                                |
 | List all students                 | `list`                                                                                                                                                                                                                                                   |
 | Find a student                    | find n/NAME e.g., `find n/John Doe` or other supported fields                                                                                                                                                                                            |
-| find available time slots         | avail TIME_RANGE DURATION e.g., `avail 1000-1200 30`                                                                                                                                                                                                     |
+| Find available time slots         | avail TIME_RANGE DURATION e.g., `avail 1000-1200 30`                                                                                                                                                                                                     |
 | Sort students in particular order | sort TYPE [ORDER] e.g., `sort NAME ASC`                                                                                                                                                                                                                  |
 | Delete a student                  | delete INDEX e.g., `delete 2`                                                                                                                                                                                                                            |
 | Clear all students                | `clear`                                                                                                                                                                                                                                                  |
