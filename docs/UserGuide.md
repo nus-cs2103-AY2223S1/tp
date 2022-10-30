@@ -69,6 +69,8 @@ Before proceeding, do make sure that you can understand our notation for command
   `ls --module CS2103T -u` are the same command and will produce identical results
 * Spaces are not actually required after each prefix. For instance, `ls --moduleCS2103T` will work as well. However, 
   spaces are used throughout this guide for clarity.
+* Extraneous words at the end of commands which do not require custom user input will be ignored. For example,
+  `ls -a abcabc` still works, even if only `ls -a` is expected.
 
 Do note that we do have a few constraints on user input:
 * Task names can only contain letters, numbers and spaces. For example, `Assignment-5` is not a valid name as it 
@@ -93,6 +95,7 @@ Notes:
   we will inform you that such a task already exists within the task list and reject your command
 * **Optional deadlines** - Tasks with no deadlines are treated as being due "far in the future", meaning they
   will be placed at the end of the task list.
+* **Ordering of tasks** - Tasks are first ordered by their 
 
 Examples:
 * `add -n Task 1 -m CS2103T -d 2022-10-15 -t homework`
