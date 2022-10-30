@@ -57,8 +57,10 @@ Format: `help`
 
 #### Adding a patient: `add`
 
-Adds a patient into idENTify. Note that we allow duplicate names for patients, but distinct patients with the same 
-name must have different phone numbers to identify them.
+Adds a patient into idENTify. 
+* We allow duplicate names for patients, but distinct patients with the same
+  names must have different phone numbers in order to identify them. So you cannot add a patient who has both the
+  same name and phone number as some existing patient.
 
 Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
@@ -128,7 +130,7 @@ Format: `clear`
 
 #### Editing a patient : `edit patients`
 
-Edits an existing patient in idENTify.
+Edits an existing patient in idENTify. 
 
 Format: `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -138,6 +140,9 @@ Format: `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * When editing tags, the existing tags of the patient will be removed i.e. adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
+* We allow duplicate names for patients, but distinct patients with the same
+    names must have different phone numbers in order to identify them. So you cannot edit a patient to have both the 
+  same name and phone number as some existing patient.
 
 Examples:
 *  `edit patients 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
@@ -207,15 +212,24 @@ Format:
 
 #### Grouping all patients : `group patients`
 
-Shows a list of all patients grouped by their tags.
+Shows a list of all patients grouped by their tags. After this command, people with the exact same tags will be 
+grouped together. \
+For example, all patients with no tags will be in the same group; all patients with only 'ear' tag 
+will be in the same group; all patients with both 'ear' and 'nose' tags will be in the same group. \
+Patients in the same tag group will be sorted automatically by their names in ascending order.
 
 Format:
 * `group patients`
 
 #### Grouping all appointments : `group appts`
 
-Shows a list of all appointments grouped by their tags or attached patients, depending on the parameter given.
-Shortcuts can be used.
+Shows a list of all appointments grouped by their tags, attached patients or mark status, depending on the parameter 
+given. \
+For example, after grouping appointments with tags, all appointments with no tags will be in the same group; all 
+appointments with only 'ear' tag will be in the same group; all appointments with both 'ear' and 'nose' tags will be 
+in the same group. \
+Appointments in the same group will be sorted automatically by their datetime in ascending order.
+
 
 Format:
 * `group appts k/KEY`
