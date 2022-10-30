@@ -3,7 +3,7 @@ layout: page
 title: Data Management
 ---
 
-#### [Back to Menu](../UserGuide.md)
+#### [← Back to Menu](../UserGuide.md)
 
 ### Finding your data file
 

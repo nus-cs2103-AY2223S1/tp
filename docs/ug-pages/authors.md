@@ -3,7 +3,7 @@ layout: page
 title: Authors
 ---
 
-#### [Back to Menu](../UserGuide.md)
+#### [← Back to Menu](../UserGuide.md)
 
 # Authors
 

@@ -3,7 +3,7 @@ layout: page
 title: FAQ
 ---
 
-#### [Back to Menu](../UserGuide.md)
+#### [← Back to Menu](../UserGuide.md)
 
 ## FAQ
 

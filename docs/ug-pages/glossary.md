@@ -3,7 +3,7 @@ layout: page
 title: Glossary
 ---
 
-#### [Back to Menu](../UserGuide.md)
+#### [← Back to Menu](../UserGuide.md)
 
 ## Glossary of terms
 
