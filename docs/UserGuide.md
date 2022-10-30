@@ -241,9 +241,9 @@ Examples:
 
 #### Ungrouping all patients/ appointments : `ungroup`
 
-Shows a list of all patients or appointments ungrouped. <br>
-Patient entries will return to being sorted by name in alphabetical order. <br>
-Appointment entries will return to being sorted by date.
+Shows a list of all patients or appointments ungrouped. \
+Patient entries will return to being sorted by name in alphabetical order. \
+Appointment entries will return to being sorted by datetime.
 
 Format:
 * `ungroup patients`
