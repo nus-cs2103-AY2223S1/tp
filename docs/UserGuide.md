@@ -258,11 +258,11 @@ Currently, Watson uses the following formula to predict a student's grade:
 (**average** of all normalized scores for previous assessments) + (**difficulty penalty**)
 
 The normalized score for any particular assessment is calculated as follows:
-* Calculate the student's score for the assessment, divided by the total score for the assessment.
-* Calculate the percentage of classes attended by the student. Let's call this the student's **learning rating**.
-* Calculate the **difficulty bonus** for the assessment with the following formula:
+1. Calculate the student's score for the assessment, divided by the total score for the assessment.
+2. Calculate the percentage of classes attended by the student. Let's call this the student's **learning rating**.
+3. Calculate the **difficulty bonus** for the assessment with the following formula:
     * 1/((**difficulty rating**) x **learning rating**)
-* The result is the sum of step 1 and step 3.
+4. The result is the sum of step 1 and step 3.
 
 #### What is difficulty rating?
 
