@@ -37,10 +37,13 @@ deactivate AddCommand
 AddCommandParser --> InternshipBookParser
 deactivate AddCommandParser
 
+AddCommandParser -[hidden]-> InternshipBookParser
+destroy AddCommandParser
+
 InternshipBookParser --> LogicManager
 deactivate InternshipBookParser
 
-LogicManager -> AddCommand : execute(model, commandHistory)
+LogicManager -> AddCommand : execute()
 activate AddCommand
 
 AddCommand -> Model : addInternship(toAdd)
@@ -55,8 +58,11 @@ deactivate InternshipBook
 Model --> AddCommand
 deactivate Model
 
-AddCommand --> LogicManager
+AddCommand --> LogicManager: result
 deactivate AddCommand
+
+AddCommand -[hidden]-> LogicManager: result
+destroy AddCommand
 
 [<--LogicManager
 @enduml

@@ -7,7 +7,6 @@ participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
 participant ":ComparableCategoryParser" as ComparableCategoryParser LOGIC_COLOR
 participant ":ListCommand" as ListCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -30,13 +29,6 @@ deactivate ListCommandParser
 InternshipBookParser -> ListCommandParser : parse("c/n true")
 activate ListCommandParser
 
-create ComparableCategoryParser
-ListCommandParser -> ComparableCategoryParser
-activate ComparableCategoryParser
-
-ComparableCategoryParser --> ListCommandParser
-deactivate ComparableCategoryParser
-
 ListCommandParser -> ComparableCategoryParser : parse("n")
 activate ComparableCategoryParser
 
@@ -52,11 +44,13 @@ deactivate ListCommand
 
 ListCommandParser --> InternshipBookParser
 deactivate ListCommandParser
+ListCommandParser -[hidden]-> InternshipBookParser
+destroy ListCommandParser
 
 InternshipBookParser --> LogicManager :
 deactivate InternshipBookParser
 
-LogicManager -> ListCommand : execute(model)
+LogicManager -> ListCommand : execute()
 activate ListCommand
 
 ListCommand -> Model : sortList(category)
@@ -65,15 +59,10 @@ activate Model
 Model --> ListCommand
 deactivate Model
 
-create CommandResult
-ListCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> ListCommand
-deactivate CommandResult
-
 ListCommand --> LogicManager : result
 deactivate ListCommand
+ListCommand -[hidden]-> LogicManager : result
+destroy ListCommand
 
 ListCommand -[hidden]-> LogicManager : result
 
