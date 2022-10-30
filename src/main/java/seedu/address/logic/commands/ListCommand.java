@@ -11,7 +11,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed %1$s";
+    public static final String MESSAGE_SUCCESS = "Listed all %1$s";
 
     public static final String MESSAGE_SUCCESS_EMPTY = "Listed";
 
@@ -24,7 +24,7 @@ public class ListCommand extends Command {
     public static final String LIST_DELIVERER = "DELIVERER";
     public static final String LIST_ORDER = "ORDER";
     public static final String LIST_PET = "PET";
-    public static final String LIST_ALL = "ALL";
+    public static final String LIST_ALL = "PERSON";
 
     private final String listType;
     public ListCommand(String listType) {
