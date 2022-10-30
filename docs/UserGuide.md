@@ -24,7 +24,7 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. If you are unsure you can refer to [this](#appendix-installing-java-11)
+1. Ensure you have Java `11` or above installed in your Computer. You can refer to [this](#appendix-installing-java-11)
 
 2. Download the latest `PleaseHireUs.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
 
@@ -149,6 +149,8 @@ The reminder panel displays the number of interviews, assessments or pending off
 
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 This section shows all features and commands which is supported by PleaseHireUs. 
@@ -377,6 +379,8 @@ Format: `redo`
 Clears all entries from the internship tracker.
 
 Format: `clear`
+
+<div style="page-break-after: always;"></div>
 
 ### Exiting the program : `exit`
 
