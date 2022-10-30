@@ -2,10 +2,22 @@
 layout: page
 title: User Guide
 ---
-**Plannit** is a **unified desktop application** that aims to **help NUS CS
-students manage their academic details.**  It will be the **go-to platform**
-for you to access all modules links and information without needing to
-tediously navigate through multiple websites.
+* **Plannit** is an **all-in-one application** that streamlines the execution of module
+  deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
+  **module-mates** (i.e., students in the same module) to increase their productivity.
+
+
+* Plannit will be the **go-to platform** for them to access all modules links and information
+without needing to tediously navigate through multiple websites.
+
+
+* Plannit allows tracking of student contacts by module.
+Students do not have to worry about forgetting which friend takes which module.
+
+
+* Plannit is **optimized for use via a Command Line Interface (CLI)**
+while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
 
 This application is **optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
@@ -317,36 +329,58 @@ task within the task list of the module with the module code `CS2103T`.
 <br>
 
 ### 2.3. Links
-All links in Plannit are represented by a unique (case-sensitive) alias.
-
-Alias:
-* Alphanumeric and whitespace characters
-* Character limit of 15
-* At least 1 alphanumeric character
-
-Link URL (Plannit provides no guarantee of the link's existence):
-* At least one top-level domain (e.g. com)
-* Domain length of 1 to 256 characters (e.g. for 'www.google.com', the domain is 'google')
-* Supported by 'https' or 'http'
+All links in Plannit are composed of a link URL and an (case-sensitive) alias.
+(Plannit provides no guarantee of the link URL's existence)
 
 #### 2.3.1. Add link
-You may add link(s) to a specific module using the `add-link` command. 
-Each link URL is to be paired with a link alias, both of which are unique within a module.
+You may add link(s) to a specific module using the `add-link` command.
+Links will be added by its link URL and link alias (both of which are unique within a module).
 
 Multiple links can be added at once. Link aliases will be paired with link URLs according to their respective
 order of input (left-to-right).
 If there exists a link URL or alias that is detected as invalid within a chained command,
 none of the links in the command will be added.
 
-This command will require three flags:
-* `m/`: To be followed by the module code of the module which is associated with the link
-* `l/`: To be followed by the link URL which is associated with the link
-* `la/`: To be followed by the link alias which is associated with the link
+<table>
+<tr>
+  <th>Field</th>
+  <th>Flag</th>
+  <th>Constraints</th>
+</tr>
+<tr>
+  <td><b>Module Code</b></td>
+  <td><code>m/</code></td>
+  <td>
+    <li>Can only be non-empty string of alphanumeric characters</li>
+  </td>
+</tr>
+<tr>
+  <td><b>Link Alias</b></td>
+  <td><code>la/</code></td>
+  <td>
+    <li>Alphanumeric and whitespace characters</li>
+    <li>Character limit of 15</li>
+    <li>At least 1 alphanumeric character</li>
+  </td>
+</tr>
+<tr>
+  <td><b>Link URL</b></td>
+  <td><code>la/</code></td>
+  <td>
+    <li>Whitespace characters are not allowed</li>
+    <li>At least one top-level domain, i.e., consists of at least one period character <code>.</code></li>
+    <li>Domain length of 1 to 256 characters (e.g., the domain is `google` for 'www.google.com')</li>
+    <li>Supported by 'https' or 'http' (the inclusion of <code>https://</code> or <code>http://</code> is optional)</li>
+  </td>
+</tr>
+</table>
 
 Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`
 * You cannot add a link to a non-existent module code.
 * You cannot add a link using a link alias that already exists in the module represented by the module code.
 * You cannot add a link using a link URL that already exists in the module represented by the module code.
+(HTTP headers are ignored for uniqueness of link URLs.)
+  * E.g., 'https://www.google.com', 'http://www.google.com', 'www.google.com' are considered the same link URL
 
 Example:
 ```
@@ -369,9 +403,29 @@ Multiple links can be deleted at once using their corresponding alias.
 If there exists a link alias that is detected as invalid within a chained command,
 none of the links in the command will be deleted.
 
-This command will require two flags:
-* `m/`: To be followed by the module code of the module which is associated with the link
-* `la/`: To be followed by the link alias which is associated with the link
+<table>
+<tr>
+  <th>Field</th>
+  <th>Flag</th>
+  <th>Constraints</th>
+</tr>
+<tr>
+  <td><b>Module Code</b></td>
+  <td><code>m/</code></td>
+  <td>
+    <li>Can only be non-empty string of alphanumeric characters</li>
+  </td>
+</tr>
+<tr>
+  <td><b>Link Alias</b></td>
+  <td><code>la/</code></td>
+  <td>
+    <li>Alphanumeric and whitespace characters</li>
+    <li>Character limit of 15</li>
+    <li>At least 1 alphanumeric character</li>
+  </td>
+</tr>
+</table>
 
 Format: `delete-link m/MODULE_CODE la/LINK_ALIAS`
 * You cannot delete a link from a non-existent module code.
@@ -395,15 +449,35 @@ You may open link(s) from a specific module to your default browser using the `o
 Links will be opened by means of their corresponding alias.
 
 An alternative way to open links is by means of clicking on their aliases on the application window.
-Permissions from your operating system may be required for some users to use this feature.
+* Permissions from your operating system may be required for some users to use this feature.
 
 Multiple links can be opened at once using its corresponding alias according to their order of input
 (left to right). If there exists a link alias that is detected as invalid within a chained command,
 the links to its left will be opened while the links to its right will not be opened.
 
-This command will require two flags:
-* `m/`: To be followed by the module code of the module which is associated with the link
-* `la/`: To be followed by the link alias which is associated with the link
+<table>
+<tr>
+  <th>Field</th>
+  <th>Flag</th>
+  <th>Constraints</th>
+</tr>
+<tr>
+  <td><b>Module Code</b></td>
+  <td><code>m/</code></td>
+  <td>
+    <li>Can only be non-empty string of alphanumeric characters</li>
+  </td>
+</tr>
+<tr>
+  <td><b>Link Alias</b></td>
+  <td><code>la/</code></td>
+  <td>
+    <li>Alphanumeric and whitespace characters</li>
+    <li>Character limit of 15</li>
+    <li>At least 1 alphanumeric character</li>
+  </td>
+</tr>
+</table>
 
 Format: `open-link m/MODULE_CODE la/LINK_ALIAS`
 * You cannot open a link from a non-existent module code.
