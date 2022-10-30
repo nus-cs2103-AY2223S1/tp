@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -52,8 +53,10 @@ public class DeleteTeamCommand extends Command {
         Team currentTeam = model.getTeam();
         Team targetTeam = new Team(targetTeamName);
 
-        int teamIndex = teamList.indexOf(targetTeam);
-        if (teamIndex == -1) {
+        List<Team> filteredListWithTargetTeam = teamList.stream()
+                .filter(targetTeam::isSameTeam).collect(Collectors.toList());
+
+        if (filteredListWithTargetTeam.size() == 0) {
             throw new CommandException(MESSAGE_TEAM_NOT_EXISTS);
         }
 
@@ -61,13 +64,13 @@ public class DeleteTeamCommand extends Command {
             throw new CommandException(MESSAGE_AT_LEAST_ONE_TEAM);
         }
 
-        Team deletedTeam = teamList.get(teamIndex);
+        Team targetTeamInTeamList = filteredListWithTargetTeam.get(0);
 
-        model.deleteTeam(deletedTeam);
+        model.deleteTeam(targetTeamInTeamList);
         if (currentTeam.equals(targetTeam)) {
             model.setTeam(model.getTeamList().get(0));
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_TEAM_SUCCESS, deletedTeam));
+        return new CommandResult(String.format(MESSAGE_DELETE_TEAM_SUCCESS, targetTeamInTeamList));
     }
 
     @Override

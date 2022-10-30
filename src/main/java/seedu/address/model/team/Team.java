@@ -281,7 +281,11 @@ public class Team {
         }
 
         Team otherTeam = (Team) other;
-        return otherTeam.getTeamName().equals(getTeamName());
+        return otherTeam.getTeamName().equals(getTeamName())
+                && otherTeam.getDescription().equals(getDescription())
+                && otherTeam.getTeamMembers().equals(getTeamMembers())
+                && otherTeam.getTaskList().equals(getTaskList())
+                && otherTeam.getLinkList().equals(getLinkList());
     }
 
     @Override
@@ -323,12 +327,6 @@ public class Team {
         builder.append(getTeamName());
         builder.append("; Description: ");
         builder.append(getDescription());
-        List<Person> members = getTeamMembers();
-        if (!members.isEmpty()) {
-            builder.append("; Members: ");
-            members.forEach(builder::append);
-        }
-        builder.append(getTasksAsString());
         return builder.toString();
     }
 
