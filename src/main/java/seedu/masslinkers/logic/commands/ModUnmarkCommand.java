@@ -13,7 +13,7 @@ import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
 
 /**
- * Unmarks mods of the batchmate specified as not taken.
+ * Unmarks mods of the batchmate specified and updates the status as taking.
  */
 public class ModUnmarkCommand extends ModCommand {
 
@@ -25,7 +25,7 @@ public class ModUnmarkCommand extends ModCommand {
     private final ObservableList<Mod> mods;
 
     /**
-     * Constructs a command that unmarks all mods specified at the target batchmate as not taken.
+     * Constructs a command that unmarks all mods specified at the target batchmate and updates the status as taking.
      *
      * @param index The index of the batchmate.
      * @param mods The set of mods to be unmarked.
