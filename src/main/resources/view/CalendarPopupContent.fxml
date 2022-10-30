@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="popupContent" alignment="TOP_CENTER" fillWidth="false" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="popupContent" alignment="TOP_CENTER" fillWidth="false" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="clientLabel" alignment="CENTER" prefWidth="200.0" style="-fx-text-fill: black;" />
       <FlowPane fx:id="datePane" alignment="CENTER">
@@ -36,7 +36,7 @@
                   <Image url="@../images/location.png" />
                </image>
             </ImageView>
-            <Label fx:id="locationLabel" alignment="CENTER" prefWidth="200.0" style="-fx-text-fill: black;" />
+            <Label fx:id="locationLabel" alignment="CENTER" prefWidth="200.0" style="-fx-text-fill: black;" wrapText="true" />
          </children>
       </FlowPane>
    </children>

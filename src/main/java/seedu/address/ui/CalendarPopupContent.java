@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -11,9 +12,9 @@ import seedu.address.model.calendar.CalendarEvent;
  * The content that is displayed within the {@code CalendarPopup}
  */
 public class CalendarPopupContent extends UiPart<Region> {
-    private static final String FXML = "CalendarPopupContent.fxml";
+    private static final String FXML = "CalendarPopupContent2.fxml";
     @FXML
-    private VBox popupContent;
+    private ScrollPane popupContent;
     @FXML
     private Label clientLabel;
     @FXML
@@ -28,6 +29,8 @@ public class CalendarPopupContent extends UiPart<Region> {
     private Label timeLabel;
     @FXML
     private Label locationLabel;
+    @FXML
+    private VBox popupVBox;
 
     /**
      * Creates a {@code CalendarPopupContent} with the given CalendarEvent details.
