@@ -206,20 +206,21 @@ Format: `listTasks`
 
 ### Editing a Task: `editTask`
 
-Edits an existing task in the task list.
+Edits the parameter(s) of an existing task in the task list.
 
 Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/COMPLETED]`
 
-Refer to the [Task Parameters](#task-parameters) section for more details.
-
-* Edits the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​
+* Edits the task at the specified index. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​ and less than or equal to the number of task in the task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* To unassign a member from a task, simply use an empty parameter `pe/`.
+* To unassign a member from a task, write `none` in the person email field i.e. `pe/none`.
 
 Examples:
-*  `edit 1 n/Create UI pr/high` edits the name and priority of the 1st task to be `Create UI` and `HIGH` respectively.
-*  `edit 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task to be `frontend` and assigns the task to a new member `Charlotte`.
+* `editTask 1 n/Create UI pr/high` edits the name and priority of the 1st task in the displayed task list to be `Create UI` and `HIGH` respectively.
+* `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to a new member `Charlotte`.
+* `editTask 3 pe/none` unassign a member from the 3rd task in the displayed task list.
+
+Refer to the [Task Parameters](#task-parameters) section for more details about task parameters.
 
 ### Filtering a Task : `filter`
 
