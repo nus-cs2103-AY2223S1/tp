@@ -16,22 +16,23 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `HackAssist.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-2/tp/releases).
+2. Download the latest `HackAssist.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your HackAssist.
+3. Copy the file to the folder you want to use as the _home folder_ for your HackAssist.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Click on the `Tasks` tab to switch to the task list view.
+
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
+   * **`listTasks`** : Lists all tasks in the task list.
 
-   * **`listTasks`** : Lists all tasks in tasklist.
+   * **`addTask`**`n/Create profile page d/User profile pr/medium c/frontend dl/2023-01-01` : Adds task `Create profile page` to the task list.
 
-   * **`editTask`**`2 c/frontend pe/charlotte@example.com` : Adds a task `coding assignment` to the task list.
-
-   * **`deleteTask`**`3` : Deletes the 3rd task from the task list.
+   * **`deleteTask`**`1` : Deletes the first task from the task list.
 
    * **`help`** : Displays help text.
 
@@ -96,7 +97,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing t/ without
     specifying any tags after it.
 
@@ -110,7 +111,7 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g hans will match Hans
+* The search is case-insensitive. e.g. hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the name is searched.
 * Only full words will be matched e.g. Han will not match Hans
@@ -133,12 +134,12 @@ Format: `delete INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* list followed by `delete 2` deletes the 2nd person in the address book.
-* find Betsy followed by `delete 1` deletes the 1st person in the results of the find command, which should be Betsy.
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the find command, which should be Betsy.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -171,61 +172,64 @@ If your changes to the data file makes its format invalid, HackAssist will disca
 
 ### Adding a task: `addTask`
 
-Adds a task to the tasklist.
+Adds a task to the task list.
 * You cannot add a task same as one that currently exists in the taskList (this would result in duplicates)
 
 Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE [pe/EMAIL OF PERSON ASSIGNED]`
 
+Refer to the [Task Parameters](#task-parameters) section for more details. 
+
 Examples:
 
-* `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` add Fix toggle to the task list
-* `addTask n/Fix routing 3 d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/John@example.com` add Fix routing to the task list
+* `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` adds task `Fix toggle` to the task list
+* `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` adds task `Fix routing` to the task list
 
 
 ### Deleting a task: `deleteTask`
 
-Deletes a task from the tasklist.
+Deletes a task from the task list.
 
 Format: `deleteTask TASK_NUMBER`
 * Deletes the task at the specified `TASK_NUMBER`.
-* The tasknumber refers to the task number shown in the displayed task list.
-* The tasknumber **must be a positive integer** 1, 2, 3, …​
+* The task number refers to the task number shown in the displayed task list.
+* The task number **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deleteTask 1` deletes the first task from the tasklist
+* `deleteTask 1` deletes the first task from the displayed task list
 
-### viewing all tasks: `listTasks`
+### Viewing all tasks: `listTasks`
 
 Edits the details of the task identified by the index number used in the displayed task list. 
 Existing values will be overwritten by the input values.
 
 Format: `listTasks`
 
-### Editing a Task : `editTask`
+### Editing a Task: `editTask`
 
-Edits an existing task in the tasklist.
+Edits an existing task in the task list.
 
 Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/STATUS]`
+
+Refer to the [Task Parameters](#task-parameters) section for more details.
 
 * Edits the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* At least one field of the task must be changed in order for the editTask command to be accepted
-* You cannot edit a task to be the same as one that currently exists in the taskList (this would result in duplicates)
+* To unassign a member from a task, simply use an empty parameter `pe/`.
 
 Examples:
-*  `edit 1 n/Create UI pr/high` Edits the name and priority of the 1st task to be Create UI and HIGH respectively.
-*  `edit 2 c/frontend pe/charlotte@example.com` Edits the category of the 2nd task to be frontend and assigns the task to new person (Charlotte).
+*  `edit 1 n/Create UI pr/high` edits the name and priority of the 1st task to be `Create UI` and `HIGH` respectively.
+*  `edit 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task to be `frontend` and assigns the task to a new member `Charlotte`.
 
 ### Filtering a Task : `filter`
 
-Filters the tasklist based on either **TASK_CATEGORY** or **TASK_DEADLINE** or **BOTH**.
+Filters the task list based on either **TASK_CATEGORY** or **TASK_DEADLINE** or **BOTH**.
 
 Format: `filter [c/TASK_CATEGORY] [dl/DEADLINE]`
 
 * Filters the task based on the user input. 
 * At least one of the optional fields must be provided.
-* Filtered tasks will be displayed in the tasklist.
+* Filtered tasks will be displayed in the task list.
 * To list all tasks, call the `listTasks` command.
 
 Examples:
@@ -235,7 +239,7 @@ Examples:
 
 ### Sorting the task list by deadline: `sortByDeadline`
 
-Sorts the tasklist by task deadline.
+Sorts the task list by task deadline.
 
 Format: `sortByDeadline [o/ORDER]`
 
@@ -248,7 +252,7 @@ Examples:
 
 ### Sorting the task list by priority: `sortByPriority`
 
-Sorts the tasklist by task priority.
+Sorts the task list by task priority.
 
 Format: `sortByPriority [o/ORDER]`
 
@@ -265,7 +269,20 @@ Examples:
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+## Task parameters
 
+| Parameter               | Format                                                                                                                                                 |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/NAME                  | Should contain only alphanumeric characters and spaces                                                                                                 |
+| d/DESCRIPTION           | Should contain only alphanumeric characters and spaces                                                                                                 |
+| pr/PRIORITY             | Should be either  `high`, `medium`, or `low` (case-insensitive)                                                                                        |
+| c/CATEGORY              | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others` |
+| dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
+| pe/PERSON EMAIL ADDRESS | Should be the email address of an existing member (case-insensitive). For the `editTask` command, it can also be empty, e.g. `pe/`.                    |
+| do/STATUS               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
+                                                                                                                                                                           |
+
+--------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
 
