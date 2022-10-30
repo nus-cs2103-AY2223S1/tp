@@ -180,7 +180,7 @@ Examples:
 
 ### Listing all tasks: `list_task`
 
-Shows a list of all tasks.
+Shows a list of all tasks. Tasks are sorted by deadline; a task with an earlier deadline will be listed above a task with a later deadline. Tasks without a deadline are sorted in ascending alphabetical order and listed below those with a deadline. 
 
 Format: `list_task`
 
