@@ -110,7 +110,7 @@ public class DeletePersonFromModuleCommandTest {
     }
 
     @Test
-    public void execute_deletePersonFromModuleWhenModuleDoesNotExists_throwCommandException() {
+    public void execute_deletePersonFromModuleWhenModuleDoesNotExist_throwCommandException() {
         // Model without CS2106.
         ModelStubWithModuleAndPerson modelStub =
                 new ModelStubWithModuleAndPerson(CS2103T_WITH_TASK_A, AMY);
