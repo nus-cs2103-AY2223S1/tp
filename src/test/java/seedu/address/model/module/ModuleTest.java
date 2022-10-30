@@ -3,7 +3,6 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
