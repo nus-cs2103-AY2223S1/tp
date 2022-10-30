@@ -1,13 +1,13 @@
-package seedu.address.model.tutorial;
+package seedu.address.model.commons;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tutorial's venue in the ModQuik.
+ * Represents a Venue in the ModQuik.
  * Guarantees: immutable; is valid as declared in {@link #isValidVenue(String)}
  */
-public class TutorialVenue {
+public class Venue {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Venue should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -21,11 +21,11 @@ public class TutorialVenue {
     public final String venue;
 
     /**
-     * Constructs a {@code TutorialVenue}.
+     * Constructs a {@code Venue}.
      *
      * @param venue A valid venue.
      */
-    public TutorialVenue(String venue) {
+    public Venue(String venue) {
         requireNonNull(venue);
         checkArgument(isValidVenue(venue), MESSAGE_CONSTRAINTS);
         this.venue = venue;
@@ -47,8 +47,8 @@ public class TutorialVenue {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TutorialVenue // instanceof handles nulls
-                && venue.equals(((TutorialVenue) other).venue)); // state check
+                || (other instanceof Venue // instanceof handles nulls
+                && venue.equals(((Venue) other).venue)); // state check
     }
 
     @Override

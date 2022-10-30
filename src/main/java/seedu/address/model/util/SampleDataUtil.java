@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
@@ -31,7 +32,6 @@ import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -101,13 +101,13 @@ public class SampleDataUtil {
     public static Tutorial[] getSampleTutorials() {
         return new Tutorial[] {
             new Tutorial(new TutorialName("W17"), new ModuleCode("CS2103T"),
-                    new TutorialVenue("COM1-0203"),
+                    new Venue("COM1-0203"),
                     WeeklyTimeslot.fromFormattedString("1", "16:00", "18:00")),
             new Tutorial(new TutorialName("F01"), new ModuleCode("CS2103T"),
-                    new TutorialVenue("COM1-0201"),
+                    new Venue("COM1-0201"),
                     WeeklyTimeslot.fromFormattedString("2", "15:00", "17:00")),
             new Tutorial(new TutorialName("F02"), new ModuleCode("CS2103T"),
-                    new TutorialVenue("COM1-0202"),
+                    new Venue("COM1-0202"),
                     WeeklyTimeslot.fromFormattedString("3", "10:00", "11:00")),
         };
     }
