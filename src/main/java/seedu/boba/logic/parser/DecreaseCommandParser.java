@@ -37,9 +37,21 @@ public class DecreaseCommandParser implements Parser<DecreaseCommand> {
             if (!(firstPrefix.equals(PREFIX_PHONE) || firstPrefix.equals(PREFIX_EMAIL))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecreaseCommand.MESSAGE_USAGE));
             } else if (argMultimap.getPhoneIdentifier()) {
-                phoneIdentifier = ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0));
+                if (argMultimap.getAllValues(PREFIX_PHONE).size() == 1
+                        && argMultimap.getAllValues(PREFIX_EMAIL).size() == 0) {
+                    phoneIdentifier = ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0));
+                } else {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            DecreaseCommand.MESSAGE_USAGE));
+                }
             } else if (argMultimap.getEmailIdentifier()) {
-                emailIdentifier = ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0));
+                if (argMultimap.getAllValues(PREFIX_EMAIL).size() == 1
+                        && argMultimap.getAllValues(PREFIX_PHONE).size() == 0) {
+                    emailIdentifier = ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0));
+                } else {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            DecreaseCommand.MESSAGE_USAGE));
+                }
             }
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecreaseCommand.MESSAGE_USAGE), pe);

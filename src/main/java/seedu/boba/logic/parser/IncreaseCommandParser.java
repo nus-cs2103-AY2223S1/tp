@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
 
+import seedu.boba.logic.commands.EditCommand;
 import seedu.boba.logic.commands.IncreaseCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
@@ -37,9 +39,21 @@ public class IncreaseCommandParser implements Parser<IncreaseCommand> {
             if (!(firstPrefix.equals(PREFIX_PHONE) || firstPrefix.equals(PREFIX_EMAIL))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE));
             } else if (argMultimap.getPhoneIdentifier()) {
-                phoneIdentifier = ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0));
+                if (argMultimap.getAllValues(PREFIX_PHONE).size() == 1
+                        && argMultimap.getAllValues(PREFIX_EMAIL).size() == 0) {
+                    phoneIdentifier = ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0));
+                } else {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            IncreaseCommand.MESSAGE_USAGE));
+                }
             } else if (argMultimap.getEmailIdentifier()) {
-                emailIdentifier = ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0));
+                if (argMultimap.getAllValues(PREFIX_EMAIL).size() == 1
+                        && argMultimap.getAllValues(PREFIX_PHONE).size() == 0) {
+                    emailIdentifier = ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0));
+                } else {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            IncreaseCommand.MESSAGE_USAGE));
+                }
             }
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE), pe);

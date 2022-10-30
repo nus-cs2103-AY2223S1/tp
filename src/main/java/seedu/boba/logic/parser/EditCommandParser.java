@@ -59,7 +59,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            if (argMultimap.getAllValues(PREFIX_NAME).size() == 1) {
+                editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            }
         }
         if (!argMultimap.getAllValues(PREFIX_PHONE).isEmpty()) {
             if (argMultimap.getAllValues(PREFIX_PHONE).size() == 1) {
@@ -80,8 +84,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             }
         }
         if (argMultimap.getValue(PREFIX_BIRTHDAY_MONTH).isPresent()) {
-            editPersonDescriptor.setBirthdayMonth(
-                ParserUtil.parseBirthdayMonth(argMultimap.getValue(PREFIX_BIRTHDAY_MONTH).get()));
+            if (argMultimap.getAllValues(PREFIX_BIRTHDAY_MONTH).size() == 1) {
+                editPersonDescriptor.setBirthdayMonth(
+                        ParserUtil.parseBirthdayMonth(argMultimap.getValue(PREFIX_BIRTHDAY_MONTH).get()));
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            }
         }
 
         if (argMultimap.getValue(PREFIX_REWARD).isPresent()) {
@@ -90,7 +98,11 @@ public class EditCommandParser implements Parser<EditCommand> {
                 if (newReward < 0) {
                     throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
                 }
-                editPersonDescriptor.setReward(ParserUtil.parseReward(String.valueOf(newReward)));
+                if (argMultimap.getAllValues(PREFIX_REWARD).size() == 1) {
+                    editPersonDescriptor.setReward(ParserUtil.parseReward(String.valueOf(newReward)));
+                } else {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+                }
             } catch (NumberFormatException e) {
                 throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
             }
