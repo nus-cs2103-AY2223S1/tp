@@ -20,12 +20,12 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
 * [Quick start](#quick-start)
 * [Command guide](#command-guide)
   * [Getting help](ug-pages/getting-help.md#viewing-help--help)
-  * [Modifying residents](ug-pages/modifying-residents.md)
-    * [Adding a resident `add`](ug-pages/modifying-residents.md#adding-a-resident--add)
-    * [Editing an existing resident `edit`](ug-pages/modifying-residents.md#editing-an-existing-resident--edit)
-    * [Deleting an existing resident `delete`](ug-pages/modifying-residents.md#deleting-a-resident--delete)
-    * [Clearing all residents `clear`](ug-pages/modifying-residents.md#clearing-all-entries--clear)
-    * [Resident field format](ug-pages/modifying-residents.md#format-for-resident-fields)
+  * [Modifying resident data](ug-pages/modifying-resident-data.md)
+    * [Adding a resident `add`](ug-pages/modifying-resident-data.md#adding-a-resident--add)
+    * [Editing an existing resident `edit`](ug-pages/modifying-resident-data.md#editing-an-existing-resident--edit)
+    * [Deleting an existing resident `delete`](ug-pages/modifying-resident-data.md#deleting-a-resident--delete)
+    * [Clearing all residents `clear`](ug-pages/modifying-resident-data.md#clearing-all-entries--clear)
+    * [Resident field format](ug-pages/modifying-resident-data.md#format-for-resident-fields)
   * [Viewing residents](ug-pages/viewing-residents.md)
     * [Listing all residents `list`](ug-pages/viewing-residents.md#listing-all-residents--list)
     * [Showing resident fields `showonly`](ug-pages/viewing-residents.md#showing-only-some-columns--showonly)
@@ -60,19 +60,17 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
 * [Authors](ug-pages/authors.md)
 * [Command Summary](ug-pages/command-summary.md#command-summary)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Introduction to RC4HDB
 
-**RC4HDB** is a desktop application that helps you to manage data from residents, as well as resident activity in 
-**RC4**, including venue booking.
+**RC4HDB** is a desktop application which streamlines the daily workflow of **RC4 housing management staff**, by providing specialised features which solve their resident and venue management needs.
 
-**RC4HDB** provides these main features:
-* Add incoming residents.
-* Access, modify details of residents.
-* Filter through residents via house, gender, and more.
-* Book venues available in RC4.
-* Export a filtered list of residents.
+Broadly, **RC4HDB** provides users with the ability to:
+* View and manage resident data
+* View and manage venues and any bookings
+* Keep and manage multiple data files
+* Easily switch over to RC4HDB by importing old data from CSV files
 
 <div markdown="span" class="alert alert-info">
 If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day
@@ -89,8 +87,7 @@ will serve you well in mastering RC4HDB!
 If you are a **new user**, the necessary knowledge for you to get started can be found [here](#quick-start).
 As you read on, you will find plenty of examples to help you familiarise with the features.
 
-If you are an **experienced user**, a [Command Summary](ug-pages/command-summary.md) is also provided, so you don't have
-to memorise the individual `Command`s.
+If you are an **experienced user**, a [Command Summary](ug-pages/command-summary.md) is also provided, so you don't have to memorise our commands.
 
 Before exploring the user guide, you should familiarise yourself with the following symbols.
 
@@ -105,19 +102,19 @@ pay attention to. </div>
 
 ## Quick start
 
-Here is a quick start on how to get RC4HDB onto your computer.
+Here is a quick guide on how to get a working copy of RC4HDB on your computer.
 
 ### 1. Setup
+
 Ensure you have [*Java 11*](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or
 above installed on your Computer.
 
 ### 2. Install
-Visit this [link](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/). Click on the underlined `rc4hdb.jar` button
-to download the latest `rc4hdb.jar`.
-Move the `rc4hdb.jar` file to the folder you want to use as the _home folder_ for RC4HDB. The home folder is the folder
-from which the application will run, as well as save data to, and retrieve data from.
+
+Visit this [link](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/). Click on the underlined `rc4hdb.jar` button to download the latest `rc4hdb.jar`. Move the `rc4hdb.jar` file to the folder you want to use as the _home folder_ for RC4HDB. The home folder is the folder from which the application will run, save data to, and retrieve data from.
 
 ### 3. Running RC4HDB
+
 Double-click the file to start the app. The **Graphical User Interface (GUI)** similar to the one shown
 below should appear in a few seconds.
 
@@ -131,14 +128,14 @@ delete the folder called `data` as this would cause all your data to be deleted!
 ![Ui](images/Ui.png)
 
 ### 4. Try it out!
-Try typing `help` into the command box where it says "Enter Command here..." and pressing the Enter/Return key on your
-keyboard to execute it! This command will open a help window which shows you a quick summary of the available commands.
 
-For more details on commands, refer to the [Command Guide](#command-guide) below.
+Try typing `help` into the command box where it says "Enter Command here..." and pressing the Enter/Return key on your keyboard to execute it! This command will open a help window which shows you a quick summary of our available commands.
+
+For more details on commands, refer to our [Command Guide](#command-guide) below.
 
 [Back to Top](#welcome-to-rc4hdb-user-guide)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command Guide
 

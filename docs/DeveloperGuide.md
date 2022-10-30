@@ -35,13 +35,13 @@ title: Developer Guide
     * [Launch and shutdown](#launch-and-shutdown)
     * [Modifying residents](#modifying-residents)
     * [File management](#file-management)
-    * [Venue booking](#venue-booking)
+    * [Venue management](#venue-management)
 
 ---
 
 ## **Introduction**
 
-Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what RC4HDB is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing a specialised features which solve their resident and venue management needs.
+Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what RC4HDB is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing specialised features which solve their resident and venue management needs.
 
 ### Purpose
 
