@@ -215,7 +215,7 @@ Example:
 
 Sorts the review list by the specified criterion.
 
-Format: `ssort CRITERION`
+Format: `rsort CRITERION`
 * The criterion must be provided and should not be blank.
 * The command will fail if two or more criteria are provided or any other criterion not listed is provided.
 * Below are the supported sorting criteria:
@@ -282,13 +282,13 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 | **clear** | `clear`                                                                                                      |
 | **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…` <br> e.g., `radd s/3 d/20/09/2022 c/Great food! r/4`|
 | **rdel**  | `rdel INDEX`                                                                                                 |
-| **redit** | `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…` <br> e.g., `redit d/20/09/2022 c/Great food!`        |
+| **redit** | `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…` <br> e.g., `redit 1 d/20/09/2022 c/Great food!`      |
 | **rlist** | `rlist`                                                                                                      |
 | **rfind** | `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…` <br> e.g., `rfind n/eatery`           |
 | **rsort** | `rsort CRITERION` <br> e.g., `rsort rating`                                                                  |                                                                   
 | **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…` <br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`     |
 | **sdel**  | `sdel INDEX`                                                                                                 |
-| **sedit** | `sedit INDEX [n/NAME] [a/ADDRESS] [t/TAGS]…` <br> e.g., `sedit n/John Chicken Rice a/Blk 123 Bedok South`    |
+| **sedit** | `sedit INDEX [n/NAME] [a/ADDRESS] [t/TAGS]…` <br> e.g., `sedit 1 n/John Chicken Rice a/Blk 123 Bedok South`  |
 | **slist** | `slist`                                                                                                      |
 | **sfind** | `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…` <br> e.g., `rfind n/eatery`           |
 | **ssort** | `ssort CRITERION` <br> e.g., `ssort reversedname`                                                            |
