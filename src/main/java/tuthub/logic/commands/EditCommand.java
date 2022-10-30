@@ -294,6 +294,7 @@ public class EditCommand extends Command {
                     && getYear().equals(e.getYear())
                     && getStudentId().equals(e.getStudentId())
                     && getTeachingNomination().equals(e.getTeachingNomination())
+                    && getRating().equals(e.getRating())
                     && getTags().equals(e.getTags());
         }
     }
