@@ -33,7 +33,6 @@ public class RolesCommandParser implements Parser<RolesCommand> {
 
 
         String roles = argMultimap.getValue(PREFIX_ROLES).orElse("");
-        System.out.println(roles);
         String[] rolesArray = roles.split(", ");
         for (String role: rolesArray) {
 

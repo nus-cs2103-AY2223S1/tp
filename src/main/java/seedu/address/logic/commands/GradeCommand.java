@@ -20,13 +20,14 @@ import seedu.address.model.person.position.Student;
 public class GradeCommand extends Command {
     public static final String COMMAND_WORD = "grade";
 
+    public static final String EMPTY_FIELD = "Please provide an assignment field.";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the grade of the Assignment of a student"
             + " identified by the index number used in the last person listing.\n"
             + "Parameters: "
-            + "INDEX OF THE STUDENT (must be a positive integer) "
-            + PREFIX_ASSIGNMENT + "INDEX OF THE ASSIGNMENT (must be a positive integer) "
-            + PREFIX_GRADE + "GRADE ([smaller integer]/[bigger integer up to 100])\n"
+            + "INDEX (must be a positive integer) "
+            + PREFIX_ASSIGNMENT + "INDEX (must be a positive integer) "
+            + PREFIX_GRADE + "GRADE ([integer (0-100)]/[integer (1-100)])\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 " + PREFIX_ASSIGNMENT + "1 "
             + PREFIX_GRADE + "18/20.";
