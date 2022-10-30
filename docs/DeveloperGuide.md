@@ -1028,20 +1028,35 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a resident
 
-1. Deleting a person while all persons are being shown
+1. Deleting a resident while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First resident is deleted from the list. Details of the deleted resident shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No resident is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+### Deleting multiple residents
+
+1. Deleting multiple residents while all persons are being shown
+
+    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+
+    1. Test case: `remove /any r/02-02 g/M h/D t/friend` <br>
+       Expected: residents are deleted accordingly. Number of residents deleted shown in the status message.
+    1. Test case: `remove any/ r/02-02 g/M h/D t/friend` <br>
+       Expected: Residents are not deleted. Error details shown in the status message.
+    1. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is any other string that is not the specifier)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -1050,5 +1065,56 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+2. _{ more test cases …​ }_
+
+### Editing a resident
+
+1. Editing a resident while all residents are being shown
+
+    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+
+    1. Test case: `edit r/02-02 g/M h/D t/friend` <br>
+       Expected: First resident is edited from the list. Details of the deleted resident shown in the status message.
+    1. Test case: `edit r/02-02 g/L h/D t/friend` <br>
+       Expected: No resident is edited. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `edit`, `edit l/`, `...` <br>
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+
+### Adding a resident
+
+1. Adding a resident while all resident are being shown
+
+    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+
+    2. Test case: `add n/ Joe Don p/ 81616144 e/Joe@example.com r/02-02 g/M h/D m/A0210101X t/friend t/break`<br>
+        Expected: resident is added to the list. Details of the newly added resident shown in the status message.
+
+    3. Test case: `add n/ Joe Don p/ 81616144 e/Joe@example.com r/02-02 m/A0210101X t/friend t/break`<br>
+        Expected: No person is added. Error details shown in the status message.
+
+    4. Other incorrect delete commands include having invalid or missing information in the command <br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+### Filtering a resident
+
+1. Filtering a resident while all resident are being shown
+
+    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+
+    2. Test case: `filter /any r/02-02 g/M h/D t/friend`<br>
+       Expected: List is filtered accordingly. Number of residents filtered shown in the status message.
+
+    3. Test case: `filter any/ r/02-02 g/M h/D t/friend`<br>
+        Expected: Residents are not filtered. Error details shown in the status message.
+
+    4. Other incorrect delete commands include having invalid or missing information in the command <br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
