@@ -41,12 +41,12 @@ a graphical user interface.
 
    Some example commands you can try:
 
-   - `add Tutorial 3 -m CS2103T -d 2022-09-16` :
+   - `add -n Tutorial 3 -m CS2103T -d 2022-09-16` :
      Adds a task called `Tutorial 3` for the module `CS2103T` with the deadline `2022-09-16` into the task list.
    - `mark 1` :
      Marks the first task in the list as complete.
    - `ls --module CS2103T` :
-     Lists all tasks associated with the module, `CS2103T`.
+     Lists all tasks associated with the module `CS2103T`.
    - `delete 2` : 
      Deletes the second task in the list.
    - `edit 3 -n Assignment 2` : 
@@ -81,18 +81,19 @@ Format: `help`
 Adds a task to the task list. However, if you try to add in a task with the same name and module as an existing task,
 we will inform you that such a task already exists within the task tracker.
 
-Format: `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
+Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]...`
 * `TASK_NAME` can contain spaces
 * `MODULE`: Should be alphanumeric, ie must not contain any spaces.
 * `DATE`: Must be in the format of YYYY-MM-DD.
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
 Examples:
-* `add -n Task 1 -m CS2103T -d 2022-10-15 --tag homework`
+* `add -n Task 1 -m CS2103T -d 2022-10-15 -t homework`
 
 ### Marking a task as completed: `mark`
 
 Mark a task as complete.
+Note: Using `mark` on a task already marked as complete will not change its completion status.
 
 Format: `mark TASK_NUMBER`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
@@ -102,6 +103,7 @@ Example: `mark 2`
 ### Unmarking a task: `unmark`
 
 Unmark a task, ie mark a task as incomplete.
+Note: Using `unmark` on a task that is not complete will not change its completion status.
 
 Format: `unmark TASK_NUMBER`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
@@ -114,7 +116,7 @@ Allows you to tag a task.
 
 Format : `tag TASK_NUMBER -t TAG_NAME`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
-* `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
+* `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
 
 Example: `tag 2 -t optional`
 
@@ -136,13 +138,13 @@ Format: `ls -a`
 
 #### Listing all unmarked tasks : `ls -u`
 
-Shows a list of all unmarked tasks in the task list, ie shows a list of uncompleted tasks.
+Shows a list of all unmarked tasks in the task list, i.e. shows a list of uncompleted tasks.
 
 Format: `ls -u`
 
 #### Listing all marked tasks : `ls -m`
 
-Shows a list of all marked tasks in the task list, ie shows a list of completed tasks.
+Shows a list of all marked tasks in the task list, i.e. shows a list of completed tasks.
 
 Format: `ls -m`
 
@@ -151,7 +153,7 @@ Format: `ls -m`
 Shows a list of all tasks under the same module.
 
 Format: `ls --module MODULE`
-* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
+* `MODULE`: Should be alphanumeric, i.e. must not contain any spaces.
 
 Example: `ls --module cs2103t`
 
@@ -160,7 +162,7 @@ Example: `ls --module cs2103t`
 Shows a list of all tasks under the same module.
 
 Format: `ls -t TAG_NAME`
-* `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
+* `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
 
 Example: `ls -t highPriority`
 
@@ -218,9 +220,9 @@ Edits an existing task in the task list, at least one field needs to be edited.
 Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]...`
 
 * `TASK_NUMBER`: This is the number of the task currently displayed.
-* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
+* `MODULE`: Should be alphanumeric, i.e. must not contain any spaces.
 * `DATE`: Must be in the format of YYYY-MM-DD.
-* `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
+* `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
 
 Examples:
 *  `edit 1 -m CS2103T -n ip` Edits the taskName to ip.
@@ -294,20 +296,19 @@ Format meanings:
 * `[Square brackets]` surround optional inputs
 * `...` denotes that the prior input can be made any number of times
 
-| Action                      | Format                                                                                                                                                                                                                                                                                                                                                | Examples                                     |
-|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| **Add** task                | `add -n TASK_NAME -m MODULE [-d YYYY-MM-DD] [--tag TAG_NAME]...`                                                                                                                                                                                                                                                                                      | `add -n Tutorial 3 -m CS2103T -d 2022-09-16` |
-| **Archive** task            | `archive TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                 |                                              |
-| **Clear** all tasks         | `clear`                                                                                                                                                                                                                                                                                                                                               |                                              |
-| **Delete** task             | `delete TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                  | `delete 3`                                   |
-| **Edit** task               | `edit TASK_NUMBER [-n NEW_NAME] [-m NEW_MODULE] [-d NEW_DEADLINE]`                                                                                                                                                                                                                                                                                    | `edit 1 -n CS2103T ip`                       |
-| **Exit** NotionUS           | `exit`                                                                                                                                                                                                                                                                                                                                                |                                              |
-| **Find** task with name     | `find KEYWORD...`                                                                                                                                                                                                                                                                                                                                     | `find Tutorial Lab`                          |
-| **Help**                    | `help`                                                                                                                                                                                                                                                                                                                                                |                                              |
-| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG] [-d YYYY-MM-DD]`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date | `ls -u --module CS2103T`                     |
-| **Mark** tasks              | `mark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                    | `mark 2`                                     |
-| **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                         |                                              |
-| **Tagging** a task          | `tag TASK_NUMBER TAG_NAME`                                                                                                                                                                                                                                                                                                                            |                                              |
-| **Tagging** a task          | `tag TASK_NUMBER -t TAG_NAME`                                                                                                                                                                                                                                                                                                                         | `tag 1 -t highPriority`                       |
-| **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                  | `unmark 2`                                   |
-| Accessing previous commands | Use the up and down arrow keys                                                                                                                                                                                                                                                                                                                        |                                              |
+| Action                      | Format                                                                                                                                                                                                                                                                                                                                                                                                                        | Examples                                     |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| **Add** task                | `add -n TASK_NAME -m MODULE [-d YYYY-MM-DD] [-t TAG_NAME]...`                                                                                                                                                                                                                                                                                                                                                                 | `add -n Tutorial 3 -m CS2103T -d 2022-09-16` |
+| **Archive** task            | `archive TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                         | `archive 1`                                  |
+| **Clear** all tasks         | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                       |                                              |
+| **Delete** task             | `delete TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                          | `delete 3`                                   |
+| **Edit** task               | `edit TASK_NUMBER [-n NEW_NAME] [-m NEW_MODULE] [-d NEW_DEADLINE]`                                                                                                                                                                                                                                                                                                                                                            | `edit 1 -n CS2103T ip`                       |
+| **Exit** NotionUS           | `exit`                                                                                                                                                                                                                                                                                                                                                                                                                        |                                              |
+| **Find** task with name     | `find KEYWORD...`                                                                                                                                                                                                                                                                                                                                                                                                             | `find Tutorial Lab`                          |
+| **Help**                    | `help`                                                                                                                                                                                                                                                                                                                                                                                                                        |                                              |
+| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG] [-d YYYY-MM-DD]`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date<br/> `ls -n KEYWORD [MORE KEYWORDS]` View tasks with the specified name | `ls -u --module CS2103T`                     |
+| **Mark** tasks              | `mark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                            | `mark 2`                                     |
+| **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                                                                                                 |                                              |
+| **Tagging** a task          | `tag TASK_NUMBER -t TAG_NAME`                                                                                                                                                                                                                                                                                                                                                                                                 | `tag 1 -t highPriority`                      |
+| **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                          | `unmark 2`                                   |
+| Accessing previous commands | Use the up and down arrow keys                                                                                                                                                                                                                                                                                                                                                                                                |                                              |
