@@ -248,7 +248,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 - **Alternative 2: Only name, telegram handle and email needs to be keyed in when adding student**
   - Pros: Faster to add a student
   - Cons: CS2103T TA has to use another command to change the response and attendance number of the student.
-=======
+
 ### Add Response feature 
 
 The `AddResponse` feature allows users to edit the response count of a `Student` object. When successfully edited,
