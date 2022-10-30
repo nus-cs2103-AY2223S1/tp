@@ -10,7 +10,7 @@ If you have not installed FoodRem head over to the [Installation](#installation)
 Once FoodRem is installed, you can head over to the section [Quickstart Guide](#quickstart-guide) which covers the basics of using FoodRem. This includes:
 
 * FoodRem's [Layout](#layout)
-* What [Items and Tags](#items-and-tags) are in FoodRem
+* What Items and Tags are in FoodRem
 * Using FoodRem's [Commands](#command-format)
 * What [Flags](#flags) and [Placeholders](#placeholders) are
 * [Trying out](#trying-your-first-command) your first command
