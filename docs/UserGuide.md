@@ -366,22 +366,22 @@ Clears and deletes all suppliers in Salesy.
 ## Command summary
 
 
-| Action                       | Format                                                      | Examples                                                                           |
-|------------------------------|-------------------------------------------------------------|------------------------------------------------------------------------------------|
-| **clear** (supplier)         | `clear`                                                     | `clear`                                                                            |
-| **list** (supplier)          | `listSuppliers`                                             | `listSuppliers`                                                                    |
-| **add**  (supplier)          | `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS [t/Supplier]` | `add n/ABC PTE LTD p/67009000 pr/$1.10 i/Egg a/Blk 140 Woodlands Ave 3 t/Supplier` |
-| **delete** (supplier)        | `delete <supplier index>`                                   | `delete 1`                                                                         |
-| **edit**  (supplier)         | `edit <supplier index> <attribute name>/ <new value>`       | `edit 3 pr/NEW PRICE`                                                              |
-| **find**  (supplier)         | `find n/NAMEVALUE` <br>  `find i/ITEMVALUE`                 | `find n/John Cena` <br> `find i/Egg`                                               |
-| **list** (task)              | `listTasks`                                                 | `listTasks`                                                                        |
-| **add** (task)               | `addTask d/DETAILS dl/DEADLINE [t/TAGS]`                    | `addTask d/Restock Eggs dl/2022-12-12 t/Urgent`                                    |
-| **delete** (task)            | `deleteTask <task index>`                                   | `deleteTask 1`                                                                     |
-| **edit** (task)              | `editTask <task index> <attribute name>/ <new value>`       | `editTask 1 dl/2029-12-12`                                                         |
-| **mark**  (task)             | `mark <task index>`                                         | `mark 1`                                                                           |
-| **unmark** (task)            | `unmark <task index>`                                       | `unmark 2`                                                                         |
-| **list** (supply item)       | `listInventory`                                             | `listInventory`                                                                    |
-| **add** (supply item)        | `addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK`    | `addItem 2 c/10 m/3`                                                               |
-| **delete** (supply item)     | `deleteItem <item index>`                                   | `deleteItem 2`                                                                     |
-| **edit stock** (supply item) | `editStock <item index> c/NEWCURRENTSTOCK`                  | `editStock 2 c/12`                                                                 |
-| **list** (all items)         | `listAll`                                                   | `listAll`                                                                          |                                                    |
+| Action                       | Format                                                   | Examples                                                                           |
+|------------------------------|----------------------------------------------------------|------------------------------------------------------------------------------------|
+| **clear** (supplier)         | `clear`                                                  | `clear`                                                                            |
+| **list** (supplier)          | `listSuppliers`                                          | `listSuppliers`                                                                    |
+| **add**  (supplier)          | `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS [t/TAG]`   | `add n/ABC PTE LTD p/67009000 pr/$1.10 i/Egg a/Blk 140 Woodlands Ave 3 t/Supplier` |
+| **delete** (supplier)        | `delete <supplier index>`                                | `delete 1`                                                                         |
+| **edit**  (supplier)         | `edit <supplier index> <attribute name>/ <new value>`    | `edit 3 pr/#1.70`                                                                  |
+| **find**  (supplier)         | `find n/NAMEVALUE` <br>  `find i/ITEMVALUE`              | `find n/John Cena` <br> `find i/Egg`                                               |
+| **list** (task)              | `listTasks`                                              | `listTasks`                                                                        |
+| **add** (task)               | `addTask d/DETAILS dl/DEADLINE [t/TAG]`                  | `addTask d/Restock Eggs dl/2022-12-12 t/Urgent`                                    |
+| **delete** (task)            | `deleteTask <task index>`                                | `deleteTask 1`                                                                     |
+| **edit** (task)              | `editTask <task index> <attribute name>/ <new value>`    | `editTask 1 dl/2029-12-12`                                                         |
+| **mark**  (task)             | `mark <task index>`                                      | `mark 1`                                                                           |
+| **unmark** (task)            | `unmark <task index>`                                    | `unmark 2`                                                                         |
+| **list** (supply item)       | `listInventory`                                          | `listInventory`                                                                    |
+| **add** (supply item)        | `addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK` | `addItem 2 c/10 m/3`                                                               |
+| **delete** (supply item)     | `deleteItem <item index>`                                | `deleteItem 2`                                                                     |
+| **edit stock** (supply item) | `editStock <item index> c/CURRENTSTOCK`                  | `editStock 2 c/12`                                                                 |
+| **list** (all items)         | `listAll`                                                | `listAll`                                                                          |                                                    |
