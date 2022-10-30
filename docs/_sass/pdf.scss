@@ -29,7 +29,7 @@
 
 @media print {
   article.post {
-    h2:not(:first-child) {
+    h2:not(:first-of-type) {
       margin-top: 0;
       page-break-before: always;
     }
