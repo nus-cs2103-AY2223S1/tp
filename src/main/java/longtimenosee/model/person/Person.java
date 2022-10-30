@@ -96,7 +96,7 @@ public class Person {
         this.income = income;
         this.ra = ra;
         this.pin = pin;
-        this.assignedPolicies = policies;
+        this.assignedPolicies.addAll(policies);
     }
 
     public Name getName() {
@@ -144,7 +144,7 @@ public class Person {
     }
 
     public boolean addPolicy(AssignedPolicy assignedPolicy) {
-        return assignedPolicies.add(assignedPolicy);
+        return this.assignedPolicies.add(assignedPolicy);
     }
 
     public boolean removePolicy(AssignedPolicy assignedPolicy) {
