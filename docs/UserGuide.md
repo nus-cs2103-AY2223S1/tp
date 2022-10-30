@@ -336,7 +336,7 @@ Deleted contacts are **unrecoverable**!
 
 </div>
 
-Click [here](#) to return to the top of the page/content page.
+Click [here](#) to return to the top of the page.
 
 ### Finishing up
 
