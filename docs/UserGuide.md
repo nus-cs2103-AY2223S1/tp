@@ -148,6 +148,8 @@ It requires one field:
 - h/: To be followed by INDEX of homework to be marked
 - a/: To be followed by INDEX of attendance to be marked
 
+Allows for marking of only one field in a single command.
+
 Format: `mark [h/ a/]INDEX`
 
 Examples:
@@ -162,6 +164,8 @@ Unmarks a specific field of a person in the address book.<br>
 It requires one field:
 - h/: To be followed by INDEX of homework to be unmarked
 - a/: To be followed by INDEX of attendance to be unmarked
+
+Allows for unmarking of only one field in a single command.
 
 Format: `unmark [h/ a/]INDEX`
 
