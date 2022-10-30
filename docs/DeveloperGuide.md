@@ -189,7 +189,7 @@ The Add Review mechanism is facilitated by `AddressBook`. This feature enhances 
 * `AddressBook#addReview(Review)` —  Adds the `Review` to `UniqueReviewList`
 
 For the command, the feature extends `command`, and is implemented as such:
-* `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
+* `radd s/INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
 
 #### Implementation Flow of Review Adding feature
 
@@ -200,6 +200,7 @@ Note: FoodWhere comes with preloaded data, and can be started on a fresh state w
 Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
 
 Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicken rice was fresh. r/4` command to create a new `Review` for `Stall` with index 1.
+
 ![AddTodo1](images/AddReview.png)
 
 #### UML Diagram for Adding Review
@@ -212,6 +213,34 @@ The following activity diagram summarizes what happens when a user executes a ne
 - The Review adding commands are straight-to-the-point and efficient for users to add Review for Stall in FoodWhere.
 - The prefixes allow users to understand what the different types of data fields Review need in order to be created.
 
+### Review Deleting feature
+
+#### What is Review Deleting feature about?
+
+The Delete Review mechanism is facilitated by `AddressBook`. This feature allows the user to delete a review.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `rdel INDEX`
+
+#### Implementation Flow of Review Deleting feature
+
+Given below is an example usage scenario and how the Review deleting mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user list all the reviews by entering the `rlist` command.
+
+Step 3. The user executes `rdel 2` command to delete the last review with index 2, `
+
+![DeleteReview](images/DeleteReview.png)
+
+#### UML Diagram for Deleting Review
+
+The following activity diagram summarizes what happens when a user executes a new `rdel` command:
+
+<img src="images/DeleteReviewActivityDiagram.png" width="250" />
 
 ### \[Proposed\] Undo/redo feature
 
