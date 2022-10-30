@@ -7,16 +7,16 @@ title: User Guide
 
 The purpose of this user guide is to help both new and experienced users with using FindMyIntern.
 
-- If you are a new user, we recommend checking out the [introduction](#introduction) to get a better idea of what FindMyIntern can do. 
+- If you are a new user, we recommend checking out the [introduction](#introduction) to get a better idea of what FindMyIntern can do.
 If you have no prior experience with command line interfaces, we recommend reading this guide.
 
 - If you are an experienced user, you can use the [table of contents](#table-of-contents) to jump straight to what you are looking for.
 
 ## Introduction
-Are you a student applying for internships? Do you have trouble remembering what you have applied? 
-Or are you tired of using Excel to keep track? 
-Applying for internships is already painful enough. 
-There should be an easy way to keep track of various applications and upcoming interviews. 
+Are you a student applying for internships? Do you have trouble remembering what you have applied?
+Or are you tired of using Excel to keep track?
+Applying for internships is already painful enough.
+There should be an easy way to keep track of various applications and upcoming interviews.
 FindMyIntern is the perfect solution for you!
 
 FindMyIntern is a desktop application that helps students easily keep track of
@@ -36,6 +36,7 @@ The user guide is divided into different sections. Click on any of the sections 
 <h6 markdown="1" class="card-title">[Quick Start](#quick-start)</h6>
 This section teaches you how to install and **get started** with FindMyIntern.
 </div>
+</div>
 
 <div class="card mb-2">
 <div markdown="1" class="card-body py-0">
@@ -47,11 +48,13 @@ It includes:
 - [Saving and Editing](#saving-and-editing)
 - [UI Elements](#ui-elements)
 </div>
+</div>
 
 <div class="card mb-2">
 <div markdown="1" class="card-body py-0">
 <h6 markdown="1" class="card-title">[FAQ](#faq)</h6>
 This section includes all frequently asked questions about FindMyIntern.
+</div>
 </div>
 
 <div class="card mb-2">
@@ -59,11 +62,13 @@ This section includes all frequently asked questions about FindMyIntern.
 <h6 markdown="1" class="card-title">[Appendix](#appendix)</h6>
 This section specifies **the input details** that you have to be aware of in FindMyIntern.
 </div>
+</div>
 
 <div class="card mb-2">
 <div markdown="1" class="card-body py-0">
 <h6 markdown="1" class="card-title">[Command Summary](#command-summary)</h6>
 This section contains the formats of all commands in FindMyIntern.
+</div>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -78,7 +83,7 @@ This section contains the formats of all commands in FindMyIntern.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your FindMyIntern.
 
-4. Double-click the file to start the app. 
+4. Double-click the file to start the app.
 
 ### Adding your first internship application
 
@@ -90,7 +95,7 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 
    <p align="center">
        <img src="images/Ui.png" width="600" />
-   </p> 
+   </p>
 
 3. Let's add your first internship application with the [`add` command](#adding-an-internship-application-add)!
 
@@ -270,7 +275,7 @@ Examples:
 * `edit 3 t/frontend t/summer` - Edits the tags of the 3rd internship application, removing existing tags and
   adding `frontend` and `summer` tags
 
-#### Marking an internship application status: `mark` 
+#### Marking an internship application status: `mark`
 
 Marks an internship [application status](#application-status).
 
@@ -285,7 +290,7 @@ Marks an internship [application status](#application-status).
     </div>
 </div>
 
-* Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed 
+* Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
   internship application list. The index **must be a positive integer** 1, 2, 3…
 
 * Updates the internship application to the specified [`APPLICATION_STATUS`](#application-status).
@@ -372,7 +377,7 @@ Finds internship applications where the company's name and tags contain any of t
 </div>
 
 * The search is case-insensitive e.g `google` will match `Google`
-* Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo` 
+* Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo`
 
 <div class="d-flex alert alert-info">
 <div class="me-3">
@@ -384,7 +389,7 @@ Finds internship applications where the company's name and tags contain any of t
 <table class="table table-light table-hover">
   <thead>
     <tr>
-      <th scope="col"><code>filter</code></th> 
+      <th scope="col"><code>filter</code></th>
       <th scope="col"><code>find</code></th>
     </tr>
   </thead>
@@ -508,7 +513,7 @@ If your changes to the data file makes its format invalid, FindMyIntern will dis
 
 #### Links
 
-Clicking on links will copy the URL of the link to the clipboard. The URL can then be pasted into any browser. 
+Clicking on links will copy the URL of the link to the clipboard. The URL can then be pasted into any browser.
 
 A tooltip is shown when the link is hovered.
 
@@ -554,7 +559,7 @@ There are no constraints for a field if the constraints box is empty for that fi
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Field</th> 
+      <th scope="col">Field</th>
       <th scope="col">Constraints</th>
     </tr>
   </thead>
@@ -588,7 +593,7 @@ There are no constraints for a field if the constraints box is empty for that fi
 
 ### Application status
 
-Application status refers to the current status of an internship application. 
+Application status refers to the current status of an internship application.
 Each internship application is tagged with an application status.
 
 Application status as an input field **must be one of the following**:
@@ -596,7 +601,7 @@ Application status as an input field **must be one of the following**:
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Application status</th> 
+      <th scope="col">Application status</th>
       <th scope="col">Explanation</th>
       <th scope="col">Remark</th>
     </tr>
@@ -639,7 +644,7 @@ For `APPLIED_DATE`, the formats allowed:
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Format</th> 
+      <th scope="col">Format</th>
       <th scope="col">Input</th>
     </tr>
   </thead>
@@ -660,7 +665,7 @@ For `INTERVIEW_DATE_TIME`, the formats allowed:
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Format</th> 
+      <th scope="col">Format</th>
       <th scope="col">Input</th>
       <th scope="col">Remark</th>
     </tr>
