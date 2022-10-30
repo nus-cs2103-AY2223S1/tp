@@ -257,7 +257,8 @@ In the above example, we are deleting the person `Dinosaur Lim` from module `CS2
 #### 2.2.1. Add task
 You may add a task using the `add-task` command.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:**<br/> 
 Make sure you have [added a module](#211-add-module) to Plannit before 
 proceeding!
 </div>
@@ -281,11 +282,11 @@ In the above example, we are adding the task `Complete tP tasks for W07` to the
 module `CS2103T`. Here's a screenshot of Plannit before and after executing the
 command:
 
-| Before executing the command                                   | After executing the command                                   |
-|----------------------------------------------------------------|---------------------------------------------------------------|
-| <p align="center"><img src="images/add-task-before.png"/></p> | <p align="center"><img src="images/add-task-after.png"/></p> |
+| Before executing the command                                                | After executing the command                                                |
+|-----------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p> | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p> |
 
-<div markdown="span" class="alert alert-info">:bulb: **Tip:** 
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page 
 using the [`goto`](##252-navigate-between-modules) command. <br/>Alternatively, 
 you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
@@ -298,10 +299,10 @@ You may delete a task belonging to a particular module using the
 
 This command will require two flags:
 
-| Field                   | Flag  | Constraints                                                                                                                                     |
-|-------------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**         | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                         |
-| **Task Number of Task** | `tn/` | Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul> |                 
+| Field                   | Flag  | Constraints                                                                                                                                                   |
+|-------------------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**         | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                       |
+| **Task Number of Task** | `tn/` | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul> |                 
 
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -316,9 +317,9 @@ In the above example, we are deleting task number **2** from the module
 `CS2103T`. Here's a screenshot of Plannit before and after executing the 
 command: 
 
-| Before executing the command                                     | After executing the command                                     |
-|------------------------------------------------------------------|-----------------------------------------------------------------|
-| <p align="center"><img src="images/delete-task-before.png"/></p> | <p align="center"><img src="images/delete-task-after.png"/></p> |
+| Before executing the command                                                   | After executing the command                                                   |
+|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p> | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p> |
 
 #### 2.2.3. Reorder tasks (swap)
 You may change the order in which tasks appear in the task list of a 
@@ -326,10 +327,10 @@ particular module using the `swap-task` command.
 
 This command will require two flags:
 
-| Field                                                     | Flag  | Constraints                                                                                                                                                                                                         |
-|-----------------------------------------------------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**                                           | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                             |
-| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/` | The two task numbers must: <ul><li>be separated by a `SPACE` character ("` `") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul> |
+| Field                                                     | Flag  | Constraints                                                                                                                                                                                                                       |
+|-----------------------------------------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**                                           | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                           |
+| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/` | {::nomarkdown}The two task numbers must: <ul><li>be separated by a `SPACE` character ("` `") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul> |
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -347,9 +348,9 @@ task within the task list of the module `CS2103T`. Here's a screenshot of
 Plannit before and after executing the command. Note that ["peek"](#224-peeking-at-tasks)
 has been enabled for clarity:
 
-| Before executing the command                                                | After executing the command                                                                                                        |
-|-----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| <p align="center"><img src="images/swap-task-before.png"/></p><p><br/><p/> | <p align="center"><img src="images/swap-task-after.png"/></p> <p align="right">_Notice tasks 1 and 3 have swapped positions!_<p/> |
+| Before executing the command                                                             | After executing the command                                                                                                                     |
+|------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p><br/><p/> | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p> <p align="right">_Notice tasks 1 and 3 have swapped positions!_<p/> |
 
 ### 2.2.4. Peeking at tasks
 You may "peek" at a module's tasks by clicking on the module while on the 
@@ -378,7 +379,8 @@ tha tasks
   <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:**<br/> 
 You remain on the home page even when you "peek" at a module. To leave the 
 home page and view more details of a specific module, you may use the 
 [`goto`](#252-navigate-between-modules) command.
