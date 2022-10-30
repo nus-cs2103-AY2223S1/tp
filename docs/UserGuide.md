@@ -174,7 +174,7 @@ Format: `sfind n/KEYWORD [KEYWORDS]… t/KEYWORD [KEYWORDS]…`
 * The search is case-insensitive e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter e.g. `Johns Eatery` will match `Eatery Johns`
 * Using `n/` and `t/` will search name and tag fields of stall respectively.
-* Only full words will be matched e.g. `Joh` will not match `John`, ``
+* Only full words will be matched e.g. `Joh` will not match `John`, `table` or `tableFor` will not match `tableFor4`.
 * Stalls matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
 
 Examples:
@@ -190,7 +190,7 @@ Format: `rfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…`
 * The search is case-insensitive e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter e.g. `Johns Eatery` will match `Eatery Johns`
 * Using `n/` and `t/` will search name and tag fields of review respectively.
-* Only full words will be matched e.g. `Joh` will not match `John`
+* Only full words will be matched e.g. `Joh` will not match `John`, `table` or `tableFor` will not match `tableFor4`.
 * Reviews matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
 
 Examples:
