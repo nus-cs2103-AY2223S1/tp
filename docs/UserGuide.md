@@ -38,6 +38,15 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command parameters:**<br>
+
+* `NAME` can only accept alphanumeric characters i.e. "a, b, c..." & "1, 2, 3..."
+* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
+  e.g. `t/sick` will cause an error message.
 * Phone numbers must only contain numbers, and it should be at least 3 digits long.
 * Emails should be of the format `local-part@domain-name` and adhere to the following constraints:
   - The `local-part` must:
@@ -53,11 +62,8 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
       - `John` is invalid, as it is missing a `@` and a `domain-name`.
       - `John@^s^` is invalid, as the domain label `^s^` does not start and end with alphanumeric characters.
       - `John@x` is invalid, as the domain label `x` is not at least 2 characters long.
-* Tag names must only be from the following: `ear`, `nose`, `throat` (not case-sensitive). <br>
-  e.g. `t/sick` will cause an error message.
-
-
 </div>
+
 
 ### Important Commands
 
@@ -77,8 +83,12 @@ Adds a patient into idENTify.
 
 Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** <br>
+
+* A patient can have any number of tags (including 0) <br>
+* `TAG` names **must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
+   e.g. `t/sick` will cause an error message.
 </div>
 
 Examples:
@@ -255,7 +265,7 @@ Format:
 
 #### Hiding patients by name or tag: `hide patients`
 
-By name:
+**By name:**
 Filters out (hides) patients whose names contain any of the given keywords.
 
 Format: `hide patients n/NAME [n/MORE_NAMES]...`
@@ -264,8 +274,7 @@ Examples:
 * `hide patients n/John` hides `john` and `John Doe`
 * `hide patients n/alex n/david` hides `Alex Yeoh`, `David Li`<br>
 
-By tag:
-
+**By tag:**
 Hides patients whose names contain any of the given tags.
 
 Format: `hide patients t/TAG [t/MORE_TAGS]...`
@@ -278,7 +287,7 @@ Examples:
 
 #### Unhiding patients by name or tag: `unhide patients`
 
-By name:
+**By name:**
 Shows (unhides) patients that were previously hidden whose names contain any of the given keywords.
 
 Format: `unhide patients n/NAME [n/MORE_NAMES]...`
@@ -287,8 +296,7 @@ Examples:
 * `unhide patients n/John` unhides `john` and `John Doe`
 * `unhide patients n/alex n/david` unhides `Alex Yeoh`, `David Li`<br>
 
-By tag:
-
+**By tag:**
 Unhides patients that were previously hidden who contain any of the given tags.
 
 Format: `unhide patients t/TAG [t/MORE_TAGS]...`
@@ -301,16 +309,15 @@ Examples:
 
 #### Hiding appointments by reason, tag, or marked status: `hide appts`
 
-By reason:
-Filters out (hides) appointments that has a reason that matches the given keyword.
+**By reason:**
+Filters out (hides) appointments that has contains at least 1 of the given keyword(s).
 
 Format: `hide appts r/REASON [r/MORE_REASONS]...`
 
 Examples:
 * `hide appts r/nose` hides all appointments with "nose" in the reason.
 
-By tag:
-
+**By tag:**
 Hides appointments which contain any of the given tags.
 
 Format: `hide appts t/TAG [t/MORE_TAGS]...`
@@ -321,7 +328,7 @@ Format: `hide appts t/TAG [t/MORE_TAGS]...`
 Examples:
 * `hide appts t/ear t/nose` hides all appointments with a ear OR nose tag.
 
-By marked/unmarked status:
+**By marked/unmarked status:**
 Hides appointments which are marked/unmarked.
 
 Format: `hide appts s/STATUS` <br>
@@ -340,7 +347,8 @@ After hide:
 ![after_Hide](images/afterHide.png)
 
 #### Unhiding appointments by reason, tag or status: `unhide appts`
-By reason:
+
+**By reason:**
 Unhides hidden appointments that contains `REASON` (OR `MORE_REASONS`). 
 
 Format: `unhide appts r/REASON [r/MORE_REASONS]...`
@@ -351,8 +359,7 @@ Examples:
 * `unhide appts r/pain` unhides all hidden appointments with "pain" as part of the reason.
 * 'unhide appts r/pain r/problem' unhides all hidden appointments with "pain" or "problem" as part of the reason.
 
-By tag:
-
+**By tag:**
 Unhides hidden appointments that contains `TAG` (OR `MORE_TAGS`).
 
 Format: `unhide appts t/TAG [t/MORE_TAGS]...`
@@ -363,7 +370,7 @@ Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 Examples:
 * `unhide appts t/nose t/ear` unhides all appointments with a nose OR ear tag.
 
-By marked/unmarked status:
+**By marked/unmarked status:**
 Unhides hidden appointments which were marked or unmarked.
 
 Format: `unhide appts s/marked` or `unhide appts s/m` <br>
