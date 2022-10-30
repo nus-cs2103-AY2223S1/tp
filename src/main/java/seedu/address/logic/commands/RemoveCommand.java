@@ -15,6 +15,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Attendance;
@@ -49,6 +50,7 @@ public class RemoveCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_HOMEWORK + " 1 ";
 
     public static final String MESSAGE_REMOVED_PERSON_SUCCESS = "Removed Person Detail: %1$s";
+    public static final String MESSAGE_NOT_REMOVED = "At least one field to remove must be provided.";
     public static final String MESSAGE_NOT_VIEW_MODE =
             "You need to be in full view mode to remove a person's details.";
 
@@ -157,6 +159,23 @@ public class RemoveCommand extends Command {
         return updatedGradeProgressList;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof RemoveCommand)) {
+            return false;
+        }
+
+        // state check
+        RemoveCommand r = (RemoveCommand) other;
+        return removePersonDescriptor.equals(r.removePersonDescriptor);
+    }
+
     /**
      * Stores the details to edit the person with.
      */
@@ -193,6 +212,14 @@ public class RemoveCommand extends Command {
             setSessionIndex(toCopy.sessionIndex);
             setSession(toCopy.session);
             setTags(toCopy.tags);
+        }
+
+        /**
+         * Returns true if at least one field is removed.
+         */
+        public boolean isAnyFieldRemoved() {
+            return CollectionUtil.isAnyNonNull(homeworkIndex, gradeProgressIndex,
+                    attendanceIndex, sessionIndex);
         }
 
         public void setName(Name name) {
@@ -293,6 +320,27 @@ public class RemoveCommand extends Command {
 
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof RemovePersonDescriptor)) {
+                return false;
+            }
+
+            // state check
+            RemovePersonDescriptor r = (RemovePersonDescriptor) other;
+
+            return getName().equals(r.getName())
+                    && getPhone().equals(r.getPhone())
+                    && getLessonPlan().equals(r.getLessonPlan())
+                    && getTags().equals(r.getTags());
         }
     }
 }
