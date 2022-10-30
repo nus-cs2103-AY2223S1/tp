@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Set;
@@ -54,9 +55,16 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
-        sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        if (!person.getUsername().value.equals("")) {
+            sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        }
         sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
-        sb.append(PREFIX_YEAR + person.getYear().value + " ");
+        if (!person.getUsername().value.equals("")) {
+            sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        }
+        if (!person.getYear().value.equals("")) {
+            sb.append(PREFIX_YEAR + person.getYear().value + " ");
+        }
         person.getModuleCodes().stream().forEach(
                 s -> sb.append(PREFIX_MODULE_CODE + s.value + " ")
         );
@@ -73,9 +81,13 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
-        sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        if (!person.getUsername().value.equals("")) {
+            sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        }
         sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
-        sb.append(PREFIX_RATING + person.getRating().value + " ");
+        if (!person.getRating().value.equals("")) {
+            sb.append(PREFIX_RATING + person.getRating().value + " ");
+        }
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -89,11 +101,19 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
-        sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        if (!person.getUsername().value.equals("")) {
+            sb.append(PREFIX_GITHUBUSERNAME + person.getUsername().value + " ");
+        }
         sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
-        sb.append(PREFIX_SPECIALISATION + person.getSpecialisation().value + " ");
-        sb.append(PREFIX_RATING + person.getRating().value + " ");
-        sb.append(PREFIX_OFFICEHOUR + "2-18:00-3" + " ");
+        if (!person.getSpecialisation().value.equals("")) {
+            sb.append(PREFIX_SPECIALISATION + person.getSpecialisation().value + " ");
+        }
+        if (!person.getRating().value.equals("")) {
+            sb.append(PREFIX_RATING + person.getRating().value + " ");
+        }
+        if (!person.getOfficeHour().value.equals("")) {
+            sb.append(PREFIX_OFFICEHOUR + "2-18:00-3" + " ");
+        }
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -124,13 +144,65 @@ public class PersonUtil {
         String commandDetails = "";
         if (predicate.getHasNamesList()) {
             commandDetails += PREFIX_NAME + String.join(" ", predicate.getNamesList()) + " ";
-
         }
 
         if (predicate.getHasModulesList()) {
-            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModulesSet());
+            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModulesSet()) + " ";
         }
 
+        if (predicate.getHasEmailsList()) {
+            commandDetails += PREFIX_EMAIL + String.join(" ", predicate.getEmailsList()) + " ";
+        }
+
+        if (predicate.getHasPhonesList()) {
+            commandDetails += PREFIX_PHONE + String.join(" ", predicate.getPhonesList()) + " ";
+        }
+
+        if (predicate.getHasLocationsList()) {
+            commandDetails += PREFIX_LOCATION + String.join(" ", predicate.getLocationsList()) + " ";
+        }
+
+        if (predicate.getHasGendersList()) {
+            commandDetails += PREFIX_GENDER + String.join(" ", predicate.getGendersList()) + " ";
+        }
+
+        if (predicate.getHasOfficeHoursList()) {
+            commandDetails += PREFIX_OFFICEHOUR + String.join(" ", predicate.getOfficeHoursList()) + " ";
+        }
+
+        if (predicate.getHasUserNamesList()) {
+            commandDetails += PREFIX_GITHUBUSERNAME + String.join(" ", predicate.getUserNamesList()) + " ";
+        }
+
+        if (predicate.getHasRatingsList()) {
+            commandDetails += PREFIX_RATING + String.join(" ", predicate.getRatingsList()) + " ";
+        }
+
+        if (predicate.getHasSpecList()) {
+            commandDetails += PREFIX_SPECIALISATION + String.join(" ", predicate.getOfficeHoursList()) + " ";
+        }
+
+        if (predicate.getHasTagsList()) {
+            commandDetails += PREFIX_TAG + String.join(" ", predicate.getTagsSet()) + " ";
+        }
+
+        if (predicate.getHasTypesList()) {
+            commandDetails += PREFIX_TYPE + String.join(" ", predicate.getTypesList()) + " ";
+        }
+
+        if (predicate.getHasSpecsList()) {
+            commandDetails += PREFIX_SPECIALISATION + String.join(" ", predicate.getSpecList()) + " ";
+        }
+
+        if (predicate.getHasTagsList()) {
+            commandDetails += PREFIX_TAG + String.join(" ", predicate.getTagsSet()) + " ";
+        }
+
+        if (predicate.getHasYearsList()) {
+            commandDetails += PREFIX_YEAR + String.join(" ", predicate.getYearsList()) + " ";
+        }
+
+        System.out.println(commandDetails);
         return commandDetails;
     }
 }

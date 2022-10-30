@@ -45,23 +45,24 @@ public class TypicalPersons {
     public static final Person ALEX = new StudentBuilder().withName("Alex Jones")
             .withEmail("alex@example.com").withGender("M")
             .withPhone("85237238").withTags("friends").build();
-    public static final Person ALICE = new StudentBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com").withGender("F")
-            .withPhone("94351253").withTags("friends").withGithubUsername("").build();
-    public static final Person BENSON = new StudentBuilder().withName("Benson Meier")
-            .withGender("M")
+    public static final Person ALICE = new StudentBuilder().withYear("4")
+            .withName("Alice Pauline")
+            .withEmail("alice@example.com").withGender("F").withLocation("JUS")
+            .withPhone("94351253").withTags("friends").build();
+    public static final Person BENSON = new StudentBuilder().withYear("3")
+            .withName("Benson Meier")
+            .withGender("M").withLocation("HUK")
             .withEmail("Benm@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").withGithubUsername("ben10").build();
-    public static final Person CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withGender("M").build();
+    public static final Person CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563").withTags("smart")
+            .withLocation("SMU").withEmail("heinz@example.com").withGender("M").withGithubUsername("carlz").build();
     public static final Person DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withGender("M").withTags("friends").build();
-    public static final Person ELLE = new ProfessorBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withGender("F").build();
-    public static final Person FIONA = new TeachingAssistantBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withGender("F").build();
-    public static final Person GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withGender("M").build();
+            .withLocation("NUS")
+            .withEmail("cornelia@example.com")
+            .withGender("M").withTags("cool").withGithubUsername("dan").build();
+    public static final Person GEORGE = new StudentBuilder().withModuleCodes("CS1000", "CS9999").withName("George Best")
+            .withPhone("9482442")
+            .withEmail("anna@example.com").withLocation("HKU").withGender("M").build();
 
     // Manually added
     public static final Person HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -70,8 +71,9 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withGender("F").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Student AMY = (Student) new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withGender(VALID_GENDER_AMY).withTags(VALID_TAG_FRIEND).build();
+    public static final Student AMY = (Student) new StudentBuilder()
+            .withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withGender(VALID_GENDER_AMY).build();
     public static final Professor BOB = (Professor) new ProfessorBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withGender(VALID_GENDER_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
@@ -79,29 +81,49 @@ public class TypicalPersons {
     public static final TeachingAssistant CABE = (TeachingAssistant) new TeachingAssistantBuilder()
             .withName(VALID_NAME_CABE).withPhone(VALID_PHONE_CABE)
             .withEmail(VALID_EMAIL_CABE).withGender(VALID_GENDER_CABE).withTags(VALID_TAG_FRIEND)
+            .withLocation("JIN")
+            .withGithubUsername("cabe")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     /* -------------------------------PROFESSOR------------------------------- */
-    public static final Professor ANDERSON = (Professor) new ProfessorBuilder().withName(VALID_NAME_ANDERSON)
+    public static final Professor ANDERSON = (Professor) new ProfessorBuilder().withSpecialisation("Networks")
+            .withName(VALID_NAME_ANDERSON)
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_ANDERSON)
             .withGender(VALID_GENDER_MALE)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withLocation("JIO")
             .build();
-    public static final Professor BEN = (Professor) new ProfessorBuilder().withName(VALID_NAME_BEN)
+    public static final Professor BEN = (Professor) new ProfessorBuilder().withOfficeHour("MONDAY, 11:00 AM - 01:00 PM")
+            .withName(VALID_NAME_BEN)
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BEN)
             .withGender(VALID_GENDER_MALE)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withLocation("RUT")
+            .withGithubUsername("ben10")
             .build();
-    public static final Professor COLIN = (Professor) new ProfessorBuilder().withName(VALID_NAME_COLIN)
+    public static final Professor COLIN = (Professor) new ProfessorBuilder()
+            .withOfficeHour("TUESDAY, 12:00 PM - 02:00 PM")
+            .withName(VALID_NAME_COLIN)
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_COLIN)
             .withGender(VALID_GENDER_MALE)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withLocation("ABC")
+            .withGithubUsername("callin")
             .build();
+    public static final Person ELLE = new ProfessorBuilder().withRating("1").withName("Elle Meyer").withPhone("9482224")
+            .withLocation("NTU")
+            .withEmail("werner@example.com")
+            .withGender("F").withGithubUsername("elle").withTags("cool", "smart").build();
+
+    /* -------------------------------TEACHING ASSISTANT------------------------------- */
+    public static final Person FIONA = new TeachingAssistantBuilder().withRating("2").withModuleCode("CS1000")
+            .withName("Fiona Kunz").withPhone("9482427").withEmail("lydia@example.com")
+            .withGender("F").withLocation("JIK").build();
 
     private TypicalPersons() {} // prevents instantiation
 
@@ -226,6 +248,7 @@ public class TypicalPersons {
         return ab;
     }
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, ANDERSON,
+                BEN, COLIN, CABE));
     }
 }
