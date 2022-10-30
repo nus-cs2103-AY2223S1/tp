@@ -122,11 +122,7 @@ This shows that the current displaying list is the student list.
 
 ### 5.Description Panel
 
-<p align="center">
-
 <img src="images/personDescription.png"/>
-
-</p>
 
 This is where the description of a specified student or tutor is shown. When there is no person on display, the line “No Person Displayed” would be shown.
 
