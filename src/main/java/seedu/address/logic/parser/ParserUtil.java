@@ -181,8 +181,9 @@ public class ParserUtil {
      */
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
-        String trimmedPriority = priority.trim();
+        String trimmedPriority = priority.trim().toLowerCase();
         Optional<PriorityEnum> priorityEnum = PriorityEnum.getFromString(trimmedPriority);
+
         if (priorityEnum.isEmpty()) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
@@ -196,7 +197,7 @@ public class ParserUtil {
      */
     public static TaskCategory parseTaskCategory(String taskCategory) throws ParseException {
         requireNonNull(taskCategory);
-        String trimmedCategory = taskCategory.trim();
+        String trimmedCategory = taskCategory.trim().toLowerCase();
         Optional<TaskCategoryType> categoryEnum = TaskCategoryType.getFromString(trimmedCategory);
         if (categoryEnum.isEmpty()) {
             throw new ParseException(TaskCategory.MESSAGE_CONSTRAINTS);
