@@ -28,8 +28,9 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_SUCCESS = "I added a new task: %1$s! Good Luck!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. \n"
             + COMMAND_WORD + " <DESCRIPTION> "
+            + "-c" + " <MODULE CODE> "
             + "[" + "-d " + "<YYYY-MM-DD>] "
-            + "-c" + " <MODULE CODE> ";
+            + "[" + "-p" + " <PRIORITY>]";
 
     @Parameter(description = "<description>", required = true, converter = DescriptionConverter.class)
     private Description description;
