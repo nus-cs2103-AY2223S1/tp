@@ -131,7 +131,6 @@ public class EditReminderCommand extends Command {
         private Datetime deadline;
         private ReminderDescription description;
         private ReminderPriority priority;
-        private ReminderStatus status;
 
         public EditReminderDescriptor() {}
 
@@ -150,7 +149,7 @@ public class EditReminderCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, description, priority);
+            return CollectionUtil.isAnyNonNull(name, deadline, priority, description);
         }
 
         public void setName(ReminderName name) {

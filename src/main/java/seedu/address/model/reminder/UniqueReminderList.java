@@ -159,6 +159,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
      * The reminder must exist in the list.
      */
     public void mark(Reminder target) {
+        requireNonNull(target);
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new ReminderNotFoundException();
