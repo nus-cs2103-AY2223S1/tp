@@ -16,14 +16,20 @@ With NUScheduler, you can store the contact details of the NUS community around 
 
 ## Using this guide
 
-### Meaning of icons
+This user guide provides you with the information necessary to start using NUScheduler. 
+
+In this user guide, you may encounter the following icons:
 
 <div markdown="block" class="meaning-icons-container">
 
-* :information_source:: Additional Information
-* :bulb:: Tips
+* :information_source: **Additional Information:** Provides general information that you might find helpful.
+* :bulb: **Tips:** Provides good to know information on how to more effectively utilise NUScheduler.    
 
 </div>
+
+If you are a new user, check out the [Quick Start](#quick-start) to get started with NUScheduler.
+
+If you are a returning user, the [Command Summary](#command-summary) provides you with a quick overview of all the commands NUScheduler offers.
 
 ## Quick start
 
