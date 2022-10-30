@@ -371,6 +371,7 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | **Clear contacts**         | `clear`                                                                                                                                                                                                       |
 
 ## List of Prefixes
+
 | Field    | Prefix  |
 |----------|---------|
 | Name     | `n/`    |
