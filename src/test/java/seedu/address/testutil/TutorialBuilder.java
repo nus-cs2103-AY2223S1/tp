@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialVenue;
 
@@ -19,7 +19,7 @@ public class TutorialBuilder {
     public static final String DEFAULT_DAY = "3";
 
     private TutorialName tutorialName;
-    private TutorialModule tutorialModule;
+    private ModuleCode moduleCode;
     private TutorialVenue tutorialVenue;
     private String tutorialTimeStart;
     private String tutorialTimeEnd;
@@ -30,7 +30,7 @@ public class TutorialBuilder {
      */
     public TutorialBuilder() {
         tutorialName = new TutorialName(DEFAULT_NAME);
-        tutorialModule = new TutorialModule(DEFAULT_MODULE);
+        moduleCode = new ModuleCode(DEFAULT_MODULE);
         tutorialVenue = new TutorialVenue(DEFAULT_VENUE);
         tutorialDay = "1";
         tutorialTimeStart = "08:00";
@@ -42,7 +42,7 @@ public class TutorialBuilder {
      */
     public TutorialBuilder(Tutorial tutorialToCopy) {
         tutorialName = tutorialToCopy.getName();
-        tutorialModule = tutorialToCopy.getModule();
+        moduleCode = tutorialToCopy.getModule();
         tutorialVenue = tutorialToCopy.getVenue();
         //        tutorialTimeslot = tutorialToCopy.getTimeslot();
     }
@@ -56,10 +56,10 @@ public class TutorialBuilder {
     }
 
     /**
-     * Sets the {@code TutorialModule} of the {@code Tutorial} that we are building.
+     * Sets the {@code ModuleCode} of the {@code Tutorial} that we are building.
      */
     public TutorialBuilder withModule(String module) {
-        this.tutorialModule = new TutorialModule(module);
+        this.moduleCode = new ModuleCode(module);
         return this;
     }
 
@@ -95,7 +95,7 @@ public class TutorialBuilder {
      */
     public Tutorial build() {
         WeeklyTimeslot timeslot = WeeklyTimeslot.fromFormattedString(tutorialDay, tutorialTimeStart, tutorialTimeEnd);
-        return new Tutorial(tutorialName, tutorialModule, tutorialVenue, timeslot);
+        return new Tutorial(tutorialName, moduleCode, tutorialVenue, timeslot);
     }
 
 }

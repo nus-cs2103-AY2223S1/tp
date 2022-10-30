@@ -41,7 +41,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         sb.append(PREFIX_TELEGRAM + student.getTelegram().telegram + " ");
-        sb.append(PREFIX_MODULE + student.getTutorialModule().moduleName + " ");
+        sb.append(PREFIX_MODULE + student.getTutorialModule().moduleCode + " ");
         sb.append(PREFIX_TUTORIAL + student.getTutorialName().fullName + " ");
         sb.append(PREFIX_ATTENDANCE + student.getAttendance().value + " ");
         sb.append(PREFIX_PARTICIPATION + student.getParticipation().value + " ");
@@ -64,7 +64,7 @@ public class PersonUtil {
         descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM)
                 .append(telegram.telegram).append(" "));
         descriptor.getTutorialModule().ifPresent(module -> sb.append(PREFIX_MODULE)
-                .append(module.moduleName).append(" "));
+                .append(module.moduleCode).append(" "));
         descriptor.getTutorialName().ifPresent(tutorial -> sb.append(PREFIX_TUTORIAL)
                 .append(tutorial.fullName).append(" "));
         descriptor.getAttendance().ifPresent(attendance -> sb.append(PREFIX_ATTENDANCE)

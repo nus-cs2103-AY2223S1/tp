@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -8,6 +9,7 @@ import seedu.address.logic.parser.exceptions.AllPrefixesMissingException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.PrefixesEmptyException;
 import seedu.address.logic.parser.exceptions.SomePrefixesMissingException;
+import seedu.address.model.commons.ModuleCode;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -76,5 +78,20 @@ public class ParserUtil {
         if (prefixesPresentNotEmpty.length != 0) {
             throw new PrefixesEmptyException(prefixesPresentNotEmpty, messageUsage);
         }
+    }
+
+    /**
+     * Parses a {@code String moduleCode} into a {@code ModuleCode}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleCode} is invalid.
+     */
+    public static ModuleCode parseModuleCode(String moduleCode) throws ParseException {
+        Objects.requireNonNull(moduleCode);
+        String trimmedName = moduleCode.trim();
+        if (!ModuleCode.isValidModule(trimmedName)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedName);
     }
 }

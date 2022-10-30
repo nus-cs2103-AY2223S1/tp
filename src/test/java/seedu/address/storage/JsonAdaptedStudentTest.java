@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
@@ -20,7 +21,6 @@ import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.student.TelegramHandle;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 
 public class JsonAdaptedStudentTest {
@@ -157,7 +157,7 @@ public class JsonAdaptedStudentTest {
                 new JsonAdaptedStudent(VALID_NAME, VALID_ID, VALID_PHONE, VALID_EMAIL,
                         VALID_TELEGRAM, INVALID_MODULE, VALID_TUTORIAL, VALID_ATTENDANCE,
                         VALID_PARTICIPATION, VALID_GRADE, VALID_TAGS);
-        String expectedMessage = TutorialModule.MESSAGE_CONSTRAINTS;
+        String expectedMessage = ModuleCode.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -166,7 +166,7 @@ public class JsonAdaptedStudentTest {
         JsonAdaptedStudent person = new JsonAdaptedStudent(VALID_NAME, VALID_ID, VALID_PHONE, VALID_EMAIL,
                 VALID_TELEGRAM, null, VALID_TUTORIAL, VALID_ATTENDANCE,
                 VALID_PARTICIPATION, VALID_GRADE, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialModule.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

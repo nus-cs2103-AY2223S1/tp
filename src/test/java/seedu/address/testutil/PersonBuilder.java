@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
@@ -13,7 +14,6 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -40,7 +40,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private TelegramHandle telegramHandle;
-    private TutorialModule tutorialModule;
+    private ModuleCode moduleCode;
     private TutorialName tutorialName;
     private Attendance attendance;
     private Participation participation;
@@ -59,7 +59,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM);
-        tutorialModule = new TutorialModule(DEFAULT_MODULE);
+        moduleCode = new ModuleCode(DEFAULT_MODULE);
         tutorialName = new TutorialName(DEFAULT_TUTORIAL);
         attendance = new Attendance(DEFAULT_ATTENDANCE);
         participation = new Participation(DEFAULT_PARTICIPATION);
@@ -78,7 +78,7 @@ public class PersonBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         telegramHandle = studentToCopy.getTelegram();
-        tutorialModule = studentToCopy.getTutorialModule();
+        moduleCode = studentToCopy.getTutorialModule();
         tutorialName = studentToCopy.getTutorialName();
         attendance = studentToCopy.getAttendance();
         participation = studentToCopy.getParticipation();
@@ -123,7 +123,7 @@ public class PersonBuilder {
      */
     public Student build() {
         return new Student(name, id, phone, email,
-                telegramHandle, tutorialModule,
+                telegramHandle, moduleCode,
                 tutorialName, attendance,
                 participation, grade, tags);
     }
@@ -145,10 +145,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code TutorialModule} of the {@code Person} that we are building.
+     * Sets the {@code ModuleCode} of the {@code Person} that we are building.
      */
     public PersonBuilder withTutorialModule(String tutorialModule) {
-        this.tutorialModule = new TutorialModule(tutorialModule);
+        this.moduleCode = new ModuleCode(tutorialModule);
         return this;
     }
 

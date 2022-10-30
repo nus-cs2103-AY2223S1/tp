@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 
 /**
@@ -25,7 +25,7 @@ public class Student {
     private final TelegramHandle telegramHandle;
 
     // Data fields
-    private final TutorialModule tutorialModule;
+    private final ModuleCode moduleCode;
     private final TutorialName tutorialName;
     private final Grade grade;
     private final Attendance attendance;
@@ -36,17 +36,17 @@ public class Student {
      * Every field must be present and not null.
      */
     public Student(Name name, StudentId id, Phone phone, Email email,
-                   TelegramHandle telegramHandle, TutorialModule tutorialModule,
+                   TelegramHandle telegramHandle, ModuleCode moduleCode,
                    TutorialName tutorialName, Attendance attendance,
                    Participation participation, Grade grade, Set<Tag> tags) {
-        requireAllNonNull(name, id, phone, email, telegramHandle, tutorialModule, tutorialName,
+        requireAllNonNull(name, id, phone, email, telegramHandle, moduleCode, tutorialName,
                 attendance, participation, grade, tags);
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
         this.telegramHandle = telegramHandle;
-        this.tutorialModule = tutorialModule;
+        this.moduleCode = moduleCode;
         this.tutorialName = tutorialName;
         this.attendance = attendance;
         this.participation = participation;
@@ -74,8 +74,8 @@ public class Student {
         return telegramHandle;
     }
 
-    public TutorialModule getTutorialModule() {
-        return tutorialModule;
+    public ModuleCode getTutorialModule() {
+        return moduleCode;
     }
 
     public TutorialName getTutorialName() {
@@ -147,7 +147,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, id, phone, email, telegramHandle, tutorialModule, tutorialName,
+        return Objects.hash(name, id, phone, email, telegramHandle, moduleCode, tutorialName,
                 attendance, participation, grade, tags);
     }
 
