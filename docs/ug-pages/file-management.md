@@ -27,7 +27,7 @@ To find out which **sub** data folder is currently open, look at the **footer**,
 
 ---
 
-### Editing the data file
+### Editing your data file
 
 After familiarising yourself with **RC4HDB**, you are welcome to update data directly by editing the `resident_data.json` and `venue_data.json` found in your [**sub**](#finding-your-data) data folder. <span style="color:red">However, do take note that this is not the recommended method to edit data.</span>
 
@@ -38,7 +38,7 @@ file at the next run.
 
 ---
 
-### Saving the data
+### Saving your data
 
 RC4HDB saves your data after every command. There is no need to save manually.
 
