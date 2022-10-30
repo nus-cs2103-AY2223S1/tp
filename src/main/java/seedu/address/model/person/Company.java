@@ -47,6 +47,8 @@ public class Company implements Comparable<Company> {
         return fullName;
     }
 
+    // solution adapted from
+    // https://stackoverflow.com/a/36716166
     @Override
     public boolean equals(Object other) {
         return Objects.equals(fullName, ((Company) other).fullName);
