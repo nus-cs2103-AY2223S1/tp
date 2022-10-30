@@ -207,7 +207,7 @@ public class AddTutorialCommandTest {
         }
 
         @Override
-        public boolean hasTutorialClashingWith(Tutorial tutorial) {
+        public int numOfClashingTutorial(Tutorial tutorial) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -338,9 +338,9 @@ public class AddTutorialCommandTest {
         }
 
         @Override
-        public boolean hasTutorialClashingWith(Tutorial tutorial) {
+        public int numOfClashingTutorial(Tutorial tutorial) {
             requireNonNull(tutorial);
-            return tutorialsAdded.stream().anyMatch(tutorial::isClashTutorial);
+            return (int) tutorialsAdded.stream().filter(tutorial::isClashTutorial).count();
         }
 
         @Override

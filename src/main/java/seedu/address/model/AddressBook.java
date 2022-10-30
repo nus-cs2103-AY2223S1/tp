@@ -205,11 +205,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in the ModQuik.
+     * Returns the number of tutorials in the ModQuik that clash with {@code tutorial}.
      */
-    public boolean hasTutorialClashingWith(Tutorial tutorial) {
+    public int numOfClashingTutorial(Tutorial tutorial) {
         requireNonNull(tutorial);
-        return tutorials.containsClashingWith(tutorial);
+        return tutorials.numOfClashingTutorial(tutorial);
     }
 
     /**

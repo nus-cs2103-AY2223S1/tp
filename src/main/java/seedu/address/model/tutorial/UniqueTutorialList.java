@@ -39,11 +39,11 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     }
 
     /**
-     * Returns true if the list contains a clashing tutorial as the given argument.
+     * Returns the number of tutorials clashing with the given argument.
      */
-    public boolean containsClashingWith(Tutorial toCheck) {
+    public int numOfClashingTutorial(Tutorial toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isClashTutorial);
+        return (int) internalList.stream().filter(toCheck::isClashTutorial).count();
     }
 
     /**

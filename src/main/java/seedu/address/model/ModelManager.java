@@ -258,9 +258,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTutorialClashingWith(Tutorial tutorial) {
+    public int numOfClashingTutorial(Tutorial tutorial) {
         requireNonNull(tutorial);
-        return addressBook.hasTutorialClashingWith(tutorial);
+        return addressBook.numOfClashingTutorial(tutorial);
     }
 
     @Override
