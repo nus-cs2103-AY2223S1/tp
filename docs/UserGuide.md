@@ -122,7 +122,6 @@ Example:
 * `edit 2 n/noodles` edits the name of 2nd food item to noodles.
 * `edit 2 c/100 n/bread` edits the name and calorie content of the first item to bread and 100 respectively.
 * `list 2022-10-10` followed by `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10 to sushi. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
-* `list 2022-09-15` followed by `edit 1 n/sushi` will edit the name of the first food item on the list for 15 September 2022 to sushi.
 
 ### Listing all foods for a day: `list`
 
@@ -194,6 +193,7 @@ Shows the total calories consumed, the calorie target and the deficient or exces
 Format: `review`
 
 Example after entering `review`:
+
 ![review](images/review.png)
 
 ### Setting up a user profile: `setup`
@@ -217,11 +217,17 @@ with an ideal weight of 70kg.
 
 ### Viewing the user's profile: `profile`
 
-Displays the user's information stored during setup.
+Displays the user's information stored during [setup](#setting-up-a-user-profile-setup).
 
 Format: `profile`
 
-* A user can only view his/her profile after setup. 
+* A user can only view his/her profile after [setup](#setting-up-a-user-profile-setup). 
+
+Example after entering `profile`:
+
+* The user's details are listed on the right.
+
+![profile](images/profile.png)
 
 ### Suggesting a daily calorie intake: `suggest`
 
@@ -297,7 +303,7 @@ _More food items coming soon in a future release..._
 | **Help**    | `help`                                                  | `help`                           |
 | **Add**     | `add n/FOOD c/CALORIE t/MEAL_TYPE`                      | `add n/donut c/1000 t/breakfast` |
 | **Delete**  | `delete INDEX`                                          | `delete 1`                       |
-| **Edit**    | `edit INDEX n/UPDATED_FOOD c/CALORIES t/MEAL_TYPE`      | `edit 2 n/rice c/300 t/dinner`   |
+| **Edit**    | `edit INDEX [n/FOOD] [c/CALORIES] [t/MEAL_TYPE]`        | `edit 2 n/rice c/300 t/dinner`   |
 | **Find**    | `find FOOD`                                             | `find chicken rice`              |
 | **Target**  | `target`                                                | `target 2000`                    |
 | **Review**  | `review`                                                | `review`                         |
