@@ -54,6 +54,9 @@ Choose a topic from the table of contents below to find out how to manage your a
 * Flags consisting of a character and `/` specify the type of parameter to be supplied.
   e.g. in `n/NAME`, `n/` is the flag for the `NAME` parameter.
 
+* The `NAME` parameter for all commands must be the **full name** of the contact 
+  e.g. if the contact is named `Alex Yeoh`, a command must use `n/Alex Yeoh` and not `n/Alex` or `n/Alex Y` etc.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `n/NAME`, `NAME` is a parameter which can be used as `n/John Doe`.
 
@@ -124,8 +127,8 @@ Adds a task of type todo into your task list.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 
 Examples:
-* `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to you.
-* `task todo o/Sam d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Sam.
+* `task todo m/Alex Yeoh d/Finish user guide` adds a todo called “Finish user guide” assigned by Alex Yeoh to you.
+* `task todo o/Bernice Yu d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Bernice Yu.
 * `task todo o/Myself d/Upload slides` adds a todo called “Upload slides” which is self-assigned by you.
 * `task todo d/Finish essay` adds a todo called "Finish essay" which you assign to yourself.
 
@@ -135,7 +138,7 @@ Adds a task of type deadline into the task list.
 
 **Assigned by** Format: `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-**Assigned to** Format: `task deadline o/Name d/DESCRIPTION t/DATE [#/TAG]…`
+**Assigned to** Format: `task deadline o/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
 **Self-assigned** Format: `task deadline d/DESCRIPTION t/DATE`
 
