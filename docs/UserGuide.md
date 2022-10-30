@@ -113,6 +113,8 @@ Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIM
 * Default [application status](#application-status) is "Applied".
 * `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change [application status](#application-status) to "Shortlisted".
 * `TAG` is optional, but can be used multiple times.
+* `TAG` can be used to attach keywords to an internship application which may help in your internship application tracking.
+  * Such keywords may include `backend` or `frontend` for the internship role, or `summer` or `off season` for the internship period.
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 <div markdown="block" class="alert alert-info">
@@ -132,6 +134,7 @@ See [Appendix: Date/time formats](#datetime-formats) for the date/time formats a
 Examples:
 * `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022`
 * `add c/Grab l/https://grab.careers/teams/campus d/Marketing internship a/11 Oct i/23 Nov, 3:00 pm`
+* `add c/Shopee l/careers.shopee.sg/students d/Data analyst internship a/20 Oct 2022 i/28 Nov 16:00 t/data analyst t/summer`
 
 #### Editing an internship application: `edit`
 
@@ -186,7 +189,7 @@ Format: `mark INDEX s/APPLICATION_STATUS`
 
 * Updates the internship application to the specified [`APPLICATION_STATUS`](#application-status).
 
-* `APPLICATION_STATUS` is case-insensitive.
+* [`APPLICATION_STATUS`](#application-status) is case-insensitive.
 
 
 Examples:
@@ -219,7 +222,7 @@ Format: `filter APPLICATION_STATUS`
 
 * Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
 
-* `APPLICATION_STATUS` is case-insensitive.
+* [`APPLICATION_STATUS`](#application-status) is case-insensitive.
 
 Examples:
 * `filter accepted` - Shows a list of internship applications marked as `accepted`
@@ -233,6 +236,19 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
 
 * The search is case-insensitive e.g `google` will match `Google`
 * Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo` 
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: `filter` vs `find`**
+
+`filter` and `find` commands may seem similar, here are some differences to take note of:
+
+| `filter`                                                                                  | `find`                                                    |
+|-------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| Used to filter **internship application statuses**                                        | Used to search for **keywords in company names and tags** |
+| Can only accept as input **one of 5 allowed [application statuses](#application-status)** | Can accept **any input**                                  |
+
+</div>
 
 Examples:
 * `find tiktok` returns internship application(s) and tag(s) containing `tiktok`
