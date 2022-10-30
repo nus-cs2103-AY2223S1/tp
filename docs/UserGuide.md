@@ -68,15 +68,9 @@ more quickly than a traditional GUI app.
 
 </div>
 
-### Viewing help: `help`
+### Contact commands
 
-Shows a message explaining how to access the user guide.
-
-- Alternatively, you can also click on the Help button in the top toolbar.
-
-Format: `help`
-
-### Adding a contact: `add_contact`
+#### Adding a contact: `add_contact`
 
 Adds a contact.
 
@@ -91,13 +85,13 @@ Examples:
 - `add_contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 - `add_contact n/Betsy Crowe t/developer e/betsycrowe@example.com a/Newgate office p/1234567 t/client`
 
-### Listing all contacts: `list_contact`
+#### Listing all contacts: `list_contact`
 
 Shows a list of all contacts.
 
 Format: `list_contact`
 
-### Finding contacts by name: `find_contact`
+#### Finding contacts by name: `find_contact`
 
 Find contacts whose names contain any of the given keywords.
 
@@ -116,7 +110,7 @@ Examples:
 - `find_contact alex david` returns `Alex Yeoh` and `David Li`.
     ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Editing a contact: `edit_contact`
+#### Editing a contact: `edit_contact`
 
 Edits an existing contact.
 
@@ -135,7 +129,7 @@ Examples:
 - `edit_contact 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 - `edit_contact 2 n/Betsy Crower t/` edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-### Deleting a contact: `delete_contact`
+#### Deleting a contact: `delete_contact`
 
 Deletes the specified contact.
 
@@ -150,7 +144,7 @@ Examples:
 - `list_contact` followed by `delete_contact 2` deletes the 2nd contact in the entire contact list.
 - `find_contact Betsy` followed by `delete_contact 1` deletes the 1st contact in the results of the `find_contact Betsy` command.
 
-### Selecting a contact: `select_contact`
+#### Selecting a contact: `select_contact`
 
 Selects the specified contact and displays the contact's assigned tasks.
 
@@ -165,7 +159,9 @@ Examples:
 - `list_contact` followed by `select_contact 1` selects the 1st contact in the entire contact list and shows all tasks assigned to that contact.
 - `find_contact Hermione` followed by `select_contact 1` selects the 1st contact in the results of the `find_contact Hermione` command and shows all task assigned to that person.
 
-### Adding a task: `add_task`
+### Task commands
+
+#### Adding a task: `add_task`
 
 Adds a task.
 
@@ -178,13 +174,13 @@ Examples:
 - `add_task n/CS2103T iP d/Finish milestones dl/12-12-2022 2359 c/1`
 - `add_task n/CS2101 Assignment dl/12-12-2022 2359 c/2 c/3`
 
-### Listing all tasks: `list_task`
+#### Listing all tasks: `list_task`
 
 Shows a list of all tasks.
 
 Format: `list_task`
 
-### Finding tasks by name: `find_task`
+#### Finding tasks by name: `find_task`
 
 Find tasks whose names contain any of the given keywords.
 
@@ -202,7 +198,7 @@ Examples:
 - `find_task Book` returns `book` and `Book`.
 - `find_task read book` returns `read novel` and `sell book`.
 
-### Editing tasks: `edit_task`
+#### Editing tasks: `edit_task`
 
 Edits an existing task.
 
@@ -220,7 +216,7 @@ Examples:
 - `edit_task 1 n/Client meeting d/Gather user stories` edits the task name and description of the 1st task to `Client meeting` and `Gather user stories` respectively.
 - `edit_task 2 dl/06-12-2022 1200` edits the deadline of the 2nd task to be `06-12-2022 1200`.
 
-### Deleting tasks: `delete_task`
+#### Deleting tasks: `delete_task`
 
 Deletes an existing task in task list.
 
@@ -233,7 +229,7 @@ Examples:
 - `delete_task 1` Deletes the Task at index 1.
 - `delete_task 3` Deletes the Task at index 3.
 
-### Selecting a task: `select_task`
+#### Selecting a task: `select_task`
 
 Selects the specified task and displays the contacts assigned to the task.
 
@@ -248,7 +244,7 @@ Examples:
 - `list_task` followed by `select_task 1` selects the 1st task in the entire task list and shows all contacts assigned to that task.
 - `find_task sleep` followed by `select_task 1` selects the 1st task in the results of the `find_task sleep` command and shows all contacts assigned to that task.
 
-### Marking a task as complete: `mark`
+#### Marking a task as complete: `mark`
 
 Marks the specified task as completed.
 
@@ -263,7 +259,7 @@ Examples:
 - `list_task` followed by `mark 1` marks the 1st task in the entire task list as completed.
 - `find_task sleep` followed by `mark 1` marks the 1st task in the results of the `find_task sleep` command as completed.
 
-### Marking a task as incomplete: `unmark`
+#### Marking a task as incomplete: `unmark`
 
 Marks the specified task as incomplete.
 
@@ -278,7 +274,7 @@ Examples:
 - `list_task` followed by `unmark 1` marks the 1st task in the entire task list as incomplete.
 - `find_task sleep` followed by `unmark 1` marks the 1st task in the results of the `find_task sleep` command as incomplete.
 
-### Assigning a task to a contact: `assign`
+#### Assigning a task to a contact: `assign`
 
 Assigns a task to a contact.
 
@@ -293,7 +289,7 @@ Examples:
 - `assign c/1 t/1` assigns the task at index 1 to the contact at index 1.
 - `assign c/3 t/2` assigns the task at index 2 to the contact at index 3.
 
-### Unassign a task from a contact: `unassign`
+#### Unassign a task from a contact: `unassign`
 
 Removes a contact from a task.
 
@@ -308,7 +304,9 @@ Examples:
 - `unassign c/1 t/1` removes the contact at index 1 from the task at index 1.
 - `unassign c/3 t/2` removes the contact at index 3 from the task at index 2.
 
-### Toggling between contacts and tasks tabs: `Ctrl + Tab`
+### Common commands
+
+#### Toggling between contacts and tasks tabs: `Ctrl + Tab`
 
 Toggles the view between the contacts and tasks tabs.
 
@@ -316,13 +314,21 @@ Format: `Ctrl + Tab`
 
 - Alternatively, you can also click on the Contacts and Tasks button in the top toolbar.
 
-### Clearing all data: `clear`
+#### Viewing help: `help`
+
+Shows a message explaining how to access the user guide.
+
+- Alternatively, you can also click on the Help button in the top toolbar.
+
+Format: `help`
+
+#### Clearing all data: `clear`
 
 Deletes all data in the application.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
