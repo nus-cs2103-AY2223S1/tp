@@ -40,7 +40,7 @@ class JsonAdaptedTutorial {
     public JsonAdaptedTutorial(Tutorial source) {
         group = source.getGroup().group;
         content = source.getContent().content;
-        time = source.getTime().time;
+        time = source.getTime().toMemoryString();
         status = source.getStatus();
     }
 
@@ -70,7 +70,7 @@ class JsonAdaptedTutorial {
         if (time == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!Time.isValidTime(time)) {
+        if (!Time.isValidDateTime(time)) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelTime = new Time(time);

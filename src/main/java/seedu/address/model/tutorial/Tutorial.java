@@ -41,10 +41,8 @@ public class Tutorial {
     }
 
     public String getTimeOrDateStr(String s) {
-        String timeAndDate = time.toString();
-        String[] timeAndDateArr = timeAndDate.split("T");
 
-        return s.equalsIgnoreCase("time") ? timeAndDateArr[1] : timeAndDateArr[0];
+        return s.equalsIgnoreCase("time") ? time.getUiStringTime() : time.getUiStringDate();
     }
 
     public boolean getStatus() {
