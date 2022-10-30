@@ -1037,7 +1037,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `file delete current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
        Expected: An error message indicating that the folder you are trying to delete is the folder that is currently in view will be displayed in the result panel. No deletion occurs.
 
-#### Switching data folders
+#### Switching data folder
 
 1. Switching to a data folder that does not exist.
 
@@ -1056,7 +1056,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `file switch current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
        Expected: An error message indicating that the folder you are trying to switch to is already the currently viewed data folder will be displayed in the result panel.
 
-#### Importing from CSV file
+#### Importing resident data from CSV file
 
 [Comment]: <> (To be added)
 
