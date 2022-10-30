@@ -1,6 +1,6 @@
 package seedu.masslinkers.logic.parser;
 
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_MISSING_ARGUMENTS;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_ARGUMENTS;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_INTEREST;
@@ -37,9 +37,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_GITHUB, PREFIX_INTEREST, PREFIX_MOD);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TELEGRAM) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_ARGUMENTS, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

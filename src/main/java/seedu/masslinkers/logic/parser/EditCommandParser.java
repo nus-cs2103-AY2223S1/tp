@@ -2,6 +2,7 @@ package seedu.masslinkers.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_MISSING_ARGUMENTS;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.masslinkers.logic.parser.CliSyntax.PREFIX_INTEREST;
@@ -38,11 +39,16 @@ public class EditCommandParser implements Parser<EditCommand> {
                 PREFIX_TELEGRAM, PREFIX_GITHUB, PREFIX_INTEREST, PREFIX_MOD);
 
         Index index;
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, EditCommand.MESSAGE_USAGE));
+        }
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         if (!argMultimap.getAllValues(PREFIX_MOD).isEmpty()) {

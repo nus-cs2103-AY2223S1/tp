@@ -1,6 +1,6 @@
 package seedu.masslinkers.logic.parser;
 
-import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_MISSING_ARGUMENTS;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -27,6 +27,6 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_MISSING_ARGUMENTS, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 }

@@ -18,7 +18,7 @@ import seedu.masslinkers.model.student.Student;
 public class ModDeleteCommand extends ModCommand {
 
     public static final String COMMAND_WORD = "delete";
-    public static final String MESSAGE_SUCCESS = "Successfully deleted the specified mods.";
+    public static final String MESSAGE_SUCCESS = "Successfully deleted the specified mod(s).";
     public static final String MESSAGE_INVALID_MOD = "This batchmate is not taking all of the modules specified."
             + "\nPlease check the list of mods and try again.";
     private final Index targetIndex;

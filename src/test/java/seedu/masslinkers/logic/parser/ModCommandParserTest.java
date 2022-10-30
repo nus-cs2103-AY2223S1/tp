@@ -2,6 +2,7 @@ package seedu.masslinkers.logic.parser;
 
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INCOMPLETE_COMMAND_FORMAT;
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.masslinkers.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -88,7 +89,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndex_throwParseException() {
         assertParseFailure(parser, ModAddCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX, ModAddCommand.MESSAGE_USAGE));
     }
 
     /**
@@ -162,7 +163,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndexModDelete_throwParseException() {
         assertParseFailure(parser, ModDeleteCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModDeleteCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -295,7 +296,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndexModMark_throwParseException() {
         assertParseFailure(parser, ModMarkCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -369,7 +370,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndexModUnmark_throwParseException() {
         assertParseFailure(parser, ModUnmarkCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModUnmarkCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
