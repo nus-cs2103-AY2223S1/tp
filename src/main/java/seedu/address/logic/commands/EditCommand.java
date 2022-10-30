@@ -99,6 +99,8 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        // If email was changed, check that person with new email does not already exist
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPersonByEmail(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
