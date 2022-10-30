@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import jarvis.commons.core.GuiSettings;
-import jarvis.testutil.AddressBookBuilder;
+import jarvis.testutil.StudentBookBuilder;
 
 public class ModelManagerTest {
 
@@ -94,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        StudentBook studentBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        StudentBook studentBook = new StudentBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         StudentBook differentStudentBook = new StudentBook();
         UserPrefs userPrefs = new UserPrefs();
 

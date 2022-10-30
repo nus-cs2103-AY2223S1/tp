@@ -1,5 +1,6 @@
 package jarvis.model.student;
 
+import static jarvis.logic.commands.CommandTestUtil.VALID_MATRIC_NUM_BOB;
 import static jarvis.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static jarvis.testutil.TypicalStudents.ALICE;
 import static jarvis.testutil.TypicalStudents.BOB;
@@ -28,11 +29,15 @@ public class StudentTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(ALICE.equals(BOB));
 
+        // same name but different matric num -> returns false
+        Student editedAlice = new StudentBuilder(ALICE).withMatricNum(VALID_MATRIC_NUM_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different name but same matric num -> returns true
-        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertTrue(ALICE.equals(editedAlice));
     }
 }
