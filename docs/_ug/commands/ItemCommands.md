@@ -126,6 +126,16 @@ Item List Box:
 
 > Sorts the list of currently displayed items by the provided criteria
 
+```note
+* `\n` : Sort by item name
+* `\qty` : Sort by item quantity
+* `\u` : Sort by item unit
+* `\bgt` : Sort by item bought date
+* `\exp` : Sort by item expiry date
+* `\p` : Sort by item price
+* `\r` : Sort by item remarks
+```
+
 ```warning
 * You should only provide one sorting criteria.
 * The sort can only be done in an ascending order.
