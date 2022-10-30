@@ -123,8 +123,22 @@ To familiarise yourself with our user interface, please refer to the following d
 | **Command Input Box**  |                                       where you enter your commands to use PennyWise                                       |
 | **Command Output Box** |                                  where you see the output of your commands from PennyWise                                  |
 
-
 ![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
+
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+If the application is resized to a smaller screen, certain graphical components will no longer be visible. This is to ensure that
+that you are still able to get an overview of you finances. If these details are important, use PennyWise in fullscreen!
+
+1. PieChart Legend <br/>
+- The PieChart Legend would not be visible should the application be of a smaller size. This ensures your categorical overview
+  can still be seen at a glance!
+  ![ChartLegend](images/ug/ChartLegend.png)
+
+2. Line Graph Dates
+- Certain LineGraph dates would not be visible should the application be of a smaller size. This ensures you are still
+  able to view the linear trend of your entries can still be seen.
+  ![LinegraphDates](images/ug/LineGraphDates.png)
+</div>
 
 ### Categorising your expenses and income
 
