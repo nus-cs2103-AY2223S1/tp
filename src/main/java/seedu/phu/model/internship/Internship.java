@@ -157,19 +157,19 @@ public class Internship {
         final StringBuilder builder = new StringBuilder();
         builder.append("Company: ")
                 .append(getName())
-                .append("\nPosition: ")
+                .append(" \nPosition: ")
                 .append(getPosition())
-                .append("\nApplication Process: ")
+                .append(" \nApplication Process: ")
                 .append(getApplicationProcess())
-                .append("\nDate: ")
+                .append(" \nDate: ")
                 .append(getDate())
-                .append("\nPhone: ")
+                .append(" \nPhone: ")
                 .append(getPhone())
-                .append("\nEmail: ")
+                .append(" \nEmail: ")
                 .append(getEmail())
-                .append("\nWebsite: ")
+                .append(" \nWebsite: ")
                 .append(getWebsite())
-                .append("\nRemark: ")
+                .append(" \nRemark: ")
                 .append(getRemark());
 
         Set<Tag> tags = getTags();
