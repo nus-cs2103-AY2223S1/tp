@@ -151,23 +151,22 @@ Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIM
   * Such keywords may include `backend` or `frontend` for the internship role, or `summer` or `off season` for the internship period.
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
-<div class="d-flex alert alert-info pb-0">
+<div class="d-flex alert alert-info">
 <div class="me-2">
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
-**Changing application status**
-
+**Changing application status**<br>
 To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
 </div>
 </div>
 
-<div class="d-flex alert alert-warning pb-0">
+<div class="d-flex alert alert-warning">
 <div class="me-2">
   <span class="badge text-bg-warning">WARNING</span>
 </div>
 <div markdown="span">
-**Date/time formats**
+**Date/time formats**<br>
 See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
 </div>
 </div>
@@ -197,23 +196,22 @@ Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INT
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 
-<div class="d-flex alert alert-info pb-0">
+<div class="d-flex alert alert-info">
 <div class="me-2">
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
-**Changing application status**
-
+**Changing application status**<br>
 To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
 </div>
 </div>
 
-<div class="d-flex alert alert-warning pb-0">
+<div class="d-flex alert alert-warning">
 <div class="me-2">
   <span class="badge text-bg-warning">WARNING</span>
 </div>
 <div markdown="span">
-**Date/time formats**
+**Date/time formats**<br>
 See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
 </div>
 </div>
@@ -285,13 +283,12 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
 * The search is case-insensitive e.g `google` will match `Google`
 * Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo` 
 
-<div class="d-flex alert alert-info pb-0">
+<div class="d-flex alert alert-info">
 <div class="me-2">
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
-**`filter` vs `find`**
-
+**`filter` vs `find`**<br>
 `filter` and `find` commands may seem similar, here are some differences to take note of:
 
 | `filter`                                                                                  | `find`                                                    |
@@ -324,13 +321,12 @@ Examples:
 * `sort applied` will sort the internship applications according to applied date
 * `sort interview` will sort the internship applications according to interview date
 
-<div class="d-flex alert alert-info pb-0">
+<div class="d-flex alert alert-info">
 <div class="me-2">
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
-**:information_source: Sorting by interview date**
-
+**Sorting by interview date**<br>
 Applications without interview date will remain in the original order at the bottom.
 </div>
 </div>
@@ -341,7 +337,7 @@ Clears all internship applications from the tracker.
 
 Format: `clear`
 
-<div class="d-flex alert alert-danger pb-0">
+<div class="d-flex alert alert-danger">
 <div class="me-2">
   <span class="badge text-bg-danger">DANGER</span>
 </div>
@@ -369,7 +365,7 @@ The data file location can also be found in the help message: see [`help` comman
 
 Advanced users are welcome to update data directly by editing that data file.
 
-<div class="d-flex alert alert-warning pb-0">
+<div class="d-flex alert alert-warning">
 <div class="me-2">
   <span class="badge text-bg-warning">WARNING</span>
 </div>
