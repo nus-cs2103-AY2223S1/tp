@@ -218,7 +218,7 @@ Clears all entries from the student list.
 Format: `clear`
 
 ## Attendance commands
-To aid teaching assistants in keeping track of attendance, we developed a feature to add an attendance list of a maximum of 12 lessons. Afterwards, teaching assistants can mark/unmark attendance of their students. Currently, we have only one class of attendance for students.
+To aid teaching assistants in keeping track of attendance, we developed a feature to add an attendance list of a maximum of 12 lessons. Afterwards, teaching assistants can mark/unmark attendance of their students. Currently, we support only one attendance list for each student.
 
 ### Adding an attendance list to a student: `attendance add`
 
@@ -236,18 +236,18 @@ Examples:
 ```attendance add 1 c/CS2040 s/1```
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you add an attendance list to a student with an attendance list, it overwrites the attendance list data.
+If you add an attendance list to a student with an attendance list, it overwrites the current attendance list data.
 </div>
 
 ### Marking attendance of student: `attendance mark`
 
-Marks attendance of given student in class list. In this case, we use 0 for absent and 1 for present because it is faster for CLI users to type numerical values instead of ```"absent"``` or ```"present"```.
+Marks attendance of given student in class list. In this case, we use 0 for absent and 1 for present.
 
 Format: `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 Lesson number starts from 1.
-Attendance value is 0 for absent, 1 for present.
+Attendance value is 0 for absent, 1 for present because it is faster for CLI users to type numerical values instead of full words.
 </div>
 
 Examples:
