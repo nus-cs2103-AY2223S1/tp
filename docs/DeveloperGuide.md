@@ -83,6 +83,8 @@ using a computer. For users who type fast, RC4HDB will be highly efficient and q
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
+---
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -124,6 +126,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+---
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -141,9 +145,9 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Resident` object residing in the `Model`.
 
+---
 
 ### Logic component
-
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/Logic.java)
 
@@ -177,7 +181,11 @@ classes ```ModelCommand```, ```StorageCommand```, ```FileCommand``` and ```MiscC
 implement the Command interface and is used as a intermediate barrier to build the command classes. The specific
 commands implement these commands instead of directly implementing the Command interface in order to improve
 the abstraction of commands.
+
+---
+
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/LatestModelClassDiagram.png" width="450" />
@@ -200,6 +208,7 @@ The `Model` component,
 
 </div>
 
+---
 
 ### Storage component
 
@@ -215,6 +224,8 @@ The `Storage` component,
 The ```DataStorage``` class inherits ```ResidentBookStorage``` and ```VenueBookStorage```. The functionalities
 of both these classes can be extended into DataStorage, which is applied by the ```DataStorageManager``` class.
 
+---
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
@@ -224,6 +235,8 @@ Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+---
 
 ### The Resident Class
 `RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
@@ -306,6 +319,8 @@ As a result, any updates to `ObservableList<Resident>` would be reflected immedi
 
 <br>
 
+---
+
 ### Show/hide feature for resident fields
 
 **Challenges faced with UI:**
@@ -335,6 +350,8 @@ The final design involved using a `ListChangeListener` to cascade the updates fr
 Currently, the commands for showing and hiding columns are extensions of the `list` command: `list /i <fields_to_include>` and `list /e <fields_to_exclude>`. While this syntax works as intended, we will be changing the command to use `show` and `hide` respectively for clarity.
 
 <br>
+
+---
 
 ### Filter feature to filter residents according to fields
 
@@ -400,6 +417,8 @@ filtering has been omitted for the tags to accommodate for a faster filtering pr
 
 <br>
 
+---
+
 ### Multiple data files
 
 #### Background
@@ -451,6 +470,8 @@ Due to file creation and deletion not requiring an update to `Model`, but requir
 Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
 
 <br>
+
+---
 
 ### \[Proposed\] Undo/redo feature
 
@@ -570,6 +591,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * requires less technical knowledge to perform complex tasks
 * easier on the eyes, as compared to compressed rows of data on Excel
 
+---
 
 ### User stories
 
@@ -611,6 +633,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | hide private contact details                  | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort persons by name                          | locate a person easily                                                 |
 -->
+
+---
 
 ### Use cases
 
@@ -847,6 +871,8 @@ MSS:
 
 [comment]: <> (*{More to be added}*)
 
+---
+
 ### Non-Functional Requirements
 
 #### Accessibility
@@ -878,29 +904,33 @@ MSS:
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. The following section is organised in the same way as our **User Guide**. We recommend that you refer to our **User Guide** for a basic idea of how each command works before proceeding with manual testing.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## Launch and shutdown
 
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
+
+---
+
+## Modifying residents
 
 ### Deleting a person
 
@@ -908,21 +938,41 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+---
+
+## Viewing residents
+
+
+
+---
+
+## File management
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which generates the file.
+   
+   2. 
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+---
+
+## Venue booking
+
+
+
+---
