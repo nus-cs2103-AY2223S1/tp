@@ -158,7 +158,7 @@ public class PersonCard extends UiPart<Region> {
         if (!username.equals(GithubUsername.DEFAULT_USERNAME)) {
             gitHubPanel.setManaged(true);
             githubImage.setImage(new Image(this.getClass().getResourceAsStream("/images/GitHub.png")));
-            githubUsername.setText("@" + person.getUsername().value);
+            githubUsername.setText(person.getUsername().value);
         } else {
             gitHubPanel.setManaged(false);
         }

@@ -22,50 +22,50 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.model.person.Professor;
+import seedu.address.testutil.ProfessorBuilder;
 import seedu.address.ui.PersonPieChart;
 
-public class StudentCommandTest {
+public class ProfessorCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new StudentCommand(null));
+    public void constructor_nullProfessor_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ProfCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Student validPerson = new StudentBuilder().build();
+    public void execute_professorAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingProfessorAdded modelStub = new ModelStubAcceptingProfessorAdded();
+        Professor validPerson = new ProfessorBuilder().build();
 
-        CommandResult commandResult = new StudentCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new ProfCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(StudentCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(String.format(ProfCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Student validPerson = new StudentBuilder().build();
-        StudentCommand studentCommand = new StudentCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithStudent(validPerson);
+        Professor validPerson = new ProfessorBuilder().build();
+        ProfCommand profCommand = new ProfCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithProf(validPerson);
 
         assertThrows(CommandException.class,
-            StudentCommand.MESSAGE_DUPLICATE_PERSON, () -> studentCommand.execute(modelStub));
+            ProfCommand.MESSAGE_DUPLICATE_PERSON, () -> profCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new StudentBuilder().withName("Alice").build();
-        Person bob = new StudentBuilder().withName("Bob").build();
-        StudentCommand addAliceCommand = new StudentCommand((Student) alice);
-        StudentCommand addBobCommand = new StudentCommand((Student) bob);
+        Person alice = new ProfessorBuilder().withName("Alice").build();
+        Person bob = new ProfessorBuilder().withName("Bob").build();
+        ProfCommand addAliceCommand = new ProfCommand((Professor) alice);
+        ProfCommand addBobCommand = new ProfCommand((Professor) bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        StudentCommand addAliceCommandCopy = new StudentCommand((Student) alice);
+        ProfCommand addAliceCommandCopy = new ProfCommand((Professor) alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -184,25 +184,25 @@ public class StudentCommandTest {
     /**
      * A Model stub that contains a single Student.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubWithProf extends ModelStub {
+        private final Professor prof;
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        ModelStubWithProf(Professor prof) {
+            requireNonNull(prof);
+            this.prof = prof;
         }
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return this.student.isSamePerson(person);
+            return this.prof.isSamePerson(person);
         }
     }
 
     /**
      * A Model stub that always accept the student being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class ModelStubAcceptingProfessorAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override

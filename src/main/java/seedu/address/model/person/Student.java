@@ -107,7 +107,7 @@ public class Student extends Person {
     public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
         Set<String> personModulesList = getModulesSetString();
         if (needsAllModules) {
-            return personModulesList.equals(modulesSet);
+            return personModulesList.equals(modulesSet) || personModulesList.containsAll(modulesSet);
         } else {
             personModulesList.retainAll(modulesSet);
             return !personModulesList.isEmpty();
