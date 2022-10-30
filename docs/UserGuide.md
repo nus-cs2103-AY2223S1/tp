@@ -276,9 +276,12 @@ Examples:
 * `sort applied` will sort the internship applications according to applied date
 * `sort interview` will sort the internship applications according to interview date
 
+<div markdown="block" class="alert alert-info">
+
 **:information_source: Sorting by interview date**:
 Applications without interview date will remain in the original order at the bottom.
 
+</div>
 
 #### Clearing all internship applications: `clear`
 
