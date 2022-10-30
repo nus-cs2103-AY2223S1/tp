@@ -41,13 +41,13 @@ public class Person implements Comparable<Person> {
         assert (name != null || githubUser != null);
 
         this.name = (name == null) ? githubUser.getName() : name;
-        this.address = address;
+        this.address = ((address) == null && githubUser != null) ? githubUser.getAddress().orElse(null) : address;
         this.role = role;
         this.timezone = timezone;
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
         if (!this.contacts.containsKey(ContactType.EMAIL)
-            && (githubUser != null && githubUser.getEmail().isPresent())) {
+                && (githubUser != null && githubUser.getEmail().isPresent())) {
             this.contacts.put(ContactType.EMAIL, githubUser.getEmail().get());
         }
         this.gitHubUser = githubUser;
@@ -123,8 +123,8 @@ public class Person implements Comparable<Person> {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-            && otherPerson.getAddress().equals(getAddress())
             && otherPerson.getTags().equals(getTags())
+            && otherPerson.getAddress().equals(getAddress())
             && otherPerson.getContacts().equals(getContacts())
             && otherPerson.getRole().equals(getRole())
             && otherPerson.getTimezone().equals(getTimezone())

@@ -82,17 +82,18 @@ public class UserInfoWrapper {
     public void downloadAvatar() throws FileSaveFailException {
         byte[] image = userAvatarRequest.getAvatarImage();
         try {
-            if (avatarImageFileDirectory.toFile().mkdirs()) {
-                Path avatarImageFilePath = Paths.get(avatarImageFileDirectory.toString(), avatarImageFileName);
-                if (!avatarImageFilePath.toFile().isFile()) {
-                    if (!avatarImageFilePath.toFile().delete()) {
-                        throw new FileSaveFailException(
+            avatarImageFileDirectory.toFile().mkdirs();
+            Path avatarImageFilePath = Paths.get(avatarImageFileDirectory.toString(), avatarImageFileName);
+
+            if (avatarImageFilePath.toFile().exists() && !avatarImageFilePath.toFile().isFile()) {
+                if (!avatarImageFilePath.toFile().delete()) {
+                    throw new FileSaveFailException(
                             "Directory exists with same name as file to be saved and could not be deleted. Please "
-                                + "delete directory to save this user's avatar.");
-                    }
+                                    + "delete directory to save this user's avatar.");
                 }
-                Files.write(avatarImageFilePath, image);
             }
+
+            Files.write(avatarImageFilePath, image);
         } catch (Exception e) {
             throw new FileSaveFailException("Unable to save user avatar to local storage.");
         }
