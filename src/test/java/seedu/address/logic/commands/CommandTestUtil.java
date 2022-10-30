@@ -83,6 +83,10 @@ public class CommandTestUtil {
     public static final String VALID_CURRENT_STOCK_DESC = PREFIX_CURRENTSTOCK + VALID_CURRENT_STOCK;
     public static final String INVALID_CURRENT_STOCK_NEGATIVE_DESC = PREFIX_CURRENTSTOCK + INVALID_CURRENT_STOCK;
     public static final String INVALID_NO_VALUE_CURRENT_STOCK_DESC = PREFIX_CURRENTSTOCK + "";
+    public static final String INVALID_MORE_THAN_INTEGER_MAX_VALUE_DESC = PREFIX_CURRENTSTOCK
+            + String.valueOf(Integer.MAX_VALUE) + "1";
+    public static final String INVALID_LESS_THAN_INTEGER_MIN_VALUE_DESC = PREFIX_CURRENTSTOCK
+            + String.valueOf(Integer.MIN_VALUE) + "1";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -33,8 +33,8 @@ public class EditStockCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 c/5";
 
     public static final String MESSAGE_SUCCESS = "Stock updated: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_NOT_EDITED_PREFIX_DETECTED = "You did not provide a value to c/.";
+    public static final String MESSAGE_NOT_EDITED = "Missing the c/ field.";
+    public static final String MESSAGE_NOT_EDITED_PREFIX_DETECTED = "You did not provide a valid value to c/.";
     public static final String MESSAGE_COUNT_NEGATIVE = "Current stock cannot have negative value. Please try again.";
     private final EditStockDescriptor editStockDescriptor;
     private final Index index;
