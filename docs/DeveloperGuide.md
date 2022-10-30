@@ -209,9 +209,43 @@ The following activity diagram summarizes what happens when a user executes a ne
 <img src="images/AddReviewActivityDiagram.png" width="250" />
 
 #### Design considerations:
-- The Review adding commands are straight-to-the-point and efficient for users to add Review for Stall in FoodWhere.
+- The Review adding commands are straight to the point and efficient for users to add Review for Stall in FoodWhere.
 - The prefixes allow users to understand what the different types of data fields Review need in order to be created.
 
+### Review Editing feature
+
+#### What is Review Editing feature about?
+
+The Edit Review mechanism is facilitated by `REditCommandParser` and `REditCommand`. This feature allows the user to edit a review after it has been created.
+
+`REditCommandParser.parse()` - parses the user input and returns a `REditCommand` object. `REditCommand.execute()` - creates a new `Review` object based on the parsed user input and calls `Model.setReview()` to replace the old `Review` object with the new `Review` object.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…`
+
+#### Implementation Flow of Review Editing feature
+
+Given below is an example usage scenario and how the Review editing mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user executes `redit 2 r/5` command to edit `Review` with index 2 to edit its rating to 5.
+
+Step 3. Since the user input is valid, the `AddressBookParser` will create a `REditCommandParser` to parse the command arguments, `2 r/5`.
+
+Step 4. `REditCommandParser` will parse the index to a `Index` object and parse other arguments as a `EditReviewDescriptor` object. The `Index` and `EditReviewDescriptor` objects will then be passed to the returned `REditCommand` object as its arguments. 
+
+Step 5. In `LogicManager`, the returned `REditCommand` is executed. 
+
+Step 6. A new `Review` object is created with the fields of `Review` to be edited, except the field(s) that are to be edited, which will be set by the parsed user input. In this case `Review` with index 2 is copied over to a new `Review` object expect its `Rating` field which is set as `5`.
+
+Step 7. The new `Review` object will then replace the `Review` object to be edited in the `Model` when `model.setReview()` is called.
+![REditSequenceDiagram](images/REditSequenceDiagram.png)
+
+#### Design considerations:
+- Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
 
 ### \[Proposed\] Undo/redo feature
 
