@@ -181,8 +181,8 @@ Refer to the [Task Parameters](#task-parameters) section for more details.
 
 Examples:
 
-* `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` add task Fix toggle to the task list
-* `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` add task Fix routing to the task list
+* `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` adds task `Fix toggle` to the task list
+* `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` adds task `Fix routing` to the task list
 
 
 ### Deleting a task: `deleteTask`
@@ -197,7 +197,7 @@ Format: `deleteTask TASK_NUMBER`
 Examples:
 * `deleteTask 1` deletes the first task from the displayed task list
 
-### viewing all tasks: `listTasks`
+### Viewing all tasks: `listTasks`
 
 Edits the details of the task identified by the index number used in the displayed task list. 
 Existing values will be overwritten by the input values.
@@ -218,8 +218,8 @@ Refer to the [Task Parameters](#task-parameters) section for more details.
 * To unassign a member from a task, simply use an empty parameter `pe/`.
 
 Examples:
-*  `edit 1 n/Create UI pr/high` Edits the name and priority of the 1st task to be Create UI and HIGH respectively.
-*  `edit 2 c/frontend pe/charlotte@example.com` Edits the category of the 2nd task to be frontend and assign the task to new member (Charlotte).
+*  `edit 1 n/Create UI pr/high` edits the name and priority of the 1st task to be `Create UI` and `HIGH` respectively.
+*  `edit 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task to be `frontend` and assigns the task to a new member `Charlotte`.
 
 ### Filtering a Task : `filter`
 
