@@ -923,16 +923,13 @@ testers are expected to do more *exploratory* testing.
    2. Test case: delete the whole `ROOT/data` directory before starting up <br>
        Expected: Starting up RC4HDB results in a new data directory, with a data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
 
-   3. Test case: delete **only** the `ROOT/data/data_folder` directory before starting up <br>
-       Expected: Starting up RC4HDB results in a new data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
-
 2. Starting up with corrupted data files.
    1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which automatically generates the folder.
 
-   2. Test case: edit the `ROOT/data/data_folder/resident_data.json` file into a non-JSON format. <br>
+   2. Test case: edit the `ROOT/data/data_folder/resident_data.json` file into a non-JSON format <br>
        Expected: Starting up RC4HDB results in an empty `resident_data.json` file.
 
-   3. Test case: edit the `ROOT/data/data_folder/venue_data.json` file into a non-JSON format. <br>
+   3. Test case: edit the `ROOT/data/data_folder/venue_data.json` file into a non-JSON format <br>
        Expected: Starting up RC4HDB results in an empty `venue_data.json` file.
 
 <br>
@@ -955,10 +952,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   2. Test case: `delete 1`<br>
+   2. Test case: `delete 1` <br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `delete 0`<br>
+   3. Test case: `delete 0` <br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
@@ -1012,7 +1009,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message indicating that the folder you are about to create already exists will be displayed in the result panel.
    
    3. Test case: `file create current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
-       Expected: An error message indicating that the folder you are about to create is the folder that is currently in view will be displayed in the result panel.
+       Expected: An error message indicating that the folder you are about to create is the folder that is currently in view will be displayed in the result panel. No creation occurs.
 
 2. Creating a new data folder when no folder with the same name already exists.
 
@@ -1024,6 +1021,23 @@ testers are expected to do more *exploratory* testing.
 #### Deleting an existing data folder
 
 [Comment]: <> (To be added)
+
+1. Deleting a data folder that does not exist.
+
+   1. Prerequisites: There is no folder in the `ROOT/data` directory that has the same name as the data folder you are trying to delete.
+
+   2. Test case: `file delete does_not_exist` <br>
+       Expected: An error message indicating that the folder you are trying to delete does not exist will be displayed in the result panel.
+
+2. Deleting a data folder that exists.
+
+   1. Prerequisites: There is an existing folder in the `ROOT/data` directory that has the same name as the data folder you are trying to delete.
+
+   2. Test case: `file delete already_exists` <br>
+       Expected: Deletes the `already_exists` folder.
+
+   3. Test case: `file delete current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
+       Expected: An error message indicating that the folder you are about to delete is the folder that is currently in view will be displayed in the result panel. No deletion occurs.
 
 #### Switching data folders
 
