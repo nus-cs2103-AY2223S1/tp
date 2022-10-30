@@ -47,9 +47,9 @@ However, you may also choose to head over to the relevant sections as described 
 
    * **`listc`** : Lists all contacts.
 
-   * **`add`**`Finish homework by/tomorrow 5pm m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
+   * **`add`** `Finish homework by/tomorrow 5pm m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
 
-   * **`del`**`1` : Deletes the 1st task shown in the current list.
+   * **`del`** `1` : Deletes the 1st task shown in the current list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -169,10 +169,11 @@ Deletes all completed tasks.
 
 Format: `clean`
 
-<div markdown="block" class="alert alert-warning">
 
-:exclamation: Warning!<br>
-This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which deletes all contacts.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which **deletes all contacts**.
+
 </div>
 
 #### Marking a task: `mark`

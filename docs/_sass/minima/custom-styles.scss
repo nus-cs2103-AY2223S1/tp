@@ -1,7 +1,16 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
-h2, h3, h4, h5, h6 {
+
+// Headings
+h2, h3 {
   color: #e46c0a;
+}
+
+h2 {
+  font-weight: bold;
+}
+h4, h5, h6 {
+  font-weight: $font-weight-semibold;
 }
 
 // Bootstrap style alerts
@@ -32,3 +41,25 @@ h2, h3, h4, h5, h6 {
   }
 }
 
+// Page breaks
+
+@mixin page-break-before {
+  @media print {
+    break-before: page;
+  }
+}
+
+@mixin page-break {
+  @include page-break-before;
+}
+
+.page-new {
+  @include page-break-before;
+}
+
+.post-content h2 {
+  @media print {
+    @include page-break-before;
+    margin-top: 0; // We are starting a new page anyway
+  }
+}
