@@ -900,6 +900,38 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+### Table of contents for manual testing
+
+* [Launch and shutdown](#launch-and-shutdown)
+  * [Initial launch](#initial-launch)
+  * [Saving window preferences](#saving-window-preferences)
+  * [Starting up with missing/corrupted data files](#starting-up-with-missingcorrupted-data-files)
+* [Modifying residents](#modifying-residents)
+  * [Adding a resident](#adding-a-resident)
+  * [Editing an existing resident](#editing-an-existing-resident)
+  * [Deleting a resident](#deleting-a-resident)
+  * [Clearing all residents](#clearing-all-residents)
+* [Viewing residents](#viewing-residents)
+  * [Listing residents](#listing-residents)
+  * [Showing resident fields](#showing-resident-fields)
+  * [Hiding resident fields](#hiding-resident-fields)
+  * [Resetting hidden resident fields](#resetting-hidden-resident-fields)
+  * [Finding residents](#finding-residents)
+  * [Filtering residents](#filtering-residents)
+* [File management](#file-management)
+  * [Creating a new data folder](#creating-a-new-data-folder)
+  * [Deleting an existing data folder](#deleting-an-existing-data-folder)
+  * [Switching to a different data folder](#switching-to-a-different-data-folder)
+  * [Importing resident data from CSV file](#importing-resident-data-from-csv-file)
+* [Venue management](#venue-management)
+  * [Adding a venue](#adding-a-venue)
+  * [Deleting a venue](#deleting-a-venue)
+  * [Viewing a venue](#viewing-a-venue)
+  * [Adding a booking](#adding-a-booking)
+  * [Deleting a booking](#deleting-a-booking)
+
+---
+
 ### Launch and shutdown
 
 #### Initial launch
@@ -1009,7 +1041,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message indicating that the folder you are about to create already exists will be displayed in the result panel.
    
    3. Test case: `file create current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
-       Expected: An error message indicating that the folder you are about to create is the folder that is currently in view will be displayed in the result panel. No creation occurs.
+       Expected: An error message indicating that the folder you are trying to create is the folder that is currently in view will be displayed in the result panel. No creation occurs.
 
 2. Creating a new data folder when no folder with the same name already exists.
 
@@ -1019,8 +1051,6 @@ testers are expected to do more *exploratory* testing.
        Expected: A folder with the name `does_not_exist` is created in the `ROOT/data` directory.
 
 #### Deleting an existing data folder
-
-[Comment]: <> (To be added)
 
 1. Deleting a data folder that does not exist.
 
@@ -1037,19 +1067,41 @@ testers are expected to do more *exploratory* testing.
        Expected: Deletes the `already_exists` folder.
 
    3. Test case: `file delete current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
-       Expected: An error message indicating that the folder you are about to delete is the folder that is currently in view will be displayed in the result panel. No deletion occurs.
+       Expected: An error message indicating that the folder you are trying to delete is the folder that is currently in view will be displayed in the result panel. No deletion occurs.
 
-#### Switching data folders
+#### Switching to a different data folder
 
-[Comment]: <> (To be added)
+1. Switching to a data folder that does not exist.
 
-#### Importing from CSV file
+   1. Prerequisites: There is no folder in the `ROOT/data` directory that has the same name as the data folder you are trying to switch to.
 
-[Comment]: <> (To be added)
+   2. Test case: `file switch does_not_exist` <br>
+       Expected: An error message indicating that the folder you are trying to switch to, does not exist will be displayed in the result panel.
+
+2. Switching to a data folder that exists.
+
+   1. Prerequisites: There is an existing folder in the `ROOT/data` directory that has the same name as the data folder you are trying to switch to.
+
+   2. Test case: `file switch already_exists` <br>
+       Expected: Switches to the `already_exists` folder.
+
+   3. Test case: `file switch current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
+       Expected: An error message indicating that the folder you are trying to switch to is already the currently viewed data folder will be displayed in the result panel.
+
+#### Importing resident data from CSV file
+
+[Comment]: <> (Update CSV format link when UG is compiled)
+
+1. Importing from a valid CSV file.
+
+   1. Prerequisites: Have an existing CSV file in the proper format, as specified in the [CSV format]() section of our **User Guide**.
+
+   2. Test case: `file import valid_file`, where `valid_file` is the name of your valid CSV file <br>
+       Expected: A new data folder, with the name `valid_file` is created in `ROOT/data` directory. The new resident data imported from `valid_file.csv` will be stored in `ROOT/data/valid_file/resident_data.json` file, and the `valid_file.csv` file will remain inside the data folder.
 
 <br>
 
-### Venue booking
+### Venue management
 
 #### Adding a venue
 

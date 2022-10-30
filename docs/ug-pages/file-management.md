@@ -37,7 +37,7 @@ To provide a streamlined way of managing **RC4** related data, **RC4HDB** provid
 
 ---
 
-### Creating a new data file : `file create`
+### Creating a new data folder : `file create`
 
 Creates a new folder with the specified `FOLDER_NAME`, if such a folder does not exist. After creating a new folder, RC4HDB will then create [fresh data files]() to store **venue** and **resident** data.
 
@@ -53,7 +53,7 @@ Examples:
 
 ---
 
-### Deleting an existing data file : `file delete`
+### Deleting an existing data folder : `file delete`
 
 RC4HDB provides users with the ability to delete their data folders when they no longer require them.
 
@@ -71,7 +71,7 @@ Examples:
 
 ---
 
-### Switching to a different data file : `file switch`
+### Switching to a different data folder : `file switch`
 
 **RC4HDB** provides users with the ability to switch between different data folders.
 
@@ -87,7 +87,7 @@ Examples:
 
 ---
 
-### Importing from CSV file : `file import`
+### Importing resident data from CSV file : `file import`
 
 **RC4HDB** provides users with the ability to import data from `.csv` files. In order for RC4HDB to find your files, place 
 them in the data folder, `[JAR file location]/data`.
