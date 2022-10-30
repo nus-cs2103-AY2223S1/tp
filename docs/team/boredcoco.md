@@ -23,15 +23,23 @@ Given below are my contributions to the project.
     * *to be added*.
 
 * **Enhancements to existing features**:
-    * *to be added*.
-    * *to be added*.
+  * Find a Buyer, Supplier or Deliver
+  * Filter for relevant Orders or Pets
 
 * **Documentation**:
     * User Guide:
-        * *to be added*.
-        * *to be added*.
+        * Contributed to the "Finding a Contact using Keywords" section of the User guide.
+          * This includes the following sub-segments:
+            * Finding a Buyer
+            * Finding a Supplier
+            * Finding a Deliverer
+        * Contributed to the "Filter lists by attributes" section of the User guide.
+          * This includes the following sub-segments:
+            * Filtering Orders
+            * Filtering Pets
     * Developer Guide:
-        * *to be added*.
+        * Contributed to explaining how the Logic works.
+        * Added use cases relevant to the features implemented by me.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): *to be added*.
