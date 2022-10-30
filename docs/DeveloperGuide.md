@@ -212,6 +212,31 @@ The following activity diagram summarizes what happens when a user executes a ne
 - The Review adding commands are straight-to-the-point and efficient for users to add Review for Stall in FoodWhere.
 - The prefixes allow users to understand what the different types of data fields Review need in order to be created.
 
+### Listing all Reviews feature
+
+#### What is listing all Reviews feature about?
+
+The listing of all reviews mechanism is facilitated by `Model`. This feature allows the user to list all reviews.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `rlist`
+
+#### Implementation Flow of listing all Reviews feature
+
+Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user executes `rlist` to list all reviews on the FoodWhere User Interface.
+![ListReview](images/ListReview.png)
+
+#### UML Diagram for listing of all Reviews
+
+The following activity diagram summarizes what happens when a user executes a new `rlist` command:
+
+<img src="images/ListReviewActivityDiagram.png" width="250" />
 
 ### \[Proposed\] Undo/redo feature
 
