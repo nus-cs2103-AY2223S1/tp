@@ -105,16 +105,16 @@ public class CreateMeetingCommand extends Command {
             );
 
         } catch (PersonNotFoundException e) {
-            return new CommandResult(e.getMessage() + "\n" + CreateMeetingCommand.PERSON_NOT_FOUND);
+            throw new CommandException(e.getMessage() + "\n" + CreateMeetingCommand.PERSON_NOT_FOUND);
 
         } catch (DuplicateMeetingException e) {
-            return new CommandResult(CreateMeetingCommand.DUPLICATE_MEETINGS);
+            throw new CommandException(CreateMeetingCommand.DUPLICATE_MEETINGS);
 
         } catch (DuplicatePersonException e) {
-            return new CommandResult(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
+            throw new CommandException(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
 
         } catch (ImpreciseMatchException e) {
-            return new CommandResult(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE + "\n" + e.getMessage());
+            throw new CommandException(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE + "\n" + e.getMessage());
         }
 
     }
