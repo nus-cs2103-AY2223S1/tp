@@ -24,7 +24,8 @@ public class Name {
 
     public static final Comparator<Person> NAME_COMPARATOR = new Comparator<Person>() {
         public int compare(Person p1, Person p2) {
-            return p1.getName().fullName.compareTo(p2.getName().fullName);
+            return p1.getName().fullName.toUpperCase().compareTo
+                    (p2.getName().fullName.toUpperCase());
         }
     };
 
