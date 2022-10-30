@@ -184,7 +184,7 @@ Shows a list of all exercises.
 Format: `:list`
 
 Example:
-`:list` Shows the list of exercises you have completed.
+* `:list` Shows the list of exercises you have completed.
 
 <div style="page-break-after: always;"></div>
 
@@ -253,7 +253,7 @@ Shows a list of all exercises sorted within a date range; the entry with the mos
 Format (1) : `:range start/START_DATE end/END_DATE`
 
 Example:
-`:range start/25/10/2022 end/26/10/2022` Shows the exercises done between October 25, 2022 and October 26, 2022 (both inclusive).
+* `:range start/25/10/2022 end/26/10/2022` Shows the exercises done between October 25, 2022 and October 26, 2022 (both inclusive).
 
 ![RangeCommandOne](images/RangeCommandOneSample.png)
 
@@ -266,7 +266,7 @@ Parameter constraints:
 * Start date should be before end date.
 
 Example:
-`:range last/3` Shows the exercises done today and the last 3 days.
+* `:range last/3` Shows the exercises done today and the last 3 days.
 
 ![RangeCommandTwo](images/RangeCommandTwoSample.png)
 
@@ -325,10 +325,12 @@ Parameter constraints:
 * The index **must be a positive integer** 1, 2, 3, ...
 * The difficulty level must be supported; currently supported are: easy, medium, hard.
 
-Examples:
-`:gen 1, 2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
+Example:
+* `:gen 1, 2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
 
 ![GenerateCommandExample1](images/GenerateCommandExample1.png)
+
+<div style="page-break-after: always;"></div>
 
 Note that only one sample workout is generated for each unique exercise name. For example, `:gen 4, 5 level/easy` will generate one sample workout for squat, as both index 4 and 5 in the displayed list are Squat exercises.
 
@@ -348,8 +350,8 @@ Parameter constraints:
 Redundant inputs (before the first `n/` flag) will be ignored. <br> e.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
 </div>
 
-Examples:
-`:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift.
+Example:
+* `:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift.
 
 ![GenerateCommandNameExample1](images/GenerateCommandNameExample1.png)
 
