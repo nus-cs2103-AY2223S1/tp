@@ -27,19 +27,19 @@ Choose a topic from the table of contents below to find out how to manage your a
 1. Type the command in the command box and press Enter to execute it.<br>
    Some example commands you can try:
 
-    * **`contact list`** : Lists all contacts, including ones hidden by a previous command.
+    * `contact list` : Lists all contacts, including ones hidden by a previous command.
 
-    * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contact list.
+    * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contact list.
 
-    * **`contact delete`**`i/3` : Deletes the 3rd contact currently shown in the displayed contact list.
+    * `contact delete i/3` : Deletes the 3rd contact currently shown in the displayed contact list.
 
-    * **`task list`** : Lists all tasks, including ones hidden by a previous command.
+    * `task list` : Lists all tasks, including ones hidden by a previous command.
 
-    * **`task todo`**`m/John d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
+    * `task todo m/John Doe d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
 
-    * **`task delete`**`i/3` : Deletes the 3rd task currently shown in the displayed task list.
+    * `task delete i/3` : Deletes the 3rd task currently shown in the displayed task list.
 
-    * **`bye`** : Exits the app.
+    * `bye` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
