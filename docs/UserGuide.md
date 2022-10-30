@@ -32,6 +32,8 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 
 ## Before Using
 
+<div markdown="block" class="alert alert-info">
+
 **:information_source: Explanation of our User Interface:**<br>
 
 ![UI_Explanation](images/UI_Explanation.png)
@@ -43,7 +45,8 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 |**Selected Trip Box**| where the current selected trip is shown.<br><br> Use `select` to select a trip.|
 |**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown:<ul><li>`completed`</li><li>`view`</li><li>`list`</li></ul>See feature list for more information about the commands.|
 | **Event List Display** |where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown:<ul><li>`completed`</li><li>`view`</li><li>`list-e`</li><li>`select`</li></ul>See feature list for more information about the commands.
- 
+
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
