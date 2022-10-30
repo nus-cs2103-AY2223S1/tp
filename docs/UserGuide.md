@@ -226,8 +226,8 @@ add-person-to-module m/CS2103T n/Dinosaur Lim
 ```
 In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**
-If you wish to view the person added to a particular module, you can go to that 
-module's page using the [`goto`](#252-navigate-between-modules) command.
+If you wish to view a person added to a particular module, you may do so by navigating to that
+module using the [`goto`](#252-navigate-between-modules) command.
 </div>
 
 #### 2.1.7. Delete person from module
