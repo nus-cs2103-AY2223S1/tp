@@ -13,7 +13,7 @@ import java.util.Optional;
 public class Task {
 
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd-MM-yyyy format "
-            + ", must be a valid date and in between year 1900 to 2100.";
+            + ", must be a valid date and in between year 1900 and 2100.";
     public static final String MESSAGE_INVALID_DATE_VALUE = "Deadline must be in between the year 1900 to 2100";
 
     private static final LocalDate EARLIEST_DATE = LocalDate.of(1899, 12, 31);
