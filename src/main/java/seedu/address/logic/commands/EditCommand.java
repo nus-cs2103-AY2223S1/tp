@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_INTERVAL;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -53,14 +54,15 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_MINECRAFT_NAME + "MINECRAFT_NAME] "
-            + "[" + PREFIX_MINECRAFT_SERVER + "MINECRAFT_SERVER] "
-            + "[" + PREFIX_GAME_TYPE + "GAME_TYPE] "
-            + "[" + PREFIX_SOCIAL + "SOCIAL] "
-            + "[" + PREFIX_TAG + "TAG]...";
+            + "[" + PREFIX_MINECRAFT_SERVER + "MINECRAFT_SERVER]* "
+            + "[" + PREFIX_GAME_TYPE + "GAME_TYPE]* "
+            + "[" + PREFIX_SOCIAL + "SOCIAL]* "
+            + "[" + PREFIX_TAG + "TAG]* "
+            + "[" + PREFIX_TIME_INTERVAL + "TIME_INTERVAL]*";
     public static final String EXAMPLE = COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + " johndoe@example.com "
-            + PREFIX_SOCIAL + " fb@John Doe ";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_SOCIAL + "fb@John Doe ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": " + DESCRIPTION + "\n\n"
             + "Parameters: \n"

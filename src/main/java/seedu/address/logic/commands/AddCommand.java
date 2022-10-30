@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_COUNTRY + "TIMEZONE] "
+            + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_SOCIAL + "SOCIAL]* "
             + "[" + PREFIX_MINECRAFT_SERVER + "SERVER]* "
             + "[" + PREFIX_TAG + "TAG]* "
