@@ -351,9 +351,9 @@ task within the task list of the module `CS2103T`. Here's a screenshot of
 Plannit before and after executing the command. Note that ["peek"](#224-peeking-at-tasks)
 has been enabled for clarity:
 
-| Before executing the command                                                                 | After executing the command                                                                                                                         |
-|----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p><br/><p/>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p> <p align="right">_Notice tasks 1 and 3 have swapped positions!_<p/>{:/} |
+| Before executing the command                                                                 | After executing the command                                                                                                                              |
+|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p><br/><p/>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p> <p align="right"><i>Notice tasks 1 and 3 have swapped positions!</i><p/>{:/} |
 
 #### 2.2.4. Peeking at tasks
 You may "peek" at a module's tasks by clicking on the module while on the 
