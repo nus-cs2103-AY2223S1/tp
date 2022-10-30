@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tuthub.testutil.TypicalIndexes.*;
+import static tuthub.testutil.TypicalIndexes.INDEX_FIRST_TUTOR;
+import static tuthub.testutil.TypicalIndexes.INDEX_SECOND_TUTOR;
+import static tuthub.testutil.TypicalIndexes.INDEX_THIRD_TUTOR;
 import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
 
 import org.junit.jupiter.api.Test;
