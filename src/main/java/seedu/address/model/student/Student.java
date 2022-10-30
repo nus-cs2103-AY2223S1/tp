@@ -33,7 +33,7 @@ public class Student {
         this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
-        this.tutorialGroup = new TutorialGroup();
+        this.tutorialGroup = null;
     }
 
     /**
@@ -63,7 +63,7 @@ public class Student {
 
 
     public boolean isEnrolledInTutorial() {
-        return tutorialGroup.isInitiated();
+        return tutorialGroup != null;
     }
 
     public TutorialGroup getTutorialGroup() {

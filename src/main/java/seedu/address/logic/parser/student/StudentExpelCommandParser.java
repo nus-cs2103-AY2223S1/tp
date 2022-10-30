@@ -43,7 +43,7 @@ public class StudentExpelCommandParser implements Parser<StudentExpelCommand> {
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
 
-        TutorialGroup tutorialGroup = TutorialGroup.EMPTY_TUTORIAL_GROUP;
+        TutorialGroup tutorialGroup = null;
 
         if (argMultimap.getValue(PREFIX_TUTORIAL_GROUP).isPresent()) {
             tutorialGroup = ParserUtil.parseTutorialGroup(argMultimap
