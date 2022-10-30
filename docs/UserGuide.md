@@ -141,22 +141,24 @@ The reminder panel displays the number of interviews, assessments or pending off
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
 
 </div>
 
 ## Features
 This section shows all features and commands which is supported by PleaseHireUs. 
 
+<div markdown="block" class="alert alert-info">
+Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
+</div>
 
 ### Parameters Requirement
-Here is the parameter requirements of commonly used parameters in the commands below.[](#copy-details-of-internship--copy)
+Here is the parameter requirements of commonly used parameters in the commands below.
 
 | Parameter                 | Description                                                                            | Requirement / Remarks                                                                                                                                                                                                                              |
 |---------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **`COMPANY_NAME`**        | Name of company you are applying to                                                    | Alphanumeric and may contain spaces                                                                                                                                                                                                                |
 | **`POSITION`**            | Position of the internship you are applying for                                        | Alphanumeric and may contain spaces                                                                                                                                                                                                                |
-| **`APPLICATION_PROCESS`** | Position of the internship you are applying for                                        | Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`                                                                                                                                                                 |
+| **`APPLICATION_PROCESS`** | Current process of the internship you are applying for                                 | Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`                                                                                                                                                                 |
 | **`DATE`**                | Date of upcoming application task                                                      | In **dd-mm-yyyy** format                                                                                                                                                                                                                           |
 | **`PHONE`**               | Contact number of HR                                                                   | In **[+COUNTRY_CODE] PHONE_NUMBER** format <br><br> - COUNTRY_CODE is optional <br> - COUNTRY_CODE must be 1 to 3 digits long <br> - PHONE_NUMBER is between 3 to 15 digits long <br> - Space in between COUNTRY_CODE and PHONE_NUMBER is optional |
 | **`EMAIL`**               | Email address of HR                                                                    | Contains a `@` and `.com` symbol <br> Example: `example@example.com`                                                                                                                                                                               |
@@ -312,8 +314,14 @@ Format: `view INDEX`
 * Only the index is searched.
 * More details about the company at the index will be displayed.
 
-Examples:
+Examples:s
 * `list` followed by `view 1` displays more details of the 1st internship in list.
+
+![before_view](images/BeforeViewCommand.png)
+_Before executing command:  `view 1`_
+
+![after_view](images/AfterViewCommand.png)
+_After executing command: `view 1`_
 
 ### Copy details of internship : `copy`
 
