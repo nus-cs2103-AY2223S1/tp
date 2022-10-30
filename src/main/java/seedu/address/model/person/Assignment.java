@@ -18,7 +18,7 @@ public class Assignment {
                     + "or equal to the second number (max 100).";
 
     public static final String WEIGHTAGE_CONSTRAINTS =
-            "Weightage should be in terms of percentages, i.e. 0 - 100";
+            "Weightage should be in terms of percentages, i.e. 1 - 100";
 
     private final String name;
     private String grade;

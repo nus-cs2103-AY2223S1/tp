@@ -1,5 +1,7 @@
 package seedu.address.model.person.position;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -27,7 +29,7 @@ public abstract class Position {
      * Constructor for Position
      */
     public Position(String value) {
-
+        requireNonNull(value);
         this.value = value;
     }
 

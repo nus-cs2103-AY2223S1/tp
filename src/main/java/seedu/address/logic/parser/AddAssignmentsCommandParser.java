@@ -23,7 +23,7 @@ public class AddAssignmentsCommandParser implements Parser<AddAssignmentsCommand
 
         String assignments = argMultimap.getValue(PREFIX_ASSIGNMENTS).orElse("");
         if (!Student.isValidAssignments(assignments)) {
-            throw new ParseException(Student.ASSIGNMENT_CONSTRAINTS);
+            throw new ParseException(Student.findAssignmentIssue(assignments));
         }
 
         return new AddAssignmentsCommand(assignments);
