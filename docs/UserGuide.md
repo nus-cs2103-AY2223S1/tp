@@ -65,7 +65,7 @@ faster than traditional GUI apps.
 
 </div>
 
-### Add students : `student add`
+### Add students: `student add`
 
 - Command `student add n/studentName p/phoneNumber e/email g/tutorialGroup(optional) t/tags(optional)`
 - Adds a student with the given phone number, email, tutorial group, and tags to the list of students
@@ -80,7 +80,7 @@ Notes:
 - `<tutorialGroup>` should follow the format Txx, where x is a numeric value, and it should not be blank
 - `<tags>` should be alphanumeric with no white space
 
-### Remove students : `student delete`
+### Remove students: `student delete`
 
 - Command `student delete <index>`
 - Removes the student from the list of students with the given index
@@ -88,7 +88,7 @@ Notes:
 Notes:
 - `index` must be a positive integer and must correspond to an existing student
 
-### Edit students : `student edit`
+### Edit students: `student edit`
 
 - Command `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tag>(optional)`
 - Edits the student by its given index with at least 1 variable specified to change.
@@ -96,13 +96,12 @@ Notes:
 Notes:
 - `index` must be a positive integer and must correspond to an existing student
 
-### List students : `student list`
+### List students: `student list`
 
 - Command `student list`
-- Abbreviate with `students`
 - Shows a list of all students
 
-### Add new task : `task add`
+### Add new task: `task add`
 
 - Command `task add tn/<taskName> i/<taskDescription> d/<taskDeadline> s/<student(s)>(optional)`
 - Adds a task to the list of tasks
@@ -122,7 +121,7 @@ Notes:
 Notes:
 - `index` must be a positive integer and valid
 
-### Edit task : `task edit`
+### Edit task: `task edit`
 
 - Command `task edit <index> tn/<taskName>(optional) i/<taskDescription>(optional) d/<taskDeadline>(optional) s/<student(s)>(optional)`
 - Edits the task by its given index with at least 1 variable specified to change.
@@ -130,23 +129,22 @@ Notes:
 Notes:
 - `index` must be a positive integer and valid
 
-### List tasks :
+### List tasks: `task list`
 
 - Command `task list`
-- Abbreviate with `tasks`
 - Shows a list of tasks
 
-### Add new tutorial group : `tutorial add`
+### Add new tutorial group: `tutorial add`
 
 - Command `tutorial add g/<tutorialGroup>`
 - Adds the tutorial group with the name `tutorialGroup`
 
-### Remove tutorial group : `tutorial delete`
+### Remove tutorial group: `tutorial delete`
 
 - Command `tutorial delete g/<tutorialGroup>`
 - Removes the tutorial group with the name `tutorialGroup`
 
-### Enroll a student into a group : `student enroll`
+### Enroll a student into a group: `student enroll`
 
 - Command `student enroll <index> g/<groupName>`
 - Enrolls the student at index i to the group named `groupName`
@@ -166,12 +164,12 @@ Notes:
 - Command `grade view <studentIndex> <taskIndex>`
 - Shows the grade status of the specified student's assignment
 
-### Display user guide url : `help me`
+### Display user guide url: `help me`
 
 - Command `help me`
 - Shows a popup with the user guide url in it
 
-### Exit the app : `bye bye`
+### Exit the app: `bye bye`
 
 - Command `bye bye`
 - Exit and close the app
