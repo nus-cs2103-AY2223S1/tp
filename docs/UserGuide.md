@@ -5,7 +5,7 @@ title: User Guide
 
 # SectresBook
 
-![](../src/main/resources/images/address_book_32.png)
+![](images/icons/address_book_32.png)
 
 SectresBook helps secretaries to **maintain all the information of the members of their club** by collating a list of identifiable information, past records, loan amounts and future tasks. As a treasurer, use SectresBook **manage the finances of your club better** by keeping track of the funds loaned to each member. This all-in-one tool eliminates the trouble of having to search through multiple notebooks/apps to find information regarding a club member, saving you time and effort so that you can focus on other tasks at hand using the notes feature!
 
@@ -146,7 +146,7 @@ The name of a person to be recorded in the SectresBook. Two persons cannot have 
 
 This property can be identified from the GUI by the icon of the silhouette of a person.
 
-<img src="../src/main/resources/images/person.png" width="50" height="50">
+<img src="images/icons/person.png" width="50" height="50">
 
 - Identified by the prefix `name`.
 - This is a valid property to find a person by using the `find` command.
@@ -162,7 +162,7 @@ This is phone number of the person to be recorded in the SectresBook. This is a 
 
 This property can be identified from the GUI by the icon of a mobile phone.
 
-<img src="../src/main/resources/images/phone.png" width="50" height="50">
+<img src="images/icons/phone.png" width="50" height="50">
 
 - Identified by the prefix `phone`.
 - A phone number should contain only numbers and be at least 3 digits long.
@@ -181,7 +181,7 @@ This pertains to the email address of the person to be recorded in the SectresBo
 
 This property can be identified from the GUI by the icon of an envelope.
 
-<img src="../src/main/resources/images/mail.png" width="50" height="50">
+<img src="images/icons/mail.png" width="50" height="50">
 
 - Identified by the prefix `email`.
 - Emails should be of the format `local-part@domain` and adhere to the following constraints:
@@ -200,7 +200,7 @@ This is the residing address of the person. It serves mainly as a point of infor
 
 This property can be identified from the GUI by the icon of a house.
 
-<img src="../src/main/resources/images/home.png" width="50" height="50">
+<img src="images/icons/home.png" width="50" height="50">
 
 - Identified by the prefix `home`.
 - There is no constraint on how the home address of a person should be written, as long as it is sufficiently understandable.
@@ -217,7 +217,7 @@ This is amount of money that is owed by a person, or is to be paid to that perso
 
 This property can be identified from the GUI by the icon of the hand holding two stacks of coins.
 
-<img src="../src/main/resources/images/loan.png" width="50" height="50">
+<img src="images/icons/loan.png" width="50" height="50">
 
 - A loan amount can be either negative, positive or zero.
     + A positive value indicates an amount that the person has yet to pay to the organisation.
@@ -239,11 +239,11 @@ The most recent transaction is recorded at the top, on the row next to the loans
 
 The upwards point red arrow signifies an amount loaned to this member in a transaction.
 
-<img src="../src/main/resources/images/increase_arrow.png" width="50" height="50">
+<img src="images/icons/increase_arrow.png" width="50" height="50">
 
 The downwards pointing green arrow signifies an amount that this member has paid back in a transaction.
 
-<img src="../src/main/resources/images/decrease_arrow.png" width="50" height="50">
+<img src="images/icons/decrease_arrow.png" width="50" height="50">
 
 - Consists of the following sub-properties:
     - Current loan value
@@ -261,7 +261,7 @@ The birthday date of the person.
 
 This property can be identified from the GUI by the icon of a birthday cake.
 
-<img src="../src/main/resources/images/birthday.png" width="50" height="50">
+<img src="images/icons/birthday.png" width="50" height="50">
 
 - Identified by the prefix `bday`.
 - Serves as a point of information for a person.
