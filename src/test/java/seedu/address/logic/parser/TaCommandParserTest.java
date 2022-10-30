@@ -105,16 +105,15 @@ public class TaCommandParserTest {
         // zero tags
         Person expectedPerson = new TeachingAssistantBuilder(CABE).withRating(VALID_RATING_CABE)
                 .withModuleCode(VALID_MODULE_CODE_CABE).withGithubUsername(VALID_GITHUB_CABE)
-                .withLocation(VALID_LOCATION_CABE).withTags().build();
+                .withLocation(VALID_LOCATION_CABE).withTags(VALID_TAG_FRIEND).build();
         assertParseSuccess(taParser, NAME_DESC_CABE + PHONE_DESC_CABE + EMAIL_DESC_CABE
                         + GENDER_DESC_CABE + MODULE_CODE_DESC_CABE + RATING_DESC_CABE + GITHUB_USERNAME_DESC_CABE
-                        + LOCATION_DESC_CABE,
+                        + TAG_DESC_FRIEND + LOCATION_DESC_CABE,
                 new TaCommand((TeachingAssistant) expectedPerson));
     }
 
     @Test
     public void parse_optionalGithubFieldMissing_success() {
-        // no github username input
         Person expectedPerson = new TeachingAssistantBuilder(CABE).withRating(VALID_RATING_CABE)
                 .withModuleCode(VALID_MODULE_CODE_CABE).withTags(VALID_TAG_FRIEND)
                 .withLocation(VALID_LOCATION_CABE).build();
