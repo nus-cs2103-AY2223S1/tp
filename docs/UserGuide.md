@@ -152,7 +152,7 @@ Parameter constraints:
 Examples:
 * `:add n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
 * `:add n/Deadlift w/60 s/1 r/1 d/27-01-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
-* 
+
 ![AddCommand](images/AddCommand.png)
 
 <div style="page-break-after: always;"></div>
@@ -168,9 +168,6 @@ Parameter constraints:
 
 Example:
 * `:del 9` Deletes an exercise at index 9 of the list
-
-![DeleteCommand](images/DeleteCommand.png)
-
 
 ### 5.3. Listing all exercises : `:list`
 
