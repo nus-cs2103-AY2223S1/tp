@@ -191,10 +191,12 @@ __Examples:__
 * `findInt swe security` returns all batchmates whose interests contain both `swe` and `security`.
 
 ### Module commands
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
+Commands used to manage a batchmate's personal information in [Batchmate commands](#batchmate-commands) and [Interest commands](#interest-commands) follow the 1 command word syntax. E.g., `add` and `addInt`.
+Whereas, commands that manage a module detail in [Module commands](#module-commands) follow the 2 command word syntax `mod &lt;command word&gt;`. E.g., `mod add` and `mod delete`.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-For commands that change a batchmate's personal details in the __Students panel__, i.e., [Batchmate commands](#batchmate-commands) and [Interest commands](#interest-commands), each command uses 1 command word. E.g., `add` and `addInt`.<br>
-For commands that change a batchmate's module details in the __Modules panel__, i.e., [Module commands](#module-commands), each command uses 2 command words with the syntax `mod &lt;command word&gt;`. E.g., `mod add` and `mod delete`.
+This is to facilitate easy distinction between the nature of commands.
+
 </div>
 
 #### View a batchmate's modules
