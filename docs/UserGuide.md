@@ -204,7 +204,7 @@ The `find` command finds the task names or tags which contain the word or words 
 `find` is not case-sensitive and the keyword being searched does not have to match a whole word
 (Example: searching `tap` in task name `tape` will be shown).
 
-Format: `find WORD [MORE_WORDS]`
+Format: `find WORD [MORE_WORDS*]`
 
 Singular word search example: `find tutorial`
 
@@ -265,10 +265,10 @@ Terminates and exits the program.
 
 Format: `exit`
 
-### Command history : <kbd>Up</kbd>/<kbd>Down</kbd> keys 
+### Command history : <kbd>`Up`</kbd>/<kbd>`Down`</kbd> keys 
 Loads previous command into the _Command Box_. 
 
-While the _Command Box_ is in focus, use the <kbd>Up</kbd> and <kbd>Down</kbd> arrow keys to navigate through the command history that is automatically loaded in. 
+While the _Command Box_ is in focus, use the <kbd>`Up`</kbd> and <kbd>`Down`</kbd> arrow keys to navigate through the command history that is automatically loaded in. 
 
 ### Saving the data
 NotionUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -292,7 +292,7 @@ Examples:
 ### Autocomplete
 
 When the user starts to type in the start of a command, a popup menu will appear with options to complete your input.
-Use the <kbd>Up</kbd> and <kbd>Down</kbd> arrow keys to navigate through the options and <kbd>Enter</kbd> to fill the command box with the command
+Use the <kbd>`Up`</kbd> and <kbd>`Down`</kbd> arrow keys to navigate through the options and <kbd>`Enter`</kbd> to fill the command box with the command
 of your choice.
 
 --------------------------------------------------------------------------------------------------------------------
