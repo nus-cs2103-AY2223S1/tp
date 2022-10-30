@@ -1009,7 +1009,7 @@ testers are expected to do more *exploratory* testing.
        Expected: An error message indicating that the folder you are about to create already exists will be displayed in the result panel.
    
    3. Test case: `file create current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
-       Expected: An error message indicating that the folder you are about to create is the folder that is currently in view will be displayed in the result panel. No creation occurs.
+       Expected: An error message indicating that the folder you are trying to create is the folder that is currently in view will be displayed in the result panel. No creation occurs.
 
 2. Creating a new data folder when no folder with the same name already exists.
 
@@ -1019,8 +1019,6 @@ testers are expected to do more *exploratory* testing.
        Expected: A folder with the name `does_not_exist` is created in the `ROOT/data` directory.
 
 #### Deleting an existing data folder
-
-[Comment]: <> (To be added)
 
 1. Deleting a data folder that does not exist.
 
@@ -1037,11 +1035,26 @@ testers are expected to do more *exploratory* testing.
        Expected: Deletes the `already_exists` folder.
 
    3. Test case: `file delete current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
-       Expected: An error message indicating that the folder you are about to delete is the folder that is currently in view will be displayed in the result panel. No deletion occurs.
+       Expected: An error message indicating that the folder you are trying to delete is the folder that is currently in view will be displayed in the result panel. No deletion occurs.
 
 #### Switching data folders
 
-[Comment]: <> (To be added)
+1. Switching to a data folder that does not exist.
+
+   1. Prerequisites: There is no folder in the `ROOT/data` directory that has the same name as the data folder you are trying to switch to.
+
+   2. Test case: `file switch does_not_exist` <br>
+       Expected: An error message indicating that the folder you are trying to switch to, does not exist will be displayed in the result panel.
+
+2. Switching to a data folder that exists.
+
+   1. Prerequisites: There is an existing folder in the `ROOT/data` directory that has the same name as the data folder you are trying to switch to.
+
+   2. Test case: `file switch already_exists` <br>
+       Expected: Switches to the `already_exists` folder.
+
+   3. Test case: `file switch current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
+       Expected: An error message indicating that the folder you are trying to switch to is already the currently viewed data folder will be displayed in the result panel.
 
 #### Importing from CSV file
 
