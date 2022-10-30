@@ -7,10 +7,13 @@ import static seedu.boba.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.boba.model.customer.Customer.BIRTHDAY_TAG;
 
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.model.Model;
 import seedu.boba.model.customer.Customer;
+
+import java.time.LocalDate;
 
 /**
  * Adds a customer to bobaBot.
@@ -55,6 +58,16 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
+        }
+
+        LocalDate currentDate = LocalDate.now();
+        String currentMonth = String.valueOf(currentDate.getMonth().getValue());
+        if (toAdd.getTags().contains(BIRTHDAY_TAG)
+                && !toAdd.getBirthdayMonth().value.equals(currentMonth)) {
+            toAdd.removeBirthdayTag();
+        } else if (!toAdd.getTags().contains(BIRTHDAY_TAG)
+                && toAdd.getBirthdayMonth().value.equals(currentMonth)) {
+            toAdd.addBirthdayTag();
         }
 
         model.addPerson(toAdd);
