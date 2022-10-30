@@ -7,8 +7,6 @@ show-toc: true
 
 {% include_relative _ug/About.md %}
 
-{% include page-break.html %} <!-- Force a page break -->
-
 {% include toc.md header=true show-in-toc=true ordered=true %}
 
 ## Features
@@ -23,7 +21,7 @@ show-toc: true
 
 {% include_relative _ug/Installation.md %}
 
-## Quickstart Guide 
+## Quickstart Guide
 
 {% include_relative _ug/QuickstartGuide.md %}
 
