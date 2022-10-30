@@ -36,6 +36,10 @@ Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of t
   - The `NAME`, `PHONE`, `PRICE`, `ITEM` and `ADDRESS` fields are compulsory.
   - The `TAG` field is optional.
 
+- For commands that accept tag fields, i.e. `add`, `addTask`, `edit` and `editTask`, multiple tags are allowed but each tag can only contain a single word.
+  - `t/Supplier t/Chicken t/Delivery` is allowed
+  - `t/Supplier for Chicken` is not allowed
+
 - Index numbers in commands, e.g. `delete <supplier index>` are compulsory.
 
 - When multiple similar prefixes are input by the user, e.g. `i/Chicken i/Egg i/Cups`,
@@ -97,16 +101,17 @@ Adds an item of a specified type with the given details
 
 ***Format:***
 
-`add n/NAME p/PHONE(8 digits) pr/PRICE i/ITEM a/ADDRESS [t/SUPPLIER]` **(supplier)**
+`add n/NAME p/PHONE(8 digits) pr/PRICE i/ITEM a/ADDRESS [t/TAG]` **(supplier)**
 
-`addTask d/TASKNAME dl/DEADLINE [t/TAG_NAME]` **(task)**
-
-<div markdown="span" class="alert alert-info">**Note:**
-Multiple entries for `TAG_NAME` are allowed.
-e.g. `addTask d/TASKNAME dl/DEADLINE [t/TAG_NAME1] [t/TAG_NAME2] [t/TAG_NAME3]`
-</div>
+`addTask d/TASKNAME dl/DEADLINE [t/TAG]` **(task)**
 
 `addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK` (supply item)
+
+<div markdown="span" class="alert alert-info">
+
+**Note:** Tag rules apply for `add` and `addTask`. Refer to [this section](#important-information).
+
+</div>
 
 **Examples:**
 
@@ -206,12 +211,16 @@ Edits a specified item's details
 
 `edit <supplier index> [n/NAME] [p/PHONE] [pr/PRICE] [i/ITEM] [a/ADDRESS] [t/TAG]` (supplier)
 
-`editTask <task index> [d/DESCRIPTION] [dl/DEADLINE] [t/TAGS]` (task)
+`editTask <task index> [d/DESCRIPTION] [dl/DEADLINE] [t/TAG]` (task)
 
-`editStock <item index> c/NEWCURRENTSTOCK` (supply item)
+`editStock <item index> c/CURRENTSTOCK` (supply item)
 
-<div markdown="span" class="alert alert-info">**Note:**
-At least one field has to be edited for the command to execute successfully.
+<div markdown="span" class="alert alert-info">
+
+**Note:** At least one field has to be edited for the command to execute successfully.
+
+Tag rules apply for `edit` and `editTask`. Refer to [this section](#important-information).
+
 </div>
 
 **Examples**
