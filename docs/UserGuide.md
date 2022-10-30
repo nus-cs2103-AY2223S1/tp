@@ -148,7 +148,7 @@ Format: `help`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the task list.
+Clears all contacts from the address book.
 
 Format: `clear`
 
