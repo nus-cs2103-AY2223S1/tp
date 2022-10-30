@@ -215,7 +215,7 @@ Example:
 
 ### Deleting a commission: `delcom`
 
-Deletes a commission at `INDEX` and images related to the commission.
+Deletes a commission at `INDEX` and iterations related to the commission.
 
 Format: `delcom INDEX`
 
@@ -255,7 +255,7 @@ and feedback "Looks great".
 <br>
 <details>
 <summary id="filepath_explanation">What is a filepath and my root directory?</summary>
-<div markdown="span" class="alert alert-info">
+<div markdown="1" class="alert alert-info">
 **:information_source: What is a filepath and my root directory?**<br>
 Just like how we use addresses to tell specify locations when talking to people, computers
 do the same! Each file in your computer has a unique address that can be used to identify the
@@ -277,12 +277,20 @@ folder called John. Open that up and you'll find another folder called Downloads
 Open the Downloads folder and you'll see the file I want called `Draft 1.png`".
 <br><br>
 To easily copy a filepath of a file:
+
 <ul>
-<li>On Windows, in your File Explorer, hold shift down while you right-click on the file you want.
-Select the option `Copy as Path` and the filepath of your file will be copied!</li>
-<li>On Mac, in your Finder, click on the file you want to select it and press the
-`Option`, `Command`, `C` keys simultaneously. The filepath of your file is now copied!</li>
+<li>
+
+On Windows, in your File Explorer, hold shift down while you right-click on the file you want. Select the option <code>Copy as Path</code> and the filepath of your file will be copied!
+
+</li>
+<li>
+
+On Mac, in your Finder, click on the file you want to select it and press the <code>Option</code>, <code>Command</code>, <code>C</code> keys simultaneously. The filepath of your file is now copied!
+
+</li>
 </ul>
+
 </div>
 </details>
 <br>
@@ -451,7 +459,7 @@ Action | Format, Examples
 **Edit commission** | `editcom INDEX [n/TITLE] [f/FEE] [d/DEADLINE] [s/COMPLETION STATUS] [p/DESCRIPTION] [t/TAG]...` <br> e.g., `editcom 1 n/Tokyo Ghoul Kaneki f/50 d/2022-10-10 s/False p/Unfamiliar, I will need to do up a reference board first. t/digital t/neon`
 **Delete Commission** | `delcom INDEX`<br> e.g., `delcom 14`
 **Add Iteration** | `additer n/DESCRIPTION d/DATE f/FEEDBACK p/FILEPATH`<br> e.g., `additer n/Draft 1 f/Good d/ 2022-10-28 p//Users/John/Downloads/Bread.jpeg`
-**Edit Iteration**| `editer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, `edititer 2 n/Sketch`
+**Edit Iteration**| `edititer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, `edititer 2 n/Sketch`
 **Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
 **List customers**| `list`
 **Find customers**| `find [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...` <br> e.g. `find -all t/friend t/colleague`
