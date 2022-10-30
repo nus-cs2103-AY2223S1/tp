@@ -504,10 +504,13 @@ Examples:
 In the student and tutor list, the details of the persons are not displayed. You could access the person’s details by executing the show command.
 
 Format: `show INDEX` 
-* `show 1` shows the description of the first student in the list
+
+* In the student list, `show 1` shows the description of the first student in the list.
+* In the tutor list, `show 1` shows the description of the first tutor in the list.
+* In the class list, `show 1` is invalid as `show` command can only be executed for the student and tutor list.
 
 Examples:
-* `show 3`
+* `show 3` in the student list
 
 <p align="center">
 
@@ -522,6 +525,8 @@ Examples:
 </p>
 
 Note that `show` is an invalid command for class list since the details of classes are already in the class list, thus when you are in the class list, `show 1` is an invalid command.
+
+* `show 1` in the class list
 
 <p align="center">
 
@@ -565,6 +570,8 @@ Examples:
 
 </p>
 
+This adds the a next of kin to John Doe.
+
 * `nok 5`
 
 <p align="center">
@@ -579,7 +586,7 @@ Examples:
 
 </p>
 
-This deltes the Next of Kin of John Doe.
+This deltes the next of kin of John Doe.
 
 ### Exporting address books to csv
 
@@ -587,14 +594,14 @@ Export Students, Tutors, and TuitionClasses address books into their own .csv fi
 
 Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and click on "*Export*" in the dropdown menu.
 
+* The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
+* The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
+
 <p align="center">
 
 <img src="images/exportButton.png"/>
 
 </p>
-
-* The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
-* The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
 
 ---
 
