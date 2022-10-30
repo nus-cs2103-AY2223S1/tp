@@ -91,7 +91,7 @@ However, you may also choose to head over to the relevant sections as described 
 
 Several commands below require an `index` to be specified, as they operate on a task/contact specified by the user. For example, the deletion of a particular task.
 * Indexes are either `task_index` or `contact_index`
-* The index always refers to the index number of the task/contact in the **currently displayed lists**
+* The index always refers to the index number of the task/contact in the **currently displayed list**
 * This value ranges from 1, 2, 3...
 
 </div>
@@ -107,7 +107,7 @@ Format: `help`
 
 #### Adding a task: `add`
 
-Adds a task and its deadline to the task list, with an optional module.
+Adds a task and its deadline to the task list. Specifying the module the task belongs to is optional.
 
 Format:
 `add {task_name} by/{deadline} [m/{module_code}]`
@@ -207,7 +207,7 @@ Example:
 
 #### Searching for tasks: `find`
 
-Search for tasks by their name or module. The search is done in a **case-insensitive** manner, and a search by task name **matches substrings**.
+Searches for tasks by their name or module. The search is done by **matching keywords** in a **case-insensitive** manner.
 
 Format:
 `find n/{keyword}` `find m/{module}`
@@ -234,7 +234,7 @@ Format: `list`  `list time`
 
 </div>
 
-Click [here](#) to return to the top of the page/content page.
+Click [here](#) to return to the top of the page.
 
 ### Managing contacts
 
@@ -258,7 +258,7 @@ Modules, however, may be entered as **space separated**. For example, `m/MOD1 MO
 
 </div>
 
-#### Listing all contact : `listc`
+#### Listing all contacts : `listc`
 
 Shows a list of all contacts.
 
@@ -294,7 +294,7 @@ Examples:
 
 #### Searching for contacts: `findc`
 
-Finds persons whose names contain any of the given keywords, or find persons who take a particular module.
+Finds contacts whose names contain any of the given keywords, or contacts who take a particular module.
 
 Format:
 `findc n/{name}` `findc m/{module}` `findc ts/{task_index}`
@@ -309,7 +309,7 @@ Examples:
 
 #### Quick-search for contacts: `saveme`
 
-Finds persons that can help with the task at the first index of the task list.
+Finds contacts that can help with the task at the first index of the task list.
 
 Example:
 1. The task at **index 1** belongs to the `CS1101S` module.
@@ -336,7 +336,7 @@ Deleted contacts are **unrecoverable**!
 
 </div>
 
-Click [here](#) to return to the top of the page/content page.
+Click [here](#) to return to the top of the page.
 
 ### Finishing up
 
@@ -408,4 +408,4 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 
 </>
 
-Click [here](#) to return to the top of the page/content page.
+Click [here](#) to return to the top of the page.
