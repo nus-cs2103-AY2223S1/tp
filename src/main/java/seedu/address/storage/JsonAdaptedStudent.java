@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
@@ -20,7 +21,6 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 
 /**
@@ -79,7 +79,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         telegram = source.getTelegram().telegram;
-        tutorialModule = source.getTutorialModule().moduleName;
+        tutorialModule = source.getTutorialModule().moduleCode;
         tutorialName = source.getTutorialName().fullName;
         attendance = source.getAttendance().value;
         participation = source.getParticipation().value;
@@ -145,12 +145,12 @@ class JsonAdaptedStudent {
 
         if (tutorialModule == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TutorialModule.class.getSimpleName()));
+                    ModuleCode.class.getSimpleName()));
         }
-        if (!TutorialModule.isValidModule(tutorialModule)) {
-            throw new IllegalValueException(TutorialModule.MESSAGE_CONSTRAINTS);
+        if (!ModuleCode.isValidModule(tutorialModule)) {
+            throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
-        final TutorialModule modelTutorialModule = new TutorialModule(tutorialModule);
+        final ModuleCode modelModuleCode = new ModuleCode(tutorialModule);
 
         if (tutorialName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -189,7 +189,7 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Student(modelName, modelId, modelPhone, modelEmail,
-                modelTelegramHandle, modelTutorialModule, modelTutorialName,
+                modelTelegramHandle, modelModuleCode, modelTutorialName,
                 modelAttendance, modelParticipation, modelGrade, modelTags);
     }
 

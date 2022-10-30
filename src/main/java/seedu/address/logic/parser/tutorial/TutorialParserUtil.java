@@ -3,7 +3,6 @@ package seedu.address.logic.parser.tutorial;
 import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialVenue;
 
@@ -25,21 +24,6 @@ public class TutorialParserUtil {
             throw new ParseException(TutorialName.MESSAGE_CONSTRAINTS);
         }
         return new TutorialName(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String moduleName} into a {@code TutorialModule}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code moduleName} is invalid.
-     */
-    public static TutorialModule parseTutorialModule(String moduleName) throws ParseException {
-        Objects.requireNonNull(moduleName);
-        String trimmedName = moduleName.trim();
-        if (!TutorialModule.isValidModule(trimmedName)) {
-            throw new ParseException(TutorialModule.MESSAGE_CONSTRAINTS);
-        }
-        return new TutorialModule(trimmedName);
     }
 
     /**

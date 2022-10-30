@@ -19,9 +19,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelType;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialVenue;
 
@@ -96,7 +96,7 @@ public class EditTutorialCommand extends Command {
         assert tutorialToEdit != null;
 
         TutorialName updatedName = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());
-        TutorialModule updatedModule = editTutorialDescriptor.getModule().orElse(tutorialToEdit.getModule());
+        ModuleCode updatedModule = editTutorialDescriptor.getModule().orElse(tutorialToEdit.getModule());
         TutorialVenue updatedVenue = editTutorialDescriptor.getVenue().orElse(tutorialToEdit.getVenue());
         WeeklyTimeslot updatedTimeslot = editTutorialDescriptor.getTimeslot()
                 .orElse(tutorialToEdit.getTimeslot());
@@ -128,7 +128,7 @@ public class EditTutorialCommand extends Command {
      */
     public static class EditTutorialDescriptor {
         private TutorialName name;
-        private TutorialModule module;
+        private ModuleCode module;
         private TutorialVenue venue;
         private WeeklyTimeslot timeslot;
 
@@ -159,11 +159,11 @@ public class EditTutorialCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setModule(TutorialModule module) {
+        public void setModule(ModuleCode module) {
             this.module = module;
         }
 
-        public Optional<TutorialModule> getModule() {
+        public Optional<ModuleCode> getModule() {
             return Optional.ofNullable(module);
         }
 

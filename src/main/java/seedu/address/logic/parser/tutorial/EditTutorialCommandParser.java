@@ -49,8 +49,8 @@ public class EditTutorialCommandParser implements Parser<EditTutorialCommand> {
                     .parseTutorialName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            editTutorialDescriptor.setModule(TutorialParserUtil
-                    .parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get()));
+            editTutorialDescriptor.setModule(ParserUtil
+                    .parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get()));
         }
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
             editTutorialDescriptor.setVenue(TutorialParserUtil

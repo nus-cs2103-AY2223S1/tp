@@ -73,8 +73,8 @@ public class EditStudentCommandParser implements Parser<EditCommand> {
                     argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            editPersonDescriptor.setTutorialModule(TutorialParserUtil
-                    .parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get()));
+            editPersonDescriptor.setTutorialModule(ParserUtil
+                    .parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get()));
         }
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
             editPersonDescriptor.setTutorialName(TutorialParserUtil

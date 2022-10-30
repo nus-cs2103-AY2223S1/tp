@@ -12,10 +12,10 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.datetime.DatetimeCommonUtils;
 import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialVenue;
 
@@ -44,7 +44,7 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
         }
 
         TutorialName name = TutorialParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_NAME).get());
-        TutorialModule module = TutorialParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
+        ModuleCode module = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
         TutorialVenue venue = TutorialParserUtil.parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get());
 
         String dayString = argMultimap.getValue(PREFIX_DATE_DAY).get();
