@@ -170,27 +170,42 @@ Format: `clear`
 
 ### Searching by multiple fields: `find`
 
-Finds entities from the current list based on multiple fields at a time such that the fields of the entity specified contains the respective keywords.
+Finds entities from the current list based on multiple fields such that the fields of the entity specified contains the respective keywords.
 
 Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...`
-* The input `PREFIXES` is case-sensitive and must be in lowercase. e.g. `n/hans e/notgmail.com`
-* The input `KEYWORDS` is case-insensitive. e.g. `n/hans` will match a student named “Hans”
+
+**Find students**<br>
+Format: `find [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]`
+
+**Find tutors**<br>
+Format: `find [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]`
+
+**Find classes**<br>
+Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
+
+* All fields are optional, but at least one pair of `PREFIX/KEYWORD` must be specified.
+* The input `PREFIX` is case-sensitive and must be in lowercase. e.g. `n/hans e/notgmail.com`
+* The input `KEYWORD` is case-insensitive. e.g. `n/hans` will match a student named “Hans”
 * Partial `KEYWORDS` will be matched e.g. `n/Ha` will match a student named “Hans Jones”
 * The order of the `PREFIX/KEYWORD` pair does not matter. e.g. `n/Alice p/12345678` vs `p/12345678 n/Alice`
-* All fields are optional, but at least one pair of `PREFIX/KEYWORD` must be specified.
 * `KEYWORDS` must not contain the `/` character.
 * If there are repeated `PREFIXES`, only the latest one will be taken.
 
-
 Examples:
 (insert screenshot of the current list being the student list)
+<img src="images/findStudentsBefore.png"/>
+<img src="images/findStudentsAfter.png"/>
 * `find n/john s/evergarden` returns the students, `Johnny` and `John Doe`, from “Evergarden Secondary School” in the student list.
 
 (insert screenshot of the current list being the class list)
+<img src="images/findTutorsBefore.png"/>
+<img src="images/findTutorsAfter.png"/>
 * `find a/clementi e/example.com i/nus` returns the tutors who live in Clementi, have emails with domain name “example.com” and graduated from NUS.
 
 (insert screenshot of the current list being the class list)
-* `find l/p1math d/sunday #/difficult` returns all classes whose names contain “p1math”, conducted on Sundays and have the tag “difficult”.
+<img src="images/findClassesBefore.png"/>
+<img src="images/findClassesAfter.png"/>
+* `find n/p1math d/sunday #/difficult` returns all classes whose names contain “p1math”, conducted on Sundays and have the tag “difficult”.
 
 ### Assign class to a person: `assign`
 
