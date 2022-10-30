@@ -182,6 +182,7 @@ Format: `clean`
 
 This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which **deletes all contacts**.
 
+</div>
 
 #### Marking a task: `mark`
 
@@ -231,8 +232,6 @@ Format: `list`  `list time`
 
 * `list` - displays a list of all tasks in the order of most recent task added
 * `list time` - displays a list of all tasks in the order of the earliest deadline
-
-</div>
 
 Click [here](#) to return to the top of the page.
 
@@ -405,7 +404,5 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | Telegram | `tele/` |
 | Task     | `ts/`   |
 | Deadline | `by/`   |
-
-</>
 
 Click [here](#) to return to the top of the page.
