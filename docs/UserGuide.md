@@ -3,14 +3,32 @@ layout: page
 title: User Guide
 ---
 
-CodeConnect is a **desktop app** for managing your **tasks and your contacts**, optimized for use via a **Command Line Interface** (CLI)
-while still having the benefits of a Graphical User Interface (GUI).
-If you can type fast, CodeConnect can get your tasks done faster than traditional GUI apps.
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+##Introduction
+
+CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. On top of being able to 
+manage your **tasks and contacts** effectively, students can conveniently search for peers that are taking the same module 
+as them to seek help or collaboration.
+
+This app is optimized for use via a **Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
+
+
+
+##How to use this guide?
+
+For new users, it is strongly recommended that you look through this User Guide to gain a comprehensive
+understanding of CodeConnect. 
+
+However, you may also choose to head over to the relevant sections as described below:
+
+- [Quick start](#Quick start) - To learn how to set up CodeConnect on your computer
+- [Features](#features) - To learn the different features and commands used in CodeConnect
+- [Command Summary](#Command summary) - To have a complete overview of all the features and their respective command.
+
 
 ## Quick start
 
