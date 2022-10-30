@@ -14,7 +14,6 @@ import seedu.address.logic.commands.CustomCommandBuilder;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.RemoveFieldCommand;
 import seedu.address.logic.commands.RenameCommand;
 import seedu.address.logic.commands.creationcommand.AliasCommand;
 import seedu.address.logic.commands.creationcommand.CreateCommand;
@@ -74,7 +73,6 @@ public class AddressBookParser {
         defaultMapper.put(ListCommand.COMMAND_WORD, k -> new ListCommand());
         defaultMapper.put(ExitCommand.COMMAND_WORD, k -> new ExitCommand());
         defaultMapper.put(HelpCommand.COMMAND_WORD, k -> new HelpCommand());
-        defaultMapper.put(RemoveFieldCommand.COMMAND_WORD, k -> new RemoveFieldCommandParser().parse(k));
         defaultMapper.put(ClearCommand.COMMAND_WORD, k -> new ClearCommand());
         defaultMapper.put(ChangeTeamCommand.COMMAND_WORD, k -> new ChangeTeamCommandParser().parse(k));
         defaultMapper.put(TaskCommand.COMMAND_WORD, k -> new TaskCommandParser().parse(k));

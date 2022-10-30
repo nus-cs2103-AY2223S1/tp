@@ -218,22 +218,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.removeIf(predicate);
     }
 
-    /**
-     * Adds a {@code field} to the each person in the address book.
-     * Field must not exist in the address book.
-     */
-    public void addField(String fieldName) {
-        persons.addField(fieldName);
-    }
-
-    /**
-     * Removes a {@code field} from each person in the address book.
-     * Field must already exist in the address book.
-     */
-    public void removeField(String fieldName) {
-        persons.removeField(fieldName);
-    }
-
     //// util methods
 
     @Override

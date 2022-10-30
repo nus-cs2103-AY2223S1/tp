@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.item.DisplayItemList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -96,24 +97,6 @@ public class UniquePersonList extends DisplayItemList<Person> {
         }
 
         internalList.setAll(persons);
-    }
-
-    /**
-     * Adds a Field instance to each person in the Persons list.
-     *
-     * @param fieldName the name of the field to be removed.
-     */
-    public void addField(String fieldName) {
-        internalList.forEach(person -> person.addField(fieldName));
-    }
-
-    /**
-     * Removes a Field instance from each person in the Persons list.
-     *
-     * @param fieldName the name of the field to be removed.
-     */
-    public void removeField(String fieldName) {
-        internalList.forEach(person -> person.removeField(fieldName));
     }
 
     @Override

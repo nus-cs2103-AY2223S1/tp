@@ -3,6 +3,11 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.item.AbstractDisplayItem;
+
+/**
+ * Jackson-friendly version of {@link AbstractDisplayItem}.
+ */
 abstract class JsonAdaptedAbstractDisplayItem {
 
     private final String name;
@@ -10,7 +15,9 @@ abstract class JsonAdaptedAbstractDisplayItem {
     private final List<JsonAdaptedAbstractAttribute> attributes = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
-
+    /**
+     * Constructs a {@code JsonAdaptedAbstractDisplayItem} with the given displayItem details.
+     */
     protected JsonAdaptedAbstractDisplayItem(String name, String uid, List<JsonAdaptedAbstractAttribute> attributes,
                                              List<JsonAdaptedTag> tags) {
         this.name = name;

@@ -15,24 +15,56 @@ import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 
+/**
+ * Jackson-friendly version of {@link Attribute}.
+ */
 class JsonAdaptedAbstractAttribute {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Attribute's %s field is missing!";
+    private static final String KEY_TYPE = "type";
+    private static final String KEY_CONTENT = "content";
+    private static final String KEY_DISPLAY_FORMAT = "display_format";
+    private static final String KEY_STYLE_FORMAT = "style_format";
 
     private final Map<String, Object> data = new HashMap<>();
 
+    /**
+     * Constructs a {@code JsonAdaptedAbstractAttribute} with the given attribute details.
+     */
     @JsonCreator
     public JsonAdaptedAbstractAttribute(@JsonProperty("data") Map<String, Object> data) {
-        this.data.putAll(data);
+        if (data != null) {
+            this.data.putAll(data);
+        }
     }
 
+    /**
+     * Converts a given {@code Attribute} into this class for Jackson use.
+     */
     public JsonAdaptedAbstractAttribute(Attribute<?> attribute) {
-        data.putAll(attribute.toSaveableData());
+        if (attribute != null) {
+            data.putAll(attribute.toSaveableData());
+        }
     }
 
+    /**
+     * Converts this Jackson-friendly adapted attribute object into the model's
+     * {@code Attribute} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted attribute.
+     */
     public Attribute<?> toModelType() throws IllegalValueException {
-        final String modelTypeName = (String) data.get("type");
-        final Object modelValue = data.get("content");
-        final int modelDisplayFormat = (int) data.get("display_format");
-        final int modelStyleFormat = (int) data.get("style_format");
+        assert data != null;
+        if (!data.containsKey(KEY_TYPE) || !data.containsKey(KEY_CONTENT)
+                || !data.containsKey(KEY_DISPLAY_FORMAT) || !data.containsKey(KEY_STYLE_FORMAT)) {
+            throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
+        }
+
+        final String modelTypeName = (String) data.get(KEY_TYPE);
+        final Object modelValue = data.get(KEY_CONTENT);
+        final int modelDisplayFormat = (int) data.get(KEY_DISPLAY_FORMAT);
+        final int modelStyleFormat = (int) data.get(KEY_STYLE_FORMAT);
 
         Attribute<?> modelAttribute;
         switch (modelTypeName) {

@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.tag.Tag;
 
@@ -23,7 +26,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     protected Name name;
     private int typeFlag;
     private int parentTypeFlag;
-    private List<Attribute<?>> attributes;
+    private AttributeList attributes;
     private Set<Tag> tags;
 
     protected AbstractDisplayItem(String name, int typeFlag, int parentTypeFlag) {
@@ -31,7 +34,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         this.name = new Name(name);
         this.typeFlag = typeFlag;
         this.parentTypeFlag = parentTypeFlag;
-        attributes = new ArrayList<>();
+        attributes = new AttributeList();
         tags = new HashSet<>();
     }
 
@@ -71,6 +74,16 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
+    public void editAttribute(String attributeName, String attributeContent) throws AttributeException {
+        attributes.editAttribute(attributeName, attributeContent);
+    }
+
+    @Override
+    public void addAttribute(String attributeName, String attributeContent) throws AttributeException {
+        attributes.addAttribute(attributeName, attributeContent);
+    }
+
+    @Override
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
@@ -83,14 +96,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
 
     @Override
     public void addAttribute(Attribute<?> attribute) {
-        requireNonNull(attribute);
-        if (!attribute.isAllFlagMatch(typeFlag)) {
-            throw new ItemCannotBeParentException(this);
-        }
-        if (attributes.stream().anyMatch(x -> x.equals(attribute))) {
-            throw new ItemCannotBeParentException(this);
-        }
-        attributes.add(attribute);
+        attributes.addAttribute(attribute);
     }
 
     @Override
@@ -99,8 +105,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
-    public void deleteAttribute(String type) {
-        attributes.removeIf(attr -> attr.getAttributeType().equals(type));
+    public void deleteAttribute(String type) throws AttributeException {
+        attributes.removeAttribute(type);
     }
 
     @Override
@@ -149,7 +155,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
 
     @Override
     public List<Attribute<?>> getAttributes() {
-        return attributes;
+        return attributes.toList();
     }
 
     @Override
