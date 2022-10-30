@@ -41,7 +41,8 @@ public class TaskBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        String filteredInput = removeNonAscii(userInput);
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(filteredInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
@@ -61,6 +62,13 @@ public class TaskBookParser {
         }
 
         throw new ParseException(Messages.MESSAGE_UNKNOWN_CATEGORY);
+    }
+
+    /**
+     * Removes all non ascii characters from a string.
+     */
+    private String removeNonAscii(String string) {
+        return string.replaceAll("\\P{InBasic_Latin}", "");
     }
 
 }
