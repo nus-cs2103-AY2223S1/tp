@@ -32,8 +32,8 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_MARK = "2A";
-    private static final String INVALID_TITLE = "#title";
-    private static final String INVALID_DESCRIPTION = "?description";
+    private static final String INVALID_TITLE = "";
+    private static final String INVALID_DESCRIPTION = "";
     private static final String INVALID_FORMAT_DATE = "04-10-2021";
 
     private static final String VALID_NAME = "Rachel Walker";
