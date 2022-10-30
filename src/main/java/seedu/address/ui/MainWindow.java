@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private final DetailHelpPanel detailHelpPanel;
     private final Stack<MainPanelName> mainPanelHistory = new Stack<>();
     // Independent Ui parts residing in this Ui container
+    private CommandBox commandBox;
     private PersonListPanel personListPanel;
     private DetailPanel detailPanel;
     private ResultDisplay resultDisplay;
@@ -70,8 +71,6 @@ public class MainWindow extends UiPart<Stage> {
 
         helpPanel = new HelpPanel();
         detailHelpPanel = new DetailHelpPanel();
-
-        setupUserInteraction();
     }
 
     public Stage getPrimaryStage() {
@@ -95,8 +94,10 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        setupUserInteraction();
     }
 
     /**
@@ -156,8 +157,73 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setupUserInteraction() {
         this.getRoot().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
+            if (event.getCode().equals(KeyCode.ESCAPE)) {
                 handleBack();
+            } else if (event.getCode().equals(KeyCode.F1)) {
+                handleHelp();
+            }
+        });
+
+        personListPanel.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            Person selectedPerson = personListPanel.getSelectedPerson();
+            boolean isFirstPersonSelected = logic.getSortedFilteredPersonList().size() == 0
+                    || selectedPerson.equals(logic.getSortedFilteredPersonList().get(0));
+
+            if (isFirstPersonSelected && event.getCode().equals(KeyCode.UP)) {
+                personListPanel.clearSelectedPerson();
+                commandBox.focus();
+            }
+        });
+
+        personListPanel.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            // Ignore tab navigation, use arrow keys to navigate instead
+            if (event.getCode().equals(KeyCode.TAB)) {
+                event.consume();
+            }
+        });
+
+        detailPanel.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            int selectedIndex = detailPanel.getSelectedRepoIndex();
+            boolean isFirstPersonSelected = selectedIndex <= 0;
+            if (isFirstPersonSelected && event.getCode().equals(KeyCode.UP)) {
+                detailPanel.clearSelectedRepo();
+                commandBox.focus();
+            }
+
+            if (event.getCode().equals(KeyCode.ESCAPE)) {
+                handleBack();
+            }
+        });
+
+        detailPanel.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            // Ignore tab navigation, use arrow keys to navigate instead
+            if (event.getCode().equals(KeyCode.TAB)) {
+                event.consume();
+            }
+        });
+
+        commandBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (currentMainPanel.equals(MainPanelName.List)) {
+                boolean notEmpty = logic.getSortedFilteredPersonList().size() > 0;
+                if (notEmpty && event.getCode().equals(KeyCode.DOWN)) {
+                    personListPanel.focus();
+                }
+            } else if (currentMainPanel.equals(MainPanelName.Detail)) {
+                boolean notEmpty = logic.getSelectedPerson().get()
+                        .getGithubUser()
+                        .map(u -> u.getRepoList().size() > 0)
+                        .orElse(false);
+
+                if (notEmpty && event.getCode().equals(KeyCode.DOWN)) {
+                    detailPanel.focus();
+                }
+            }
+        });
+
+        commandBox.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            // Ignore tab navigation when the list view is empty
+            if (event.getCode().equals(KeyCode.TAB)) {
+                event.consume();
             }
         });
     }
@@ -192,8 +258,16 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleBack() {
         if (!mainPanelHistory.empty()) {
-            assert !mainPanelHistory.peek().equals(currentMainPanel) : "Previous page must not same as current page.";
-            switchMainPanel(mainPanelHistory.pop(), false);
+            MainPanelName to = mainPanelHistory.pop();
+            assert !to.equals(currentMainPanel) : "Previous page must not same as current page.";
+
+            switchMainPanel(to, false);
+
+            boolean backToListPanel = to.equals(MainPanelName.List);
+            boolean hasSelectedPerson = personListPanel.getSelectedPerson() != null;
+            if (backToListPanel && hasSelectedPerson) {
+                personListPanel.focus();
+            }
         } else {
             resultDisplay.setFeedbackToUser("Page history is empty, unable to go back to previous page.");
         }

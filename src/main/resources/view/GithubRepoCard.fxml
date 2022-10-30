@@ -9,11 +9,11 @@
     <children>
         <HBox>
             <children>
-                <Hyperlink fx:id="name"/>
+                <Hyperlink fx:id="nameLabel"/>
                 <Pane HBox.hgrow="ALWAYS"/>
-                <Label fx:id="lastUpdated"/>
+                <Label fx:id="lastUpdatedLabel"/>
             </children>
         </HBox>
-        <Label fx:id="description" wrapText="true"/>
+        <Label fx:id="descriptionLabel" wrapText="true"/>
     </children>
 </VBox>

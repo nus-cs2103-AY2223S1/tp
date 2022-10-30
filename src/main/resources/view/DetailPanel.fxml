@@ -8,19 +8,26 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.text.TextFlow?>
+
 <StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="detailPanel" xmlns="http://javafx.com/javafx/18">
     <children>
-        <VBox spacing="16.0">
+        <VBox spacing="16.0" fx:id="container">
             <HBox fx:id="profileBoxContainer">
                 <children>
                     <Circle fx:id="profileImageContainer" radius="60.0"/>
-                    <VBox spacing="12.0" HBox.hgrow="ALWAYS">
+                    <VBox spacing="12.0" HBox.hgrow="ALWAYS" alignment="TOP_LEFT">
                         <children>
                             <HBox alignment="BASELINE_LEFT" spacing="10">
                                 <Label fx:id="nameLabel"/>
-                                <Hyperlink fx:id="githubLabel"/>
+                                <Hyperlink fx:id="githubLink"/>
                             </HBox>
-                            <Label fx:id="informationLabel"/>
+                            <TextFlow>
+                                <Label fx:id="informationLabel" wrapText="true"/>
+                            </TextFlow>
                             <FlowPane fx:id="tags"/>
                         </children>
                     </VBox>

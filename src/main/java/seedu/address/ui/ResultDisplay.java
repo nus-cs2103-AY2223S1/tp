@@ -16,8 +16,14 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Create a ResultDisplay panel to view command result
+     */
     public ResultDisplay() {
         super(FXML);
+        // Disable focus in result display, so user can jump from command box
+        // to person list view immediately
+        resultDisplay.setFocusTraversable(false);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
