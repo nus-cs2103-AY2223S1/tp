@@ -1,4 +1,4 @@
---- 
+---
 layout: page
 title: User Guide
 ---
@@ -162,11 +162,11 @@ SectresBook is a CLI app, type your command inputs here! For more information on
 
 Once the command box is selected, a results display will appear to report the messages from the program to you. Error messages and success messages will be shown in this box. Click anywhere else on the screen, or press the `ESC` key to exit out of the command box and hide the results display.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You may activate the command box by simply pressing the spacebar on your keyboard. There is no need to use your mouse to click on the bar.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Similarly, you may press the `ESC` key on your keyboard to exit out of the command box and hide the results display.
 </div>
 
@@ -198,7 +198,7 @@ Each note contains an index, a title, contents and tags.
 
 The index of the notes is only an ordering within the current displayed list, it **is not tied** to the note itself.
 
-Both the people and notes panels share a pool of tags for easier referencing on which group of people may be related to a specific note. 
+Both the people and notes panels share a pool of tags for easier referencing on which group of people may be related to a specific note.
 
 Check the [Notes Features](#note-features) to learn more about the commands you can execute related to notes.
 
@@ -263,8 +263,8 @@ This property can be identified from the GUI by the icon of an envelope.
 
  Part    | Constraint |
 |---------|----------|
- Local part |                                                                              The local-part should only contain alphanumeric characters and these special characters `_`, `.`, `+` and `-`. <br><br>The local-part may not start or end with any special characters and special characters may not be adjacent to each other. 
- Domain name |The domain name is made up of domain labels separated by periods. The domain name must:<br><br>- end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any. 
+ Local part |                                                                              The local-part should only contain alphanumeric characters and these special characters `_`, `.`, `+` and `-`. <br><br>The local-part may not start or end with any special characters and special characters may not be adjacent to each other.
+ Domain name |The domain name is made up of domain labels separated by periods. The domain name must:<p> - end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 The local part and domain part **must** be connected by a `@` symbol.
 
@@ -280,7 +280,7 @@ This property can be identified from the GUI by the icon of a house.
 - Identified by the prefix `home`.
 - There is no constraint on how the home address of a person should be written, as long as it is sufficiently understandable.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 Although there is no constraint, please ensure that your screen can accommodate the length of the text. If you find the text being cut off and ellipses `...` showing, please increase either the width or height of your screen.
 </div>
 
@@ -467,7 +467,7 @@ Inspection is a UI-centric command that operates on the current filtered personâ
 
 If you wish to view the properties of anyone in the full list, please remember to specify `list` to clear the filter.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 If there are multiple people in the list satisfying the keywords given, it will, by default, inspect the first person that matches the keywords.
 
 You may wish to use more unique keywords to reduce ambiguity, or inspect by an index.
@@ -485,7 +485,7 @@ Examples:
 
 Finds People and Notes that have the given tag. Both the Notes Panel and the People Panel will be updated synchronously with all entities that match the specifiers.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 Both the people panel and notes panel will show a `FILTERED` indicator to inform you that both lists have been filtered.
 </div>
 
@@ -520,7 +520,7 @@ Exits the program.
 
 Format: `exit`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 Your data is safe and saved automatically.
 pay attention to. </div>
 
@@ -570,7 +570,7 @@ This command does not exist in the present version of the program that this User
 
 Pushes the state of the program to the later state if it was set back to an earlier state by the `undo` command. If the present state is the most recent state, no operation is performed.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 Note that performing undo commands and inputting a new command after will set the present state to the most recent state. No redo commands may be performed subsequently.
 </div>
 
@@ -619,7 +619,7 @@ Example of usage:
 
 `edit John phone/91235555` can be used to update a personâ€™s contact information if there exists only one person whose name contains John.<br>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 If no person is named `John`, or if more than one person has `John` in their name, then the operation is equivalent to `find John`.
 </div>
 
@@ -658,7 +658,7 @@ Edits an existing club member's loan amount in the SectresBook. Please note that
 
 The absolute maximum amount for a loan is `$1,000,000,000,000.00` (positive or negative 1 trillion). If you are intending to file more than a trillion dollars in total transactions, this application may not be a suitable one for you, as our expected clients do not normally transfer this much money.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If the total amount after the `editLoan` command adds up to more than a trillion, the program will block the command from going through.
 </div>
 
@@ -815,7 +815,7 @@ Sorts the notes in either ascending or descending order by title.
 
 Hides the notes panel to the right side of the screen if visible, otherwise, no operation is performed. Use this command if you do not wish to see the notes view while you are working with information related to the members only.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 Even though the notes panel may be hidden, operations on notes will still work as normal. This is purely a visual feature.
 </div>
 
