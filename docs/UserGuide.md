@@ -9,9 +9,14 @@ title: User Guide
 ### About GREWZ
 Tired of opening multiple applications for your teaching needs? Look no further!
 
-GREWZ is your all-in-one **address book desktop application designed for university teaching assistants** to manage their personal homework and their students. It manages your personal tasks and attendance of your students!
+GREWZ helps **university teaching assistants** to maintain the information of the students in their classes by collating a list of students' personal details, as well as keeping a task book to help them keep track of their personal work.
 
-GREWZ boasts a timeless, compartmentalised Graphical User Interface(GUI) while utilising a clean Command Line Interface(CLI) - this means that the faster you can type, the faster you can get your work done.
+As a teaching assistant, you can use GREWZ as an all-in-one platform to carry out your teaching duties such as: 
+* Marking attendance
+* Updating student details
+* Managing personal homework
+
+GREWZ boasts a timeless, compartmentalised Graphical User Interface (GUI) while utilising a clean Command Line Interface (CLI) - this means that the faster you can type, the faster you can get your work done.
 
 Hopefully our application has grown on you! 
 
@@ -264,17 +269,50 @@ Examples:
 `attendance delete 1`
 `attendance delete 2`
 
-# Task Commands
+Task Commands
 ---
 
 ### Adding a Task : `task`
 
 Adds a task to the Task List.
-There is two different types of Task - ***ToDo*** and ***Deadline***.
+There is three different types of Task - ***ToDo***, ***Deadline*** and ***Assignment***.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 You can have multiple same tasks as tasks can be duplicated.
 </div>
+
+### Editing Tasks : `edit-task`
+
+Edits an existing tasks in the task list.
+
+Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
+
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* For task specific fields `by/`, `addStu/`, and `deleteStu/`, can only be edited if the task is of the correct type.
+    * `by/` is only accepted while editing a Deadline Task. The date follows the same format as [deadline tasks](#creating-deadline-tasks).
+    * `addStu/` and `deleteStu/` are only accepted while editing an Assignment Task.
+    * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang deleteStu/Zack Yu, Xenia Ng`
+  Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
+* `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
+
+### Removing a Task : `remove-task`
+
+Removes a specified task from the Task List (Can be a ToDo, Deadline or Assignment).
+
+Format: `remove-task INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `remove-task 2` deletes the 2nd student in the task list.
+
 
 #### Adding a ToDo
 
@@ -303,18 +341,21 @@ Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
 * `task t/Collect robot d/At MakersLab by/2019-09-10`
 
-### Removing a Task
+### Creating Assignment Tasks
 
-Removes a specified task from the Task List (Can be a ToDo and a Deadline).
+Adds an ***Assignment*** (A type of Task) to the Task List.
 
-Format: `remove-task INDEX`
+Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
 
-* Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* An Assignment task should always include a title, description that should not be left blank.
+* The `addStu/` **MUST** be present for the task to be an assignment.
+* The number of students input is zero or more, and each student is separated by a `,` comma, thus student names should not contain commas.
+* Both title and description should not be left blank.
 
 Examples:
-* `remove-task 2` deletes the 2nd student in the task list.
+* `task t/Assignment 1 d/Description here addStu/Adam Tan, Wong Zhu Yi, Robin Hood`
+* `task t/Midterm Assignment d/This is a challenging assignment addStu/Alvin, Simon, Theodore`
+---
 
 ### Navigating User Input History: `↑`, `↓`
 
@@ -335,42 +376,6 @@ GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
 </div>
-
-### Creating Assignment Tasks
-
-Adds an ***Assignment*** (A type of Task) to the Task List.
-
-Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
-
-* An Assignment task should always include a title, description that should not be left blank.
-* The `addStu/` **MUST** be present for the task to be an assignment.
-* The number of students input is zero or more, and each student is separated by a `,` comma, thus student names should not contain commas.
-* Both title and description should not be left blank.
-
-Examples:
-* `task t/Assignment 1 d/Description here addStu/Adam Tan, Wong Zhu Yi, Robin Hood`
-* `task t/Midterm Assignment d/This is a challenging assignment addStu/Alvin, Simon, Theodore`
-
-### Editing Tasks
-
-Edits an existing tasks in the task list.
-
-Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
-
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* For task specific fields `by/`, `addStu/`, and `deleteStu/`, can only be edited if the task is of the correct type.
-    * `by/` is only accepted while editing a Deadline Task. The date follows the same format as [deadline tasks](#creating-deadline-tasks).
-    * `addStu/` and `deleteStu/` are only accepted while editing an Assignment Task.
-    * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
-* Existing values will be updated to the input values.
-
-Examples:
-* `edit-task 1 t/Assignment 1 d/Topics: Recursion addStu/Adam Lee, Ben Tang deleteStu/Zack Yu, Xenia Ng`
-  Edits the title, description and student list of the 1st task in the task list, provided that it is an assignment task, to be `Assignment 1`, `Topics: Recursion` and `Adam Lee, Ben Tang` respectively.
-* `edit-task 2 deleteStu/Jackie Chan` Edits the student list of the 2nd task in the task list to delete the name `Jackie Chan`. All other students in the student list of the task are not affected.
-* `edit-task 3 t/Mark Lab Worksheets d/CS2030S by/2022-10-30` Edits the title, description and deadline of the 3rd task
-  in the task list, provided that it is a deadline task, to be `Mark Lab Worksheets`, `CS2030S` and `Oct 30 2022` respectively.
 
 --------------------------------------------------------------------------------------------------------------------
 
