@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -79,6 +81,20 @@ public class EditBuyerCommandTest {
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_SECOND, descriptor);
         assertThrows(CommandException.class,
                 EditBuyerCommand.MESSAGE_DUPLICATE_PERSON, () -> editBuyerCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_largeIndex_throwsCommandException() {
+        //Set up
+        ModelStubAcceptingBuyerAdded modelStub = new ModelStubAcceptingBuyerAdded();
+        Buyer firstBuyer = new PersonBuilder().withName("Spongebob").buildBuyer();
+        Buyer secondBuyer = new PersonBuilder().withName("Patrick").buildBuyer();
+        modelStub.addBuyer(firstBuyer);
+
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(secondBuyer).build();
+        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(Index.fromOneBased(Integer.MAX_VALUE), descriptor);
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () -> editBuyerCommand.execute(modelStub));
     }
 
     /**
