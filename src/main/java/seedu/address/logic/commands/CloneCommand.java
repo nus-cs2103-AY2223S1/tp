@@ -63,9 +63,11 @@ public class CloneCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_CLONE_PERSON_SUCCESS = "Cloned Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one of the unique optional fields (Name, Phone or Email) has to be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one of the unique optional fields (Name, Phone or Email)"
+            + " has to be provided.";
     public static final String MESSAGE_DUPLICATE_CLONED_PERSON = "This person already exists in the address book, "
-            + "try again with different details, at least one of the unique fields (Name, Phone or Email) has to be provided.";
+            + "try again with different details, at least one of the unique fields (Name, Phone or Email) has to "
+            + "be provided.";
 
     private final Index index;
     private final ClonePersonDescriptor clonePersonDescriptor;
@@ -179,7 +181,7 @@ public class CloneCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-                return CollectionUtil.isAnyNonNull(name, phone, email, address, gender, birthdate,
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, gender, birthdate,
                     race, religion, surveys, tags);
         }
 
