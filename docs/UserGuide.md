@@ -78,7 +78,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book. A person is considered a duplicate only if the names are the same (non case-sensitive).
+Adds a person to the address book. A person is considered a duplicate only if the names are the same (non case-sensitive).<br>
 **Usage**: List mode only
 
 Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...`
@@ -192,7 +192,7 @@ Examples:
 ### Viewing persons details: `view`
 
 View details of a person. Required to `edit` or `remove` person's details.
-You can only view one person's details at one time.
+You can only view one person's details at one time.<br>
 **Usage**: All modes
 
 Format: `view NAME` 

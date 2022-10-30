@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.model.person.NameIsKeywordsPredicate;
 
-
 public class ViewCommandParserTest {
 
     private ViewCommandParser parser = new ViewCommandParser();
