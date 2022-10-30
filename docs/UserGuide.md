@@ -418,10 +418,7 @@ Format: `list`
 
 Finds candidates whose personal information and tags contain any of the given keywords.
 
-Format:
-
-- `find KEYWORD [MORE_KEYWORDS]`, or
-- `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
+Format: `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
 [MORE_TAGGED_KEYWORDS]...`
 
 - The search is case-insensitive. e.g `hans` will match `Hans`
