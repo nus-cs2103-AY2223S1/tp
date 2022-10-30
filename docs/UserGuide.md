@@ -108,22 +108,44 @@ While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys to navig
 ## Features
 
 Before proceeding, do make sure that you can understand our notation for command formats:
-* `lower_case` text mean that they should be typed as-is
-* `UPPER-CASE` text denote text that are to be replaced with the actual input
-* `[Square brackets]` surround optional inputs
-* `...` denotes that the prior input can be made any number of times
 
-And a few more details about commands
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `lower_case` are commands or flags to be typed as-is 
+  * e.g. in `ls -t TAG_NAME`, `ls -t` must be typed as-is and is case-sensitive 
+* Words in `UPPER_CASE` are values of parameters to be supplied by the user
+  * e.g. in `ls -d DATE`, `DATE` refers to the value of the `-d` parameter supplied to the `ls` command 
+* Words in `[Square brackets]` are optional parameters 
+  * e.g. in `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]*`, `[-d DATE]` and `[--tag TAG_NAME]*` can be omitted 
+* Words that are followed by `*` are parameters that can be used multiple times including zero times 
+  * e.g. in `tag TASK_NUMBER -t TAG_NAME*`, `TAG_NAME` can be included 0 or multiple times. 
+
+**:information_source: Additional information about commands:**<br>
 * Dates must be written in the `YYYY-MM-DD` format
-* Command arguments (eg `-a`, `-m`) can be made in any order. For instance, `ls -u --module CS2103T` and `ls --module CS2103T -u` are the same command
+* Command parameters (e.g. `-a`, `-m`) can be made in any order. 
+  * e.g. `ls -u --module CS2103T` and `ls --module CS2103T -u` will give the same result
+* If a parameter is expected only once in a command but was specified multiple times, the last occurrence of it will be taken
+  * e.g. if you enter `edit 1 -d 2022-10-22 -d 2022-10-30`, this will be interpreted as `edit 1 -d 2022-10-30`
+* Extraneous parameters for commands (i.e. `help`, `showarchive`, etc.) or flags (i.e. `-a`, `-u`, etc.) that do not take in parameters will be ignored
+  * e.g. if you enter `showarchive 2103`, this will be interpreted as `showarchive` 
 * Commands that filter for names find names that **contain** the keyword. (`ls -n`, `find`)
 * Commands that filter for tags find tags that **match** the keyword. (`ls -t`, `find`)
+
+</div>
 
 ### Getting help : `help`
 
 Displays list of commands and information about NotionUS.
 
+![Screenshot of Help Window](images/user-guide/HelpDemo.png)
+
 Format: `help`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Shortcut key: <kbd>fn</kbd> + <kbd>F1</kbd> 
+</div>
 
 ### Adding a task: `add`
 
@@ -137,7 +159,10 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]...`
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
 Examples:
-* `add -n Task 1 -m CS2103T -d 2022-10-15 -t homework`
+* `add -n Tutorial 12 -m CS2103T -d 2022-10-28 -t tutorial`
+
+![Before image of Add Command](images/user-guide/AddCommandBefore.png)
+![After image of Add Command](images/user-guide/AddCommandAfter.png)
 
 ### Marking a task as completed: `mark`
 
@@ -148,6 +173,8 @@ Format: `mark TASK_NUMBER`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 
 Example: `mark 2`
+
+![Example image of Mark Command](images/user-guide/MarkCommandDemo.png)
 
 ### Unmarking a task: `unmark`
 
@@ -163,16 +190,18 @@ Example: `unmark 2`
 
 Allows you to tag a task.
 
-Format : `tag TASK_NUMBER -t TAG_NAME`
+Format : `tag TASK_NUMBER -t TAG_NAME*`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
 
-Example: `tag 2 -t optional`
+Example: `tag 1 -t optional`
+
+![Example image of Tag Command](images/user-guide/TagCommandDemo.png)
 
 ### List : `ls`
 
-`list` commands filter the tasklist. There are multiple ways to filter the tasklist, such as
-listing all tasks, unmarked tasks, all tasks under a module name etc. You may apply multiple list commands in one
+`ls` commands filter the task list. There are multiple ways to filter the task list, such as
+listing all tasks, unmarked tasks, all tasks under a module name, etc. You may apply multiple list flags in one
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
@@ -182,6 +211,9 @@ Any command that searches for tags finds all tags that exactly match, but is als
 <br><br></div>
 
 Current filters applied will be shown in the UI at the top bar.
+
+![Before image of List Command](images/user-guide/ListCommandBefore.png)
+![After image of List Command](images/user-guide/ListCommandAfter.png)
 
 **Note that `find` searches globally, across all of a task's attributes**
 
@@ -235,8 +267,8 @@ Example: `ls -d 2022-11-11`
 
 Shows a list of all tasks with matching names.
 
-Format: `ls -n KEYWORD...`
-* `KEYWORD...`: One keyword or multiple, which should be separated by spaces.
+Format: `ls -n KEYWORD*`
+* `KEYWORD`: One keyword or multiple, which should be separated by spaces.
 
 Example: `ls -n task1`
 
@@ -246,7 +278,7 @@ The `find` command finds the task names that **contain** the keywords and tags w
 keywords. Meaning that names does not have to be an exact match (Example: searching `tap` with return a task with a 
 task name `tape`). `find` is not case-sensitive.
 
-Format: `find KEYWORD/TAG_NAME...`
+Format: `find KEYWORD/TAG_NAME*`
 
 Singular word search example: `find tut`
 finds names which contain `tut` and any tag that exactly match `tut`.
@@ -278,13 +310,15 @@ This command is irreversible!
 
 Displays a list of archived tasks.
 
+![Screenshot of Archived Window](images/user-guide/ArchivedDemo.png)
+
 Format: `showArchive`
 
 ### Editing a task : `edit`
 
 Edits an existing task in the task list, at least one field needs to be edited. 
 
-Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] (optional)[-d DATE] (optional)[-t TAG_NAME]...`
+Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME*]`
 
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 
@@ -298,7 +332,9 @@ will be removed if no date or tag is given.
 <br><br></div>
 
 Examples:
-*  `edit 1 -m CS2103T -n ip` Edits the taskName to ip.
+* `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
+
+![Example image of Edot Command](images/user-guide/EditCommandDemo.png)
 
 ### Deleting a task : `delete`
 
@@ -308,9 +344,12 @@ Format: `delete TASK_NUMBER`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 
 Examples: 
-* `delete 1`
-  * Deletes first task in the task list.
-  * Remaining tasks’ `TASK_NUMBER` will be automatically updated. 
+* `delete 3`
+  * Deletes third task in the task list.
+  * Remaining tasks’ `TASK_NUMBER` will be automatically updated.
+
+![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
+![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
   
 ### Clearing all entries : `clear`
 
@@ -336,7 +375,7 @@ If your changes to the data file makes its format invalid, NotionUS will discard
 ### Autocomplete
 
 When the user starts to type in the start of a command, a popup menu will appear with options to complete your input.
-Use the `up` and `down` arrow keys to navigate through the options and `Enter` to fill the command box with the command
+Use the`Up` and `Down` arrow keys to navigate through the options and <kbd>`Enter`</kbd> to fill the command box with the command
 of your choice.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -362,12 +401,11 @@ of your choice.
 
 ## Command summary
 
-
 Format meanings:
-* `lower_case` text mean that they should be typed as-is
-* `UPPER_CASE` text denote text that are to be replaced with the actual input
-* `[Square brackets]` surround optional inputs
-* `...` denotes that the prior input can be made any number of times
+* Words in `lower_case` are commands or flags to be typed as-is
+* Words in `UPPER_CASE` are values of parameters to be supplied by the user
+* Words in `[Square brackets]` are optional parameters
+* Words that are followed by `*` are parameters that can be used multiple times including zero times
 
 | Action                      | Format                                                                                                                                                                                                                                                                                                                                                                                                                                      | Examples                                     |
 |-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
@@ -384,4 +422,4 @@ Format meanings:
 | **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                                                                                                               |                                              |
 | **Tagging** a task          | `tag TASK_NUMBER -t TAG_NAME`                                                                                                                                                                                                                                                                                                                                                                                                               | `tag 1 -t highPriority`                      |
 | **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                        | `unmark 2`                                   |
-| Accessing previous commands | Use the up and down arrow keys                                                                                                                                                                                                                                                                                                                                                                                                              |                                              |
+| Accessing previous commands | Use the `Up` and `Down` arrow keys                                                                                                                                                                                                                                                                                                                                                                                                              |                                              |
