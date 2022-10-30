@@ -12,11 +12,14 @@ import static seedu.boba.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.boba.logic.commands.DecreaseCommand;
+import seedu.boba.model.customer.Reward;
 
 public class DecreaseCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecreaseCommand.MESSAGE_USAGE);
+
+    private static final String MESSAGE_INVALID_REWARD = Reward.MESSAGE_MAX_INTEGER;
 
     private DecreaseCommandParser parser = new DecreaseCommandParser();
 
@@ -38,10 +41,10 @@ public class DecreaseCommandParserTest {
         assertParseFailure(parser, "-5" + PHONE_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_REWARD);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_REWARD);
     }
 
     @Test

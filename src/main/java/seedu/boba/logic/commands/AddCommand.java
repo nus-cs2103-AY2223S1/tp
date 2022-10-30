@@ -9,11 +9,11 @@ import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.boba.model.customer.Customer.BIRTHDAY_TAG;
 
+import java.time.LocalDate;
+
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.model.Model;
 import seedu.boba.model.customer.Customer;
-
-import java.time.LocalDate;
 
 /**
  * Adds a customer to bobaBot.

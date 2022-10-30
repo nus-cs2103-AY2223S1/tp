@@ -4,16 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
 
-import seedu.boba.logic.commands.EditCommand;
 import seedu.boba.logic.commands.IncreaseCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Parses input arguments and creates a new IncreaseCommand object
