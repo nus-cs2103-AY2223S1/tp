@@ -44,12 +44,12 @@ public class TypicalItems {
             .withQuantity(48).withDescription("Cute shark slippers")
             .withSellPrice(10.00)
             .withCostPrice(2.00).build();
+
+    // Manually added
     public static final InventoryItem INVENTORY_ITEM_8 = new InventoryItemBuilder().withItemName("Keychain")
             .withQuantity(95).withDescription("Small copper keychain")
             .withSellPrice(0.50)
             .withCostPrice(4.99).build();
-
-    // Manually added
     public static final InventoryItem INVENTORY_ITEM_9 = new InventoryItemBuilder().withItemName("Mechanical Pencil")
             .withQuantity(278).withDescription("Mechanical pencil with rubber grip")
             .withSellPrice(0.30)
@@ -80,8 +80,7 @@ public class TypicalItems {
 
     public static List<InventoryItem> getTypicalItems() {
         return new ArrayList<>(Arrays.asList(DEFAULT_INVENTORY_ITEM, INVENTORY_ITEM_1, INVENTORY_ITEM_2,
-            INVENTORY_ITEM_3, INVENTORY_ITEM_4, INVENTORY_ITEM_5, INVENTORY_ITEM_6,
-                INVENTORY_ITEM_7, INVENTORY_ITEM_8));
+            INVENTORY_ITEM_3, INVENTORY_ITEM_4, INVENTORY_ITEM_5, INVENTORY_ITEM_6, INVENTORY_ITEM_7));
     }
 
     /**

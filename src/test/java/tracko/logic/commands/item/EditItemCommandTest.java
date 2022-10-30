@@ -12,7 +12,7 @@ import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tracko.logic.commands.CommandTestUtil.showItemAtIndex;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
-import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
+import static tracko.testutil.TypicalItems.getTrackOWithTypicalItems;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,21 +29,18 @@ import tracko.testutil.EditItemDescriptorBuilder;
 import tracko.testutil.InventoryItemBuilder;
 
 class EditItemCommandTest {
-    private Model model = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
+    private Model model = new ModelManager(getTrackOWithTypicalItems(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
-        InventoryItem lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
-
-        InventoryItem editedItem = new InventoryItemBuilder(lastItem).build();
+        InventoryItem editedItem = new InventoryItemBuilder().build();
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(editedItem).build();
-        EditItemCommand editItemCommand = new EditItemCommand(indexLastItem, descriptor);
+        EditItemCommand editItemCommand = new EditItemCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
         Model expectedModel = new ModelManager(new TrackO(model.getTrackO()), new UserPrefs());
-        expectedModel.setItem(model.getFilteredItemList().get(indexLastItem.getZeroBased()), editedItem);
+        expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
 
         assertCommandSuccess(editItemCommand, model, expectedMessage, expectedModel);
     }
@@ -72,10 +69,8 @@ class EditItemCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
-
-        EditItemCommand editItemCommand = new EditItemCommand(indexLastItem, new EditItemDescriptor());
-        InventoryItem editedItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
+        EditItemCommand editItemCommand = new EditItemCommand(INDEX_FIRST, new EditItemDescriptor());
+        InventoryItem editedItem = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
