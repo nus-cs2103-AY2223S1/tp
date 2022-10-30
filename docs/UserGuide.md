@@ -148,7 +148,7 @@ Format: `help`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the task list.
+Clears all contacts from the address book.
 
 Format: `clear`
 
@@ -199,8 +199,8 @@ Examples:
 
 ### Viewing all tasks: `listTasks`
 
-Edits the details of the task identified by the index number used in the displayed task list. 
-Existing values will be overwritten by the input values.
+Lists all existing tasks from the task list.
+Used after calling [filter](#filtering-a-task--filter) to remove existing filters and list all existing tasks.
 
 Format: `listTasks`
 
