@@ -214,7 +214,7 @@ Examples:
 * `addTask n/Fix routing d/Handle routing for POST req pr/high c/backend dl/2022-11-11 pe/john@example.com` adds task `Fix routing` to the task list
 
 
-### Deleting a task: `deleteTask`
+#### Deleting a task: `deleteTask`
 
 Deletes a task from the task list.
 
@@ -226,7 +226,7 @@ Format: `deleteTask TASK_NUMBER`
 Examples:
 * `deleteTask 1` deletes the first task from the displayed task list
 
-### Editing a Task: `editTask`
+#### Editing a Task: `editTask`
 
 Edits the parameter(s) of an existing task in the task list.
 
@@ -246,14 +246,14 @@ Examples:
 
 Refer to the [Task Parameters](#task-parameters) section for more details about task parameters.
 
-### Viewing all tasks: `listTasks`
+#### Viewing all tasks: `listTasks`
 
 Lists all existing tasks from the task list.
 Used after calling [filter](#filtering-a-task--filter) to remove existing filters and list all existing tasks.
 
 Format: `listTasks`
 
-### Filtering a Task: `filter`
+#### Filtering a Task: `filter`
 
 Filters the task list based on either **TASK_CATEGORY** or **TASK_DEADLINE** or **BOTH**.
 
@@ -269,7 +269,7 @@ Examples:
 *  `filter dl/2022-12-12` displays only tasks that have **DEADLINE** before or equal to 2022-12-12
 *  `filter c/backend dl/2022-12-12` displays only tasks that have backend as **TASK_CATEGORY** and **DEADLINE** before or equal to 2022-12-12
 
-### Sorting the task list by deadline: `sortByDeadline`
+#### Sorting the task list by deadline: `sortByDeadline`
 
 Sorts the task list by task deadline.
 
@@ -282,7 +282,7 @@ Examples:
 * `sortByDeadline` sorts tasks by deadline in ascending order.
 * `sortByDeadline o/desc` sorts tasks by deadline in descending order.
 
-### Sorting the task list by priority: `sortByPriority`
+#### Sorting the task list by priority: `sortByPriority`
 
 Sorts the task list by task priority.
 
