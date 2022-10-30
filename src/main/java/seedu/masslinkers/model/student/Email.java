@@ -9,7 +9,9 @@ import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
-    public static final String MESSAGE_CONSTRAINTS = "Email is invalid! Refer to user guide for email constraints.\n"
+    public static final String MESSAGE_CONSTRAINTS = "Email is invalid! "
+            + "Emails should be of the format local-part@domain.\n"
+            + "Refer to user guide for email constraints.\n"
             + "https://ay2223s1-cs2103t-t11-4.github.io/tp/UserGuide.html#parameter-requirements";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     // alphanumeric and special characters
