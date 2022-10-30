@@ -2,22 +2,16 @@ package seedu.address.logic.commands.fields;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AccessDisplayFlags;
 import seedu.address.model.Model;
 import seedu.address.model.attribute.AbstractAttribute;
-import seedu.address.model.group.Group;
 import seedu.address.model.item.DisplayItem;
-import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
 
 /** Command to rename a group/task/person */
 public class EditFieldCommand extends FieldCommand {
@@ -40,6 +34,7 @@ public class EditFieldCommand extends FieldCommand {
     String data;
     String ftype;
     Index index;
+
     public EditFieldCommand(Index index, String ftype, String type, String data) {
         this.index = index;
         this.type = type;
@@ -57,14 +52,11 @@ public class EditFieldCommand extends FieldCommand {
         }
         if (item == null && sItem == null) {
             throw new CommandException(NO_INPUT);
-        } 
+        }
         if (item == null) {
             item = sItem;
         }
-        item.deleteAttribute(type);
-        item.addAttribute(new AbstractAttribute<String>(type,data) {
-            
-        });
+        item.editAttribute(type, data);
         model.refresh();
         return new CommandResult(SUCCESS_MSG);
     }

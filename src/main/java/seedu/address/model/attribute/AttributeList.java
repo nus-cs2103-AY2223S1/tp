@@ -200,7 +200,7 @@ public class AttributeList {
                 return attribute.getAttributeContent();
             }
         }
-        return "Value not found";
+        return null;
     }
 
     /**

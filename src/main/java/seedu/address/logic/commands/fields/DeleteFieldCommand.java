@@ -33,6 +33,7 @@ public class DeleteFieldCommand extends FieldCommand {
     String type;
     String ftype;
     Index index;
+
     public DeleteFieldCommand(Index index, String ftype, String type) {
         this.index = index;
         this.type = type;
@@ -49,7 +50,7 @@ public class DeleteFieldCommand extends FieldCommand {
         }
         if (item == null && sItem == null) {
             throw new CommandException(NO_INPUT);
-        } 
+        }
         if (item == null) {
             item = sItem;
         }
