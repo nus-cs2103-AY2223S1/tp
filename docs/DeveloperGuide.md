@@ -272,7 +272,7 @@ shows the updated Sequence diagram for the executing of our `delete` command.
 
 ### Displaying Data
 
-In RC4HDB, there are two main types of data that is being stored and displayed, they are the `Resident`, and the `Booking` class.
+There are two main types of data that is stored and displayed, the `Residents`, and the `Bookings`.
 As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTab` and a `BookingTab`, which are
 responsible for displaying the respective information.
 
@@ -322,7 +322,7 @@ Similar to the display of resident information, the `BookingTab` contains a `Boo
 via the `TableView` class of `JavaFX`. Here, each row corresponds to the `Day`, and each column corresponds to the `TimePeriod`.
 
 Unlike the `ResidentTableView`, we did not discuss any other alternatives as to how booking information should be displayed as
-we thought that the use of a Table was sufficently proficient in displaying a time table.
+we thought that the use of a Table was sufficiently proficient in displaying a timetable.
 
 <br>
 
