@@ -902,28 +902,38 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+#### Initial launch
 
-   1. Download the jar file and copy into an empty folder
+1. Download the jar file and copy into an empty folder.
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-2. Saving window preferences
+#### Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+2. Re-launch the app by double-clicking the jar file.<br>
+    Expected: The most recent window size and location is retained.
 
-3. Starting up with missing/corrupted data files
+#### Starting up with missing/corrupted data files
 
-    1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which automatically generates the folder.
+1. Starting up with missing data files.
+   1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which automatically generates the folder.
 
-    2. Test case: delete the whole `ROOT/data` directory before starting up <br>
-        Expected: Starting up RC4HDB results in a new data directory, with a data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
+   2. Test case: delete the whole `ROOT/data` directory before starting up <br>
+       Expected: Starting up RC4HDB results in a new data directory, with a data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
 
-    3. Test case: delete **only** the `ROOT/data/data_folder` directory before starting up <br>
-        Expected: Starting up RC4HDB results in a new data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
+   3. Test case: delete **only** the `ROOT/data/data_folder` directory before starting up <br>
+       Expected: Starting up RC4HDB results in a new data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
+
+2. Starting up with corrupted data files.
+   1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which automatically generates the folder.
+
+   2. Test case: edit the `ROOT/data/data_folder/resident_data.json` file into a non-JSON format. <br>
+       Expected: Starting up RC4HDB results in an empty `resident_data.json` file.
+
+   3. Test case: edit the `ROOT/data/data_folder/venue_data.json` file into a non-JSON format. <br>
+       Expected: Starting up RC4HDB results in an empty `venue_data.json` file.
 
 <br>
 
