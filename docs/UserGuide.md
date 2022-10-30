@@ -20,12 +20,24 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 
 3. Copy the file to the folder you want to use as the _home folder_ for your HackAssist.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app's main layout and sample data.<br>
+   ![Ui](images/Quickstart_Updated.png)
 
-5. Click on the `Tasks` tab to switch to the task list view.
+   1. Command Box
+  This is where you key in commands. You can type in commands, and press 'enter' on your keyboard to execute them
+  
+   2. Feedback Box
+  This is where you can see the response from HackAssist when you enter a command. You will either see a confirmation message, or an error message informing you what
+  went wrong with your command
+  
+   3. Settings
+  This portion displays what the current sort and filter settings are, if any. 
+  
+   4. List Display Panel
+  This is where the current list is displayed. This can either be a list of tasks or a list of people, and will include details of each task/person displayed. To 
+  toggle between task and people, click on the `Tasks` and `Person` tabs to switch to the task list view.
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`listTasks`** : Lists all tasks in the task list.
