@@ -113,9 +113,6 @@ A customer can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com m/1 r/0 `
     <details>
-    <summary>
-    Walk-through with Images
-    </summary>
 
     ![AddCommand1](images/screenshots/AddCommand/AddCommand1.png)
 
