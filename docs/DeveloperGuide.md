@@ -3,42 +3,75 @@ layout: page
 title: Developer Guide
 ---
 
-# Welcome to RC4HDB Developer Guide!
+[Comment]: <> (landing page to be added here)
 
-Choose a section from the table of contents below to learn more about how RC4HDB works!
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Table of Contents**
 
-* [Acknowledgements](#acknowledgements)
-* [Getting started](#setting-up-getting-started)
-* [Design](#design)
+* [**Introduction**](#introduction)
+* [**Acknowledgements**](#acknowledgements)
+* [**Design**](#design)
     * [Architecture](#architecture)
     * [Ui](#ui-component)
     * [Logic](#logic-component)
     * [Model](#model-component)
     * [Storage](#storage-component)
     * [Common classes](#common-classes)
-* [Implementation](#implementation)
+* [**Implementation**](#implementation)
     * [Resident class](#the-resident-class)
     * [Displaying results](#changes-in-displaying-results)
     * [Show/Hide fields](#showhide-feature-for-resident-fields)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [Appendix: requirements](#appendix-requirements)
+* [**Conclusion**](#conclusion)
+* [**Appendix: Project requirements**](#appendix-project-requirements)
     * [Product scope](#product-scope)
     * [User stories](#user-stories)
-    * [Use case](#use-cases)
+    * [Use cases](#use-cases)
     * [Non-functional requirements](#non-functional-requirements)
     * [Glossary](#glossary)
-* [Appendix: instructions for manual testing](#appendix-instructions-for-manual-testing)
+* [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a person](#deleting-a-person)
-    * [Saving data](#saving-data)
+    * [Modifying residents](#modifying-residents)
+    * [File management](#file-management)
+    * [Venue management](#venue-management)
 
 ---
+
+## **Introduction**
+
+Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what RC4HDB is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing specialised features which solve their resident and venue management needs.
+
+### Purpose
+
+The RC4HDB developer's guide was created to provide future developers with readable and comprehensive documentation for the design of RC4HDB. We hope that after reading the document, you will gain a reasonable understanding of how RC4HDB was designed and the direction our [team](AboutUs.md) intends for RC4HDB to take.
+
+### Scope
+
+This document covers the following:
+* High and low level design details of our application.
+* Other potential implementations that we have considered and the reasons for our choice of our current implementation.
+* RC4HDB [project requirements](#appendix-project-requirements).
+* How you can go about [testing our application](#appendix-instructions-for-manual-testing).
+* How you can [join](#joining-us) our team.
+
+### Format of the guide
+
+This document is arranged in a top-down format. We will begin by discussing high-level details, before discussing lower-level details of our application.
+
+### Direction
+
+With our resident and venue functionalities in place, we wish to enhance RC4HDB in the following ways:
+* Improve the usability of the existing commands.
+* Add data analysis tools.
+
+### Getting started
+
+A good place to start off with would be to take a look at the [design](#design) section of our guide, where you will find out about the high-level design details of **RC4HDB**. Otherwise, have a look at our [table of contents](#table-of-contents) for any sections of our guide that you may be interested in. If you are eager to work on the project, do refer to our section on how you can [join us](#joining-us).
+
+---
+
 ## **Acknowledgements**
 
 [comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
@@ -48,17 +81,10 @@ a starting point for Software Engineering (SE) students enrolled in CS2103T.
 
 ### Credits for code adapted from external sources
 
-1. `populateTagColumn` in `ResidentTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow.
+1. `populateTagColumn` in `ResidentTableView`, and `populateNthColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow.
 2. `populateIndexColumn` in `ResidentTableView`, and `populateDayColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx) on StackOverflow.
 
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Setting up, getting started**
-
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
@@ -141,9 +167,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Resident` object residing in the `Model`.
 
-
 ### Logic component
-
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/Logic.java)
 
@@ -177,7 +201,9 @@ classes ```ModelCommand```, ```StorageCommand```, ```FileCommand``` and ```MiscC
 implement the Command interface and is used as a intermediate barrier to build the command classes. The specific
 commands implement these commands instead of directly implementing the Command interface in order to improve
 the abstraction of commands.
+
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/LatestModelClassDiagram.png" width="450" />
@@ -219,11 +245,11 @@ of both these classes can be extended into DataStorage, which is applied by the 
 
 Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented. We have included other implementations that we have considered, along with reasons for choosing the current implementation over the others.
 
 ### The Resident Class
 `RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
@@ -548,11 +574,16 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+---
 
---------------------------------------------------------------------------------------------------------------------
+## **Conclusion**
 
-## **Documentation, logging, testing, configuration, dev-ops**
+Thank you for taking your time reading through this document. We would like to extend an invitation to those who are interested in joining our **RC4HDB** team. Below are details on how you may go about joining our team.
 
+### Joining us
+
+If you are interested in joining our team, do take a look at our [GitHub repository](https://github.com/AY2223S1-CS2103T-W12-3/tp), and the following guides on setting up.
+* [Setting up](SettingUp.md)
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
@@ -561,7 +592,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix: Project requirements**
 
 ### Product scope
 
@@ -581,7 +612,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * manage contacts faster than a typical mouse/Graphic User Interface (GUI) driven app
 * requires less technical knowledge to perform complex tasks
 * easier on the eyes, as compared to compressed rows of data on Excel
-
 
 ### User stories
 
@@ -610,19 +640,6 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 | `*`      | user          | update settings                                                                    | I can customize the app for my use                                                  | Epic       |
 
 *{More to be added}*
-
-<!-- keep in case needed
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​                                 | I want to …​                               | So that I can…​                                                        |
-| -------- |--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | user                                       | view relevant information about RC4 residents | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                              |                                                                        |
-| `* * *`  | user                                       | delete a person                               | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name                         | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                  | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                          | locate a person easily                                                 |
--->
 
 ### Use cases
 
@@ -875,140 +892,313 @@ Extensions:
 * **RC4**: Residential College 4 which resides in NUS
 * **Resident**: A NUS student who lives in RC4
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. The following instructions are organised in a similar manner as our **User Guide**. We recommend that you refer to our **User Guide** for a basic idea of how each command works before proceeding with manual testing.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launching RC4HDB
+### Table of contents for manual testing
 
-1. Initial launch
+* [**Launch and shutdown**](#launch-and-shutdown)
+  * [Initial launch](#initial-launch)
+  * [Saving window preferences](#saving-window-preferences)
+  * [Starting up with missing/corrupted data files](#starting-up-with-missingcorrupted-data-files)
+* [**Modifying residents**](#modifying-residents)
+  * [Adding a resident](#adding-a-resident)
+  * [Editing an existing resident](#editing-an-existing-resident)
+  * [Deleting a resident](#deleting-a-resident)
+  * [Clearing all residents](#clearing-all-residents)
+* [**Viewing residents**](#viewing-residents)
+  * [Listing residents](#listing-residents)
+  * [Showing resident fields](#showing-resident-fields)
+  * [Hiding resident fields](#hiding-resident-fields)
+  * [Resetting hidden resident fields](#resetting-hidden-resident-fields)
+  * [Finding residents](#finding-residents)
+  * [Filtering residents](#filtering-residents)
+* [**File management**](#file-management)
+  * [Creating a new data folder](#creating-a-new-data-folder)
+  * [Deleting an existing data folder](#deleting-an-existing-data-folder)
+  * [Switching to a different data folder](#switching-to-a-different-data-folder)
+  * [Importing resident data from CSV file](#importing-resident-data-from-csv-file)
+* [**Venue management**](#venue-management)
+  * [Adding a venue](#adding-a-venue)
+  * [Deleting a venue](#deleting-a-venue)
+  * [Viewing a venue](#viewing-a-venue)
+  * [Adding a booking](#adding-a-booking)
+  * [Deleting a booking](#deleting-a-booking)
 
-   1. Download the jar file and copy into an empty folder
+---
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+### Launch and shutdown
 
-<br>
+#### Initial launch
 
-### Exiting RC4HDB
+1. Download the jar file and copy into an empty folder.
 
-Prerequisite: RC4HDB window is already opened.
+2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+#### Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+2. Re-launch the app by double-clicking the jar file.<br>
+    Expected: The most recent window size and location is retained.
+
+#### Starting up with missing/corrupted data files
+
+1. Starting up with missing data files.
+   1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which automatically generates the folder.
+
+   2. Test case: delete the whole `ROOT/data` directory before starting up <br>
+       Expected: Starting up RC4HDB results in a new data directory, with a data folder (name as specified in `ROOT/preferences.json` file) which is populated with sample data, being created.
+
+2. Starting up with corrupted data files.
+   1. Prerequisites: Have an existing `ROOT/data` directory, either through manual creation, or from launching and shutting down the application which automatically generates the folder.
+
+   2. Test case: edit the `ROOT/data/data_folder/resident_data.json` file into a non-JSON format <br>
+       Expected: Starting up RC4HDB results in an empty `resident_data.json` file.
+
+   3. Test case: edit the `ROOT/data/data_folder/venue_data.json` file into a non-JSON format <br>
+       Expected: Starting up RC4HDB results in an empty `venue_data.json` file.
+
+#### Exiting RC4HDB
 
 1. Exiting via command-line
 
-   1. Test case: `exit`<br>
-      Expected: Window closes.
+    1. Test case: `exit`<br>
+       Expected: Window closes.
+   
+2. Exiting via keyboard-shortcut
+   
+    1. Test case: Pressing `ESC`<br>
+       Expected: Window closes.
 
 <br>
 
-### Deleting a person
+### Modifying residents
+
+#### Adding a resident
+
+[Comment]: <> (To be added)
+
+#### Editing an existing resident
+
+[Comment]: <> (To be added)
+
+#### Deleting a resident
+
+[Comment]: <> (To be updated)
 
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1` <br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0` <br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+2. Deleting a person while resident list is filtered
+
+#### Clearing all residents
+
+[Comment]: <> (To be added)
 
 <br>
 
-### Saving data
+### Viewing residents
 
-1. Dealing with missing/corrupted data files
+#### Listing residents
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+[Comment]: <> (To be added)
+
+#### Showing resident fields
+
+[Comment]: <> (To be added)
+
+#### Hiding resident fields
+
+[Comment]: <> (To be added)
+
+#### Resetting hidden resident fields
+
+[Comment]: <> (To be added)
+
+#### Finding residents
+
+[Comment]: <> (To be added)
+
+#### Filtering residents
+
+[Comment]: <> (To be added)
 
 <br>
 
-### Navigating recently-used commands
+### File management
+
+#### Creating a new data folder
+
+1. Creating a new data folder when a folder with the same name already exists.
+
+   1. Prerequisites: Have a data folder in the `ROOT/data` directory with the same name as the folder you are trying to create.
+
+   2. Test case: `file create already_exist` <br>
+       Expected: An error message indicating that the folder you are about to create already exists will be displayed in the result panel.
    
-Prerequisites: List all residents using the `list` command, followed by adding a resident using the `add` command. The following
-test cases are to be done sequentially.
+   3. Test case: `file create current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
+       Expected: An error message indicating that the folder you are trying to create is the folder that is currently in view will be displayed in the result panel. No creation occurs.
 
-1. Test case: Pressing `UP_ARROW_KEY`<br>
-   Expected: `add` command is copied onto the input command box.
+2. Creating a new data folder when no folder with the same name already exists.
 
+   1. Prerequisites: `ROOT/data` directory does not have a data folder with the same name as the folder you are trying to create.
 
-2. Test case: Pressing `UP_ARROW_KEY`<br>
-   Expected: `add` command is replaced and `list` command is copied onto the input command box.
+   2. Test case: `file create does_not_exist` <br>
+       Expected: A folder with the name `does_not_exist` is created in the `ROOT/data` directory.
+
+#### Deleting an existing data folder
+
+1. Deleting a data folder that does not exist.
+
+   1. Prerequisites: There is no folder in the `ROOT/data` directory that has the same name as the data folder you are trying to delete.
+
+   2. Test case: `file delete does_not_exist` <br>
+       Expected: An error message indicating that the folder you are trying to delete does not exist will be displayed in the result panel.
+
+2. Deleting a data folder that exists.
+
+   1. Prerequisites: There is an existing folder in the `ROOT/data` directory that has the same name as the data folder you are trying to delete.
+
+   2. Test case: `file delete already_exists` <br>
+       Expected: Deletes the `already_exists` folder.
+
+   3. Test case: `file delete current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
+       Expected: An error message indicating that the folder you are trying to delete is the folder that is currently in view will be displayed in the result panel. No deletion occurs.
+
+#### Switching to a different data folder
+
+1. Switching to a data folder that does not exist.
+
+   1. Prerequisites: There is no folder in the `ROOT/data` directory that has the same name as the data folder you are trying to switch to.
+
+   2. Test case: `file switch does_not_exist` <br>
+       Expected: An error message indicating that the folder you are trying to switch to, does not exist will be displayed in the result panel.
+
+2. Switching to a data folder that exists.
+
+   1. Prerequisites: There is an existing folder in the `ROOT/data` directory that has the same name as the data folder you are trying to switch to.
+
+   2. Test case: `file switch already_exists` <br>
+       Expected: Switches to the `already_exists` folder.
+
+   3. Test case: `file switch current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
+       Expected: An error message indicating that the folder you are trying to switch to is already the currently viewed data folder will be displayed in the result panel.
+
+#### Importing resident data from CSV file
+
+[Comment]: <> (Update CSV format link when UG is compiled)
+
+1. Importing from a valid CSV file.
+
+   1. Prerequisites: Have an existing CSV file in the proper format, as specified in the [CSV format]() section of our **User Guide**.
+
+   2. Test case: `file import valid_file`, where `valid_file` is the name of your valid CSV file <br>
+       Expected: A new data folder, with the name `valid_file` is created in `ROOT/data` directory. The new resident data imported from `valid_file.csv` will be stored in `ROOT/data/valid_file/resident_data.json` file, and the `valid_file.csv` file will remain inside the data folder.
+
+<br>
+
+### Venue management
+
+#### Adding a venue
+
+[Comment]: <> (To be added)
+
+#### Deleting a venue
+
+[Comment]: <> (To be added)
+
+#### Viewing a venue
+
+[Comment]: <> (To be added)
+
+#### Adding a booking
+
+[Comment]: <> (To be added)
+
+#### Deleting a booking
+
+[Comment]: <> (To be added)
+
+<br>
+
+### Quality-of-life
+
+We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section before proceeding, as the following largely tests the functionality from that section.
+
+#### Browsing recently-used commands
+
+1. Browsing recent valid commands
+
+   1. Prerequisites: List all residents using the `list` command, followed by adding a resident using the `add` command. The following
+   test cases are to be done sequentially.
+
+   2. Test case: Pressing `UP_ARROW_KEY`<br>
+      Expected: `add` command is copied onto the input command box.
+
+   3. Test case: Pressing `UP_ARROW_KEY`<br>
+      Expected: `add` command is replaced and `list` command is copied onto the input command box.
+
+   4. Test case: Pressing `DOWN_ARROW_KEY`<br>
+      Expected: `list` command is replaced and `add` command is copied onto the input command box.
+
+   5. Test case: Pressing `DOWN_ARROW_KEY`<br>
+      Expected: `add` command is replaced and ` ` is copied onto the input command box. i.e. no command
+
+#### Getting help
+
+1. Opening the Help Window
    
+   1. Prerequisites: Help Window is not currently opened.
 
-3. Test case: Pressing `DOWN_ARROW_KEY`<br>
-   Expected: `list` command is replaced and `add` command is copied onto the input command box.
+   2. Test case: `help`<br>
+      Expected: Help Window pops up.
+
+   3. Test case: Pressing `F1`<br>
+      Expected: Help Window pops up.
+
+2. Closing the Help Window
+
+   1. Prerequisites: Help Window is currently opened.
+
+   2. Test case: Pressing `X` of the Help Window.<br>
+      Expected: Help Window closes.
+
+   3. Test case: Pressing `ESC`<br>
+      Expected: Help Window closes.
+
+#### Accessing the command input box
+
+1. Accessing command input
+
+   1. Prerequisites: Command input box is not in focus.
    
+   2. Test case: Pressing `F3`<br>
+      Expected: Command input box is in focus and ready for user command.
 
-4. Test case: Pressing `DOWN_ARROW_KEY`<br>
-   Expected: `add` command is replaced and ` ` is copied onto the input command box. i.e. no command
+#### Switching from tabs
 
-<br>
-
-### Opening the Help Window
-
-Prerequisites: Help Window is not currently opened.
-
-1. Test case: `help`
-   Expected: Help Window pops up. 
-
-
-2. Test case: Pressing `F1`<br>
-   Expected: Help Window pops up.
-
-<br>
-
-### Closing the Help Window
-
-Prerequisites: Help Window is currently opened.
-
-1. Test case: Pressing `X` of the Help Window.<br>
-   Expected: Help Window closes.
-
-
-2. Test case: Pressing `ESC`<br>
-   Expected: Help Window closes.
-
-<br>   
-
-### Accessing the command input box 
-
-Prerequisites: Command input box is not in focus.
-
-1. Test case: Pressing `F3`<br>
-   Expected: Command input box is in focus and ready for user command.
-
-<br>
+1. Switching between `Resident` and `Bookings` tab
    
-### Switching from Residents tab to the Bookings tab 
-
-Prerequisites: Currently on the Resident tab.
-
-1. Test case: Pressing `CTRL-TAB`<br>
-   Expected: Bookings tabs is displayed.
-
-<br>
-
-### Switching from Bookings tab to the Residents tab 
-
-Prerequisites: Currently on the Resident tab.
-
-1. Test case: Pressing `CTRL-TAB`<br>
-   Expected: Residents tabs is displayed.
+   2. Test case: Pressing `CTRL-TAB`<br>
+      Expected: Alternate tab is displayed.
+   
+---

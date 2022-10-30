@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
+import static seedu.rc4hdb.testutil.TypicalVenues.getTypicalVenueBook;
 
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.NoSuchFileException;
@@ -19,10 +20,14 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.ReadOnlyVenueBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
+import seedu.rc4hdb.storage.venuebook.JsonVenueBookStorage;
+import seedu.rc4hdb.ui.ObservableItem;
 
 /**
  * Unit test for {@link StorageManager}.
@@ -82,6 +87,26 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void residentBookReadSave_withPath() throws Exception {
+        ResidentBook original = getTypicalResidentBook();
+        Path expectedPath = Path.of("SomeFile");
+        storageManager.saveResidentBook(original, expectedPath);
+        ReadOnlyResidentBook retrieved = storageManager.readResidentBook(expectedPath).get();
+        assertEquals(original, new ResidentBook(retrieved));
+    }
+
+    @Test
+    public void residentBookReadSave_withNullResidentBook() {
+        Path expectedPath = Path.of("SomeFile");
+        assertThrows(NullPointerException.class, () -> storageManager.saveResidentBook(null, expectedPath));
+    }
+    @Test
+    public void residentBookReadSave_withNullPath() {
+        ResidentBook original = getTypicalResidentBook();
+        assertThrows(NullPointerException.class, () -> storageManager.saveResidentBook(original, null));
+    }
+
+    @Test
     public void setResidentBookFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> storageManager.setDataStorageFolderPath(null));
     }
@@ -91,6 +116,13 @@ public class StorageManagerTest {
         Path expectedPath = Path.of("SomeFile");
         storageManager.setDataStorageFolderPath(expectedPath);
         assertEquals(expectedPath, storageManager.getDataStorageFolderPath());
+    }
+
+    @Test
+    public void setDataStoragePath_getObservableFolderPath() {
+        Path expectedPath = Path.of("SomeFile");
+        storageManager.setDataStorageFolderPath(expectedPath);
+        assertEquals(new ObservableItem<>(expectedPath), storageManager.getObservableFolderPath());
     }
 
     @Test
@@ -171,4 +203,81 @@ public class StorageManagerTest {
         // Both different
         assertNotEquals(diffResidentBookStorage, diffUserPrefsStorage);
     }
+
+    //=================== Venue Book Storage Tests ==================================
+
+    @Test
+    public void venueBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonResidentBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonResidentBookStorageTest} class.
+         */
+        VenueBook original = getTypicalVenueBook();
+        storageManager.saveVenueBook(original);
+        ReadOnlyVenueBook retrieved = storageManager.readVenueBook().get();
+        assertEquals(original, new VenueBook(retrieved));
+    }
+
+    @Test
+    public void venueBookReadSave_withPath() throws Exception {
+        VenueBook original = getTypicalVenueBook();
+        Path expectedPath = Path.of("SomeFile");
+        storageManager.saveVenueBook(original, expectedPath);
+        ReadOnlyVenueBook retrieved = storageManager.readVenueBook(expectedPath).get();
+        assertEquals(original, new VenueBook(retrieved));
+    }
+
+    @Test
+    public void venueBookReadSave_withNullVenueBook() {
+        Path expectedPath = Path.of("SomeFile");
+        assertThrows(NullPointerException.class, () -> storageManager.saveVenueBook(null, expectedPath));
+    }
+
+    @Test
+    public void venueBookReadSave_withNullPath() {
+        VenueBook original = getTypicalVenueBook();
+        assertThrows(NullPointerException.class, () -> storageManager.saveVenueBook(original, null));
+    }
+
+    @Test
+    public void deleteVenueBook_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> storageManager.deleteVenueBookFile(null));
+    }
+
+    @Test
+    public void deleteVenueBook_existingFile_fileDeleted() throws Exception {
+        Path folderPath = testFolder.resolve("ToBeDeleted");
+        Path toBeDeleted = folderPath.resolve(JsonVenueBookStorage.VENUE_DATA_PATH);
+        FileUtil.createIfMissing(toBeDeleted);
+        storageManager.deleteVenueBookFile(folderPath);
+        assertFalse(FileUtil.isFileExists(toBeDeleted));
+    }
+
+    @Test
+    public void deleteVenueBook_fileDoesNotExist_throwsNoSuchFileException() {
+        Path toBeDeleted = testFolder.resolve("ToBeDeleted");
+        assertThrows(NoSuchFileException.class, () -> storageManager.deleteVenueBookFile(toBeDeleted));
+    }
+
+    @Test
+    public void createVenueBookFile_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> storageManager.createVenueBookFile(null));
+    }
+
+    @Test
+    public void createVenueBookFile_fileDoesNotExist_fileCreated() throws Exception {
+        Path toBeCreated = testFolder.resolve("ToBeCreated");
+        storageManager.createVenueBookFile(toBeCreated);
+        assertTrue(FileUtil.isFolderExists(toBeCreated));
+        assertTrue(FileUtil.isFileExists(toBeCreated.resolve(JsonVenueBookStorage.VENUE_DATA_PATH)));
+    }
+
+    @Test
+    public void createVenueBookFile_fileAlreadyExist_throwsFileAlreadyExistException() throws Exception {
+        Path toBeCreated = testFolder.resolve("ToBeCreated").resolve(JsonVenueBookStorage.VENUE_DATA_PATH);
+        FileUtil.createIfMissing(toBeCreated);
+        assertThrows(FileAlreadyExistsException.class, () -> storageManager.createVenueBookFile(toBeCreated));
+    }
+
 }

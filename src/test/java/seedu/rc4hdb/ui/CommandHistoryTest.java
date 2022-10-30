@@ -22,6 +22,11 @@ public class CommandHistoryTest {
     }
 
     @Test
+    public void parserSingletonTest() {
+        assertEquals(this.commandHistoryParser, CommandHistoryParser.getInstance());
+    }
+
+    @Test
     public void addRetrieveSingleCommand() {
         this.commandHistoryParser.parse(LIST_COMMAND);
         String commandText = commandHistoryParser.parse(KeyCode.UP).execute();

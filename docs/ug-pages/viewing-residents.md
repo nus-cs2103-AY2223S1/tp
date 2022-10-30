@@ -212,7 +212,7 @@ Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 * `SPECIFIER`s will either be `/all` or `/any`. In the event that there are multiple `KEY/VALUE` pairs, 
   filters with the `all` specifier will only return results that satisfy **all** the keywords, while filters with the
   `any` specifier will return results that satisfy **any** of the keywords present.
-* Valid keys are those included [here](./modifying-residents.md#format-for-resident-fields), and any additional tags.
+* Valid keys are those included [here](./modifying-resident-data.md#format-for-resident-fields), and any additional tags.
 
 Calling `filter /all t/Head` on our sample data will produce the following result:
 ![filter](../images/ug-photos/filter_command_2.png)

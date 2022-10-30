@@ -1,5 +1,10 @@
 package seedu.rc4hdb.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 
@@ -20,4 +25,20 @@ public class TypicalVenues {
     public static final VenueName DISCUSSION_ROOM_NAME = new VenueName(DISCUSSION_ROOM_STRING);
     public static final Venue DISCUSSION_ROOM = new Venue(DISCUSSION_ROOM_NAME);
 
+    public static final String FUNCTION_ROOM_STRING = "Function Room";
+    public static final VenueName FUNCTION_ROOM_NAME = new VenueName(FUNCTION_ROOM_STRING);
+    public static final Venue FUNCTION_ROOM = new Venue(FUNCTION_ROOM_NAME);
+
+
+    public static VenueBook getTypicalVenueBook() {
+        VenueBook vb = new VenueBook();
+        for (Venue venue : getTypicalVenue()) {
+            vb.addVenue(venue);
+        }
+        return vb;
+    }
+
+    public static List<Venue> getTypicalVenue() {
+        return new ArrayList<>(Arrays.asList(MEETING_ROOM, HALL, DISCUSSION_ROOM));
+    }
 }

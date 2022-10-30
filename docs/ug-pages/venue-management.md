@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Venue Booking
+title: Venue Management
 ---
 
 #### [Back to Menu](../UserGuide.md)
