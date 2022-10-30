@@ -112,8 +112,8 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
 Examples:
 * `add -n Tutorial 12 -m CS2103T -d 2022-10-28 -t tutorial`
 
-![Before image of Add Command](images/user-guide/AddCommandBefore1'.png)
-![After image of Add Command](images/user-guide/AddCommandAfter1.png)
+![Before image of Add Command](images/user-guide/AddCommandBefore.png)
+![After image of Add Command](images/user-guide/AddCommandAfter.png)
 
 ### Marking a task as completed: `mark`
 
@@ -123,6 +123,8 @@ Format: `mark TASK_NUMBER`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 
 Example: `mark 2`
+
+![Example image of Mark Command](images/user-guide/MarkCommandDemo.png)
 
 ### Unmarking a task: `unmark`
 
@@ -141,7 +143,9 @@ Format : `tag TASK_NUMBER -t TAG_NAME*`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
-Example: `tag 2 -t optional`
+Example: `tag 1 -t optional`
+
+![Example image of Tag Command](images/user-guide/TagCommandDemo.png)
 
 ### List : `ls`
 
@@ -150,6 +154,9 @@ listing all tasks, unmarked tasks, all tasks under a module name, etc. You may a
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
 Current filters applied will be shown in the UI at the top bar.
+
+![Before image of List Command](images/user-guide/ListCommandBefore.png)
+![After image of List Command](images/user-guide/ListCommandAfter.png)
 
 **Note that `find` searches globally, across all of a task's attributes**
 
@@ -233,6 +240,8 @@ Examples:
 ### View Archived Tasks : `showarchive`
 
 Displays a list of archived tasks.
+
+![Screenshot of Archived Window](images/user-guide/ArchivedDemo.png)
 
 Format: `showArchive`
 
