@@ -450,5 +450,6 @@ If your changes to the data file makes its format invalid, GREWZ will discard al
 | **Todo** | Todo is a task with a description and title.                                                                                                              |
 | **Deadline**  | Deadline is a task with a due date.                                                                                         |
 | **Assignment**  | Assignment is a task with a list of students that needs to finish the task.                                                                                           |
-| **Attendance List** | Attendance list is a record of the student's attendance for his class.                                                                                                                |
+| **Attendance List** | Attendance list is a record of the student's attendance for his class.                                                                                                                
 
+[back to top](#introduction)
