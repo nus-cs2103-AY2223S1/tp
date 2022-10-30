@@ -5,34 +5,50 @@ title: User Guide
 
 FindMyIntern helps students who are applying for internships keep track of their applications. It allows students to consolidate all these applications into a single place, manage these applications, and visualise their application statuses.
 ## Table of Contents
-- [Quick Start](#quick-start)
-- [Features](#features)
+
+The user guide is divided into different sections. Click on any of the sections to jump right into that section!
+<div>
+<div markdown="1">
+<h6 markdown="1">[Quick Start](#quick-start)</h6>
+This section teaches you how to install and **get started** with FindMyIntern.
+</div>
+</div>
+
+<div>
+<div markdown="1">
+<h6 markdown="1">[Features](#features)</h6>
+This section contains **everything you need to know** about the features in FindMyIntern.
+It includes:
   - [Commands](#commands)
-    - [Viewing help: `help`](#viewing-help-help)
-    - [Adding an internship application: `add`](#adding-an-internship-application-add)
-    - [Editing an internship application: `edit`](#editing-an-internship-application-edit)
-    - [Marking an internship application status: `mark`](#marking-an-internship-application-status-mark)
-    - [Listing all internship applications: `list`](#listing-all-internship-applications-list)
-    - [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
-    - [Filtering for internship applications of a specific status: `filter`](#filtering-for-internship-applications-of-a-specific-status-filter)
-    - [Finding for an internship application: `find`](#finding-for-internship-applications-or-tags-find)
-    - [Sorting the internship applications: `sort`](#sorting-the-list-of-internship-applications-sort)
-    - [Clearing all internship applications: `clear`](#clearing-all-internship-applications-clear)
-    - [Exiting the program: `exit`](#exiting-the-program-exit)
-  - [Saving and editing](#saving-and-editing)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data](#editing-the-data)
-  - [UI elements](#ui-elements)
-- [FAQ](#faq)
-- [Appendix](#appendix)
-  - [Field constraints](#field-constraints)
-  - [Application status](#application-status)
-  - [Date/time formats](#datetime-formats)
-- [Command Summary](#command-summary)
+  - [Saving and Editing](#saving-and-editing)
+  - [UI Elements](#ui-elements)
+</div>
+</div>
+
+<div>
+<div markdown="1">
+<h6 markdown="1">[FAQ](#faq)</h6>
+This section includes all frequently asked questions about FindMyIntern.
+</div>
+</div>
+
+<div>
+<div markdown="1">
+<h6 markdown="1">[Appendix](#appendix)</h6>
+This section specifies **the input details** that you have to be aware of in FindMyIntern.
+</div>
+</div>
+
+<div>
+<div markdown="1">
+<h6 markdown="1">[Command Summary](#command-summary)</h6>
+This section contains the formats of all commands in FindMyIntern.
+</div>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -97,6 +113,20 @@ FindMyIntern helps students who are applying for internships keep track of their
 </div>
 
 ### Commands
+
+This section contains **everything you need to know** about the commands used in FindMyIntern. Click on any of the commands to jump straight into it.
+
+- [Viewing help: `help`](#viewing-help-help)
+- [Adding an internship application: `add`](#adding-an-internship-application-add)
+- [Editing an internship application: `edit`](#editing-an-internship-application-edit)
+- [Marking an internship application status: `mark`](#marking-an-internship-application-status-mark)
+- [Listing all internship applications: `list`](#listing-all-internship-applications-list)
+- [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
+- [Filtering for internship applications of a specific status: `filter`](#filtering-for-internship-applications-of-a-specific-status-filter)
+- [Finding for an internship application: `find`](#finding-for-internship-applications-or-tags-find)
+- [Sorting the internship applications: `sort`](#sorting-the-list-of-internship-applications-sort)
+- [Clearing all internship applications: `clear`](#clearing-all-internship-applications-clear)
+- [Exiting the program: `exit`](#exiting-the-program-exit)
 
 #### Viewing help: `help`
 
@@ -299,7 +329,7 @@ Exits the program.
 
 Format: `exit`
 
-### Saving and editing
+### Saving and Editing
 
 #### Saving the data
 
@@ -350,6 +380,12 @@ A tooltip containing the additional tags is shown when the count is hovered.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix
+
+This section specifies **the input details** that you have to be aware of in FindMyIntern.
+
+- [Field Constraints](#field-constraints)
+- [Application Status](#application-status)
+- [Date/Time Formats](#datetime-formats)
 
 ### Field constraints
 
