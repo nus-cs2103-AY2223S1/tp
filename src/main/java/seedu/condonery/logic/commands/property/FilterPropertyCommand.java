@@ -23,7 +23,12 @@ public class FilterPropertyCommand extends Command {
 
     private final PropertyTagContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FilterPropertyCommand to filter the specified {@code Property}
+     * @param predicate
+     */
     public FilterPropertyCommand(PropertyTagContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
