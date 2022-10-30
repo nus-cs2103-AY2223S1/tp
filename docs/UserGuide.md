@@ -117,11 +117,7 @@ Examples:
     Walk-through with Images
     </summary>
 
-    Before executing the AddCommand:
-
     ![AddCommand1](images/screenshots/AddCommand/AddCommand1.png)
-
-    After executing the AddCommand:
 
     ![AddCommand1Result](images/screenshots/AddCommand/AddCommand1Result.png)
     </details>
