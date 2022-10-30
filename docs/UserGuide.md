@@ -388,16 +388,15 @@ from the module with module code `CS2040`, using their corresponding link alias 
 You may add a contact to Plannit using the `add-person` command.
 
 This command will require three flags:
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
+
+| Field     | Flag | Constraints                                                        |
+|-----------|------|--------------------------------------------------------------------|
+| **Name**  | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)       |
+| **Phone** | `p/` | Can only be 8 digits long                                          |
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
-* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
-* You cannot specify any country code for phone number.
-* You must specify an 8-digit phone number.
 
 Example:
 ```
@@ -411,13 +410,16 @@ You can add a person to a module using the `add-person-to-module` command. In ot
 words, an association between a person and a module will be created.
 
 This command will require two flags:
-* `m/`: To be followed by the module code of the module which the person will be added to.
-* `n/`: To be followed by the name of the person who will be added to the module.
+
+| Field           | Flag | Constraints                                                        |
+|-----------------|------|--------------------------------------------------------------------|
+| **Module Code** | `m/` | Can only be non-empty string of alphanumeric characters            |
+| **Name**        | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
 
 Format: `add-person-to-module m/MODULE_CODE n/NAME`
+* If a person has already been added to a module, the person cannot be added to the module again.
 * You can only add a person to a module if both the person and the module are currently
   displayed on screen.
-* If a person has already been added to a module, the person cannot be added to the module again.
 
 Example:
 
@@ -430,10 +432,13 @@ In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T
 You may delete a contact from Plannit using the `delete-person` command.
 
 This command will require one flag:
-* `n/`: To be followed by the to-be-deleted contact name.
+
+| Field           | Flag | Constraints                                                        |
+|-----------------|------|--------------------------------------------------------------------|
+| **Name**        | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
 
 Format: `delete-person n/NAME`
-* You cannot delete a non-existent contact.
+* You cannot delete a non-existent contact in Plannit.
 * You can only delete a person from Plannit when the person is currently being displayed.
 
 Example:
@@ -447,8 +452,11 @@ You can remove the association between a person and a module (if it exists) usin
 command.
 
 This command will require two flags:
-* `m/`: To be followed by the module code of the module, which the person will be removed from.
-* `n/`: To be followed by the name of the person, whom will be removed from the module.
+
+| Field           | Flag | Constraints                                                        |
+|-----------------|------|--------------------------------------------------------------------|
+| **Module Code** | `m/` | Can only be non-empty string of alphanumeric characters            |
+| **Name**        | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
 
 Format: `delete-person-from-module m/MODULE_CODE n/NAME`
 * You can only delete the specified person from the specified module if the person was originally associated to the
@@ -467,15 +475,15 @@ In the above example, we are deleting the person `Dinosaur Lim` from module `CS2
 You may edit a contact using the `edit-person` command.
 
 This command will require an index and minimally any of the three flags:
-* `n/`: To be followed by the new contact name.
-* `e/`: To be followed by the new email of the contact.
-* `p/`: To be followed by the new phone number of the contact.
+
+| Field     | Flag | Constraints                                                        |
+|-----------|------|--------------------------------------------------------------------|
+| **Name**  | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)       |
+| **Phone** | `p/` | Can only be 8 digits long                                          |
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 * `INDEX` is the currently displayed index number of the contact you are editing for on the screen.
-* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
-* You cannot specify any country code for phone number.
-* You must specify an 8-digit phone number.
 
 Examples:
 ```
@@ -593,3 +601,8 @@ the file that contains the data of your previous Plannit home folder.
 [More questions coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
+# 5. Glossary
+
+| Term                  | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **local-part@domain** | The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>The local-part may not start or end with any special characters. <br> <br>This is followed by a '@' and then a domain name. <br> <br>The domain name is made up of domain labels separated by periods. The domain name must: <br> 1) end with a domain label at least 2 characters long <br> 2) have each domain label start and end with alphanumeric characters <br> 3) have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
