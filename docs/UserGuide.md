@@ -321,7 +321,14 @@ Examples:
 
 Undoes the previous command and reverts your TaskBook to the previous state. A _minimum_ of 15 previous states are guaranteed to be kept in the history, if there are that many commands executed.
 
-Note: Commands that do not cause a change in state cannot be undone.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about Undo:**<br>
+
+* Commands that do not cause a change in state cannot be undone.
+* Undo does not reset the view changes caused by filter or sort. See [contact list](#listing-all-contacts--contact-list) and [task list](#listing-all-tasks--task-list) instead.
+
+</div>
 
 Format: `undo`
 
