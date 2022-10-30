@@ -110,6 +110,8 @@ While reading this user guide, these symbols will inform you if there is some im
 * Extraneous parameters for commands that do not take in parameters (such as `task list`, `contact list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
+</div>
+
 ### Accepted Date Formats
 
 The following date formats are accepted:
@@ -118,8 +120,6 @@ The following date formats are accepted:
 * MMM dd yyyy (Oct 31 2022)
 * MM dd yyyy (10 31 2022)
 * dd MMM yyyy (31 Oct 2022)
-
-</div>
 
 ### Viewing help : `help`
 
