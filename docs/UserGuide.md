@@ -56,8 +56,9 @@ while still having the benefits of a Graphical User Interface (GUI).
 | [`home`](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
 | [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
 | [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
+
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**
-* Features marked with * can only be utilised when users are at the home page.
+Features marked with * can only be utilised when users are at the home page.
 </div>
 
 <div markdown="span" class="alert alert-info">:eye: **See also:** 
@@ -204,7 +205,7 @@ In either of the above examples, we find every module whose module code starts w
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:** You will
 remain on the home page after executing the `find-module` command. This is different
-from the behavior of [`goto`](#252-navigate-between-modules)
+from the behavior of [`goto`](#252-navigate-between-modules) command.
 </div>
 
 #### 2.1.5. List module
@@ -626,18 +627,18 @@ You may navigate to the home page using the `home` command.
 
 Format:  `home`
 
-<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**
+<div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
 You may click on a module to ["peek"](#224-peeking-at-modules) at a module's task while on the home page. <br>
 For more detailed information regarding a specific module, you may navigate to that
-module using the [`goto`](#252-navigate-between-modules) command.
+module using the [`goto`](#252-navigate-between-modules) command. <br>
 The following commands also navigates you back to the home page:
 * [`add-module`](#211-add-module)
 * [`delete-module`](#212-delete-module)
 * [`add-person`](#244-add-person)
 </div>
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**
-After using [`goto`](#252-navigate-between-modules), executing the `home` command will 
+<div markdown="block" class="alert alert-info"> :information_source: **Note:**
+After using the [`goto`](#252-navigate-between-modules) command, executing the `home` command will 
 re-enable the following commands:
 * [`find-module`](#214-find-module)
 * [`list-module`](#215-list-module)
@@ -662,10 +663,10 @@ In the above example, we are navigating to the module with module code `CS2109S`
 You may return to home page by executing the [`home`](#251-navigate-to-home) command.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
+<div markdown="block" class="alert alert-info">:information_source: **Note:** <br>
 You will leave the home page after executing the `goto` command. This is different from the
-behavior of [`find-module`](#215-find-module). <br>
-After using `goto` command, the usage of the following commands will be restricted:
+behavior of [`find-module`](#215-find-module) command. <br>
+After using the `goto` command, usage of the following commands will be restricted:<br>
 * [`find-module`](#214-find-module)
 * [`list-module`](#215-list-module)
 * [`find-person`](#244-find-person)
