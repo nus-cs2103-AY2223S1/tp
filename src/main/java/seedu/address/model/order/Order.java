@@ -44,7 +44,11 @@ public class Order {
                  Price settledPrice,
                  OrderStatus status) {
         requireAllNonNull(status);
-        this.id = ORDER_ID_GENERATOR.next();
+        UniqueId currId = ORDER_ID_GENERATOR.next();
+        while (UniqueIdGenerator.storedIdOrderContains(currId)) {
+            currId = ORDER_ID_GENERATOR.next();
+        }
+        this.id = currId;
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;
         this.request = request;
@@ -71,7 +75,11 @@ public class Order {
                  AdditionalRequests additionalRequests,
                  LocalDate byDate,
                  Price settledPrice) {
-        this.id = ORDER_ID_GENERATOR.next();
+        UniqueId currId = ORDER_ID_GENERATOR.next();
+        while (UniqueIdGenerator.storedIdOrderContains(currId)) {
+            currId = ORDER_ID_GENERATOR.next();
+        }
+        this.id = currId;
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;
         this.request = request;
@@ -102,6 +110,7 @@ public class Order {
                  OrderStatus status,
                  UniqueId uniqueId) {
         requireAllNonNull(status);
+        UniqueIdGenerator.addToStoredIdOrder(uniqueId);
         this.id = uniqueId;
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;

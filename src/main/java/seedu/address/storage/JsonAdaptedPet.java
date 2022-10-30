@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.index.UniqueId;
+import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
@@ -44,8 +45,7 @@ public class JsonAdaptedPet {
     private final Double price;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<String> certificates = new ArrayList<>();
-
-    private final UniqueId uniqueId;
+    private final String uniqueId;
 
     /**
      * Constructs a {@code JsonAdaptedPet} with the given buyer details.
@@ -63,7 +63,7 @@ public class JsonAdaptedPet {
                           @JsonProperty("price") Double price,
                           @JsonProperty("tags") List<JsonAdaptedTag> tagged,
                           @JsonProperty("certificates") List<String> certificates,
-                          @JsonProperty("uniqueId") UniqueId uniqueId) {
+                          @JsonProperty("uniqueId") String uniqueId) {
         this.name = name;
         this.supplier = supplier;
         this.color = color;
@@ -102,7 +102,7 @@ public class JsonAdaptedPet {
                 .collect(Collectors.toList()));
         certificates.addAll(source.getCertificates().stream()
                 .map(PetCertificate::toString).collect(Collectors.toList()));
-        uniqueId = source.getId();
+        uniqueId = source.getId().getIdToString();
     }
 
     /**
@@ -182,7 +182,16 @@ public class JsonAdaptedPet {
             modelCerts.add(new PetCertificate(cert));
         }
 
-        return new Pet(modelName, modelSupplier, modelColor, modelColorPattern, modelDateOfBirth, modelSpecies,
+        if (uniqueId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    UniqueId.class.getSimpleName()));
+        }
+        UniqueId modelUniqueId = new UniqueId(uniqueId);
+        if (UniqueIdGenerator.storedIdPetContains(modelUniqueId)) {
+            throw new IllegalValueException("Repeated unique id for pet");
+        }
+
+        return new Pet(modelUniqueId, modelName, modelSupplier, modelColor, modelColorPattern, modelDateOfBirth, modelSpecies,
                 modelWeight, modelHeight, modelVax, modelPrice, modelTags, modelCerts);
     }
 }
