@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalExams.getTypicalExams;
 import static seedu.address.testutil.TypicalModules.getTypicalModules;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.task.Task;
 import seedu.address.model.module.Module;
 
@@ -27,9 +29,10 @@ public class TypicalTasks {
         .withDescription("Task C")
         .withStatus("incomplete")
         .build();
-    public static final Task TASK_D = new TaskBuilder().withModule("cs2040")
+    public static final Task LINKED_TASK = new TaskBuilder().withModule("cs2040")
         .withDescription("Task D")
         .withStatus("complete")
+        .withExam(getTypicalExams().get(0))
         .build();
     public static final Task TASK_E = new TaskBuilder().withModule("cs2100")
         .withDescription("Task E")
@@ -51,6 +54,9 @@ public class TypicalTasks {
         for (Module module: getTypicalModules()) {
             ab.addModule(module);
         }
+        for (Exam exam: getTypicalExams()) {
+            ab.addExam(exam);
+        }
         for (Task task : getTypicalTasks()) {
             ab.addTask(task);
         }
@@ -58,6 +64,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C, TASK_D, TASK_E, TASK_F));
+        return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C, LINKED_TASK, TASK_E, TASK_F));
     }
 }

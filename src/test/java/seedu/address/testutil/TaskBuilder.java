@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.tag.DeadlineTag;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
@@ -20,7 +22,8 @@ public class TaskBuilder {
     private TaskDescription description;
     private TaskStatus status;
     private Exam exam;
-    private Tag tag;
+    private PriorityTag priorityTag = null;
+    private DeadlineTag deadlineTag = null;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -28,6 +31,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         module = new Module(new ModuleCode(DEFAULT_MODULE));
         description = new TaskDescription(DEFAULT_DESCRIPTION);
+        status = TaskStatus.INCOMPLETE;
     }
 
     /**
@@ -36,6 +40,7 @@ public class TaskBuilder {
     public TaskBuilder(Task taskToCopy) {
         description = taskToCopy.getDescription();
         module = taskToCopy.getModule();
+        status = taskToCopy.getStatus();
     }
 
     /**
@@ -62,8 +67,16 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Exam} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withExam(Exam exam) {
+        this.exam = exam;
+        return this;
+    }
+
     public Task build() {
-        return new Task(module, description, status);
+        return new Task(module, description, status, null, null, exam);
     }
 
 }

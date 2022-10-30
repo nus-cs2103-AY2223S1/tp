@@ -5,6 +5,9 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleCredit;
 import seedu.address.model.module.ModuleName;
 
+/**
+ * A utility class to help with building Module objects.
+ */
 public class ModuleBuilder {
 
     public static final String DEFAULT_MODULE_CODE = "CS2103T";

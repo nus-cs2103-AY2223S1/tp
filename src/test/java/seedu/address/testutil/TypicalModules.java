@@ -6,6 +6,9 @@ import java.util.List;
 
 import seedu.address.model.module.Module;
 
+/**
+ * A utility class containing a list of {@code Module} objects to be used in tests.
+ */
 public class TypicalModules {
 
     public static final Module CS2030 = new ModuleBuilder().withModuleCode("cs2030")
@@ -20,8 +23,12 @@ public class TypicalModules {
         .withModuleName("Computer Organisation")
         .withModuleCredit(4)
         .build();
+    public static final Module CS2103T = new ModuleBuilder().withModuleCode("cs2103t")
+        .withModuleName("Software Engineering")
+        .withModuleCredit(4)
+        .build();
 
     public static List<Module> getTypicalModules() {
-        return new ArrayList<>(Arrays.asList(CS2030, CS2040, CS2100));
+        return new ArrayList<>(Arrays.asList(CS2030, CS2040, CS2100, CS2103T));
     }
 }

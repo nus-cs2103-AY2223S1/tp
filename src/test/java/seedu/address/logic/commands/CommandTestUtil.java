@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,6 +24,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -62,6 +65,22 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final String VALID_MODULE_DESC = " " + PREFIX_MODULE + "cs2030";
+    public static final String VALID_TASK_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "first task";
+    public static final String VALID_MODULE_DESC_TWO = " " + PREFIX_MODULE + "cs2040";
+    public static final String VALID_TASK_DESCRIPTION_DESC_TWO = " " + PREFIX_DESCRIPTION + "second task";
+    public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "cs"; // module code should be at least 6 letters long
+    public static final String INVALID_TASK_DESCRIPTION_DESC =
+        " " + PREFIX_DESCRIPTION + " "; // empty string not allowed for required for task descriptions
+
+    public static final String VALID_MODULE_FIRST_TASK = "cs2030";
+    public static final String VALID_MODULE_SECOND_TASK = "cs2040";
+    public static final String VALID_DESCRIPTION_FIRST_TASK = "first task";
+    public static final String VALID_DESCRIPTION_SECOND_TASK = "second task";
+
+    public static final EditTaskCommand.EditTaskDescriptor DESC_FIRST_TASK;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_SECOND_TASK;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -69,6 +88,13 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        DESC_FIRST_TASK = new EditTaskDescriptorBuilder().withModule(VALID_MODULE_FIRST_TASK)
+            .withDescription(VALID_DESCRIPTION_FIRST_TASK).build();
+        DESC_SECOND_TASK = new EditTaskDescriptorBuilder().withModule(VALID_MODULE_SECOND_TASK)
+            .withDescription(VALID_DESCRIPTION_SECOND_TASK).build();
     }
 
     /**
