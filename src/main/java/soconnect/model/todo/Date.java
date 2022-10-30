@@ -105,7 +105,7 @@ public class Date {
      *
      * @param other The other {@code Date}.
      * @return Negative integer if this {@code Date} is earlier and positive integer
-     *     if this {@code Date} is latter than the other {@code Date}, otherwise 0.
+     *     if this {@code Date} is later than the other {@code Date}, otherwise 0.
      */
     public int compareTo(Date other) {
         return date.compareTo(other.date);
