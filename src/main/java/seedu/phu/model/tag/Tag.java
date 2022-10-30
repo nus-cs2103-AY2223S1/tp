@@ -9,8 +9,9 @@ import static seedu.phu.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
+    public static final int MAX_LENGTH = 20;
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String LENGTH_CONSTRAINTS = "Tag should be at most 20 characters";
+    public static final String LENGTH_CONSTRAINTS = "Tag should be at most " + MAX_LENGTH + " characters";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;

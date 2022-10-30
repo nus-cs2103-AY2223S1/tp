@@ -150,7 +150,7 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (trimmedTag.length() > 20) {
+        if (trimmedTag.length() > Tag.MAX_LENGTH) {
             throw new ParseException(Tag.LENGTH_CONSTRAINTS);
         }
         if (!Tag.isValidTagName(trimmedTag)) {
