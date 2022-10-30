@@ -57,7 +57,7 @@ public class AddTutorialCommand extends Command {
         if (model.hasTutorial(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
         }
-        if (model.numOfClashingTutorial(toAdd) > 0) {
+        if (model.hasClashingTutorial(toAdd)) {
             throw new CommandException(MESSAGE_CLASH_TUTORIAL);
         }
         model.addTutorial(toAdd);

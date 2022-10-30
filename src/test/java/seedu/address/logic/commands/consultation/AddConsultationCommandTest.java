@@ -207,7 +207,12 @@ public class AddConsultationCommandTest {
         }
 
         @Override
-        public int numOfClashingTutorial(Tutorial tutorial) {
+        public boolean hasClashingTutorial(Tutorial toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClashingTutorialExcept(Tutorial toCheck, Tutorial exception) {
             throw new AssertionError("This method should not be called.");
         }
 

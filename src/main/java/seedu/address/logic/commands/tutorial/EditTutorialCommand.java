@@ -85,8 +85,7 @@ public class EditTutorialCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
         }
 
-        int indicatorOverlap = tutorialToEdit.isClashTutorial(editedTutorial) ? 1 : 0;
-        if (model.numOfClashingTutorial(editedTutorial) - indicatorOverlap > 0) {
+        if (model.hasClashingTutorialExcept(editedTutorial, tutorialToEdit)) {
             throw new CommandException(MESSAGE_CLASH_TUTORIAL);
         }
 

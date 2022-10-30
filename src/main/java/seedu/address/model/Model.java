@@ -144,9 +144,15 @@ public interface Model {
     boolean hasTutorial(Tutorial tutorial);
 
     /**
-     * Returns the number of tutorials in ModQuik that have timeslot overlaps with an {@code tutorial}.
+     * Returns the true if there exists tutorials in ModQuik having timeslot overlapping with an {@code tutorial}.
      */
-    int numOfClashingTutorial(Tutorial tutorial);
+    boolean hasClashingTutorial(Tutorial toCheck);
+
+    /**
+     * Returns true if there exists tutorials exclude {@code exception} in ModQuik having timeslot overlapping with
+     * an {@code tutorial}
+     */
+    boolean hasClashingTutorialExcept(Tutorial toCheck, Tutorial exception);
 
     /**
      * Adds the given tutorial.
