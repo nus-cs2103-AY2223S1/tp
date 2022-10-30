@@ -11,7 +11,7 @@ import seedu.masslinkers.logic.parser.ParserUtil;
  */
 public class Mod {
     public static final String MESSAGE_CONSTRAINTS =
-            "Mod names should be numbers prefixed with letters and less than 10 characters.";
+            "Mod names should be numbers prefixed with alphabet(s) and less than 10 characters.";
     /** Categories for mods */
     public enum ModCategory {
         COMP("Computer Science"), MATH("Mathematics"), SCI("Science"), COMMS("Communication"),
@@ -92,7 +92,7 @@ public class Mod {
     }
 
     /**
-     * Unmarks a module as not taken.
+     * Unmarks a module and updates the status as taking.
      */
     public void unmarkMod() {
         this.hasTaken = false;

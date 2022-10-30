@@ -10,11 +10,11 @@ import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
 public class GitHub {
 
     // GitHub username constraints adapted from https://github.com/shinnn/github-username-regex
-    public static final String MESSAGE_CONSTRAINTS =
-                    "Github username may only contain alphanumeric characters or hyphens.\n"
-                    + "Github username cannot have multiple consecutive hyphens.\n"
-                    + "Github username cannot begin or end with a hyphen.\n"
-                    + "Between 1 to 39 characters.";
+    public static final String MESSAGE_CONSTRAINTS = "Github username is invalid!\n"
+                    + "• Github username must be between 1 to 39 characters.\n"
+                    + "• Github username may only contain alphanumeric characters or hyphens.\n"
+                    + "• Github username cannot begin or end with hyphens and "
+                            + "cannot have multiple consecutive hyphens.";
 
     // Regex adapted from: https://github.com/shinnn/github-username-regex
     public static final String VALIDATION_REGEX = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";

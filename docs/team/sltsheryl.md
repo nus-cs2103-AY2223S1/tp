@@ -47,6 +47,16 @@ Given below are my contributions to the project.
     * Made relevant amendments to ```StudentTest``` tests.
     * Wrote tests for ```GitHubTest``` and ```TelegramTest```.
 
+#### Other Modifications: Ensure Specificity of Error Messages
+* What it does: Displays appropriate error messages for different command input errors.
+* Justification: Handling and signalling different types of input errors to users increases the ease of use of Mass Linkers as new users are aware of the amendments required, should they key in an invalid command. 
+* Highlights:
+  * The different types of errors include:
+    * Unknown command
+    * Missing parameters
+    * Invalid index
+  * Made amendments to the relevant test files when the above input errors were made.
+
 #### Code contributed: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=sltsheryl&breakdown=true)
 
 #### Project management
@@ -56,11 +66,15 @@ Given below are my contributions to the project.
 #### Documentation
 * **User Guide**:
   * Worked on project description.
+  * Writeup of FAQ.
   * Proofread user guide for bugs.
 * **Developer Guide**:
-    * Writeup for use cases 1 - 4.
-    * Design diagrams and writeup for ```Add Interest``` feature.
-    * Proofread developer guide for bugs.
+  * Worked on Overview.
+  * Writeup of use cases 1 - 4.
+  * Design diagrams and writeup for ```Add Interest``` feature.
+  * Align UML diagrams to project scope.
+  * Writeup of Future Developments.
+  * Proofread developer guide for bugs.
 
 #### Community:
 * Reviewed other teammate's PRs.
