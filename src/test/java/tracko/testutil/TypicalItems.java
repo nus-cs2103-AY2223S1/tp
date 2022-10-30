@@ -44,12 +44,12 @@ public class TypicalItems {
             .withQuantity(48).withDescription("Cute shark slippers")
             .withSellPrice(10.00)
             .withCostPrice(2.00).build();
-
-    // Manually added
     public static final InventoryItem INVENTORY_ITEM_8 = new InventoryItemBuilder().withItemName("Keychain")
             .withQuantity(95).withDescription("Small copper keychain")
             .withSellPrice(0.50)
             .withCostPrice(4.99).build();
+
+    // Manually added
     public static final InventoryItem INVENTORY_ITEM_9 = new InventoryItemBuilder().withItemName("Mechanical Pencil")
             .withQuantity(278).withDescription("Mechanical pencil with rubber grip")
             .withSellPrice(0.30)
