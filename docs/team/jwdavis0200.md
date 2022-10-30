@@ -13,14 +13,31 @@ It is written in Java.
 
 ##Summary of Contributions
 
-* **New Feature**: `to be added soon`
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jwdavis0200&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**: `to be added soon`
+* **Enchancements implemented**:
+  * Added the attendance feature and tests.
+    * Created `AttendanceCommandParser` and `AttendanceCommand` and respective tests.
+      * Created `AttendanceList`.
+  * Implemented base of view feature.
+    * Created `ViewCommand` and `ViewCommandParser` along with respective tests.
+    * Created `NameIsKeywordsPredicate` to support feature along with respective tests.
+    * Full view functionality was implemented by fellow team member.
+  * Added the Session feature and tests.
+    * Created `SessionCommand` and `SessionCommandParser` along with respective tests.
+    * Created `SessionList`.
+    * Implemented sorting logic of session timings for `SessionList`
+  * Implemented next session feature.
+    * Created `NextSessionUtil`.
+    * Integration of `ModelManager` with `LogicManager` and `MainWindow` to support feature.
+    * Implemented logic of getting the next session timing with local machine time as reference.
 
-* **Enhancements to existing features**: `to be added soon`
-* **Documentation**: `to be added soon`
-* **Community**: `to be added soon`
-* **Tools**: `to be added soon`
+* **Contributions to the UG**: `to be added soon`
+* **Contributions to the DG**:
+  * Updated skeletal DG to match product specifications.
+    * Added user stories matching Pupilist project.
+  * Fixed layout rendering issues of table.
+  * Included Session feature.
+* **Review/mentoring contributions**: `to be added soon`
+* **Contributions beyond the project team**: `to be added soon`
 
