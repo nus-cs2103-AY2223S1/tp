@@ -141,6 +141,8 @@ Examples:
 
 * `show 1`
 
+![Show](images/show.png)
+
 ### Editing of client information : `edit`
 
 Edits the information of a client within Rapportbook.
@@ -246,6 +248,7 @@ Examples:
 * `filter n=Homer t=potential` Shows all clients with the name `Homer` **and** the `potential` tag.
 * `filter n=Homer,Laufey t=potential,highPotential` Shows all clients with names, `Homer` or `Laufey`, **and** with either the `potential` or `highPrirority` tags.
 
+![Filter list](images/filter.png)
 
 ### Clearing filters : `filter clear`
 
@@ -287,6 +290,8 @@ Possible date time formats:
   * `dt=22-11-8 0:00`
   * `dt=2022-11-8 12:00AM`
   * `dt=22-nov-08 00:00`
+
+![Creating Reminders](images/reminder.png)
 
 ### Deleting reminders : `reminder delete`
 
@@ -336,6 +341,8 @@ Format: `message generate PERSON_INDEX MESSAGE_INDEX`
 Example:
 
 - `message generate 1 4` Generates a personalized message for the 1st client using the 4th message template
+
+![Generating Messages](images/message_generate.png)
 
 ### Deleting message templates : `message delete`
 
