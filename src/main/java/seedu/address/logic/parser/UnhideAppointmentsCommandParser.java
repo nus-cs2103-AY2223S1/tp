@@ -54,6 +54,7 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
     }
 
     public boolean isValidStatusInput(String status) {
-        return status.equals("um") || status.equals("m") || status.equals("marked") || status.equals("unmarked");
+        return status.equalsIgnoreCase("um") || status.equalsIgnoreCase("m")
+                || status.equalsIgnoreCase("marked") || status.equalsIgnoreCase("unmarked");
     }
 }
