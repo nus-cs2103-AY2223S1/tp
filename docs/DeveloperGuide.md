@@ -675,10 +675,11 @@ MSS:
 
 Extensions:
 
-&ensp; 1a. The user wants to view only certain fields in the list. <br>
-&ensp; &emsp; &nbsp; 1a1. The user specifies which fields he wants to see or hide. <br>
-&ensp; &emsp; &nbsp; Use case resumes at step 2.
+[comment]: <> (&ensp; 1a. The user wants to view only certain fields in the list. <br>)
 
+[comment]: <> (&ensp; &emsp; &nbsp; 1a1. The user specifies which fields he wants to see or hide. <br>)
+
+[comment]: <> (&ensp; &emsp; &nbsp; Use case resumes at step 2.)
 
 &ensp; 2a. The list is empty. <br>
 &ensp; &emsp; &nbsp; Use case ends.
@@ -686,7 +687,50 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC4 - Editing a single resident’s information <br>
+Use case: UC4 - Hiding resident information from view <br>
+Actor: User <br>
+Precondition: There is at least one resident field being displayed in RC4HDB. <br>
+MSS:
+
+1. User wants to see only some resident fields on his/her screen.
+2. User requests for RC4HDB to show or hide certain fields from the current view.
+3. RC4HDB displays the residents' details with some fields omitted.
+
+    Use case ends.
+
+Extensions:
+
+&ensp; 2a. The user specifies invalid fields to show or hide. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB displays an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+&ensp; 2b. The user tries to show zero fields or hide all fields. <br>
+&ensp; &emsp; &nbsp; 2b1. RC4HDB displays an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC5 - Resetting resident information that was hidden from view <br>
+Actor: User <br>
+MSS:
+
+1. User wants to see the full set of resident fields on his/her screen.
+2. User requests for RC4HDB to display the full set of resident fields.
+3. RC4HDB displays the residents' details with the full set of fields shown.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. The full set of fields is already displayed. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB displays residents' details with the same full set of fields shown. <br>
+&ensp; &emsp; &nbsp; Use case ends.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC6 - Editing a single resident’s information <br>
 Actor: User <br>
 MSS:
 
@@ -711,7 +755,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC5 - Finding a resident’s information by their name <br>
+Use case: UC7 - Finding a resident’s information by their name <br>
 Actor: User <br>
 MSS:
 
@@ -736,7 +780,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC6 - Filtering the list of all residents by specific fields <br>
+Use case: UC8 - Filtering the list of all residents by specific fields <br>
 Actor: User <br>
 MSS:
 
@@ -767,7 +811,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC7 - Deleting a single resident <br>
+Use case: UC9 - Deleting a single resident <br>
 Actor: User <br>
 MSS:
 
@@ -787,7 +831,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC8 - Clearing all data <br>
+Use case: UC10 - Clearing all data <br>
 Actor: User <br>
 MSS:
 
@@ -800,7 +844,7 @@ MSS:
 <br>
 
 System: RC4HDB <br>
-Use case: UC9 - Exiting the application <br>
+Use case: UC11 - Exiting the application <br>
 Actor: User <br>
 MSS:
 
@@ -819,7 +863,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC10 - Importing data from [CSV](#glossary) file <br>
+Use case: UC12 - Importing data from [CSV](#glossary) file <br>
 Actor: User <br>
 MSS:
 
@@ -845,7 +889,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC11 - Exporting data to [CSV](#glossary) file <br>
+Use case: UC13 - Exporting data to [CSV](#glossary) file <br>
 Actor: User <br>
 MSS:
 
