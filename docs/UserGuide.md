@@ -13,7 +13,7 @@ You can also add people to the app, such as your professors, teaching assistants
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
-  - [Overview](#welcome-to-socompliers-user-guide)
+  - [Overview](#welcome-to-socomplier's-user-guide)
   - [Quick Start](#quick-start)
   - [Things to note](#things-to-note)
   - [Person Fields](#person-fields)
@@ -96,114 +96,6 @@ You can also add people to the app, such as your professors, teaching assistants
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## Person Fields
-
-### Name
-
-* The name of the person you want to add.
-* Identified by prefix `n/`.
-* Valid field to be searched using `Find` command.
-* No restriction but you are recommended to add a person's full name to be it less ambigious during search.
-* Mandatory field.
-
-### Phone number
-
-* The phone number of the person.
-* Identified by prefix `p/`.
-* Valid field to be searched using `Find` command.
-* A Phone number should only contain numbers and be at least 3 digits long.
-* Optional field.
-
-### Module code
-
-* The module this person is related to, i.e. if he/she is a Professor or Teaching Assistant, it means the Module he/she is teaching.
-* Identified by prefix `m/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add as module code.
-* Optional field.
-
-### Email address
-
-* The email address of the person.
-* Identified by prefix `e/`.
-* Valid field to be searched using `Find` command.
-* It should follow the following format: `local-part@domain` 
-  1. The `local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .
-  2. This is followed by a `domain name` which is made of `domain labels` separated by periods. The `domain name` must:
-     1. end with a `domain label` at least 2 characters long.
-     2. have each `domain label` start and end with alphanumeric characters.
-     3. have each `domain label` consist of alphanumeric characters only, separated by hyphens, if any.
-* Optional field.
-
-### Telegram handle
-
-* The telegram handle of the person.
-* Identified by prefix `tg/`.
-* Valid field to be searched using `Find` command.
-* Handle should start with a `@` symbol and only contain alphanumeric characters after `@`. It should be at least 5 characters long, not including `@`.
-* Optional field.
-
-### Person tags
-
-* Tags you want to attach to the person, i.e. Friend, Professor, Family
-* You can include as many tags as you want.
-* Identified by prefix `t/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Module Fields
-
-### Module Code
-
-* The module code of the module you want to add.
-* Identified by prefix `m/`.
-* Valid field to be searched using `Find` command.
-* Only valid NUS module codes can be added.
-* Mandatory field.
-
-### Lecture Details
-
-* The lecture details of the module you want to add, such as the location and time.
-* Identified by prefix `l/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
-
-### Lecture Zoom Link
-
-* The zoom link of the lecture.
-* Identified by prefix `lz/`.
-* Zoom link should be a valid [URL](#url).
-* Optional field.
-
-### Tutorial Details
-
-* The tutorial details of the module you want to add, such as the location and time.
-* Identified by prefix `t/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
-
-### Tutorial Zoom Link
-
-* The zoom link of the lecture.
-* Identified by prefix `tz/`.
-* Zoom link should be a valid URL.
-* Optional field.
-
-### Assignment Details
-
-* Details you want to add for your assignments for the module, ie. `Assignment 1 due 20/08`.
-* You can include as assignment details as you want.
-* Identified by prefix `a/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
-
---------------------------------------------------------------------------------------------------------------------
 
 # Commands
 
@@ -271,9 +163,10 @@ Exits the program.
 
 Format: `exit`
 
-<div markdown="span" class="alert alert-primary"> **Tip:** 
+<div markdown="span" class="alert alert-primary">**Tip:** 
 Alternatively, you can click the File button on the top left of the app, followed by the Exit button!
 </div>
+
 ### Saving the data
 
 SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -288,7 +181,7 @@ Adds a contact to the contact list.
 
 Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] [t/TAG]…​`
 
-* The `NAME` field is mandatory, all other fields are optional ([you can check here for more details](#person-fields)), attempting to add a person without a name with result in an error!
+* The `NAME` field is mandatory, all other fields are optional ([you can check here for more details on the individual fields](#person-fields)), attempting to add a person without a name with result in an error!
 * A contact can have any number of tags (including 0)
 
 <div markdown="span" class="alert alert-primary"> **Tip:**
@@ -381,7 +274,7 @@ Adds a module to the module list.
 
 Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`
 
-* The `MODULE_CODE` field is mandatory, all other fields are optional ([you can check here for more details](#module-fields)), attempting to add a module without a module code with result in an error!
+* The `MODULE_CODE` field is mandatory, all other fields are optional ([you can check here for more details on the individual fields](#module-fields)), attempting to add a module without a module code with result in an error!
 * The `AssignmentDetails` can take in alphanumerical characters **along with spaces**.
 * A module can have any number of `AssignmentDetails` (including 0)
 
@@ -451,6 +344,114 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 * Full words are characterized by having an empty space before and after the word; e.g. Searching `Friday` will only match `Friday` and not `Friday,`
 * Modules matching at least one keyword will be returned (i.e. `OR` search); e.g. `cs2109s cs2100` will return `CS2109s` and `CS2100`.
 
+------------------------------------------------------------------------------------------------------------------------
+
+## Person Fields
+
+### Name
+
+* The name of the person you want to add.
+* Identified by prefix `n/`.
+* Valid field to be searched using `Find` command.
+* No restriction but you are recommended to add a person's full name to be it less ambigious during search.
+* Mandatory field.
+
+### Phone number
+
+* The phone number of the person.
+* Identified by prefix `p/`.
+* Valid field to be searched using `Find` command.
+* A Phone number should only contain numbers and be at least 3 digits long.
+* Optional field.
+
+### Module code
+
+* The module this person is related to, i.e. if he/she is a Professor or Teaching Assistant, it means the Module he/she is teaching.
+* Identified by prefix `m/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add as module code.
+* Optional field.
+
+### Email address
+
+* The email address of the person.
+* Identified by prefix `e/`.
+* Valid field to be searched using `Find` command.
+* It should follow the following format: `local-part@domain`
+  1. The `local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .
+  2. This is followed by a `domain name` which is made of `domain labels` separated by periods. The `domain name` must:
+    1. end with a `domain label` at least 2 characters long.
+    2. have each `domain label` start and end with alphanumeric characters.
+    3. have each `domain label` consist of alphanumeric characters only, separated by hyphens, if any.
+* Optional field.
+
+### Telegram handle
+
+* The telegram handle of the person.
+* Identified by prefix `tg/`.
+* Valid field to be searched using `Find` command.
+* Handle should start with a `@` symbol and only contain alphanumeric characters after `@`. It should be at least 5 characters long, not including `@`.
+* Optional field.
+
+### Person tags
+
+* Tags you want to attach to the person, i.e. Friend, Professor, Family
+* You can include as many tags as you want.
+* Identified by prefix `t/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add.
+* Optional field.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Module Fields
+
+### Module Code
+
+* The module code of the module you want to add.
+* Identified by prefix `m/`.
+* Valid field to be searched using `Find` command.
+* Only valid NUS module codes can be added.
+* Mandatory field.
+
+### Lecture Details
+
+* The lecture details of the module you want to add, such as the location and time.
+* Identified by prefix `l/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add.
+* Optional field.
+
+### Lecture Zoom Link
+
+* The zoom link of the lecture.
+* Identified by prefix `lz/`.
+* Zoom link should be a valid [URL](#url).
+* Optional field.
+
+### Tutorial Details
+
+* The tutorial details of the module you want to add, such as the location and time.
+* Identified by prefix `t/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add.
+* Optional field.
+
+### Tutorial Zoom Link
+
+* The zoom link of the lecture.
+* Identified by prefix `tz/`.
+* Zoom link should be a valid URL.
+* Optional field.
+
+### Assignment Details
+
+* Details you want to add for your assignments for the module, ie. `Assignment 1 due 20/08`.
+* You can include as assignment details as you want.
+* Identified by prefix `a/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add.
+* Optional field.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -473,6 +474,7 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -491,9 +493,13 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 ## GLOSSARY
 
 #### Alphanumeric
-* It refers to the combined set of the 26 alphabetic characters, A to Z, and the 10 Arabic numerals, 0 to 9.
+* It refers to the combined set of the 26 alphabetic characters 10 Arabic numerals.
+* Alphabetic characters include both lower and upper case letters, a to z & A to Z.
+* Arabic numerals refer to the digits 0 to 9.
 
 #### URL
 * It refers to the address of a web page.
+* Example: https://google.com
 
 --------------------------------------------------------------------------------------------------------------------
+[Back to top](#Welcome-to-SoCompiler's-User-Guide)
