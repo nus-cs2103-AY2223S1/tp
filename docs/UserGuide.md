@@ -5,7 +5,9 @@ title: User Guide
 
 # SectresBook
 
-<img src="images/icons/address_book_32.png" width="100">
+<p align="center">
+<img src="images/icons/address_book_32.png" width="128">
+</p>
 
 SectresBook helps secretaries to **maintain all the information of the members of their club** by collating a list of identifiable information, past records, loan amounts and future tasks. As a treasurer, use SectresBook **manage the finances of your club better** by keeping track of the funds loaned to each member. This all-in-one tool eliminates the trouble of having to search through multiple notebooks/apps to find information regarding a club member, saving you time and effort so that you can focus on other tasks at hand using the notes feature!
 
@@ -172,6 +174,10 @@ This panel contains all the club and organisation members you have registered in
 
 Each card representing the information of a person displays the name, phone number and total present loan amount, which may be positive to indicate an amount owed by the person, or negative to indicate an amount due to be paid to the person.
 
+The index of the person is only an ordering within the current displayed list, it **is not tied** to the person itself.
+
+Check the [Person Features](#person-features) to learn more about the commands you can execute related to people.
+
 ### Inspect Panel
 
 This panel is related to the people panel and shows the relevant basic information of the currently inspected person. A person can be inspect by either pressing his or her card, or by typing the `inspect` command. More details on the `inspect` command can be found [here](#inspecting-a-person--inspect).
@@ -184,7 +190,15 @@ The total amount of the loans is also stated in the bottom right of this panel, 
 
 ### Notes Panel
 
-This panel stores all the information related to notes and tasks that the user may want to keep track of. Both the people and notes panels share a pool of tags for easier referencing on which group of people may be related to a specific note. Check the [Notes Commands](#note-commands) to learn more about notes.
+This panel stores all the information related to notes and tasks that the user may want to keep track of.
+
+Each note contains an index, a title, contents and tags.
+
+The index of the notes is only an ordering within the current displayed list, it **is not tied** to the note itself.
+
+Both the people and notes panels share a pool of tags for easier referencing on which group of people may be related to a specific note. 
+
+Check the [Notes Features](#note-features) to learn more about the commands you can execute related to notes.
 
 [Back to Top](#sectresbook)
 
@@ -194,9 +208,10 @@ This panel stores all the information related to notes and tasks that the user m
 
 ### Person Properties
 
-![img.png](images/TypicalPersonCard.png)
-
-<span style="font-size:3mm;">A typical person card.
+<p align="center">
+  <img src="images/TypicalPersonCard.png">
+</p>
+<center style="font-size:3mm;">A typical person card.</center>
 
 #### Name
 
@@ -335,16 +350,17 @@ This property can be identified from the GUI by tag shaped labels with text insi
 ![img.png](images/PersonTags.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Please refer to the `Tag Properties` section below for more information regarding tags.
+Please refer to the [`Tag Properties`](#tag-properties) below for more information regarding tags.
 </div>
 
 [Back to Top](#sectresbook)
 
 ### Notes Properties
 
-![TypicalNoteCard](images/TypicalNoteCard.png)
-
-<span style="font-size:3mm;">A typical note card.
+<p align="center">
+  <img src="images/TypicalNoteCard.png">
+</p>
+<center style="font-size:3mm;">A typical note card.</center>
 
 #### Title
 The title serves as the main marker for notes and summarises the important details of this specific note. This is a compulsory field for all notes.
@@ -381,7 +397,7 @@ Choose short, identifiable tag names.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Please refer to the `Tag Properties` section below for more information regarding tags.
+Please refer to the [`Tag Properties`](#tag-properties) section below for more information regarding tags.
 </div>
 
 [Back to Top](#sectresbook)
@@ -455,7 +471,7 @@ If there are multiple people in the list satisfying the keywords given, it will,
 You may wish to use more unique keywords to reduce ambiguity, or inspect by an index.
 </div>
 
-Format: `inspect <INDEX> or <NAME>`
+Format: `inspect INDEX <OR> NAME`
 
 Examples:
 * `inspect 2` inspects the second person in the list of people
@@ -485,6 +501,14 @@ Format: `findTag TAG [MORE_TAGS]`
 Examples:
 * `findTag Finance` returns `John`, `Caroline` and `Bob`
   ![result for 'findTag Finance'](images/findTagFinance.png)
+
+[Back to Top](#sectresbook)
+
+#### Clearing all entries : `clear`
+
+Clears all entries of people and notes from the SectresBook. This command is irreversible. This effectively restarts the app from a blank slate.
+
+Format: `clear`
 
 [Back to Top](#sectresbook)
 
@@ -605,7 +629,7 @@ Finds persons whose names match any of the given keywords, or phone numbers cont
 
 You will notice a `FILTERED` icon next to the panel header to indicate that the list you are viewing is currently filtered.
 
-
+<img src="PeopleFilteredIcon.png" width="256">
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -620,9 +644,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  <img src="images/findAlexDavidResult.png" width="400">
 * `find 86` returns `Theodore`
-  ![result for `find 86`](images/find86result.png)
+  <img src="images/find86result.png" width="400">
 
 [Back to Top](#sectresbook)
 
@@ -630,9 +654,11 @@ Examples:
 
 Edits an existing club member's loan amount in the SectresBook. Please note that the value must be either positive or negative values with up to 2 decimal places.
 
-The maximum amount for a loan is $1,000,000,000,000.00 (1 trillion). If you are intending to file more than a trillion dollars in total transactions, this application may not be a suitable one for you, as our expected clients do not normally transfer this much money.
+The absolute maximum amount for a loan is `$1,000,000,000,000.00` (positive or negative 1 trillion). If you are intending to file more than a trillion dollars in total transactions, this application may not be a suitable one for you, as our expected clients do not normally transfer this much money.
 
-If the total amount due to the presently requested command adds up to more than a trillion, the program will block the command from going through.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
+If the total amount after the `editLoan` command adds up to more than a trillion, the program will block the command from going through.
+</div>
 
 
 Format: `editLoan INDEX <OR> NAME amt/VALUE reason/REASON`
@@ -683,14 +709,6 @@ To delete everyone at the same time, please refer to the [`clear` command](#clea
 
 [Back to Top](#sectresbook)
 
-#### Clearing all entries : `clear`
-
-Clears all entries of people from the SectresBook. This command is irreversible.
-
-Format: `clear`
-
-[Back to Top](#sectresbook)
-
 #### Sorting by property: `sort` `[coming in v2.0]`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -698,7 +716,6 @@ This command does not exist in the present version of the program that this User
 </div>
 
 Sorts the members in the persons' list by properties in either ascending or descending order.
-
 
 [Back to Top](#sectresbook)
 
@@ -721,6 +738,8 @@ Examples:
 #### Locating a note by title: `findNote`
 
 Finds the notes whose titles match any of the given keywords. A filtered icon will show to the side of the Notes Panel to indicate that you are now viewing a filtered list.
+
+<img src="NotesFilteredIcon.png" width="256">
 
 Format: `findNote KEYWORD [MORE_KEYWORDS]`
 
@@ -883,31 +902,35 @@ Word | Definition
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
-### AddressBook Commands
+### General Commands
+Action | Format                    | Examples
+-------|---------------------------|----------|
+**Inspect** | `inspect NAME <OR> INDEX` | `inspect 1` or `inspect Alex`
+**Help** | `help`                    | `help`
+**Clear all data** | `clear`  | `clear`
+**Exit** | `exit`                    | `exit`
 
-Action | Format                                                                                               | Examples
---------|------------------------------------------------------------------------------------------------------|--------
-**Add** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS bday/BIRTHDAY [tag/TAG]…​`                | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 bday/01/01/2000 tag/friend tag/colleague`
-**Clear** | `clear`                                                                                              | `clear`
-**Delete** | `delete INDEX`<br>`delete NAME`                                                                      | `delete 3` <br> `delete Jane`
-**Edit** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                    | `find James Jake` <br> `find 8651`
+### Person Commands
+
+Action | Format | Examples
+--------|----------------------|--------
+**Add a person** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS bday/BIRTHDAY [tag/TAG]…​`                | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 bday/01/01/2000 tag/friend tag/colleague`
+**Delete person** | `delete INDEX`<br>`delete NAME`                                                                      | `delete 3` <br> `delete Jane`
+**Edit person** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [bday/BIRTHDAY][tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
+**Find a person** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER`                                                    | `find James Jake` <br> `find 8651`
 **Find Tag** | `findTag TAG [MORE_TAGS]`                                                                            | `findTag Operations Outreach`
-**Edit Loan** | `editLoan INDEX AMOUNT REASON`                                                                       | `editLoan 1 -20 Buy Logistics`
-**List** | `list`                                                                                               | `list`
-**Inspect** | `inspect NAME <OR> INDEX`                                                                            | `inspect 1` or `inspect Alex`
-**Show Notes Panel** | `showNotes`                                                                                          | `showNotes`
-**Hide Notes Panel** | `hideNotes`                                                                                          | `hideNotes`
-**Help** | `help`                                                                                               | `help`
-**Exit** | `exit`                                                                                               | `exit`
+**Edit loan of a person** | `editLoan INDEX amt/AMOUNT reason/REASON`                                                            | `editLoan 1 amt/-20 reason/Buy Logistics`
+**List all person** | `list`                                                                                               | `list`
 
-### Note Commands
+### Notes Commands
 
-Action | Format                                                                   | Examples
---------|--------------------------------------------------------------------------|-------------
-**Add Note** | `addNote title/TITLE content/CONTENT [tag/TAG]...`                       | `addNote title/Create Excel Sheet content/Create sheet for blockchain department`
+Action | Format | Examples
+--------|-------------------|-------------
+**Show Notes Panel** | `showNotes`              | `showNotes`
+**Hide Notes Panel** | `hideNotes`              | `hideNotes`
+**Add Note** | `addNote title/TITLE content/CONTENT [tag/TAG]...`                      | `addNote title/Create Excel Sheet content/Create sheet for blockchain department`
 **Edit Note** | `editNote INDEX <OR> TITLE [title/TITLE] [content/CONTENT] [tag/TAG]...` | `editNote 1 title/Check meeting availability tag/president`
-**Delete Note** | `deleteNote INDEX`                                                       | `deleteNote 1`
-**List Notes** | `listNotes`                                                               | `listNotes`
-**Find Note** | `findNote KEYWORD [MORE_KEYWORDS]`                                       | `findNote meeting`
+**Delete Note** | `deleteNote INDEX`                                                      | `deleteNote 1`
+**List Notes** | `listNotes`                                                              | `listNotes`
+**Find Note** | `findNote KEYWORD [MORE_KEYWORDS]`                                      | `findNote meeting`
 
