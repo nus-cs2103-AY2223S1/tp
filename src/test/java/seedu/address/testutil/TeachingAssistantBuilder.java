@@ -13,7 +13,7 @@ public class TeachingAssistantBuilder extends PersonBuilder {
 
     public static final String DEFAULT_RATING = "5";
 
-    private final ModuleCode moduleCode;
+    private ModuleCode moduleCode;
     private Rating rating;
 
     /**
@@ -31,6 +31,22 @@ public class TeachingAssistantBuilder extends PersonBuilder {
     public TeachingAssistantBuilder(TeachingAssistant personToCopy) {
         super(personToCopy);
         moduleCode = personToCopy.getModuleCode();
+    }
+
+    /**
+     * Sets the {@code Rating} of the {@code TeachingAssistant} that we are building.
+     */
+    public TeachingAssistantBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ModuleCode} of the {@code TeachingAssistant} that we are building.
+     */
+    public PersonBuilder withModuleCode(String moduleCode) {
+        this.moduleCode = new ModuleCode(moduleCode);
+        return this;
     }
 
     /**
