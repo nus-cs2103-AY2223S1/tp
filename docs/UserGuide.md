@@ -12,10 +12,11 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
 
 ## Table of Contents
 
-1. [Introduction to CLInkedIn](#introduction)
-2. [Useful Notation](#useful-notations)
-3. [Quick start](#quick-start)
-4. [Features](#features)
+1. [Using this Guide](#using-this-guide)
+2. [Introduction to CLInkedIn](#introduction)
+3. [Useful Notation](#useful-notations)
+4. [Quick start](#quick-start)
+5. [Features](#features)
    1. [Viewing help `help`](#viewing-help--help)
    2. [Adding/Deleting contacts in CLInkedIn](#addingdeleting-contacts-in-clinkedin)
       1. [Adding a person `add`](#adding-a-person-add)
@@ -48,15 +49,23 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
    6. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
       5. [Saving the data](#saving-the-data)
       6. [Editing the data file](#editing-the-data-file)
-5. [FAQ](#faq)
-6. [Command Summary](#command-summary)
+6. [FAQ](#faq)
+7. [Command Summary](#command-summary)
+
+## Using this guide
+
+If this is the first time you are viewing this user guide, do read the section on [Introduction to CLInkedIn](#introduction). Otherwise,
+- If you are just setting up, please take a look at [Quick start](#quick-start).
+- If you are unsure of how to use CLInkedIn, the [Command Summary](#command-summary) table is a good place to start. 
+- If you are a developer and want to help out, please take a look at the [CLInkedIn Developer Guide](https://ay2223s1-cs2103t-t13-3.github.io/tp/DeveloperGuide.html).
+ 
 
 ## Introduction
 ![Ui](images/Ui.png)
 
 CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 
-If you can type fast, CLInkedIn can get your Recruitment tasks done faster than traditional GUI apps.
+If you can type fast, CLInkedIn can get your recruitment tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Useful Notations
