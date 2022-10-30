@@ -49,7 +49,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Mass Linkers.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "The Telegram handle/"
+            + "GitHub username/email/phone number already exist(s) in Mass Linkers.";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
