@@ -192,7 +192,7 @@ Finds the calorie content of a food item.
 
 Format: `find FOOD`
 
-* Only the calorie contents of some food items are included. Refer to the list of food items in the [FAQ](#FAQ).
+* Only the calorie contents of some food items are included. Refer to the list of food items in the [FAQ](#faq).
 * If the user has entered a specific food item before, the `find` command will return the average calories of 
 that specific food item that the user has specified.
 
