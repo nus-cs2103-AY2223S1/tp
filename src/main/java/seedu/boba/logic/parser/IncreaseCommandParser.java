@@ -9,6 +9,7 @@ import seedu.boba.logic.commands.IncreaseCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
+import seedu.boba.model.customer.Reward;
 
 /**
  * Parses input arguments and creates a new IncreaseCommand object
@@ -37,14 +38,24 @@ public class IncreaseCommandParser implements Parser<IncreaseCommand> {
             if (!(firstPrefix.equals(PREFIX_PHONE) || firstPrefix.equals(PREFIX_EMAIL))) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE));
             } else if (argMultimap.getPhoneIdentifier()) {
-                phoneIdentifier = ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0));
+                if (argMultimap.getAllValues(PREFIX_PHONE).size() == 1
+                        && argMultimap.getAllValues(PREFIX_EMAIL).size() == 0) {
+                    phoneIdentifier = ParserUtil.parsePhone(argMultimap.getAllValues(PREFIX_PHONE).get(0));
+                } else {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            IncreaseCommand.MESSAGE_USAGE));
+                }
             } else if (argMultimap.getEmailIdentifier()) {
-                emailIdentifier = ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0));
+                if (argMultimap.getAllValues(PREFIX_EMAIL).size() == 1
+                        && argMultimap.getAllValues(PREFIX_PHONE).size() == 0) {
+                    emailIdentifier = ParserUtil.parseEmail(argMultimap.getAllValues(PREFIX_EMAIL).get(0));
+                } else {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            IncreaseCommand.MESSAGE_USAGE));
+                }
             }
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE), pe);
         } catch (NumberFormatException ne) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE), ne);
+            throw new ParseException(Reward.MESSAGE_MAX_INTEGER);
         }
 
         return argMultimap.getPhoneIdentifier()

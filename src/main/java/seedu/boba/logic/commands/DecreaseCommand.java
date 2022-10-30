@@ -71,7 +71,7 @@ public class DecreaseCommand extends Command {
                     : model.getCurrentReward(phoneIdentifier);
             int newReward = Integer.parseInt(currentReward.value) - Integer.parseInt(decrementReward);
             if (newReward < 0) {
-                throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Reward.MESSAGE_NEGATIVE);
             }
             editPersonDescriptor.setReward(ParserUtil.parseReward(String.valueOf(newReward)));
             EditCommand editCommand = isNull(phoneIdentifier)

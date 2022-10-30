@@ -88,7 +88,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_EMAIL_DESC,
                 Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_REWARD_DESC,
-                Reward.MESSAGE_CONSTRAINTS); // invalid reward
+                Reward.MESSAGE_MAX_INTEGER); // invalid reward
         assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -120,7 +120,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_EMAIL_DESC,
                 Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_REWARD_DESC,
-                Reward.MESSAGE_CONSTRAINTS); // invalid reward
+                Reward.MESSAGE_MAX_INTEGER); // invalid reward
         assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_TAG_DESC,
                 Tag.MESSAGE_CONSTRAINTS); // invalid tag
 

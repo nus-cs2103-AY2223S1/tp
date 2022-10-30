@@ -292,7 +292,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Customers matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* When searching for names, fuzzy search based on Soundex will be used
+* When searching for names, fuzzy search based on [Soundex](https://en.wikipedia.org/wiki/Soundex) will be used
   e.g. `Aschcroft` will match `Aschcraft`, similarly `Bob` will match `Bop`
 * No need to type in the whole word. e.g `9927` will match `27859927`
 * For precise searching, specify the corresponding attribute (phone number or email)
@@ -514,9 +514,10 @@ Walk-through with Images
 
 Do basic arithmetic calculation including +, -, *, /. Allow multiple operators and precedence
 
-Format: `calc {expression}`
+Format: `calc {arithmetic expression}`
 
 Example: `calc 5+2*(4-2)`
+
 <details>
 <summary>
 Walk-through with Images
@@ -530,6 +531,8 @@ Walk-through with Images
 
 ![CalculateCommandResult](images/screenshots/CalculateCommand/NewCalculateCommandResult.png)
 </details>
+
+_Note: Please do not enter spaces, e.g.`1 + 1` does not work_
 
 ### 2.13 GUI Calculator: `calc-gui`
 
@@ -607,7 +610,7 @@ _Details coming soon ..._
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find alex david`                                                                                                                                                                                                                          |
 | **Undo**       | `undo`                                                                                                                                                                                                                                                                               |
 | **Redo**       | `redo`                                                                                                                                                                                                                                                                               |
-| **Calculate**  | `calc`                                                                                                                                                                                                                                                                               |
+| **Calculate**  | `calc {arithmetic expression}` <br> e.g. `calc 2*(1+1)`                                                                                                                                                                                                                              |
 | **Calculator** | `calc-gui`                                                                                                                                                                                                                                                                           |
 | **Clear**      | `clear`                                                                                                                                                                                                                                                                              |
 | **List**       | `list`                                                                                                                                                                                                                                                                               |
