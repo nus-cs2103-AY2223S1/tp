@@ -4,7 +4,6 @@ import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.Locale;
-import java.util.stream.Stream;
 
 import seedu.watson.logic.commands.SortCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
