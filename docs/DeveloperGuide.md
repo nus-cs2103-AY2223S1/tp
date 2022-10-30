@@ -438,9 +438,9 @@ Adding and removing filters are exposed in the `Model` through the `Model#addNew
 
 Predicates of each type of filter (name and tags) are stored in separate sets in the `ModelManager` class. Adding a filter will add predicates to the sets and removing filters will remove them from the sets. To update the `FilteredList` with the updated filters, each set of predicate will be reduced with an `OR` operation, and the resulting predicate from each set will be reduced with an `AND` operation.
 
-The following is a sequence diagram of a `filter` command. `filter clear` is similiar except that `Model#clearFiltersInFilteredPersonList` is called instead while `filter list` does not change the `FilteredList` of the model.
+The following is a sequence diagram of a `filter` command. This diagram applies to both `filter clear` and `filter list` except that in `filter clear`,  `Model#clearFiltersInFilteredPersonList` is called and `filter list` does not change the the `FilteredList` of the model.
 
-![FilterSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
+![FilterSequenceDiagram](images/command-filter/FilterSequenceDiagram.svg)
 
 **Given below is an example usage scenario of filtering**
 
