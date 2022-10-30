@@ -336,21 +336,20 @@ Format: `exit`
 
 - Alternatively, you can also click on the Exit button in the top toolbar.
  
-### Command Suggestion and Autocomplete
+### Command suggestion and autocomplete
 
 To help you familiarize with the commands, Swift+ prompts you with command suggestions as you type and can autocomplete your commands until the next user-required input.
 
 1. Type the first few letters of a command you hope to use and Swift+ will display a suggested command. e.g. `lis`.<br>
    ![autocomplete](images/autocomplete.png)
 
-2. Press Tab to autocomplete your command with the prompted suggestion. If there are multiple commands that have the user inputs as the prefix, this action will autocomplete up to the longest common prefix of all such commands.<br>
-e.g. pressing Tab after `lis` will autocomplete the command to `list_` as there are two commands (`list_contact` and `list_task`) that start with `lis`.
+2. Press `Tab` to autocomplete your command with the prompted suggestion.
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Note** <br>
-- Command suggestions will not be shown if current input is invalid and the command text will turn red to alert you.<br>
-- Autocomplete does not guarantee a successful/valid command, unless the given syntax is followed.<br>
-- Autocomplete only completes up to the longest matching prefix if multiple commands are possible with the current user input. However, command suggestions always shows only one of the possible commands.
+- If multiple commands are possible with the current input, autocomplete only completes up to the **longest matching prefix**. e.g. pressing `Tab` after `lis` will autocomplete the command to `list_`, since there are two commands (`list_contact` and `list_task`) that start with `lis`.
+- If the current input is invalid, command suggestions will not be shown. The current input will also turn red to alert you.<br>
+- Autocomplete does not guarantee a valid command, unless the given syntax is followed.<br>
 </div>
 
 ### Saving the data
