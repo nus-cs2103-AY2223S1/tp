@@ -170,6 +170,9 @@ Example: `ls -t highPriority`
 
 Shows a list of all tasks under the same module.
 
+As tasks with no deadline can be considered to be due "far in the future", this command will always list tasks with no
+deadlines.
+
 Format: `ls -d DATE`
 * `DATE`: Must be in the format of YYYY-MM-DD.
 
