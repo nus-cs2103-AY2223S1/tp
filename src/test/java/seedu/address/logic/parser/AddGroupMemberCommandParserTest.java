@@ -27,6 +27,12 @@ public class AddGroupMemberCommandParserTest {
     }
 
     @Test
+    public void parse_anotherinvalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parse("g/ n/Bob"));
+        assertThrows(ParseException.class, () -> parser.parse("g/CS n/"));
+    }
+
+    @Test
     public void parse_validInput_commandParseSuccess() {
         assertParseSuccess(parser, AddGroupMemberCommand.COMMAND_WORD + " g/group n/name",
                 new AddGroupMemberCommand(new PersonGroup("group"), new Name("name")));

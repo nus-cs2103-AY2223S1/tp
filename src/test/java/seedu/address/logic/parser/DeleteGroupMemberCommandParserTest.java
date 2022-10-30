@@ -24,6 +24,8 @@ public class DeleteGroupMemberCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse("Alpha n/Bob"));
         assertThrows(ParseException.class, () -> parser.parse("g/Alpha Charles"));
         assertThrows(ParseException.class, () -> parser.parse(" "));
+        assertThrows(ParseException.class, () -> parser.parse("g/CS n/"));
+        assertThrows(ParseException.class, () -> parser.parse("g/ n/Charles"));
     }
 
     @Test

@@ -5,10 +5,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_TP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.person.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteGroupCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.testutil.GroupBuilder;
 
@@ -27,5 +29,10 @@ public class DeleteGroupCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGroupCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parse("g/"));
     }
 }
