@@ -75,6 +75,7 @@ To check if you have Java `11` or above installed, follow the steps for your ope
   Follow the instructions in the video link below for your operating system for the installation of Java `11`
   - [Windows Link](https://www.youtube.com/watch?v=1ZbHHLobt8A)
   - [Mac Link](https://www.youtube.com/watch?v=pxi3iIy4F5A)
+
 ### Step 2: Install `teacherspet.jar`
 - Once you have completed step 1, download the latest `teacherspet.jar` from 
 https://github.com/AY2223S1-CS2103T-T09-4/tp/releases.
