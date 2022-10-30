@@ -65,10 +65,10 @@ These are the components of TaskBook, arranged according to their locations as s
   * **Description** - The description of the tasks you add, right of the index.
   * **Date** - If the task has a date assigned to it (i.e if the task is a deadline or event), the date will be at the end of the description in square brackets.
   * **Status** - The first [  ] box. If the task's box is [X], it means the task has been done. Otherwise, if it is blank, the task has not been done.
-  * **Type** - The second [  ] box. Indicates the type of the task.<br>Types of tasks:
-    * **Todo** - A task that you need to do. Does not have an associated date. In the Task List, this task is labelled as [T].
-    * **Deadline** - A task that you need to do by a particular date. In the Task List, this task is labelled as [D].
-    * **Event** - A task that involves you attending some event at some date. In the Task List, this task is labelled as [E].
+  * **Type** - The second [  ] box. Indicates the type of the task. Each task type is a slightly different shade of purple to give you some visual clarity.<br>Types of tasks:
+    * **Todo** - A task that you need to do. Does not have an associated date. In the Task List, this task is labelled as [T], and are solid purple.
+    * **Deadline** - A task that you need to do by a particular date. In the Task List, this task is labelled as [D], and are faintly purple.
+    * **Event** - A task that involves you attending some event at some date. In the Task List, this task is labelled as [E], and are bright purple.
   * **Assignment** - An indicator on whether the task is assigned by you to someone else, or vice versa. 
   * **Assignor/Assignee** - The contact that has been assigned a task by you, or vice versa. This can be yourself.
 * **Status Bar** - Indicates the location in your computer where TaskBook is tracking your Contact List and Task List.
