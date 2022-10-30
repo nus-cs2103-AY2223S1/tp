@@ -68,57 +68,56 @@ This user guide provides in-depth descriptions of all the available features in 
 1. Ensure you have `Java 11` or above installed in your Computer.
 
 
-3. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br> <br>
+2. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br> <br>
    ![Ui](images/DownloadInstruction.png) <br><br>
 
-4. Copy the file to the folder you want to use as the **home folder** for your GuestBook. <br> <br>
+3. Copy the file to the folder you want to use as the **home folder** for your GuestBook. <br> <br>
    ![Ui](images/GuestBookIcon.png) <br><br>
 
-5. Double-click on `guestbook.jar` to start the app. The GUI, similar to the image below, should pop up in a few seconds. 
+4. Double-click on `guestbook.jar` to start the app. The GUI, similar to the image below, should pop up in a few seconds. 
 Note that the app contains **sample data**.<br><br>
    ![Ui](images/Ui.png) <br><br>
 
-6. Type the command in the command box and press _Enter_ to execute it. E.g., typing **`help`** and pressing _Enter_ will open the help window.<br>
+5. Type the command in the command box and press _Enter_ to execute it. E.g., typing **`help`** and pressing _Enter_ will open the help window.<br><br>
 
-
-7. To kickstart your journey, you can add a guest, `John Doe`, to GuestBook using the **`add`** command.
-   * **`add`** `n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook.
-
-
-8. To find `John Doe`, you can use the **`find`** command, and search through any of `John Doe`'s `fields`, such as his _name_ or _room_. The command below can help you find guests that match the keywords you entered.
+6. To kickstart your journey, you can add a guest, `John Doe`, to GuestBook using the **`add`** command.
+   * **`add`** `n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook. 
+<br><br>
+    
+7. To find `John Doe`, you can use the **`find`** command, and search through any of `John Doe`'s `fields`, such as his _name_ or _room_. The command below can help you find guests that match the keywords you entered.
    * **`find`** `John Doe` : Finds all the guests who have at least one field containing `John` or `Doe` (_case-insensitive_).
+     <br><br>
 
-
-9. To make changes to `John Doe`, you can use the **`edit`** command. This changes the guest's fields based on the new values you provide. The other values will remain unchanged. <br>
+8. To make changes to `John Doe`, you can use the **`edit`** command. This changes the guest's fields based on the new values you provide. The other values will remain unchanged. <br>
 For example, if `John Doe` is the second guest in the list, and you want to change his room number to `05-55`, you can do this.
     * **`edit`** `2` `rm/05-55`n: Changes the `Room` of `John Doe` to `05-55` in GuestBook.
-
-
-10. After executing a **`find`** command, you might realise that some of your guests are no longer visible, as they are not in the current list.<br>
+      <br><br>
+   
+9. After executing a **`find`** command, you might realise that some of your guests are no longer visible, as they are not in the current list.<br>
 To see a list of all your guests, you can use the **`list`** command.
       * **`list`**: List all the guests in GuestBook.
+        <br><br>
 
-
-11. In the event that a guest orders room service, you can add charges to the guest's bill using the **`bill`** command.<br>
+10. In the event that a guest orders room service, you can add charges to the guest's bill using the **`bill`** command.<br>
 For example, you can charge the third guest `30.35` by running the command below.
     * **`bill`** `3` `b/+30.35`: Adds `30.35` to the bill of the third guest.
+      <br><br>
 
-
-12. When a guest checks out of your hotel, you can remove the guest using the **`delete`** command.
+11. When a guest checks out of your hotel, you can remove the guest using the **`delete`** command.
     * **`delete`** `3` : Deletes the third guest shown in the current list.
+      <br><br>
 
-
-13. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
+12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
 <span style="background-color: yellow; color: black">**WARNING:** This action is **irreversible**. Use with caution.</span>
     * **`clear`** : Deletes all guests.
-
-
-14. Finally, to quit GuestBook, you can run the **`exit`** command.
+      <br><br>
+    
+13. Finally, to quit GuestBook, you can run the **`exit`** command.
     * **`exit`** : Exits the app.
-
-
-15. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you and we hope you enjoy using GuestBook!
-
+      <br><br>
+    
+14. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you and we hope you enjoy using GuestBook!
+    <br><br>
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
