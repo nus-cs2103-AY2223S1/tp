@@ -226,14 +226,14 @@ Adds an attendance list to a student in contacts.
 
 Format: `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`
 
+Examples:
+```attendance add 1 c/CS2030 s/10```
+```attendance add 1 c/CS2040 s/1```
+
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 Maximum lesson number is 12, if the size is 0, the attendance list will be N.A. 
 There can only be a maximum of one attendance list for each student for ease of typing.
 </div>
-
-Examples:
-```attendance add 1 c/CS2030 s/10```
-```attendance add 1 c/CS2040 s/1```
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If you add an attendance list to a student with an attendance list, it overwrites the current attendance list data.
