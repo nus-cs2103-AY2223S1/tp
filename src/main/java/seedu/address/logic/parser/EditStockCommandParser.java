@@ -35,15 +35,12 @@ public class EditStockCommandParser implements Parser<EditStockCommand> {
         EditStockDescriptor editStockDescriptor = new EditStockDescriptor();
         Integer newCurrentStock = null;
         if (argMultimap.getValue(PREFIX_CURRENTSTOCK).isPresent()) {
-
             try {
                 newCurrentStock = getIntFromString(argMultimap.getValue(PREFIX_CURRENTSTOCK).get());
             } catch (NumberFormatException nfe) {
                 throw new ParseException(EditStockCommand.MESSAGE_NOT_EDITED_PREFIX_DETECTED);
             }
-        }
-
-        if (newCurrentStock == null) {
+        } else {
             throw new ParseException(EditStockCommand.MESSAGE_NOT_EDITED);
         }
 
