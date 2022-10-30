@@ -3,15 +3,11 @@ layout: page
 title: Kartikeya's Project Portfolio Page
 ---
 
-# Project: AddressBook Level 3
-
-### Overview
+#### Overview
 
 checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 Given below are my contributions to the project.
-
-### Summary of Contributions
 
 #### Code contributed
 RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxrt&breakdown=true)
@@ -28,11 +24,10 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
   later be accessed by date or by patient. This improves the medical record system by integrating patient history.
   - Highlights: Adding this impacted many currently existing commands, such as `add` and side effects caused by the
   `edit` command. This was a challenging addition that required editing of over 20 files simultaneously.
-- Creating upcoming appointments for patients: `edit upcoming/`
+- Creating upcoming appointments for patients: `edit ua/`
   - What it does: Schedules a future appointment for a patient.
   - Justification: Allows medical staff to keep track of when a patient is next due for a visit.
 - UI changes to PersonViewPanel to beautify it from a rudimentary text layout.
-- Created application [logo](../images/checkUp_512.png).
 
 #### Contributions to the UG
 
@@ -40,7 +35,9 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Updated documentation for `edit`, `add` and `find` commands to reflect changes made to them.
 - Updated command summary.
 - Rewrote introduction and added a section on the purpose of the application. 
-- Created banner [image](../images/checkUp_banner.png). 
+- Created UG [banner image](../images/ug-images/editCommand/checkUp_banner.png).
+- Refactored parameters for commands into tables for better readability.
+- Added `+`, `-` and `*` symbols to indicate the type of parameter.
 
 #### Contributions to the DG
 
@@ -61,6 +58,7 @@ RepoSense: [link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=kxr
 - Ensured team was on schedule with frequent reminders on deadlines and pending tasks.
 - Scheduled tasks for team members and ensured they were completed on time.
 - Checked for code quality and adherence to coding standards.
+- Created application [logo](../images/checkUp_512.png).
 
 #### Review/mentoring contributions
 
