@@ -200,7 +200,7 @@ Examples:
 ### Viewing all tasks: `listTasks`
 
 Lists all existing tasks from the task list.
-Used after calling [filter](#filter)
+Used after calling [filter](#filtering-a-task--filter)
 
 Format: `listTasks`
 
