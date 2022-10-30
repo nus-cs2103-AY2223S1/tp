@@ -198,11 +198,11 @@ Examples:
 
 #### Add module to a batchmate: `mod add`
 
-Adds module(s) to a specified batchmate in the Modules panel.
+Adds module(s) to a specified batchmate in the _Modules panel_.
 
 Format: `mod add INDEX MODULE [MORE_MODULES]...`
 
-* Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the Modules panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 * * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#module-categorisation).
 
 Examples:
@@ -211,30 +211,30 @@ Examples:
 
 #### Delete module from a batchmate: `mod delete`
 
-Deletes module(s) from a specified batchmate in the Modules panel.
+Deletes module(s) from a specified batchmate in the _Modules panel_.
 
 Format: `mod delete INDEX MODULE [MORE_MODULES]...`
 
-* Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__ in the Modules panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
 * `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
 * `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
 
 #### View a batchmate's modules
-Views the list of modules taken by a batchmate in the Modules panel.
+Views the list of modules taken by a batchmate in the _Modules panel_.
 
 Left-click the row with the batchmate's name in the _Students panel_.
 
-- The selected row would turn blue and the Modules panel would display all the modules taken by the batchmate.
+- The selected row would turn blue and the _Modules panel_ would display all the modules taken by the batchmate.
 
 #### Mark module as taken: `mod mark`
 
-Marks module(s) of a specified batchmate as `taken` in the Modules panel, which means the batchmate has taken the module(s) before.
+Marks module(s) of a specified batchmate as `taken` in the _Modules panel_, which means the batchmate has taken the module(s) before.
 
 Format: `mod mark INDEX MODULE [MORE_MODULES]...`
 
-* Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the Modules panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
@@ -242,11 +242,11 @@ Examples:
 
 #### Unmark module as not taken: `mod unmark`
 
-Unmarks module(s) of a specified batchmate and updates the status as `taking` in the Modules panel, which means the batchmate is currently taking the module(s).
+Unmarks module(s) of a specified batchmate and updates the status as `taking` in the _Modules panel_, which means the batchmate is currently taking the module(s).
 
 Format: `mod unmark INDEX MODULE [MORE_MODULES]...`
 
-* Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the Modules panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
 * `mod unmark 1 cs2103t` unmarks the module `CS2103T` of the 1st batchmate in the currently displayed list as `not taken`.
@@ -255,7 +255,7 @@ Examples:
 #### Mark all modules as taken: `mod mark all`
 <div markdown="span" class="alert alert-warning">:warning: **Warning:** The mod mark all command is irreversible. Only execute it if you intend to mark all existing modules for all batchmates as taken. 
  </div>
-Marks all current modules of every batchmate in Mass Linkers as `taken` in the Modules panel. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
+Marks all current modules of every batchmate in Mass Linkers as `taken` in the _Modules panel_. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
 
 Format: `mod mark all`
 
