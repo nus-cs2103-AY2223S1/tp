@@ -235,9 +235,9 @@ Step 2. The user executes `redit 2 r/5` command to edit `Review` with index 2 to
 
 Step 3. Since the user input is valid, the `AddressBookParser` will create a `REditCommandParser` to parse the command arguments, `2 r/5`.
 
-Step 4. `REditCommandParser` will parse the index to a `Index` object and parse other arguments as a `EditReviewDescriptor` object. The `Index` and `EditReviewDescriptor` objects will then be passed to the returned `REditCommand` object as its arguments. 
+Step 4. `REditCommandParser` will parse the index to a `Index` object and parse other arguments as a `EditReviewDescriptor` object. The `Index` and `EditReviewDescriptor` objects will then be passed to the returned `REditCommand` object as its arguments.
 
-Step 5. In `LogicManager`, the returned `REditCommand` is executed. 
+Step 5. In `LogicManager`, the returned `REditCommand` is executed.
 
 Step 6. A new `Review` object is created with the fields of `Review` to be edited, except the field(s) that are to be edited, which will be set by the parsed user input. In this case `Review` with index 2 is copied over to a new `Review` object expect its `Rating` field which is set as `5`.
 
