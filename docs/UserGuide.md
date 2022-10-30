@@ -73,7 +73,7 @@ Adds a food item with its calorie content.
 
 Format: `add n/FOOD c/CALORIE t/MEAL_TYPE`
 
-* Adds a food item into the food list for the day, together with its calorie content and meal type.
+* Adds a food item into the food list for the current day, together with its calorie content and meal type.
 * Each field can only be specified once.
 * `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
 
@@ -85,7 +85,7 @@ Example:
 
 ### Deleting a food item : `delete`
 
-Removes a food item from the list of consumed food.
+Removes a food item from the displayed list of foods.
 
 Format: `delete INDEX`
 
@@ -99,7 +99,7 @@ Example:
 
 ### Editing a food item : `edit`
 
-Edits a food item from the list of consumed food for the day.
+Edits a food item from the displayed list of foods.
 
 Format: `edit INDEX n/FOOD c/CALORIES t/MEAL_TYPE`
 
@@ -129,7 +129,9 @@ Format: `list [DATE]`
 
 **:information_source: Note:**<br>
 
-`DATE` must be a valid date for the command to be executed. For example, `list 2022-02-31` is an invalid command.
+`DATE` must be a valid date for the command to be executed.
+
+* E.g. `list 2022-02-31` is an invalid command.
 
 </div>
 
@@ -150,7 +152,17 @@ that specific food item that the user has specified.
 
 Example:
 
-* `find chicken rice` finds and displays the calorie content of 1 plate of chicken rice.
+* `find chicken rice` finds and displays the calorie content of chicken rice.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**<br>
+
+`FOOD` is case-insensitive.
+
+* E.g. `find rice` is the same as find `rIcE`.
+
+</div>
 
 ### Setting a target daily calorie intake: `target`
 
