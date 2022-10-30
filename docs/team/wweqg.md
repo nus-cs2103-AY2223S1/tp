@@ -27,14 +27,14 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Added five unique lists in the application, added and updated relevant methods in logic, model, storage and other class to fit the changes [\#90](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/90) [\#94](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/94)
-    * Extended the list command to support five different list, enhanced the list command by adding the functionality to display different lists [\#164](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/164)
+    * Extended the list command to support five different lists, enhanced the list command by adding the functionality to display different lists [\#164](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/164)
+    * Extended the edit command to support three different lists [\#202](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/202)
 
 * **Documentation**:
     * User Guide:
-        * *to be added*.
-        * *to be added*.
+        * Added documentation for the features `list`, `sort` and `check` [\#177]()https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/177/files#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb
     * Developer Guide:
-        * *to be added*.
+        * Updated the UML diagram for storage package.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): *to be added*.
