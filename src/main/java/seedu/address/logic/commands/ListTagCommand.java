@@ -15,7 +15,7 @@ public class ListTagCommand extends TagCommandGroup {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": show all available tags";
 
-    public static final String MESSAGE_SUCCESS = "Tags: %1$s";
+    public static final String MESSAGE_SUCCESS = "Tag(s): %1$s";
 
     public ListTagCommand() {}
 
