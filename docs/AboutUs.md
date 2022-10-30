@@ -18,8 +18,8 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 [[github](https://github.com/kelvinou01)]
 [[portfolio](team/kelvin.md)]
 
-- Role: Developer
-- Responsibilities: ???
+- Role: Deliverables and deadlines, Backend Engineer
+- Responsibilities: Defines and tracks deliverables and ensures that they are done correctly.
 
 ### Simpson Eng
 
@@ -28,8 +28,8 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 [[github](http://github.com/craeyeons)]
 [[portfolio](team/simpson.md)]
 
-- Role: Developer
-- Responsibilities: ???
+- Role: Testing Specialist, Documentation
+- Responsibilities: Ensures components are properly tested and documented.
 
 ### Tan Ming Wei
 
@@ -38,8 +38,8 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 [[github](http://github.com/malwaregarry)]
 [[portfolio](team/mingwei.md)]
 
-- Role: Developer
-- Responsibilities: ???
+- Role: Code quality
+- Responsibilities: Reviews code to ensure adherence to coding standards.
 
 ### Yap Zhi Heng
 
@@ -48,8 +48,8 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 [[github](http://github.com/Polygonalr)]
 [[portfolio](team/zhiheng.md)]
 
-- Role: Developer
-- Responsibilities: ???
+- Role: Team Lead, Frontend (JavaFX) Expert
+- Responsibilities: Coordinates the project team and manages changes to the UI.
 
 ### Yew Wei Quan
 
@@ -58,5 +58,5 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 [[github](http://github.com/weiquany)]
 [[portfolio](team/weiquan.md)]
 
-- Role: Developer
-- Responsibilities: ???
+- Role: Deliverables and deadlines, Integration
+- Responsibilities: Ensures deliverables are done on time and able to integrate together.
