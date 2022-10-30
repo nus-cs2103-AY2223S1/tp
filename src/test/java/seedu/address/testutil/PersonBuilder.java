@@ -71,7 +71,7 @@ public class PersonBuilder {
 
     /**
      * Adds a custom attribute.
-     * 
+     *
      * @param name
      * @param data
      * @param <U>
@@ -166,7 +166,7 @@ public class PersonBuilder {
 
     /**
      * Returns a person with specified attributes in builder.
-     * 
+     *
      * @return
      */
     public Person build() {
@@ -178,7 +178,7 @@ public class PersonBuilder {
 
     /**
      * Adds address attribute to person
-     * 
+     *
      * @param string address
      * @return
      */
@@ -189,7 +189,7 @@ public class PersonBuilder {
 
     /**
      * Adds email attribute to person
-     * 
+     *
      * @param string email
      * @return
      */
@@ -200,7 +200,7 @@ public class PersonBuilder {
 
     /**
      * Adds phone attribute to person
-     * 
+     *
      * @param string phone number
      * @return
      */
