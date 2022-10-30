@@ -91,6 +91,13 @@ public class Meeting implements Comparable<Meeting> {
         return output;
     }
 
+    /**
+     * helper function for the convertNameToPerson function
+     * essentially iterates through a list of people and return the correct person
+     * @param listOfPeople list of Persons to iterate through
+     * @param personName person to find
+     * @return returns the correct Person object
+     */
     private static Person findExactMatch(ObservableList<Person> listOfPeople, String personName) {
         // guard clause
         if (listOfPeople.size() == 1) {
