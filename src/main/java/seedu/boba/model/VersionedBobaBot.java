@@ -64,8 +64,8 @@ public class VersionedBobaBot extends BobaBot {
         BobaBot copiedBobaBot = new BobaBot(bobaBot);
         if (!copiedBobaBot.strictlyEquals(this.bobaBotStateList.get(this.currentStatePointer))) {
             // prune away all previously stored redoable steps
-            for (int i=currentStatePointer+1; i<this.bobaBotStateList.size(); i++){
-                this.bobaBotStateList.remove(currentStatePointer+1);
+            for (int i = currentStatePointer + 1; i < this.bobaBotStateList.size(); i++) {
+                this.bobaBotStateList.remove(currentStatePointer + 1);
             }
             this.bobaBotStateList.add(copiedBobaBot);
             this.currentStatePointer++;
@@ -106,12 +106,13 @@ public class VersionedBobaBot extends BobaBot {
         currentBobaBot.resetData(this.bobaBotStateList.get(this.currentStatePointer));
     }
 
-    @Override
     /**
      * Compares if two VersionedBobaBot objects are equal
+     *
      * @param other
      * @return boolean that represents whether the other object is considered equal to self
      */
+    @Override
     public boolean equals(Object other) {
         if (other instanceof VersionedBobaBot) {
             VersionedBobaBot ot = (VersionedBobaBot) other;
@@ -122,14 +123,14 @@ public class VersionedBobaBot extends BobaBot {
         return false;
     }
 
-    @Override
     /**
      * Returns a String representing this object
      */
+    @Override
     public String toString() {
-        return "VersionedBobaBot: \n" +
-                "    size limit: " + this.sizeLimit + "\n" +
-                "    current pointer: " + this.currentStatePointer + "\n" +
-                this.bobaBotStateList.toString();
+        return "VersionedBobaBot: \n"
+                + "    size limit: " + this.sizeLimit + "\n"
+                + "    current pointer: " + this.currentStatePointer + "\n"
+                + this.bobaBotStateList.toString();
     }
 }
