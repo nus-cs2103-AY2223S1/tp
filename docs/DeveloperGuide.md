@@ -900,7 +900,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-## Launch and shutdown
+### Launch and shutdown
 
 1. Initial launch
 
@@ -927,17 +927,17 @@ testers are expected to do more *exploratory* testing.
 
 <br>
 
-## Modifying residents
+### Modifying residents
 
-### Adding a resident
-
-[Comment]: <> (To be added)
-
-### Editing an existing resident
+#### Adding a resident
 
 [Comment]: <> (To be added)
 
-### Deleting a resident
+#### Editing an existing resident
+
+[Comment]: <> (To be added)
+
+#### Deleting a resident
 
 [Comment]: <> (To be updated)
 
@@ -954,81 +954,81 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+2. Deleting a person while resident list is filtered
 
-### Clearing all residents
-
-[Comment]: <> (To be added)
-
-<br>
-
-## Viewing residents
-
-### Listing residents
-
-[Comment]: <> (To be added)
-
-### Showing resident fields
-
-[Comment]: <> (To be added)
-
-### Hiding resident fields
-
-[Comment]: <> (To be added)
-
-### Resetting hidden resident fields
-
-[Comment]: <> (To be added)
-
-### Finding residents
-
-[Comment]: <> (To be added)
-
-### Filtering residents
+#### Clearing all residents
 
 [Comment]: <> (To be added)
 
 <br>
 
-## File management
+### Viewing residents
 
-### Creating a new data folder
-
-[Comment]: <> (To be added)
-
-### Deleting an existing data folder
+#### Listing residents
 
 [Comment]: <> (To be added)
 
-### Switching data folders
+#### Showing resident fields
 
 [Comment]: <> (To be added)
 
-### Importing from CSV file
+#### Hiding resident fields
+
+[Comment]: <> (To be added)
+
+#### Resetting hidden resident fields
+
+[Comment]: <> (To be added)
+
+#### Finding residents
+
+[Comment]: <> (To be added)
+
+#### Filtering residents
 
 [Comment]: <> (To be added)
 
 <br>
 
-## Venue booking
+### File management
 
-### Adding a venue
-
-[Comment]: <> (To be added)
-
-### Deleting a venue
+#### Creating a new data folder
 
 [Comment]: <> (To be added)
 
-### Viewing a venue
+#### Deleting an existing data folder
 
 [Comment]: <> (To be added)
 
-### Adding a booking
+#### Switching data folders
 
 [Comment]: <> (To be added)
 
-### Deleting a booking
+#### Importing from CSV file
+
+[Comment]: <> (To be added)
+
+<br>
+
+### Venue booking
+
+#### Adding a venue
+
+[Comment]: <> (To be added)
+
+#### Deleting a venue
+
+[Comment]: <> (To be added)
+
+#### Viewing a venue
+
+[Comment]: <> (To be added)
+
+#### Adding a booking
+
+[Comment]: <> (To be added)
+
+#### Deleting a booking
 
 [Comment]: <> (To be added)
 
