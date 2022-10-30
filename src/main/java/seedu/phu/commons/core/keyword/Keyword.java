@@ -2,7 +2,10 @@ package seedu.phu.commons.core.keyword;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.phu.model.internship.ApplicationProcess;
 import seedu.phu.model.internship.Date;
+
+import java.util.Locale;
 
 
 /**
@@ -28,6 +31,10 @@ public class Keyword {
 
     public boolean isDate() {
         return Date.isValidDate(keyword);
+    }
+
+    public boolean isValidApplicationProcess() {
+        return ApplicationProcess.isValidApplicationProcess(keyword.toUpperCase());
     }
 
     @Override

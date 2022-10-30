@@ -55,6 +55,16 @@ public class KeywordList {
         return keywords.size() == 0;
     }
 
+    public boolean isAllValidProcess() {
+        boolean result = true;
+
+        for (Keyword k: keywords) {
+            result = result && k.isValidApplicationProcess();
+        }
+
+        return result;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

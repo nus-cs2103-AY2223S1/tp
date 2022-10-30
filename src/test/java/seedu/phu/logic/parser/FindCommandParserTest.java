@@ -59,7 +59,7 @@ public class FindCommandParserTest {
         assertParseFailure(parser, "c/n", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // Date category with invalid date keywords
-        assertParseFailure(parser, "c/d 2022-02-02", FindCommandParser.CONSTRAINT_MESSAGE);
+        assertParseFailure(parser, "c/d 2022-02-02", FindCommandParser.INVALID_DATE_MESSAGE);
     }
 
     private KeywordList prepareKeywords(String ...keywords) {
