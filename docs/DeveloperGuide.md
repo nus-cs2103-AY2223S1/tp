@@ -156,7 +156,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTab`, `VenueTab`, `CurrentWorkingFileFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTabView`, `VenueTabView`, `CurrentWorkingFileFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -272,7 +272,7 @@ shows the updated Sequence diagram for the executing of our `delete` command.
 
 ### Displaying Data
 
-There are two main types of data that is stored and displayed, the `Residents`, and the `Bookings`.
+There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`.
 As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are
 responsible for displaying the respective information.
 
@@ -302,7 +302,7 @@ on *method matching*, which is what we heavily used to fetch resident data.
 
 For more information on possible performance issue, we refer you to the GitHub issue [here](https://github.com/javafxports/openjdk-jfx/issues/409).
 
-* Alternative 2: List
+Alternative 2: List
 
 Pros:
 * Ability to customize the layout of the data to be displayed
@@ -319,10 +319,34 @@ For the purposes of the user, who has to deal with large amounts of residential 
 #### Booking Information
 
 Similar to the display of resident information, the `VenueTabView` contains a `BookingTableView` which was also implemented
-via the `TableView` class of `JavaFX`. Here, each row corresponds to the `Day`, and each column corresponds to the `TimePeriod`.
+via the `TableView` class of `JavaFX`. Here, each row corresponds to the `Day`, and each column corresponds to the `HourPeriod`.
 
-Unlike the `ResidentTableView`, we did not discuss any other alternatives as to how booking information should be displayed as
-we thought that the use of a Table was sufficiently proficient in displaying a timetable.
+##### Design considerations
+
+Aspect: Display format
+
+Alternative 1 (current choice): Table
+
+Pros
+* Decently proficient in displaying bookings
+
+Cons
+* Difficulty in customizing the design i.e. colors and size
+
+Alternative 2: Grid
+
+The implementation of the grid would be via a 8x16 grid of JavaFX containers using `HBox` and `VBox`. We would have nested
+the `HBox` and `VBox` components to achieve a timetable like design to display the bookings.
+
+Pros
+* Decently proficient in displaying bookings
+* Easier to customize the design i.e. colors and size
+
+Cons
+* Difficulty and time-consuming to implement
+
+Weighing the pros and cons, we decided to opt for the Table as it was sufficient for our purposes, without the addition
+of any sizeable overhead.
 
 <br>
 
