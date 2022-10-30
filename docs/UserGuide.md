@@ -119,7 +119,6 @@ Examples:
 
     ![AddCommand1](images/screenshots/AddCommand/AddCommand1.png)
 
-    ![AddCommand1Result](images/screenshots/AddCommand/AddCommand1Result.png)
     </details>
 
 
