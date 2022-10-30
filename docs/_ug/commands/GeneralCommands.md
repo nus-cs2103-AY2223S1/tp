@@ -6,6 +6,30 @@
 
 > Displays help for FoodRem.
 
+```note
+COMMAND_WORD is strictly any of the following:
+* exit
+* help
+* reset
+* dec
+* del
+* edit
+* find
+* inc
+* list
+* new
+* rmk
+* sort
+* view
+* deletetag
+* filtertag
+* listtag
+* newtag
+* renametag
+* tag
+* untag
+```
+
 **Example Input:**
 
 ```text
@@ -16,7 +40,7 @@ help help
 
 **Expected Output:**
 
-A new window will open showing instructions.
+A new window will open showing the instructions.
 
 If no `COMMAND_WORD` was specified, only a general help message will be provided. The general help message shows a list of commands available to the user and a URL to this User Guide.
 
@@ -28,7 +52,7 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 **Format**: `reset`
 
-> Clears all data in FoodRem. This includes all items and tags currently stored.
+> Clears all items and tags in FoodRem.
 
 **Example Input:**
 
