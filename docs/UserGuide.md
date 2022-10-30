@@ -7,16 +7,16 @@ title: User Guide
 
 The purpose of this user guide is to help both new and experienced users with using FindMyIntern.
 
-- If you are a new user, we recommend checking out the [introduction](#introduction) to get a better idea of what FindMyIntern can do. 
+- If you are a new user, we recommend checking out the [introduction](#introduction) to get a better idea of what FindMyIntern can do.
 If you have no prior experience with command line interfaces, we recommend reading this guide.
 
 - If you are an experienced user, you can use the [table of contents](#table-of-contents) to jump straight to what you are looking for.
 
 ## Introduction
-Are you a student applying for internships? Do you have trouble remembering what you have applied? 
-Or are you tired of using Excel to keep track? 
-Applying for internships is already painful enough. 
-There should be an easy way to keep track of various applications and upcoming interviews. 
+Are you a student applying for internships? Do you have trouble remembering what you have applied?
+Or are you tired of using Excel to keep track?
+Applying for internships is already painful enough.
+There should be an easy way to keep track of various applications and upcoming interviews.
 FindMyIntern is the perfect solution for you!
 
 FindMyIntern is a desktop application that helps students easily keep track of
@@ -31,88 +31,82 @@ FindMyIntern helps you to
 
 The user guide is divided into different sections. Click on any of the sections to jump right into that section!
 
-<div markdown="block" class="border border-info">
-
-[Quick Start](#quick-start)
-
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
+<h6 markdown="1" class="card-title">[Quick Start](#quick-start)</h6>
 This section teaches you how to install and **get started** with FindMyIntern.
-
+</div>
 </div>
 
-<div markdown="block" class="border border-info">
-
-[Features](#features)
-
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
+<h6 markdown="1" class="card-title">[Features](#features)</h6>
 This section contains **everything you need to know** about the features in FindMyIntern.
 
 It includes:
 - [Commands](#commands)
 - [Saving and Editing](#saving-and-editing)
 - [UI Elements](#ui-elements)
-
+</div>
 </div>
 
-<div markdown="block" class="border border-info">
-
-[FAQ](#faq)
-
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
+<h6 markdown="1" class="card-title">[FAQ](#faq)</h6>
 This section includes all frequently asked questions about FindMyIntern.
-
+</div>
 </div>
 
-<div markdown="block" class="border border-info">
-
-[Appendix](#appendix)
-
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
+<h6 markdown="1" class="card-title">[Appendix](#appendix)</h6>
 This section specifies **the input details** that you have to be aware of in FindMyIntern.
-
+</div>
 </div>
 
-<div markdown="block" class="border border-info">
-
-[Command Summary](#command-summary)
-
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
+<h6 markdown="1" class="card-title">[Command Summary](#command-summary)</h6>
 This section contains the formats of all commands in FindMyIntern.
-
+</div>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### Setting up
+
+1. Ensure you have [Java 11](https://www.oracle.com/java/technologies/downloads/#java11) or above installed in your Computer.
 
 2. Download the latest `findmyintern.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your FindMyIntern.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app.
+
+### Adding your first internship application
+
+Now that you've downloaded FindMyIntern, you can start managing your internship applications. Let's start by adding your first internship application.
+
+1. Open FindMyIntern by double-clicking `findmyintern.jar` if you have not already done so.
+
+2. The GUI similar to the below should appear in a few seconds. FindMyIntern will load some sample data.<br>
 
    <p align="center">
        <img src="images/Ui.png" width="600" />
-   </p> 
+   </p>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all internship applications.<br>
-   Some example commands you can try:
+3. Let's add your first internship application with the [`add` command](#adding-an-internship-application-add)!
 
-   * **`add c/Apple l/https://jobs.apple.com/en-sg d/Software Engineering Internship a/11/10/2022`** :
-     Adds an internship application for Apple to the tracker.
+4. Type `add c/Shopee l/careers.shopee.sg d/My first internship application a/27 Oct` and press Enter to execute it.
 
-   * **`mark 3 s/interviewed`** : Marks the 3rd application shown in the current list as interviewed.
+5. Congratulations! You have just added your first internship application to FindMyIntern! A message like the one below showing the result of your command should appear.
+   <p align="center">
+      <img src="images/firstInternshipApplication.png" />
+   </p>
 
-   * **`list`** : Lists all internship applications.
-
-   * **`delete 3`** : Deletes the 3rd application shown in the current list.
-
-   * **`find shopee`** : Finds an internship application called Shopee in the tracker.
-   
-   * **`filter rejected`** : Filters the tracker for internship applications with rejected status.
-   
-   * **`sort applied`** : Sorts the internship applications by applied date.
-    
-   * **`exit`** : Exits the app.
-
-6. Refer to the [Commands](#commands) below for details of each command.
+6. FindMyIntern offers so much more in managing your internship applications. Check out the [commands section](#commands) for more commands you can use.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -160,19 +154,37 @@ This section contains **everything you need to know** about the commands used in
 
 #### Viewing help: `help`
 
-Shows a message explaning how to access the user guide, and the data file location.
+Shows a message explaining how to access the user guide, and the data file location.
 
 <p align="center">
     <img src="images/helpMessage.png" width="500"/>
 </p>
 
-Format: `help`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        help
+        ```
+    </div>
+</div>
 
 #### Adding an internship application: `add`
 
 Adds an internship application to the tracker.
 
-Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…
+        ```
+    </div>
+</div>
 
 * Default [application status](#application-status) is "Applied".
 * `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change [application status](#application-status) to "Shortlisted".
@@ -181,18 +193,24 @@ Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIM
   * Such keywords may include `backend` or `frontend` for the internship role, or `summer` or `off season` for the internship period.
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Changing application status**:
+<div class="d-flex alert alert-info">
+<div class="me-3">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**Changing application status**<br>
 To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
-
+</div>
 </div>
 
-<div markdown="block" class="alert alert-warning">
-
-:warning: **Date/time formats**:
+<div class="d-flex alert alert-warning">
+<div class="me-3">
+  <span class="badge text-bg-warning">WARNING</span>
+</div>
+<div markdown="span">
+**Date/time formats**<br>
 See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
-  
+</div>
 </div>
 
 Examples:
@@ -204,7 +222,16 @@ Examples:
 
 Edits an existing internship application in the tracker.
 
-Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…
+        ```
+    </div>
+</div>
 
 * Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
   internship application list. The index **must be a positive integer** 1, 2, 3…
@@ -220,18 +247,24 @@ Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INT
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Changing application status**:
+<div class="d-flex alert alert-info">
+<div class="me-3">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**Changing application status**<br>
 To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
-
+</div>
 </div>
 
-<div markdown="block" class="alert alert-warning">
-
-:warning: **Date/time formats**:
+<div class="d-flex alert alert-warning">
+<div class="me-3">
+  <span class="badge text-bg-warning">WARNING</span>
+</div>
+<div markdown="span">
+**Date/time formats**<br>
 See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
-
+</div>
 </div>
 
 Examples:
@@ -242,13 +275,22 @@ Examples:
 * `edit 3 t/frontend t/summer` - Edits the tags of the 3rd internship application, removing existing tags and
   adding `frontend` and `summer` tags
 
-#### Marking an internship application status: `mark` 
+#### Marking an internship application status: `mark`
 
 Marks an internship [application status](#application-status).
 
-Format: `mark INDEX s/APPLICATION_STATUS`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        mark INDEX s/APPLICATION_STATUS
+        ```
+    </div>
+</div>
 
-* Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed 
+* Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
   internship application list. The index **must be a positive integer** 1, 2, 3…
 
 * Updates the internship application to the specified [`APPLICATION_STATUS`](#application-status).
@@ -265,13 +307,31 @@ Examples:
 
 Shows a list of all internship applications.
 
-Format: `list`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        list
+        ```
+    </div>
+</div>
 
 #### Deleting an internship application: `delete`
 
 Deletes an internship application.
 
-Format: `delete INDEX`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        delete INDEX
+        ```
+    </div>
+</div>
 
 * Deletes the internship application at the specified `INDEX`.
 * The `INDEX` refers to the index number shown in the displayed internship application list.
@@ -282,7 +342,16 @@ Examples:
 
 #### Filtering for internship applications of a specific status: `filter`
 
-Format: `filter APPLICATION_STATUS`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        filter APPLICATION_STATUS
+        ```
+    </div>
+</div>
 
 * Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
 
@@ -296,22 +365,46 @@ Examples:
 
 Finds internship applications where the company's name and tags contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]…`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        find KEYWORD [MORE_KEYWORDS]…
+        ```
+    </div>
+</div>
 
 * The search is case-insensitive e.g `google` will match `Google`
-* Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo` 
+* Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: `filter` vs `find`**
-
-`filter` and `find` commands may seem similar, here are some differences to take note of:
-
-| `filter`                                                                                  | `find`                                                    |
-|-------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| Used to filter **internship application statuses**                                        | Used to search for **keywords in company names and tags** |
-| Can only accept as input **one of 5 allowed [application statuses](#application-status)** | Can accept **any input**                                  |
-
+<div class="d-flex alert alert-info">
+<div class="me-3">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div>
+<b><code><b>filter</b></code> vs <code><b>find</b></code></b><br>
+<code>filter</code> and<code>find</code> commands may seem similar, here are some differences to take note of:<br>
+<table class="table table-light table-hover">
+  <thead>
+    <tr>
+      <th scope="col"><code>filter</code></th>
+      <th scope="col"><code>find</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Used to filter <b>internship application statuses</b></td>
+      <td>Used to search for <b>keywords in company names and tags</b></td>
+    </tr>
+    <tr>
+      <td>Can only accept as input <b>one of 5 allowed <a href="#application-status">application statuses</a></b></td>
+      <td>Can accept <b>any input</b></td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 Examples:
@@ -326,7 +419,16 @@ Examples:
 
 Sorts the internship applications with the latest date at top to earliest at the bottom.
 
-Format: `sort CRITERIA`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        sort CRITERIA
+        ```
+    </div>
+</div>
 
 * Sort criteria **must be one of the following**:
     * `applied`
@@ -336,28 +438,54 @@ Examples:
 * `sort applied` will sort the internship applications according to applied date
 * `sort interview` will sort the internship applications according to interview date
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Sorting by interview date**:
+<div class="d-flex alert alert-info">
+<div class="me-3">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**Sorting by interview date**<br>
 Applications without interview date will remain in the original order at the bottom.
-
+</div>
 </div>
 
 #### Clearing all internship applications: `clear`
 
 Clears all internship applications from the tracker.
 
-Format: `clear`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        clear
+        ```
+    </div>
+</div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div class="d-flex alert alert-danger">
+<div class="me-3">
+  <span class="badge text-bg-danger">DANGER</span>
+</div>
+<div markdown="span">
 This command will clear the entire list of internships without warning.
+</div>
 </div>
 
 #### Exiting the program: `exit`
 
 Exits the program.
 
-Format: `exit`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        exit
+        ```
+    </div>
+</div>
 
 ### Saving and Editing
 
@@ -372,15 +500,20 @@ The data file location can also be found in the help message: see [`help` comman
 
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div class="d-flex alert alert-warning">
+<div class="me-3">
+  <span class="badge text-bg-warning">WARNING</span>
+</div>
+<div markdown="span">
 If your changes to the data file makes its format invalid, FindMyIntern will discard all data and start with an empty data file at the next run.
+</div>
 </div>
 
 ### UI elements
 
 #### Links
 
-Clicking on links will copy the URL of the link to the clipboard. The URL can then be pasted into any browser. 
+Clicking on links will copy the URL of the link to the clipboard. The URL can then be pasted into any browser.
 
 A tooltip is shown when the link is hovered.
 
@@ -423,29 +556,84 @@ Commands like `add` and `edit` accept fields, their constraints are specified be
 
 There are no constraints for a field if the constraints box is empty for that field.
 
-| Field                   | Constraints                                                                                    |
-|-------------------------|------------------------------------------------------------------------------------------------|
-| `c/COMPANY`             |                                                                                                |
-| `l/LINK`                | Links must be of the format `HOSTNAME.PATH`, where both `HOSTNAME` and `PATH` are alphanumeric |
-| `d/DESCRIPTION`         |                                                                                                |
-| `a/APPLIED_DATE`        | See [date/time formats](#datetime-formats)                                                     |
-| `i/INTERVIEW_DATE_TIME` | See [date/time formats](#datetime-formats)                                                     |
-| `t/TAG`                 | Must only contain alphabets and spaces                                                         |
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Field</th>
+      <th scope="col">Constraints</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>c/COMPANY</kbd></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>l/LINK</kbd></td>
+      <td>Links must be of the format `HOSTNAME.PATH`, where both `HOSTNAME` and `PATH` are alphanumeric</td>
+    </tr>
+    <tr>
+      <td><kbd>d/DESCRIPTION</kbd></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>a/APPLIED_DATE</kbd></td>
+      <td>See <a href="#datetime-formats">date/time formats</a></td>
+    </tr>
+    <tr>
+      <td><kbd>i/INTERVIEW_DATE_TIME</kbd></td>
+      <td>See <a href="#datetime-formats">date/time formats</a></td>
+    </tr>
+    <tr>
+      <td><kbd>t/TAG</kbd></td>
+      <td>Must only contain alphabets and spaces</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Application status
 
-Application status refers to the current status of an internship application. 
+Application status refers to the current status of an internship application.
 Each internship application is tagged with an application status.
 
 Application status as an input field **must be one of the following**:
 
-| Application status | Explanation                                               | Remark                                                                                                              |
-|--------------------|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| `applied`          | You have applied for this internship                      | Default application status                                                                                          |
-| `shortlisted`      | Company has shortlisted you for interview                 | Adding/editing the interview date/time of an internship application will change application status to "Shortlisted" |
-| `interviewed`      | You have been interviewed for this internship application |                                                                                                                     |                                      
-| `accepted`         | You have accepted this internship                         |                                                                                                                     |
-| `rejected`         | You have rejected this internship                         |                                                                                                                     |
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Application status</th>
+      <th scope="col">Explanation</th>
+      <th scope="col">Remark</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>applied</kbd></td>
+      <td>You have applied for this internship</td>
+      <td>Default application status</td>
+    </tr>
+    <tr>
+      <td><kbd>shortlisted</kbd></td>
+      <td>Company has shortlisted you for interview</td>
+      <td>Adding/editing the interview date/time of an internship application will change application status to "Shortlisted"</td>
+    </tr>
+    <tr>
+      <td><kbd>interviewed</kbd></td>
+      <td>You have been interviewed for this internship application</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>accepted</kbd></td>
+      <td>You have accepted this internship</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>rejected</kbd></td>
+      <td>You have rejected this internship</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Date/time formats
 
@@ -453,19 +641,58 @@ The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default
 
 For `APPLIED_DATE`, the formats allowed:
 
-| Format       | Input      |
-|--------------|------------|
-| `d MMM yyyy` | 7 Oct 2022 |
-| `d/M/yyyy`   | 7/10/2022  |
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Format</th>
+      <th scope="col">Input</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>d MMM yyyy</kbd></td>
+      <td>7 Oct 2022</td>
+    </tr>
+    <tr>
+      <td><kbd>d/M/yyyy</kbd></td>
+      <td>7/10/2022</td>
+    </tr>
+  </tbody>
+</table>
 
 For `INTERVIEW_DATE_TIME`, the formats allowed:
 
-| Format               | Input               | Remark                                                                                 |
-|----------------------|---------------------|----------------------------------------------------------------------------------------|
-| `d MMM yyyy HH:mm`   | 7 Oct 2022 15:00    |                                                                                        |
-| `d/M/yyyy HH:mm`     | 7/10/2022 15:00     |                                                                                        |
-| `d MMM yyyy, h:mm a` | 7 Oct 2022, 3:00 pm | Take note of the **comma after the date** and the **space between the time and AM/PM** |
-| `d/M/yyyy, h:mm a`   | 7/10/2022, 3:00 pm  | Take note of the **comma after the date** and the **space between the time and AM/PM** |
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Format</th>
+      <th scope="col">Input</th>
+      <th scope="col">Remark</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>d MMM yyyy HH:mm</kbd></td>
+      <td>7 Oct 2022 15:00</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>d/M/yyyy HH:mm</kbd></td>
+      <td>7/10/2022 15:00</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>d MMM yyyy, h:mm a</kbd></td>
+      <td>7 Oct 2022, 3:00 pm</td>
+      <td>Take note of the <ul><li>comma after the date</li><li>space between the time and AM/PM</li></ul></td>
+    </tr>
+    <tr>
+      <td><kbd>d/M/yyyy, h:mm a</kbd></td>
+      <td>7/10/2022, 3:00 pm</td>
+      <td>Take note of the <ul><li>comma after the date</li><li>space between the time and AM/PM</li></ul></td>
+    </tr>
+  </tbody>
+</table>
 
 --------------------------------------------------------------------------------------------------------------------
 
