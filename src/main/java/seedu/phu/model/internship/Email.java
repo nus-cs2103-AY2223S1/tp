@@ -22,9 +22,9 @@ public class Email {
             + "    - have at least 2 domain labels, with the last label being the top level domain label.\n"
             + "    - top level domain label at least 2 characters long.\n"
             + "    - top level domain label must start with an alphabet.\n"
+            + "    - top level domain label must be separated from the other domain labels by a period.\n"
             + "    - have each domain label start and end with alphanumeric characters.\n"
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.\n"
-            + "    - top level domain label must be separated from the other domain labels by a period.\n"
             + "3. Emails must not exceed 254 characters.";
     // alphanumeric and special characters
     private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
@@ -33,7 +33,9 @@ public class Email {
             + ALPHANUMERIC_NO_UNDERSCORE + ")*";
     private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
             + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
-    private static final String DOMAIN_LAST_PART_REGEX = ALPHABET + "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars, first char must be alphabet
+
+    // At least two chars, first char must be alphabet
+    private static final String DOMAIN_LAST_PART_REGEX = ALPHABET + "(" + DOMAIN_PART_REGEX + "){1,}$";
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.){1,}" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
