@@ -79,11 +79,14 @@ Format: `help`
 
 Adds a food item with its calorie content.
 
-Format: `add n/FOOD c/CALORIE t/MEAL_TYPE`
+Format: `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`
 
 * Adds a food item into the food list for the current day, together with its calorie content and meal type.
 * Each field can only be specified once.
 * `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
+* `CALORIE` can only take in a non-negative integer that is less than 2147483648
+* `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not 
+exceed 27 characters.
 
 Example:
 
@@ -109,12 +112,17 @@ Example:
 
 Edits a food item from the displayed list of foods.
 
-Format: `edit INDEX [n/FOOD] [c/CALORIES] [t/MEAL_TYPE]`
+Format: `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`
 
 * Edits a food item in the list displayed at the specified index.
 * The index refers to the index shown in the displayed food lists.
 * The index **must be a positive** integer.
 * At least one of the optional fields must be provided.
+* Only one of each optional fields can be provided.
+* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
+* `CALORIE` can only take in a non-negative integer that is less than 2147483648
+* `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not
+  exceed 27 characters.
 
 Example:
 
@@ -157,6 +165,7 @@ Format: `find FOOD`
 * Only the calorie contents of some food items are included. Refer to the list of food items [here](#food-items).
 * If the user has entered a specific food item before, the `find` command will return the average calories of 
 that specific food item that the user has specified.
+* This applies to food items that have been entered on previous days, and not just on the current day. 
 
 Example:
 
