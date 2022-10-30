@@ -44,7 +44,9 @@ Creates a new folder with the specified `FOLDER_NAME`, if such a folder does not
 Format: `file create FOLDER_NAME`
 * Does not create a new folder if the folder already exists.
 
-:information source: `FOLDER_NAME` must follow this [format](#file-command-format).
+<div markdown="span" class="alert alert-info">:information_source</div> `FOLDER_NAME` must follow this [format](#file-command-format).
+
+
 
 Examples:
 * `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data files.
