@@ -959,6 +959,56 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Listing residents
+
+1. Listing all residents in the resident list after calling `find` or `filter`
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons already in the list.
+
+    2. First, enter `add  n/Peter Senge p/90798012 e/ps@email.com r/16-19 g/M h/D m/A0238871H`.
+       Expected: `Peter Senge` is added to the list. The full list is displayed after adding the resident.
+       
+    3. Next, enter `add  n/Teng Mui Kiat p/88032012 e/tmk@email.com r/08-19 g/M h/D m/A0198211G`.
+       Expected: `Teng Mui Kiat` is added to the list. The full list is displayed after adding the resident.
+       
+    4. Now, enter `find eng`. Expected: At least two residents are displayed in the list, i.e. `Peter Senge` and `Teng
+       Mui Kiat`. This means that the list of residents shown is no longer the full list.
+       
+       - Alternatively, enter `filter /all h/D`. Expected: Same as *iv*.
+       
+    5. Enter `list`. Expected: The full list of residents should be displayed, along with `Peter Senge` and `Teng
+       Mui Kiat`.
+
+    6. Note the incorrect command: `find`<br>
+       Expected: The list of residents displayed does not change. Error details shown in the status message. 
+    
+    7. Note the incorrect command: `filter` or `filter /all`<br>
+       Expected: The list of residents displayed does not change. Error details shown in the status message. 
+
+    8. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
+       Expected: Similar to previous.
+
+
+2. Listing all residents in the resident list after calling `showonly` or `hideonly`
+
+    1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
+       the full set of resident fields.
+       
+    2. Enter `showonly n p e`.
+       Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email` 
+       columns are shown in the table.
+       
+        - Alternatively, enter `hideonly i r g m h t`. Expected: Same as *ii*.
+    
+    3. Enter `list`. Expected: The full set of resident fields is displayed in the table, along with the full list of 
+       residents.
+       
+    4. Note the incorrect command: `showonly` or `hideonly`.
+       Expected: The set of fields displayed does not change. Error details shown in the status message.
+       
+    5. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
+          Expected: Similar to previous.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
