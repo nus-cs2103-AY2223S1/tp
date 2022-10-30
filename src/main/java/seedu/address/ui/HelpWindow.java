@@ -25,11 +25,11 @@ public class HelpWindow extends UiPart<Stage> {
             + "4. To edit a students details:\n" + "> edit [n/ p/ lp/]NEW_FIELD\n"
             + "> edit [h/ a/ g/ s/]INDEX NEW_FIELD \n"
             + "5. To delete a student from your address book:\n" + "> delete INDEX\n"
-            + "6. To remove a students details:\n" + "> view INDEX\n"
+            + "6. To remove a students details:\n" + "> view NAME\n"
             + "> remove [s/ h/ g/ a/]INDEX\n"
-            + "7. To mark a students details:\n" + "> view INDEX\n"
+            + "7. To mark a students details:\n" + "> view NAME\n"
             + "> mark [h/ a/]INDEX\n"
-            + "8. To unmark a students details:\n" + "> view INDEX\n"
+            + "8. To unmark a students details:\n" + "> view NAME\n"
             + "> unmark [h/ a/]INDEX\n"
             + "9. To show lessons in the day:\n" + "> show DAY\n";
 
