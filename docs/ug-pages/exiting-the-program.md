@@ -7,7 +7,7 @@ title: Exiting the program
 
 You do not have to worry about exiting
 **RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information,
-the [data management section](data-management.md#saving-the-data).
+the [file management section](file-management.md#saving-the-data).
 
 ### Exiting the program : `exit`
 

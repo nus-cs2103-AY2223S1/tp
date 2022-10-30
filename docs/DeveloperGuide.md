@@ -9,39 +9,39 @@ title: Developer Guide
 
 ## **Table of Contents**
 
-* [Introduction](#introduction)
-* [Acknowledgements](#acknowledgements)
-* [Design](#design)
+* [**Introduction**](#introduction)
+* [**Acknowledgements**](#acknowledgements)
+* [**Design**](#design)
     * [Architecture](#architecture)
     * [Ui](#ui-component)
     * [Logic](#logic-component)
     * [Model](#model-component)
     * [Storage](#storage-component)
     * [Common classes](#common-classes)
-* [Implementation](#implementation)
+* [**Implementation**](#implementation)
     * [Resident class](#the-resident-class)
     * [Displaying results](#changes-in-displaying-results)
     * [Show/Hide fields](#showhide-feature-for-resident-fields)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
-* [Conclusion](#conclusion)
-* [Appendix: Project requirements](#appendix-project-requirements)
+* [**Conclusion**](#conclusion)
+* [**Appendix: Project requirements**](#appendix-project-requirements)
     * [Product scope](#product-scope)
     * [User stories](#user-stories)
     * [Use cases](#use-cases)
     * [Non-functional requirements](#non-functional-requirements)
     * [Glossary](#glossary)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+* [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
     * [Modifying residents](#modifying-residents)
     * [File management](#file-management)
-    * [Venue booking](#venue-booking)
+    * [Venue management](#venue-management)
 
 ---
 
 ## **Introduction**
 
-Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what RC4HDB is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing a specialised features which solve their resident and venue management needs.
+Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what RC4HDB is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing specialised features which solve their resident and venue management needs.
 
 ### Purpose
 
@@ -202,7 +202,7 @@ How the parsing works:
 ![Class structure of Command](images/CommandDiagram.png)
 
 The command class structure has been changed to provide an additional layer of abstraction using the four interface
-classes ```ModelCommand```, ```StorageCommand```, ```FileCommand``` and ```MiscCommand```. These interfaces all
+classes ```ModelCommand```, ```StorageCommand```, ```StorageModelCommand``` and ```MiscCommand```. These interfaces all
 implement the Command interface and is used as a intermediate barrier to build the command classes. The specific
 commands implement these commands instead of directly implementing the Command interface in order to improve
 the abstraction of commands.
@@ -828,8 +828,30 @@ Extensions:
 
 <br>
 
+<br>
+
 System: RC4HDB <br>
-Use case: UC10 - Clearing all data <br>
+Use case: UC10 - Deleting multiple residents <br>
+Actor: User <br>
+MSS:
+
+1. Multiple Residents that fall under the same categories have moved out. [**RC4**](#glossary).
+2. User deletes the residents from RC4HDB using the categories.
+3. RC4HDB removes the corresponding residents from the database.
+4. RC4HDB displays the number of residents that has been deleted.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC11 - Clearing all data <br>
 Actor: User <br>
 MSS:
 
@@ -842,7 +864,7 @@ MSS:
 <br>
 
 System: RC4HDB <br>
-Use case: UC11 - Exiting the application <br>
+Use case: UC12 - Exiting the application <br>
 Actor: User <br>
 MSS:
 
@@ -861,7 +883,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC12 - Importing data from [CSV](#glossary) file <br>
+Use case: UC13 - Importing data from [CSV](#glossary) file <br>
 Actor: User <br>
 MSS:
 
@@ -887,7 +909,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC13 - Exporting data to [CSV](#glossary) file <br>
+Use case: UC14 - Exporting data to [CSV](#glossary) file <br>
 Actor: User <br>
 MSS:
 
@@ -897,6 +919,110 @@ MSS:
 4. RC4HDB shows a success message.
 
     Use case ends.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC15 - Add a single venue <br>
+Actor: User <br>
+MSS:
+
+1. New venue has been established in [**RC4**](#glossary).
+2. User has the name of the venue they want to add.
+3. User adds the venue RC4HDB.
+4. RC4HDB adds the venue to the data file.
+5. RC4HDB displays the venue. <br>
+   Use case ends.
+
+Extensions:
+
+&ensp; 3a. User enters venue information in an invalid format. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 3.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC16 - Deleting a single venue <br>
+Actor: User <br>
+MSS:
+
+1. Venue is not available for booking in [**RC4**](#glossary).
+2. User deletes the venue from RC4HDB.
+3. RC4HDB removes the corresponding venue from the database.
+4. RC4HDB displays the details of that venue that has been deleted.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC17 - Viewing a venue <br>
+Actor: User <br>
+MSS:
+
+1. User wants to view the bookings of a specific venue.
+2. User makes a request to RC4HDB to view the venue bookings by their name.
+3. The application will display the venue bookings according to the day and time of the bookings.
+4. RC4HDB displays the details of that venue that has been deleted.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC18 - Add a single booking <br>
+Actor: User <br>
+MSS:
+
+1. User wants to book a venue [**RC4**](#glossary).
+2. User has the details of the booking they want to make.
+3. User books the venue for a particular time period using RC4HDB.
+4. RC4HDB books the venue for the time period in the data file.
+5. RC4HDB displays the booking. <br>
+   Use case ends.
+
+Extensions:
+
+&ensp; 3a. User enters venue information in an invalid format. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 3.
+
+&ensp; 3b. A booking already exists in the requested time slot <br>
+&ensp; &emsp; &nbsp; 3b1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 3.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC19 - Deleting a single booking <br>
+Actor: User <br>
+MSS:
+
+1. User wants to cancel a booking in [**RC4**](#glossary).
+2. User deletes the booking from RC4HDB.
+3. RC4HDB removes the corresponding booking from the database.
+4. RC4HDB displays the details of that booking that has been deleted.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 <br>
 
@@ -942,28 +1068,28 @@ testers are expected to do more *exploratory* testing.
 
 ### Table of contents for manual testing
 
-* [Launch and shutdown](#launch-and-shutdown)
+* [**Launch and shutdown**](#launch-and-shutdown)
   * [Initial launch](#initial-launch)
   * [Saving window preferences](#saving-window-preferences)
   * [Starting up with missing/corrupted data files](#starting-up-with-missingcorrupted-data-files)
-* [Modifying residents](#modifying-residents)
+* [**Modifying residents**](#modifying-residents)
   * [Adding a resident](#adding-a-resident)
   * [Editing an existing resident](#editing-an-existing-resident)
   * [Deleting a resident](#deleting-a-resident)
   * [Clearing all residents](#clearing-all-residents)
-* [Viewing residents](#viewing-residents)
+* [**Viewing residents**](#viewing-residents)
   * [Listing residents](#listing-residents)
   * [Showing resident fields](#showing-resident-fields)
   * [Hiding resident fields](#hiding-resident-fields)
   * [Resetting hidden resident fields](#resetting-hidden-resident-fields)
   * [Finding residents](#finding-residents)
   * [Filtering residents](#filtering-residents)
-* [File management](#file-management)
+* [**File management**](#file-management)
   * [Creating a new data folder](#creating-a-new-data-folder)
   * [Deleting an existing data folder](#deleting-an-existing-data-folder)
   * [Switching to a different data folder](#switching-to-a-different-data-folder)
   * [Importing resident data from CSV file](#importing-resident-data-from-csv-file)
-* [Venue management](#venue-management)
+* [**Venue management**](#venue-management)
   * [Adding a venue](#adding-a-venue)
   * [Deleting a venue](#deleting-a-venue)
   * [Viewing a venue](#viewing-a-venue)
@@ -1016,7 +1142,7 @@ testers are expected to do more *exploratory* testing.
     
     7. Note the incorrect command: `filter` or `filter /all`<br>
        Expected: The list of residents displayed does not change. Error details shown in the status message. 
-
+       
     8. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
        Expected: Similar to previous.
 
@@ -1099,38 +1225,87 @@ testers are expected to do more *exploratory* testing.
        
 ### Modifying residents
 
-#### Adding a resident
-
-[Comment]: <> (To be added)
-
-#### Editing an existing resident
-
-[Comment]: <> (To be added)
-
 #### Deleting a resident
 
-[Comment]: <> (To be updated)
+1. Deleting a resident while all persons are being shown
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+   
+   1. Test case: `delete 1`<br>
+      Expected: First resident is deleted from the list. Details of the deleted resident shown in the status message. Timestamp in the status bar is updated.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `delete 0`<br>
+      Expected: No resident is deleted. Error details shown in the status message. Status bar remains the same.
 
-   2. Test case: `delete 1` <br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0` <br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+2. _{ more test cases …​ }_
 
-2. Deleting a person while resident list is filtered
+### Deleting multiple residents
 
-#### Clearing all residents
+1. Deleting multiple residents while all persons are being shown
 
-[Comment]: <> (To be added)
+    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
 
-<br>
+    1. Test case: `remove /any r/02-02 g/M h/D t/friend` <br>
+       Expected: residents are deleted accordingly. Number of residents deleted shown in the status message.
+    1. Test case: `remove any/ r/02-02 g/M h/D t/friend` <br>
+       Expected: Residents are not deleted. Error details shown in the status message.
+    1. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is any other string that is not the specifier)<br>
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Editing a resident
+
+1. Editing a resident while all residents are being shown
+
+    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+
+    1. Test case: `edit r/02-02 g/M h/D t/friend` <br>
+       Expected: First resident is edited from the list. Details of the deleted resident shown in the status message.
+    1. Test case: `edit r/02-02 g/L h/D t/friend` <br>
+       Expected: No resident is edited. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `edit`, `edit l/`, `...` <br>
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+
+### Adding a resident
+
+1. Adding a resident while all resident are being shown
+
+    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+
+    2. Test case: `add n/ Joe Don p/ 81616144 e/Joe@example.com r/02-02 g/M h/D m/A0210101X t/friend t/break`<br>
+        Expected: resident is added to the list. Details of the newly added resident shown in the status message.
+
+    3. Test case: `add n/ Joe Don p/ 81616144 e/Joe@example.com r/02-02 m/A0210101X t/friend t/break`<br>
+        Expected: No person is added. Error details shown in the status message.
+
+    4. Other incorrect delete commands include having invalid or missing information in the command <br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
+
+### Filtering a resident
+
+1. Filtering a resident while all resident are being shown
+
+    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+
+    2. Test case: `filter /any r/02-02 g/M h/D t/friend`<br>
+       Expected: List is filtered accordingly. Number of residents filtered shown in the status message.
+
+    3. Test case: `filter any/ r/02-02 g/M h/D t/friend`<br>
+        Expected: Residents are not filtered. Error details shown in the status message.
+
+    4. Other incorrect delete commands include having invalid or missing information in the command <br>
+       Expected: Similar to previous.
+
+2. _{ more test cases …​ }_
 
 ### Viewing residents
 
@@ -1253,5 +1428,3 @@ testers are expected to do more *exploratory* testing.
 #### Deleting a booking
 
 [Comment]: <> (To be added)
-
----
