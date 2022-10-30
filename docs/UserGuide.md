@@ -41,7 +41,7 @@ If you are a returning user, the [Command Summary](#command-summary) provides yo
 
 3. Copy the file to the folder you want to use as the _home folder_ for your NUScheduler.
 
-4. Double-click the file to start the app. The GUI similar to the one shown below should appear. Note how the app contains some sample data. <img src="images/UiSampleData.png"/>
+4. Double-click the file to start the app. The GUI similar to the one shown below should appear. Note how the app contains some sample data. ![UI with Sample Data](images/UiSampleData.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -60,8 +60,7 @@ If you are a returning user, the [Command Summary](#command-summary) provides yo
 
 The following is the main user interface of NUScheduler.
 
-<img src="images/LabelledUI.png">
-
+![Labelled UI](images/LabelledUI.png)
 
 * **Menu Bar**
 * **Command Box**: Enter your commands here.
