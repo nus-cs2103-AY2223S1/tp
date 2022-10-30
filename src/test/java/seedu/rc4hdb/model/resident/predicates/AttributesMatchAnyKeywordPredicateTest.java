@@ -149,4 +149,3 @@ public class AttributesMatchAnyKeywordPredicateTest {
         assertFalse(predicate.test(BENSON));
     }
 }
-

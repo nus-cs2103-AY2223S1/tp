@@ -114,11 +114,11 @@ public class Rc4hdbParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertThrows(ParseException.class, ListCommandParser.INTENDED_SPECIFIER_USAGE_MESSAGE, () ->
+        assertThrows(ParseException.class, ListCommandParser.SPECIFIER_USAGE, () ->
                 parser.parseCommand(ListCommand.COMMAND_WORD + " 3"));
-        assertThrows(ParseException.class, ListCommandParser.INTENDED_SPECIFIER_USAGE_MESSAGE, () ->
+        assertThrows(ParseException.class, ListCommandParser.SPECIFIER_USAGE, () ->
                 parser.parseCommand(ListCommand.COMMAND_WORD + " /i"));
-        assertThrows(ParseException.class, ListCommandParser.INTENDED_SPECIFIER_USAGE_MESSAGE, () ->
+        assertThrows(ParseException.class, ListCommandParser.SPECIFIER_USAGE, () ->
                 parser.parseCommand(ListCommand.COMMAND_WORD + " /e"));
         assertThrows(ParseException.class, ListCommandParser.INVALID_FIELDS_ENTERED, () ->
                 parser.parseCommand(ListCommand.COMMAND_WORD + " /i n p f x"));

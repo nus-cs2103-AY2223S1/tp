@@ -21,7 +21,6 @@ import seedu.rc4hdb.logic.Logic;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.venues.booking.Booking;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,7 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
 
     private ResidentTableView residentTableView;
-    private BookingTableView bookingTableView;
+    private VenueTabView venueTabView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBoxRegion;
@@ -67,7 +66,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane residentTableViewPlaceholder;
 
     @FXML
-    private StackPane bookingTableViewPlaceholder;
+    private StackPane venueTabViewPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -85,19 +84,13 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
-        // Add listeners to fields to be listened to
-        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
-        this.logic.getObservableBookings().addListener(getBookingChangeListener());
-        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
-        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
-        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
-
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
         setTabLabels();
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        setUpListeners();
     }
 
     public Stage getPrimaryStage() {
@@ -148,11 +141,12 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getHiddenFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
-        bookingTableView = new BookingTableView(logic.getObservableBookings());
-        bookingTableViewPlaceholder.getChildren().add(bookingTableView.getRoot());
+        venueTabView = new VenueTabView(logic.getObservableVenues(), logic.getObservableBookings(),
+                logic.getCurrentlyDisplayedVenueName());
+        venueTabViewPlaceholder.getChildren().add(venueTabView.getRoot());
 
         residentTab.setContent(residentTableViewPlaceholder);
-        venueTab.setContent(bookingTableViewPlaceholder);
+        venueTab.setContent(venueTabViewPlaceholder);
 
         tableViewPane.getTabs().addAll(residentTab, venueTab);
 
@@ -214,10 +208,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ResidentTableView getResidentTablePanel() {
-        return residentTableView;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -258,7 +248,6 @@ public class MainWindow extends UiPart<Stage> {
      * (and hence Logic) to the corresponding observable list in ResidentTableView.
      */
     private ListChangeListener<String> updateHiddenFieldsOnChange() {
-        // Update the observable field list within the logic attribute
         return c -> residentTableView.setHiddenFields(logic.getHiddenFields());
     }
 
@@ -267,13 +256,18 @@ public class MainWindow extends UiPart<Stage> {
                 statusBarFooter.updateFilePath(newValue);
     }
 
-    private ListChangeListener<Booking> getBookingChangeListener() {
-        return c -> bookingTableView.updateTable(logic.getObservableBookings());
-    }
-
     private void setTabLabels() {
         this.residentTab.setText("Residents");
         this.venueTab.setText("Bookings");
+    }
+
+    /**
+     * Add listeners to fields to be listened to.
+     */
+    private void setUpListeners() {
+        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
+        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
+        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
     }
 
 }

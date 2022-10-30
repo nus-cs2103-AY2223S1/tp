@@ -3,341 +3,173 @@ layout: page
 title: User Guide
 ---
 
-RC4HDB is a **desktop app for managing RC4 housing related information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day workflow as a RC4 housing management staff.
+# Welcome to RC4HDB User Guide!
+
+If you are a **Residential College 4 (RC4)** Housing Management staff, or someone who wants to find out more
+about what **Residential College 4 Housing Database (RC4HDB)** can do for you, you are at the right place!
+
+In this user guide, you will find step-by-step instructions on how you can install **RC4HDB**, as well as how you
+can use **RC4HDB** to its fullest potential.
+
+If you are looking to expand on our project, check out our [Developer Guide](DeveloperGuide.md) too!
 
 ## Table of Contents
 
-* [Quick Start](#quick-start)
-* [Features](#features)
-    * [Viewing help : help](#viewing-help--help)
-    * [Adding a resident : add](#adding-a-resident--add)
-    * [Listing all residents : list](#listing-all-residents--list)
-    * [Editing an existing resident : edit](#editing-an-existing-resident--edit)
-    * [Locating residents by names : find](#locating-residents-by-name--find)
-    * [Filtering residents by field : filter](#filtering-residents-by-field--filter)
-    * [Deleting a resident : delete](#deleting-a-resident--delete)
-    * [Clearing all entries : clear](#clearing-all-entries--clear)
-    * [Exiting the program : exit](#exiting-the-program--exit)
-    * [Saving the data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-    * [Importing from csv file : import](#importing-from-csv-file--import)
-    * [Exporting to csv file : export](#exporting-to-csv-file--export)
-    * [CSV file format](#csv-file-format)
-    * [Format for resident fields](#format-for-resident-fields)
-    * [File commands](FileCommands.html)
-* [Keyboard Shortcuts](#keyboard-shortcuts)
-* [Frequently Asked Questions](#faq)
-* [Command Summary](#command-summary)
-
+* [Introduction to RC4HDB](#introduction-to-rc4hdb)
+* [Using this guide](#using-this-guide)
+* [Quick start](#quick-start)
+* [Command guide](#command-guide)
+  * [Getting help](ug-pages/getting-help.md#viewing-help--help)
+  * [Modifying residents](ug-pages/modifying-residents.md)
+    * [Adding a resident `add`](ug-pages/modifying-residents.md#adding-a-resident--add)
+    * [Editing an existing resident `edit`](ug-pages/modifying-residents.md#editing-an-existing-resident--edit)
+    * [Deleting an existing resident `delete`](ug-pages/modifying-residents.md#deleting-a-resident--delete)
+    * [Clearing all residents `clear`](ug-pages/modifying-residents.md#clearing-all-entries--clear)
+    * [Resident field format](ug-pages/modifying-residents.md#format-for-resident-fields)
+  * [Viewing residents](ug-pages/viewing-residents.md)
+    * [Listing all residents `list`](ug-pages/viewing-residents.md#listing-all-residents--list)
+    * [Showing resident fields `showonly`](ug-pages/viewing-residents.md#showing-only-some-columns--showonly)
+    * [Hiding resident fields `hideonly`](ug-pages/viewing-residents.md#hiding-only-some-columns--hideonly)
+    * [Resetting hidden resident fields `reset`](ug-pages/viewing-residents.md#resetting-hidden-columns--reset)
+    * [Finding residents `find`](ug-pages/viewing-residents.md#locating-residents-by-name--find)
+    * [Filtering residents `filter`](ug-pages/viewing-residents.md#filtering-residents-by-field--filter)
+  * [File management](ug-pages/file-management.md)
+    * [Creating a new data file `file create`](ug-pages/file-management.md#creating-a-new-data-file--file-create)
+    * [Deleting an existing data file `file delete`](ug-pages/file-management.md#deleting-an-existing-data-file--file-delete)
+    * [Switching data file `file switch`](ug-pages/file-management.md#switching-to-a-different-data-file--file-switch)
+    * [Importing from CSV file `import`](ug-pages/file-management.md#importing-from-csv-file--file-import)
+    * [CSV file format](ug-pages/file-management.md#csv-file-format)
+  * [Venue booking](ug-pages/venue-booking.md)
+    * [Viewing the bookings](ug-pages/venue-booking.md#viewing-the-bookings)
+    * [Adding a venue `venue add`](ug-pages/venue-booking.md#adding-a-venue--venue-add)
+    * [Deleting a venue `venue delete`](ug-pages/venue-booking.md#deleting-a-venue--venue-delete)
+    * [Viewing a venue `venue view`](ug-pages/venue-booking.md#viewing-a-venue--venue-view)
+    * [Adding a booking `venue book`](ug-pages/venue-booking.md#adding-a-booking-venue-book)
+    * [Deleting a booking `venue unbook`](ug-pages/venue-booking.md#deleting-a-booking-venue-unbook)
+    * [Format for venue fields](ug-pages/venue-booking.md#format-for-venue-fields)
+  * [Data management](ug-pages/data-management.md)
+    * [Saving data](ug-pages/data-management.md#saving-the-data)
+    * [Editing data file](ug-pages/data-management.md#editing-the-data-file)
+  * [Quality-of-life](ug-pages/quality-of-life.md)
+    * [Keyboard shortcuts](ug-pages/quality-of-life.md#keyboard-shortcuts)
+    * [Accessing command history](ug-pages/quality-of-life.md#accessing-command-history)
+  * [Exiting RC4HDB `exit`](ug-pages/exiting-the-program.md#exiting-the-program--exit)
+  * [Upcoming features](ug-pages/upcoming-features.md)
+* [FAQ](ug-pages/faq.md#faq)
+* [Glossary](ug-pages/glossary.md)
+* [Authors](ug-pages/authors.md)
+* [Command Summary](ug-pages/command-summary.md#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Introduction to RC4HDB
+
+**RC4HDB** is a desktop application that helps you to manage data from residents, as well as resident activity in 
+**RC4**, including venue booking.
+
+**RC4HDB** provides these main features:
+* Add incoming residents.
+* Access, modify details of residents.
+* Filter through residents via house, gender, and more.
+* Book venues available in RC4.
+* Export a filtered list of residents.
+
+<div markdown="span" class="alert alert-info">
+If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day
+workflow as a RC4 housing management staff member.
+</div>
+
+[Back to Top](#welcome-to-rc4hdb-user-guide)
+
+## Using this guide
+
+This user guide contains all the information that you will need to know as a user of **RC4HDB**. We hope that it
+will serve you well in mastering RC4HDB!
+
+If you are a **new user**, the necessary knowledge for you to get started can be found [here](#quick-start).
+As you read on, you will find plenty of examples to help you familiarise with the features.
+
+If you are an **experienced user**, a [Command Summary](ug-pages/command-summary.md) is also provided, so you don't have
+to memorise the individual `Command`s.
+
+Before exploring the user guide, you should familiarise yourself with the following symbols.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Used to highlight information you should
+pay attention to. </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** used to highlight tips. </div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** used to highlight dangers. </div>
+
+[Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Here is a quick start on how to get RC4HDB onto your computer.
 
-1. Download the latest `rc4hdb.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/).
+### 1. Setup
+Ensure you have [*Java 11*](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or
+above installed on your Computer.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your RC4HDB.
+### 2. Install
+Visit this [link](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/). Click on the underlined `rc4hdb.jar` button
+to download the latest `rc4hdb.jar`.
+Move the `rc4hdb.jar` file to the folder you want to use as the _home folder_ for RC4HDB. The home folder is the folder
+from which the application will run, as well as save data to, and retrieve data from.
 
-1. Refer to the [Features](#features) below for details of on how to use RC4HDB.
+### 3. Running RC4HDB
+Double-click the file to start the app. The **Graphical User Interface (GUI)** similar to the one shown
+below should appear in a few seconds.
 
-<!--- 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-![Ui](images/Ui.png) --->
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+You may have noticed that upon double-clicking `rc4hdb.jar` for the first time, several files were created. **Do not
+delete the folder called `data` as this would cause all your data to be deleted!**
+</div>
 
+<br>
+
+![Ui](images/Ui.png)
+
+### 4. Try it out!
+Try typing `help` into the command box where it says "Enter Command here..." and pressing the Enter/Return key on your
+keyboard to execute it! This command will open a help window which shows you a quick summary of the available commands.
+
+For more details on commands, refer to the [Command Guide](#command-guide) below.
+
+[Back to Top](#welcome-to-rc4hdb-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Command Guide
+
+Below shows a breakdown of how the commands in **RC4HDB** are structured. Don't be afraid that you
+may have typed a command incorrectly as **RC4HDB** will warn you in the event that this happens!
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+* Words in `UPPER_CASE` are compulsory parameters and must be entered by you.<br>
+  Parameters are texts you enter to tell **RC4HDB** the information necessary for the command to work.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. when using the `add` command, `NAME` is a parameter which you must enter. Thus, the command format is as such:`add n/NAME`. To add a resident named "John Doe", you can then enter `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times. This also includes 0 times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken, unless otherwise specified.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken,
+  unless otherwise specified.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Irrelevant parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
-
-Shows a summary of all commands, and examples of its usage, as well as a message directing the user to our user guide.
-
-<!---
-![help message](images/helpMessage.png)
---->
-
-Format: `help`
-
-
-### Adding a resident : `add`
-
-Adds a resident to the database. The format for resident fields can be found [here](#format-for-resident-fields).
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A resident can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnDoe@gmail.com r/5-1 g/M h/D m/A9876543B` adds a resident named John Doe, with relevant personal and student information.
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/1234567 m/A3456789B g/F h/A` adds a resident named Betsy Crowe, with relevant personal and student information.
-
-### Listing all residents : `list`
-
-Shows a list of all residents in the RC4HDB database. Use the specifiers `/i` for include and `/e` for exclude, followed by the field names of the columns to show or hide. All field names entered are case-insensitive.
-
-Format:
-
-`list` to list all residents in the database with all fields visible
-
-`list /i [FIELD_1] [FIELD_2]...` to list all residents in the database with only `[FIELD_1] [FIELD_2]...` visible.
-
-`list /e [FIELD_1] [FIELD_2]...` to list all residents in the database with all fields visible except `[FIELD_1] [FIELD_2]...`
-
-### Editing an existing resident : `edit`
-
-Edits the data of an existing resident in the RC4HDB database.
-
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
-
-* Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed residents list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
-* You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 r/5-8` Edits the phone number, room number of the 1st resident to be `91234567`, and `5-8` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd resident to be `Betsy Crower` and clears all existing tags.
-
-### Locating residents by name : `find`
-
-Finds residents whose names contain any of the given keywords.
-
-Format: `find NAME [ADDITIONAL_NAMES]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Full and partial words will be matched e.g. `Han` will match `Hans`
-* Residents matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`
-* `find char li` returns `Charlotte Oliveiro`, `David Li`<br>
-  <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
-
-### Filtering residents by field : `filter`
-
-Shows a list of residents whose fields match the input keywords.
-
-Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-
-* A specifier is required in order for the command to work. If not it is an invalid command format
-* Currently, only two specifiers are supported:
-  * `/all` returns a resident if it fulfills **all** of the specified keywords.
-  * `/any` returns a resident if it fulfills **any** of the specified keywords.
-* Repeated keys are not permitted for both specifiers, e.g. `filter /all h/D h/A` will not work.
-* However, tags can be repeated in the command e.g. `filter /all t/exhange t/fresher`
-* Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
-
-Examples:
-* `filter /all h/D g/M` returns residents who are in Draco house, **and** are Male.
-* `filter /any h/D h/A` returns residents belonging to either `Draco` **or** `Aquila` house.
-* `filter g/M` returns residents who are male.
-
-### Deleting a resident : `delete`
-
-Deletes the specified resident from the RC4HDB database.
-
-Format: `delete INDEX`
-
-* Deletes the resident at the specified `INDEX`.
-* The index refers to the index number shown in the displayed resident list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd resident in the database.
-* `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
-
-### Deleting multiple residents : `remove`
-
-Deletes the specified resident from the RC4HDB database.
-
-Format: `remove [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-
-* A specifier is required in order for the command to work. If not it is an invalid command format
-* Currently, only two specifiers are supported:
-  * `/all` returns a resident if it fulfills **all** of the specified keywords.
-  * `/any` returns a resident if it fulfills **any** of the specified keywords.
-* Repeated keys are not permitted for both specifiers, e.g. `remove /all h/D h/A` will not work.
-* However, tags can be repeated in the command e.g. `remove /all t/exchange t/fresher`
-* Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
-
-Examples:
-* `remove /all h/D g/M` deletes residents who are in Draco house, **and** are Male.
-* `remove /any h/D h/A` deletes residents belonging to either `Draco` **or** `Aquila` house.
-* `remove g/M` deletes residents who are male.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the database.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-RC4HDB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-RC4HDB data are saved as a JSON file `[JAR file location]/data/FILE_NAME.json`, where `FILE_NAME` is the name of the current data file. Advanced users are welcome to update data directly by editing that data file.
-
-:information_source: Do take note that this is not the recommended method to edit data.<br>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, RC4HDB will discard all data and start with an empty data file at the next run.
-</div>
-
-### Importing from CSV file : `import`
-
-RC4HDB has the ability to import data through .csv files. In order for RC4HDB to find your files, place them in the data directory, `[JAR file location]/data`.
-
-Format: `import FILE_NAME`
-
-:information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
-
-Examples:
-* `import students.csv`
-* `import residents.csv`
-
-### Exporting to CSV file : `export`
-
-RC4HDB has the ability to export data to .csv files. The file will be safe to remove from the directory, `[JAR file location]/data`.
-
-Format: `export FILE_NAME`
-
-:information_source: The csv file will be exported in this [format](#csv-file-format).<br>
-
-Examples:
-* `export students.csv` will export the current data file into a csv file named `students.csv`
-
-### CSV file format
-
-| INDEX | NAME         | PHONE_NUMBER | EMAIL                 | FLOOR-UNIT | GENDER | HOUSE  | MATRIC_NUMBER | TAGS   |
-|-------|--------------|--------------|-----------------------|------------|--------|--------|---------------|--------|
-| 1     | John Doe     | 91234567     | johnDoe@gmail.com     |    5-8     | M      | D      | A9876543B     | -      |
-| 2     | Maggie Smith | 98765432     | maggieSmith@gmail.com |    4-1     | F      | A      | A3456789B     | Friend |
-
-<br>
-
-
-### Format for resident fields
-
-`n/NAME`
-* Must be a string
-* Spaces are allowed
-
-`p/PHONE_NUMBER`
-* Must be an **8**-digit non-negative integer
-
-`e/EMAIL`
-* Can be any string, valid or invalid email
-
-`r/FLOOR-UNIT`
-* The floor number and unit number must be separated by a hyphen
-* Both floor and unit number must be a non-negative integer
-* e.g. `5-8`
-
-`g/GENDER`
-* `M` or `F`
-
-`h/HOUSE`
-* Represents the RC4 house that the resident is allocated to
-* Must be either `D`, `U`, `L`, `A`, `N`
-* `D` stands for **Draco**, `U` for **Ursa**, `L` for **Leo**, `A` for **Aquila**, `N` for **Noctua**
-
-`m/MATRIC_NUMBER`
-* Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet.
-* e.g. `A0123456A`
-
-`t/TAG`
-* Represents any other key that could be used to identify a resident
-* Must be a string. No restrictions on formatting
-* Optional. A resident can have any number of tags, including 0
-* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
-* You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
-
-_More details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## Keyboard Shortcuts
-
-Inline with our optimization for use via a **Command Line Interface (CLI)**. Here are several keyboard shortcuts that
-you may find useful for your use:
-
-Key | Functionality
-----|------------------
-`Esc`| Closes the Help Window if it's open
-`F1` | Opens the Help Window if it's not open
-`F2` | Highlights the first row of the displayed list
-`F3` | Quick-access to the command input box
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: First, export the data from your computer using the export command and transfer the file to the new computer. Install RC4HDB on the other computer and use the import command to import the data from the csv file.
-
-**Q**: Can I search using fields other than the name?<br>
-**A**: You can use the filter command to search for people using the other fields.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Help** | `help`
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com r/2-1 g/M h/D m/A9876543B`
-**List** | `list`, `list /i [FIELD_1] [FIELD_2]...`, or `list /e [FIELD_1] [FIELD_2]...` e.g., `list /i name phone address`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Filter** | `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g., `filter /all h/D g/M`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Clear** | `clear`
-**Exit** | `exit`
-**Create file** | `file create FILE_NAME` <br> e.g., `file create rc4_data_2022`
-**Delete file** | `file delete FILE_NAME` <br> e.g., `file delete rc4_data_2022`
-**Switch file** | `file switch FILE_NAME` <br> e.g., `file switch rc4_data_2022`
-**Import** | `import FILE_NAME` <br> e.g., `import students.csv`
-**Export** | `export FILE_NAME` <br> e.g., `export students.csv`
+[Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---

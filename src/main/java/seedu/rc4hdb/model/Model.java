@@ -16,6 +16,7 @@ import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
 import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
+import seedu.rc4hdb.ui.ObservableItem;
 
 /**
  * The API of the Model component.
@@ -152,6 +153,8 @@ public interface Model {
      * Sets the list of venues to be displayed.
      */
     void setObservableVenues(List<Venue> modifiableVenues);
+
+    ObservableItem<VenueName> getCurrentlyDisplayedVenueName();
 
     /**
      * Gets the list of bookings to be displayed on {@link seedu.rc4hdb.ui.BookingTableView}.
