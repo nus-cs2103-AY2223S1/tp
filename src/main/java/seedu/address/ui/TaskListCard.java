@@ -43,8 +43,9 @@ public class TaskListCard extends UiPart<Region> {
     /**
      * Creates a {@code TaskListCard} with the given {@code Task} and index to display.
      */
-    public TaskListCard(Task task, int displayedIndex, boolean isExpanded) {
+    public TaskListCard(Task task, int displayedIndex) {
         super(FXML);
+
         this.task = task;
         id.setText(displayedIndex + ".");
         name.setText(String.valueOf(task.getTaskName()));
@@ -90,11 +91,11 @@ public class TaskListCard extends UiPart<Region> {
             studentsBodyText.setText(studentsBodyTextString.toString());
         }
 
-
-
-        this.isExpanded = isExpanded;
-        // Use the isExpanded parameter to determine whether to (immediately) show the optional information.
-        onCardClicked();
+        // TaskListCards are created when the "Tasks" button is clicked.
+        // At this point, no TaskListCard is expanded.
+        this.isExpanded = false;
+        optionalInfo.setVisible(false);
+        optionalInfo.setManaged(false);
     }
 
     @Override
@@ -123,18 +124,18 @@ public class TaskListCard extends UiPart<Region> {
     @FXML
     public void onCardClicked() {
 
+        // If the task has no students, then there is no additional information to display.
+        // Block any expansion and contraction.
         if (this.task.getStudents().size() == 0) {
             return;
         }
 
+        // Toggle between showing and not showing the students for whom the task has been completed.
         isExpanded = !isExpanded;
+        optionalInfo.setVisible(isExpanded);
+        optionalInfo.setManaged(isExpanded);
 
-        if (isExpanded) {
-            optionalInfo.setVisible(true);
-            optionalInfo.setManaged(true);
-        } else {
-            optionalInfo.setVisible(false);
-            optionalInfo.setManaged(false);
-        }
+        // Update the UI, now that the optional information's visibility has changed the height of the card.
+        cardPane.requestLayout();
     }
 }
