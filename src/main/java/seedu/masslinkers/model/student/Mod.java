@@ -92,7 +92,7 @@ public class Mod {
     }
 
     /**
-     * Unmarks a module as not taken.
+     * Unmarks a module and updates the status as taking.
      */
     public void unmarkMod() {
         this.hasTaken = false;
