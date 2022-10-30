@@ -55,16 +55,15 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 
 ### 4.1. Command Box
 
-The `Command Box` is where users can input their commands.
+The `Command Box` is where you can input your commands.
 
 ### 4.2. Exercise List
 
-The `Exercise List Window` displays the latest input exercise (by the user) at the top of the list by default. All exercises
-added will be displayed in the list. The list may change or reorder depending on the command issued by the user.
+The `Exercise List Window` displays the latest exercise you entered at the bottom of the list by default. All exercises added will be displayed in the list. The list may change or reorder depending on the command issued by you.
 
 ### 4.3. Result Display 
 
-The `Result Display Window` displays feedback after executing a command. It gives feedback to the user on the command executed.
+The `Result Display Window` displays feedback after executing a command. This includes feedback for both feedback for correctly and incorrectly entered commands.
 
 <div style="page-break-after: always;"></div>
 
@@ -75,17 +74,17 @@ The `Recognised Exercise Name List Window` provides you a list of all unique exe
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
-* The `Recognised Exercises Count` provides the number of unique exercises registered in the system. 
-* The `System Exercise Entries Count` provides the total number of exercise entries in the system. 
+* The `Recognised Exercises Count` displays the number of unique exercises registered in the system. 
+* The `System Exercise Entries Count` displays the total number of exercise entries in the system. 
 <br>
 
 **Adding and Deleting from the Exercise Name List**
 
-The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised Exercise Name List is automatically updated whenever an entry is added to or deleted from the system.
+The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised Exercise Name List is automatically updated whenever you add or delete an entry from the system.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br> 
-I.E. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
+i.e. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
 However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form you have input. Choose wisely!
 </div>
 
@@ -99,7 +98,7 @@ However, the first time you add an exercise with an unrecognised name, the Recog
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `n/NAME w/WEIGHT`, `NAME` and `WEIGHT` are parameters which can be used as `n/Squat w/100`.
 
 * Items in square brackets are optional.<br>
@@ -114,7 +113,7 @@ However, the first time you add an exercise with an unrecognised name, the Recog
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/Squat n/Deadlift`, only `n/Deadlift` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `:list`, `:sort`, `:help` `:wq`) will be ignored.<br>
+* Redundant inputs for commands that do not take in additional parameters (such as `:list`, `:sort`, `:help` `:wq`) will be ignored.<br>
   e.g. if the command specifies `:help 123`, it will be interpreted as `help`.
 
 </div>
@@ -180,7 +179,7 @@ Shows a list of all exercises.
 Format: `:list`
 
 Example:
-`:list` Shows the list of exercises user has completed
+`:list` Shows the list of exercises you have completed
 
 <div style="page-break-after: always;"></div>
 
@@ -190,14 +189,21 @@ Filters exercises in the displayed list with names containing any of the given k
 
 Format: `:filter KEYWORD [KEYWORD]...`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about filter:**<br>
+
 * Only the exercise name is searched.
 * The keyword is case-insensitive. e.g bench will match Bench.
 * The order of the keywords does not matter. e.g. Deadlift Squat will match Squat Deadlift.
 * Only full words will be matched e.g. Squat will not match Squats.
 * Exercises matching at least one keyword will be returned e.g. `:filter Bench press` will return Bench press and Leg press.
 
+</div>
+
 Example:
 * `:filter Deadlift Squat` Shows the list of Deadlift and Squat exercises.
+
 
 ![FilterCommand](images/FilterCommand.png)
 
@@ -210,7 +216,7 @@ Clears the saved exercises and resets the data in the system.
 Format: `:clear confirm/`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
-Extraneous parameters (before and after the `confirm/` flag) will be ignored. <br> e.g. if the command specifies `:clear abc confirm/ 123`, it will be interpreted as `:clear confirm/`.
+Redundant inputs (before and after the `confirm/` flag) will be ignored. <br> e.g. if the command specifies `:clear abc confirm/ 123`, it will be interpreted as `:clear confirm/`.
 </div>
 
 Example:
@@ -286,7 +292,7 @@ Examples:
 Format (2): `:pr all/`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
-Extraneous parameters (before and after the `all/` flag) will be ignored. <br> e.g. if the command specifies `:pr abc all/ 123`, it will be interpreted as `:pr all/`.
+Redundant inputs (before and after the `all/` flag) will be ignored. <br> e.g. if the command specifies `:pr abc all/ 123`, it will be interpreted as `:pr all/`.
 </div>
 
 Example:
@@ -332,7 +338,7 @@ Parameter constraints:
 * The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
-Extraneous parameters (before the first `n/` flag) will be ignored. <br> e.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
+Redundant inputs (before the first `n/` flag) will be ignored. <br> e.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
 </div>
 
 Examples:
@@ -417,6 +423,7 @@ Format: `:wq`
 
 ## 8. Glossary of Terminologies
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
+* **Parameters**: Inputs for commands that you come up with.
 * **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
 * **Reps** : Number of times you perform a specific exercise.
 * **Sets** : Number of cycles of reps that you complete.
