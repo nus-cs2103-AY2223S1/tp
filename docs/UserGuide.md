@@ -94,7 +94,7 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
 If you can type fast, SectresBook will be a convenient and efficient way to keep track of information you need to manage a club.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ## Using this guide
 
@@ -115,7 +115,7 @@ pay attention to. </div>
 
 In addition, for better readability, icons in this guide have been colored black. In the actual application, colors may be inverted, but their shape will remain the same.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ## Quick start
 
@@ -147,7 +147,7 @@ In addition, for better readability, icons in this guide have been colored black
 
 1. Refer to the [Features](#features) below for details of each command.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -172,7 +172,7 @@ You may activate the command box by simply pressing the spacebar on your keyboar
 Similarly, you may press the `ESC` key on your keyboard to exit out of the command box and hide the results display.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ### People Panel
 
@@ -184,7 +184,7 @@ The index of the person is only an ordering within the current displayed list, i
 
 Check the [Person Features](#person-features) to learn more about the commands you can execute related to people.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ### Inspect Panel
 
@@ -196,7 +196,7 @@ Note that the icon of the hand holding coins shows the most recent transaction a
 
 The total amount of the loans is also stated in the bottom right of this panel, describing in fuller detail if the sum is owed by or to be paid to the person.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ### Notes Panel
 
@@ -210,7 +210,7 @@ Both the people and notes panels share a pool of tags for easier referencing on 
 
 Check the [Notes Features](#note-features) to learn more about the commands you can execute related to notes.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -238,7 +238,7 @@ This property can be identified from the GUI by the icon of the silhouette of a 
 It is recommended to include the full name of the person instead of aliases for easier searching.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Phone
 This is phone number of the person to be recorded in the SectresBook. This is a valid property to find a person by using the [`find` command](#locating-persons-by-name-or-contact-number-find).
@@ -256,7 +256,7 @@ Please record only the most accessible phone number you can contact the given me
 Ensure that no two persons have the same phone number! This is allowed in the program, but you may have difficulties contacting the person you want in the future.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Email
 
@@ -276,7 +276,7 @@ This property can be identified from the GUI by the icon of an envelope.
 
 The local part and domain part **must** be connected by a `@` symbol.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Address
 This is the residing address of the person. It serves mainly as a point of information regarding the person, but has no additional features tied to it.
@@ -293,7 +293,7 @@ Although there is no constraint, please ensure that your screen can accommodate 
 </div>
 
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Loan
 This is amount of money that is owed by a person, or is to be paid to that person. This is a property that cannot be manipulated directly, but can only be edited with the [`editLoan` command](#editing-loan-of-a-person-editloan).
@@ -309,7 +309,7 @@ This property can be identified from the GUI by the icon of the hand holding two
 - Loans can only take up numerical values.
 - The maximum value this property can take is `$1,000,000,000,000.00` (1 trillion dollars ). Similarly, the minimum value is `-$1,000,000,000,000.00` (negative 1 trillion dollars). This should be more than sufficient for general purpose use.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Loan History
 A loan history is linked to the loans properties and describes the changes to the numeric values of the loans in detail.
@@ -337,7 +337,7 @@ The downwards pointing green arrow signifies an amount that this member has paid
 Including a reason for every change to a person's loan value reduces the risk of accidentally adding an incorrect amount to someone. It keeps a detail tab of every increment and decrement in value.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Birthday
 The birthday date of the person.
@@ -350,7 +350,7 @@ This property can be identified from the GUI by the icon of a birthday cake.
 - Serves as a point of information for a person.
 - This must be a valid date in the form `dd/MM/yyyy`.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Tags
 - Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
@@ -363,7 +363,7 @@ This property can be identified from the GUI by tag shaped labels with text insi
 Please refer to the [`Tag Properties`](#tag-properties) below for more information regarding tags.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ### Notes Properties
 
@@ -382,7 +382,7 @@ It is the first line of a note card, which is bigger than the rest of the text.
 - Titles must be within 100 characters and can contain any ASCII characters.
 - This property cannot be left empty.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Content
 The content serves as the description for notes.
@@ -392,7 +392,7 @@ This is immediately below the title and is in a smaller font size.
 - This property is identified by `content`.
 - This property cannot be left empty.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Tags
 
@@ -410,7 +410,7 @@ Choose short, identifiable tag names.
 Please refer to the [`Tag Properties`](#tag-properties) section below for more information regarding tags.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ### Tag Properties
 A tag that is used to group together specific People and Notes.
@@ -420,7 +420,7 @@ This way, searching for a tag brings up all the People and Notes that have the t
 - Identified by the prefix `tag`.
 - Person and Note can hold tags.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -465,7 +465,7 @@ Copy the link to your clipboard by pressing the `Copy Link` button and paste it 
 
 Format: `help`
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Inspecting a person : `inspect`
 
@@ -487,7 +487,7 @@ Examples:
 * `inspect 2` inspects the second person in the list of people
 * `inspect Lynette` will attempt to find the first person called `Lynette` in the currently **filtered** persons' list and update the Inspect Panel with her information.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Locating persons by tag: `findTag`
 
@@ -512,7 +512,7 @@ Examples:
 * `findTag Finance` returns `John`, `Caroline` and `Bob`
   ![result for 'findTag Finance'](images/findTagFinance.png)
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Clearing all entries : `clear`
 
@@ -520,7 +520,7 @@ Clears all entries of people and notes from the SectresBook. This command is irr
 
 Format: `clear`
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Exiting the program : `exit`
 
@@ -532,13 +532,13 @@ Format: `exit`
 Your data is safe and saved automatically.
 pay attention to. </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Saving the data
 
 SectresBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Editing the data file
 
@@ -548,7 +548,7 @@ SectresBook data are saved as a JSON file `[JAR file location]/data/sectresbook.
 If your changes to the data file makes its format invalid, SectresBook will discard all data and start with an empty data file at the next run.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Archiving data files `[coming in v2.0]`
 
@@ -558,7 +558,7 @@ This command does not exist in the present version of the program that this User
 
 Copies the current data file as a new file in the `HOME_FOLDER_LOCATION/archives` folder. This file may be used as a saved checkpoint to load past information into the SectresBook.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Undo `[coming in v2.0]`
 
@@ -568,7 +568,7 @@ This command does not exist in the present version of the program that this User
 
 Undoes the last command that the user has inputted, setting the state of the saved data to an earlier state.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Redo `[coming in v2.0]`
 
@@ -582,7 +582,7 @@ Pushes the state of the program to the later state if it was set back to an earl
 Note that performing undo commands and inputting a new command after will set the present state to the most recent state. No redo commands may be performed subsequently.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ### Person Features
 
@@ -601,7 +601,7 @@ Examples:
 * `add name/Jane Doe phone/98876542 email/jane@example.com home/That Street, block 133, #11-10 bday/05/11/1986 tag/Member`
 * `add name/Neethesh tag/VicePresident email/neethesh@example.com home/Happy Avenue phone/91234567 bday/24/05/1998`
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Listing all persons : `list`
 
@@ -609,7 +609,7 @@ List of all persons in the SectresBook. If the list was formerly filtered, the f
 
 Format: `list`
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Editing a club member : `edit`
 
@@ -631,7 +631,7 @@ Example of usage:
 If no person is named `John`, or if more than one person has `John` in their name, then the operation is equivalent to `find John`.
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Locating persons by name or contact number: `find`
 
@@ -658,7 +658,7 @@ Examples:
 * `find 86` returns `Theodore`
   <img src="images/find86result.png" width="400">
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Editing loan of a person: `editLoan`
 
@@ -686,7 +686,7 @@ Examples:
 * `list` followed by `editLoan 1 -20 return money` will edit the 1st person in the SectresBook,
   reducing their loan by $20 and saving the `REASON` as `return money`.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Deleting a person : `delete`
 
@@ -717,7 +717,7 @@ Examples:
 To delete everyone at the same time, please refer to the [`clear` command](#clearing-all-entries--clear).
 </div>
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Sorting by property: `sort` `[coming in v2.0]`
 
@@ -727,7 +727,7 @@ This command does not exist in the present version of the program that this User
 
 Sorts the members in the persons' list by properties in either ascending or descending order.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ### Note Features
 
@@ -769,7 +769,7 @@ Examples:
 * findNote `Meeting` returns `Club Meeting`, `Meeting!` and `Meeting 2`
 * findNote `Soon` returns `Payment (soon)`
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Listing Notes `listNotes`
 
@@ -777,7 +777,7 @@ Shows a list of all notes in the SectresBook. If the notes list was previously f
 
 Format: `listNotes`
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Editing Notes `editNote`
 
@@ -790,7 +790,7 @@ Example of usage:
 * `editNote 1 content/Second club meeting` can be used to easily update the first note's contents.
 * `editNote alumni title/2020 alumni meeting` can be used to amend a note with the title "2020 alumni mtg", only if it is the only note containing "alumni" in its title.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Deleting Notes `deleteNote`
 
@@ -807,7 +807,7 @@ Unlike other entities, you may not delete a note by name. This is to minimise er
 Examples:
 * `listNotes` followed by `deleteNote 2` deletes the 2nd note in the SectresBook.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Sort Notes: `sortNotes` `[coming in v2.0]`
 
@@ -817,7 +817,7 @@ This command does not exist in the present version of the program that this User
 
 Sorts the notes in either ascending or descending order by title.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Hiding notes panel : `hideNotes`
 
@@ -837,7 +837,7 @@ Initial view:
 After executing `hideNotes`:
 ![after hiding notes](images/hideNotes-after.png)
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 #### Showing notes panel : `showNotes`
 
@@ -853,7 +853,7 @@ Initial view:
 After executing `showNotes`:
 ![after showing notes](images/showNotes-after.png)
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 --------------------------------------------------------------------------------------------------------------------
 ## FAQ
@@ -888,7 +888,7 @@ After executing `showNotes`:
 **Q** The information I need is not stated in this guide, who can I contact for questions?<br>
 **A** Please contact any of our developers of this current version, Pinran, Ryan, Rui Han, Neethesh or Zhong Wei, or from whomever you received this copy of the program from.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -907,7 +907,7 @@ Word | Definition
 **Tag** | A label that groups related people together, such that they can be referred to as a single encapsulated entity specified by the tag.
 **Treasurer** | A person that manages the finances and monetary transactions related to the operations of an organisation.
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
@@ -921,7 +921,7 @@ Action | Format                    | Examples
 **Clear all data** | `clear`                   | `clear`
 **Exit** | `exit`                    | `exit`
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ### Person Commands
 
@@ -935,7 +935,7 @@ Action | Format | Examples
 **Edit loan of a person** | `editLoan INDEX amt/AMOUNT reason/REASON`                                                            | `editLoan 1 amt/-20 reason/Buy Logistics`
 **List all person** | `list`                                                                                               | `list`
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
 
 ### Notes Commands
 
@@ -949,4 +949,4 @@ Action | Format | Examples
 **List Notes** | `listNotes`                                                              | `listNotes`
 **Find Note** | `findNote KEYWORD [MORE_KEYWORDS]`                                      | `findNote meeting`
 
-[Back to Top](#table-of-contents)
+[Back to Top](#sectresbook)
