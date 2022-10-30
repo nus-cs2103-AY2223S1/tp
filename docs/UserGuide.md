@@ -183,6 +183,12 @@ Examples:
 
 To view all the` [command]`s, key in `help` and press <kbd>enter</kbd>.
 
+<p align="center">
+
+<img src="images/helpCommand.png"/>
+
+</p>
+
 ### Exiting the software: `exit`
 
 Exits the software after playing the exit animation.
