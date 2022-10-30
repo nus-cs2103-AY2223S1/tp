@@ -7,7 +7,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-##Introduction
+## Introduction
 
 CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. On top of being able to 
 manage your **tasks and contacts** effectively, students can conveniently search for peers that are taking the same module 
@@ -18,7 +18,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 
 
-##How to use this guide?
+## How to use this guide?
 
 For new users, it is strongly recommended that you look through this User Guide to gain a comprehensive
 understanding of CodeConnect. 
@@ -371,6 +371,7 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | **Clear contacts**         | `clear`                                                                                                                                                                                                       |
 
 ## List of Prefixes
+
 | Field    | Prefix  |
 |----------|---------|
 | Name     | `n/`    |
