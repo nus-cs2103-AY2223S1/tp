@@ -171,7 +171,7 @@ public class CommandBox extends UiPart<Region> {
         } else {
             LinkedList<String> searchResult = filterList(currentText);
             // If current text matches the only result in the list, close list.
-            if (searchResult.size() == 1 && searchResult.get(0).equalsIgnoreCase(currentText)) {
+            if (searchResult.size() == 1 && searchResult.get(0).trim().equalsIgnoreCase(currentText)) {
                 suggestionsList.hide();
                 // Else, show all results.
             } else if (searchResult.size() > 0) {
