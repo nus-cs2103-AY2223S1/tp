@@ -52,7 +52,7 @@ public class SortPersonCommand extends Command {
             model.sortPersonList(Comparator.comparing(Person::getName));
         } else if (criteria == Criteria.COMPANY_NAME) {
             // internshipId can be null, so it needs a separate null handler
-            model.sortPersonList(Comparator.comparing(Person::getInternshipId,
+            model.sortPersonList(Comparator.comparing(Person::getCompany,
                     Comparator.nullsLast(Comparator.naturalOrder())));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, criteria.getName()));

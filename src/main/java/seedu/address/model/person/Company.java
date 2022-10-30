@@ -8,7 +8,7 @@ import java.util.Objects;
  * Represents an Internship's company name in InterNUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Company {
+public class Company implements Comparable<Company> {
     public static final String MESSAGE_CONSTRAINTS =
             "Company names should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -55,6 +55,11 @@ public class Company {
     @Override
     public int hashCode() {
         return fullName.hashCode();
+    }
+
+    @Override
+    public int compareTo(Company other) {
+        return -other.toString().compareToIgnoreCase(this.toString());
     }
 }
 
