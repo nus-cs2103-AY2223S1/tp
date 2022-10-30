@@ -7,10 +7,23 @@
 
   @bottom-right {
     content: "Page " counter(page) " of " counter(pages);
+    font-family: $base-font-family;
+    font-size: small;
+    margin-bottom: 1.5rem;
   }
 
   @top-left {
     content: string(section_title);
+    font-family: $base-font-family;
+    font-size: small;
+    font-style: italic;
+    margin-top: 1.5rem;
+  }
+}
+
+@page :first {
+  @top-left {
+    content: none;
   }
 }
 
