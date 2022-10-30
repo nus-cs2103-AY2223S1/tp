@@ -18,6 +18,7 @@ import java.util.StringJoiner;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Professor;
 
 /**
  * Adds a Professor to the address book.
@@ -35,8 +36,10 @@ public class ProfCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_GENDER + "GENDER "
             + "[" + PREFIX_TAG + "TAG]... "
-            + PREFIX_LOCATION + "LOCATION "
-            + "[" + PREFIX_RATING + "RATING]\n"
+            + "[" + PREFIX_LOCATION + "LOCATION] "
+            + "[" + PREFIX_GITHUBUSERNAME + "GITHUB_USERNAME] "
+            + "[" + PREFIX_RATING + "RATING]"
+            + "[" + PREFIX_OFFICEHOUR + "OFFICE_HOUR]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Wong Tin Lok "
             + PREFIX_MODULE_CODE + "CS1231S "
@@ -74,7 +77,7 @@ public class ProfCommand extends Command {
     /**
      * Creates a ProfCommand to add the specified {@code Professor}
      */
-    public ProfCommand(Person toAdd) {
+    public ProfCommand(Professor toAdd) {
         requireNonNull(toAdd);
         this.toAdd = toAdd;
     }

@@ -182,7 +182,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
         Set<String> personList = makeTagsList(person);
         if (needsAllTags) {
-            return personList.equals(tagsSet);
+            return personList.containsAll(tagsSet) || personList.equals(tagsSet);
         } else {
             personList.retainAll(tagsSet);
             return !personList.isEmpty();
@@ -270,8 +270,8 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasNamesList = true;
     }
 
-    public void setModulesList(Set<String> otherList, boolean needsAllModules) {
-        this.modulesSet = otherList;
+    public void setModulesSet(Set<String> otherList, boolean needsAllModules) {
+        this.modulesSet = otherList.stream().map(String::toLowerCase).collect(Collectors.toSet());
         hasModulesList = true;
         this.needsAllModules = needsAllModules;
     }
@@ -291,8 +291,8 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasGendersList = true;
     }
 
-    public void setTagsList(Set<String> tagsList, boolean needsAllTags) {
-        this.tagsSet = tagsList;
+    public void setTagsSet(Set<String> tagsList, boolean needsAllTags) {
+        this.tagsSet = tagsList.stream().map(String::toLowerCase).collect(Collectors.toSet());
         this.needsAllTags = needsAllTags;
         hasTagsList = true;
     }
@@ -365,6 +365,10 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         return hasTypesList;
     }
 
+    public boolean getHasSpecsList() {
+        return hasSpecList;
+    }
+
     public List<String> getNamesList() {
         return namesList;
     }
@@ -395,6 +399,54 @@ public class PersonMatchesPredicate implements Predicate<Person> {
 
     public List<String> getTypesList() {
         return typesList;
+    }
+
+    public List<String> getUserNamesList() {
+        return userNamesList;
+    }
+
+    public List<String> getRatingsList() {
+        return ratingsList;
+    }
+
+    public List<String> getYearsList() {
+        return yearsList;
+    }
+
+    public List<String> getSpecList() {
+        return specList;
+    }
+
+    public List<String> getOfficeHoursList() {
+        return officeHoursList;
+    }
+
+    public boolean getNeedsAllModules() {
+        return needsAllModules;
+    }
+
+    public boolean getNeedsAllTags() {
+        return needsAllTags;
+    }
+
+    public boolean getHasUserNamesList() {
+        return hasUserNamesList;
+    }
+
+    public boolean getHasRatingsList() {
+        return hasRatingsList;
+    }
+
+    public boolean getHasYearsList() {
+        return hasYearsList;
+    }
+
+    public boolean getHasSpecList() {
+        return hasSpecList;
+    }
+
+    public boolean getHasOfficeHoursList() {
+        return hasOfficeHoursList;
     }
 
     @Override

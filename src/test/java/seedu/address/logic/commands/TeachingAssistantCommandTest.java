@@ -22,50 +22,51 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.model.person.TeachingAssistant;
+import seedu.address.testutil.TeachingAssistantBuilder;
 import seedu.address.ui.PersonPieChart;
 
-public class StudentCommandTest {
+
+public class TeachingAssistantCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new StudentCommand(null));
+    public void constructor_nullTeachingAssistant_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TaCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_teachingAssistantAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Student validPerson = new StudentBuilder().build();
+        TeachingAssistant validPerson = new TeachingAssistantBuilder().build();
 
-        CommandResult commandResult = new StudentCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new TaCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(StudentCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(String.format(TaCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Student validPerson = new StudentBuilder().build();
-        StudentCommand studentCommand = new StudentCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithStudent(validPerson);
+        TeachingAssistant validPerson = new TeachingAssistantBuilder().build();
+        TaCommand taCommand = new TaCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithTa(validPerson);
 
         assertThrows(CommandException.class,
-            StudentCommand.MESSAGE_DUPLICATE_PERSON, () -> studentCommand.execute(modelStub));
+            taCommand.MESSAGE_DUPLICATE_PERSON, () -> taCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new StudentBuilder().withName("Alice").build();
-        Person bob = new StudentBuilder().withName("Bob").build();
-        StudentCommand addAliceCommand = new StudentCommand((Student) alice);
-        StudentCommand addBobCommand = new StudentCommand((Student) bob);
+        Person alice = new TeachingAssistantBuilder().withName("Alice").build();
+        Person bob = new TeachingAssistantBuilder().withName("Bob").build();
+        TaCommand addAliceCommand = new TaCommand((TeachingAssistant) alice);
+        TaCommand addBobCommand = new TaCommand((TeachingAssistant) bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        StudentCommand addAliceCommandCopy = new StudentCommand((Student) alice);
+        TaCommand addAliceCommandCopy = new TaCommand((TeachingAssistant) alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -184,18 +185,18 @@ public class StudentCommandTest {
     /**
      * A Model stub that contains a single Student.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubWithTa extends ModelStub {
+        private final TeachingAssistant ta;
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        ModelStubWithTa(TeachingAssistant ta) {
+            requireNonNull(ta);
+            this.ta = ta;
         }
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return this.student.isSamePerson(person);
+            return this.ta.isSamePerson(person);
         }
     }
 

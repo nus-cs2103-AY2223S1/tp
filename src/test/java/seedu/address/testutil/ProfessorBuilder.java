@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Professor;
@@ -20,15 +21,17 @@ public class ProfessorBuilder extends PersonBuilder {
     private Specialisation field;
     private OfficeHour officeHour;
 
+    private Specialisation specialisation;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public ProfessorBuilder() {
         super();
         this.moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
-        this.rating = new Rating(DEFAULT_RATING);
-        this.field = new Specialisation(DEFAULT_SPECIALISATION, true);
-        this.officeHour = new OfficeHour(DEFAULT_OFFICE_HOUR, true);
+        this.rating = new Rating(DEFAULT_RATING, false);
+        this.field = new Specialisation(DEFAULT_SPECIALISATION, false);
+        this.officeHour = new OfficeHour(DEFAULT_OFFICE_HOUR, false);
     }
 
     /**
@@ -40,6 +43,15 @@ public class ProfessorBuilder extends PersonBuilder {
         this.officeHour = personToCopy.getOfficeHour();
     }
 
+
+    /**
+     * Sets the {@code OfficeHour} of the {@code Professor} that we are building.
+     */
+    public ProfessorBuilder withOfficeHours(String officeHour) {
+        this.officeHour = new OfficeHour(officeHour, false);
+        return this;
+    }
+
     @Override
     public Professor build() {
         return new Professor(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(), getLocation(),
@@ -48,9 +60,33 @@ public class ProfessorBuilder extends PersonBuilder {
     /**
      * Sets the {@code ModuleCode} of the {@code Professor} that we are building.
      */
-    public PersonBuilder withModuleCode(String moduleCode) {
+    public ProfessorBuilder withModuleCode(String moduleCode) {
         this.moduleCode = new ModuleCode(moduleCode);
         return this;
     }
 
+    /**
+     * Sets the {@code Rating} of the {@code Professor} that we are building.
+     */
+    public ProfessorBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Specialisation} of the {@code Professor} that we are building.
+     */
+    public ProfessorBuilder withSpecialisation(String specialisation) {
+        this.field = new Specialisation(specialisation);
+        return this;
+    }
+
+    /**
+     * Sets the {@code OfficeHour} of the {@code Professor} that we are building.
+     */
+    public ProfessorBuilder withOfficeHour(String officeHour) {
+        this.officeHour = new OfficeHour(officeHour, true);
+        System.out.println(officeHour);
+        return this;
+    }
 }

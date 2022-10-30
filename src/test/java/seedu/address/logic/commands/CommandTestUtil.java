@@ -4,14 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICEHOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -32,6 +38,7 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BEN = "Ben Ten";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_NAME_COLIN = "Colin Lin";
+    public static final String VALID_MODULE_CODE_AMY = "CS2013T";
     public static final String VALID_MODULE_CODE_BOB = "CS1231S";
     public static final String VALID_MODULE_CODE_CABE = "CS2100";
     public static final String VALID_NAME_CABE = "Cabe Tan";
@@ -48,13 +55,28 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_GENDER_CABE = "M";
     public static final String VALID_GENDER_MALE = "M";
+    public static final String VALID_GITHUB_AMY = "amyb";
+    public static final String VALID_GITHUB_BOB = "bob";
+    public static final String VALID_GITHUB_CABE = "cabe";
+    public static final String VALID_LOCATION_AMY = "Comp 2";
+    public static final String VALID_LOCATION_BOB = "Comp 3";
+    public static final String VALID_LOCATION_CABE = "Comp 1";
+    public static final String VALID_OFFICE_HOURS_BOB = "TUESDAY, 03:00 PM - 05:00 PM";
+    public static final String VALID_SPECIALISATION_BOB = "Mathematics";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_RATING_BOB = "5";
+    public static final String VALID_RATING_CABE = "4";
     public static final String VALID_USERNAME = "test";
+    public static final String VALID_YEAR_AMY = "1";
 
+    public static final String LOCATION_DESC_AMY = " " + PREFIX_LOCATION + VALID_LOCATION_AMY;
+    public static final String LOCATION_DESC_BOB = " " + PREFIX_LOCATION + VALID_LOCATION_BOB;
+    public static final String LOCATION_DESC_CABE = " " + PREFIX_LOCATION + VALID_LOCATION_CABE;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String NAME_DESC_CABE = " " + PREFIX_NAME + VALID_NAME_CABE;
+    public static final String MODULE_CODE_DESC_AMY = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_AMY;
     public static final String MODULE_CODE_DESC_BOB = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_BOB;
     public static final String MODULE_CODE_DESC_CABE = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CABE;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -65,24 +87,44 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_CABE = " " + PREFIX_EMAIL + VALID_EMAIL_CABE;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String RATING_DESC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
+    public static final String RATING_DESC_CABE = " " + PREFIX_RATING + VALID_RATING_CABE;
+    public static final String GITHUB_USERNAME_DESC_AMY = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_AMY;
+    public static final String GITHUB_USERNAME_DESC_BOB = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_BOB;
+    public static final String GITHUB_USERNAME_DESC_CABE = " " + PREFIX_GITHUBUSERNAME + VALID_GITHUB_CABE;
+
     public static final String GENDER_DESC_CABE = " " + PREFIX_GENDER + VALID_GENDER_CABE;
+    public static final String SPECIALISATION_DESC_BOB = " " + PREFIX_SPECIALISATION + VALID_SPECIALISATION_BOB;
+
+    public static final String OFFICE_HOURS_DESC_BOB = " " + PREFIX_OFFICEHOUR + VALID_OFFICE_HOURS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String OFFICE_HOUR_MONDAY = " " + PREFIX_OFFICEHOUR + "MONDAY, 4:00 PM - 5:00 PM";
+    public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER; // empty string not allowed for gender
+    public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUBUSERNAME; // empty string not allowed for github
     public static final String INVALID_MODULE_CODE = " " + PREFIX_MODULE_CODE + " "; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "5*"; // 5 is an invalid year
 
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_WHITESPACE = "a/ b/ c/ ";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditCommand.EditPersonDescriptor DESC_CABE;
+
+    public static final String VALID_NAMES = "Kurz Elle Kunz";
+
+    public static final List<String> NO_RESULTS_LIST = Arrays.asList("! @ # $ %^&* ()- 12 34 56 789 0".split("\\s+"));
+
+    public static final List<String> EMPTY_LIST = new ArrayList<>();
+
+    public static final List<String> VALID_NAMES_LIST = Arrays.asList(VALID_NAMES.split("\\s+"));
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

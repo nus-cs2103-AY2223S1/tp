@@ -8,9 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_ONE_INDEX;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -22,17 +19,18 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-// import seedu.address.logic.commands.ProfCommand;
+import seedu.address.logic.commands.ProfCommand;
 import seedu.address.logic.commands.StudentCommand;
 import seedu.address.logic.commands.TaCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonMatchesPredicate;
-// import seedu.address.model.person.Professor;
+import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PersonMatchesPredicateBuilder;
 import seedu.address.testutil.PersonUtil;
-// import seedu.address.testutil.ProfessorBuilder;
+import seedu.address.testutil.ProfessorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TeachingAssistantBuilder;
 
@@ -47,14 +45,14 @@ public class AddressBookParserTest {
         assertEquals(new StudentCommand(person), command);
     }
 
-    /*
+
     @Test
     public void parseCommand_addProfessor() throws Exception {
         Professor person = new ProfessorBuilder().build();
         ProfCommand command = (ProfCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new ProfCommand(person), command);
     }
-     */
+
 
     @Test
     public void parseCommand_addTeachingAssistant() throws Exception {
@@ -93,10 +91,8 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_findNames() throws Exception {
-        List<String> namesList = Arrays.asList("foo", "bar", "baz");
-        PersonMatchesPredicate predicate = new PersonMatchesPredicate();
-        predicate.setNamesList(namesList);
+    public void parseCommand_findStudent() throws Exception {
+        PersonMatchesPredicate predicate = PersonMatchesPredicateBuilder.buildStudentPredicate();
         FindCommand command = (FindCommand) parser.parseCommand(
             FindCommand.COMMAND_WORD + " " + PersonUtil.getFindCommandDetails(predicate));
         assertEquals(new FindCommand(predicate), command);

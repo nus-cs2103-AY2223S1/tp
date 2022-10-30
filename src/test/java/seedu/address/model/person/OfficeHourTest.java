@@ -17,12 +17,9 @@ class OfficeHourTest {
         // valid office hour
         assertTrue(OfficeHour.isValidOfficeHour("MONDAY, 12:00 PM - 01:00 PM"));
         assertTrue(OfficeHour.isValidOfficeHour("TUESDAY, 02:00 AM - 03:00 PM"));
+        assertTrue(OfficeHour.isValidOfficeHour("WEDNESDAY, 04:00 AM - 03:00 PM"));
         assertTrue(OfficeHour.isValidOfficeHour("THURSDAY, 03:00 AM - 04:00 PM"));
         assertTrue(OfficeHour.isValidOfficeHour("FRIDAY, 05:00 AM - 06:00 PM"));
-        assertTrue(OfficeHour.isValidOfficeHour("SATURDAY, 07:00 AM - 08:00 PM"));
-        assertTrue(OfficeHour.isValidOfficeHour("SUNDAY, 08:00 AM - 09:00 PM"));
-        assertTrue(OfficeHour.isValidOfficeHour("SUNDAY, 09:00 AM - 10:00 PM"));
-        assertTrue(OfficeHour.isValidOfficeHour("SUNDAY, 10:00 AM - 11:00 PM"));
     }
 
     @Test
