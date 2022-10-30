@@ -134,7 +134,7 @@ Format: `attendance INDEX`
 * The index refers to the index number shown in the displayed student list.
 * The index must be a positive integer 1, 2, 3, ….
 
-Examples:
+Example:
 
 * `attendance 1`
 
@@ -208,7 +208,7 @@ Adds a question to the question list.
 
 Format: `addq QUESTION_DESCRIPTION`
 
-Examples:
+Example:
 
 * `addq what is the difference between self-invocation and call-backs for sequence diagrams?`
 
@@ -224,7 +224,7 @@ Format: `markq INDEX`
 * The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible 
   indexes are 1, 2, 3 and 4.
 
-Examples:
+Example:
 
 * `markq 1` marks the first question in the question list as important
 
@@ -241,7 +241,7 @@ Format: `unmarkq INDEX`
 * The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible
   indexes are 1, 2, 3 and 4.
 
-Examples:
+Example:
 
 * `unmarkq 1` marks the first question in the question list as unimportant
 
@@ -256,7 +256,7 @@ Format: `deleteq INDEX`
 * The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible
   indexes are 1, 2, 3 and 4.
 
-Examples:
+Example:
 
 * `deleteq 1` deletes the first question from the question list
 
