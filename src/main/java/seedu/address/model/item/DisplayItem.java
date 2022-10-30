@@ -60,6 +60,11 @@ public interface DisplayItem {
      */
     List<Attribute<?>> getAttributes();
 
+    /**
+     * Gets attributes that requires saving
+     */
+    List<Attribute<?>> getSavedAttributes();
+
     Optional<Attribute<?>> getAttribute(String type);
 
     /**
