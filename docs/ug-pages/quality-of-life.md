@@ -30,13 +30,17 @@ commands. If you want a full summary of all our commands, refer to [here](comman
 
 ### Accessing command history
 
-Use the `Up` and `Down` arrow keys to navigate through the command history. This
+Use the `↑ Up` and `↓ Down` arrow keys to navigate through the command history. This
 is useful if your next command is similar to a previous command, or if you wish to revisit
 your previous commands.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Only valid commands will be saved in the history!
 </div>
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Any valid command typed but not entered
+will not be saved!. </div>
 
 [Back to Top](#back-to-menu)
 
