@@ -1,4 +1,17 @@
+---
+layout: page
+title: User Guide
+---
+
 # 👾 Minefriends User Guide
+
+<div markdown="block" class="alert alert-info">
+
+Before we begin, it is important to note that:
+* Minefriends is not affiliated with Minecraft, Mojang Studios or Microsoft in any way.
+* Minefriends is an independently developed software. It is not a product owned by Mojang Studios or Microsoft.
+
+</div>
 
 Minefriends is an address book for you to find friends to play Minecraft multiplayer with,
 at the right time, with the right game modes and on the right servers.
@@ -6,7 +19,6 @@ at the right time, with the right game modes and on the right servers.
 This user guide will help you get started with Minefriends and get to know what it can do for you. 
 The guide is meant for Minecraft players who are familiar with the game and how multiplayer in Minecraft works.
 No other technical knowledge is required.
-
 
 ### Table of Contents
 * [Getting started](#getting-started)
@@ -193,9 +205,11 @@ Edits information about an existing friend in your friend list.
 
 <div markdown="block" class="alert alert-info">
 
-Editing a field with multiple entries will **overwrite all existing values of that field**.
+**Important Note:**
 
-For fields with multiple entries, you can remove all the person’s information in that field by typing the prefix (eg: `t/`) without
+* Editing a field with multiple entries will **overwrite all existing values of that field**.
+
+* For fields with multiple entries, you can remove all the person’s information in that field by typing the prefix (eg: `t/`) without
 including any information after the prefix.
 
 </div>
