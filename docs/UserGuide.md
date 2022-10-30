@@ -126,6 +126,10 @@ Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/T
 * Student ID must take the format of e0XXXXXX where X is a digit from 0 to 9.
 * A student can have any number of tags (including 0).
 
+<div markdown="span" class="alert alert-warning">:information_source: **Note:**
+Students CANNOT have the same name. GREWZ does not allow for students with the exact same name to be keyed into the application, and is case insensitive, but is not sensitive to spaces. Thus trying to add a student with the name `Ben` and `ben` will not work.
+Student ID must also be unique.
+</div>
 
 Examples:
 * `add n/John Doe i/e0123456`
