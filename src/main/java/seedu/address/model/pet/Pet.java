@@ -39,6 +39,7 @@ public class Pet {
     /**
      * Constructs a pet completely.
      *
+     * @param id The unique id of this pet.
      * @param name The name of this pet.
      * @param supplier The owner of this pet. Could be a Buyer or a Supplier.
      * @param color The color of this pet. Could be red.
@@ -52,7 +53,8 @@ public class Pet {
      * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
-    public Pet(PetName name,
+    public Pet(UniqueId id,
+               PetName name,
                Supplier supplier,
                Color color,
                ColorPattern colorPattern,
@@ -65,7 +67,8 @@ public class Pet {
                Set<Tag> tags,
                Set<PetCertificate> certificates) {
         requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus, price);
-        this.id = PET_ID_GENERATOR.next();
+        UniqueIdGenerator.addToStoredIdPet(id);
+        this.id = id;
         this.name = name;
         this.supplier = supplier;
         this.species = species;
@@ -107,10 +110,13 @@ public class Pet {
                VaccinationStatus vaccinationStatus,
                Price price,
                Set<Tag> tags,
-               Set<PetCertificate> certificates,
-               UniqueId uniqueId) {
+               Set<PetCertificate> certificates) {
         requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus, price);
-        this.id = uniqueId;
+        UniqueId currId = PET_ID_GENERATOR.next();
+        while (UniqueIdGenerator.storedIdPetContains(currId)) {
+            currId = PET_ID_GENERATOR.next();
+        }
+        this.id = currId;
         this.name = name;
         this.supplier = supplier;
         this.species = species;

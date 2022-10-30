@@ -9,6 +9,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.index.UniqueId;
+import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.AdditionalRequests;
 import seedu.address.model.order.Order;
@@ -32,6 +34,7 @@ class JsonAdaptedOrder {
     private final String byDate;
     private final Double settledPrice;
     private final String status;
+    private final String uniqueId;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given {@code order detail}.
@@ -43,7 +46,8 @@ class JsonAdaptedOrder {
                             @JsonProperty("additional") List<String> additional,
                             @JsonProperty("byDate") String byDate,
                             @JsonProperty("settledPrice") Double settledPrice,
-                            @JsonProperty("status") String status) {
+                            @JsonProperty("status") String status,
+                            @JsonProperty("uniqueId") String uniqueId) {
         this.buyer = buyer;
         this.requestedPriceRange = range;
         this.request = request;
@@ -53,6 +57,7 @@ class JsonAdaptedOrder {
         this.byDate = byDate;
         this.settledPrice = settledPrice;
         this.status = status;
+        this.uniqueId = uniqueId;
     }
 
     /**
@@ -66,6 +71,7 @@ class JsonAdaptedOrder {
         this.byDate = order.getByDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         this.settledPrice = order.getSettledPrice().getPrice();
         this.status = order.getOrderStatus().getStatus();
+        this.uniqueId = order.getId().getIdToString();
     }
 
     /**
@@ -85,8 +91,16 @@ class JsonAdaptedOrder {
                 .filter(x -> x.toString().equals(status))
                 .findFirst()
                 .orElse(OrderStatus.PENDING);
+        if (uniqueId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    UniqueId.class.getSimpleName()));
+        }
+        UniqueId modelUniqueId = new UniqueId(uniqueId);
+        if (UniqueIdGenerator.storedIdOrderContains(modelUniqueId)) {
+            throw new IllegalValueException("Repeated unique id for pet");
+        }
         return new Order(modelBuyer, modelPriceRange, modelRequest, modelAdditionalRequest, modelByDate, modelPrice,
-                modelOrderStatus);
+                modelOrderStatus, modelUniqueId);
     }
 
 }
