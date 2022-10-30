@@ -143,7 +143,6 @@ added to a group or a subgroup, similar to how files can be added into folders.
 Clears all group, contact and task entries from the application.
 
 > **Warning**
-
 > **THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION!**
 
 **Format:** `clear`
