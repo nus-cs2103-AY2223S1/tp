@@ -377,7 +377,7 @@ module
 </p>
 
 **Step 4**: Clicking again on the blue area will close the dropdown and hide 
-tha tasks
+the tasks
 <p align="center">
   <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
