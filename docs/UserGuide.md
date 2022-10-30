@@ -100,7 +100,9 @@ We will be referring to these terminologies throughout the user guide:
 
 ![Contactmation ui main window](images/ContactmationUiClean.png)
 
-> **Note:** If you wish to clear all default entries, use the [clear](#clear-command-clear) command.
+> **Note:** 
+
+> If you wish to clear all default entries, use the [clear](#clear-command-clear) command.
 
 5. You may begin by referring to the [basic features](#basic-features) section to get started on using
    Contactmation. For additional, more powerful commands, refer to our [advanced features](#advanced-features),
@@ -141,6 +143,7 @@ added to a group or a subgroup, similar to how files can be added into folders.
 Clears all group, contact and task entries from the application.
 
 > **Warning**
+
 > **THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION!**
 
 **Format:** `clear`
@@ -272,7 +275,9 @@ the application window.
 
 ### Group scope commands
 
-> **Note:** Please look at how [scoping](#scoping) works before continuing.
+> **Note:** 
+
+> Please look at how [scoping](#scoping) works before continuing.
 
 ### Changing the group scope: `cg`
 
@@ -437,7 +442,9 @@ This command behaves exactly like if else statements in programming languages. I
 then the command sequence will execute `COMMAND IF`, else it will execute `COMMAND ELSE` instead. The command 
 ensures that the application cannot run `COMMAND IF` and `COMMAND ELSE` in the same command sequence.
 
->**Note:** If else commands cannot be nested in other if else commands directly.
+>**Note:** 
+
+> If else commands cannot be nested in other if else commands directly.
 
 **Format:** `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]`
 
