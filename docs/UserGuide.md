@@ -58,9 +58,19 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
+  
+* The following prefix parameters `D/` and `T/` have more than 1 definition, depending on the type of command inputted. </br>
+  - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands. </br>
+    Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday). </br>
+    Format of `DATE` should be yyyy-MM-dd. e.g. 2022-02-24
+  - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands. </br>
+    Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00 </br>
+    Format of `TIME` should be HH:mm. e.g. 13:00.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+
 
 </div>
 
@@ -118,7 +128,7 @@ Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find m/CS2103T` returns list of students in CS2103T<br>\
+* `find m/CS2103T` returns list of students in CS2103T<br>
 
 #### 3.1.5 Deleting a student: `delete student`
 
@@ -236,7 +246,7 @@ Examples:
 
 Adds a reminder to the list of reminders.
 
-Format: `add reminder n/NAME T/DEADLINE_TIME D/DEADLINE_DATE p/PRIORITY d/DESCRIPTION `
+Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 Adds a reminder to the list of reminders.
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
@@ -249,7 +259,7 @@ Examples:
 
 Edits an existing reminder in the list of reminders.
 
-Format: `edit reminder INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [p/PRIORITY] [d/DESCRIPTION] `
+Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION] `
 
 * Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -401,7 +411,7 @@ _Details coming soon..._
 | **Add Consultation**       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2022-10-24 T/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                |
 | **Edit Consultation**      | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                   |
 | **Delete Consultation**    | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                        |
-| **Add Reminder**           | `add reminder n/NAME D/DEADLINE_DATE D/DEADLINE_TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2022-03-21 T/13:00 p/HIGH d/300 papers to mark`                                               |
+| **Add Reminder**           | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2022-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                 |
 | **Edit Reminder**          | `edit reminder INDEX`<br> e.g., `delete reminder 1 D/2022-01-01 T/14:00`                                                                                                                                             |
 | **Mark Reminder**          | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                    |
 | **Unmark Reminder**        | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                |
@@ -431,7 +441,7 @@ _Details coming soon..._
 | **ph/**   | phone            | `add student`</br> `edit student`                                                                                                                                                |
 | **part/** | participation    | `add student`</br> `edit student`                                                                                                                                                |
 | **t/**    | tag              | `add student`</br> `edit student`                                                                                                                                                |
-| **T/**    | time             | `add student`</br> `edit student`                                                                                                                                                |
+| **T/**    | time or timeslot | `add student`</br> `edit student`                                                                                                                                                |
 | **tut/**  | tutorial         | `add student`</br> `edit student`</br> `find`</br> `add tutorial`</br> `edit tutorial`                                                                                           |
 | **tele/** | Telegram handle  | `add student`</br> `edit student`                                                                                                                                                |
 | **v/**    | venue            | `add tutorial`</br> `edit tutorial`</br> `add consultation`</br> `edit consultation`                                                                                             |
