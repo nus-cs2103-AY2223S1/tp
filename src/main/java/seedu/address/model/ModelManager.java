@@ -39,6 +39,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        // Solution below adapted from
+        // https://stackoverflow.com/questions/17958337/javafx-tableview-with-filteredlist-jdk-8-does-not-sort-by-column
         filteredPersons = new SortedList<>(new FilteredList<>(this.addressBook.getPersonList()));
         filteredInternships = new SortedList<>(new FilteredList<>(this.addressBook.getInternshipList()));
     }
