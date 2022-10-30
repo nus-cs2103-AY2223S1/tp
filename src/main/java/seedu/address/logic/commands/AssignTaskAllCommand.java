@@ -35,7 +35,7 @@ public class AssignTaskAllCommand extends Command {
             + "Deadline must be in yyyy-MM-dd or yyyy-MM-dd HH:mm format\n"
             + "Parameters: "
             + PREFIX_GROUP + "GROUP "
-            + PREFIX_TASK + "TASK"
+            + PREFIX_TASK + "TASK "
             + PREFIX_WORKLOAD + "WORKLOAD "
             + PREFIX_DEADLINE + "DEADLINE\n"
             + "Example: " + COMMAND_WORD
