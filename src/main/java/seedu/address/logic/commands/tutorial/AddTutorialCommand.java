@@ -38,7 +38,7 @@ public class AddTutorialCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the ModQuik";
     public static final String MESSAGE_CLASH_TUTORIAL =
-            "There exists a tutorial having same venue and timeslot in the ModQuik";
+            "There exists a tutorial with overlapping timeslot in the ModQuik";
 
     private final Tutorial toAdd;
 

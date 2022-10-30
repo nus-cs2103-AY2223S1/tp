@@ -61,7 +61,7 @@ public class Tutorial {
     }
 
     /**
-     * Returns true if both tutorials have the same venue and timeslot.
+     * Returns true if given tutorial's timeslot overlaps with other's timeslot.
      */
     public boolean isClashTutorial(Tutorial otherTutorial) {
         if (otherTutorial == this) {
@@ -69,8 +69,7 @@ public class Tutorial {
         }
 
         return otherTutorial != null
-                && otherTutorial.getVenue().equals(getVenue())
-                && otherTutorial.getTimeslot().equals(getTimeslot());
+                && otherTutorial.getTimeslot().isOverlapping(getTimeslot());
     }
 
     /**
