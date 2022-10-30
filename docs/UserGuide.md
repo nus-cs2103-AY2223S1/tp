@@ -342,7 +342,7 @@ Format: `view INDEX`
 * Only the index is searched.
 * More details about the company at the index will be displayed.
 
-Examples:s
+Examples:
 * `list` followed by `view 1` displays more details of the 1st internship in list.
 
 ![before_view](images/BeforeViewCommand.png)
