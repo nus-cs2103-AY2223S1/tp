@@ -291,11 +291,24 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
 **`filter` vs `find`**<br>
 `filter` and `find` commands may seem similar, here are some differences to take note of:
 
-| `filter`                                                                                  | `find`                                                    |
-|-------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| Used to filter **internship application statuses**                                        | Used to search for **keywords in company names and tags** |
-| Can only accept as input **one of 5 allowed [application statuses](#application-status)** | Can accept **any input**                                  |
-
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">`filter`</th> 
+      <th scope="col">`find`</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Used to filter **internship application statuses**</td>
+      <td>Used to search for **keywords in company names and tags**</td>
+    </tr>
+    <tr>
+      <td>Can only accept as input **one of 5 allowed [application statuses](#application-status)**</td>
+      <td>Can accept **any input**</td>
+    </tr>
+  </tbody>
+</table>  
 </div>
 </div>
 
@@ -421,14 +434,42 @@ Commands like `add` and `edit` accept fields, their constraints are specified be
 
 There are no constraints for a field if the constraints box is empty for that field.
 
-| Field                   | Constraints                                                                                    |
-|-------------------------|------------------------------------------------------------------------------------------------|
-| `c/COMPANY`             |                                                                                                |
-| `l/LINK`                | Links must be of the format `HOSTNAME.PATH`, where both `HOSTNAME` and `PATH` are alphanumeric |
-| `d/DESCRIPTION`         |                                                                                                |
-| `a/APPLIED_DATE`        | See [date/time formats](#datetime-formats)                                                     |
-| `i/INTERVIEW_DATE_TIME` | See [date/time formats](#datetime-formats)                                                     |
-| `t/TAG`                 | Must only contain alphabets and spaces                                                         |
+<div markdown="span">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Field</th> 
+      <th scope="col">Constraints</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>c/COMPANY</kbd></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>l/LINK</kbd></td>
+      <td>Links must be of the format `HOSTNAME.PATH`, where both `HOSTNAME` and `PATH` are alphanumeric</td>
+    </tr>
+    <tr>
+      <td><kbd>d/DESCRIPTION</kbd></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>a/APPLIED_DATE</kbd></td>
+      <td>See [date/time formats](#datetime-formats)</td>
+    </tr>
+    <tr>
+      <td><kbd>i/INTERVIEW_DATE_TIME</kbd></td>
+      <td>See [date/time formats](#datetime-formats)</td>
+    </tr>
+    <tr>
+      <td><kbd>t/TAG</kbd></td>
+      <td>Must only contain alphabets and spaces</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 ### Application status
 
@@ -437,13 +478,42 @@ Each internship application is tagged with an application status.
 
 Application status as an input field **must be one of the following**:
 
-| Application status | Explanation                                               | Remark                                                                                                              |
-|--------------------|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| `applied`          | You have applied for this internship                      | Default application status                                                                                          |
-| `shortlisted`      | Company has shortlisted you for interview                 | Adding/editing the interview date/time of an internship application will change application status to "Shortlisted" |
-| `interviewed`      | You have been interviewed for this internship application |                                                                                                                     |                                      
-| `accepted`         | You have accepted this internship                         |                                                                                                                     |
-| `rejected`         | You have rejected this internship                         |                                                                                                                     |
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Application status</th> 
+      <th scope="col">Explanation</th>
+      <th scope="col">Remark</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>applied</kbd></td>
+      <td>You have applied for this internship</td>
+      <td>Default application status</td>
+    </tr>
+    <tr>
+      <td><kbd>shortlisted</kbd></td>
+      <td>Company has shortlisted you for interview</td>
+      <td>Adding/editing the interview date/time of an internship application will change application status to "Shortlisted"</td>
+    </tr>
+    <tr>
+      <td><kbd>interviewed</kbd></td>
+      <td>You have been interviewed for this internship application</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>accepted</kbd></td>
+      <td>You have accepted this internship</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>rejected</kbd></td>
+      <td>You have rejected this internship</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Date/time formats
 
@@ -451,19 +521,58 @@ The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default
 
 For `APPLIED_DATE`, the formats allowed:
 
-| Format       | Input      |
-|--------------|------------|
-| `d MMM yyyy` | 7 Oct 2022 |
-| `d/M/yyyy`   | 7/10/2022  |
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Format</th> 
+      <th scope="col">Input</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>d MMM yyyy</kbd></td>
+      <td>7 Oct 2022</td>
+    </tr>
+    <tr>
+      <td><kbd>d/M/yyyy</kbd></td>
+      <td>7/10/2022</td>
+    </tr>
+  </tbody>
+</table>
 
 For `INTERVIEW_DATE_TIME`, the formats allowed:
 
-| Format               | Input               | Remark                                                                                 |
-|----------------------|---------------------|----------------------------------------------------------------------------------------|
-| `d MMM yyyy HH:mm`   | 7 Oct 2022 15:00    |                                                                                        |
-| `d/M/yyyy HH:mm`     | 7/10/2022 15:00     |                                                                                        |
-| `d MMM yyyy, h:mm a` | 7 Oct 2022, 3:00 pm | Take note of the **comma after the date** and the **space between the time and AM/PM** |
-| `d/M/yyyy, h:mm a`   | 7/10/2022, 3:00 pm  | Take note of the **comma after the date** and the **space between the time and AM/PM** |
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Format</th> 
+      <th scope="col">Input</th>
+      <th scope="col">Remark</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><kbd>d MMM yyyy HH:mm</kbd></td>
+      <td>7 Oct 2022 15:00</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>d/M/yyyy HH:mm</kbd></td>
+      <td>7/10/2022 15:00</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><kbd>d MMM yyyy, h:mm a</kbd></td>
+      <td>7 Oct 2022, 3:00 pm</td>
+      <td>Take note of the <b>comma after the date</b> and the <b>space between the time and AM/PM</b></td>
+    </tr>
+    <tr>
+      <td><kbd>d/M/yyyy, h:mm a</kbd></td>
+      <td>7/10/2022, 3:00 pm</td>
+      <td>Take note of the <b>comma after the date</b> and the <b>space between the time and AM/PM</b></td>
+    </tr>
+  </tbody>
+</table>
 
 --------------------------------------------------------------------------------------------------------------------
 
