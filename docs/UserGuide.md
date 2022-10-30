@@ -98,12 +98,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing t/ without
+* You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
+*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
 
 ### Locating persons by name: `find`
 
@@ -233,9 +233,9 @@ Format: `filter [c/TASK_CATEGORY] [dl/DEADLINE]`
 * To list all tasks, call the `listTasks` command.
 
 Examples:
-*  `filter c/backend` Only display tasks that have backend as **TASK_CATEGORY**
-*  `filter dl/2022-12-12` Only displays tasks that have **DEADLINE** before or equal to 2022-12-12
-*  `filter c/backend dl/2022-12-12` Only displays tasks that have backend as **TASK_CATEGORY** and **DEADLINE** before or equal to 2022-12-12
+*  `filter c/backend` displays only tasks that have backend as **TASK_CATEGORY**
+*  `filter dl/2022-12-12` displays only tasks that have **DEADLINE** before or equal to 2022-12-12
+*  `filter c/backend dl/2022-12-12` displays only tasks that have backend as **TASK_CATEGORY** and **DEADLINE** before or equal to 2022-12-12
 
 ### Sorting the task list by deadline: `sortByDeadline`
 
@@ -247,8 +247,8 @@ Format: `sortByDeadline [o/ORDER]`
 * If order is not specified, it will default to ascending order.
 
 Examples:
-* `sortByDeadline` Sorts tasks by deadline in ascending order.
-* `sortByDeadline o/desc` Sorts tasks by deadline in descending order.
+* `sortByDeadline` sorts tasks by deadline in ascending order.
+* `sortByDeadline o/desc` sorts tasks by deadline in descending order.
 
 ### Sorting the task list by priority: `sortByPriority`
 
@@ -260,8 +260,8 @@ Format: `sortByPriority [o/ORDER]`
 * If order is not specified, it will default to descending order.
 
 Examples:
-* `sortByPriority` Sorts tasks by priority in descending order.
-* `sortByPriority o/asc` Sorts tasks by priority in ascending order.
+* `sortByPriority` sorts tasks by priority in descending order.
+* `sortByPriority o/asc` sorts tasks by priority in ascending order.
 
 ## FAQ
 
@@ -279,8 +279,7 @@ Examples:
 | c/CATEGORY              | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others` |
 | dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
 | pe/PERSON EMAIL ADDRESS | Should be the email address of an existing member (case-insensitive). For the `editTask` command, it can also be empty, e.g. `pe/`.                    |
-| do/STATUS               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
-                                                                                                                                                                           |
+| do/STATUS               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                           
 
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
