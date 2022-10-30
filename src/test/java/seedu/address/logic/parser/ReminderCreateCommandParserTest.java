@@ -25,7 +25,7 @@ class ReminderCreateCommandParserTest {
 
     @Test
     public void parse_invalidTimeFormat_parseException() throws ParseException {
-        assertParseFailure(parser, "1 d=" + ""
+        assertParseFailure(parser, "1 d=" + REMINDER_MEETING_DESCRIPTION
                         + " dt=" + REMINDER_PROMOTION_DATETIME_STRING, MESSAGE_INVALID_DATE_TIME_FORMAT);
     }
 
