@@ -81,6 +81,7 @@ public class StudentCard extends UiPart<Region> {
         picture.setImage(
                 ImageStorage.getStudentProfileImage(this.student)
         );
+
     }
 
     @Override

@@ -93,12 +93,12 @@ public class ImageStorage {
      * @throws CommandException If file cannot be found or unable to read the file.
      */
     public static boolean isJpgFile(File file) throws CommandException {
-        int[] jpgByteArray = new int[] {255, 216, 255, 224};
+        int[] jpgByteArray = new int[] {255, 216};
         requireNonNull(file);
         try {
             FileInputStream inputFile = new FileInputStream(file);
             int checkByte;
-            for (int counter = 0; counter < 4; counter++) {
+            for (int counter = 0; counter < 2; counter++) {
                 checkByte = inputFile.read();
                 if (jpgByteArray[counter] != checkByte) {
                     return false;

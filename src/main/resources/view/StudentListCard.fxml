@@ -11,7 +11,9 @@
 
 <?import javafx.scene.image.ImageView?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ImageView fx:id="picture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
+  <HBox prefHeight="99" prefWidth="99">
+    <ImageView fx:id="picture"  fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" />
+  </HBox>
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
