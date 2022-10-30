@@ -71,6 +71,10 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 Adds a student to the specified module.
 
 Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
+
+* `PHONE` should be 8 digits long as per standard telephone numbers in Singapore.
+* `STUDENT_ID` should follow the following format AXXXXXXXY, where X is a number, and Y is an alphabet.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
