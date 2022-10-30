@@ -67,6 +67,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same email as {@code person} exists in the address book.
+     */
+    boolean hasPersonByEmail(Person person);
+
+    /**
      * Returns a person in the address book with the same email as {@code email}.
      */
     Person getPersonByEmail(Email email) throws PersonNotFoundException;

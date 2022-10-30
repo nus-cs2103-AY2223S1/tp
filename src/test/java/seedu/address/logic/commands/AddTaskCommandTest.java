@@ -119,6 +119,11 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public boolean hasPersonByEmail(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Person getPersonByEmail(Email email) {
             throw new AssertionError("This method should not be called.");
         }
