@@ -67,13 +67,14 @@ We will be referring to these terminologies throughout the user guide:
 
 ![Contactmation ui elements](images/ContactmationUi.png)
 
---------------------------------------------------------------------------------------------------------------------
+---
+
 ## Prerequisites
 
 - Ensure that `Java 11` and above is installed on your device. If you do not have `Java 11` installed, please refer to
   this [Java 11 installation guide](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
 
@@ -100,7 +101,7 @@ We will be referring to these terminologies throughout the user guide:
    Contactmation. For additional, more powerful commands, refer to our [advanced features](#advanced-features),
    especially if you are comfortable with the CLI or have prior programming experience.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Features
 
@@ -112,7 +113,6 @@ In this user guide, we define any parameters within **square brackets** e.g. `[t
 **Ellipses** `...` indicate that more than 1 argument of a certain type can be given to a single command.
 For example, `[t/tags...]` means that an optional number (0 or more) of `tags` can be added to a single
 user command, but `t/tags...` means that 1 or more `tags` can be given to a single user command.
-
 
 ## Scoping
 
@@ -170,13 +170,14 @@ The following contact commands comply with these placeholder constraints:
 - The `PHONE_NUMBER` of the contact must be at least 3 digits long.
 - The `EMAIL` of the contact must be in the format `local-part@domain`.
 
-    - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
-      the parentheses, (+_.-). The local-part may not start or end with any special characters.
-    - `Domain`:
+  - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
+    the parentheses, (+\_.-). The local-part may not start or end with any special characters.
+  - `Domain`:
 
-        - Ends with a domain label at least 2 characters long.
-        - Have each domain label start and end with alphanumeric characters.
-        - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    - Ends with a domain label at least 2 characters long.
+    - Have each domain label start and end with alphanumeric characters.
+    - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
 - The `ADDRESS` can take any values, but it should not be blank.
 - The `TAG` must be alphanumeric.
 - The `INDEX` must be a positive integer which cannot exceed the number of contacts currently displayed in the
@@ -310,6 +311,7 @@ Adds a new task to an existing group scope. This group cannot be the root group.
 **Format:** `task add t/<TITLE> d/<DESCRIPTION>`
 
 **Example:**
+
 - `task add t/Complete all CS2103T homework d/Give description here`
 
 ### Deleting a task from group: `task delete`
@@ -319,6 +321,7 @@ Deletes an existing task from a group by their `INDEX` within the current [scope
 Format: `task delete <INDEX>`
 
 Example:
+
 - `task delete 1`
 
 ### Iterate command
@@ -341,6 +344,7 @@ Format: `task progress i/<INDEX> <LEVEL>`
 - Level indicates the progress level, and can only be set to 25%, 50%, 75%, 100%.
 
 Example:
+
 - `task progress 1 25%`
 
 This sets the progress of the first task in the list as 25%.

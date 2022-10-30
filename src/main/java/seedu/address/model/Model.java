@@ -6,10 +6,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupOutOfBoundException;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonOutOfBoundException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskOutOfBoundException;
 
 /**
  * The API of the Model component.
@@ -119,22 +123,6 @@ public interface Model {
     void addTask(Task task);
 
     /**
-     * Adds a field to the Fields of each person
-     * {@code field name} must not already exist in the address book.
-     *
-     * @param fieldName the field name to add
-     */
-    void addField(String fieldName);
-
-    /**
-     * Removes a field from the Fields instance of each person
-     * {@code field name} must already exist in the address book.
-     *
-     * @param fieldName the field name to be removed
-     */
-    void removeField(String fieldName);
-
-    /**
      * Returns an unmodifiable view of the filtered task list
      */
     ObservableList<Task> getFilteredTaskList();
@@ -202,5 +190,20 @@ public interface Model {
     ObservableList<Group> getFilteredTeamList();
 
     void setTask(Task target, Task editedTask);
+
+    /**
+     * Retrieves the person object from the current PersonList based on the Index
+     */
+    Person getFromFilteredPerson(Index index) throws PersonOutOfBoundException;
+
+    /**
+     * Retrieves the person object from the current PersonList based on the Index
+     */
+    Group getFromFilteredTeams(Index index) throws GroupOutOfBoundException;
+
+    /**
+     * Retrieves the person object from the current PersonList based on the Index
+     */
+    Task getFromFilteredTasks(Index index) throws TaskOutOfBoundException;
 
 }

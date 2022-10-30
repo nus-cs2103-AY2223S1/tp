@@ -22,6 +22,9 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Group's %s field is missing!";
 
+    /**
+     * Constructs a {@code JsonAdaptedGroup} with the given group details.
+     */
     @JsonCreator
     public JsonAdaptedGroup(@JsonProperty("name") String name, @JsonProperty("uid") String uid,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
@@ -29,6 +32,9 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
         super(name, uid, attributes, tags);
     }
 
+    /**
+     * Converts a given {@code Group} into this class for Jackson use.
+     */
     public JsonAdaptedGroup(Group source) {
         super(source.getName().fullName, source.getUid().toString(),
                 source.getSavedAttributes().stream()
@@ -39,9 +45,18 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
                         .collect(Collectors.toList()));
     }
 
+    /**
+     * Converts this Jackson-friendly adapted group object into the model's
+     * {@code Group} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
+     */
     public Group toModelType() throws IllegalValueException {
         final List<Tag> groupTags = new ArrayList<>();
         final List<Attribute> modelAttributes = new ArrayList<>();
+
+        // Exception handling is not supported in Java streams.
         for (JsonAdaptedTag tag : getTags()) {
             groupTags.add(tag.toModelType());
         }
@@ -54,14 +69,13 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
+        if (!Group.isValidGroupName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
 
-        final Name modelName = new Name(name);
         final Set<Tag> modelTags = new HashSet<>(groupTags);
 
-        Group group = new Group(modelName.fullName);
+        Group group = new Group(name);
         group.setTags(modelTags);
         modelAttributes.forEach(attribute -> group.addAttribute(attribute));
         return group;

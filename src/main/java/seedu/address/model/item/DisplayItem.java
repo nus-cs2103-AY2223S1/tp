@@ -7,16 +7,15 @@ import java.util.UUID;
 
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a unique item in the addressbook, it can be either a accessable
- * team or an entry
+ * Represents a unique item in the addressbook, it can be either a accessable team or an entry
  */
 public interface DisplayItem {
     /**
-     * Returns the entry type of the displayable item to determine what type of item
-     * this is.
+     * Returns the entry type of the displayable item to determine what type of item this is.
      */
     int getTypeFlag();
 
@@ -73,9 +72,8 @@ public interface DisplayItem {
     Name getName();
 
     /**
-     * Returns an immutable tag set, which throws
-     * {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if modification
+     * is attempted.
      */
     Set<Tag> getTags();
 
@@ -100,14 +98,24 @@ public interface DisplayItem {
     Set<? extends DisplayItem> getParents();
 
     /**
-     * Add a attribute to the current object.
+     * Adds an attribute to the current object.
      */
     void addAttribute(Attribute<?> attribute);
 
     /**
-     * Delete an attribute to the current object.
+     * Adds an attribute with an attribute name and attribute content.
      */
-    void deleteAttribute(String type);
+    void addAttribute(String attributeName, String attributeContent) throws AttributeException;
+
+    /**
+     * Edits an existing attribute with an attribute name and attribute content.
+     */
+    void editAttribute(String attributeName, String attributeContent) throws AttributeException;
+
+    /**
+     * Removes an attribute to the current object.
+     */
+    void deleteAttribute(String type) throws AttributeException;
 
     /**
      * Returns true if {@code DisplayItem o} is a parent of this item
@@ -117,5 +125,7 @@ public interface DisplayItem {
     /**
      * Returns unique uid for this displayItem.
      */
+
     UUID getUid();
+
 }

@@ -13,22 +13,25 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.persons.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.persons.AddCommand;
 import seedu.address.logic.commands.persons.DeleteCommand;
 import seedu.address.logic.commands.persons.FindCommand;
+import seedu.address.logic.commands.tasks.DeleteTaskCommand;
+import seedu.address.logic.commands.teams.DeleteTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
+/** Test to test the singleton address book parser */
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final AddressBookParser parser = AddressBookParser.get();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -44,23 +47,28 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parsePersonCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+            DeleteCommand.getFullCommand(DeleteCommand.SUBCOMMAND_WORD) + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
-    // @Test
-    // public void parseCommand_edit() throws Exception {
-    // Person person = new PersonBuilder().build();
-    // EditPersonDescriptor descriptor = new
-    // EditPersonDescriptorBuilder(person).build();
-    // EditCommand command = (EditCommand)
-    // parser.parseCommand(EditCommand.COMMAND_WORD + " "
-    // + INDEX_FIRST_PERSON.getOneBased() + " " +
-    // PersonUtil.getEditPersonDescriptorDetails(descriptor));
-    // assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
-    // }
+    @Test
+    public void parseTaskCommand_delete() throws Exception {
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
+            DeleteTaskCommand.getFullCommand(DeleteTaskCommand.SUBCOMMAND_WORD) + " "
+                + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteTaskCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseTeamCommand_delete() throws Exception {
+        DeleteTeamCommand command = (DeleteTeamCommand) parser.parseCommand(
+            DeleteTeamCommand.getFullCommand(DeleteTeamCommand.SUBCOMMAND_WORD) + " "
+                + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteTeamCommand(INDEX_FIRST_PERSON), command);
+    }
+
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -72,7 +80,8 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+            FindCommand.getFullCommand(FindCommand.SUBCOMMAND_WORD) + " "
+                + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -90,8 +99,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE),
-                () -> parser.parseCommand(""));
+        assertThrows(ParseException.class,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () -> {
+                parser.parseCommand("");
+            });
     }
 
     @Test

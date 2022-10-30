@@ -15,9 +15,9 @@ public class DeleteGroupCommand extends Command {
     public static final String COMMAND_WORD = "rmgroup";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the group identified by the index number used in the displayed group list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+        + ": Deletes the group identified by the index number used in the displayed group list.\n"
+        + "Parameters: INDEX (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_GROUP_SUCCESS = "Deleted Group: %1$s";
 
@@ -44,7 +44,7 @@ public class DeleteGroupCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
+            || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
 }

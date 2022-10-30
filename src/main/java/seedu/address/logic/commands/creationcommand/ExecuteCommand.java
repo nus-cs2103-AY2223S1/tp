@@ -9,6 +9,9 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+/**
+ * A command to execute some string input as commands
+ */
 public class ExecuteCommand extends Command {
     public static final String COMMAND_WORD = "e";
     private static final String INVALID_INPUT = "I don't understand the command";
@@ -16,6 +19,11 @@ public class ExecuteCommand extends Command {
     private String commands;
     private String bonus = "";
 
+    /**
+     * Constructor for execute command
+     *
+     * @param bonus command to run after the parsed command finishes execution
+     */
     public ExecuteCommand(String bonus) {
         if (bonus == null || bonus.trim().length() == 0) {
             this.bonus = "";
@@ -35,7 +43,7 @@ public class ExecuteCommand extends Command {
             CommandResult res = c.execute(model);
             if (bonus.equals("")) {
                 return new CommandResult(res.getFeedbackToUser(), false, false,
-                        res.getResult().orElse(null));
+                    res.getResult().orElse(null));
             }
             return AddressBookParser.quickCommand(bonus, res.getResult().orElse(null)).execute(model);
         } catch (ParseException e) {
@@ -52,6 +60,9 @@ public class ExecuteCommand extends Command {
         commands = additionalData.toString().trim();
     }
 
+    /**
+     * Creates a parser to parse user input for execute command
+     */
     public static Parser<ExecuteCommand> parser() {
         return new Parser<ExecuteCommand>() {
             @Override
@@ -61,10 +72,10 @@ public class ExecuteCommand extends Command {
                 }
                 userInput = userInput.trim();
                 ParserUtil.Pair p = ParserUtil.splitPipe(userInput);
-                if (p.second.trim().length() == 0) {
+                if (p.getSecond().trim().length() == 0) {
                     return new ExecuteCommand(null);
                 }
-                return new ExecuteCommand(p.second);
+                return new ExecuteCommand(p.getSecond());
             }
         };
     }

@@ -8,16 +8,18 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
+/**
+ * Command to check whether a task is complete
+ */
 public class CheckTaskCompleteCommand extends Command {
 
     public static final String COMMAND_WORD = "isComplete";
     private static final String NO_SELECTED = "No task was selected!";
     private static final String INVALID_INPUT = "The input is not of type Task!";
 
-    Task item = null;
+    private Task item = null;
 
-    public CheckTaskCompleteCommand() {
-    }
+    public CheckTaskCompleteCommand() {}
 
     @Override
     public void setInput(Object additionalData) throws CommandException {

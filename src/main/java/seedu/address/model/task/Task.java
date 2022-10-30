@@ -34,7 +34,7 @@ public class Task extends AbstractSingleItem {
     /**
      * Create a new task with no completed_time
      *
-     * @param title       The title of the task.
+     * @param title The title of the task.
      * @param description The description of the task.
      */
     public Task(String title, String description) {
@@ -44,8 +44,8 @@ public class Task extends AbstractSingleItem {
     /**
      * Create a new task with a completed_time.
      *
-     * @param title         The title of the task.
-     * @param description   The description of the task.
+     * @param title The title of the task.
+     * @param description The description of the task.
      * @param completedTime The completed_time of the task.
      */
     public Task(String title, String description, LocalDateTime completedTime) {
@@ -105,9 +105,8 @@ public class Task extends AbstractSingleItem {
     }
 
     /**
-     * Returns true if both tasks have the same name and group. This defines a
-     * weaker notion of equality between two
-     * tasks.
+     * Returns true if both tasks have the same name and group. This defines a weaker notion of equality
+     * between two tasks.
      */
     public boolean isSameTask(Task t) {
         return getFullPath().equals(t.getFullPath());
@@ -125,7 +124,7 @@ public class Task extends AbstractSingleItem {
         }
         Task task = (Task) o;
         return completedTime.equals(task.completedTime) && description.equals(task.description)
-                && getAttributes().equals(task.getAttributes());
+            && getAttributes().equals(task.getAttributes());
     }
 
     /**

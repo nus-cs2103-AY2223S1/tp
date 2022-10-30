@@ -11,15 +11,12 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not
- * allow nulls.
- * A person is considered unique by comparing using
- * {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that
- * the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of
- * a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of persons that enforces uniqueness between its elements and does not allow nulls. A
+ * person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such,
+ * adding and updating of persons uses Person#isSamePerson(Person) for equality so as to ensure that
+ * the person being added or updated is unique in terms of identity in the UniquePersonList.
+ * However, the removal of a person uses Person#equals(Object) so as to ensure that the person with
+ * exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -36,8 +33,7 @@ public class UniquePersonList extends DisplayItemList<Person> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a person to the list. The person must not already exist in the list.
      */
     @Override
     public void add(Person toAdd) {
@@ -49,9 +45,8 @@ public class UniquePersonList extends DisplayItemList<Person> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another
+     * Replaces the person {@code target} in the list with {@code editedPerson}. {@code target} must
+     * exist in the list. The person identity of {@code editedPerson} must not be the same as another
      * existing person in the list.
      */
     public void setPerson(Person target, Person editedPerson) {
@@ -70,8 +65,7 @@ public class UniquePersonList extends DisplayItemList<Person> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent person from the list. The person must exist in the list.
      */
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
@@ -86,8 +80,8 @@ public class UniquePersonList extends DisplayItemList<Person> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code persons}. {@code persons} must not contain
+     * duplicate persons.
      */
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
@@ -98,24 +92,6 @@ public class UniquePersonList extends DisplayItemList<Person> {
         internalList.setAll(persons);
     }
 
-    /**
-     * Adds a Field instance to each person in the Persons list.
-     *
-     * @param fieldName the name of the field to be removed.
-     */
-    public void addField(String fieldName) {
-        internalList.forEach(person -> person.addField(fieldName));
-    }
-
-    /**
-     * Removes a Field instance from each person in the Persons list.
-     *
-     * @param fieldName the name of the field to be removed.
-     */
-    public void removeField(String fieldName) {
-        internalList.forEach(person -> person.removeField(fieldName));
-    }
-
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();
@@ -124,8 +100,8 @@ public class UniquePersonList extends DisplayItemList<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+            || (other instanceof UniquePersonList // instanceof handles nulls
+                && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override

@@ -10,6 +10,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+/**
+ * Command to do string replacements
+ */
 public class StringReplaceCommand extends Command {
 
     public static final String COMMAND_WORD = "r";
@@ -43,6 +46,9 @@ public class StringReplaceCommand extends Command {
         return new CommandResult("result is: " + txt, false, false, txt);
     }
 
+    /**
+     * Returns a parser to parse user input for replace command.
+     */
     public static Parser<StringReplaceCommand> parser() {
         return new Parser<StringReplaceCommand>() {
             @Override

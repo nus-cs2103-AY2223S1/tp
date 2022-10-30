@@ -6,20 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.fields.AddFieldCommand;
+import seedu.address.logic.commands.fields.DeleteFieldCommand;
 import seedu.address.logic.commands.fields.EditFieldCommand;
 import seedu.address.logic.commands.fields.FieldCommand;
-import seedu.address.logic.commands.fields.DeleteFieldCommand;
-
-import seedu.address.logic.commands.tasks.AddTaskCommand;
-import seedu.address.logic.commands.tasks.DeleteTaskCommand;
-import seedu.address.logic.commands.tasks.MarkTaskCommand;
-import seedu.address.logic.commands.tasks.SelectTaskCommand;
-import seedu.address.logic.commands.tasks.TaskCommand;
-import seedu.address.logic.commands.tasks.UnmarkTaskCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.tasks.AddTaskCommandParser;
-import seedu.address.logic.parser.tasks.DeleteTaskCommandParser;
 
 /**
  * Parser for all Task commands
@@ -32,9 +23,8 @@ public class FieldCommandParser implements Parser<FieldCommand> {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<subcommandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Parses user input into command for execution. The input must be a valid
-     * subcommand for Task. There should not be
-     * a TaskCommand prefix in the input.
+     * Parses user input into command for execution. The input must be a valid subcommand for Task.
+     * There should not be a TaskCommand prefix in the input.
      *
      * @param userInput full user input string
      * @return the command based on the user input
@@ -50,14 +40,14 @@ public class FieldCommandParser implements Parser<FieldCommand> {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-            case AddFieldCommand.SUBCOMMAND_WORD:
-                return new AddFieldCommandParser().parse(arguments);
-            case EditFieldCommand.SUBCOMMAND_WORD:
-                return new EditFieldCommandParser().parse(arguments);
-            case DeleteFieldCommand.SUBCOMMAND_WORD:
-                return new DeleteFieldCommandParser().parse(arguments);
-            default:
-                throw new ParseException("errrr");
+        case AddFieldCommand.SUBCOMMAND_WORD:
+            return new AddFieldCommandParser().parse(arguments);
+        case EditFieldCommand.SUBCOMMAND_WORD:
+            return new EditFieldCommandParser().parse(arguments);
+        case DeleteFieldCommand.SUBCOMMAND_WORD:
+            return new DeleteFieldCommandParser().parse(arguments);
+        default:
+            throw new ParseException("errrr");
         }
     }
 }

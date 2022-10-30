@@ -34,12 +34,18 @@ public class RenameCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Command to rename a displayitem
+     */
     public RenameCommand(Index selectedIndex, int renameType, String newName) {
         this.renameType = renameType;
         this.targetIndex = selectedIndex;
         this.newName = newName;
     }
 
+    /**
+     * Constructor called when the user is expected to pass in the displayItem
+     */
     public RenameCommand(String newName) {
         this.targetIndex = null;
         this.newName = newName;

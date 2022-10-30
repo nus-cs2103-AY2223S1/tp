@@ -10,16 +10,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 
 /**
- * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated,
- * immutable.
+ * Represents a Person in the address book. Guarantees: details are present and not null, field
+ * values are validated, immutable.
  */
 public class Person extends AbstractDisplayItem {
 
@@ -35,48 +33,8 @@ public class Person extends AbstractDisplayItem {
     }
 
     /**
-     * Every field must be present and not null.
-     */
-    public Person(String name, Fields fields) {
-        super(name, PERSON, GROUP);
-        requireAllNonNull(name, fields);
-        this.fields = fields;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    /**
-     * Retrieves the Fields instance of the Person.
-     *
-     * @return the Fields instance of the Person.
-     */
-    public Fields getFields() {
-        return fields;
-    }
-
-    /**
-     * Adds a Field to the Fields of the Person.
-     *
-     * @param fieldName the field name to be added.
-     */
-    public void addField(String fieldName) {
-        fields.addField(fieldName);
-    }
-
-    /**
-     * Removes a field from the Fields of the Person
-     *
-     * @param fieldName the field name to be removed.
-     */
-    public void removeField(String fieldName) {
-        fields.removeField(fieldName);
-    }
-
-    /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same name. This defines a weaker notion of equality between
+     * two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -84,7 +42,7 @@ public class Person extends AbstractDisplayItem {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     @Override

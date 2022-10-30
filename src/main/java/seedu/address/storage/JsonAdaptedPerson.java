@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Name;
-import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -23,17 +22,14 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
-    private final JsonAdaptedFields fields;
-
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("fields") JsonAdaptedFields fields, @JsonProperty("name") String name,
-            @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name,
+        @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+        @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
-        this.fields = fields;
     }
 
     /**
@@ -41,25 +37,24 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
      */
     public JsonAdaptedPerson(Person source) {
         super(source.getName().fullName, source.getUid().toString(),
-                source.getSavedAttributes().stream()
-                        .map(JsonAdaptedAbstractAttribute::new)
-                        .collect(Collectors.toList()),
-                source.getTags().stream()
-                        .map(JsonAdaptedTag::new)
-                        .collect(Collectors.toList()));
-        fields = new JsonAdaptedFields(source.getFields());
+            source.getSavedAttributes().stream()
+                .map(JsonAdaptedAbstractAttribute::new)
+                .collect(Collectors.toList()),
+            source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's
-     * {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in
-     *                               the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         final List<Attribute> modelAttributes = new ArrayList<>();
+
+        // Exception handling is not supported in Java streams.
         for (JsonAdaptedTag tag : getTags()) {
             personTags.add(tag.toModelType());
         }
@@ -76,11 +71,10 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
 
-        final Name modelName = new Name(name);
-        final Fields modelFields = fields.toModelType();
+        // dummy fields
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Person p = new Person(modelName.fullName, modelFields);
+        Person p = new Person(name);
         p.setTags(modelTags);
         modelAttributes.stream().forEach(attribute -> p.addAttribute(attribute));
         return p;

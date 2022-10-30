@@ -14,6 +14,9 @@ import seedu.address.logic.commands.teams.TeamCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parser for Team Command
+ */
 public class TeamCommandParser implements Parser<TeamCommand> {
 
     private static final String MESSAGE_USAGE = TeamCommand.COMMAND_WORD + " [new|delete|remove]";
@@ -23,9 +26,8 @@ public class TeamCommandParser implements Parser<TeamCommand> {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<subcommandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Parses user input into command for execution. The input must be a valid
-     * subcommand for Task. There should not be
-     * a TaskCommand prefix in the input.
+     * Parses user input into command for execution. The input must be a valid subcommand for Task.
+     * There should not be a TaskCommand prefix in the input.
      *
      * @param userInput full user input string
      * @return the command based on the user input
@@ -41,18 +43,18 @@ public class TeamCommandParser implements Parser<TeamCommand> {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-            case AddTeamCommand.SUBCOMMAND_WORD:
-                return new AddTeamCommandParser().parse(arguments);
-            case DeleteTeamCommand.SUBCOMMAND_WORD:
-                return new DeleteTeamCommandParser().parse(arguments);
-            case RemoveUserFromTeamCommand.SUBCOMMAND_WORD:
-                return new RemoveUserFromTeamCommandParser().parse(arguments);
-            case SelectTeamCommand.SUBCOMMAND_WORD:
-                return new SelectTeamCommandParser().parse(arguments);
-            case ForEachTeamCommand.SUBCOMMAND_WORD:
-                return new ForEachTeamCommandParser().parse(arguments);
-            default:
-                throw new ParseException(MESSAGE_USAGE);
+        case AddTeamCommand.SUBCOMMAND_WORD:
+            return new AddTeamCommandParser().parse(arguments);
+        case DeleteTeamCommand.SUBCOMMAND_WORD:
+            return new DeleteTeamCommandParser().parse(arguments);
+        case RemoveUserFromTeamCommand.SUBCOMMAND_WORD:
+            return new RemoveUserFromTeamCommandParser().parse(arguments);
+        case SelectTeamCommand.SUBCOMMAND_WORD:
+            return new SelectTeamCommandParser().parse(arguments);
+        case ForEachTeamCommand.SUBCOMMAND_WORD:
+            return new ForEachTeamCommandParser().parse(arguments);
+        default:
+            throw new ParseException(MESSAGE_USAGE);
         }
     }
 

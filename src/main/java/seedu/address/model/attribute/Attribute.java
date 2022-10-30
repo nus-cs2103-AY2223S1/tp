@@ -25,6 +25,14 @@ public interface Attribute<T> {
     T getAttributeContent();
 
     /**
+     * Checks whether a string has the same name as the attribute, regardless
+     * of the case.
+     *
+     * @return true if the string is equal to the attribute name, false otherwise
+     */
+    boolean isNameMatch(String name);
+
+    /**
      * Returns true if the attribute can be displayed in the menu screen.
      */
     boolean isVisibleInMenu();
@@ -55,7 +63,6 @@ public interface Attribute<T> {
      * Returns true of all of the bits of the style flag settings is true
      */
     boolean isAllStyleMatch(int flag);
-
 
     /**
      * Returns the UI representation of the attribute to be added into the Javafx

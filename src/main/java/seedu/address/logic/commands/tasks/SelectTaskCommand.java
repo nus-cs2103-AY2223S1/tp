@@ -22,12 +22,15 @@ public class SelectTaskCommand extends TaskCommand implements PureCommandInterfa
     public static final String SUBCOMMAND_WORD = "select";
 
     public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
-            + "selects a task and execute subsequent commands with that task as context\n"
-            + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "1 contains description";
+        + "selects a task and execute subsequent commands with that task as context\n"
+        + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "1 contains description";
 
     private final Index targetIndex;
     private final Command nextCmd;
 
+    /**
+     * Constructor to select a task
+     */
     public SelectTaskCommand(Index targetIndex, String nextCmd) throws ParseException {
         this.targetIndex = targetIndex;
         try {
