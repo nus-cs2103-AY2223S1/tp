@@ -61,21 +61,17 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
 **[To be updated]**
 
-### The User Interface
-
-**[To be updated]**
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `coydir.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
+2. Download the latest `coydir.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
+3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - **`list`** : Lists all employees in the company.
@@ -86,7 +82,47 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
    - **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
+
+### The User Interface
+Below is an image of Coydir User Interface with the main components labelled.
+
+![](images/ui-screenshots/Labelled GUI.png)
+
+#### Toolbar
+![](images/ui-screenshots/Toolbar.png)
+This Toolbar can be used to :
+1. Exit the application through the **File** button
+2. Access the Help guide through the **Help** button
+3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
+
+#### Employee List Panel
+![](images/ui-screenshots/Employee List Panel.png)
+This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
+
+This will come in handy if:
+1. You want a general overview of the employees in the company as 
+of this moment 
+2. You want to quickly find out their Employee ID to view more details.
+
+#### Employee Info Panel
+![](images/ui-screenshots/Employee Info Panel.png)
+This shows a specific employee's particulars.
+
+Things to note:
+
+1. On startup of the application, this panel shows Coydir logo.
+2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
+3. If you delete an employee that you are currently viewing, the next employee's details will be viewed.
+4. If there is no next employee, this panel will revert to the Coydir logo.
+
+
+#### Command Box
+![](images/ui-screenshots/Command.png)
+
+You can enter your user commands in the bottom section labeled as `Enter command here`.
+
+The top section displays relevant messages/errors after the command is entered.
 
 ---
 
