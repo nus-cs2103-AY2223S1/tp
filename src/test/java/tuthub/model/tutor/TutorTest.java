@@ -30,14 +30,14 @@ public class TutorTest {
         // null -> returns false
         assertFalse(ALICE.isSameTutor(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Tutor editedAlice = new TutorBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.isSameTutor(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new TutorBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertTrue(ALICE.isSameTutor(editedAlice));
+        assertFalse(ALICE.isSameTutor(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Tutor editedBob = new TutorBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
