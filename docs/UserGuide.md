@@ -99,6 +99,10 @@ This section will explain the parameters and the format of commands.
 ## 3.1 Add-Related Commands
 The Add-Related commands include `student`, `prof` and `ta`. These are the commands related to adding a new person to the application.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+You cannot add people with same names, e.g. "Michelle" cannot be a student and a prof at the same time.
+</div>
+
 ### 3.1.1 Adding a new Student Contact: `student`
 
 Adds a new Student contact to your contacts list.
