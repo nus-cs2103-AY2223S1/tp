@@ -35,7 +35,7 @@ After installing Swift+, you can refer to our [Getting Started](#getting-started
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
 If you are using Swift+ for the first time, we **highly recommend** that you read through the [Getting Started](#getting-started) 
-section first before the other sections.
+section before the other sections.
 </div>
 
 To view each command in detail, you can head over to the [Commands](#commands) section.
