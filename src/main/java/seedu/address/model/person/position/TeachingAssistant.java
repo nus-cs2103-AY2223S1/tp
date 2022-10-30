@@ -1,6 +1,7 @@
 package seedu.address.model.person.position;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Set;
 
@@ -39,12 +40,15 @@ public class TeachingAssistant extends Position {
      */
     public TeachingAssistant(String availability) {
         super("TA");
+        requireNonNull(availability);
+        checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS);
         this.availability = availability;
     }
 
     @Override
     public void setDetails(String availability) {
         requireNonNull(availability);
+        checkArgument(isValidAvailability(availability), MESSAGE_CONSTRAINTS);
         this.availability = availability;
     }
 
@@ -53,7 +57,7 @@ public class TeachingAssistant extends Position {
      * Returns true if a given string is a valid availability.
      */
     public static boolean isValidAvailability(String test) {
-
+        requireNonNull(test);
         for (Availability availability: Availability.values()) {
             if (availability.name().equalsIgnoreCase(test)) {
                 return true;
