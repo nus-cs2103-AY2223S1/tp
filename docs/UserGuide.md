@@ -11,7 +11,7 @@ Long Time No See (LTNS) is a  **desktop app for managing clients, policies and e
 
 # Table of Contents
 1. [Quickstart](#quick-start)
-2. [Features](#Features)<br>
+2. [Features](#features)<br>
     a. [Common Features](#common-features)<br>
     b. [Client Features](#client-features)<br>
     c. [Policy Features](#policy-features)<br>
@@ -92,7 +92,10 @@ Shows a message explaning how to access the help page.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all data from your application. 
+
+| :warning: | This action is not reversible! |
+|-----------|:-------------------------------|
 
 Format: `clear`
 
@@ -104,15 +107,22 @@ Format: `exit`
 
 ### Saving the data
 
-LTNS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+LTNS application data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-LTNS data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+LTNS application data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+Below is an example of what your JSON File should look like:
+[JSONExample](./images/JsonExample.png)
+
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
+
+
 
 ## Client Features
 
@@ -237,20 +247,32 @@ Format: `sort KEYWORD`
 
 * Sorts the list of clients based on specified keyword
 * Keyword must be from client details
-* (v1.2) current supported sort metrics include `name, phone number, address`
+
+
+
+Sorting **KEYWORDS** are shown in the table below: 
+
+| KEYWORD          | Function                                                                                                             |
+|:-----------------|:---------------------------------------------------------------------------------------------------------------------|
+| `default`        | Based on when a client was added, from oldest to newest                                                              |
+| `name`           | By alphabetical order ie. "a" to "z"                                                                                 |
+| `email`          | Clients using the same email platform are grouped together, thereafter, alphabetical order is used within each group |
+| `phone`          | By numerical order of the phone number                                                                               |
+| `birthday`       | From oldest to youngest   |                                                                                            
+| `income`         | From highest to lowest income |
+| `risk appetite`  | From highest to lowest ie. "H" to "M" to "L" |
+
 
 Examples:
 * `sort name` will display your address book in alphabetical order based on their name
 * `sort phone` will display your addresss book in numerical order based on their phone numbers
 
-Sorting **KEYWORDS** include: 
-* `default` (the default order is based on when a client is added, from oldest to newest)
-* `name` (by alphabetical order)
-* `email` (clients using the same email platforms are grouped together, thereafter, alphabetical order is used within each group)
-* `phone` (by numerical order of phone number)
-* `birthday` (from oldest to youngest)
-* `income` (from highest to lowest income)
-* `risk appetite` (from highest to lowest)
+
+Below is an example of what you will expect to see when you call `sort email`:
+
+:exclamation: Add picture here
+
+
 
 ### Pin a user by name: `pin`
 * Format: `pin [CLIENT_INDEX]`
