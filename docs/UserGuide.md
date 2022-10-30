@@ -447,6 +447,7 @@ Example:
 
 * Time is specified in the 24-hour clock format.
 * `HOUR` and `MINUTE` must be specified using two digits.
+* The time `2400` or `24:00` is the same as `0000` and `00:00`, i.e. it will be recognised as **the same day**.
 
 </div>
 
