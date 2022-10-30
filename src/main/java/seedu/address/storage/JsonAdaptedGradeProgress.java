@@ -17,8 +17,8 @@ class JsonAdaptedGradeProgress {
      * Constructs a {@code JsonAdaptedGradeProgress} with the given {@code gradeProgress}.
      */
     @JsonCreator
-    public JsonAdaptedGradeProgress(String tagName) {
-        this.gradeProgress = tagName;
+    public JsonAdaptedGradeProgress(String gradeProgress) {
+        this.gradeProgress = gradeProgress;
     }
 
     /**

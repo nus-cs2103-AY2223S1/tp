@@ -14,6 +14,9 @@ import seedu.address.model.person.LessonPlan;
  * Parses input arguments and creates a new LessonPlanCommand object
  */
 public class LessonPlanCommandParser implements Parser<LessonPlanCommand> {
+
+    public static final String MESSAGE_INVALID_EMPTY_FIELD = "LESSON PLAN cannot be empty.";
+
     /**
      * Parses the given {@code String} of arguments in the context of the LessonPlanCommand
      * and returns a LessonPlanCommand object for execution.
@@ -30,6 +33,10 @@ public class LessonPlanCommandParser implements Parser<LessonPlanCommand> {
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     LessonPlanCommand.MESSAGE_USAGE), ive);
+        }
+
+        if (argMultimap.getValue(PREFIX_LESSON_PLAN).isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_EMPTY_FIELD);
         }
 
         String lessonPlan = argMultimap.getValue(PREFIX_LESSON_PLAN).orElse("");

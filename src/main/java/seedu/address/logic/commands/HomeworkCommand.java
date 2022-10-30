@@ -32,7 +32,6 @@ public class HomeworkCommand extends Command {
             + PREFIX_HOMEWORK + "Science worksheet";
 
     public static final String MESSAGE_ADD_HOMEWORK_SUCCESS = "Added homework to Person: %1$s";
-    public static final String MESSAGE_DELETE_HOMEWORK_SUCCESS = "Removed homework from Person: %1$s";
 
     public static final String MESSAGE_IN_DAY_MODE = "You need to be in list or view mode to add a homework.";
 
@@ -79,17 +78,7 @@ public class HomeworkCommand extends Command {
             String[] newNameKeywords = {personToEdit.getName().fullName};
             model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
         }
-        return new CommandResult(generateSuccessMessage(editedPerson));
-    }
-
-    /**
-     * Generates a command execution success message based on whether
-     * the homework is added to or removed from
-     * {@code personToEdit}.
-     */
-    private String generateSuccessMessage(Person personToEdit) {
-        String message = !homework.value.isEmpty() ? MESSAGE_ADD_HOMEWORK_SUCCESS : MESSAGE_DELETE_HOMEWORK_SUCCESS;
-        return String.format(message, personToEdit);
+        return new CommandResult(String.format(MESSAGE_ADD_HOMEWORK_SUCCESS, personToEdit));
     }
 
     @Override

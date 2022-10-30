@@ -68,6 +68,7 @@ public class UnmarkCommand extends Command {
         Person personToUnmark = lastShownList.get(index.getZeroBased());
         Person unmarkedPerson = createUnmarkedPerson(personToUnmark, markPersonDescriptor);
 
+        unmarkedPerson.setFullView();
         model.setPerson(personToUnmark, unmarkedPerson);
         return new CommandResult(String.format(MESSAGE_UNMARKED_PERSON_SUCCESS, unmarkedPerson));
     }

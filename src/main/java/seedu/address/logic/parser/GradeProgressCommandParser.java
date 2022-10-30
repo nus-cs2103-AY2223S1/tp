@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_PROGRESS;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.GradeProgressCommand;
@@ -16,6 +18,8 @@ import seedu.address.model.person.GradeProgress;
  * Parses input arguments and creates a new GradeProgressCommand object
  */
 public class GradeProgressCommandParser implements Parser<GradeProgressCommand> {
+
+    public static final String MESSAGE_INVALID_EMPTY_FIELD = "GRADEPROGRESS cannot be empty.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the GradeProgressCommand
@@ -35,7 +39,13 @@ public class GradeProgressCommandParser implements Parser<GradeProgressCommand> 
                     GradeProgressCommand.MESSAGE_USAGE), ive);
         }
 
-        String gradeProgress = argMultimap.getValue(PREFIX_GRADE_PROGRESS).orElse("");
+        Optional<String> optGrade = argMultimap.getValue(PREFIX_GRADE_PROGRESS);
+        // if no prefix g/ or field after g/ is empty, throw error
+        if (optGrade.isEmpty() || optGrade.get().equals("")) {
+            throw new ParseException(MESSAGE_INVALID_EMPTY_FIELD);
+        }
+
+        String gradeProgress = optGrade.get();
 
         return new GradeProgressCommand(index, new GradeProgress(gradeProgress));
     }

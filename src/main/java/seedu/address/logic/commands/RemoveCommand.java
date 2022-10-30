@@ -80,6 +80,7 @@ public class RemoveCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createRemovedPerson(personToEdit, removePersonDescriptor);
 
+        editedPerson.setFullView();
         model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_REMOVED_PERSON_SUCCESS, editedPerson));
 

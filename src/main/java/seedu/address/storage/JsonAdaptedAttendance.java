@@ -15,8 +15,8 @@ class JsonAdaptedAttendance {
      * Constructs a {@code JsonAdaptedAttendance} with the given {@code attendanceDesc}.
      */
     @JsonCreator
-    public JsonAdaptedAttendance(String tagName) {
-        this.attendanceDesc = tagName;
+    public JsonAdaptedAttendance(String attendanceDesc) {
+        this.attendanceDesc = attendanceDesc;
     }
 
     /**
