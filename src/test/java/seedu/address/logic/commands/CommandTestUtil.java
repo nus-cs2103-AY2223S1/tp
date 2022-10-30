@@ -90,10 +90,10 @@ public class CommandTestUtil {
     // Reminder
     public static final String VALID_NAME_REMINDER1 = "Set HW 1";
     public static final String VALID_NAME_REMINDER2 = "Mark Finals";
-    public static final String VALID_DATE_REMINDER1 = "2000-03-22";
-    public static final String VALID_DATE_REMINDER2 = "2000-03-23";
-    public static final String VALID_TIME_REMINDER1 = "14:00";
-    public static final String VALID_TIME_REMINDER2 = "17:00";
+    public static final String VALID_DATE_REMINDER1 = "2000-07-12";
+    public static final String VALID_DATE_REMINDER2 = "2000-11-16";
+    public static final String VALID_TIME_REMINDER1 = "19:00";
+    public static final String VALID_TIME_REMINDER2 = "20:00";
     public static final String VALID_DEADLINE_REMINDER1 = VALID_DATE_REMINDER1 + " " + VALID_TIME_REMINDER1;
     public static final String VALID_DEADLINE_REMINDER2 = VALID_DATE_REMINDER2 + " " + VALID_TIME_REMINDER2;
     public static final String VALID_PRIORITY_REMINDER1 = "MEDIUM";

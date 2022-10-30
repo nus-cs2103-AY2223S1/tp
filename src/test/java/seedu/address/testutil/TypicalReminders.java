@@ -22,15 +22,15 @@ import seedu.address.model.reminder.Reminder;
 public class TypicalReminders {
 
     public static final Reminder REMINDER1 = new ReminderBuilder().withName("Mark question 4 of test 1")
-            .withDeadline("2000-03-22 14:00").withPriority("MEDIUM").withDescription("200 more to go").build();
+            .withDeadline("2000-01-22 14:00").withPriority("LOW").withDescription("200 more to go").build();
     public static final Reminder REMINDER2 = new ReminderBuilder().withName("Set paper for test 2")
-            .withDeadline("2000-03-22 15:00").withPriority("HIGH").withDescription("3 more questions to set").build();
+            .withDeadline("2000-02-22 15:00").withPriority("LOW").withDescription("3 more questions to set").build();
     public static final Reminder REMINDER3 = new ReminderBuilder().withName("Zoom makeup tut")
-            .withDeadline("2000-03-22 16:00").withPriority("HIGH").withDescription("Tutorial 4 makeup").build();
+            .withDeadline("2000-03-22 16:00").withPriority("LOW").withDescription("Tutorial 4 makeup").build();
     public static final Reminder REMINDER4 = new ReminderBuilder().withName("Upload HW1")
-            .withDeadline("2000-03-22 17:00").withPriority("LOW").withDescription("HW1 of CS2030").build();
+            .withDeadline("2000-04-22 17:00").withPriority("MEDIUM").withDescription("HW1 of CS2030").build();
     public static final Reminder REMINDER5 = new ReminderBuilder().withName("Upload zoom recording")
-            .withDeadline("2000-03-22 18:00").withPriority("LOW").withDescription("For lecture 4").build();
+            .withDeadline("2000-05-22 18:00").withPriority("HIGH").withDescription("For lecture 4").build();
 
     // Manually added
     public static final Reminder MEETING_9AM = new ReminderBuilder().withName("Meeting at 9am")

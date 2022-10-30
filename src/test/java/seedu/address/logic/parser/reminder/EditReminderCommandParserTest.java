@@ -2,18 +2,34 @@ package seedu.address.logic.parser.reminder;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_REMINDER2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_FORMAT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_REMINDER2;
+import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_REMINDER1;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_REMINDER2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_REMINDER2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_REMINDER1;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_REMINDER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_REMINDER;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_REMINDER;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reminder.EditReminderCommand;
+import seedu.address.logic.commands.reminder.EditReminderCommand.EditReminderDescriptor;
 import seedu.address.model.datetime.DatetimeCommonUtils;
+import seedu.address.testutil.EditReminderDescriptorBuilder;
 
 public class EditReminderCommandParserTest {
 
@@ -21,6 +37,62 @@ public class EditReminderCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditReminderCommand.MESSAGE_USAGE);
 
     private EditReminderCommandParser parser = new EditReminderCommandParser();
+
+    @Test
+    public void parse_allFieldsSpecified_success() {
+        Index targetIndex = INDEX_SECOND_REMINDER;
+        String userInput = targetIndex.getOneBased() + NAME_DESC_REMINDER1 + DATE_DESC_REMINDER1 + TIME_DESC_REMINDER1
+                + PRIORITY_DESC_REMINDER1 + DESCRIPTION_DESC_REMINDER1;
+
+        EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder().withName(VALID_NAME_REMINDER1)
+                .withDeadline(VALID_DEADLINE_REMINDER1).withPriority(VALID_PRIORITY_REMINDER1)
+                .withDescription(VALID_DESCRIPTION_REMINDER1).build();
+
+        EditReminderCommand expectedCommand = new EditReminderCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_someFieldsSpecified_success() {
+        Index targetIndex = INDEX_FIRST_REMINDER;
+        String userInput = targetIndex.getOneBased() + NAME_DESC_REMINDER2 + DESCRIPTION_DESC_REMINDER2;
+
+        EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder().withName(VALID_NAME_REMINDER2)
+                .withDescription(VALID_DESCRIPTION_REMINDER2).build();
+
+        EditReminderCommand expectedCommand = new EditReminderCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_oneFieldSpecified_success() {
+        // name
+        Index targetIndex = INDEX_THIRD_REMINDER;
+        String userInput = targetIndex.getOneBased() + NAME_DESC_REMINDER1;
+        EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder().withName(VALID_NAME_REMINDER1).build();
+        EditReminderCommand expectedCommand = new EditReminderCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // date and time
+        userInput = targetIndex.getOneBased() + DATE_DESC_REMINDER1 + TIME_DESC_REMINDER1;
+        descriptor = new EditReminderDescriptorBuilder().withDeadline(VALID_DEADLINE_REMINDER1).build();
+        expectedCommand = new EditReminderCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // priority
+        userInput = targetIndex.getOneBased() + PRIORITY_DESC_REMINDER1;
+        descriptor = new EditReminderDescriptorBuilder().withPriority(VALID_PRIORITY_REMINDER1).build();
+        expectedCommand = new EditReminderCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // description
+        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_REMINDER2;
+        descriptor = new EditReminderDescriptorBuilder().withDescription(VALID_DESCRIPTION_REMINDER2).build();
+        expectedCommand = new EditReminderCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 
     @Test
     public void parse_missingParts_failure() {
