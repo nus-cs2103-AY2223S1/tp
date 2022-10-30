@@ -31,6 +31,8 @@ If you are a new user, check out the [Quick Start](#quick-start) to get started 
 
 If you are a returning user, the [Command Summary](#command-summary) provides you with a quick overview of some of the commands NUScheduler offers.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
