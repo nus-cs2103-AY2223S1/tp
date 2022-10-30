@@ -6,10 +6,8 @@ import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.ModelManager;
-import seedu.clinkedin.model.person.Rating;
 
 public class SortCommandTest {
 
