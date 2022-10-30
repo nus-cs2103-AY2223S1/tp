@@ -11,8 +11,11 @@ import static seedu.application.logic.commands.CommandTestUtil.assertCommandFail
 import static seedu.application.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.application.logic.commands.CommandTestUtil.showApplicationAtIndex;
 import static seedu.application.testutil.TypicalApplications.getTypicalApplicationBook;
+import static seedu.application.testutil.TypicalApplications.getTypicalApplicationBookWithArchive;
+import static seedu.application.testutil.TypicalApplications.getTypicalApplicationBookWithUpcomingInterview;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.application.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
+import static seedu.application.testutil.TypicalIndexes.INDEX_THIRD_APPLICATION;
 
 import org.junit.jupiter.api.Test;
 
@@ -81,6 +84,49 @@ public class EditCommandTest {
         expectedModel.commitApplicationBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_applicationWithInterview_success() {
+        Model modelWithInterview = new ModelManager(getTypicalApplicationBookWithUpcomingInterview(), new UserPrefs());
+        Application application = modelWithInterview.getFilteredApplicationList()
+                .get(INDEX_THIRD_APPLICATION.getZeroBased());
+        assert application.hasInterview();
+
+        Application editedApplication = new ApplicationBuilder()
+                .withInterview(application.getInterview().get()).build();
+        EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder(editedApplication).build();
+        EditCommand editCommand = new EditCommand(INDEX_THIRD_APPLICATION, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
+
+        Model expectedModel = new ModelManager(
+                new ApplicationBook(modelWithInterview.getApplicationBook()), new UserPrefs());
+        expectedModel.setApplication(application, editedApplication);
+
+        assertCommandSuccess(editCommand, modelWithInterview, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_archivedApplication_success() {
+        Model modelWithArchive = new ModelManager(getTypicalApplicationBookWithArchive(), new UserPrefs());
+        new ListArchiveCommand().execute(modelWithArchive);
+        Application application = modelWithArchive
+                .getFilteredApplicationList().get(INDEX_FIRST_APPLICATION.getZeroBased());
+        assert application.isArchived();
+
+        Application editedApplication = new ApplicationBuilder().withArchiveStatus(true).build();
+        EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder(editedApplication).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_APPLICATION, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication);
+
+        Model expectedModel = new ModelManager(
+                new ApplicationBook(modelWithArchive.getApplicationBook()), new UserPrefs());
+        new ListArchiveCommand().execute(expectedModel);
+        expectedModel.setApplication(application, editedApplication);
+
+        assertCommandSuccess(editCommand, modelWithArchive, expectedMessage, expectedModel);
     }
 
     @Test
