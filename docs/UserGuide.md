@@ -8,12 +8,60 @@ title: User Guide
 
 </p>
 
-myStudents is **a desktop app for managing students of a tuition center, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, myStudents can get your student management tasks done faster than traditional GUI apps.
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+myStudent is **a desktop app for managing students of a tuition center, optimized for use via a Command Line Interface 
+(CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, myStudent can get 
+your student management tasks done faster than traditional GUI apps.
+
+---
+## About
+This user guide provides a detailed documentation of how to install and use myStudent. It provides explanations of how 
+to use and what it does for all the features available in myStudent. 
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Notes about the command format:
+
+* Prefixes are user inputs that consist of a character followed by a slash  
+  e.g. `n/` or `p/`
+
+
+* `< >` - represent parameters that are supplied by the user.  
+  e.g. `add n/<name>, where <name>` is just the name of the parameter and users can input `add n/John Doe`. <br>
+
+
+* `[ ]` - represent parameters that are optional.  
+        e.g `n/<name> [#/<tag>]`, users can input `add n/John Doe` or `n/John Doe #/male`.
+
+
+* Users can input parameters of prefixes in any order.  
+  e.g. `nok <index> n/<name> p/<phone>`, users can either input `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`.  
+  However, `nok n/John Doe p/91234567 2` where <index> is at the end of the input, is not a valid.
+
+
+* Extra input from the user for commands that do not take in parameters will be ignored.  
+  e.g. the clear command does not have any other parameters, thus the user input clear asdfghjkl is logically the same as if the user typed in clear.
+
+</div>
+
+Below is a quick guide on how to get started.
+
+---
+
+## Quick Start
+1. Ensure you have Java 11 or above installed in your Computer.
+2. Download the latest `myStudent.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/releases).
+3. Copy the file to the folder you want to use as the home folder for the application.
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+
+<img src="images/StartingUI.png"/>
+
+---
+
 ## Layout
 
 <p align="center">
@@ -24,7 +72,7 @@ myStudents is **a desktop app for managing students of a tuition center, optimiz
 
 ### 1.Command Box
 
-This is where you key in commands. After typing the commands, simply press `return` on your keyboard to execute them. 
+This is where you key in commands. After typing the commands, simply press <kbd>enter</kbd> on your keyboard to execute them. 
 
 ### 2.Feedback Box
 
@@ -70,6 +118,8 @@ The ` File`  menu contains `Export` and Exit`.
 #### Theme
  `Theme` allows you to change the color scheme of the software. There are four themes provided: `Light Theme`, `Dark Theme`,  `Green Theme` and `Pink Theme`.
 
+---
+
 ## Features
 
 ### Viewing help: `help`
@@ -84,7 +134,9 @@ Examples:
 * `help add`
 * `help edit`
 
-To view all the` [commands]`, key in `help` and press `return`.
+To view all the` [commands]`, key in `help` and press <kbd>enter</kbd>.
+
+
 
 ### Exiting the software: `exit`
 
@@ -196,13 +248,14 @@ Examples:
 
 Assign an existing tuition class to a specified student/tutor.
 
-Format: `assign INDEX n/[class name]`
+Format: `assign INDEX n/<class name>`
 
 * `assign` command only works when the displayed list is a student or tutor list.
 * The index refers to the index number shown in the displayed list.
 * The index must be a positive integer 1, 2, 3, …
 * Class name must be the name of a tuition class that already exists in the tuition class list.
 * The tuition class to be assigned to the specified student/tutor must not have been assigned beforehand.
+* The class name is case-sensitive.
 
 Examples:
 * `assign 1 n/P3 maths`
@@ -211,7 +264,7 @@ Examples:
 
 Unassign an existing tuition class from a specified student/tutor.
 
-Format: `unassign INDEX n/[class name]`
+Format: `unassign INDEX n/<class name>`
 
 * `unassign` command only works when the displayed list is a student or tutor list.
 * The index refers to the index number shown in the displayed list.
@@ -219,6 +272,7 @@ Format: `unassign INDEX n/[class name]`
 * Class name must be the name of a tuition class that already exists in the tuition class list.
 * The tuition class to be unassigned from the specified student/tutor must have been assigned to the 
 student/tutor beforehand.
+* The class name is case-sensitive.
 
 Examples:
 * `unassign 1 n/P3 maths`
@@ -259,27 +313,32 @@ Format: Click on the "*File*" tab at the top left hand corner of `myStudents` an
 
 * The csv files will be saved in the same location as the json files specified in `preference.json`.
 
+---
+
 ### FAQs
 **Q:** Does myStudent need an Internet connection?
 
 **A:** No, myStudent is an offline software that does not need Internet connection to use.
 
 **Q:** Can I move myStudent from one computer to another without loss of data?
+
 **A:** Yes, by copying the home folder containing myStudent.jar to another computer, you could resume your work on another computer without loss of data.
+
+---
 
 ### Troubleshooting
 
 Warnings issued when Mac users are trying to open the software by double-clicking the icon.
-“myStudents.jar” cannot be opened because it is from an unidentified developer.
+“myStudent.jar” cannot be opened because it is from an unidentified developer.
 Instead of double-clicking the software icon, you may want to right-click the icon and choose `Open`, then click `Open` in the pop-up window. Note that you only need to do this for the first time. For future usage, simply double-click the icon to launch the software.
 
 Still unable to launch the software?
 Make sure that you have installed `Java 11` or above by doing the following checking:
 
 For Mac Users:
-Open your terminal and type `java -version` and press `enter`. Information returned should show the current version of Java installed on your computer.
+Open your terminal and type `java -version` and press <kbd>enter</kbd>. Information returned should show the current version of Java installed on your computer.
 
 For Windows Users:
-Open the command prompt and type `java -version` and press `enter`. Information returned should show the current version of Java installed on your computer.
+Open the command prompt and type `java -version` and press <kbd>enter</kbd>. Information returned should show the current version of Java installed on your computer.
 
 If you do not have `Java 11` or above installed, please install from [here](https://www.oracle.com/sg/java/technologies/downloads/).
