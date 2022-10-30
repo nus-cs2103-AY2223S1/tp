@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-Gim is a **desktop app for managing and tracking gym exercises, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Gim commands are inspired by those of Vim. If you are an avid Vim user and can type fast, Gim can help you keep track of your workouts and personal records for each exercise. Gim can also help you to craft a workout based on your personal records.
-
 * Table of Contents
 {:toc}
 
@@ -12,7 +10,26 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Getting Started
+## 1. Introduction
+
+### 1.1. What is Gim?
+
+Gim is a desktop app for **managing and tracking gym exercises**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are an avid Vim user and can type fast, then look no further because Gim commands are inspired by those of Vim. Not only can Gim help you **keep track of your workouts and personal records**, Gim can also help you to **craft a workout** based on your personal records!
+
+### 1.2. Who is this guide for?
+Are you a gym-goer looking to use Gim to track your exercises? This user guide will get you started in no time and help you navigate through Gim's features. For a quick start guide, head over to [Getting Started](#3-getting-started).
+
+## 2. How to use this guide?
+Gim uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through the user guide from start to end to fully understand how to use Gim. However, you may also choose to skip to the relevant sections described below:
+* Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide.
+* Refer to our [Getting Started](#3-getting-started) guide to learn how to setup Gim.
+* Refer to our [GUI Orientation](#4-gui-orientation) to better orientate yourself around the GUI.
+* Refer to our [Commands](#5-commands) section to learn in detail the different features and commands available in Gim.
+* Refer to our [Command Summary](#6-command-summary) to have a quick overview of the different commands and their respective formats.
+* Refer to our [FAQ](#7-faq) to read common queries that new users may have.
+* Refer to our [Glossary of Terminologies](#8-glossary-of-terminologies) to learn key terms that are used in this User Guide.
+
+## 3. Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -32,33 +49,29 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 <div style="page-break-after: always;"></div>
 
-## GUI Orientation
+## 4. GUI Orientation
 
 ![GUI](images/GUIOrientation.png)
 
-### Command Box
+### 4.1. Command Box
 
 The `Command Box` is where users can input their commands.
 
-### Exercise List
+### 4.2. Exercise List
 
 The `Exercise List Window` displays the latest input exercise (by the user) at the top of the list by default. All exercises
 added will be displayed in the list. The list may change or reorder depending on the command issued by the user.
 
-### Result Display 
+### 4.3. Result Display 
 
 The `Result Display Window` displays feedback after executing a command. It gives feedback to the user on the command executed.
 
 <div style="page-break-after: always;"></div>
 
-### Recognised Exercise Name List
+### 4.4. Recognised Exercise Name List
 
-The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered 
-in the system. 
-<br><br>This list updates in real time and allows you to quickly keep track of the exercises you have input in the 
-past. Hence, even if the exercise list is populated, the `Recognised Exercise Name List Window` helps you keep track of
-what you named your exercises. It also helps you to identify any wrong spellings in the name 
-of the exercises you have input.
+The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered in the system. 
+<br><br>This list updates in real time and allows you to quickly keep track of the exercises you have input in the past. Hence, even if the exercise list is populated, the `Recognised Exercise Name List Window` helps you keep track of what you named your exercises. It also helps you to identify any wrong spellings in the name of the exercises you have input.
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
@@ -66,23 +79,21 @@ of the exercises you have input.
 * The `System Exercise Entries Count` provides the total number of exercise entries in the system. 
 <br>
 
-#### Adding and Deleting from the Exercise Name List
+**Adding and Deleting from the Exercise Name List**
 
-The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised 
-Exercise Name List is automatically updated whenever an entry is added to or deleted from the system.
+The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised Exercise Name List is automatically updated whenever an entry is added to or deleted from the system.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br> 
 I.E. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
-However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form 
-you have input. Choose wisely!
+However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form you have input. Choose wisely!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-## Commands
+## 5. Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -110,7 +121,7 @@ you have input. Choose wisely!
 
 <div style="page-break-after: always;"></div>
 
-### Adding an exercise: `:add`
+### 5.1. Adding an exercise: `:add`
 
 Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise. 
 
@@ -135,7 +146,7 @@ Parameter constraints:
     * YEAR MONTH DAY
   * DAY: 1 or 2 valid digits allowed 
   * MONTH: 1 or 2 valid digits allowed 
-  * YEAR: 2 or 4 valid digits allowed
+  * YEAR: 4 valid digits allowed
   * Examples: 27/10/2022, 27-10-2022, 27/10/22... 
   * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
@@ -147,7 +158,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-### Deleting an exercise : `:del`
+### 5.2. Deleting an exercise : `:del`
 
 Deletes a particular exercise from our list. The index refers to the index number shown in the displayed exercise list. If the deleted exercise was the last exercise with the same name, then the exercise is automatically un-registered from the list of unique exercises.
 
@@ -162,7 +173,7 @@ Example:
 ![DeleteCommand](images/DeleteCommand.png)
 
 
-### Listing all exercises : `:list`
+### 5.3. Listing all exercises : `:list`
 
 Shows a list of all exercises.
 
@@ -173,7 +184,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Filtering exercises by their name(s) : `:filter`
+### 5.4. Filtering exercises by their name(s) : `:filter`
 
 Filters exercises in the displayed list with names containing any of the given keywords.
 
@@ -192,7 +203,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Clearing all exercises : `:clear`
+### 5.5. Clearing all exercises : `:clear`
 
 Clears the saved exercises and resets the data in the system.
 
@@ -205,7 +216,7 @@ Extraneous parameters (before and after the `confirm/` flag) will be ignored. <b
 Example:
 * `:clear confirm/` Confirms the clearing of all saved exercises, resetting the data in the system.
 
-### Sorting exercises : `:sort`
+### 5.6. Sorting exercises : `:sort`
 
 Sorts the list of exercises displayed in the Exercise List Window according to their date of completion, with the latest exercise completed displayed at the top of the list.
 
@@ -218,7 +229,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Viewing all exercises within a time period : `:range`
+### 5.7. Viewing all exercises within a time period : `:range`
 
 Shows a list of all exercises sorted within a date range; the entry with the most recent date will be displayed at the top of the list.
 
@@ -238,7 +249,8 @@ Example:
 Format (2) : `:range last/NUMBER_OF_DAYS`
 
 Parameter constraints:
-* Number of days **can only take positive integer values**, up to 6 digits
+* Number of days **can only take non-negative integer values**, up to 5 digits
+* Start date should be before end date
 
 Example:
 `:range last/3` Shows the exercises done today and the last 3 days.
@@ -247,7 +259,7 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-### Listing Personal Records (PR): `:pr`
+### 5.8. Listing Personal Records (PR): `:pr`
 
 Finds the Personal Record of certain exercises in the exercise tracker.
 
@@ -282,7 +294,7 @@ Example:
 
 ![PrCommandExample2](images/PrCommandExample2.png)
 
-### Generating a sample workout based on Personal Records: `:gen`
+### 5.9. Generating a sample workout based on Personal Records: `:gen`
 
 Generates a sample workout suggestion based on existing personal records of the exercises, according to the difficulty level specified. Exercises are indicated either by their index numbers shown in the displayed exercise list or their exercise names.
 
@@ -332,7 +344,7 @@ Note that only one sample workout is generated for each unique exercise name. Fo
 
 <div style="page-break-after: always;"></div>
 
-### Viewing help : `:help`
+### 5.10. Viewing help : `:help`
 
 Access the help menu, containing a brief summary of the commands supported. The help menu also provides a link to the user guide.
 
@@ -341,7 +353,7 @@ Format: `:help`
 ![HelpCommand](images/HelpCommand.png)
 
 
-### Exiting the program : `:wq`
+### 5.11. Exiting the program : `:wq`
 
 Exits the program.
 
@@ -351,7 +363,7 @@ Format: `:wq`
 
 <div style="page-break-after: always;"></div>
 
-## FAQ
+## 6. FAQ
 
 **Q**: When should I use the `:list` command? 
 <br>
@@ -380,7 +392,7 @@ Format: `:wq`
 
 <div style="page-break-after: always;"></div>
 
-## Summary of Commands
+## 7. Command Summary
 
 | Action                          | Format                                         | Examples                                |
 |---------------------------------|------------------------------------------------|-----------------------------------------|
@@ -403,12 +415,10 @@ Format: `:wq`
 
 <div style="page-break-after: always;"></div>
 
-## Glossary of Terminologies
+## 8. Glossary of Terminologies
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
-* **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving
-some weights.
+* **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
 * **Reps** : Number of times you perform a specific exercise.
 * **Sets** : Number of cycles of reps that you complete.
 * **Weight**: Total weight (include barbell if applicable, exclude body weight).
 * **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
-
