@@ -21,7 +21,7 @@ Rapportbook is a **desktop app for managing client information for your financia
 If this is the first time you are using this user guide, it is highly recommended for you to read the section on [Rapportbook 101](#rapportbook-101-everything-you-need-to-know). Otherwise,
 
 * If you are just setting up, please take a look at our [quick start guide](#quick-start).
-* If you are unsure of how to use Rapportbook, the [command summary](#command-summary) table is a good starting point.
+* If you are unsure of how to use Rapportbook, the [command summary](#command-summary) table is a good starting point, additionally, there is a [command aliases](#command-aliases) table for abbreviated commands.
 * If you are a developer and want to help out, please take a look at the [developer guide](DeveloperGuide.html).
 
 Table of Contents
@@ -42,16 +42,16 @@ Rapportbook is designed specifically to improve your workflow, and helps you man
 ### Glossary
 In the user guide, you might come across some terms you might not understand. The following table hopes to provide clarification of the terms commonly used in Rapportbook.
 
-| Term                 | Description                                                                                                                                                                          |
-|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Client / contact** | A client or a contact is an information entry Rapportbook. You can add a client with the `add` command.                                                                              |
-| **Command**          | A command is a specific instruction you can give to Rapportbook to perform an action.                                                                                                |
-| **Command box**      | The command box is the text box on the bottom left of Rapportbook for you to enter your commands in.                                                                                 |
-| **Panel**            | Rapportbook is split into a left and right panel. The left panel contains information about clients, and the right panel contains auxiliary information based on the command issued  |
-| **Filter**           | A filter is a search condition you are looking for.                                                                                                                                  |
-| **Tag**              | A tag is a label that can be assigned to clients.                                                                                                                                    |
-| **Integer**          | An integer is a round, whole number. For example, `1` and `9` are integers but `1.5` and `hello` are not.                                                                            |
-| **Open-source**      | This means that the source code is made freely available online. If you are interested in contributing to Rapportbook, you can take a look at our [code repository](https://github.com/AY2223S1-CS2103T-T13-2/tp) and [developer guide](DeveloperGuide.html).  |
+| Term                 | Description                                                                                                                                                                                                                                                   |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Client / contact** | A client or a contact is an information entry Rapportbook. You can add a client with the `add` command.                                                                                                                                                       |
+| **Command**          | A command is a specific instruction you can give to Rapportbook to perform an action.                                                                                                                                                                         |
+| **Command box**      | The command box is the text box on the bottom left of Rapportbook for you to enter your commands in.                                                                                                                                                          |
+| **Panel**            | Rapportbook is split into a left and right panel. The left panel contains information about clients, and the right panel contains auxiliary information based on the command issued                                                                           |
+| **Filter**           | A filter is a search condition you are looking for.                                                                                                                                                                                                           |
+| **Tag**              | A tag is a label that can be assigned to clients.                                                                                                                                                                                                             |
+| **Integer**          | An integer is a round, whole number. For example, `1` and `9` are integers but `1.5` and `hello` are not.                                                                                                                                                     |
+| **Open-source**      | This means that the source code is made freely available online. If you are interested in contributing to Rapportbook, you can take a look at our [code repository](https://github.com/AY2223S1-CS2103T-T13-2/tp) and [developer guide](DeveloperGuide.html). |
 
 ## Quick start
 
@@ -197,6 +197,12 @@ Example:
 * `tag 5 potential` Assigns the `potential` tag to the client entry at index 5.
 * `tag 5 potential highPriority` Assigns the `potential` and `highPriority` tags to the client entry at index 5.
 
+### Listing tags : `tag list`
+
+View all available tags.
+
+Format: `tag list`
+
 ### Removing tags from clients : `tag remove`
 
 Removes a tag from a client entry if required.
@@ -304,14 +310,19 @@ Clears all reminders from the displayed reminder list.
 
 Format: `reminder clear`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Clear reminders only for a specific client by using `show INDEX` then `reminder clear`.
+</div>
+
 ### Creating a message template : `message create`
 
 Creates a message template, which can then be used to generate personalized messages for clients.
 
 Format: `message create MESSAGE`
 
-:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 All instances of `{name}` will be replaced with the client's name.
+</div>
 
 Examples:
 
@@ -349,7 +360,7 @@ Example:
 
 ### Return home : `home`
 
-Resets the view back to the homepage.
+Resets the view back to the homepage, where quote of the day and all reminders will be shown.
 
 Format: `home`
 
@@ -380,7 +391,7 @@ _Details coming soon ..._ -->
 Frequently used commands have aliases that are short so that you can perform actions quickly.
 
 | Action                                                               | Command            | Alias |
-|----------------------------------------------------------------------| ------------------ | ----- |
+|----------------------------------------------------------------------|--------------------|-------|
 | **[Home](#return-home--home)**                                       | `home`             | h     |
 | **[Show](#viewing-the-information-of-a-client--show)**               | `show`             | s     |
 | **[Add](#adding-a-client--add)**                                     | `add`              | a     |
@@ -388,6 +399,7 @@ Frequently used commands have aliases that are short so that you can perform act
 | **[Edit](#editing-of-client-information--edit)**                     | `edit`             | e     |
 | **[Tag](#tagging-clients--tag)**                                     | `tag`              | t     |
 | **[Tag creation](#creating-a-tag--tag-create)**                      | `tag create`       | t c   |
+| **[Tag list](#listing-tags--tag-list)**                              | `tag list`         | t l   |
 | **[Untag](#removing-tags-from-clients--tag-remove)**                 | `tag remove`       | t r   |
 | **[Tag deletion](#deleting-a-tag--tag-delete)**                      | `tag delete `      | t d   |
 | **[Filter](#filtering-client-entries--filter)**                      | `filter`           | f     |
@@ -412,26 +424,27 @@ Frequently used commands have aliases that are short so that you can perform act
 
 ## Command summary
 
-| Action                                                               | Format                                                                                                                            |
-|----------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------- |
-| **[Home](#return-home--home)**                                       | `home`                                                                                                                            |
-| **[Show](#viewing-the-information-of-a-client--show)**               | `show INDEX`                                                                                                                      |
-| **[Add](#adding-a-client--add)**                                     | `add n=NAME p=PHONE e=EMAIL a=ADDRESS [r=REMARKS] [t=TAGS]`                                                                       |
-| **[Delete](#deleting-of-a-client--delete)**                          | `delete INDEX`                                                                                                                    |
-| **[Edit](#editing-of-client-information--edit)**                     | `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS]`                                                               |
-| **[Tag](#tagging-clients--tag)**                                     | `tag [INDEX] TAG`                                                                                                                 |
-| **[Tag creation](#creating-a-tag--tag-create)**                      | `tag create TAG1 [TAG2] … [TAGN]`                                                                                                 |
-| **[Untag](#removing-tags-from-clients--tag-remove)**                 | `tag remove [INDEX] TAG1 [TAG2] … [TAGN]`                                                                                         |
-| **[Tag deletion](#deleting-a-tag--tag-delete)**                      | `tag delete TAG1 [TAG2] … [TAGN]`                                                                                                 |
-| **[Filter](#filtering-client-entries--filter)**                      | `filter n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]`       |
-| **[Filter clear](#clearing-filters--filter-clear)**                  | `filter clear n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]` |
-| **[Filter list](#lists-the-filter-parameters--filter-list)**         | `filter list`                                                                                                                     |
-| **[Reminder creation](#creating-reminders--reminder)**               | `reminder [INDEX] d=DESCRIPTION dt=YY-M-D H:m`                                                                                    |
-| **[Reminder deletion](#deleting-reminders--reminder-delete)**        | `reminder delete INDEX`                     <br/>                                                                                 |
-| **[Reminder clear](#clearing-reminders--reminder-clear)**            | `reminder clear`                                                                                                                  |
-| **[Message creation](#creating-a-message-template--message-create)** | `message create MESSAGE`                                                                                                          |
-| **[Message list](#listing-message-templates--message-list)**         | `message list`                                                                                                                    |
-| **[Message generation](#generating-messages--message-generate)**     | `message generate PERSON_INDEX MESSAGE_INDEX`                                                                                     |
-| **[Message deletion](#deleting-message-templates--message-delete)**  | `message delete INDEX`                                                                                                            |
-| **[Help](#viewing-help--help)**                                      | `help`                                                                                                                            |
-| **[Exit](#exiting-the-program--exit)**                               | `exit`                                                                                                                            |
+| Action                                                               | Format                                                                                                                      |
+|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| **[Home](#return-home--home)**                                       | `home`                                                                                                                      |
+| **[Show](#viewing-the-information-of-a-client--show)**               | `show INDEX`                                                                                                                |
+| **[Add](#adding-a-client--add)**                                     | `add n=NAME p=PHONE e=EMAIL a=ADDRESS [r=REMARKS] [t=TAGS]`                                                                 |
+| **[Delete](#deleting-of-a-client--delete)**                          | `delete INDEX`                                                                                                              |
+| **[Edit](#editing-of-client-information--edit)**                     | `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS]`                                                         |
+| **[Tag](#tagging-clients--tag)**                                     | `tag [INDEX] TAG`                                                                                                           |
+| **[Tag creation](#creating-a-tag--tag-create)**                      | `tag create TAG1 [TAG2] … [TAGN]`                                                                                           |
+| **[Tag list](#listing-tags--tag-list)**                              | `tag list`                                                                                                                  |
+| **[Untag](#removing-tags-from-clients--tag-remove)**                 | `tag remove [INDEX] TAG1 [TAG2] … [TAGN]`                                                                                   |
+| **[Tag deletion](#deleting-a-tag--tag-delete)**                      | `tag delete TAG1 [TAG2] … [TAGN]`                                                                                           |
+| **[Filter](#filtering-client-entries--filter)**                      | `filter n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]` |
+| **[Filter clear](#clearing-filters--filter-clear)**                  | `filter clear [n=NAME1,[NAME2],…,[NAMEN]] [t=TAG1,[TAG2],…,[TAGN]]`                                                         |
+| **[Filter list](#lists-the-filter-parameters--filter-list)**         | `filter list`                                                                                                               |
+| **[Reminder creation](#creating-reminders--reminder)**               | `reminder [INDEX] d=DESCRIPTION dt=YY-M-D H:m`                                                                              |
+| **[Reminder deletion](#deleting-reminders--reminder-delete)**        | `reminder delete INDEX`                     <br/>                                                                           |
+| **[Reminder clear](#clearing-reminders--reminder-clear)**            | `reminder clear`                                                                                                            |
+| **[Message creation](#creating-a-message-template--message-create)** | `message create MESSAGE`                                                                                                    |
+| **[Message list](#listing-message-templates--message-list)**         | `message list`                                                                                                              |
+| **[Message generation](#generating-messages--message-generate)**     | `message generate PERSON_INDEX MESSAGE_INDEX`                                                                               |
+| **[Message deletion](#deleting-message-templates--message-delete)**  | `message delete INDEX`                                                                                                      |
+| **[Help](#viewing-help--help)**                                      | `help`                                                                                                                      |
+| **[Exit](#exiting-the-program--exit)**                               | `exit`                                                                                                                      |
