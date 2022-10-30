@@ -5,10 +5,9 @@ title: User Guide
 
 * Table of Contents
 {:toc}
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
-
---------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
 
@@ -19,15 +18,22 @@ Gim is a desktop app for **managing and tracking gym exercises**, optimised for 
 ### 1.2. Who is this guide for?
 Are you a gym-goer looking to use Gim to track your exercises? This user guide will get you started in no time and help you navigate through Gim's features. For a quick start guide, head over to [Getting Started](#3-getting-started).
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## 2. How to use this guide?
 Gim uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through the user guide from start to end to fully understand how to use Gim. However, you may also choose to skip to the relevant sections described below:
 * Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide.
 * Refer to our [Getting Started](#3-getting-started) guide to learn how to setup Gim.
 * Refer to our [GUI Orientation](#4-gui-orientation) to better orientate yourself around the GUI.
 * Refer to our [Commands](#5-commands) section to learn in detail the different features and commands available in Gim.
-* Refer to our [Command Summary](#6-command-summary) to have a quick overview of the different commands and their respective formats.
+* Refer to our [Tips and Tricks](#6-tips-and-tricks) for some tips and tricks specific to Gim.
 * Refer to our [FAQ](#7-faq) to read common queries that new users may have.
-* Refer to our [Glossary of Terminologies](#8-glossary-of-terminologies) to learn key terms that are used in this User Guide.
+* Refer to our [Command Summary](#8-command-summary) to have a quick overview of the different commands and their respective formats.
+* Refer to our [Glossary of Terminologies](#9-glossary-of-terminologies) to learn key terms that are used in this User Guide.
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Getting Started
 
@@ -46,7 +52,6 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 6. Refer to the [Commands Section](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## 4. GUI Orientation
@@ -64,8 +69,6 @@ The `Exercise List Window` displays the latest exercise you entered at the botto
 ### 4.3. Result Display 
 
 The `Result Display Window` displays feedback after executing a command. This includes feedback for both feedback for correctly and incorrectly entered commands.
-
-<div style="page-break-after: always;"></div>
 
 ### 4.4. Recognised Exercise Name List
 
@@ -365,11 +368,29 @@ Exits the program.
 
 Format: `:wq`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Gim data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.**<br>
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 6. Tips and Tricks
+
+Tip 1: Gim's `range` and `find` commands operate on the current exercise list, hence you can use the commands successively to narrow the lists down to what you want to find. For example, you can keep track of your exercise progression over a period of time through the use of `:find NAME` followed by a `range start/ end/`.
+
+Tip 2: Advanced users are welcome to update data directly by editing the data file in `[JAR file location]/data/exercisetracker.json`.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, Gim will discard all data and start with an empty data file at the next run.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-## 6. FAQ
+## 7. FAQ
 
 **Q**: When should I use the `:list` command? 
 <br>
@@ -398,7 +419,7 @@ Format: `:wq`
 
 <div style="page-break-after: always;"></div>
 
-## 7. Command Summary
+## 8. Command Summary
 
 | Action                          | Format                                         | Examples                                |
 |---------------------------------|------------------------------------------------|-----------------------------------------|
@@ -421,7 +442,7 @@ Format: `:wq`
 
 <div style="page-break-after: always;"></div>
 
-## 8. Glossary of Terminologies
+## 9. Glossary of Terminologies
 * **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
 * **Parameters**: Inputs for commands that you come up with.
 * **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
