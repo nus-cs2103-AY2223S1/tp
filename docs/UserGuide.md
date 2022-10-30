@@ -492,7 +492,7 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 
 ## Command summary
 
-General Commands
+### General Commands
 
 | Action                      | Format, Examples                                                                                                                                                                                              |
 |-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -501,7 +501,7 @@ General Commands
 | **Exit application**        | `exit`                                                                                                                                                                                                        |
 
 
-Commands For Clients
+### Commands For Clients
 
 | Action                             | Format, Examples                                                                                                                                                                                             |
 |------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -515,11 +515,11 @@ Commands For Clients
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
 
 
-Commands For Policy
+### Commands For Policy
 
 | Action                     | Format, Examples                                                                                                                                                |
 |----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                    |        
+| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE] [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                      |        
 | **Add Policy**             | `addPolicy [ti/POLICY_TITLE] [cmp/POLICY_COMPANY] [cms/POLICY_COMMISSION] [cov/POLICY_COVERAGE]` <br> e.g.: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
 | **Delete Policy**          | `deletePolicy [INDEX of POLICY]<br> e.g. `deletePolicy 1`                                                                                                       |                                                                                                                                                                                             
 | **View policies**          | `policies`                                                                                                                                                      |
@@ -529,7 +529,7 @@ Commands For Policy
 | **View Income**            | `viewIncome [YEAR]`                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           |
 
 
-Commands For Events
+### Commands For Events
 
 | Action            | Format, Examples                                                                                                                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -537,11 +537,10 @@ Commands For Events
 | **Add Event**     | `addEvent [desc/DESCRIPTION] [n/NAME] [date/DATE] [st/START_TIME] [et/END_TIME]` <br> e.g.: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00`                              |
 | **Delete Event**  | `deleteEvent [INDEX]` <br> e.g.: `deleteEvent 1`                                                                                                                                                              |
 | **View events**   | `events`                                                                                                                                                                                                      |
-| **View calendar** | `calendar`                                                                                                                                                                                                    |
-|                   |                                                                                                                                                                                                               |
+| **View calendar** | `calendar`                                                                                                                                                                                                    |                                                                                                                                                                                                     |
 
 
-Miscellaneous Commands
+### Miscellaneous Commands
 
 | Action          | Format, Examples                                                                                                                                                                                              |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
