@@ -50,10 +50,10 @@ public class Income {
      * @ shorturl.at/oPQRV
      */
     public enum IncomeBracket {
-        First("First"), Second("Second"), Third("Third"),
-        Fourth("Fourth"), Fifth("Fifth"), Sixth("Sixth"),
-        Seventh("Seventh"), Eight("Eighth"), Ninth("Ninth"),
-        Tenth("Tenth");
+        First("first"), Second("second"), Third("third"),
+        Fourth("fourth"), Fifth("fifth"), Sixth("sixth"),
+        Seventh("seventh"), Eight("eighth"), Ninth("ninth"),
+        Tenth("tenth");
 
         private String message;
 
