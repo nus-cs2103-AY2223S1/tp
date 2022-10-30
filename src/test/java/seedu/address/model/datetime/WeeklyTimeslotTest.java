@@ -22,7 +22,10 @@ public class WeeklyTimeslotTest {
 
         //same day, non-overlapping timeslots -> return false
         assertFalse(weeklyTimeslot.isOverlapping(
-                WeeklyTimeslot.fromFormattedString("1", "18:00", "20:00")));
+                WeeklyTimeslot.fromFormattedString("1", "10:00", "15:00")));
+
+        assertFalse(weeklyTimeslot.isOverlapping(
+                WeeklyTimeslot.fromFormattedString("1", "17:00", "20:00")));
 
         //same day, overlapping timeslots -> return true
         assertTrue(weeklyTimeslot.isOverlapping(

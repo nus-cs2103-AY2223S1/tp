@@ -65,7 +65,7 @@ public class WeeklyTimeslot {
             return false;
         }
 
-        return !(startTime.isAfter(other.endTime) || endTime.isBefore(other.startTime));
+        return startTime.isBefore(other.endTime) && other.startTime.isBefore(endTime);
     }
 
     /**
