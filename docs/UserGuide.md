@@ -92,6 +92,8 @@ Displays list of commands and information about NotionUS.
 
 Format: `help`
 
+![Screenshot of Help Window](images/user-guide/HelpDemo.png)
+
 ### Adding a task: `add`
 
 Adds a task to the task list. However, if you try to add in a task with the same name and module as an existing task,
@@ -105,6 +107,8 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
 
 Examples:
 * `add -n Tutorial 12 -m CS2103T -d 2022-10-28 -t tutorial`
+
+![Demonstration of Add Command](images/user-guide/AddCommnandDemo.png)
 
 ### Marking a task as completed: `mark`
 
