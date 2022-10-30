@@ -152,18 +152,23 @@ using the list/find feature to be `91234567` and `johndoe@example.com` respectiv
 
 Finds all students matching the specified criteria and the specified keywords.
 
-Format: `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`
+Format: `find [n/NAMES] [c/CLASS] [s/SUBJECT]`
 
+* At least one of the optional fields must be provided.
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only name, class and subject can be searched.
-* Only full words or ID will be matched e.g. `Han` will not match `Hans` / `123` will not match `1234`
-* students matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Students matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Each parameter specified is independent of the previous. e.g. `find n/tommy c/2A` will return students with name `Tommy` or in class `2A` **NOT** items with both.
+</div>
 
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find n/alice bob charlie c/1A s/English` returns `alice` who is in 1A and taking English
+* `find n/alice bob charlie c/1A s/English` returns students with names `alice`, `bob`, `charlie` or class `1A` or taking the subject `English`.
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -184,7 +189,7 @@ Examples:
 
 Adds a remark to a student by index.
 
-Format: `remark INDEX [REMARK]`
+Format: `remark INDEX REMARK`
 
 * Note that only one remark can be added to one student at a time.
 
@@ -214,7 +219,7 @@ Opens up a GUI window for the user to enter student's assignment results.
 
 Format: `grade SUBJECT_ASSIGNMENT_TOTALSCORE_WEIGHTAGE_DIFFICULTY`
 
-* The Subject refers to subject of the assignment, in **capital letters**, eg - MATH
+* The Subject refers to subject of the assignment, and is **case-insensitive**.
 * The Assignment refers to the name of the assignment, eg - CA1.
 * The Total score refers to the maximum achievable score in the assignment
 * The weightage refers to the weightage of the assignment, written in decimal form. For example, if the assignment is worth 40% of the total grade, write 0.4
@@ -226,19 +231,19 @@ Examples:
 
 Example use
 
-1) Type in "grade MATH_CA1_100_0.5_1.0" into the input box as shown:
+1. Type in "grade MATH_CA1_100_0.5_1.0" into the input box as shown:
 
 
    ![Example Command](images/GradeCommand.png "Grade Command")
 
 
-2) A GUI will appear on the screen for you to start entering the grades of your students
+2. A GUI will appear on the screen for you to start entering the grades of your students
 
 
    ![Example GUI](images/GradeCommandGUI.png "Grade Command")
-3) Enter the score achieved by the student and click on `Enter` button.
-4) After entering the score, the system will automatically prompt you to enter the score for the next student.
-5) Continue entering the score until the system detects that all of the scores have been entered.
+3. Enter the score achieved by the student and click on `Enter` button.
+4. After entering the score, the system will automatically prompt you to enter the score for the next student.
+5. Continue entering the score until the system detects that all of the scores have been entered.
 
 ### Predicting a student's grade : `predict`
 
@@ -251,11 +256,11 @@ Currently, Watson uses the following formula to predict a student's grade:
 (**average** of all normalized scores for previous assessments) + (**difficulty penalty**)
 
 The normalized score for any particular assessment is calculated as follows:
-1) Calculate the student's score for the assessment, divided by the total score for the assessment.
-2) Calculate the percentage of classes attended by the student. Let's call this the student's **learning rating**.
-3) Calculate the **difficulty bonus** for the assessment with the following formula:
+* Calculate the student's score for the assessment, divided by the total score for the assessment.
+* Calculate the percentage of classes attended by the student. Let's call this the student's **learning rating**.
+* Calculate the **difficulty bonus** for the assessment with the following formula:
     * 1/((**difficulty rating**) x **learning rating**)
-4) The result is the sum of step 1 and step 3.
+* The result is the sum of step 1 and step 3.
 
 #### What is difficulty rating?
 
@@ -310,15 +315,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                             |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`…​` <br> e.g., add n/John Doe p/98765432 a/John street, block 123, #01-01 c/1.5`      |
-| **Clear**  | `clear`                                                                                                                                      |
-| **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                          |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                  |
-| **Find**   | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`<br> e.g., `find n/alice bob charlie c/1A s/English`, `find s/English Math` |
-| **Sort**   | `sort asc` or `sort desc`                                                                                                                    |
-| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`                                                                               |
-| **List**   | `list`                                                                                                                                       |
-| **Help**   | `help`                                                                                                                                       |
+| Action     | Format, Examples                                                                                                                               |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/> e.g., add n/John Doe p/98765432 a/John street, block 123, #01-01 c/1.5`          |
+| **Clear**  | `clear`                                                                                                                                        |
+| **Delete** | `delete INDEX` <br/> e.g., `delete 1`                                                                                                          |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                  |
+| **Find**   | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)` <br/> e.g., `find n/alice bob charlie c/1A s/English`, `find s/English Math` |
+| **Sort**   | `sort asc` or `sort desc`                                                                                                                      |
+| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`                                                                                 |
+| **List**   | `list`                                                                                                                                         |
+| **Help**   | `help`                                                                                                                                         |
 
