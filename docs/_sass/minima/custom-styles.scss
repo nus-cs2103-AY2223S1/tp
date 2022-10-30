@@ -41,3 +41,25 @@ h4, h5, h6 {
   }
 }
 
+// Page breaks
+
+@mixin page-break-before {
+  @media print {
+    break-before: page;
+  }
+}
+
+@mixin page-break {
+  @include page-break-before;
+}
+
+.page-new {
+  @include page-break-before;
+}
+
+.post-content h2 {
+  @media print {
+    @include page-break-before;
+    margin-top: 0; // We are starting a new page anyway
+  }
+}
