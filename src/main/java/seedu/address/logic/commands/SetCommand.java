@@ -39,7 +39,7 @@ public class SetCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a person's Contacts. \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME"
+            + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_ROLE + "ROLE "
             + PREFIX_TIMEZONE + "TIMEZONE "
@@ -47,7 +47,7 @@ public class SetCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_SLACK + "SLACK "
             + PREFIX_TELEGRAM + "TELEGRAM "
-            + PREFIX_GITHUB + "GITHUB"
+            + PREFIX_GITHUB + "GITHUB "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
