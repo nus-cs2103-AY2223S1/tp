@@ -100,15 +100,16 @@ public class Customer {
 
     public String getAllInfo() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(getPhone())
-                .append(getEmail())
-                .append(getBirthdayMonth())
-                .append(getReward());
+        builder.append(getName() + "\n")
+                .append(getPhone() + "\n")
+                .append(getEmail() + "\n")
+                .append(getBirthdayMonth() + "\n")
+                .append(getReward() + "\n");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             tags.forEach(builder::append);
+            builder.append("\n");
         }
         return builder.toString();
     }
@@ -135,6 +136,7 @@ public class Customer {
     /**
      * Compares if two Customers are strictly equals
      * two customers are strictly equals if all of their attributes are the same
+     *
      * @param other
      * @return
      */
