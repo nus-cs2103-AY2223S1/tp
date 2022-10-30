@@ -94,20 +94,35 @@ A `preference.json` file will be created when you first run the application. Use
 
 </p>
 
-### 1.Command Box
+### 1. Command Box
 
 This is where you key in commands. After typing the commands, simply press <kbd>enter</kbd> on your keyboard to execute them. 
 
-### 2.Feedback Box
+### 2. Feedback Box
 
-This is where the feedback information would be displayed after you execute a command. For example, after you keyed in an invalid command, the feedback “Invalid format” would be shown in the box for your reference.
+This is where the feedback information would be displayed after you execute a command. For example, after you keyed in an invalid command, the feedback “Unknown command” would be shown in the box for your reference.
 
-### 3.List Display Panel
+<p align="center">
+
+<img src="images/unknwonCommand.png"/>
+
+</p>
+
+### 3. List Display Panel
 
 This is where the current list of entities is shown. Only one of the three entities, student, tutor and class will be shown at one time.
+
 In student and tutor lists, you could click at the student or tutor cards to show their description in the description panel.
 
-### 4.List Tabs
+<p align="center">
+
+<img src="images/showCommand_after.png"/>
+
+</p>
+
+Note that in the list the displayed person will be highlighted.
+
+### 4. List Tabs
 
 There are three list tabs: Student, Tutor and Class indicating the current displayed list showing in the list display panel.
 You could click at the list tabs to switch to different lists.
@@ -120,9 +135,13 @@ You could click at the list tabs to switch to different lists.
 
 This shows that the current displaying list is the student list.
 
-### 5.Description Panel
+### 5. Description Panel
+
+<p align="center">
 
 <img src="images/personDescription.png"/>
+
+</p>
 
 This is where the description of a specified student or tutor is shown. When there is no person on display, the line “No Person Displayed” would be shown.
 
@@ -164,8 +183,6 @@ Examples:
 
 To view all the` [command]`s, key in `help` and press <kbd>enter</kbd>.
 
-
-
 ### Exiting the software: `exit`
 
 Exits the software after playing the exit animation.
@@ -183,18 +200,14 @@ Format:
 `add tutor n/<name> p/<phone> e/<email> a/<address> q/<qualification> i/<institution> [#/<tag>]`
 
 Examples:
-* `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
 * `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
-
-* Before:
+* `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
 
 <p align="center">
 
 <img src="images/addPersonCommand_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -213,18 +226,14 @@ Format:
 `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]`
 
 Examples:
-* `add class n/P2-MATH-F12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`
-* `add class n/S1-ENG-T10 s/Math l/Secondary 1 d/Thursday t/10am to 12pm`
-
-* Before:
+* `add class n/S1ENGT10 s/Math l/Secondary 1 d/Thursday t/10am to 12pm`
+* `add class n/P2MATHF12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`
 
 <p align="center">
 
 <img src="images/addClassCommand_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -250,18 +259,14 @@ Format:
 * Only arguments specified will overwrite the existing values.
 
 Examples:
-* edit 1 n/Tom Doe
 * edit 2 l/Primary 5 d/Monday
-
-* Before:
+* edit 1 n/Tom Doe
 
 <p align="center">
 
 <img src="images/editCommand_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -281,15 +286,12 @@ Examples:
 * `list student`
 * `list tutor`
 * `list class`
-* Before:
 
 <p align="center">
 
 <img src="images/listCommand_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -311,15 +313,11 @@ Format: `delete <index>`
 Examples:
 * `delete 2`
 
-* Before:
-
 <p align="center">
 
 <img src="images/deleteCommand_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -335,15 +333,11 @@ Clears the current displayed list of its contents.
 
 Format: `clear`
 
-* Before:
-
 <p align="center">
 
 <img src="images/clearCommand_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -362,6 +356,21 @@ Format: `sort [default/alpha/reverse]`
 * **default**: sorts the list in order of entries added from oldest to newest.
 * **alpha**: sorts the list alphabetically with reference to the name.
 * **reverse**: sorts the list in reverse order.
+
+Examples:
+* `sort alpha`
+
+<p align="center">
+
+<img src="images/sortCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/sortCommand_after.png"/>
+
+</p>
 
 ### Searching by multiple fields: `find`
 
@@ -389,55 +398,43 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 Examples:
 * `find n/john` returns the students, `Johnny` and `John Doe`in the student list.
 
-* Before:
-
 <p align="center">
 
-<img src="images/findStudentCommand_before.png"/>
+<img src="images/findStudent_before.png"/>
 
 </p>
 
-* After:
-
 <p align="center">
 
-<img src="images/findStudentCommand_after.png"/>
+<img src="images/findStudent_after.png"/>
 
 </p>
 
 * `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
 
-* Before:
-
 <p align="center">
 
-<img src="images/findTutorCommand_before.png"/>
+<img src="images/findTutor_before.png"/>
 
 </p>
 
-* After:
-
 <p align="center">
 
-<img src="images/findTutorCommand_after.png"/>
+<img src="images/findTutor_after.png"/>
 
 </p>
 
 * `find d/monday #/hard` returns all classes conducted on Monday and have the tag “hard”.
 
-* Before:
-
 <p align="center">
 
-<img src="images/findClassCommand_before.png"/>
+<img src="images/findClass_before.png"/>
 
 </p>
 
-* After:
-
 <p align="center">
 
-<img src="images/findClassCommand_after.png"/>
+<img src="images/findClass_after.png"/>
 
 </p>
 
@@ -457,15 +454,11 @@ Format: `assign INDEX n/<class name>`
 Examples:
 * `assign 5 n/p1math`
 
-* Before:
-
 <p align="center">
 
 <img src="images/assignCommand_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -490,19 +483,13 @@ student/tutor beforehand.
 Examples:
 * `unassign 5 n/p1math`
 
-* Before:
-
 <p align="center">
 
 <img src="images/unassignCommand_before.png"/>
 
 </p>
 
-* After:
-
-<p align="center">
-
-<img src="imagesun/assignCommand_after.png"/>
+<img src="imagesun/unassignCommand_after.png"/>
 
 </p>
 
@@ -516,15 +503,11 @@ Format: `show INDEX`
 Examples:
 * `show 3`
 
-* Before:
-
 <p align="center">
 
 <img src="images/showCommand_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -534,15 +517,11 @@ Examples:
 
 Note that `show` is an invalid command for class list since the details of classes are already in the class list, thus when you are in the class list, `show 1` is an invalid command.
 
-* Before:
-
 <p align="center">
 
 <img src="images/showClassCommand_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -568,15 +547,11 @@ Examples:
 
 * `nok 5 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`
 
-* Before:
-
 <p align="center">
 
 <img src="images/addNok_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -586,15 +561,11 @@ Examples:
 
 * `nok 5`
 
-* Before:
-
 <p align="center">
 
 <img src="images/deleteNok_before.png"/>
 
 </p>
-
-* After:
 
 <p align="center">
 
@@ -612,7 +583,7 @@ Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and
 
 <p align="center">
 
-<img src="imagesun/exportbuttonr.png"/>
+<img src="imagesun/exportButton.png"/>
 
 </p>
 
