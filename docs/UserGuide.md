@@ -139,10 +139,11 @@ Each person can only have one country.
 
 Minecraft Server (prefix:`ms/`) **[Optional, Multiple]** <br>
 Minecraft servers are in the format of `ServerName@ServerAddress`.
-
+<!-- @@author onepersonhere -->
 Social Handle (prefix:`s/`) **[Optional, Multiple]** <br>
 Social handles are in the format of `SocialMedia@Username`.
 
+<!-- @@author -->
 Game Type (prefix:`gt/`) **[Optional, Multiple]** <br>
 Game types can be anything, such as `survival games`, `skyblock` or `creative`.
 
