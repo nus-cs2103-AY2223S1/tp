@@ -205,7 +205,10 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Adding a attendance list to a student: `attendance add`
+## Attendance commands
+To aid teaching assistants in keeping track of attendance, we developed a feature to add an attendance list of a maximum of 12 lessons. Afterwards, teaching assistants can mark/unmark attendance of their students. Currently, we have only one class of attendance for students.
+
+### Adding an attendance list to a student: `attendance add`
 
 Adds an attendance list to a student in the contact list. 
 
