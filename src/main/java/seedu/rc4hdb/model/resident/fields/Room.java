@@ -1,13 +1,16 @@
 package seedu.rc4hdb.model.resident.fields;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
+
+import seedu.rc4hdb.model.StringField;
 
 /**
  * Represents a Resident's Room in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidRoom(String)}
  */
-public class Room extends Field {
+public class Room extends StringField implements ResidentField {
+
+    public static final String IDENTIFIER = "Room";
 
     public static final String MESSAGE_CONSTRAINTS =
             "Room Number should be in the format FLOOR-UNIT, where FLOOR and UNIT are both non-negative integers";
@@ -17,17 +20,14 @@ public class Room extends Field {
      */
     public static final String VALIDATION_REGEX = "^[0-9]*[1-9][0-9]*[-][0-9]*[1-9][0-9]*$";
 
-    public final String room;
-
     /**
      * Constructs a {@code Room}.
      *
-     * @param room A valid room.
+     * @param room A valid room string.
      */
     public Room(String room) {
-        requireNonNull(room);
+        super(room);
         checkArgument(isValidRoom(room), MESSAGE_CONSTRAINTS);
-        this.room = room;
     }
 
     /**
@@ -35,24 +35,6 @@ public class Room extends Field {
      */
     public static boolean isValidRoom(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-
-    @Override
-    public String toString() {
-        return room;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Room // instanceof handles nulls
-                && room.equals(((Room) other).room)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return room.hashCode();
     }
 
 }

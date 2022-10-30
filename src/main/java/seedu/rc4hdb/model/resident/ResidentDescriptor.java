@@ -1,6 +1,5 @@
 package seedu.rc4hdb.model.resident;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -13,7 +12,7 @@ import seedu.rc4hdb.model.resident.fields.MatricNumber;
 import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
-import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * Stores the details to edit the resident with. Each non-empty field value will replace the
@@ -125,7 +124,7 @@ public class ResidentDescriptor {
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
     public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        return (tags != null) ? Optional.of(tags) : Optional.empty();
     }
 
     //=========== End of Getters and Setters =================================================================

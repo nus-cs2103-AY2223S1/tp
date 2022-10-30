@@ -6,6 +6,9 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for {@link Email}.
+ */
 public class EmailTest {
 
     @Test
@@ -17,6 +20,11 @@ public class EmailTest {
     public void constructor_invalidEmail_throwsIllegalArgumentException() {
         String invalidEmail = "";
         assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
+    }
+
+    @Test
+    public void constructor_validEmail_constructEmail() {
+        assertTrue(new Email("valid@email.com") instanceof Email);
     }
 
     @Test

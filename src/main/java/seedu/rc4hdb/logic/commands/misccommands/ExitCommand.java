@@ -5,7 +5,7 @@ import seedu.rc4hdb.logic.commands.CommandResult;
 /**
  * Terminates the program.
  */
-public class ExitCommand extends MiscCommand {
+public class ExitCommand implements MiscCommand {
 
     public static final String COMMAND_WORD = "exit";
 

@@ -157,6 +157,18 @@
      -fx-border-top-width: 1px;
 }
 
+.venue-label {
+    -fx-background-color: derive(#1d1d1d,30%);
+    -fx-alignment: center;
+}
+
+.venue-label-text {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 18pt;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }
@@ -320,6 +332,11 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.tab {
+    -fx-font-size: 15px;
+    -fx-padding: 6 9 6 9;
 }
 
 #cardPane {

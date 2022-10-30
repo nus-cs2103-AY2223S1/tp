@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.rc4hdb.commons.core.LogsCenter;
 
@@ -35,6 +37,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        setAccelerators();
     }
 
     /**
@@ -87,6 +90,18 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Closes the help window on Escape key press.
+     */
+    private void setAccelerators() {
+        getRoot().addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                getRoot().close();
+            }
+        }
+        );
     }
 
     /**

@@ -6,6 +6,9 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for {@link MatricNumber}.
+ */
 public class MatricNumberTest {
 
     @Test
@@ -15,8 +18,13 @@ public class MatricNumberTest {
 
     @Test
     public void constructor_invalidMatricNumber_throwsIllegalArgumentException() {
-        String invalidMatricNumber = "a0123456a";
+        String invalidMatricNumber = "a01234567a";
         assertThrows(IllegalArgumentException.class, () -> new Gender(invalidMatricNumber));
+    }
+
+    @Test
+    public void constructor_validMatricNumber_constructMatricNumber() {
+        assertTrue(new MatricNumber("A0123456A") instanceof MatricNumber);
     }
 
     @Test

@@ -1,26 +1,33 @@
 package seedu.rc4hdb.logic;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.CommandResult;
+import seedu.rc4hdb.logic.commands.ModelCommand;
+import seedu.rc4hdb.logic.commands.StorageCommand;
+import seedu.rc4hdb.logic.commands.StorageModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.misccommands.MiscCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ModelCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.StorageCommand;
-import seedu.rc4hdb.logic.parser.ResidentBookParser;
+import seedu.rc4hdb.logic.parser.Rc4hdbParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
+import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.storage.Storage;
+import seedu.rc4hdb.ui.ObservableItem;
 
 /**
  * The main LogicManager of the app.
@@ -31,7 +38,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final ResidentBookParser residentBookParser;
+    private final Rc4hdbParser residentBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,7 +46,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        residentBookParser = new ResidentBookParser();
+        residentBookParser = new Rc4hdbParser();
     }
 
     @Override
@@ -51,6 +58,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveResidentBook(model.getResidentBook());
+            storage.saveVenueBook(model.getVenueBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -78,6 +86,9 @@ public class LogicManager implements Logic {
         if (command instanceof StorageCommand) {
             return ((StorageCommand) command).execute(storage);
         }
+        if (command instanceof StorageModelCommand) {
+            return ((StorageModelCommand) command).execute(storage, model);
+        }
         throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
     }
 
@@ -92,22 +103,44 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getResidentBookFilePath() {
-        return model.getResidentBookFilePath();
-    }
-
-    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
+        requireNonNull(guiSettings);
         model.setGuiSettings(guiSettings);
     }
 
     @Override
-    public ObservableList<String> getObservableFields() {
-        return model.getObservableFields();
+    public ObservableList<Venue> getObservableVenues() {
+        return model.getObservableVenues();
     }
+
+    @Override
+    public ObservableValue<Path> getObservableFolderPath() {
+        return storage.getObservableFolderPath();
+    }
+
+    @Override
+    public ObservableList<String> getVisibleFields() {
+        return model.getVisibleFields();
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        return model.getHiddenFields();
+    }
+
+    @Override
+    public ObservableList<Booking> getObservableBookings() {
+        return model.getObservableBookings();
+    }
+
+    @Override
+    public ObservableItem<VenueName> getCurrentlyDisplayedVenueName() {
+        return model.getCurrentlyDisplayedVenueName();
+    }
+
 }

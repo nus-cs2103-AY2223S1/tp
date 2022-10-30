@@ -2,18 +2,59 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+# Welcome to RC4HDB Developer Guide!
+
+Choose a section from the table of contents below to learn more about how RC4HDB works!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements** (OUTDATED)
+## **Table of Contents**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [Acknowledgements](#acknowledgements)
+* [Getting started](#setting-up-getting-started)
+* [Design](#design)
+    * [Architecture](#architecture)
+    * [Ui](#ui-component)
+    * [Logic](#logic-component)
+    * [Model](#model-component)
+    * [Storage](#storage-component)
+    * [Common classes](#common-classes)
+* [Implementation](#implementation)
+    * [Resident class](#the-resident-class)
+    * [Displaying results](#changes-in-displaying-results)
+    * [Show/Hide fields](#showhide-feature-for-resident-fields)
+    * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
+    * [File management system](#multiple-data-files)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use case](#use-cases)
+    * [Non-functional requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+* [Appendix: instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a person](#deleting-a-person)
+    * [Saving data](#saving-data)
+
+---
+## **Acknowledgements**
+
+[comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
+
+RC4HDB is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that provides
+a starting point for Software Engineering (SE) students enrolled in CS2103T.
+
+### Credits for code adapted from external sources
+
+1. `populateTagColumn` in `ResidentTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow.
+2. `populateIndexColumn` in `ResidentTableView`, and `populateDayColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx) on StackOverflow.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started** (OUTDATED)
+## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -21,9 +62,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-RC4HDB aims to provide a complex set of features which are simple to use. Keeping this in mind, 
+RC4HDB aims to provide a complex set of features which are simple to use. Keeping this in mind,
 we are pursuing an iterative approach, adding new features and functionalities amidst the evolving requirements.
-This gives rise to the following main guiding principles for RC4HDB: 
+This gives rise to the following main guiding principles for RC4HDB:
 
 **Maintainability**
 
@@ -42,7 +83,7 @@ using a computer. For users who type fast, RC4HDB will be highly efficient and q
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture (OUTDATED)
+### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -83,13 +124,13 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component (OUTDATED)
+### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram2.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTableView`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -98,21 +139,23 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Resident` object residing in the `Model`.
 
-### Logic component (OUTDATED)
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+### Logic component
+
+
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. When `Logic` is called upon to execute a command, it uses the `Rc4hdbParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -120,55 +163,294 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `Rc4hdbParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `Rc4hdbParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+![Class structure of Command](images/CommandDiagram.png)
+
+The command class structure has been changed to provide an additional layer of abstraction using the four interface
+classes ```ModelCommand```, ```StorageCommand```, ```FileCommand``` and ```MiscCommand```. These interfaces all
+implement the Command interface and is used as a intermediate barrier to build the command classes. The specific
+commands implement these commands instead of directly implementing the Command interface in order to improve
+the abstraction of commands.
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/LatestModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object).
+* stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores two `ObservableList<String>` attributes of table columns to show and hide in the UI. The UI is able to listen to changes in these lists, and automatically update the column visibilities in the table. 
+* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` which is also used to update changes in `Venue` or `Booking` in the UI.  
+* does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<!-- The references to Resident fields have been removed to reduce clutter -->
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ResidentBook`, which `Resident` references. This allows `ResidentBook` to only require one `Tag` object per unique tag, instead of each `Resident` needing their own `Tag` objects.<br>
+
+<img src="images/UpdatedBetterModelClassDiagram.png" width="450" />
 
 </div>
 
 
-### Storage component (OUTDATED)
+### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save resident book data, venue book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `DataStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+The ```DataStorage``` class inherits ```ResidentBookStorage``` and ```VenueBookStorage```. The functionalities
+of both these classes can be extended into DataStorage, which is applied by the ```DataStorageManager``` class.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation** (OUTDATED)
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### The Resident Class
+`RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
+existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful
+information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
+`Phone`, `Email`, `Address` and `Tags`. We decided to keep all of the above fields except `Address`. In addition,
+we added the additional fields `Room`, `House`, `Gender`, `MatricNumber`, all of which are crucial information for the
+housing management staff.
+
+<br>
+
+#### Refactoring of Classes
+Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the intiial
+stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that
+required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the
+`Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.  The example below
+shows the updated Sequence diagram for the executing of our `delete` command.
+<img src="images/DeleteSequenceDiagram2.png" />
+
+
+#### Changes in Displaying Results
+
+In `AB3`, the `PersonListPanel` and `PersonCard` components were responsible for displaying results on the `MainWindow`.
+The `PersonCard` component dictates the arrangement of fields belonging to a `Person`, and the `PersonListPanel` component
+dictates the configuration of these `PersonCard` objects.
+
+Graphically, this was represented as a single-column list with each row corresponding to a `Person` in `AB3`.
+
+In `RC4HDB`, we reworked the entire configuration for displaying results. We replaced `PersonListPanel` and `PersonCard`
+by a `ResidentTableView` component.
+
+<img src="images/UiClassDiagram.png" width="550" />
+
+`ResidentTableView` is implemented via the `TableView` class of `JavaFX`. Graphically, `ResidentTableView` is presented
+as a table. Each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
+
+From the users' viewpoint, the data generated in `ResidentTableView` is a single unit, but it is logically separated
+into two distinct parts. The first part being the first column which is the `IndexColumn` and the second being all other
+columns, also known as `FieldColumns`.
+
+The main reason for this distinction is *method to generate the cell values*.
+- The indices in the `IndexColumn` are generated independently to the `FieldColumns`. This is because fields within
+  `Resident` do not affect its index within the table. In two different commands, the same `Resident` could
+  have different indices in the results.
+- In contrast, in the generation of values for each cell in `FieldColumn`, values are obtained by iterating
+through a list of `Residents` and setting each cell to it. As the iterator does not modify the ordering of `Residents`,
+  the same technique is applied to obtain the values for other `FieldColumns`.
+
+As a consequence, fields of a `Resident` will always collectively be together in the same row, though it may appear in
+two different indices in the results of two different commands.
+
+<br>
+
+##### Obtaining `Resident` fields
+
+From the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableColumn.html), a
+`TableView` is made up of a number of `TableColumn` instances. `TableColumn` provided us with a method to
+`setCellValueFactory` which allows us to iterate through the list of `Residents` and obtain the value dynamically.
+
+In using the `setCellValueFactory` method, we also used the `PropertyValueFactory` class. The implementation of
+`PropertyValueFactory` has enabled us to easily obtain fields due to its *method matching*
+[functionality](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html).
+
+For example, by constructing `nameCol.setCellValueFactory(new PropertyValueFactory<Resident, String>("name")`,
+the "name" string is used as a reference to an assumed `Resident::getName` in `Resident.java`.
+As a consequence of this, for all fields in `Resident`, we have to implement and have implemented suitable methods to
+take advantage of this functionality. The only caveat to this is potentially the complexity of fields that a `Resident`
+could possess. But for our purposes, our fields are mainly represented as `String`, and there are no issues thus far.
+
+<br>
+
+##### Differences in Updating Data
+
+Another difference between `PersonListPanel` and `ResidentTableView` is the behavior in propagating changes in the
+`Model` component to the `Ui` component. In `ResidentTableView` modifications to any fields of a `Resident` would not require explicit
+invocation of a method to update the Ui. This design was possible as `TableView` automatically adds an observer
+to the returned value from `setCellValueFactory`, as mentioned in the [section above](#obtaining-resident-fields).
+As a result, any updates to `ObservableList<Resident>` would be reflected immediately in all cells of the Table.
+
+
+<br>
+
+### Show/hide feature for resident fields
+
+**Challenges faced with UI:**
+
+The original UI represented a `Person` field as a nested FXML `Label` within a `PersonCard`, which was used to populate the `ListView` panel. Calling `setVisible` on a `Label` resulted in blank gaps in the panel because the `Label` was ultimately still intact, just *invisible*. Hence, there was a need to find another method to hide and collapse rows/columns.
+
+**Gaps in** `ListView` **panel:**
+
+![ListViewMissingField](images/ListViewMissingField.png)
+
+To achieve this, we modified our UI to use a `TableView`, where using `setVisible` on a `TableColumn` allowed us to remove the specified columns as intended. One possible reason as to why this works is that `TableColumn` does not extend from `Node`, unlike `Label`. As suggested in this [thread](https://stackoverflow.com/questions/28558165/javafx-setvisible-hides-the-element-but-doesnt-rearrange-adjacent-nodes), `setVisible` in `TableColumn` probably has a different implementation from that in `Node`.
+
+<br>
+
+**Challenges faced with linking components:**
+
+The next challenge was linking up the `Model` with the `ResidentTableView` class, such that the list of fields to hide could be updated based on user commands. There is no equivalent of React Context in Java, and references from parent to child classes are unidirectional, so I had to get creative with the implementation. There were two field lists, one in `ModelManager` and one in `ResidentViewTable`, which had to be synchronized somehow.
+
+![MainWindowRelationships](images/MainWindowRelationships.png)
+
+The final design involved using a `ListChangeListener` to cascade the updates from one list to the other. Since `LogicManager` held a reference to a `ModelManager`, and `MainWindow` held a reference to both a `LogicManager` and the `ResidentTableView` class, I used a listener in `MainWindow` to track changes in the `Model` field list and updated the `ResidentTableView` field list accordingly. Finally, one more listener was used within `ResidentTableView` to update the column visibilities whenever the field list changed.
+
+<br>
+
+**Further improvements:**
+
+Currently, the commands for showing and hiding columns are extensions of the `list` command: `list /i <fields_to_include>` and `list /e <fields_to_exclude>`. While this syntax works as intended, we will be changing the command to use `show` and `hide` respectively for clarity.
+
+<br>
+
+### Filter feature to filter residents according to fields
+
+The previous AddressBook implementation only had a find command to search for specific residents according to the field.
+Thus, a new command has been implemented to have an additional feature to filter the list of residents using every field
+used to describe the resident.
+
+<br>
+
+#### Structure of the Command
+A ```FilterCommand``` class and a ```FilterCommandParser``` class was implemented to follow the structure of the
+```Logic``` component of the application. ```FilterCommand``` implements ```ModelCommand``` and the
+```FilterCommandParser``` implements ```FilterCommandParser```. This structure allows the new filter feature to be
+added without changing any of the Logic class components other than adding the cases to create a ```FilterCommand```
+object
+
+<br>
+
+#### Creating a new ```ResidentDescriptor``` class
+
+Previously, the edit feature utilized an ```EditDescriptor``` class to create an object that will store the parsed
+information of the command to edit the specific Resident. Since the handler for the information was similar for the
+filter feature, a new general ```ResidentDescriptor``` class was created which is used for both the edit and filter
+features.
+
+This makes it easier to update the features if there is a change in the structure of the fields or if there
+is a new field added for the ```Resident```.
+
+<br>
+
+#### Creating a new ```FilterSpecifier``` class
+
+There is a specifier after the filter keyword in the command that is used to select whether all or any of
+the fields should match the residents' information in the database. A ```FilterSpecifier``` class is used to
+represent the specifier as a wrapper to make the transferring of the specifier across classes easier and less
+prone to errors.
+
+<br>
+
+#### Creating new predicate classes for filter
+
+In order to check if the ```Resident``` objects passes matching the filter instructed by the user, a class
+implementing the ```Predicate``` class needs to be created to handle this. Thus, two new classes
+```AttributesMatchAllKeywords``` and ```AttributesMatchAnyKeyword``` hae been implemented to handle the logic of the
+filtering for each type of specifier. Through this implementation, even more specifiers can be added during later cycles
+of this project if required without any major restructuring of the initial classes created in this cycle.
+
+<br>
+
+<img src="images/FilterCommandSequenceDiagram.png" width="600" />
+
+#### Considerations
+
+There was a choice to make the filter feature accept either only the exact string entered by the user or also
+accept a field that contains the filter attribute given by the user. It is clear that the filter command would be more
+flexible id the contains option is implemented as the user can use a prefix or a suffix of the actual field to filter
+out residents. Thus, while keeping this advantage in mind, we have decided to make the filter feature accept fields
+that contain the attributes instead of having it exactly equal.
+
+However, implementing contains for the tags feature may make the application a lot slower. It is not worth the cost
+considering that this additional benefit does not give our application a boost in usability. Thus, the substring
+filtering has been omitted for the tags to accommodate for a faster filtering process.
+
+<br>
+
+### Multiple data files
+
+#### Background
+
+In the original `AddressBook`, the `Storage` component was implemented with the intent of users only being able to use a single data file. However, in `RC4HDB`, our target users would potentially benefit from being able to store their data in multiple files. Thus, we have decided to implement **file commands** which will provide users a way to **create**, **delete** and **switch** data files.
+
+<br>
+
+#### Storage command
+
+The original `AddressBook` makes use of the [Command pattern](https://refactoring.guru/design-patterns/command), where the `Logic` component is in charge of executing commands. However, with the `AddressBook` implementation of the Command pattern, commands only have a reference to `Model`, which limits the command's ability to manipulate the `Storage`. Hence, in order to get around this, we came up with two different implementations which enable the manipulation of `Storage`, while retaining the ability of `Command` to manipulate `Model`.
+
+<br>
+
+##### Modifying the execute method for all commands
+
+This implementation involves altering `Command` class the `execute(Model)` method to `execute(Model, Storage)`. This implementation is simple to implement, however it does not adhere to the [separation of concerns principle](https://deviq.com/principles/separation-of-concerns), potentially decreasing cohesion and increasing coupling.
+
+<img src="images/StorageCommandImplementation1.png" width="550" />
+
+As seen from the diagram above, there will be associations between `Storage` and `Model` for all commands, allowing for commands, such as `AddCommand` which only modifies `Model` to be able to modify `Storage`. Due to the flaw in this design, we decided to think of a better implementation.
+
+<br>
+
+##### Splitting the general command into specialized commands
+
+This implementation involves splitting `Command` further into specialized `Command`s, which are only able to manipulate components that they are supposed to manipulate. After deliberation, we decided to split `Command` into `MiscCommand`, `ModelCommand`, `StorageCommand` and `StorageModelCommand`, which are only able to execute on their respective components, with `MiscCommand` executing on nothing. All of these specialized commands extend the base `Command`, which is kept for polymorphism purposes. Taking it a step further, we realized that `Command` only enforces the `execute` method in its subclasses, thus, we converted `Command` and the specialized commands into interfaces.
+
+<img src="images/StorageCommandImplementation2.png" width="550" />
+
+Comparing the diagram above with the diagram from the [other option](#modifying-the-execute-method-for-all-commands), `Command` is no longer associated with `Model` and `Storage`. Instead, `Model` and `Storage` are only associated with their respective specialized commands. While this effectively divides the responsibility of manipulating the `Model` and `Storage` amongst the specialized commands, it results in higher complexity. Weighing between our options, we decided to stick with this option due to it setting clear boundaries of what each command can and cannot do.
+
+<br>
+
+#### File commands
+
+With our earlier issue of a lack of `Storage` reference in `Command` resolved, along with our new implementation of specialized commands, we decided to create an abstract `FileCommand` class which encapsulates commands which deal with files. Such commands will require a file path to be provided by the user, thus, we included logic that would likely be used by all `FileCommand` subclasses, to avoid repetition of common logic. We then proceeded with implementing a command that creates a new data file, a command that deletes an existing data file and a command that switches the current data file to another existing data file.
+
+<br>
+
+#### Create and delete file commands
+
+Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, which saw new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
+
+<br>
+
+#### Switch file command
+
+Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
+
+<br>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -257,7 +539,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops** (OUTDATED)
+## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -298,28 +580,29 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 2. Moderate `* *` - nice to have
 3. Low `*` - unlikely to have
 
-| Priority | As a ...      | I want to ...                                                                      | So that ...                                      | Story Type |
-|----------|---------------|------------------------------------------------------------------------------------|--------------------------------------------------|------------|
-| `***`    | user          | view relevant information about [**RC4**](#glossary) residents                     |                                                  | Story      |
-| `***`    | user          | specify which fields I want to see when listing data                               | my screen is less cluttered                      | Story      |
-| `***`    | user          | import my old data into the application                                            |                                                  | Story      |
-| `***`    | user          | view a smaller list of [**RC4**](#glossary) residents that pass certain conditions |                                                  | Story      |
-| `**`     | advanced user | give residents roles                                                               | I can further categorize them                    | Epic       |
-| `**`     | user          | search for residents using a portion of their names                                | I do not have to remember their exact names      | Story      |
-| `**`     | user          | export residents' data in a familiar format                                        |                                                  | Story      |
-| `**`     | new user      | see sample data                                                                    | I can see how the app will look like when in use | Story      |
-| `**`     | user          | delete multiple residents' data from the app quickly                               | I can save time                                  | Story      |
-| `**`     | user          | use the system without referring to the user guide                                 |                                                  | Story      |
-| `**`     | user          | switch between different data files                                                |                                                  | Story      |
-| `*`      | advanced user | toggle input commands without repeating the command word                           | I can increase the efficiency of operations      | Epic       |
-| `*`      | user          | update settings                                                                    | I can customize the app for my use               | Epic       |
+| Priority | As a ...      | I want to ...                                                                      | So that ...                                                                         | Story Type |
+|----------|---------------|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------|
+| `***`    | user          | view relevant information about [**RC4**](#glossary) residents                     |                                                                                     | Story      |
+| `***`    | user          | specify which fields to include or exclude when listing residents                  | my screen is less cluttered                                                         | Story      |
+| `***`    | advanced user | show or hide columns without affecting the list of residents displayed             | I can de-clutter my screen without affecting the list of residents already filtered | Story      |
+| `***`    | user          | import my old data into the application                                            |                                                                                     | Story      |
+| `***`    | user          | view a smaller list of [**RC4**](#glossary) residents that pass certain conditions |                                                                                     | Story      |
+| `**`     | advanced user | give residents roles                                                               | I can further categorize them                                                       | Epic       |
+| `**`     | user          | search for residents using a portion of their names                                | I do not have to remember their exact names                                         | Story      |
+| `**`     | user          | export residents' data in a familiar format                                        |                                                                                     | Story      |
+| `**`     | new user      | see sample data                                                                    | I can see how the app will look like when in use                                    | Story      |
+| `**`     | user          | delete multiple residents' data from the app quickly                               | I can save time                                                                     | Story      |
+| `**`     | user          | use the system without referring to the user guide                                 |                                                                                     | Story      |
+| `**`     | user          | switch between different data files                                                |                                                                                     | Story      |
+| `*`      | advanced user | toggle input commands without repeating the command word                           | I can increase the efficiency of operations                                         | Epic       |
+| `*`      | user          | update settings                                                                    | I can customize the app for my use                                                  | Epic       |
 
 *{More to be added}*
 
 <!-- keep in case needed
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                               | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                               | So that I can…​                                                        |
 | -------- |--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | user                                       | view relevant information about RC4 residents | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new person                              |                                                                        |
@@ -331,12 +614,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `RC4HDB` and the **Actor** is the `user`, unless specified otherwise)
+[comment]: <> (&#40;For all use cases below, the **System** is the `RC4HDB` and the **Actor** is the `user`, unless specified otherwise&#41;)
 
+System: RC4HDB <br>
+Use case: UC1 - Getting help with the application <br>
+Actor: User <br>
+MSS:
 
-**Use case: UC1. Getting help with the application**
-
-**MSS**
 1. User needs help related to RC4HDB.
 2. User requests for help in RC4HDB.
 3. RC4HDB displays a message that directs the user to our user guide.
@@ -345,54 +629,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC2. Add a single resident**
+System: RC4HDB <br>
+Use case: UC2 - Add a single resident <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. New resident moves into [**RC4**](#glossary).
 2. User has the personal details of a resident they wish to add.
 3. User adds the resident to RC4HDB.
 4. RC4HDB adds the resident to the data file.
-5. RC4HDB displays the name and other information of the resident.
+5. RC4HDB displays the name and other information of the resident. <br>
+   Use case ends.
 
-    Use case ends.
+Extensions:
 
-**Extensions**
+&ensp; 3a. User enters resident information in an invalid format. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 3.
 
-* 3a. User enters resident information in an invalid format.
+<br>
 
-    * 3a1. RC4HDB shows an error message.
+System: RC4HDB <br>
+Use case: UC3 - Listing out information of all residents <br>
+Actor: User <br>
+MSS:
 
-    Use case resumes at step 3.
-  
-  <br>
-
-**Use case: UC3. Listing out information of all residents**
-
-**MSS**
 1. User wants to see the full list of residents in [**RC4**](#glossary).
 2. User requests for the list of residents from RC4HDB.
 3. RC4HDB displays the details of all residents in [**RC4**](#glossary).
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 1a. The user wants to view only certain fields in the list.
-    
-  * 1a1. The user specifies which fields he wants to see or hide.
-    
-  Use case resumes at step 2.
+&ensp; 1a. The user wants to view only certain fields in the list. <br>
+&ensp; &emsp; &nbsp; 1a1. The user specifies which fields he wants to see or hide. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 
-* 2a. The list is empty.
-
-    Use case ends.
+&ensp; 2a. The list is empty. <br>
+&ensp; &emsp; &nbsp; Use case ends.
 
 <br>
 
-**Use case: UC4. Editing a single resident’s information**
-
-**MSS**
+System: RC4HDB <br>
+Use case: UC4 - Editing a single resident’s information <br>
+Actor: User <br>
+MSS:
 
 1. Resident has a specific change in personal information.
 2. User edits the resident's information in RC4HDB.
@@ -401,25 +684,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. There is no relevant category for that information.
-  * 2a1. RC4HDB shows an error message.
-  
-  Use case ends.
+&ensp; 2a. There is no relevant category for that information. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case ends.
 
 
-* 2b. User enters resident information in an invalid format.
-
-    * 2b1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 2b. User enters resident information in an invalid format. <br>
+&ensp; &emsp; &nbsp; 2b1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 <br>
 
-**Use case: UC5. Finding a resident’s information by their name**
+System: RC4HDB <br>
+Use case: UC5 - Finding a resident’s information by their name <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User wants to search for a resident’s information.
 2. User makes a request to RC4HDB to find a resident by their name.
 3. RC4HDB searches the database for the given name.
@@ -427,66 +709,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 3a. RC4HDB cannot find any resident matching the user input.
-
-    * 3a1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 3a. RC4HDB cannot find any resident matching the user input. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 
-* 4b. RC4HDB finds multiple residents matching the user input.
-
-    * 4b1. RC4HDB shows a list of all matching residents.
-
-    Use case ends.
+&ensp; 3b. RC4HDB finds multiple residents matching the user input. <br>
+&ensp; &emsp; &nbsp; 3b1. RC4HDB shows a list of all matching residents. <br>
+&ensp; &emsp; &nbsp; Use case ends.
 
 <br>
 
-**Use case: UC6. Filtering the list of all residents by specific fields**
+System: RC4HDB <br>
+Use case: UC6 - Filtering the list of all residents by specific fields <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User wants to see a list of residents that fall under a certain category.
 2. User requests for a filtered list from RC4HDB based on the relevant categories.
 3. RC4HDB shows the filtered list.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. User enters an invalid specifier i.e. one that is not `/all` or `/any`.
+&ensp; 2a. User enters an invalid specifier i.e. one that is not `/all` or `/any`. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
-    * 2a1. RC4HDB shows an error message.
+&ensp; 2b. User enters multiple specifiers i.e. both `/all` and `/any`. <br>
+&ensp; &emsp; &nbsp; 2b1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
-    Use case resumes at step 2.
+&ensp; 2c. User enters a category that does not exist. <br>
+&ensp; &emsp; &nbsp; 2c1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
-
-* 2b. User enters multiple specifiers i.e. both `/all` and `/any`.
-
-    * 2b1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
-
-
-* 2c. User enters a category that does not exist.
-
-    * 2c1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
-
-
-* 2d. User enters a value that does not exist in the category.
-
-    * 2d1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 2d. User enters a value that does not exist in the category. <br>
+&ensp; &emsp; &nbsp; 2d1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 <br>
 
-**Use case: UC7. Deleting a single resident**
+System: RC4HDB <br>
+Use case: UC7 - Deleting a single resident <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. Resident moves out of [**RC4**](#glossary).
 2. User deletes the resident from RC4HDB.
 3. RC4HDB removes the corresponding resident from the database.
@@ -494,19 +765,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. User enters an invalid input.
-
-    * 2a1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 <br>
 
-**Use case: UC8. Clearing all data**
+System: RC4HDB <br>
+Use case: UC8 - Clearing all data <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User wants to clear all data from the current working file.
 2. RC4HDB clears all data from the current working file.
 3. RC4HDB shows a success message.
@@ -515,28 +786,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC9. Exiting the application**
+System: RC4HDB <br>
+Use case: UC9 - Exiting the application <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User has completed his/her tasks and wants to exit the application.
 2. User exits the application.
 3. RC4HDB application closes.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. User clicks on the exit button.
-
-    * 2a1. RC4HDB application closes.
-
-    Use case ends.
+&ensp; 2a. User clicks on the exit button. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB application closes. <br>
+&ensp; &emsp; &nbsp; Use case ends.
 
 <br>
 
-**Use case: UC10. Importing data from [CSV](#glossary) file**
+System: RC4HDB <br>
+Use case: UC10 - Importing data from [CSV](#glossary) file <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User has a data file with resident’s information, and wants to view it in RC4HDB.
 2. User imports the file.
 3. RC4HDB reads the file.
@@ -545,25 +818,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
-* 2a. Information in the [**CSV**](#glossary) file has not been stored in the proper format.
+Extensions:
 
-    * 2a1. RC4HDB shows an error message.
+&ensp; 2a. Information in the [**CSV**](#glossary) file has not been stored in the proper format. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
-    Use case resumes at step 2.
 
-
-* 3a. No file could be found at the specified file path.
-
-    * 3a1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 3a. No file could be found at the specified file path. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 <br>
 
-**Use case: UC11. Exporting data to [CSV](#glossary) file**
+System: RC4HDB <br>
+Use case: UC11 - Exporting data to [CSV](#glossary) file <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User wants the data in a [**CSV**](#glossary) file.
 2. User exports the file.
 3. RC4HDB creates a new [**CSV**](#glossary) file using user input.
@@ -571,7 +843,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
+<br>
+
+[comment]: <> (*{More to be added}*)
 
 ### Non-Functional Requirements
 
@@ -593,7 +867,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 * **Command Line Interface (CLI)**: An area in the application interface for users to input commands
-* **Comma-Separated Values (CSV)**: A delimited text file that uses a comma to separate values and each line of the file is a data record 
+* **Comma-Separated Values (CSV)**: A delimited text file that uses a comma to separate values and each line of the file is a data record
 * **Display Window**: An area in the application interface for users to view the output of their commands
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: The National University of Singapore
