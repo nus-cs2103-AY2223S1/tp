@@ -461,11 +461,12 @@ You may open link(s) from a specific module to your default browser using the `o
 Links will be opened by means of their corresponding alias.
 
 An alternative way to open links is by means of clicking on their aliases on the application window.
-* Permissions from your operating system may be required for some users to use this feature.
 
 Multiple links can be opened at once using its corresponding alias according to their order of input
 (left to right). If there exists a link alias that is detected as invalid within a chained command,
 the links to its left will be opened while the links to its right will not be opened.
+
+Permissions from your operating system may be required for some users to open links from Plannit using either way.
 
 <table>
 <tr>
