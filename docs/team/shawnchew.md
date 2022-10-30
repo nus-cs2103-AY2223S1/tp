@@ -3,6 +3,8 @@ layout: page
 title: Shawn Chew's Project Portfolio Page
 ---
 
+<div markdown="block" class="no-num">
+
 ### Project: NUScheduler
 
 
@@ -31,3 +33,5 @@ Given below are my contributions to the project.
 
 * **Tools**:
     * To be added
+
+</div>
