@@ -305,6 +305,7 @@ Displays all contacts matching the arguments provided by you.
 Format: `contact find q/QUERY`
 
 * QUERY is not case sensitive.
+* Note that adding a new contact will reset the UI back to the full list of contacts.
 
 Examples:
 * `contact find q/ea` will change your displayed contact list to show a contact list where all contacts will have "ea" in their name.
@@ -318,6 +319,8 @@ Format: `task find <q/QUERY x/DONE a/ASSIGNMENT>`
 * QUERY is not case sensitive.
 * ASSIGNMENT is either FROM or TO, representing "m/" and "o/", or 'Assigned by' and 'Assigned to', respectively.
 * DONE is either X or O, representing 'Done' and 'Not done' respectively.
+* Note that adding a new task will reset the UI back to the full list of tasks.
+
 
 <div markdown="block" class="alert alert-warning">
 
