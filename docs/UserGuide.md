@@ -6,13 +6,47 @@
 # Table of Contents
 <div id="top">
 </div>
-{:toc}
+
+<!-- TOC -->
+* [Introduction](#introduction)
+* [Quick start](#quick-start)
+* [Navigating the User Guide](#navigating-the-user-guide)
+  * [Information Box](#information-box)
+  * [Tip Box](#tip-box)
+  * [Danger Box](#danger-box)
+  * [Formatting](#formatting)
+* [Before Using](#before-using)
+  * [Familiarising yourself with the interface](#familiarising-yourself-with-the-interface)
+  * [Categorising your expenses and income](#categorising-your-expenses-and-income)
+  * [Guidelines on organising your expenses and income](#guidelines-on-organising-your-expenses-and-income)
+* [Features](#features)
+  * [Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`](#adding-entries--add-tentry_type-ddescription-aamount-dadate-ccategory)
+    * [Add an expense entry to the expenditure list](#add-an-expense-entry-to-the-expenditure-list)
+    * [Add an income entry to the income list](#add-an-income-entry-to-the-income-list)
+  * [Deleting entries: `delete INDEX_OF_ENTRY t/ENTRY_TYPE`](#deleting-entries--delete-index_of_entry-tentry_type)
+    * [Delete an expense from the expenditure list](#delete-an-expense-from-the-expenditure-list)
+    * [Delete an income from the income list](#delete-an-income-from-the-income-list)
+  * [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
+    * [Edits expenditure with specified fields](#edits-expenditure-with-specified-fields)
+    * [Edits income with specified fields](#edits-income-with-specified-fields)
+  * [Summary of entries: `summary [mo/MONTH]`](#summary-of-entries--summary-momonth)
+    * [Summary of all entries in the currently shown list](#summary-of-all-entries-in-the-currently-shown-list)
+    * [Summary of all entries the specified month](#summary-of-all-entries-the-specified-month)
+  * [View entries by category: `view t/ENTRY_TYPE`](#view-entries-by-category--view-tentry_type)
+  * [View entries by month: `view t/ENTRY_TYPE mo/MONTH`](#view-entries-by-month--view-tentry_type-momonth)
+  * [Clearing all entries: `clear`](#clearing-all-entries--clear)
+  * [Exiting the program: `exit`](#exiting-the-program--exit)
+  * [Saving the data](#saving-the-data)
+  * [Editing the data file](#editing-the-data-file)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
+<!-- TOC -->
 
 ## Introduction
 
 PennyWise is a desktop application that **empowers students with the ability to make sensible financial decisions**,
-helping students to manage their budget by providing a **graphical analysis of their financial activities**. 
-It provides a clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings. 
+helping students to manage their budget by providing a **graphical analysis of their financial activities**.
+It provides a clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings.
 _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
@@ -32,7 +66,7 @@ Already an expert? Jump right straight to the [features](#features) section to s
 3. Copy the file to the folder you want to use as the home folder for PennyWise.
 4. Double-click the file to start the app. You should see a user interface similar to what is shown below in a few seconds.
    - The application contains some sample data that provides some examples on how you can use the application.
-   
+
    ![Ui](images/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -50,7 +84,7 @@ Already an expert? Jump right straight to the [features](#features) section to s
     - **`clear`**: :exclamation: Deletes all entries.
 
     - **`exit`** : Exits the app.
-   
+
 6. Congrats! You are now ready to get started on your first steps in supercharging your financial management flow!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
@@ -102,7 +136,7 @@ All command follow this format:<br>
 <pre>
     command | entry identifier | input | [optional inputs]
 </pre>
-  
+
 For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, let us decompose the command format step-by-step!
 
 |      Format      |                Example                 |
@@ -113,7 +147,7 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
 |  Optional Input  |                  NIL                   |
 
 - Letters followed by a forward slash is called a prefix and will be used to specify a specific parameter<br>
-  e.g `t\ ` refers to the entry type parameter 
+  e.g `t\ ` refers to the entry type parameter.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
   e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
@@ -121,7 +155,7 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
 - Items in square brackets are optional.<br>
   e.g. `view t/ENTRY_TYPE [MONTH]` can be used as `view t/e mo/2022-05` or as `view t/e`.
 
-- **ALL** identifiers are <ins>case-sensitive</ins>. 
+- **ALL** identifiers are <ins>case-sensitive</ins>.
   e.g `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
 </div>
 
@@ -155,9 +189,9 @@ that you are still able to get an overview of you finances. If these details are
 
 ### Categorising your expenses and income
 
-For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. 
+For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category.
   The following table shows the`Expenditure` and `Income` entries categories. The category names are <ins>case-insensitive</ins>.
-  
+
 |   `Expenditure`   |    `Income`     |
 |:-----------------:|:---------------:|
 |     **Food**      |   **Salary**    |
@@ -167,14 +201,14 @@ For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can on
 |    **Housing**    |    **Gifts**    |
 |    **Others**     |   **Others**    |
 
-For example, an expense entry can be tagged with `Food`, but not `Salary`. 
+For example, an expense entry can be tagged with `Food`, but not `Salary`.
 
 ### Guidelines on organising your expenses and income
 
 For **ALL** entries, 2 entries are considered duplicates <ins>IF</ins> both entries have exactly the same:
 `description`, `date` `amount` and `category`. We do not want PennyWise to be managing entries which are a repeat,
-of one another, as it would be easier to simply use the [edit](#editing-entries-edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category) 
-command to alter the original entry's specifications. 
+of one another, as it would be easier to simply use the [edit](#editing-entries-edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
+command to alter the original entry's specifications.
 
 In addition `description` and  `food` are case-insensitive, this means that `FOOD` will be equivalent to `food`
 
@@ -193,10 +227,10 @@ To add similar entries, vary the description/amount/date/category to let PennyWi
 <pre>
     <code>
         1. add t/e d/Teh Beng 11am a/1.50 da/22-10-2022 c/Food
-        2. add t/e d/Teh Beng 4pm a/1.50 da/22-10-2022 c/Food 
+        2. add t/e d/Teh Beng 4pm a/1.50 da/22-10-2022 c/Food
     </code>
 </pre>
-  
+
 OR we could even [edit](#editing-entries-edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category) the original entry directly to reflect 2 cups of `Teh Beng` consumed.
 
 <pre>
@@ -231,11 +265,11 @@ Adds an entry to the specified list.
 
 #### Add an expense entry to the expenditure list
 - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`
-  - Here, we record our $15.60 `Lunch` expenses on 10th October 2022, and tag the entry under `Food`. 
+  - Here, we record our $15.60 `Lunch` expenses on 10th October 2022, and tag the entry under `Food`.
 - Expected: `New entry added: Lunch; Date: 10-10-2022; Amount: 15.60; Tag: Food`
 
 ![AddCommandExpenditure](images/ug/AddCommandExpenditure.png)
-   
+
 #### Add an income entry to the income list
 - Example: `add t/i d/Tuition a/40.00 da/10-10-2022 c/Salary`
   - Here, we record our $40.00 income from `Tuition` on 10th October 2022 and tag the entry under `Salary`.
@@ -255,7 +289,7 @@ Deletes an entry from the specified list.
 #### Delete an expense from the expenditure list
 
 - Example: `delete 2 t/e` deletes the 2nd item on the expenditure list.
-  - Here, we want to delete the `Kungfu Panda Movie` expenditure entry, which is the 2nd entry in the expenditure list. 
+  - Here, we want to delete the `Kungfu Panda Movie` expenditure entry, which is the 2nd entry in the expenditure list.
 - Expected: `Deleted Entry: Kungfu Panda Movie; Date: 18-02-2022; Amount: 15.00; Tag: Entertainment`
 
 ![DeleteCommandExpenditure](images/ug/DeleteCommandExpenditure.png)
@@ -345,10 +379,10 @@ The command format is provided below:
 |--------------------|--------------------------------------------------------------------------|
 | **`t/ENTRY_TYPE`** | An entry type refers to either `e` for "Expenditure" or `i` for "Income" |
 
-1. View a PieChart of all expenditures by categories 
+1. View a PieChart of all expenditures by categories
    - Examples: `view t/e`
    - Expected: `Show graphically all expenditure by category` and a PieChart on the right of the application.
-   
+
    ![ViewCommandExpenditureCategory](images/ug/ViewCommandExpenditureCategory.png)
 
 2. View a PieChart of all incomes by categories
@@ -362,12 +396,12 @@ The command format is provided below:
 | **`t/ENTRY_TYPE`** | An entry type refers to either `e` for "Expenditure" or `i` for "Income"                 |
 | **`mo/MONTH`**     | Allows you to view only entries in a specified month in `YYYY-mm` format, e.g. `2022-01` |
 
-1. View a LineGraph of all expenditures in a specified month 
+1. View a LineGraph of all expenditures in a specified month
    - Examples: `view t/e mo/2022-01` where we specify the month to be January 2022.
    - Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
 
    ![ViewCommandExpenditureMonth](images/ug/ViewCommandExpenditureMonth.png)
-   
+
 2. View a LineGraph of all incomes in a specified month
    - Examples: `view t/i mo/2022-01`
    - Expected: `Show graphically all income by month` and a LineGraph on the right of the application
@@ -397,7 +431,7 @@ PennyWise data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-PennyWise data are saved as a file `[JAR file location]/data/pennywise.json`. 
+PennyWise data are saved as a file `[JAR file location]/data/pennywise.json`.
 Advanced users with knowledge about JSON file format are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
@@ -422,16 +456,16 @@ the data of your previous PennyWise home folder.
 **A**: Make sure that your `INDEX_OF_ENTRY` is the first parameter after the command word
 
 **Q**: I want to have a `Medical` category to log my expenses. Is there anyway I can do it? <br>
-**A**: The categories for income and expenses entries are fixed. 
+**A**: The categories for income and expenses entries are fixed.
 However we are exploring the possibilities of user added categories so do look out for our software updates!
 
 **Q**: Why are there missing dates on my Line Graph? <br>
-**A**: PennyWise automatically removes certain elements to ensure you can still get an overview of your finances! 
+**A**: PennyWise automatically removes certain elements to ensure you can still get an overview of your finances!
 If you want to view all the dates enlarge your application!
 
 **Q**: I prefer a date format like 4 Apr 2022. Why can't I pick the date format I want to use ? <br>
 **A**: Unfortunately PennyWise current only accepts one type of format which is `04-04-2022`.
-However, we are exploring the possibilities of allowing more types of date formats 
+However, we are exploring the possibilities of allowing more types of date formats
 without compromising on quality and user experience so do look out for our future software updates!
 
 
