@@ -1,6 +1,6 @@
-# 👾 MineFriends User Guide
+# 👾 Minefriends User Guide
 
-MineFriends is an address book for you to find friends to play Minecraft multiplayer with,
+Minefriends is an address book for you to find friends to play Minecraft multiplayer with,
 at the right time, with the right game modes and on the right servers.
 
 This user guide will help you get started with Minefriends and get to know what it can do for you. 
@@ -9,35 +9,28 @@ No other technical knowledge is required.
 
 
 ### Table of Contents
-* [Getting started](quick-start)
-* [User interface breakdown](user-interface-breakdown)
-* [Managing your Minecraft friends](managing-your-minecraft-friends)
-* [Summary of commands](command-summary)
+* [Getting started](#getting-started)
+* [User interface breakdown](#user-interface-breakdown)
+* [Managing your Minecraft friends](#managing-your-minecraft-friends)
+* [Summary of commands](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
 2. Download the latest `minefriends.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-4/tp/releases/download/v1.3/addressbook.jar).
-
-3. Create a folder called `MineFriends`.
-
+3. Create a folder called `Minefriends`.
 4. Put the `minefriends.jar` file inside the folder.
-
 5. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
-
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 Some sample commands you can try out:
 
    * **`list`** : Lists all of your friends.
-
    * **`add`**`n/Victoria Tan m/vicky12345 p/85355255 e/vic@gmail.com a/123, Jurong West Ave 6, #08-111` : <br>
    Adds a friend named `Victoria Tan` to your friend list.
-
    * **`delete`**`3` : Deletes the 3rd friend shown in your current friend list.
    
 Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends) below for details of each command.
@@ -62,10 +55,10 @@ Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends)
 
 **Command format legend:**<br>
 
-* You need to type in the words in `UPPER_CASE`.<br>
+* You need to type in the words in `UPPER_CASE`. If they appear multiple times the last one will be taken.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Amy Bee`.
 
-* Items in square brackets are optional.<br>
+* Items in square brackets are optional. If they appear multiple times the last one will be taken.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/Amy Bee t/friend` or as `n/Amy Bee`.
 
 * Items with a `*` can not appear at all, appear once, or appear many times.<br>
@@ -92,56 +85,60 @@ Example:<br>
 Upon typing `help` or clicking on the `help` option, a help window
 as such will appear:
 
-
 ![HelpWindow](images/HelpWindow.png)
 
-
-
-
-
-
 ### Adding a friend: `add`
-Format (fields in [ ] are optional): `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
+Format (fields in `[ ]` are optional, `*` indicates multiple entry): `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*`
 
 Adds a person to your friend list.
 
 #### Details of each field:
-Name (prefix:n)<br>
+Name (prefix:`n/`)<br>
 Each person can only have one name.
 
-Minecraft name (prefix:m)<br>
+Minecraft name (prefix:`m/`)<br>
 Each person can only have one minecraft name.
 
-Phone Number (prefix:p) **[Optional]** <br>
+Phone Number (prefix:`p/`) **[Optional]** <br>
 Each person can only have one phone number.
 
-Email (prefix:e) **[Optional]** <br> 
+Email (prefix:`e/`) **[Optional]** <br> 
 Each person can only have one email.
 
-Address (prefix:a) **[Optional]** <br> 
+Address (prefix:`a/`) **[Optional]** <br> 
 Each person can only have one address.
 
-Country (prefix:c) **[Optional]** <br>
+Country (prefix:`c/`) **[Optional]** <br>
 Each person can only have one country.
 
-Minecraft Server (prefix:ms) **[Optional, Multiple]** <br>
-Minecraft servers are in the format of `ServerName@IpAddress`.
+Minecraft Server (prefix:`ms/`) **[Optional, Multiple]** <br>
+Minecraft servers are in the format of `ServerName@ServerAddress`.
 
-Social Handle (prefix:s) **[Optional, Multiple]** <br>
+Social Handle (prefix:`s/`) **[Optional, Multiple]** <br>
 Social handles are in the format of `SocialMedia@Username`.
 
-Game Type (prefix:gt) **[Optional, Multiple]** <br>
+Game Type (prefix:`gt/`) **[Optional, Multiple]** <br>
 Game types can be anything, such as `survival games`, `skyblock` or `creative`.
 
-Tag (prefix:t) **[Optional, Multiple]** <br>
+Tag (prefix:`t/`) **[Optional, Multiple]** <br>
 Tags can be anything, as long as there are no spaces.
 
-Time interval (prefix:ti) **[Optional, Multiple]** <br>
+Time interval (prefix:`ti/`) **[Optional, Multiple]** <br>
 This refers to the timings in which your friend is available.<br>
 Time interval comes in the format `day@hhmm-day@hhmm`, such as `mon@2100-mon@2300`,
 with the hours and minutes in 24-hour format. The first date-time being the start and
-the second date-time being the end of their availability period.
+the second date-time being the end of their availability period. `day` can be
+`mon`, `tue`, `wed`, `thu`, `fri`, `sat` or `sun` only.
+
+<div markdown="block" class="alert alert-info">
+
+If the start and end time for a friend are the same, it is treated as one point in time
+at that exact moment.
+
+To indicate availability across the whole week, use `mon@0000-sun@2359`.
+
+</div>
 
 #### Examples:
 
@@ -184,12 +181,9 @@ Example:
 
 ![ListExample](images/ListExample.png)
 
-
-
-
-
 ### Editing a friend's information : `edit`
-Format: `edit INDEX [n/NAME] [a/ADDRESS] [t/TAG]* …`<br>
+Format: `edit INDEX [n/NAME] [m/MINECRAFT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
+[c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*` <br>
 
 Edits information about an existing friend in your friend list.
 
@@ -199,7 +193,9 @@ Edits information about an existing friend in your friend list.
 
 <div markdown="block" class="alert alert-info">
 
-For optional fields, you can remove all the person’s information in that field by typing the prefix (eg: `t/`) without
+Editing a field with multiple entries will **overwrite all existing values of that field**.
+
+For fields with multiple entries, you can remove all the person’s information in that field by typing the prefix (eg: `t/`) without
 including any information after the prefix.
 
 </div>
@@ -247,10 +243,8 @@ Example: <br>
 ![FindAmy](images/FindAmy.png)
 
 * The order of the keywords does not matter. e.g. `Amy Bee` will match `Bee Amy`.
-
 * Only the name is searched.
-
-* Only full words will be matched. (e.g. `Am` will not match `Amy`)
+* Only **full words** will be matched. (e.g. `Am` will not match `Amy`)
 
 * Persons matching at least one keyword will be returned
   (e.g. `Amy Tan` will return `Amy Bee`, `Benson Tan`)
@@ -265,6 +259,7 @@ Suggest friends to play with given a set of constraints.
 
 Format: `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`
 
+* At least one instance of either `DAY_TIME_IN_WEEK` or `KEYWORD` must be provided.
 * The search is case-insensitive (e.g. `amy` will match `Amy`)
 * The order of the keywords does not matter
 * The `Keyword` will be matched against **all** attributes of a friend (eg. Name, Minecraft Name, Address etc.)
@@ -276,18 +271,18 @@ Examples:
 `suggest dt/tue@2125 dt/sat@1200 k/Victoria k/Vicky` 
 will return friends subjected to **all** of the following conditions:
 1. Is available at either Tuesday 9:25pm or Saturday 12:00pm
-2. Attributes contain the `Keyword` "Victoria" (ignore case)
-3. Attributes contain the `Keyword` "Vicky" (ignore case)
+2. Attributes contain the `Keyword` `Victoria` (ignore case)
+3. Attributes contain the `Keyword` `Vicky` (ignore case)
 
-* A friend with name "Victoria Tan" and Minecraft name "vicky12345", who is available from Tuesday 7pm to 11pm
+* A friend with name `Victoria Tan` and Minecraft name `vicky12345`, who is available from Tuesday 7pm to 11pm
 will be matched
-* A friend with name "Victoria Tan" but no other attributes containing "Vicky" will not be matched
-* A friend with name "Victoria Tan" and Minecraft name "vicky12345", who is only available from Sunday 1pm to 6pm
+* A friend with name `Victoria Tan` but no other attributes containing `Vicky` will not be matched
+* A friend with name `Victoria Tan` and Minecraft name `vicky12345`, who is only available from Sunday 1pm to 6pm
 will also not be matched
 
 `suggest k/Victoria`
 will return friends subjected to the only condition:
-1. Attributes contain the `Keyword` "Victoria" (ignore case)
+1. Attributes contain the `Keyword` `Victoria` (ignore case)
 
 `suggest dt/tue@2125`
 will return friends subjected to the only condition:
@@ -298,7 +293,6 @@ Format: `delete INDEX`<br>
 
 Deletes the specified friend from your friend list.
 
-
 * Deletes the friend at the specified `INDEX` of your friend list.
 * The index **must be a positive integer** 1, 2, 3, …
 
@@ -306,7 +300,7 @@ Example:
 * `list` followed by `delete 2` deletes the 2nd friend in your friend list.<br>
 
 Before delete
-  ![BeforeDelete](images/BeforeDelete.png)
+![BeforeDelete](images/BeforeDelete.png)
 
 After delete
 ![AfterDelete](images/AfterDelete.png)
@@ -326,7 +320,7 @@ Format: `exit`
 
 ### Saving the data
 
-MineFriends data are saved in the hard disk automatically after any 
+Minefriends data are saved in the hard disk automatically after any 
 command that changes the data. There is no need to save manually.
 
 
@@ -334,7 +328,7 @@ command that changes the data. There is no need to save manually.
 
 ## FAQ
 
-**Q: How do I transfer my MineFriends data to another Computer?** <br>
+**Q: How do I transfer my Minefriends data to another Computer?** <br>
 
 **A**: 
 Install the app in the other computer and overwrite the empty data file it creates with the file that
@@ -344,14 +338,14 @@ contains the data of your previous Minefriends home folder.
 
 ## Command summary
 
-| Action      | Format, Examples                                                                                                                                                                                                                                                                              |
-|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*` <br/> <br/> e.g. `add n/Benson m/benson01 p/92881083 e/bensontan@hotmail.com a/ 4 Leith road s/ig@bensontan01 t/bff` |
-| **List**    | `list`                                                                                                                                                                                                                                                                                        | `list`     
-| **Edit**    | `edit INDEX [n/NAME] [a/ADDRESS] [t/TAG]* …`<br/> <br/> e.g.`edit 2 n/Amy Bee e/amybee123@gmail.com`                                                                                                                                                                                          |    |                                                                                                                                                                       |
-| **Find**    | `find KEYWORD [MORE_KEYWORDS]*`<br> <br> e.g., `find Amy Benson`                                                                                                                                                                                                                              |
-| **Delete**  | `delete INDEX`<br><br> e.g., `delete 3`                                                                                                                                                                                                                                                       |
-| **Suggest** | `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`  <br/>  <br/> e.g. `suggest dt/tue@2125 dt/sat@1200 k/Victoria k/Vicky`                                                                                                                                                                         ||
-| **Clear**   | `clear`                                                                                                                                                                                                                                                                                       ||
-| **Exit**    | `exit`                                                                                                                                                                                                                                                                                        |
-| **Help**    | `help`                                                                                                                                                                                                                                                                                        |
+| Action      | Format                                                                                                                                                                          | Examples                                                                                  |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| **Add**     | `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*`        | `add n/Benson m/benson01 p/92881083 e/bensontan@hotmail.com a/ 4 Leith road s/ig@bensontan01 t/bff` |
+| **List**    | `list`                                                                                                                                                                          |                                                                                           |    
+| **Edit**    | `edit INDEX [n/NAME] [m/MINECRAFT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*` | `edit 2 n/Amy Bee t/`                                                                     |                                                                                                                                                                         |
+| **Find**    | `find KEYWORD [MORE_KEYWORDS]*`                                                                                                                  |`find Amy Benson`                                                                          |
+| **Delete**  | `delete INDEX`                                                                                                                                         |`delete 3`                                                                                 |
+| **Suggest** | `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`                                                              |`suggest dt/tue@2125 dt/sat@1200 k/Victoria k/Vicky`                                                                                          |
+| **Clear**   | `clear`                                                                                                                                                                         |                                                                                           |
+| **Exit**    | `exit`                                                                                                                                                                          |                                                                                           |
+| **Help**    | `help`                                                                                                                                                                          |                                                                                           |
