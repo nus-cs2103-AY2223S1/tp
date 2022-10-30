@@ -61,11 +61,11 @@ public class Task {
      * @param newDeadline The new deadline provided.
      */
     public void editTaskDesc(Name newName, LocalDate newDeadline) {
-        this.name = newName;
+        if (!isNull(newName)) {
+            this.name = newName;
+        }
         if (!isNull(newDeadline)) {
             this.deadline = Optional.ofNullable(newDeadline);
-        } else {
-            this.deadline = this.deadline;
         }
     }
 

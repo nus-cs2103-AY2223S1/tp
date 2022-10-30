@@ -118,7 +118,6 @@ public class UniqueTeamList implements Iterable<Team> {
      *
      */
     public void editTask(int teamIndex, int taskIndex, seedu.address.model.task.Name newName, LocalDate newDeadline) {
-        requireNonNull(newName);
         internalList.get(teamIndex).editTask(taskIndex, newName, newDeadline);
     }
 

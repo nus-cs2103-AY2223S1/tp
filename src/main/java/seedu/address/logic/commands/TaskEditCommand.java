@@ -49,7 +49,6 @@ public class TaskEditCommand extends Command {
     public TaskEditCommand(Index teamIndex, Index taskIndex, Name newName, LocalDate newDeadline) {
         requireNonNull(taskIndex);
         requireNonNull(teamIndex);
-        requireNonNull(newName);
 
         this.teamIndex = teamIndex;
         this.taskIndex = taskIndex;
@@ -71,8 +70,9 @@ public class TaskEditCommand extends Command {
         }
 
         model.editTask(teamIndex, taskIndex, newName, newDeadline);
-        String val = newDeadline == null ? "" : newDeadline.toString();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newName, val));
+        String deadlineString = newDeadline == null ? "" : newDeadline.toString();
+        String nameString = newName == null ? "" : newName.toString();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newName, deadlineString));
     }
 
     @Override
