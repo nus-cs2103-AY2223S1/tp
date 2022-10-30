@@ -8,12 +8,18 @@ import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRES
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_ADDRESS_DESC_WHISTLER;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_NAME_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_TAGS_DESC_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_ADDRESS_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_NAME_SCOTTS;
+import static seedu.condonery.logic.commands.CommandTestUtil.PROPERTY_VALID_TAG_SCOTTS;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
@@ -45,7 +51,7 @@ public class EditPropertyCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, CLIENT_VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, PROPERTY_VALID_NAME_SCOTTS, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditPropertyCommand.MESSAGE_NOT_EDITED);
@@ -57,10 +63,10 @@ public class EditPropertyCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + PROPERTY_NAME_DESC_SCOTTS, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + PROPERTY_NAME_DESC_SCOTTS, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -89,12 +95,12 @@ public class EditPropertyCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND;
-        String userInput = targetIndex.getOneBased() + TAG_DESC_HUSBAND
-                + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + PROPERTY_TAGS_DESC_SCOTTS
+                + PROPERTY_ADDRESS_DESC_SCOTTS + PROPERTY_NAME_DESC_SCOTTS;
 
-        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(CLIENT_VALID_NAME_AMY)
-            .withAddress(CLIENT_VALID_ADDRESS_AMY)
-            .withTags(CLIENT_VALID_TAG_HUSBAND, CLIENT_VALID_TAG_FRIEND).build();
+        EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder().withName(PROPERTY_VALID_NAME_SCOTTS)
+            .withAddress(PROPERTY_VALID_ADDRESS_SCOTTS)
+            .withTags(PROPERTY_VALID_TAG_SCOTTS).build();
         EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -136,12 +142,13 @@ public class EditPropertyCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST;
-        String userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY
-            + TAG_DESC_FRIEND + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
-            + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + PROPERTY_ADDRESS_DESC_SCOTTS + PROPERTY_NAME_DESC_SCOTTS
+            + PROPERTY_TAGS_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_SCOTTS + PROPERTY_ADDRESS_DESC_WHISTLER
+            + PROPERTY_ADDRESS_DESC_SCOTTS;
 
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder()
-            .withAddress(CLIENT_VALID_ADDRESS_BOB).withTags(CLIENT_VALID_TAG_FRIEND, CLIENT_VALID_TAG_HUSBAND)
+            .withName(PROPERTY_VALID_NAME_SCOTTS)
+            .withAddress(PROPERTY_VALID_ADDRESS_SCOTTS).withTags(PROPERTY_VALID_TAG_SCOTTS)
             .build();
         EditPropertyCommand expectedCommand = new EditPropertyCommand(targetIndex, descriptor);
 

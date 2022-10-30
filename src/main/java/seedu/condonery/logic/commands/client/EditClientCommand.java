@@ -283,7 +283,6 @@ public class EditClientCommand extends Command {
                     + "name=" + name
                     + ", address=" + address
                     + ", tags=" + tags
-                    + ", interested properties=" + interestedProperties
                     + '}';
         }
 
