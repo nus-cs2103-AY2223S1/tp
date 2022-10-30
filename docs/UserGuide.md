@@ -82,11 +82,12 @@ Notes:
 
 ### Remove students: `student delete`
 
-- Command `student delete <index>`
-- Removes the student from the list of students with the given index
+- Command `student delete <indices>`
+- Removes the indexed students(s) from the list of students
 
 Notes:
-- `index` must be a positive integer and must correspond to an existing student
+- Each `index` must be a positive integer which corresponds to an existing student
+- You can delete multiple students at once by separating the indices with a space. e.g. `student delete 1 2 3`
 
 ### Edit students: `student edit`
 
@@ -115,11 +116,12 @@ Notes:
 
 ### Remove task: `task delete`
 
-- Command `task delete <index>`
-- Removes the indexed task from the list of tasks
+- Command `task delete <indices>`
+- Removes the indexed task(s) from the list of tasks
 
 Notes:
-- `index` must be a positive integer and valid
+- Each `index` must be a positive integer which corresponds to an existing task
+- You can delete multiple tasks at once by separating the indices with a space. e.g. `task delete 1 2 3`
 
 ### Edit task: `task edit`
 
@@ -203,22 +205,22 @@ Notes:
 
 ## Command summary
 
-| Action                         | Format, Examples                                                                                                                                                                 |
-|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add student**                | `student add n/studentName p/phoneNumber e/email g/tutorialGroup(optional) t/tags(optional)` e.g. `student add n/James Ho p/98765432 e/a@gmail.com g/T03 t/yearTwo`              |
-| **Remove student**             | `student delete <index>` e.g. `student delete 1`                                                                                                                                 |
-| **Edit student**               | `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tag>(optional)` e.g. `student edit 1 g/T05` |
-| **List students**              | `student list`                                                                                                                                                                   |
-| **Add task**                   | `task add tn/<taskName> i/<taskDescription> d/<taskDeadline> s/<student(s)>(optional)` e.g. `task add tn/Grade Mission 1 i/Due Tomorrow d/10/12/2022 s/James Ho`                 |
-| **Remove task**                | `task delete <index>` e.g. `task delete 1`                                                                                                                                       |
-| **Rename task**                | `task edit <index> tn/<taskName>(optional) i/<taskDescription>(optional) d/<taskDeadline>(optional) s/<student(s)>(optional)` `e.g. task edit 1 d/11/12/2020`                    |
-| **List tasks**                 | `task list`                                                                                                                                                                      |
-| **Mark task**                  | `task mark i/TASK_NUMBER` e.g. `task mark i/1`                                                                                                                                   |
-| **Unmark task**                | `task unmark i/TASK_NUMBER` e.g. `task unmark i/1`                                                                                                                               |
-| **Assign task**                | `task assign n/TASK_NAME n/STUDENT_NAME` e.g. `task assign n/Grade Mission 2 n/James Ho`                                                                                         |
-| **Add tutorial group**         | `tutorial add g/<tutorialGroup>` e.g. `tutorial add g/T01`                                                                                                                       |
-| **Remove tutorial group**      | `tutorial delete g/<tutorialGroup>` e.g. `tutorial delete g/T01`                                                                                                                 |
-| **Enrol student**              | `student enroll <index> g/<groupName>` e.g. `student enrol 1 g/T03`                                                                                                              |
-| **Expel student**              | `student expel <index>  g/<groupName>`  e.g. `student expel 1 g/T03`                                                                                                             |
-| **Display the user guide url** | `help me`                                                                                                                                                                        |
-| **Exit the app**               | `bye bye`                                                                                                                                                                        |
+| Action                             | Format, Examples                                                                                                                                                                 |
+|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add student**                    | `student add n/studentName p/phoneNumber e/email g/tutorialGroup(optional) t/tags(optional)` e.g. `student add n/James Ho p/98765432 e/a@gmail.com g/T03 t/yearTwo`              |
+| **Remove student(s)**              | `student delete <indices>` e.g. `student delete 1 3`                                                                                                                             |
+| **Edit student**                   | `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tag>(optional)` e.g. `student edit 1 g/T05` |
+| **List students**                  | `student list`                                                                                                                                                                   |
+| **Add task**                       | `task add tn/<taskName> i/<taskDescription> d/<taskDeadline> s/<student(s)>(optional)` e.g. `task add tn/Grade Mission 1 i/Due Tomorrow d/10/12/2022 s/James Ho`                 |
+| **Remove task(s)**                 | `task delete <indices>` e.g. `task delete 2 4`                                                                                                                                   |
+| **Edit task**                      | `task edit <index> tn/<taskName>(optional) i/<taskDescription>(optional) d/<taskDeadline>(optional) s/<student(s)>(optional)` `e.g. task edit 1 d/11/12/2020`                    |
+| **List tasks**                     | `task list`                                                                                                                                                                      |
+| **Add tutorial group**             | `tutorial add g/<tutorialGroup>` e.g. `tutorial add g/T01`                                                                                                                       |
+| **Remove tutorial group**          | `tutorial delete g/<tutorialGroup>` e.g. `tutorial delete g/T01`                                                                                                                 |
+| **Enrol student**                  | `student enroll <index> g/<groupName>` e.g. `student enrol 1 g/T03`                                                                                                              |
+| **Expel student**                  | `student expel <index>  g/<groupName>`  e.g. `student expel 1 g/T03`                                                                                                             |
+| **Mark assignment as graded**      | `grade edit <studentIndex> <taskIndex> gr/T` e.g. `grade edit 1 1 tr/T`                                                                                                          |
+| **Mark assignment as ungraded**    | `grade edit <studentIndex> <taskIndex> gr/F` e.g. `grade edit 2 1 tr/F`                                                                                                          |
+| **View assignment grading status** | `grade view <studentIndex> <taskIndex>` e.g. `grade view 3 7`                                                                                                                    |
+| **Display the user guide url**     | `help me`                                                                                                                                                                        |
+| **Exit the app**                   | `bye bye`                                                                                                                                                                        |
