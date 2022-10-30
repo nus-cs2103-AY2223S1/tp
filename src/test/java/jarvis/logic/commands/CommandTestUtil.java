@@ -6,6 +6,7 @@ import static jarvis.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,14 +30,20 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_MATRIC_NUM_AMY = "A0344534D";
     public static final String VALID_MATRIC_NUM_BOB = "A3533843G";
+    public static final String VALID_TASK_DESC_MISSION1 = "Mark mission 1";
+    public static final String VALID_TASK_DESC_MISSION2 = "Mark mission 2";
+    public static final LocalDate VALID_TASK_DEADLINE = LocalDate.of(2022, 10, 20);
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String MATRIC_NUM_DESC_AMY = " " + PREFIX_MATRIC_NUM + VALID_MATRIC_NUM_AMY;
     public static final String MATRIC_NUM_DESC_BOB = " " + PREFIX_MATRIC_NUM + VALID_MATRIC_NUM_BOB;
 
-
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_MATRIC_NUM_START_ALPHABET = " " + PREFIX_MATRIC_NUM + "B1234567A";
+    public static final String INVALID_MATRIC_NUM_SIX_DIGITS = " " + PREFIX_MATRIC_NUM + "A123456U";
+    public static final String INVALID_MATRIC_NUM_UNCAPITALISED = " " + PREFIX_MATRIC_NUM + "a1234567U";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -111,5 +118,18 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
+
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+//        final String[] splitName = student.getName().fullName.split("\\s+");
+//        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+
+
+        assertEquals(1, model.getFilteredStudentList().size());
+    }
+
 
 }
