@@ -9,8 +9,8 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. On top of being able to 
-manage your **tasks and contacts** effectively, students can conveniently search for peers that are taking the same module 
+CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. On top of being able to
+manage your **tasks and contacts** effectively, students can conveniently search for peers that are taking the same module
 as them to seek help or collaboration.
 
 This app is optimized for use via a **Command Line Interface** (CLI)
@@ -21,7 +21,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 ## How to use this guide?
 
 For new users, it is strongly recommended that you look through this User Guide to gain a comprehensive
-understanding of CodeConnect. 
+understanding of CodeConnect.
 
 However, you may also choose to head over to the relevant sections as described below:
 
@@ -39,7 +39,7 @@ However, you may also choose to head over to the relevant sections as described 
 3. Copy the file to the folder you want to use as the _home folder_.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-    
+
     ![UiOnStartup](images/UiOnStartup.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -121,6 +121,14 @@ Examples:
 :bulb: Deadline Formats
 
 CodeConnect uses the [jchronic](https://github.com/samtingleff/jchronic) natural language date parser, ported from [Ruby's Chronic](https://github.com/deepin-community/ruby-chronic). This means that natural language inputs such as "tomorrow" or "next sunday" will be understood by CodeConnect!
+The default time of a task will be set to 11.59pm, if it is not specified in the input.
+
+Here are some examples of what deadline formats are accepted:
+* "tomorrow" will format the deadline to the next day, 11.59pm
+* "tmr 3pm" or "tomorrow 3pm" will format it to the next day, 3.00pm
+* "this tuesday 05:00" or "this tuesday 0500" will format it to the coming tuesday, 5.00am
+* "may 27th" will format it to the 27th of may of the current year, 11.59pm
+* "6/4/22" or "6/4/2022" will format it to the 6th of april 2022, 11.59pm
 
 </div>
 
@@ -174,7 +182,6 @@ Format: `clean`
 
 This command has similar spelling to the [clear command](#clearing-all-contacts--clear), which **deletes all contacts**.
 
-</div>
 
 #### Marking a task: `mark`
 
@@ -184,7 +191,9 @@ Format:
 `mark {task_index}`
 
 Example:
-`mark 2`
+`mark 2` will mark the task with index 2 as done, as shown by a tick beside the task description.
+
+![marktask](images/markTask.png)
 
 #### Unmarking a task: `unmark`
 
@@ -206,9 +215,13 @@ Format:
 Examples:
 * `find n/homework` returns `Science homework`, `Math homework`
 * `find n/home` returns `Science homework`, `Math homework`
-* `find n/tut set` returns `Tutorial 1`, `Problem set 2` 
+* `find n/tut set` returns `Tutorial 1`, `Problem set 2`
 * `find m/CS1101S` returns `Problem set 4`, `Reading assignment 2`
 * `find m/1101S` returns `Problem set 4`, `Reading assignment 2`
+
+`find m/CS2103T` returns this:
+
+![findTasks](images/findTaskModule.png)
 
 #### Listing all tasks : `list`
 
@@ -218,6 +231,10 @@ Format: `list`  `list time`
 
 * `list` - displays a list of all tasks in the order of most recent task added
 * `list time` - displays a list of all tasks in the order of the earliest deadline
+
+</div>
+
+Click [here](#) to return to the top of the page.
 
 ### Managing contacts
 
@@ -263,7 +280,9 @@ Edits the specified contact.
 Format: `editc {contact_index} {field prefix}{field description}`
 
 Examples:
-* `editc 2 n/John Wong` - edits the name of the contact at index 2 in the contact list to `John Wong`.
+* `editc 4 gh/alicey` - edits the Github profile of the contact at index 4 in the contact list to `alicey`
+
+![editContact](images/editContact.png)
 
 <div markdown="block" class="alert alert-primary">
 
@@ -317,6 +336,8 @@ Deleted contacts are **unrecoverable**!
 
 </div>
 
+Click [here](#) to return to the top of the page.
+
 ### Finishing up
 
 #### Exiting the program : `exit`
@@ -335,7 +356,6 @@ CodeConnect data are saved as a JSON file `[JAR file location]/data/codeconnect.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CodeConnect will discard all data and start with an empty data file at the next run.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -384,3 +404,7 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | Telegram | `tele/` |
 | Task     | `ts/`   |
 | Deadline | `by/`   |
+
+</div>
+
+Click [here](#) to return to the top of the page.
