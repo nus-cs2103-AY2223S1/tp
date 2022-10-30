@@ -56,6 +56,9 @@ while still having the benefits of a Graphical User Interface (GUI).
 | [`home`](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
 | [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
 | [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+* Features marked with * can only be utilised when users are at the home page.
+</div>
 
 ## 2. Features
 
@@ -84,9 +87,6 @@ the parameter will be taken.<br>
 * Extraneous parameters for commands that do not take in parameters (such as
   `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
-
-* Features marked with * can only be utilised when users are at the home page.
-
 </div>
 
 ### 2.1. Modules
