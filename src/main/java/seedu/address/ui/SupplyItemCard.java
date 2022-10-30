@@ -78,7 +78,11 @@ public class SupplyItemCard extends UiPart<Region> {
                 determineStockHealthColor(supplyItem.getCurrentStock(), supplyItem.getMinStock())));
         id.setText(displayedIndex + ". ");
         name.setText(supplyItem.getName());
+        name.setWrapText(true);
+        name.setPrefWidth(70);
         supplierName.setText(supplyItem.getSupplier().getName().fullName);
+        supplierName.setWrapText(true);
+        supplierName.setPrefWidth(360);
         currentStock.setText(getStringFromInt(supplyItem.getCurrentStock()));
         price.setText(supplyItem.getPrice().value);
         supplyItem.getTags().stream()

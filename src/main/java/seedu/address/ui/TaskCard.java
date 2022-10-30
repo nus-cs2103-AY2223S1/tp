@@ -49,6 +49,8 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle());
+        title.setWrapText(true);
+        title.setPrefWidth(240);
         deadline.setText(getLocalDateString(task.getDeadline()));
         status.setText(task.getParsedStatus());
         task.getTags().stream()
