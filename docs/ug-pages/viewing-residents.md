@@ -13,9 +13,9 @@ fields from being seen, find specific residents, and search residents whose fiel
 Lists *all* the residents in the **RC4HDB** database. If the table view is showing a filtered portion of the residents,
 calling `list` will restore and display the full list of residents.
 
-Additionally, you can specify fields (represented as columns) to be **included** or **excluded** as well!
+[comment]: <> (Additionally, you can specify fields &#40;represented as columns&#41; to be **included** or **excluded** as well!)
 
-This can be done using `list /i` or `list /e`.
+[comment]: <> (This can be done using `list /i` or `list /e`.)
 
 Format:
 
@@ -25,39 +25,58 @@ Format:
    ![list command](../images/ug-photos/list_command.png)
 
 
-- `list /i LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **including** only the fields
-   corresponding to the specified letters
+[comment]: <> (- `list /i LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **including** only the fields)
+
+[comment]: <> (   corresponding to the specified letters)
 
 
-- `list /e LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **excluding** only the fields
-   corresponding to the specified letters
+[comment]: <> (- `list /e LETTER [MORE_LETTERS]` to display *all* residents in **RC4HDB** while **excluding** only the fields)
 
-  Calling `list /i n p e` or `list /e i r g h m t` would both produce the following result:
-![list command](../images/ug-photos/list_i_list_e_command.png)
+[comment]: <> (   corresponding to the specified letters)
+
+[comment]: <> (  Calling `list /i n p e` or `list /e i r g h m t` would both produce the following result:)
+
+[comment]: <> (![list command]&#40;../images/ug-photos/list_i_list_e_command.png&#41;)
 
 Examples:
 
 - `list` returns a table of *all* residents from the database with *all* fields included in the view
-- `list /i n p e` returns a table with only the *name*, *phone* and *email* fields included in the view
-- `list /e r g h` returns a table with all fields except *room*, *gender* and *house* included in the view
+
+[comment]: <> (- `list /i n p e` returns a table with only the *name*, *phone* and *email* fields included in the view)
+
+[comment]: <> (- `list /e r g h` returns a table with all fields except *room*, *gender* and *house* included in the view)
 
 Note:
 
-- Each field to be included or excluded from the table should be entered as a *single letter*, that is, 
-  the first letter of the corresponding field name.
-- The relative order of each letter *does not matter*, and the letters can be in either upper or lower case. 
-  Duplicate letters are ignored.
-- Only letters corresponding to the first letter of a valid field in the table can be specified, 
-  *any other letter will be considered invalid*.
-- Letters *must* be separated by a single whitespace. 
-- There needs to be at least one field (and hence column) included in the table view at all times.
+- Any input entered after the `list` command will be ignored.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-*(For advanced users!)* The `list` command, as well as the `list /i` and `list /e` extensions, are 
-[*idempotent*](glossary.md#idempotent) and [*state-independent*](glossary.md#state-independent). This means that
-using the `list` command with a set of *(optional)* letters will return the same result regardless of what the current 
-table looks like. Calling the same command again will not change the table view any further.
-</div>
+[comment]: <> (- Each field to be included or excluded from the table should be entered as a *single letter*, that is, )
+
+[comment]: <> (  the first letter of the corresponding field name.)
+
+[comment]: <> (- The relative order of each letter *does not matter*, and the letters can be in either upper or lower case. )
+
+[comment]: <> (  Duplicate letters are ignored.)
+
+[comment]: <> (- Only letters corresponding to the first letter of a valid field in the table can be specified, )
+
+[comment]: <> (  *any other letter will be considered invalid*.)
+
+[comment]: <> (- Letters *must* be separated by a single whitespace. )
+
+[comment]: <> (- There needs to be at least one field &#40;and hence column&#41; included in the table view at all times.)
+
+[comment]: <> (<div markdown="span" class="alert alert-primary">:bulb: **Tip:**)
+
+[comment]: <> (*&#40;For advanced users!&#41;* The `list` command, as well as the `list /i` and `list /e` extensions, are )
+
+[comment]: <> ([*idempotent*]&#40;glossary.md#idempotent&#41; and [*state-independent*]&#40;glossary.md#state-independent&#41;. This means that)
+
+[comment]: <> (using the `list` command with a set of *&#40;optional&#41;* letters will return the same result regardless of what the current )
+
+[comment]: <> (table looks like. Calling the same command again will not change the table view any further.)
+
+[comment]: <> (</div>)
 
 
 
@@ -72,7 +91,7 @@ table looks like. Calling the same command again will not change the table view 
 Shows only the specified columns in the **current** table view.
 
 If your screen is too cluttered, you may use `showonly` to show only the columns you need! 
-This command works similar to `list /i`, with two key differences:
+Take note that:
 
 1. You can only use `showonly` on existing columns in the current table view, and
 2. The `showonly` command does not modify the list of residents being displayed. Filtered residents stay filtered!
@@ -94,18 +113,21 @@ Examples **(sequential)**:
 <br>
 Note:
 
-- Like in `list`, each column to be shown should be entered as a single letter that corresponds to the first 
-  letter of the column to be shown.
+- Each column to be shown should be entered as a single letter, e.g. `n p e` that corresponds to the first 
+  letter of the field in the column. This is in contrast to the prefixes, e.g. `n/`, `p/`, used in `add` or `filter`.
 - The relative order of each letter does not matter, and the letters can be in either upper or lower case. 
   Duplicate letters are ignored.
 - Similarly, letters *must* be separated by a single whitespace.
 - Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
 - You can always `reset` the table to the full, default view at any time!
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-*(For advanced users!)* Notice that `showonly`, unlike `list /i`, is dependent on the state of the current table.
-Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.
-</div>
+[comment]: <> (<div markdown="span" class="alert alert-primary">:bulb: **Tip:**)
+
+[comment]: <> (*&#40;For advanced users!&#41;* Notice that `showonly`, unlike `list /i`, is dependent on the state of the current table.)
+
+[comment]: <> (Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.)
+
+[comment]: <> (</div>)
 
 [Back to Top](#back-to-menu)
 
@@ -117,8 +139,8 @@ Hence, some calls to `showonly` may be invalid if the specified columns are not 
 
 Hides only the specified columns in the **current** table view.
 
-Use `hideonly` if there are more columns to show than hide. Like `showonly`, `hideonly` differs from `list` in the 
-following ways:
+Use `hideonly` if there are more columns to show than hide. 
+As with `showonly`, take note that:
 
 1. You can only use `hideonly` on existing columns in the current table view, and
 2. The `hideonly` command does not modify the list of residents being displayed. Residents found using `find` stay 
@@ -137,18 +159,21 @@ Examples **(sequential)**:
 
 Note:
 
-- Like in `list`, each column to be hidden should be entered as a single letter that corresponds to the first letter 
-  of the column to be shown.
+- Each column to be hidden should be entered as a single letter, e.g. `r m g h` that corresponds to the first
+  letter of the field in the column. This is in contrast to the prefixes, e.g. `r/`, `h/`, used in `edit` or `filter`.
 - The relative order of each letter does not matter, and the letters can be in either upper or lower case. 
   Duplicate letters are ignored.
 - Similarly, letters *must* be separated by a single whitespace.
 - Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
 - You can always `reset` the table to the full, default view at any time!
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-*(For advanced users!)* Notice that `hideonly`, unlike `list /i`, is dependent on the state of the current table. 
-Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.
-</div>
+[comment]: <> (<div markdown="span" class="alert alert-primary">:bulb: **Tip:**)
+
+[comment]: <> (*&#40;For advanced users!&#41;* Notice that `hideonly`, unlike `list /i`, is dependent on the state of the current table. )
+
+[comment]: <> (Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.)
+
+[comment]: <> (</div>)
 
 [Back to Top](#back-to-menu)
 
@@ -167,6 +192,7 @@ Format: `reset`
 Note:
 - Any input entered after the `reset` command will be ignored.
 - This command is different from the `list` command in that it does not affect the list of residents being displayed.
+However, both commands cause the full set of resident fields to be displayed in the table.
 
 [Back to Top](#back-to-menu)
 
