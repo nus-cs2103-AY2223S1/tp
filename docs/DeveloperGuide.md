@@ -2,8 +2,45 @@
 layout: page title: Developer Guide
 ---
 
-* Table of Contents 
-{:toc}
+* Table of Contents
+<!-- TOC -->
+  * [**Acknowledgements**](#acknowledgements)
+  * [**Setting up, getting started**](#setting-up-getting-started)
+  * [**Design**](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+  * [**Implementation**](#implementation)
+    * [Summarise Entries](#summarise-entries)
+      * [Design considerations:](#design-considerations-)
+    * [Add Entry](#add-entry)
+      * [Design Considerations](#design-considerations)
+    * [Edit Entry](#edit-entry)
+    * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
+      * [Proposed Implementation](#proposed-implementation)
+      * [Design considerations:](#design-considerations-)
+    * [\[Proposed\] Data archiving](#proposed-data-archiving)
+    * [[Proposed\] Pie Chart View feature](#-proposed-pie-chart-view-feature)
+      * [Implementation](#implementation)
+  * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+  * [**Appendix: Requirements**](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+  * [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Adding an entry](#adding-an-entry)
+    * [Deleting an entry](#deleting-an-entry)
+    * [Editing an entry](#editing-an-entry)
+    * [View PieChart](#view-piechart)
+    * [Summary statistics](#summary-statistics)
+    * [Saving data](#saving-data)
+<!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -753,7 +790,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Status message shows the total expenditure, total income and total balance for the 01-10-2022
 
     1. Other correct summary commands to try: `summary da/x`, `...` (where x is a string that follows the date format)<br>
-       Expected: Similar to previous, but for the specific date `x`.   
+       Expected: Similar to previous, but for the specific date `x`.
 
     1. Other incorrect delete commands to try: `summary x`, `...` (where x is a string that does not follow the command format)<br>
        Expected: Error details shown in the status message.
