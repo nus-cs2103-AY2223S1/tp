@@ -40,10 +40,12 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
       2. [Listing all persons `list`](#listing-all-persons--list)
       3. [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
       4. [Clearing all contacts `clear`](#clearing-all-contacts--clear)
-      5. [Viewing statistics `stats`](#viewing-statistics-based-on-ratings-of-candidates-stats)
-      6. [Importing contacts `import`](#importing-an-addressbook-import)
-      7. [Exporting contacts `export`](#importing-an-addressbook-import)
-      8. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
+      5. [Undoing previous command `undo`](#undoing-previous-command-undo)
+      2. [Redoing previous command `redo`](#redoing-previous-command-redo)
+      6. [Viewing statistics `stats`](#viewing-statistics-based-on-ratings-of-candidates-stats)
+      7. [Importing contacts `import`](#importing-an-addressbook-import)
+      8. [Exporting contacts `export`](#importing-an-addressbook-import)
+      9. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
    6. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
       5. [Saving the data](#saving-the-data)
       6. [Editing the data file](#editing-the-data-file)
@@ -364,6 +366,16 @@ Format: `list`
 
 Finds candidates whose personal information and tags contain any of the given keywords.
 
+There are 2 types of find commands: general `find` and `find` by prefix.
+
+**General `find`:**
+
+* Any keywords after the command will be searched for in the personal information and tags of all candidates.
+
+**`find` by prefix:**
+
+* Prefixes are used to specify which fields to search for the keywords in.
+
 Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
 [MORE_TAGGED_KEYWORDS]...`
 
@@ -390,14 +402,41 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Undoing previous command: `undo`
+
+Reverts the address book to the state before the previous command was executed.
+
+Format: `undo`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Undo can be used multiple times to undo multiple commands.
+</div>
+
+### Redoing previous command: `redo`
+
+Reverts the address book to the state before the previous undo command was executed.
+
+Format: `redo`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Redo can be used multiple times to redo multiple commands.
+</div>
+
 ### Viewing Statistics based on ratings of candidates: `stats`
 
-Views statistics of the candidates currently saved in CLInkedIn.
+Views rating statistics of the candidates currently saved in CLInkedIn.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Only shows statistics of candidates in the current filtered list. 
+
+- If the find command is used and only 5 candidates are shown,
+then only the statistics of these 5 candidates will be shown when stats is used.
+</div>
 
 Format: `stats`
 
 Example:
-* `stats` displays the statistics regarding the contacts saved in CLInkedIn.
+* `stats` displays the rating statistics of the candidates in the current filtered list.
 
 ### Exporting the addressbook: `export`
 
