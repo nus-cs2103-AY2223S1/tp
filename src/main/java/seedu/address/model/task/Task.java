@@ -6,12 +6,15 @@ import static seedu.address.model.AccessDisplayFlags.TASK;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Description;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
@@ -136,6 +139,14 @@ public class Task extends AbstractSingleItem {
             return isSameTask((Task) o);
         }
         return false;
+    }
+
+    @Override
+    public List<Attribute<?>> getAttributes() {
+        List<Attribute<?>> ret = new ArrayList<>();
+        ret.add(description);
+        ret.addAll(super.getAttributes());
+        return ret;
     }
 
     /**
