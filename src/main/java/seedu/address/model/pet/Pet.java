@@ -84,6 +84,51 @@ public class Pet {
      * Constructs a pet completely.
      *
      * @param name The name of this pet.
+     * @param supplier The owner of this pet. Could be a Buyer or a Supplier.
+     * @param color The color of this pet. Could be red.
+     * @param colorPattern The color pattern. Could be stripped.
+     * @param dateOfBirth The date of birth.
+     * @param species Its species, for example, chihuahua.
+     * @param weight Its weight.
+     * @param height Its height (or length if it walks on fours).
+     * @param vaccinationStatus Its vaccination status (vaccinated or not).
+     * @param price Its price for sale.
+     * @param tags Its tags that describe its traits.
+     * @param certificates Its certificates, for example, noble blood.
+     */
+    public Pet(PetName name,
+               Supplier supplier,
+               Color color,
+               ColorPattern colorPattern,
+               DateOfBirth dateOfBirth,
+               Species species,
+               Weight weight,
+               Height height,
+               VaccinationStatus vaccinationStatus,
+               Price price,
+               Set<Tag> tags,
+               Set<PetCertificate> certificates,
+               UniqueId uniqueId) {
+        requireAllNonNull(name, color, colorPattern, dateOfBirth, species, weight, height, vaccinationStatus, price);
+        this.id = uniqueId;
+        this.name = name;
+        this.supplier = supplier;
+        this.species = species;
+        this.color = color;
+        this.colorPattern = colorPattern;
+        this.dateOfBirth = dateOfBirth;
+        this.weight = weight;
+        this.height = height;
+        this.vaccinationStatus = vaccinationStatus;
+        this.price = price;
+        this.tags.addAll(tags);
+        this.certificates.addAll(certificates);
+    }
+
+    /**
+     * Constructs a pet completely.
+     *
+     * @param name The name of this pet.
      * @param color The color of this pet. Could be red.
      * @param colorPattern The color pattern. Could be stripped.
      * @param dateOfBirthString The date of birth in string.
