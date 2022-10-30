@@ -20,12 +20,6 @@ public class TaskTitleTest {
     }
 
     @Test
-    public void constructor_invalidTitleWithSpecialCharacters_throwsIllegalArgumentException() {
-        String invalidTitle = "?*";
-        assertThrows(IllegalArgumentException.class, () -> new TaskTitle(invalidTitle));
-    }
-
-    @Test
     public void constructor_validTitle_createsTaskTitle() {
         assertTrue(new TaskTitle(VALID_TASK_TITLE) instanceof TaskTitle);
     }
