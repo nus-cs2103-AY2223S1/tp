@@ -18,7 +18,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 [[github](https://github.com/kelvinou01)]
 [[portfolio](team/kelvin.md)]
 
-- Role: Deliverables and deadlines, Backend Engineer
+- Role: Deliverables and deadlines, Scheduling and tracking
 - Responsibilities: Defines and tracks deliverables and ensures that they are done correctly.
 
 ### Simpson Eng
