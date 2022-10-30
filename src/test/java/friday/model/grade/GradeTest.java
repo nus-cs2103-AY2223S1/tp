@@ -51,11 +51,10 @@ public class GradeTest {
         // invalid score
         assertFalse(Grade.isValidScore("a"));
         assertFalse(Grade.isValidScore("-1"));
-        assertFalse(Grade.isValidScore("100.0"));
 
         // valid score
         assertTrue(Grade.isValidScore(VALID_SCORE_1));
         assertTrue(Grade.isValidScore(VALID_SCORE_2));
-        assertTrue(Grade.isValidScore("69.420"));
+        assertTrue(Grade.isValidScore("69.42"));
     }
 }
