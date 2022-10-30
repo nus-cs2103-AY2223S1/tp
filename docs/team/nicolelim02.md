@@ -12,28 +12,27 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability for the user to view his/her profile (Pull request [\#65](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/65)).
   * What it does: Allows the user to view the profile created.
   * Justification: Every application that allows the user to set up a profile should allow the user to view the information he/she keyed in previously.
-  * Highlights: This enhancement allows the user to check if the current information stored is correct.
+  * Highlights: This allows the user to check if the current information stored is correct.
 
 * **New Feature**: Added the ability to calculate the user's BMI (Pull request [\#65](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/65)).
   * What it does: Calculates the user's BMI immediately after setting up a profile.
   * Justification: This application aims to encourage healthy eating habits. The BMI is a useful (although imperfect) indicator of the user's health status.
-  * Highlights: This enhancement automatically calculates the user's BMI when the user creates a profile or updates existing information.
+  * Highlights: This automatically calculates the user's BMI when the user creates a profile or updates existing information.
 
 * **New Feature**: Added the ability to suggest a recommended calorie intake for the user (Pull requests [\#67](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/67) and [\#107](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/107)). 
   * What it does: Suggests an estimated recommended daily calorie intake so that the user can reach his/her ideal weight.
-  * Justification: The application allows the user to set a target calorie intake, but the user may not be aware of the amount of calories the user should be consuming to reach his/her ideal weight. This feature can provide the user with an estimated amount of calorie the user should consume.
-  * Highlights: This enhancement allows the user the get a rough estimate of the amount of calories the user should consume in a day. This command complements the `target` command implemented by [Tan Ping Zhi](https://github.com/TanPingZhi).
+  * Justification: The user can set a target calorie intake, but the user may not be aware of the amount of calories the user should be consuming to reach his/her goal. 
+  * Highlights: This allows the user the get an estimate of the amount of calories the user should consume in a day and complements the `target` command implemented by [Tan Ping Zhi](https://github.com/TanPingZhi).
 
-* **Code contributed**: 
-  * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicolelim02&breakdown=true)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicolelim02&breakdown=true)
 
-* **Project management**:
+* **Project management**: 
   * Managed the release of `v1.3.1` on [GitHub](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases/tag/v1.3.1).
 
 * **Enhancements to existing feature**: Modify the design of the Help Window (Pull request [\#90](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/90)).
-  * What is does: Includes information regarding the commands usage without opening the user guide. Instead of having a `copyButton`, the user guide link is also converted into a hyperlink that redirects users to the user guide on their browser when clicked.
-  * Justification: The application is meant to be used without an internet connection, hence it would be better if the help window displays basic information regarding the app's usage without being connected to the internet. Having a hyperlink that redirects the user to the user guide will also be more convenient as the user will be redirected to the user guide on the browser automatically.
-  * Highlights: These enhancements made to the Help Window makes the user guide more accessible. Basic information regarding commands usages can also be accessed without navigating the user guide.
+  * What is does: Includes information regarding the commands usage without having to open the user guide. 
+  * Justification: The help window is meant to provide fast and easy access to the commands usages. Since the application is meant to be used without an internet connection, the help window should display basic information regarding the app's usage.
+  * Highlights: Replaced the `copyButton` in the help window with a hyperlink that redirects the user to the user guide.
 
 * **Enhancements to existing feature**: Wrote additional test cases for existing features.
   * What it does: Tests the modified functionalities.
@@ -55,13 +54,9 @@ Given below are my contributions to the project.
       * Add documentation for the `edit`, `profile` and `suggest` features.
       * Update documentation for the `help` feature.
     * Developer Guide:
-      * Add use cases.
-      * Update user stories.
+      * Add use cases and user stories.
       * Modify existing UML diagrams and links to match the project.
-      * Add implementation details for `edit`, `profile` and `suggest` features, together with UML diagrams.
-        * `edit`: Sequence diagram
-        * `profile`: Activity diagram
-        * `suggest`: Object and activity diagrams
+      * Add implementation details for `edit`, `profile` and `suggest` features, together with activity, object and sequence diagrams.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#41](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/41), [\#73](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/73), [\#93](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/93).
