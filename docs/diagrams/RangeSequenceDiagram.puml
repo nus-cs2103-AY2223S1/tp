@@ -48,7 +48,7 @@ deactivate ExerciseTrackerParser
 LogicManager -> RangeCommand : execute()
 activate RangeCommand
 
-RangeCommand -> Model : sortFilteredExerciseList(DateWithinRangePredicate) 
+RangeCommand -> Model : sortFilteredExerciseList(DateWithinRangePredicate)
 activate Model
 
 Model --> RangeCommand
