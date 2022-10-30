@@ -7,8 +7,8 @@ title: Authors
 
 # Authors
 
-This User Guide was co-written by Alvin, Jordan, Neale, Nicholas, and Naren, the developers behind RC4HDB. 
-For more information, please refer to our [about us](../AboutUs.md) page. 
+This User Guide was co-written by Alvin, Jordan, Neale, Nicholas, and Naren, the developers behind RC4HDB.
+For more information, please refer to our [about us](../AboutUs.md) page.
 
 
 <!-- Perhaps we can add the features implemented by each author here? Please see the proposed template below. -->

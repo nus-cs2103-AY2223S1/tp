@@ -214,8 +214,8 @@ The `Model` component,
 * stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object).
 * stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* stores two `ObservableList<String>` attributes of table columns to show and hide in the UI. The UI is able to listen to changes in these lists, and automatically update the column visibilities in the table. 
-* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` which is also used to update changes in `Venue` or `Booking` in the UI.  
+* stores two `ObservableList<String>` attributes of table columns to show and hide in the UI. The UI is able to listen to changes in these lists, and automatically update the column visibilities in the table.
+* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` which is also used to update changes in `Venue` or `Booking` in the UI.
 * does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
@@ -973,9 +973,9 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `exit`<br>
        Expected: Window closes.
-   
+
 2. Exiting via keyboard-shortcut
-   
+
     1. Test case: Pressing `ESC`<br>
        Expected: Window closes.
 
@@ -1054,7 +1054,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Test case: `file create already_exist` <br>
        Expected: An error message indicating that the folder you are about to create already exists will be displayed in the result panel.
-   
+
    3. Test case: `file create current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
        Expected: An error message indicating that the folder you are trying to create is the folder that is currently in view will be displayed in the result panel. No creation occurs.
 
@@ -1166,7 +1166,7 @@ We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section 
 #### Getting help
 
 1. Opening the Help Window
-   
+
    1. Prerequisites: Help Window is not currently opened.
 
    2. Test case: `help`<br>
@@ -1190,15 +1190,15 @@ We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section 
 1. Accessing command input
 
    1. Prerequisites: Command input box is not in focus.
-   
+
    2. Test case: Pressing `F3`<br>
       Expected: Command input box is in focus and ready for user command.
 
 #### Switching from tabs
 
 1. Switching between `Resident` and `Bookings` tab
-   
+
    2. Test case: Pressing `CTRL-TAB`<br>
       Expected: Alternate tab is displayed.
-   
+
 ---

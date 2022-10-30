@@ -43,13 +43,13 @@ Examples:
 
 Note:
 
-- Each field to be included or excluded from the table should be entered as a *single letter*, that is, 
+- Each field to be included or excluded from the table should be entered as a *single letter*, that is,
   the first letter of the corresponding field name.
-- The relative order of each letter *does not matter*, and the letters can be in either upper or lower case. 
+- The relative order of each letter *does not matter*, and the letters can be in either upper or lower case.
   Duplicate letters are ignored.
-- Only letters corresponding to the first letter of a valid field in the table can be specified, 
+- Only letters corresponding to the first letter of a valid field in the table can be specified,
   *any other letter will be considered invalid*.
-- Letters *must* be separated by a single whitespace. 
+- Letters *must* be separated by a single whitespace.
 - There needs to be at least one field (and hence column) included in the table view at all times.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**

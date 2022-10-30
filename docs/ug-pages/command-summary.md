@@ -6,8 +6,8 @@ title: Command summary
 
 ## Command summary
 
-We understand that you might be overwhelmed by the number of commands available to you. Though we have provided a 
-summary table of contents in the Help Window in **RC4HDB**, that table contains only our most basic and commonly used 
+We understand that you might be overwhelmed by the number of commands available to you. Though we have provided a
+summary table of contents in the Help Window in **RC4HDB**, that table contains only our most basic and commonly used
 commands. The tables below contain the full summary of our commands and how they can be used.
 
 
