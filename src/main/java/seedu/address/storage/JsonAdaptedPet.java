@@ -191,7 +191,7 @@ public class JsonAdaptedPet {
             throw new IllegalValueException("Repeated unique id for pet");
         }
 
-        return new Pet(modelUniqueId, modelName, modelSupplier, modelColor, modelColorPattern, modelDateOfBirth, modelSpecies,
-                modelWeight, modelHeight, modelVax, modelPrice, modelTags, modelCerts);
+        return new Pet(modelUniqueId, modelName, modelSupplier, modelColor, modelColorPattern, modelDateOfBirth,
+                modelSpecies, modelWeight, modelHeight, modelVax, modelPrice, modelTags, modelCerts);
     }
 }
