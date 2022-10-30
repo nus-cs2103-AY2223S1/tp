@@ -30,6 +30,16 @@ class ReminderCreateCommandParserTest {
     }
 
     @Test
+    public void parse_exceedDescriptionLength_parseException() throws ParseException {
+        String stringWith257Characters = "qXQMxfVRPCuLwU4E6GgbhHyGvEBCwwvWV5rmYGBLQC2YkxaBQtNj5xLNhUWBLkjXPGfkqbHS"
+                + "cikKHiXLzcJhpWVHqvZfa42tLgWfngdkeC8RzeJUk6WvtbXzWz4V7eMqu8UznQ3ui5GFbjyNzGgEiPAKEvRjYfdEZcJd65wpgx4"
+                + "zcAgteC3WyB3GCFTwwhyRDLm8jiFYFZeD8rdMi6rFz6aUVejr5bMMx8UwBE2VGuMGEFu9Gp2wTZk5xXzBBNqAy";
+        assertParseFailure(parser, "1 d=" + stringWith257Characters
+                + " dt=" + REMINDER_PROMOTION_DATETIME_STRING,
+                ReminderCreateCommandParser.MESSAGE_MAX_DESCRIPTION_LENGTH_EXCEEDED);
+    }
+
+    @Test
     public void parse_validInput_success() throws ParseException {
         assertParseSuccess(parser, "1 d=" + REMINDER_MEETING_DESCRIPTION + " dt=2022-12-12 11:11",
                 new ReminderCreateCommand(Index.fromOneBased(1), REMINDER_MEETING_DESCRIPTION,

@@ -17,6 +17,9 @@ import seedu.address.model.reminder.DateTime;
  * Parses input arguments and creates a new ReminderCreateCommand object
  */
 public class ReminderCreateCommandParser implements Parser<ReminderCreateCommand> {
+    private static final int MAX_DESCRIPTION_LENGTH = 256;
+    public static final String MESSAGE_MAX_DESCRIPTION_LENGTH_EXCEEDED = "Reminder description can only contain "
+            + MAX_DESCRIPTION_LENGTH + " characters.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the CreateTagCommand
@@ -42,6 +45,9 @@ public class ReminderCreateCommandParser implements Parser<ReminderCreateCommand
         }
 
         String description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        if (description.length() > MAX_DESCRIPTION_LENGTH) {
+            throw new ParseException(MESSAGE_MAX_DESCRIPTION_LENGTH_EXCEEDED);
+        }
         DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
         return index.map(i -> new ReminderCreateCommand(i, description, dateTime))
                 .orElse(new ReminderCreateCommand(description, dateTime));
