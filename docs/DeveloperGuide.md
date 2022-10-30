@@ -300,7 +300,7 @@ Cons:
 For more information on how the TableView implementation is powerful, we refer you to the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html)
 on *method matching*, which is what we heavily used to fetch resident data.
 
-For more information on possible performance issue, we refer you to the GitHub issue [here](https://github.com/javafxports/openjdk-jfx/issues/409).
+For more information on possible performance **issue**, refer to this GitHub issue [here](https://github.com/javafxports/openjdk-jfx/issues/409).
 
 Alternative 2: List
 
@@ -331,7 +331,7 @@ Pros
 * Decently proficient in displaying bookings
 
 Cons
-* Difficulty in customizing the design i.e. colors and size
+* Difficult to customize the design i.e. colors and size
 
 Alternative 2: Grid
 
@@ -343,7 +343,7 @@ Pros
 * Easier to customize the design i.e. colors and size
 
 Cons
-* Difficulty and time-consuming to implement
+* Difficult and time-consuming to implement
 
 Weighing the pros and cons, we decided to opt for the Table as it was sufficient for our purposes, without the addition
 of any sizeable overhead.
