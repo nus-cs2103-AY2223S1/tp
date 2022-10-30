@@ -357,6 +357,16 @@ Format: `list`
 
 Finds candidates whose personal information and tags contain any of the given keywords.
 
+There are 2 types of find commands: general `find` and `find` by prefix.
+
+**General `find`:**
+
+* Any keywords after the command will be searched for in the personal information and tags of all candidates.
+
+**`find` by prefix:**
+
+* Prefixes are used to specify which fields to search for the keywords in.
+
 Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
 [MORE_TAGGED_KEYWORDS]...`
 
@@ -405,12 +415,19 @@ Redo can be used multiple times to redo multiple commands.
 
 ### Viewing Statistics based on ratings of candidates: `stats`
 
-Views statistics of the candidates currently saved in CLInkedIn.
+Views rating statistics of the candidates currently saved in CLInkedIn.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Only shows statistics of candidates in the current filtered list. 
+
+- If the find command is used and only 5 candidates are shown,
+then only the statistics of these 5 candidates will be shown when stats is used.
+</div>
 
 Format: `stats`
 
 Example:
-* `stats` displays the statistics regarding the contacts saved in CLInkedIn.
+* `stats` displays the rating statistics of the candidates in the current filtered list.
 
 ### Exporting the addressbook: `export`
 
