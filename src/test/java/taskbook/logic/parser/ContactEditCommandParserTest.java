@@ -42,18 +42,15 @@ public class ContactEditCommandParserTest {
     public void parse_invalidPreamble_failure() {
         // negative index
         CommandParserTestUtil.assertParseFailure(parser,
-                " i/-5" + CommandTestUtil.NAME_DESC_AMY,
-            MESSAGE_INVALID_INDEX);
+                " i/-5" + CommandTestUtil.NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // zero index
         CommandParserTestUtil.assertParseFailure(parser,
-                " i/0" + CommandTestUtil.NAME_DESC_AMY,
-            MESSAGE_INVALID_INDEX);
+                " i/0" + CommandTestUtil.NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
         CommandParserTestUtil.assertParseFailure(parser,
-                "1 some random string",
-            MESSAGE_INVALID_FORMAT);
+                "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
         CommandParserTestUtil.assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_INDEX);
@@ -62,25 +59,15 @@ public class ContactEditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         CommandParserTestUtil.assertParseFailure(parser,
-                " i/1" + CommandTestUtil.INVALID_NAME_DESC,
-
-                Name.MESSAGE_CONSTRAINTS); // invalid name
+                " i/1" + CommandTestUtil.INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         CommandParserTestUtil.assertParseFailure(parser,
-                " i/1" + CommandTestUtil.INVALID_PHONE_DESC,
-
-                Phone.MESSAGE_CONSTRAINTS); // invalid phone
+                " i/1" + CommandTestUtil.INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         CommandParserTestUtil.assertParseFailure(parser,
-                " i/1" + CommandTestUtil.INVALID_EMAIL_DESC,
-
-                Email.MESSAGE_CONSTRAINTS); // invalid email
+                " i/1" + CommandTestUtil.INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         CommandParserTestUtil.assertParseFailure(parser,
-                " i/1" + CommandTestUtil.INVALID_ADDRESS_DESC,
-
-                Address.MESSAGE_CONSTRAINTS); // invalid address
+                " i/1" + CommandTestUtil.INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         CommandParserTestUtil.assertParseFailure(parser,
-                " i/1" + CommandTestUtil.INVALID_TAG_DESC,
-
-                Tag.MESSAGE_CONSTRAINTS); // invalid tag
+                " i/1" + CommandTestUtil.INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
         CommandParserTestUtil.assertParseFailure(parser,
