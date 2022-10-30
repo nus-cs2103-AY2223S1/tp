@@ -57,7 +57,7 @@ public class SampleDataUtil {
                         getTagSet()),
             new Eatery(new Name("Chicken Rice (Frontier, Non-Aircon)"), new Price("$"),
                         new Cuisine("Chinese"), new Location("Frontier, Faculty of Science"),
-                        getTagSet("vegetarian")),
+                        getTagSet()),
             new Eatery(new Name("Fruits & Juices (Frontier, Non-Aircon)"), new Price("$$"),
                         new Cuisine("Beverages"), new Location("Frontier, Faculty of Science"),
                         getTagSet()),
