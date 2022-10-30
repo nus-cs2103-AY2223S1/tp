@@ -18,7 +18,8 @@ import taskbook.model.task.enums.Assignment;
  */
 public class Todo extends Task {
 
-    private static final String PARAMETER_DATE = PREFIX_DATE + " DATE";
+    private static final String INVALID_PARAMETER_DATE =
+        String.format(MESSAGE_INVALID_PARAMETER, PREFIX_DATE + "DATE" + " (Todo does not have a date)");
 
     /**
      * Every field must be present and not null.
@@ -81,7 +82,7 @@ public class Todo extends Task {
     @Override
     public Todo createEditedCopy(EditTaskDescriptor descriptor) throws CommandException {
         if (descriptor.getDate().isPresent()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_PARAMETER, PARAMETER_DATE));
+            throw new CommandException(INVALID_PARAMETER_DATE);
         }
 
         Name name = descriptor.getName().orElse(getName());
