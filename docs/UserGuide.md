@@ -323,7 +323,7 @@ Format (1): `:gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL`
 
 Parameter constraints:
 * The index **must be a positive integer** 1, 2, 3, ...
-* The difficulty level must be supported by Gim; currently supported are: {easy, medium, hard}.
+* The difficulty level must be supported; currently supported are: easy, medium, hard.
 
 Examples:
 `:gen 1, 2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
