@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteClientCommand;
+import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -21,6 +22,9 @@ public class DeleteClientCommandParser implements Parser<DeleteClientCommand> {
     public DeleteClientCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
+        if (!ParserUtil.arePrefixesPresent(argumentMultimap, PREFIX_INDEX)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE));
+        }
 
         Index index;
         try {
