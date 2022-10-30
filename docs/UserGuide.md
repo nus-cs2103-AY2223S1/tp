@@ -47,7 +47,7 @@ as `nutrigoals.jar`. Do not delete or edit these files.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Screen layout
+## Screen layout
 
 ![sampleUi](images/layout.png)
 
