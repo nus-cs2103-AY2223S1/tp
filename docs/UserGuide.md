@@ -16,17 +16,29 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 ![start_up](images/IdENTifyStartUp.png)
 
 ## UI Components
-![SampleUiImage](images/SampleUI.png)
+![SampleUiImage](images/SampleUi.png)
 
 ### General UI information
 Component | Purpose
 --------|------------------
 **Tool Box** | Allows you to exit idENTify, change the theme of the UI or view help
 **Command Box** | Location to enter commands
-**Results Display** | Shows the result after a command is entered
-**Patient List** | Shows patient information
-**Appointment List** | Shows appointment information
-**Save File Location** | Shows the location where your idENTify data is stored
+**Results Display** | Displays the result after a command is entered
+**Patient List** | Displays patients
+**Appointment List** | Displays appointments
+**Patient Card** | Displays detailed information about a patient
+**Appointment Card** | Displays detailed information about an appointment
+**Save Location** | Displays the location where your idENTify data is stored
+
+
+### Patient Card
+![PatientCardDetail](images/PatientCard.png)
+* Upcoming appointments shows the total amount of unmarked appointments of the given patient.
+
+### Appointment Card
+![AppointmentCardDetail](images/AppointmentCard.png)
+* The status of an appointment is `[]` when uncompleted, and `[X]` when completed.
+* More information about recurrence duration [here](#book-an-appointment:-`book`).
 
 ## Features
 
