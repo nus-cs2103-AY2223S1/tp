@@ -289,7 +289,7 @@ Examples:
 
 By tag:
 
-Unhides patients that were previously hidden whose names contain any of the given tags.
+Unhides patients that were previously hidden who contain any of the given tags.
 
 Format: `unhide patients t/TAG [t/MORE_TAGS]...`
 
@@ -340,18 +340,20 @@ After hide:
 ![after_Hide](images/afterHide.png)
 
 #### Unhiding appointments by reason, tag or status: `unhide appts`
-
 By reason:
-Unhides hidden appointments that contains `REASON` (and `MORE_REASONS`).
+Unhides hidden appointments that contains `REASON` (OR `MORE_REASONS`). 
 
 Format: `unhide appts r/REASON [r/MORE_REASONS]...`
 
+* The reasons are case-insensitive. e.g. `PAIN` will match `pain`
+
 Examples:
-* `unhide appts r/pain` unhides all appointments with "pain" as part of the reason.
+* `unhide appts r/pain` unhides all hidden appointments with "pain" as part of the reason.
+* 'unhide appts r/pain r/problem' unhides all hidden appointments with "pain" or "problem" as part of the reason.
 
 By tag:
 
-Unhides hidden appointments that contains `TAG` (and `MORE_TAGS`).
+Unhides hidden appointments that contains `TAG` (OR `MORE_TAGS`).
 
 Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 
@@ -366,9 +368,11 @@ Unhides hidden appointments which were marked or unmarked.
 
 Format: `unhide appts s/marked` or `unhide appts s/m` <br>
 Alternative: `unhide appts s/unmarked` or `unhide appts s/um`
+* The condition is case-insensitive. e.g. `MARKed` will work in the same way as `marked`.
 
 Examples:
 * `unhide appts s/marked` unhides all appointments that has been marked.
+* `unhide appts s/UNMARKED` unhides all appointments that has been unmarked.
 
 #### Find results that satisify an input criteria: `find`
 Finds patients and appointments that matches all the given criteria specified.
@@ -454,7 +458,7 @@ Action | Format, Examples
 **Hide Patients** | `hide patients CONDITION` <br> eg. `hide patients t/nose`
 **Hide Appointments** | `hide appts CONDITION` <br> eg. `hide appts s/marked`
 **Unhide Patients** | `unhide patients CONDITION` <br> eg. `unhide patients t/nose`
-**Unhide Appointments** | `unhide appointments CONDITION` <br> eg. `unhide appts r/pain`
+**Unhide Appointments** | `unhide appts CONDITION` <br> eg. `unhide appts r/pain`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `edit patients 1 n/Bernice Yu`
 **Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `edit appts 1 r/Cough`
 **List** | `list patients` <br> `list appts` <br> `list all`
