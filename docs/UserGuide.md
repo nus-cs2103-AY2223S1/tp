@@ -278,7 +278,7 @@ Example: `exit`
 
 ### Renaming the commands
 
-If you do not like the names of the command, you can select `preferences` in the menu bar and `edit aliases` to rename any of the commands.
+If you do not like the names of the command, you can select `preferences` in the menu bar and `edit aliases` to rename any of the commands. You can rename the commands into anything, as long as they are not exactly the same, and contains no whitespaces.
 
 <div markdown="span" class="alert alert-primary">
 
