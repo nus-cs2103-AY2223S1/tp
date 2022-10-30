@@ -14,10 +14,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.UniqueId;
@@ -59,6 +59,7 @@ public class AddOrderCommandTest {
 
         //clear any orders added to the Buyer
         modelStub.getFilteredBuyerList().get(0).deleteOrder(validOrder);
+        System.out.println(TypicalBuyers.ALICE.getOrderIds().size());
 
         //multiple Pets added
         modelStub = new ModelStubAcceptingOrderAdded();
@@ -366,7 +367,8 @@ public class AddOrderCommandTest {
      */
     private class ModelStubAcceptingOrderAdded extends ModelStub {
         final ArrayList<Order> ordersAdded = new ArrayList<>();
-        ObservableList<Buyer> buyers = new FilteredList<>(TypicalBuyers.getTypicalBuyerAddressBook().getBuyerList());
+        final FilteredList<Buyer> buyers = new FilteredList<>(TypicalBuyers.getTypicalBuyerAddressBook()
+                .getBuyerList());
 
         @Override
         public void deleteOrder(Order order) {
