@@ -97,7 +97,7 @@ Exits the program.
 
 Format: `exit`
 
-# AddressBook Commands
+# Student Contact Commands
 ---
 
 
@@ -205,14 +205,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Adding attendance to student: `attendance add`
+## Attendance commands
+To aid teaching assistants in keeping track of attendance, we developed a feature to add an attendance list of a maximum of 12 lessons. Afterwards, teaching assistants can mark/unmark attendance of their students. Currently, we have only one class of attendance for students.
 
-Adds an attendance to a student in the class list
+### Adding an attendance list to a student: `attendance add`
+
+Adds an attendance list to a student in the contact list. 
 
 Format: `attendance add INDEX c/CLASS s/ATTENDANCESIZE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-Maximum attendance list size is 12, if the size is 0, the attendance list will be N.A.
+Maximum attendance list size is 12, if the size is 0, the attendance list will be N.A. 
+There can only be one attendance list for each student for ease of command.
 </div>
 
 Examples:
@@ -317,13 +321,20 @@ GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
 </div>
 
-### Creating Assignment Tasks `[coming in v1.3]`
+### Creating Assignment Tasks
 
-Create assignment tasks with a list of students.
+Adds an ***Assignment*** (A type of Task) to the Task List.
 
 Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
 
-_More details coming soon ..._
+* An Assignment task should always include a title, description that should not be left blank.
+* The `addStu/` **MUST** be present for the task to be an assignment.
+* The number of students input is zero or more, and each student is separated by a `,` comma, thus student names should not contain commas.
+* Both title and description should consist of only alphanumeric characters.
+
+Examples:
+* `task t/Assignment 1 d/Description here addStu/Adam Tan, Wong Zhu Yi, Robin Hood`
+* `task t/Midterm Assignment d/This is a challenging assignment addStu/Alvin, Simon, Theodore`
 
 ### Editing Tasks
 
