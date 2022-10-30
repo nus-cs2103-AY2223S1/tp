@@ -341,7 +341,7 @@ Format `get /PREDICATE [KEYWORDS]`
 
 <h4> The filters you can use to get the patients by are as follows: </h4>
 
-<h4> by name: `/n` </h4>
+#### by name: `/n`
 
 Finds patients whose names contain any of the given keywords.
 
@@ -359,7 +359,7 @@ Format: `get /n NAME`
 * `get /n alex david` displays `Alex Yeoh`, `David Li`.<br>
   ![result for 'find alex david'](images/ug-images/getCommand/getByNameAlexDavidResult.png)
 
-<h4>by next-of-kin data: `/nok`</h4>
+#### by next-of-kin data: `/nok`
 
 Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
 
@@ -370,7 +370,7 @@ Format: `get /nok PATIENT_NAME`
 * Patients with names that match at least one keyword will have their next-of-kin details displayed. e.g.
   `get /nok Hans Bo` will display `Sarar, 12345678, Mom`.
 
-<h4> by hospital wing: `/hw` </h4>
+#### by hospital wing: `/hw`
 
 Finds all the patients in that particular hospital wing.
 
@@ -383,7 +383,7 @@ Format: `get /hw HOSPITAL_WING`
 * `get /hw south /hw north` matches `get /hw south north`.
 * All the patients in that hospital wing will be displayed. e.g. `get /hw SOUTH` will display `John` `Peter` `Mary`.
 
-<h4> by floor number: `/fn` </h4>
+#### by floor number: `/fn`
 
 Finds all the patients in that particular floor number.
 
@@ -394,7 +394,7 @@ Format: `get /fn FLOOR_NUMBER`
 * Multiple `FLOOR_NUMBER` can be inputted. e.g. `get /fn 1 3` will display all patients staying in the 1st and 3rd floor.
 * `get /fn 1 /fn 3` matches `get /fn 1 3`.
 
-<h4>by ward number: `/wn`</h4>
+#### by ward number: `/wn`
 
 Finds all the patients in that particular ward number.
 
@@ -405,7 +405,7 @@ Format: `get /wn WARD_NUMBER`
   D001 and E301.
 * `get /wn D12 /wn E13` matches `get /wn D12 E13`.
 
-<h4>by medication: `/m`</h4>
+#### by medication: `/m`
 
 Finds all the patients by medication.
 
@@ -414,7 +414,7 @@ Format: `get /m MEDICATION`
 Example:
 * `get /m ibuprofen` displays `John` `Peter` `Mary`.
 
-<h4>by patient type: `/inp`</h4>
+#### by patient type: `/inp` 
 
 Finds all the inpatients in checkUp.
 
@@ -423,7 +423,7 @@ Format: `get /inp`
 Example:
 * `get /inp` displays `Alex`, `Charlotte` and `Roy`.
 
-<h4> by patient type: `/outp` </h4> 
+#### by patient type: `/outp`
 
 Finds all the outpatients in checkUp.
 
@@ -432,7 +432,7 @@ Format: `get /outp`
 Example:
 * `get /outp` displays `Bernice`, `David` and `Irfan`.
 
-<h4> by appointments: `/appt` </h4>
+#### by appointments: `/appt`
 
 Finds all past appointments of a patient specified by the index number used in the patient list panel.
 
@@ -445,7 +445,7 @@ Example: `get /appt 3` will display <br>
 `On: 01 Jan 2001; Diagnosis: headache, medicine given for 3 days; Prescribed Medication: [ibuprofen]`.
 
 
-<h4> by appointment date: `/appton` </h4>
+#### by appointment date: `/appton`
 
 Finds all the patients that have an appointment on a particular date.
 
