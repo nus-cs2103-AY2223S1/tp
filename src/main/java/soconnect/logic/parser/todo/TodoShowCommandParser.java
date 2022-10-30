@@ -123,12 +123,16 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
      * @throws ParseException If the given {@code dateArg} is invalid.
      */
     private TodoShowCommand parseShowDateCondition(String dateArg) throws ParseException {
-        String[] dateList = dateArg.split("to", 2);
+        String[] dateList = dateArg.split(" to ", 2);
         switch (dateList.length) {
         case 1:
-            Date date = ParserUtil.parseDate(dateList[0]);
-            TodoContainsDatePredicate datePredicate = new TodoContainsDatePredicate(date);
-            return new TodoShowCommand(datePredicate, date.toString());
+            try {
+                Date date = ParserUtil.parseDate(dateList[0]);
+                TodoContainsDatePredicate datePredicate = new TodoContainsDatePredicate(date);
+                return new TodoShowCommand(datePredicate, date.toString());
+            } catch (ParseException e) {
+                throw new ParseException(Date.MESSAGE_INVALID_DATE_RANGE);
+            }
         case 2:
             List<Date> validDateRange = ParserUtil.parseDateRange(dateList[0], dateList[1]);
             TodoContainsDateRangePredicate dateRangePredicate = new TodoContainsDateRangePredicate(
