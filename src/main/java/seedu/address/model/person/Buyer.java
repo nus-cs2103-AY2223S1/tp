@@ -80,7 +80,7 @@ public class Buyer extends Person {
     }
 
     public void deleteOrder(Order order) {
-        // TODO: implement this method
+        orders.remove(order);
     }
 
     /**

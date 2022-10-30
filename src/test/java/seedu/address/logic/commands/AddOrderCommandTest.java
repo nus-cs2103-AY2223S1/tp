@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -56,6 +57,9 @@ public class AddOrderCommandTest {
         List<UniqueId> idList = modelStub.getFilteredBuyerList().get(0).getOrderIds();
         assertEquals(idList.get(0), validOrder.getId());
 
+        //clear any orders added to the Buyer
+        modelStub.getFilteredBuyerList().get(0).deleteOrder(validOrder);
+
         //multiple Pets added
         modelStub = new ModelStubAcceptingOrderAdded();
 
@@ -70,6 +74,11 @@ public class AddOrderCommandTest {
             assertEquals(expectedResult, commandResult.getFeedbackToUser());
         }
 
+        //clear any orders added
+        for (Order order : validOrders) {
+            modelStub.getFilteredBuyerList().get(0).deleteOrder(order);
+        }
+
         // Different index
         modelStub = new ModelStubAcceptingOrderAdded();
         validOrder = new OrderBuilder().build();
@@ -81,6 +90,8 @@ public class AddOrderCommandTest {
         idList = modelStub.getFilteredBuyerList().get(1).getOrderIds();
         assertTrue(idList.contains(validOrder.getId()));
 
+        //clear any orders added
+        modelStub.getFilteredBuyerList().get(1).deleteOrder(validOrder);
     }
 
     @Test
@@ -355,7 +366,7 @@ public class AddOrderCommandTest {
      */
     private class ModelStubAcceptingOrderAdded extends ModelStub {
         final ArrayList<Order> ordersAdded = new ArrayList<>();
-        final ObservableList<Buyer> buyers = TypicalBuyers.getTypicalBuyerAddressBook().getBuyerList();
+        ObservableList<Buyer> buyers = new FilteredList<>(TypicalBuyers.getTypicalBuyerAddressBook().getBuyerList());
 
         @Override
         public void deleteOrder(Order order) {
