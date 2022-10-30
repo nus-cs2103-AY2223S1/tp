@@ -24,12 +24,15 @@ while still having the benefits of a Graphical User Interface (GUI).
 3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
-   ![](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g.
+<p align="center">
+    <img src="images/Ui.png" width="500"/>
+</p>
+
+6. Type the command in the command box and press Enter to execute it. e.g.
    `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary)
 
-6. Refer to the [Features](#2-features) for details of each command.
+7. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
 
@@ -194,7 +197,7 @@ find-module CS
 ```
 In either of the above examples, we find every module whose module code starts with CS in Plannit.
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:** You will
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>You will
 remain on the home page after executing the `find-module` command. This is different
 from the behavior of [`goto`](#252-navigate-between-modules)
 </div>
@@ -288,7 +291,7 @@ command:
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
 You may view the tasks added to a module by navigating to a module's page 
-using the [`goto`](##252-navigate-between-modules) command. <br/>Alternatively, 
+using the [`goto`](##252-navigate-between-modules) command. Alternatively, 
 you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
 module's tasks while on the home page.
 </div>
