@@ -283,7 +283,7 @@ Adds a ***ToDo*** (A type of Task) to the Task List.
 Format: `task t/TITLE d/DESC`
 
 * A ToDo should always include a title and description and should not be left blank.
-* Both title and description should consist of only alphanumeric characters.
+* Both title and description should not be left blank.
 
 Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model`
@@ -296,7 +296,7 @@ Adds a ***Deadline*** (A type of Task) to the Task List.
 Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 
 * A Deadline should always include a title, description and date and should not be left blank.
-* Both title and description should consist of only alphanumeric characters.
+* Both title and description should not be left blank.
 * A date should strictly follow the format of YYYY-MM-DD.
 
 Examples:
