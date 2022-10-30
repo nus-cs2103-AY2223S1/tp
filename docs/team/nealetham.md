@@ -11,111 +11,76 @@ title: Project Portfolio Page for Neale Tham
 ### Code contributed:
 
 I contributed code to the following modules/classes:
-1. MainWindow
-2. CommandBox
+1. MainWindow, CommandBox, ResidentTableView, HelpWindow
+2. CommandHistory, ForwardHistory, BackwardHistory
 3. NameContainsKeywordsPredicate
-4. 
+4. Storage component unit tests
+   * JsonAdaptedRecurrentBooking
+   * JsonAdaptedVenue
+   * JsonSerializableVenueBook
+   * JsonVenueBookStorage
+   * DataStorageManager
+   * StorageManager
+5. SampleData
 
 You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nealetham&breakdown=true).
 
 ### Enhancements implemented:
 
 I made the following enhancements to our product:
-1. 
-2. *Enter contributions here*
-3. *Enter contributions here*
-
-Users will now be able to see more entries on the window as compared to before. Fields of a `Resident` are also 
-structured and more easily identifiable. These two together can potentially increase productivity of our user.
-
-The implementation of the `ResidentTableView` is relatively simple and done so using `JavaFx TableView`. For our usage,
-there are no performance issues, but it is well known that `JavaFX TableView` is known to be memory hungry, and 
-potentially laggy when the number of columns exceed 50. To see a discussion on this click 
-[here](https://github.com/javafxports/openjdk-jfx/issues/409).
-
-
-Other minor updates I made to the GUI include:
-* Updating the application icon to a suitable image for our use
-* Updating the application name from `AddressBook` to `RC4HDB`
-* Removed the File Tab in the status bar header
-* Rearranged the layout of the interface. `CommandBox` is now at the bottom of the window as opposed to the top.
-
-
-### 2. Keyboard Shortcut
-
-As `RC4HDB` is designed to be optimized for use via a Command Line Interface (CLI). We have introduced several 
-keyboard shortcut commands to improve the quality-of-life of our users such that there is little need for them to lift
-their hands to grab the mouse. 
-
-Below is a table that lists all of our keyboard shortcuts:
-
-| Key  | Functionality                                  |
-|------|------------------------------------------------|
-| `F1` | Redirects you to our user guide.               |
-| `F2` | Highlights the first row of the displayed list |
-| `F3` | Quick-access to the command input box          |
-
-The implementation of the `F3` keyboard shortcut was relatively simple. It involved adding a listener to scene, which
-would refocus on the `TextField` within the `CommandBox` class during the event that key `F3` is pressed.
-
-
-### 3. Substring Search on `find`
-
-In `AB3`, users were able to use `find` to search for individuals whose name contains any of the given keywords. This
-implementation required for an exact matching between the search query, and the individual's name.
-
-We thought that this seemed rather restrictive in usage, as oftentimes, we may forget the specific spelling of an
-individual's name. As such, we believed that partial matching of the individual's name would be a quality-of-life
-change for the user.
-
-This functionality required a simple modification to `StringUtil::containsWordIgnoreCase`, where I used
-`String::contains` to check for substring matching.
-
-The table below depicts the changes in command input.
-
-System  |   Command    | Output
---------|--------------|-------
-AB3     | `find John`  | `john`, `John`
-RC4HDB  | `find Jo`    | `john`, `John`
+1. *Reworked the Ui for displaying results into a Table*
+2. *Reworked the layout of the Ui*
+3. *Removed the file section in the Ui menu header*
+4. *Update application system image*
 
 
 ### Contributions to the UG:
 
 I contributed to the following sections of the user guide:
 1. Ported the UG from `AB3` to `RC4HDB`. These include modifying the:
-    - Description and formatting of all Features to include `RC4HDB` specifications.
-    - Command Summary Table to be in line with the new specifications.
-2. Re-organized UG into their respective sections
-3. Updated the Table-of-Contents
-4. Inserted the Back-to-top hyperlinks
+    - Description and formatting of all features to include `RC4HDB` specifications.
+    - Command summary table to comply with the new specifications.
+2. Re-organized UG into their respective sections i.e. File management, venue management etc.
+3. Re-organized each section to match a basic-to-advanced command approach.
+3. Re-organized the command summary table into its relevant sections following all updates 
+4. Updated the Table-of-Contents after reorganization 
 5. Updated UG to include all [Quality-of-life](../ug-pages/quality-of-life.md) functionality
+6. Updated `find` command section to comply with new implementation of substring search.
+
+Other contributions include, adding a back-to-top hyperlink following each section,
 
 ### Contributions to the DG:
 
 I contributed to the following sections of the developer guide:
 1. Ported the DG from `AB3` to `RC4HDB`. Primarily in the `Appendix: Requirements` section.
+2. Added more elaboration on our non-functional-requirements.
+2. Added section on the implementation of our GUI.
+3. Added section on the implementation of our command history functionality.
+4. Added section on manual testing for:
+   * All `Quality-of-life` functionality
+   * `help`, `exit` commands
 
 In particular, I added/updated the following UML diagrams:
-1. []()
-2. []()
-3. []()
+1. [Ui Component Diagram](../images/UiClassDiagram.png)
+2. [Command History Class Diagram](../images/CommandHistoryClassDiagram.png)
+3. [Command History Activity Diagram](../images/CommandHistoryActivityDiagram.png)
 
 <!-- Provide links to the diagrams in the appendix at the bottom of the page -->
 
 ### Contributions to team-based tasks:
 
 I contributed to the following team-based tasks:
-1. *Enter contributions here*
-2. *Enter contributions here*
-3. *Enter contributions here*
+1. *Meeting minutes in the weekly scrum meeting*
+2. *Work delegation during scrum meeting*
 
 ### Review/mentoring contributions:
 
 I reviewed the following pull requests:
-1. [Add profile photo for Naren #23](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/23)
-2. [Create skeletal project portfolio page #22](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/22)
-3. [Edit README #28](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/28)
-4. [Update index.md #29](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/29)
+1. [Groundwork for Venue feature](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/110)
+2. [Update List command](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/76)
+3. [Venue booking feature](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/114)
+
+To view all of my reviews, refer to [here](https://github.com/AY2223S1-CS2103T-W12-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
 
 I also gave guidance to my team on the following matters:
 1. *Enter contributions here*
@@ -136,9 +101,9 @@ These are some threads in which I offered help to my classmates:
 For the practical examination, I also surfaced critical bugs in the other team's product.
 
 Some examples of these are:
-1. []()
-2. []()
-3. []()
+1. [Functionality Bugs](https://github.com/nealetham/ped/issues?q=is%3Aopen+is%3Aissue+label%3Atype.FunctionalityBug)
+2. [Feature Flaws](https://github.com/nealetham/ped/issues?q=is%3Aopen+is%3Aissue+label%3Atype.FeatureFlaw)
+3. [Documentation Bugs](https://github.com/nealetham/ped/issues?q=is%3Aopen+is%3Aissue+label%3Atype.DocumentationBug)
 
 ## Appendix
 
