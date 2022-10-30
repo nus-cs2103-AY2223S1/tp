@@ -101,7 +101,7 @@ Basic Instructions:
 - Items in square brackets are optional. e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
 - Items with `…` after them can be used multiple times including zero times. e.g., `[t/TAG]…` can be used as ` ` (e.g.
   0 times), `t/python`, `t/javascript t/react` etc.
-- Parameters can be in any order. e.g., if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
+- Parameters with a prefix can be in any order. e.g., if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
   of the parameter will be taken. e.g., if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
