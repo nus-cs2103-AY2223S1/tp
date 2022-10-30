@@ -857,16 +857,16 @@ After executing `showNotes`:
 --------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
-**Q** I work in a highly classified/important organisation and we have large volumes of monetary transactions and tasks we need to keep track of. Can we use this version of the app to manage our operations?<br>
-**A** No, the current version of SectresBook is not designed for such intensive and critical operations. It does not support any form of encryption or security and has a maximum cap on total amounts recorded. We do not suggest using this app in places where information loss or leaks may result in catastrophic consequences.
+**Q** I work in a highly classified/important organisation and we have large volumes of monetary transactions and tasks we need to keep track of. Can we use this version of the program to manage our operations?<br>
+**A** No, the current version of _SectresBook_ is not designed for such intensive and critical operations. It does not support any form of encryption or security and its performance has not been tested rigorously against larger loads. We ***do not suggest*** using this program in places where information loss or leaks may result in catastrophic consequences.
 
 **Q** I cannot see any images in this document, what is wrong?<br>
-**A** You are likely viewing the file in dark mode. The images are in black as their main color, please view this document in light mode instead.
+**A** You are likely viewing the document in dark mode. The images are in black as their main color, please view this document in light mode instead.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SectresBook home folder.
 
-**Q**: Double-clicking the jar file does not open the jar file!<br>
+**Q**: Double-clicking the jar file does not open the jar file, why does this happen?<br>
 **A**: Make sure that Java 11 is installed on your computer. You may also open the terminal or command prompt and type `java -jar SectresBook.jar`.
 
 **Q** Do I need to have Java installed to run SectresBook?<br>
@@ -878,14 +878,20 @@ After executing `showNotes`:
 **Q** Why can't I see the full address of the person I am inspecting?<br>
 **A** Your window is too small to accommodate the full label text, please drag your window either wider or taller so that the text may have space to display.
 
+**Q** I have entered a command, but there is no response from the program, why did this happen?<br>
+**A** A critical error may have occurred. You may likely be able to continue your usage of the program. Please review your terminal output and file a bug report on our [issues page](https://github.com/AY2223S1-CS2103T-W12-2/tp/issues), detailing a description of the bug as well as the steps to reproduce, attaching screenshots if any.
+
 **Q** Do I require an internet connection to use SectresBook?<br>
 **A** No, SectresBook fully works without the need for internet connection.
 
 **Q** I have an existing data file but the app does not show any of the information, what is wrong?<br>
 **A** Your data file is corrupted. Please open the json data file in a text editor and remove the offending data.
 
-**Q** The information I need is not stated in this guide, who can I contact for questions?<br>
-**A** Please contact any of our developers of this current version, Pinran, Ryan, Rui Han, Neethesh or Zhong Wei, or from whomever you received this copy of the program from.
+**Q** Who can I contact for questions regarding this version of the program if the information I need cannot be found in this guide?<br>
+**A** Please contact the person from whom you obtained this present version from, or contact any of our developers (links to Github):
+
+[Rui Han](https://github.com/rui-han-crh)| [Pinran](https://github.com/Pinran-J)| [Ryan](https://github.com/ryanczx) | [Neethesh](https://github.com/orgs/AY2223S1-CS2103T-W12-2/people/Neethesh26) | [Zhong Wei](https://github.com/czhongwei)
+--------|----|-----------|----|---|
 
 [Back to Top](#sectresbook)
 
