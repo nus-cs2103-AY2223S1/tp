@@ -40,6 +40,7 @@ public class AddFieldCommand extends FieldCommand {
     String data;
     String ftype;
     Index index;
+
     public AddFieldCommand(Index index, String ftype, String type, String data) {
         this.index = index;
         this.type = type;
@@ -57,12 +58,12 @@ public class AddFieldCommand extends FieldCommand {
         }
         if (item == null && sItem == null) {
             throw new CommandException(NO_INPUT);
-        } 
+        }
         if (item == null) {
             item = sItem;
         }
-        item.addAttribute(new AbstractAttribute<String>(type,data) {
-            
+        item.addAttribute(new AbstractAttribute<String>(type, data) {
+
         });
         model.refresh();
         return new CommandResult(SUCCESS_MSG);
