@@ -62,13 +62,19 @@ a graphical user interface.
 
 Before proceeding, do make sure that you can understand our notation for command formats:
 * `lower_case` text mean that they should be typed as-is
-* `UPPER-CASE` text denote text that are to be replaced with the actual input
+* `UPPER_CASE` text denote text that are to be replaced with the actual input
 * `[Square brackets]` surround optional inputs
 * `...` denotes that the prior input can be made any number of times
+* Command arguments (eg `-a`, `-m`) can be made in any order. For instance, `ls -u --module CS2103T` and
+  `ls --module CS2103T -u` are the same command and will produce identical results
+* Spaces are not actually required after each prefix. For instance, `ls --moduleCS2103T` will work as well. However, 
+  spaces are used throughout this guide for clarity.
 
-And a few more details about commands
-* Dates must be written in the YYYY-MM-DD format
-* Command arguments (eg `-a`, `-m`) can be made in any order. For instance, `ls -u --module CS2103T` and `ls --module CS2103T -u` are the same command
+Do note that we do have a few constraints on user input:
+* Task names can only contain letters, numbers and spaces. For example, `Assignment-5` is not a valid name as it 
+  contains a hypen.
+* Dates must be written in the format YYYY-MM-DD, eg `2022-10-30`.
+* Module names and tags can only contain letters and numbers, no spaces allowed.
 
 ### Getting help : `help`
 
@@ -78,21 +84,49 @@ Format: `help`
 
 ### Adding a task: `add`
 
-Adds a task to the task list. However, if you try to add in a task with the same name and module as an existing task,
-we will inform you that such a task already exists within the task tracker.
+Adds a task to the task list.
 
 Format: `add -n TASK_NAME -m MODULE [-d DATE] [-t TAG_NAME]...`
-* `TASK_NAME` can contain spaces
-* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
-* `DATE`: Must be in the format of YYYY-MM-DD.
-* `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
+
+Notes:
+* **Duplicate detection** - If you try to add in a task with the same name and module as an existing task,
+  we will inform you that such a task already exists within the task list and reject your command
+* **Optional deadlines** - Tasks with no deadlines are treated as being due "far in the future", meaning they
+  will be placed at the end of the task list.
 
 Examples:
 * `add -n Task 1 -m CS2103T -d 2022-10-15 -t homework`
+* `add -n Tutorial 3 -m CS2103T -d 2022-09-16`
+
+### Editing a task : `edit`
+
+Edits an existing task in the task list, at least one field needs to be edited.
+
+Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]...`
+
+Notes:
+* **Duplicate detection** - If you try to edit the task such that it will have the same name and module as another task,
+  we will inform you that such a task already exists within the task list and reject your command
+
+Examples:
+*  `edit 1 -m CS2103T -n ip` Edits the taskName to ip.
+
+### Deleting a task : `delete`
+
+Allows user to delete a task from task list.
+
+Format: `delete TASK_NUMBER`
+* `TASK_NUMBER`: This is the number of the task currently displayed.
+
+Examples:
+* `delete 1`
+    * Deletes first task in the task list.
+    * Remaining tasks’ `TASK_NUMBER` will be automatically updated.
 
 ### Marking a task as completed: `mark`
 
 Mark a task as complete.
+
 Note: Using `mark` on a task already marked as complete will not change its completion status.
 
 Format: `mark TASK_NUMBER`
@@ -103,6 +137,7 @@ Example: `mark 2`
 ### Unmarking a task: `unmark`
 
 Unmark a task, ie mark a task as incomplete.
+
 Note: Using `unmark` on a task that is not complete will not change its completion status.
 
 Format: `unmark TASK_NUMBER`
@@ -119,6 +154,12 @@ Format : `tag TASK_NUMBER -t TAG_NAME`
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
 
 Example: `tag 2 -t optional`
+
+### Clearing all entries : `clear`
+
+Clears all entries of tasks in the task list.
+
+Format: `clear`
 
 ### List : `ls`
 
@@ -215,38 +256,6 @@ Examples:
 Displays a list of archived tasks.
 
 Format: `showArchive`
-
-### Editing a task : `edit`
-
-Edits an existing task in the task list, at least one field needs to be edited. 
-
-Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]...`
-
-* `TASK_NUMBER`: This is the number of the task currently displayed.
-* `MODULE`: Should be alphanumeric, i.e. must not contain any spaces.
-* `DATE`: Must be in the format of YYYY-MM-DD.
-* `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
-
-Examples:
-*  `edit 1 -m CS2103T -n ip` Edits the taskName to ip.
-
-### Deleting a task : `delete`
-
-Allows user to delete a task from task list. 
-
-Format: `delete TASK_NUMBER`
-* `TASK_NUMBER`: This is the number of the task currently displayed.
-
-Examples: 
-* `delete 1`
-  * Deletes first task in the task list.
-  * Remaining tasks’ `TASK_NUMBER` will be automatically updated. 
-  
-### Clearing all entries : `clear`
-
-Clears all entries of tasks in the task list. 
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
