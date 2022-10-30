@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
 
@@ -18,14 +16,10 @@ public class HomeCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setHomeStatus(true);
-        updateFilteredList(model);
-        return new CommandResult(MESSAGE_SUCCESS);
-    }
+        model.goToHomePage();
 
-    private void updateFilteredList(Model model) {
-        requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        assert model.getHomeStatusAsBoolean() == true;
+
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -14,7 +14,7 @@ import seedu.address.model.person.NameStartsWithKeywordPredicate;
 public class FindPersonCommand extends Command {
     public static final String COMMAND_WORD = "find-person";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all person whose name starts with "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose name starts with "
             + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD\n"
             + "Example: " + COMMAND_WORD + " Nathan";
