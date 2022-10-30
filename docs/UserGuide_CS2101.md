@@ -65,7 +65,7 @@ ensure that the application works as expected and runs smoothly on your computer
 ### Step 1: Ensure you have Java `11` or above installed in your Computer
 To check if you have Java `11` or above installed, follow the steps for your operating system
 ##### If you are using Windows:
-1. Press the Start button and type *cmd* then press Enter button on your keyboard.
+1. Press the Start button and type *cmd* then press Enter on your keyboard.
 2. Once you have Command Prompt running, type `java --version` and if you have Java installed properly, you should
   see an output like the following.
   ![UI introduction](images/UG-screenshots/Java11CheckWindows.png)
