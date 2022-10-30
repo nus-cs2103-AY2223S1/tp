@@ -219,15 +219,20 @@ Format: `clear`
 
 Do basic arithmetic calculation including +, -, *, /. Allow multiple operators and precedence
 
-Format: `calc {expression}`
+Format: `calc {arithmetic expression}`
 
-Example: `calc 2 * (1 + 1)`
+Example: `calc 2*(1+1)`<br>
+Expected outcome:<br> <img src="images/CalcCmdOutcome.png" width="150"/>
+
+_Note: Please do not enter spaces, e.g.`1 + 1` does not work_
 
 ### GUI Calculator: `calc-gui`
 
 Launch a GUI calculator. A calculator window will pop-up
 
 Format: `calc-gui`
+
+Expected outcome:<br> <img src="images/Calc-guiCmdOutcome.png" width="100"/>
 
 ### Exiting the program : `exit`
 
@@ -272,7 +277,7 @@ _Details coming soon ..._
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find alex david`                                                                                                                                                                                                                          |
 | **Undo**       | `undo`                                                                                                                                                                                                                                                                               |
 | **Redo**       | `redo`                                                                                                                                                                                                                                                                               |
-| **Calculate**  | `calc`                                                                                                                                                                                                                                                                               |
+| **Calculate**  | `calc {arithmetic expression}` <br> e.g. `calc 2*(1+1)`                                                                                                                                                                                                                              |
 | **Calculator** | `calc-gui`                                                                                                                                                                                                                                                                           |
 | **Clear**      | `clear`                                                                                                                                                                                                                                                                              |
 | **List**       | `list`                                                                                                                                                                                                                                                                               |
