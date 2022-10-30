@@ -44,7 +44,7 @@ public class CreateMeetingCommand extends Command {
 
     public static final String IMPRECISE_NAME_PREDICATE = "Oops! The name of one of the persons you are meeting "
         + "matches more than one person in the address book! \n"
-        + "Please include a more precise name.";
+        + "Please include a more precise name, or check if every word is separated by single spacing.";
 
     public static final String INVALID_DATE_AND_TIME_FORMAT = "%1$s\nOops! Make sure the date and time of the meeting "
         + "are in the correct format! \n"
@@ -114,7 +114,7 @@ public class CreateMeetingCommand extends Command {
             return new CommandResult(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
 
         } catch (ImpreciseMatchException e) {
-            return new CommandResult(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE);
+            return new CommandResult(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE + "\n" + e.getMessage());
         }
 
     }
