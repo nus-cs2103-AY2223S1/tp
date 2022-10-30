@@ -19,7 +19,6 @@ a graphical user interface.
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -36,6 +35,7 @@ a graphical user interface.
 4. Double-click the file to start the app. As seen below, some sample data has been pre-loaded for you to experiement with.
 
     ![Ui](images/user-guide/Ui.png)
+
 
 5. Try typing some of the following commands in the “Enter command here...” box and press “ENTER” to execute the command
 
@@ -58,6 +58,53 @@ a graphical user interface.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Understanding the GUI
+
+We would first like to give a walk-around of the UI to allow you, the user to have a smoother experience as you will 
+be able to use the app to its full potential.
+
+Here is an image of the UI of the app.
+
+
+![GUIwalkaround](images/user-guide/GUIwalkaround.png)
+
+
+From top to bottom:
+1. `Help` and `Archived` Buttons:
+    * Click `Help` to open the help menu which will display a list of example commands and a link to our user guide.
+    * Click `Archived` to open the archived tasks window, which shows any previously archived tasks.
+
+2. Filter status display:
+    * This displays any filters applied on the list using commands such as `ls` or `find`, for more information
+      please refer to **Feature** section below.
+
+3. Main tasklist:
+    * This displays all your *current* tasks.
+
+4. Result display:
+    * The result display displays any information regarding command inputs, such as success or errors.
+
+5. Command box:
+    * This is where you enter commands to control the app.
+
+### Autocomplete
+
+When the user starts to type in the start of a command, a popup menu will appear with options to complete your input.
+Use the `up` and `down` arrow keys to navigate through the options and `Enter` to fill the command box with the command
+of your choice.
+
+Here is an example of autocomplete in action:
+
+![Autocomplete](images/user-guide/Autocomplete.png)
+
+However, it is recommended to read through the features section to understand the syntax for commands that require additional input.
+
+### Returning to a previous command : `up`/`down` keys
+Loads previous command into the _Command Box_.
+While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys to navigate through the command history that is automatically loaded in.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 Before proceeding, do make sure that you can understand our notation for command formats:
@@ -67,8 +114,10 @@ Before proceeding, do make sure that you can understand our notation for command
 * `...` denotes that the prior input can be made any number of times
 
 And a few more details about commands
-* Dates must be written in the YYYY-MM-DD format
+* Dates must be written in the `YYYY-MM-DD` format
 * Command arguments (eg `-a`, `-m`) can be made in any order. For instance, `ls -u --module CS2103T` and `ls --module CS2103T -u` are the same command
+* Commands that filter for names find names that **contain** the keyword. (`ls -n`, `find`)
+* Commands that filter for tags find tags that **match** the keyword. (`ls -t`, `find`)
 
 ### Getting help : `help`
 
@@ -126,6 +175,12 @@ Example: `tag 2 -t optional`
 listing all tasks, unmarked tasks, all tasks under a module name etc. You may apply multiple list commands in one
 command to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+Any command that searches for names finds all task names that contain the keyword and does not have to be an exact match.
+It is also case-insensitive.
+Any command that searches for tags finds all tags that exactly match, but is also case-insensitive.
+<br><br></div>
+
 Current filters applied will be shown in the UI at the top bar.
 
 **Note that `find` searches globally, across all of a task's attributes**
@@ -159,12 +214,13 @@ Example: `ls --module cs2103t`
 
 #### Listing all tasks containing the same tag : `ls -t`
 
-Shows a list of all tasks under the same tag.
+Shows a list of tasks whose tags match **exactly** with the tag_name. (Case-insensitive)
 
 Format: `ls -t TAG_NAME`
-* `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
 
-Example: `ls -t highPriority`
+* `TAG_NAME`: The tag you are looking for should be an exact match and alphanumeric, ie must not contain any spaces.
+
+Example: `ls -t highPriority` will find tags with `highpriority` (case-insensitive)
 
 #### Listing all tasks with deadline on or after a date : `ls -d`
 
@@ -179,24 +235,28 @@ Example: `ls -d 2022-11-11`
 
 Shows a list of all tasks with matching names.
 
-Format: `ls -n KEYWORD [MORE_KEYWORDS]`
-* `MORE_KEYWORDS`: Keywords should be separated by spaces.
+Format: `ls -n KEYWORD...`
+* `KEYWORD...`: One keyword or multiple, which should be separated by spaces.
 
 Example: `ls -n task1`
 
 ### Find tasks by name : `find`
 
-The `find` command finds the task names or tags which contain the word or words given in the prefix. 
-`find` is not case-sensitive and the keyword being searched does not have to match a whole word
-(Example: searching `tap` in task name `tape` will be shown).
+The `find` command finds the task names that **contain** the keywords and tags which **exactly match** with the 
+keywords. Meaning that names does not have to be an exact match (Example: searching `tap` with return a task with a 
+task name `tape`). `find` is not case-sensitive.
 
-Format: `find WORD [MORE_WORDS]`
+Format: `find KEYWORD/TAG_NAME...`
 
-Singular word search example: `find tutorial`
+Singular word search example: `find tut`
+finds names which contain `tut` and any tag that exactly match `tut`.
 
-Multiple word search example: `find Week tutorial`
-finds **any** task name or tag with either `Week` or `tutorial`.
+Example singular word search: ![FindCommandSingular](images/user-guide/FindCommandSingular.png)
 
+Multiple word search example: `find Week tuT`
+finds **any** task name that contain keywords `week` or `tut` or **any** tag that match them.
+
+Example multiple word search: ![FindCommandMultiple](images/user-guide/FindCommandMultiple.png)
 ### Archiving data files : `archive`
 
 Allows you to remove a task from task list and store in archived file.
@@ -224,12 +284,18 @@ Format: `showArchive`
 
 Edits an existing task in the task list, at least one field needs to be edited. 
 
-Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]...`
+Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] (optional)[-d DATE] (optional)[-t TAG_NAME]...`
 
 * `TASK_NUMBER`: This is the number of the task currently displayed.
-* `MODULE`: Should be alphanumeric, i.e. must not contain any spaces.
-* `DATE`: Must be in the format of YYYY-MM-DD.
-* `TAG_NAME`: The word to tag the task with, should be alphanumeric, i.e. must not contain any spaces.
+
+* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
+* (Optional)`DATE`: Must be in the format of YYYY-MM-DD.
+* (Optional)`TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+The edit command accepts optional date and optional tags similar to the add command, where any original dates or tags
+will be removed if no date or tag is given. 
+<br><br></div>
 
 Examples:
 *  `edit 1 -m CS2103T -n ip` Edits the taskName to ip.
@@ -257,9 +323,6 @@ Format: `clear`
 Terminates and exits the program.  
 
 Format: `exit`
-
-### Returning to a previous command : `up`/`down` keys 
-Loads previous command into the text input box. 
 
 ### Saving the data
 NotionUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -306,19 +369,19 @@ Format meanings:
 * `[Square brackets]` surround optional inputs
 * `...` denotes that the prior input can be made any number of times
 
-| Action                      | Format                                                                                                                                                                                                                                                                                                                                                                                                                        | Examples                                     |
-|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| **Add** task                | `add -n TASK_NAME -m MODULE [-d YYYY-MM-DD] [-t TAG_NAME]...`                                                                                                                                                                                                                                                                                                                                                                 | `add -n Tutorial 3 -m CS2103T -d 2022-09-16` |
-| **Archive** task            | `archive TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                         | `archive 1`                                  |
-| **Clear** all tasks         | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                       |                                              |
-| **Delete** task             | `delete TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                          | `delete 3`                                   |
-| **Edit** task               | `edit TASK_NUMBER [-n NEW_NAME] [-m NEW_MODULE] [-d NEW_DEADLINE]`                                                                                                                                                                                                                                                                                                                                                            | `edit 1 -n CS2103T ip`                       |
-| **Exit** NotionUS           | `exit`                                                                                                                                                                                                                                                                                                                                                                                                                        |                                              |
-| **Find** task with name     | `find KEYWORD...`                                                                                                                                                                                                                                                                                                                                                                                                             | `find Tutorial Lab`                          |
-| **Help**                    | `help`                                                                                                                                                                                                                                                                                                                                                                                                                        |                                              |
-| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG] [-d YYYY-MM-DD]`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date<br/> `ls -n KEYWORD [MORE KEYWORDS]` View tasks with the specified name | `ls -u --module CS2103T`                     |
-| **Mark** tasks              | `mark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                            | `mark 2`                                     |
-| **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                                                                                                 |                                              |
-| **Tagging** a task          | `tag TASK_NUMBER -t TAG_NAME`                                                                                                                                                                                                                                                                                                                                                                                                 | `tag 1 -t highPriority`                      |
-| **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                          | `unmark 2`                                   |
-| Accessing previous commands | Use the up and down arrow keys                                                                                                                                                                                                                                                                                                                                                                                                |                                              |
+| Action                      | Format                                                                                                                                                                                                                                                                                                                                                                                                                                      | Examples                                     |
+|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| **Add** task                | `add -n TASK_NAME -m MODULE [-d YYYY-MM-DD] [-t TAG_NAME]...`                                                                                                                                                                                                                                                                                                                                                                               | `add -n Tutorial 3 -m CS2103T -d 2022-09-16` |
+| **Archive** task            | `archive TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                       |                                              |
+| **Clear** all tasks         | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                              |
+| **Delete** task             | `delete TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                        | `delete 3`                                   |
+| **Edit** task               | `edit TASK_NUMBER [-n NEW_NAME] [-m NEW_MODULE] [-d NEW_DEADLINE]`                                                                                                                                                                                                                                                                                                                                                                          | `edit 1 -n CS2103T ip`                       |
+| **Exit** NotionUS           | `exit`                                                                                                                                                                                                                                                                                                                                                                                                                                      |                                              |
+| **Find** task/tag with name | `find KEYWORD/TAG_NAME...`                                                                                                                                                                                                                                                                                                                                                                                                                  | `find Tutorial Lab`                          |
+| **Help**                    | `help`                                                                                                                                                                                                                                                                                                                                                                                                                                      |                                              |
+| **List** specific tasks     | `ls [-a] [-u] [-m] [--module MODULE] [-t TAG_NAME] [-d YYYY-MM-DD] [-n KEYWORD...]`<br/>`ls -a` View all tasks<br/>`ls -u` View all incomplete tasks<br/> `ls -m` View all marked tasks<br/> `ls --module MODULE` View tasks under the specific module<br/> `ls -t TAG_NAME` View tasks with a specific tag<br/> `ls -d YYYY-MM-DD` View tasks on or after a specific date <br/> `ls -n KEYWORD ...` View task names with matching keywords | `ls -u --module CS2103T`                     |
+| **Mark** tasks              | `mark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                          | `mark 2`                                     |
+| **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                                                                                                               |                                              |
+| **Tagging** a task          | `tag TASK_NUMBER -t TAG_NAME`                                                                                                                                                                                                                                                                                                                                                                                                               | `tag 1 -t highPriority`                      |
+| **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                                                                                                        | `unmark 2`                                   |
+| Accessing previous commands | Use the up and down arrow keys                                                                                                                                                                                                                                                                                                                                                                                                              |                                              |
