@@ -20,6 +20,12 @@ public class TaskDescriptionTest {
     }
 
     @Test
+    public void constructor_invalidDescriptionWithWhiteSpace_throwsIllegalArgumentException() {
+        String invalidDescription = "    ";
+        assertThrows(IllegalArgumentException.class, () -> new TaskDescription(invalidDescription));
+    }
+
+    @Test
     public void constructor_validDescription_createsTaskDescription() {
         assertTrue(new TaskDescription(VALID_TASK_DESCRIPTION) instanceof TaskDescription);
     }
