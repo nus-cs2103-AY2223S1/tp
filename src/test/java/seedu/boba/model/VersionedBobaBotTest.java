@@ -17,6 +17,5 @@ public class VersionedBobaBotTest {
         VersionedBobaBot bbbt=new VersionedBobaBot(null, 20);
         assertEquals(bbbt, bbbt);
         assertEquals(bbbt, new VersionedBobaBot(null));
-        
     }
 }
