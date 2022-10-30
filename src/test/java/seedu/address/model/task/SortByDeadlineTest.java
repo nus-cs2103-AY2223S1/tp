@@ -19,8 +19,10 @@ public class SortByDeadlineTest {
     private static final Description testDisc = new Description("Test");
     private static final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private static final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
-    private static final TaskDeadline testDeadline2 = new TaskDeadline(LocalDate.of(2023,12,12));
-    private static final TaskDeadline testDeadline3 = new TaskDeadline(LocalDate.of(2024,12,12));
+    private static final TaskDeadline testDeadline2 = new TaskDeadline(LocalDate.of(2023, 12,
+            12));
+    private static final TaskDeadline testDeadline3 = new TaskDeadline(LocalDate.of(2024, 12,
+            12));
     private static final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
             new Email("test@gmail.com"), new Address("test"), new HashSet(), new ArrayList<>());
     public static final Task ALICE = new Task(new TaskName("A"),
