@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
 import seedu.address.model.person.Name;
@@ -44,6 +45,8 @@ public class JsonAdaptedPet {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<String> certificates = new ArrayList<>();
 
+    private final UniqueId uniqueId;
+
     /**
      * Constructs a {@code JsonAdaptedPet} with the given buyer details.
      */
@@ -59,7 +62,8 @@ public class JsonAdaptedPet {
                           @JsonProperty("vaccinationStatus") boolean vaccinationStatus,
                           @JsonProperty("price") Double price,
                           @JsonProperty("tags") List<JsonAdaptedTag> tagged,
-                          @JsonProperty("certificates") List<String> certificates) {
+                          @JsonProperty("certificates") List<String> certificates,
+                          @JsonProperty("uniqueId") UniqueId uniqueId) {
         this.name = name;
         this.supplier = supplier;
         this.color = color;
@@ -76,6 +80,7 @@ public class JsonAdaptedPet {
         if (certificates != null) {
             this.certificates.addAll(certificates);
         }
+        this.uniqueId = uniqueId;
     }
 
     /**
@@ -97,6 +102,7 @@ public class JsonAdaptedPet {
                 .collect(Collectors.toList()));
         certificates.addAll(source.getCertificates().stream()
                 .map(PetCertificate::toString).collect(Collectors.toList()));
+        uniqueId = source.getId();
     }
 
     /**
