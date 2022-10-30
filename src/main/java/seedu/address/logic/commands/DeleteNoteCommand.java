@@ -11,14 +11,14 @@ import seedu.address.model.Model;
 import seedu.address.model.note.Note;
 
 /**
- * Deletes a note identified using it's displayed index from the command listNote.
+ * Deletes a note identified using it's displayed index from the command listNotes.
  */
 public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteNote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the note identified by the index number used in the displayed listNote command.\n"
+            + ": Deletes the note identified by the index number used in the displayed listNotes command.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
