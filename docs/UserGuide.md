@@ -153,7 +153,7 @@ Example:
 
 -   `list` followed by `delete 2` deletes the 2nd person in the app.
 -   `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
--   `delete ra/Chinese re/christian` Deletes all surveyees that are Chinese and Christian.
+-   `delete ra/Chinese re/Christian` Deletes all surveyees that are Chinese and Christian.
 
 ### Clone a person : `clone`
 
