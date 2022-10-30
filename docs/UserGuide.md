@@ -277,17 +277,17 @@ of your choice.
 
 ## FAQ
 
-**Q**: How do I transfer my data in NotionUs to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NotionUs home folder.
+**Q**: How do I transfer my data in NotionUS to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NotionUS home folder.
 
-**Q**: What is the date file fails to load into NotionUs?<br>
-**A**: It is likely that your storage data file is in the wrong format. Do check the log files to see what had happened when launching NotionUs. 
+**Q**: What is the date file fails to load into NotionUS?<br>
+**A**: It is likely that your storage data file is in the wrong format. Do check the log files to see what had happened when launching NotionUS. 
 
 **Q**: What if double-clicking fails to open the jar file?<br>
 **A**: Check that the correct version of java is installed (Java 11) locally on your computer. You may open the terminal and type java -version to check. If it is the wrong version, visit this [page](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language) for a guide to install the correct version of java. If you have the correct version of java installed, you may try to launch the app using terminal, open terminal or command prompt and type java -jar NotionUs.jar.  
 
-**Q**: Is internet needed for NotionUs to work?<br>
-**A**: No, NotionUs functions fully without internet connection.
+**Q**: Is internet needed for NotionUS to work?<br>
+**A**: No, NotionUS functions fully without internet connection.
 
 **Q**: What if the application crashes?<br>
 **A**: Please contact us via  GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen), do provide screenshots of the error or state the error message. We will assist you as soon as possible. 
