@@ -176,7 +176,7 @@ public class AddressBookParser {
         }
 
         String commandWord = matcher.group("commandWord").trim();
-        final String arguments = matcher.group("arguments").trim();
+        final String arguments = matcher.group("arguments");
 
         while (aliasMapper.containsKey(commandWord)) {
             commandWord = aliasMapper.get(commandWord);
