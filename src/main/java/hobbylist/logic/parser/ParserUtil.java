@@ -3,7 +3,10 @@ package hobbylist.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.format.DateTimeParseException;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import hobbylist.commons.core.index.Index;
 import hobbylist.commons.util.StringUtil;
@@ -87,8 +90,8 @@ public class ParserUtil {
      */
     public static Optional<Date> parseDate(Optional<String> optionalDateString) throws ParseException {
         requireNonNull(optionalDateString);
-        Optional<Date> optionalDate;
-        if (optionalDateString.isPresent()){
+        Optional<Date> optionalDate = Optional.empty();
+        if (optionalDateString.isPresent()) {
             String dateString = optionalDateString.get();
             String trimmedD = dateString.trim();
             if (!Date.isValidDateString(trimmedD)) {
@@ -99,6 +102,7 @@ public class ParserUtil {
             } catch (DateTimeParseException de) {
                 throw new ParseException("Sorry, the input date is out of human calendar scope.");
             }
+
         } else {
             optionalDate = Optional.ofNullable(null);
         }

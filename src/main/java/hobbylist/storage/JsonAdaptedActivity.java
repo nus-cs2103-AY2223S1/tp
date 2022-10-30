@@ -83,7 +83,9 @@ class JsonAdaptedActivity {
     public Activity toModelType() throws IllegalValueException {
         final List<Tag> activityTags = new ArrayList<>();
         Optional<Date> activityDate = Optional.empty();
-        if(this.date.isPresent()) {
+        if (this.date == null) {
+            activityDate = Optional.empty();
+        } else if (this.date.isPresent()) {
             activityDate = Optional.of(this.date.get().toModelType());
         }
         final Status modelStatus;

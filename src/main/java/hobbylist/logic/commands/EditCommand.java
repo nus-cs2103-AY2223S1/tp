@@ -2,7 +2,6 @@ package hobbylist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -107,7 +106,12 @@ public class EditCommand extends Command {
         Description updatedDescription = editActivityDescriptor.getDescription()
                 .orElse(activityToEdit.getDescription());
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
-        Optional<Date> date = editActivityDescriptor.getDate();
+        Optional<Date> date = Optional.empty();
+        if (editActivityDescriptor.getDate().isPresent()) {
+            date = editActivityDescriptor.getDate();
+        } else {
+            date = activityToEdit.getDate();
+        }
         Status updatedStatus = editActivityDescriptor.getStatus().orElse(activityToEdit.getStatus());
         return new Activity(updatedName, updatedDescription, updatedTags, date, activityToEdit.getRating(),
                 updatedStatus, activityToEdit.getReview());
@@ -139,7 +143,7 @@ public class EditCommand extends Command {
         private Name name;
         private Description description;
         private Set<Tag> tags;
-        private Optional<Date> date;
+        private Optional<Date> date = Optional.empty();
         private Status status;
 
         public EditActivityDescriptor() {}
@@ -160,7 +164,10 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, tags, date, status);
+            if (date.isPresent()) {
+                return true;
+            }
+            return CollectionUtil.isAnyNonNull(name, description, tags, status);
         }
 
         public void setName(Name name) {
@@ -198,6 +205,9 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
         public Optional<Date> getDate() {
+            if (this.date == null) {
+                return Optional.empty();
+            }
             return this.date;
         }
 

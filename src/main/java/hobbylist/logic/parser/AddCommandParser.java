@@ -2,7 +2,6 @@ package hobbylist.logic.parser;
 
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;

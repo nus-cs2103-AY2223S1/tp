@@ -1,8 +1,6 @@
 package hobbylist.testutil;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -26,7 +24,7 @@ public class ActivityBuilder {
     private Name name;
     private Description description;
     private Set<Tag> tags;
-    private List<Date> dateList;
+    private Optional<Date> dateList;
     private Status status;
     private Optional<Review> review;
 
@@ -37,7 +35,7 @@ public class ActivityBuilder {
         name = new Name(DEFAULT_NAME);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
-        dateList = new ArrayList<>();
+        dateList = Optional.empty();
         status = new Status();
         review = Optional.empty();
     }
@@ -49,7 +47,7 @@ public class ActivityBuilder {
         name = activityToCopy.getName();
         description = activityToCopy.getDescription();
         tags = new HashSet<>(activityToCopy.getTags());
-        dateList = new ArrayList<>(activityToCopy.getDate());
+        dateList = activityToCopy.getDate();
         status = activityToCopy.getStatus();
         review = activityToCopy.getReview();
     }

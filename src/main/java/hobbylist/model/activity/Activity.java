@@ -1,9 +1,7 @@
 package hobbylist.model.activity;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -47,9 +45,11 @@ public class Activity {
     /**
      * Constructor with rating. Every field must be present and not null.
      */
-    public Activity(Name name, Description description, Set<Tag> tags, Optional<Date> optionalDate, int rating, Status status,
+    public Activity(Name name, Description description, Set<Tag> tags,
+                    Optional<Date> optionalDate, int rating, Status status,
                     Optional<Review> review) {
-        CollectionUtil.requireAllNonNull(name, description, tags, optionalDate, rating);
+        CollectionUtil.requireAllNonNull(name,
+                description, tags, optionalDate, rating);
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);

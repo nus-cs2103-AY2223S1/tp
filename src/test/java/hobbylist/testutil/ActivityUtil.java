@@ -50,11 +50,9 @@ public class ActivityUtil {
                 tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        descriptor.getDate().ifPresent(dates -> {
-            if (dates.size() > 0) {
-                sb.append(CliSyntax.PREFIX_DATE).append(dates.get(0)).append(" ");
-            }
-        });
+        if (descriptor.getDate().isPresent()) {
+            sb.append(CliSyntax.PREFIX_DATE).append(descriptor.getDate().get()).append(" ");
+        }
         descriptor.getStatus().ifPresent(status -> {
             if (status.status != Status.State.NONE) {
                 sb.append(CliSyntax.PREFIX_STATUS).append(status).append(" ");
