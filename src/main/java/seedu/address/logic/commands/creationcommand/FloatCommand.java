@@ -3,7 +3,9 @@ package seedu.address.logic.commands.creationcommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.PureCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
@@ -12,33 +14,38 @@ public class FloatCommand extends PureCommand {
     private static final String INVALID_INPUT = "The input is not an float";
 
     private Float num;
+    private String next;
 
-    public FloatCommand(Float num) {
+    public FloatCommand(Float num, String next) {
         this.num = num;
+        this.next = next;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(String.format("created %f", num), false, false, num);
+        if (next == null || next.equals("")) {
+            return new CommandResult(String.format("created %f", num), false, false, num);
+        }
+        return AddressBookParser.quickCommand(next, num).execute(model);
     }
 
     public static Parser<FloatCommand> parser() {
         return new Parser<FloatCommand>() {
             @Override
             public FloatCommand parse(String userInput) throws ParseException {
-                userInput = userInput.trim();
-                if (userInput.length() == 0) {
+                ParserUtil.Pair p = ParserUtil.splitPipe(userInput);
+
+                if (p.first.length() == 0) {
                     throw new ParseException(INVALID_INPUT);
                 }
                 Float num;
                 try {
-                    num = Float.parseFloat(userInput);
+                    num = Float.parseFloat(p.first);
                 } catch (NumberFormatException e) {
                     throw new ParseException(INVALID_INPUT);
                 }
-                return new FloatCommand(num);
+                return new FloatCommand(num, p.second);
             }
-
         };
     }
 }
