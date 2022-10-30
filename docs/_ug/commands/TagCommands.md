@@ -7,7 +7,7 @@ Example of a [Tag](#tag):
 
 **Format**: `newtag n/TAG_NAME`
 
-> Creates a new tag with the provided tag name.
+> Creates a new tag with the provided tag name
 
 **Example Input:**
 
@@ -111,7 +111,7 @@ Tags: {}
 
 **Format**: `renametag n/TAG_NAME n/TAG_NAME`
 
-> Renames a tag currently in FoodRem.
+> Renames a tag currently in FoodRem
 
 ```info
 The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
@@ -138,7 +138,7 @@ Renamed tag: Veggies
 
 **Format**: `deletetag n/TAG_NAME`
 
-> Deletes a tag that exists in FoodRem.
+> Deletes a tag that exists in FoodRem
 
 **Example Input:**
 
@@ -160,7 +160,7 @@ Tag deleted: Veggies
 
 **Format**: `filtertag n/TAG_NAME`
 
-> Filters and shows items that contain a specific tag.
+> Filters and shows items that contain a specific tag
 
 **Example Input:**
 

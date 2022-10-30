@@ -7,7 +7,7 @@ Example of an [Item](#item):
 
 **Format**: `new n/ITEM_NAME [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
 
-> Creates a new item with the provided item name
+> Creates a new item with the provided information
 
 ```info
 * All fields apart from `ITEM_NAME` are optional.
@@ -19,7 +19,7 @@ Example of an [Item](#item):
 * The default values for `QUANTITY` and `PRICE` is `0`.
 * The default values for `UNIT` is blank.
 * The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
-* The value of `REMARKS` will be `No Remarks` if not provided.
+* The value of `REMARKS` will be `-` if not provided.
 * `PRICE` do not require you to include the currency. Only include the value.
 * You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
@@ -42,7 +42,7 @@ Quantity: 70 kg
 Bought Date: 22-02-2022
 Expiry Date: 22-03-2022
 Price: $0
-Remarks: No Remarks
+Remarks: -
 Tags: {}
 ```
 
@@ -52,7 +52,7 @@ Tags: {}
 
 **Format**: `list`
 
-> List all items in FoodRem.
+> List all items in FoodRem
 
 ```info
 * This command is useful to view all items again after using the [Find Command](#Find)
@@ -87,6 +87,7 @@ Item List Box:
 **Format:** `find KEYWORD [KEYWORDS]...`
 
 > Finds all items in FoodRem whose names contain substrings of the KEYWORDS
+
 ```info
 * The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
 * The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
@@ -125,6 +126,16 @@ Item List Box:
 
 > Sorts the list of currently displayed items by the provided criteria
 
+```note
+* `\n` : Sort by item name
+* `\qty` : Sort by item quantity
+* `\u` : Sort by item unit
+* `\bgt` : Sort by item bought date
+* `\exp` : Sort by item expiry date
+* `\p` : Sort by item price
+* `\r` : Sort by item remarks
+```
+
 ```warning
 * You should only provide one sorting criteria.
 * The sort can only be done in an ascending order.
@@ -148,8 +159,8 @@ Item List Box:
 
 ```text
 1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-1. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
-1. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
+2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
+3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
 ```
 
 ---
@@ -180,7 +191,7 @@ Quantity: 8 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 
@@ -214,7 +225,7 @@ Quantity: 11 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 
@@ -223,7 +234,7 @@ Tags: {vegetables}
 #### Decrement the quantity of an item: `dec`
 
 **Format:**: `dec INDEX [qty/QUANTITY]`
-> Decrements the quantity of the item at the specified index.
+> Decrements the quantity of the item at the specified index
 
 ```info
 * If a quantity is not provided, the item quantity will be decremented by 1.
@@ -247,7 +258,7 @@ Quantity: 7 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 
@@ -265,12 +276,7 @@ Tags: {vegetables}
   * dd: Day of the month. For example, "10" would represent the 10th day of the month.
   * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
   * yyyy: The current year. For example, "2019" would represent the year 2019.
-* The default values for `QUANTITY` and `PRICE` is `0`.
-* The default values for `UNIT` is blank.
-* The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
-* The value of `REMARKS` will be `No Remarks` if not provided.
 * `PRICE` do not require you to include the currency. Only include the value.
-* You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
 ```
 
@@ -291,7 +297,7 @@ Quantity: 100 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 
@@ -301,7 +307,7 @@ Tags: {vegetables}
 
 **Format**: `rmk INDEX [r/REMARKS]`
 
-> Adds a remark to the item at the specified index
+> Add a remark to the item at the specified index
 
 ```info
 * If no remark is provided, the current remark will be cleared.
@@ -335,7 +341,7 @@ Tags: {vegetables}
 
 **Format**: `del INDEX`
 
-> Deletes the item at the specified index.
+> Deletes the item at the specified index
 
 **Example Input:**
 
@@ -354,7 +360,7 @@ Quantity: 100 kg
 Bought Date: 10-10-2022
 Expiry Date: 10-11-2022
 Price: $6
-Remarks: No Remarks
+Remarks: -
 Tags: {vegetables}
 ```
 
