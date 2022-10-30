@@ -37,7 +37,7 @@ import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in Survin.
+ * Edits the details of an existing person in the address book.
  */
 public class EditCommand extends Command {
 
@@ -291,16 +291,9 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getGender().equals(e.getGender())
-                    && getBirthdate().equals(e.getBirthdate())
-                    && getRace().equals(e.getRace())
-                    && getReligion().equals(e.getReligion())
-                    && getSurveys().equals(e.getSurveys())
-                    && getTags().equals(e.getTags());
+            return getName().equals(e.getName()) && getPhone().equals(e.getPhone()) && getEmail().equals(e.getEmail())
+                    && getAddress().equals(e.getAddress()) && getTags().equals(e.getTags());
+
         }
     }
 }

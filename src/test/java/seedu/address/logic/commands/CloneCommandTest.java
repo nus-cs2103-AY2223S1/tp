@@ -94,7 +94,7 @@ public class CloneCommandTest {
     public void execute_duplicatePersonUnfilteredList_failure() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ClonePersonDescriptor descriptor = new ClonePersonDescriptorBuilder(firstPerson).build();
-        CloneCommand cloneCommand = new CloneCommand(INDEX_SECOND_PERSON, descriptor);
+        CloneCommand cloneCommand = new CloneCommand(INDEX_FIRST_PERSON, descriptor);
 
         assertCommandFailure(cloneCommand, model, CloneCommand.MESSAGE_DUPLICATE_CLONED_PERSON);
     }
@@ -104,7 +104,7 @@ public class CloneCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // clone person in filtered list into a duplicate in address book
-        Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Person personInList = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         CloneCommand cloneCommand = new CloneCommand(INDEX_FIRST_PERSON,
                 new ClonePersonDescriptorBuilder(personInList).build());
 
