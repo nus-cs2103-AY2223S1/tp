@@ -52,6 +52,9 @@ public class SortPersonCommand extends Command {
             model.sortPersonList(Comparator.comparing(Person::getName));
         } else if (criteria == Criteria.COMPANY_NAME) {
             // internshipId can be null, so it needs a separate null handler
+            // solution adapted from
+            // https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html
+            // #comparing-java.util.function.Function-java.util.Comparator-
             model.sortPersonList(Comparator.comparing(Person::getCompany,
                     Comparator.nullsLast(Comparator.naturalOrder())));
         }

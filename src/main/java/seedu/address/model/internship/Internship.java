@@ -103,6 +103,9 @@ public class Internship {
      *
      * @return the Comparator.
      */
+    // solution adapted from
+    // https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html
+    // #comparing-java.util.function.Function-java.util.Comparator-
     public static Comparator<Internship> compareByInterviewDate() {
         return Comparator.comparing(
                 i -> i.getInterviewDate().datetime, Comparator.nullsLast(Comparator.naturalOrder()));
