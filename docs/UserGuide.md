@@ -208,7 +208,7 @@ Format: `listTasks`
 
 Edits an existing task in the task list.
 
-Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/STATUS]`
+Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/COMPLETED]`
 
 Refer to the [Task Parameters](#task-parameters) section for more details.
 
@@ -279,7 +279,7 @@ Examples:
 | c/CATEGORY              | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others` |
 | dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
 | pe/PERSON EMAIL ADDRESS | Should be the email address of an existing member (case-insensitive). For the `editTask` command, it can also be empty, e.g. `pe/`.                    |
-| do/STATUS               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                           
+| do/COMPLETED               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                           
 
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
@@ -295,7 +295,7 @@ Examples:
 | **Clear**            | `clear`                                                                                                                                                                                                                        |
 | **Help**             | `help`                                                                                                                                                                                                                         |
 | **Add Task**         | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
-| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/STATUS]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
+| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/COMPLETED]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
 | **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                             |
 | **list Tasks**       | `listTasks`                                                                                                                                                                                                                    |
 | **Filter Task**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                           |
