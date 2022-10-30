@@ -1,7 +1,6 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.GENDER_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.HOUSE_DESC_AMY;
