@@ -14,6 +14,7 @@ import static seedu.phu.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.phu.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.phu.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.phu.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.phu.logic.commands.CommandTestUtil.INVALID_TAG_LENGTH;
 import static seedu.phu.logic.commands.CommandTestUtil.INVALID_WEBSITE_DESC;
 import static seedu.phu.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.phu.logic.commands.CommandTestUtil.NAME_DESC_BLACKROCK;
@@ -211,6 +212,12 @@ public class AddCommandParserTest {
                 + REMARK_DESC_BLACKROCK + INVALID_TAG_DESC + TAG_DESC_STOCK
                 + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
                 + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, Tag.MESSAGE_CONSTRAINTS);
+
+        // invalid tag length
+        assertParseFailure(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK
+                + REMARK_DESC_BLACKROCK + INVALID_TAG_LENGTH + TAG_DESC_STOCK
+                + POSITION_DESC_BLACKROCK + APPLICATION_PROCESS_DESC_BLACKROCK
+                + DATE_DESC_BLACKROCK + WEBSITE_DESC_BLACKROCK, Tag.LENGTH_CONSTRAINTS);
 
         // invalid position
         assertParseFailure(parser, NAME_DESC_BLACKROCK + PHONE_DESC_BLACKROCK + EMAIL_DESC_BLACKROCK

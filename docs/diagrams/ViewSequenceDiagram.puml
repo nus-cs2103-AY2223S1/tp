@@ -6,7 +6,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
 participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -62,15 +61,10 @@ activate Model
 Model --> ViewCommand
 deactivate Model
 
-create CommandResult
-ViewCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> ViewCommand
-deactivate CommandResult
-
 ViewCommand --> LogicManager : result
 deactivate ViewCommand
+ViewCommand -[hidden]-> LogicManager
+destroy ViewCommand
 
 [<--LogicManager
 deactivate LogicManager

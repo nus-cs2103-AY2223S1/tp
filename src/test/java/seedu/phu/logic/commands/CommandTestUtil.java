@@ -77,6 +77,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "1-09-2022"; // date should be 2 digits
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "blackrock!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_LENGTH = " " + PREFIX_TAG + "123456789123456789123456789";
     public static final String INVALID_WEBSITE_DESC = " " + PREFIX_WEBSITE
             + "www.invalid.com/jobs"; // must start with https / http
 

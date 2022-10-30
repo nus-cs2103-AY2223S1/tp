@@ -52,7 +52,8 @@
           </padding>
         </StackPane>
 
-        <GridPane maxHeight="Infinity" maxWidth="Infinity" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <GridPane maxHeight="Infinity" maxWidth="Infinity"
+                  styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <VBox fx:id="internshipList" prefHeight="300.0"
                 styleClass="pane-with-border" GridPane.rowSpan="2" VBox.vgrow="ALWAYS">
             <padding>
@@ -61,8 +62,10 @@
             <StackPane fx:id="internshipListPanelPlaceholder" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" />
           </VBox>
 
-          <VBox fx:id="viewCommand" maxHeight="Infinity" minWidth="600.0" prefHeight="350.0"
-                styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="TOP_LEFT" VBox.vgrow="ALWAYS">
+          <VBox fx:id="viewCommand"
+                styleClass="pane-with-border"
+                GridPane.columnIndex="1" GridPane.rowIndex="0"
+                VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
@@ -72,7 +75,7 @@
                 <Insets bottom="0" top="0"/>
               </padding>
             </Label>
-            <StackPane fx:id="viewCommandPanelPlaceholder" alignment="TOP_RIGHT"/>
+            <StackPane fx:id="viewCommandPanelPlaceholder" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS"/>
           </VBox>
 
           <VBox fx:id="statistics" maxHeight="150.0" minWidth="600.0" prefHeight="150.0"
@@ -155,7 +158,7 @@
 
           <columnConstraints>
             <ColumnConstraints maxWidth="Infinity" prefWidth="350" hgrow="ALWAYS"/>
-            <ColumnConstraints maxWidth="Infinity" prefWidth="600" hgrow="ALWAYS"/>
+            <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
           </columnConstraints>
           <rowConstraints>
             <RowConstraints maxHeight="Infinity" minHeight="200.0" prefHeight="350.0" vgrow="ALWAYS" />

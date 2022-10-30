@@ -148,6 +148,24 @@ The reminder panel displays the number of interviews, assessments or pending off
 ## Features
 This section shows all features and commands which is supported by PleaseHireUs. 
 
+
+### Parameters Requirement
+Here is the parameter requirements of commonly used parameters in the commands below.[](#copy-details-of-internship--copy)
+
+| Parameter                 | Description                                                                            | Requirement / Remarks                                                                                                                                                                                                                              |
+|---------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`COMPANY_NAME`**        | Name of company you are applying to                                                    | Alphanumeric and may contain spaces                                                                                                                                                                                                                |
+| **`POSITION`**            | Position of the internship you are applying for                                        | Alphanumeric and may contain spaces                                                                                                                                                                                                                |
+| **`APPLICATION_PROCESS`** | Position of the internship you are applying for                                        | Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`                                                                                                                                                                 |
+| **`DATE`**                | Date of upcoming application task                                                      | In **dd-mm-yyyy** format                                                                                                                                                                                                                           |
+| **`PHONE`**               | Contact number of HR                                                                   | In **[+COUNTRY_CODE] PHONE_NUMBER** format <br><br> - COUNTRY_CODE is optional <br> - COUNTRY_CODE must be 1 to 3 digits long <br> - PHONE_NUMBER is between 3 to 15 digits long <br> - Space in between COUNTRY_CODE and PHONE_NUMBER is optional |
+| **`EMAIL`**               | Email address of HR                                                                    | Contains a `@` and `.com` symbol <br> Example: `example@example.com`                                                                                                                                                                               |
+| **`WEBSITE`**             | Website of company                                                                     | Start with `http://` or `https://`                                                                                                                                                                                                                 |
+| **`REMARK`**              | Additional remarks to take note of                                                     |                                                                                                                                                                                                                                                    |
+| **`TAG`**                 | Additional tags to identify applications                                               | Must be alphanumeric any may **not** contain spaces <br> Maximum length of 20 characters                                                                                                                                                           |
+| **`CATEGORY`**            | Refers to the parameters above                                                         | Used in [`list`](#listing-all-internships--list) [`find`](#locating-internships-by-find) command. <br>Refer to respective commands for individual requirements.                                                                                    |
+| **`INDEX`**               | The index number of internship shown in displayed internship list under the Main Panel | Must be a **positive integer** eg.(1,2,3,...) <br>Used in [`delete`](#deleting-internships--delete) [`edit`](#listing-all-internships--list) [`view`](#view-details-of-an-internship-view) [`copy`](#copy-details-of-internship--copy)             |
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -168,17 +186,14 @@ Adds an internship into the list.
 
 Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​`
 
-* Possible options for `APPLICATION_PROCESS` : `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
 * Case-insensitive: `Applied`, `APPLIED`, and `applied` are all acceptable inputs.
 * `APPLICATION_PROCESS` will be set to `APPLIED` by default.
-* `DATE` should be in dd-mm-yyyy format.
 * `DATE` will be set to today’s date by default.
 * `PHONE` will be set to "NA" by default.
 * `EMAIL` will be set to "NA" by default.
-* `WEBSITE` will be set to “NA” by default. 
-* `WEBSITE` must start with `http://` or `https://`
+* `WEBSITE` will be set to “NA” by default.
 * `REMARK` will be empty by default.
-* `TAG` will be empty by default. All tags must be alphanumeric.
+* `TAG` will be empty by default.
 
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** A person can have any number of tags (including 0)
@@ -228,7 +243,6 @@ Examples:
 | **`position`**            | `p`        |
 | **`application_process`** | `pr`       |
 | **`date`**                | `d`        |
-| **`tag`**                 | `t`        |
 
 `list c/company_name` is equivalent to `list c/n`
 </div>
@@ -246,7 +260,7 @@ Format: `find [c/CATEGORY] KEYWORDS…`
 * Only the target category is searched.
 * A `KEYWORD` will match any string if the `KEYWORD` is contained in that string e.g. `Han` will match both `Reyhan` and `Handy`
 * Internships whose target category matches at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
-* For the find by date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
+* To find an internship using the date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
 
 Examples:
 * `find c/position engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
@@ -273,8 +287,6 @@ Deletes the specified internship(s) from the list.
 Format: `delete INDEX…​`
 
 * Deletes the internship at the specified `INDEX`.
-* The index refers to the index number shown in the displayed internship list.
-* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
 * Can add multiple `INDEX` to delete multiple internships.
 
 Examples:
@@ -287,9 +299,6 @@ Edit details of an internship
 Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK] [t/TAG]…​`
 
 * Edit the details of internship at the specified `INDEX`.
-* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
-* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …​
-
 Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find google` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
@@ -301,8 +310,6 @@ View details of list item at index
 Format: `view INDEX`
 
 * Only the index is searched.
-* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
-* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …​
 * More details about the company at the index will be displayed.
 
 Examples:
@@ -315,8 +322,6 @@ Copies all details of internship at index into clipboard
 Format: `copy INDEX`
 
 * Only the internship at the specified `INDEX` is copied.
-* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
-* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
 * Full details of the internship will be copied into system clipboard.
 
 ### Undo previous command : `undo`
@@ -397,18 +402,18 @@ _Details coming soon …​_
 
 ## Prefix Summary
 
-Prefix | Symbolize
---------| -----
-**n/** | Company Name
-**p/** | Position
-**pr/** | Application Process
-**d/** | Date
-**web/** | Website
-**ph/** | Phone Number
-**e/** | Email
-**r/** | Remark
-**t/** | Tag
-**c/** | Category
+| Prefix   | Symbolize           |
+|----------|---------------------|
+| **n/**   | Company Name        |
+| **p/**   | Position            |
+| **pr/**  | Application Process |
+| **d/**   | Date                |
+| **web/** | Website             |
+| **ph/**  | Phone Number        |
+| **e/**   | Email               |
+| **r/**   | Remark              |
+| **t/**   | Tag                 |
+| **c/**   | Category            |
 
 ## FAQ
 **Q**: How do I transfer my data to another Computer?<br>
@@ -429,7 +434,7 @@ Prefix | Symbolize
 ## Acknowledgements
 * This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
 * Undo and Redo commands are adapted and modified from  **[AddressBook 4(AB4)](https://github.com/se-edu/addressbook-level4)**
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [TestFx](https://github.com/TestFX/TestFX)
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
 
 ## Appendix: Installing Java 11

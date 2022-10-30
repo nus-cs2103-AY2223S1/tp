@@ -58,7 +58,8 @@ activate Indexes
 
 Indexes --> DeleteCommand: toDelete
 deactivate Indexes
-
+Indexes -[hidden]-> DeleteCommand: toDelete
+destroy Indexes
 DeleteCommand -> Model : deleteInternship(toDelete)
 activate Model
 
@@ -68,6 +69,8 @@ deactivate Model
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
+DeleteCommand -[hidden]-> LogicManager : result
+destroy DeleteCommand
 
 [<--LogicManager
 deactivate LogicManager

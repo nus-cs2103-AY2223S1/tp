@@ -6,7 +6,6 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant ":CopyCommandParser" as CopyCommandParser LOGIC_COLOR
 participant "c:CopyCommand" as CopyCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Toolkit MODEL_COLOR_T1
@@ -65,16 +64,12 @@ deactivate Clipboard
 Toolkit --> CopyCommand
 deactivate Toolkit
 
-create CommandResult
-CopyCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> CopyCommand
-deactivate CommandResult
 
 CopyCommand --> LogicManager : result
 deactivate CopyCommand
-
+CopyCommand -[hidden]-> LogicManager
+destroy CopyCommand
 [<--LogicManager
 deactivate LogicManager
+
 @enduml

@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     id 'java'
     id 'checkstyle'
@@ -43,6 +45,7 @@ task coverage(type: JacocoReport) {
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
+    String testFxVersion = '4.0.15-alpha'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -61,8 +64,10 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+    testImplementation group: 'org.testfx', name: 'testfx-core', version: testFxVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+    testRuntimeOnly group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-12.0.1+2'
 }
 
 shadowJar {
@@ -71,6 +76,59 @@ shadowJar {
 
 run {
     enableAssertions = true
+}
+
+// adapted from addressbook level 4 https://github.com/se-edu/addressbook-level4
+
+task(guiTests)
+task(nonGuiTests)
+
+// Run `test` task if `guiTests` or `nonGuiTests` is specified
+guiTests.dependsOn test
+nonGuiTests.dependsOn test
+
+task(allTests)
+
+// `allTests` implies both `guiTests` and `nonGuiTests`
+allTests.dependsOn guiTests
+allTests.dependsOn nonGuiTests
+
+test {
+    systemProperty 'testfx.setup.timeout', '60000'
+
+    testLogging {
+        events TestLogEvent.FAILED, TestLogEvent.SKIPPED
+
+        // Prints the currently running test's name in the CI's build log,
+        // so that we can check if tests are being silently skipped or
+        // stalling the build.
+        if (System.env.'CI') {
+            events << TestLogEvent.STARTED
+        }
+    }
+
+    doFirst {
+        boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
+        boolean runNonGuiTests = gradle.taskGraph.hasTask(nonGuiTests)
+
+        // Default to running all.
+        if (!runGuiTests && !runNonGuiTests) {
+            runGuiTests = true
+            runNonGuiTests = true
+        }
+
+        if (runNonGuiTests) {
+            test.include 'seedu/phu/**'
+        }
+
+        if (runGuiTests) {
+            test.include 'seedu/phu/ui/**'
+        }
+
+        if (!runGuiTests) {
+            test.exclude 'seedu/phu/ui/**'
+        }
+    }
 }
 
 defaultTasks 'clean', 'test'
