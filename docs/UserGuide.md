@@ -453,7 +453,7 @@ Action | Format, Examples
 **Edit Iteration**| `editer INDEX [n/DESCRIPTION] [d/DATE] [f/FEEDBACK] [p/FILEPATH]`<br> e.g, `edititer 2 n/Sketch`
 **Delete Iteration**| `deliter INDEX`<br> e.g., `deliter 1`
 **List customers**| `list`
-**Find customers**| `find [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...` <br> e.g. 
+**Find customers**| `find [k/KEYWORD]... -all [t/TAG]... -any [t/TAG]...` <br> e.g. `find -all t/friend t/colleague`
 **Sort customers**| `sortcus PREFIX/SUFFIX`<br> e.g., `sortcus n/+`
 **List commissions**| `listcom`
 **View all Commissions** | `allcom`
