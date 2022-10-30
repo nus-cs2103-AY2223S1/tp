@@ -22,15 +22,15 @@ No other technical knowledge is required.
 * [Getting started](#getting-started)
 * [User interface breakdown](#user-interface-breakdown)
 * [Managing your Minecraft friends](#managing-your-minecraft-friends)
-  * [help](#viewing-help--help)
-  * [add](#adding-a-friend--add)
-  * [list](#listing-all-friends--list)
-  * [edit](#editing-a-friend's-information--edit)
-  * [find](#locating-firends-by-name--find)
-  * [suggest](#suggest-me-a-friend--suggest)
-  * [delete](#deleting-a-friend--delete)
-  * [clear](#clearing-all-entries--clear)
-  * [exit](#exiting-the-program--exit)
+  * [help](#viewing-help-help)
+  * [add](#adding-a-friend-add)
+  * [list](#listing-all-friends-list)
+  * [edit](#editing-a-friend-s-information-edit)
+  * [find](#locating-firends-by-name-find)
+  * [suggest](#suggest-me-a-friend-suggest)
+  * [delete](#deleting-a-friend-delete)
+  * [clear](#clearing-all-entries-clear)
+  * [exit](#exiting-the-program-exit)
   * [saving](#saving-the-data)
   * [autocomplete](#autocomplete)
 * [FAQ](#faq)
@@ -95,7 +95,7 @@ Refer to the [Managing your Minecraft friends](#managing-your-minecraft-friends)
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Format: `help`
 
@@ -196,7 +196,7 @@ e/johnisgood@gmail.com c/China t/hot t/nice t/smart s/insta@HotJohn s/fb@JohnIsH
 <br>
 <br>
 
-### Listing all friends : `list`
+### Listing all friends: `list`
 Format: `list`<br>
 
 Shows a list of all of your Minecraft friends. This command
@@ -206,7 +206,7 @@ Example:
 
 ![ListExample](images/ListExample.png)
 
-### Editing a friend's information : `edit`
+### Editing a friend's information: `edit`
 Format: `edit INDEX [n/NAME] [m/MINECRAFT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*` <br>
 
@@ -315,7 +315,7 @@ will return friends subjected to the only condition:
 will return friends subjected to the only condition:
 1. Is available at Tuesday 9:25pm
 
-### Deleting a friend : `delete`
+### Deleting a friend: `delete`
 Format: `delete INDEX`<br>
 
 Deletes the specified friend from your friend list.
@@ -332,14 +332,14 @@ Before delete
 After delete
 ![AfterDelete](images/AfterDelete.png)
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from your friend list.
 
 Format: `clear`
 
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
