@@ -3,16 +3,14 @@ layout: page
 title: Developer Guide
 ---
 
-# Welcome to RC4HDB Developer Guide!
+[Comment]: <> (landing page to be added here)
 
-Choose a section from the table of contents below to learn more about how RC4HDB works!
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Table of Contents**
 
+* [Introduction](#introduction)
 * [Acknowledgements](#acknowledgements)
-* [Getting started](#setting-up-getting-started)
 * [Design](#design)
     * [Architecture](#architecture)
     * [Ui](#ui-component)
@@ -39,6 +37,29 @@ Choose a section from the table of contents below to learn more about how RC4HDB
     * [Saving data](#saving-data)
 
 ---
+
+# Introduction
+
+Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what **RC4HDB** is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing a specialised solution to their resident and venue management needs.
+
+## Purpose
+
+This document was created to provide future developers with readable and comprehensive documentation for the design of **RC4HDB**. We hope that after reading the document, you will gain a reasonable understanding of how **RC4HDB** was designed and the direction our [team](AboutUs.md) intends for **RC4HDB** to take.
+
+## Scope
+
+The **RC4HDB** developer's guide covers the high and low level design details of our application. It also covers other potential implementations and the reasons why we chose our current implementation over the others.
+
+## Format of the guide
+
+The **RC4HDB** developer's guide is arranged in a top-down format. We will begin by discussing high-level details, before discussing lower-level details of our application.
+
+## Getting started
+
+A good place to start off with would be to take a look at the [design](#design) section of our guide, where you will find out about the high-level design details of **RC4HDB**. Otherwise, have a look at our [table of contents](#table-of-contents) for any sections of our guide that you may be interested in. If you are eager to work on the project, do refer to our page on [setting up](SettingUp.md) your developer environment.
+
+---
+
 ## **Acknowledgements**
 
 [comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
@@ -48,17 +69,10 @@ a starting point for Software Engineering (SE) students enrolled in CS2103T.
 
 ### Credits for code adapted from external sources
 
-1. `populateTagColumn` in `ResidentTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow.
+1. `populateTagColumn` in `ResidentTableView`, and `populateNthColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow.
 2. `populateIndexColumn` in `ResidentTableView`, and `populateDayColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx) on StackOverflow.
 
-
---------------------------------------------------------------------------------------------------------------------
-
-## **Setting up, getting started**
-
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
@@ -904,7 +918,7 @@ MSS:
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually. The following section is organised in the same way as our **User Guide**. We recommend that you refer to our **User Guide** for a basic idea of how each command works before proceeding with manual testing.
+Given below are instructions to test the app manually. The following instructions are organised in a similar manner as our **User Guide**. We recommend that you refer to our **User Guide** for a basic idea of how each command works before proceeding with manual testing.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
