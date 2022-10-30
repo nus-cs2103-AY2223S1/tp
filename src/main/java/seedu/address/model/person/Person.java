@@ -10,46 +10,31 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import seedu.address.model.attribute.AttributeList;
-import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 
 /**
- * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated,
- * immutable.
+ * Represents a Person in the address book. Guarantees: details are present and not null, field
+ * values are validated, immutable.
  */
 public class Person extends AbstractDisplayItem {
 
     private Set<AbstractSingleItem> parents = new HashSet<>();
+    private Fields fields = new Fields();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name) {
-        super(name, PERSON, GROUP);
-        requireAllNonNull(name);
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, AttributeList fields) {
+    public Person(String name) {
         super(name, PERSON, GROUP);
         requireAllNonNull(name, fields);
-        attributes = fields;
-    }
-
-    public Name getName() {
-        return name;
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same name. This defines a weaker notion of equality between
+     * two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -57,7 +42,7 @@ public class Person extends AbstractDisplayItem {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     @Override
@@ -101,7 +86,7 @@ public class Person extends AbstractDisplayItem {
     }
 
     @Override
-    public UUID getUuid() {
+    public UUID getUid() {
         return UUID.nameUUIDFromBytes(("Person: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
     }
 }

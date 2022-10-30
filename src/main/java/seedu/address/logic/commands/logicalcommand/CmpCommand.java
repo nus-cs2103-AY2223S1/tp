@@ -11,34 +11,38 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+/**
+ * Command to add compare between object
+ */
 public class CmpCommand extends Command {
 
     public static final String COMMAND_WORD = "cmp";
     private static final String INVALID_INPUT = "The unknown operator";
     private static final String USE_MESSAGE = "op [< <= > >= == !=] Object";
-    private static final String RUNTIME_ERR = "Unable to convert to number";
-    private static final String DIV0 = "Cannot divide by zero";
-    private static final String MISSINGINPUT = "Missing input of type float";
+    private static final String MISSINGINPUT = "Missing input";
 
     private Object num = null;
     private Function<Object, Boolean> func;
 
+    /**
+     * Constructor to create a command command
+     */
     public CmpCommand(String op, String opNum) throws ParseException {
         switch (op) {
-            case "==":
-                func = x -> opNum.equals(x.toString());
-                break;
-            case "<":
-                func = x -> opNum.compareTo(x.toString()) < 0;
-                break;
-            case ">":
-                func = x -> opNum.compareTo(x.toString()) > 0;
-                break;
-            case "!=":
-                func = x -> !opNum.equals(x.toString());
-                break;
-            default:
-                assert false;
+        case "==":
+            func = x -> opNum.equals(x.toString());
+            break;
+        case "<":
+            func = x -> opNum.compareTo(x.toString()) < 0;
+            break;
+        case ">":
+            func = x -> opNum.compareTo(x.toString()) > 0;
+            break;
+        case "!=":
+            func = x -> !opNum.equals(x.toString());
+            break;
+        default:
+            assert false;
         }
     }
 
@@ -47,9 +51,14 @@ public class CmpCommand extends Command {
         if (num == null) {
             throw new CommandException(MISSINGINPUT);
         }
-        return new CommandResult(String.format("result: %f", func.apply(num)), false, false, func.apply(num));
+        return new CommandResult(String.format("result: %s", func.apply(num)), false, false, func.apply(num));
     }
 
+    /**
+     * Returns a parser to parse user input for Cmp Command
+     *
+     * @return
+     */
     public static Parser<CmpCommand> parser() {
         return new Parser<CmpCommand>() {
             @Override
@@ -59,13 +68,12 @@ public class CmpCommand extends Command {
                 if (userInput.length() == 0) {
                     throw new ParseException(INVALID_INPUT + "\n" + USE_MESSAGE);
                 }
-                Matcher res = Pattern.compile("([\\/+\\-*])\\s*([\\-+]?[0-9]+[.]?[0-9]*)\\s*").matcher(userInput);
+                Matcher res = Pattern.compile("([=<>!]+)\\s*(.*)").matcher(userInput);
                 if (!res.matches()) {
                     throw new ParseException(INVALID_INPUT + "\n" + USE_MESSAGE);
                 }
                 String op = res.group(1);
                 String val = res.group(2);
-                System.out.printf("%s: %f", op, val);
                 return new CmpCommand(op, val);
             }
 
@@ -75,17 +83,9 @@ public class CmpCommand extends Command {
     @Override
     public void setInput(Object additionalData) throws CommandException {
         if (additionalData == null) {
-            throw new CommandException(RUNTIME_ERR);
-        }
-        if (!(additionalData instanceof Float)) {
-            try {
-                num = Float.parseFloat(additionalData.toString());
-            } catch (NumberFormatException e) {
-                throw new CommandException(RUNTIME_ERR);
-            }
-            return;
+            throw new CommandException(MISSINGINPUT);
         }
 
-        num = (Float) additionalData;
+        num = additionalData;
     }
 }

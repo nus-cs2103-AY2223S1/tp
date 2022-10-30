@@ -9,12 +9,15 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+/**
+ * Command to allow the user to create their custom commands
+ */
 public class CreateCommand extends PureCommand {
 
     public static final String COMMAND_WORD = "macro";
     private static final String INVALID_INPUT = "Invalid syntax!";
     private static final String INVALID_NAME = "The command name you chose is not available!\n"
-            + "Name should be unique with no space, start with a letter, can contain only numbers and letters";
+        + "Name should be unique with no space, start with a letter, can contain only numbers and letters";
     private static final String USE_EXAMPLE = "create [name] [code]\ne.g. markAllTask task foreach mark";
 
     private final CustomCommandBuilder builder;
@@ -29,6 +32,9 @@ public class CreateCommand extends PureCommand {
         return new CommandResult(String.format("%s has been added!", builder.getRepr()), false, false);
     }
 
+    /**
+     * Creates a parser to parse user input for create command
+     */
     public static Parser<CreateCommand> parser() {
         return new Parser<CreateCommand>() {
             @Override

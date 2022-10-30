@@ -1,3 +1,4 @@
+// @@author mohamedsaf1
 package seedu.address.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
@@ -12,17 +13,16 @@ import seedu.address.model.Model;
 import seedu.address.model.attribute.Progress;
 import seedu.address.model.task.Task;
 
-
 /**
  * Class that represents command for Progress.
  */
 public class ProgressCommand extends TaskCommand {
     public static final String SUBCOMMAND_WORD = "progress";
 
-    public static final String MESSAGE_USAGE =
-            TaskCommand.getFullCommand(SUBCOMMAND_WORD) + ": Sets the progress of  the task\n"
-                    + "Parameters: INDEX (must be a positive integer) and LEVEL (25%, 50%, 75% or 100%)\n"
-                    + "Example: " + COMMAND_WORD + " 1" + " 25%\n";
+    public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
+            + ": Sets the progress of  the task\n"
+            + "Parameters: INDEX (must be a positive integer) and LEVEL (25%, 50%, 75% or 100%)\n"
+            + "Example: " + COMMAND_WORD + " 1" + " 25%\n";
     public static final String COMPLETE_SUCCESS = " progress for task %s is set.%n";
     public static final String ALREADY_SET = " progess for task %s has already been set!%n";
 
@@ -31,6 +31,7 @@ public class ProgressCommand extends TaskCommand {
 
     /**
      * Constructor for progress command
+     *
      * @param targetIndex
      * @param level
      */

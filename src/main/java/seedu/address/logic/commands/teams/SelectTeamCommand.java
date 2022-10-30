@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 
-//@@author connlim
+// @@author connlim
 
 /**
  * Marks a task as complete
@@ -24,12 +24,15 @@ public class SelectTeamCommand extends TeamCommand implements PureCommandInterfa
     public static final String SUBCOMMAND_WORD = "select";
 
     public static final String MESSAGE_USAGE = TeamCommand.getFullCommand(SUBCOMMAND_WORD)
-            + "selects a team and execute subsequent commands with that team as context\n"
-            + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "1 contains description";
+        + "selects a team and execute subsequent commands with that team as context\n"
+        + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "1 contains description";
 
     private final Index targetIndex;
     private final Command nextCmd;
 
+    /**
+     * Constructor to select a team.
+     */
     public SelectTeamCommand(Index targetIndex, String nextCmd) throws ParseException {
         this.targetIndex = targetIndex;
         try {

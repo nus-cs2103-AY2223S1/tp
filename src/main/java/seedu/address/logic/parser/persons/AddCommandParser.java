@@ -41,7 +41,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -49,7 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         // Person person = new Person(name, phone, email, address, tagList, new
         // Fields());
-        Person person = new Person(new Name(argMultimap.getValue(PREFIX_NAME).get()));
+        Person person = new Person(argMultimap.getValue(PREFIX_NAME).get());
         person.setTags(tagList);
         argMultimap.getValue(PREFIX_PHONE)
                 .map(str -> new Phone(str))

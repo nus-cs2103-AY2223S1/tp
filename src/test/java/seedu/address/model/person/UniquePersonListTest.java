@@ -1,5 +1,5 @@
 package seedu.address.model.person;
-/*
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-//import seedu.address.model.item.DisplayItemList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
@@ -169,4 +168,4 @@ public class UniquePersonListTest {
             uniquePersonList.asUnmodifiableObservableList().remove(0);
         });
     }
-}*/
+}

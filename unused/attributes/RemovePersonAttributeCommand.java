@@ -1,3 +1,4 @@
+// @@author jasonchristopher21
 package seedu.address.logic.commands.attributes;
 
 import static java.util.Objects.requireNonNull;
@@ -11,22 +12,22 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonOutOfBoundException;
 
 /**
- * Adds a person attribute to the address book.
+ * Removes an existing attribute from a Person in the AddressBook.
  */
-public class AddPersonAttributeCommand extends AddAttributeCommand {
+public class RemovePersonAttributeCommand extends RemoveAttributeCommand {
 
-    public static final String MESSAGE_SUCCESS = "New field added: %s, with value: %s";
+    public static final String MESSAGE_SUCCESS = "Field removed successfully: %s";
 
     private final Index personIndex; // change this to UUID later
 
     /**
      * Constructs an AddPersonAttributeCommand instance.
+     *
      * @param personIndex index of the person.
      * @param attributeName the name of the attribute to be added.
-     * @param attributeContent the content of the attribute to be added.
      */
-    public AddPersonAttributeCommand(Index personIndex, String attributeName, String attributeContent) {
-        super(attributeName, attributeContent);
+    public RemovePersonAttributeCommand(Index personIndex, String attributeName) {
+        super(attributeName);
         requireNonNull(personIndex);
         this.personIndex = personIndex;
     }
@@ -36,18 +37,18 @@ public class AddPersonAttributeCommand extends AddAttributeCommand {
         requireNonNull(model);
         try {
             Person person = model.getFromFilteredPerson(personIndex);
-            person.addAttribute(attributeName, attributeContent);
+            person.removeAttribute(attributeName);
         } catch (PersonOutOfBoundException | AttributeException e) {
             throw new CommandException(e.getMessage());
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, attributeName, attributeContent));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, attributeName));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                && (other instanceof AddPersonAttributeCommand
-                && personIndex.equals(((AddPersonAttributeCommand) other).personIndex)));
+            || (super.equals(other)
+                && (other instanceof RemovePersonAttributeCommand
+                    && personIndex.equals(((RemovePersonAttributeCommand) other).personIndex)));
     }
 }

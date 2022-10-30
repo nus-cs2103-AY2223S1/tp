@@ -8,6 +8,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+/**
+ * Command to create an alias to a currently existing command
+ */
 public class AliasCommand extends PureCommand {
 
     public static final String COMMAND_WORD = "alias";
@@ -15,12 +18,15 @@ public class AliasCommand extends PureCommand {
     private static final String INVALID_REPLACEMENT = "%s don't exist right now!";
     private static final String ALIAS_ALR_EXIST = "%s already exist right now!";
     private static final String INVALID_NAME = "The command name you chose is not available!\n"
-            + "Name should be unique with no space, start with a letter, can contain only numbers and letters";
+        + "Name should be unique with no space, start with a letter, can contain only numbers and letters";
     private static final String USE_EXAMPLE = "create [name] [code]\ne.g. markAllTask task foreach mark";
 
     private final String alias;
     private final String key;
 
+    /**
+     * Creates stores the necessary data for alias command
+     */
     public AliasCommand(String alias, String key) {
         this.alias = alias;
         this.key = key;
@@ -32,6 +38,9 @@ public class AliasCommand extends PureCommand {
         return new CommandResult(String.format("%s -> %s has been added!", alias, key), false, false);
     }
 
+    /**
+     * Creates a parser to parse user input for alias command
+     */
     public static Parser<AliasCommand> parser() {
         return new Parser<AliasCommand>() {
             @Override

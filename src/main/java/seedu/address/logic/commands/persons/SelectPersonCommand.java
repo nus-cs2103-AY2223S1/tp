@@ -22,12 +22,15 @@ public class SelectPersonCommand extends PersonCommand implements PureCommandInt
     public static final String SUBCOMMAND_WORD = "select";
 
     public static final String MESSAGE_USAGE = PersonCommand.getFullCommand(SUBCOMMAND_WORD)
-            + "selects a person and execute subsequent commands with that person as context\n"
-            + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "1 contains Description";
+        + "selects a person and execute subsequent commands with that person as context\n"
+        + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "1 contains Description";
 
     private final Index targetIndex;
     private final Command nextCmd;
 
+    /**
+     * Constructor to create a select person command
+     */
     public SelectPersonCommand(Index targetIndex, String nextCmd) throws ParseException {
         this.targetIndex = targetIndex;
         try {

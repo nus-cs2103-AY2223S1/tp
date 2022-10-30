@@ -9,48 +9,49 @@ group projects.
 - [Prerequisites](#prerequisites)
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Definitions](#definitions)
-    - [Scoping](#scoping)
-    - [Basic features](#basic-features)
-    - [General commands](#general-commands)
-      - [Find command](#find-command-find)
-      - [Iterate command](#iterate-command-foreach)
-      - [Select command](#select-command-select)
-      - [Sequence command](#sequence-command-seq)
-      - [Exit command](#exits-the-program-exit)
-    - [Add a contact](#add-a-contact-person-new)
-    - [Delete a contact](#delete-a-contact-person-delete)
-    - [Searching for a contact](#searching-for-a-contact-find)
-    - [Listing all contacts](#listing-all-contacts-list)
-    - [Edit a contact](#edit-a-contact-edit)
-    - [Add a custom person field](#add-a-custom-person-field-addfield)
-    - [Edit a custom person field](#edit-a-custom-person-field-editfield)
-    - [Remove a custom person field](#remove-a-custom-person-field-rmfield)
-    - [Exits the program](#exits-the-program-exit)
-    - [Groups](#groups)
-        - [Creating a group](#creating-a-group-team-new)
-        - [Deleting a group](#deleting-a-group-team-delete)
-        - [Adding people to a group](#adding-contacts-to-a-group-assign)
-        - [Removing people from group](#removing-contacts-from-group-team-remove)
-      - [Add a custom team field](#add-a-custom-team-field-addfield)
-      - [Edit a custom team field](#edit-a-custom-team-field-editfield)
-      - [Remove a custom team field](#remove-a-custom-team-field-rmfield)
-    - [Tasks](#tasks)
-      - [Adding a task to a team](#adding-a-task-to-a-team-task-add)
-      - [Deleting a task from team](#deleting-a-task-from-team-task-delete)
-      - [Change task completion status](#change-task-completion-status-task-set-status)
-      - [Set task completion time](#set-task-completion-time-task-set-completed_time)
-      - [Add a custom task field](#add-a-custom-task-field-addfield)
-      - [Edit a custom task field](#edit-a-custom-task-field-editfield)
-      - [Remove a custom task field](#remove-a-custom-task-field-rmfield)
+  - [Definitions](#definitions)
+  - [Scoping](#scoping)
+  - [Basic features](#basic-features)
+  - [General commands](#general-commands)
+    - [Find command](#find-command-find)
+    - [Iterate command](#iterate-command-foreach)
+    - [Select command](#select-command-select)
+    - [Sequence command](#sequence-command-seq)
+    - [Exit command](#exits-the-program-exit)
+  - [Add a contact](#add-a-contact-person-new)
+  - [Delete a contact](#delete-a-contact-person-delete)
+  - [Searching for a contact](#searching-for-a-contact-find)
+  - [Listing all contacts](#listing-all-contacts-list)
+  - [Edit a contact](#edit-a-contact-edit)
+  - [Add a custom person field](#add-a-custom-person-field-addfield)
+  - [Edit a custom person field](#edit-a-custom-person-field-editfield)
+  - [Remove a custom person field](#remove-a-custom-person-field-rmfield)
+  - [Exits the program](#exits-the-program-exit)
+  - [Groups](#groups)
+    - [Creating a group](#creating-a-group-team-new)
+    - [Deleting a group](#deleting-a-group-team-delete)
+    - [Adding people to a group](#adding-contacts-to-a-group-assign)
+    - [Removing people from group](#removing-contacts-from-group-team-remove)
+    - [Add a custom team field](#add-a-custom-team-field-addfield)
+    - [Edit a custom team field](#edit-a-custom-team-field-editfield)
+    - [Remove a custom team field](#remove-a-custom-team-field-rmfield)
+  - [Tasks](#tasks)
+    - [Adding a task to a team](#adding-a-task-to-a-team-task-add)
+    - [Deleting a task from team](#deleting-a-task-from-team-task-delete)
+    - [Change task completion status](#change-task-completion-status-task-set-status)
+    - [Set task completion time](#set-task-completion-time-task-set-completed_time)
+    - [Add a custom task field](#add-a-custom-task-field-addfield)
+    - [Edit a custom task field](#edit-a-custom-task-field-editfield)
+    - [Remove a custom task field](#remove-a-custom-task-field-rmfield)
 - [FAQ](#faq)
 
---------------------------------------------------------------------------------------------------------------------
+---
+
 ## Prerequisites
 
 - Ensure that `Java 11` and above is installed on your device.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
 
@@ -62,7 +63,7 @@ group projects.
 
 4. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Features
 
@@ -75,14 +76,13 @@ In this user guide, we define any parameters within **square brackets** e.g. `[t
 For example, `[t/tags...]` means that an optional number (0 or more) of `tags` can be added to a single
 user command, but `t/tags...` means that 1 or more `tags` can be given to a single user command.
 
-
 ## Scoping
 
 Since Contactmation is a multi group management contact application, it supports scoping to facilitate
 easy access between groups and subgroups of a group project.
 
 Scoping defines the relationship between different groups. For example, a subgroup can be contained within
-another group, similar to how a folder on your desktop can be contained within another folder. 
+another group, similar to how a folder on your desktop can be contained within another folder.
 
 There may also be many subgroups under a group, similar to how there may be many subfolders under a folder.
 
@@ -91,7 +91,7 @@ added to a group or a subgroup, similar to how files can be added into folders.
 
 Commands to handle scoping can be found [here](#scoping).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Basic features
 
@@ -107,12 +107,13 @@ to further narrow the search for a contact, subgroup or task within the current 
 **Format:** `find <KEYWORD> [<MORE_KEYWORDS>]`
 
 **Examples:**
+
 - `find John Doe`
 - `find task1 task2`
 
 ### Iterate command: `foreach`
 
-Iterates through each task, contact or group within the current [scope](#scoping), and 
+Iterates through each task, contact or group within the current [scope](#scoping), and
 applies the command to each of the currently listed task, contact or group.
 
 **Format:** `<item> foreach <command>`
@@ -152,22 +153,23 @@ The following contact commands comply with these placeholder constraints:
 - The `PHONE_NUMBER` of the contact must be at least 3 digits long.
 - The `EMAIL` of the contact must be in the format `local-part@domain`.
 
-    - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
-      the parentheses, (+_.-). The local-part may not start or end with any special characters.
-    - `Domain`:
+  - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
+    the parentheses, (+\_.-). The local-part may not start or end with any special characters.
+  - `Domain`:
 
-        - Ends with a domain label at least 2 characters long.
-        - Have each domain label start and end with alphanumeric characters.
-        - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    - Ends with a domain label at least 2 characters long.
+    - Have each domain label start and end with alphanumeric characters.
+    - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
 - The `ADDRESS` can take any values, but it should not be blank.
 - The `TAG` must be alphanumeric.
 - The `INDEX` must be a positive integer which cannot exceed the number of contacts currently displayed in the
-application.
+  application.
 - The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
 
 ### Add a contact: `person new`
 
-Adds a new contact with a name within the current [scope](#scoping). Additionally, other contact details such 
+Adds a new contact with a name within the current [scope](#scoping). Additionally, other contact details such
 as the phone number, email, address and multiple tags may be included during the creation of the contact.
 
 **Format:** `person new n/<NAME> [p/<PHONE_NUMBER>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>...]`
@@ -212,8 +214,8 @@ Refer to the [select](#select-command-select) command for more information.
 The following group commands comply with these placeholder constraints:
 
 - The `GROUP NAME` must be alphanumeric.
-- The `INDEX` must be a positive integer which cannot exceed the number of contacts / groups currently displayed 
-in the application.
+- The `INDEX` must be a positive integer which cannot exceed the number of contacts / groups currently displayed
+  in the application.
 
 ### Creating a group: `team new`
 
@@ -239,7 +241,7 @@ deleting will also be deleted.
 
 ### Adding contacts to a group: `assign`
 
-Adds a contact to a group. 
+Adds a contact to a group.
 
 **Format:** `assign g/<INDEX> u/<INDEX>`
 
@@ -258,11 +260,11 @@ Refer to the [select](#select-command-select) command for more information.
 ### Removing contacts from group: `team remove`
 
 Removes the contact from the current group by their currently specified `INDEX` as shown in
-the application window. 
+the application window.
 
 **Format:** `team remove <INDEX>`
 
-**Example:** 
+**Example:**
 
 - `team remove 3`
 
@@ -287,6 +289,7 @@ Adds a field to a team by taking in a field name and value.
 Format: `addfield g/<TEAM_ID> <FIELD_NAME> <FIELD_VALUE>`
 
 Examples:
+
 - `addfield g/1 deadline 2022-05-06`
 - `addfield g/5 description A Brownfield CS2103 Project`
 
@@ -298,6 +301,7 @@ existing field name that has been created through `addfield`.
 Format: `editfield g/<TEAM_ID> <FIELD_NAME> <NEW_FIELD_VALUE>`
 
 Examples:
+
 - `editfield g/1 deadline 2022-05-20`
 - `editfield g/5 description A Greenfield CS2103 Project`
 
@@ -309,6 +313,7 @@ existing field name that has been created through `addfield`.
 Format: `rmfield g/<TEAM_ID> <FIELD_NAME>`
 
 Examples:
+
 - `rmfield g/1 deadline`
 - `rmfield g/5 description`
 
@@ -321,6 +326,7 @@ Adds a new task to an existing group scope. This group cannot be the root group.
 **Format:** `task add t/<TITLE> d/<DESCRIPTION>`
 
 **Example:**
+
 - `task add t/Complete all CS2103T homework d/Give description here`
 
 ### Deleting a task from group: `task delete`
@@ -330,6 +336,7 @@ Deletes an existing task from a group by their `INDEX` within the current [scope
 Format: `task delete <INDEX>`
 
 Example:
+
 - `task delete 1`
 
 ### Iterate command
@@ -352,6 +359,7 @@ Format: `task progress i/<INDEX> <LEVEL>`
 - Level indicates the progress level, and can only be set to 25%, 50%, 75%, 100%.
 
 Example:
+
 - `task progress 1 25%`
 
 This sets the progress of the first task in the list as 25%.
@@ -366,6 +374,7 @@ Format: `task progress i/<INDEX> <LEVEL>`
 - Level indicates the progress level, and can only be set to 25%, 50%, 75%, 100%
 
 Example:
+
 - `task progress 1 25%`
 
 This sets the progress of the first task in the list as 25%
@@ -377,6 +386,7 @@ Adds a field to a task by taking in a field name and value.
 Format: `addfield t/<TASK_ID> <FIELD_NAME> <FIELD_VALUE>`
 
 Examples:
+
 - `addfield t/1 deadline 2022-05-06`
 - `addfield t/5 description A Brownfield CS2103 Project`
 
@@ -388,6 +398,7 @@ existing field name that has been created through `addfield`.
 Format: `editfield t/<TASK_ID> <FIELD_NAME> <NEW_FIELD_VALUE>`
 
 Examples:
+
 - `editfield t/1 deadline 2022-05-20`
 - `editfield t/5 description A Greenfield CS2103 Project`
 
@@ -399,6 +410,7 @@ existing field name that has been created through `addfield`.
 Format: `rmfield t/<TASK_ID> <FIELD_NAME>`
 
 Examples:
+
 - `rmfield t/1 deadline`
 - `rmfield t/5 description`
 
@@ -409,4 +421,3 @@ Examples:
 Follow the guide for installing `Java 11` [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk).
 
 [Back to top](#contactmation-user-guide)
-

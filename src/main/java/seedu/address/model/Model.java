@@ -123,22 +123,6 @@ public interface Model {
     void addTask(Task task);
 
     /**
-     * Adds a field to the Fields of each person
-     * {@code field name} must not already exist in the address book.
-     *
-     * @param fieldName the field name to add
-     */
-    void addField(String fieldName);
-
-    /**
-     * Removes a field from the Fields instance of each person
-     * {@code field name} must already exist in the address book.
-     *
-     * @param fieldName the field name to be removed
-     */
-    void removeField(String fieldName);
-
-    /**
      * Returns an unmodifiable view of the filtered task list
      */
     ObservableList<Task> getFilteredTaskList();
@@ -147,8 +131,6 @@ public interface Model {
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Person> getFilteredPersonList();
-
-    Person getFromFilteredPerson(Index index) throws PersonOutOfBoundException;
 
     /**
      * Updates the filter of the filtered person list to filter by the given
@@ -207,10 +189,21 @@ public interface Model {
      */
     ObservableList<Group> getFilteredTeamList();
 
-    Group getFromFilteredTeams(Index index) throws GroupOutOfBoundException;
-
     void setTask(Task target, Task editedTask);
 
+    /**
+     * Retrieves the person object from the current PersonList based on the Index
+     */
+    Person getFromFilteredPerson(Index index) throws PersonOutOfBoundException;
+
+    /**
+     * Retrieves the person object from the current PersonList based on the Index
+     */
+    Group getFromFilteredTeams(Index index) throws GroupOutOfBoundException;
+
+    /**
+     * Retrieves the person object from the current PersonList based on the Index
+     */
     Task getFromFilteredTasks(Index index) throws TaskOutOfBoundException;
 
 }

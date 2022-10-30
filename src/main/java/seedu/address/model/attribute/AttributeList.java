@@ -38,7 +38,20 @@ public class AttributeList {
      */
     public <T> Attribute<T> createAttributeInstance(String attributeName, T value) {
         String name = formatProperName(attributeName);
-        return new AbstractAttribute<T>(name, value) { };
+        return new AbstractAttribute<T>(name, value) {};
+    }
+
+    /**
+     * Creates an Attribute instance from a given attributeName and value.
+     *
+     * @param attributeName the name of the attribute.
+     * @param value the value to be stored in the attribute.
+     * @param <T> the type parameter of the value stored in the attribute.
+     * @return an {@code Attribute} instance with the specified attributeName and value.
+     */
+    public <T> Attribute<T> createAttributeInstance(String attributeName, T value, int setting, int style) {
+        String name = formatProperName(attributeName);
+        return new AbstractAttribute<T>(name, value, setting, style) {};
     }
 
     /**
@@ -68,6 +81,22 @@ public class AttributeList {
     }
 
     /**
+     * Adds a field to the list of fields by a given field name.
+     *
+     * @param <T> type of value
+     * @param attributeName the name of the Field instance to be added to the list.
+     * @param value the value of the field.
+     */
+    public <T> void addAttribute(String attributeName, T value, int setting, int style) throws AttributeException {
+        if (this.findAttribute(attributeName) != null) {
+            String existingName = this.findAttribute(attributeName).getAttributeType();
+            throw new DuplicateAttributeException(existingName, attributeName);
+        }
+        Attribute<T> attribute = createAttributeInstance(attributeName, value, setting, style);
+        this.addAttribute(attribute);
+    }
+
+    /**
      * Adds an attribute given an attributeName.
      *
      * @param attributeName
@@ -80,13 +109,14 @@ public class AttributeList {
 
     /**
      * Finds an attribute that matches the attribute name.
+     *
      * @param attributeName
      * @return
      */
     public Attribute<?> findAttribute(String attributeName) {
         List<Attribute<?>> lst = attributeList.stream()
-                .filter(attr -> attr.isNameMatch(attributeName))
-                .collect(Collectors.toList());
+            .filter(attr -> attr.isNameMatch(attributeName))
+            .collect(Collectors.toList());
         if (lst.isEmpty()) {
             return null;
         }
@@ -95,6 +125,7 @@ public class AttributeList {
 
     /**
      * Edits the attribute associated with the attributeName to the attributeValue.
+     *
      * @param attributeName the name of the attribute to be edited.
      * @param attributeValue the new value of the attribute to be edited.
      */
@@ -110,6 +141,7 @@ public class AttributeList {
 
     /**
      * Deletes an attribute
+     *
      * @param type
      */
     public void removeAttribute(String type) throws AttributeException {
@@ -136,8 +168,8 @@ public class AttributeList {
      */
     public void removeField(String attributeName) {
         List<Attribute<?>> attributesToRemove = attributeList.stream()
-                .filter(attribute -> attribute.getAttributeType().equalsIgnoreCase(attributeName))
-                .collect(Collectors.toList());
+            .filter(attribute -> attribute.getAttributeType().equalsIgnoreCase(attributeName))
+            .collect(Collectors.toList());
         attributeList.removeAll(attributesToRemove);
     }
 
@@ -164,12 +196,11 @@ public class AttributeList {
                 return attribute.getAttributeContent();
             }
         }
-        return "Value not found";
+        return null;
     }
 
     /**
-     * Adds all items from a given list of fields to the list stored in the
-     * Fields object.
+     * Adds all items from a given list of fields to the list stored in the Fields object.
      *
      * @param attributeList A list of fields to add.
      */
@@ -200,9 +231,8 @@ public class AttributeList {
     /**
      * Checks if the {@code Fields} is empty.
      *
-     * @return true if there are no {@code Field} instances stored in this
-     *         {@code Fields}
-     *         object, false otherwise.
+     * @return true if there are no {@code Field} instances stored in this {@code Fields} object, false
+     *         otherwise.
      */
     public boolean isEmpty() {
         return attributeList.isEmpty();

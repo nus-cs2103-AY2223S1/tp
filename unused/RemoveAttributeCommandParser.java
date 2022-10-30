@@ -1,3 +1,4 @@
+// @@author jasonchristopher21
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -13,20 +14,24 @@ import seedu.address.logic.commands.attributes.RemoveTaskAttributeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new {@code RemoveAttributeCommand} object
+ * Parses input arguments and creates a new {@code RemoveAttributeCommand}
+ * object
  */
 public class RemoveAttributeCommandParser implements Parser<RemoveAttributeCommand> {
 
     /**
-     * Regex for the basic format of RemoveAttributeCommand, should contain a type (user/group/task), its respective
+     * Regex for the basic format of RemoveAttributeCommand, should contain a type
+     * (user/group/task), its respective
      * ID, the name of the attribute and the content of the attribute.
      */
-    private static final Pattern REMOVE_ATTRIBUTE_COMMAND_FORMAT =
-            Pattern.compile("(?<type>[ugt])/(?<id>\\w+)\\s+(?<attributeName>\\w+)");
+    private static final Pattern REMOVE_ATTRIBUTE_COMMAND_FORMAT = Pattern
+            .compile("(?<type>[ugt])/(?<id>\\w+)\\s+(?<attributeName>\\w+)");
 
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code RemoveAttributeCommand}
+     * Parses the given {@code String} of arguments in the context of the
+     * {@code RemoveAttributeCommand}
      * and returns a {@code RemoveAttributeCommand} object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public RemoveAttributeCommand parse(String args) throws ParseException {
@@ -35,8 +40,7 @@ public class RemoveAttributeCommandParser implements Parser<RemoveAttributeComma
 
         if (!matcher.matches()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveAttributeCommand.MESSAGE_USAGE)
-            );
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveAttributeCommand.MESSAGE_USAGE));
         }
 
         Index index = null;
@@ -45,8 +49,7 @@ public class RemoveAttributeCommandParser implements Parser<RemoveAttributeComma
             index = ParserUtil.parseIndex(matcher.group("id").trim()); // TODO: change this to UUID implementation
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveAttributeCommand.MESSAGE_USAGE), pe
-            );
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveAttributeCommand.MESSAGE_USAGE), pe);
         }
 
         String type = matcher.group("type");
@@ -61,8 +64,7 @@ public class RemoveAttributeCommandParser implements Parser<RemoveAttributeComma
             return new RemoveTaskAttributeCommand(index, attributeName);
         } else {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveAttributeCommand.MESSAGE_USAGE)
-            );
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveAttributeCommand.MESSAGE_USAGE));
         }
     }
 

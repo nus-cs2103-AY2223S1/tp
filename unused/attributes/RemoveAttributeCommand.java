@@ -1,3 +1,4 @@
+// @@author jasonchristopher21
 package seedu.address.logic.commands.attributes;
 
 import static java.util.Objects.requireNonNull;
@@ -30,6 +31,6 @@ public abstract class RemoveAttributeCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RemoveAttributeCommand // instanceof handles nulls
-                && attributeName.equals(((RemoveAttributeCommand) other).attributeName));
+                        && attributeName.equals(((RemoveAttributeCommand) other).attributeName));
     }
 }

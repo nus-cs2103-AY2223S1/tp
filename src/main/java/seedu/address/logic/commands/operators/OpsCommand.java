@@ -11,6 +11,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+/**
+ * Command to do arithmatic operations
+ */
 public class OpsCommand extends Command {
 
     public static final String COMMAND_WORD = "ops";
@@ -23,25 +26,28 @@ public class OpsCommand extends Command {
     private Float num = null;
     private Function<Float, Float> func;
 
+    /**
+     * Constructor for operation command
+     */
     public OpsCommand(String op, Float opNum) throws ParseException {
         switch (op) {
-            case "/":
-                if (opNum == 0) {
-                    throw new ParseException(DIV0);
-                }
-                func = x -> x / opNum;
-                break;
-            case "*":
-                func = x -> x * opNum;
-                break;
-            case "+":
-                func = x -> x + opNum;
-                break;
-            case "-":
-                func = x -> x - opNum;
-                break;
-            default:
-                assert false;
+        case "/":
+            if (opNum == 0) {
+                throw new ParseException(DIV0);
+            }
+            func = x -> x / opNum;
+            break;
+        case "*":
+            func = x -> x * opNum;
+            break;
+        case "+":
+            func = x -> x + opNum;
+            break;
+        case "-":
+            func = x -> x - opNum;
+            break;
+        default:
+            assert false;
         }
     }
 
@@ -53,6 +59,11 @@ public class OpsCommand extends Command {
         return new CommandResult(String.format("result: %f", func.apply(num)), false, false, func.apply(num));
     }
 
+    /**
+     * Parser to parse user input operations command
+     *
+     * @return
+     */
     public static Parser<OpsCommand> parser() {
         return new Parser<OpsCommand>() {
             @Override

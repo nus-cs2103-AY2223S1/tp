@@ -7,13 +7,17 @@ import seedu.address.logic.commands.logicalcommand.IfCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Commands to represent a if else logical flow
+ */
 public class IfCommandParser implements Parser<IfCommand> {
 
     private static final Pattern NO_ELSE = Pattern
-            .compile("\\[\\[\\s*(?<ifcheck>.*)\\s*\\]\\]\\s*;;\\s*\\[\\[\\s*(?<true>.*)\\s*\\]\\]");
+        .compile("\\[\\[\\s*(?<ifcheck>.*)\\s*\\]\\]\\s*;;\\s*\\[\\[\\s*(?<true>.*)\\s*\\]\\]");
     private static final Pattern WITH_ELSE = Pattern
-            .compile(
-                    "\\[\\[\\s*(?<ifcheck>.*)\\s*\\]\\]\\s*;;\\s*\\[\\[\\s*(?<true>.*)\\s*\\]\\]\\s*;;\\s*\\[\\[\\s*(?<else>.*)\\s*\\]\\]");
+        .compile(
+            "\\[\\[\\s*(?<ifcheck>.*)\\s*\\]\\]\\s*;;\\s*\\[\\[\\s*(?<true>.*)"
+                + "\\s*\\]\\]\\s*;;\\s*\\[\\[\\s*(?<else>.*)\\s*\\]\\]");
 
     @Override
     public IfCommand parse(String userInput) throws ParseException {

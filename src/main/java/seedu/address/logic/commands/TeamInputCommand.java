@@ -15,7 +15,7 @@ public abstract class TeamInputCommand extends Command {
         if (additionalData == null || !(additionalData instanceof Group)) {
             group = null;
             return;
-        } 
+        }
         this.group = (Group) additionalData;
-    }    
+    }
 }

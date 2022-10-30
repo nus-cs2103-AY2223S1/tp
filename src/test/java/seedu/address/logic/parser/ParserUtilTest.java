@@ -18,7 +18,7 @@ import seedu.address.model.attribute.Address;
 import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
-// import seedu.address.model.group.Group;
+import seedu.address.model.group.Group;
 import seedu.address.model.group.Path;
 import seedu.address.model.tag.Tag;
 
@@ -49,8 +49,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
-                ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () -> {
+            ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1));
+        });
     }
 
     @Test
@@ -213,13 +214,13 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parsePath(INVALID_PATH_NAME));
     }
 
-    /*@Test
+    @Test
     public void parseTeam_validTeamName_returnsGroup() throws Exception {
         Group actualGroup = ParserUtil.parseGroup(VALID_TEAM_NAME);
-        Group expectedGroup = new Group(new Name(VALID_TEAM_NAME));
+        Group expectedGroup = new Group(VALID_TEAM_NAME);
 
         assertEquals(actualGroup, expectedGroup);
-    }*/
+    }
 
     @Test
     public void parseGroup_invalidTeamNameHasWhitespace_throwsParseException() {
