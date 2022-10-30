@@ -45,9 +45,9 @@ faster than traditional GUI apps.
 * Optional parameters are indicated with `(optional)`.<br>
   e.g. `task add tn/<taskName> i/<taskDescription> d/<taskDeadline> s/<student(s)>(optional)`
   can be used as
-  * `task add tn/Assignment #6 i/Recursion d/31/12/2023` or
-  * `task add tn/Assignment #6 i/Recursion d/31/12/2021 s/Thomas Edison` or
-  * `task add tn/Assignment #6 i/Recursion d/31/12/2021 s/Thomas Edison s/George Washington`
+  * `task add tn/Assignment 6 i/Recursion d/31/12/2023` or
+  * `task add tn/Assignment 6 i/Recursion d/31/12/2021 s/Thomas Edison` or
+  * `task add tn/Assignment 6 i/Recursion d/31/12/2021 s/Thomas Edison s/George Washington`
 
 * Arguments with `(s)` after them can be used multiple times including zero times.<br>
   e.g. See the above example regarding `s/<student(s)>`.
@@ -158,6 +158,16 @@ Notes:
 - Command `student expel <index> g/<groupName>`
 - Removes the student at index i from the group `groupName`.
 
+### View all students in a tutorial group: `tutorial filter`
+
+- Command `tutorial filter g/<groupName>`
+- Displays only students from the group `groupName` in the GUI.
+
+### Reset filters and show all students `student unfilter`
+
+- Command `student unfilter`
+- Undoes the `tutorial filter` command and displays all students in the GUI.
+
 ### Mark assignment as graded or ungraded: `grade edit`
 
 - Command `grade edit <studentIndex> <taskIndex> gr/<T or F>`
@@ -182,26 +192,17 @@ Notes:
 
 ## FAQ
 
-#### What if I forgot the command format?
+#### What if I forget the command format?
 - A list of commands will be displayed after the launch of the program.
 - You can also click on the help button to view the commands.
 
-#### Why I cannot add a student?
+#### Why can't I add a student?
 - Check the format of your add command. You can refer to the pop-up message or the help page for the command format.
 - Check if the name of the new student belongs to another student.
 
-#### Why I cannot enroll a student to a tutorial group?
-- Check whether the specified student and tutorial group exist.
-- Check if you input the correct student name.
--
-#### What if I just want to modify one field of a student? Do I need to type out the rest fields?
-- The student edit command supports any number of field changes. Omit the fields you do not wish to change.
-
-#### How to remove the student filter?
-
-#### 
-
-
+#### Why can't I enroll a student to a tutorial group?
+- Check whether the specified student and tutorial group exists.
+- Check if you have entered the correct student name.
 
 ---
 
