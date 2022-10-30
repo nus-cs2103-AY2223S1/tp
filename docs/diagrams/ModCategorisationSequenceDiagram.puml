@@ -6,7 +6,7 @@ BorderColor #000000
 
 participant ":JsonAdaptedMod" as JsonAdaptedMod STORAGE_COLOR
 participant ":Mod" as Mod MODEL_COLOR
-participant ":ParserUtil" as ParserUtil <<class>> LOGIC_COLOR
+participant "ParserUtil" as ParserUtil <<class>> LOGIC_COLOR
 
 
 create Mod
