@@ -142,11 +142,11 @@ Format: `help`
 Adds an internship application to the tracker.
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…
         ```
     </div>
@@ -160,7 +160,7 @@ Adds an internship application to the tracker.
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 <div class="d-flex alert alert-info">
-<div class="me-2">
+<div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
@@ -170,7 +170,7 @@ To change [application status](#application-status), see [`mark` command](#marki
 </div>
 
 <div class="d-flex alert alert-warning">
-<div class="me-2">
+<div class="me-3">
   <span class="badge text-bg-warning">WARNING</span>
 </div>
 <div markdown="span">
@@ -189,11 +189,11 @@ Examples:
 Edits an existing internship application in the tracker.
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…
         ```
     </div>
@@ -214,7 +214,7 @@ Edits an existing internship application in the tracker.
 
 
 <div class="d-flex alert alert-info">
-<div class="me-2">
+<div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
@@ -224,7 +224,7 @@ To change [application status](#application-status), see [`mark` command](#marki
 </div>
 
 <div class="d-flex alert alert-warning">
-<div class="me-2">
+<div class="me-3">
   <span class="badge text-bg-warning">WARNING</span>
 </div>
 <div markdown="span">
@@ -246,11 +246,11 @@ Examples:
 Marks an internship [application status](#application-status).
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         mark INDEX s/APPLICATION_STATUS
         ```
     </div>
@@ -274,11 +274,11 @@ Examples:
 Shows a list of all internship applications.
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         list
         ```
     </div>
@@ -289,11 +289,11 @@ Shows a list of all internship applications.
 Deletes an internship application.
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         delete INDEX
         ```
     </div>
@@ -309,11 +309,11 @@ Examples:
 #### Filtering for internship applications of a specific status: `filter`
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         filter APPLICATION_STATUS
         ```
     </div>
@@ -332,11 +332,11 @@ Examples:
 Finds internship applications where the company's name and tags contain any of the given keywords.
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         find KEYWORD [MORE_KEYWORDS]…
         ```
     </div>
@@ -346,7 +346,7 @@ Finds internship applications where the company's name and tags contain any of t
 * Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo` 
 
 <div class="d-flex alert alert-info">
-<div class="me-2">
+<div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div>
@@ -386,11 +386,11 @@ Examples:
 Sorts the internship applications with the latest date at top to earliest at the bottom.
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         sort CRITERIA
         ```
     </div>
@@ -405,7 +405,7 @@ Examples:
 * `sort interview` will sort the internship applications according to interview date
 
 <div class="d-flex alert alert-info">
-<div class="me-2">
+<div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
 <div markdown="span">
@@ -419,18 +419,18 @@ Applications without interview date will remain in the original order at the bot
 Clears all internship applications from the tracker.
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         clear
         ```
     </div>
 </div>
 
 <div class="d-flex alert alert-danger">
-<div class="me-2">
+<div class="me-3">
   <span class="badge text-bg-danger">DANGER</span>
 </div>
 <div markdown="span">
@@ -443,11 +443,11 @@ This command will clear the entire list of internships without warning.
 Exits the program.
 
 <div class="d-flex alert alert-secondary">
-    <div class="me-2">
+    <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
     </div>
     <div markdown="span" class="w-100">
-        ```text
+        ```
         exit
         ```
     </div>
@@ -467,7 +467,7 @@ The data file location can also be found in the help message: see [`help` comman
 Advanced users are welcome to update data directly by editing that data file.
 
 <div class="d-flex alert alert-warning">
-<div class="me-2">
+<div class="me-3">
   <span class="badge text-bg-warning">WARNING</span>
 </div>
 <div markdown="span">
