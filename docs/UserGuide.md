@@ -84,6 +84,7 @@ A `preference.json` file will be created when you first run the application. Use
 | Tuition Class Address Book Location 	 | data\\\tuitionclassaddressbook.json 	 |
 
 </div>
+
 ---
 
 ## Layout
@@ -125,7 +126,6 @@ Note that in the list the displayed person will be highlighted.
 ### 4. List Tabs
 
 There are three list tabs: Student, Tutor and Class indicating the current displayed list showing in the list display panel.
-You could click at the list tabs to switch to different lists.
 
 <p align="center">
 
@@ -154,8 +154,8 @@ This is where the description of a specified student or tutor is shown. When the
 
 </p>
 
-#### File 
-The ` File` menu contains `Export` and `Exit`. 
+#### File
+The ` File`  menu contains `Export` and `Exit`.
 `Export` allows you to export your data into a `.csv` file. 
 `Exit` allows the software to exit after three seconds of pause.
 
@@ -171,17 +171,16 @@ The ` File` menu contains `Export` and `Exit`.
 
 ### Viewing help: `help`
 
-Shows a message explaining how to execute a valid command. 
+Shows help information that will be useful to you.
 
-Format:
+Format: `help [<command>]`
 
-`help [command]`
+* To view all the commands, type `help` and press <kbd>Enter</kbd>.
+* To view information regarding a specific command, type `help` followed by said command and press <kbd>Enter</kbd>.
 
 Examples:
 * `help add`
 * `help edit`
-
-To view all the` [command]`s, key in `help` and press <kbd>enter</kbd>.
 
 <p align="center">
 
@@ -191,20 +190,40 @@ To view all the` [command]`s, key in `help` and press <kbd>enter</kbd>.
 
 ### Exiting the software: `exit`
 
-Exits the software after playing the exit animation.
+Plays a neat animation before exiting myStudent.
 
 Format: `exit`
 
 ### Adding a person: `add`
 
-Adds a person to the database.
+Adds a person to the myStudent database.
 
-Format:
+Formats:
 
-`add student n/<name> p/<phone> e/<email> a/<address> s/<school> l/<level> [#/<tag>]`
+`add student n/<name> p/<phone> e/<email> a/<address> s/<school> l/<level> [#/<tag>]…`
 
-`add tutor n/<name> p/<phone> e/<email> a/<address> q/<qualification> i/<institution> [#/<tag>]`
+`add tutor n/<name> p/<phone> e/<email> a/<address> q/<qualification> i/<institution> [#/<tag>]…`
 
+* All fields as per the kind of person being added must be present, except for the optional `<tag>` field.
+* If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+* Generally,
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+  * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
+    1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+    2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+       The domain name must:
+       - end with a domain label at least 2 characters long
+       - have each domain label start and end with alphanumeric characters
+       - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  * `<address>` field can take any values but should not be left blank.
+  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
+* For students,
+  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+* For tutors,
+  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  
 Examples:
 * `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
 * `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
@@ -225,11 +244,38 @@ This adds the student into the database. Note that the Person Description update
 
 ### Adding a class: `add`
 
-Adds a class to the database.
+Adds a class to the myStudent database.
 
-Format:
+Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 
-`add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]`
+* All fields must be present , except for the optional `<tag>` field.
+* If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+* Generally,
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
+    The valid subjects are:
+    1. English
+    2. Mathematics
+    3. Physics
+    4. Chemistry
+    5. Biology
+    6. Elementary Mathematics
+    7. Additional Mathematics
+  * `<level>` field should be one of the valid academic levels.
+    The valid academic levels are:
+      1. Primary 1 to 6
+      2. Secondary 1 to 4
+  * `<day>` field should be a valid day of the week.
+  * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
+    1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
+    2. Start and end timings specified must respect chronology. The end time cannot occur before the start time. 
+    Note that all timings are considered to be on the same day.
+       Some valid examples are:
+        - 12pm - 3pm
+        - 1:00pm 2:00pm
+        - 2200 to 2330
+  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
+
 
 Examples:
 * `add class n/S1ENGT10 s/Math l/Secondary 1 d/Thursday t/10am to 12pm`
@@ -251,18 +297,59 @@ This adds the class into the database. Note that the Person Description Panel is
 
 ### Editing an entity: `edit`
 
-Edits an entity in the database. 
+Edits an entity in the myStudent database. 
 
-Format:
+Formats:
 
-`edit 1 [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]`
+`edit <index> [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]…`
 
-`edit 1 [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]`
+`edit <index> [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]…`
 
-`edit 1 [n/<name>] [s/<subject>] [l/<level>] [d/<day>] [t/<time>] [#/<tag>]`
+`edit <index> [n/<name>] [s/<subject>] [l/<level>] [d/<day>] [t/<time>] [#/<tag>]…`
 
-* Arguments that are valid depends on which list is being displayed currently.
-* Only arguments specified will overwrite the existing values.
+* The index refers to the index number shown in the displayed list.
+* The index must be a positive integer 1, 2, 3, …
+* All fields are optional except for the `<index>` field; however, at least one optional field must be present at all times. Fields present will overwrite the existing values.
+* Fields must be valid in correspondence to the entity list being displayed currently. For example, when a student list is displayed, specifying a qualification when executing the edit command is disallowed.
+* If a specific optional field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+* The constraints of each optional field must be followed. They are:
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+  * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
+      1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+      2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+         The domain name must:
+          - end with a domain label at least 2 characters long
+          - have each domain label start and end with alphanumeric characters
+          - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  * `<address>` field can take any values but should not be left blank.
+  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
+  * `<school>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<level>` field should be one of the valid academic levels.
+    The valid academic levels are:
+      1. Primary 1 to 6
+      2. Secondary 1 to 4
+  * `<quallification>` field should only contain alphanumeric characters, commas and spaces, and should not be left blank.
+  * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<subject>` field should only contain alphabetical characters, and should be one of the valid subjects spelt out in full.
+    The valid subjects are:
+      1. English
+      2. Mathematics
+      3. Physics
+      4. Chemistry
+      5. Biology
+      6. Elementary Mathematics
+      7. Additional Mathematics
+  * `<day>` field should be a valid day of the week.
+  * `<time>` field should be separated by a dash, a space or "to", and adhere to the following constraints:
+      1. Timings must be in either 12-hour or 24-hour formats. When using the 12-hour format, AM/PM must be specified while minutes can be omitted. For both, the colon and initial zero may be omitted.
+      2. Start and end timings specified must respect chronology. The end time cannot occur before the start time.
+         Note that all timings are considered to be on the same day.
+         Some valid examples are:
+          - 12pm - 3pm
+          - 1:00pm 2:00pm
+          - 2200 to 2330t
+  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
 * edit 2 l/Primary 5 d/Monday
@@ -282,15 +369,19 @@ Examples:
 
 This edits the specified person. Note that the Person Description Panel and the List are updated.
 
-### Listing all persons : `list`
+### Listing all entities : `list`
 
-Shows a list of the specified entities in the database.
+Shows a list of the specified entity type in the myStudent database.
 
 Format: `list <entity>`
+* The valid entity types are:
+  1. student
+  2. tutor
+  3. class
+* The lists of each entity type can be displayed by clicking any of the tabs above the current displayed list.
 
 Examples:
 * `list student`
-* `list tutor`
 * `list class`
 
 <p align="center">
@@ -309,11 +400,11 @@ This changes the current displayed list to the tutor list.
 
 ### Deleting an entity: `delete`
 
-Deletes the specified entity from the current displayed list.
+Deletes an entity from the myStudent database.
 
 Format: `delete <index>`
 
-* The index refers to the index number shown in the displayed list.
+* The index refers to the index number shown in the displayed list. For example, when displaying a student list, the command `delete 2` will delete the 2nd student on that list from the entire database.
 * The index must be a positive integer 1, 2, 3, …
 
 Examples:
@@ -335,9 +426,11 @@ This deletes the person from the database. Note that if the deleted person is di
 
 ### Clears list: `clear`
 
-Clears the current displayed list of its contents.
+Clears either the student, the tutor or the class list.
 
 Format: `clear`
+
+* Please note the list you are clearing as this action is **irreversible**. This can be identified by the tabs above the displayed list.
 
 <p align="center">
 
@@ -548,17 +641,38 @@ Note that `show` command is invalid for the class list.
 
 ### Add next of kin to a student: `nok`
 
-Adds a next of kin to an existing student in the current list.
+Adds the next of kin to an existing student.
 
-Format: 
+Formats: 
 
 `nok <index>`
 
-`nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]`
+`nok <index> n/<name> p/<phone> e/<email> a/<address> r/<relationship> [#/tag]…`
 
+* The current displayed list when executing this command must be a list of students.
 * The index refers to the index number shown in the displayed list.
-* This command only works when the displayed list is listing students.
-* Not specifying any arguments after index will remove the next of kin from the student of that index.
+* The index must be a positive integer 1, 2, 3, …
+* When adding a next of kin, all fields must be present, except for the optional `<tag>` field.
+* If a specific field is repeated, the last occurrence in the input is taken. The `<tag>` field is an exception as multiple tags are allowed.
+* If no fields are present after the required `index` field, the next of kin from the student of that index will be removed.
+* The constraints of each field must be followed. They are:
+  * `<name>` field should only contain alphanumeric characters and spaces, and should not be left blank.
+  * `<phone>` field should only contain numbers, and it should be between 7 and 15 digits long.
+  * `<email>` field should be of the format local-part@domain and adhere to the following constraints:
+      1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+      2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+         The domain name must:
+          - end with a domain label at least 2 characters long
+          - have each domain label start and end with alphanumeric characters
+          - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+  * `<address>` field can take any values but should not be left blank.
+  * `<relationship>` should only contain letters, and should be spelt out in full. The valid relationships are:
+    1. Father
+    2. Mother
+    3. Brother 
+    4. Sister 
+    5. Guardian
+  * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
 
