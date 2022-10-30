@@ -356,6 +356,7 @@ CodeConnect data are saved as a JSON file `[JAR file location]/data/codeconnect.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CodeConnect will discard all data and start with an empty data file at the next run.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -405,6 +406,6 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | Task     | `ts/`   |
 | Deadline | `by/`   |
 
-</div>
+</>
 
 Click [here](#) to return to the top of the page/content page.
