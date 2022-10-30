@@ -1,9 +1,9 @@
 package seedu.boba.model;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class VersionedBobaBotTest {
     @Test
@@ -14,7 +14,7 @@ public class VersionedBobaBotTest {
 
     @Test
     public void are_equals() {
-        VersionedBobaBot bbbt=new VersionedBobaBot(null, 20);
+        VersionedBobaBot bbbt = new VersionedBobaBot(null, 20);
         assertEquals(bbbt, bbbt);
         assertEquals(bbbt, new VersionedBobaBot(null));
     }
