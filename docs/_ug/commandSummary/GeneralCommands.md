@@ -25,8 +25,8 @@
 | Action                                                | Format  | Example        |
 |-------------------------------------------------------|---------|----------------|
 | Shows a help dialog with a list of available commands | :help:  | :helpexample:  |
-| Reset the application                                 | :reset: | :resetexample: |
-| Exit the application                                  | :exit:  | :exitexample:  |
+| Clears all items and tags in FoodRem                  | :reset: | :resetexample: |
+| Exits FoodRem                                         | :exit:  | :exitexample:  |
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->

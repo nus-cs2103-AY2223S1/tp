@@ -50,18 +50,18 @@
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->
 {% capture TABLE %}
-| Action                                                                            | Format | Example       |
-|-----------------------------------------------------------------------------------|--------|---------------|
-| Create a new item                                                                 | :new:  | :newexample:  |
-| List all items                                                                    | :list: | :listexample: |
-| Search for an item                                                                | :find: | :findexample: |
-| Sort an item by name, quantity, unit, bought date, expiry date, price, or remarks | :sort: | :sortexample: |
-| View information about an item                                                    | :view: | :viewexample: |
-| Increase the quantity of an item                                                  | :inc:  | :incexample:  |
-| Decrease the quantity of an item                                                  | :dec:  | :decexample:  |
-| Update the information of an item                                                 | :edit: | :editexample: |
-| Adds a remark to an item                                                          | :rmk:  | :rmkexample:  |
-| Delete an item                                                                    | :del:  | :delexample:  |
+| Action                                                                             | Format | Example       |
+|------------------------------------------------------------------------------------|--------|---------------|
+| Create a new item                                                                  | :new:  | :newexample:  |
+| List all items                                                                     | :list: | :listexample: |
+| Search for an item                                                                 | :find: | :findexample: |
+| Sort all items by name, quantity, unit, bought date, expiry date, price or remark  | :sort: | :sortexample: |
+| View the information of an item                                                    | :view: | :viewexample: |
+| Increase the quantity of an item                                                   | :inc:  | :incexample:  |
+| Decrease the quantity of an item                                                   | :dec:  | :decexample:  |
+| Edit the information of an item                                                    | :edit: | :editexample: |
+| Add a remark to an item                                                            | :rmk:  | :rmkexample:  |
+| Delete an item                                                                     | :del:  | :delexample:  |
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->
