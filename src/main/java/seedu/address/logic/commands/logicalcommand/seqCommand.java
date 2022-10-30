@@ -17,7 +17,7 @@ import seedu.address.model.Model;
 public class SeqCommand extends Command {
 
     public static final String COMMAND_WORD = "seq";
-    private static final String USE_MESSAGE = "seq command1;command2|command3;command4...";
+    private static final String USE_MESSAGE = "seq command1 (; command2) (| command3) (; ...) (| ...)";
 
     private Object ctx;
     private List<String> replacers;
