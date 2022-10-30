@@ -257,7 +257,9 @@ Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME*]`
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
 Examples:
-*  `edit 1 -m CS2103T -n ip` Edits the taskName to ip.
+* `edit 1 -t revision -n Recitation` Edits the tag to "revision" and taskName to "Recitation".
+
+![Example image of Edot Command](images/user-guide/EditCommandDemo.png)
 
 ### Deleting a task : `delete`
 
@@ -267,9 +269,12 @@ Format: `delete TASK_NUMBER`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 
 Examples: 
-* `delete 1`
-  * Deletes first task in the task list.
-  * Remaining tasks’ `TASK_NUMBER` will be automatically updated. 
+* `delete 3`
+  * Deletes third task in the task list.
+  * Remaining tasks’ `TASK_NUMBER` will be automatically updated.
+
+![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
+![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
   
 ### Clearing all entries : `clear`
 
