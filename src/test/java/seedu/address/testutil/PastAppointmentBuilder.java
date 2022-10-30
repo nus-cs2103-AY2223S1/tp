@@ -15,7 +15,6 @@ public class PastAppointmentBuilder {
     public static final String DEFAULT_DATE = "06-12-2022";
     public static final String[] DEFAULT_MEDICATION = { "Paracetamol", "Ibuprofen" };
     public static final String DEFAULT_DIAGNOSIS = "Fever";
-    private static PastAppointment pastAppointment;
 
     private LocalDate date;
     private Set<Medication> medication;

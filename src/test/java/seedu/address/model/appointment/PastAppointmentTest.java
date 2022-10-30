@@ -95,6 +95,51 @@ class PastAppointmentTest {
     }
 
     @Test
+    public void getMedication_validMedication_returnsMedication() {
+        assertEquals("[[paracetamol]]", new PastAppointmentBuilder()
+                .withMedication(new String[] { "Paracetamol" }).build().getMedication().toString());
+    }
+
+    @Test
+    public void getMedication_nullMedication_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new PastAppointmentBuilder().withMedication(null).build());
+    }
+
+    @Test
+    public void getMedication_emptyMedication_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new PastAppointmentBuilder()
+                .withMedication(new String[] { "" }).build());
+    }
+
+    @Test
+    public void getMedication_multipleMedication_returnsMedication() {
+        assertEquals("[[ibuprofen], [paracetamol]]", new PastAppointmentBuilder()
+                .withMedication(new String[] { "Paracetamol", "Ibuprofen" }).build().getMedication().toString());
+    }
+
+    @Test
+    public void getMedication_multipleMedicationWithEmpty_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> new PastAppointmentBuilder()
+                .withMedication(new String[] { "Paracetamol", "" }).build());
+    }
+
+    @Test
+    public void getDiagnosis_validDiagnosis_returnsDiagnosis() {
+        assertEquals("Fever", new PastAppointmentBuilder()
+                .withDiagnosis("Fever").build().getDiagnosis());
+    }
+
+    @Test
+    public void getDiagnosis_nullDiagnosis_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new PastAppointmentBuilder().withDiagnosis(null).build());
+    }
+
+    @Test
+    public void getDiagnosis_emptyDiagnosis_returnsEmptyString() {
+        assertEquals("", new PastAppointmentBuilder().withDiagnosis("").build().getDiagnosis());
+    }
+
+    @Test
     public void equals() {
         PastAppointment pastAppointment;
 
