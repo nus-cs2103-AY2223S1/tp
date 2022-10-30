@@ -16,7 +16,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 <img src="images/kelvinou01.png" width="200px" alt="Kelvin">
 
 [[github](https://github.com/kelvinou01)]
-[[portfolio](team/kelvin.md)]
+[[portfolio](team/kelvinou01.md)]
 
 - Role: Deliverables and deadlines, Scheduling and tracking
 - Responsibilities: Defines and tracks deliverables and ensures that they are done correctly.
@@ -26,7 +26,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 <img src="images/craeyeons.png" width="200px" alt="Simpson">
 
 [[github](http://github.com/craeyeons)]
-[[portfolio](team/simpson.md)]
+[[portfolio](team/craeyeons.md)]
 
 - Role: Testing Specialist, Documentation
 - Responsibilities: Ensures components are properly tested and documented.
@@ -36,7 +36,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 <img src="images/malwaregarry.png" width="200px" alt="Ming Wei">
 
 [[github](http://github.com/malwaregarry)]
-[[portfolio](team/mingwei.md)]
+[[portfolio](team/malwaregarry.md)]
 
 - Role: Code quality
 - Responsibilities: Reviews code to ensure adherence to coding standards.
@@ -46,7 +46,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 <img src="images/polygonalr.png" width="200px" alt="Zhi Heng">
 
 [[github](http://github.com/Polygonalr)]
-[[portfolio](team/zhiheng.md)]
+[[portfolio](team/polygonalr.md)]
 
 - Role: Team Lead, Frontend (JavaFX) Expert
 - Responsibilities: Coordinates the project team and manages changes to the UI.
@@ -56,7 +56,7 @@ You can reach us at the email `Section_2210_11461[at]nusu.onmicrosoft.com`
 <img src="images/weiquany.png" width="200px" alt="Wei Quan">
 
 [[github](http://github.com/weiquany)]
-[[portfolio](team/weiquan.md)]
+[[portfolio](team/weiquany.md)]
 
 - Role: Deliverables and deadlines, Integration
 - Responsibilities: Ensures deliverables are done on time and able to integrate together.
