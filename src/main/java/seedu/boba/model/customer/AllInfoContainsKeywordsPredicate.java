@@ -19,7 +19,7 @@ public class AllInfoContainsKeywordsPredicate implements Predicate<Customer> {
     public boolean test(Customer customer) {
         String allInfo = customer.getAllInfo();
         for (String s : keywords) {
-            if (allInfo.contains(s)) {
+            if (allInfo.toLowerCase().contains(s.toLowerCase())) {
                 return true;
             }
         }
