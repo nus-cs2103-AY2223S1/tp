@@ -233,6 +233,7 @@ Example:
 add-person-to-module m/CS2103T n/Dinosaur Lim
 ```
 In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
+
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**
 If you wish to view a person added to a particular module, you may do so by navigating to that
 module using the [`goto`](#252-navigate-between-modules) command.
