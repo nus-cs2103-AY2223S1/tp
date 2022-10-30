@@ -92,6 +92,7 @@ A `preference.json` file will be created when you first run the application. Use
 <p align="center">
 
 <img src="images/Ui_annotated.png"/>
+
 </p>
 
 ### 1. Command Box
@@ -100,14 +101,31 @@ This is where you key in commands. After typing the commands, simply press <kbd>
 
 ### 2. Feedback Box
 
-This is where the feedback information would be displayed after you execute a command. For example, after you keyed in an invalid command, the feedback “Invalid format” would be shown in the box for your reference.
+This is where the feedback information would be displayed after you execute a command. For example, after you keyed in an invalid command, the feedback “Unknown command” would be shown in the box for your reference.
+
+<p align="center">
+
+<img src="images/unknownCommand.png"/>
+
+</p>
 
 ### 3. List Display Panel
 
 This is where the current list of entities is shown. Only one of the three entities, student, tutor and class will be shown at one time.
+
 In student and tutor lists, you could click at the student or tutor cards to show their description in the description panel.
 
+<p align="center">
+
+<img src="images/showCommand_after.png"/>
+
+</p>
+
+Note that in the list the displayed person will be highlighted.
+
 ### 4. List Tabs
+
+There are three list tabs: Student, Tutor and Class indicating the current displayed list showing in the list display panel.
 
 <p align="center">
 
@@ -115,14 +133,13 @@ In student and tutor lists, you could click at the student or tutor cards to sho
 
 </p>
 
-There are three list tabs: Student, Tutor and Class indicating the current displayed list showing in the list display panel.
-You could click at the list tabs to switch to different lists.
+This shows that the current displaying list is the student list.
 
 ### 5. Description Panel
 
 <p align="center">
 
-<img src="images/description_difference.png"/>
+<img src="images/personDescription.png"/>
 
 </p>
 
@@ -130,6 +147,12 @@ This is where the description of a specified student or tutor is shown. When the
 
 
 ### 6. Toolbar 
+
+<p align="center">
+
+<img src="images/toolsBar.png"/>
+
+</p>
 
 #### File
 The ` File`  menu contains `Export` and `Exit`.
@@ -158,6 +181,12 @@ Format: `help [<command>]`
 Examples:
 * `help add`
 * `help edit`
+
+<p align="center">
+
+<img src="images/helpCommand.png"/>
+
+</p>
 
 ### Exiting the software: `exit`
 
@@ -196,8 +225,22 @@ Formats:
   * `<institution>` field should only contain alphanumeric characters and spaces, and should not be left blank.
   
 Examples:
-* `add student n/John Doe p/98765432 e/johndoe@example.com a/John Street, Block 123, #01-01 s/Example Primary School l/Primary 3 #/goodBoy`
-* `add tutor n/Betsy Crowe p/87654321 e/betsycrowe@example.com a/Newgate Street, Block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
+* `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
+* `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
+
+<p align="center">
+
+<img src="images/addPersonCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/addPersonCommand_after.png"/>
+
+</p>
+
+This adds the student into the database. Note that the Person Description updates to the new student added.
 
 ### Adding a class: `add`
 
@@ -235,8 +278,22 @@ Format: `add class n/<name> s/<subject> l/<level> d/<day> t/<time> [#/<tag>]…`
 
 
 Examples:
-* `add class n/P2MATHF12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`
 * `add class n/S1ENGT10 s/Math l/Secondary 1 d/Thursday t/10am to 12pm`
+* `add class n/P2MATHF12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`
+
+<p align="center">
+
+<img src="images/addClassCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/addClassCommand_after.png"/>
+
+</p>
+
+This adds the class into the database. Note that the Person Description Panel is not updated.
 
 ### Editing an entity: `edit`
 
@@ -295,8 +352,22 @@ Formats:
   * `<tag>` fields should only contain alphanumeric characters. No spaces are allowed.
 
 Examples:
-* edit 1 n/Tom Doe
 * edit 2 l/Primary 5 d/Monday
+* edit 1 n/Tom Doe
+
+<p align="center">
+
+<img src="images/editCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/editCommand_after.png"/>
+
+</p>
+
+This edits the specified person. Note that the Person Description Panel and the List are updated.
 
 ### Listing all entities : `list`
 
@@ -313,6 +384,20 @@ Examples:
 * `list student`
 * `list class`
 
+<p align="center">
+
+<img src="images/listCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/listCommand_after.png"/>
+
+</p>
+
+This changes the current displayed list to the tutor list.
+
 ### Deleting an entity: `delete`
 
 Deletes an entity from the myStudent database.
@@ -325,6 +410,20 @@ Format: `delete <index>`
 Examples:
 * `delete 2`
 
+<p align="center">
+
+<img src="images/deleteCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/deleteCommand_after.png"/>
+
+</p>
+
+This deletes the person from the database. Note that if the deleted person is displayed in the Person Description Panel, the panel will update to display the previous person.
+
 ### Clears list: `clear`
 
 Clears either the student, the tutor or the class list.
@@ -332,6 +431,20 @@ Clears either the student, the tutor or the class list.
 Format: `clear`
 
 * Please note the list you are clearing as this action is **irreversible**. This can be identified by the tabs above the displayed list.
+
+<p align="center">
+
+<img src="images/clearCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/clearCommand_after.png"/>
+
+</p>
+
+Note that the clear command clears the current displayed list only, which in this case is the tutor list. The student list and the class list will remain unchanged.
 
 ### Sort list: `sort`
 
@@ -343,7 +456,20 @@ Format: `sort [default/alpha/reverse]`
 * **alpha**: sorts the list alphabetically with reference to the name.
 * **reverse**: sorts the list in reverse order.
 
+Examples:
+* `sort alpha`
 
+<p align="center">
+
+<img src="images/sortCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/sortCommand_after.png"/>
+
+</p>
 
 ### Searching by multiple fields: `find`
 
@@ -369,20 +495,53 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 * If there are repeated `PREFIXES`, only the latest one will be taken.
 
 Examples:
-(insert screenshot of the current list being the student list)
-<img src="images/findStudentsBefore.png"/>
-<img src="images/findStudentsAfter.png"/>
-* `find n/john s/evergarden` returns the students, `Johnny` and `John Doe`, from “Evergarden Secondary School” in the student list.
+* `find n/john` 
 
-(insert screenshot of the current list being the class list)
-<img src="images/findTutorsBefore.png"/>
-<img src="images/findTutorsAfter.png"/>
-* `find a/clementi e/example.com i/nus` returns the tutors who live in Clementi, have emails with domain name “example.com” and graduated from NUS.
+<p align="center">
 
-(insert screenshot of the current list being the class list)
-<img src="images/findClassesBefore.png"/>
-<img src="images/findClassesAfter.png"/>
-* `find n/p1math d/sunday #/difficult` returns all classes whose names contain “p1math”, conducted on Sundays and have the tag “difficult”.
+<img src="images/findStudent_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/findStudent_after.png"/>
+
+</p>
+
+Note that the current list is the student list , so `find n/john` returns the students, `John Doe` and `Johnny Tay` in the student list.
+
+* `find i/NUS q/Bachelor of Computing`
+
+<p align="center">
+
+<img src="images/findTutor_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/findTutor_after.png"/>
+
+</p>
+
+Note that the current list is the tutor lsit, so `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
+
+* `find d/monday #/hard`
+
+<p align="center">
+
+<img src="images/findClass_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/findClass_after.png"/>
+
+</p>
+
+Note that the current list is the class list, so `find d/monday #/tag` returns all classes conducted on Monday and have the tag “hard”.
 
 ### Assign class to a person: `assign`
 
@@ -398,7 +557,19 @@ Format: `assign INDEX n/<class name>`
 * The class name is case-sensitive.
 
 Examples:
-* `assign 1 n/P3 maths`
+* `assign 5 n/p1math`
+
+<p align="center">
+
+<img src="images/assignCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/assignCommand_after.png"/>
+
+</p>
 
 ### Unassign class from a person: `unassign`
 
@@ -415,17 +586,58 @@ student/tutor beforehand.
 * The class name is case-sensitive.
 
 Examples:
-* `unassign 1 n/P3 maths`
+* `unassign 5 n/p1math`
+
+<p align="center">
+
+<img src="images/unassignCommand_before.png"/>
+
+</p>
+
+<img src="images/unassignCommand_after.png"/>
+
+</p>
 
 ### Showing the details of a person: `show`
 
-In the student and tutor list, the details of the persons are hidden due to security concerns. You could access the person’s details by executing the show command.
+In the student and tutor list, the details of the persons are not displayed. You could access the person’s details by executing the show command.
 
-Format: `show [index]` 
-*`show 1` shows the description of the first student in the list
+Format: `show INDEX` 
 
-Note that `show` is an invalid command for class list since the details of classes are already in the class list, thus when you are in the class list.
-*`show 2` is an invalid command 
+* In the student list, `show 1` shows the description of the first student in the list.
+* In the tutor list, `show 1` shows the description of the first tutor in the list.
+* In the class list, `show 1` is invalid as `show` command can only be executed for the student and tutor list.
+
+Examples:
+* `show 3` in the student list
+
+<p align="center">
+
+<img src="images/showCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/showCommand_after.png"/>
+
+</p>
+
+* `show 1` in the class list
+
+<p align="center">
+
+<img src="images/showClassCommand_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/showClassCommand_after.png"/>
+
+</p>
+
+Note that `show` command is invalid for the class list.
 
 ### Add next of kin to a student: `nok`
 
@@ -464,8 +676,35 @@ Formats:
 
 Examples:
 
-* `nok 1 n/Mama Doe p/87654321 e/mamadoe@example.com a/John street, block 123, #01-01 r/Mother #/bestMomAward`
-* `nok 2`
+* `nok 5 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`
+This adds a next of kin to John Doe.
+
+<p align="center">
+
+<img src="images/addNok_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/addNok_after.png"/>
+
+</p>
+
+* `nok 5`
+This deltes the next of kin of John Doe.
+
+<p align="center">
+
+<img src="images/deleteNok_before.png"/>
+
+</p>
+
+<p align="center">
+
+<img src="images/deleteNok_after.png"/>
+
+</p>
 
 ### Exporting address books to csv
 
@@ -473,10 +712,14 @@ Export Students, Tutors, and TuitionClasses address books into their own .csv fi
 
 Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and click on "*Export*" in the dropdown menu.
 
-<img src="images/exportButton.png" width="400">
-
 * The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
 * The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
+
+<p align="center">
+
+<img src="images/exportButton.png"/>
+
+</p>
 
 ---
 
