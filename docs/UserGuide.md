@@ -7,16 +7,16 @@ FindMyIntern helps students who are applying for internships keep track of their
 ## Table of Contents
 
 The user guide is divided into different sections. Click on any of the sections to jump right into that section!
-<div>
-<div markdown="1">
-<h6 markdown="1">[Quick Start](#quick-start)</h6>
+<div class="card">
+<div markdown="1" class="card-body">
+<h6 markdown="1" class="card-title">[Quick Start](#quick-start)</h6>
 This section teaches you how to install and **get started** with FindMyIntern.
 </div>
 </div>
 
-<div>
-<div markdown="1">
-<h6 markdown="1">[Features](#features)</h6>
+<div class="card">
+<div markdown="1" class="card-body">
+<h6 markdown="1" class="card-title">[Features](#features)</h6>
 This section contains **everything you need to know** about the features in FindMyIntern.
 It includes:
   - [Commands](#commands)
@@ -25,23 +25,23 @@ It includes:
 </div>
 </div>
 
-<div>
-<div markdown="1">
-<h6 markdown="1">[FAQ](#faq)</h6>
+<div class="card">
+<div markdown="1" class="card-body">
+<h6 markdown="1" class="card-title">[FAQ](#faq)</h6>
 This section includes all frequently asked questions about FindMyIntern.
 </div>
 </div>
 
-<div>
-<div markdown="1">
-<h6 markdown="1">[Appendix](#appendix)</h6>
+<div class="card">
+<div markdown="1" class="card-body">
+<h6 markdown="1" class="card-title">[Appendix](#appendix)</h6>
 This section specifies **the input details** that you have to be aware of in FindMyIntern.
 </div>
 </div>
 
-<div>
-<div markdown="1">
-<h6 markdown="1">[Command Summary](#command-summary)</h6>
+<div class="card">
+<div markdown="1" class="card-body">
+<h6 markdown="1" class="card-title">[Command Summary](#command-summary)</h6>
 This section contains the formats of all commands in FindMyIntern.
 </div>
 </div>
@@ -141,7 +141,16 @@ Format: `help`
 
 Adds an internship application to the tracker.
 
-Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…
+        ```
+    </div>
+</div>
 
 * Default [application status](#application-status) is "Applied".
 * `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change [application status](#application-status) to "Shortlisted".
@@ -179,7 +188,16 @@ Examples:
 
 Edits an existing internship application in the tracker.
 
-Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…
+        ```
+    </div>
+</div>
 
 * Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed
   internship application list. The index **must be a positive integer** 1, 2, 3…
@@ -227,7 +245,16 @@ Examples:
 
 Marks an internship [application status](#application-status).
 
-Format: `mark INDEX s/APPLICATION_STATUS`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        mark INDEX s/APPLICATION_STATUS
+        ```
+    </div>
+</div>
 
 * Updates the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed 
   internship application list. The index **must be a positive integer** 1, 2, 3…
@@ -246,13 +273,31 @@ Examples:
 
 Shows a list of all internship applications.
 
-Format: `list`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        list
+        ```
+    </div>
+</div>
 
 #### Deleting an internship application: `delete`
 
 Deletes an internship application.
 
-Format: `delete INDEX`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        delete INDEX
+        ```
+    </div>
+</div>
 
 * Deletes the internship application at the specified `INDEX`.
 * The `INDEX` refers to the index number shown in the displayed internship application list.
@@ -263,7 +308,16 @@ Examples:
 
 #### Filtering for internship applications of a specific status: `filter`
 
-Format: `filter APPLICATION_STATUS`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        filter APPLICATION_STATUS
+        ```
+    </div>
+</div>
 
 * Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
 
@@ -277,7 +331,16 @@ Examples:
 
 Finds internship applications where the company's name and tags contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]…`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        find KEYWORD [MORE_KEYWORDS]…
+        ```
+    </div>
+</div>
 
 * The search is case-insensitive e.g `google` will match `Google`
 * Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo` 
@@ -286,15 +349,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
 <div class="me-2">
   <span class="badge text-bg-info">INFO</span>
 </div>
-<div markdown="span">
-**`filter` vs `find`**<br>
-`filter` and `find` commands may seem similar, here are some differences to take note of:
-
+<div>
+<b><code><b>filter</b></code> vs <code><b>find</b></code></b><br>
+<code>filter</code> and<code>find</code> commands may seem similar, here are some differences to take note of:
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">`filter`</th> 
-      <th scope="col">`find`</th>
+      <th scope="col"><code>filter</code></th> 
+      <th scope="col"><code>find</code></th>
     </tr>
   </thead>
   <tbody>
@@ -307,7 +369,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
       <td>Can accept <b>any input</b></td>
     </tr>
   </tbody>
-</table>  
+</table>
 </div>
 </div>
 
@@ -323,7 +385,16 @@ Examples:
 
 Sorts the internship applications with the latest date at top to earliest at the bottom.
 
-Format: `sort CRITERIA`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        sort CRITERIA
+        ```
+    </div>
+</div>
 
 * Sort criteria **must be one of the following**:
     * `applied`
@@ -347,7 +418,16 @@ Applications without interview date will remain in the original order at the bot
 
 Clears all internship applications from the tracker.
 
-Format: `clear`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        clear
+        ```
+    </div>
+</div>
 
 <div class="d-flex alert alert-danger">
 <div class="me-2">
@@ -362,7 +442,16 @@ This command will clear the entire list of internships without warning.
 
 Exits the program.
 
-Format: `exit`
+<div class="d-flex alert alert-secondary">
+    <div class="me-2">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```text
+        exit
+        ```
+    </div>
+</div>
 
 ### Saving and Editing
 
