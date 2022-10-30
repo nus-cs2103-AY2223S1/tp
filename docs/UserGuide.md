@@ -8,7 +8,10 @@ title: User Guide
 In this user guide, you will find instructions on how to install TaskBook and use its many feature to manage your tasks.
 
 Choose a topic from the table of contents below to find out how to manage your apps using Task Book!
-## Table of Contents {:toc}
+## Table of Contents
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
