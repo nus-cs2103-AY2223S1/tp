@@ -48,7 +48,7 @@ This document was created to provide future developers with readable and compreh
 
 ### Scope
 
-The **RC4HDB** developer's guide covers the high and low level design details of our application, along with other potential implementations that we have considered and the reasons for our choice of our current implementation. It also covers how you can go about [testing our application](#appendix-instructions-for-manual-testing), the [project requirements](#appendix-project-requirements) and finally, .
+The **RC4HDB** developer's guide covers the high and low level design details of our application, along with other potential implementations that we have considered and the reasons for our choice of our current implementation. It also covers our [project requirements](#appendix-project-requirements), how you can go about [testing our application](#appendix-instructions-for-manual-testing) and even how you can [join us](#joining-us).
 
 ### Format of the guide
 
