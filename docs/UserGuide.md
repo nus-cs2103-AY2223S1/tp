@@ -315,6 +315,14 @@ Examples:
 * `hide appts s/marked` hides all appointments that has been marked.
 * `hide appts s/um` hides all appointments that has been ummarked.
 
+Example:
+
+Before hide 
+[before_Hide](images/beforeHide.png)
+
+After hide 
+[after_Hide](images/afterHide.png)
+
 #### Unhiding appointments by reason, tag or status: `unhide appts`
 
 By reason:
