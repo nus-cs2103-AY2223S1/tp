@@ -252,7 +252,7 @@ The proposed design for the UI is to follow the [Material Design system](https:/
 However due to limitations of JavaFx, we will only be mainly focusing on adhering the color system
 and typography, with the other foundations serving more of a guide for future component designs.
 
-The main stylesheet can be found under `resources/view/LightTheme.css`. The primary colour chosen is `#9837d9`, with the full colour palette shown below.
+The main stylesheet can be found under `resources/view/LightTheme.css`. The primary color chosen is `#9837d9`, with the full color palette shown below.
 
 ![colorpalette](images/colorpalette.jpg)
 
@@ -354,7 +354,7 @@ message generate 4 1
 
 *Hello Bob, long time no see! Are you free tomorrow? I'd like to share something exciting with you!*
 
-Step 3: The user realises his first attempt at a pitch isn't working well, so they delete the message from the address book. `DeleteMessageCommand#execute()` calls `ModelManager#deleteMessage()`, which calls `AddressBook#deleteMessage()`, which deletes the message from `AddressBook#messages`
+Step 3: The user realizes his first attempt at a pitch isn't working well, so they delete the message from the address book. `DeleteMessageCommand#execute()` calls `ModelManager#deleteMessage()`, which calls `AddressBook#deleteMessage()`, which deletes the message from `AddressBook#messages`
 
 ```
 message delete 1
@@ -405,7 +405,7 @@ We can also remove tags from a user using the `tag remove` command. For example,
         * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
     * Cons:
         * Forces the creation of a few unique commands. Not user-friendly as the user is expected
-          to memorise all commands.
+          to memorize all commands.
 
 * **Alternative 2:** Building on top of the `add` and `edit` commands.
     * Pros:
@@ -428,10 +428,11 @@ The following commands are provided:
 
 * `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags
 
-The command utilises the  `FilterCommandPredicate` class to aggregate the filters specified and handle the filtering. `FilterCommandPredicate` is created during parsing when `filter` commands are executed. The following is the sequence diagram for parsing of the `filter` command.
+The command utilizes the  `FilterCommandPredicate` class to aggregate the filters specified and handle the filtering. `FilterCommandPredicate` is created during parsing when `filter` commands are executed. The following is the sequence diagram for parsing of the `filter` command.
+
 ![FilterParseSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
 
-Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Addtionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
+Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Additionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
 
 ![FilterClassDiagram](images/command-filter/FilterClassDiagram.svg)
 
@@ -471,7 +472,7 @@ filter clear n=bob,alan
     * Cons:
       * It might be unintuitive for the user to see the list expanding after a new filter is applied.
 
-* **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commadns are reduced with `AND`.
+* **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commands are reduced with `AND`.
     * Pros:
     	* Provides a lot of flexibility for the user
     * Cons:
@@ -594,7 +595,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user     | delete client information                               | remove entries that I no longer need                                   |
 | `* * *`  | user     | modify a client entry easily                            | ensure that client information is up to date                           |
 | `* * *`  | user     | filter my clients by name                               | locate details of clients without having to go through the entire list |
-| `* *`    | user     | classify my clients with different tags                 | know who to prioritise                                                 |
+| `* *`    | user     | classify my clients with different tags                 | know who to prioritize                                                 |
 | `* *`    | user     | filter my clients based on tags assigned to them        | access relevant client data easily                                     |
 | `* *`    | user     | view clients from a certain demographic                 | get a better overview of what my client base is like                   |
 | `* *`    | user     | get things done fast with minimal typing                | save time                                                              |
@@ -676,7 +677,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to show a list of filters already applied.
-2. Rapporbook displays a list of filters applied.
+2. Rapportbook displays a list of filters applied.
 
     Use case ends
 **Extensions**
@@ -698,7 +699,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to show a [list of filters already applied](#use-case-list-filters-applied).
-2. Rapporbook displays a list of filters applied.
+2. Rapportbook displays a list of filters applied.
 3. User requests to clear filters that were originally applied.
 4. Rapportbook shows a list of contacts without the filters applied.
 
