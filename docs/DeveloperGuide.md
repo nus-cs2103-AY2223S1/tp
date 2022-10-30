@@ -625,7 +625,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Due to time and manpower constraints, several good-to-have features were considered for future developments.
 
 ### 1. Undo Command
-Several of the commands can create drastic changes to the data in Mass Linkers, such as `mod mark` which would mark every module for all students as taken and `clear` which would delete all the data existing in Mass Linkers. 
+Several of the commands can create drastic changes to the data in Mass Linkers, such as `mod mark all` which would mark every module for all students as taken and `clear` which would delete all the data existing in Mass Linkers. 
 
 Having an `undo` feature would be valuable to help users overcome the problem of executing these commands unintentionally and needing to revert the changes made. 
 
