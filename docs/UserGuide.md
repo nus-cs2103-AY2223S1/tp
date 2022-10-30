@@ -9,7 +9,7 @@ title: User Guide
 ### About GREWZ
 Tired of opening multiple applications for your teaching needs? Look no further!
 
-GREWZ is your all-in-one **address book desktop application designed for university teaching assistants** to manage their personal homework and their students. It manages attendance of your students, organises your contacts and keeps track of your own homework!
+GREWZ is your all-in-one **address book desktop application designed for university teaching assistants** to manage their personal homework and their students. It manages your personal tasks and attendance of your students!
 
 GREWZ boasts a timeless, compartmentalised Graphical User Interface(GUI) while utilising a clean Command Line Interface(CLI) - this means that the faster you can type, the faster you can get your work done.
 
@@ -26,6 +26,12 @@ If you want the quick overview of GREWZ commands, jump over to [Command Summary]
 
 Take note of the following symbols and formatting used in this document:
 
+
+| Symbol      | Meaning                                                        |
+|-------------|----------------------------------------------------------------|
+|:information_source:| Provides notes for the user                             |
+|:exclamation:| Possible errors that might come from user interaction          |
+|:bulb:        | Provides additional information about the feature              |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -216,7 +222,7 @@ To aid teaching assistants in keeping track of attendance, we developed a featur
 
 ### Adding an attendance list to a student: `attendance add`
 
-Adds an attendance list to a student in the contact list. 
+Adds an attendance list to a student in contacts. 
 
 Format: `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`
 
@@ -228,6 +234,10 @@ There can only be a maximum of one attendance list for each student for ease of 
 Examples:
 ```attendance add 1 c/CS2030 s/10```
 ```attendance add 1 c/CS2040 s/1```
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you add an attendance list to a student with an attendance list, it overwrites the attendance list data.
+</div>
 
 ### Marking attendance of student: `attendance mark`
 
@@ -384,8 +394,11 @@ Examples:
 
 **Q:** How do I transfer my data into another computer?
 <br />
-**A:** Install the app in the other computer. From your current computer, transfer the "data" folder from GREWZ to your new GREWZ folder.
+**A:** Install the app in the other computer and overwrite the empty data files it creates with the files that contain data of your previous GREWZ data folder.
 
+**Q:** How to use attendance commands?
+<br />
+**A:** Initially, each student has no attendance list. You should add an attendance list and mark different lessons that the student attends or unmark them if they are not present. At the end of the semester, you can delete the attendance list when not needed.
 
 --------------------------------------------------------------------------------------------------------------------
 
