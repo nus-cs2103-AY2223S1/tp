@@ -249,7 +249,7 @@ Welcome to your new and organized life, and happy (financial) advising!
 
 ## 7. Features
 
-This section guides you on how to use features available in *MyInsuRec*. We lay out the command and parameters needed to use the feature, show some examples as well as its expected behaviour. We also include some tips and tricks (yay!) on how you can better use the feature and *MyInsuRec*.
+This section guides you on how to use features available in *MyInsuRec*. We will lay out the command and parameters needed to use the feature, and show some examples as well as its expected behaviour. We also include some tips and tricks (yay!) on how you can better use the feature and *MyInsuRec*.
 
 **Do take some time to read the following note** to better understand how you can use this section!
 
@@ -433,7 +433,9 @@ Use case:
 1. You have just scheduled a meeting with a client! You can use this command to add the details of the meeting into _MyInsuRec_ to help remember the meeting details.
 
 Examples:
-* Add meeting for client with an `INDEX` of 1
+
+Suppose MyInsuRec contains only one client 'Alex':
+* Add a meeting with Alex on 28-Sep-2022 from 2PM to 3PM
   * `addMeeting i/1 d/28092022 st/1400 et/1500 dn/Alex's Policy Renewal`
 
 <div markdown="span" class="alert alert-success">**:bulb: Tips and tricks:**
