@@ -989,7 +989,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 
-2. Listing all residents in the resident list after calling `showonly` or `hideonly`
+2. Listing all resident fields after calling `showonly` or `hideonly`
 
     1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
        the full set of resident fields.
@@ -1007,7 +1007,63 @@ testers are expected to do more *exploratory* testing.
        Expected: The set of fields displayed does not change. Error details shown in the status message.
        
     5. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
-          Expected: Similar to previous.
+       Expected: Similar to previous.
+       
+### Showing/hiding and resetting resident fields
+
+1. Using `showonly` to show only some resident fields + `reset`
+
+    1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
+       the full set of resident fields.
+       
+    2. Enter `showonly n p e`.
+       Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email`
+       columns are shown in the table.
+       
+    3. Enter `showonly r m g h`.
+       Expected: The set of resident fields being displayed does not change as the specified fields are not present
+       in the current table. Error details are shown in the status message. 
+       
+    4. Enter `showonly n`.
+       Expected: The list of residents being displayed does not change, but only the `name` column is shown in 
+       the table.
+       
+    5. Enter `reset`.
+       Expected: The full set of resident fields is displayed in the table.
+       
+    6. Note the incorrect command: `showonly`
+       Expected: The set of resident fields being displayed does not change. Error details are shown in the status 
+       message. 
+
+
+2. Using `hideonly` to hide only some resident fields + `reset`
+
+    1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
+       the full set of resident fields.
+
+    2. Enter `hideonly i r m g h t`.
+       Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email`
+       columns are shown in the table.
+
+    3. Enter `hideonly r h`.
+       Expected: The set of resident fields being displayed does not change as the specified fields are not present
+       in the current table. Error details are shown in the status message.
+
+    4. Enter `hideonly p e`.
+       Expected: The list of residents being displayed does not change, but only the `name` column is shown in
+       the table.
+       
+    5. Enter `hideonly n`.
+       Expected: The set of resident fields being displayed does not change as users cannot hide all columns. Error
+       details are shown in the status message.
+       the table.
+
+    6. Enter `reset`.
+       Expected: The full set of resident fields is displayed in the table.
+
+    7. Note the incorrect command: `hideonly`
+       Expected: The set of resident fields being displayed does not change. Error details are shown in the status
+       message.
 
 ### Deleting a person
 
