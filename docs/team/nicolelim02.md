@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to suggest a recommended calorie intake for the user (Pull requests [\#67](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/67) and [\#107](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/107)). 
   * What it does: Suggests an estimated recommended daily calorie intake so that the user can reach his/her ideal weight.
   * Justification: The user can set a target calorie intake, but the user may not be aware of the amount of calories the user should be consuming to reach his/her goal. 
-  * Highlights: This allows the user the get an estimate of the amount of calories the user should consume in a day and complements the `target` command implemented.
+  * Highlights: This allows the user to get an estimate of the amount of calories to consume in a day and complements the `target` command implemented.
 
 * **Code contributed**: 
   * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nicolelim02&breakdown=true)
