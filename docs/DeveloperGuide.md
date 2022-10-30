@@ -229,7 +229,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 #### Design Considerations
 
-##### Aspect: How find executes:
+**Aspect: How find executes:**
 
 * **Alternative 1 (current choice):** One `FindCommand` class and `COMMAND_WORD` that handles both generic and
 prefix-based find.
@@ -386,6 +386,8 @@ It is designed to be an optional feature, as it is meant to be a supplementary s
 
 ### Rating feature
 
+#### Implementation
+
 The proposed `Rating` feature is added as an attribute under the `Person` class.
 
 A `Rating` class is created, and is implemented via a `String`. The String can only take in integers from 1 to 10 inclusive.
@@ -407,15 +409,15 @@ Here is an example of what happens when the recruiter attempts to add a rating t
 
 #### Design Considerations
 
-##### Aspect: Compulsory vs Non-compulsory
+**Aspect: Compulsory vs Non-compulsory**
 It is designed to be a non-compulsory feature, as the recruiter might not be able to rate every candidate at every stage of the recruiting process.
 
-##### Aspect: Argument type of the `Rating` constructor
+**Aspect: Argument type of the `Rating` constructor**
 It is designed to take in a String, as Commands are parsed as a String. However, the constructor will parse the String and the Rating is stored as an Integer.
 
 ### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -517,11 +519,6 @@ This is because the recruiter would have no opinion about candidates with no rat
 
 The purpose of this feature is such that recruiters can view candidates based on order of desirability, and they would not need to look at candidates with no rating and they do not know their desirability yet. 
 
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Add/Edit/Delete Tags Feature
 
 #### Implementation
@@ -558,7 +555,7 @@ Given below is an example usage scenario and how the add/edit/delete Tag mechani
     * Cons: Allowing `Person` to be mutated may not be safe and defensive.
 
 
-### \[Implemented\] Create/Edit/Delete Tag Types feature
+### Create/Edit/Delete Tag Types feature
 
 For the ease of classifying tags and storing candidate information in a more organised way, users can now also create Tag Types and assign tags to the relevant Tag Types.
 
@@ -579,7 +576,7 @@ Given below is an example usage scenario and how the create/edit/delete Tag Type
 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the existing Tag Type Grade and rename it as Score. The `editTagType` command calls the `UniqueTagTypeMap#setExistingTagType()` to remove the grdt/ — Grade key-value pair from the `prefixMap` and add scrt/ — Score key-value pair to the `prefixMap`. Furthermore, the `editTagType` command also calls 'Model#editTagTypeForAllPerson()' to edit the Grade Tag Type name and rename it as Score Tag Type for all person who had Tags of Grade Tag Type.
 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
 
-### \[Implemented\] Status feature
+### Status feature
 
 #### Implementation
 
@@ -617,7 +614,7 @@ Here is an example of what happens when the recruiter attempts to edit a candida
 
 It is designed to be a mandatory feature, as every candidate under the recruiting process must be at an application stage.
 
-### \[Implemented\] Note feature
+### Note feature
 
 #### Implementation
 
@@ -655,7 +652,9 @@ Here is an example of what happens when the recruiter attempts to edit a candida
 
 It is designed to be an optional feature, as it is meant to be a supplementary source of notetaking that recruiters can make on candidates saved.
 
-### \[Implementing\] Rating feature
+### Rating feature
+
+#### Implementation
 
 The proposed `Rating` feature is added as an attribute under the `Person` class.
 
@@ -678,11 +677,17 @@ Here is an example of what happens when the recruiter attempts to add a rating t
 
 #### Design Considerations
 
-#### Aspect: Compulsory vs Non-compulsory
+**Aspect: Compulsory vs Non-compulsory**
+
 It is designed to be a non-compulsory feature, as the recruiter might not be able to rate every candidate at every stage of the recruiting process.
 
-#### Aspect: Argument type of the `Rating` constructor
+**Aspect: Argument type of the `Rating` constructor**
+
 It is designed to take in a String, as Commands are parsed as a String. However, the constructor will parse the String and the Rating is stored as an Integer.
+
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
