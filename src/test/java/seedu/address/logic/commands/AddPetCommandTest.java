@@ -63,12 +63,6 @@ public class AddPetCommandTest {
             assertEquals(expectedResult, commandResult.getFeedbackToUser());
         }
 
-        idList = modelStub.getFilteredSupplierList().get(1).getPetIds();
-
-        for (int i = 0; i < idList.size(); i++) {
-            assertEquals(idList.get(i), validPets.get(i).getId());
-        }
-
         // Different index
         modelStub = new ModelStubAcceptingPetAdded();
         validPet = new PetBuilder().build();
