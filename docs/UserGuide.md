@@ -463,6 +463,17 @@ These features and techniques serve to make your usage of the application **smoo
 
 #### Getting help : `help`
 
+If you have read the full User Guide up to this point, well done!
+There can be a lot of information to take in, so if you ever _feel lost_ while using Coydir, getting help with the commands is just a simple step away.
+
+Entering the `help` command will open up window with the command summary for the various functions of the application, and if you have more doubts, the _Help Window_ also contains a button to open up this User Guide in your browser.
+
+Format: `help`
+
+With this command, you should see a window like this appear.
+
+**[Insert screenshot of updated Help Window]**
+
 #### Exiting the program : `exit`
 
 Exits the program.
