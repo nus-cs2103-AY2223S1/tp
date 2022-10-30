@@ -82,7 +82,6 @@ public class TypicalPersons {
             .withName(VALID_NAME_CABE).withPhone(VALID_PHONE_CABE)
             .withEmail(VALID_EMAIL_CABE).withGender(VALID_GENDER_CABE).withTags(VALID_TAG_FRIEND)
             .withLocation("JIN")
-            .withGithubUsername("cabe")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
