@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RACE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -43,6 +42,7 @@ public class DeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -68,6 +68,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
+        expectedModel.commitAddressBook();
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -89,15 +90,16 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validRaceUnfilteredList_success() {
-        Race race = new Race(VALID_RACE_AMY);
+        Race race = new Race("White American");
         DeleteCommand deleteCommand = new DeleteCommand(Optional.empty(), Optional.of(race), Optional.empty(),
                 Optional.empty());
-        model.updateFilteredPersonList(p -> p.getRace() == race);
-        List<Person> personList = model.getFilteredPersonList();
+        model.updateFilteredPersonList(p -> p.getRace().equals(race));
+        List<Person> personList = new ArrayList<>();
+        personList.addAll(model.getFilteredPersonList());
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personList.toString());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        deletePersons(expectedModel, p -> p.getRace() == race);
+        deletePersons(expectedModel, p -> p.getRace().equals(race));
         expectedModel.commitAddressBook();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

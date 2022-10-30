@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -28,10 +29,8 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list"
             + " OR delete all persons satisfying the specified attributes.\n"
-            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n"
-            + "[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] "
-            + "[b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]\n" + "Example: " + COMMAND_WORD
-            + " ra/Chinese re/Christian";
+            + "Parameters: INDEX (must be a positive integer) OR [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]\n"
+            + "Example: " + COMMAND_WORD + " 1" + " OR " + COMMAND_WORD + " ra/Chinese re/Christian";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -68,6 +67,7 @@ public class DeleteCommand extends Command {
 
             Person personToDelete = lastShownList.get(targetIndex.get().getZeroBased());
             model.deletePerson(personToDelete);
+            model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
         }
 
@@ -77,6 +77,12 @@ public class DeleteCommand extends Command {
 
         model.updateFilteredPersonList(predicate);
         List<Person> personList = new ArrayList<>();
+        if (model.getFilteredPersonList().isEmpty()) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+
         personList.addAll(model.getFilteredPersonList());
 
         for (Person p : personList) {
