@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
+import static java.time.format.ResolverStyle.STRICT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ELEMENT;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,12 +28,18 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_DATE = "29022021";
+    private static final String INVALID_BIRTHDAY = "29022021";
     private static final String INVALID_PRODUCT = "#Invalid product";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "12345678";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_DATE = "28022021";
+    private static final String VALID_START_TIME_1 = "1200";
+    private static final String VALID_END_TIME_1 = "1300";
+    private static final String VALID_BIRTHDAY = "28022021";
     private static final String VALID_PRODUCT_1 = "Product1";
     private static final String VALID_PRODUCT_2 = "Product2";
 
@@ -146,6 +155,36 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseDate_nullDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null, "birthday"));
+    }
+
+    @Test
+    public void parseDate_validBirthday_returnsLocalDate() throws Exception {
+        LocalDate expectedDate = LocalDate.parse(
+                        VALID_BIRTHDAY,
+                        DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(STRICT));
+        // test heuristics: valid input at least once: valid birthday, valid meeting
+        // ep: valid birthday, invalid birthday
+        assertEquals(expectedDate, ParserUtil.parseDate(VALID_BIRTHDAY, "birthday"));
+    }
+
+    @Test
+    public void parseDate_validMeeting_returnsLocalDate() throws Exception {
+        LocalDate expectedDate = LocalDate.parse(
+                VALID_DATE,
+                DateTimeFormatter.ofPattern("ddMMuuuu").withResolverStyle(STRICT));
+        // test heuristics: valid input at least once: valid birthday, valid meeting
+        assertEquals(expectedDate, ParserUtil.parseDate(VALID_DATE, "meeting"));
+    }
+
+    @Test
+    public void parseDate_invalidBirthday_throwsParseException() {
+        // ep: valid birthday, invalid birthday
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_BIRTHDAY, "birthday"));
     }
 
     @Test

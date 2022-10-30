@@ -93,6 +93,13 @@ public class ClientBuilder {
         this.email = Optional.of(new Email(email));
         return this;
     }
+    /**
+     * Sets the {@code Birthday} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withBirthday(LocalDate birthday) {
+        this.birthday = Optional.of(new Birthday(birthday));
+        return this;
+    }
 
     /**
      * Parses the {@code products} into a {@code Set<Product>} and set it to the {@code Client} that we are building.
