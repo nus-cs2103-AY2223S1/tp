@@ -31,7 +31,7 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -61,11 +61,14 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 2. Features
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+
+* Command words are CASE_SENSITIVE and should all be in `lower-case`.<br>
+  e.g. `add` instead of `ADD`, `Add`, `aDd`,..., using `non lower-case` command words will result in command being not recognised.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -87,15 +90,15 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
 </div>
 
-### Viewing help : `help`
+### 2.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/screenshots/HelpCommand/HelpCommand.png)
 
 Format: `help`
 
-### Adding a Customer: `add`
+### 2.2 Adding a Customer: `add`
 
 Adds a Customer to bobaBot.
 
@@ -109,9 +112,37 @@ A customer can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com m/1 r/0 `
-* `add n/Betsy Crowe p/91234567 e/betsycrowe@example.com m/2 r/5000 t/member t/gold`
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
 
-### Editing a Customer’s details: `edit`
+    **Before executing the AddCommand:**
+
+    ![AddCommand1](images/screenshots/AddCommand/AddCommand1.png)
+
+    **After executing the AddCommand:**
+
+    ![AddCommand1Result](images/screenshots/AddCommand/AddCommand1Result.png)
+    </details>
+
+
+* `add n/Charlie Puth p/81234567 e/charlie@puth.com r/3000 t/silver m/12`
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+
+    **Before executing the AddCommand:**
+
+    ![AddCommand](images/screenshots/AddCommand/AddCommand.png)
+
+    **After executing the AddCommand:**
+
+    ![AddCommandResult](images/screenshots/AddCommand/AddCommandResult.png)
+    </details>
+
+### 2.3 Editing a Customer’s details: `edit`
 
 Edits an existing Customer in bobaBot.
 
@@ -123,36 +154,135 @@ At least one of the optional fields must be provided
 </div>
 
 Examples:
-* `edit p/91234567 e/johndoe@example.com r/1000`
-* `edit e/peterparker@example.com r/420`
+* `edit p/81234567 p/88888888`
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
 
-### Increasing a Customer’s Reward points: `incr`
+    **Before executing the EditCommand via `PHONE_NUMBER`:**
+
+    ![EditCommandViaPhone](images/screenshots/EditCommand/EditCommand_Phone.png)
+
+    **After executing the EditCommand via `PHONE_NUMBER`:**
+
+    ![EditCommandViaPhoneResult](images/screenshots/EditCommand/EditCommand_PhoneResult.png)
+    </details>
+
+
+* `edit e/charlie@puth.com e/taylor@swift.com`
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+
+    **Before executing the EditCommand via `EMAIL`:**
+
+    ![EditCommandViaEmail](images/screenshots/EditCommand/EditCommand_Email.png)
+
+    **After executing the EditCommand via `EMAIL`:**
+
+    ![EditCommandViaEmail](images/screenshots/EditCommand/EditCommand_EmailResult.png)
+    </details>
+
+### 2.4 Increasing a Customer’s Reward points: `incr`
 
 Increases the Reward points of existing Customer in bobaBot.
 
 Format: `incr INCREMENT_VALUE p/PHONE_NUMBER OR incr INCREMENT_VALUE e/EMAIL`
 
 Examples:
-* `incr 100 p/91234567`
-* `incr 200 e/milesmorales@example.com`
+* `incr 100 p/88888888`
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
 
-### Decreasing a Customer’s Reward points: `decr`
+    **Before executing the IncreaseCommand via `PHONE_NUMBER`:**
+
+    ![IncreaseCommandViaPhone](images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png)
+
+    **After executing the IncreaseCommand via `PHONE_NUMBER`:**
+
+    ![IncreaseCommandViaPhoneResult](images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png)
+    </details>
+
+
+* `incr 1000 e/alexyeoh@example.com`
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+
+    **Before executing the IncreaseCommand via `EMAIL`:**
+
+    ![IncreaseCommandViaEmail](images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png)
+
+    **After executing the IncreaseCommand via `EMAIL`:**
+
+    ![IncreaseCommandViaEmailResult](images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png)
+    </details>
+
+### 2.5 Decreasing a Customer’s Reward points: `decr`
 
 Decreases the Reward points of existing Customer in bobaBot.
 
 Format: `decr DECREMENT_VALUE p/PHONE_NUMBER OR decr DECREMENT_VALUE e/EMAIL`
 
 Examples:
-* `decr 100 p/91234567`
-* `decr 200 e/gwenstacy@example.com`
+* `decr 200 p/87438807`
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
 
-### Listing all customers : `list`
+    **Before executing the IncreaseCommand via `PHONE_NUMBER`:**
+
+    ![DecreaseCommandViaPhone](images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png)
+
+    **After executing the IncreaseCommand via `PHONE_NUMBER`:**
+
+    ![DecreaseCommandViaPhoneResult](images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png)
+    </details>
+
+
+* `decr 500 e/taylor@swift.com`
+
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+
+    **Before executing the IncreaseCommand via `EMAIL`:**
+
+    ![DecreaseCommandViaEmail](images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png)
+
+    **After executing the IncreaseCommand via `EMAIL`:**
+
+    ![DecreaseCommandViaEmailResult](images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png)
+    </details>
+
+### 2.6 Listing all customers : `list`
 
 Shows a list of all Customers in bobaBot.
 
 Format: `list`
 
-### Locating customers by name: `find`
+<details>
+<summary>
+Walk-through with Images
+</summary>
+
+**Before executing the ListCommand:**
+
+![ListCommand](images/screenshots/ListCommand/ListCommand.png)
+
+**After executing the ListCommand**
+
+![ListCommandResult](images/screenshots/ListCommand/ListCommandResult.png)
+</details>
+
+### 2.7 Locating customers by name: `find`
 
 Finds Customers whose information (including name, phone, email, address) contain any of the given keywords.
 
@@ -163,20 +293,111 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Customers matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * When searching for names, fuzzy search based on Soundex will be used
-  e.g. `Aschcroft` will match `Aschcraft`
+  e.g. `Aschcroft` will match `Aschcraft`, similarly `Bob` will match `Bop`
 * No need to type in the whole word. e.g `9927` will match `27859927`
 * For precise searching, specify the corresponding attribute (phone number or email)
   e.g. `find p/88888888` will only match the customer with phone number `88888888`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`
-* `find Aschcroft` returns `Aschcroft`, `Ashcraft`, and `Aschcraft`
-* `find 43` returns both `Alex Yeoh` and `David Li` 
-* `find p/87438807` returns only `Alex Yeoh` <br>
-  ![result for 'find alex david'](images/findAlexResult.png)
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
 
-### Deleting a Customer : `delete`
+    **Before executing the FindCommand:**
+
+    ![FindCommandMultiple](images/screenshots/FindCommand/FindCommandNormal.png)
+
+    **After executing the FindCommand:**
+
+    ![FindCommandMultipleResult](images/screenshots/FindCommand/FindCommandNormalResult.png)
+    </details>
+
+
+* `find alex david` returns `Alex Yeoh`, `David Li`
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+
+    **Before executing the FindCommand (with at least one keyword):**
+
+    ![FindCommandMultiple](images/screenshots/FindCommand/FindCommandMultiple.png)
+
+    **After executing the FindCommand (with at least one keyword):**
+
+    ![FindCommandMultipleResult](images/screenshots/FindCommand/FindCommandMultipleResult.png)
+    </details>
+
+
+* `find Bob` returns `Bob` and `Bop`
+
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+
+    **Before executing the FindCommand (with FuzzySearch):**
+
+    ![FindCommandFuzzy](images/screenshots/FindCommand/FindCommand_Fuzzy.png)
+
+    **After executing the FindCommand (with FuzzySearch):**
+
+    ![FindCommandFuzzyResult](images/screenshots/FindCommand/FindCommand_FuzzyResult.png)
+    </details>
+
+
+* `find 8000` returns both `Roy Balakrishnan` and `Bob` 
+
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+
+    **Before executing the FindCommand (with matching keywords `8000`):**
+
+    ![FindCommandGeneral](images/screenshots/FindCommand/FindCommand_General.png)
+
+    **After executing the FindCommand (with matching keywords `8000`):**
+    * Both `Roy` and `Bob` have `8000` reward points hence they show up in the search.
+
+    ![FindCommandGeneralResult](images/screenshots/FindCommand/FindCommand_GeneralResult.png)
+    </details>
+
+
+* `find p/87438807` returns only `Alex Yeoh` <br>
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+
+    **Before executing the FindCommand via `PHONE_NUMBER`:**
+
+    ![FindCommandPhone](images/screenshots/FindCommand/FindCommand_Phone.png)
+
+    **After executing the FindCommand via `PHONE_NUMBER`:**
+
+    ![FindCommandPhoneResult](images/screenshots/FindCommand/FindCommand_PhoneResult.png)
+    </details>
+
+
+* `find e/charlotte@example.com` returns only `Charlotte Oliveiro` <br>
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+
+    **Before executing the FindCommand via `EMAIL`:**
+
+    ![FindCommandEmail](images/screenshots/FindCommand/FindCommand_Email.png)
+
+    **After executing the FindCommand via `EMAIL`:**
+
+    ![FindCommandEmailResult](images/screenshots/FindCommand/FindCommand_EmailResult.png)
+    </details>
+
+### 2.8 Deleting a Customer : `delete`
 
 Removes a Customer from bobaBot.
 
@@ -190,50 +411,164 @@ Format:
 * Deletes the Customer with the following `EMAIL` when `e/` specified.
 
 Examples:
-* `delete p/87438807` removes the Customer with the phone number `87438807`.
-* `delete e/alexyeoh@example.com` removes the Customer with the email `alexyeoh@example.com`.
+* `delete p/88888888` removes the Customer with the phone number `88888888`.
 
-### Undo a Command : `undo`
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+  
+    **Before executing the DeleteCommand via `PHONE_NUMBER`:**
+  
+    ![DeleteCommandViaPhone](images/screenshots/DeleteCommand/DeleteCommand_Phone.png)
+
+    **After executing the DeleteCommand via `PHONE_NUMBER`:**
+
+    ![DeleteCommandViaPhoneResult](images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png)
+    </details>
+
+
+* `delete e/royb@example.com` removes the Customer with the email `royb@example.com`.
+  
+    <details>
+    <summary>
+    Walk-through with Images
+    </summary>
+    
+    **Before executing the DeleteCommand via `EMAIL`:**
+
+    ![DeleteCommandViaEmail](images/screenshots/DeleteCommand/DeleteCommand_Email.png)
+
+    **After executing the DeleteCommand via `EMAIL`:**
+
+    ![DeleteCommandViaEmailResult](images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png)
+    </details>
+
+### 2.9 Undo a Command : `undo`
 
 Reverts a command that has been executed. Returns bobaBot to the previous state before executing the command.
 
 Format: `undo`
 
+<details>
+<summary>
+Walk-through with Images
+</summary>
+    
+**Before executing the UndoCommand (after a DeleteCommand):**
+
+![UndoCommand](images/screenshots/UndoAndRedoCommand/UndoCommand.png)
+
+**After executing the UndoCommand (Deleted Customer `Alex Yeoh` is back into bobaBot):**
+
+![UndoCommandResult](images/screenshots/UndoAndRedoCommand/UndoCommandResult.png)
+</details>
+
 :exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
 
-### Redo an UndoCommand : `redo`
+### 2.10 Redo an UndoCommand : `redo`
 
 Reverts the UndoCommand. Returns bobaBot to the state before executing the UndoCommand.
 
 Format: `redo`
 
+<details>
+<summary>
+Walk-through with Images
+</summary>
+
+**Before executing the RedoCommand:**
+
+* This continues from the above example in UndoCommand (where we perform an UndoCommand on a DeleteCommand)
+
+![RedoCommand](images/screenshots/UndoAndRedoCommand/RedoCommand.png)
+
+**After executing the RedoCommand (The Customer `Alex Yeoh` is removed from bobaBot again):**
+
+![RedoCommandResult](images/screenshots/UndoAndRedoCommand/RedoCommandResult.png)
+</details>
+
 :exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
 
-### Clearing all entries : `clear`
+### 2.11 Clearing all entries : `clear`
 
 Clears all Customers from the bobaBot.
 
 Format: `clear`
 
-### Calculate: `calc`
+<details>
+<summary>
+Walk-through with Images
+</summary>
+
+**Before executing the ClearCommand:**
+
+![ClearCommand](images/screenshots/ClearCommand/ClearCommand.png)
+
+**After executing the ClearCommand:**
+
+![ClearCommandResult](images/screenshots/ClearCommand/ClearCommandResult.png)
+</details>
+
+### 2.12 Calculate: `calc`
 
 Do basic arithmetic calculation including +, -, *, /. Allow multiple operators and precedence
 
 Format: `calc {expression}`
 
-Example: `calc 2 * (1 + 1)`
+Example: `calc 5+2*(4-2)`
+<details>
+<summary>
+Walk-through with Images
+</summary>
 
-### GUI Calculator: `calc-gui`
+**Before executing the CalculateCommand:**
+
+![CalculateCommand](images/screenshots/CalculateCommand/NewCalculateCommand.png)
+
+**After executing the CalculateCommand:**
+
+![CalculateCommandResult](images/screenshots/CalculateCommand/NewCalculateCommandResult.png)
+</details>
+
+### 2.13 GUI Calculator: `calc-gui`
 
 Launch a GUI calculator. A calculator window will pop-up
 
 Format: `calc-gui`
 
-### Exiting the program : `exit`
+<details>
+<summary>
+Walk-through with Images
+</summary>
+
+**Before executing the CalculatorGuiCommand:**
+
+![CalculatorGuiCommand](images/screenshots/CalculateCommand/NewCalculatorGui.png)
+
+**After executing the CalculatorGuiCommand:**
+
+![CalculatorGuiCommandResult](images/screenshots/CalculateCommand/NewCalculatorGuiResult.png)
+</details>
+
+### 2.14 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+<details>
+<summary>
+Walk-through with Images
+</summary>
+
+**Before executing the ExitCommand:**
+
+![ExitCommand](images/screenshots/ExitCommand/ExitCommand.png)
+
+**After executing the ExitCommand:**
+* bobaBot Application Closed
+</details>
 
 ### Saving the data
 
@@ -253,14 +588,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 4. Command summary
 
 | Action         | Format, Examples                                                                                                                                                                                                                                                                     |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
