@@ -16,6 +16,11 @@
 
 @media print {
   article.post {
+    h2:not(:first-child) {
+      margin-top: 0;
+      page-break-before: always;
+    }
+
     h2,
     h3 {
       string-set: section_title content();
