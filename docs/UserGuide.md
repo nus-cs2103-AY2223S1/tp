@@ -47,6 +47,25 @@ as `nutrigoals.jar`. Do not delete or edit these files.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Screen layout
+
+![sampleUi](images/layout.png)
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**<br>
+
+* Food items displayed in Food List are sorted according to meal type, in the order: breakfast, lunch, dinner.
+* Upon launching the application, Food List will display food items recorded on the current day.
+* Progress Bar changes based on the total calorie intake for the current day as compared to the target calorie intake.
+  Refer to the `target` command [here](#setting-a-target-calorie-intake-target).
+* The percentage of Progress Bar can go beyond 100%, but note that if the target calorie intake is set to 0, the 
+percentage will be fixed at 100%.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -83,13 +102,23 @@ Format: `add n/FOOD c/CALORIE t/MEAL_TYPE`
 
 * Adds a food item into the food list for the current day, together with its calorie content and meal type.
 * Each field can only be specified once.
-* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
+* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner.
 
 Example:
 
 * `add n/bread c/100 t/breakfast` adds bread into the food list, and tags it as a breakfast item with 100 calories.
 * `add n/bubble tea c/300 t/lunch` adds bubble tea into the food list, and tags it as a lunch item with 300 calories.
 * `add n/hotpot c/500 t/dinner` adds hotpot into the food list, and tags it as a dinner item with 500 calories.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+`MEAL_TYPE` is case-insensitive.
+
+* E.g. `add n/hotpot c/500 t/dinner` is the same as `add n/hotpot c/500 t/dInNeR`.
+
+</div>
 
 ### Deleting a food item : `delete`
 
@@ -123,13 +152,22 @@ Example:
 * `edit 2 c/100 n/bread` edits the name and calorie content of the first item to bread and 100 respectively.
 * `list 2022-10-10` followed by `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10 to sushi. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+`MEAL_TYPE` is case-insensitive.
+
+* E.g. `edit 2 t/dinner` is the same as `edit 2 t/dInNeR`.
+
+</div>
+
 ### Listing all foods for a day: `list`
 
 Shows a list of all food items and their respective calories for the specified day (if any).
 
 Format: `list [DATE]`
 
-* Food items will be listed according to meal type, in the order: breakfast, lunch, dinner.
 * Shows the food list for the current day if no `DATE` is supplied.
 * `DATE` must be in the format `yyyy-MM-dd` if supplied.
 
@@ -154,7 +192,7 @@ Finds the calorie content of a food item.
 
 Format: `find FOOD`
 
-* Only the calorie contents of some food items are included. Refer to the list of food items [here](#food-items).
+* Only the calorie contents of some food items are included. Refer to the list of food items in the [FAQ](#faq).
 * If the user has entered a specific food item before, the `find` command will return the average calories of 
 that specific food item that the user has specified.
 
@@ -168,19 +206,18 @@ Example:
 
 `FOOD` is case-insensitive.
 
-* E.g. `find rice` is the same as find `find rIcE`.
+* E.g. `find rice` is the same as `find rIcE`.
 
 </div>
 
-### Setting a target daily calorie intake: `target`
+### Setting a target calorie intake: `target`
 
 Sets a target calorie intake for the current day.
 
 Format: `target CALORIE`
 
 * `CALORIE` can only take on integer values.
-* The initial target calorie intake is set at 2000 calories.
-* The percentage for the progress bar display will be based on the target calorie intake. 
+* The initial target calorie intake is set at 2000 calories. 
 
 Example:
 
@@ -271,9 +308,14 @@ NutriGoals data are saved in the hard disk automatically after any command that 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Food items
+## FAQ
 
-List of food items for the [find](#finding-the-calorie-content-of-a-food-item-find) feature:
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NutriGoals home folder.
+
+**Q**: What are the included food items for the [find](#finding-the-calorie-content-of-a-food-item-find) feature?<br>
+**A**: The included food items are listed below. <br>
+
 * ban mian
 * bubble tea
 * chicken rice
@@ -286,13 +328,6 @@ List of food items for the [find](#finding-the-calorie-content-of-a-food-item-fi
 * white bread
 
 _More food items coming soon in a future release..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NutriGoals home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
