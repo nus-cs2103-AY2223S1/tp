@@ -55,6 +55,11 @@ public class KeywordList {
         return keywords.size() == 0;
     }
 
+    /**
+     * Tests whether all Keyword is a valid application process.
+     *
+     * @return boolean value
+     */
     public boolean isAllValidProcess() {
         boolean result = true;
 

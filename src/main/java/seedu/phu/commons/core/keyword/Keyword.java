@@ -5,9 +5,6 @@ import static java.util.Objects.requireNonNull;
 import seedu.phu.model.internship.ApplicationProcess;
 import seedu.phu.model.internship.Date;
 
-import java.util.Locale;
-
-
 /**
  * Represent a String of keyword.
  */

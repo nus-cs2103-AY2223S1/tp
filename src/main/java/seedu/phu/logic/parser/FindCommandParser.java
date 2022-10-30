@@ -17,7 +17,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             "For the date category, all the keywords must be a valid date in dd-mm-yyyy format";
 
     public static final String INVALID_PROCESS_MESSAGE =
-            "For the application process category, all the keywords must be one of the following values (case-insensitive):\n"
+            "For the application process category, "
+            + "all the keywords must be one of the following values (case-insensitive):\n"
             + "APPLIED, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED";
 
     /**
