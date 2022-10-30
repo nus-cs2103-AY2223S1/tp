@@ -845,6 +845,117 @@ MSS:
 
 <br>
 
+System: RC4HDB <br>
+Use case: UC12 - Add a single venue <br>
+Actor: User <br>
+MSS:
+
+1. New venue has been established in [**RC4**](#glossary).
+2. User has the name of the venue they want to add.
+3. User adds the venue RC4HDB.
+4. RC4HDB adds the venue to the data file.
+5. RC4HDB displays the venue. <br>
+   Use case ends.
+
+Extensions:
+
+&ensp; 3a. User enters venue information in an invalid format. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 3.
+
+<br>
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC13 - Deleting a single venue <br>
+Actor: User <br>
+MSS:
+
+1. Venue is not available for booking in [**RC4**](#glossary).
+2. User deletes the venue from RC4HDB.
+3. RC4HDB removes the corresponding venue from the database.
+4. RC4HDB displays the details of that venue that has been deleted.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC14 - Viewing a venue <br>
+Actor: User <br>
+MSS:
+
+1. User wants to view the bookings of a specific venue.
+2. User makes a request to RC4HDB to view the venue bookings by their name.
+3. The application will display the venue bookings according to the day and time of the bookings.
+4. RC4HDB displays the details of that venue that has been deleted.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+<br>
+
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC15 - Add a single booking <br>
+Actor: User <br>
+MSS:
+
+1. User wants to book a venue [**RC4**](#glossary).
+2. User has the details of the booking they want to make.
+3. User books the venue for a particular time period using RC4HDB.
+4. RC4HDB books the venue for the time period in the data file.
+5. RC4HDB displays the booking. <br>
+   Use case ends.
+
+Extensions:
+
+&ensp; 3a. User enters venue information in an invalid format. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 3.
+
+&ensp; 3b. A booking already exists in the requested time slot <br>
+&ensp; &emsp; &nbsp; 3b1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 3.
+
+<br>
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC16 - Deleting a single booking <br>
+Actor: User <br>
+MSS:
+
+1. User wants to cancel a booking in [**RC4**](#glossary).
+2. User deletes the booking from RC4HDB.
+3. RC4HDB removes the corresponding booking from the database.
+4. RC4HDB displays the details of that booking that has been deleted.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+<br>
+
 [comment]: <> (*{More to be added}*)
 
 ### Non-Functional Requirements
