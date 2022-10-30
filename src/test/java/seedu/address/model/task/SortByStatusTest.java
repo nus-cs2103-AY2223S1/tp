@@ -28,20 +28,20 @@ public class SortByStatusTest {
     public static final Task CARL = new Task(new TaskName("C"),
             testDisc, testPriority, testCat, testDeadline, testPerson, true);
 
-    SortByStatus test = new SortByStatus();
+    private SortByStatus test = new SortByStatus();
 
     @Test
-    public void SortStatusTest() {
-        assertEquals(-1, test.compare(ALICE,BENSON));
+    public void sortStatusTest() {
+        assertEquals(-1, test.compare(ALICE, BENSON));
     }
 
     @Test
-    public void SortStatusTest2() {
-        assertEquals(1, test.compare(BENSON,ALICE));
+    public void sortStatusTest2() {
+        assertEquals(1, test.compare(BENSON, ALICE));
     }
 
     @Test
-    public void SortStatusTest3() {
-        assertEquals(0, test.compare(CARL,BENSON));
+    public void sortStatusTest3() {
+        assertEquals(0, test.compare(CARL, BENSON));
     }
 }

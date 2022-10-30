@@ -32,21 +32,21 @@ public class SortByPriorityTest {
             testDisc, testPriority3, testCat, testDeadline, testPerson, false);
     public static final Task DANIEL = new Task(new TaskName("D"),
             testDisc, testPriority, testCat, testDeadline, testPerson, false);
-    SortByPriority test = new SortByPriority();
+    private SortByPriority test = new SortByPriority();
 
     @Test
-    public void SortTasksTest() {
-        assertEquals(-1, test.compare(ALICE,BENSON));
+    public void sortTasksTest() {
+        assertEquals(-1, test.compare(ALICE, BENSON));
     }
 
     @Test
-    public void SortTasksTest2() {
-        assertEquals(1, test.compare(ALICE,CARL));
+    public void sortTasksTest2() {
+        assertEquals(1, test.compare(ALICE, CARL));
     }
 
     @Test
-    public void SortTasksTest3() {
-        assertEquals(0, test.compare(ALICE,DANIEL));
+    public void sortTasksTest3() {
+        assertEquals(0, test.compare(ALICE, DANIEL));
     }
 
 

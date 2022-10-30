@@ -41,7 +41,7 @@ public class FilterTaskCommandTest {
     private final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
     private final TaskDate testDate = new TaskDate(LocalDate.now());
     private final TaskCategory testCat2 = new TaskCategory(TaskCategoryType.BACKEND);
-    private final TaskDate testDate2 = new TaskDate(LocalDate.of(2022,9,20));
+    private final TaskDate testDate2 = new TaskDate(LocalDate.of(2022, 9, 20));
     private final TaskCategory testCat3 = new TaskCategory(TaskCategoryType.FRONTEND);
     private final FilterInfo testFilterInfo = new FilterInfo();
 
@@ -80,7 +80,7 @@ public class FilterTaskCommandTest {
     }
 
     @Test
-    public void execute_FilterByFrontend_noTaskFound() {
+    public void executeFilterByFrontendNoTaskFound() {
         String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 0);
         TaskCategoryAndDeadlinePredicate predicate = preparePredicate(testCat3, testDate2);
         FilterTaskCommand.FilterTaskDescriptor testDescriptor = new FilterTaskCommand.FilterTaskDescriptor();
@@ -95,7 +95,7 @@ public class FilterTaskCommandTest {
     }
 
     @Test
-    public void execute_FilterByOthers_multipleTasksFound() {
+    public void executeFilterByOthersMultipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 7);
         TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.of(testCat),
                 Optional.empty());
@@ -110,7 +110,7 @@ public class FilterTaskCommandTest {
     }
 
     @Test
-    public void execute_FilterByBackend_OneTasksFound() {
+    public void executeFilterByBackendOneTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 2);
         TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.of(testCat2),
                 Optional.empty());
@@ -125,7 +125,7 @@ public class FilterTaskCommandTest {
     }
 
     @Test
-    public void execute_FilterByDeadline_NoTasksFound() {
+    public void executeFilterByDeadlineNoTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 0);
         TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.empty(),
                 Optional.of(testDate2));
@@ -140,7 +140,7 @@ public class FilterTaskCommandTest {
     }
 
     @Test
-    public void execute_FilterByDeadline_AllTasksFound() {
+    public void executeFilterByDeadlineAllTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 9);
         TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.empty(),
                 Optional.of(testDate));
@@ -151,11 +151,12 @@ public class FilterTaskCommandTest {
                 testFilterInfo);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILLARY, IVY), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA,
+                GEORGE, HILLARY, IVY), model.getFilteredTaskList());
     }
 
     @Test
-    public void execute_FilterByDeadlineAndCategory_NoTasksFound() {
+    public void executeFilterByDeadlineAndCategoryNoTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 0);
         TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.of(testCat3),
                 Optional.of(testDate));
