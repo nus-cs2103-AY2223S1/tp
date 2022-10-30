@@ -532,21 +532,24 @@ To access a quote, the class provides the `QuoteList#getRandomQuote()` method wh
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​  | I want to …​                                            | So that I can…​                                                        |
-|----------|----------|---------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user | see usage instructions                                  | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user     | add client information                                  |                                                                        |
-| `* * *`  | user     | delete client information                               | remove entries that I no longer need                                   |
-| `* * *`  | user     | modify a client entry easily                            | ensure that client information is up to date                           |
-| `* * *`  | user     | filter my clients by name                               | locate details of clients without having to go through the entire list |
-| `* *`    | user     | classify my clients with different tags                 | know who to prioritize                                                 |
-| `* *`    | user     | filter my clients based on tags assigned to them        | access relevant client data easily                                     |
-| `* *`    | user     | view clients from a certain demographic                 | get a better overview of what my client base is like                   |
-| `* *`    | user     | get things done fast with minimal typing                | save time                                                              |
-| `* *`    | user     | remember details that clients tell me about their lives | use them to form an emotional connection with clients                  |
-| `* *`    | user     | keep track of my client's phone number and address      | contact them easily                                                    |
-| `* *`    | user     | leave remarks of my clients                             | remember important details unique to each client                       |
-| `*`      | user     | sort clients by name                                    | locate a client easily                                                 |
+| Priority | As a …​           | I want to …​                                            | So that I can…​                                                        |
+|----------|-------------------|---------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user          | see usage instructions                                  | refer to instructions when I forget how to use the App                 |
+| `* * *`  | financial advisor | add client information                                  |                                                                        |
+| `* * *`  | financial advisor | delete client information                               | remove entries that I no longer need                                   |
+| `* * *`  | financial advisor | modify a client entry easily                            | ensure that client information is up to date                           |
+| `* * *`  | financial advisor | filter my clients by name                               | locate details of clients without having to go through the entire list |
+| `* * *`  | financial advisor | be reminded of client meetings                          | be punctual and save time on planning.                                 |
+| `* *`    | financial advisor | easily generate commonly used messages                  | save time communicating with my clients.                               |
+| `* *`    | financial advisor | classify my clients with different tags                 | know who to prioritize                                                 |
+| `* *`    | financial advisor | filter my clients based on tags assigned to them        | access relevant client data easily                                     |
+| `* *`    | financial advisor | view clients from a certain demographic                 | get a better overview of what my client base is like                   |
+| `* *`    | financial advisor | get things done fast with minimal typing                | save time                                                              |
+| `* *`    | financial advisor | remember details that clients tell me about their lives | use them to form an emotional connection with clients                  |
+| `* *`    | financial advisor | keep track of my client's phone number and address      | contact them easily                                                    |
+| `* *`    | financial advisor | leave remarks of my clients                             | remember important details unique to each client                       |
+| `*`      | financial advisor | sort clients by name and tag                            | locate a client easily                                                 |
+| `*`      | financial advisor | get motivated                                           | power through the day's tasks                                          |
 
 
 ### Use cases
