@@ -93,7 +93,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         user = emptyUser;
     }
 
-    public void addLessonToUser(Lesson lesson) {
+    public void addLessonToUser(Lesson lesson) throws CommandException {
         user.addLesson(lesson);
     }
 

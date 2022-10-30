@@ -2,6 +2,7 @@ package seedu.address.model.person.user;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -98,7 +99,46 @@ public class ExistingUser extends User {
         return Collections.unmodifiableSet(planModules);
     }
 
-    public void addLesson(Lesson lesson) {
+    /**
+     * Adds a lesson to the User.
+     *
+     * @param lesson The lesson to be added to the User.
+     * @throws CommandException If lesson to be added overlaps with existing lessons of the User.
+     */
+    public void addLesson(Lesson lesson) throws CommandException {
+        LocalTime lessonStartTime = lesson.getStartTime();
+        LocalTime lessonEndTime = lesson.getEndTime();
+        for (Lesson existingLesson : lessons) {
+            // base case : same day
+            if (lesson.getDay() == existingLesson.getDay()) {
+                LocalTime existingStartTime = existingLesson.getStartTime();
+                LocalTime existingEndTime = existingLesson.getEndTime();
+                int compareStartTime = lessonStartTime.compareTo(existingStartTime);
+                int compareEndTime = lessonEndTime.compareTo(existingEndTime);
+                int compareStartTimeToEndTime = lessonStartTime.compareTo(existingEndTime);
+                int compareEndTimeToStartTime = lessonEndTime.compareTo(existingStartTime);
+                // case 1 : start time is after existing end time - valid
+                if (compareStartTimeToEndTime > 0) {
+                    continue;
+                // case 2 : end time is before existing start time - valid
+                } else if (compareEndTimeToStartTime < 0) {
+                    continue;
+                // case 3 : start or end time is the same - invalid
+                } else if ((compareStartTime == 0) || (compareEndTime == 0)) {
+                    throw new CommandException(String.format("Lesson has same start/end time as %s", existingLesson));
+                // case 4 : start time is later, end time is earlier - invalid
+                } else if ((compareStartTime > 0) && (compareEndTime < 0)) {
+                    throw new CommandException(String.format("Lesson timing overlaps with %s", existingLesson));
+                // case 5 : start time is later, but earlier than existing end time - invalid
+                } else if ((compareStartTime > 0) && (compareStartTimeToEndTime < 0)) {
+                    throw new CommandException(String.format("Lesson timing overlaps with %s", existingLesson));
+                // case 6 : end time is earlier, but later than existing start time - invalid
+                } else if ((compareEndTime < 0) && (compareEndTimeToStartTime > 0)) {
+                    throw new CommandException(String.format("Lesson timing overlaps with %s", existingLesson));
+                }
+            }
+        }
+        // no overlaps, add lesson to user
         lessons.add(lesson);
     }
 

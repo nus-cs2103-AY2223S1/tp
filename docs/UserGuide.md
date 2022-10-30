@@ -39,6 +39,7 @@ the folder to store your data upon saving the jar file.
 and click on `New Terminal at Folder` as illustrated below.
 
 ![](images/QuickStart4.png)
+
 ![](images/QuickStart5.png)
 
 5. Launch the jar file using the `java -jar ConnectNUS.jar` command in the terminal. Do not double-click
@@ -435,11 +436,13 @@ Format for user: `timetable user`
 Format for contact: `timetable INDEX`
 
 
-
 * Shows the timetable of the user or specified `INDEX`.
   * The index refers to the index number shown in the displayed contact list.
   * The index **must be a positive integer** 1, 2, 3, …​
 * Must have at least one lesson added for the week.
+
+💡 **Tip:** If you have added a new lesson while the timetable window is open, you can run the timetable
+command again to view the updated timetable!
 
 [Scroll back to top](#table-of-contents)
 
