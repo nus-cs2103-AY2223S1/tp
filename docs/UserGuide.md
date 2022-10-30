@@ -15,6 +15,32 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 ![start_up](images/IdENTifyStartUp.png)
 
+## UI Components
+![SampleUiImage](images/SampleUI.png)
+* The UI is available in light mode (by default, shown above) or dark mode.
+
+### General UI information
+Component | Purpose
+--------|------------------
+**Tool Box** | Allows you to exit idENTify, change the theme of the UI or view help
+**Command Box** | Location to enter commands
+**Results Display** | Displays the result after a command is entered
+**Patient List** | Displays patients
+**Appointment List** | Displays appointments
+**Patient Card** | Displays detailed information about a patient
+**Appointment Card** | Displays detailed information about an appointment
+**Save Location** | Displays the location where your idENTify data is stored
+
+
+### Patient Card
+![PatientCardDetail](images/PatientCard.png)
+* Upcoming appointments shows the total amount of unmarked appointments of the given patient.
+
+### Appointment Card
+![AppointmentCardDetail](images/AppointmentCard.png)
+* The status of an appointment is `[]` when uncompleted, and `[X]` when completed.
+* More information about recurrence duration can be found [here](#book-an-appointment--book).
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -38,9 +64,6 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-
-<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command parameters:**<br>
 
@@ -298,7 +321,7 @@ Format: `hide patients t/TAG [t/MORE_TAGS]...`
 * All tags of a patient are searched.
 
 Examples:
-* `hide patients t/ear t/nose` hides all patients with a ear OR nose tag.
+* `hide patients t/ear t/nose` hides all patients with an ear OR nose tag.
 
 #### Unhiding patients by name or tag: `unhide patients`
 
