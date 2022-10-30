@@ -34,7 +34,7 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 <img src="images/boredcoco.png" width="200px">
 
 [[github](http://github.com/boredcoco)]
-[[portfolio](team/faithchua.md)]
+[[portfolio](team/boredcoco.md)]
 
 * Role: *Tester, Developer*
 * Responsibilities: *Filter and Find features, testing*
