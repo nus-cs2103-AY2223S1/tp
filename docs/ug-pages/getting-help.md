@@ -23,7 +23,7 @@ Format: `help`
 open the Help Window immediately! You can also press the `Esc` key on your keyboard to close the Help Window
 if it is open. </div>
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 

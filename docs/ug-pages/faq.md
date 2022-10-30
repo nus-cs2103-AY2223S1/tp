@@ -19,4 +19,4 @@ any effects of `find` or `filter` will be erased, and the full resident list wil
 This is unlike `showonly`, which can only restrict the table view based on columns that are already present.
 
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)

@@ -22,7 +22,7 @@ Examples:
 
 ### *More coming soon!*
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 

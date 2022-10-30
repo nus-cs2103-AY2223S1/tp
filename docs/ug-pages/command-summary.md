@@ -18,7 +18,7 @@ commands. The tables below contain the full summary of our commands and how they
 | **Help** | `help`           |
 | **Exit** | `exit`           |
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -31,7 +31,7 @@ commands. The tables below contain the full summary of our commands and how they
 | **Delete** | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                |
 | **Clear**  | `clear`                                                                                                                                                                           |
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -46,7 +46,7 @@ commands. The tables below contain the full summary of our commands and how they
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                  |
 | **Filter** | `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g. `filter /all h/D g/M`        |
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -59,7 +59,7 @@ commands. The tables below contain the full summary of our commands and how they
 | **Switch File** | `file switch FOLDER_NAME` <br> e.g. `file switch rc4_data_2022` |
 | **Import File** | `import FOLDER_NAME` <br> e.g. `import students`                |
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -73,6 +73,6 @@ commands. The tables below contain the full summary of our commands and how they
 | **Book Venue**   | `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g. `venue book 2 v/Meeting Room tp/8-9 d/TUE` |
 | **Unbook Venue** | `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g. `venue unbook v/Meeting Room tp/8-9 d/TUE`     |
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---

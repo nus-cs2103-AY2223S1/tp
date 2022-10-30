@@ -39,5 +39,5 @@ This term is short for Comma-separated values. It is a common file type that can
 
 This term is short for JavaScript Object Notation. It is a common file type that can be identified through the `.json` after a file's name.
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 

@@ -30,4 +30,4 @@ RC4HDB saves your data after every command. There is no need to save manually.
 
 ---
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
