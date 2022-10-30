@@ -492,8 +492,8 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 
 ## **FAQ**
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Swift+ home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install Swift+ in the other computer. Replace the default data file `addressbook.json` with the file that contains the data of your previous Swift+.
 
 ---
 
