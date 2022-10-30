@@ -10,9 +10,11 @@ import java.util.List;
  *
  */
 public class CommentList {
-    private final ArrayList<Comment> comments = new ArrayList<>();
+    private final ArrayList<Comment> comments;
 
-    public CommentList() { }
+    public CommentList() {
+        comments = new ArrayList<>();
+    }
 
     /**
      * Constructor for CommentList to be added with another list of comments
@@ -21,6 +23,7 @@ public class CommentList {
      */
     public CommentList(List<Comment> comments) {
         requireNonNull(comments);
+        this.comments = new ArrayList<>();
         this.comments.addAll(comments);
     }
 

@@ -4,8 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tuthub.testutil.TypicalIndexes.INDEX_FIRST_TUTOR;
-import static tuthub.testutil.TypicalIndexes.INDEX_SECOND_TUTOR;
+import static tuthub.testutil.TypicalIndexes.*;
 import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +26,18 @@ public class DeleteCommentCommandTest {
     private Model model = new ModelManager(getTypicalTuthub(), new UserPrefs());
 
     @Test
+    public void execute_tutorNoComments_throwsCommandException() {
+        Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_SECOND_TUTOR.getZeroBased());
+        DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_SECOND_TUTOR,
+                Index.fromZeroBased(0));
+
+        String expectedMessage = String.format(DeleteCommentCommand.MESSAGE_INVALID_TUTOR_NO_COMMENTS,
+                tutorToDelete.getName());
+
+        assertCommandFailure(deleteCommentCommand, model, expectedMessage);
+    }
+
+    @Test
     public void execute_invalidCommentIndex_throwsCommandException() {
         // Add a comment to the first tutor
         Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
@@ -44,18 +55,6 @@ public class DeleteCommentCommandTest {
     }
 
     @Test
-    public void execute_tutorNoComments_throwsCommandException() {
-        Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
-        DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_FIRST_TUTOR,
-                Index.fromZeroBased(0));
-
-        String expectedMessage = String.format(DeleteCommentCommand.MESSAGE_INVALID_TUTOR_NO_COMMENTS,
-                tutorToDelete.getName());
-
-        assertCommandFailure(deleteCommentCommand, model, expectedMessage);
-    }
-
-    @Test
     public void execute_invalidTutorIndex_throwsCommandException() {
         DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(Index.fromZeroBased(200),
                 Index.fromZeroBased(0));
@@ -66,12 +65,12 @@ public class DeleteCommentCommandTest {
     @Test
     public void execute_validIndex_success() {
         // Add a comment to the first tutor
-        Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_THIRD_TUTOR.getZeroBased());
         String comment = "Comment 1";
         // Comment is at index 0
         Tutor tutorWithComment = new TutorBuilder(tutorToDelete).withComment(comment).build();
         model.setTutor(tutorToDelete, tutorWithComment);
-        DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_FIRST_TUTOR,
+        DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_THIRD_TUTOR,
                 Index.fromZeroBased(0));
 
         String expectedMessage = String.format(DeleteCommentCommand.MESSAGE_DELETE_COMMENT_SUCCESS,
