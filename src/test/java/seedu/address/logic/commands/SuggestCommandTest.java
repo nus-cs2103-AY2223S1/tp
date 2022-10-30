@@ -89,15 +89,15 @@ public class SuggestCommandTest {
 
         Set<Keyword> keywordSet = new HashSet<>();
         Set<DayTimeInWeek> dayTimeInWeekSet = new HashSet<>();
-        keywordSet.add(new Keyword("example"));
+        keywordSet.add(new Keyword("1"));
 
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PersonSuggestionPredicate predicate =
                 new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
         SuggestCommand command = new SuggestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE),
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL),
                 model.getFilteredPersonList());
 
     }
