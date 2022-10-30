@@ -61,7 +61,7 @@ public class UserProfile extends UiPart<Region> {
         super(FXML);
         this.user = user;
         if (user instanceof ExistingUser) {
-            userLabel.setText("User: ");
+            userLabel.setText("User:");
             name.setText(user.getName().fullName);
             phone.setText(user.getPhone().value);
             address.setText(user.getAddress().value);
