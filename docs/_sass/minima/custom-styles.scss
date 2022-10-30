@@ -6,7 +6,10 @@ h2, h3 {
   color: #e46c0a;
 }
 
-h2, h4, h5, h6 {
+h2 {
+  font-weight: bold;
+}
+h4, h5, h6 {
   font-weight: $font-weight-semibold;
 }
 
