@@ -54,7 +54,7 @@ public class EventCard extends UiPart<Region> {
     }
 
     /**
-     * Sets a field in the PersonCard with the specified {@code Label} with the specified {@code String}.
+     * Sets a field in the EventCard with the specified {@code Label} with the specified {@code String}.
      */
     private void setField(Label label, String input) {
         label.setText(input);
