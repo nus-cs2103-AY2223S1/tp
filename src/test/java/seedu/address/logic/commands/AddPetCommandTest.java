@@ -49,6 +49,9 @@ public class AddPetCommandTest {
         List<UniqueId> idList = modelStub.getFilteredSupplierList().get(0).getPetIds();
         assertEquals(idList.get(0), validPet.getId());
 
+        //clear pets added
+        modelStub.getFilteredSupplierList().get(0).deletePet(0);
+
         //multiple Pets added
         modelStub = new ModelStubAcceptingPetAdded();
         modelStub.deletePet(validPet);
@@ -63,6 +66,17 @@ public class AddPetCommandTest {
             assertEquals(expectedResult, commandResult.getFeedbackToUser());
         }
 
+        idList = modelStub.getFilteredSupplierList().get(0).getPetIds();
+
+        for (int i = 0; i < validPets.size(); i++) {
+            assertEquals(idList.get(i), validPets.get(i).getId());
+        }
+
+        // clear pets added
+        for (Pet pet : validPets) {
+            modelStub.getFilteredSupplierList().get(0).deletePet(0);
+        }
+
         // Different index
         modelStub = new ModelStubAcceptingPetAdded();
         validPet = new PetBuilder().build();
@@ -73,6 +87,9 @@ public class AddPetCommandTest {
 
         idList = modelStub.getFilteredSupplierList().get(1).getPetIds();
         assertTrue(idList.contains(validPet.getId()));
+
+        //clear pets added
+        modelStub.getFilteredSupplierList().get(1).deletePet(0);
     }
 
     @Test
