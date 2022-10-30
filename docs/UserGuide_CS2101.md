@@ -65,7 +65,7 @@ ensure that the application works as expected and runs smoothly on your computer
 ### Step 1: Ensure you have Java `11` or above installed in your Computer
 To check if you have Java `11` or above installed, follow the steps for your operating system
 ##### If you are using Windows:
-1. Press the Start button and type *cmd* then press Enter on your keyboard.
+1. Press the Start button, type *cmd* and press Enter on your keyboard.
 2. Once you have Command Prompt running, type `java --version` and if you have Java installed properly, you should
   see an output like the following.
   ![UI introduction](images/UG-screenshots/Java11CheckWindows.png)
@@ -106,7 +106,7 @@ the money collected/owed.
 ![Partition](images/UG-screenshots/UiPartition.png)
 
 Basic Instructions:
-1. Type the following command in the [Input Command](#ui-overview) section, and press the Enter on your keyboard to execute it. For 
+1. Type the following command in the [Input Command](#ui-overview) section, and press Enter on your keyboard to execute it. For 
    example, typing `help` and pressing Enter will open the help window. Below are some example commands you can start with:
     - `list`: Lists all students.
     - `add n/John Doe p/98765432 np/81239090 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
