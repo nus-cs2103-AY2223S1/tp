@@ -9,8 +9,8 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. On top of being able to 
-manage your **tasks and contacts** effectively, students can conveniently search for peers that are taking the same module 
+CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. On top of being able to
+manage your **tasks and contacts** effectively, students can conveniently search for peers that are taking the same module
 as them to seek help or collaboration.
 
 This app is optimized for use via a **Command Line Interface** (CLI)
@@ -21,7 +21,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 ## How to use this guide?
 
 For new users, it is strongly recommended that you look through this User Guide to gain a comprehensive
-understanding of CodeConnect. 
+understanding of CodeConnect.
 
 However, you may also choose to head over to the relevant sections as described below:
 
@@ -39,7 +39,7 @@ However, you may also choose to head over to the relevant sections as described 
 3. Copy the file to the folder you want to use as the _home folder_.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-    
+
     ![UiOnStartup](images/UiOnStartup.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -215,7 +215,7 @@ Format:
 Examples:
 * `find n/homework` returns `Science homework`, `Math homework`
 * `find n/home` returns `Science homework`, `Math homework`
-* `find n/tut set` returns `Tutorial 1`, `Problem set 2` 
+* `find n/tut set` returns `Tutorial 1`, `Problem set 2`
 * `find m/CS1101S` returns `Problem set 4`, `Reading assignment 2`
 * `find m/1101S` returns `Problem set 4`, `Reading assignment 2`
 

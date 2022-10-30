@@ -259,14 +259,14 @@ Both the `mark` and `unmark` commands follow [general command implementation flo
 
 #### Design considerations
 
-* One design consideration involoved marking/unmarking multiple tasks by adding a space before inputting the index of another task. 
-However, users could forget to input spaces when inputting indexes of multiple tasks, leading to unintended tasks being 
-marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time 
+* One design consideration involoved marking/unmarking multiple tasks by adding a space before inputting the index of another task.
+However, users could forget to input spaces when inputting indexes of multiple tasks, leading to unintended tasks being
+marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time
 most of the time, so a mass mark/unmark feature is a nice-to-have one.
 
 ### \[Proposed\] Edit task feature
 
-#### About 
+#### About
 
 CodeConnect will allow the user to edit an existing task in the task list.
 
@@ -289,7 +289,7 @@ Outline of how components work together when the user enters a `edit` task comma
 
 #### Design Considerations
 
-Initially we felt that being able to edit more than 1 feature per edit task command was not as important, as 
+Initially we felt that being able to edit more than 1 feature per edit task command was not as important, as
 a task object does not have that many fields to begin with. However, we felt that implementing it will still
 make it a lot easier in the event that a user want to have multiple changes to a task.
 

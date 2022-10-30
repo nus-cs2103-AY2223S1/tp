@@ -9,7 +9,7 @@ CodeConnect is a specialised task management that can help NUS CS students keep 
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
   * Added edit task feature that allows user to edit their tasks.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=songivan00&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)

@@ -9,7 +9,7 @@ CodeConnect is a specialised task management that can help NUS CS students keep 
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
   * `mark` / `unmark` task commands
   * `list` / `list time` task commands
 
@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 
 * **Project management**: to be added soon
 
-* **Enhancements to existing features**: 
+* **Enhancements to existing features**:
   * Extended storage to store tasks
   * Enhanced find command to return entries whose name contain query keyword as its substring
 
