@@ -1058,7 +1058,14 @@ testers are expected to do more *exploratory* testing.
 
 #### Importing resident data from CSV file
 
-[Comment]: <> (To be added)
+[Comment]: <> (Update CSV format link when UG is compiled)
+
+1. Importing from a valid CSV file.
+
+   1. Prerequisites: Have an existing CSV file in the proper format, as specified in the [CSV format]() section of our **User Guide**.
+
+   2. Test case: `file import valid_file`, where `valid_file` is the name of your valid CSV file <br>
+       Expected: A new data folder, with the name `valid_file` is created in `ROOT/data` directory. The new resident data imported from `valid_file.csv` will be stored in `ROOT/data/valid_file/resident_data.json` file, and the `valid_file.csv` file will remain inside the data folder.
 
 <br>
 
