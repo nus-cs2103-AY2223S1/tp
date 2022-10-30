@@ -28,11 +28,20 @@ the help window.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+:information_source: **Note:**<br>
 
 For first-timer users, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and
 the current day. For example, you can try entering `list 2022-09-15` to view the sample food items on 15 September 2022.
 To delete food items from all days, enter `clear`.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Warning:**<br>
+
+Upon launching the application, some files responsible for the storage of your data will be created in the same folder 
+as `nutrigoals.jar`. Do not delete or edit these files. 
 
 </div>
 
