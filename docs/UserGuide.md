@@ -81,7 +81,7 @@ In this *User Guide*, we will take you through the many useful features and func
 ### Batchmate commands
 #### Add a batchmate: `add`
 
-Adds a batchmate to the list of batchmates in the Students panel.
+Adds a batchmate to the list of batchmates in the _Students panel_.
 
 __Format:__ `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]... [m/MODULE]...`
 
@@ -100,11 +100,11 @@ __Examples:__
 To edit a module, simply delete that module using [__mod delete__](#delete-module-from-a-batchmate-mod-delete) and add the new module using [__mod add__](#add-module-to-a-batchmate-mod-add).
 </div>
 
-Edits the information of a specified batchmate in the Students panel.
+Edits the information of a specified batchmate in the _Students panel_.
 
 __Format:__ `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`
 
-* Edits the batchmate at the specific `INDEX` in the __currently displayed list__ in the Students panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Edits the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing interests, the existing interests of the batchmate will be removed i.e adding of interests is not cumulative.
@@ -116,11 +116,11 @@ __Examples:__
 
 #### Delete a batchmate: `delete`
 
-Deletes a specified batchmate from the Students panel.
+Deletes a specified batchmate from the _Students panel_.
 
 __Format:__ `delete INDEX`
 
-* Deletes the batchmate at the specific `INDEX` in the __currently displayed list__ in the Students panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Deletes the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 __Examples:__
 * `list` followed by `delete 2` deletes the 2nd batchmate in the full list of batchmates you have in Mass Linkers.
@@ -150,7 +150,7 @@ __Examples:__
 
 #### List all batchmates: `list`
 
-Shows a list of all batchmates in the Students panel.
+Shows a list of all batchmates in the _Students panel_.
 
 __Format:__ `list`
 
@@ -158,11 +158,11 @@ __Format:__ `list`
 
 #### Add interests: `addInt`
 
-Adds interest(s) to a specified batchmate in the Students panel.
+Adds interest(s) to a specified batchmate in the _Students panel_.
 
 __Format:__ `addInt INDEX INTEREST [MORE_INTERESTS]...`
 
-* Adds interest(s) to the batchmate at the specific INDEX in the __currently displayed list__ in the Students panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Adds interest(s) to the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 * Interests added are case insensitive, they will be displayed in lower casing. 
 
 __Examples:__
@@ -171,11 +171,11 @@ __Examples:__
 
 #### Delete interests: `deleteInt`
 
-Delete interest(s) from a specified batchmate in the Students panel.
+Delete interest(s) from a specified batchmate in the _Students panel_.
 
 __Format:__ `deleteInt INDEX INTEREST [MORE_INTERESTS]...`
 
-* Deletes interest(s) from the batchmate at the specific INDEX in the __currently displayed list__ in the Students panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Deletes interest(s) from the batchmate at the specific INDEX in the __currently displayed list__ in the _Students panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 __Examples:__
 * `deleteInt 1 ai` deletes the interest `ai` from the 1st batchmate in the currently displayed list.
@@ -218,11 +218,11 @@ This is the GUI after you left-click the 1st batchmate in the Students panel. Th
 
 #### Add module to a batchmate: `mod add`
 
-Adds module(s) to a specified batchmate in the Modules panel.
+Adds module(s) to a specified batchmate in the _Modules panel_.
 
 __Format:__ `mod add INDEX MODULE [MORE_MODULES]...`
 
-* Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the Modules panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 * * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#module-categorisation).
 
 __Examples:__
@@ -237,23 +237,30 @@ This is the GUI after you press Enter to execute the command. The module `ma1521
 
 #### Delete module from a batchmate: `mod delete`
 
-Deletes module(s) from a specified batchmate in the Modules panel.
+Deletes module(s) from a specified batchmate in the _Modules panel_.
 
 __Format:__ `mod delete INDEX MODULE [MORE_MODULES]...`
 
-* Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__ in the Modules panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 __Examples:__
 * `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
 * `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
 
+#### View a batchmate's modules
+Views the list of modules taken by a batchmate in the _Modules panel_.
+
+Left-click the row with the batchmate's name in the _Students panel_.
+
+- The selected row would turn blue and the _Modules panel_ would display all the modules taken by the batchmate.
+
 #### Mark module as taken: `mod mark`
 
-Marks module(s) of a specified batchmate as `taken` in the Modules panel, which means the batchmate has taken the module(s) before.
+Marks module(s) of a specified batchmate as `taken` in the _Modules panel_, which means the batchmate has taken the module(s) before.
 
 __Format:__ `mod mark INDEX MODULE [MORE_MODULES]...`
 
-* Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the Modules panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 __Examples:__
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
@@ -267,11 +274,11 @@ This is the GUI after you press Enter to execute the command. The modules `CS210
 
 #### Unmark module as not taken: `mod unmark`
 
-Unmarks module(s) of a specified batchmate and updates the status as `taking` in the Modules panel, which means the batchmate is currently taking the module(s).
+Unmarks module(s) of a specified batchmate and updates the status as `taking` in the _Modules panel_, which means the batchmate is currently taking the module(s).
 
 __Format:__ `mod unmark INDEX MODULE [MORE_MODULES]...`
 
-* Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the Modules panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
+* Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__ in the _Modules panel_. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 __Examples:__
 * `mod unmark 1 cs2103t` unmarks the module `CS2103T` of the 1st batchmate in the currently displayed list as `not taken`.
@@ -279,9 +286,9 @@ __Examples:__
 
 #### Mark all modules as taken: `mod mark all`
 <div markdown="span" class="alert alert-warning">:warning: **Warning:** The mod mark all command is irreversible. Only execute it if you intend to mark all existing modules for all batchmates as taken. 
-</div>
-
-Marks all current modules of every batchmate in Mass Linkers as `taken` in the Modules panel. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
+ </div>
+ 
+Marks all current modules of every batchmate in Mass Linkers as `taken` in the _Modules panel_. This makes it convenient to update the module status of all existing modules of every batchmate as taken after each semester.
 
 __Format:__ `mod mark all`
 
@@ -390,8 +397,8 @@ _Module prefix refers to the first two characters of every module name._
 **Q**: I have accidentally cleared all the data. Is there any way to undo the changes?<br>
 **A**: Currently, there is no ```undo``` feature and the ```clear``` command is irreversible. Hence, it is extremely important to only use it when you want an empty Student and Module table. However, we are looking into adding ```undo``` and ```redo``` commands for future developments.
 
-**Q**: I have added a batchmate and its row exceeds the current displayed list of batchmates in the Students panel. I have to scroll below to view the newly added batchmate. Is this expected?<br>
-**A**: Yes, adding a new batchmate would not auto scroll the Student panel to the bottom of the list.
+**Q**: I have added a batchmate and its row exceeds the currently displayed list of batchmates in the _Students panel_. I have to scroll below to view the newly added batchmate. Is this expected?<br>
+**A**: Yes, adding a new batchmate would not auto scroll the _Students panel_ to the bottom of the list.
 
 #### Privacy Issues
 **Q**: What if I do not want to share some of my personal data like my phone number and email address?<br>
