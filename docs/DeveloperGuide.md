@@ -197,9 +197,9 @@ How the parsing works:
 ![Class structure of Command](images/CommandDiagram.png)
 
 The command class structure has been changed to provide an additional layer of abstraction using the five
-classes ```ModelCommand```, ```StorageCommand```, ```FileCommand``` , ```VenueCommand```, and ```MiscCommand```. 
-These interfaces and abstract classes all implement the Command interface and is used as a intermediate barrier 
-to build the command classes. The specific commands extend or implement these command classes instead of directly implementing the 
+interfaces ```ModelCommand```, ```StorageCommand```, ```StorageModelCommand``` , and ```MiscCommand```. 
+These interfaces all implement the Command interface and is used as an intermediate barrier to build the command classes.
+The specific commands extend or implement these command classes instead of directly implementing the 
 command interface in order to improve the abstraction of commands.
 
 ### Model component
