@@ -247,13 +247,6 @@ __Examples:__
 * `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
 * `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
 
-#### View a batchmate's modules
-Views the list of modules taken by a batchmate in the _Modules panel_.
-
-Left-click the row with the batchmate's name in the _Students panel_.
-
-- The selected row would turn blue and the _Modules panel_ would display all the modules taken by the batchmate.
-
 #### Mark module as taken: `mod mark`
 
 Marks module(s) of a specified batchmate as `taken` in the _Modules panel_, which means the batchmate has taken the module(s) before.
