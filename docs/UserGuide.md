@@ -9,8 +9,8 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 #### [Getting Started](#quick-start)
 #### [Orientating the GUI](#gui-orientation)
 * Command Box
-* Exercise List 
-* Result Display 
+* Exercise List
+* Result Display
 * Recognised Exercise Names List
 
 #### [Features](#commands)
@@ -53,7 +53,7 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 <div style="page-break-after: always;"></div>
 
-## GUI Orientation 
+## GUI Orientation
 
 ![GUI](images/GUIOrientation.png)
 
@@ -66,7 +66,7 @@ The `Command Box` is where users can input their commands.
 The `Exercise List Window` displays the latest input exercise (by the user) at the top of the list by default. All exercises
 added will be displayed in the list. The list may change or reorder depending on the command issued by the user.
 
-### Result Display 
+### Result Display
 
 The `Result Display Window` displays feedback after executing a command. It gives feedback to the user on the command executed.
 
@@ -74,28 +74,28 @@ The `Result Display Window` displays feedback after executing a command. It give
 
 ### Recognised Exercise Name List
 
-The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered 
-in the system. 
-<br><br>This list updates in real time and allows you to quickly keep track of the exercises you have input in the 
+The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered
+in the system.
+<br><br>This list updates in real time and allows you to quickly keep track of the exercises you have input in the
 past. Hence, even if the exercise list is populated, the `Recognised Exercise Name List Window` helps you keep track of
-what you named your exercises. It also helps you to identify any wrong spellings in the name 
+what you named your exercises. It also helps you to identify any wrong spellings in the name
 of the exercises you have input.
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
-* The `Recognised Exercises Count` provides the number of unique exercises registered in the system. 
-* The `System Exercise Entries Count` provides the total number of exercise entries in the system. 
+* The `Recognised Exercises Count` provides the number of unique exercises registered in the system.
+* The `System Exercise Entries Count` provides the total number of exercise entries in the system.
 <br>
 
 #### Adding and Deleting from the Exercise Name List
 
-The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised 
+The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised
 Exercise Name List is automatically updated whenever an entry is added to or deleted from the system.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br> 
+Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br>
 I.E. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
-However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form 
+However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form
 you have input. Choose wisely!
 </div>
 
@@ -133,7 +133,7 @@ you have input. Choose wisely!
 
 ### Adding an exercise: `:add`
 
-Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise. 
+Adds an exercise that we have done for the day. If an exercise (identified by their names) is added for the first time, it is automatically registered as a new unique exercise.
 
 Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
@@ -147,23 +147,23 @@ Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 * The reps **must be a positive integer, up to 3 digits, with no leading zeroes**.
   * Examples: 1, 2, 3, 10, 100...
 * The date **must be a valid date**.
-  * Accepted formats: 
-    * DAY/MONTH/YEAR 
-    * YEAR/MONTH/DAY 
-    * DAY-MONTH-YEAR 
-    * YEAR-MONTH-DAY 
-    * DAY MONTH YEAR 
+  * Accepted formats:
+    * DAY/MONTH/YEAR
+    * YEAR/MONTH/DAY
+    * DAY-MONTH-YEAR
+    * YEAR-MONTH-DAY
+    * DAY MONTH YEAR
     * YEAR MONTH DAY
-  * DAY: 1 or 2 valid digits allowed 
-  * MONTH: 1 or 2 valid digits allowed 
+  * DAY: 1 or 2 valid digits allowed
+  * MONTH: 1 or 2 valid digits allowed
   * YEAR: 2 or 4 valid digits allowed
-  * Examples: 27/10/2022, 27-10-2022, 27/10/22... 
+  * Examples: 27/10/2022, 27-10-2022, 27/10/22...
   * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
 ##### Examples:
 * `:add n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
 * `:add n/Deadlift w/60 s/1 r/1 d/27-01-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
-* 
+*
 ![AddCommand](images/AddCommand.png)
 
 <div style="page-break-after: always;"></div>
@@ -375,13 +375,13 @@ Format: `:wq`
 
 ## FAQ
 
-**Q**: When should I use the `:list` command? 
+**Q**: When should I use the `:list` command?
 <br>
 **A**: The `:list` command resets the display of the exercise list, displaying all the exercise entries in the system (in the order the entries were input in the system). This can be used after commands, such as `:find` or `:range` are used to change the display list.
 
 **Q**: Can I change the name of my uniquely registered exercise?
 <br>
-**A**: To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises with your new name of choice. 
+**A**: To change the way it is represented, you can find the exercise with the name, delete the entries and re-enter the exercises with your new name of choice.
 
 <div markdown="block" class="alert alert-info">
 
@@ -391,7 +391,7 @@ Format: `:wq`
 
 **Q**: Can I edit an exercise?
 <br>
-**A**: You can do so by deleting the entry and adding a new entry. 
+**A**: You can do so by deleting the entry and adding a new entry.
 
 **Q**: Why is my `:filter` not showing any list even though I have input a valid exercise name?
 <br>

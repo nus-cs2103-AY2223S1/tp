@@ -186,7 +186,7 @@ that contains the accepted date patterns. The private constructor of this class 
 called `formatterList` containing `DateTimeFormatter` objects that follows strict date validity check using
 `ResolverStyle.STRICT`.
 
-The Singleton pattern is used here to prevent multiple instantiation of this class. 
+The Singleton pattern is used here to prevent multiple instantiation of this class.
 1. The drawbacks of using this pattern is not really pronounced as there are not many classes having them as dependencies (only the `Date` class).
 Therefore, coupling within the code base will not increase much.
 2. Testing will not be affected by the fact that singleton objects carry data from one test to another because there is no mutation
@@ -262,7 +262,7 @@ be used to create the `DateWithinRangePredicate` object that is passed in to the
 The method will finally return `RangeCommand`.
 
 Within the `getVariationTwo` method, we obtain the number of days which is the only argument expected to be inside the
-`ArgumentMultimap` passed into this method. The method will return a `RangeCommand` object created with a 
+`ArgumentMultimap` passed into this method. The method will return a `RangeCommand` object created with a
 `DateWithinRangePredicate` that has a start date based on the number of days from the argument and an end date of today.
 
 Then, the `execute()` method of the resulting `RangeCommand` object will be called, returning a
@@ -275,7 +275,7 @@ When the command `:range start/START_DATE end/END_DATE` is entered, the `Ui` sen
 
 `LogicManager` then executes the command by calling `execute()` in `RangeCommand`.
 
-`RangeCommand` will call the method `sortFilteredExerciseList(predicate)` defined in `Model`. This will cause 
+`RangeCommand` will call the method `sortFilteredExerciseList(predicate)` defined in `Model`. This will cause
 `filteredExercises` in `ModelManager` to be filtered according to the predicate `DateWithinRangePredicate`.
 The resulting list will only include exercise entries that have dates between the start date (inclusive) and
 end date (inclusive), arranged from the most recent first. If two exercise entries have the same date,
@@ -289,8 +289,8 @@ Given below is an example usage scenario and how the date range view mechanism b
 
 Step 1: The user launches the application which loads the set of exercises previously keyed.
 
-Step 2: The user executes `:range start/10/10/2022 end/15/10/2022` command to view all the exercises done between 
-10 October 2022 and 15 October 2022. The `ExerciseTrackerParser` identifies that the command is a `RangeCommand`. 
+Step 2: The user executes `:range start/10/10/2022 end/15/10/2022` command to view all the exercises done between
+10 October 2022 and 15 October 2022. The `ExerciseTrackerParser` identifies that the command is a `RangeCommand`.
 The command calls `Model` to `sortFilteredExerciseList(predicate)` and the `Ui` displays the `filteredExercises` list which has all the exercises between the specified dates.
 
 The following sequence diagram shows how the date range process is executed.
@@ -308,7 +308,7 @@ it goes against the simplicity of command design where the set of command keywor
 
 **Aspect: Enum types are used to indicate the variations**
 * **Current choice**: Within `RangeCommandParser`, the enum `Variation` has only two values: `ONE` and `TWO` to represent
-`:range` command variation one and two respectively. This ensures that the value representing the command variation cannot be anything not defined in the enum type. 
+`:range` command variation one and two respectively. This ensures that the value representing the command variation cannot be anything not defined in the enum type.
 Adding new variations is also easily done by adding another value inside the enum type.
 
 ### **Listing of Personal Records**
@@ -342,7 +342,7 @@ Step 2: The user enters the command `:pr n/Squat` to view their personal record 
 * **Alternative 1 (current choice)**: Accept exercise names.
     * Pros: Being able to view and list personal records by Exercise name is more intuitive and convenient, especially since all unique Exercises are listed in the UI (bottom right).
     * Cons: Would require users to type more characters; also require users to enter exercise names accurately.
-  
+
 * **Alternative 2**: Accept index as arguments.
     * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
     * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
@@ -380,16 +380,16 @@ The number of `Generator` objects created is equal to the number of unique exerc
 
 **Aspect: Type of arguments to accept:**
 * **Alternative 1 (current choice)**: Accept index as arguments.
-    * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition. 
-    * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow. 
+    * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
+    * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
 * **Alternative 2**: Accept exercise names.
-    * Pros: Easier to implement.  
-    * Cons: Would require users to type more characters; also require users to enter exercise names accurately.   
+    * Pros: Easier to implement.
+    * Cons: Would require users to type more characters; also require users to enter exercise names accurately.
 
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
     * Rationale: Allow generating suggestions of different difficulty level for different exercises, possibly in the future.
-    
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -472,25 +472,25 @@ _{more aspects and alternatives to be added}_
 
 ### Listing of unique stored Exercises in a graphical UI
 
-#### Implementation 
+#### Implementation
 
 The display window is located in the bottom right of the application. The display mechanism has been implemented with the Observer pattern in mind.
 
-It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is 
+It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is
 handled by `ExerciseKeys` and `ExerciseHashMap`.
 
 ##### General class diagram
-The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The 
-`ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the 
+The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The
+`ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the
 addUI function. As the UI elements are usually initialized later than the data, the `SavedExerciseListWindow`
-UI object is only added as an observer after its constructor is called. This guards against any nullpointer exceptions 
+UI object is only added as an observer after its constructor is called. This guards against any nullpointer exceptions
 which may occur when preloading data from a hashmap in storage.
 
 ![ObserverPatternClass](images/ObserverPattern.png)
 
 ##### Subscribing to updates
 Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`
-, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as 
+, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as
 well as the application, this can be generalised into two distinct scenarios.
 
 * **Adding an exercise** - Whenever a new exercise has been added, there is a possibility of a new key being added.
@@ -507,7 +507,7 @@ and formatting of the display message is handled by the `ExerciseKeys` class.
 
 Let us use `SavedExerciseListWindow` update function as an example of how the system is updated. A notification would notify
 `SavedExerciseListWindow` that it needs to relook at the `ExerciseHashMap` it stores and regenerate the input. It calls
-the update function which first gives the `ExerciseKeys` object an ArrayList of Strings which are the key names, arranged in 
+the update function which first gives the `ExerciseKeys` object an ArrayList of Strings which are the key names, arranged in
 natural alphabetical order, as defined in Collections.Sort .
 
 ```
@@ -542,7 +542,7 @@ notifyObservers function in `ExerciseHashMap`.
         }
     }
 ```
-Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it. 
+Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it.
 `ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update,
 instead, the responsibility of deciding what to do is passed on to the Observers themselves.
 
