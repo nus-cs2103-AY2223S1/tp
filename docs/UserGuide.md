@@ -51,6 +51,8 @@ Choose a topic from the table of contents below to find out how to manage your a
 
 **:information_source: Notes about the command format:**<br>
 
+* Commands, parameters and arguments are case-sensitive, unless otherwise specified.
+
 * Flags consisting of a character and `/` specify the type of parameter to be supplied.
   e.g. in `n/NAME`, `n/` is the flag for the `NAME` parameter.
 
@@ -238,7 +240,7 @@ Displays all contacts matching the arguments provided by you.
 
 Format: `contact find q/QUERY`
 
-* QUERY is not case sensitive.
+* QUERY is not case-sensitive.
 
 Examples:
 * `contact find q/ea` will change your displayed contact list to show a contact list where all contacts will have "ea" in their name.
@@ -249,7 +251,7 @@ Displays all tasks matching the arguments provided by you.
 
 Format: `task find <q/QUERY x/DONE a/ASSIGNMENT>`
 
-* QUERY is not case sensitive.
+* QUERY is not case-sensitive.
 * ASSIGNMENT is either FROM or TO, representing "m/" and "o/", or 'Assigned by' and 'Assigned to', respectively.
 * DONE is either X or O, representing 'Done' and 'Not done' respectively.
 
