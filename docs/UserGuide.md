@@ -113,9 +113,15 @@ A customer can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com m/1 r/0 `
     <details>
-
+    <summary>
+    Walk-through with Images
+    </summary>
+    
+    **Before executing the AddCommand:**
     <img src="images/screenshots/AddCommand/AddCommand1.png">
 
+    **After executing the AddCommand:**
+    <img src="images/screenshots/AddCommand/AddCommand1Result.png">
     </details>
 
 
@@ -126,12 +132,10 @@ Examples:
     </summary>
 
     **Before executing the AddCommand:**
-
-    ![AddCommand](images/screenshots/AddCommand/AddCommand.png)
+    <img src="images/screenshots/AddCommand/AddCommand.png">
 
     **After executing the AddCommand:**
-
-    ![AddCommandResult](images/screenshots/AddCommand/AddCommandResult.png)
+    <img src="images/screenshots/AddCommand/AddCommandResult.png">
     </details>
 
 ### 2.3 Editing a Customer’s details: `edit`
@@ -153,12 +157,10 @@ Examples:
     </summary>
 
     **Before executing the EditCommand via `PHONE_NUMBER`:**
-
-    ![EditCommandViaPhone](images/screenshots/EditCommand/EditCommand_Phone.png)
+    <img src="images/screenshots/EditCommand/EditCommand_Phone.png">
 
     **After executing the EditCommand via `PHONE_NUMBER`:**
-
-    ![EditCommandViaPhoneResult](images/screenshots/EditCommand/EditCommand_PhoneResult.png)
+    <img src="images/screenshots/EditCommand/EditCommand_PhoneResult.png">
     </details>
 
 
@@ -169,12 +171,10 @@ Examples:
     </summary>
 
     **Before executing the EditCommand via `EMAIL`:**
-
-    ![EditCommandViaEmail](images/screenshots/EditCommand/EditCommand_Email.png)
+    <img src="images/screenshots/EditCommand/EditCommand_Email.png">
 
     **After executing the EditCommand via `EMAIL`:**
-
-    ![EditCommandViaEmail](images/screenshots/EditCommand/EditCommand_EmailResult.png)
+    <img src="images/screenshots/EditCommand/EditCommand_EmailResult.png">
     </details>
 
 ### 2.4 Increasing a Customer’s Reward points: `incr`
@@ -191,12 +191,10 @@ Examples:
     </summary>
 
     **Before executing the IncreaseCommand via `PHONE_NUMBER`:**
-
-    ![IncreaseCommandViaPhone](images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png)
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png">
 
     **After executing the IncreaseCommand via `PHONE_NUMBER`:**
-
-    ![IncreaseCommandViaPhoneResult](images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png)
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png">
     </details>
 
 
@@ -207,12 +205,10 @@ Examples:
     </summary>
 
     **Before executing the IncreaseCommand via `EMAIL`:**
-
-    ![IncreaseCommandViaEmail](images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png)
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png">
 
     **After executing the IncreaseCommand via `EMAIL`:**
-
-    ![IncreaseCommandViaEmailResult](images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png)
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png">
     </details>
 
 ### 2.5 Decreasing a Customer’s Reward points: `decr`
@@ -229,12 +225,10 @@ Examples:
     </summary>
 
     **Before executing the IncreaseCommand via `PHONE_NUMBER`:**
-
-    ![DecreaseCommandViaPhone](images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png)
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png">
 
     **After executing the IncreaseCommand via `PHONE_NUMBER`:**
-
-    ![DecreaseCommandViaPhoneResult](images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png)
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png">
     </details>
 
 
@@ -246,12 +240,10 @@ Examples:
     </summary>
 
     **Before executing the IncreaseCommand via `EMAIL`:**
-
-    ![DecreaseCommandViaEmail](images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png)
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png">
 
     **After executing the IncreaseCommand via `EMAIL`:**
-
-    ![DecreaseCommandViaEmailResult](images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png)
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png">
     </details>
 
 ### 2.6 Listing all customers : `list`
@@ -266,12 +258,10 @@ Walk-through with Images
 </summary>
 
 **Before executing the ListCommand:**
-
-![ListCommand](images/screenshots/ListCommand/ListCommand.png)
+<img src="images/screenshots/ListCommand/ListCommand.png">
 
 **After executing the ListCommand**
-
-![ListCommandResult](images/screenshots/ListCommand/ListCommandResult.png)
+<img src="images/screenshots/ListCommand/ListCommandResult.png">
 </details>
 
 ### 2.7 Locating customers by name: `find`
@@ -298,12 +288,10 @@ Examples:
     </summary>
 
     **Before executing the FindCommand:**
-
-    ![FindCommandMultiple](images/screenshots/FindCommand/FindCommandNormal.png)
+    <img src="images/screenshots/FindCommand/FindCommandNormal.png">
 
     **After executing the FindCommand:**
-
-    ![FindCommandMultipleResult](images/screenshots/FindCommand/FindCommandNormalResult.png)
+    <img src="images/screenshots/FindCommand/FindCommandNormalResult.png">
     </details>
 
 
@@ -314,12 +302,10 @@ Examples:
     </summary>
 
     **Before executing the FindCommand (with at least one keyword):**
-
-    ![FindCommandMultiple](images/screenshots/FindCommand/FindCommandMultiple.png)
+    <img src="images/screenshots/FindCommand/FindCommandMultiple.png">
 
     **After executing the FindCommand (with at least one keyword):**
-
-    ![FindCommandMultipleResult](images/screenshots/FindCommand/FindCommandMultipleResult.png)
+    <img src="images/screenshots/FindCommand/FindCommandMultipleResult.png">
     </details>
 
 
@@ -331,12 +317,10 @@ Examples:
     </summary>
 
     **Before executing the FindCommand (with FuzzySearch):**
-
-    ![FindCommandFuzzy](images/screenshots/FindCommand/FindCommand_Fuzzy.png)
+    <img src="images/screenshots/FindCommand/FindCommand_Fuzzy.png">
 
     **After executing the FindCommand (with FuzzySearch):**
-
-    ![FindCommandFuzzyResult](images/screenshots/FindCommand/FindCommand_FuzzyResult.png)
+    <img src="images/screenshots/FindCommand/FindCommand_FuzzyResult.png">
     </details>
 
 
@@ -348,13 +332,11 @@ Examples:
     </summary>
 
     **Before executing the FindCommand (with matching keywords `8000`):**
-
-    ![FindCommandGeneral](images/screenshots/FindCommand/FindCommand_General.png)
+    <img src="images/screenshots/FindCommand/FindCommand_General.png">
 
     **After executing the FindCommand (with matching keywords `8000`):**
     * Both `Roy` and `Bob` have `8000` reward points hence they show up in the search.
-
-    ![FindCommandGeneralResult](images/screenshots/FindCommand/FindCommand_GeneralResult.png)
+    <img src="images/screenshots/FindCommand/FindCommand_GeneralResult.png">
     </details>
 
 
@@ -365,12 +347,10 @@ Examples:
     </summary>
 
     **Before executing the FindCommand via `PHONE_NUMBER`:**
-
-    ![FindCommandPhone](images/screenshots/FindCommand/FindCommand_Phone.png)
+    <img src="images/screenshots/FindCommand/FindCommand_Phone.png">
 
     **After executing the FindCommand via `PHONE_NUMBER`:**
-
-    ![FindCommandPhoneResult](images/screenshots/FindCommand/FindCommand_PhoneResult.png)
+    <img src="images/screenshots/FindCommand/FindCommand_PhoneResult.png">
     </details>
 
 
@@ -381,12 +361,10 @@ Examples:
     </summary>
 
     **Before executing the FindCommand via `EMAIL`:**
-
-    ![FindCommandEmail](images/screenshots/FindCommand/FindCommand_Email.png)
+    <img src="images/screenshots/FindCommand/FindCommand_Email.png">
 
     **After executing the FindCommand via `EMAIL`:**
-
-    ![FindCommandEmailResult](images/screenshots/FindCommand/FindCommand_EmailResult.png)
+    <img src="images/screenshots/FindCommand/FindCommand_EmailResult.png">
     </details>
 
 ### 2.8 Deleting a Customer : `delete`
@@ -411,12 +389,10 @@ Examples:
     </summary>
   
     **Before executing the DeleteCommand via `PHONE_NUMBER`:**
-  
-    ![DeleteCommandViaPhone](images/screenshots/DeleteCommand/DeleteCommand_Phone.png)
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_Phone.png">
 
     **After executing the DeleteCommand via `PHONE_NUMBER`:**
-
-    ![DeleteCommandViaPhoneResult](images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png)
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png">
     </details>
 
 
@@ -428,12 +404,10 @@ Examples:
     </summary>
     
     **Before executing the DeleteCommand via `EMAIL`:**
-
-    ![DeleteCommandViaEmail](images/screenshots/DeleteCommand/DeleteCommand_Email.png)
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_Email.png">
 
     **After executing the DeleteCommand via `EMAIL`:**
-
-    ![DeleteCommandViaEmailResult](images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png)
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png">
     </details>
 
 ### 2.9 Undo a Command : `undo`
@@ -448,12 +422,10 @@ Walk-through with Images
 </summary>
     
 **Before executing the UndoCommand (after a DeleteCommand):**
-
-![UndoCommand](images/screenshots/UndoAndRedoCommand/UndoCommand.png)
+<img src="images/screenshots/UndoAndRedoCommand/UndoCommand.png">
 
 **After executing the UndoCommand (Deleted Customer `Alex Yeoh` is back into bobaBot):**
-
-![UndoCommandResult](images/screenshots/UndoAndRedoCommand/UndoCommandResult.png)
+<img src="images/screenshots/UndoAndRedoCommand/UndoCommandResult.png">
 </details>
 
 :exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
@@ -470,14 +442,11 @@ Walk-through with Images
 </summary>
 
 **Before executing the RedoCommand:**
-
 * This continues from the above example in UndoCommand (where we perform an UndoCommand on a DeleteCommand)
-
-![RedoCommand](images/screenshots/UndoAndRedoCommand/RedoCommand.png)
+<img src="images/screenshots/UndoAndRedoCommand/RedoCommand.png">
 
 **After executing the RedoCommand (The Customer `Alex Yeoh` is removed from bobaBot again):**
-
-![RedoCommandResult](images/screenshots/UndoAndRedoCommand/RedoCommandResult.png)
+<img src="images/screenshots/UndoAndRedoCommand/RedoCommandResult.png">
 </details>
 
 :exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
@@ -494,12 +463,10 @@ Walk-through with Images
 </summary>
 
 **Before executing the ClearCommand:**
-
-![ClearCommand](images/screenshots/ClearCommand/ClearCommand.png)
+<img src="images/screenshots/ClearCommand/ClearCommand.png">
 
 **After executing the ClearCommand:**
-
-![ClearCommandResult](images/screenshots/ClearCommand/ClearCommandResult.png)
+<img src="images/screenshots/ClearCommand/ClearCommandResult.png">
 </details>
 
 ### 2.12 Calculate: `calc`
@@ -516,12 +483,10 @@ Walk-through with Images
 </summary>
 
 **Before executing the CalculateCommand:**
-
-![CalculateCommand](images/screenshots/CalculateCommand/NewCalculateCommand.png)
+<img src="images/screenshots/CalculateCommand/NewCalculateCommand.png">
 
 **After executing the CalculateCommand:**
-
-![CalculateCommandResult](images/screenshots/CalculateCommand/NewCalculateCommandResult.png)
+<img src="images/screenshots/CalculateCommand/NewCalculateCommandResult.png">
 </details>
 
 _Note: Please do not enter spaces, e.g.`1 + 1` does not work_
@@ -538,12 +503,10 @@ Walk-through with Images
 </summary>
 
 **Before executing the CalculatorGuiCommand:**
-
-![CalculatorGuiCommand](images/screenshots/CalculateCommand/NewCalculatorGui.png)
+<img src="images/screenshots/CalculateCommand/NewCalculatorGui.png">
 
 **After executing the CalculatorGuiCommand:**
-
-![CalculatorGuiCommandResult](images/screenshots/CalculateCommand/NewCalculatorGuiResult.png)
+<img src="images/screenshots/CalculateCommand/NewCalculatorGuiResult.png">
 </details>
 
 ### 2.14 Exiting the program : `exit`
@@ -558,8 +521,7 @@ Walk-through with Images
 </summary>
 
 **Before executing the ExitCommand:**
-
-![ExitCommand](images/screenshots/ExitCommand/ExitCommand.png)
+<img src="images/screenshots/ExitCommand/ExitCommand.png">
 
 **After executing the ExitCommand:**
 * bobaBot Application Closed
