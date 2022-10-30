@@ -22,9 +22,9 @@ public class AddTaskAttributeCommand extends AddAttributeCommand {
 
     /**
      * Constructs an AddTaskAttributeCommand instance.
-     * 
-     * @param taskIndex        index of the task.
-     * @param attributeName    the name of the attribute to be added.
+     *
+     * @param taskIndex index of the task.
+     * @param attributeName the name of the attribute to be added.
      * @param attributeContent the content of the attribute to be added.
      */
     public AddTaskAttributeCommand(Index taskIndex, String attributeName, String attributeContent) {
@@ -48,8 +48,8 @@ public class AddTaskAttributeCommand extends AddAttributeCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                        && (other instanceof AddTaskAttributeCommand
-                                && taskIndex.equals(((AddTaskAttributeCommand) other).taskIndex)));
+            || (super.equals(other)
+                && (other instanceof AddTaskAttributeCommand
+                    && taskIndex.equals(((AddTaskAttributeCommand) other).taskIndex)));
     }
 }

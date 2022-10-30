@@ -22,8 +22,8 @@ public class RemovePersonAttributeCommand extends RemoveAttributeCommand {
 
     /**
      * Constructs an AddPersonAttributeCommand instance.
-     * 
-     * @param personIndex   index of the person.
+     *
+     * @param personIndex index of the person.
      * @param attributeName the name of the attribute to be added.
      */
     public RemovePersonAttributeCommand(Index personIndex, String attributeName) {
@@ -47,8 +47,8 @@ public class RemovePersonAttributeCommand extends RemoveAttributeCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                        && (other instanceof RemovePersonAttributeCommand
-                                && personIndex.equals(((RemovePersonAttributeCommand) other).personIndex)));
+            || (super.equals(other)
+                && (other instanceof RemovePersonAttributeCommand
+                    && personIndex.equals(((RemovePersonAttributeCommand) other).personIndex)));
     }
 }

@@ -22,9 +22,9 @@ public class AddPersonAttributeCommand extends AddAttributeCommand {
 
     /**
      * Constructs an AddPersonAttributeCommand instance.
-     * 
-     * @param personIndex      index of the person.
-     * @param attributeName    the name of the attribute to be added.
+     *
+     * @param personIndex index of the person.
+     * @param attributeName the name of the attribute to be added.
      * @param attributeContent the content of the attribute to be added.
      */
     public AddPersonAttributeCommand(Index personIndex, String attributeName, String attributeContent) {
@@ -48,8 +48,8 @@ public class AddPersonAttributeCommand extends AddAttributeCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                        && (other instanceof AddPersonAttributeCommand
-                                && personIndex.equals(((AddPersonAttributeCommand) other).personIndex)));
+            || (super.equals(other)
+                && (other instanceof AddPersonAttributeCommand
+                    && personIndex.equals(((AddPersonAttributeCommand) other).personIndex)));
     }
 }

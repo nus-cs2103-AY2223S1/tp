@@ -22,9 +22,9 @@ public class EditTaskAttributeCommand extends EditAttributeCommand {
 
     /**
      * Constructs an EditTaskAttributeCommand instance.
-     * 
-     * @param taskIndex        index of the task.
-     * @param attributeName    the name of the attribute to be added.
+     *
+     * @param taskIndex index of the task.
+     * @param attributeName the name of the attribute to be added.
      * @param attributeContent the content of the attribute to be added.
      */
     public EditTaskAttributeCommand(Index taskIndex, String attributeName, String attributeContent) {
@@ -48,8 +48,8 @@ public class EditTaskAttributeCommand extends EditAttributeCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                        && (other instanceof EditTaskAttributeCommand
-                                && taskIndex.equals(((EditTaskAttributeCommand) other).taskIndex)));
+            || (super.equals(other)
+                && (other instanceof EditTaskAttributeCommand
+                    && taskIndex.equals(((EditTaskAttributeCommand) other).taskIndex)));
     }
 }

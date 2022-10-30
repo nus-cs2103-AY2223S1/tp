@@ -22,9 +22,9 @@ public class EditGroupAttributeCommand extends EditAttributeCommand {
 
     /**
      * Constructs an EditGroupAttributeCommand instance.
-     * 
-     * @param groupIndex       index of the group.
-     * @param attributeName    the name of the attribute to be added.
+     *
+     * @param groupIndex index of the group.
+     * @param attributeName the name of the attribute to be added.
      * @param attributeContent the content of the attribute to be added.
      */
     public EditGroupAttributeCommand(Index groupIndex, String attributeName, String attributeContent) {
@@ -48,8 +48,8 @@ public class EditGroupAttributeCommand extends EditAttributeCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                        && (other instanceof EditGroupAttributeCommand
-                                && groupIndex.equals(((EditGroupAttributeCommand) other).groupIndex)));
+            || (super.equals(other)
+                && (other instanceof EditGroupAttributeCommand
+                    && groupIndex.equals(((EditGroupAttributeCommand) other).groupIndex)));
     }
 }

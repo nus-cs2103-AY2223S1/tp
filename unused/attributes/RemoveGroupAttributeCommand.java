@@ -22,8 +22,8 @@ public class RemoveGroupAttributeCommand extends RemoveAttributeCommand {
 
     /**
      * Constructs an RemoveGroupAttributeCommand instance.
-     * 
-     * @param groupIndex    index of the person.
+     *
+     * @param groupIndex index of the person.
      * @param attributeName the name of the attribute to be added.
      */
     public RemoveGroupAttributeCommand(Index groupIndex, String attributeName) {
@@ -47,8 +47,8 @@ public class RemoveGroupAttributeCommand extends RemoveAttributeCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                        && (other instanceof RemoveGroupAttributeCommand
-                                && groupIndex.equals(((RemoveGroupAttributeCommand) other).groupIndex)));
+            || (super.equals(other)
+                && (other instanceof RemoveGroupAttributeCommand
+                    && groupIndex.equals(((RemoveGroupAttributeCommand) other).groupIndex)));
     }
 }
