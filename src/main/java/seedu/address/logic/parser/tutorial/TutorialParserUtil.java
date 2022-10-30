@@ -3,8 +3,8 @@ package seedu.address.logic.parser.tutorial;
 import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialVenue;
 
 
 /**
@@ -27,17 +27,17 @@ public class TutorialParserUtil {
     }
 
     /**
-     * Parses a {@code String venue} into a {@code TutorialVenue}.
+     * Parses a {@code String venue} into a {@code Venue}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code venue} is invalid.
      */
-    public static TutorialVenue parseTutorialVenue(String venue) throws ParseException {
+    public static Venue parseTutorialVenue(String venue) throws ParseException {
         Objects.requireNonNull(venue);
         String trimmedName = venue.trim();
-        if (!TutorialVenue.isValidVenue(trimmedName)) {
-            throw new ParseException(TutorialVenue.MESSAGE_CONSTRAINTS);
+        if (!Venue.isValidVenue(trimmedName)) {
+            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
         }
-        return new TutorialVenue(trimmedName);
+        return new Venue(trimmedName);
     }
 }

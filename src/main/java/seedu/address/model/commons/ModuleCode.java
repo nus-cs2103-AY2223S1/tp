@@ -18,7 +18,7 @@ public class ModuleCode {
     public final String moduleCode;
 
     /**
-     * Constructs a {@code TutorialVenue}.
+     * Constructs a {@code Venue}.
      *
      * @param moduleCode A valid module code.
      */

@@ -14,8 +14,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.student.AddCommand;
-import seedu.address.logic.commands.student.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.student.AddStudentCommand;
+import seedu.address.logic.commands.student.EditStudentCommand.EditPersonDescriptor;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
@@ -27,8 +27,8 @@ public class PersonUtil {
     /**
      * Returns an add command string for adding the {@code person}.
      */
-    public static String getAddCommand(Student student) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(student);
+    public static String getAddStudentCommand(Student student) {
+        return AddStudentCommand.COMMAND_WORD + " " + getPersonDetails(student);
     }
 
     /**

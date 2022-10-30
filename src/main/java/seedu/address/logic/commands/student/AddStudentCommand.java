@@ -23,7 +23,7 @@ import seedu.address.model.student.Student;
 /**
  * Adds a person to the address book.
  */
-public class AddCommand extends Command {
+public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "add student";
 
@@ -61,7 +61,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Student student) {
+    public AddStudentCommand(Student student) {
         requireNonNull(student);
         toAdd = student;
     }
@@ -81,7 +81,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddStudentCommand // instanceof handles nulls
+                && toAdd.equals(((AddStudentCommand) other).toAdd));
     }
 }

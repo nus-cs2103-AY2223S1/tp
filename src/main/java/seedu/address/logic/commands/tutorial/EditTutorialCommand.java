@@ -20,10 +20,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelType;
 import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * Edits the details of an existing tutorial in the address book.
@@ -97,7 +97,7 @@ public class EditTutorialCommand extends Command {
 
         TutorialName updatedName = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());
         ModuleCode updatedModule = editTutorialDescriptor.getModule().orElse(tutorialToEdit.getModule());
-        TutorialVenue updatedVenue = editTutorialDescriptor.getVenue().orElse(tutorialToEdit.getVenue());
+        Venue updatedVenue = editTutorialDescriptor.getVenue().orElse(tutorialToEdit.getVenue());
         WeeklyTimeslot updatedTimeslot = editTutorialDescriptor.getTimeslot()
                 .orElse(tutorialToEdit.getTimeslot());
 
@@ -129,7 +129,7 @@ public class EditTutorialCommand extends Command {
     public static class EditTutorialDescriptor {
         private TutorialName name;
         private ModuleCode module;
-        private TutorialVenue venue;
+        private Venue venue;
         private WeeklyTimeslot timeslot;
 
         public EditTutorialDescriptor() {}
@@ -167,11 +167,11 @@ public class EditTutorialCommand extends Command {
             return Optional.ofNullable(module);
         }
 
-        public void setVenue(TutorialVenue venue) {
+        public void setVenue(Venue venue) {
             this.venue = venue;
         }
 
-        public Optional<TutorialVenue> getVenue() {
+        public Optional<Venue> getVenue() {
             return Optional.ofNullable(venue);
         }
 

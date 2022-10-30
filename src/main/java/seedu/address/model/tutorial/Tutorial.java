@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.datetime.WeeklyTimeslot;
 
 /**
@@ -16,14 +17,14 @@ public class Tutorial {
     // Identity fields
     private final TutorialName name;
     private final ModuleCode module;
-    private final TutorialVenue venue;
+    private final Venue venue;
     // Data fields
     private final WeeklyTimeslot timeslot;
 
     /**
      * Every field must be present and not null.
      */
-    public Tutorial(TutorialName name, ModuleCode module, TutorialVenue venue,
+    public Tutorial(TutorialName name, ModuleCode module, Venue venue,
                     WeeklyTimeslot timeslot) {
         requireAllNonNull(name, module, venue, timeslot);
         this.name = name;
@@ -40,7 +41,7 @@ public class Tutorial {
         return module;
     }
 
-    public TutorialVenue getVenue() {
+    public Venue getVenue() {
         return venue;
     }
 

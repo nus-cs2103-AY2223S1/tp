@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
 import seedu.address.model.commons.ModuleCode;
+import seedu.address.model.commons.Venue;
 import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * A utility class to help with building Tutorial objects.
@@ -20,7 +20,7 @@ public class TutorialBuilder {
 
     private TutorialName tutorialName;
     private ModuleCode moduleCode;
-    private TutorialVenue tutorialVenue;
+    private Venue venue;
     private String tutorialTimeStart;
     private String tutorialTimeEnd;
     private String tutorialDay;
@@ -31,7 +31,7 @@ public class TutorialBuilder {
     public TutorialBuilder() {
         tutorialName = new TutorialName(DEFAULT_NAME);
         moduleCode = new ModuleCode(DEFAULT_MODULE);
-        tutorialVenue = new TutorialVenue(DEFAULT_VENUE);
+        venue = new Venue(DEFAULT_VENUE);
         tutorialDay = "1";
         tutorialTimeStart = "08:00";
         tutorialTimeEnd = "09:00";
@@ -43,7 +43,7 @@ public class TutorialBuilder {
     public TutorialBuilder(Tutorial tutorialToCopy) {
         tutorialName = tutorialToCopy.getName();
         moduleCode = tutorialToCopy.getModule();
-        tutorialVenue = tutorialToCopy.getVenue();
+        venue = tutorialToCopy.getVenue();
         //        tutorialTimeslot = tutorialToCopy.getTimeslot();
     }
 
@@ -64,10 +64,10 @@ public class TutorialBuilder {
     }
 
     /**
-     * Sets the {@code TutorialVenue} of the {@code Tutorial} that we are building.
+     * Sets the {@code Venue} of the {@code Tutorial} that we are building.
      */
     public TutorialBuilder withVenue(String venue) {
-        this.tutorialVenue = new TutorialVenue(venue);
+        this.venue = new Venue(venue);
         return this;
     }
 
@@ -95,7 +95,7 @@ public class TutorialBuilder {
      */
     public Tutorial build() {
         WeeklyTimeslot timeslot = WeeklyTimeslot.fromFormattedString(tutorialDay, tutorialTimeStart, tutorialTimeEnd);
-        return new Tutorial(tutorialName, moduleCode, tutorialVenue, timeslot);
+        return new Tutorial(tutorialName, moduleCode, venue, timeslot);
     }
 
 }
