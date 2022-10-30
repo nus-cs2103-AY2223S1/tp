@@ -5,7 +5,68 @@ title: User Guide
 
 # ConnectNUS User Guide
 
-ConnectNUS is a **desktop app for managing contacts, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ConnectNUS can get your contact management tasks done faster than traditional GUI apps.
+ConnectNUS is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track 
+of their and their friends' modules and timetables. Capitalising on the features of adding previous, current and 
+future modules, as well as timetables, ConnectNUS provides users with the convenience of viewing your friends' schedules
+and eliminates the problem of having to search through multiple group and private chats to know when your friends will 
+be free to meet up to do group projects. The module filter feature is a useful tool to help you find friends who are currently 
+taking the same modules as you now or friends who are interested in taking the same modules together in the next semester.
+
+ConnectNUS is **optimised for use via a Command Line Interface** (CLI) while still having the benefits of a 
+**Graphical User Interface** (GUI). For Computer Science students who are generally fast typers, ConnectNUS is an
+excellent platform for you to get your contact management tasks done quickly, so you can save time and effort
+finding out about your friends' schedules, and focus on getting your projects and module bidding done.
+
+## Quick Start
+
+1. Ensure you have Java 11 or above installed on your computer. You can refer to
+[this](https://www3.ntu.edu.sg/home/ehchua/programming/howto/jdk_howto.html#zz-2) guide to help you install and configure
+an appropriate version of Java. You can open a command window and run the `java -version` command to ensure you are using 
+Java 11 (or above).
+
+![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 237)/Screenshot 2022-10-30 at 5.16.00 PM.png)
+
+2. Download the latest ConnectNUS.jar from [here](https://github.com/AY2223S1-CS2103T-T14-4/tp/releases/tag/v1.3).
+
+![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 239)/Screenshot 2022-10-30 at 5.20.32 PM.png)
+
+3. Copy the file to a new empty folder you want to use as the home folder for ConnectNUS. A JSON file will be created in
+the folder to store your data upon saving the jar file.
+
+![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 238)/Screenshot 2022-10-30 at 5.19.09 PM.png)
+
+4. In terminal (Mac) or command prompt (Windows), navigate to the folder's path. For Mac users, you can do it by right-clicking on the folder
+and click on `New Terminal at Folder` as illustrated below.
+
+![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 240)/Screenshot 2022-10-30 at 5.22.58 PM.png)
+![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 241)/Screenshot 2022-10-30 at 5.23.41 PM.png)
+
+5. Launch the jar file using the `java -jar ConnectNUS.jar` command in the terminal. Do not double-click
+on the jar file in the folder. This to ensure the jar file is using the correct Java version verified in Step 1.
+
+![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 243)/Screenshot 2022-10-30 at 5.26.01 PM.png)
+
+6. The GUI similar to the below should appear in a few seconds. Do note that the app contains some sample data.
+
+![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 244)/Screenshot 2022-10-30 at 5.28.08 PM.png)
+
+7. Refer to the [Features](#features) section below to for more details on how to use ConnectNUS.
+
+## Navigating the User Guide
+**Notes about the command format:**
+
+* Words in `UPPER_CASE` are the parameters to be **supplied by the user**. \
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Items in square brackets are **optional**. \
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Items with `…`​ after them can be used **multiple times including zero times**. \
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Parameters can be **in any order**. \
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* If a parameter is expected only once in the command but you specified it multiple times, **only the last occurrence of the parameter will be taken**. \
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 ## Table of Contents
 - [Features](#features)
@@ -37,22 +98,6 @@ ConnectNUS is a **desktop app for managing contacts, optimised for use via a Com
 
 ## Features
 
-** Notes about the command format:**
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. \
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional. \
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times. \
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order. \
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. \
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. \
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-
 ### Saving the data
 
 ConnectNUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -63,16 +108,13 @@ ConnectNUS data is saved in the hard disk automatically after any command that c
 ConnectNUS data is saved as a JSON file `[JAR file location]/data/connectnus.json`. Advanced users are welcome to update data directly by editing that data file.
 
 
-
-**Caution:** If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-
+❗**Caution:** If your changes to the data file makes its format invalid, ConnectNUS will discard all data and start with an empty data file at the next run.
 
 ### Adding user
 
 Add your own user profile into the contact list.
 
-Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address] [g/your github username] [curr/current module] [prev/previous module] [plan/future module]`
-
+Format: `user n/your name p/[your phone number] e/[your email] a/[your address] [g/your github username] [curr/current module] [prev/previous module] [plan/future module]`
 
 
 * Adds your own user profile with specified details into your contact list.
@@ -95,8 +137,9 @@ Format: `edit user [n/your name] [p/your phone number] [e/your email] [a/your ad
 
 * Edits the user profile with specified details.
 * You need to edit at least one field
-* You may edit multiple fields at once
-* You cannot edit modules with this command, you must do so with the module commands.
+* You may edit multiple fields at once 
+
+💡 **Tip:** You cannot edit modules with this command, you must do so with the module commands.
 
 Examples:
 
