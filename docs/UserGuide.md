@@ -320,5 +320,7 @@ Attempt to use the following features could result in user confusion, an error m
 * Showing reviews/stalls that match more of the `sfind`/`rfind` search terms first
 * Finding reviews by rating
 * Finding reviews/stalls by address
-* A second window that gives more space for long text to be viewed
+* A second window that gives more space for long text to be viewed completely
 * Undo previous command
+* Smarter error detection which detects the first error a user makes in a command
+* Clearing all reviews only
