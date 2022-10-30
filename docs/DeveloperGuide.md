@@ -83,6 +83,11 @@ using a computer. For users who type fast, RC4HDB will be highly efficient and q
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
+:bulb: **Tip:** For the rest of the Developer Guide, `Model`, `Logic`, `Storage`, and `UI` will be standardised with 
+the following colours.
+
+![Colors for UML diagrams](./images/ColorCoding.png)
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -177,28 +182,26 @@ classes ```ModelCommand```, ```StorageCommand```, ```FileCommand``` and ```MiscC
 implement the Command interface and is used as a intermediate barrier to build the command classes. The specific
 commands implement these commands instead of directly implementing the Command interface in order to improve
 the abstraction of commands.
+
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/LatestModelClassDiagram.png" width="450" />
+![UML diagram for Model component](./images/LatestModelClassDiagram.png)
 
 
 The `Model` component,
 
 * stores the resident book data i.e., all `Resident` objects (which are contained in a `UniqueResidentList` object).
 * stores the currently 'selected' `Resident` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Resident>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* stores two `ObservableList<String>` attributes of table columns to show and hide in the UI. The UI is able to listen to changes in these lists, and automatically update the column visibilities in the table. 
-* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` which is also used to update changes in `Venue` or `Booking` in the UI.  
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
+* stores an `ObservableList<Venue>` and an `ObservableList<Booking>` of venues and bookings to display in the UI. 
+* stores two `ObservableList<String>` objects of columns to show and hide in the UI.
 * does not depend on any of the other components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <!-- The references to Resident fields have been removed to reduce clutter -->
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ResidentBook`, which `Resident` references. This allows `ResidentBook` to only require one `Tag` object per unique tag, instead of each `Resident` needing their own `Tag` objects.<br>
 
-<img src="images/UpdatedBetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -308,33 +311,43 @@ As a result, any updates to `ObservableList<Resident>` would be reflected immedi
 
 ### Show/hide feature for resident fields
 
-**Challenges faced with UI:**
+**Changes to UI component:**
 
-The original UI represented a `Person` field as a nested FXML `Label` within a `PersonCard`, which was used to populate the `ListView` panel. Calling `setVisible` on a `Label` resulted in blank gaps in the panel because the `Label` was ultimately still intact, just *invisible*. Hence, there was a need to find another method to hide and collapse rows/columns.
-
-**Gaps in** `ListView` **panel:**
+To achieve the show/hide feature for resident fields, we first had to rework our UI to use a `TableView`
+and two `ObservableList<String>` objects, instead of a `ListView` and a `PersonCard`. This was because the `setVisible`
+method does not work properly with a `ListView` and a `PersonCard` -- as shown below, hidden fields would be rendered 
+as gaps in the `ListView`, rather than being omitted entirely. 
 
 ![ListViewMissingField](images/ListViewMissingField.png)
 
-To achieve this, we modified our UI to use a `TableView`, where using `setVisible` on a `TableColumn` allowed us to remove the specified columns as intended. One possible reason as to why this works is that `TableColumn` does not extend from `Node`, unlike `Label`. As suggested in this [thread](https://stackoverflow.com/questions/28558165/javafx-setvisible-hides-the-element-but-doesnt-rearrange-adjacent-nodes), `setVisible` in `TableColumn` probably has a different implementation from that in `Node`.
+This can be attributed to the use of `Label` to represent fields in a `PersonCard`, which was set to occupy the rows
+in the `ListView` by default. Using `setVisible(false)` only resulted in a `Label` turning *invisible*, leaving the 
+cells (and hence gaps) intact. On the other hand, using `setVisible` on a `TableColumn` in `TableView` worked as 
+intended, and we were also able to allow the remaining columns to expand freely.
 
-<br>
 
-**Challenges faced with linking components:**
+**Changes to Model component:**
 
-The next challenge was linking up the `Model` with the `ResidentTableView` class, such that the list of fields to hide could be updated based on user commands. There is no equivalent of React Context in Java, and references from parent to child classes are unidirectional, so I had to get creative with the implementation. There were two field lists, one in `ModelManager` and one in `ResidentViewTable`, which had to be synchronized somehow.
+For the feature to work, we wanted to allow the `ResidentTableView` class in the UI to automatically update its 
+columns based on user commands that affected the model. There needed to be some way for the `ResidentTableView` class 
+to synchronise its columns with the corresponding field lists in `ModelManager`. From the below diagram, we can see
+that there is no reference between `ModelManager` and `ResidentTableView`.
 
 ![MainWindowRelationships](images/MainWindowRelationships.png)
 
-The final design involved using a `ListChangeListener` to cascade the updates from one list to the other. Since `LogicManager` held a reference to a `ModelManager`, and `MainWindow` held a reference to both a `LogicManager` and the `ResidentTableView` class, I used a listener in `MainWindow` to track changes in the `Model` field list and updated the `ResidentTableView` field list accordingly. Finally, one more listener was used within `ResidentTableView` to update the column visibilities whenever the field list changed.
+One possible implementation was to store a reference to the `ResidentTableView` in `ModelManager`, to update the 
+UI directly whenever a command modified the field lists in `ModelManager`. However, this would increase the coupling 
+between the UI and the model components, which would make integration and reuse of the module significantly harder. 
 
-<br>
+Our solution was to store lists of fields to show and hide in *both* `ModelManager` and the `ResidentTableView` classes.
+Using listeners to propagate changes in the `ModelManager` field lists to the `ResidentTableView` field lists, we were
+able to minimise coupling between both the Model and the UI components. 
 
-**Further improvements:**
+Additionally, the use of `ObservableList<String>` as our choice of field lists allowed us to use the Observer pattern 
+in our application. Moving forward, our design for the Observer pattern could be better improved, 
+for example, by combining `Observer` and `Observable` interfaces to remove the need to instantiate listeners 
+in separate classes.
 
-Currently, the commands for showing and hiding columns are extensions of the `list` command: `list /i <fields_to_include>` and `list /e <fields_to_exclude>`. While this syntax works as intended, we will be changing the command to use `show` and `hide` respectively for clarity.
-
-<br>
 
 ### Filter feature to filter residents according to fields
 
