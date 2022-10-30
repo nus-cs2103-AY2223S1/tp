@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -86,7 +85,7 @@ public class EditCommand extends Command {
         }
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.updateFilteredInternshipList(model.getCurrentPredicate());
         return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 

@@ -96,6 +96,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new FindMyIntern(model.getFindMyIntern()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
+        expectedModel.updateFilteredInternshipList(model.getCurrentPredicate());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

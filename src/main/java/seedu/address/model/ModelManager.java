@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Internship> filteredInternships;
     private SortedList<Internship> sortedInternships;
+    private Predicate<Internship> currentPredicate = PREDICATE_SHOW_ALL_INTERNSHIPS;
 
     /**
      * Initializes a ModelManager with the given findMyIntern and userPrefs.
@@ -134,7 +135,13 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
+        currentPredicate = predicate;
         filteredInternships.setPredicate(predicate);
+    }
+
+    @Override
+    public Predicate<Internship> getCurrentPredicate() {
+        return currentPredicate;
     }
 
     @Override
