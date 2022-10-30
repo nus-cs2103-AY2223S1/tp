@@ -41,12 +41,4 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
-    /**
-     * Checks whether the given indices are valid (start <= end and within list size)
-     * @return Whether the list is able to delete the patients with the given indices.
-     */
-    public boolean isValidIndices(String args) {
-        return true;
-    }
-
 }

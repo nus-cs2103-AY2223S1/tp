@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -20,9 +22,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a patient identified by the index number used in the displayed patient list,"
-            + "or a range of patients to be deleted in the patient list.\n"
-            + "Parameters: INDEX [endIndex] (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1"
+            + "or a range (inclusive) of patients to be deleted in the patient list.\n"
+            + "Parameters: INDEX [END_INDEX] (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1\n"
             + "Example: " + COMMAND_WORD + " 2 5";
 
     private final Index targetIndex;
@@ -57,18 +59,25 @@ public class DeleteCommand extends Command {
             model.deletePerson(personToDelete);
             return new CommandResult(String.format(Messages.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
         }
-        if (endIndex.getZeroBased() > lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
         int start = targetIndex.getZeroBased();
         int end = endIndex.getZeroBased();
+        checkValidIndices(start, end, lastShownList);
         List<Person> personsToDelete = new ArrayList<>(lastShownList.subList(start, end + 1));
         for (Person personToDelete: personsToDelete) {
             model.deletePerson(personToDelete);
             model.deleteAppointments(personToDelete.getAppointments());
         }
         return new CommandResult(Messages.MESSAGE_DELETE_PERSONS_SUCCESS);
+    }
 
+    /**
+     * Checks whether the given indices are valid (start <= end and within list size)
+     * @throws CommandException if the indices given are not valid for deletion in the patient list.
+     */
+    public void checkValidIndices(int start, int end, List<Person> currList) throws CommandException {
+        if (start > end || end > currList.size() - 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
     }
 
     @Override
