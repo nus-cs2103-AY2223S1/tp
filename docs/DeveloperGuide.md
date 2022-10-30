@@ -9,39 +9,39 @@ title: Developer Guide
 
 ## **Table of Contents**
 
-* [Introduction](#introduction)
-* [Acknowledgements](#acknowledgements)
-* [Design](#design)
+* [**Introduction**](#introduction)
+* [**Acknowledgements**](#acknowledgements)
+* [**Design**](#design)
     * [Architecture](#architecture)
     * [Ui](#ui-component)
     * [Logic](#logic-component)
     * [Model](#model-component)
     * [Storage](#storage-component)
     * [Common classes](#common-classes)
-* [Implementation](#implementation)
+* [**Implementation**](#implementation)
     * [Resident class](#the-resident-class)
     * [Displaying results](#changes-in-displaying-results)
     * [Show/Hide fields](#showhide-feature-for-resident-fields)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
-* [Conclusion](#conclusion)
-* [Appendix: Project requirements](#appendix-project-requirements)
+* [**Conclusion**](#conclusion)
+* [**Appendix: Project requirements**](#appendix-project-requirements)
     * [Product scope](#product-scope)
     * [User stories](#user-stories)
     * [Use cases](#use-cases)
     * [Non-functional requirements](#non-functional-requirements)
     * [Glossary](#glossary)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+* [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
     * [Modifying residents](#modifying-residents)
     * [File management](#file-management)
-    * [Venue booking](#venue-booking)
+    * [Venue management](#venue-management)
 
 ---
 
 ## **Introduction**
 
-Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what RC4HDB is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing a specialised features which solve their resident and venue management needs.
+Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what RC4HDB is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing specialised features which solve their resident and venue management needs.
 
 ### Purpose
 
@@ -902,28 +902,28 @@ testers are expected to do more *exploratory* testing.
 
 ### Table of contents for manual testing
 
-* [Launch and shutdown](#launch-and-shutdown)
+* [**Launch and shutdown**](#launch-and-shutdown)
   * [Initial launch](#initial-launch)
   * [Saving window preferences](#saving-window-preferences)
   * [Starting up with missing/corrupted data files](#starting-up-with-missingcorrupted-data-files)
-* [Modifying residents](#modifying-residents)
+* [**Modifying residents**](#modifying-residents)
   * [Adding a resident](#adding-a-resident)
   * [Editing an existing resident](#editing-an-existing-resident)
   * [Deleting a resident](#deleting-a-resident)
   * [Clearing all residents](#clearing-all-residents)
-* [Viewing residents](#viewing-residents)
+* [**Viewing residents**](#viewing-residents)
   * [Listing residents](#listing-residents)
   * [Showing resident fields](#showing-resident-fields)
   * [Hiding resident fields](#hiding-resident-fields)
   * [Resetting hidden resident fields](#resetting-hidden-resident-fields)
   * [Finding residents](#finding-residents)
   * [Filtering residents](#filtering-residents)
-* [File management](#file-management)
+* [**File management**](#file-management)
   * [Creating a new data folder](#creating-a-new-data-folder)
   * [Deleting an existing data folder](#deleting-an-existing-data-folder)
   * [Switching to a different data folder](#switching-to-a-different-data-folder)
   * [Importing resident data from CSV file](#importing-resident-data-from-csv-file)
-* [Venue management](#venue-management)
+* [**Venue management**](#venue-management)
   * [Adding a venue](#adding-a-venue)
   * [Deleting a venue](#deleting-a-venue)
   * [Viewing a venue](#viewing-a-venue)

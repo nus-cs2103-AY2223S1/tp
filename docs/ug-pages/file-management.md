@@ -106,7 +106,7 @@ Examples:
 
 ### CSV file format
 
-:information_source: All fields must adhere to this [format](modifying-residents.md#format-for-resident-fields).<br>
+:information_source: All fields must adhere to this [format](modifying-resident-data.md#format-for-resident-fields).<br>
 
 Format:
 * For clarity, the table column headers have been included. **DO NOT** include them in your **CSV** file.
