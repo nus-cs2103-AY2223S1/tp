@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.CurrentModule;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
@@ -113,7 +114,7 @@ class JsonAdaptedUser {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public User toModelType() throws IllegalValueException {
+    public User toModelType() throws IllegalValueException, CommandException {
 
         if (isEmpty) {
             return new EmptyUser();

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_LESSON_TIME;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
@@ -307,6 +308,11 @@ public class ParserUtil {
         int dayNumber = parseDay(day);
         LocalTime start = parseTime(startTime);
         LocalTime end = parseTime(endTime);
+
+        int compareTime = start.compareTo(end);
+        if (compareTime >= 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_LESSON_TIME, startTime, endTime));
+        }
 
         switch(typeTrim) {
         case "tut":

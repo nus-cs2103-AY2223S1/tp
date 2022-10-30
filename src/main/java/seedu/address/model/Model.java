@@ -105,7 +105,7 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    void addLessonToUser(Lesson lesson);
+    void addLessonToUser(Lesson lesson) throws CommandException;
 
     void removeLessonToUser(Lesson lesson) throws CommandException;
 

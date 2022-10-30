@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
  * Commands that add lessons to a contact
  */
 public class LessonIndexCommand extends LessonCommand {
-    public static final String MESSAGE_ADD_LESSON_SUCCESS = "Added Lesson for Person: %1$s";
+    public static final String MESSAGE_ADD_LESSON_SUCCESS = "Added Lesson (%s) to contact at index %d, %s";
 
     private Lesson lesson;
     private Index index;
@@ -48,6 +48,7 @@ public class LessonIndexCommand extends LessonCommand {
 
         personToEdit.addLesson(lesson);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson));
+        return new CommandResult(String.format(MESSAGE_ADD_LESSON_SUCCESS, lesson,
+                index.getZeroBased(), personToEdit.getName()));
     }
 }

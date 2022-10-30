@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.module.Lesson;
 
@@ -44,7 +45,7 @@ public class TypicalLessons {
     /**
      * Returns an {@code AddressBook} with all the typical lessons.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBook() throws CommandException {
         AddressBook ab = new AddressBook();
         ab.addLessonToUser(CS2103T_LECTURE);
         for (Lesson lesson : getTypicalLessons()) {

@@ -146,7 +146,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addLessonToUser(Lesson lesson) {
+    public void addLessonToUser(Lesson lesson) throws CommandException {
         versionedAddressBook.addLessonToUser(lesson);
     }
 

@@ -46,7 +46,7 @@ public abstract class User {
      */
     public abstract Set<PlannedModule> getPlanModules();
 
-    public abstract void addLesson(Lesson lesson);
+    public abstract void addLesson(Lesson lesson) throws CommandException;
 
     public abstract Set<Lesson> getLessons();
 
