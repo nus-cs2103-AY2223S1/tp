@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Teacher's Pet User Guide
-subtitle: Everything you need to know about Teacher's Pet
+title: **Teacher's Pet** User Guide
+subtitle: Everything you need to know about **Teacher's Pet**
 ---
 **Teacher’s Pet** is a desktop application built for Private 1-to-1 Tutors in order to manage contacts of students and 
 classes, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User 
@@ -55,8 +55,8 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 
 ## Quick start
 
-There are a couple of things that need to be setup first before you start Teacher's Pet for the first time. This will
-ensure that Teacher's Pet works as expected and runs smoothly on your computer.
+There are a couple of things that need to be setup first before you start ****Teacher's Pet**** for the first time. This will
+ensure that **Teacher's Pet** works as expected and runs smoothly on your computer.
 
 ### Step 1: Ensure you have Java `11` or above installed in your Computer
 To check if you have Java `11` or above installed, follow the steps for your operating system
@@ -80,7 +80,7 @@ To check if you have Java `11` or above installed, follow the steps for your ope
 https://github.com/AY2223S1-CS2103T-T09-4/tp/releases.
 - Copy the file to the folder you want to use which will become the *home folder* for your application.
 - Double-click the file to start the app. The GUI as seen below should appear in a few seconds.
-   In this case, Teacher's Pet contains some sample data.
+   In this case, **Teacher's Pet** contains some sample data.
 
 ![UI introduction](images/UG-screenshots/UiIntro.png)
 
@@ -90,11 +90,11 @@ https://github.com/AY2223S1-CS2103T-T09-4/tp/releases.
 
 ![Partition](images/UG-screenshots/UiPartition.png)
 
-Teacher's Pet is divided into 5 areas to maximise productivity:
+**Teacher's Pet** is divided into 5 areas to maximise productivity:
 
 1. Input Command - The dialog box where you will input your desired commands.
-2. Application’s Reply - A short answer whether Teacher's Pet has executed the command, or an error message if the
-  Teacher's Pet did not understand the command.
+2. Application’s Reply - A short answer whether **Teacher's Pet** has executed the command, or an error message if the
+  **Teacher's Pet** did not understand the command.
 3. Student's Details - A window that will display the details of the student(s).
 4. Statistics Window - A window that shows all the statistics of the tutor, such as the number of students and
 the money collected/owed.
@@ -128,7 +128,7 @@ application from top to bottom as the illustrations added follow a sequential or
 | Items in square brackets are optional                                                                                                                                                             | Given `n/NAME [t/TAG]`, since `t/TAG` is in square brackets, you can type either `n/John Doe t/python` or `n/John Doe` if no tag is required                                                                                                                     |
 | Items with `…` after them can be used 0 or more times                                                                                                                                             | Given `[t/TAG]…`, you can choose to not type anything, `t/python` for one tag, `t/javascript t/react` for two tags and etc.                                                                                                                                      |
 | Parameters can be in any order                                                                                                                                                                    | `n/NAME p/CONTACT_NUMBER` or `p/CONTACT_NUMBER n/NAME` are acceptable                                                                                                                                                                                            |
-| A parameter expected once will have only it's last occurrence taken despite being specified multiple times                                                                                        | If you specify `p/12341234 p/56785678`, only `p/56785678` will be accepted by Teacher's Pet.                                                                                                                                                                     |
+| A parameter expected once will have only it's last occurrence taken despite being specified multiple times                                                                                        | If you specify `p/12341234 p/56785678`, only `p/56785678` will be accepted by **Teacher's Pet**.                                                                                                                                                                     |
 | Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored                                                                    | If the you type `help 123`, the command will be interpreted as `help`.                                                                                                                                                                                           |
 | An index will be `INDEX-S` if the command requries information from the [Day's Schedule List](#ui-overview) and will be `INDEX` if it requires information from [Student's Details](#ui-overview) | Under [mark command](#marking-a-student-mark), `mark 1` will mark the 1st student in the [Day's Schedule List](#ui-overview). Under [delete command](#deleting-students-delete), `delete 1` will remove the first student from [Student's Details](#ui-overview) |
 
@@ -330,7 +330,7 @@ Examples:
 The `mark` command marks an existing student under [Day's Schedule List](#ui-overview) as present for a class.
 
 When a student has been `mark`ed, a couple of things will happen.
-1. Teacher's Pet will increase the student's owed amount by the rates per class. 
+1. **Teacher's Pet** will increase the student's owed amount by the rates per class. 
 2. A cross will be displayed beside the student's name indicating that the student has attended the class. 
 3. The student's next class will be set a week later at the same time, provided there is an available time slot.
 
@@ -359,7 +359,7 @@ the mark command. This increases the amount owed but frees up that time slot for
 
 The `pay` command indicates that a student has paid a certain amount of money.
 
-Teacher's Pet will reduce the student's owed amount by the amount paid.
+**Teacher's Pet** will reduce the student's owed amount by the amount paid.
 
 Format: `pay INDEX-s AMOUNT_PAID`
 
@@ -569,7 +569,7 @@ between 1000-1030 for a 60 minutes class.
 
 ### Sort the displayed students: `sort`
 
-The `sort` comamnd sorts the list of students in the Student's Details panel by the specified `TYPE` and `ORDER`.
+The `sort` command sorts the list of students in the Student's Details panel by the specified `TYPE` and `ORDER`.
 
 Format: `sort TYPE [ORDER]`
 
@@ -669,7 +669,7 @@ Format: `clear`
 
 ### Undo the last command: `undo`
 
-The `undo` command undoes the last command executed and restores the Teacher's Pet to the previous state.
+The `undo` command undoes the last command executed and restores the **Teacher's Pet** to the previous state.
 
 Format: `undo`
 
@@ -712,7 +712,7 @@ Teacher’s Pet will discard all data and start with an empty data file at the n
 
 Q: How do I transfer my data to another Computer?
 
-A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Teacher's Pet home folder.
+A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Teacher's Pet** home folder.
 
 [↑ Back to top](#table-of-contents)
 
@@ -746,7 +746,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Delete a student                  | delete INDEX e.g., `delete 2`                                                                                                                                                                                                                            |
 | Clear all students                | `clear`                                                                                                                                                                                                                                                  |
 | Undo a command                    | `undo`                                                                                                                                                                                                                                                   |
-| Exit Teacher's Pet                | `exit`                                                                                                                                                                                                                                                   |
+| Exit **Teacher's Pet**            | `exit`                                                                                                                                                                                                                                                   |
 
 [↑ Back to top](#table-of-contents)
 
