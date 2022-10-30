@@ -65,7 +65,7 @@ ensure that the application works as expected and runs smoothly on your computer
 ### Step 1: Ensure you have Java `11` or above installed in your Computer
 To check if you have Java `11` or above installed, follow the steps for your operating system
 ##### If you are using Windows:
-1. Press the Start button and type *cmd* then press the Enter button on your keyboard.
+1. Press the Start button and type *cmd* then press Enter button on your keyboard.
 2. Once you have Command Prompt running, type `java --version` and if you have Java installed properly, you should
   see an output like the following.
   ![UI introduction](images/UG-screenshots/Java11CheckWindows.png)
@@ -132,7 +132,7 @@ application from top to bottom as the illustrations added follow a sequential or
 | Words in `UPPER_CASE` are parameters supplied by you                                                                                                                                              | Given the following format, `add n/NAME`. In this case, `NAME` is a parameter which can be replaced by `John Doe` as `add n/John Doe`                                                                                                                            |
 | Items in square brackets are optional                                                                                                                                                             | Given `n/NAME [t/TAG]`, since `t/TAG` is in square brackets, you can type either `n/John Doe t/python` or `n/John Doe` if no tag is required                                                                                                                     |
 | Items with `…` after them can be used 0 or more times                                                                                                                                             | Given `[t/TAG]…`, you can choose to not type anything, `t/python` for one tag, `t/javascript t/react` for two tags and etc.                                                                                                                                      |
-| Parameters can be in any order                                                                                                                                                                    | `n/NAME p/CONTACT_NUMBER` or `p/CONTACT_NUMBER n/NAME` are acceptable                                                                                                                                                                                            |
+| Parameters with a prefix can be in any order                                                                                                                                                      | `n/NAME p/CONTACT_NUMBER` or `p/CONTACT_NUMBER n/NAME` are acceptable                                                                                                                                                                                            |
 | A parameter expected once will have only it's last occurrence taken despite being specified multiple times                                                                                        | If you specify `p/12341234 p/56785678`, only `p/56785678` will be accepted by **Teacher's Pet**.                                                                                                                                                                     |
 | Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored                                                                    | If the you type `help 123`, the command will be interpreted as `help`.                                                                                                                                                                                           |
 | An index will be `INDEX-S` if the command requries information from the [Day's Schedule List](#ui-overview) and will be `INDEX` if it requires information from [Student's Details](#ui-overview) | Under [mark command](#marking-a-student-mark), `mark 1` will mark the 1st student in the [Day's Schedule List](#ui-overview). Under [delete command](#deleting-students-delete), `delete 1` will remove the first student from [Student's Details](#ui-overview) |
@@ -173,14 +173,14 @@ The `add` command adds a student to Teacher’s Pet.
 The following are the fields accepted by the `add` command and their relevant conditions which need to be met for the
 command to work as expected.
 
-1. Student’s Name:
+##### Student’s Name:
     - Student’s Name must not be empty.
     - Student’s Name must only contain alphanumeric characters.
     
 <div markdown="span" class="alert alert-info">ℹ **Note:** Multiple students may share the same name.
 </div>
 
-2. Student’s Contact Number:
+##### Student’s Contact Number:
    - Student’s contact number must not be empty. 
    - Student’s contact number must only contain numerical digits between `0` and `9`.
    - Student's contact number must begin with `6`, `8` or `9`.
@@ -188,7 +188,7 @@ command to work as expected.
 <div markdown="span" class="alert alert-info">ℹ **Note:** Contact number must contain exactly 8 digits. Contact number must be unique.
 </div>
 
-3. Next of Kin’s Contact Number:
+##### Next of Kin’s Contact Number:
     - Next of Kin’s contact number must not be empty.
     - Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
     - Next of Kin’s contact number must begin with `6`, `8` or `9`.
@@ -197,14 +197,14 @@ command to work as expected.
 </div>
 
 
-4. Address:
+##### Address:
     - Address must not be empty.
     - Address may contain any kinds of character.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Address cannot be empty. It must contain at least 1 character.
 </div>
 
-5. Email:
+##### Email:
     - Email must not be empty. 
     - Email should be in the format of `local@domain`, where:
       - Local address should only contain alphanumeric characters and these special characters `+_.-`.
@@ -214,7 +214,7 @@ command to work as expected.
         2. Have each domain label start and end with alphanumeric characters.
         3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
-6. Tags:
+##### Tags:
     - Tags are optional.
     - A student can have any number of tags (including 0).
     - Tags must only contain alphanumeric characters.
