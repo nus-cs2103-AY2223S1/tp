@@ -200,7 +200,7 @@ Note: FoodWhere comes with preloaded data, and can be started on a fresh state w
 Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
 
 Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicken rice was fresh. r/4` command to create a new `Review` for `Stall` with index 1.
-![AddTodo1](images/AddReview.png)
+![AddReview](images/AddReview.png)
 
 #### UML Diagram for Adding Review
 
@@ -242,6 +242,9 @@ Step 5. In `LogicManager`, the returned `REditCommand` is executed.
 Step 6. A new `Review` object is created with the fields of `Review` to be edited, except the field(s) that are to be edited, which will be set by the parsed user input. In this case `Review` with index 2 is copied over to a new `Review` object expect its `Rating` field which is set as `5`.
 
 Step 7. The new `Review` object will then replace the `Review` object to be edited in the `Model` when `model.setReview()` is called.
+
+![EditReview](images/EditReview.png)
+
 ![REditSequenceDiagram](images/REditSequenceDiagram.png)
 
 #### Design considerations:
