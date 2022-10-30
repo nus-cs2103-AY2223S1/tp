@@ -67,7 +67,7 @@ public class DeleteTeamCommand extends TeamCommand {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof DeleteTeamCommand) {
+        if (!(other instanceof DeleteTeamCommand)) {
             return false;
         }
         if (this == other) {

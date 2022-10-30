@@ -22,7 +22,6 @@ import seedu.address.logic.commands.persons.DeleteCommand;
 import seedu.address.logic.commands.persons.FindCommand;
 import seedu.address.logic.commands.tasks.DeleteTaskCommand;
 import seedu.address.logic.commands.teams.DeleteTeamCommand;
-import seedu.address.logic.commands.teams.TeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -50,21 +49,22 @@ public class AddressBookParserTest {
     @Test
     public void parsePersonCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            "person" + DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+            DeleteCommand.getFullCommand(DeleteCommand.SUBCOMMAND_WORD) + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void parseTaskCommand_delete() throws Exception {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
-            "task" + DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+            DeleteTaskCommand.getFullCommand(DeleteTaskCommand.SUBCOMMAND_WORD) + " "
+                + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void parseTeamCommand_delete() throws Exception {
         DeleteTeamCommand command = (DeleteTeamCommand) parser.parseCommand(
-            DeleteTeamCommand.COMMAND_WORD + " " + DeleteTeamCommand.SUBCOMMAND_WORD + " "
+            DeleteTeamCommand.getFullCommand(DeleteTeamCommand.SUBCOMMAND_WORD) + " "
                 + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteTeamCommand(INDEX_FIRST_PERSON), command);
     }

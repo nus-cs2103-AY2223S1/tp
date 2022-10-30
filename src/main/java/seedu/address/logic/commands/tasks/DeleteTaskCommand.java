@@ -55,7 +55,7 @@ public class DeleteTaskCommand extends TaskCommand {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof DeleteTaskCommand) {
+        if (!(other instanceof DeleteTaskCommand)) {
             return false;
         }
         if (this == other) {

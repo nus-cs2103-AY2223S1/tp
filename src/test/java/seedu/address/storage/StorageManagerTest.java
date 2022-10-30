@@ -37,8 +37,8 @@ public class StorageManagerTest {
     public void prefsReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonUserPrefsStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
+         * {@link JsonUserPrefsStorage} class. More extensive testing of UserPref saving/reading is done in
+         * {@link JsonUserPrefsStorageTest} class.
          */
         UserPrefs original = new UserPrefs();
         original.setGuiSettings(new GuiSettings(300, 600, 4, 6));
@@ -51,8 +51,8 @@ public class StorageManagerTest {
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonAddressBookStorage} class. More extensive testing of UserPref saving/reading is done
+         * in {@link JsonAddressBookStorageTest} class.
          */
         AddressBook original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);

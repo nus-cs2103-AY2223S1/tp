@@ -55,7 +55,7 @@ public class DeleteCommand extends PersonCommand {
 
     @Override
     public boolean equals(Object other) {
-        if (other instanceof DeleteCommand) {
+        if (!(other instanceof DeleteCommand)) {
             return false;
         }
         if (this == other) {

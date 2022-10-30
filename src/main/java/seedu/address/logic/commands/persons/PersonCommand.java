@@ -18,7 +18,7 @@ public abstract class PersonCommand extends Command {
      * @param subcommand The subcommand to be added
      * @return The complete command phrase
      */
-    static String getFullCommand(String subcommand) {
+    public static String getFullCommand(String subcommand) {
         return COMMAND_WORD + " " + subcommand;
     }
 
