@@ -206,11 +206,10 @@ Examples:
 There might be times when you have to change an employee's particulars and details after adding them into the database.
 It could be a typo in the address, a mobile number change, maybe even a promotion...
 
-In any case, editing an employee's details can be done through a single command.
+In any case, editing an employee's details can be done through a simple command.
 
-Simply provide the **index number** of the employee (not the Employee ID) based on the **employee list currently displayed**, along with the updated details you wish to change to.
-
-Any existing value, if it exists, will be overwritten by the updated value that is keyed in. Otherwise, details that are not specified will remain as they are, unchanged.
+- Provide the **index number** of the employee (not the Employee ID) based on the **employee list currently displayed**, along with the updated details you wish to change to.
+- Any existing value, if it exists, will be overwritten by the updated value that is keyed in. Otherwise, details that are not specified will remain as they are, unchanged.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
@@ -230,12 +229,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/
   <p>There must be <em>at least one</em> update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!</p>
 </div>
 
-Examples:
+Example:
 
-- `edit 1 p/91234567 e/johndoe@example.com`
-- `edit 2 p/91234567 l/20 t/colleagues`
+![Edit command - example 1](./images/ui-screenshots/edit-example1.png)
 
-**[Insert screenshot here]**
+- `edit 2 p/91234567 l/20 t/colleagues` edits the 2nd displayed employee (_Irfan Ibrahim_) to have a phone number `91234567`, a total leave of `20`, and a single tag `colleagues`.
 
 #### Deleting an employee : `delete`
 
