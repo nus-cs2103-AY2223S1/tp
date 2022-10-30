@@ -1,9 +1,9 @@
 ---
 layout: page
-title: User Guide
+title: HackAssist User Guide
 ---
 
-HackAssist is a desktop app for helping hackathon team leaders manage project tasks and team formation more easily.
+HackAssist is a desktop app for helping hackathon team leaders manage project tasks more easily.
 
 It is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a **Graphical User Interface** (GUI). If you can type fast, HackAssist can get your task management done faster than traditional GUI apps.
 
@@ -41,8 +41,32 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Command summary
+
+| Action               | Format, Examples                                                                                                                                                                                                               |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                          |
+| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                            |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
+| **Find**             | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                                    |
+| **List People**      | `list`                                                                                                                                                                                                                         |
+| **Clear**            | `clear`                                                                                                                                                                                                                        |
+| **Help**             | `help`                                                                                                                                                                                                                         |
+| **Add Task**         | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
+| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/ISDONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
+| **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                             |
+| **List Tasks**       | `listTasks`                                                                                                                                                                                                                    |
+| **Filter Task**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                           |
+| **Sort by Deadline** | `sortByDeadline [o/ORDER]` <br> e.g., `sortByDeadline o/asc`                                                                                                                                                                   |
+| **Sort by Priority** | `sortByPriority [o/ORDER]` <br> e.g., `sortByPriority o/desc`                                                                                                                                                                  |
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+This section provides information on how you can use HackAssist for people management and tasks management. 
+
+Please read the following notes about HackAssist command format below before you proceed to learn how to use ..
 
 <div markdown="block" class="alert alert-info">
 
@@ -68,7 +92,43 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 
 </div>
 
-### Adding a person: `add`
+### General
+
+#### Viewing help: `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+#### Clearing all entries: `clear`
+
+Clears all contacts from the address book.
+
+Format: `clear`
+
+#### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
+#### Saving the data
+
+HackAssist data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+#### Editing the data file
+
+HackAssist data are saved as a JSON file `[JAR file location]/data/HackAssist.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, HackAssist will discard all data and start with an empty data file at the next run.
+</div>
+
+### People Management
+
+#### Adding a person: `add`
 
 Adds a person to the address book.
 
@@ -82,13 +142,21 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons: `list`
+#### Deleting a person: `delete`
 
-Shows a list of all persons in the address book.
+Deletes the specified person from the address book.
 
-Format: `list`
+Format: `delete INDEX`
 
-### Editing a person: `edit`
+* Deletes the person at the specified INDEX.
+* The index refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the find command, which should be Betsy.
+
+#### Editing a person: `edit`
 
 Edits an existing person in the address book.
 
@@ -105,7 +173,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be 91234567 and johndoe@example.com respectively.
 *  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be Betsy Crower and clears all existing tags.
 
-### Locating persons by name: `find`
+#### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -120,57 +188,18 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns john and John Doe
-* `find alex david` returns Alex Yeoh, David Li<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find alex david` returns Alex Yeoh, David Li<br> 
+![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person: `delete`
+#### Listing all persons: `list`
 
-Deletes the specified person from the address book.
+Shows a list of all persons in the address book.
 
-Format: `delete INDEX`
+Format: `list`
 
-* Deletes the person at the specified INDEX.
-* The index refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​
+### Tasks Management
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the find command, which should be Betsy.
-
-### Viewing help: `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Clearing all entries: `clear`
-
-Clears all contacts from the address book.
-
-Format: `clear`
-
-### Exiting the program: `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-HackAssist data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-HackAssist data are saved as a JSON file `[JAR file location]/data/HackAssist.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, HackAssist will discard all data and start with an empty data file at the next run.
-</div>
-
-### Adding a task: `addTask`
+#### Adding a task: `addTask`
 
 Adds a task to the task list.
 * You cannot add a task same as one that currently exists in the taskList (this would result in duplicates)
@@ -197,13 +226,6 @@ Format: `deleteTask TASK_NUMBER`
 Examples:
 * `deleteTask 1` deletes the first task from the displayed task list
 
-### Viewing all tasks: `listTasks`
-
-Lists all existing tasks from the task list.
-Used after calling [filter](#filtering-a-task--filter) to remove existing filters and list all existing tasks.
-
-Format: `listTasks`
-
 ### Editing a Task: `editTask`
 
 Edits the parameter(s) of an existing task in the task list.
@@ -223,6 +245,13 @@ Examples:
 * `editTask 4 do/t` marks the 4th task in the displayed task list as completed.
 
 Refer to the [Task Parameters](#task-parameters) section for more details about task parameters.
+
+### Viewing all tasks: `listTasks`
+
+Lists all existing tasks from the task list.
+Used after calling [filter](#filtering-a-task--filter) to remove existing filters and list all existing tasks.
+
+Format: `listTasks`
 
 ### Filtering a Task: `filter`
 
@@ -283,27 +312,4 @@ Examples:
 | dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
 | pe/PERSON EMAIL ADDRESS | Should be the email address of an existing member (case-insensitive). For the `editTask` command, it can also be empty, e.g. `pe/`.                    |
 | do/ISDONE               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
-
---------------------------------------------------------------------------------------------------------------------
-## Command summary
-
-
-| Action               | Format, Examples                                                                                                                                                                                                               |
-|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                          |
-| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                            |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                   |
-| **Find**             | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`                                                                                                                                                                    |
-| **List**             | `list`                                                                                                                                                                                                                         |
-| **Clear**            | `clear`                                                                                                                                                                                                                        |
-| **Help**             | `help`                                                                                                                                                                                                                         |
-| **Add Task**         | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
-| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/ISDONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
-| **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                             |
-| **list Tasks**       | `listTasks`                                                                                                                                                                                                                    |
-| **Filter Task**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                           |
-| **Sort by Deadline** | `sortByDeadline [o/ORDER]` <br> e.g., `sortByDeadline o/asc`                                                                                                                                                                   |
-| **Sort by Priority** | `sortByPriority [o/ORDER]` <br> e.g., `sortByPriority o/desc`                                                                                                                                                                  |
-
-
 
