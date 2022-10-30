@@ -148,17 +148,16 @@ Clears all group, contact and task entries from the application.
 
 ### Find command: `find`
 
-**CURRENTLY A WORK IN PROGRESS DUE TO BUGS**
-
 Searches for a contact, group or task that matches the given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
 to further narrow the search for a contact, subgroup or task within the current [scope](#scoping).
 
-**Format:** `find <KEYWORD> [<MORE_KEYWORDS>]`
+**Format:** `<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]`
 
 **Examples:**
 
-- `find John Doe`
-- `find task1 task2`
+- `person find John Doe`
+- `task find task1 task2`
+- `team find task1 task2`
 
 ### Exits the program: `exit`
 
@@ -552,52 +551,60 @@ Our future plans for Contactmation includes:
 
 ### General commands summary
 
-| Command | Format                                                           |
-| ------- | ---------------------------------------------------------------- |
-| Group   | A container that contains people that work on a similar project. |
-| Item    | An item can refer to a group, contact or task.                   |
-| Contact | A contact with contact information.                              |
-| Task    | Assigned to people or groups                                     |
+| Command                                                       | Format                                                                         |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Clear all items                                               | clear                                                                          |
+| Exit Contacmation                                             | exit                                                                           |
+| Resets filters and list all contents within the current scope | list                                                                           |
+| Rename the name of items on the screen                        | rename (g, u, t)/<INDEX> <new name> or <type> select <INDEX> rename <new name> |
+| Assigning user to a existing group                            | assign u/<INDEX> g/<INDEX>                                                     |
 
 ### Group commands summary
 
-| Command | Format                                                           |
-| ------- | ---------------------------------------------------------------- |
-| Group   | A container that contains people that work on a similar project. |
-| Item    | An item can refer to a group, contact or task.                   |
-| Contact | A contact with contact information.                              |
-| Task    | Assigned to people or groups                                     |
+| Command                            | Format                                                     |
+| ---------------------------------- | ---------------------------------------------------------- |
+| Adding new team                    | `team new <NAME>`                                          |
+| Delete team                        | `team delete <INDEX>` or `team select <INDEX> team delete` |
+| Removing contact from current team | `team remove <Contact INDEX>`                              |
+| Changing team scope                | `cg <INDEX>` or `cg ..` or `cg /`                          |
+| Finding/filtering team             | `team find <keywords>`                                     |
 
 ### Contact commands summary
 
-| Command | Format                                                           |
-| ------- | ---------------------------------------------------------------- |
-| Group   | A container that contains people that work on a similar project. |
-| Item    | An item can refer to a group, contact or task.                   |
-| Contact | A contact with contact information.                              |
-| Task    | Assigned to people or groups                                     |
+| Command                               | Format                                                                          |
+| ------------------------------------- | ------------------------------------------------------------------------------- |
+| Adding new contact to current context | `person new n/<NAME> [p/<PHONE_NUMBER>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>...]` |
+| Delete contact                        | `person delete <INDEX>` or `person select <INDEX> person delete`                |
+| Finding/filtering contacts            | `person find <keywords>`                                                        |
 
 ### Task commands summary
 
-| Command | Format                                                           |
-| ------- | ---------------------------------------------------------------- |
-| Group   | A container that contains people that work on a similar project. |
-| Item    | An item can refer to a group, contact or task.                   |
-| Contact | A contact with contact information.                              |
-| Task    | Assigned to people or groups                                     |
+| Command                            | Format                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------ |
+| Adding new task to current context | `team new t/<title> d/<description>`                                     |
+| Delete a task                      | `task delete <INDEX>` or `task select <INDEX> task delete`               |
+| Marking a task as complete         | `task mark <INDEX>` or `mark <INDEX>` or task select <INDEX> mark`       |
+| Marking a task as incomplete       | `task unmark <INDEX>` or `unmark <INDEX>` or task select <INDEX> unmark` |
+| Finding/filtering tasks            | `task find <keywords>`                                                   |
 
 ### Advanced commands summary
 
-| Command      | Format                                                                  |
-| ------------ | ----------------------------------------------------------------------- |
-| Aliasing     | `alias <NEW COMMAND NAME> <COMMAND>`                                    |
-| Chaining/seq | `seq <command 1> [\| command 3]... OR seq <command 1> [; command 3]...` |
-| Contains     | `<ITEM> contains <ATTRIBUTE>`                                           |
-| Execute      | `<INPUT> \| e`                                                          |
-| Foreach      | `<ITEM> foreach <COMMAND>`                                              |
-| If else      | `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]`                 |
-| Macro        | `macro <MACRO WORD> <COMMAND SEQUENCE>`                                 |
-| Replace      | `r <TEXT TO REPLACE> <TEXT TO BE REPLACED>`                             |
-| Select       | `<ITEM> select <INDEX> <COMMAND> [...]`                                 |
+| Command                  | Format                                                                  |
+| ------------------------ | ----------------------------------------------------------------------- |
+| Aliasing                 | `alias <NEW COMMAND NAME> <COMMAND>`                                    |
+| Saving macros            | `macro <NEW COMMAND NAME> <COMMANDS TO CHAIN>`                          |
+| Deleting Custom Commands | `rmMacro <COMMAND NAME>`                                                |
+| Chaining/seq             | `seq <command 1> [\| command 3]... OR seq <command 1> [; command 3]...` |
+| Contains                 | `<ITEM> contains <ATTRIBUTE>`                                           |
+| Execute                  | `<INPUT> \| e`                                                          |
+| Foreach                  | `<ITEM> foreach <COMMAND>`                                              |
+| If else                  | `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]`                 |
+| Macro                    | `macro <MACRO WORD> <COMMAND SEQUENCE>`                                 |
+| Replace                  | `r <TEXT TO REPLACE> <TEXT TO BE REPLACED>`                             |
+| Select                   | `<ITEM> select <INDEX> <COMMAND> [...]`                                 |
+| Create/convert int       | `int <integer>`                                                         |
+| Create/convert float     | `float <float>`                                                         |
+| Create/convert String    | `str <String>`                                                          |
+| Print                    | `<...> \| print`                                                        |
 
 [Back to top](#contactmation-user-guide)
