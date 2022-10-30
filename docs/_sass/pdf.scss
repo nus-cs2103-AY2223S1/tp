@@ -66,5 +66,35 @@
         }
       }
     }
+
+    #toc-heading::after {
+      content: "Click on any item to jump to the corresponding page. Click on the heading to go back to the table of contents.";
+      font-style: italic;
+      font-family: $base-font-family;
+      font-size: 1rem;
+      color: black;
+      display: block;
+    }
+
+    #markdown-toc {
+      &::before {
+        content: "Section" leader(" ") "Page";
+        font-weight: bold;
+        line-height: 200%;
+      }
+
+      ul,
+      ol {
+        list-style-type: none;
+      }
+
+      li a {
+        color: inherit;
+
+        &::after {
+          content: leader(".") target-counter(attr(href), page);
+        }
+      }
+    }
   }
 }
