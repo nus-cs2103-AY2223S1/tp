@@ -56,8 +56,8 @@ public class SelectedActivityPanel extends UiPart<Region> {
             Label tagLabel = (Label) child;
             tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
         });
-        if (!selected.getDate().isEmpty()) {
-            date.setText(selected.getDate().get(0).toDisplayedString());
+        if (selected.getDate().isPresent()) {
+            date.setText(selected.getDate().get().toDisplayedString());
         } else {
             date.setText("");
         }

@@ -26,7 +26,7 @@ public class SampleDataUtil {
 
     public static Activity[] getSampleActivities() {
 
-        List<Date> s = new ArrayList<>();
+        Optional<Date> s = Optional.empty();
         return new Activity[] {
             new Activity(new Name("And Then There Were None"),
                 new Description("Mystery novel by Agatha Christie"),

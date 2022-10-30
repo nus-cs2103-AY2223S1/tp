@@ -107,7 +107,7 @@ public class EditCommand extends Command {
         Description updatedDescription = editActivityDescriptor.getDescription()
                 .orElse(activityToEdit.getDescription());
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
-        List<Date> date = editActivityDescriptor.getDate().orElse(activityToEdit.getDate());
+        Optional<Date> date = editActivityDescriptor.getDate();
         Status updatedStatus = editActivityDescriptor.getStatus().orElse(activityToEdit.getStatus());
         return new Activity(updatedName, updatedDescription, updatedTags, date, activityToEdit.getRating(),
                 updatedStatus, activityToEdit.getReview());
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
         private Name name;
         private Description description;
         private Set<Tag> tags;
-        private List<Date> date;
+        private Optional<Date> date;
         private Status status;
 
         public EditActivityDescriptor() {}
@@ -186,8 +186,8 @@ public class EditCommand extends Command {
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
-        public void setDate(List<Date> dl) {
-            this.date = (dl != null) ? new ArrayList<>(dl) : null;
+        public void setDate(Optional<Date> optionalDate) {
+            this.date = optionalDate;
         }
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
@@ -197,8 +197,8 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
-        public Optional<List<Date>> getDate() {
-            return (date != null) ? Optional.of(Collections.unmodifiableList(date)) : Optional.empty();
+        public Optional<Date> getDate() {
+            return this.date;
         }
 
         public void setStatus(Status status) {
