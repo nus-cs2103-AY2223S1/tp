@@ -15,7 +15,7 @@ public class Phone {
     //If phone numbers conform to the regex pattern, they are considered valid
     //If they do not, they are still valid but considered "incorrect" and a warning will be issued
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should not be blank and should be between 7 and 16 digits long "
+            "Phone numbers should not be blank and should have a length of 7-16 characters "
             + "(inclusive of country codes).\n"
             + "Phone numbers may start with \"+\" for the country code (optional).\n"
             + "Incorrect phone numbers are still accepted, though they are discouraged and a warning will be shown.";
