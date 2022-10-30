@@ -221,8 +221,8 @@ Adds an attendance list to a student in the contact list.
 Format: `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-Maximum attendance list size is 12, if the size is 0, the attendance list will be N.A. 
-There can only be one attendance list for each student for ease of command.
+Maximum lesson number is 12, if the size is 0, the attendance list will be N.A. 
+There can only be a maximum of one attendance list for each student for ease of typing.
 </div>
 
 Examples:
