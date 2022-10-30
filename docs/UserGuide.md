@@ -50,39 +50,39 @@ This section contains the formats of all commands in FindMyIntern.
 
 ## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### Setting up
+
+1. Ensure you have [Java 11](https://www.oracle.com/java/technologies/downloads/#java11) or above installed in your Computer.
 
 2. Download the latest `findmyintern.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your FindMyIntern.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. 
+
+### Adding your first internship application
+
+Now that you've downloaded FindMyIntern, you can start managing your internship applications. Let's start by adding your first internship application.
+
+1. Open FindMyIntern by double-clicking `findmyintern.jar` if you have not already done so.
+
+2. The GUI similar to the below should appear in a few seconds. FindMyIntern will load some sample data.<br>
 
    <p align="center">
        <img src="images/Ui.png" width="600" />
    </p> 
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all internship applications.<br>
-   Some example commands you can try:
+3. Let's add your first internship application with the [`add` command](#adding-an-internship-application-add)!
 
-   * **`add c/Apple l/https://jobs.apple.com/en-sg d/Software Engineering Internship a/11/10/2022`** :
-     Adds an internship application for Apple to the tracker.
+4. Type `add c/Shopee l/careers.shopee.sg d/My first internship application a/27 Oct` and press Enter to execute it.
 
-   * **`mark 3 s/interviewed`** : Marks the 3rd application shown in the current list as interviewed.
+5. Congratulations! You have just added your first internship application to FindMyIntern! A message like the one below showing the result of your command should appear.
 
-   * **`list`** : Lists all internship applications.
+  <p align="center">
+       <img src="images/firstInternshipApplication.png" />
+  </p>
 
-   * **`delete 3`** : Deletes the 3rd application shown in the current list.
-
-   * **`find shopee`** : Finds an internship application called Shopee in the tracker.
-   
-   * **`filter rejected`** : Filters the tracker for internship applications with rejected status.
-   
-   * **`sort applied`** : Sorts the internship applications by applied date.
-    
-   * **`exit`** : Exits the app.
-
-6. Refer to the [Commands](#commands) below for details of each command.
+6. FindMyIntern offers so much more in managing your internship applications. Check out the [commands section](#commands) for more commands you can use.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -130,7 +130,7 @@ This section contains **everything you need to know** about the commands used in
 
 #### Viewing help: `help`
 
-Shows a message explaning how to access the user guide, and the data file location.
+Shows a message explaining how to access the user guide, and the data file location.
 
 <p align="center">
     <img src="images/helpMessage.png" width="500"/>
@@ -151,18 +151,25 @@ Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIM
   * Such keywords may include `backend` or `frontend` for the internship role, or `summer` or `off season` for the internship period.
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
-<div markdown="block" class="alert alert-info">
+<div class="d-flex alert alert-info pb-0">
+<div class="mr-2">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**Changing application status**
 
-**:information_source: Changing application status**:
 To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
-
+</div>
 </div>
 
-<div markdown="block" class="alert alert-warning">
-
-:warning: **Date/time formats**:
+<div class="d-flex alert alert-warning pb-0">
+<div class="mr-2">
+  <span class="badge text-bg-warning">WARNING</span>
+</div>
+<div markdown="span">
+**Date/time formats**
 See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
-  
+</div>
 </div>
 
 Examples:
@@ -190,18 +197,25 @@ Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INT
 * See [Appendix: Field constraints](#field-constraints) for constraints on fields such as `LINK` and `TAG`.
 
 
-<div markdown="block" class="alert alert-info">
+<div class="d-flex alert alert-info pb-0">
+<div class="mr-2">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**Changing application status**
 
-**:information_source: Changing application status**:
 To change [application status](#application-status), see [`mark` command](#marking-an-internship-application-status-mark).
-
+</div>
 </div>
 
-<div markdown="block" class="alert alert-warning">
-
-:warning: **Date/time formats**:
+<div class="d-flex alert alert-warning pb-0">
+<div class="mr-2">
+  <span class="badge text-bg-warning">WARNING</span>
+</div>
+<div markdown="span">
+**Date/time formats**
 See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
-
+</div>
 </div>
 
 Examples:
@@ -271,9 +285,12 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
 * The search is case-insensitive e.g `google` will match `Google`
 * Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo` 
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: `filter` vs `find`**
+<div class="d-flex alert alert-info pb-0">
+<div class="mr-2">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**`filter` vs `find`**
 
 `filter` and `find` commands may seem similar, here are some differences to take note of:
 
@@ -282,6 +299,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
 | Used to filter **internship application statuses**                                        | Used to search for **keywords in company names and tags** |
 | Can only accept as input **one of 5 allowed [application statuses](#application-status)** | Can accept **any input**                                  |
 
+</div>
 </div>
 
 Examples:
@@ -306,11 +324,15 @@ Examples:
 * `sort applied` will sort the internship applications according to applied date
 * `sort interview` will sort the internship applications according to interview date
 
-<div markdown="block" class="alert alert-info">
+<div class="d-flex alert alert-info pb-0">
+<div class="mr-2">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**:information_source: Sorting by interview date**
 
-**:information_source: Sorting by interview date**:
 Applications without interview date will remain in the original order at the bottom.
-
+</div>
 </div>
 
 #### Clearing all internship applications: `clear`
@@ -319,8 +341,13 @@ Clears all internship applications from the tracker.
 
 Format: `clear`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div class="d-flex alert alert-danger pb-0">
+<div class="mr-2">
+  <span class="badge text-bg-danger">DANGER</span>
+</div>
+<div markdown="span">
 This command will clear the entire list of internships without warning.
+</div>
 </div>
 
 #### Exiting the program: `exit`
@@ -342,8 +369,13 @@ The data file location can also be found in the help message: see [`help` comman
 
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div class="d-flex alert alert-warning pb-0">
+<div class="mr-2">
+  <span class="badge text-bg-warning">WARNING</span>
+</div>
+<div markdown="span">
 If your changes to the data file makes its format invalid, FindMyIntern will discard all data and start with an empty data file at the next run.
+</div>
 </div>
 
 ### UI elements
