@@ -2,7 +2,15 @@ package seedu.phu.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.phu.logic.commands.CommandTestUtil.*;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_APPLICATION_PROCESS_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_DATE_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_POSITION_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_WEBSITE_BLACKROCK;
 import static seedu.phu.testutil.Assert.assertThrows;
 import static seedu.phu.testutil.TypicalInternships.AMAZON;
 import static seedu.phu.testutil.TypicalInternships.BLACKROCK;
