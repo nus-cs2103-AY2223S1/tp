@@ -14,29 +14,16 @@ I contributed code to the following modules/classes:
 1. MainWindow
 2. CommandBox
 3. NameContainsKeywordsPredicate
+4. 
 
 You may view these contributions in more detail at [this link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nealetham&breakdown=true).
 
 ### Enhancements implemented:
 
-### 1. Graphical User Interface (GUI)
-
-In `AB3` the GUI was implemented using `PersonListPanel` and `PersonCard`. Each `Person` is graphically represented as 
-a `PersonCard` which contains all fields of a `Person` i.e. `Name`,`Phone`, `Email`, `Address`, `Tags` 
-
-Results from a command would be displayed in the `PersonListPanel`, which graphically is a single column list, 
-with each row corresponding to a `PersonCard`.
-
-At any given time in RC4, there are approximately 300 individuals staying in RC4. With our goal of providing an 
-efficient and productive means of handling administrative tasks, we thought that the current interface was unsuitable 
-for visualizing large numbers of entries.
-
-As a consequence, we adapted the `PersonListPanel` and converted it to `ResidentTableView`. A `Resident` entry will no 
-longer be represented graphically as a `PersonCard`, but as a row in our table. The fields for each respective
-`Resident` i.e. `Name`, `Phone Number`, `Email`, `Gender`, `House`, `Matric Number`, and `Tags`are now represented as 
-columns in each row.
-
-![Ui](../images/Ui.png)
+I made the following enhancements to our product:
+1. 
+2. *Enter contributions here*
+3. *Enter contributions here*
 
 Users will now be able to see more entries on the window as compared to before. Fields of a `Resident` are also 
 structured and more easily identifiable. These two together can potentially increase productivity of our user.
@@ -62,11 +49,11 @@ their hands to grab the mouse.
 
 Below is a table that lists all of our keyboard shortcuts:
 
-Key | Functionality
-----|------------------
-`F1` | Redirects you to our user guide.
-`F2` | Highlights the first row of the displayed list
-`F3` | Quick-access to the command input box
+| Key  | Functionality                                  |
+|------|------------------------------------------------|
+| `F1` | Redirects you to our user guide.               |
+| `F2` | Highlights the first row of the displayed list |
+| `F3` | Quick-access to the command input box          |
 
 The implementation of the `F3` keyboard shortcut was relatively simple. It involved adding a listener to scene, which
 would refocus on the `TextField` within the `CommandBox` class during the event that key `F3` is pressed.
@@ -98,6 +85,10 @@ I contributed to the following sections of the user guide:
 1. Ported the UG from `AB3` to `RC4HDB`. These include modifying the:
     - Description and formatting of all Features to include `RC4HDB` specifications.
     - Command Summary Table to be in line with the new specifications.
+2. Re-organized UG into their respective sections
+3. Updated the Table-of-Contents
+4. Inserted the Back-to-top hyperlinks
+5. Updated UG to include all [Quality-of-life](../ug-pages/quality-of-life.md) functionality
 
 ### Contributions to the DG:
 
