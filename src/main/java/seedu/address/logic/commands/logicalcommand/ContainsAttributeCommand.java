@@ -19,7 +19,7 @@ public class ContainsAttributeCommand extends Command {
     private final String attributeType;
 
     public ContainsAttributeCommand(String attributeType) {
-        this.attributeType = attributeType;
+        this.attributeType = attributeType.trim();
     }
 
     @Override
