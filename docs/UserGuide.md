@@ -91,6 +91,7 @@ A `preference.json` file will be created when you first run the application. Use
 <p align="center">
 
 <img src="images/Ui_annotated.png"/>
+
 </p>
 
 ### 1.Command Box
@@ -108,20 +109,22 @@ In student and tutor lists, you could click at the student or tutor cards to sho
 
 ### 4.List Tabs
 
+There are three list tabs: Student, Tutor and Class indicating the current displayed list showing in the list display panel.
+You could click at the list tabs to switch to different lists.
+
 <p align="center">
 
 <img src="images/list_tabs.png"/>
 
 </p>
 
-There are three list tabs: Student, Tutor and Class indicating the current displayed list showing in the list display panel.
-You could click at the list tabs to switch to different lists.
+This shows that the current displaying list is the student list.
 
 ### 5.Description Panel
 
 <p align="center">
 
-<img src="images/description_difference.png"/>
+<img src="images/personDescription.png"/>
 
 </p>
 
@@ -129,6 +132,12 @@ This is where the description of a specified student or tutor is shown. When the
 
 
 ### 6. Toolbar 
+
+<p align="center">
+
+<img src="images/toolsBar.png"/>
+
+</p>
 
 #### File 
 The ` File`  menu contains `Export` and Exit`. 
@@ -157,7 +166,7 @@ Examples:
 * `help add`
 * `help edit`
 
-To view all the` [commands]`, key in `help` and press <kbd>enter</kbd>.
+To view all the` [command]`s, key in `help` and press <kbd>enter</kbd>.
 
 
 
@@ -181,6 +190,24 @@ Examples:
 * `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`
 * `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, Master of Science i/National University of Singapore #/mostLiked`
 
+* Before:
+
+<p align="center">
+
+<img src="images/addPersonCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/addPersonCommand_after.png"/>
+
+</p>
+
+This adds the student into the database. Note that the Person Description updates to the new student added.
+
 ### Adding a class: `add`
 
 Adds a class to the database.
@@ -192,6 +219,24 @@ Format:
 Examples:
 * `add class n/P2-MATH-F12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`
 * `add class n/S1-ENG-T10 s/Math l/Secondary 1 d/Thursday t/10am to 12pm`
+
+* Before:
+
+<p align="center">
+
+<img src="images/addClassCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/addClassCommand_after.png"/>
+
+</p>
+
+This adds the class into the database. Note that the Person Description Panel is not updated.
 
 ### Editing an entity: `edit`
 
@@ -212,6 +257,24 @@ Examples:
 * edit 1 n/Tom Doe
 * edit 2 l/Primary 5 d/Monday
 
+* Before:
+
+<p align="center">
+
+<img src="images/editCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/editCommand_after.png"/>
+
+</p>
+
+This edits the specified person. Note that the Person Description Panel and the List are updated.
+
 ### Listing all persons : `list`
 
 Shows a list of the specified entities in the database.
@@ -222,6 +285,23 @@ Examples:
 * `list student`
 * `list tutor`
 * `list class`
+* Before:
+
+<p align="center">
+
+<img src="images/listCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/listCommand_after.png"/>
+
+</p>
+
+This changes the current displayed list to the tutor list.
 
 ### Deleting an entity: `delete`
 
@@ -235,13 +315,47 @@ Format: `delete <index>`
 Examples:
 * `delete 2`
 
+* Before:
+
+<p align="center">
+
+<img src="images/deleteCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/deleteCommand_after.png"/>
+
+</p>
+
+This deletes the person from the database. Note that if the deleted person is displayed in the Person Description Panel, the panel will update to display the previous person.
+
 ### Clears list: `clear`
 
 Clears the current displayed list of its contents.
 
 Format: `clear`
 
-* Take note of which list you are clearing.
+* Before:
+
+<p align="center">
+
+<img src="images/clearCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/clearCommand_after.png"/>
+
+</p>
+
+Note that the clear command clears the current displayed list only, which in this case is the tutor list. The student list and the class list will remain unchanged.
 
 ### Sort list: `sort`
 
@@ -252,8 +366,6 @@ Format: `sort [default/alpha/reverse]`
 * **default**: sorts the list in order of entries added from oldest to newest.
 * **alpha**: sorts the list alphabetically with reference to the name.
 * **reverse**: sorts the list in reverse order.
-
-
 
 ### Searching by multiple fields: `find`
 
@@ -279,20 +391,59 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 * If there are repeated `PREFIXES`, only the latest one will be taken.
 
 Examples:
-(insert screenshot of the current list being the student list)
-<img src="images/findStudentsBefore.png"/>
-<img src="images/findStudentsAfter.png"/>
-* `find n/john s/evergarden` returns the students, `Johnny` and `John Doe`, from “Evergarden Secondary School” in the student list.
+* `find n/john` returns the students, `Johnny` and `John Doe`in the student list.
 
-(insert screenshot of the current list being the class list)
-<img src="images/findTutorsBefore.png"/>
-<img src="images/findTutorsAfter.png"/>
-* `find a/clementi e/example.com i/nus` returns the tutors who live in Clementi, have emails with domain name “example.com” and graduated from NUS.
+* Before:
 
-(insert screenshot of the current list being the class list)
-<img src="images/findClassesBefore.png"/>
-<img src="images/findClassesAfter.png"/>
-* `find n/p1math d/sunday #/difficult` returns all classes whose names contain “p1math”, conducted on Sundays and have the tag “difficult”.
+<p align="center">
+
+<img src="images/findStudentCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/findStudentCommand_after.png"/>
+
+</p>
+
+* `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
+
+* Before:
+
+<p align="center">
+
+<img src="images/findTutorCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/findTutorCommand_after.png"/>
+
+</p>
+
+* `find d/monday #/hard` returns all classes conducted on Monday and have the tag “hard”.
+
+* Before:
+
+<p align="center">
+
+<img src="images/findClassCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/findClassCommand_after.png"/>
+
+</p>
 
 ### Assign class to a person: `assign`
 
@@ -308,7 +459,23 @@ Format: `assign INDEX n/<class name>`
 * The class name is case-sensitive.
 
 Examples:
-* `assign 1 n/P3 maths`
+* `assign 5 n/p1math`
+
+* Before:
+
+<p align="center">
+
+<img src="images/assignCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="images/assignCommand_after.png"/>
+
+</p>
 
 ### Unassign class from a person: `unassign`
 
@@ -325,17 +492,67 @@ student/tutor beforehand.
 * The class name is case-sensitive.
 
 Examples:
-* `unassign 1 n/P3 maths`
+* `unassign 5 n/p1math`
+
+* Before:
+
+<p align="center">
+
+<img src="images/unassignCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="imagesun/assignCommand_after.png"/>
+
+</p>
 
 ### Showing the details of a person: `show`
 
-In the student and tutor list, the details of the persons are hidden due to security concerns. You could access the person’s details by executing the show command.
+In the student and tutor list, the details of the persons are not displayed. You could access the person’s details by executing the show command.
 
-Format: `show [index]` 
-*`show 1` shows the description of the first student in the list
+Format: `show INDEX` 
+* `show 1` shows the description of the first student in the list
 
-Note that `show` is an invalid command for class list since the details of classes are already in the class list, thus when you are in the class list.
-*`show 2` is an invalid command 
+Examples:
+* `show 3`
+
+* Before:
+
+<p align="center">
+
+<img src="images/showCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="imagesun/showCommand_after.png"/>
+
+</p>
+
+Note that `show` is an invalid command for class list since the details of classes are already in the class list, thus when you are in the class list, `show 1` is an invalid command.
+
+* Before:
+
+<p align="center">
+
+<img src="images/showClassCommand_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="imagesun/showClassCommand_after.png"/>
+
+</p>
 
 ### Add next of kin to a student: `nok`
 
@@ -353,7 +570,43 @@ Format:
 
 Examples:
 
-* `nok 1 n/Mama Doe p/87654321 e/mamadoe@example.com a/John street, block 123, #01-01 r/Mother #/bestMomAward`
+* `nok 5 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`
+
+* Before:
+
+<p align="center">
+
+<img src="images/addNok_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="imagesun/addNok_after.png"/>
+
+</p>
+
+* `nok 5`
+
+* Before:
+
+<p align="center">
+
+<img src="images/deleteNok_before.png"/>
+
+</p>
+
+* After:
+
+<p align="center">
+
+<img src="imagesun/deleteNok_after.png"/>
+
+</p>
+
+This deltes the Next of Kin of John Doe.
 
 ### Exporting address books to csv
 
@@ -361,7 +614,11 @@ Export Students, Tutors, and TuitionClasses address books into their own .csv fi
 
 Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and click on "*Export*" in the dropdown menu.
 
-<img src="images/exportButton.png" width="400">
+<p align="center">
+
+<img src="imagesun/exportbuttonr.png"/>
+
+</p>
 
 * The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
 * The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
