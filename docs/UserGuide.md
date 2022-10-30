@@ -77,10 +77,9 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 4. Type `add c/Shopee l/careers.shopee.sg d/My first internship application a/27 Oct` and press Enter to execute it.
 
 5. Congratulations! You have just added your first internship application to FindMyIntern! A message like the one below showing the result of your command should appear.
-
-  <p align="center">
-       <img src="images/firstInternshipApplication.png" />
-  </p>
+   <p align="center">
+      <img src="images/firstInternshipApplication.png" />
+   </p>
 
 6. FindMyIntern offers so much more in managing your internship applications. Check out the [commands section](#commands) for more commands you can use.
 
@@ -300,12 +299,12 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
   </thead>
   <tbody>
     <tr>
-      <td>Used to filter **internship application statuses**</td>
-      <td>Used to search for **keywords in company names and tags**</td>
+      <td>Used to filter <b>internship application statuses</b></td>
+      <td>Used to search for <b>keywords in company names and tags</b></td>
     </tr>
     <tr>
-      <td>Can only accept as input **one of 5 allowed [application statuses](#application-status)**</td>
-      <td>Can accept **any input**</td>
+      <td>Can only accept as input <b>one of 5 allowed <a href="#application-status">application statuses</a></b></td>
+      <td>Can accept <b>any input</b></td>
     </tr>
   </tbody>
 </table>  
@@ -434,7 +433,6 @@ Commands like `add` and `edit` accept fields, their constraints are specified be
 
 There are no constraints for a field if the constraints box is empty for that field.
 
-<div markdown="span">
 <table class="table table-hover">
   <thead>
     <tr>
@@ -457,11 +455,11 @@ There are no constraints for a field if the constraints box is empty for that fi
     </tr>
     <tr>
       <td><kbd>a/APPLIED_DATE</kbd></td>
-      <td>See [date/time formats](#datetime-formats)</td>
+      <td>See <a href="#datetime-formats">date/time formats</a></td>
     </tr>
     <tr>
       <td><kbd>i/INTERVIEW_DATE_TIME</kbd></td>
-      <td>See [date/time formats](#datetime-formats)</td>
+      <td>See <a href="#datetime-formats">date/time formats</a></td>
     </tr>
     <tr>
       <td><kbd>t/TAG</kbd></td>
@@ -469,7 +467,6 @@ There are no constraints for a field if the constraints box is empty for that fi
     </tr>
   </tbody>
 </table>
-</div>
 
 ### Application status
 
@@ -564,12 +561,12 @@ For `INTERVIEW_DATE_TIME`, the formats allowed:
     <tr>
       <td><kbd>d MMM yyyy, h:mm a</kbd></td>
       <td>7 Oct 2022, 3:00 pm</td>
-      <td>Take note of the <b>comma after the date</b> and the <b>space between the time and AM/PM</b></td>
+      <td>Take note of the <ul><li>comma after the date</li><li>space between the time and AM/PM</li></ul></td>
     </tr>
     <tr>
       <td><kbd>d/M/yyyy, h:mm a</kbd></td>
       <td>7/10/2022, 3:00 pm</td>
-      <td>Take note of the <b>comma after the date</b> and the <b>space between the time and AM/PM</b></td>
+      <td>Take note of the <ul><li>comma after the date</li><li>space between the time and AM/PM</li></ul></td>
     </tr>
   </tbody>
 </table>
