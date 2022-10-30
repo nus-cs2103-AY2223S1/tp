@@ -204,7 +204,13 @@ Views the list of modules taken by a batchmate in the Modules panel.
 
 Left-click the row with the batchmate's name in the Students panel.
 
-- The selected row would turn blue and the Modules panel would display all the modules taken by the batchmate.
+- The selected row would turn blue and the Modules panel would display all the modules of the batchmate.
+
+This is the GUI when Mass Linkers is opened.
+![UgViewModBefore](images/UgViewModBefore.png)
+
+This is the GUI after you left-click the 1st batchmate in the Students panel. The 1st row turns blue and the Modules panel displays all the modules of the 1st batchmate.
+![UgViewModAfter](images/UgViewModAfter.png)
 
 #### Add module to a batchmate: `mod add`
 
@@ -216,8 +222,14 @@ __Format:__ `mod add INDEX MODULE [MORE_MODULES]...`
 * * Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Unrestricted Elective`. More information can be found under [Module Categorisation](#module-categorisation).
 
 __Examples:__
-* `mod add 1 cs2103t` adds the module `CS2103T` to the 1st batchmate in the currently displayed list.
+* `mod add 1 ma1521` adds the module `MA1521` to the 1st batchmate in the currently displayed list.
 * `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` to the 3rd batchmate in the currently displayed list.
+
+This is the GUI before `mod add 1 ma1521` is executed.
+![UgModAddBefore](images/UgModAddBefore.png)
+
+This is the GUI after you press Enter to execute the command. The module `ma1521` is successfully added to the 1st batchmate and automatically categorised as `Mathematics`.
+![UgModAddAfter](images/UgModAddAfter.png)
 
 #### Delete module from a batchmate: `mod delete`
 
@@ -242,6 +254,12 @@ __Format:__ `mod mark INDEX MODULE [MORE_MODULES]...`
 __Examples:__
 * `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
 * `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `taken`.
+
+This is the GUI before `mod mark 3 cs2100 cs2103t cs2101 cs2105` is executed. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` current have `taking` as their status.
+![UgModMarkBefore](images/UgModMarkBefore.png)
+
+This is the GUI after you press Enter to execute the command. The modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` are successfully marked as `taken`.
+![UgModMarkAfter](images/UgModMarkAfter.png)
 
 #### Unmark module as not taken: `mod unmark`
 
