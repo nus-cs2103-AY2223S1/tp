@@ -52,3 +52,6 @@ Given below are my contributions to the project.
 - **Contributions beyond the project team**
   - Reported 13 bugs and left suggestions to the reviewed project in PE-D. 
   ([link to PE-D](https://github.com/craeyeons/ped/issues))
+
+Code reuse:
+1. Remark feature by [j-lum](https://github.com/se-edu/addressbook-level3/compare/tutorial-add-remark), from tutorial 2 of TP, week 6.
