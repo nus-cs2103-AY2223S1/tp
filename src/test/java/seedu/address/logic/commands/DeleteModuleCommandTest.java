@@ -47,6 +47,8 @@ public class DeleteModuleCommandTest {
 
     @Test
     public void execute_validModuleNotAtHome_success() {
+        model.setHomeStatus(false);
+
         Module moduleToDelete = model.getFilteredModuleList().get(INDEX_FIRST_PERSON.getZeroBased());
         moduleToDelete = new ModuleBuilder(moduleToDelete).withModuleCode(
                 moduleToDelete.getModuleCodeAsUpperCaseString().toLowerCase()).build();
@@ -55,10 +57,8 @@ public class DeleteModuleCommandTest {
         String expectedMessage = String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS,
                 moduleToDelete);
 
+        // HomeStatus is initialised as true when model is first initialised.
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-
-        expectedModel.setHomeStatus(false);
-
         expectedModel.deleteModule(moduleToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
