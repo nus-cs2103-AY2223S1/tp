@@ -12,6 +12,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
 myStudent is **a desktop app for managing students of a tuition center, optimized for use via a Command Line Interface 
 (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, myStudent can get 
@@ -58,8 +59,31 @@ Below is a quick guide on how to get started.
 3. Copy the file to the folder you want to use as the home folder for the application.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
 
-<img src="images/StartingUI.png"/>
+<img src="images/StartingUI.png"/>  
 
+<div markdown="block" class="alert alert-info">
+
+:pencil2: **Configuring the app**  
+Users can change the default configurations of the app in the `preference.json` file located in the same place where they download the app into.  
+A `preference.json` file will be created when you first run the application. Users can then edit the file to suit their needs.  
+
+**What users can change:**
+* The size of the window such as its height and width (in pixels).
+* At which part of the screen the app will be displayed.
+* The default theme.
+* Where data will be loaded from and stored into.
+
+| Settings 	                            | Default Value 	                       |
+|---------------------------------------|---------------------------------------|
+| Window Width 	                        | 670px 	                               |
+| Window Height 	                       | 950px 	                               |
+| Window Coordinates 	                  | null 	                                |
+| Theme 	                               | Light Theme 	                         |
+| Student Address Book Location 	       | data\\\studentaddressbook.json 	      |
+| Tutor Address Book Location 	         | data\\\tutoraddressbook.json 	        |
+| Tuition Class Address Book Location 	 | data\\\tuitionclassaddressbook.json 	 |
+
+</div>
 ---
 
 ## Layout
@@ -67,7 +91,6 @@ Below is a quick guide on how to get started.
 <p align="center">
 
 <img src="images/Ui_annotated.png"/>
-
 </p>
 
 ### 1.Command Box
@@ -220,6 +243,18 @@ Format: `clear`
 
 * Take note of which list you are clearing.
 
+### Sort list: `sort`
+
+Sorts the current list chronologically, alphabetically, or in reverse order.
+
+Format: `sort [default/alpha/reverse]`
+
+* **default**: sorts the list in order of entries added from oldest to newest.
+* **alpha**: sorts the list alphabetically with reference to the name.
+* **reverse**: sorts the list in reverse order.
+
+
+
 ### Searching by multiple fields: `find`
 
 Finds entities from the current list based on multiple fields at a time such that the fields of the entity specified contains the respective keywords.
@@ -307,11 +342,14 @@ Examples:
 
 ### Exporting address books to csv
 
-Export Students, Tutors, and TuitionClasses into their own .csv files to be used in other programs.
+Export Students, Tutors, and TuitionClasses address books into their own .csv files to be used in other programs.
 
-Format: Click on the "*File*" tab at the top left hand corner of `myStudents` and click on "*Export*" in the dropdown menu.
+Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and click on "*Export*" in the dropdown menu.
 
-* The csv files will be saved in the same location as the json files specified in `preference.json`.
+<img src="images/exportButton.png" width="400">
+
+* The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
+* The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
 
 ---
 
