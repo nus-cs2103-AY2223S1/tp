@@ -224,18 +224,4 @@ public class JsonAdaptedTaskTest {
         }
         assertEquals(expectedMessage, message);
     }
-
-    @Test
-    public void toModelType_nullEmailDescription_throwsIllegalValueException() {
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        String message = "";
-        try {
-            JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_CATEGORY_NAME, VALID_DESCRIPTION,
-                    VALID_PRIORITY, VALID_DEADLINE, null, VALID_IS_DONE);
-            Task t = task.toModelType(persons);
-        } catch (IllegalValueException e) {
-            message = e.getMessage();
-        }
-        assertEquals(expectedMessage, message);
-    }
 }

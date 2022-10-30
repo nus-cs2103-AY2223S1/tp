@@ -82,13 +82,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all persons: `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person: `edit`
 
 Edits an existing person in the address book.
 
@@ -123,7 +123,7 @@ Examples:
 * `find alex david` returns Alex Yeoh, David Li<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person: `delete`
 
 Deletes the specified person from the address book.
 
@@ -137,7 +137,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the find command, which should be Betsy.
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -146,13 +146,13 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all contacts from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -177,7 +177,7 @@ Adds a task to the task list.
 
 Format: `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE [pe/EMAIL OF PERSON ASSIGNED]`
 
-Refer to the [Task Parameters](#task-parameters) section for more details. 
+Refer to the [Task Parameters](#task-parameters) section for more details.
 
 Examples:
 
@@ -206,28 +206,31 @@ Format: `listTasks`
 
 ### Editing a Task: `editTask`
 
-Edits an existing task in the task list.
+Edits the parameter(s) of an existing task in the task list.
 
-Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/COMPLETED]`
+Format: `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/ISDONE]`
 
-Refer to the [Task Parameters](#task-parameters) section for more details.
-
-* Edits the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​
+* Edits the task at the specified index. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …​ and less than or equal to the number of task in the task list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* To unassign a member from a task, simply use an empty parameter `pe/`.
+* To un-assign a member from a task, write `none` in the person email field `pe/` i.e. `pe/none`.
+* To mark a task's status as `completed` (or `not completed`) write `t` (or `f`) in the status field `do` e.g. `do/t`
 
 Examples:
-*  `edit 1 n/Create UI pr/high` edits the name and priority of the 1st task to be `Create UI` and `HIGH` respectively.
-*  `edit 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task to be `frontend` and assigns the task to a new member `Charlotte`.
+* `editTask 1 n/Create UI pr/high` edits the name and priority of the 1st task in the displayed task list to be `Create UI` and `HIGH` respectively.
+* `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to a new member `Charlotte`.
+* `editTask 3 pe/none` un-assigns a member from the 3rd task in the displayed task list.
+* `editTask 4 do/t` marks the 4th task in the displayed task list as completed.
 
-### Filtering a Task : `filter`
+Refer to the [Task Parameters](#task-parameters) section for more details about task parameters.
+
+### Filtering a Task: `filter`
 
 Filters the task list based on either **TASK_CATEGORY** or **TASK_DEADLINE** or **BOTH**.
 
 Format: `filter [c/TASK_CATEGORY] [dl/DEADLINE]`
 
-* Filters the task based on the user input. 
+* Filters the task based on the user input.
 * At least one of the optional fields must be provided.
 * Filtered tasks will be displayed in the task list.
 * To list all tasks, call the `listTasks` command.
@@ -279,7 +282,7 @@ Examples:
 | c/CATEGORY              | Should be one of the following (case-insensitive): <br/>- `database`<br/>- `frontend`<br/>- `backend`<br/>- `uiux`<br/>- `presentation`<br/>- `others` |
 | dl/DEADLINE             | Should be in the format `YYYY-MM-DD` and after the current date                                                                                        |
 | pe/PERSON EMAIL ADDRESS | Should be the email address of an existing member (case-insensitive). For the `editTask` command, it can also be empty, e.g. `pe/`.                    |
-| do/COMPLETED               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                           
+| do/ISDONE               | *For `editTask` command only.* Should be either `true` or `false` (case-insensitive)                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
@@ -295,7 +298,7 @@ Examples:
 | **Clear**            | `clear`                                                                                                                                                                                                                        |
 | **Help**             | `help`                                                                                                                                                                                                                         |
 | **Add Task**         | `addTask n/TASK_NAME d/TASK_DESCRIPTION pr/PRIORITY c/TASK_CATEGORY dl/DEADLINE pe/EMAIL OF PERSON ASSIGNED` <br> e.g., `addTask n/Fix toggle d/Fix dark mode button pr/low c/frontend dl/2022-12-12 pe/charlotte@example.com` |
-| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/COMPLETED]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
+| **Edit Task**        | `editTask INDEX [n/TASK_NAME] [d/TASK_DESCRIPTION] [pr/PRIORITY] [c/TASK_CATEGORY] [dl/DEADLINE] [pe/EMAIL of person assigned] [do/ISDONE]` <br> e.g., `editTask 2 c/frontend pe/charlotte@example.com`                        |
 | **Delete Task**      | `deleteTask TASK_NUMBER` <br> e.g., `deleteTask 1`                                                                                                                                                                             |
 | **list Tasks**       | `listTasks`                                                                                                                                                                                                                    |
 | **Filter Task**      | `filter [c/TASK_CATEGORY] [dl/DEADLINE]` <br> e.g., `filter c/backend dl/2022-12-12`                                                                                                                                           |
