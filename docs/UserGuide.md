@@ -15,6 +15,19 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 ![start_up](images/IdENTifyStartUp.png)
 
+## UI Components
+![SampleUiImage](images/SampleUI.png)
+
+### General UI information
+Component | Purpose
+--------|------------------
+**Tool Box** | Allows you to exit idENTify, change the theme of the UI or view help
+**Command Box** | Location to enter commands
+**Results Display** | Shows the result after a command is entered
+**Patient List** | Shows patient information
+**Appointment List** | Shows appointment information
+**Save File Location** | Shows the location where your idENTify data is stored
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -271,7 +284,7 @@ Format: `hide patients t/TAG [t/MORE_TAGS]...`
 * All tags of a patient are searched.
 
 Examples:
-* `hide patients t/ear t/nose` hides all patients with a ear OR nose tag.
+* `hide patients t/ear t/nose` hides all patients with an ear OR nose tag.
 
 #### Unhiding patients by name or tag: `unhide patients`
 
