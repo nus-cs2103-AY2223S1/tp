@@ -83,7 +83,8 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualBobaBotModel} matches {@code expectedBobaBotModel}
      */
-    public static void assertCommandSuccess(Command command, BobaBotModel actualBobaBotModel, CommandResult expectedCommandResult,
+    public static void assertCommandSuccess(Command command, BobaBotModel actualBobaBotModel,
+                                            CommandResult expectedCommandResult,
                                             BobaBotModel expectedBobaBotModel) {
         try {
             CommandResult result = command.execute(actualBobaBotModel);
