@@ -7,15 +7,15 @@ FindMyIntern helps students who are applying for internships keep track of their
 ## Table of Contents
 
 The user guide is divided into different sections. Click on any of the sections to jump right into that section!
-<div class="card">
-<div markdown="1" class="card-body">
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
 <h6 markdown="1" class="card-title">[Quick Start](#quick-start)</h6>
 This section teaches you how to install and **get started** with FindMyIntern.
 </div>
 </div>
 
-<div class="card">
-<div markdown="1" class="card-body">
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
 <h6 markdown="1" class="card-title">[Features](#features)</h6>
 This section contains **everything you need to know** about the features in FindMyIntern.
 It includes:
@@ -25,22 +25,22 @@ It includes:
 </div>
 </div>
 
-<div class="card">
-<div markdown="1" class="card-body">
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
 <h6 markdown="1" class="card-title">[FAQ](#faq)</h6>
 This section includes all frequently asked questions about FindMyIntern.
 </div>
 </div>
 
-<div class="card">
-<div markdown="1" class="card-body">
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
 <h6 markdown="1" class="card-title">[Appendix](#appendix)</h6>
 This section specifies **the input details** that you have to be aware of in FindMyIntern.
 </div>
 </div>
 
-<div class="card">
-<div markdown="1" class="card-body">
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
 <h6 markdown="1" class="card-title">[Command Summary](#command-summary)</h6>
 This section contains the formats of all commands in FindMyIntern.
 </div>
@@ -135,7 +135,16 @@ Shows a message explaining how to access the user guide, and the data file locat
     <img src="images/helpMessage.png" width="500"/>
 </p>
 
-Format: `help`
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        help
+        ```
+    </div>
+</div>
 
 #### Adding an internship application: `add`
 
@@ -351,8 +360,8 @@ Finds internship applications where the company's name and tags contain any of t
 </div>
 <div>
 <b><code><b>filter</b></code> vs <code><b>find</b></code></b><br>
-<code>filter</code> and<code>find</code> commands may seem similar, here are some differences to take note of:
-<table class="table table-hover">
+<code>filter</code> and<code>find</code> commands may seem similar, here are some differences to take note of:<br>
+<table class="table table-light table-hover">
   <thead>
     <tr>
       <th scope="col"><code>filter</code></th> 
