@@ -15,6 +15,7 @@ import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * Sets the current team to an existing team.
@@ -35,7 +36,7 @@ public class SetTeamCommand extends Command {
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to set does not exist!";
 
     @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
-    private String targetTeamName;
+    private TeamName targetTeamName;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)

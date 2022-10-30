@@ -29,7 +29,7 @@ public class TeamCard extends UiPart<Region> {
         super(FXML);
         this.team = team;
         id.setText(displayedIndex + ". ");
-        teamName.setText(team.getTeamName());
+        teamName.setText(team.getTeamName().teamName);
         teamName.setWrapText(true);
     }
 

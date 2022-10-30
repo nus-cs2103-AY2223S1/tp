@@ -8,10 +8,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.team.Description;
 import seedu.address.model.team.Link;
 import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * Jackson-friendly version of {@link Team}
@@ -53,8 +56,8 @@ public class JsonAdaptedTeam {
      * Converts a given {@code Team} into this class for Jackson use.
      */
     public JsonAdaptedTeam(Team source) {
-        teamName = source.getTeamName();
-        description = source.getDescription();
+        teamName = source.getTeamName().teamName;
+        description = source.getDescription().description;
         members.addAll(source.getTeamMembers().stream()
             .map(JsonAdaptedPerson::new)
             .collect(Collectors.toList()));
@@ -87,8 +90,25 @@ public class JsonAdaptedTeam {
         }
 
         if (teamName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Team.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TeamName.class.getSimpleName()));
         }
-        return new Team(teamName, description, modelMembers, modelTasks, modelLinks);
+
+        if (!TeamName.isValidTeamName(teamName)) {
+            throw new IllegalValueException(TeamName.MESSAGE_CONSTRAINTS);
+        }
+
+        TeamName teamNameModel = new TeamName(teamName);
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+        }
+
+        if (!Description.isValidTeamDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+
+        Description descriptionModel = new Description(description);
+
+        return new Team(teamNameModel, descriptionModel, modelMembers, modelTasks, modelLinks);
     }
 }

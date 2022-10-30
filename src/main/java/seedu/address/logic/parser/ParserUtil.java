@@ -17,6 +17,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.team.Description;
+import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Url;
 
 /**
@@ -158,6 +160,36 @@ public class ParserUtil {
         } catch (DateTimeParseException | NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_DATETIME);
         }
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code TeamName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code teamName} is invalid.
+     */
+    public static TeamName parseTeamName(String teamName) throws ParseException {
+        requireNonNull(teamName);
+        String trimmedName = teamName.trim();
+        if (!TeamName.isValidTeamName(trimmedName)) {
+            throw new ParseException(TeamName.MESSAGE_CONSTRAINTS);
+        }
+        return new TeamName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedName = description.trim();
+        if (!Description.isValidTeamDescription(trimmedName)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedName);
     }
 
     /**
