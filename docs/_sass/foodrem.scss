@@ -295,6 +295,24 @@ html {
 article.post {
   a {
     color: #00769a;
+
+    &.header-backlink {
+      color: inherit;
+
+      &:hover {
+        text-decoration: none;
+
+        &::after {
+          content: "\21E6\A0 Back to table of contents";
+          margin-left: 1ch;
+          display: inline-block;
+          vertical-align: middle;
+
+          font-size: max(0.6em, 1rem);
+          color: gray;
+        }
+      }
+    }
   }
 
   li p {
