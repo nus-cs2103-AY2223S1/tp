@@ -20,21 +20,33 @@ public class PersonMatchesPredicateTest {
     @Test
     public void equals() {
         PersonMatchesPredicate firstPredicate = new PersonMatchesPredicateBuilder()
-                .withNamesList(Collections.singletonList("name1")).withEmailsList(Collections.singletonList("email1"))
-                .withGenderList(Collections.singletonList("gender1")).withLocationsList(Collections.singletonList("location1"))
-                .withModulesSet(Collections.singleton("module1"), true).withPhonesList(Collections.singletonList("111"))
-                .withOfficeHoursList(Collections.singletonList("officeHour1")).withRatingsList(Collections.singletonList("1"))
-                .withSpecList(Collections.singletonList("spec1")).withTypesList(Collections.singletonList("type1"))
-                .withTagsSet(Collections.singleton("tag1"), true).withYearsList(Collections.singletonList("year1"))
+                .withNamesList(Collections.singletonList("name1"))
+                .withEmailsList(Collections.singletonList("email1"))
+                .withGenderList(Collections.singletonList("gender1"))
+                .withLocationsList(Collections.singletonList("location1"))
+                .withModulesSet(Collections.singleton("module1"), true)
+                .withPhonesList(Collections.singletonList("111"))
+                .withOfficeHoursList(Collections.singletonList("officeHour1"))
+                .withRatingsList(Collections.singletonList("1"))
+                .withSpecList(Collections.singletonList("spec1"))
+                .withTypesList(Collections.singletonList("type1"))
+                .withTagsSet(Collections.singleton("tag1"), true)
+                .withYearsList(Collections.singletonList("year1"))
                 .withUserNamesList(Collections.singletonList("username1")).build();
 
         PersonMatchesPredicate secondPredicate = new PersonMatchesPredicateBuilder()
-                .withNamesList(Collections.singletonList("name2")).withEmailsList(Collections.singletonList("email2"))
-                .withGenderList(Collections.singletonList("gender2")).withLocationsList(Collections.singletonList("location2"))
-                .withModulesSet(Collections.singleton("module2"), true).withPhonesList(Collections.singletonList("222"))
-                .withOfficeHoursList(Collections.singletonList("officeHour2")).withRatingsList(Collections.singletonList("2"))
-                .withSpecList(Collections.singletonList("spec2")).withTypesList(Collections.singletonList("type2"))
-                .withTagsSet(Collections.singleton("tag2"), true).withYearsList(Collections.singletonList("year2"))
+                .withNamesList(Collections.singletonList("name2"))
+                .withEmailsList(Collections.singletonList("email2"))
+                .withGenderList(Collections.singletonList("gender2"))
+                .withLocationsList(Collections.singletonList("location2"))
+                .withModulesSet(Collections.singleton("module2"), true)
+                .withPhonesList(Collections.singletonList("222"))
+                .withOfficeHoursList(Collections.singletonList("officeHour2"))
+                .withRatingsList(Collections.singletonList("2"))
+                .withSpecList(Collections.singletonList("spec2"))
+                .withTypesList(Collections.singletonList("type2"))
+                .withTagsSet(Collections.singleton("tag2"), true)
+                .withYearsList(Collections.singletonList("year2"))
                 .withUserNamesList(Collections.singletonList("username1")).build();
 
 
@@ -135,26 +147,26 @@ public class PersonMatchesPredicateTest {
 
     @Test
     public void test_emailDoesNotContainKeywords_returnsFalse() {
-            // Zero keywords
-            PersonMatchesPredicate predicate = new PersonMatchesPredicate();
-            predicate.setEmailsList(Collections.emptyList());
-            assertFalse(predicate.test(new StudentBuilder().withEmail("example@example.com").build()));
-            assertFalse(predicate.test(new ProfessorBuilder().withEmail("example@example.com").build()));
-            assertFalse(predicate.test(new TeachingAssistantBuilder().withEmail("example@example.com").build()));
-            // Non-matching keyword
-            predicate.setEmailsList(Arrays.asList("a@example.com"));
-            assertFalse(predicate.test(new StudentBuilder().withEmail("example@example.com").build()));
-            assertFalse(predicate.test(new ProfessorBuilder().withEmail("example@example.com").build()));
-            assertFalse(predicate.test(new TeachingAssistantBuilder().withEmail("example@example.com").build()));
+        // Zero keywords
+        PersonMatchesPredicate predicate = new PersonMatchesPredicate();
+        predicate.setEmailsList(Collections.emptyList());
+        assertFalse(predicate.test(new StudentBuilder().withEmail("example@example.com").build()));
+        assertFalse(predicate.test(new ProfessorBuilder().withEmail("example@example.com").build()));
+        assertFalse(predicate.test(new TeachingAssistantBuilder().withEmail("example@example.com").build()));
+        // Non-matching keyword
+        predicate.setEmailsList(Arrays.asList("a@example.com"));
+        assertFalse(predicate.test(new StudentBuilder().withEmail("example@example.com").build()));
+        assertFalse(predicate.test(new ProfessorBuilder().withEmail("example@example.com").build()));
+        assertFalse(predicate.test(new TeachingAssistantBuilder().withEmail("example@example.com").build()));
 
-            // Keywords match other fields but not email
-            PersonMatchesPredicate studentPredicate = PersonMatchesPredicateBuilder.buildStudentPredicate();
-            PersonMatchesPredicate professorPredicate = PersonMatchesPredicateBuilder.buildProfessorPredicate();
-            PersonMatchesPredicate taPredicate = PersonMatchesPredicateBuilder.buildTeachingAssistantPredicate();
+        // Keywords match other fields but not email
+        PersonMatchesPredicate studentPredicate = PersonMatchesPredicateBuilder.buildStudentPredicate();
+        PersonMatchesPredicate professorPredicate = PersonMatchesPredicateBuilder.buildProfessorPredicate();
+        PersonMatchesPredicate taPredicate = PersonMatchesPredicateBuilder.buildTeachingAssistantPredicate();
 
-            assertFalse(studentPredicate.test(new StudentBuilder().withEmail("e@gmail.com").build()));
-            assertFalse(professorPredicate.test(new ProfessorBuilder().withEmail("e@gmail.com").build()));
-            assertFalse(taPredicate.test(new TeachingAssistantBuilder().withEmail("e@gmail.com").build()));
+        assertFalse(studentPredicate.test(new StudentBuilder().withEmail("e@gmail.com").build()));
+        assertFalse(professorPredicate.test(new ProfessorBuilder().withEmail("e@gmail.com").build()));
+        assertFalse(taPredicate.test(new TeachingAssistantBuilder().withEmail("e@gmail.com").build()));
     }
 
     @Test
@@ -501,7 +513,8 @@ public class PersonMatchesPredicateTest {
         // Keywords match other fields but not office hour
         PersonMatchesPredicate professorPredicate = PersonMatchesPredicateBuilder.buildProfessorPredicate();
 
-        assertFalse(professorPredicate.test(new ProfessorBuilder().withOfficeHour("TUESDAY, 02:00 PM - 04:00 PM").build()));
+        assertFalse(professorPredicate.test(new ProfessorBuilder()
+                .withOfficeHour("TUESDAY, 02:00 PM - 04:00 PM").build()));
     }
 
     @Test
@@ -601,7 +614,7 @@ public class PersonMatchesPredicateTest {
 
         // Keywords match other fields but not modules
         PersonMatchesPredicate studentPredicate = PersonMatchesPredicateBuilder.buildStudentPredicate();
-                studentPredicate.setModulesSet(new HashSet<>(Arrays.asList("CS1101S", "CS2222", "CS3333")), false);
+        studentPredicate.setModulesSet(new HashSet<>(Arrays.asList("CS1101S", "CS2222", "CS3333")), false);
 
         PersonMatchesPredicate professorPredicate = PersonMatchesPredicateBuilder.buildProfessorPredicate();
         professorPredicate.setModulesSet(new HashSet<>(List.of("CS1101S")), false);

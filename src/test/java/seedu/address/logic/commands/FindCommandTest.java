@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_LIST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAMES_LIST;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.ANDERSON;
 import static seedu.address.testutil.TypicalPersons.BEN;
@@ -23,13 +25,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonMatchesPredicate;
 import seedu.address.testutil.PersonMatchesPredicateBuilder;
 
@@ -43,21 +43,33 @@ public class FindCommandTest {
     @Test
     public void equals() {
         PersonMatchesPredicate firstPredicate = new PersonMatchesPredicateBuilder()
-                .withNamesList(Collections.singletonList("name1")).withEmailsList(Collections.singletonList("email1"))
-                .withGenderList(Collections.singletonList("gender1")).withLocationsList(Collections.singletonList("location1"))
-                .withModulesSet(Collections.singleton("module1"), true).withPhonesList(Collections.singletonList("111"))
-                .withOfficeHoursList(Collections.singletonList("officeHour1")).withRatingsList(Collections.singletonList("1"))
-                .withSpecList(Collections.singletonList("spec1")).withTypesList(Collections.singletonList("type1"))
-                .withTagsSet(Collections.singleton("tag1"), true).withYearsList(Collections.singletonList("year1"))
+                .withNamesList(Collections.singletonList("name1"))
+                .withEmailsList(Collections.singletonList("email1"))
+                .withGenderList(Collections.singletonList("gender1"))
+                .withLocationsList(Collections.singletonList("location1"))
+                .withModulesSet(Collections.singleton("module1"), true)
+                .withPhonesList(Collections.singletonList("111"))
+                .withOfficeHoursList(Collections.singletonList("officeHour1"))
+                .withRatingsList(Collections.singletonList("1"))
+                .withSpecList(Collections.singletonList("spec1"))
+                .withTypesList(Collections.singletonList("type1"))
+                .withTagsSet(Collections.singleton("tag1"), true)
+                .withYearsList(Collections.singletonList("year1"))
                 .withUserNamesList(Collections.singletonList("username1")).build();
 
         PersonMatchesPredicate secondPredicate = new PersonMatchesPredicateBuilder()
-                .withNamesList(Collections.singletonList("name2")).withEmailsList(Collections.singletonList("email2"))
-                .withGenderList(Collections.singletonList("gender2")).withLocationsList(Collections.singletonList("location2"))
-                .withModulesSet(Collections.singleton("module2"), true).withPhonesList(Collections.singletonList("222"))
-                .withOfficeHoursList(Collections.singletonList("officeHour2")).withRatingsList(Collections.singletonList("2"))
-                .withSpecList(Collections.singletonList("spec2")).withTypesList(Collections.singletonList("type2"))
-                .withTagsSet(Collections.singleton("tag2"), true).withYearsList(Collections.singletonList("year2"))
+                .withNamesList(Collections.singletonList("name2"))
+                .withEmailsList(Collections.singletonList("email2"))
+                .withGenderList(Collections.singletonList("gender2"))
+                .withLocationsList(Collections.singletonList("location2"))
+                .withModulesSet(Collections.singleton("module2"), true)
+                .withPhonesList(Collections.singletonList("222"))
+                .withOfficeHoursList(Collections.singletonList("officeHour2"))
+                .withRatingsList(Collections.singletonList("2"))
+                .withSpecList(Collections.singletonList("spec2"))
+                .withTypesList(Collections.singletonList("type2"))
+                .withTagsSet(Collections.singleton("tag2"), true)
+                .withYearsList(Collections.singletonList("year2"))
                 .withUserNamesList(Collections.singletonList("username1")).build();
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
@@ -187,24 +199,23 @@ public class FindCommandTest {
 
     @Test
     public void execute_multiplePhones_multiplePersonsFound() {
-        List<String> VALID_PHONES_LIST = List.of("94351253", "98765432", "87652533");
+        List<String> phonesList = List.of("94351253", "98765432", "87652533");
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
 
         PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
-                .withPhonesList(VALID_PHONES_LIST).build();
+                .withPhonesList(phonesList).build();
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        ObservableList<Person> list  = model.getFilteredPersonList();
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleEmails_multiplePersonsFound() {
-        List<String> VALID_EMAILS_LIST = List.of("werner@example.com", "lydia@example.com", "anna@example.com");
+        List<String> emailList = List.of("werner@example.com", "lydia@example.com", "anna@example.com");
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
-                .withEmailsList(VALID_EMAILS_LIST).build();
+                .withEmailsList(emailList).build();
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -213,10 +224,10 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleGenders_multiplePersonsFound() {
-        List<String> VALID_GENDER_LIST = List.of("F");
+        List<String> gendersList = List.of("F");
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
-                .withGenderList(VALID_GENDER_LIST).build();
+                .withGenderList(gendersList).build();
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -225,10 +236,10 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleLocations_multiplePersonsFound() {
-        List<String> VALID_LOCATIONS_LIST = List.of("SMU", "NUS", "NTU");
+        List<String> locationsList = List.of("SMU", "NUS", "NTU");
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
-                .withLocationsList(VALID_LOCATIONS_LIST).build();
+                .withLocationsList(locationsList).build();
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -237,10 +248,10 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleUsernames_multiplePersonsFound() {
-        List<String> VALID_USERNAMES_LIST = List.of("ben10", "callin", "cabe");
+        List<String> usernamesList = List.of("ben10", "callin", "cabe");
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
         PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
-                .withUserNamesList(VALID_USERNAMES_LIST).build();
+                .withUserNamesList(usernamesList).build();
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -291,10 +302,10 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleOfficeHours_multiplePersonsFound() {
-        List<String> VALID_OFFICE_HOURS_LIST = List.of("1-11:00-2", "2-12:00-2");
+        List<String> officeHoursList = List.of("1-11:00-2", "2-12:00-2");
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         PersonMatchesPredicate predicate = new PersonMatchesPredicateBuilder()
-                .withOfficeHoursList(VALID_OFFICE_HOURS_LIST).build();
+                .withOfficeHoursList(officeHoursList).build();
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
