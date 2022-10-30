@@ -205,6 +205,12 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+### Clearing all entries : `clear`
+
+Clears all entries from the student list.
+
+Format: `clear`
+
 ## Attendance commands
 To aid teaching assistants in keeping track of attendance, we developed a feature to add an attendance list of a maximum of 12 lessons. Afterwards, teaching assistants can mark/unmark attendance of their students. Currently, we have only one class of attendance for students.
 
@@ -225,7 +231,7 @@ Examples:
 
 ### Marking attendance of student: `attendance mark`
 
-Marks attendance of given student in class list
+Marks attendance of given student in class list. In this case, we use 0 for absent and 1 for present because it is faster for CLI users to type numerical values instead of ```"absent"``` or ```"present"```.
 
 Format: `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE`
 
@@ -247,11 +253,6 @@ Format: `attendance delete INDEX`
 Examples:
 `attendance delete 1`
 `attendance delete 2`
-### Clearing all entries : `clear`
-
-Clears all entries from the student list.
-
-Format: `clear`
 
 # Task Commands
 ---
