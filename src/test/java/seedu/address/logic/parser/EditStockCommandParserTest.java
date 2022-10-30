@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.util.StringUtil.getIntFromString;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CURRENT_STOCK_NEGATIVE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LESS_THAN_INTEGER_MIN_VALUE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MORE_THAN_INTEGER_MAX_VALUE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NO_VALUE_CURRENT_STOCK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CURRENT_STOCK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CURRENT_STOCK_DESC;
@@ -83,6 +85,20 @@ public class EditStockCommandParserTest {
     public void parse_invalidValuePrefixNoValue_failure() {
         Index targetIndex = INDEX_FIRST_SUPPLY_ITEM;
         String userInput = targetIndex.getOneBased() + " " + INVALID_NO_VALUE_CURRENT_STOCK_DESC;
+        assertParseFailure(parser, userInput, EditStockCommand.MESSAGE_NOT_EDITED_PREFIX_DETECTED);
+    }
+
+    @Test
+    public void parse_valueTooLarge_failure() {
+        Index targetIndex = INDEX_FIRST_SUPPLY_ITEM;
+        String userInput = targetIndex.getOneBased() + " " + INVALID_MORE_THAN_INTEGER_MAX_VALUE_DESC;
+        assertParseFailure(parser, userInput, EditStockCommand.MESSAGE_NOT_EDITED_PREFIX_DETECTED);
+    }
+
+    @Test
+    public void parse_valueTooSmall_failure() {
+        Index targetIndex = INDEX_FIRST_SUPPLY_ITEM;
+        String userInput = targetIndex.getOneBased() + " " + INVALID_LESS_THAN_INTEGER_MIN_VALUE_DESC;
         assertParseFailure(parser, userInput, EditStockCommand.MESSAGE_NOT_EDITED_PREFIX_DETECTED);
     }
 }
