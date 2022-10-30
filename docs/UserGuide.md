@@ -510,7 +510,7 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 | **Delete Client**                  | `deleteClient [INDEX]` <br> e.g., `delete 3`                                                                                                                                                                 |
 | **Edit Client**                    | `editClient [INDEX] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                         |
 | **View Clients**                   | `allClients`                                                                                                                                                                                                 |
-| **View Filtered Clients**          | `clients`                                                                                                                                                                                                    |                                                              |
+| **View Filtered Clients**          | `clients`                                                                                                                                                                                                    |                                                              
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
 
@@ -526,7 +526,7 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **View assigned policies** | `assign [INDEX of CONTACT] [INDEX of POLICY] [pr/PREMIUM_PAID] [sd/START_DATE] [ed/END_DATE]` <br>  `assignPolicy 1 1 pr/10000 sd/2000-01-02 ed/2000-02-01`     |
 | **Delete Assigned**        | `deleteAssigned [INDEX of CONTACT] [INDEX of POLICY]` <br> e.g. `deleteAssigned 1 1`                                                                            |                                                                                                                                                                                                               
 | **List Assigned**          | `listAssigned`                                                                                                                                                  |
-| **View Income**            | `viewIncome [YEAR]`                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           |
+| **View Income**            | `viewIncome [YEAR]`                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
 
 
 ### Commands For Events
@@ -537,7 +537,7 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **Add Event**     | `addEvent [desc/DESCRIPTION] [n/NAME] [date/DATE] [st/START_TIME] [et/END_TIME]` <br> e.g.: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00`                              |
 | **Delete Event**  | `deleteEvent [INDEX]` <br> e.g.: `deleteEvent 1`                                                                                                                                                              |
 | **View events**   | `events`                                                                                                                                                                                                      |
-| **View calendar** | `calendar`                                                                                                                                                                                                    |                                                                                                                                                                                                     |
+| **View calendar** | `calendar`                                                                                                                                                                                                    |                                                                                                                                                                                                     
 
 
 ### Miscellaneous Commands
