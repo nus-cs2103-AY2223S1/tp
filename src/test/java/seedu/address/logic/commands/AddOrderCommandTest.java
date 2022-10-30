@@ -59,7 +59,6 @@ public class AddOrderCommandTest {
 
         //clear any orders added to the Buyer
         modelStub.getFilteredBuyerList().get(0).deleteOrder(validOrder);
-        System.out.println(TypicalBuyers.ALICE.getOrderIds().size());
 
         //multiple Pets added
         modelStub = new ModelStubAcceptingOrderAdded();
@@ -73,6 +72,12 @@ public class AddOrderCommandTest {
             commandResult = new AddOrderCommand(order, INDEX_FIRST).execute(modelStub);
             expectedResult = String.format(AddOrderCommand.MESSAGE_SUCCESS, order);
             assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        }
+
+        idList = modelStub.getFilteredBuyerList().get(0).getOrderIds();
+
+        for (int i = 0; i < idList.size(); i++) {
+            assertEquals(idList.get(i), validOrders.get(i).getId());
         }
 
         //clear any orders added
