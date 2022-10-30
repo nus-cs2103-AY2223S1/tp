@@ -22,8 +22,6 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 {:toc}
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer. If you are unsure you can refer to [this](#appendix-installing-java-11)
@@ -84,6 +82,8 @@ This guides aims to: <br>
 
 <button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
+<div style="page-break-after: always;"></div>
+
 ## Navigating the GUI
 ![Ui](images/navigate_ui.png)
 
@@ -122,6 +122,8 @@ the data for all internships whose company name contains the word `Shopee`.
 
 **Reminder Panel**<br>
 The reminder panel displays the number of interviews, assessments or pending offers due in the next 7 days.
+
+<div style="page-break-after: always;"></div>
 
 ## Command Format
 <div markdown="block" class="alert alert-info">
@@ -173,6 +175,8 @@ Here is the parameter requirements of commonly used parameters in the commands b
 | **`CATEGORY`**            | Refers to the parameters above                                                         | Used in [`list`](#listing-all-internships--list) [`find`](#locating-internships-by-find) command. <br>Refer to respective commands for individual requirements.                                                                                    |
 | **`INDEX`**               | The index number of internship shown in displayed internship list under the Main Panel | Must be a **positive integer** eg.(1,2,3,...) <br>Used in [`delete`](#deleting-internships--delete) [`edit`](#listing-all-internships--list) [`view`](#view-details-of-an-internship-view) [`copy`](#copy-details-of-internship--copy)             |
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -186,6 +190,9 @@ Format: `help`
 - Press <button>esc</button> to close the Help window <br>
 - Press <button>C</button> to copy the User Guide url into the clipboard when the Help window is opened
 </div>
+
+
+<div style="page-break-after: always;"></div>
 
 ### Adding an internship: `add`
 
@@ -216,6 +223,8 @@ _Before executing command:  `add n/Gojek p/Mobile Intern`_
 
 ![help message](images/AfterAddCommand.png)
 _After executing command: `add n/Gojek p/Mobile Intern`_
+
+<div style="page-break-after: always;"></div>
 
 ### Listing all internships : `list`
 
@@ -254,6 +263,8 @@ Examples:
 `list c/company_name` is equivalent to `list c/n`
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Locating internships by: `find`
 
 Find internships whose data in the target category matches the given keyword/s.
@@ -287,6 +298,8 @@ Examples:
 `find c/position engineer` is equivalent to `find c/p engineer`
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting internship(s) : `delete`
 
 Deletes the specified internship(s) from the list.
@@ -310,6 +323,8 @@ Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find google` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
+<div style="page-break-after: always;"></div>
+
 ### View details of an internship: `view`
 
 View details of list item at index
@@ -327,6 +342,8 @@ _Before executing command:  `view 1`_
 
 ![after_view](images/AfterViewCommand.png)
 _After executing command: `view 1`_
+
+<div style="page-break-after: always;"></div>
 
 ### Copy details of internship : `copy`
 
@@ -383,7 +400,8 @@ If your changes to the data file makes its format invalid, PleaseHireUs will dis
 
 _Details coming soon …​_
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 | Action                                          | Undo               | Format, Examples                                                                                                                                                                                             |
@@ -411,7 +429,7 @@ _Details coming soon …​_
 
 </div>
 
-
+<div style="page-break-after: always;"></div>
 
 ## Prefix Summary
 
@@ -432,6 +450,8 @@ _Details coming soon …​_
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PleaseHireUs home folder.
 
+<div style="page-break-after: always;"></div>
+
 ## Glossary
 
 | Term                           | Description                                                                                                                                        |
@@ -449,6 +469,8 @@ _Details coming soon …​_
 * Undo and Redo commands are adapted and modified from  **[AddressBook 4(AB4)](https://github.com/se-edu/addressbook-level4)**
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [TestFx](https://github.com/TestFX/TestFX)
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Installing Java 11
 1. Check if you have installed the correct version of java by running `java -version` in your terminal.
