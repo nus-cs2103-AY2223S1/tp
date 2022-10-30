@@ -108,6 +108,8 @@ Beyond individual products, you can also:
 
 * **display** a summarized list of all products.
 
+[Return to the top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. User Interface
@@ -142,6 +144,8 @@ This is the view after executing the `viewMeeing` command.
 
 ![viewMeetingWithDescription](images/ui-description/viewMeetingWithDescription.png)
 
+[Return to the top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Installation Guide
@@ -170,6 +174,8 @@ To install *MyInsuRec*, simply follow the steps below:
    ![Ui](images/Ui.png)
 
 Ta-da! *MyInsuRec* is now installed on your system.
+
+[Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -238,6 +244,8 @@ And there we have it! We have just gone through the basic bookkeeping features o
 To get started with a clean state of *MyInsuRec*, type in the command `clear`. This removes all the sample data from *MyInsuRec*, so don't panic if you see all your data are wiped off!
 
 Welcome to your new and organized life, and happy (financial) advising!
+
+[Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -632,6 +640,8 @@ MyInsuRec comes with light and dark color schemes. To change between the two, si
 
 ![Dark Mode](images/DarkModeUi.png)
 
+[Return to the top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 8. FAQ
@@ -652,6 +662,8 @@ MyInsuRec comes with light and dark color schemes. To change between the two, si
 **A**: First check that the product has been created use the [`listProduct`](#732-list-products-listproduct) command.
 Create the product suing the [`addProduct`](#731-add-product-addproduct) command if it is not there.
 Add the product to the client using the [`editClient`](#715-edit-client-editclient)  or [`addClient`](#711-add-client-addclient) command.
+
+[Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -676,6 +688,7 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 | [**Exit**](#742-exit-myinsurec-exit)                 | `exit`                                                                                         | `exit`                                                                                                                                           |
 | [**Clear**](#743-clear-myinsurec-clear)              | `clear`                                                                                        | `clear`                                                                                                                                          |
 
+[Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -704,6 +717,8 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 4. The number in the red highlight rectangle tells you the Java version installed. For example, the Java version installed on the example system is Java 11.0.16, which is sufficient to run *MyInsuRec* as it is greater than Java 11.
 
 5. If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
+
+[Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -783,6 +798,8 @@ Java 11 is a release version of Java which is required to run *MyInsuRec*.
 Value that should be provided to a command for it to execute.
 e.g. the `delClient` command requires the [`INDEX`](#index) value identifying a client in order to delete that client.
 
+[Return to the top](#)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 12. Contact Us
@@ -790,3 +807,5 @@ e.g. the `delClient` command requires the [`INDEX`](#index) value identifying a 
 Our team is committed to delivering a high-quality product, so we'd love to hear from you if you have any feedback or enquiries!
 
 Please feel free to contact us at [myinsurec@gmail.com](mailto:myinsurec@gmail.com).
+
+[Return to the top](#)
