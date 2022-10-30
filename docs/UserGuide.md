@@ -225,7 +225,13 @@ If not, please follow the error message given and format above to enter the corr
 * `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
   ![edit Betsy Crower Result](images/ug-images/editCommand/editBetsyCrowerResult.png)
 
-### :exclamation: Deleting a patient : `delete`
+### Deleting a patient : `delete`
+
+<div markdown="block" class="alert alert-info">
+
+:exclamation: **Caution:** Deleted patient records cannot be recovered.
+
+</div>
 
 Deletes the patient specified by the index number used in the patient list panel.
 
@@ -278,6 +284,12 @@ If not, please follow the error message given and format above to enter the corr
 ![Create Appointment for John Doe](images/ug-images/apptCommand/apptJohnDoeCommandResult.png)
 
 ### Deleting past appointment for patient: `delappt`
+
+<div markdown="block" class="alert alert-info">
+
+:exclamation: **Caution:** Deleted past appointments cannot be recovered.  
+
+</div>
 
 Deletes the most recent past appointment of the patient specified by the index number used in the patient list panel.
 
@@ -502,7 +514,13 @@ If the command was successfully executed, you should see something similar to th
 
 If not, please follow the error message given and format above to enter the correct command.
 
-### :exclamation: Clearing all entries : `clear`
+### Clearing all entries : `clear`
+
+<div markdown="block" class="alert alert-info">
+
+:exclamation: **Caution:** Deleted patient records cannot be recovered.
+
+</div>
 
 Empties checkUp of all patients stored.
 
