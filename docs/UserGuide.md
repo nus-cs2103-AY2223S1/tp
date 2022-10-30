@@ -16,15 +16,15 @@ Now you will never miss any internship application deadlines or interviews again
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
 We hope you find PleaseHireUs to be very useful in your internship hunt!
 
+<div style="page-break-after: always;"></div>
 
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. If you are unsure you can refer to [this](#appendix-installing-java-11)
+1. Ensure you have Java `11` or above installed in your Computer. You can refer to [this](#appendix-installing-java-11)
 
 2. Download the latest `PleaseHireUs.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-4/tp/releases).
 
@@ -46,6 +46,8 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 * **`clear`** : Deletes all internships.
 
 * **`exit`** : Exits the app. 
+
+<div style="page-break-after: always;"></div>
 
 ## About this User Guide
 
@@ -80,6 +82,8 @@ This guides aims to: <br>
 
 <button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
+<div style="page-break-after: always;"></div>
+
 ## Navigating the GUI
 ![Ui](images/navigate_ui.png)
 
@@ -100,6 +104,8 @@ Displays the list of internships.
 **View Panel** <br>
 The panel displays the internship being viewed in greater detail. 
 
+<div style="page-break-after: always;"></div>
+
 **Statistic Panel** <br>
 ![Bar Chart](images/BarChart.png)
 
@@ -118,6 +124,8 @@ the data for all internships whose company name contains the word `Shopee`.
 
 **Reminder Panel**<br>
 The reminder panel displays the number of interviews, assessments or pending offers due in the next 7 days.
+
+<div style="page-break-after: always;"></div>
 
 ## Command Format
 <div markdown="block" class="alert alert-info">
@@ -141,30 +149,37 @@ The reminder panel displays the number of interviews, assessments or pending off
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 This section shows all features and commands which is supported by PleaseHireUs. 
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Info** <br>
+Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
+</div>
 
 ### Parameters Requirement
-Here is the parameter requirements of commonly used parameters in the commands below.[](#copy-details-of-internship--copy)
+Here is the parameter requirements of commonly used parameters in the commands below.
 
-| Parameter                 | Description                                                                            | Requirement / Remarks                                                                                                                                                                                                                              |
-|---------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **`COMPANY_NAME`**        | Name of company you are applying to                                                    | Alphanumeric and may contain spaces                                                                                                                                                                                                                |
-| **`POSITION`**            | Position of the internship you are applying for                                        | Alphanumeric and may contain spaces                                                                                                                                                                                                                |
-| **`APPLICATION_PROCESS`** | Position of the internship you are applying for                                        | Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`                                                                                                                                                                 |
-| **`DATE`**                | Date of upcoming application task                                                      | In **dd-mm-yyyy** format                                                                                                                                                                                                                           |
-| **`PHONE`**               | Contact number of HR                                                                   | In **[+COUNTRY_CODE] PHONE_NUMBER** format <br><br> - COUNTRY_CODE is optional <br> - COUNTRY_CODE must be 1 to 3 digits long <br> - PHONE_NUMBER is between 3 to 15 digits long <br> - Space in between COUNTRY_CODE and PHONE_NUMBER is optional |
-| **`EMAIL`**               | Email address of HR                                                                    | Contains a `@` and `.com` symbol <br> Example: `example@example.com`                                                                                                                                                                               |
-| **`WEBSITE`**             | Website of company                                                                     | Start with `http://` or `https://`                                                                                                                                                                                                                 |
-| **`REMARK`**              | Additional remarks to take note of                                                     |                                                                                                                                                                                                                                                    |
-| **`TAG`**                 | Additional tags to identify applications                                               | Must be alphanumeric any may **not** contain spaces <br> Maximum length of 20 characters                                                                                                                                                           |
-| **`CATEGORY`**            | Refers to the parameters above                                                         | Used in [`list`](#listing-all-internships--list) [`find`](#locating-internships-by-find) command. <br>Refer to respective commands for individual requirements.                                                                                    |
-| **`INDEX`**               | The index number of internship shown in displayed internship list under the Main Panel | Must be a **positive integer** eg.(1,2,3,...) <br>Used in [`delete`](#deleting-internships--delete) [`edit`](#listing-all-internships--list) [`view`](#view-details-of-an-internship-view) [`copy`](#copy-details-of-internship--copy)             |
+| Parameter                 | Description                                                                            | Requirement / Remarks                                                                                                                                                                                                                            |
+|---------------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **`COMPANY_NAME`**        | Name of company you are applying to                                                    | Alphanumeric and may contain spaces                                                                                                                                                                                                              |
+| **`POSITION`**            | Position of the internship you are applying for                                        | Alphanumeric and may contain spaces                                                                                                                                                                                                              |
+| **`APPLICATION_PROCESS`** | Current process of the internship you are applying for                                 | Can only be: `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED`                                                                                                                                                               |
+| **`DATE`**                | Date of upcoming application task                                                      | In **dd-mm-yyyy** format                                                                                                                                                                                                                         |
+| **`PHONE`**               | Contact number of HR                                                                   | In **[+COUNTRY_CODE] PHONE_NUMBER** format <br><br> - COUNTRY_CODE is optional <br> - COUNTRY_CODE must be 1 to 3 digits long <br> - PHONE_NUMBER must be 3 to 15 digits long <br> - Space in between COUNTRY_CODE and PHONE_NUMBER is optional  |
+| **`EMAIL`**               | Email address of HR                                                                    | Contains a `@` and `.com` symbol <br> Example: `example@example.com`                                                                                                                                                                             |
+| **`WEBSITE`**             | Website of company                                                                     | Start with `http://` or `https://`                                                                                                                                                                                                               |
+| **`REMARK`**              | Additional remarks to take note of                                                     |                                                                                                                                                                                                                                                  |
+| **`TAG`**                 | Additional tags to identify applications                                               | Must be alphanumeric and may **not** contain spaces <br> Maximum length of 20 characters                                                                                                                                                         |
+| **`CATEGORY`**            | Refers to the parameters above                                                         | Used in [`list`](#listing-all-internships--list) [`find`](#locating-internships-by-find) command. <br>Refer to respective commands for individual requirements.                                                                                  |
+| **`INDEX`**               | The index number of internship shown in displayed internship list under the Main Panel | Must be a **positive integer** eg.(1,2,3,...) <br>Used in [`delete`](#deleting-internships--delete) [`edit`](#listing-all-internships--list) [`view`](#view-details-of-an-internship-view) [`copy`](#copy-details-of-internship--copy)           |
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
@@ -179,6 +194,9 @@ Format: `help`
 - Press <button>esc</button> to close the Help window <br>
 - Press <button>C</button> to copy the User Guide url into the clipboard when the Help window is opened
 </div>
+
+
+<div style="page-break-after: always;"></div>
 
 ### Adding an internship: `add`
 
@@ -210,6 +228,8 @@ _Before executing command:  `add n/Gojek p/Mobile Intern`_
 ![help message](images/AfterAddCommand.png)
 _After executing command: `add n/Gojek p/Mobile Intern`_
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all internships : `list`
 
 Shows a list of all internships. List of internships can be sorted by category in ascending or descending order.
@@ -230,6 +250,8 @@ Examples:
 * `list c/date true`
 * `list c/position false`
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Info:** `DESCENDING` parameter will always default to `false` if the input is misspelt
 </div>
@@ -246,6 +268,8 @@ Examples:
 
 `list c/company_name` is equivalent to `list c/n`
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Locating internships by: `find`
 
@@ -266,6 +290,8 @@ Examples:
 * `find c/position engineer` returns a list of internships with a position of Algorithm Engineer and Software Engineer
 * `find sea shop` returns a list of internships with company name of Sea Labs, Shopee, and Shopback
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** 
 
@@ -279,6 +305,8 @@ Examples:
 
 `find c/position engineer` is equivalent to `find c/p engineer`
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting internship(s) : `delete`
 
@@ -303,6 +331,8 @@ Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find google` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
+<div style="page-break-after: always;"></div>
+
 ### View details of an internship: `view`
 
 View details of list item at index
@@ -314,6 +344,14 @@ Format: `view INDEX`
 
 Examples:
 * `list` followed by `view 1` displays more details of the 1st internship in list.
+
+![before_view](images/BeforeViewCommand.png)
+_Before executing command:  `view 1`_
+
+![after_view](images/AfterViewCommand.png)
+_After executing command: `view 1`_
+
+<div style="page-break-after: always;"></div>
 
 ### Copy details of internship : `copy`
 
@@ -348,6 +386,8 @@ Clears all entries from the internship tracker.
 
 Format: `clear`
 
+<div style="page-break-after: always;"></div>
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -370,7 +410,8 @@ If your changes to the data file makes its format invalid, PleaseHireUs will dis
 
 _Details coming soon …​_
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 | Action                                          | Undo               | Format, Examples                                                                                                                                                                                             |
@@ -398,7 +439,7 @@ _Details coming soon …​_
 
 </div>
 
-
+<div style="page-break-after: always;"></div>
 
 ## Prefix Summary
 
@@ -419,6 +460,8 @@ _Details coming soon …​_
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PleaseHireUs home folder.
 
+<div style="page-break-after: always;"></div>
+
 ## Glossary
 
 | Term                           | Description                                                                                                                                        |
@@ -436,6 +479,8 @@ _Details coming soon …​_
 * Undo and Redo commands are adapted and modified from  **[AddressBook 4(AB4)](https://github.com/se-edu/addressbook-level4)**
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [TestFx](https://github.com/TestFX/TestFX)
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
+
+<div style="page-break-after: always;"></div>
 
 ## Appendix: Installing Java 11
 1. Check if you have installed the correct version of java by running `java -version` in your terminal.
