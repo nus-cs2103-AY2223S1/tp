@@ -126,7 +126,6 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      * @return The predicate result of combining the appointment predicate with the current predicate.
      */
     public static Predicate<Appointment> combineWithUnhiddenApptPredicate(Predicate<Appointment> a) {
-
         currApptPredicate = currApptPredicate.or(a);
         return currApptPredicate;
     }
