@@ -18,7 +18,8 @@ public class PinCommand extends Command {
 
     public static final String COMMAND_WORD = "pin";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": pins client to a list which can be viewed separately";
+    public static final String MESSAGE_USAGE = "To use " + COMMAND_WORD
+            + ":\nindex should be indices shown on currently viewed list";
 
     public static final String MESSAGE_PIN_PERSON_SUCCESS = "Pinned Client: %1$s";
 
