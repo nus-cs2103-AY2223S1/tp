@@ -55,15 +55,12 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .parseNumberOfGuests(argMultimap.getValue(PREFIX_NUMBER_OF_GUESTS).get());
         IsRoomClean isRoomClean = new IsRoomClean(DEFAULT_IS_ROOM_CLEAN);
         Bill bill = new Bill();
+        Request request = new Request();
         if (arePrefixesPresent(argMultimap, PREFIX_REQUEST)) {
-            Request request = ParserUtil.parseRequest(argMultimap.getValue(PREFIX_REQUEST).get());
-            Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean, bill, request);
-            return new AddCommand(guest);
-        } else {
-            Request request = new Request();
-            Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean, bill, request);
-            return new AddCommand(guest);
+            request = ParserUtil.parseRequest(argMultimap.getValue(PREFIX_REQUEST).get());
         }
+        Guest guest = new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean, bill, request);
+        return new AddCommand(guest);
     }
 
     /**
