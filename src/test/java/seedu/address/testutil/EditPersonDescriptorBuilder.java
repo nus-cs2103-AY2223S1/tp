@@ -9,12 +9,17 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -134,6 +139,31 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withUsername(String username) {
         descriptor.setGithubUsername(new GithubUsername(username, true));
+        return this;
+    }
+
+    public EditPersonDescriptorBuilder withYear(String year) {
+        descriptor.setYear(new Year(year));
+        return this;
+    }
+
+    public EditPersonDescriptorBuilder withSpecialisation(String specialisation) {
+        descriptor.setSpecialisation(new Specialisation(specialisation));
+        return this;
+    }
+
+    public EditPersonDescriptorBuilder withOfficeHour(String officeHour) {
+        descriptor.setOfficeHour(new OfficeHour(officeHour, true));
+        return this;
+    }
+
+    public EditPersonDescriptorBuilder withRating(String rating) {
+        descriptor.setRating(new Rating(rating));
+        return this;
+    }
+
+    public EditPersonDescriptorBuilder withLocation(String location) {
+        descriptor.setLocation(new Location(location));
         return this;
     }
 
