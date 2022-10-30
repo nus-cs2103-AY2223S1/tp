@@ -40,6 +40,19 @@
       page-break-after: avoid;
     }
 
+    pre,
+    hr,
+    ul,
+    ol {
+      page-break-before: avoid;
+      page-break-after: avoid;
+    }
+
+    p,
+    tr {
+      page-break-inside: avoid;
+    }
+
     table {
       td {
         // FIXME: Remove hardcoding + hacky way
