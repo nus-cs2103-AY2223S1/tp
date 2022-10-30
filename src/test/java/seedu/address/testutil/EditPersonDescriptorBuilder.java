@@ -92,10 +92,6 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
-        return descriptor;
-    }
-
     /**
      * Sets the {@code TutorialModule} of the {@code EditPersonDescriptor} that we are building.
      */
@@ -134,5 +130,9 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withGrade(String grade) {
         descriptor.setGrade(new Grade(grade));
         return this;
+    }
+
+    public EditPersonDescriptor build() {
+        return descriptor;
     }
 }
