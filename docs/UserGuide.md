@@ -283,7 +283,7 @@ command:
 
 | Before executing the command                                   | After executing the command                                   |
 |----------------------------------------------------------------|---------------------------------------------------------------|
-| <p align="center"><img src="/images/add-task-before.png"/></p> | <p align="center"><img src="/images/add-task-after.png"/></p> |
+| <p align="center"><img src="images/add-task-before.png"/></p> | <p align="center"><img src="images/add-task-after.png"/></p> |
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:** 
 You may view the tasks added to a module by navigating to a module's page 
@@ -316,9 +316,9 @@ In the above example, we are deleting task number **2** from the module
 `CS2103T`. Here's a screenshot of Plannit before and after executing the 
 command: 
 
-| Before executing the command                                      | After executing the command                                      |
-|-------------------------------------------------------------------|------------------------------------------------------------------|
-| <p align="center"><img src="/images/delete-task-before.png"/></p> | <p align="center"><img src="/images/delete-task-after.png"/></p> |
+| Before executing the command                                     | After executing the command                                     |
+|------------------------------------------------------------------|-----------------------------------------------------------------|
+| <p align="center"><img src="images/delete-task-before.png"/></p> | <p align="center"><img src="images/delete-task-after.png"/></p> |
 
 #### 2.2.3. Reorder tasks (swap)
 You may change the order in which tasks appear in the task list of a 
@@ -349,7 +349,7 @@ has been enabled for clarity:
 
 | Before executing the command                                                | After executing the command                                                                                                        |
 |-----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| <p align="center"><img src="/images/swap-task-before.png"/></p><p><br/><p/> | <p align="center"><img src="/images/swap-task-after.png"/></p> <p align="right">_Notice tasks 1 and 3 have swapped positions!_<p/> |
+| <p align="center"><img src="images/swap-task-before.png"/></p><p><br/><p/> | <p align="center"><img src="images/swap-task-after.png"/></p> <p align="right">_Notice tasks 1 and 3 have swapped positions!_<p/> |
 
 ### 2.2.4. Peeking at tasks
 You may "peek" at a module's tasks by clicking on the module while on the 
@@ -357,25 +357,25 @@ You may "peek" at a module's tasks by clicking on the module while on the
  **Step 1**: Let's say you wish to view the tasks of `CS2103T SOFTWARE 
 ENGINEERING` (module number 1)
 <p align="center">
-  <img src="/images/home-page.png" width="500"/>
+  <img src="images/home-page.png" width="500"/>
 </p>
 
 **Step 2**: You will notice a blue glow when hovering your mouse over the 
 module
 <p align="center">
-  <img src="/images/home-page-with-cs2103-glowing.png" width="500"/>
+  <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
 
 **Step 3**: Double-clicking on the blue area will allow you to view the 
  tasks of `CS2103T SOFTWARE ENGINEERING`
 <p align="center">
-  <img src="/images/home-page-with-cs2103-tasks.png" width="500"/>
+  <img src="images/home-page-with-cs2103-tasks.png" width="500"/>
 </p>
 
 **Step 4**: Clicking again on the blue area will close the dropdown and hide 
 tha tasks
 <p align="center">
-  <img src="/images/home-page-with-cs2103-glowing.png" width="500"/>
+  <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
