@@ -2,6 +2,7 @@ package seedu.address.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 
@@ -69,6 +70,7 @@ public class DeleteModuleCommand extends Command {
 
         //update students
         updateStudent(moduleToDelete, model);
+        updateSchedule(model);
 
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete),
                 false, false, true,
@@ -126,5 +128,9 @@ public class DeleteModuleCommand extends Command {
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_STUDENTS);
         model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
+    }
+
+    private void updateSchedule(Model model) {
+        model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 }

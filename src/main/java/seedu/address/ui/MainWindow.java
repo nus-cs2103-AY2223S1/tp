@@ -298,7 +298,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             resultDisplay.setFeedbackToUser("Something wrong....");
         }
-
+        scheduleGridPanel.setScrollPaneStyle(theme);
     }
 
 
@@ -345,12 +345,14 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void applyLightTheme() {
         applyTheme(Theme.LIGHT);
+        scheduleGridPanel.setScrollPaneStyle(theme);
     }
 
     /** Sets theme to Dark Theme. */
     @FXML
     public void applyDarkTheme() {
         applyTheme(Theme.DARK);
+        scheduleGridPanel.setScrollPaneStyle(theme);
     }
 
     /**

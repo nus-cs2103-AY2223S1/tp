@@ -1,0 +1,8 @@
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #CCCAB6;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: white;
+}
