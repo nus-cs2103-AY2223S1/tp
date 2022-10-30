@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to show the full internship list stored in the app
   * What it does: Shows the list containing all internships stored in the app
   * Justification: There should be a way to revert filters. With the recent relaxation of command inputs however, this feature feels redundant since users can simply search with an empty filter.
-  * Credits: [Java's Comparator class document](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html#comparing-java.util.function.Function-java.util.Comparator-)
+  * Credits: Existing code's "list persons" feature
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=chengda300)
 
