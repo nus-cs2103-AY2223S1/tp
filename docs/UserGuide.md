@@ -3,9 +3,13 @@ layout: page
 title: User Guide
 ---
 
-Mass Linkers is a powerful Desktop application tool that helps Computer Science (CS) students find study support from batchmates, making it easier to form study groups and look for module-related guidance. It provides a centralised platform for CS students to save their batchmates’ contact and module details and search for batchmates with common interests or who are taking similar modules conveniently. 
+Mass Linkers is a powerful Desktop application tool that helps **Computer Science (CS) students** find study support from batchmates, making it easier to form study groups and look for module-related guidance. 
 
-It is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+It provides a **centralised** platform for CS students to 
+- save their batchmates’ contact and module details  
+- search for batchmates with common interests or who are taking similar modules **conveniently** 
+
+It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 
 In this *User Guide*, we will take you through the many useful features and functions of Mass Linkers, and provide you crucial information on how the different commands are used.
 
@@ -35,7 +39,7 @@ In this *User Guide*, we will take you through the many useful features and func
 
 **:information_source: Notes about command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are parameters to be supplied by the user.<br>
   Example:
   * In `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -238,7 +242,7 @@ Examples:
 
 #### Unmark module as not taken: `mod unmark`
 
-Unmarks module(s) of a specified batchmate as `taking` in the Modules panel, which means the batchmate is currently taking the module(s).
+Unmarks module(s) of a specified batchmate and updates the status as `taking` in the Modules panel, which means the batchmate is currently taking the module(s).
 
 Format: `mod unmark INDEX MODULE [MORE_MODULES]...`
 
@@ -348,9 +352,24 @@ _Module prefix refers to the first two characters of every module name._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install Mass Linkers in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Mass Linkers home folder.
 
+**Q**: Do I need internet connection to use Mass Linkers?<br>
+**A**: No, internet connection is not required. 
+
+**Q**: I am using Mac and I tried opening the `MassLinkers.jar` file by double-clicking it in Finder. It says *"MassLinkers.jar" cannot be opened because it is from an unidentified developer.*<br>
+**A**: Right click the `MassLinkers.jar file` and select `Open`. When a warning message that says _macOS cannot verify the developer of "MassLinkers.jar". Are you sure you want to open it?_ appears, select `Open`. Alternatively, you can right click the `MassLinkers.jar` file and select `Open with JavaLauncher(default)`. 
+
+**Q**: Will the data of batchmates be saved if the program was not closed via the ```exit``` command?<br>
+**A**: Yes, the data will still be saved if the program is closed by closing the application window directly. However, we advise using the ```exit``` command for a better user experience.
+
+**Q**: I have accidentally cleared all the data. Is there any way to undo the changes?<br>
+**A**: Currently, there is no ```undo``` feature and the ```clear``` command is irreversible. Hence, it is extremely important to only use it when you want an empty Student and Module table. However, we are looking into adding ```undo``` and ```redo``` commands for future developments.
+
+**Q**: I have added a batchmate and its row exceeds the current displayed list of batchmates in the Students panel. I have to scroll below to view the newly added batchmate. Is this expected?<br>
+**A**: Yes, adding a new batchmate would not auto scroll the Student panel to the bottom of the list.
+
 #### Privacy Issues
 **Q**: What if I do not want to share some of my personal data like my phone number and email address?<br>
-**A**: To address privacy concerns, the input fields GitHub, Phone and Email have been made optional. In this way, the only mandatory fields are your name and telegram handle (for contact purposes). If you are uncomfortable sharing information like your name, you are also free to use a pseudo-name for identification purposes. 
+**A**: While it is every student's responsibility to exercise discretion in sharing their batchmates' contacts, Mass Linkers has made more sensitive data fields such as GitHub, Phone and Email optional. In this way, the only mandatory fields are your name and telegram handle. If you are uncomfortable sharing your name, you can use a pseudo-name for identification purposes. 
 
 --------------------------------------------------------------------------------------------------------------------
 
