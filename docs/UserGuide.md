@@ -314,7 +314,7 @@ Format: `list_task`
 
 #### Finding tasks by name: `find_task`
 
-Find tasks whose names contain any of the given keywords.
+Finds tasks whose names contain any of the given keywords.
 
 Format: `find_task KEYWORD [MORE_KEYWORDS]`
 
