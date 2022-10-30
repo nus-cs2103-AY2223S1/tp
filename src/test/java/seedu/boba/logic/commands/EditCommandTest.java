@@ -1,19 +1,5 @@
 package seedu.boba.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.boba.commons.core.Messages;
-import seedu.boba.commons.core.index.Index;
-import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.boba.model.BobaBot;
-import seedu.boba.model.BobaBotModel;
-import seedu.boba.model.BobaBotModelManager;
-import seedu.boba.model.UserPrefs;
-import seedu.boba.model.customer.Customer;
-import seedu.boba.model.customer.Email;
-import seedu.boba.model.customer.Phone;
-import seedu.boba.testutil.CustomerBuilder;
-import seedu.boba.testutil.EditCustomerDescriptorBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.boba.logic.commands.CommandTestUtil.DESC_AMY;
@@ -31,12 +17,26 @@ import static seedu.boba.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.boba.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 import static seedu.boba.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.boba.commons.core.Messages;
+import seedu.boba.commons.core.index.Index;
+import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.boba.model.*;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
+import seedu.boba.model.customer.Customer;
+import seedu.boba.model.customer.Email;
+import seedu.boba.model.customer.Phone;
+import seedu.boba.testutil.CustomerBuilder;
+import seedu.boba.testutil.EditCustomerDescriptorBuilder;
+
 /**
  * Contains integration tests (interaction with the BobaBotModel) and unit tests for EditCommand.
  */
 public class EditCommandTest {
 
-    private final BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
 
     @Test
     public void execute_phoneAllFieldsSpecifiedUnfilteredList_success() {
@@ -46,8 +46,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
-                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
         expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
         assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
@@ -61,8 +60,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
-                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
         expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
         assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
@@ -83,8 +81,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
-                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
         expectedBobaBotModel.setPerson(lastCustomer, editedCustomer);
 
         assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
@@ -97,8 +94,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
-                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
 
         assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
@@ -110,8 +106,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
-                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
 
         assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
@@ -127,8 +122,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
-                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
         expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
         assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
@@ -145,8 +139,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
-                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
         expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
         assertCommandSuccess(editCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);

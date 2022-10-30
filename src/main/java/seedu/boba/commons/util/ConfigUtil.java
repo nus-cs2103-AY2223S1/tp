@@ -1,11 +1,11 @@
 package seedu.boba.commons.util;
 
-import seedu.boba.commons.core.Config;
-import seedu.boba.commons.exceptions.DataConversionException;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.boba.commons.core.Config;
+import seedu.boba.commons.exceptions.DataConversionException;
 
 /**
  * A class for accessing the Config File.

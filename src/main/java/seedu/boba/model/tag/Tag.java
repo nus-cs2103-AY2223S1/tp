@@ -1,9 +1,9 @@
 package seedu.boba.model.tag;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.boba.commons.util.AppUtil.checkArgument;
+
+import java.util.Locale;
 
 /**
  * Represents a Tag in the address book.

@@ -1,17 +1,17 @@
 package seedu.boba.model.customer;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.boba.model.customer.exceptions.DuplicatePersonException;
-import seedu.boba.model.customer.exceptions.PersonNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.boba.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.boba.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.boba.model.customer.exceptions.DuplicatePersonException;
+import seedu.boba.model.customer.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -180,7 +180,6 @@ public class UniqueCustomerList implements Iterable<Customer> {
     /**
      * Compares if two Lists are strictly equals
      * which is true only when each person in the lists are strictly equals
-     *
      * @param other
      * @return
      */

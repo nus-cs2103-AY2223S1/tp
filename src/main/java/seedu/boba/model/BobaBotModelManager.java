@@ -1,5 +1,13 @@
 package seedu.boba.model;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.boba.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.scene.image.Image;
@@ -13,14 +21,6 @@ import seedu.boba.model.customer.exceptions.PersonNotFoundException;
 import seedu.boba.model.exceptions.NextStateNotFoundException;
 import seedu.boba.model.exceptions.PreviousStateNotFoundException;
 import seedu.boba.model.promotion.Promotion;
-
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.boba.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the in-memory bobaBotModel of the address book data.

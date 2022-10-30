@@ -1,5 +1,8 @@
 package seedu.boba.model;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import seedu.boba.commons.core.GuiSettings;
@@ -11,16 +14,11 @@ import seedu.boba.model.customer.exceptions.PersonNotFoundException;
 import seedu.boba.model.exceptions.NextStateNotFoundException;
 import seedu.boba.model.exceptions.PreviousStateNotFoundException;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 /**
  * The API of the BobaBotModel component.
  */
 public interface BobaBotModel {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Customer> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -58,9 +56,7 @@ public interface BobaBotModel {
      */
     void setBobaBot(ReadOnlyBobaBot bobaBot);
 
-    /**
-     * Returns the BobaBot
-     */
+    /** Returns the BobaBot */
     ReadOnlyBobaBot getBobaBot();
 
     /**
@@ -88,14 +84,11 @@ public interface BobaBotModel {
      */
     void setPerson(Customer target, Customer editedCustomer);
 
-    /**
-     * Returns an unmodifiable view of the filtered customer list
-     */
+    /** Returns an unmodifiable view of the filtered customer list */
     ObservableList<Customer> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered customer list to filter by the given {@code predicate}.
-     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Customer> predicate);

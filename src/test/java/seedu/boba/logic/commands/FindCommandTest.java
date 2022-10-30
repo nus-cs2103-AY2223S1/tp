@@ -1,14 +1,5 @@
 package seedu.boba.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.boba.model.BobaBotModel;
-import seedu.boba.model.BobaBotModelManager;
-import seedu.boba.model.UserPrefs;
-import seedu.boba.model.customer.NameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,12 +10,22 @@ import static seedu.boba.testutil.TypicalCustomers.ELLE;
 import static seedu.boba.testutil.TypicalCustomers.FIONA;
 import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
 
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
+import seedu.boba.model.UserPrefs;
+import seedu.boba.model.customer.NameContainsKeywordsPredicate;
+
 /**
  * Contains integration tests (interaction with the BobaBotModel) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private final BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
-    private final BobaBotModel expectedBobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel expectedBobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
 
     @Test
     public void equals() {

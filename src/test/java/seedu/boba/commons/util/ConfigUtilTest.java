@@ -1,9 +1,8 @@
 package seedu.boba.commons.util;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import seedu.boba.commons.core.Config;
-import seedu.boba.commons.exceptions.DataConversionException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.boba.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -11,9 +10,11 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Level;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.boba.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import seedu.boba.commons.core.Config;
+import seedu.boba.commons.exceptions.DataConversionException;
 
 public class ConfigUtilTest {
 
@@ -107,8 +108,8 @@ public class ConfigUtilTest {
 
     private Path addToTestDataPathIfNotNull(String configFileInTestDataFolder) {
         return configFileInTestDataFolder != null
-                ? TEST_DATA_FOLDER.resolve(configFileInTestDataFolder)
-                : null;
+                                  ? TEST_DATA_FOLDER.resolve(configFileInTestDataFolder)
+                                  : null;
     }
 
 

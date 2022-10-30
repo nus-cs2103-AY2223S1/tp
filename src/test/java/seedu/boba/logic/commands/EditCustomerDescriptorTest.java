@@ -1,9 +1,5 @@
 package seedu.boba.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.boba.testutil.EditCustomerDescriptorBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.boba.logic.commands.CommandTestUtil.DESC_AMY;
@@ -13,6 +9,11 @@ import static seedu.boba.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_REWARD_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.boba.testutil.EditCustomerDescriptorBuilder;
 
 public class EditCustomerDescriptorTest {
 

@@ -1,18 +1,19 @@
 package seedu.boba.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
+
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.boba.commons.core.GuiSettings;
 import seedu.boba.model.BobaBot;
 import seedu.boba.model.ReadOnlyBobaBot;
 import seedu.boba.model.UserPrefs;
-
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
 
 public class StorageManagerTest {
 

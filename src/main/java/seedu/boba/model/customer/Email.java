@@ -1,9 +1,9 @@
 package seedu.boba.model.customer;
 
-import java.nio.charset.StandardCharsets;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.boba.commons.util.AppUtil.checkArgument;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * Represents a Customer's email in the address book.
@@ -47,7 +47,7 @@ public class Email {
         value = email;
 
         // Generate email emoji
-        byte[] emojiByteCode = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x93, (byte) 0xA7};
+        byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x93, (byte) 0xA7};
         String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
         displayValue = emoji + " " + value;
     }

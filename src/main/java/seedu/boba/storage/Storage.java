@@ -1,13 +1,13 @@
 package seedu.boba.storage;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+
 import seedu.boba.commons.exceptions.DataConversionException;
 import seedu.boba.model.ReadOnlyBobaBot;
 import seedu.boba.model.ReadOnlyUserPrefs;
 import seedu.boba.model.UserPrefs;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
 
 /**
  * API of the Storage component

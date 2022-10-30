@@ -3,12 +3,11 @@ package seedu.boba.logic.commands;
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 */
+import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
 
 import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.UserPrefs;
-
-import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
 /*
 import seedu.address.testutil.CustomerBuilder;
 
@@ -17,7 +16,7 @@ import static seedu.address.logic.commands.UndoCommand.MESSAGE_UNDO_SUCCESS;
 */
 
 public class UndoCommandTest {
-    private final BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
 
     /*
     @Test

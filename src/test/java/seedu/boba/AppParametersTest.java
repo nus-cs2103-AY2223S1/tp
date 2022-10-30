@@ -1,7 +1,6 @@
 package seedu.boba;
 
-import javafx.application.Application;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -9,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import javafx.application.Application;
 
 public class AppParametersTest {
 
@@ -37,7 +38,7 @@ public class AppParametersTest {
     }
 
     private static class ParametersStub extends Application.Parameters {
-        private final Map<String, String> namedParameters = new HashMap<>();
+        private Map<String, String> namedParameters = new HashMap<>();
 
         @Override
         public List<String> getRaw() {

@@ -1,8 +1,20 @@
 package seedu.boba.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.boba.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
-import org.junit.jupiter.api.Test;
 import seedu.boba.commons.core.GuiSettings;
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.model.BobaBot;
@@ -16,17 +28,6 @@ import seedu.boba.model.customer.Reward;
 import seedu.boba.model.exceptions.NextStateNotFoundException;
 import seedu.boba.model.exceptions.PreviousStateNotFoundException;
 import seedu.boba.testutil.CustomerBuilder;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.boba.testutil.Assert.assertThrows;
 
 public class AddCommandTest {
 
@@ -53,7 +54,7 @@ public class AddCommandTest {
         BobaBotModelStub modelStub = new BobaBotModelStubWithPerson(validCustomer);
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCommand.execute(modelStub));
+            AddCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCommand.execute(modelStub));
     }
 
     @Test

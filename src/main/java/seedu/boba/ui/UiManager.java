@@ -1,5 +1,7 @@
 package seedu.boba.ui;
 
+import java.util.logging.Logger;
+
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -9,8 +11,6 @@ import seedu.boba.MainApp;
 import seedu.boba.commons.core.LogsCenter;
 import seedu.boba.commons.util.StringUtil;
 import seedu.boba.logic.Logic;
-
-import java.util.logging.Logger;
 
 /**
  * The manager of the UI component.
@@ -22,7 +22,7 @@ public class UiManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/bobaBot.png";
 
-    private final Logic logic;
+    private Logic logic;
     private MainWindow mainWindow;
 
     /**

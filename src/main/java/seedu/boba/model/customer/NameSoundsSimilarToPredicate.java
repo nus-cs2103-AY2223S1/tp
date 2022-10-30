@@ -37,7 +37,7 @@ public class NameSoundsSimilarToPredicate implements Predicate<Customer> {
      */
     private static boolean isFullyAlphabetical(String name) {
         for (int i = 0; i < name.length(); i++) {
-            int ascii = name.charAt(i);
+            int ascii = (int) name.charAt(i);
             if (!(ascii >= 65 && ascii <= 90) && !(ascii >= 97 && ascii <= 122)) {
                 return false;
             }
@@ -152,8 +152,8 @@ public class NameSoundsSimilarToPredicate implements Predicate<Customer> {
                 || (other instanceof seedu.boba.model.customer
                 .NameSoundsSimilarToPredicate // instanceof handles nulls
                 && keywords.equals((
-                (seedu.boba.model.customer.NameSoundsSimilarToPredicate) other).keywords
-        )); // state check
+                        (seedu.boba.model.customer.NameSoundsSimilarToPredicate) other).keywords
+                )); // state check
     }
 
 }

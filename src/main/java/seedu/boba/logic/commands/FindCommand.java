@@ -1,5 +1,12 @@
 package seedu.boba.logic.commands;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNull;
+import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+import java.util.function.Predicate;
+
 import seedu.boba.commons.core.Messages;
 import seedu.boba.commons.core.index.Index;
 import seedu.boba.logic.commands.exceptions.CommandException;
@@ -8,13 +15,6 @@ import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.exceptions.PersonNotFoundException;
-
-import java.util.List;
-import java.util.function.Predicate;
-
-import static java.util.Objects.isNull;
-import static java.util.Objects.requireNonNull;
-import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
 
 
 /**

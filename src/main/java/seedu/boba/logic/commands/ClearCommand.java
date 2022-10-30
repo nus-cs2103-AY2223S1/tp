@@ -1,9 +1,9 @@
 package seedu.boba.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.boba.model.BobaBot;
 import seedu.boba.model.BobaBotModel;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Clears the address book.

@@ -1,12 +1,5 @@
 package seedu.boba.testutil;
 
-import seedu.boba.model.BobaBot;
-import seedu.boba.model.customer.Customer;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_BIRTHDAY_MONTH_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_BIRTHDAY_MONTH_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -19,6 +12,13 @@ import static seedu.boba.logic.commands.CommandTestUtil.VALID_REWARD_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_REWARD_BOB;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_TAG_MEMBER;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.boba.model.BobaBot;
+import seedu.boba.model.customer.Customer;
 
 /**
  * A utility class containing a list of {@code Customer} objects to be used in tests.
@@ -68,8 +68,7 @@ public class TypicalCustomers {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalCustomers() {
-    } // prevents instantiation
+    private TypicalCustomers() {} // prevents instantiation
 
     /**
      * Returns an {@code BobaBot} with all the typical persons.

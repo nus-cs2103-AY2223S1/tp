@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -8,69 +10,62 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<?import java.net.URL?>
-<fx:root minHeight="800.0" minWidth="850.0" onCloseRequest="#handleExit" title="bobaBot" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-    <icons>
-        <Image url="@/images/bobaBot.png"/>
-    </icons>
-    <scene>
-        <Scene>
-            <stylesheets>
-                <URL value="@DarkTheme.css"/>
-                <URL value="@Extensions.css"/>
-            </stylesheets>
 
-            <VBox>
-                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-                    <Menu mnemonicParsing="false" text="File">
-                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="Help">
-                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
-                    </Menu>
-                </MenuBar>
-                <StackPane VBox.vgrow="ALWAYS">
-                    <children>
-                        <HBox>
-                            <children>
-                                <VBox fx:id="customerList" minWidth="350.0" style="-fx-background-color: #e6ccb2;"
-                                      HBox.hgrow="ALWAYS">
-                                    <padding>
-                                        <Insets bottom="5" left="10" right="10" top="10"/>
-                                    </padding>
-                                    <StackPane fx:id="personListPanelPlaceholder" style="-fx-background-color: #DDB892;"
-                                               VBox.vgrow="ALWAYS"/>
-                                </VBox>
-                                <VBox fx:id="promotionList" minWidth="500.0" style="-fx-background-color: #e6ccb2;"
-                                      HBox.hgrow="ALWAYS">
-                                    <children>
-                                        <StackPane fx:id="promotionListPanelPlaceholder"
-                                                   style="-fx-background-color: #e6ccb2;" VBox.vgrow="ALWAYS"/>
-                                    </children>
-                                </VBox>
-                            </children>
-                        </HBox>
-                    </children>
-                </StackPane>
+<fx:root minHeight="800.0" minWidth="850.0" onCloseRequest="#handleExit" title="bobaBot" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <icons>
+    <Image url="@/images/bobaBot.png" />
+  </icons>
+  <scene>
+    <Scene>
+      <stylesheets>
+        <URL value="@DarkTheme.css" />
+        <URL value="@Extensions.css" />
+      </stylesheets>
 
-                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="160.0" minHeight="160.0" prefHeight="160.0"
-                           VBox.vgrow="NEVER">
-                    <padding>
-                        <Insets bottom="5" left="10" right="10" top="5"/>
-                    </padding>
-                </StackPane>
+      <VBox>
+        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+          <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          </Menu>
+        </MenuBar>
+            <StackPane VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox>
+                     <children>
+                    <VBox fx:id="customerList" minWidth="350.0" style="-fx-background-color: #e6ccb2;" HBox.hgrow="ALWAYS">
+                      <padding>
+                        <Insets bottom="5" left="10" right="10" top="10" />
+                      </padding>
+                      <StackPane fx:id="personListPanelPlaceholder" style="-fx-background-color: #DDB892;" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                        <VBox fx:id="promotionList" minWidth="500.0" style="-fx-background-color: #e6ccb2;" HBox.hgrow="ALWAYS">
+                           <children>
+                              <StackPane fx:id="promotionListPanelPlaceholder" style="-fx-background-color: #e6ccb2;" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
 
-                <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER">
-                    <padding>
-                        <Insets bottom="10" left="10" right="10" top="5"/>
-                    </padding>
-                </StackPane>
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="160.0" minHeight="160.0" prefHeight="160.0" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
 
-                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
-            </VBox>
-        </Scene>
-    </scene>
+        <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="10" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
+
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+      </VBox>
+    </Scene>
+  </scene>
 </fx:root>

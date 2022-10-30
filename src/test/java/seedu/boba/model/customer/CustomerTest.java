@@ -1,8 +1,5 @@
 package seedu.boba.model.customer;
 
-import org.junit.jupiter.api.Test;
-import seedu.boba.testutil.CustomerBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.boba.logic.commands.CommandTestUtil.VALID_BIRTHDAY_MONTH_BOB;
@@ -17,6 +14,10 @@ import static seedu.boba.testutil.Assert.assertThrows;
 import static seedu.boba.testutil.TypicalCustomers.ALICE;
 import static seedu.boba.testutil.TypicalCustomers.AMY;
 import static seedu.boba.testutil.TypicalCustomers.BOB;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.boba.testutil.CustomerBuilder;
 
 public class CustomerTest {
 

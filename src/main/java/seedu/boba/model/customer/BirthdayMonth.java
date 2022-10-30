@@ -1,9 +1,9 @@
 package seedu.boba.model.customer;
 
-import java.nio.charset.StandardCharsets;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.boba.commons.util.AppUtil.checkArgument;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * Represents a Customer's birthday in bobaBot.
@@ -20,7 +20,7 @@ public class BirthdayMonth {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     private static final String[] monthStrings = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN",
-            "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+        "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
 
     public final String value;
     public final String monthString;
@@ -38,7 +38,7 @@ public class BirthdayMonth {
         assert integerValue > 0 && integerValue < 13;
 
         // Generate birthday cake emoji
-        byte[] emojiByteCode = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x8E, (byte) 0x82};
+        byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x8E, (byte) 0x82};
         String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
 
         monthString = emoji + " " + monthStrings[integerValue - 1];
@@ -50,7 +50,7 @@ public class BirthdayMonth {
      */
     public static boolean isValidBirthdayMonth(String test) {
         return test.matches(VALIDATION_REGEX) && isNumeric(test)
-                && Integer.valueOf(test) > 0 && Integer.valueOf(test) < 13;
+            && Integer.valueOf(test) > 0 && Integer.valueOf(test) < 13;
     }
 
     private static boolean isNumeric(String str) {
@@ -70,8 +70,8 @@ public class BirthdayMonth {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof BirthdayMonth // instanceof handles nulls
-                && value.equals(((BirthdayMonth) other).value)); // state check
+            || (other instanceof BirthdayMonth // instanceof handles nulls
+            && value.equals(((BirthdayMonth) other).value)); // state check
     }
 
     @Override

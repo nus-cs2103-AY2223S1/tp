@@ -1,10 +1,10 @@
 package seedu.boba.model.customer;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.boba.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class BirthdayMonthTest {
 
@@ -22,7 +22,7 @@ public class BirthdayMonthTest {
     @Test
     public void isValidBirthdayMonth() {
         // null birthdayMonth
-        assertThrows(NullPointerException.class, () -> BirthdayMonth.isValidBirthdayMonth(null));
+        assertThrows(NullPointerException.class, () ->BirthdayMonth.isValidBirthdayMonth(null));
 
         // invalid birthdayMonth
         assertFalse(BirthdayMonth.isValidBirthdayMonth("")); // empty string

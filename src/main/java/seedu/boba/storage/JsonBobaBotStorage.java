@@ -1,18 +1,18 @@
 package seedu.boba.storage;
 
-import seedu.boba.commons.core.LogsCenter;
-import seedu.boba.commons.exceptions.DataConversionException;
-import seedu.boba.commons.exceptions.IllegalValueException;
-import seedu.boba.commons.util.FileUtil;
-import seedu.boba.commons.util.JsonUtil;
-import seedu.boba.model.ReadOnlyBobaBot;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
+import seedu.boba.commons.core.LogsCenter;
+import seedu.boba.commons.exceptions.DataConversionException;
+import seedu.boba.commons.exceptions.IllegalValueException;
+import seedu.boba.commons.util.FileUtil;
+import seedu.boba.commons.util.JsonUtil;
+import seedu.boba.model.ReadOnlyBobaBot;
 
 /**
  * A class to access BobaBot data stored as a json file on the hard disk.
@@ -21,7 +21,7 @@ public class JsonBobaBotStorage implements BobaBotStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonBobaBotStorage.class);
 
-    private final Path filePath;
+    private Path filePath;
 
     public JsonBobaBotStorage(Path filePath) {
         this.filePath = filePath;

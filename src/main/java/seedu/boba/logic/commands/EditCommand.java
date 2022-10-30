@@ -1,5 +1,24 @@
 package seedu.boba.logic.commands;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNull;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_BIRTHDAY_MONTH;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.boba.model.customer.Customer.BIRTHDAY_TAG;
+
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import javafx.collections.transformation.FilteredList;
 import seedu.boba.commons.core.Messages;
 import seedu.boba.commons.core.index.Index;
@@ -15,25 +34,6 @@ import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
 import seedu.boba.model.customer.exceptions.PersonNotFoundException;
 import seedu.boba.model.tag.Tag;
-
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
-
-import static java.util.Objects.isNull;
-import static java.util.Objects.requireNonNull;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_BIRTHDAY_MONTH;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.boba.model.customer.Customer.BIRTHDAY_TAG;
 
 /**
  * Edits the details of an existing Customer in bobaBot.
@@ -67,7 +67,7 @@ public class EditCommand extends Command {
     private Index index;
 
     /**
-     * @param phoneIdentifier      current phone number of the customer
+     * @param phoneIdentifier current phone number of the customer
      * @param editPersonDescriptor details to edit the customer with
      */
     public EditCommand(Phone phoneIdentifier, EditPersonDescriptor editPersonDescriptor) {
@@ -79,7 +79,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * @param emailIdentifier      current email address of the customer
+     * @param emailIdentifier current email address of the customer
      * @param editPersonDescriptor details to edit the customer with
      */
     public EditCommand(Email emailIdentifier, EditPersonDescriptor editPersonDescriptor) {
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(customerToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(customerToEdit.getEmail());
         BirthdayMonth updatedBirthdayMonth = editPersonDescriptor.getBirthdayMonth()
-                .orElse(customerToEdit.getBirthdayMonth());
+            .orElse(customerToEdit.getBirthdayMonth());
         Reward updatedReward = editPersonDescriptor.getReward().orElse(customerToEdit.getReward());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(customerToEdit.getTags());
 
@@ -181,8 +181,7 @@ public class EditCommand extends Command {
         private Reward reward;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {
-        }
+        public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.

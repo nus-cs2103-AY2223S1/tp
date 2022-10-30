@@ -1,17 +1,5 @@
 package seedu.boba.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.boba.model.customer.Customer;
-import seedu.boba.model.customer.exceptions.DuplicatePersonException;
-import seedu.boba.testutil.CustomerBuilder;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,6 +8,19 @@ import static seedu.boba.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
 import static seedu.boba.testutil.Assert.assertThrows;
 import static seedu.boba.testutil.TypicalCustomers.ALICE;
 import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.boba.model.customer.Customer;
+import seedu.boba.model.customer.exceptions.DuplicatePersonException;
+import seedu.boba.testutil.CustomerBuilder;
 
 public class BobaBotTest {
 

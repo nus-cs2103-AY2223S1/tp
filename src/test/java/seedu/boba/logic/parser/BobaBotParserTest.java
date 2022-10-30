@@ -1,6 +1,21 @@
 package seedu.boba.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.boba.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.boba.testutil.Assert.assertThrows;
+import static seedu.boba.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
+import static seedu.boba.testutil.TypicalPhones.PHONE_FIRST_PERSON;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.boba.logic.commands.AddCommand;
 import seedu.boba.logic.commands.ClearCommand;
 import seedu.boba.logic.commands.DeleteCommand;
@@ -18,20 +33,6 @@ import seedu.boba.model.customer.Phone;
 import seedu.boba.testutil.CustomerBuilder;
 import seedu.boba.testutil.CustomerUtil;
 import seedu.boba.testutil.EditCustomerDescriptorBuilder;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.boba.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.boba.testutil.Assert.assertThrows;
-import static seedu.boba.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
-import static seedu.boba.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 
 public class BobaBotParserTest {
 

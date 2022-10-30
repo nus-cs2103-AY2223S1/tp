@@ -1,15 +1,15 @@
 package seedu.boba.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import seedu.boba.logic.commands.IncreaseCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 
 /**
  * Parses input arguments and creates a new IncreaseCommand object
@@ -19,7 +19,6 @@ public class IncreaseCommandParser implements Parser<IncreaseCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the IncreaseCommand
      * and returns an IncreaseCommand object for execution.
-     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public IncreaseCommand parse(String args) throws ParseException {

@@ -1,13 +1,13 @@
 package seedu.boba.testutil;
 
-import seedu.boba.commons.core.index.Index;
-import seedu.boba.model.BobaBotModel;
-import seedu.boba.model.customer.Customer;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import seedu.boba.commons.core.index.Index;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.customer.Customer;
 
 /**
  * A utility class for test cases.

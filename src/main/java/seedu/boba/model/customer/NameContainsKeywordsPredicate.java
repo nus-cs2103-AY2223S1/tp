@@ -1,9 +1,9 @@
 package seedu.boba.model.customer;
 
-import seedu.boba.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.boba.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Customer}'s {@code Name} matches any of the keywords given.

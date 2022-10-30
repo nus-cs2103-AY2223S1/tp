@@ -1,11 +1,11 @@
 package seedu.boba.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.exceptions.NextStateNotFoundException;
 import seedu.boba.model.exceptions.PreviousStateNotFoundException;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Returns bobaBot to the state before UndoCommand.

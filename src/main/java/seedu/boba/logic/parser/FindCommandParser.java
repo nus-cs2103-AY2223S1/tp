@@ -1,18 +1,18 @@
 package seedu.boba.logic.parser;
 
+import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
+
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 import seedu.boba.logic.commands.EditCommand;
 import seedu.boba.logic.commands.FindCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.MultiSearchPredicate;
 import seedu.boba.model.customer.Phone;
-
-import java.util.Arrays;
-import java.util.stream.Stream;
-
-import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -22,7 +22,6 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
@@ -58,7 +57,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
 
             //Checks the assumption that either the Phone_Number or Email should be filled
-            assert (findPersonDescriptor.isAnyFilled());
+            assert(findPersonDescriptor.isAnyFilled());
             return new FindCommand(findPersonDescriptor);
 
         } catch (ParseException pe) {

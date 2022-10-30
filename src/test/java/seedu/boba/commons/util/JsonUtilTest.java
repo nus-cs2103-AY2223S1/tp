@@ -1,13 +1,14 @@
 package seedu.boba.commons.util;
 
-import org.junit.jupiter.api.Test;
-import seedu.boba.testutil.SerializableTestClass;
-import seedu.boba.testutil.TestUtil;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import seedu.boba.testutil.SerializableTestClass;
+import seedu.boba.testutil.TestUtil;
 
 /**
  * Tests JSON Read and Write

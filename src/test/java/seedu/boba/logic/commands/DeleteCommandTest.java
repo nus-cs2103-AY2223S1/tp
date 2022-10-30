@@ -1,6 +1,13 @@
 package seedu.boba.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.boba.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.boba.commons.core.Messages;
 import seedu.boba.commons.core.index.Index;
 import seedu.boba.model.BobaBotModel;
@@ -10,12 +17,6 @@ import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.boba.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
-
 
 /**
  * Contains integration tests (interaction with the BobaBotModel) and unit tests for
@@ -23,7 +24,7 @@ import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
  */
 public class DeleteCommandTest {
 
-    private final BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
 
     @Test
     public void execute_validPhoneArg_success() {

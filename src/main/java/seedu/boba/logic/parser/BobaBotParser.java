@@ -1,5 +1,11 @@
 package seedu.boba.logic.parser;
 
+import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.boba.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.boba.logic.commands.AddCommand;
 import seedu.boba.logic.commands.CalculateCommand;
 import seedu.boba.logic.commands.CalculatorGuiCommand;
@@ -16,12 +22,6 @@ import seedu.boba.logic.commands.ListCommand;
 import seedu.boba.logic.commands.RedoCommand;
 import seedu.boba.logic.commands.UndoCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.boba.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.
@@ -50,50 +50,50 @@ public class BobaBotParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-            case IncreaseCommand.COMMAND_WORD:
-                return new IncreaseCommandParser().parse(arguments);
+        case IncreaseCommand.COMMAND_WORD:
+            return new IncreaseCommandParser().parse(arguments);
 
-            case DecreaseCommand.COMMAND_WORD:
-                return new DecreaseCommandParser().parse(arguments);
+        case DecreaseCommand.COMMAND_WORD:
+            return new DecreaseCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-            case UndoCommand.COMMAND_WORD:
-                return new UndoCommandParser().parse(arguments);
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommandParser().parse(arguments);
 
-            case RedoCommand.COMMAND_WORD:
-                return new RedoCommandParser().parse(arguments);
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommandParser().parse(arguments);
 
-            case CalculateCommand.COMMAND_WORD:
-                return new CalculateCommandParser().parse(arguments);
+        case CalculateCommand.COMMAND_WORD:
+            return new CalculateCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case CalculatorGuiCommand.COMMAND_WORD:
-                return new CalculatorGuiCommand();
+        case CalculatorGuiCommand.COMMAND_WORD:
+            return new CalculatorGuiCommand();
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 

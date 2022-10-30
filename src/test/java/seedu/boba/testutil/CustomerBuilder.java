@@ -1,5 +1,8 @@
 package seedu.boba.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.boba.model.customer.BirthdayMonth;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
@@ -8,9 +11,6 @@ import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
 import seedu.boba.model.tag.Tag;
 import seedu.boba.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building Customer objects.
@@ -65,7 +65,7 @@ public class CustomerBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Customer} that we are building.
      */
-    public CustomerBuilder withTags(String... tags) {
+    public CustomerBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

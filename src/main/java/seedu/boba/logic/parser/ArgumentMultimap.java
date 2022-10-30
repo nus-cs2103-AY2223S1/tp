@@ -1,14 +1,14 @@
 package seedu.boba.logic.parser;
 
+import static java.util.Objects.isNull;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import static java.util.Objects.isNull;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -19,9 +19,7 @@ import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
  */
 public class ArgumentMultimap {
 
-    /**
-     * Prefixes mapped to their respective arguments
-     **/
+    /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
     private Prefix firstPrefix = null;
