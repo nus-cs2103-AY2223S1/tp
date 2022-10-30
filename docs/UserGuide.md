@@ -316,14 +316,14 @@ Generates a sample workout suggestion based on existing personal records of the 
 
 <div style="page-break-after: always;"></div>
 
-Format (1): `:gen INDEX [INDEX]... level/DIFFICULTY_LEVEL`
+Format (1): `:gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL`
 
 ##### Parameter constraints:
 * The index must be a positive integer 1, 2, 3, ...
 * The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
 
 ##### Examples:
-`:gen 1,2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
+`:gen 1, 2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
 
 ![GenerateCommandExample1](images/GenerateCommandExample1.png)
 
@@ -407,7 +407,7 @@ Format: `:wq`
 | Action                          | Format                                         | Examples                                |
 |---------------------------------|------------------------------------------------|-----------------------------------------|
 | **Add exercise**                | :add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]    | :add n/Deadlift w/60 s/1 r/1 d/27-10-22 |
-| **Delete exercise**             | :del INDEX                                     | :d 3                                    |
+| **Delete exercise**             | :del INDEX                                     | :del 3                                  |
 | **List all exercises**          | :list                                          | :list                                   |
 | **Filter exercise(s)**          | :filter KEYWORD [KEYWORD]...                   | :filter Deadlift Squat                  |
 | **Clear all exercises**         | :clear confirm/                                | :clear confirm/                         |
@@ -416,7 +416,7 @@ Format: `:wq`
 | **View range (2)**              | :range last/NUMBER_OF_DAYS                     | :range last/3                           |
 | **List Personal Record(s) (1)** | :pr n/NAME [n/NAME]...                         | :pr n/Deadlift n/Squat                  |
 | **List Personal Record(s) (2)** | :pr all/                                       | :pr all/                                |
-| **Generate workout (1)**        | :gen INDEX [INDEX]... level/DIFFICULTY_LEVEL   | :gen 1,2 level/easy                     |
+| **Generate workout (1)**        | :gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL | :gen 1, 2 level/easy                    |
 | **Generate workout (2)**        | :gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL | :gen n/Deadlift level/easy              |
 | **Help menu**                   | :help                                          | :help                                   |
 | **Exit program**                | :wq                                            | :wq                                     |
