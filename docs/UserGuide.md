@@ -103,7 +103,7 @@ Format: `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTE
 * Edits the batchmate at the specific `INDEX` in the __currently displayed list__ in the Students panel. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing interests, the existing interests of the batchmate will be removed i.e adding of interests is not cumulative.
+* When editing interests, the existing interests of the batchmate will be completely replaced by the new ones.
 * You can remove all the batchmate’s interests by typing `i/` without specifying any interests after it.
 
 Examples:
@@ -315,15 +315,13 @@ Data in Mass Linkers is saved in the hard disk automatically after executing any
 
 Below is the summary of requirements of each parameter for the various commands. 
 
-| Parameter       | Requirements                                                                                                                                                                                                   |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name            | Only alphabetical with spaces allowed.                                                                                                                                                                         |
-| Telegram handle | Case insensitive. Only contain `a-z`, `0-9`, underscores and have a minimum length of 5 characters.<br> Consecutive underscores are not allowed. <br> Starting or/and ending with underscores are not allowed. |
-| Phone number    | Only numerical characters of at least length 3.                                                                                                                                                                |
-| GitHub username | Case insensitive. Follows the requirements as stated [here](https://github.com/shinnn/github-username-regex#:~:text=Github%20username%20may%20only%20contain,Maximum%20is%2039%20characters.).                 |
-| Interest        | Only alphanumerical characters allowed.                                                                                                                                                                        |
-
---------------------------------------------------------------------------------------------------------------------
+| Parameter       | Requirements                                                                                                                                                                                                                                                                                                                                                                                     |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name            | Only alphabetical with spaces allowed. <br/> Examples: `Joe`, `John Doe`                                                                                                                                                                                                                                                                                                                         |
+| Telegram handle | Case insensitive. Only contain `a-z`, `0-9`, underscores and have a minimum length of 5 characters.<br> Consecutive and/or starting/ending with underscores are not allowed as per Telegram requirements. <br/> Examples: `johndoe`, `john_doe123`                                                                                                                                               |
+| Phone number    | Should contain only numerical values (i.e. `0-9`), and at most one "`+`" at the beginning for country code (optional). <br> Should have a length of 7-16 characters (inclusive of country code). <br> Incorrect phone numbers are still accepted, though they are discouraged and a warning will be shown.  <br/> Examples: `98383913`, `+12064512559`, `(+65) 98383913` (Warning will be shown) |
+| GitHub username | Case insensitive. Follows the requirements as stated [here](https://github.com/shinnn/github-username-regex). <br/> Examples: `john1`, `john-doe`                                                                                                                                                                                                                                                |
+| Interest        | Only alphanumerical characters allowed. <br/> Examples: `SWE`, `ai`, `algo`                                                                                                                                                                                                                                                                                                                      |
 
 ### Module Categorisation
 

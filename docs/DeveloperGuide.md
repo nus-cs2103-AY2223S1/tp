@@ -444,12 +444,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
   \
   Use case ends.
-
-* 4a. The specified batchmate is not found.
-    * 4a1. Mass Linkers detects an error in specified batchmate (non valid index).
-    * 4a2. Mass Linkers requests for a valid batchmate.
-    * Step 4a1 is repeated until a valid index is given. \
-      Use case resumes from step 3.
+* 3a. Mass Linkers detects an incorrect phone number in the entered command.
+    * 3a1. Mass Linkers warns the user that the phone number is incorrect.
+      \
+      Use case resumes from step 4.
+* 3b. The specified batchmate is not found.
+    * 3b1. Mass Linkers detects an error in specified batchmate (invalid index).
+    * 3b2. Mass Linkers requests for a valid batchmate.
+    * Steps 3b1-3b2 are repeated until a valid index is given.
+      \
+      Use case resumes from step 4.
 
 * *a. At any time, Student chooses to close Mass Linkers.
     * a1. Mass Linkers updates the storage file.
@@ -475,7 +479,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Mass Linkers requests for new batchmate details.
     * Step 2b1 is repeated until a batchmate is found.
       \
-      Use case resumes from step 2.
+      Use case resumes from step 3.
 
 * *a. At any time, Student chooses to close Mass Linkers.
     * a1. Mass Linkers updates the storage file.
@@ -497,7 +501,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. Student inputs new interests.
     * Steps 1a1-1a2 are repeated until input is valid.
     \
-    Use case resumes from step 1.
+    Use case resumes from step 2.
 * *a. At any time, Student chooses to close Mass Linkers.
       \
       Use case ends.
@@ -521,7 +525,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2b1. Mass Linkers requests for new module.
     * Step 2b1 is repeated until a module is found.
       \
-      Use case resumes from step 2.
+      Use case resumes from step 3.
 
 * *a. At any time, Student chooses to close Mass Linkers.
     * a1. Mass Linkers updates the storage file.
@@ -549,10 +553,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 3a1-3a2 are repeated until the command entered is correct.
       \
       Use case resumes from step 4.
-* 3b. Mass Linkers could not find the batchmate specified.
-    * 3b1. Mass Linkers requests the user to input a valid batchmate.
-    * 3b2. Student enters new command.
-      Steps 3b1-3b2 are repeated until the command entered are correct.
+* 3b. Mass Linkers detects an incorrect phone number in the edited batchmate.
+    * 3b1. Mass Linkers warns the user that the phone number is incorrect.
+      \
+      Use case resumes from step 4.
+* 3c. Mass Linkers could not find the batchmate specified.
+    * 3c1. Mass Linkers requests the user to input a valid batchmate.
+    * 3c2. Student enters new command.
+      Steps 3c1-3c2 are repeated until the command entered are correct.
       \
       Use case resumes from step 4.
 
@@ -594,15 +602,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 batchmates without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The GUI should work well with standard screen resolutions 1920x1080 and higher. i.e. GUI does not appear to be cut or distorted.
-5.  For every action by the user, the result should be visible within 5 seconds.
-6.  The project should not depend on any remote servers.
-7.  The software and documentation should be accessible to users with a basic command of English.
-8.  The packaged JAR file should not exceed 100MB.
-9.  The software should work without the need for an installer.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 batchmates without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The GUI should work well with standard screen resolutions 1920x1080 and higher. i.e. GUI does not appear to be cut or distorted.
+5. For every action by the user, the result should be visible within 5 seconds.
+6. The project should not depend on any remote servers.
+7. The software and documentation should be accessible to users with a basic command of English.
+8. The packaged JAR file should not exceed 100MB.
+9. The software should work without the need for an installer.
+10. The product should not be able to verify the legitimacy of information provided by the student.
 
 ### Glossary
 
