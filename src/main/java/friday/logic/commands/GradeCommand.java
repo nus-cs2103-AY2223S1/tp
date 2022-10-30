@@ -6,7 +6,6 @@ import static friday.logic.parser.CliSyntax.PREFIX_MIDTERM;
 import static friday.logic.parser.CliSyntax.PREFIX_PRACTICAL;
 import static friday.logic.parser.CliSyntax.PREFIX_RA1;
 import static friday.logic.parser.CliSyntax.PREFIX_RA2;
-import static friday.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -73,7 +72,6 @@ public class GradeCommand extends Command {
                 studentToEdit.getConsultation(), studentToEdit.getMasteryCheck(), studentToEdit.getRemark(),
                 studentToEdit.getTags(), editedGradesList);
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         return new CommandResult(String.format(MESSAGE_EDIT_GRADE_SUCCESS, studentToEdit));
     }
