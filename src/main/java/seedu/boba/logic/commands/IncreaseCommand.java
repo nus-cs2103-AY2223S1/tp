@@ -77,6 +77,8 @@ public class IncreaseCommand extends Command {
             return editCommand.execute(model);
         } catch (NoSuchElementException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(Reward.MESSAGE_MAX_EXCEEDED);
         }
     }
 

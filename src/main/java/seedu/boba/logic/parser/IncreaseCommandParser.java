@@ -11,6 +11,9 @@ import seedu.boba.logic.commands.IncreaseCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
+import seedu.boba.model.customer.Reward;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Parses input arguments and creates a new IncreaseCommand object
@@ -55,10 +58,8 @@ public class IncreaseCommandParser implements Parser<IncreaseCommand> {
                             IncreaseCommand.MESSAGE_USAGE));
                 }
             }
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE), pe);
         } catch (NumberFormatException ne) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE), ne);
+            throw new ParseException(Reward.MESSAGE_MAX_INTEGER);
         }
 
         return argMultimap.getPhoneIdentifier()

@@ -9,6 +9,7 @@ import seedu.boba.logic.commands.DecreaseCommand;
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
+import seedu.boba.model.customer.Reward;
 
 /**
  * Parses input arguments and creates a new DecreaseCommand object
@@ -53,10 +54,8 @@ public class DecreaseCommandParser implements Parser<DecreaseCommand> {
                             DecreaseCommand.MESSAGE_USAGE));
                 }
             }
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecreaseCommand.MESSAGE_USAGE), pe);
         } catch (NumberFormatException ne) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecreaseCommand.MESSAGE_USAGE), ne);
+            throw new ParseException(Reward.MESSAGE_MAX_INTEGER);
         }
 
         return argMultimap.getPhoneIdentifier()

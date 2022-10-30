@@ -13,7 +13,10 @@ public class Reward {
 
     public static final String MESSAGE_CONSTRAINTS = "Reward points can take any NON-NEGATIVE values"
             + ", and it should not be blank";
-    public static final String MESSAGE_MAX_INTEGER = "Reward points CANNOT take any values more than 2147483647";
+    public static final String MESSAGE_MAX_INTEGER = "Reward points must be POSITIVE integers and" +
+            " CANNOT take any values more than 2147483647 (Maximum integer value)";
+    public static final String MESSAGE_MAX_EXCEEDED = "Reward points exceeded 2147483647 (Maximum integer value)!";
+    public static final String MESSAGE_NEGATIVE = "Reward points will be NEGATIVE after decrement. Please check again!";
 
     /*
      * The first character of the reward must not be a whitespace,
