@@ -24,17 +24,18 @@ title: Developer Guide
     * [Show/Hide fields](#showhide-feature-for-resident-fields)
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Conclusion](#conclusion)
 * [Appendix: Project requirements](#appendix-project-requirements)
     * [Product scope](#product-scope)
     * [User stories](#user-stories)
-    * [Use case](#use-cases)
+    * [Use cases](#use-cases)
     * [Non-functional requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a person](#deleting-a-person)
-    * [Saving data](#saving-data)
+    * [Modifying residents](#modifying-residents)
+    * [File management](#file-management)
+    * [Venue booking](#venue-booking)
 
 ---
 
