@@ -19,8 +19,7 @@ import seedu.address.model.group.Path;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser
- * classes.
+ * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
@@ -28,11 +27,10 @@ public class ParserUtil {
     private static final String PATH_VALIDATION_REGEX = "([a-zA-Z0-9_-]+\\/?)+([a-zA-Z0-9_-]+)";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
-     * and trailing whitespaces will be trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing
+     * whitespaces will be trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero
-     *                        unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -43,8 +41,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String name} into a {@code Name}. Leading and trailing whitespaces will be
+     * trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
@@ -58,8 +56,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String phone} into a {@code Phone}. Leading and trailing whitespaces will be
+     * trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
@@ -73,8 +71,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String address} into an {@code Address}. Leading and trailing whitespaces will be
+     * trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
@@ -88,8 +86,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String email} into an {@code Email}. Leading and trailing whitespaces will be
+     * trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
@@ -103,8 +101,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String tag} into a {@code Tag}. Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
@@ -130,8 +127,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String path} into a {@code Group}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses {@code String path} into a {@code Group}. Leading and trailing whitespaces will be
+     * trimmed.
      *
      * @param path to the currently nested group.
      * @return a Path object that specifies a group based on that path.
@@ -178,8 +175,7 @@ public class ParserUtil {
     }
 
     /**
-     * Checks if the path is valid. Only alphanumeric, hyphen, underscore and slash
-     * are allowed.
+     * Checks if the path is valid. Only alphanumeric, hyphen, underscore and slash are allowed.
      *
      * @param path to reach the current AbstractContainerItem.
      * @return true if path is valid, false otherwise.
@@ -202,9 +198,12 @@ public class ParserUtil {
         return Pair.of(strFirst, strSecond);
     }
 
+    /**
+     * Static class to represent a Pair
+     */
     public static class Pair {
-        public String first;
-        public String second;
+        private String first;
+        private String second;
 
         private Pair(String first, String second) {
             this.first = first;
@@ -218,6 +217,14 @@ public class ParserUtil {
         @Override
         public String toString() {
             return String.format("%s, %s", first, second);
+        }
+
+        public String getFirst() {
+            return first;
+        }
+
+        public String getSecond() {
+            return second;
         }
     }
 }

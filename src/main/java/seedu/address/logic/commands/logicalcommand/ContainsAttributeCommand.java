@@ -6,13 +6,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.DisplayItem;
 
+/**
+ * Command to check if a displayItem contains a certain attribute.
+ */
 public class ContainsAttributeCommand extends Command {
 
     public static final String COMMAND_WORD = "contains";
     private static final String NO_SELECTED = "No item were selected!";
     private static final String INVALID_INPUT = "The input is not of type DisplayItem!";
 
-    DisplayItem item = null;
+    private DisplayItem item = null;
     private final String attributeType;
 
     public ContainsAttributeCommand(String attributeType) {

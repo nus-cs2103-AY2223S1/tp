@@ -1,21 +1,17 @@
 package seedu.address.model.item;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.exceptions.AttributeException;
-import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,14 +64,19 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     @Override
     public Optional<Attribute<?>> getAttribute(String type) {
         return getAttributes().stream()
-                .filter(attr -> attr.getAttributeType().toLowerCase()
-                        .equals(type.toLowerCase()))
-                .findFirst();
+            .filter(attr -> attr.getAttributeType().toLowerCase()
+                .equals(type.toLowerCase()))
+            .findFirst();
     }
 
     @Override
     public void editAttribute(String attributeName, String attributeContent) throws AttributeException {
         attributes.editAttribute(attributeName, attributeContent);
+    }
+
+    @Override
+    public void addAttribute(Attribute<?> attribute) {
+        attributes.addAttribute(attribute);
     }
 
     @Override
@@ -93,11 +94,6 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     protected abstract String getTitle(List<String> sb, AbstractDisplayItem o);
-
-    @Override
-    public void addAttribute(Attribute<?> attribute) {
-        attributes.addAttribute(attribute);
-    }
 
     @Override
     public int getTypeFlag() {
@@ -126,8 +122,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         }
         AbstractDisplayItem g = (AbstractDisplayItem) o;
         return g.getParents().equals(getParents())
-                && g.getAttributes().equals(getAttributes())
-                && g.getTags().equals(getTags());
+            && g.getAttributes().equals(getAttributes())
+            && g.getTags().equals(getTags());
     }
 
     @Override
@@ -136,8 +132,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             return false;
         }
         return (o instanceof AbstractDisplayItem)
-                && ((AbstractDisplayItem) o).getFullPath().equals(getFullPath())
-                && ((AbstractDisplayItem) o).typeFlag == typeFlag;
+            && ((AbstractDisplayItem) o).getFullPath().equals(getFullPath())
+            && ((AbstractDisplayItem) o).typeFlag == typeFlag;
     }
 
     @Override

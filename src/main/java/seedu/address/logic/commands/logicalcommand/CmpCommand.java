@@ -11,6 +11,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+/**
+ * Command to add compare between object
+ */
 public class CmpCommand extends Command {
 
     public static final String COMMAND_WORD = "cmp";
@@ -21,22 +24,25 @@ public class CmpCommand extends Command {
     private Object num = null;
     private Function<Object, Boolean> func;
 
+    /**
+     * Constructor to create a command command
+     */
     public CmpCommand(String op, String opNum) throws ParseException {
         switch (op) {
-            case "==":
-                func = x -> opNum.equals(x.toString());
-                break;
-            case "<":
-                func = x -> opNum.compareTo(x.toString()) < 0;
-                break;
-            case ">":
-                func = x -> opNum.compareTo(x.toString()) > 0;
-                break;
-            case "!=":
-                func = x -> !opNum.equals(x.toString());
-                break;
-            default:
-                assert false;
+        case "==":
+            func = x -> opNum.equals(x.toString());
+            break;
+        case "<":
+            func = x -> opNum.compareTo(x.toString()) < 0;
+            break;
+        case ">":
+            func = x -> opNum.compareTo(x.toString()) > 0;
+            break;
+        case "!=":
+            func = x -> !opNum.equals(x.toString());
+            break;
+        default:
+            assert false;
         }
     }
 
@@ -48,6 +54,11 @@ public class CmpCommand extends Command {
         return new CommandResult(String.format("result: %s", func.apply(num)), false, false, func.apply(num));
     }
 
+    /**
+     * Returns a parser to parse user input for Cmp Command
+     *
+     * @return
+     */
     public static Parser<CmpCommand> parser() {
         return new Parser<CmpCommand>() {
             @Override

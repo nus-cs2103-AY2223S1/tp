@@ -11,7 +11,10 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
-public class seqCommand extends Command {
+/**
+ * Commands to allow the user to chain commands together
+ */
+public class SeqCommand extends Command {
 
     public static final String COMMAND_WORD = "seq";
     private static final String USE_MESSAGE = "seq command1;command2|command3;command4...";
@@ -19,7 +22,7 @@ public class seqCommand extends Command {
     private Object ctx;
     private List<String> replacers;
 
-    public seqCommand(List<String> replacements) throws ParseException {
+    public SeqCommand(List<String> replacements) throws ParseException {
         this.replacers = replacements;
     }
 
@@ -55,15 +58,20 @@ public class seqCommand extends Command {
         return ret;
     }
 
-    public static Parser<seqCommand> parser() {
-        return new Parser<seqCommand>() {
+    /**
+     * Parser to parse user input for seq command
+     *
+     * @return
+     */
+    public static Parser<SeqCommand> parser() {
+        return new Parser<SeqCommand>() {
             @Override
-            public seqCommand parse(String userInput) throws ParseException {
+            public SeqCommand parse(String userInput) throws ParseException {
                 if (userInput.trim().length() == 0) {
                     throw new ParseException(USE_MESSAGE);
                 }
                 List<String> res = Arrays.asList(userInput.trim().split("((?<=[;\\|])|(?=[;\\|]\\s*))"));
-                return new seqCommand(res);
+                return new SeqCommand(res);
             }
         };
     }

@@ -28,7 +28,7 @@ import seedu.address.logic.commands.logicalcommand.CheckTaskCompleteCommand;
 import seedu.address.logic.commands.logicalcommand.CmpCommand;
 import seedu.address.logic.commands.logicalcommand.ContainsAttributeCommand;
 import seedu.address.logic.commands.logicalcommand.IfCommand;
-import seedu.address.logic.commands.logicalcommand.seqCommand;
+import seedu.address.logic.commands.logicalcommand.SeqCommand;
 import seedu.address.logic.commands.operators.OpsCommand;
 import seedu.address.logic.commands.operators.PrintCommand;
 import seedu.address.logic.commands.operators.StringReplaceCommand;
@@ -55,12 +55,13 @@ import seedu.address.logic.parser.teams.TeamCommandParser;
  */
 public class AddressBookParser {
 
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern NAME_CHECK = Pattern.compile("([a-zA-Z][a-zA-Z0-9]*)");
     private static AddressBookParser bp = null;
+    private static Map<String, ThrowFunction<String, Command>> defaultMapper;
 
     private final Map<String, CustomCommandBuilder> bonusMapper;
     private final Map<String, String> aliasMapper;
-    private static Map<String, ThrowFunction<String, Command>> defaultMapper;
 
     @FunctionalInterface
     private interface ThrowFunction<T, R> {
@@ -88,7 +89,7 @@ public class AddressBookParser {
         defaultMapper.put(FloatCommand.COMMAND_WORD, k -> FloatCommand.parser().parse(k));
         defaultMapper.put(IntCommand.COMMAND_WORD, k -> IntCommand.parser().parse(k));
         defaultMapper.put(StringCommand.COMMAND_WORD, k -> StringCommand.parser().parse(k));
-        defaultMapper.put(seqCommand.COMMAND_WORD, k -> seqCommand.parser().parse(k));
+        defaultMapper.put(SeqCommand.COMMAND_WORD, k -> SeqCommand.parser().parse(k));
         defaultMapper.put(OpsCommand.COMMAND_WORD, k -> OpsCommand.parser().parse(k));
         defaultMapper.put(PrintCommand.COMMAND_WORD, k -> PrintCommand.parser().parse(k));
         defaultMapper.put(StringReplaceCommand.COMMAND_WORD, k -> StringReplaceCommand.parser().parse(k));
@@ -112,20 +113,32 @@ public class AddressBookParser {
         return bp;
     }
 
+    /**
+     * Checks if the name is a valid command name
+     */
     public static boolean isValidName(String test) {
         return NAME_CHECK.matcher(test.trim()).matches();
     }
 
+    /**
+     * Checks if the name provided is currently available to be used
+     */
     public boolean isKeyAvailable(String key) {
         return !defaultMapper.containsKey(key)
-                && !bonusMapper.containsKey(key)
-                && !aliasMapper.containsKey(key);
+            && !bonusMapper.containsKey(key)
+            && !aliasMapper.containsKey(key);
     }
 
+    /**
+     * Adds a custom command macro
+     */
     public void addCommand(CustomCommandBuilder builder) {
         bonusMapper.put(builder.getRepr(), builder);
     }
 
+    /**
+     * Adds an alias to an existing command
+     */
     public void addAlias(String alias, String command) {
         if (aliasMapper.containsKey(command)) {
             addAlias(alias, aliasMapper.get(command));
@@ -135,6 +148,9 @@ public class AddressBookParser {
         }
     }
 
+    /**
+     * Deletes the repr command from parser of it exist.
+     */
     public void deleteCommand(String repr) {
         if (repr == null) {
             return;
@@ -154,11 +170,6 @@ public class AddressBookParser {
             }
         }
     }
-
-    /**
-     * Used for initial separation of command word and args.
-     */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -187,6 +198,9 @@ public class AddressBookParser {
         throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
     }
 
+    /**
+     * Returns a command that runs to execute and parse in ctx as the input
+     */
     public static Command quickCommand(String toExecute, Object ctx) throws CommandException {
         try {
             Command ret = AddressBookParser.get().parseCommand(toExecute);

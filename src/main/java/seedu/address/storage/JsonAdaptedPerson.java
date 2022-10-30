@@ -10,11 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-// import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Attribute;
-import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
-//import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -30,8 +27,8 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name,
-            @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
+        @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+        @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
     }
 
@@ -40,20 +37,18 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
      */
     public JsonAdaptedPerson(Person source) {
         super(source.getName().fullName, source.getUid().toString(),
-                source.getSavedAttributes().stream()
-                        .map(JsonAdaptedAbstractAttribute::new)
-                        .collect(Collectors.toList()),
-                source.getTags().stream()
-                        .map(JsonAdaptedTag::new)
-                        .collect(Collectors.toList()));
+            source.getSavedAttributes().stream()
+                .map(JsonAdaptedAbstractAttribute::new)
+                .collect(Collectors.toList()),
+            source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's
-     * {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in
-     *                               the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
