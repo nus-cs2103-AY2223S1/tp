@@ -59,8 +59,8 @@ Survin is a desktop application for surveyors to use to keep track of people the
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+- Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
 
@@ -118,25 +118,6 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-- `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 ### Deleting a person : `delete`
 
 Delete an existing person in Survin by index or delete all persons satisfying the specified attributes.
@@ -151,7 +132,7 @@ Format: `delete INDEX` OR `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GE
 Example:
 
 - `list` followed by `delete 2` deletes the 2nd person in the app.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+- `view n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `view` command.
 - `delete ra/Chinese re/christian` Deletes all surveyees that are Chinese and Christian.
 
 ### Clone a person : `clone`
@@ -180,11 +161,13 @@ Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/R
 
 - The search is case-insensitive. e.g `alex` will match `Alex`
 - The order of the keywords does not matter. e.g. `Alex Tan` will match `Tan Alex`
+- Only full words are matched. e.g. `Ale` will not match `Alex`
+- Use quotation marks to match exact phrases. e.g. `"Alex Tan"` will not match `Tan Alex`
+- Quotation marks only match exact phrases. e.g. `Alex T` will not match `Alex Tan`
 - For all attributes except `email` and `birthdate`, only full words will be matched e.g. `Ale` will not match `Alex`
-- Use quotes (") to `view` persons whose attributes contain an exact phrase.
-- For phrases not in quotes, `view` lists all persons whose attributes contain any of the words specified.
+- For multiple worded input, `view` lists all persons whose attributes contain any of the words or phrases specified.
   e.g. `view n/Jane Doe "Alex Tan"` lists all persons whose names contain any of the following: `Jane`, `Doe` or `Alex Tan`.
-- When using `view` on an attribute with multiple objects (e.g. `Survey` or `Tag`), `view` performs the search on each object.
+- When using `view` on an attribute with multiple objects (e.g. `Survey` or `Tag`), `view` performs the search on each survey and tag.
 - When using `view` on any attribute, only the last prefix is parsed. e.g. `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -312,14 +295,22 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                  | Format, Examples                                                                                                                                                    |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**               | `clear`                                                                                                                                                             |
-| **Delete**              | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                  |
-| **Delete by attribute** | `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`<br> e.g. `delete ra/Chinese`                  |
-| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                          |
-| **Clone**               | `clone INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `clone 1 n/James Lee p/91234567 e/jameslee@example.com`                                                |
-| **List**                | `list`                                                                                                                                                              |
-| **Help**                | `help`                                                                                                                                                              |
+| Action                  | Format, Examples                                                                                                                                                                                                                                                                  |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                 | `n/NAME p/PHONE e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION [s/SURVEY]... [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/male b/1998-11-28 ra/Chinese re/Christian s/Shopping survey t/friends t/owesMoney` |
+| **Clear**               | `clear`                                                                                                                                                                                                                                                                           |
+| **Delete**              | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                                                                |
+| **Delete by attribute** | `delete [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`<br> e.g. `delete ra/Chinese`                                                                                                                                |
+| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                         |
+| **Exit**                | `exit`                                                                                                                                                                                                                                                                            |
+| **View**                | `view n/NAME p/PHONE e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION s/SURVEY `<br> e.g., `view g/female ra/chinese re/christian`                                                                                                                                      |
+| **Undo**                | `undo`                                                                                                                                                                                                                                                                            |
+| **Theme**               | `theme`                                                                                                                                                                                                                                                                           |
+| **Mark**                | `mark INDEX [s/NAME OF SURVEY]`<br> e.g., `mark 1 s/Shopping Survey`                                                                                                                                                                                                              |
+| **Unmark**              | `unmark INDEX [s/NAME OF SURVEY]`<br> e.g., `unmark 1 s/Shopping Survey`                                                                                                                                                                                                          |
+| **Append**              | `append INDEX [s/SURVEY]... [t/TAG]...`<br> e.g., `append 1 s/Food Survey s/Environment Survey t/friend t/student`                                                                                                                                                                |
+| **Unappend**            | `unappend INDEX [s/SURVEY]... [t/TAG]...`<br> e.g., `unappend 1 s/Food Survey s/Environment Survey t/friend t/student`                                                                                                                                                            |
+| **Toggle list mode**    | `toggle-list-mode`                                                                                                                                                                                                                                                                |
+| **Clone**               | `clone INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `clone 1 n/James Lee p/91234567 e/jameslee@example.com`                                                                                                                                                              |
+| **List**                | `list`                                                                                                                                                                                                                                                                            |
+| **Help**                | `help` and `help [NAME_OF_COMMAND]`                                                                                                                                                                                                                                               |
