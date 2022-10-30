@@ -25,38 +25,38 @@ title: Developer Guide
     * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
     * [File management system](#multiple-data-files)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [Appendix: requirements](#appendix-requirements)
+* [Appendix: Project requirements](#appendix-project-requirements)
     * [Product scope](#product-scope)
     * [User stories](#user-stories)
     * [Use case](#use-cases)
     * [Non-functional requirements](#non-functional-requirements)
     * [Glossary](#glossary)
-* [Appendix: instructions for manual testing](#appendix-instructions-for-manual-testing)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a person](#deleting-a-person)
     * [Saving data](#saving-data)
 
 ---
 
-# Introduction
+## Introduction
 
 Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what **RC4HDB** is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing a specialised solution to their resident and venue management needs.
 
-## Purpose
+### Purpose
 
 This document was created to provide future developers with readable and comprehensive documentation for the design of **RC4HDB**. We hope that after reading the document, you will gain a reasonable understanding of how **RC4HDB** was designed and the direction our [team](AboutUs.md) intends for **RC4HDB** to take.
 
-## Scope
+### Scope
 
-The **RC4HDB** developer's guide covers the high and low level design details of our application. It also covers other potential implementations and the reasons why we chose our current implementation over the others.
+The **RC4HDB** developer's guide covers the high and low level design details of our application, along with other potential implementations that we have considered and the reasons for our choice of our current implementation. It also covers how you can go about [testing our application](#appendix-instructions-for-manual-testing), the [project requirements](#appendix-project-requirements) and finally, .
 
-## Format of the guide
+### Format of the guide
 
 The **RC4HDB** developer's guide is arranged in a top-down format. We will begin by discussing high-level details, before discussing lower-level details of our application.
 
-## Getting started
+### Getting started
 
-A good place to start off with would be to take a look at the [design](#design) section of our guide, where you will find out about the high-level design details of **RC4HDB**. Otherwise, have a look at our [table of contents](#table-of-contents) for any sections of our guide that you may be interested in. If you are eager to work on the project, do refer to our page on [setting up](SettingUp.md) your developer environment.
+A good place to start off with would be to take a look at the [design](#design) section of our guide, where you will find out about the high-level design details of **RC4HDB**. Otherwise, have a look at our [table of contents](#table-of-contents) for any sections of our guide that you may be interested in. If you are eager to work on the project, do refer to our section on how you can [join us](#conclusion).
 
 ---
 
@@ -96,8 +96,6 @@ using a computer. For users who type fast, RC4HDB will be highly efficient and q
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
-
----
 
 ### Architecture
 
@@ -140,8 +138,6 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
----
-
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -158,8 +154,6 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Resident` object residing in the `Model`.
-
----
 
 ### Logic component
 
@@ -196,8 +190,6 @@ implement the Command interface and is used as a intermediate barrier to build t
 commands implement these commands instead of directly implementing the Command interface in order to improve
 the abstraction of commands.
 
----
-
 ### Model component
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -222,8 +214,6 @@ The `Model` component,
 
 </div>
 
----
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/storage/Storage.java)
@@ -238,19 +228,15 @@ The `Storage` component,
 The ```DataStorage``` class inherits ```ResidentBookStorage``` and ```VenueBookStorage```. The functionalities
 of both these classes can be extended into DataStorage, which is applied by the ```DataStorageManager``` class.
 
----
-
 ### Common classes
 
 Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
-
----
+This section describes some noteworthy details on how certain features are implemented. We have included other implementations that we have considered, along with reasons for choosing the current implementation over the others.
 
 ### The Resident Class
 `RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
@@ -330,10 +316,7 @@ invocation of a method to update the Ui. This design was possible as `TableView`
 to the returned value from `setCellValueFactory`, as mentioned in the [section above](#obtaining-resident-fields).
 As a result, any updates to `ObservableList<Resident>` would be reflected immediately in all cells of the Table.
 
-
 <br>
-
----
 
 ### Show/hide feature for resident fields
 
@@ -364,8 +347,6 @@ The final design involved using a `ListChangeListener` to cascade the updates fr
 Currently, the commands for showing and hiding columns are extensions of the `list` command: `list /i <fields_to_include>` and `list /e <fields_to_exclude>`. While this syntax works as intended, we will be changing the command to use `show` and `hide` respectively for clarity.
 
 <br>
-
----
 
 ### Filter feature to filter residents according to fields
 
@@ -431,8 +412,6 @@ filtering has been omitted for the tags to accommodate for a faster filtering pr
 
 <br>
 
----
-
 ### Multiple data files
 
 #### Background
@@ -484,8 +463,6 @@ Due to file creation and deletion not requiring an update to `Model`, but requir
 Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
 
 <br>
-
----
 
 ### \[Proposed\] Undo/redo feature
 
@@ -571,20 +548,25 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+---
 
---------------------------------------------------------------------------------------------------------------------
+## Conclusion
 
-## **Documentation, logging, testing, configuration, dev-ops**
+Thank you for taking your time reading through this document. We would like to extend an invitation to those who are interested in joining our **RC4HDB** team. Below are details on how you may go about joining our team.
 
+### Joining us
+
+If you are interested in joining our team, do take a look at our [GitHub repository](https://github.com/AY2223S1-CS2103T-W12-3/tp), and the following guides on setting up.
+* [Setting up](SettingUp.md)
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Appendix: Requirements**
+## Appendix: Project requirements
 
 ### Product scope
 
@@ -604,8 +586,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * manage contacts faster than a typical mouse/Graphic User Interface (GUI) driven app
 * requires less technical knowledge to perform complex tasks
 * easier on the eyes, as compared to compressed rows of data on Excel
-
----
 
 ### User stories
 
@@ -634,21 +614,6 @@ They have been extensively documented [here](https://github.com/AY2223S1-CS2103T
 | `*`      | user          | update settings                                                                    | I can customize the app for my use                                                  | Epic       |
 
 *{More to be added}*
-
-<!-- keep in case needed
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​                                 | I want to …​                               | So that I can…​                                                        |
-| -------- |--------------------------------------------|-----------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | user                                       | view relevant information about RC4 residents | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                              |                                                                        |
-| `* * *`  | user                                       | delete a person                               | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name                         | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details                  | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name                          | locate a person easily                                                 |
--->
-
----
 
 ### Use cases
 
@@ -885,8 +850,6 @@ MSS:
 
 [comment]: <> (*{More to be added}*)
 
----
-
 ### Non-Functional Requirements
 
 #### Accessibility
@@ -914,9 +877,9 @@ MSS:
 * **RC4**: Residential College 4 which resides in NUS
 * **Resident**: A NUS student who lives in RC4
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually. The following instructions are organised in a similar manner as our **User Guide**. We recommend that you refer to our **User Guide** for a basic idea of how each command works before proceeding with manual testing.
 
@@ -942,11 +905,21 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases …​ }_
 
----
+<br>
 
 ## Modifying residents
 
-### Deleting a person
+### Adding a resident
+
+[Comment]: <> (To be added)
+
+### Editing an existing resident
+
+[Comment]: <> (To be added)
+
+### Deleting a resident
+
+[Comment]: <> (To be updated)
 
 1. Deleting a person while all persons are being shown
 
@@ -963,17 +936,61 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
----
+### Clearing all residents
+
+[Comment]: <> (To be added)
+
+<br>
 
 ## Viewing residents
 
+### Listing residents
 
+[Comment]: <> (To be added)
 
----
+### Showing resident fields
+
+[Comment]: <> (To be added)
+
+### Hiding resident fields
+
+[Comment]: <> (To be added)
+
+### Resetting hidden resident fields
+
+[Comment]: <> (To be added)
+
+### Finding residents
+
+[Comment]: <> (To be added)
+
+### Filtering residents
+
+[Comment]: <> (To be added)
+
+<br>
 
 ## File management
 
+### Creating a new data folder
+
+[Comment]: <> (To be added)
+
+### Deleting an existing data folder
+
+[Comment]: <> (To be added)
+
+### Switching data folders
+
+[Comment]: <> (To be added)
+
+### Importing from CSV file
+
+[Comment]: <> (To be added)
+
 ### Saving data
+
+[Comment]: <> (To be updated)
 
 1. Dealing with missing/corrupted data files
 
@@ -983,10 +1000,28 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
----
+<br>
 
 ## Venue booking
 
+### Adding a venue
 
+[Comment]: <> (To be added)
+
+### Deleting a venue
+
+[Comment]: <> (To be added)
+
+### Viewing a venue
+
+[Comment]: <> (To be added)
+
+### Adding a booking
+
+[Comment]: <> (To be added)
+
+### Deleting a booking
+
+[Comment]: <> (To be added)
 
 ---
