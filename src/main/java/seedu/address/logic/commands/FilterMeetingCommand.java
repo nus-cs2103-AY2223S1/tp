@@ -14,7 +14,8 @@ import seedu.address.model.meeting.MeetingFilterDatePredicate;
 public class FilterMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "filtermeetingsbetween";
-    public static final String INVALID_DATE_FORMAT = "Invalid Date Time Format";
+    public static final String INVALID_DATE_FORMAT = "Invalid Date Time Format/Invalid Date Time. \n"
+            + "Please follow the (dd-MM-yyyy HHmm) format and ensure that the date entered is a valid one.";
     public static final String INVALID_DATE_POSITION = "First date must be before the second date!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all meetings between the given dates "
             + "displays them as a list with index numbers.\n"
