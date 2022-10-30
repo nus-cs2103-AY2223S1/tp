@@ -295,7 +295,7 @@ The command calls `Model` to `sortFilteredExerciseList(predicate)` and the `Ui` 
 
 The following sequence diagram shows how the date range process is executed.
 
-<img src="images/DateRangeSequenceDiagram.png" width="1000" />
+<img src="images/RangeSequenceDiagram.png" width="1000" />
 
 #### Design considerations:
 
