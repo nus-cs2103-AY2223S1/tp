@@ -39,7 +39,7 @@ title: Developer Guide
 
 ---
 
-## Introduction
+## **Introduction**
 
 Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what RC4HDB is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing a specialised features which solve their resident and venue management needs.
 
@@ -562,7 +562,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ---
 
-## Conclusion
+## **Conclusion**
 
 Thank you for taking your time reading through this document. We would like to extend an invitation to those who are interested in joining our **RC4HDB** team. Below are details on how you may go about joining our team.
 
@@ -578,7 +578,7 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 
 ---
 
-## Appendix: Project requirements
+## **Appendix: Project requirements**
 
 ### Product scope
 
@@ -891,7 +891,7 @@ MSS:
 
 ---
 
-## Appendix: Instructions for manual testing
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually. The following instructions are organised in a similar manner as our **User Guide**. We recommend that you refer to our **User Guide** for a basic idea of how each command works before proceeding with manual testing.
 
