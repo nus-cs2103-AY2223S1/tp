@@ -46,7 +46,7 @@ faster than other GUI-based applications.
 1. Ensure you have Java `11` or above installed in your Computer
 (Not sure how? Check out [this](https://www.java.com/en/download/help/version_manual.html) guide).
 
-2. Download the latest `watson.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-1/tp/releases/tag/v.1.3.trial).
+2. Download the latest `watson.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-1/tp/releases/tag/v1.3.release).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Watson.
 
@@ -118,10 +118,13 @@ Format: `add n/NAME ind/INDEX_NUMBER p/PHONE_NUMBER e/EMAIL a/ADDRESS c/STUDENT_
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Students with the same name and ONE other field e.g., phone number or address are considered duplicates
+</div>
 
 Examples:
 * `add n/John Doe ind/1 p/98765432 e/jonny@gmail.com a/John street, block 123, #01-01 c/1.1`
-* `add n/Amy Lim a/Bugis Crescent p/12345678 t/Enjoys ice cream c/4B e/email@gmail.com`
+* `add n/Amy Lim ind/2 a/Bugis Crescent p/12345678 t/Enjoys ice cream c/4B e/email@gmail.com`
 
 ### Listing all students : `list`
 
@@ -162,9 +165,8 @@ Format: `find [n/NAMES] [c/CLASS] [s/SUBJECT]`
 * Students matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-Each parameter specified is independent of the previous. e.g. `find n/tommy c/2A` will return students with name `Tommy` or in class `2A` **NOT** items with both.
+Each parameter specified is independent of the previous. e.g. `find n/tommy c/2A` will return students with name `Tommy` or in class `2A` but NOT items with both.
 </div>
-
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
@@ -315,15 +317,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                               |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/> e.g., add n/John Doe p/98765432 a/John street, block 123, #01-01 c/1.5`          |
-| **Clear**  | `clear`                                                                                                                                        |
-| **Delete** | `delete INDEX` <br/> e.g., `delete 1`                                                                                                          |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                  |
-| **Find**   | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)` <br/> e.g., `find n/alice bob charlie c/1A s/English`, `find s/English Math` |
-| **Sort**   | `sort asc` or `sort desc`                                                                                                                      |
-| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`                                                                                 |
-| **List**   | `list`                                                                                                                                         |
-| **Help**   | `help`                                                                                                                                         |
+| Action     | Format, Examples                                                                                                                              |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/> e.g.,`add n/John Doe ind/1 p/98765432 a/John street, block 123, #01-01 c/1.5`   |
+| **Clear**  | `clear`                                                                                                                                       |
+| **Delete** | `delete INDEX` <br/> e.g., `delete 1`                                                                                                         |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                 |
+| **Find**   | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)` <br/> e.g.,`find n/alice bob charlie c/1A s/English`, `find s/English Math` |
+| **Sort**   | `sort asc` or `sort desc`                                                                                                                     |
+| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`                                                                                |
+| **List**   | `list`                                                                                                                                        |
+| **Help**   | `help`                                                                                                                                        |
 
