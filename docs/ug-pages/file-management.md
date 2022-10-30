@@ -71,7 +71,7 @@ Examples:
 
 ---
 
-### Switching data folder : `file switch`
+### Switching to a different data folder : `file switch`
 
 **RC4HDB** provides users with the ability to switch between different data folders.
 

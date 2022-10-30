@@ -903,10 +903,34 @@ testers are expected to do more *exploratory* testing.
 ### Table of contents for manual testing
 
 * [Launch and shutdown](#launch-and-shutdown)
+  * [Initial launch](#initial-launch)
+  * [Saving window preferences](#saving-window-preferences)
+  * [Starting up with missing/corrupted data files](#starting-up-with-missingcorrupted-data-files)
 * [Modifying residents](#modifying-residents)
+  * [Adding a resident](#adding-a-resident)
+  * [Editing an existing resident](#editing-an-existing-resident)
+  * [Deleting a resident](#deleting-a-resident)
+  * [Clearing all residents](#clearing-all-residents)
 * [Viewing residents](#viewing-residents)
+  * [Listing residents](#listing-residents)
+  * [Showing resident fields](#showing-resident-fields)
+  * [Hiding resident fields](#hiding-resident-fields)
+  * [Resetting hidden resident fields](#resetting-hidden-resident-fields)
+  * [Finding residents](#finding-residents)
+  * [Filtering residents](#filtering-residents)
 * [File management](#file-management)
+  * [Creating a new data folder](#creating-a-new-data-folder)
+  * [Deleting an existing data folder](#deleting-an-existing-data-folder)
+  * [Switching to a different data folder](#switching-to-a-different-data-folder)
+  * [Importing resident data from CSV file](#importing-resident-data-from-csv-file)
 * [Venue management](#venue-management)
+  * [Adding a venue](#adding-a-venue)
+  * [Deleting a venue](#deleting-a-venue)
+  * [Viewing a venue](#viewing-a-venue)
+  * [Adding a booking](#adding-a-booking)
+  * [Deleting a booking](#deleting-a-booking)
+
+---
 
 ### Launch and shutdown
 
@@ -1045,7 +1069,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `file delete current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
        Expected: An error message indicating that the folder you are trying to delete is the folder that is currently in view will be displayed in the result panel. No deletion occurs.
 
-#### Switching data folder
+#### Switching to a different data folder
 
 1. Switching to a data folder that does not exist.
 

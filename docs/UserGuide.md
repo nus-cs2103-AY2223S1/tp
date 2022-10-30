@@ -36,7 +36,7 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
   * [File management](ug-pages/file-management.md)
     * [Creating a new data folder `file create`](ug-pages/file-management.md#creating-a-new-data-folder--file-create)
     * [Deleting an existing data folder `file delete`](ug-pages/file-management.md#deleting-an-existing-data-folder--file-delete)
-    * [Switching data folder `file switch`](ug-pages/file-management.md#switching-data-folder--file-switch)
+    * [Switching to a different data folder `file switch`](ug-pages/file-management.md#switching-to-a-different-data-folder--file-switch)
     * [Importing resident data from CSV file `file import`](ug-pages/file-management.md#importing-resident-data-from-csv-file--file-import)
     * [CSV file format](ug-pages/file-management.md#csv-file-format)
   * [Venue management](ug-pages/venue-management.md)
