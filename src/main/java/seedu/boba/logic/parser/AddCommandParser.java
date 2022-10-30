@@ -48,17 +48,19 @@ public class AddCommandParser implements Parser<AddCommand> {
                 || !isUniquePrefix) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+        try {
+            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            BirthdayMonth birthdayMonth = ParserUtil.parseBirthdayMonth(argMultimap.getValue(PREFIX_BIRTHDAY_MONTH).get());
+            Reward reward = ParserUtil.parseReward(argMultimap.getValue(PREFIX_REWARD).get());
+            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        BirthdayMonth birthdayMonth = ParserUtil.parseBirthdayMonth(argMultimap.getValue(PREFIX_BIRTHDAY_MONTH).get());
-        Reward reward = ParserUtil.parseReward(argMultimap.getValue(PREFIX_REWARD).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Customer customer = new Customer(name, phone, email, birthdayMonth, reward, tagList);
-
-        return new AddCommand(customer);
+            Customer customer = new Customer(name, phone, email, birthdayMonth, reward, tagList);
+            return new AddCommand(customer);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Reward.MESSAGE_MAX_INTEGER);
+        }
     }
 
     /**

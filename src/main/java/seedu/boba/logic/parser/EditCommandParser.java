@@ -104,7 +104,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
                 }
             } catch (NumberFormatException e) {
-                throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
+                //throw new ParseException("Testing");
+                throw new ParseException(Reward.MESSAGE_MAX_INTEGER);
             }
 
         }
