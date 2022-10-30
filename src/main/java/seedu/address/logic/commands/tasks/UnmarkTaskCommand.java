@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ import seedu.address.model.task.Task;
 public class UnmarkTaskCommand extends TaskCommand {
     public static final String SUBCOMMAND_WORD = "unmark";
 
-    public static final String MESSAGE_USAGE =
-            TaskCommand.getFullCommand(SUBCOMMAND_WORD) + ": Marks the task as incomplete\n"
-                    + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n";
+    public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
+            + ": Marks the task as incomplete\n"
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n";
 
     public static final String ALREADY_UNMARKED = " task %s is already incomplete%n";
     public static final String UNMARK_SUCCESS = " task %s is marked as incomplete%n";
@@ -38,11 +39,17 @@ public class UnmarkTaskCommand extends TaskCommand {
 
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (targetIndex == null && task == null) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+        }
+        if (task == null) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+            task = lastShownList.get(targetIndex.getZeroBased());
         }
 
-        Task task = lastShownList.get(targetIndex.getZeroBased());
         Task newTask = task.unmark();
         if (newTask == task) {
             throw new CommandException(ALREADY_UNMARKED);

@@ -3,12 +3,12 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-/*import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;*/
+//import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+//import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+//import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+//import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-/*import static seedu.address.testutil.TypicalPersons.AMY;*/
+//import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -99,7 +99,6 @@ public class LogicManagerTest {
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in
      * {@code expectedModel} <br>
-     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
@@ -112,7 +111,6 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that a ParseException is thrown and that the
      * result message is correct.
-     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
@@ -122,7 +120,6 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that a CommandException is thrown and that the
      * result message is correct.
-     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
@@ -132,7 +129,6 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that the exception is thrown and that the
      * result message is correct.
-     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
@@ -147,7 +143,6 @@ public class LogicManagerTest {
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in
      * {@code expectedModel} <br>
-     *
      * @see #assertCommandSuccess(String, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,

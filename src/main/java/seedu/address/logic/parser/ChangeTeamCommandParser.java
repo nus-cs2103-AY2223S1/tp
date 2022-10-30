@@ -22,7 +22,15 @@ public class ChangeTeamCommandParser implements Parser<ChangeTeamCommand> {
     public ChangeTeamCommand parse(String args) throws ParseException {
         try {
             if (args.trim().equals("..")) {
-                return new ChangeTeamCommand(null);
+                return new ChangeTeamCommand(0);
+            }
+
+            if (args.trim().equals("/")) {
+                return new ChangeTeamCommand(-1);
+            }
+
+            if (args.trim().equals("")) {
+                return new ChangeTeamCommand(-2);
             }
             Index index = ParserUtil.parseIndex(args);
             return new ChangeTeamCommand(index);

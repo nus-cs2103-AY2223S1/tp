@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Removes a field by a given field name from the addressbook.
  */
-public class RemoveFieldCommand extends Command {
+public class RemoveFieldCommand extends PureCommand {
 
     public static final String COMMAND_WORD = "rmfield";
 
@@ -46,6 +46,6 @@ public class RemoveFieldCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RemoveFieldCommand // instanceof handles nulls
-                && fieldName.equals(((RemoveFieldCommand) other).fieldName)); // state check
+                        && fieldName.equals(((RemoveFieldCommand) other).fieldName)); // state check
     }
 }

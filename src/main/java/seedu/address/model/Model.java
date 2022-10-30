@@ -6,10 +6,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupOutOfBoundException;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonOutOfBoundException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskOutOfBoundException;
 
 /**
  * The API of the Model component.
@@ -17,6 +21,12 @@ import seedu.address.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Group> PREDICATE_SHOW_ALL_GROUPS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -61,6 +71,11 @@ public interface Model {
      * the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Refreshes the addressbook lists
+     */
+    void refresh();
 
     /**
      * Deletes the given person.
@@ -133,6 +148,8 @@ public interface Model {
      */
     ObservableList<Person> getFilteredPersonList();
 
+    Person getFromFilteredPerson(Index index) throws PersonOutOfBoundException;
+
     /**
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
@@ -190,7 +207,10 @@ public interface Model {
      */
     ObservableList<Group> getFilteredTeamList();
 
+    Group getFromFilteredTeams(Index index) throws GroupOutOfBoundException;
+
     void setTask(Task target, Task editedTask);
 
+    Task getFromFilteredTasks(Index index) throws TaskOutOfBoundException;
 
 }

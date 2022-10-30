@@ -3,33 +3,156 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddFieldCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.CustomCommandBuilder;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.attributes.AddAttributeCommand;
+import seedu.address.logic.commands.attributes.EditAttributeCommand;
+import seedu.address.logic.commands.attributes.RemoveAttributeCommand;
 import seedu.address.logic.commands.RemoveFieldCommand;
+import seedu.address.logic.commands.RenameCommand;
+import seedu.address.logic.commands.creationcommand.AliasCommand;
+import seedu.address.logic.commands.creationcommand.CreateCommand;
+import seedu.address.logic.commands.creationcommand.DeleteCustomCommand;
+import seedu.address.logic.commands.creationcommand.FloatCommand;
+import seedu.address.logic.commands.creationcommand.IntCommand;
+import seedu.address.logic.commands.creationcommand.StringCommand;
+import seedu.address.logic.commands.fields.FieldCommand;
+import seedu.address.logic.commands.logicalcommand.CheckTaskCompleteCommand;
+import seedu.address.logic.commands.logicalcommand.ContainsAttributeCommand;
+import seedu.address.logic.commands.logicalcommand.IfCommand;
+import seedu.address.logic.commands.logicalcommand.seqCommand;
+import seedu.address.logic.commands.operators.OpsCommand;
+import seedu.address.logic.commands.operators.PrintCommand;
+import seedu.address.logic.commands.operators.StringReplaceCommand;
+import seedu.address.logic.commands.persons.PersonCommand;
+import seedu.address.logic.commands.tasks.MarkTaskCommand;
 import seedu.address.logic.commands.tasks.TaskCommand;
-import seedu.address.logic.commands.teams.AddTeamCommand;
+import seedu.address.logic.commands.tasks.UnmarkTaskCommand;
 import seedu.address.logic.commands.teams.AddUserToTeamCommand;
 import seedu.address.logic.commands.teams.ChangeTeamCommand;
-import seedu.address.logic.commands.teams.DeleteTeamCommand;
-import seedu.address.logic.commands.teams.RemoveUserFromTeamCommand;
+import seedu.address.logic.commands.teams.TeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.fields.FieldCommandParser;
+import seedu.address.logic.parser.logiccommands.CheckTaskCompleteCommandParser;
+import seedu.address.logic.parser.logiccommands.ContainsAttributeCommandParser;
+import seedu.address.logic.parser.logiccommands.IfCommandParser;
+import seedu.address.logic.parser.persons.PersonCommandParser;
+import seedu.address.logic.parser.tasks.MarkTaskCommandParser;
 import seedu.address.logic.parser.tasks.TaskCommandParser;
+import seedu.address.logic.parser.tasks.UnmarkTaskCommandParser;
+import seedu.address.logic.parser.teams.TeamCommandParser;
 
 /**
  * Parses user input.
  */
 public class AddressBookParser {
+
+    private static final Pattern NAME_CHECK = Pattern.compile("([a-zA-Z][a-zA-Z0-9]*)");
+    private static AddressBookParser bp = null;
+
+    private final Map<String, CustomCommandBuilder> bonusMapper;
+    private final Map<String, String> aliasMapper;
+    private static Map<String, ThrowFunction<String, Command>> defaultMapper;
+
+    @FunctionalInterface
+    private interface ThrowFunction<T, R> {
+        R apply(T t) throws ParseException;
+    }
+
+    static {
+        defaultMapper = new HashMap<>();
+        defaultMapper.put(ClearCommand.COMMAND_WORD, k -> new ClearCommand());
+        defaultMapper.put(ListCommand.COMMAND_WORD, k -> new ListCommand());
+        defaultMapper.put(ExitCommand.COMMAND_WORD, k -> new ExitCommand());
+        defaultMapper.put(HelpCommand.COMMAND_WORD, k -> new HelpCommand());
+        defaultMapper.put(ClearCommand.COMMAND_WORD, k -> new ClearCommand());
+        defaultMapper.put(ChangeTeamCommand.COMMAND_WORD, k -> new ChangeTeamCommandParser().parse(k));
+        defaultMapper.put(TaskCommand.COMMAND_WORD, k -> new TaskCommandParser().parse(k));
+        defaultMapper.put(AddUserToTeamCommand.COMMAND_WORD, k -> new AddUserToTeamCommandParser().parse(k));
+        defaultMapper.put(TeamCommand.COMMAND_WORD, k -> new TeamCommandParser().parse(k));
+        defaultMapper.put(CheckTaskCompleteCommand.COMMAND_WORD, k -> new CheckTaskCompleteCommandParser().parse(k));
+        defaultMapper.put(ContainsAttributeCommand.COMMAND_WORD, k -> new ContainsAttributeCommandParser().parse(k));
+        defaultMapper.put(IfCommand.COMMAND_WORD, k -> new IfCommandParser().parse(k));
+        defaultMapper.put(MarkTaskCommand.SUBCOMMAND_WORD, k -> new MarkTaskCommandParser().parse(k));
+        defaultMapper.put(UnmarkTaskCommand.SUBCOMMAND_WORD, k -> new UnmarkTaskCommandParser().parse(k));
+        defaultMapper.put(RenameCommand.COMMAND_WORD, k -> new RenameCommandParser().parse(k));
+        defaultMapper.put(PersonCommand.COMMAND_WORD, k -> new PersonCommandParser().parse(k));
+        defaultMapper.put(FloatCommand.COMMAND_WORD, k -> FloatCommand.parser().parse(k));
+        defaultMapper.put(IntCommand.COMMAND_WORD, k -> IntCommand.parser().parse(k));
+        defaultMapper.put(StringCommand.COMMAND_WORD, k -> StringCommand.parser().parse(k));
+        defaultMapper.put(seqCommand.COMMAND_WORD, k -> seqCommand.parser().parse(k));
+        defaultMapper.put(OpsCommand.COMMAND_WORD, k -> OpsCommand.parser().parse(k));
+        defaultMapper.put(PrintCommand.COMMAND_WORD, k -> PrintCommand.parser().parse(k));
+        defaultMapper.put(StringReplaceCommand.COMMAND_WORD, k -> StringReplaceCommand.parser().parse(k));
+        defaultMapper.put(CreateCommand.COMMAND_WORD, k -> CreateCommand.parser().parse(k));
+        defaultMapper.put(DeleteCustomCommand.COMMAND_WORD, k -> DeleteCustomCommand.parser().parse(k));
+        defaultMapper.put(AliasCommand.COMMAND_WORD, k -> AliasCommand.parser().parse(k));
+        defaultMapper.put(FieldCommand.COMMAND_WORD, k -> new FieldCommandParser().parse(k));
+    }
+
+    AddressBookParser() {
+        bonusMapper = new HashMap<>();
+        aliasMapper = new HashMap<>();
+    }
+
+    public static AddressBookParser get() {
+        if (bp == null) {
+            bp = new AddressBookParser();
+        }
+        return bp;
+    }
+
+    public static boolean isValidName(String test) {
+        return NAME_CHECK.matcher(test.trim()).matches();
+    }
+
+    public boolean isKeyAvailable(String key) {
+        return !defaultMapper.containsKey(key)
+                && !bonusMapper.containsKey(key)
+                && !aliasMapper.containsKey(key);
+    }
+
+    public void addCommand(CustomCommandBuilder builder) {
+        bonusMapper.put(builder.getRepr(), builder);
+    }
+
+    public void addAlias(String alias, String command) {
+        if (aliasMapper.containsKey(command)) {
+            addAlias(alias, aliasMapper.get(command));
+        }
+        if (defaultMapper.containsKey(command) || defaultMapper.containsKey(command)) {
+            aliasMapper.put(alias, command);
+        }
+    }
+
+    public void deleteCommand(String repr) {
+        if (repr == null) {
+            return;
+        }
+        if (aliasMapper.containsKey(repr)) {
+            aliasMapper.remove(repr);
+            return;
+        }
+
+        if (bonusMapper.containsKey(repr)) {
+            bonusMapper.remove(repr);
+        }
+
+        for (String value : aliasMapper.keySet()) {
+            if (aliasMapper.get(value).equals(repr)) {
+                aliasMapper.remove(value);
+            }
+        }
+    }
 
     /**
      * Used for initial separation of command word and args.
@@ -49,61 +172,17 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        case AddFieldCommand.COMMAND_WORD:
-            return new AddFieldCommandParser().parse(arguments);
-
-        case RemoveFieldCommand.COMMAND_WORD:
-            return new RemoveFieldCommandParser().parse(arguments);
-
-        case AddTeamCommand.COMMAND_WORD:
-            return new AddTeamCommandParser().parse(arguments);
-
-        case ChangeTeamCommand.COMMAND_WORD:
-            return new ChangeTeamCommandParser().parse(arguments);
-
-        case TaskCommand.COMMAND_WORD:
-            return new TaskCommandParser().parse(arguments);
-
-        case DeleteTeamCommand.COMMAND_WORD:
-            return new DeleteTeamCommandParser().parse(arguments);
-
-        case AddUserToTeamCommand.COMMAND_WORD:
-            return new AddUserToTeamCommandParser().parse(arguments);
-
-        case RemoveUserFromTeamCommand.COMMAND_WORD:
-            return new RemoveUserFromTeamCommandParser().parse(arguments);
-
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        while (aliasMapper.containsKey(commandWord)) {
+            commandWord = aliasMapper.get(commandWord);
         }
+        if (defaultMapper.containsKey(commandWord)) {
+            return defaultMapper.get(commandWord).apply(arguments);
+        } else if (bonusMapper.containsKey(commandWord)) {
+            return bonusMapper.get(commandWord).build();
+        }
+        throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
     }
-
 }
-

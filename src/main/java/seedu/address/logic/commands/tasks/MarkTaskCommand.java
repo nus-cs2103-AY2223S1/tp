@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
 
@@ -19,9 +20,9 @@ import seedu.address.model.task.Task;
 public class MarkTaskCommand extends TaskCommand {
     public static final String SUBCOMMAND_WORD = "mark";
 
-    public static final String MESSAGE_USAGE =
-            TaskCommand.getFullCommand(SUBCOMMAND_WORD) + ": Marks the task as completed\n"
-                    + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n";
+    public static final String MESSAGE_USAGE = TaskCommand.getFullCommand(SUBCOMMAND_WORD)
+            + ": Marks the task as completed\n"
+            + "Parameters: INDEX (must be a positive integer)\n" + "Example: " + COMMAND_WORD + " 1\n";
 
     public static final String COMPLETE_SUCESS = " task %s is marked as complete%n";
     public static final String ALREADY_MARKED = " task %s is already completed%n";
@@ -37,12 +38,18 @@ public class MarkTaskCommand extends TaskCommand {
         requireNonNull(model);
 
         List<Task> lastShownList = model.getFilteredTaskList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (task == null && targetIndex == null) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
-        Task task = lastShownList.get(targetIndex.getZeroBased());
+        if (task == null) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+            task = lastShownList.get(targetIndex.getZeroBased());
+        }
+
         Task newTask = task.mark();
         if (newTask == task) {
             throw new CommandException(ALREADY_MARKED);

@@ -39,7 +39,6 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
      */
     public AbstractAttribute(String typeName, T value, int accessCtrl, int styleFlag) {
         requireNonNull(typeName);
-        requireNonNull(value);
 
         this.typeName = typeName;
         this.value = value;
@@ -49,6 +48,11 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
     public AbstractAttribute(String typeName, T value) {
         this(typeName, value, DEFAULT, DEFAULT_STYLE);
+    }
+
+    @Override
+    public boolean isNameMatch(String name) {
+        return typeName.equalsIgnoreCase(name);
     }
 
     @Override
@@ -93,18 +97,22 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
     @Override
     public <U> boolean isSameType(Attribute<U> o) {
-        return o.getAttributeType().equals(typeName);
+        return o.getAttributeType().toLowerCase().equals(typeName.toLowerCase());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Attribute // instanceof handles nulls
-                        && value.equals(((Attribute<?>) other).getAttributeContent())); // state check
+                || (other instanceof AbstractAttribute // instanceof handles nulls
+                && typeName.equals(((AbstractAttribute<?>) other).typeName)
+                && value.equals(((AbstractAttribute<?>) other).value)); // state check
     }
 
     @Override
     public String toString() {
+        if (value == null) {
+            return "";
+        }
         if (isAllFlagMatch(HIDE_TYPE)) {
             return value.toString();
         }

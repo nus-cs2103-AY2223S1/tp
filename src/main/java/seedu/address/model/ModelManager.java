@@ -13,10 +13,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.GroupOutOfBoundException;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonOutOfBoundException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskOutOfBoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -48,6 +52,16 @@ public class ModelManager implements Model {
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
+    }
+
+    /**
+     * Updates all gui
+     */
+    @Override
+    public void refresh() {
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_GROUPS);
     }
 
     // =========== UserPrefs
@@ -224,6 +238,17 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public Person getFromFilteredPerson(Index index) throws PersonOutOfBoundException {
+        requireNonNull(index);
+        List<Person> filteredList = getFilteredPersonList();
+        int indexNum = index.getZeroBased();
+        if (filteredList.isEmpty() || indexNum < 0 || indexNum >= filteredList.size()) {
+            throw new PersonOutOfBoundException(filteredList.size(), indexNum + 1);
+        }
+        return filteredList.get(indexNum);
+    }
+
     // =========== Filtered Teams List Accessors
     // =============================================================
 
@@ -254,6 +279,17 @@ public class ModelManager implements Model {
         filteredTeams.setPredicate(predicate);
     }
 
+    @Override
+    public Group getFromFilteredTeams(Index index) throws GroupOutOfBoundException {
+        requireNonNull(index);
+        List<Group> filteredList = getFilteredTeamList();
+        int indexNum = index.getZeroBased();
+        if (filteredList.isEmpty() || indexNum < 0 || indexNum >= filteredList.size()) {
+            throw new GroupOutOfBoundException(filteredList.size(), indexNum + 1);
+        }
+        return filteredList.get(indexNum);
+    }
+
     // filtered tasks list accessors ========
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
@@ -270,6 +306,17 @@ public class ModelManager implements Model {
         };
 
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public Task getFromFilteredTasks(Index index) throws TaskOutOfBoundException {
+        requireNonNull(index);
+        List<Task> filteredList = getFilteredTaskList();
+        int indexNum = index.getZeroBased();
+        if (filteredList.isEmpty() || indexNum < 0 || indexNum >= filteredList.size()) {
+            throw new TaskOutOfBoundException(filteredList.size(), indexNum + 1);
+        }
+        return filteredList.get(indexNum);
     }
 
     @Override
