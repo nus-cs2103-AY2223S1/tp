@@ -44,6 +44,7 @@ you can jump to our [Features](#features) section to learn more about the featur
 
 4. Double-click the file to start the app. You can start typing to input your commands. If you click away, you can click on the top box to start typing again.
 5. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/UiCustomerList.png)
+Note that the images are to help with interface only. The actual details of the data may differ in your application.
 6. You can use the following commands in the Customer View:
 
    * `addcus n/Betsy Crowe e/betsycrowe@example.com p/1234586` :  Creates a new customer named Betsy Crowe.
