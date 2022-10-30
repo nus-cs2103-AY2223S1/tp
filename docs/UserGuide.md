@@ -472,31 +472,21 @@ Format: `calendar`
 
 ## FAQ
 
-<details>
-<summary> <b>Q</b>: How do I transfer my data to another Computer? </summary>
-<b>A</b> : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-</details>
-<br>
-<details>
-<summary> <b>Q</b>: Why am I seeing `(insert error)` when trying to add an event?</summary>
-<b>A</b> : When adding an Event involving a client, this client must exist in your client book first.
-</details>
-<br>
-<details>
-<summary> <b>Q</b>: Why am I seeing a `Sorting metric does not exist` error when trying to sort my client list?</summary>
-<b>A</b> : You may be typing a wrong **keyword** or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
-</details>
-<br>
-<details>
-<summary> <b>Q</b>: Why is a blank screen shown when I use the `calendar` feature? </summary>
-<b>A</b> : You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event) first. Alternatively, you can choose to [view all Events](#viewing-all-events--listevents) instead.
-<br>
-</details>
-<br>
-<details>
-<summary> <b>Q</b>: What do I do if the user guide does not address my concern? </summary>
-<b>A</b> : Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply within three working days!
-</details>
+Q: How do I transfer my data to another Computer? <br>
+A : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+Q: Why am I seeing `(insert error)` when trying to add an event?<br>
+A : When adding an Event involving a client, this client must exist in your client book first.
+
+Q: Why am I seeing a `Sorting metric does not exist` error when trying to sort my client list? <br>
+A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
+
+Q: Why is a blank screen shown when I use the `calendar` feature? <br>
+A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event) first. Alternatively, you can choose to [view all Events](#viewing-all-events--listevents) instead.
+
+Q: What do I do if the user guide does not address my concern? <br>
+A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply within three working days!
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -511,12 +501,16 @@ General Commands
 | **Exit application**        | `exit`                                                                                                                                                                                                        |
 
 
-Commands For Contacts
+Commands For Clients
 
-| Action                 | Format, Examples                                                                                                                                |
-|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**               | `help`                                                                                                                                          |
-| **Exit application**   | `exit`                                                                                                                                          |
+| Action                             | Format, Examples                                                                                                                                                                                             |
+|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Client**                    | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br> e.g: ` find n/Jim p/98765432` |
+| **Add Client**                     | `addClient [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`  <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                         |
+| **Delete Client**                  | `deleteClient [INDEX]` <br> e.g., `delete 3`                                                                                                                                                                 |
+| **Edit Client**                    | `editClient [INDEX] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                         |
+| **View Clients**                   | `allClients`                                                                                                                                                                                                 |
+| **View Filtered Clients**          | `clients`                                                                                                                                                                                                    |                                                              |
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
 
