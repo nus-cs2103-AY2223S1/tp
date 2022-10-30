@@ -30,9 +30,9 @@ the help window.
 
 :information_source: **Note:**<br>
 
-For first-timer users, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and
-the current day. For example, you can try entering `list 2022-09-15` to view the sample food items on 15 September 2022.
-To delete food items from all days, enter `clear`.
+* For first-timers, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and the current day. 
+* For example, you can try entering `list 2022-09-15` to view the sample food items on 15 September 2022. 
+* To delete food items from all days, enter `clear`.
 
 </div>
 
@@ -56,7 +56,6 @@ as `nutrigoals.jar`. Do not delete or edit these files.
 * Texts in `UPPER_CASE` are arguments provided by the user.
   * E.g. in `add n/FOOD c/CALORIE t/MEAL_TYPE`, `FOOD`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
 * Arguments in square brackets are optional.
-<<<<<<< HEAD
 * The parameters can be in any order.
   * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
 * Integer values are values between 1 and 2147483647 (inclusive).
@@ -64,9 +63,7 @@ as `nutrigoals.jar`. Do not delete or edit these files.
   * E.g. `edit 2147483648` is an invalid command regardless of the inputs provided.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
   * E.g. `help 123` will be interpreted as `help`.
-=======
 * The `FOOD` parameter for commands `add`, `edit` and `find` can only take on alphanumeric values that contain at most 27 characters.
->>>>>>> master
 
 </div>
 
@@ -106,11 +103,7 @@ Format: `delete INDEX`
 Example:
 
 * `delete 1` deletes the first item in the food list.
-<<<<<<< HEAD
-* Executing `list 2022-10-23`, then `delete 1` will delete the first food item recorded on 23 October 2022. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
-=======
-* `list 2022-10-23` followed by `delete 1` will delete the first food item on the list for 23 October 2022.
->>>>>>> master
+* `list 2022-10-23`, then `delete 1` will delete the first food item recorded on 23 October 2022. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
 
 ### Editing a food item : `edit`
 
@@ -141,6 +134,11 @@ Format: `list [DATE]`
 * Shows the food list for the current day if no `DATE` is supplied.
 * `DATE` must be in the format `yyyy-MM-dd` if supplied.
 
+Example:
+
+* `list` shows a list of all food items and their calories for the current day.
+* `list 2022-10-23` shows a list of all food items and their calories recorded on 23 October 2022.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note:**<br>
@@ -150,11 +148,6 @@ Format: `list [DATE]`
 * E.g. `list 2022-02-31` is an invalid command.
 
 </div>
-
-Example:
-
-* `list` shows a list of all food items and their calories for the current day.
-* `list 2022-10-23` shows a list of all food items and their calories recorded on 23 October 2022.
 
 ### Finding the calorie content of a food item: `find`
 
@@ -176,7 +169,7 @@ Example:
 
 `FOOD` is case-insensitive.
 
-* E.g. `find rice` is the same as find `rIcE`.
+* E.g. `find rice` is the same as find `find rIcE`.
 
 </div>
 
@@ -192,12 +185,11 @@ Format: `target CALORIE`
 
 Example:
 
-* `target 2500` sets a target calorie intake of 2500 calories for the day and displays the list of foods for the day.
+* `target 2500` sets a target calorie intake of 2500 calories for the current day and displays the list of foods for the current day.
 
 ### Viewing a summary of the daily calorie intake: `review`
 
-Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day. 
-The list of foods for the day will also be displayed.
+Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day. The list of foods for the day will also be displayed.
 
 Format: `review`
 
