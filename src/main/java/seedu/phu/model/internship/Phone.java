@@ -16,12 +16,12 @@ public class Phone {
                     + "1. Country code is optional. "
                     + "You may include + at the beginning of your phone number to denote the country code.\n"
                     + "2. The country code can only be 1 to 3 digits long.\n"
-                    + "3. The space in-between the country code and the phone number is optional.\n"
+                    + "3. The country code and the phone number must be separated by a single whitespace.\n"
                     + "4. The phone number may only contain numbers (no whitespace allowed).\n"
                     + "5. The phone number can only be 3 to 15 digits long.\n"
                     + "Valid example: +65 12345678\n"
                     + "Invalid example: +65 1234 5678";
-    public static final String VALIDATION_REGEX = "^(\\+\\d{1,3}( )?)?\\d{3,15}";
+    public static final String VALIDATION_REGEX = "^(\\+\\d{1,3}( ))?\\d{3,15}";
     public static final String DEFAULT_VALUE = "NA";
 
     public final String value;
