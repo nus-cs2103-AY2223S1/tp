@@ -20,6 +20,9 @@ import hobbylist.logic.commands.FindStatusCommand;
 import hobbylist.logic.commands.FindTagCommand;
 import hobbylist.logic.commands.HelpCommand;
 import hobbylist.logic.commands.ListCommand;
+import hobbylist.logic.commands.RateAboveCommand;
+import hobbylist.logic.commands.RateCommand;
+import hobbylist.logic.commands.SelectCommand;
 import hobbylist.logic.commands.exceptions.CommandException;
 import hobbylist.logic.parser.HobbyListParser;
 import hobbylist.logic.parser.exceptions.ParseException;
@@ -129,5 +132,8 @@ public class LogicManager implements Logic {
         FindCommand.setCommandWord(aliasSettings.getFind());
         ListCommand.setCommandWord(aliasSettings.getList());
         HelpCommand.setCommandWord(aliasSettings.getHelp());
+        RateCommand.setCommandWord(aliasSettings.getRate());
+        RateAboveCommand.setCommandWord(aliasSettings.getRateAbove());
+        SelectCommand.setCommandWord(aliasSettings.getSelect());
     }
 }

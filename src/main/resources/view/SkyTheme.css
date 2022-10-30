@@ -291,7 +291,7 @@
 
 .text-input{
     -fx-background-color:rgb(255,255,255,0.7);
-    -fx-background-radius:10;
+
     -fx-text-fill: black;
 }
 .text-input-label{
