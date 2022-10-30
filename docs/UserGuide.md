@@ -269,8 +269,14 @@ Changes current parameters of selected module.
 - Targeted module code must exist in the module list
 - New module code must not already exist in the module list
 - All tasks associated with the module would change to the new module code after editing the module
-- New module credit must be numeric and cannot be negative
 - The order of optional tags does not matter
+
+> Since we fetch our module information from NUSMods, any edits to the module would not be checked against NUSMods again.
+>
+> A module is assumed to be valid so long as the:
+> - Module code has **between 6 and 9 alphanumeric characters**
+> - Module credit is **between 1 and 2 digits**
+> - Module name is **alphanumeric and less than 100 characters**
 
 Format: `edit module <module code> [-c <module code>] [-cr <module credit>] [-n <module name>]`
 
