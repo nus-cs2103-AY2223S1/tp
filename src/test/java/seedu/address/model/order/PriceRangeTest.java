@@ -7,6 +7,15 @@ import org.junit.jupiter.api.Test;
 
 public class PriceRangeTest {
     @Test
+    public void constructor_lowerBoundHigherThanUpperBound_swap() {
+        Price lowerBound = new Price(253.0);
+        Price upperBound = new Price(156.76);
+        PriceRange expected = new PriceRange(upperBound, lowerBound);
+        PriceRange result = new PriceRange(lowerBound, upperBound);
+        assertEquals(result, expected);
+    }
+
+    @Test
     public void getUpperBound() {
         Price upperBound = new Price(79.5);
         Price lowerBound = new Price(19.5);

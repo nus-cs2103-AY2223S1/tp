@@ -28,8 +28,13 @@ public class PriceRange implements Comparable<PriceRange> {
      * @param upperBound The bound that the final price is expected not to be greater than
      */
     public PriceRange(Price lowerBound, Price upperBound) {
-        this.upperBound = upperBound;
-        this.lowerBound = lowerBound;
+        if (lowerBound.getPrice() > upperBound.getPrice()) {
+            this.lowerBound = upperBound;
+            this.upperBound = lowerBound;
+        } else {
+            this.upperBound = upperBound;
+            this.lowerBound = lowerBound;
+        }
     }
 
     public Price getUpperBound() {

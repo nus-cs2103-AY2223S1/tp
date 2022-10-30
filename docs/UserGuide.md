@@ -157,6 +157,13 @@ of the terms commonly used in PetCode.
 **Additional Information:**
 
 * Unless otherwise specified, the order of prefixes does not matter.
+* Contact refers to a person added to the address book. It can be of the following three categories: Buyer, Supplier,
+  and Deliverer.
+* Item refers to an Order or Pet. An Order refers to the order placed by Buyer. A Pet refers to the pet sold by a
+  Supplier.
+* When you input a price range for your orders, the order of the lower bound of the price range and the upper bound does 
+not matter because our app will configure the lower bound of the price range to be the smaller input and the upper
+bound to be the larger input.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
