@@ -30,7 +30,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
    * **`delete student`**`3`: Deletes the 3rd student shown in the current list.
 
-   * **`clear reminders`**: Deletes all reminders.
+   * **`clear f/reminder`**: Deletes all reminders.
 
    * **`exit`**: Exits the app.
 
@@ -421,7 +421,7 @@ _Details coming soon..._
 | **e/**    | email            | `add student`</br> `edit student`                                                                                                                                                |
 | **f/**    | field            | `switch` <br/> `clear`                                                                                                                                                           |
 | **g/**    | grade            | `add student`</br> `edit student`                                                                                                                                                |
-| **i/**    | id               | `add student`</br> `edit student`</br> `find`                                                                                                                                    |
+| **i/**    | student id       | `add student`</br> `edit student`</br> `find`                                                                                                                                    |
 | **m/**    | module           | `add student`</br> `edit student`</br> `find`</br> `add tutorial`</br> `edit tutorial`</br> `add consultation`</br> `edit consultation`                                          |
 | **n/**    | name             | `add student`</br> `edit student`</br> `find`</br> `add tutorial`</br> `edit tutorial`</br> `add consultation`</br> `edit consultation`</br> `add reminder`</br> `edit reminder` |
 | **p/**    | priority         | `add reminder`</br> `edit reminder`                                                                                                                                              |
