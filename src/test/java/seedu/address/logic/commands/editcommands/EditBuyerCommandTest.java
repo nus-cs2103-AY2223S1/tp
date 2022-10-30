@@ -1,13 +1,22 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.editcommands;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.addcommands.AddBuyerCommand;
-import seedu.address.logic.commands.addcommands.AddBuyerCommandTest;
-import seedu.address.logic.commands.editcommands.EditBuyerCommand;
-import seedu.address.logic.commands.editcommands.EditCommand;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -20,21 +29,6 @@ import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TypicalBuyers;
-
-import java.lang.reflect.Array;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 public class EditBuyerCommandTest {
 
@@ -349,7 +343,7 @@ public class EditBuyerCommandTest {
      * A Model stub that always accept the buyer being added.
      */
     private class ModelStubAcceptingBuyerAdded extends ModelStub {
-        ArrayList<Buyer> buyers = new ArrayList<>();
+        private ArrayList<Buyer> buyers = new ArrayList<>();
 
         @Override
         public ObservableList<Buyer> getFilteredBuyerList() {

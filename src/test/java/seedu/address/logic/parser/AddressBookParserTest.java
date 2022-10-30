@@ -23,7 +23,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.addcommands.AddDelivererCommand;
-import seedu.address.logic.commands.addcommands.AddPetCommand;
+//import seedu.address.logic.commands.addcommands.AddPetCommand;
 import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
 import seedu.address.logic.commands.deletecommands.DeleteDelivererCommand;
@@ -44,7 +44,7 @@ import seedu.address.model.order.predicates.PriceRangePredicate;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
-import seedu.address.model.pet.Pet;
+//import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.predicates.ColorContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.PriceContainsKeywordsPredicate;
@@ -52,7 +52,12 @@ import seedu.address.model.pet.predicates.SpeciesContainsKeywordsPredicate;
 import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
 //import seedu.address.testutil.EditPersonDescriptorBuilder;
 //import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.*;
+import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TypicalBuyers;
+import seedu.address.testutil.TypicalDeliverers;
+import seedu.address.testutil.TypicalPersonCategories;
+import seedu.address.testutil.TypicalSuppliers;
+
 
 public class AddressBookParserTest {
 
