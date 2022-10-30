@@ -64,8 +64,8 @@ public class VersionedBobaBot extends BobaBot {
         BobaBot copiedBobaBot = new BobaBot(bobaBot);
         if (!copiedBobaBot.strictlyEquals(this.bobaBotStateList.get(this.currentStatePointer))) {
             // prune away all previously stored redoable steps
-            for (int i=currentStatePointer+1; i<this.bobaBotStateList.size(); i++){
-                this.bobaBotStateList.remove(currentStatePointer+1);
+            for (int i = currentStatePointer + 1; i < this.bobaBotStateList.size(); i++) {
+                this.bobaBotStateList.remove(currentStatePointer + 1);
             }
             this.bobaBotStateList.add(copiedBobaBot);
             this.currentStatePointer++;
