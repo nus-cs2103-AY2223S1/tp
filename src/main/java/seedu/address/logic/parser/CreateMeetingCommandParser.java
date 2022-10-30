@@ -16,11 +16,11 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> {
 
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.UK)
         .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm", Locale.UK)
         .withResolverStyle(ResolverStyle.SMART);
-    private final DateTimeProcessor validator = new DateTimeProcessor(dateFormatter, timeFormatter);
+    public static final DateTimeProcessor DATE_TIME_VALIDATOR = new DateTimeProcessor(DATE_FORMATTER, TIME_FORMATTER);
 
     /**
      * Parses the given {@code String} of arguments in the context of the CreateMeetingCommand
@@ -41,7 +41,7 @@ public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> 
             String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
             String meetingTitle = newMeetingInformation[1].strip();
             String meetingDateAndTime = newMeetingInformation[2].strip();
-            String processedMeetingDateAndTime = this.validator.processDateTime(meetingDateAndTime);
+            String processedMeetingDateAndTime = DATE_TIME_VALIDATOR.processDateTime(meetingDateAndTime);
             String meetingLocation = newMeetingInformation[3].strip();
 
             if ((Objects.equals(meetingTitle, "")) || (Objects.equals(meetingLocation, ""))) {
