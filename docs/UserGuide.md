@@ -129,14 +129,14 @@ Example:
 
 Edits an existing stall at the specified `STALL_INDEX`.
 
-Format: `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/TAGS]…`
+Format: `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/EDIT_TAG]…`
 * The index refers to the index number shown in the displayed stalls list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Editing stalls is flexible in FoodWhere. For example, you can update just the stall name or perhaps just the address and tags of the stall only.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the stall will be removed i.e adding of tags is not cumulative.
-* You can remove all the stall’s tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the stall will be removed i.e adding of tags is not cumulative
+* You can remove all of the stall’s tags by using the `t/` parameter exactly once.
 * All reviews that are associated to the edited stall will be updated to reflect the new changes of the stall.
 * No 2 stalls should have the same name and address.
 * If the name and/or address is updated, the previous reviews of the stall would be added to the end of the list of reviews.
@@ -150,14 +150,14 @@ Examples:
 
 Edits an existing review at the specified `REVIEW_INDEX`.
 
-Format: `redit REVIEW_INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…`
+Format: `redit REVIEW_INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/EDIT_TAG]…`
 * The index refers to the index number shown in the displayed reviews list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Editing reviews is flexible in FoodWhere. For example, you can update just the review content or perhaps just the date and rating of the review only.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the review will be removed i.e adding of tags is not cumulative.
-* You can remove all the review’s tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the review will be removed i.e adding of tags is not cumulative
+* You can remove all of the review’s tags by using the `t/` parameter exactly once.
 * No 2 reviews should have the same date, content, rating and tags.
 * The previous review would be deleted and the edited version is added to the end of the list of reviews.
 
@@ -285,13 +285,13 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | **clear** | `clear`                                                                                                      |
 | **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…` <br> e.g., `radd s/3 d/20/09/2022 c/Great food! r/4`|
 | **rdel**  | `rdel REVIEW_INDEX`                                                                                                 |
-| **redit** | `redit REVIEW_INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…` <br> e.g., `redit 1 d/20/09/2022 c/Great food!`      |
+| **redit** | `redit REVIEW_INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/EDIT_TAG]…` <br> e.g., `redit 1 d/20/09/2022 c/Great food!`      |
 | **rlist** | `rlist`                                                                                                      |
 | **rfind** | `rfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…` <br> e.g., `rfind n/eatery`                                |
 | **rsort** | `rsort CRITERION` <br> e.g., `rsort rating`                                                                  |                                                                   
 | **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…` <br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South`                |
 | **sdel**  | `sdel STALL_INDEX`                                                                                           |
-| **sedit** | `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/TAGS]…` <br> e.g., `sedit 1 n/John Chicken Rice`                  |
+| **sedit** | `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/EDIT_TAG]…` <br> e.g., `sedit 1 n/John Chicken Rice`                  |
 | **slist** | `slist`                                                                                                      |
 | **sfind** | `sfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…` <br> e.g., `rfind n/eatery`                                |
 | **ssort** | `ssort CRITERION` <br> e.g., `ssort reversedname`                                                            |
@@ -304,12 +304,13 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | `CONTENT`      | Any ASCII text                                                                                              |
 | `CRITERION`    | Valid criteria are stated at the [sfind](#finding-a-stall-sfind), [rfind](#finding-a-review-rfind) commands |
 | `DATE`         | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes          |
+| `EDIT_TAG`     | A possibly empty alphanumeric token without spaces, case insensitive                                        |
 | `KEYWORD`      | An alphanumeric token without spaces, case insensitive                                                      |
-| `NAME`         | An alphanumeric string with spaces, case insensitive                                                        |
+| `NAME`         | A nonempty alphanumeric string with spaces, case insensitive                                                |
 | `RATING`       | An integer from 0 to 5                                                                                      |
 | `REVIEW_INDEX` | A positive integer from 1 and the number of reviews in the review list, inclusive                           |
 | `STALL_INDEX`  | A positive integer from 1 and the number of stalls in the stall list, inclusive                             |
-| `TAGS`         | An alphanumeric token without spaces, case insensitive                                                      |
+| `TAGS`         | A nonempty alphanumeric token without spaces, case insensitive                                              |
 
 ## Future Features (Unimplemented)
 
