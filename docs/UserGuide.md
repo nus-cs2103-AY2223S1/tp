@@ -114,20 +114,82 @@ This table outlines the components shared by both Contact View and Task View.
 | **Task List**       | ![Task List](images/user-guide/task-list.png)             |
 | **Contact Sidebar** | ![Contact Sidebar](images/user-guide/contact-sidebar.png) |
 
-### Command Format
+### How to use Swift+ commands 
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+Swift+ is built around text-based commands. Before we dive deeper into the details in the [Commands](#commands) section, 
+let's learn the basic components and format of a command. 
 
-   - `list_contact` : Lists all contacts.
-    
-   - `add_contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`.
-    
-   - `delete_contact 3` : Deletes the 3rd contact shown in the displayed contact list.
-    
-   - `exit` : Exits the app.
+#### Flag
 
-6. Refer to the [Commands](#commands) section below for details of each command.
+A flag is a delimiter that allows Swift+ to distinguish different input fields. For each flag, you would put in the 
+corresponding parameter immediately after.
+
+Refer to the [Command Format](#command-format) section on how to use flags and parameters together.
+
+| Flag  | Corresponding Parameter |
+|-------|-------------------------|
+| `a/`  | `ADDRESS`               |
+| `c/`  | `CONTACT_INDEX`         |
+| `d/`  | `DESCRIPTION`           |
+| `dl/` | `DEADLINE`              |
+| `e/`  | `EMAIL`                 |
+| `n/`  | `NAME`                  |
+| `p/`  | `PHONE_NUMBER`          |
+| `t/`  | `TAG`, `TASK_INDEX`     |
+
+#### Parameter
+
+A parameter represents placeholders where you input data. Usually, parameters follow immediately after their corresponding flag.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note**<br>
+Some parameters, such as `CONTACT_INDEX` and `KEYWORD`, may not follow after flags.
+</div>
+
+Refer to the [Command Format](#command-format) section on how to use flags and parameters together.
+
+| Parameter       | Corresponding Flag | Description                                                |
+|-----------------|--------------------|------------------------------------------------------------|
+| `ADDRESS`       | `a/`               | The address of a contact.                                  |
+| `CONTACT_INDEX` | `c/`               | The displayed index of a contact.                          |
+| `CONTACT_NAME`  | `n/`               | The name of a contact.                                     |
+| `DEADLINE`      | `dl/`              | The deadline of a task.                                    |
+| `DESCRIPTION`   | `d/`               | The description of a task.                                 |
+| `EMAIL`         | `e/`               | The email of a contact.                                    |
+| `KEYWORD`       | Not applicable     | The keywords to search for when finding contacts or tasks. |
+| `TASK_INDEX`    | `t/`               | The displayed index of a task.                             |
+| `TASK_NAME`     | `n/`               | The name of a task.                                        |
+| `PHONE_NUMBER`  | `p/`               | The phone number of a contact.                             |
+| `TAG`           | `t/`               | The tag of a contact.                                      |
+
+#### Command Format
+
+To understand how a full command is interpreted, let's look at the following example.
+
+**Example:** `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+|                    | Component Name | Meaning                                                 |
+|--------------------|----------------|---------------------------------------------------------|
+| **`add_contact`**  | Command Word   | Tells Swift+ what command you wish to execute.          |
+| **`n/`**           | Flag           | Distinguishes input fields.                             |
+| **`CONTACT_NAME`** | Parameter      | Represents placeholder for data that you wish to input. |
+
+Notice how `t/TAG` is wrapped in `[ ]`. Items in square brackets are **optional**. 
+- For example, `n/CONTACT_NAME [t/TAG]` can be used as `n/John t/friend` or as `n/John`.
+
+Furthermore, notice how `[t/TAG]` is followed by `…`​. Items followed by `…`​ can be used **multiple times**, including 
+zero times. 
+- For example, `n/CONTACT_NAME [t/TAG]…​` can be used as `n/John` (i.e. 0 times), `n/John t/friend`, `n/John t/friend t/family`, and etc.
+
+<div markdown="block" class="alert alert-info">:information_source: **Note**<br>
+
+- Parameters can be in **any order**.<br>
+  e.g. if the command specifies `n/CONTACT_NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/CONTACT_NAME` is also acceptable.
+- If a parameter is expected only once in the command but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
+  e.g. if you specify `p/1234 p/5678`, only `p/5678` will be taken.
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list_contact`, `exit` and `clear`) will be **ignored**.<br>
+  e.g. if your specify `help 123`, it will be interpreted as `help`.
+
+</div>
 
 ---
 
@@ -135,33 +197,9 @@ This table outlines the components shared by both Contact View and Task View.
 
 This section covers how to use each command in detail.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add_contact n/NAME`, `NAME` is a parameter which can be used as `add_contact n/John Doe`.
-
-- Items in square brackets are **optional**.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-- Items with `…`​ after them can be used **multiple times** including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family`, etc.
-
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list_contact`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
 ### Viewing help: `help`
 
-Shows a message explaining how to access the user guide.
+> Shows a message explaining how to access the user guide.
 
 - Alternatively, you can also click on the Help button in the top toolbar.
 
@@ -169,9 +207,9 @@ Format: `help`
 
 ### Adding a contact: `add_contact`
 
-Adds a contact.
+> Adds a contact.
 
-Format: `add_contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
 A contact can have any number of tags (including 0)
@@ -184,13 +222,13 @@ Examples:
 
 ### Listing all contacts: `list_contact`
 
-Shows a list of all contacts.
+> Shows a list of all contacts.
 
 Format: `list_contact`
 
 ### Finding contacts by name: `find_contact`
 
-Find contacts whose names contain any of the given keywords.
+> Find contacts whose names contain any of the given keywords.
 
 Format: `find_contact KEYWORD [MORE_KEYWORDS]`
 
@@ -209,9 +247,9 @@ Examples:
 
 ### Editing a contact: `edit_contact`
 
-Edits an existing contact.
+> Edits an existing contact.
 
-Format: `edit_contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit_contact INDEX [n/CONTACT_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 - Edits the contact at the specified `INDEX`.
 - The index refers to the index number shown in the **displayed contact list**.
@@ -228,7 +266,7 @@ Examples:
 
 ### Deleting a contact: `delete_contact`
 
-Deletes the specified contact.
+> Deletes the specified contact.
 
 Format: `delete_contact INDEX`
 
@@ -243,7 +281,7 @@ Examples:
 
 ### Selecting a contact: `select_contact`
 
-Selects the specified contact and displays the contact's assigned tasks.
+> Selects the specified contact and displays the contact's assigned tasks.
 
 Format: `select_contact INDEX`
 
@@ -258,9 +296,9 @@ Examples:
 
 ### Adding a task: `add_task`
 
-Adds a task.
+> Adds a task.
 
-Format: `add_task n/NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`
+Format: `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`
 
 - Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
 
@@ -271,7 +309,7 @@ Examples:
 
 ### Listing all tasks: `list_task`
 
-Shows a list of all tasks.
+> Shows a list of all tasks.
 
 Format: `list_task`
 
@@ -295,9 +333,9 @@ Examples:
 
 ### Editing tasks: `edit_task`
 
-Edits an existing task.
+> Edits an existing task.
 
-Format: `edit_task INDEX [n/NAME] [d/DESCRIPTION] [dl/DEADLINE]`
+Format: `edit_task INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`
 
 - Edits the task at the specified `INDEX`. 
 - The index refers to the index number shown in the **displayed task list**. 
@@ -313,7 +351,7 @@ Examples:
 
 ### Deleting tasks: `delete_task`
 
-Deletes an existing task in task list.
+> Deletes an existing task in task list.
 
 Format: `delete_task INDEX`
 
@@ -326,7 +364,7 @@ Examples:
 
 ### Selecting a task: `select_task`
 
-Selects the specified task and displays the contacts assigned to the task.
+> Selects the specified task and displays the contacts assigned to the task.
 
 Format: `select_task INDEX`
 
@@ -341,7 +379,7 @@ Examples:
 
 ### Marking a task as complete: `mark`
 
-Marks the specified task as completed.
+> Marks the specified task as completed.
 
 Format: `mark INDEX`
 
@@ -356,7 +394,7 @@ Examples:
 
 ### Marking a task as incomplete: `unmark`
 
-Marks the specified task as incomplete.
+> Marks the specified task as incomplete.
 
 Format: `unmark INDEX`
 
@@ -371,7 +409,7 @@ Examples:
 
 ### Assigning a task to a contact: `assign`
 
-Assigns a task to a contact.
+> Assigns a task to a contact.
 
 Format: `assign c/CONTACT_INDEX t/TASK_INDEX`
 
@@ -386,7 +424,7 @@ Examples:
 
 ### Unassign a task from a contact: `unassign`
 
-Removes a contact from a task.
+> Removes a contact from a task.
 
 Format: `unassign c/CONTACT_INDEX t/TASK_INDEX`
 
@@ -401,7 +439,7 @@ Examples:
 
 ### Toggling between contacts and tasks tabs: `Ctrl + Tab`
 
-Toggles the view between the contacts and tasks tabs.
+> Toggles the view between the contacts and tasks tabs.
 
 Format: `Ctrl + Tab`
 
@@ -409,13 +447,13 @@ Format: `Ctrl + Tab`
 
 ### Clearing all data: `clear`
 
-Deletes all data in the application.
+> Deletes all data in the application.
 
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+> Exits the program.
 
 Format: `exit`
 
@@ -461,23 +499,23 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 
 ## **Command Summary**
 
-| Action             | Format                                                                         |
-|--------------------|--------------------------------------------------------------------------------|
-| **Add Contact**    | `add_contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                |
-| **Add Task**       | `add_task n/NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`            |
-| **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                          |
-| **Clear Data**     | `clear`                                                                        |
-| **Delete Contact** | `delete_contact INDEX`                                                         |
-| **Delete Task**    | `delete_task INDEX`                                                            |
-| **Edit Contact**   | `edit_contact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
-| **Edit Task**      | `edit_task INDEX [n/NAME] [d/DESCRIPTION] [dl/DEADLINE]`                       |
-| **Find Contacts**  | `find_contact KEYWORD [MORE_KEYWORDS]`                                         |
-| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                            |
-| **Help**           | `help`                                                                         |
-| **List Contacts**  | `list_contact`                                                                 |
-| **List Tasks**     | `list_task`                                                                    |
-| **Mark Task**      | `mark INDEX`                                                                   |
-| **Select Contact** | `select_contact INDEX`                                                         |
-| **Select Task**    | `select_task INDEX`                                                            |
-| **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                        |
-| **Unmark Task**    | `unmark INDEX`                                                                 |
+| Action             | Format                                                                                 |
+|--------------------|----------------------------------------------------------------------------------------|
+| **Add Contact**    | `add_contact n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                |
+| **Add Task**       | `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`               |
+| **Assign Task**    | `assign c/CONTACT_INDEX t/TASK_INDEX`                                                  |
+| **Clear Data**     | `clear`                                                                                |
+| **Delete Contact** | `delete_contact INDEX`                                                                 |
+| **Delete Task**    | `delete_task INDEX`                                                                    |
+| **Edit Contact**   | `edit_contact INDEX [n/CONTACT_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Edit Task**      | `edit_task INDEX [n/TASK_NAME] [d/DESCRIPTION] [dl/DEADLINE]`                          |
+| **Find Contacts**  | `find_contact KEYWORD [MORE_KEYWORDS]`                                                 |
+| **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                                    |
+| **Help**           | `help`                                                                                 |
+| **List Contacts**  | `list_contact`                                                                         |
+| **List Tasks**     | `list_task`                                                                            |
+| **Mark Task**      | `mark INDEX`                                                                           |
+| **Select Contact** | `select_contact INDEX`                                                                 |
+| **Select Task**    | `select_task INDEX`                                                                    |
+| **Unassign Task**  | `unassign c/CONTACT_INDEX t/TASK_INDEX`                                                |
+| **Unmark Task**    | `unmark INDEX`                                                                         |
