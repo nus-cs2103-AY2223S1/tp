@@ -1,4 +1,5 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.addcommands;
+
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -16,7 +17,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.addcommands.AddSupplierCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.addcommands.AddBuyerCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -29,49 +31,48 @@ import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddSupplierCommandTest {
+public class AddBuyerCommandTest {
+
     @Test
-    public void constructor_nullSupplier_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddSupplierCommand(null, new ArrayList<>()));
+    public void constructor_nullBuyer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddBuyerCommand(null, null));
     }
 
     @Test
-    public void execute_supplierAcceptedByModel_addSuccessful() throws Exception {
-        AddSupplierCommandTest.ModelStubAcceptingSupplierAdded modelStub =
-                new AddSupplierCommandTest.ModelStubAcceptingSupplierAdded();
-        Supplier validSupplier = new PersonBuilder().buildSupplier();
+    public void execute_buyerAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingBuyerAdded modelStub = new ModelStubAcceptingBuyerAdded();
+        Buyer validBuyer = new PersonBuilder().buildBuyer();
+        CommandResult commandResult = new AddBuyerCommand(validBuyer, new ArrayList<>()).execute(modelStub);
 
-        CommandResult commandResult = new AddSupplierCommand(validSupplier, new ArrayList<>()).execute(modelStub);
+        String expectedResult = "\n" + "0 orders added\n"
+                + String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer);
 
-        String expected = "\n" + "0 pets added\n"
-                + String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier);
-        assertEquals(expected, commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validSupplier), modelStub.suppliersAdded);
+        assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);
     }
 
     @Test
-    public void execute_duplicateSupplier_throwsCommandException() {
-        Supplier validSupplier = new PersonBuilder().buildSupplier();
-        AddSupplierCommand addSupplierCommand = new AddSupplierCommand(validSupplier, new ArrayList<>());
-        ModelStub modelStub = new ModelStubAcceptingSupplierAdded();
-        modelStub.addSupplier(validSupplier);
+    public void execute_duplicateBuyer_throwsCommandException() {
+        Buyer validBuyer = new PersonBuilder().buildBuyer();
+        AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer, new ArrayList<>());
+        ModelStub modelStub = new ModelStubWithBuyer(validBuyer);
 
-        assertThrows(CommandException.class, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER, ()
-                -> addSupplierCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Supplier alice = new PersonBuilder().withName("Alice").buildSupplier();
-        Supplier bob = new PersonBuilder().withName("Bob").buildSupplier();
-        AddSupplierCommand addAliceCommand = new AddSupplierCommand(alice, new ArrayList<>());
-        AddSupplierCommand addBobCommand = new AddSupplierCommand(bob, new ArrayList<>());
+        Buyer alice = new PersonBuilder().withName("Alice").buildBuyer();
+        Buyer bob = new PersonBuilder().withName("Bob").buildBuyer();
+        AddBuyerCommand addAliceCommand = new AddBuyerCommand(alice, new ArrayList<>());
+        AddBuyerCommand addBobCommand = new AddBuyerCommand(bob, new ArrayList<>());
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddSupplierCommand addAliceCommandCopy = new AddSupplierCommand(alice, new ArrayList<>());
+        AddBuyerCommand addAliceCommandCopy = new AddBuyerCommand(alice, new ArrayList<>());
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -80,7 +81,7 @@ public class AddSupplierCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different Supplier -> returns false
+        //different buyer -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -325,21 +326,39 @@ public class AddSupplierCommandTest {
     }
 
     /**
-     * A Model stub that always accept the Supplier being added.
+     * A Model stub that contains a single buyer.
      */
-    private class ModelStubAcceptingSupplierAdded extends ModelStub {
-        final ArrayList<Supplier> suppliersAdded = new ArrayList<>();
+    private class ModelStubWithBuyer extends ModelStub {
+        private final Buyer buyer;
 
-        @Override
-        public boolean hasSupplier(Supplier supplier) {
-            requireNonNull(supplier);
-            return suppliersAdded.stream().anyMatch(supplier::isSamePerson);
+        ModelStubWithBuyer(Buyer buyer) {
+            requireNonNull(buyer);
+            this.buyer = buyer;
         }
 
         @Override
-        public void addSupplier(Supplier supplier) {
-            requireNonNull(supplier);
-            suppliersAdded.add(supplier);
+        public boolean hasBuyer(Buyer buyer) {
+            requireNonNull(buyer);
+            return this.buyer.isSamePerson(buyer);
+        }
+    }
+
+    /**
+     * A Model stub that always accept the buyer being added.
+     */
+    private class ModelStubAcceptingBuyerAdded extends ModelStub {
+        final ArrayList<Buyer> buyersAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasBuyer(Buyer buyer) {
+            requireNonNull(buyer);
+            return buyersAdded.stream().anyMatch(buyer::isSamePerson);
+        }
+
+        @Override
+        public void addBuyer(Buyer buyer) {
+            requireNonNull(buyer);
+            buyersAdded.add(buyer);
         }
 
         @Override
@@ -347,4 +366,5 @@ public class AddSupplierCommandTest {
             return new AddressBook();
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.addcommands;
 // TODO: Uncomment when AddDelivererCommand has been added
 //import static java.util.Objects.requireNonNull;
 //import static org.junit.jupiter.api.Assertions.assertEquals;

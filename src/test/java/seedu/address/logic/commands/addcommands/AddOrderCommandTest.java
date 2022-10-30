@@ -1,10 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.addcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -16,8 +17,12 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.addcommands.AddBuyerCommand;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.index.UniqueId;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.addcommands.AddOrderCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -28,60 +33,81 @@ import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.TypicalBuyers;
+import seedu.address.testutil.TypicalOrders;
 
-public class AddBuyerCommandTest {
+public class AddOrderCommandTest {
 
     @Test
-    public void constructor_nullBuyer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddBuyerCommand(null, null));
+    public void execute_nullModel_throwsNullPointerException() {
+        AddOrderCommand command = new AddOrderCommand(TypicalOrders.ORDER_1, INDEX_FIRST);
+        assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
-    public void execute_buyerAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingBuyerAdded modelStub = new ModelStubAcceptingBuyerAdded();
-        Buyer validBuyer = new PersonBuilder().buildBuyer();
-        CommandResult commandResult = new AddBuyerCommand(validBuyer, new ArrayList<>()).execute(modelStub);
-
-        String expectedResult = "\n" + "0 orders added\n"
-                + String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer);
+    public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
+        //One Pet added
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
+        Order validOrder = new OrderBuilder().build();
+        CommandResult commandResult = new AddOrderCommand(validOrder, INDEX_FIRST).execute(modelStub);
+        String expectedResult = String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder);
 
         assertEquals(expectedResult, commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);
+
+        List<UniqueId> idList = modelStub.getFilteredBuyerList().get(0).getOrderIds();
+        assertEquals(idList.get(0), validOrder.getId());
+
+        //clear any orders added to the Buyer
+        modelStub.getFilteredBuyerList().get(0).deleteOrder(validOrder);
+
+        //multiple Pets added
+        modelStub = new ModelStubAcceptingOrderAdded();
+
+        Order firstValidOrder = new OrderBuilder().build();
+        Order secondValidOrder = new OrderBuilder().build();
+        Order thirdValidOrder = new OrderBuilder().build();
+        List<Order> validOrders = Arrays.asList(firstValidOrder, secondValidOrder, thirdValidOrder);
+
+        for (Order order : validOrders) {
+            commandResult = new AddOrderCommand(order, INDEX_FIRST).execute(modelStub);
+            expectedResult = String.format(AddOrderCommand.MESSAGE_SUCCESS, order);
+            assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        }
+
+        idList = modelStub.getFilteredBuyerList().get(0).getOrderIds();
+
+        for (int i = 0; i < idList.size(); i++) {
+            assertEquals(idList.get(i), validOrders.get(i).getId());
+        }
+
+        //clear any orders added
+        for (Order order : validOrders) {
+            modelStub.getFilteredBuyerList().get(0).deleteOrder(order);
+        }
+
+        // Different index
+        modelStub = new ModelStubAcceptingOrderAdded();
+        validOrder = new OrderBuilder().build();
+        commandResult = new AddOrderCommand(validOrder, INDEX_SECOND).execute(modelStub);
+        expectedResult = String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder);
+
+        assertEquals(expectedResult, commandResult.getFeedbackToUser());
+
+        idList = modelStub.getFilteredBuyerList().get(1).getOrderIds();
+        assertTrue(idList.contains(validOrder.getId()));
+
+        //clear any orders added
+        modelStub.getFilteredBuyerList().get(1).deleteOrder(validOrder);
     }
 
     @Test
-    public void execute_duplicateBuyer_throwsCommandException() {
-        Buyer validBuyer = new PersonBuilder().buildBuyer();
-        AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer, new ArrayList<>());
-        ModelStub modelStub = new ModelStubWithBuyer(validBuyer);
+    public void execute_largeIndex_throwsCommandException() {
+        Order validOrder = new OrderBuilder().build();
+        AddOrderCommand addOrderCommand = new AddOrderCommand(validOrder, Index.fromOneBased(Integer.MAX_VALUE));
+        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
 
-        assertThrows(CommandException.class,
-                AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
-    }
-
-    @Test
-    public void equals() {
-        Buyer alice = new PersonBuilder().withName("Alice").buildBuyer();
-        Buyer bob = new PersonBuilder().withName("Bob").buildBuyer();
-        AddBuyerCommand addAliceCommand = new AddBuyerCommand(alice, new ArrayList<>());
-        AddBuyerCommand addBobCommand = new AddBuyerCommand(bob, new ArrayList<>());
-
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
-
-        // same values -> returns true
-        AddBuyerCommand addAliceCommandCopy = new AddBuyerCommand(alice, new ArrayList<>());
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        //different buyer -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertThrows(CommandException.class, () -> addOrderCommand.execute(modelStub));
     }
 
     /**
@@ -327,37 +353,49 @@ public class AddBuyerCommandTest {
     /**
      * A Model stub that contains a single buyer.
      */
-    private class ModelStubWithBuyer extends ModelStub {
-        private final Buyer buyer;
+    private class ModelStubWithOrder extends ModelStub {
+        private final Order order;
 
-        ModelStubWithBuyer(Buyer buyer) {
-            requireNonNull(buyer);
-            this.buyer = buyer;
+        ModelStubWithOrder(Order order) {
+            requireNonNull(order);
+            this.order = order;
         }
 
         @Override
-        public boolean hasBuyer(Buyer buyer) {
-            requireNonNull(buyer);
-            return this.buyer.isSamePerson(buyer);
+        public boolean hasOrder(Order order) {
+            requireNonNull(order);
+            return this.order.equals(order);
         }
     }
 
     /**
      * A Model stub that always accept the buyer being added.
      */
-    private class ModelStubAcceptingBuyerAdded extends ModelStub {
-        final ArrayList<Buyer> buyersAdded = new ArrayList<>();
+    private class ModelStubAcceptingOrderAdded extends ModelStub {
+        final ArrayList<Order> ordersAdded = new ArrayList<>();
+        final FilteredList<Buyer> buyers = new FilteredList<>(TypicalBuyers.getTypicalBuyerAddressBook()
+                .getBuyerList());
 
         @Override
-        public boolean hasBuyer(Buyer buyer) {
-            requireNonNull(buyer);
-            return buyersAdded.stream().anyMatch(buyer::isSamePerson);
+        public void deleteOrder(Order order) {
+            ordersAdded.remove(order);
         }
 
         @Override
-        public void addBuyer(Buyer buyer) {
-            requireNonNull(buyer);
-            buyersAdded.add(buyer);
+        public ObservableList<Buyer> getFilteredBuyerList() {
+            return buyers;
+        }
+
+        @Override
+        public boolean hasOrder(Order order) {
+            requireNonNull(order);
+            return ordersAdded.stream().anyMatch(order::equals);
+        }
+
+        @Override
+        public void addOrder(Order order) {
+            requireNonNull(order);
+            ordersAdded.add(order);
         }
 
         @Override
@@ -365,5 +403,4 @@ public class AddBuyerCommandTest {
             return new AddressBook();
         }
     }
-
 }
