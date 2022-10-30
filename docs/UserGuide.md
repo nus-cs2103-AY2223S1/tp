@@ -100,6 +100,9 @@ as such will appear:
 
 ![HelpWindow](images/HelpWindow.png)
 
+You can choose a specific command by clicking on the drop-down menu in order to view the
+to view the information for that command.
+
 ### Adding a friend: `add`
 Format (fields in `[ ]` are optional, `*` indicates multiple entry): `add n/NAME m/MINECRAFT_NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 [c/COUNTRY] [ms/MINECRAFT_SERVER]* [s/SOCIAL_HANDLES]* [t/TAG]* [gt/GAME_TYPE]* [ti/TIME_INTERVAL]*`
@@ -338,6 +341,15 @@ Format: `exit`
 Minefriends data are saved in the hard disk automatically after any 
 command that changes the data. There is no need to save manually.
 
+### Autocomplete
+
+Minefriends supports autocomplete for all commands. Simply press the `TAB` or `ENTER` key to autocomplete the command.
+
+The following picture shows the autocomplete feature in action:
+![Autocomplete](images/Autocomplete.png)
+
+In order to navigate the list of autocomplete suggestions, you can either use the `UP` and `DOWN` arrow keys, 
+or simply click on the desired suggestion.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -356,7 +368,15 @@ The recommended window size is 1280 x 720 pixels, anything smaller may cause the
 
 **Q: How long can the parameters be?** <br>
 
+**A**:
 As long as you want, however please note that the UI will be distorted if these parameters are too long.
+
+**Q: Why do I need to press `Enter` twice to input the command?** <br>
+
+**A**:
+Unfortunately, this is a limitation of JavaFX. 
+The first `Enter` key press will trigger the autocomplete feature, 
+the second `Enter` key press will execute the command.
 
 --------------------------------------------------------------------------------------------------------------------
 
