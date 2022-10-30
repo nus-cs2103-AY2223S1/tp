@@ -19,14 +19,14 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-         <Label fx:id="email1" style="-fx-background-color: steelblue; -fx-text-fill: white;" styleClass="cell_small_label" text="Customer" />
-      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="email1" style="-fx-background-color: steelblue; -fx-text-fill: white;" styleClass="cell_small_label" text="Customer" />
         <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
+            <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
+            </minWidth>
         </Label>
+      <HBox alignment="CENTER_LEFT" spacing="5">
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <FlowPane fx:id="tags" />
