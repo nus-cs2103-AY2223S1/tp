@@ -224,7 +224,7 @@ Example: `ls -t highPriority` will find tags with `highpriority` (case-insensiti
 
 #### Listing all tasks with deadline on or after a date : `ls -d`
 
-Shows a list of all tasks under the same module.
+Shows a list of all tasks with deadline on or after the inputted date.
 
 Format: `ls -d DATE`
 * `DATE`: Must be in the format of YYYY-MM-DD.
@@ -261,11 +261,18 @@ Example multiple word search: ![FindCommandMultiple](images/user-guide/FindComma
 
 Allows you to remove a task from task list and store in archived file.
 
-Format: `archive TASK_NUMBER | DATE`
+Format: `archive TASK_NUMBER`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 
 Examples:
 * `archive 1`: archives first task in task list.
+
+<div markdown="span" class="alert alert-warning">:warning: **NOTE**: 
+
+This command is irreversible!
+
+</div>
+
 
 ### View Archived Tasks : `showarchive`
 
@@ -326,16 +333,6 @@ NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.js
 **Caution:**
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
 
-### Archiving data files : `archive`
-
-Allows you to remove a task from task list and store in archived file. 
-
-Format: `archive TASK_NUMBER`
-* `TASK_NUMBER`: This is the number of the task currently displayed.
-
-Examples: 
-* `archive 1`: archives first task in task list.
-
 ### Autocomplete
 
 When the user starts to type in the start of a command, a popup menu will appear with options to complete your input.
@@ -346,7 +343,20 @@ of your choice.
 
 ## FAQ
 
-To be added..
+**Q**: How do I transfer my data in NotionUS to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NotionUS home folder.
+
+**Q**: What is the date file fails to load into NotionUS?<br>
+**A**: It is likely that your storage data file is in the wrong format. Do check the log files to see what had happened when launching NotionUS. 
+
+**Q**: What if double-clicking fails to open the jar file?<br>
+**A**: Check that the correct version of java is installed (Java 11) locally on your computer. You may open the terminal and type java -version to check. If it is the wrong version, visit this [page](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language) for a guide to install the correct version of java. If you have the correct version of java installed, you may try to launch the app using terminal, open terminal or command prompt and type java -jar NotionUs.jar.  
+
+**Q**: Is internet needed for NotionUS to work?<br>
+**A**: No, NotionUS functions fully without internet connection.
+
+**Q**: What if the application crashes?<br>
+**A**: Please contact us via  GitHub issues [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/issues?q=is%3Aissue+is%3Aopen), do provide screenshots of the error or state the error message. We will assist you as soon as possible. 
 
 --------------------------------------------------------------------------------------------------------------------
 
