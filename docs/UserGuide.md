@@ -270,7 +270,7 @@ Examples:
 
 By tag:
 
-Unhides patients that were previously hidden whose names contain any of the given tags.
+Unhides patients that were previously hidden who contain any of the given tags.
 
 Format: `unhide patients t/TAG [t/MORE_TAGS]...`
 
@@ -326,7 +326,7 @@ Examples:
 
 By tag:
 
-Unhides hidden appointments that contains `TAG` (and `MORE_TAGS`).
+Unhides hidden appointments that contains `TAG` (OR `MORE_TAGS`).
 
 Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 
