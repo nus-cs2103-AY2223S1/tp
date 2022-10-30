@@ -57,12 +57,13 @@ Format: `help`
 
 #### Adding a patient: `add`
 
-Adds a patient into idENTify.
+Adds a patient into idENTify. Note that we allow duplicate names for patients, but distinct patients with the same 
+name must have different phone numbers to identify them.
 
 Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of tags (including 0)
+A patient can have any 0 to 3 tags.
 </div>
 
 Examples:
