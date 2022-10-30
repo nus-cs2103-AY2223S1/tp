@@ -44,7 +44,7 @@ public class CreateMeetingCommand extends Command {
 
     public static final String IMPRECISE_NAME_PREDICATE = "Oops! The name of one of the persons you are meeting "
         + "matches more than one person in the address book! \n"
-        + "Please include a more precise name.";
+        + "Please use their exact name.";
 
     private final String[] peopleToMeet;
     private final String meetingTitle;

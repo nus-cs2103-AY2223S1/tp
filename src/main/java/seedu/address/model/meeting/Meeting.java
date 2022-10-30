@@ -78,31 +78,39 @@ public class Meeting implements Comparable<Meeting> {
             model.updateFilteredPersonList(personNamePredicate);
             ObservableList<Person> listOfPeople = model.getFilteredPersonList();
 
+            //predicate returns empty list, name does not match anyone
             if (listOfPeople.isEmpty()) {
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 throw new PersonNotFoundException();
-            } else if (listOfPeople.size() > 1) {
-                boolean isExactMatchFound = false;
-                for (Person p : listOfPeople) {
-                    if (p.getName().fullName.equalsIgnoreCase(personName)) {
-                        isExactMatchFound = true;
-                        output.add(p);
-                        break;
-                    }
-                }
-                if (!isExactMatchFound) {
-                    throw new ImpreciseMatchException();
-                }
-            } else { // get the first person in the address book whose name matches
-                output.add(listOfPeople.get(0));
             }
 
-            // resets the list of persons after every search
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            output.add(findExactMatch(listOfPeople, personName));
         }
+        // resets the list of persons after every search
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return output;
     }
 
+    /**
+     * helper function for the convertNameToPerson function
+     * essentially iterates through a list of people and return the correct person
+     * @param listOfPeople list of Persons to iterate through
+     * @param personName person to find
+     * @return returns the correct Person object
+     */
+    private static Person findExactMatch(ObservableList<Person> listOfPeople, String personName) {
+        // guard clause
+        if (listOfPeople.size() == 1) {
+            return listOfPeople.get(0);
+        }
+        // if guard fails, then iterate through whole list to find and return p
+        for (Person p : listOfPeople) {
+            if (p.getName().fullName.equalsIgnoreCase(personName)) {
+                return p;
+            }
+        }
+        throw new ImpreciseMatchException();
+    }
     /**
      * checks for duplicate names in array
      *
