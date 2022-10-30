@@ -122,8 +122,6 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
         Label ret = new Label();
         ret.setText(txt);
-        System.out.printf("%s: ", txt);
-        System.out.println(getFormatCss());
         ret.setStyle(getFormatCss());
         return ret;
     }
