@@ -21,7 +21,7 @@ import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
-import tracko.model.item.exceptions.ItemUndeletableException;
+import tracko.model.item.exceptions.ItemUnmodifiableException;
 import tracko.model.tag.Tag;
 
 /**
@@ -93,7 +93,7 @@ public class EditItemCommand extends Command {
             model.refreshData();
             model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
             return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedInventoryItem));
-        } catch (ItemUndeletableException e) {
+        } catch (ItemUnmodifiableException e) {
             return new CommandResult(String.format(MESSAGE_UNCOMPLETED_ORDER_ITEM, editedInventoryItem));
         }
     }
