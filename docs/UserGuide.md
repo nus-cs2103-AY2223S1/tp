@@ -3,14 +3,28 @@ layout: page
 title: User Guide
 ---
 
-HobbyList is a **desktop app for managing hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps.
+## Table of Contents
 
 * Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Introduction
+
+### 1.1 What is HobbyList?
+HobbyList is a **desktop app for managing hobby activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, HobbyList can get your activity management tasks done faster than traditional GUI apps.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 2. About this User Guide
+
+### 2.1 How to use this user guide?
+to be added
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -30,7 +44,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
     
     * **`delete`**`3` : Deletes the 3rd hobby activity shown in the current list.
 
-    * **`find`**`keyword/1973-03` : Finds activities that contain the keyword or located in March of 1973.
+    * **`find`**`keyword/1973-03` : Finds activities that contain the keyword or located in March 1973.
 
     * **`exit`** : Exits the app.
 
@@ -41,11 +55,16 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
     * **`Help`** : To open a pop-up window containing more helping information.
     * **`Theme`** : To change different appearance of the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#5-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 4. HobbyList User Interface
+to be added
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -73,11 +92,6 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 
 </div>
 
-### Getting help : `help`
-
-Shows a message explaining how to access the help page.
-
-Format: `help`
 
 ### Adding a hobby activity : `add`
 
@@ -92,6 +106,51 @@ Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
 * `add n/Badminton d/play badminton t/sport entertainment_2 date/2022-10-19 s/completed`
+
+### Editing an activity : `edit`
+
+Edits a specified activity from HobbyList.
+
+Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
+
+* Edits the activity at the specified `INDEX`. The index refers to the index number shown in the displayed activity list. The `INDEX` **must be a positive integer** 1, 2, 3, …
+* At least **one** of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
+* You can remove all the activity's tags by typing `t/` without specifying any tags after it.
+* `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive) as STATUS. e.g. `s/ongoing`.
+
+Examples:
+
+* `edit 1 n/A Clash of Kings d/Epic fantasy novel by George R. R. Martin.`
+
+  *Edits the name and description of the 1st activity to be `A Clash of Kings` and `Epic fantasy novel by George R. R. Martin.` respectively.*
+
+
+* `edit 2 date/2022-10-21 t/`
+
+  *Removes the tags of the second activity and sets the date to `2022-10-21`.*
+
+### Deleting an activity : `delete`
+
+Deletes a specified activity from HobbyList.
+
+Format: `delete INDEX`
+
+* Deletes the activity at the specified `INDEX`.
+* The index refers to the index number shown in the displayed activity list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example: `delete 1`
+
+### Listing all hobby activities : `list`
+
+Shows a list of all hobby activities in HobbyList.
+
+Format: `list`
+
+Example: `list`
+
 
 ### Rating an activity: `rate`
 
@@ -108,13 +167,6 @@ Example:
 * `rate 1 r/2`
 * `rate 2 r/4 re/Interesting movie`
 
-### Listing all hobby activities : `list`
-
-Shows a list of all hobby activities in HobbyList.
-
-Format: `list`
-
-Example: `list`
 
 ### Selecting an activity: `select`
 
@@ -167,16 +219,6 @@ Format: `find rate/VALUE`
 
 Example: `find rate/3`
 
-### Finding activities with rating value above certain value : `r/above`
-
-Shows a list of all hobby activities whose rating value is greater or equal than the required value.
-
-Format: `r/above VALUE`
-
-* `VALUE` only accepts integer numbers from 1 to 5 (inclusive).
-
-Example: `r/above 1`
-
 ### Finding activities with tags : `findTag`
 
 Shows a list of all hobby activities whose tags match the one specified in the command.
@@ -198,45 +240,25 @@ Format: `findStatus STATUS`
 * The feature only works with the `STATUS` being **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive).
 * If input `STATUS` is different from the three statuses above, it is treated as **NONE** and HobbyList finds all the activities whose status is **NONE**.
 
-Example: 
+Example:
 * `findStatus COMPLETED`
 * `findStatus ongoing`
 
-### Editing an activity : `edit`
+### Finding activities with rating value above certain value : `r/above`
 
-Edits a specified activity from HobbyList.
+Shows a list of all hobby activities whose rating value is greater or equal than the required value.
 
-Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
+Format: `r/above VALUE`
 
-* Edits the activity at the specified `INDEX`. The index refers to the index number shown in the displayed activity list. The `INDEX` **must be a positive integer** 1, 2, 3, …
-* At least **one** of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
-* You can remove all the activity's tags by typing `t/` without specifying any tags after it.
-* `[s/STATUS]` only accepts **UPCOMING**, **ONGOING** or **COMPLETED** (case-insensitive) as STATUS. e.g. `s/ongoing`.
+* `VALUE` only accepts integer numbers from 1 to 5 (inclusive).
 
-Examples:
+Example: `r/above 1`
 
-* `edit 1 n/A Clash of Kings d/Epic fantasy novel by George R. R. Martin.` 
+### Getting help : `help`
 
-    *Edits the name and description of the 1st activity to be `A Clash of Kings` and `Epic fantasy novel by George R. R. Martin.` respectively.*
+Shows a message explaining how to access the help page.
 
-
-* `edit 2 date/2022-10-21 t/` 
-  
-    *Removes the tags of the second activity and sets the date to `2022-10-21`.*
-
-### Deleting an activity : `delete`
-
-Deletes a specified activity from HobbyList.
-
-Format: `delete INDEX`
-
-* Deletes the activity at the specified `INDEX`.
-* The index refers to the index number shown in the displayed activity list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Example: `delete 1`
+Format: `help`
 
 ### Deleting all activities: `clear`
 
@@ -258,11 +280,15 @@ Example: `exit`
 
 If you do not like the names of the command, you can select `preferences` in the menu bar and `edit aliases` to rename any of the commands.
 
-### Saving the data
+--------------------------------------------------------------------------------------------------------------------
+
+## 6. Managing data
+
+### 6.1 Saving the data
 
 HobbyList data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 6.2 Editing the data file
 
 HobbyList data are saved as a JSON file `[JAR file location]/data/hobbylist.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -272,27 +298,28 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 7. FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HobbyList home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 8. Command summary
 
-| Action         | Format                                                                                                                                             |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                |
-| **Clear**      | `clear`                                                                                                                                            |
-| **Delete**     | `delete INDEX`                                                                                                                                     |
-| **Edit**       | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
-| **Exit**       | `exit`                                                                                                                                             |
-| **Find**       | `find KEYWORDS` <br/> `find yyyy-mm-dd` `find yyyy-mm` `find yyyy` <br/> `find rate/value`                                                         |
-| **FindStatus** | `findStatus STATUS`                                                                                                                                |
-| **FindTag**    | `findTag KEYWORD`                                                                                                                                  |
-| **Help**       | `help`                                                                                                                                             |
-| **List**       | `list`                                                                                                                                             |
-| **Rate above** | `r/above VALUE`                                                                                                                                    |
-| **Rate**       | `rate INDEX r/RATING [re/REVIEW]`                                                                                                                  |
-| **Select**     | `select INDEX  `                                                                                                                                   |
+| Action                            | Format                                                                                     | Examples                                                                               |
+|-----------------------------------|--------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| **Add activity**                  | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`                               | `add n/poutine d/at some place t/food date/2022-09-25 s/completed`                     |
+| **Edit activity**                 | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`                   | `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17 s/completed` |
+| **Delete activity**               | `delete INDEX`                                                                             | `delete 3`                                                                             |
+| **List activities**               | `list`                                                                                     | `list`                                                                                 |
+| **Rate activity**                 | `rate INDEX r/RATING [re/REVIEW]`                                                          | `rate 1 r/4` <br/> `rate 1 r/4 re/Nice food with good vibes`                           |
+| **Select activity**               | `select INDEX`                                                                             | `select 1`                                                                             |
+| **Find activity**                 | `find KEYWORDS` <br/> `find yyyy-mm-dd` `find yyyy-mm` `find yyyy` <br/> `find rate/value` |                                                                                        |
+| **Find activity by tag**          | `findTag KEYWORD`                                                                          | `findTag movie`                                                                        |
+| **Find activity by status**       | `findStatus STATUS`                                                                        | `findStatus completed`                                                                 |
+| **Find activity by rating value** | `r/above VALUE`                                                                            | `r/above 3`                                                                            |
+| **Help**                          | `help`                                                                                     | `help`                                                                                 |
+| **Clear**                         | `clear`                                                                                    | `clear`                                                                                | 
+| **Exit**                          | `exit`                                                                                     | `exit`                                                                                 |
+
