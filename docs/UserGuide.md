@@ -8,7 +8,7 @@ title: User Guide
 The purpose of this user guide is to help both new and experienced users with using FindMyIntern.
 
 - If you are a new user, we recommend checking out the [introduction](#introduction) to get a better idea of what FindMyIntern can do. 
-If you have no prior experience with command line interfaces, we recommend reading this [guide].
+If you have no prior experience with command line interfaces, we recommend reading this guide.
 
 - If you are an experienced user, you can use the [table of contents](#table-of-contents) to jump straight to what you are looking for.
 
@@ -38,6 +38,7 @@ This section teaches you how to install and **get started** with FindMyIntern.
 <div markdown="1" class="border border-info">
 <h6 markdown="1">[Features](#features)</h6>
 This section contains **everything you need to know** about the features in FindMyIntern.
+
 It includes:
   - [Commands](#commands)
   - [Saving and Editing](#saving-and-editing)
