@@ -67,45 +67,55 @@ This user guide provides in-depth descriptions of all the available features in 
 
 1. Ensure you have `Java 11` or above installed in your Computer.
 
-2. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br> <br>
+
+3. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br> <br>
    ![Ui](images/DownloadInstruction.png) <br><br>
 
-3. Copy the file to the folder you want to use as the **home folder** for your GuestBook. <br> <br>
+4. Copy the file to the folder you want to use as the **home folder** for your GuestBook. <br> <br>
    ![Ui](images/GuestBookIcon.png) <br><br>
 
-4. Double-click on `guestbook.jar` to start the app. The GUI, similar to the image below, should pop up in a few seconds. 
+5. Double-click on `guestbook.jar` to start the app. The GUI, similar to the image below, should pop up in a few seconds. 
 Note that the app contains **sample data**.<br><br>
    ![Ui](images/Ui.png) <br><br>
 
-5. Type the command in the command box and press _Enter_ to execute it. E.g., typing **`help`** and pressing _Enter_ will open the help window.<br>
+6. Type the command in the command box and press _Enter_ to execute it. E.g., typing **`help`** and pressing _Enter_ will open the help window.<br>
 
-6. To kickstart your journey, you can add a guest, `John Doe`, to GuestBook using the **`add`** command.
+
+7. To kickstart your journey, you can add a guest, `John Doe`, to GuestBook using the **`add`** command.
    * **`add`** `n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook.
 
-7. To find `John Doe`, you can use the **`find`** command, and search through any of `John Doe`'s `fields`, such as his _name_ or _room_. The command below can help you find guests that match the keywords you entered.
+
+8. To find `John Doe`, you can use the **`find`** command, and search through any of `John Doe`'s `fields`, such as his _name_ or _room_. The command below can help you find guests that match the keywords you entered.
    * **`find`** `John Doe` : Finds all the guests who have at least one field containing `John` or `Doe` (_case-insensitive_).
 
-8. To make changes to `John Doe`, you can use the **`edit`** command. This changes the guest's fields based on the new values you provide. The other values will remain unchanged. <br>
+
+9. To make changes to `John Doe`, you can use the **`edit`** command. This changes the guest's fields based on the new values you provide. The other values will remain unchanged. <br>
 For example, if `John Doe` is the second guest in the list, and you want to change his room number to `05-55`, you can do this.
     * **`edit`** `2` `rm/05-55`n: Changes the `Room` of `John Doe` to `05-55` in GuestBook.
 
-9. After executing a **`find`** command, you might realise that some of your guests are no longer visible, as they are not in the current list.<br>
-To see a list of all your guests, you can use the **`list`** command.
-     * **`list`**: List all the guests in GuestBook.
 
-10. In the event that a guest orders room service, you can add charges to the guest's bill using the **`bill`** command.<br>
+10. After executing a **`find`** command, you might realise that some of your guests are no longer visible, as they are not in the current list.<br>
+To see a list of all your guests, you can use the **`list`** command.
+      * **`list`**: List all the guests in GuestBook.
+
+
+11. In the event that a guest orders room service, you can add charges to the guest's bill using the **`bill`** command.<br>
 For example, you can charge the third guest `30.35` by running the command below.
     * **`bill`** `3` `b/+30.35`: Adds `30.35` to the bill of the third guest.
 
-11. When a guest checks out of your hotel, you can remove the guest using the **`delete`** command.
+
+12. When a guest checks out of your hotel, you can remove the guest using the **`delete`** command.
     * **`delete`** `3` : Deletes the third guest shown in the current list.
 
-12. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
+
+13. To clear your GuestBook of all entries, you can use the **`clear`** command.<br>
 <span style="background-color: yellow; color: black">**WARNING:** This action is **irreversible**. Use with caution.</span>
     * **`clear`** : Deletes all guests.
 
+
 14. Finally, to quit GuestBook, you can run the **`exit`** command.
     * **`exit`** : Exits the app.
+
 
 15. For more details, you can refer to the [Features](#features) below for the exact specifications of each command. Thank you and we hope you enjoy using GuestBook!
 
@@ -119,7 +129,7 @@ For example, you can charge the third guest `30.35` by running the command below
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Alphanumeric** | Refers to characters that are numbers 0-9 and alphabets A-Z, both uppercase and lowercase.                                                          |
 | **dd/MM/yy**     | Refers to the date format, where dd stands for 2 digit days, 2 digit months and the last 2 digits for the year and they must be separated by a "/". |
-| **CLI**          | Stands for Command Line Interface, it refers to a text-based interface used to execute opertaions of the system.                                    |
+| **CLI**          | Stands for Command Line Interface, it refers to a text-based interface used to execute operations of the system.                                    |
 | **Guest**        | A guest staying at the hotel.                                                                                                                       |
 | **GUI**          | Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.              |
 | **Hard disk**    | A data storage device used to store and retrieve data.                                                                                              |
@@ -140,14 +150,18 @@ For example, you can charge the third guest `30.35` by running the command below
 * Words in `UPPER_CASE` are the **parameters** to be supplied by you, the user.<br>
   E.g., In `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+
 * Items in square brackets are **optional**.<br>
   E.g., `n/NAME [rq/REQUEST]` can be used as `n/John Doe rq/Extra towels` or as `n/John Doe`.
+
 
 * Parameters can be in **any order**.<br>
   E.g., If the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
+
 * If a parameter is expected only once but is specified multiple times in the command, only the **last occurrence** of the parameter will be considered.<br>
   E.g., If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be **ignored**.<br>
   E.g., If the command specifies `help 123`, it will be interpreted as `help`.
@@ -172,7 +186,7 @@ This command is typically used to **check a guest in** to your hotel with their 
 
 **Constraints of parameters**:
 
-&nbsp;&nbsp;&nbsp;Unless stated otherwise, all fields should not be left blank.
+&nbsp;&nbsp;&nbsp;Unless stated otherwise, all fields **should not** be left blank.
 * `NAME` should only contain alphanumeric characters and spaces.
 * `PHONE` should only contain numbers, and it should be at least 3 digits and at most 15 digits long.
 * `EMAIL` should only contain alphanumeric characters and '@' character. The local segment (before "@") should be at most 64 characters long, and the domain segment (after "@") should be at most 255 characters long.
@@ -256,19 +270,21 @@ the rooms that have room clean statuses set to `no`.
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
 
 **Common mistakes**:
-* Searching for guests using incomplete keywords e.g. `170` will **not** match `170.00`.
+* Searching for guests using incomplete keywords e.g. `170` will **not match** `170.00`.
 
 ### Deleting a guest: `delete`
 
-This command deletes the specified guest _(with index in different scenario)_ from GuestBook. 
+This command deletes an existing guest in GuestBook.
+
+The guest specified at the `INDEX` is the guest you wish to delete. 
 
 This command is typically used when a guest has checked out of the hotel. Do note that the `delete` command 
-is **IRREVERSIBLE**. Once deleted, the specific guest's data cannot be retrieved. Please use this 
-command with caution.
+is **irreversible**. 
+Once deleted, the specific guest's data cannot be retrieved.
+<span style="background-color: yellow; color: black">Once deleted, the specific guest's data cannot be retrieved. Please use this
+command with caution.</span>
 
 **Format**: `delete INDEX`
-
-* Deletes the guest at the specified `INDEX`.
 
 **Examples**:
 * `list` followed by `delete 2` deletes the 2nd guest in GuestBook.
@@ -280,7 +296,7 @@ command with caution.
 This command functions to mark the room clean statuses of all guests as `no`.
 
 This command is typically used at the end or the start of the day when the hotel manager wishes to 
-update all the room clean statuses to `no` efficiently. This clean slate would allow the hotel 
+update **all the room clean statuses** to `no` efficiently. This clean slate would allow the hotel 
 managers to keep track of the rooms that are cleaned or uncleaned for the day.
 
 **Format**: `markRoomsUnclean`
@@ -294,8 +310,9 @@ managers to keep track of the rooms that are cleaned or uncleaned for the day.
 This command clears **all entries** from GuestBook. 
 
 This command is typically used as a **hard reset** of all guest data in GuestBook. Do note that this command 
-is **IRREVERSIBLE**. Once cleared, all the guest data cannot be retrieved. Please use this command 
-with utmost caution.
+is **irreversible**.
+<span style="background-color: yellow; color: black">Once cleared, all the guest data cannot be retrieved. Please use this command
+with utmost caution.</span>
 
 **Format**: `clear`
 
@@ -349,13 +366,13 @@ Listed here are some frequently asked questions. Should you require any other as
 
 | Action                 | Format, Examples                                                                                                                                                                               |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3`            |
-| **Bill**               | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`                                                                                                                                                 |
+| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> E.g., `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3`            |
+| **Bill**               | `bill INDEX b/BILL`<br> E.g., `bill 2 b/99.99`                                                                                                                                                 |
 | **Clear**              | `clear`                                                                                                                                                                                        |
-| **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/4` |
+| **Delete**             | `delete INDEX`<br> E.g., `delete 3`                                                                                                                                                            |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> E.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/4` |
 | **Exit**               | `exit`                                                                                                                                                                                         |
-| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
+| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> E.g., `find James Jake`                                                                                                                                     |
 | **Help**               | `help`                                                                                                                                                                                         |
 | **List**               | `list`                                                                                                                                                                                         |
 | **Mark Rooms Unclean** | `markRoomsUnclean`                                                                                                                                                                             |                                                                                                                                                                                      |
