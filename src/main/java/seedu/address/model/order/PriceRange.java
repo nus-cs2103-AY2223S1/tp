@@ -1,5 +1,8 @@
 package seedu.address.model.order;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 import java.util.Objects;
 
 /**
