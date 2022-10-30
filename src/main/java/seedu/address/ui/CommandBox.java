@@ -44,11 +44,7 @@ public class CommandBox extends UiPart<Region> {
                 "help", "list", "suggest")));
 
         // autocomplete
-        AutoCompletionBinding<String> autoComplete = TextFields.bindAutoCompletion(commandTextField, commands);
-        AutoCompletePopup<String> autoCompletePopup = autoComplete.getAutoCompletionPopup();
-        autoCompletePopup.setStyle("-fx-font-size: 12pt;-fx-font-family: \"Minecraft\";"
-                + "-fx-control-inner-background:WHITE;-fx-selection-bar-non-focused:red;");
-        autoComplete.setDelay(0);
+        setAutoComplete();
     }
 
     /**
@@ -100,6 +96,17 @@ public class CommandBox extends UiPart<Region> {
          * @see seedu.address.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    /**
+     * Sets the autocomplete feature for the command box.
+     */
+    private void setAutoComplete() {
+        AutoCompletionBinding<String> autoComplete = TextFields.bindAutoCompletion(commandTextField, commands);
+        AutoCompletePopup<String> autoCompletePopup = autoComplete.getAutoCompletionPopup();
+        autoCompletePopup.setStyle("-fx-font-size: 12pt;-fx-font-family: \"Minecraft\";"
+                + "-fx-control-inner-background:WHITE;-fx-selection-bar-non-focused:red;");
+        autoComplete.setDelay(0);
     }
 
 }
