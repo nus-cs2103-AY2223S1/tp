@@ -97,7 +97,7 @@ Exits the program.
 
 Format: `exit`
 
-# AddressBook Commands
+# Student Contact Commands
 ---
 
 
@@ -205,14 +205,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Adding attendance to student: `attendance add`
+### Adding a attendance list to a student: `attendance add`
 
-Adds an attendance to a student in the class list
+Adds an attendance list to a student in the contact list. 
 
 Format: `attendance add INDEX c/CLASS s/ATTENDANCESIZE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
-Maximum attendance list size is 12, if the size is 0, the attendance list will be N.A.
+Maximum attendance list size is 12, if the size is 0, the attendance list will be N.A. 
+There can only be one attendance list for each student for ease of command.
 </div>
 
 Examples:
