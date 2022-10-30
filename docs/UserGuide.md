@@ -16,9 +16,11 @@ Now you will never miss any internship application deadlines or interviews again
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
 We hope you find PleaseHireUs to be very useful in your internship hunt!
 
+<div style="page-break-after: always;"></div>
 
 * Table of Contents
 {:toc}
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -46,6 +48,8 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 * **`clear`** : Deletes all internships.
 
 * **`exit`** : Exits the app. 
+
+<div style="page-break-after: always;"></div>
 
 ## About this User Guide
 
@@ -148,6 +152,7 @@ The reminder panel displays the number of interviews, assessments or pending off
 This section shows all features and commands which is supported by PleaseHireUs. 
 
 <div markdown="block" class="alert alert-info">
+**:information_source: Info** <br>
 Internships are uniquely identified by `COMPANY_NAME` and `POSITION`. You cannot have two entries with the same `COMPANY_NAME` and `POSITION`.
 </div>
 
