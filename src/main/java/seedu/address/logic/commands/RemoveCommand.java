@@ -321,26 +321,5 @@ public class RemoveCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof RemovePersonDescriptor)) {
-                return false;
-            }
-
-            // state check
-            RemovePersonDescriptor r = (RemovePersonDescriptor) other;
-
-            return getName().equals(r.getName())
-                    && getPhone().equals(r.getPhone())
-                    && getLessonPlan().equals(r.getLessonPlan())
-                    && getTags().equals(r.getTags());
-        }
     }
 }
