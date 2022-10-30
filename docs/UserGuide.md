@@ -264,13 +264,21 @@ Examples:
 
 #### Sorting the list of internship applications: `sort`
 
-Sorts the internship applications in a reverse chronological order by applied date or interview date.
+Sorts the internship applications with the latest date at top to earliest at the bottom.
 
 Format: `sort CRITERIA`
 
+* Sort criteria **must be one of the following**:
+    * `applied`
+    * `interview`
+
 Examples:
-* `sort applied` will display the internship applications according to applied date
-* `sort interview` will display the internship applications according to interview date
+* `sort applied` will sort the internship applications according to applied date
+* `sort interview` will sort the internship applications according to interview date
+
+**:information_source: Sorting by interview date**:
+Applications without interview date will remain in the original order at the bottom.
+
 
 #### Clearing all internship applications: `clear`
 
