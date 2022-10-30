@@ -32,18 +32,16 @@ class ToggleViewCommandTest {
 
     @Test
     public void execute_toggleHide() {
-        CommandResult expectedCommandResult = new CommandResult(
-                ToggleViewCommand.MESSAGE_SUCCESS_HIDE, false, true, false);
+        CommandResult expectedCommandResult = new CommandResult(ToggleViewCommand.MESSAGE_SUCCESS_HIDE);
         assertCommandSuccess(new ToggleViewCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_toggleHide_thenToggleShow() {
-        CommandResult expectedCommandResult1 = new CommandResult(
-                ToggleViewCommand.MESSAGE_SUCCESS_HIDE, false, true, false);
-        CommandResult expectedCommandResult2 = new CommandResult(
-                ToggleViewCommand.MESSAGE_SUCCESS_SHOW, false, true, false);
+        CommandResult expectedCommandResult1 = new CommandResult(ToggleViewCommand.MESSAGE_SUCCESS_HIDE);
+        CommandResult expectedCommandResult2 = new CommandResult(ToggleViewCommand.MESSAGE_SUCCESS_SHOW);
         Command toggleViewCommand = new ToggleViewCommand();
+
         // First toggle. Actual model hides students' parent details
         assertCommandSuccess(toggleViewCommand, model, expectedCommandResult1, expectedModel);
         try {

@@ -27,6 +27,7 @@ public class ViewClassCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
+        model.storePredicate(predicate);
         int numberOfStudents = model.getFilteredStudentList().size();
         if (numberOfStudents == 1) {
             return new CommandResult(

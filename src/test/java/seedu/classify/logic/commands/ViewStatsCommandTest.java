@@ -65,10 +65,11 @@ class ViewStatsCommandTest {
     @Test
     public void execute_gradesMissing_throwsCommandException() {
         String expectedMessage = "There are missing grades for this particular exam"
-                + "\nMean cannot be calculated, class will be sorted by alphabetical order";
+                + "\nMean cannot be calculated.";
         ViewStatsCommand command = new ViewStatsCommand(
                 new Class("3A1"), "SA1", false);
-        assertCommandFailure(command, model, expectedMessage);
+        expectedModel.updateFilteredStudentList(new ClassPredicate(new Class("3A1")));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test

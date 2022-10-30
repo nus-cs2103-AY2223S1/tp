@@ -21,8 +21,11 @@ public class GradeComparator implements Comparator<Student> {
     @Override
     public int compare(Student o1, Student o2) {
         // if the student does not belong to the class, group them at the bottom of the list
-        if (!o1.getClassName().equals(className) || !o2.getClassName().equals(className)) {
+        if (!o1.getClassName().equals(className)) {
             return 1;
+        }
+        if (!o2.getClassName().equals(className)) {
+            return -1;
         }
         int o1Score = o1.getExamScore(exam);
         int o2Score = o2.getExamScore(exam);

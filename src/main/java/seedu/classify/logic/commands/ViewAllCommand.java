@@ -20,6 +20,7 @@ public class ViewAllCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.storePredicate(PREDICATE_SHOW_ALL_STUDENTS);
         model.sortStudentRecord(NameComparator.getNameComparator());
         return new CommandResult(MESSAGE_SUCCESS);
     }

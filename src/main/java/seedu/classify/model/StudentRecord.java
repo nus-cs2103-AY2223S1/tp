@@ -99,6 +99,17 @@ public class StudentRecord implements ReadOnlyStudentRecord {
         students.remove(key);
     }
 
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in the student record, where the
+     * check excludes a particular student.
+     * @param studentToExclude the student to be excluded from the check.
+     * @param studentToCheck the student to be checked.
+     * @return true if there is a matching student identity in the student record
+     */
+    public boolean excludesAndHasStudent(Student studentToExclude, Student studentToCheck) {
+        return students.excludesButContains(studentToExclude, studentToCheck);
+    }
+
     //// util methods
 
     @Override

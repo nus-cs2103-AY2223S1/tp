@@ -169,12 +169,27 @@ public class AddStudentCommandTest {
 
         @Override
         public boolean isStudentListInfoConcise() {
-            return false;
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
         public FilteredStudents getFilteredStudents() {
-            return null;
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void storePredicate(Predicate<Student> p) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Predicate<Student> getPrevPredicate() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean excludesAndHasStudent(Student studentToExclude, Student studentToCheck) {
+            throw new AssertionError("This method should not be called");
         }
     }
 

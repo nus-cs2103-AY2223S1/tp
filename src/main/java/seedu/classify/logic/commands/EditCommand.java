@@ -78,12 +78,14 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.hasSameNameOrId(editedStudent) && model.hasStudent(editedStudent)) {
+        if (model.excludesAndHasStudent(studentToEdit, editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.setStudent(studentToEdit, editedStudent);
+
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        model.storePredicate(Model.PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
