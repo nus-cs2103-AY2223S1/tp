@@ -14,7 +14,9 @@ collections:
 repository: "AY2223S1-CS2103T-W16-2/tp"
 github_icon: "images/github-icon.png"
 
-enable_admonitions: true
+enable_features:
+  admonitions: true
+  autoglossary: true
 
 defaults:
   - scope:
