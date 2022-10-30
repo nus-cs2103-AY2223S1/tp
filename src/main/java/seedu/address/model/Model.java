@@ -97,4 +97,9 @@ public interface Model {
 
     void updateSortedInternshipList(Comparator<Internship> comparator);
 
+    /**
+     * Returns the current predicate.
+     * @return the current predicate used by the filtered internship list.
+     */
+    Predicate<Internship> getCurrentPredicate();
 }
