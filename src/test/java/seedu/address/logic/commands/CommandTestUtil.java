@@ -117,9 +117,6 @@ public class CommandTestUtil {
             + SortReminderCommand.CRITERIA_DEADLINE;
 
     public static final String INVALID_SORT_DESC = " " + PREFIX_SORT_CRITERIA + "apple";
-    public static final String INVALID_DATE_FORMAT_DESC = " " + PREFIX_DATE_DAY + "2000-03-";
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE_DAY + "2000-03-33";
-    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "13:70";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -144,6 +141,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    // invalid field utils
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -152,8 +150,14 @@ public class CommandTestUtil {
             + PREFIX_ATTENDANCE; // empty string not allowed for attendance
     public static final String INVALID_PARTICIPATION_DESC = " "
             + PREFIX_PARTICIPATION; // empty string not allowed for participation
-    public static final String INVALID_GRADE_DESC = "Z" + PREFIX_GRADE; // only A, B, C, D, F allowed for grade
+    public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE + "Z"; // only A, B, C, D, F allowed for grade
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_PRIORITY = " " + PREFIX_PRIORITY + "AP"; // only "HIGH", "MEDIUM", "LOW" allowed
+    public static final String INVALID_DATE_FORMAT_DESC = " " + PREFIX_DATE_DAY + "2000-03-";
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE_DAY + "2000-03-33";
+    public static final String INVALID_DAY_DESC = " " + PREFIX_DATE_DAY + "9";
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "13:70";
+    public static final String INVALID_TIMESLOT_DESC = " " + PREFIX_TIME + "12:00-11:40";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

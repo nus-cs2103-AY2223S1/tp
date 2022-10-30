@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.reminder;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_PREFIXES_ALL;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_REMINDER1;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_REMINDER2;
@@ -7,9 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_REMI
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_REMINDER2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_FORMAT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_REMINDER1;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_REMINDER2;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_REMINDER1;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_REMINDER2;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_REMINDER1;
@@ -35,6 +39,8 @@ import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.datetime.DatetimeCommonUtils;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderPriority;
 import seedu.address.testutil.ReminderBuilder;
 
 /**
@@ -118,5 +124,46 @@ public class AddReminderCommandParserTest {
         userInput = NAME_DESC_REMINDER1 + DATE_DESC_REMINDER1 + INVALID_TIME_DESC + PRIORITY_DESC_REMINDER1
                 + DESCRIPTION_DESC_REMINDER1;
         assertParseFailure(parser, userInput, DatetimeCommonUtils.DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE);
+    }
+
+    @Test
+    public void parse_invalidValue_failure() {
+        String userInput;
+
+        // invalid name
+        userInput = INVALID_NAME_DESC + DATE_DESC_REMINDER1 + TIME_DESC_REMINDER1 + PRIORITY_DESC_REMINDER1
+                + DESCRIPTION_DESC_REMINDER1;
+        assertParseFailure(parser, userInput, ReminderName.MESSAGE_CONSTRAINTS);
+
+        // invalid date
+        userInput = NAME_DESC_REMINDER1 + INVALID_DATE_DESC + TIME_DESC_REMINDER1 + PRIORITY_DESC_REMINDER1
+                + DESCRIPTION_DESC_REMINDER1;
+        assertParseFailure(parser, userInput, DatetimeCommonUtils.DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE);
+
+        // invalid date format
+        userInput = NAME_DESC_REMINDER1 + INVALID_DATE_FORMAT_DESC + TIME_DESC_REMINDER1
+                + PRIORITY_DESC_REMINDER1 + DESCRIPTION_DESC_REMINDER1;
+        assertParseFailure(parser, userInput, DatetimeCommonUtils.DATETIME_MESSAGE_CONSTRAINTS);
+
+        // invalid time
+        userInput = NAME_DESC_REMINDER1 + DATE_DESC_REMINDER1 + INVALID_TIME_DESC + PRIORITY_DESC_REMINDER1
+                + DESCRIPTION_DESC_REMINDER1;
+        assertParseFailure(parser, userInput, DatetimeCommonUtils.DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE);
+
+        // invalid priority
+        userInput = NAME_DESC_REMINDER1 + DATE_DESC_REMINDER1 + TIME_DESC_REMINDER1 + INVALID_PRIORITY
+                + DESCRIPTION_DESC_REMINDER1;
+        assertParseFailure(parser, userInput, ReminderPriority.MESSAGE_CONSTRAINTS);
+
+        // two invalid values, only first invalid value reported
+        userInput = INVALID_NAME_DESC + DATE_DESC_REMINDER2 + TIME_DESC_REMINDER2 + INVALID_PRIORITY
+                + DESCRIPTION_DESC_REMINDER2;
+        assertParseFailure(parser, userInput, ReminderName.MESSAGE_CONSTRAINTS);
+
+        // non-empty preamble
+        userInput = PREAMBLE_NON_EMPTY + NAME_DESC_REMINDER2 + DATE_DESC_REMINDER2 + TIME_DESC_REMINDER2
+                + PRIORITY_DESC_REMINDER2 + DESCRIPTION_DESC_REMINDER2;
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
     }
 }
