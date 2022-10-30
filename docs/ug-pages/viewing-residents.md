@@ -204,23 +204,24 @@ Examples:
 ---
 
 ### Filtering residents by field : `filter`
-
 Shows a list of residents whose fields match the input keywords.
 
-Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-* Filters will be applied based on the given `SPECIFIER` as well as `KEY/VALUE` pairs.
-* `SPECIFIER`s will either be `/all` or `/any`. In the event that there are multiple `KEY/VALUE` pairs, 
-  filters with the `all` specifier will only return results that satisfy **all** the keywords, while filters with the
-  `any` specifier will return results that satisfy **any** of the keywords present.
-* Valid keys are those included [here](./modifying-residents.md#format-for-resident-fields), and any additional tags.
+Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 
-Calling `filter /all t/Head` on our sample data will produce the following result:
-![filter](../images/ug-photos/filter_command_2.png)
-As you can see, 
+* The default specifier, if not specified by the user is `/all`.
+* A specifier is required in order for the command to work. If not it is an invalid command format
+* Currently, only two specifiers are supported:
+  * `/all` returns a resident if it fulfills **all** of the specified keywords.
+  * `/any` returns a resident if it fulfills **any** of the specified keywords.
+* Repeated keys are not permitted for `/all` specifier, e.g. `filter /all h/D h/A` will not work.
+* Repeated keys are not permitted for both specifiers, e.g. `filter /all h/D h/A` will not work.
+* However, tags can be repeated in the command e.g. `filter /all t/exhange t/fresher`
+* Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
 * `filter /all h/D g/M` returns residents who are in Draco house, **and** are Male.
-* `filter /any g/M t/Head` returns residents who have a tag corresponding to a head, **or** are male.
+* `filter /any h/D h/A` returns residents belonging to either `Draco` **or** `Aquila` house.
+* `filter g/M` returns residents who are male.
 
 [Back to Top](#back-to-menu)
 
