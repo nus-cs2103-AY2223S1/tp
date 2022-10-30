@@ -101,10 +101,10 @@ You can add a module into Plannit.
 
 This command will require one flag, and one flag is optional:
 
-| Field                       | Flag | Constraints                                             |
-|-----------------------------|------|---------------------------------------------------------|
-| **Module Code**             | `m/` | Can only be non-empty string of alphanumeric characters |
-| **Module Title (Optional)** | `t/` | Can be any string of characters                         |
+| Field                       | Flag | Constraints                                                                                                          |
+|-----------------------------|------|----------------------------------------------------------------------------------------------------------------------|
+| **Module Code**             | `m/` | Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul> |
+| **Module Title (Optional)** | `t/` | Can be any string of characters                                                                                      |
 
 Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
 * Module code will be automatically treated as uppercase. For example, `cs1231s` will be treated 
@@ -139,9 +139,9 @@ You can delete the module with the indicated module code from Plannit.
 
 This command will require one flag:
 
-| Field           | Flag | Constraints                                             |
-|-----------------|------|---------------------------------------------------------|
-| **Module Code** | `m/` | Can only be non-empty string of alphanumeric characters |
+| Field           | Flag | Constraints                                                                                                          |
+|-----------------|------|----------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/` | Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul> |
 
 Format: `delete-module m/MODULE_CODE`
 * Module code must correspond to currently displayed module on screen (case-insensitive)
@@ -162,10 +162,10 @@ You can edit a module on Plannit using the `edit-module` command.
 
 This command will require an index and at least one of the following flags:
 
-| Field            | Flag | Constraints                                             |
-|------------------|------|---------------------------------------------------------|
-| **Module Code**  | `m/` | Can only be non-empty string of alphanumeric characters |
-| **Module Title** | `t/` | Can be any string of characters                         |
+| Field            | Flag | Constraints                                                                                                           |
+|------------------|------|-----------------------------------------------------------------------------------------------------------------------|
+| **Module Code**  | `m/` | Module code <ul><li>is non-case sensitive</li> <li>can only be non-empty string of alphanumeric characters</li></ul>  |
+| **Module Title** | `t/` | Can be any string of characters                                                                                       |
 
 Format: `edit-module INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`
 * `INDEX` is the currently displayed index number of the module you are editing for on the screen.
