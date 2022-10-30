@@ -72,9 +72,14 @@ In this user guide, we define any parameters within **square brackets** e.g. `[t
 **optional parameters**, and commands within **angled brackets** e.g. `<command>` are **placeholder parameters**.
 
 **Ellipses** `...` indicate that more than 1 argument of a certain type can be given to a single command.
-For example, `[t/tags...]` means that an optional number (0 or more) of `tags` can be added to a single
+For example, `[t/tags ...]` means that an optional number (0 or more) of `tags` can be added to a single
 user command, but `t/tags...` means that 1 or more `tags` can be given to a single user command.
 
+#### Other keywords
+- `item`: an object that is part of a team project (person, groups and tasks).
+- Scoping: the level of access of an `item` or an attribute of an `item` in your app. So when an item is in a scope, it 
+means the level of access of all the attributes of that item is within the scope of that item. It is explained in further
+detail below.
 
 ## Scoping
 
@@ -142,6 +147,8 @@ Exits the current session and closes the application.
 
 **Format:** `exit`
 
+
+
 ## Contact commands
 
 ### Constraints on contact information
@@ -152,9 +159,9 @@ The following contact commands comply with these placeholder constraints:
 - The `PHONE_NUMBER` of the contact must be at least 3 digits long.
 - The `EMAIL` of the contact must be in the format `local-part@domain`.
 
-    - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
+    - `local-part`: Only contain alphanumeric characters and these special characters, excluding
       the parentheses, (+_.-). The local-part may not start or end with any special characters.
-    - `Domain`:
+    - `domain`:
 
         - Ends with a domain label at least 2 characters long.
         - Have each domain label start and end with alphanumeric characters.
@@ -205,9 +212,9 @@ Lists all current contacts in your contact list within the current [scope](#scop
 
 Refer to the [select](#select-command-select) command for more information.
 
-## Group commands
+## Team commands
 
-### Constraints on group information
+### Constraints on team information
 
 The following group commands comply with these placeholder constraints:
 
