@@ -25,26 +25,27 @@ Welcome to Coydir's User Guide!
   - [Coydir Commands Format](#coydir-commands-format)
   - [Managing Employee Profiles](#managing-employee-profiles)
     - [What's in an Employee Profile](#whats-in-an-employee-profile)
-    - [Adding an employee](#adding-an-employee--add)
-    - [Editing an employee](#editing-an-employee--edit)
-    - [Deleting an employee](#deleting-an-employee--delete)
-    - [Adding multiple employees at once](#adding-multiple-employees-at-once--batchadd)
-    - [View details of an employee](#view-details-of-an-employee--view)
-    - [Listing all employees](#listing-all-employees--list)
-    - [Finding an employee](#finding-an-employee--find)
+    - [Adding an employee](#adding-an-employee-add)
+    - [Editing an employee](#editing-an-employee-edit)
+    - [Deleting an employee](#deleting-an-employee-delete)
+    - [Adding multiple employees at once](#adding-multiple-employees-at-once-batchadd)
+    - [View details of an employee](#view-details-of-an-employee-view)
+    - [Listing all employees](#listing-all-employees-list)
+    - [Finding an employee](#finding-an-employee-find)
   - [Managing Employee Leaves](#managing-employee-leaves)
     - [Setting total leaves for an employee](#setting-total-leaves-for-an-employee)
     - [Is this employee on leave today?](#is-this-employee-on-leave-today)
-    - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee--addleave)
-    - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee--deleteleave)
+    - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-addleave)
+    - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-deleteleave)
   - [Managing Employee Performance](#managing-employee-performance)
-    - [Rating the performance of an employee](#rating-the-performance-of-an-employee--rate)
+    - [Rating the performance of an employee](#rating-the-performance-of-an-employee-rate)
     - [Employee Performance History](#employee-performance-history)
   - [Managing Departments](#managing-departments)
-    - [View details of a department](#view-details-of-a-department--viewdepartment)
+    - [View details of a department](#view-details-of-a-department-viewdepartment)
   - [Additional Features](#additional-features)
-    - [Exiting the program](#exiting-the-program--exit)
-    - [Clearing the data](#clearing-the-data--clear)
+    - [Getting help](#getting-help-help)
+    - [Exiting the program](#exiting-the-program-exit)
+    - [Clearing the data](#clearing-the-data-clear)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
@@ -303,17 +304,38 @@ Format: `list`
 
 #### Finding an employee : `find`
 
-Finds employees by searching for specified keywords. You can search for a specific name, position, or department, or with any combination of the aforementioned.
+Once you get familiar with Coydir and batch-adding numerous employees into the database, using `list` simply isn't sufficient to look for the right employee.
+The `find` command is a specific, precise function meant for searching through your employee directory.
 
-The keywords for searching are case-insensitive, and need not be full words. Running the command will then display all employees whose details match the specified keywords.
+You can find employees by searching for:
 
-**Note**: There must be _at least one_ of the employees' particulars (and keywords) in the search.
+- Name
+- Position
+- Department
+
+Or any combination of the above. Coydir will then display all employees that fulfill your search criteria.
 
 Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
 
+| Field        | TAG | Description                               | Requirement  | Default Value |
+| ------------ | --- | ----------------------------------------- | ------------ | ------------- |
+| `NAME`       | n/  | Search keyword for name of employee       | **Optional** | _Blank_       |
+| `POSITION`   | j/  | Search keyword for position of employee   | **Optional** | _Blank_       |
+| `DEPARTMENT` | d/  | Search keyword for department of employee | **Optional** | _Blank_       |
+
+<div markdown="span" class="alert alert-primary">:bulb:
+  <h5>Important Tips!</h5>
+  <ul>
+    <li>There must be <em>at least one</em> parameter (and keyword) in the search, else Coydir will not know what to search for!</li>
+    <li>The keywords you input for searching are <strong>case-insensitive</strong>. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".</li>
+  </ul>
+</div>
+
+![Find Command - Example](./images/ui-screenshots/find-example.png)
+
 Example:
 
-- `find n/John j/engineer d/Tech` displays the employee "John Doe", who is a "Software Engineer" in the "Information Technology" department.
+- `find j/officer d/Management` displays 2 employees, who are "Officers" in the "General Management" department.
 
 ### Managing Employee Leaves
 
@@ -438,6 +460,8 @@ Example:
 
 To wrap up, let us take a look at a couple of additional features that give _a little boost_ to your HR management on Coydir.
 These features and techniques serve to make your usage of the application **smoother, easier, and more flexible**.
+
+#### Getting help : `help`
 
 #### Exiting the program : `exit`
 
