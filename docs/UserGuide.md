@@ -101,7 +101,7 @@ Basic Instructions:
 - Items in square brackets are optional. e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
 - Items with `…` after them can be used multiple times including zero times. e.g., `[t/TAG]…` can be used as ` ` (e.g.
   0 times), `t/python`, `t/javascript t/react` etc.
-- Parameters can be in any order. e.g., if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
+- Parameters with a prefix can be in any order. e.g., if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
   of the parameter will be taken. e.g., if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -143,14 +143,14 @@ Format: `help`
 
 Adds a student to the Teacher’s Pet.
 
-1. Student’s Name:
+##### Student’s Name:
     - Student’s Name must not be empty.
     - Student’s Name must only contain alphanumeric characters.
     
 <div markdown="span" class="alert alert-info">ℹ **Note:** Multiple students may share the same name.
 </div>
 
-2. Student’s Contact Number:
+##### Student’s Contact Number:
    - Student’s contact number must not be empty. 
    - Student’s contact number must only contain numerical digits between `0` and `9`.
    - Student's contact number must begin with `6`, `8` or `9`.
@@ -158,7 +158,7 @@ Adds a student to the Teacher’s Pet.
 <div markdown="span" class="alert alert-info">ℹ **Note:** Contact number must contain exactly 8 digits. Contact number must be unique.
 </div>
 
-3. Next of Kin’s Contact Number:
+##### Next of Kin’s Contact Number:
     - Next of Kin’s contact number must not be empty.
     - Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
     - Next of Kin’s contact number must begin with `6`, `8` or `9`.
@@ -166,15 +166,14 @@ Adds a student to the Teacher’s Pet.
 <div markdown="span" class="alert alert-info">ℹ **Note:** Next of Kin’s contact number must contain exactly 8 digits.
 </div>
 
-
-4. Address:
+##### Address:
     - Address must not be empty.
     - Address may contain any kinds of character.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Address cannot be empty. It must contain at least 1 character.
 </div>
 
-5. Email:
+##### Email:
     - Email must not be empty. 
     - Email should be in the format of `local@domain`, where:
       - Local address should only contain alphanumeric characters and these special characters `+_.-`.
@@ -184,7 +183,7 @@ Adds a student to the Teacher’s Pet.
         2. Have each domain label start and end with alphanumeric characters.
         3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
-6. Tags:
+##### Tags:
     - Tags are optional.
     - A student can have any number of tags (including 0).
     - Tags must only contain alphanumeric characters.

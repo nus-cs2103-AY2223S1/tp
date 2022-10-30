@@ -3,16 +3,20 @@ layout: page
 title: **Teacher's Pet** User Guide
 subtitle: Everything you need to know about **Teacher's Pet**
 ---
-**Teacher’s Pet** is a desktop application built for Private 1-to-1 Tutors in order to manage contacts of students and 
-classes, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User 
-Interface (GUI). If you can type fast, Teacher’s Pet can get your contact and class management tasks done faster than 
-traditional GUI apps.
+**Teacher’s Pet** is an all-in-one desktop application for private 1-to-1 tutors to manage the details of students,
+payment and scheduling of classes. While optimised for use via a Command Line Interface (CLI),
+Teacher’s Pet still retains the benefits of a Graphical User Interface (GUI).
+Whether you can type fast or prefer to use a mouse, Teacher’s Pet caters to your needs. It minimizes the time needed for
+tedious administrative work, leaving more space for you to do what is important.
+
 
 **Teacher’s Pet** allows you to manage your schedule and keep track of your students.
 The app stores basic information about your students, such as `Name`, `Contact Number`, `Class Date` and more.
 
-Before you get started, you may want to read [how to get started with this User Guide](#reading-the-user-guide)!
-To get started with using our application, jump straight to the [Quick Start](#quick-start) section.
+Before you get started, you may want to know [how to navigate this User Guide](#reading-the-user-guide).
+
+To get started with using the application, jump straight to the [Quick Start](#quick-start) section.
+
 For a full list of commands and detailed instructions, head to the [Features](#features) section.
 
 ## Table of contents
@@ -55,20 +59,20 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 
 ## Quick start
 
-There are a couple of things that need to be setup first before you start ****Teacher's Pet**** for the first time. This will
-ensure that **Teacher's Pet** works as expected and runs smoothly on your computer.
+There are a couple of things that need to be set up first before you start using **Teacher's Pet** for the first time. This will
+ensure that the application works as expected and runs smoothly on your computer.
 
 ### Step 1: Ensure you have Java `11` or above installed in your Computer
 To check if you have Java `11` or above installed, follow the steps for your operating system
 ##### If you are using Windows:
-- Press the Start button and type *cmd* then press the Enter button on your keyboard.
-- Once you have Command Prompt running, type `java --version` and if you have Java installed properly, you should
+1. Press the Start button, type *cmd* and press Enter on your keyboard.
+2. Once you have Command Prompt running, type `java --version` and if you have Java installed properly, you should
   see an output like the following.
   ![UI introduction](images/UG-screenshots/Java11CheckWindows.png)
 ##### If you are using Mac:
-- Open up terminal by hitting Command + Space bar on your keyboard and typing *terminal* then press the return 
+1. Open up terminal by hitting Command + Space bar on your keyboard and typing *terminal* then press the return 
   button on your keyboard. 
-- Once you have terminal running, type `java --version` and if you have Java installed properly, you should see
+2. Once you have terminal running, type `java --version` and if you have Java installed properly, you should see
   an output like the following.
   ![UI introduction](images/UG-screenshots/Java11CheckMac.png)
 #### If you do not see an output like the one above, it means that you do not have Java `11` installed 
@@ -89,8 +93,6 @@ https://github.com/AY2223S1-CS2103T-T09-4/tp/releases.
 
 ## UI Overview
 
-![Partition](images/UG-screenshots/UiPartition.png)
-
 **Teacher's Pet** is divided into 5 areas to maximise productivity:
 
 1. Input Command - The dialog box where you will input your desired commands.
@@ -101,16 +103,18 @@ https://github.com/AY2223S1-CS2103T-T09-4/tp/releases.
 the money collected/owed.
 5. Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time.
 
+![Partition](images/UG-screenshots/UiPartition.png)
+
 Basic Instructions:
-1. Type the following command in the [Input Command](#ui-overview) and press the Enter button on your keyboard to execute it. For 
-   example, typing `help` and pressing Enter will open the help window. Some example commands you can try:
+1. Type the following command in the [Input Command](#ui-overview) section, and press Enter on your keyboard to execute it. For 
+   example, typing `help` and pressing Enter will open the help window. Below are some example commands you can start with:
     - `list`: Lists all students.
     - `add n/John Doe p/98765432 np/81239090 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
       `John Doe` to the student list.
     - `delete 3`: Deletes the 3rd student shown in the current list.
     - `clear`: Deletes all students.
     - `exit`: Exits the app.
-2. Refer to the Features below for details of each command.
+2. Refer to the [Features](#features) section below for details of each command.
 
 [↑ Back to top](#table-of-contents)
 
@@ -128,7 +132,7 @@ application from top to bottom as the illustrations added follow a sequential or
 | Words in `UPPER_CASE` are parameters supplied by you                                                                                                                                              | Given the following format, `add n/NAME`. In this case, `NAME` is a parameter which can be replaced by `John Doe` as `add n/John Doe`                                                                                                                            |
 | Items in square brackets are optional                                                                                                                                                             | Given `n/NAME [t/TAG]`, since `t/TAG` is in square brackets, you can type either `n/John Doe t/python` or `n/John Doe` if no tag is required                                                                                                                     |
 | Items with `…` after them can be used 0 or more times                                                                                                                                             | Given `[t/TAG]…`, you can choose to not type anything, `t/python` for one tag, `t/javascript t/react` for two tags and etc.                                                                                                                                      |
-| Parameters can be in any order                                                                                                                                                                    | `n/NAME p/CONTACT_NUMBER` or `p/CONTACT_NUMBER n/NAME` are acceptable                                                                                                                                                                                            |
+| Parameters with a prefix can be in any order                                                                                                                                                      | `n/NAME p/CONTACT_NUMBER` or `p/CONTACT_NUMBER n/NAME` are acceptable                                                                                                                                                                                            |
 | A parameter expected once will have only it's last occurrence taken despite being specified multiple times                                                                                        | If you specify `p/12341234 p/56785678`, only `p/56785678` will be accepted by **Teacher's Pet**.                                                                                                                                                                     |
 | Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored                                                                    | If the you type `help 123`, the command will be interpreted as `help`.                                                                                                                                                                                           |
 | An index will be `INDEX-S` if the command requries information from the [Day's Schedule List](#ui-overview) and will be `INDEX` if it requires information from [Student's Details](#ui-overview) | Under [mark command](#marking-a-student-mark), `mark 1` will mark the 1st student in the [Day's Schedule List](#ui-overview). Under [delete command](#deleting-students-delete), `delete 1` will remove the first student from [Student's Details](#ui-overview) |
@@ -169,14 +173,14 @@ The `add` command adds a student to Teacher’s Pet.
 The following are the fields accepted by the `add` command and their relevant conditions which need to be met for the
 command to work as expected.
 
-1. Student’s Name:
+##### Student’s Name:
     - Student’s Name must not be empty.
     - Student’s Name must only contain alphanumeric characters.
     
 <div markdown="span" class="alert alert-info">ℹ **Note:** Multiple students may share the same name.
 </div>
 
-2. Student’s Contact Number:
+##### Student’s Contact Number:
    - Student’s contact number must not be empty. 
    - Student’s contact number must only contain numerical digits between `0` and `9`.
    - Student's contact number must begin with `6`, `8` or `9`.
@@ -184,7 +188,7 @@ command to work as expected.
 <div markdown="span" class="alert alert-info">ℹ **Note:** Contact number must contain exactly 8 digits. Contact number must be unique.
 </div>
 
-3. Next of Kin’s Contact Number:
+##### Next of Kin’s Contact Number:
     - Next of Kin’s contact number must not be empty.
     - Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
     - Next of Kin’s contact number must begin with `6`, `8` or `9`.
@@ -193,14 +197,14 @@ command to work as expected.
 </div>
 
 
-4. Address:
+##### Address:
     - Address must not be empty.
     - Address may contain any kinds of character.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Address cannot be empty. It must contain at least 1 character.
 </div>
 
-5. Email:
+##### Email:
     - Email must not be empty. 
     - Email should be in the format of `local@domain`, where:
       - Local address should only contain alphanumeric characters and these special characters `+_.-`.
@@ -210,7 +214,7 @@ command to work as expected.
         2. Have each domain label start and end with alphanumeric characters.
         3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
-6. Tags:
+##### Tags:
     - Tags are optional.
     - A student can have any number of tags (including 0).
     - Tags must only contain alphanumeric characters.
