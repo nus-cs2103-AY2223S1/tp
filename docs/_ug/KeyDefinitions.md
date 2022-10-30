@@ -26,7 +26,7 @@ We can tag multiple items with the same tag and each item can have multiple tags
 
 Feel free to add tags as you see fit to organize your inventory. Examples of how you may use a tag can include:
 
-* Categorizing food items, e.g. `Vegetable`, `Herb`, `Condiment`, `Meat`.
+* Categorizing food items, e.g. `Vegetable`, `Herb`, `Condiment`, `Meat`
 * Marking where the item is stored, e.g. `Fridge`, `Cupboard`, `Shelf`
 * Noting its perishability, e.g. `Perishable`, `Non-Perishable`
 
