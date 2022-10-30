@@ -542,11 +542,11 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 
 ### Miscellaneous Commands
 
-| Action          | Format, Examples                                       |
-|-----------------|--------------------------------------------------------|
-| **Sort**        | `sort [COMPARABLE_METRIC]` <br> e.g: `sort AGE`        |
-| **Pin**         | `pin [n/NAME]` <br> e.g: `pin n/Jim`                   |
-| **View Pinned** | ` viewPin ` <br> e.g: `viewPin`                        |
+| Action          | Format, Examples                                     |
+|-----------------|------------------------------------------------------|
+| **Sort**        | `sort [COMPARABLE_METRIC]` <br> e.g: `sort AGE`      |
+| **Pin**         | `pin [n/NAME]` <br> e.g: `pin n/Jim`                 |
+| **View Pinned** | `viewPin` <br> e.g: `viewPin`                        |
 
 
 <br>    
