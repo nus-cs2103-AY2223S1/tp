@@ -33,14 +33,17 @@ class EditItemCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        InventoryItem editedItem = new InventoryItemBuilder().build();
+        Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
+        InventoryItem lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
+
+        InventoryItem editedItem = new InventoryItemBuilder(lastItem).build();
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(editedItem).build();
-        EditItemCommand editItemCommand = new EditItemCommand(INDEX_FIRST, descriptor);
+        EditItemCommand editItemCommand = new EditItemCommand(indexLastItem, descriptor);
 
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
         Model expectedModel = new ModelManager(new TrackO(model.getTrackO()), new UserPrefs());
-        expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
+        expectedModel.setItem(model.getFilteredItemList().get(indexLastItem.getZeroBased()), editedItem);
 
         assertCommandSuccess(editItemCommand, model, expectedMessage, expectedModel);
     }
@@ -69,8 +72,10 @@ class EditItemCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditItemCommand editItemCommand = new EditItemCommand(INDEX_FIRST, new EditItemDescriptor());
-        InventoryItem editedItem = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
+        Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
+
+        EditItemCommand editItemCommand = new EditItemCommand(indexLastItem, new EditItemDescriptor());
+        InventoryItem editedItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
 
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 

@@ -5,6 +5,7 @@ import static tracko.testutil.TypicalItems.INVENTORY_ITEM_1;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import tracko.model.item.InventoryItem;
 import tracko.model.item.Quantity;
@@ -122,6 +123,16 @@ public class OrderBuilder {
      */
     public OrderBuilder withItemList(List<ItemQuantityPair> itemList) {
         this.itemList = itemList;
+        return this;
+    }
+
+    /**
+     * Sets the list of ordered items of the {@code Order} that we are building.
+     */
+    public OrderBuilder withRecordedItemList(List<ItemQuantityPair> itemList) {
+        List<ItemQuantityPair> recordedItems = this.itemList.stream()
+                .map(ItemQuantityPair::getImmutableItemCopy).collect(Collectors.toList());
+        this.itemList = recordedItems;
         return this;
     }
 
