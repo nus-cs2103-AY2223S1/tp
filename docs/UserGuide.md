@@ -31,18 +31,18 @@ You can also add people to the app, such as your professors, teaching assistants
     - [Tutorial Zoom Link](#tutorial-zoom-link)
     - [Assignment Details](#assignment-details)
   - [Commands](#commands)
-    - [General Commands](#For-both-modules-and-contacts)
+    - [General Commands](#for-both-modules-and-contacts)
       - [List](#listing-all-modules-and-contacts-list)
       - [Find](#finding-keywords-in-contacts-andor-modules-find)
       - [Clear](#clearing-all-contacts-and-modules-clear)
       - [Help](#looking-for-help-help)
       - [Exit](#exiting-the-program-exit)
-    - [Commands for Contacts](#Contacts)
+    - [Commands for Contacts](#contacts)
       - [Add](#adding-a-contact-addp)
       - [Edit](#editing-a-contact-editp)
       - [Delete](#deleting-a-contact-deletep)
       - [Find](#finding-a-contact-findp)
-    - [Commands for Modules](#Modules)
+    - [Commands for Modules](#modules)
       - [Add](#adding-a-module-addm)
       - [Edit](#editing-a-module-editm)
       - [Delete](#deleting-a-module-deletem)
@@ -86,122 +86,14 @@ You can also add people to the app, such as your professors, teaching assistants
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [/t TAG]` can be used as `c/John Doe t/friend` or as `c/John Doe`.
 
-* Parameters after the name and module code can be in any order. e.g. `addp n/NAME p/NUMBER e/EMAIL` is similar
-  to `addp n/NAME e/EMAIL p/NUMBER`.
+* Parameters after the name and module code can be in any order. e.g. `addp n/NAME p/PHONE_NUMBER e/EMAIL` is similar
+  to `addp n/NAME e/EMAIL p/PHONE_NUMBER`.
 
 * If a parameter is expected only once in the command but is specified multiple times, only the last occurrence of the
   parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 </div>
-
---------------------------------------------------------------------------------------------------------------------
-## Person Fields
-
-### Name
-
-* The name of the person you want to add.
-* Identified by prefix `n/`.
-* Valid field to be searched using `Find` command.
-* No restriction but you are recommended to add a person's full name to be it less ambigious during search.
-* Mandatory field.
-
-### Phone number
-
-* The phone number of the person.
-* Identified by prefix `p/`.
-* Valid field to be searched using `Find` command.
-* A Phone number should only contain numbers and be at least 3 digits long.
-* Optional field.
-
-### Module code
-
-* The module this person is related to, i.e. if he/she is a Professor or Teaching Assistant, it means the Module he/she is teaching.
-* Identified by prefix `m/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add as module code.
-* Optional field.
-
-### Email address
-
-* The email address of the person.
-* Identified by prefix `e/`.
-* Valid field to be searched using `Find` command.
-* It should follow the following format: `local-part@domain` 
-  1. The `local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .
-  2. This is followed by a `domain name` which is made of `domain labels` separated by periods. The `domain name` must:
-     1. end with a `domain label` at least 2 characters long.
-     2. have each `domain label` start and end with alphanumeric characters.
-     3. have each `domain label` consist of alphanumeric characters only, separated by hyphens, if any.
-* Optional field.
-
-### Telegram handle
-
-* The telegram handle of the person.
-* Identified by prefix `tg/`.
-* Valid field to be searched using `Find` command.
-* Handle should start with a `@` symbol and only contain alphanumeric characters after `@`. It should be at least 5 characters long, not including `@`.
-* Optional field.
-
-### Person tags
-
-* Tags you want to attach to the person, i.e. Friend, Professor, Family
-* You can include as many tags as you want.
-* Identified by prefix `t/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Module Fields
-
-### Module Code
-
-* The module code of the module you want to add.
-* Identified by prefix `m/`.
-* Valid field to be searched using `Find` command.
-* Only valid NUS module codes can be added.
-* Mandatory field.
-
-### Lecture Details
-
-* The lecture details of the module you want to add, such as the location and time.
-* Identified by prefix `l/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
-
-### Lecture Zoom Link
-
-* The zoom link of the lecture.
-* Identified by prefix `lz/`.
-* Zoom link should be a valid [URL](#url).
-* Optional field.
-
-### Tutorial Details
-
-* The tutorial details of the module you want to add, such as the location and time.
-* Identified by prefix `t/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
-
-### Tutorial Zoom Link
-
-* The zoom link of the lecture.
-* Identified by prefix `tz/`.
-* Zoom link should be a valid URL.
-* Optional field.
-
-### Assignment Details
-
-* Details you want to add for your assignments for the module, ie. `Assignment 1 due 20/08`.
-* You can include as assignment details as you want.
-* Identified by prefix `a/`.
-* Valid field to be searched using `Find` command.
-* No restriction on what you can add.
-* Optional field.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -220,20 +112,20 @@ Format: `list`
 Finds modules and contacts with any of the given keywords. 
 
 Fields that you can filter for modules:
-* Module code
-* Lecture details
-* Tutorial details
-* Assignment details
+* [Module code](#module-code)
+* [Lecture details](#lecture-details)
+* [Tutorial details](#tutorial-details)
+* [Assignment details](#assignment-details)
 
 Fields that you can filter for contacts:
-* Person name
-* Phone number
-* Module code
-* Email address
-* Telegram handle
-* Person tags
+* [Person name](#name)
+* [Phone number](#phone-number)
+* [Module code](#module-code)
+* [Email address](#email-address)
+* [Telegram handle](#telegram-handle)
+* [Person tags](#person-tags)
 
-Format: `find KEYWORD [MORE_KEYWORD]…​`
+Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
 * The order of the keywords does not matter; e.g. `Friday 10am` will match `10am Friday`.
@@ -274,6 +166,7 @@ Format: `exit`
 <div markdown="span" class="alert alert-primary"> **Tip:** 
 Alternatively, you can click the File button on the top left of the app, followed by the Exit button!
 </div>
+
 ### Saving the data
 
 SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -288,7 +181,7 @@ Adds a contact to the contact list.
 
 Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [tg/TELEGRAM] [m/MODULE_CODE] [t/TAG]…​`
 
-* The `NAME` field is mandatory, all other fields are optional ([you can check here for more details](#person-fields)), attempting to add a person without a name with result in an error!
+* The `NAME` field is mandatory, all other fields are optional ([you can check here for more details on the individual fields](#person-fields)), attempting to add a person without a name with result in an error!
 * A contact can have any number of tags (including 0)
 
 <div markdown="span" class="alert alert-primary"> **Tip:**
@@ -381,7 +274,7 @@ Adds a module to the module list.
 
 Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`
 
-* The `MODULE_CODE` field is mandatory, all other fields are optional ([you can check here for more details](#module-fields)), attempting to add a module without a module code with result in an error!
+* The `MODULE_CODE` field is mandatory, all other fields are optional ([you can check here for more details on the individual fields](#module-fields)), attempting to add a module without a module code with result in an error!
 * The `AssignmentDetails` can take in alphanumerical characters **along with spaces**.
 * A module can have any number of `AssignmentDetails` (including 0)
 
@@ -451,6 +344,114 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 * Full words are characterized by having an empty space before and after the word; e.g. Searching `Friday` will only match `Friday` and not `Friday,`
 * Modules matching at least one keyword will be returned (i.e. `OR` search); e.g. `cs2109s cs2100` will return `CS2109s` and `CS2100`.
 
+------------------------------------------------------------------------------------------------------------------------
+
+## Person Fields
+
+### Name
+
+* The name of the person you want to add.
+* Identified by prefix `n/`.
+* Valid field to be searched using `Find` command.
+* No restriction but you are recommended to add a person's full name to be it less ambigious during search.
+* Mandatory field.
+
+### Phone number
+
+* The phone number of the person.
+* Identified by prefix `p/`.
+* Valid field to be searched using `Find` command.
+* A Phone number should only contain numbers and be at least 3 digits long.
+* Optional field.
+
+### Module code
+
+* The module this person is related to, i.e. if he/she is a Professor or Teaching Assistant, it means the Module he/she is teaching.
+* Identified by prefix `m/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add as module code.
+* Optional field.
+
+### Email address
+
+* The email address of the person.
+* Identified by prefix `e/`.
+* Valid field to be searched using `Find` command.
+* It should follow the following format: `local-part@domain`
+  1. The `local-part` should only contain [alphanumeric](#alphanumeric) characters and the following characters: `+` `_` `.` `-` .
+  2. This is followed by a `domain name` which is made of `domain labels` separated by periods. The `domain name` must:
+    1. end with a `domain label` at least 2 characters long.
+    2. have each `domain label` start and end with alphanumeric characters.
+    3. have each `domain label` consist of alphanumeric characters only, separated by hyphens, if any.
+* Optional field.
+
+### Telegram handle
+
+* The telegram handle of the person.
+* Identified by prefix `tg/`.
+* Valid field to be searched using `Find` command.
+* Handle should start with a `@` symbol and only contain alphanumeric characters after `@`. It should be at least 5 characters long, not including `@`.
+* Optional field.
+
+### Person tags
+
+* Tags you want to attach to the person, i.e. Friend, Professor, Family
+* You can include as many tags as you want.
+* Identified by prefix `t/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add.
+* Optional field.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Module Fields
+
+### Module Code
+
+* The module code of the module you want to add.
+* Identified by prefix `m/`.
+* Valid field to be searched using `Find` command.
+* Only valid NUS module codes can be added.
+* Mandatory field.
+
+### Lecture Details
+
+* The lecture details of the module you want to add, such as the location and time.
+* Identified by prefix `l/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add.
+* Optional field.
+
+### Lecture Zoom Link
+
+* The zoom link of the lecture.
+* Identified by prefix `lz/`.
+* Zoom link should be a valid [URL](#url).
+* Optional field.
+
+### Tutorial Details
+
+* The tutorial details of the module you want to add, such as the location and time.
+* Identified by prefix `t/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add.
+* Optional field.
+
+### Tutorial Zoom Link
+
+* The zoom link of the lecture.
+* Identified by prefix `tz/`.
+* Zoom link should be a valid URL.
+* Optional field.
+
+### Assignment Details
+
+* Details you want to add for your assignments for the module, ie. `Assignment 1 due 20/08`.
+* You can include as assignment details as you want.
+* Identified by prefix `a/`.
+* Valid field to be searched using `Find` command.
+* No restriction on what you can add.
+* Optional field.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -459,19 +460,20 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 |-----------------------------------------------------------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | [addm](#adding-a-module-addm)                             | Module         | `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`          |
 | [addp](#adding-a-contact-addp)                            | Contact        | `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                             |
-| [editm](#editing-a-module--editm)                         | Module         | `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​` |
-| [editp](#editing-a-contact--editp)                        | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                           |
-| [deletem](#deleting-a-module--deletem)                    | Module         | `deletem MODULE_INDEX`                                                                                                                         |
-| [deletep](#deleting-a-contact--deletep)                   | Contact        | `deletep CONTACT_INDEX`                                                                                                                        |                                                                                                                                           |
-| [findm](#finding-a-module--findm)                         | Module         | `findm KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                                   |
-| [findp](#finding-a-contact--findp)                        | Contact        | `findp KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                          |
-| [clear](#clearing-all-contacts-and-modules--clear)        | Both           | `clear`                                                                                                                                        |
-| [list](#listing-all-modules-and-contacts--list)           | Both           | `list`                                                                                                                                         |
-| [find](#finding-keywords-in-a-contact-andor-module--find) | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
-| [exit](#looking-for-help--help)                           | General        | `exit`                                                                                                                                         |
-| [help](#exiting-the-program--exit)                        | General        | `help`                                                                                                                                         |
+| [editm](#editing-a-module-editm)                          | Module         | `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​` |
+| [editp](#editing-a-contact-editp)                         | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                           |
+| [deletem](#deleting-a-module-deletem)                     | Module         | `deletem MODULE_INDEX`                                                                                                                         |
+| [deletep](#deleting-a-contact-deletep)                    | Contact        | `deletep CONTACT_INDEX`                                                                                                                        |                                                                                                                                           |
+| [findm](#finding-a-module-findm)                          | Module         | `findm KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                                   |
+| [findp](#finding-a-contact-findp)                         | Contact        | `findp KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                          |
+| [clear](#clearing-all-contacts-and-modules-clear)         | Both           | `clear`                                                                                                                                        |
+| [list](#listing-all-modules-and-contacts-list)            | Both           | `list`                                                                                                                                         |
+| [find](#finding-keywords-in-contacts-andor-modules-find)  | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
+| [exit](#looking-for-help-help)                            | General        | `exit`                                                                                                                                         |
+| [help](#exiting-the-program-exit)                         | General        | `help`                                                                                                                                         |
 
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## FAQ
 
@@ -491,9 +493,13 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 ## GLOSSARY
 
 #### Alphanumeric
-* It refers to the combined set of the 26 alphabetic characters, A to Z, and the 10 Arabic numerals, 0 to 9.
+* It refers to the combined set of the 26 alphabetic characters 10 Arabic numerals.
+* Alphabetic characters include both lower and upper case letters, a to z & A to Z.
+* Arabic numerals refer to the digits 0 to 9.
 
 #### URL
 * It refers to the address of a web page.
+* Example: https://google.com
 
 --------------------------------------------------------------------------------------------------------------------
+[Back to top](#welcome-to-socompilers-user-guide)
