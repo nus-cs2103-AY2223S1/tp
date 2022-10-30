@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
 /**
@@ -14,7 +16,12 @@ public class NameStartsWithKeywordPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        requireNonNull(person);
+
         String name = person.getName().fullName;
+
+        assert name != null;
+
         return (name.toLowerCase()).startsWith(keyword.toLowerCase());
     }
 

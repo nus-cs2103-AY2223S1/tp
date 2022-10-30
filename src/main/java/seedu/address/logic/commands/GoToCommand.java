@@ -44,12 +44,15 @@ public class GoToCommand extends Command {
         requireNonNull(model);
 
         try {
+            // Update Module List
             Module moduleToGoTo = model.getModuleUsingModuleCode(moduleCode, false);
-            Predicate<Person> moduleContainsPersonPredicate = new PersonIsInModulePredicate(moduleToGoTo);
-
             model.updateFilteredModuleList(predicate);
 
-            assert(model.getFilteredModuleList().size() == 1); // GoTo should display maximally one module.
+            // Verify that GoTo displays exactly one module.
+            assert model.getFilteredModuleList().size() == 1;
+
+            // Update Person List
+            Predicate<Person> moduleContainsPersonPredicate = new PersonIsInModulePredicate(moduleToGoTo);
             model.updateFilteredPersonList(moduleContainsPersonPredicate);
             model.setHomeStatus(false);
 
