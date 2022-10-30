@@ -3,9 +3,11 @@ layout: page
 title: Salesy User Guide v1.3
 ---
 
-Salesy is an all-in-one tool for NUS canteen vendors whom want to keep track of their tasks, inventory and suppliers, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). With Salesy, you can expect a good visualization of your inventory and be as efficient as possible with your bookkeeping routines.
+Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of their tasks, inventory and suppliers, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). With Salesy, you can expect a good visualization of your inventory and increased efficiency with your bookkeeping routines.
 
 ![Ui](images/Ui.png)
+
+--------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents
 {:toc}
@@ -27,15 +29,15 @@ Salesy is an all-in-one tool for NUS canteen vendors whom want to keep track of 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Important Information
+## Important information
 
 - User has to input details for fields that are not in square brackets, but inputting details for fields in square brackets is optional.
   - e.g. `add n/NAME p/PHONE pr/PRICE i/ITEM a/ADDRESS [t/TAG]`
-  - The `NAME`, `PHONE`, `PRICE`, `ITEM` and `ADDRESS` fields are compulsory
-  - The `TAG` field is optional
+  - The `NAME`, `PHONE`, `PRICE`, `ITEM` and `ADDRESS` fields are compulsory.
+  - The `TAG` field is optional.
 
-- Index numbers in commands, e.g. `delete <supplier index>` are compulsory
-  
+- Index numbers in commands, e.g. `delete <supplier index>` are compulsory.
+
 - When multiple similar prefixes are input by the user, e.g. `i/Chicken i/Egg i/Cups`,
 the rightmost prefix and its details, i.e. `Cups` will be taken as input.
   
@@ -52,11 +54,11 @@ A brief display of important information for **inventory** and **tasks**.
 **More information**
 
 * **(A)** `Incomplete` tasks refers to tasks that are shown as `Not Done`.
-* **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has deadline that is
-  past today's date.
+* **(B)** `Overdue` tasks refers to tasks that are both `Not Done` and has a deadline that is
+  before the current date.
   * For example: Today's date is **_11 Feb 2022_** and your task's deadline is _**10 Feb 2022**_, this will be counted as `Overdue`.
 * **(C)** `Upcoming` tasks refers to tasks that have deadlines that are **in the future and inclusive of today**, that are yet to be completed i.e. `Not Done`.
-  * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or after**_, this will be counted as `Upcoming`.
+  * For example: You have an incomplete task. Today's date is **_11 Feb 2022_** and your task's deadline is _**11 Feb 2022 or later**_, this will be counted as `Upcoming`.
 
 ### Colors used for Inventory
 
@@ -76,33 +78,35 @@ Inventory Cards for Items
 
 **Detailed Explanation**
 
-| Color          | Meaning                                                          | How is it determined ?                                                                              |
-|----------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| ️🍎&nbsp;Red   | Running at `near or below minimum`, restock as soon as possible. | **Less than 120%** of minimum stock specified.                                                      |
-| 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon.     | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
-| 🟢&nbsp;Green  | Running at a `healthy` level no worries about restocking.        | **More than and equal to 165%** of minimum stock specified.                                         |
+| Color          | Meaning                                                      | How is it determined ?                                                                              |
+|----------------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| ️🍎&nbsp;Red   | Running `low`, restock as soon as possible.                  | **Less than 120%** of minimum stock specified.                                                      |
+| 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon. | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
+| 🟢&nbsp;Green  | Running at a `healthy` level, no worries about restocking.   | **More than and equal to 165%** of minimum stock specified.                                         |
+
+## Commands
 
 ### Add supplier/task/supply item: `add`
 
 Adds an item of a specified type with the given details
 
-***Format:***
-
-`add n/NAME p/PHONE(8 digits) pr/PRICE i/ITEM a/ADDRESS [t/SUPPLIER]` (supplier)
-
-`addTask d/TASKNAME dl/DEADLINE [t/TAG_NAME]` (task)
-
-Multiple tag_name is allowed.
-
-An example is `addTask d/TASKNAME dl/DEADLINE [t/TAG_NAME1] [t/TAG_NAME2] [t/TAG_NAME3]`
-
-`addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK` (supply item)
-
 **Things you can add:**
 * Suppliers
 * Tasks
-* Supply Item (Item in inventory)
+* Supply Item (item in inventory)
 
+***Format:***
+
+`add n/NAME p/PHONE(8 digits) pr/PRICE i/ITEM a/ADDRESS [t/SUPPLIER]` **(supplier)**
+
+`addTask d/TASKNAME dl/DEADLINE [t/TAG_NAME]` **(task)**
+
+<div markdown="span" class="alert alert-info">**Note:**
+Multiple entries for `TAG_NAME` are allowed.
+e.g. `addTask d/TASKNAME dl/DEADLINE [t/TAG_NAME1] [t/TAG_NAME2] [t/TAG_NAME3]`
+</div>
+
+`addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK` (supply item)
 
 **Examples:**
 
@@ -114,16 +118,21 @@ Add a task to Salesy
 
 >`addTask d/Pass ingredients to XXX Pte Ltd dl/2022-12-12`
 
-Add a SupplyItem to Salesy's inventory
+Add an item to Salesy's inventory
 
-SupplyItem from first supplier in address book added
+Item from first supplier in address book added
 
 >`addItem 1 c/10 m/3`
 
 
 ### Delete: `delete`
 
-Delete the specified item of the specified type from Salesy
+Deletes the specified item of the specified type from Salesy
+
+**Things you can delete:**
+* Suppliers
+* Tasks
+* Supply items
 
 ***Format:***
 
@@ -132,11 +141,6 @@ Delete the specified item of the specified type from Salesy
 `deleteTask <task index>` (task)
 
 `deleteItem <item index>` (supply item)
-
-**Things you can delete:**
-* Suppliers
-* Tasks
-* Supply items
 
 **Examples**
 
@@ -152,16 +156,17 @@ Delete an item in inventory
 
 > `deleteItem 1`
 
+
 ### Mark: `mark`
 
 Marks the specified task as done to keep task list updated
 
+**Things you can mark:**
+* Tasks
+
 ***Format:***
 
 `mark <task index>`
-
-**Things you can mark:**
-* Tasks only
 
 **Examples**
 
@@ -174,12 +179,12 @@ Mark a task that you have completed
 
 Unmarks a previously marked task
 
+**Things you can unmark:**
+* Tasks
+
 ***Format:***
 
 `unmark <task index>`
-
-**Things you can unmark:**
-* Tasks only
 
 **Examples**
 
@@ -187,9 +192,15 @@ Unmark a task that you have completed
 
 > `unmark 3`
 
+
 ### Edit: `edit`
 
-Edit a specified item's details
+Edits a specified item's details
+
+**Things you can edit:**
+* Supplier details
+* Tasks
+* Item stock
 
 ***Format:***
 
@@ -203,11 +214,6 @@ Edit a specified item's details
 At least one field has to be edited for the command to execute successfully.
 </div>
 
-**Things you can edit:**
-* Supplier details
-* Tasks
-* Supply Item stock
-
 **Examples**
 
 * Edit supplier details
@@ -218,14 +224,14 @@ At least one field has to be edited for the command to execute successfully.
 
 > `editTask 1 dl/2022-10-10`
 
-* Edit supply item stock count
+* Edit item stock count
 
 > `editStock 1 c/7`
 
 
 ### Find: `find`
 
-Find suppliers based on name or item
+Finds suppliers based on name or item
 
 ***Format:***
 
@@ -246,7 +252,7 @@ Find suppliers based on name or item
 
 ### Increment / Decrement current stock in your inventory
 
-Increase or decrease your stock for a particular item in the inventory
+Increases or decreases your stock for a particular item in the inventory
 
 **Steps**
 
@@ -285,15 +291,15 @@ Lists all items.
 
 ### List all suppliers/tasks/inventory
 
-Refreshes and lists all suppliers/tasks/inventory.
+Refreshes and lists all suppliers/tasks/items.
 
 **Example of a possible use case**
-1. After using the `find` command for supplier contact, `listAll` / `listSuppliers` will list all
+- After using the `find` command for supplier contacts, `listAll` / `listSuppliers` will list all
 contacts in Salesy's address book.
 
 ### List all suppliers: `listSuppliers`
 
-Lists all suppliers
+List all suppliers
 
 ***Format:***
 
@@ -319,13 +325,14 @@ Lists all tasks
 
 > `listTasks`
 
-Note: All task displayed by the GUI is according to deadline.
-
-The task with the earlier deadline is found at the top of the list.
+<div markdown="span" class="alert alert-info">**Note:**
+Note: All tasks displayed in the GUI is sorted by deadline.
+The task with the earliest deadline is found at the top of the list.
+</div>
 
 ### List everything in the inventory: `listInventory`
 
-Lists whole inventory.
+Lists the whole inventory.
 
 ***Format:***
 
@@ -368,5 +375,4 @@ Clears and deletes all suppliers in Salesy.
 | **add** (supply item)        | `addItem <supplier index> c/CURRENTSTOCK m/MINIMUMSTOCK`    | `addItem 2 c/10 m/3`                                                               |
 | **delete** (supply item)     | `deleteItem <item index>`                                   | `deleteItem 2`                                                                     |
 | **edit stock** (supply item) | `editStock <item index> c/NEWCURRENTSTOCK`                  | `editStock 2 c/12`                                                                 |
-| **list** (all items)         | `listAll`                                                   | `listAll`                                                                          |
-| **sort**                     | `sort /<item type> <sort criteria> <ascending/descending>`  | `sort /task time descending`                                                       |
+| **list** (all items)         | `listAll`                                                   | `listAll`                                                                          |                                                    |
