@@ -32,7 +32,7 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Yay! I added a new module: %1$s!";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
 
-    @Parameter(description = "<module code>", required = true,
+    @Parameter(description = "<alphanumeric module code>", required = true,
             converter = ModCodeConverter.class)
     private ModCode modCode;
 
