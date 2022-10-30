@@ -14,7 +14,7 @@ class JsonAdaptedComment {
     private final String comment;
 
     /**
-     * Constructs a {@code JsonAdapatedComment} with the given {@code moduleName}.
+     * Constructs a {@code JsonAdapatedComment} with the given {@code comment}.
      */
     @JsonCreator
     public JsonAdaptedComment(String comment) {
@@ -34,11 +34,9 @@ class JsonAdaptedComment {
     }
 
     /**
-     * Converts this Jackson-friendly adapted module object into the model's {@code Module} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * Converts this Jackson-friendly adapted module object into the model's {@code Comment} object.
      */
-    public Comment toModelType() throws IllegalValueException {
+    public Comment toModelType() {
         return new Comment(comment);
     }
 
