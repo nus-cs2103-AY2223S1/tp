@@ -81,14 +81,18 @@ public class Meeting implements Comparable<Meeting> {
             if (listOfPeople.isEmpty()) {
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 throw new PersonNotFoundException();
-            }
 
-            Person personToMeet = getExactMatchingPerson(listOfPeople, strippedPersonName);
-            if (personToMeet == null) {
-                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-                throw new ImpreciseMatchException(strippedPersonName);
-            } else { // get the first person in the address book whose name matches
-                output.add(personToMeet);
+            } else if (listOfPeople.size() == 1) {
+                output.add(listOfPeople.get(0));
+
+            } else {
+                Person personToMeet = getExactMatchingPerson(listOfPeople, strippedPersonName);
+                if (personToMeet == null) {
+                    model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+                    throw new ImpreciseMatchException(strippedPersonName);
+                } else { // get the first person in the address book whose name matches
+                    output.add(personToMeet);
+                }
             }
 
             // resets the list of persons after every search
