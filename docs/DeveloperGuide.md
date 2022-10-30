@@ -247,6 +247,12 @@ Step 7. The new `Review` object will then replace the `Review` object to be edit
 
 ![REditSequenceDiagram](images/REditSequenceDiagram.png)
 
+#### UML Diagram for Editing Review
+
+The following activity diagram summarizes what happens when a user executes a new `redit` command:
+
+<img src="images/EditReviewActivityDiagram.png" width="250" />
+
 #### Design considerations:
 - Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
 
