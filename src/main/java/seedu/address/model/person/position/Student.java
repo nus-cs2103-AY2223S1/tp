@@ -28,8 +28,8 @@ import seedu.address.model.tag.Tag;
 public class Student extends Position {
 
     public static final String ATTENDANCE_CONSTRAINTS =
-            "Attendance should be in the format [integer (0-100)]/[integer (1-100)], where the first number is smaller than "
-                    + "or equal to the second number.";
+            "Attendance should be in the format [integer (0-100)]/[integer (1-100)], where the first number is "
+                    + "smaller than or equal to the second number.";
     public static final String ATTENDANCE_VALIDATION_REGEX = "\\d{1,3}" + "/" + "\\d{1,3}";
     public static final String MESSAGE_ASSIGNMENT_INVALID = "The index of the assignment is invalid.";
     public static final String ASSIGNMENT_CONSTRAINTS =
