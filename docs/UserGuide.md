@@ -234,7 +234,7 @@ Format: `list`  `list time`
 
 </div>
 
-Click [here](#) to return to the top of the page/content page.
+Click [here](#) to return to the top of the page.
 
 ### Managing contacts
 
