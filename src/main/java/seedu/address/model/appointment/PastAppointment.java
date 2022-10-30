@@ -1,5 +1,7 @@
 package seedu.address.model.appointment;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
@@ -23,6 +25,7 @@ public class PastAppointment extends Appointment {
      */
     public PastAppointment(LocalDate date, Set<Medication> medication, String diagnosis) {
         super(date);
+        requireNonNull(diagnosis);
         this.medication = medication;
         this.diagnosis = diagnosis;
     }
