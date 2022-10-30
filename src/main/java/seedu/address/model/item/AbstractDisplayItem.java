@@ -153,6 +153,11 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
+    public List<Attribute<?>> getSavedAttributes() {
+        return getAttributes();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

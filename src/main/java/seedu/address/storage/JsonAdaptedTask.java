@@ -30,9 +30,9 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
 
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description,
-                           @JsonProperty("localDateTime") String localDateTime, @JsonProperty("name") String name,
-                           @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                           @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
+            @JsonProperty("localDateTime") String localDateTime, @JsonProperty("name") String name,
+            @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
         this.description = description;
         this.localDateTime = localDateTime;
@@ -40,7 +40,7 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
 
     public JsonAdaptedTask(Task source) {
         super(source.getName().fullName, source.getUid().toString(),
-                source.getAttributes().stream()
+                source.getSavedAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),
                 source.getTags().stream()

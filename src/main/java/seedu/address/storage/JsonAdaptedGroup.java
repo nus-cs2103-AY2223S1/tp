@@ -24,14 +24,14 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
 
     @JsonCreator
     public JsonAdaptedGroup(@JsonProperty("name") String name, @JsonProperty("uid") String uid,
-                            @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
     }
 
     public JsonAdaptedGroup(Group source) {
         super(source.getName().fullName, source.getUid().toString(),
-                source.getAttributes().stream()
+                source.getSavedAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),
                 source.getTags().stream()

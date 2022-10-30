@@ -149,6 +149,11 @@ public class Task extends AbstractSingleItem {
         return ret;
     }
 
+    @Override
+    public List<Attribute<?>> getSavedAttributes() {
+        return super.getAttributes();
+    }
+
     /**
      * Make the current item to belong under {@code DisplayItem o}
      *

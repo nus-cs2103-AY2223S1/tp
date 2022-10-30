@@ -30,8 +30,8 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("fields") JsonAdaptedFields fields, @JsonProperty("name") String name,
-                             @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
+            @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
         this.fields = fields;
     }
@@ -41,7 +41,7 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
      */
     public JsonAdaptedPerson(Person source) {
         super(source.getName().fullName, source.getUid().toString(),
-                source.getAttributes().stream()
+                source.getSavedAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),
                 source.getTags().stream()
