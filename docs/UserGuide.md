@@ -5,35 +5,14 @@ title: User Guide
 
 Gim is a **desktop app for managing and tracking gym exercises, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Gim commands are inspired by those of Vim. If you are an avid Vim user and can type fast, Gim can help you keep track of your workouts and personal records for each exercise. Gim can also help you to craft a workout based on your personal records.
 
-### Table of Contents
-#### [Getting Started](#quick-start)
-#### [Orientating the GUI](#gui-orientation)
-* Command Box
-* Exercise List 
-* Result Display 
-* Recognised Exercise Names List
-
-#### [Features](#commands)
-* Adding an exercise **:add**
-* Deleting an exercise **:del**
-* Listing all exercises **:list**
-* Filtering exercises by their name(s) **:filter**
-* Clearing the saved exercises and resets the data in the system **:clear**
-* Sorting exercises **:sort**
-* Viewing all exercises within a time period **:range**
-* Displaying the stored Personal Records **:pr**
-* Generating a sample workout based on Personal Records **:gen**
-* Displaying the help menu **:help**
-* Exiting the application **:wq**
+* Table of Contents
+{:toc}
 
 <div style="page-break-after: always;"></div>
 
-#### [Command Summary](#summary-of-commands)
-#### [Glossary](#glossary-of-terminologies)
-
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -53,7 +32,7 @@ Gim is a **desktop app for managing and tracking gym exercises, optimized for us
 
 <div style="page-break-after: always;"></div>
 
-## GUI Orientation 
+## GUI Orientation
 
 ![GUI](images/GUIOrientation.png)
 
@@ -137,7 +116,7 @@ Adds an exercise that we have done for the day. If an exercise (identified by th
 
 Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
 
-##### Parameter constraints:
+Parameter constraints:
 * The name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**.
   * Examples: Squat, Bench press, Deadlift...
 * The weight **must be a positive decimal number, up to 3 digits for the whole number and up to 2 digits for the decimal place**.
@@ -160,7 +139,7 @@ Format: `:add n/NAME w/WEIGHT s/SETS r/REPS [d/DATE]`
   * Examples: 27/10/2022, 27-10-2022, 27/10/22... 
   * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
-##### Examples:
+Examples:
 * `:add n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
 * `:add n/Deadlift w/60 s/1 r/1 d/27-01-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
 * 
@@ -174,10 +153,10 @@ Deletes a particular exercise from our list. The index refers to the index numbe
 
 Format: `:del INDEX`
 
-##### Parameter constraints:
-* The index must be a positive integer 1, 2, 3, ...
+Parameter constraints:
+* The index **must be a positive integer** 1, 2, 3, ...
 
-##### Example:
+Example:
 * `:del 9` Deletes an exercise at index 9 of the list
 
 ![DeleteCommand](images/DeleteCommand.png)
@@ -189,7 +168,7 @@ Shows a list of all exercises.
 
 Format: `:list`
 
-##### Example:
+Example:
 `:list` Shows the list of exercises user has completed
 
 <div style="page-break-after: always;"></div>
@@ -206,7 +185,7 @@ Format: `:filter KEYWORD [KEYWORD]...`
 * Only full words will be matched e.g. Squat will not match Squats.
 * Exercises matching at least one keyword will be returned e.g. `:filter Bench press` will return Bench press and Leg press.
 
-##### Example:
+Example:
 * `:filter Deadlift Squat` Shows the list of Deadlift and Squat exercises.
 
 ![FilterCommand](images/FilterCommand.png)
@@ -223,9 +202,8 @@ Format: `:clear confirm/`
 Extraneous parameters (before and after the `confirm/` flag) will be ignored. <br> e.g. if the command specifies `:clear abc confirm/ 123`, it will be interpreted as `:clear confirm/`.
 </div>
 
-##### Example:
+Example:
 * `:clear confirm/` Confirms the clearing of all saved exercises, resetting the data in the system.
-
 
 ### Sorting exercises : `:sort`
 
@@ -233,7 +211,7 @@ Sorts the list of exercises displayed in the Exercise List Window according to t
 
 Format: `:sort`
 
-##### Example:
+Example:
 * `:sort` Shows the sorted list of exercises.
 
 ![ListAfterSortCommand](images/ListAfterSortCommand.png)
@@ -252,17 +230,17 @@ Shows a list of all exercises sorted within a date range; the entry with the mos
 
 Format (1) : `:range start/START_DATE end/END_DATE`
 
-##### Example:
+Example:
 `:range start/25/10/2022 end/26/10/2022` Shows the exercises done between October 25, 2022 and October 26, 2022 (both inclusive).
 
 ![RangeCommandOne](images/RangeCommandOneSample.png)
 
 Format (2) : `:range last/NUMBER_OF_DAYS`
 
-##### Parameter constraints:
-* Number of days can only take positive integer values, up to 6 digits
+Parameter constraints:
+* Number of days **can only take positive integer values**, up to 6 digits
 
-##### Example:
+Example:
 `:range last/3` Shows the exercises done today and the last 3 days.
 
 ![RangeCommandTwo](images/RangeCommandTwoSample.png)
@@ -281,11 +259,11 @@ Finds the Personal Record of certain exercises in the exercise tracker.
 
 Format (1): `:pr n/NAME [n/NAME]...`
 
-##### Parameter constraints:
+Parameter constraints:
 * Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**
   * Examples: Squat, Bench press, Deadlift...
 
-##### Examples:
+Examples:
 * `:pr n/Squat` Lists the personal record for the 'Squat' exercise (if any).
 * `:pr n/Deadlift n/Bench press n/Squat` Lists the personal records for the 'Deadlift', 'Bench press' and 'Squat' exercises (if any).
 
@@ -299,7 +277,7 @@ Format (2): `:pr all/`
 Extraneous parameters (before and after the `all/` flag) will be ignored. <br> e.g. if the command specifies `:pr abc all/ 123`, it will be interpreted as `:pr all/`.
 </div>
 
-##### Example:
+Example:
 * `:pr all/` Lists the personal records for all uniquely registered exercises in the exercise tracker.
 
 ![PrCommandExample2](images/PrCommandExample2.png)
@@ -318,11 +296,11 @@ Generates a sample workout suggestion based on existing personal records of the 
 
 Format (1): `:gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL`
 
-##### Parameter constraints:
-* The index must be a positive integer 1, 2, 3, ...
+Parameter constraints:
+* The index **must be a positive integer** 1, 2, 3, ...
 * The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
 
-##### Examples:
+Examples:
 `:gen 1, 2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
 
 ![GenerateCommandExample1](images/GenerateCommandExample1.png)
@@ -337,7 +315,7 @@ Note that only one sample workout is generated for each unique exercise name. Fo
 
 Format (2): `:gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL`
 
-##### Parameter constraints:
+Parameter constraints:
 * Name **must only contain alphanumeric** (alphabets & numbers) **characters and spaces**.
 * The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
 
@@ -345,7 +323,7 @@ Format (2): `:gen n/NAME [n/NAME]... level/DIFFICULTY_LEVEL`
 Extraneous parameters (before the first `n/` flag) will be ignored. <br> e.g. if the command specifies `:gen 1,2,3 n/Squat level/easy`, it will be interpreted as `:gen n/Squat level/easy`.
 </div>
 
-##### Examples:
+Examples:
 `:gen n/Squat n/Deadlift level/easy` Generates a sample workout for exercises Squat and Deadlift.
 
 ![GenerateCommandNameExample1](images/GenerateCommandNameExample1.png)
