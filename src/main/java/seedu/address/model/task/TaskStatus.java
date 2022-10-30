@@ -32,7 +32,9 @@ public class TaskStatus {
      * @param status A valid status.
      */
     public static TaskStatus of(String status) {
-        if (status.equals(COMPLETE_STRING)) {
+        requireNonNull(status);
+        checkArgument(isValidStatus(status), STATUS_CONSTRAINTS);
+        if (status.equalsIgnoreCase(COMPLETE_STRING)) {
             return COMPLETE;
         } else {
             return INCOMPLETE;
@@ -40,14 +42,15 @@ public class TaskStatus {
     }
 
     /**
-     * Returns true if the given string is a valid status,
+     * Returns true if the given string is "complete" or "incomplete",
      * false otherwise.
+     * This comparison is not case-sensitive.
      *
      * @param status string representation of a status.
      * @return true if the given string is a valid status, false otherwise.
      */
     public static boolean isValidStatus(String status) {
-        return status.equals(COMPLETE_STRING) || status.equals(INCOMPLETE_STRING);
+        return status.equalsIgnoreCase(COMPLETE_STRING) || status.equalsIgnoreCase(INCOMPLETE_STRING);
     }
 
     /**
@@ -57,7 +60,7 @@ public class TaskStatus {
      * @return true if task status is "complete".
      */
     public boolean isComplete() {
-        return status.equals(COMPLETE_STRING);
+        return this == COMPLETE;
     }
 
     @Override
