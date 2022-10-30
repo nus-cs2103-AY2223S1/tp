@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.UniqueId;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.order.AdditionalRequests;

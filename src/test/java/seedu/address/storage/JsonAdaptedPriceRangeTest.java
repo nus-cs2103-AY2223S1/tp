@@ -1,23 +1,20 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
 import seedu.address.model.order.PriceRange;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonCategory;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedBuyer.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalBuyers.BENSON;
 
 public class JsonAdaptedPriceRangeTest {
-    private final Double INVALID_UPPER_BOUND = -10.0758;
-    private final Double INVALID_LOWER_BOUND = -7.890486;
+    private static final Double INVALID_UPPER_BOUND = -10.0758;
+    private static final Double INVALID_LOWER_BOUND = -7.890486;
 
-    private final Double VALID_UPPER_BOUND = 150.75864;
-    private final Double VALID_LOWER_BOUND = 40.8396803;
+    private static final Double VALID_UPPER_BOUND = 150.75864;
+    private static final Double VALID_LOWER_BOUND = 40.8396803;
 
     @Test
     public void toModelType_validLowerBound_returnsPriceRange() throws Exception {
