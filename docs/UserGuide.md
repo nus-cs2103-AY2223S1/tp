@@ -24,31 +24,31 @@ finding out about your friends' schedules, and focus on getting your projects an
 an appropriate version of Java. You can open a command window and run the `java -version` command to ensure you are using 
 Java 11 (or above).
 
-![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 237)/Screenshot 2022-10-30 at 5.16.00 PM.png)
+![](images/QuickStart1.png)
 
 2. Download the latest ConnectNUS.jar from [here](https://github.com/AY2223S1-CS2103T-T14-4/tp/releases/tag/v1.3).
 
-![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 239)/Screenshot 2022-10-30 at 5.20.32 PM.png)
+![](images/QuickStart2.png)
 
 3. Copy the file to a new empty folder you want to use as the home folder for ConnectNUS. A JSON file will be created in
 the folder to store your data upon saving the jar file.
 
-![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 238)/Screenshot 2022-10-30 at 5.19.09 PM.png)
+![](images/QuickStart3.png)
 
 4. In terminal (Mac) or command prompt (Windows), navigate to the folder's path. For Mac users, you can do it by right-clicking on the folder
 and click on `New Terminal at Folder` as illustrated below.
 
-![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 240)/Screenshot 2022-10-30 at 5.22.58 PM.png)
-![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 241)/Screenshot 2022-10-30 at 5.23.41 PM.png)
+![](images/QuickStart4.png)
+![](images/QuickStart5.png)
 
 5. Launch the jar file using the `java -jar ConnectNUS.jar` command in the terminal. Do not double-click
 on the jar file in the folder. This to ensure the jar file is using the correct Java version verified in Step 1.
 
-![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 243)/Screenshot 2022-10-30 at 5.26.01 PM.png)
+![](images/QuickStart6.png)
 
 6. The GUI similar to the below should appear in a few seconds. Do note that the app contains some sample data.
 
-![](../../../../../var/folders/pg/lmxv_1550zb9hzm3tflh69180000gn/T/TemporaryItems/(A Document Being Saved By screencaptureui 244)/Screenshot 2022-10-30 at 5.28.08 PM.png)
+![](images/QuickStart7.png)
 
 7. Refer to the [Features](#features) section below to for more details on how to use ConnectNUS.
 
