@@ -326,11 +326,11 @@ The `message` command provides an easy way for users to generate messages to sen
 
 The following commands are provided:
 
-`create`  — Create a message template
+* `create`  — Create a message template
 
-`delete`  — Delete the specified message template
+* `delete`  — Delete the specified message template
 
-`generate`  — Using the specified message template and client, generate a message for client.
+* `generate`  — Using the specified message template and client, generate a message for client.
 
 Creation and deletion are exposed in the `Model` interface as `Model#createMessage`, `Model#deleteMessage`, while message generation is exposed in `Message` as `Message#generate`.
 
