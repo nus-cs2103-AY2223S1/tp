@@ -331,6 +331,9 @@ The sequence diagram for the command ```addInt 1 algo``` is as follows.
 
 ![AddInterestSequenceDiagram](images/AddInterestSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddInterestCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 In addition, the sequence diagram below illustrates how the ```AddInterestCommand``` interacts with ```Model``` to update the added interests in Mass Linkers. 
 
 ![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
