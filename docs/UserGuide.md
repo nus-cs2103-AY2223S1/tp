@@ -294,7 +294,7 @@ Format: `edit-task [t/TITLE] [d/DESCRIPTION] [deleteStu/STUDENT_1, STUDENT_2]`
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * For task specific fields `by/`, `addStu/`, and `deleteStu/`, can only be edited if the task is of the correct type.
-    * `by/` is only accepted while editing a Deadline Task. The date follows the same format as [deadline tasks](#creating-deadline-tasks).
+    * `by/` is only accepted while editing a Deadline Task. The date follows the same format as [deadline tasks](#adding-a-deadline).
     * `addStu/` and `deleteStu/` are only accepted while editing an Assignment Task.
     * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
 * Existing values will be updated to the input values.
@@ -345,7 +345,7 @@ Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
 * `task t/Collect robot d/At MakersLab by/2019-09-10`
 
-### Creating Assignment Tasks
+#### Adding a Assignment
 
 Adds an ***Assignment*** (A type of Task) to the Task List.
 
