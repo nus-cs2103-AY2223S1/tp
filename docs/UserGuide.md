@@ -262,7 +262,7 @@ Examples:
 
 Edits an existing reminder in the list of reminders.
 
-Format: `edit consultation INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [d/description] [p/PRIORITY]`
+Format: `edit reminder INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [d/description] [p/PRIORITY]`
 
 * Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -271,7 +271,7 @@ Format: `edit consultation INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [d
 
 Examples:
 * `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
-* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd consultation to be `14:00` and sets deadline date to `2022 Oct 10`.
+* `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2022 Oct 10`.
 
 #### 3.4.4 Mark a reminder : `mark reminder`
 
@@ -369,7 +369,7 @@ _Details coming soon..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModQuik home folder.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 
@@ -398,7 +398,10 @@ _Details coming soon..._
 | **Exit**                   | `exit`                                                                                                                                                                                                               |
 | **Help**                   | `help`                                                                                                                                                                                                               |
 
+<div style="page-break-after: always;"></div>
+
 ## 6. Prefix summary
+
 | Prefix    | Symbolise        |
 |-----------|------------------|
 | **att/**  | attendance       |
