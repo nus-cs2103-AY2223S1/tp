@@ -9,12 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class MinecraftName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Minecraft names cannot have any spaces.";
+            "Minecraft names cannot have any spaces, and must contain at least one character.";
 
     /*
      * Completely no whitespace in the name
      */
-    public static final String VALIDATION_REGEX = "^\\S*$";
+    public static final String VALIDATION_REGEX = "^\\S+$";
 
     public final String username;
 

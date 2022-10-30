@@ -69,7 +69,7 @@ public class ParserUtil {
         requireNonNull(minecraftName);
         String trimmedName = minecraftName.trim();
         if (!MinecraftName.isValidMinecraftName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MinecraftName.MESSAGE_CONSTRAINTS);
         }
         return new MinecraftName(trimmedName);
     }

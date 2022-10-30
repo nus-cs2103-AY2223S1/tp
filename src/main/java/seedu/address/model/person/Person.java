@@ -2,11 +2,14 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Represents a Person in the address book.
@@ -169,20 +172,32 @@ public class Person {
     }
 
     /**
-     * Gets the string to be checked against in the predicate.
-     * @return The predicate string
+     * Gets the strings to be checked against in the predicate.
+     * @return The collection of strings to be checked against
      */
-    public String toPredicateCheckingString() {
-        return getName() + "\n"
-                + getMinecraftName() + "\n"
-                + getPhone() + "\n"
-                + getEmail() + "\n"
-                + getAddress() + "\n"
-                + getCountry() + "\n"
-                + getServers() + "\n"
-                + getSocials() + "\n"
-                + getGameType() + "\n"
-                + getTimesAvailable();
+    public Collection<String> toPredicateCheckingString() {
+
+        List<String> predStrings = new ArrayList<>();
+        predStrings.add(getName().toString());
+        predStrings.add(getMinecraftName().toString());
+        predStrings.add(getPhone().toString());
+        predStrings.add(getAddress().toString());
+        predStrings.add(getCountry().toString());
+        predStrings.addAll(getCollectionString(getServers()));
+        predStrings.addAll(getCollectionString(getSocials()));
+        predStrings.addAll(getCollectionString(getGameType()));
+        predStrings.addAll(getCollectionString(getTags()));
+
+        return predStrings;
+    }
+
+    /**
+     * Converts a collection of attributes to a collection of Strings.
+     * @param c The collection of the attributes of a person
+     * @return The collection of Strings representing that attribute
+     */
+    private Collection<String> getCollectionString(Collection<?> c) {
+        return c.stream().map(Object::toString).collect(Collectors.toList());
     }
 
     private String getFieldOrElse(String s) {

@@ -46,6 +46,12 @@ public class DayTimeInWeek {
 
         String[] tokens = test.split("@");
         String timeOfDay = tokens[1];
+
+        int minutes = Integer.parseInt(timeOfDay.substring(2, 4));
+        if (minutes < 0 || minutes >= 60) {
+            return false;
+        }
+
         if (stringToMinutesSinceMidnight(timeOfDay) >= MINUTES_IN_A_DAY) {
             return false;
         }
