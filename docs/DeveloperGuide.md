@@ -52,7 +52,7 @@ The RC4HDB developer's guide was created to provide future developers with reada
 This document covers the following:
 * High and low level design details of our application.
 * Other potential implementations that we have considered and the reasons for our choice of our current implementation.
-* RC4HDB's [project requirements](#appendix-project-requirements).
+* RC4HDB [project requirements](#appendix-project-requirements).
 * How you can go about [testing our application](#appendix-instructions-for-manual-testing).
 * How you can [join](#joining-us) our team.
 
