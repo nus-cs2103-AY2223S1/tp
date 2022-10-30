@@ -41,23 +41,34 @@ title: Developer Guide
 
 ## Introduction
 
-Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what **RC4HDB** is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing a specialised features which solve their resident and venue management needs.
+Welcome to our **Residential College 4 Housing Database (RC4HDB)** developer's guide. In case you do not already know what RC4HDB is, it is a desktop application which streamlines the daily workflow of [RC4](#glossary) housing management staff, by providing a specialised features which solve their resident and venue management needs.
 
 ### Purpose
 
-This document was created to provide future developers with readable and comprehensive documentation for the design of **RC4HDB**. We hope that after reading the document, you will gain a reasonable understanding of how **RC4HDB** was designed and the direction our [team](AboutUs.md) intends for **RC4HDB** to take.
+The RC4HDB developer's guide was created to provide future developers with readable and comprehensive documentation for the design of RC4HDB. We hope that after reading the document, you will gain a reasonable understanding of how RC4HDB was designed and the direction our [team](AboutUs.md) intends for RC4HDB to take.
 
 ### Scope
 
-The **RC4HDB** developer's guide covers the high and low level design details of our application, along with other potential implementations that we have considered and the reasons for our choice of our current implementation. It also covers our [project requirements](#appendix-project-requirements), how you can go about [testing our application](#appendix-instructions-for-manual-testing) and even how you can [join us](#joining-us).
+This document covers the following:
+* High and low level design details of our application.
+* Other potential implementations that we have considered and the reasons for our choice of our current implementation.
+* RC4HDB's [project requirements](#appendix-project-requirements).
+* How you can go about [testing our application](#appendix-instructions-for-manual-testing).
+* How you can [join](#joining-us) our team.
 
 ### Format of the guide
 
-The **RC4HDB** developer's guide is arranged in a top-down format. We will begin by discussing high-level details, before discussing lower-level details of our application.
+This document is arranged in a top-down format. We will begin by discussing high-level details, before discussing lower-level details of our application.
+
+### Direction
+
+With our resident and venue functionalities in place, we wish to enhance RC4HDB in the following ways:
+* Improve the usability of the existing commands.
+* Add data analysis tools.
 
 ### Getting started
 
-A good place to start off with would be to take a look at the [design](#design) section of our guide, where you will find out about the high-level design details of **RC4HDB**. Otherwise, have a look at our [table of contents](#table-of-contents) for any sections of our guide that you may be interested in. If you are eager to work on the project, do refer to our section on how you can [join us](#conclusion).
+A good place to start off with would be to take a look at the [design](#design) section of our guide, where you will find out about the high-level design details of **RC4HDB**. Otherwise, have a look at our [table of contents](#table-of-contents) for any sections of our guide that you may be interested in. If you are eager to work on the project, do refer to our section on how you can [join us](#joining-us).
 
 ---
 
