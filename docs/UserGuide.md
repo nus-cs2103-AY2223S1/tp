@@ -192,35 +192,92 @@ Example:
 
 - `delete 1` deletes the employee with employee ID of 1.
 
-#### Adding multiple employees at once: `batchadd`
+#### Adding multiple employees at once: `batch-add`
 
-Adds multiple employees to Coydir all at once.
+Adds multiple employees to Coydir by importing their data from `.csv` file
 
-:warning: **Make sure to have uploaded CSV file to make use of this command, and that employees' fields are compatible with Coydir**: CSV file can be uploaded under the 'data' folder of Coydir.
+This feature will come in handy when:
 
-:warning: **Fields to be added in batchadd would be name, phone, email, position, department, address, tags, and total number of leaves**
+1. You are a new user and have your employee data stored in a `.csv` file.
+2. There has been a recruitment cycle and the company has recruited multiple employees.
 
-:warning: **Do not have commas between each field in the CSV file.**
+With this feature, you would not need to spend time to manually add each employee in!
 
-This command results in one of two cases below:
+Format: `batch-add FILENAME`
 
-**Case 1: CSV file exists**
+Example:`batch-add coydir.csv`
 
-if a CSV file of employees exists in the 'data' folder of Coydir, Coydir will read from the CSV file to add the employees.
+How can you use this feature?
 
-**Case 2: CSV file does not exist**
+#### Step 1 (Creating CSV file) :
 
-if a CSV file does not exist in the 'data' folder of Coydir, Coydir will
-throw an error.
+Things to note:
+- A header row is required to indicate the purpose of the field and must be the first row in the `.csv` file.
+- No commas to be used in the file.
+- For multiple tags for an employee, the tags should be separated by " \ ".
+- For the fields, make sure that they follow the same specifications as written in the `add` command.
 
-Format: `batchadd FILENAME`
+Order of headers is as such (**Order must be followed**):
 
-Example:
+| Index | Field            | Mandatory Field? |
+|-------|------------------|------------------|
+| 1.    | Name             | **Yes**              |
+| 2.    | Phone            | No               |
+| 3.    | Email            | No               |
+| 4.    | Position         | **Yes**              |
+| 5.    | Department       | **Yes**              |
+| 6.    | Address          | No               |
+| 7.    | Number of Leaves | No               |
+| 8.    | Tags             | No               |
 
-- `batchadd employees.csv`
+Sample `.csv` file:
 
-Sample CSV file as such:
-![](./images/Sample_CSV.png)
+![](images/batch-add-images/sampleCSV.png)
+
+Sample `.xlsx` file:
+![](images/batch-add-images/SampleExcel.png)
+Note: You can export this to `.csv`.
+
+#### Step 2 (Uploading CSV file) :
+
+1. Go to the folder where you stored the `jar` file.
+2. Move CSV file to the `data` folder.
+![](images/batch-add-images/movingFile.png)
+
+_If you are a new user (have not run any command yet), you will not see the `data` folder. 
+You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first. 
+After this, you should be able to see the `data` folder._
+
+#### Step 3 (Running CSV file) :
+
+1. Once done, run `batch-add FILENAME` in the command box.
+
+Successful Batch Add:
+![](images/batch-add-images/BatchAddSuccess.png)
+
+Unsuccessful Batch Add:
+
+In the case of an unsuccessful Batch Add, **NONE** of the employees in the `.csv` will be added.
+
+**Case 1 (Duplicate Employee):**
+
+If there is another employee with the same name in the database or in the csv, command will fail 
+and error will be raised.
+![](images/batch-add-images/DuplicateEmployee.png)
+
+**Case 2 (Any of the fields in wrong format):**
+
+If any of the fields are in a wrong format (as specified in `add` command), command will fail 
+and error with regard to field in the wrong format will be raised
+
+![](images/batch-add-images/Incorrect Format.png)
+_In this case, a `Phone` field was in the wrong format._
+
+As of version `1.4.0` , this feature only supports `.csv` files and adding employees with the fields mentioned above. 
+
+In the upcoming versions, we will expand `batch-add` feature to:
+1. Support different types of files
+2. Include more fields like rating etc.
 
 #### View details of an employee: `view`
 
@@ -412,10 +469,10 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 ## Command summary
 
 | Action              | Format, Examples                                                                                                                                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ------------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**             | `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`                                                      |
 | **Edit**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal` |
-| **Batch Add**       | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                                                        |
+| **Batch Add**       | `batch-add FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                                                       |
 | **View Details**    | `view ID` <br> e.g. `view 1`                                                                                                                                                                                                                     |
 | **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |

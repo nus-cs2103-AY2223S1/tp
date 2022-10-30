@@ -60,14 +60,23 @@ public class BatchAddCommand extends Command {
                 String arg = " ";
                 for (int i = 0; i < data.length; i++) {
                     if (i == (data.length - 1)) {
-                        String[] tags = data[i].split("/");
-                        for (String tag : tags) {
-                            arg += PREFIX_LIST[i] + tag + " ";
+                        if (data[i].equals("")) {
+                            continue;
+                        } else {
+                            String[] tags = data[i].split("/");
+                            for (String tag : tags) {
+                                arg += PREFIX_LIST[i] + tag + " ";
+                            }
                         }
                     } else {
-                        arg += PREFIX_LIST[i] + data[i] + " ";
+                        if (data[i].equals("")) {
+                            continue;
+                        } else {
+                            arg += PREFIX_LIST[i] + data[i] + " ";
+                        }
                     }
                 }
+                System.out.println(arg);
                 addCommandList.add(new AddCommandParser().parse(arg));
             }
         } catch (FileNotFoundException e) {
