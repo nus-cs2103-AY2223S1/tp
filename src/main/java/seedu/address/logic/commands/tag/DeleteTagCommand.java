@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
 
@@ -31,18 +31,19 @@ import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Deletes tag(s) from the tag list of an existing person/task in the address book.
  */
 public class DeleteTagCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteL";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person/task identified "
+            + "by the index number used in the displayed person/task list. "
+            + "Selected tags will be deleted from the existing list of tags.\n"
+            + "Parameters: " + PREFIX_CONTACT + "INDEX (must be a positive integer) "
+            + PREFIX_TASK + "INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CONTACT + "1 " + PREFIX_TASK + "2 "
             + PREFIX_TAG + "CS2103T";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted Tag: %1$s";
@@ -92,20 +93,25 @@ public class DeleteTagCommand extends Command {
             throw new CommandException(MESSAGE_MISSING_INDEX);
         }
 
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
+        Person personToEdit = lastShownPersonList.get(contactIndex.getZeroBased());
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        List<Task> lastShownTaskList = model.getFilteredTaskList();
+        Task taskToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+
+        if (contactIndex.getZeroBased() >= lastShownPersonList.size()
+            || taskIndex.getZeroBased() >= lastShownTaskList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_OR_TASK_DISPLAYED_INDEX);
+        }
+
+        if (!personToEdit.getTags().containsAll(editPersonDescriptor.getTags().orElse(new HashSet<>()))
+            || !taskToEdit.getTags().containsAll(editTaskDescriptor.getTags().orElse(new HashSet<>()))) {
+            throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
+        }
+
         if (deleteTagFromContact) {
-            List<Person> lastShownList = model.getFilteredPersonList();
-
-            if (contactIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-
-            Person personToEdit = lastShownList.get(contactIndex.getZeroBased());
-            Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
-            if (!personToEdit.getTags().containsAll(editPersonDescriptor.getTags().orElse(new HashSet<>()))) {
-                throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
-            }
-
             model.setPerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
@@ -115,19 +121,6 @@ public class DeleteTagCommand extends Command {
             }
         }
         if (deleteTagFromTask) {
-            List<Task> lastShownTaskList = model.getFilteredTaskList();
-
-            if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-            }
-
-            Task taskToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
-            Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-
-            if (!taskToEdit.getTags().containsAll(editTaskDescriptor.getTags().orElse(new HashSet<>()))) {
-                throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
-            }
-
             model.setTask(taskToEdit, editedTask);
             model.updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
             for (String string : tagStrings) {

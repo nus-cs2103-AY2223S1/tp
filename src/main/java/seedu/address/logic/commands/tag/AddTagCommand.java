@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TAGS;
 import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
@@ -32,25 +32,25 @@ import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Adds tag(s) to an existing person/task in the address book.
  */
 public class AddTagCommand extends Command {
 
     public static final String COMMAND_WORD = "addL";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person/task identified "
+            + "by the index number used in the displayed person/task list. "
+            + "New tags will be added on to existing list of tags.\n"
+            + "Parameters: " + PREFIX_CONTACT + "INDEX (must be a positive integer) "
+            + PREFIX_TASK + "INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CONTACT + "1 " + PREFIX_TASK + "2 "
             + PREFIX_TAG + "CS2103T";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag: %1$s";
     public static final String MESSAGE_TAG_NOT_ADDED = "At least 1 tag to add must be provided.";
-    public static final String MESSAGE_DUPLICATE_TAG_ON_PERSON = "This person already has the "
+    public static final String MESSAGE_DUPLICATE_TAG_ON_PERSON_OR_TASK = "This person/task already has the "
         + "tag you are trying to add";
-    public static final String MESSAGE_DUPLICATE_TAG_ON_TASK = "This task already has the tag you are trying to add";
     public static final String MESSAGE_MISSING_INDEX = "At least 1 contact or task index must be provided.";
 
     private final Index contactIndex;
@@ -96,20 +96,24 @@ public class AddTagCommand extends Command {
             throw new CommandException(MESSAGE_MISSING_INDEX);
         }
 
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
+        Person personToEdit = lastShownPersonList.get(contactIndex.getZeroBased());
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        List<Task> lastShownTaskList = model.getFilteredTaskList();
+        Task taskToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+
+        if (contactIndex.getZeroBased() >= lastShownPersonList.size()
+            || taskIndex.getZeroBased() >= lastShownTaskList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_OR_TASK_DISPLAYED_INDEX);
+        }
+
+        if (personToEdit.equals(editedPerson) || taskToEdit.equals(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TAG_ON_PERSON_OR_TASK);
+        }
+
         if (addTagToContact) {
-            List<Person> lastShownPersonList = model.getFilteredPersonList();
-
-            if (contactIndex.getZeroBased() >= lastShownPersonList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-
-            Person personToEdit = lastShownPersonList.get(contactIndex.getZeroBased());
-            Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-
-            if (personToEdit.equals(editedPerson)) {
-                throw new CommandException(MESSAGE_DUPLICATE_TAG_ON_PERSON);
-            }
-
             model.setPerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
@@ -124,19 +128,6 @@ public class AddTagCommand extends Command {
             }
         }
         if (addTagToTask) {
-            List<Task> lastShownTaskList = model.getFilteredTaskList();
-
-            if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-            }
-
-            Task taskToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
-            Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-
-            if (taskToEdit.equals(editedTask)) {
-                throw new CommandException(MESSAGE_DUPLICATE_TAG_ON_TASK);
-            }
-
             model.setTask(taskToEdit, editedTask);
             model.updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
 
