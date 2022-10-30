@@ -2,14 +2,37 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+
+<div align="center">
+
+<h1>Rapportbook Developer Guide</h1>
+
+Welcome to the Rapportbook Developer guide!
+
+</div>
+
+Rapportbook is a CLI-focused desktop app for managing client information, developed in Java 11. If you wish to contribute to Rapportbook, please go through this guide to familiarize yourself with Rapportbook.
+
+#### Using this guide
+If it is your first time contributing, make sure you follow the guidelines we have noted in [Setting up, getting started](#setting-up-getting-started). Please refer to the following list of sections to get you familiarized with Rapportbook.
+  * [Design overview](#design) -- High level overview of the design and architecture Rapportbook.
+  * [Implementation](#implementation) -- Implementation details for the features currently implemented.
+  * [Testing](#appendix-instructions-for-manual-testing) -- Testing instructions to and expected outcomes of the features in Rapportbook.
+
+The following is the table of contents for Rapportbook.
+
+Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
+* Third-party libraries used:
+  * [JavaFX](https://openjfx.io/) -- UI framework
+  * [Jackson](https://github.com/FasterXML/jackson) -- JSON parser
+  * [JUnit5](https://junit.org/junit5/) -- Testing framework
 
 --------------------------------------------------------------------------------------------------------------------
 
