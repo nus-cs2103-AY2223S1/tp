@@ -58,9 +58,19 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
+  
+* The following prefix parameters `D/` and `T/` have more than 1 definition, depending on the type of command inputted. </br>
+  - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands. </br>
+    Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday). </br>
+    Format of `DATE` should be yyyy-MM-dd. e.g. 2022-02-24
+  - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands. </br>
+    Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00 </br>
+    Format of `TIME` should be HH:mm. e.g. 13:00.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+
 
 </div>
 
@@ -122,7 +132,7 @@ Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find m/CS2103T` returns list of students in CS2103T<br>\
+* `find m/CS2103T` returns list of students in CS2103T<br>
 
 #### 3.1.5 Deleting a student: `delete student`
 
@@ -240,7 +250,7 @@ Examples:
 
 Adds a reminder to the list of reminders.
 
-Format: `add reminder n/NAME T/DEADLINE_TIME D/DEADLINE_DATE p/PRIORITY d/DESCRIPTION `
+Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 Adds a reminder to the list of reminders.
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
@@ -253,7 +263,7 @@ Examples:
 
 Edits an existing reminder in the list of reminders.
 
-Format: `edit reminder INDEX [n/NAME] [T/DEADLINE_TIME] [D/DEADLINE_DATE] [p/PRIORITY] [d/DESCRIPTION] `
+Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION] `
 
 * Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -387,7 +397,6 @@ _Details coming soon..._
 **A**: Click on the `Tab` button, and it will toggle between all 4 tabs (**Student**, **Grade Chart**, **Consultation**, **Tutorial**) and the command line input too.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 
@@ -395,7 +404,7 @@ _Details coming soon..._
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Student**            | `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m/MODULE tut/TUTORIAL [t/TAG]…`<br> e.g., `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17` |
 | **List All Students**      | `list`                                                                                                                                                                                                               |
-| **Edit Student**           | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`
+| **Edit Student**           | `edit student INDEX [n/NAME] [m/MODULE] [ph/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`                                                                                 |
 | **Find Student**           | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`<br> e.g., `find n/john m/CS2103T`                                                                                                                           |
 | **Delete Student**         | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                             |
 | **Extract Student Emails** | `extract emails`                                                                                                                                                                                                     |
@@ -405,7 +414,7 @@ _Details coming soon..._
 | **Add Consultation**       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation D/2022-10-24 T/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`                                |
 | **Edit Consultation**      | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                   |
 | **Delete Consultation**    | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                        |
-| **Add Reminder**           | `add reminder n/NAME D/DEADLINE_DATE D/DEADLINE_TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2022-03-21 T/13:00 p/HIGH d/300 papers to mark`                                               |
+| **Add Reminder**           | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2022-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                 |
 | **Edit Reminder**          | `edit reminder INDEX`<br> e.g., `delete reminder 1 D/2022-01-01 T/14:00`                                                                                                                                             |
 | **Mark Reminder**          | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                    |
 | **Unmark Reminder**        | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                |
@@ -416,26 +425,25 @@ _Details coming soon..._
 | **Help**                   | `help`                                                                                                                                                                                                               |
 | **Exit**                   | `exit`                                                                                                                                                                                                               |
 
-<div style="page-break-after: always;"></div>
-
 ## 6. Prefix summary
-| Prefix    | Symbolise        | Used in                                                                                                                                                                          |
-|-----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **att/**  | attendance       | `add student`</br> `edit student`                                                                                                                                                |
-| **by/**   | sorting criteria | `sort reminder`                                                                                                                                                                  |
-| **d/**    | description      | `add consultation`</br> `edit consultation`</br> `add reminder`</br> `edit reminder`                                                                                             |
-| **D/**    | date or day      | `add consultation`</br> `edit consultation`</br> `add reminder`</br> `edit reminder`                                                                                             |
-| **e/**    | email            | `add student`</br> `edit student`                                                                                                                                                |
-| **f/**    | field            | `switch` <br/> `clear`                                                                                                                                                           |
-| **g/**    | grade            | `add student`</br> `edit student`                                                                                                                                                |
-| **i/**    | student id       | `add student`</br> `edit student`</br> `find`                                                                                                                                    |
-| **m/**    | module           | `add student`</br> `edit student`</br> `find`</br> `add tutorial`</br> `edit tutorial`</br> `add consultation`</br> `edit consultation`                                          |
-| **n/**    | name             | `add student`</br> `edit student`</br> `find`</br> `add tutorial`</br> `edit tutorial`</br> `add consultation`</br> `edit consultation`</br> `add reminder`</br> `edit reminder` |
-| **p/**    | priority         | `add reminder`</br> `edit reminder`                                                                                                                                              |
-| **ph/**   | phone            | `add student`</br> `edit student`                                                                                                                                                |
-| **part/** | participation    | `add student`</br> `edit student`                                                                                                                                                |
-| **t/**    | tag              | `add student`</br> `edit student`                                                                                                                                                |
-| **T/**    | time             | `add student`</br> `edit student`                                                                                                                                                |
-| **tut/**  | tutorial         | `add student`</br> `edit student`</br> `find`</br> `add tutorial`</br> `edit tutorial`                                                                                           |
-| **tele/** | Telegram handle  | `add student`</br> `edit student`                                                                                                                                                |
-| **v/**    | venue            | `add tutorial`</br> `edit tutorial`</br> `add consultation`</br> `edit consultation`                                                                                             |
+
+| Prefix    | Symbolise        | Used in                                                                                                                                                                  |
+|-----------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **att/**  | attendance       | `add student`<br> `edit student`                                                                                                                                         |
+| **by/**   | sorting criteria | `sort reminder`                                                                                                                                                          |
+| **d/**    | description      | `add consultation`<br> `edit consultation`<br> `add reminder`<br> `edit reminder`                                                                                        |
+| **D/**    | date or day      | `add consultation`<br> `edit consultation`<br> `add reminder`<br> `edit reminder`                                                                                        |
+| **e/**    | email            | `add student`<br> `edit student`                                                                                                                                         |
+| **f/**    | field            | `switch` <br> `clear`                                                                                                                                                    |
+| **g/**    | grade            | `add student`<br> `edit student`                                                                                                                                         |
+| **i/**    | student id       | `add student`<br> `edit student`<br> `find`                                                                                                                              |
+| **m/**    | module           | `add student`<br> `edit student`<br> `find`<br> `add tutorial`<br> `edit tutorial`<br> `add consultation`<br> `edit consultation`                                        |
+| **n/**    | name             | `add student`<br> `edit student`<br> `find`<br> `add tutorial`<br> `edit tutorial`<br> `add consultation`<br> `edit consultation`<br> `add reminder`<br> `edit reminder` |
+| **p/**    | priority         | `add reminder`<br> `edit reminder`                                                                                                                                       |
+| **ph/**   | phone            | `add student`<br> `edit student`                                                                                                                                         |
+| **part/** | participation    | `add student`<br> `edit student`                                                                                                                                         |
+| **t/**    | tag              | `add student`<br> `edit student`                                                                                                                                         |
+| **T/**    | time or timeslot | `add student`<br> `edit student`                                                                                                                                         |
+| **tut/**  | tutorial         | `add student`<br> `edit student`<br> `find`<br> `add tutorial`<br> `edit tutorial`                                                                                       |
+| **tele/** | Telegram handle  | `add student`<br> `edit student`                                                                                                                                         |
+| **v/**    | venue            | `add tutorial`<br> `edit tutorial`<br> `add consultation`<br> `edit consultation`                                                                                        |
