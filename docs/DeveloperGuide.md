@@ -1004,7 +1004,22 @@ testers are expected to do more *exploratory* testing.
 
 #### Creating a new data folder
 
-[Comment]: <> (To be added)
+1. Creating a new data folder when a folder with the same name already exists.
+
+   1. Prerequisites: Have a data folder in the `ROOT/data` directory with the same name as the folder you are trying to create.
+
+   2. Test case: `file create already_exist` <br>
+       Expected: An error message indicating that the folder you are about to create already exists will be displayed in the result panel.
+   
+   3. Test case: `file create current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
+       Expected: An error message indicating that the folder you are about to create is the folder that is currently in view will be displayed in the result panel.
+
+2. Creating a new data folder when no folder with the same name already exists.
+
+   1. Prerequisites: `ROOT/data` directory does not have a data folder with the same name as the folder you are trying to create.
+
+   2. Test case: `file create does_not_exist` <br>
+       Expected: A folder with the name `does_not_exist` is created in the `ROOT/data` directory.
 
 #### Deleting an existing data folder
 
