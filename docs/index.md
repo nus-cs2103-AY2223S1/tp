@@ -1,6 +1,6 @@
 ---
 layout: page
-title: myStudents
+title: myStudent
 ---
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-F12-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-F12-4/tp/actions)
@@ -8,10 +8,10 @@ title: myStudents
 
 ![Ui](images/Ui.png)
 
-**myStudents is a desktop application for managing students of a tuition center.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**myStudent is a desktop application for managing students of a tuition center.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using myStudents, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing myStudents, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using myStudent, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing myStudent, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
