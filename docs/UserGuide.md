@@ -85,7 +85,7 @@ the parameter will be taken.<br>
   `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
 
-* Features marked with * can only be utilised when user is currently at the home page.
+* Features marked with * can only be utilised when users are at the home page.
 
 </div>
 
@@ -120,6 +120,10 @@ add-module m/CS2103T t/Software Engineering
 ```
 In the above example, we are adding a module `CS2103T` which has the title `Software Engineering`.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Adding a module will bring you back to the home page.
+</div>
+
 #### 2.1.2. Delete module
 You can delete the module with the indicated module code from Plannit.
 
@@ -135,6 +139,10 @@ Example:
 delete-module m/CS2103T
 ```
 In the above example, we are deleting module `CS2103T` from Plannit.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Deleting a module will bring you back to the home page.
+</div>
 
 #### 2.1.3. Edit module
 You can edit a module on Plannit using the `edit-module` command.
@@ -448,6 +456,10 @@ add-person n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 In the above example, we are adding a contact with name `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number
 `91234567` into Plannit.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Adding a person will bring you back to the home page.
+</div>
+
 #### 2.4.2. Delete person
 You may delete a contact using the `delete-person` command.
 
@@ -532,20 +544,27 @@ You may navigate to the home page using the `home` command.
 
 Format:  `home`
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**
-You may double-click a module to peek into the module's task from the home page. <br>
+<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**
+You may click on a module to ["peek"](#224-peeking-at-modules) at a module's task while on the home page. <br>
 For more detailed information regarding a specific module, you may navigate to that
-module using the [`goto`](#252-navigate-between-modules). <br>
+module using the [`goto`](#252-navigate-between-modules) command.
+The following commands also navigates you back to the home page:
+* [`add-module`](#211-add-module)
+* [`delete-module`](#212-delete-module)
+* [`add-person`](#244-add-person)
+</div>
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
 After using [`goto`](#252-navigate-between-modules), executing the `home` command will 
 re-enable the following commands:
 * [`find-module`](#214-find-module)
-* [`list-module`](#215-find-module)
+* [`list-module`](#215-list-module)
 * [`find-person`](#244-find-person)
-* [`list-person`](#245-list-module)
+* [`list-person`](#245-list-person)
 </div>
 
 #### 2.5.2. Navigate between modules
-You may navigate between modules to view tasks and contacts associated with that particular
+You may navigate between modules to view tasks and contacts associated with a particular
 module using the `goto` command.
 
 Format: `goto MODULE_CODE`
@@ -557,16 +576,20 @@ goto CS2109S
 ```
 In the above example, we are navigating to the module with module code `CS2109S`.
 
+<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**
+You may return to home page by executing the [`home`](#251-navigate-to-home) command.
+</div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 You will leave the home page after executing the `goto` command. This is different from the
 behavior of [`find-module`](#215-find-module). <br>
 After using `goto` command, the usage of the following commands will be restricted:
 * [`find-module`](#214-find-module)
-* [`list-module`](#215-find-module)
+* [`list-module`](#215-list-module)
 * [`find-person`](#244-find-person)
-* [`list-person`](#245-list-module)
-You may return to home page or re-enable the restricted commands by executing the
-[`home`](#251-navigate-to-home) command.
+* [`list-person`](#245-list-person)
+To re-enable the restricted commands, you may execute any commands that bring you back to the home page
+(i.e. [`home`](#251-navigate-to-home)).
 </div>
 
 <br>
