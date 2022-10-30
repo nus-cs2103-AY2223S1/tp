@@ -46,6 +46,7 @@ public class Meeting implements Comparable<Meeting> {
         this.peopleToMeetList.setPersons(peopleToMeetArray);
         this.meetingDescription = meetingTitle;
         this.processedMeetingDateAndTime = processedMeetingDateAndTime;
+
         this.meetingLocation = meetingLocation;
     }
 
@@ -81,7 +82,17 @@ public class Meeting implements Comparable<Meeting> {
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
                 throw new PersonNotFoundException();
             } else if (listOfPeople.size() > 1) {
-                throw new ImpreciseMatchException();
+                boolean isExactMatchFound = false;
+                for (Person p : listOfPeople) {
+                    if (p.getName().fullName.equalsIgnoreCase(personName)) {
+                        isExactMatchFound = true;
+                        output.add(p);
+                        break;
+                    }
+                }
+                if (!isExactMatchFound) {
+                    throw new ImpreciseMatchException();
+                }
             } else { // get the first person in the address book whose name matches
                 output.add(listOfPeople.get(0));
             }
