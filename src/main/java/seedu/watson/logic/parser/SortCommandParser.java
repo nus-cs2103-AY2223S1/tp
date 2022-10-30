@@ -13,15 +13,6 @@ import seedu.watson.logic.parser.exceptions.ParseException;
  * Parses input argument and creates a new SortCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
     @Override
     public SortCommand parse(String userInput) throws ParseException {
         if (!userInput.contains(PREFIX_SUBJECT.toString())) {
