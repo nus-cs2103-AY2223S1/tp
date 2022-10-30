@@ -15,7 +15,7 @@ Focusing on speed and efficiency, you can interact with SectresBook using the **
 
 This User Guide is an in-depth guide to help you start managing your contacts, notes and finances. It includes the **installation, features and how to use them, and FAQ for troubleshooting**, ensuring a smooth pickup of the SectresBook.
 
-###Table of Contents
+### Table of Contents
   * [Introduction to SectresBook](#introduction-to-sectresbook)
   * [Using this guide](#using-this-guide)
   * [Quick start](#quick-start)
