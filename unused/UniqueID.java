@@ -1,3 +1,4 @@
+// @@author mohamedsaf1
 package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
@@ -16,6 +17,7 @@ public class UniqueID {
 
     /**
      * A constructor to create an UUID object.
+     *
      * @param id is the ID generated when instantiating an item object.
      */
     public UniqueID(String id) {
@@ -32,7 +34,7 @@ public class UniqueID {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueID // instanceof handles nulls
-                && id.equals(((UniqueID) other).id)); // state check
+                        && id.equals(((UniqueID) other).id)); // state check
     }
 
     @Override

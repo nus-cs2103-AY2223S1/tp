@@ -64,7 +64,6 @@ public interface Attribute<T> {
      */
     boolean isAllStyleMatch(int flag);
 
-
     /**
      * Returns the UI representation of the attribute to be added into the Javafx
      * parent.

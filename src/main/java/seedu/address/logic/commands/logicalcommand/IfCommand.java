@@ -9,6 +9,9 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+/**
+ * Represent a command to do if else
+ */
 public class IfCommand extends Command {
 
     public static final String COMMAND_WORD = "if";
@@ -16,10 +19,19 @@ public class IfCommand extends Command {
 
     private static final String NOT_BOOLEAN_COMMAND = "The command did not return a boolean conditional!";
 
-    Object details = null;
-    private final Command ifC, trueC;
+    private Object details = null;
+    private final Command ifC;
+    private final Command trueC;
     private final Command elseC;
 
+    /**
+     * Constructor to create a if else command
+     *
+     * @param ifString conditional command
+     * @param trueString command if true
+     * @param elseString command if false
+     * @throws ParseException thrown when if else cannot parse this command
+     */
     public IfCommand(String ifString, String trueString, String elseString) throws ParseException {
         requireNonNull(ifString);
         requireNonNull(trueString);
@@ -38,6 +50,13 @@ public class IfCommand extends Command {
         }
     }
 
+    /**
+     * Constructor for when else statement is optional
+     *
+     * @param ifString
+     * @param trueString
+     * @throws ParseException
+     */
     public IfCommand(String ifString, String trueString) throws ParseException {
         this(ifString, trueString, null);
     }
@@ -52,7 +71,7 @@ public class IfCommand extends Command {
         ifC.setInput(details);
         CommandResult res = ifC.execute(model);
         Boolean result = (Boolean) res.getResult().filter(v -> v instanceof Boolean)
-                .orElseThrow(() -> new CommandException(NOT_BOOLEAN_COMMAND));
+            .orElseThrow(() -> new CommandException(NOT_BOOLEAN_COMMAND));
 
         if (result) {
             trueC.setInput(details);

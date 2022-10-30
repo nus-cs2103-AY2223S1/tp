@@ -21,13 +21,16 @@ public class ForEachPersonCommand extends PersonCommand implements PureCommandIn
     public static final String SUBCOMMAND_WORD = "foreach";
 
     public static final String MESSAGE_USAGE = PersonCommand.getFullCommand(SUBCOMMAND_WORD)
-            + "for each person in the current list, execute subsequent commands with that person as context\n"
-            + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "task delete";
+        + "for each person in the current list, execute subsequent commands with that person as context\n"
+        + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "task delete";
 
     private static final String ON_COMPLETE = "Completed person loop! (failed: %d/%d executions)";
 
     private final Command nextCmd;
 
+    /**
+     * Constructor for foreach person command.
+     */
     public ForEachPersonCommand(String nextCmd) throws ParseException {
         try {
             this.nextCmd = AddressBookParser.get().parseCommand(nextCmd);
@@ -40,7 +43,7 @@ public class ForEachPersonCommand extends PersonCommand implements PureCommandIn
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = new ArrayList<>(model.getFilteredPersonList());
-        int[] skipped = { 0, lastShownList.size() };
+        int[] skipped = {0, lastShownList.size()};
         lastShownList.forEach(t -> {
             try {
                 nextCmd.setInput(t);

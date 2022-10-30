@@ -25,8 +25,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 
 /**
- * Creates an Abstract class to handle repeated and overused methods when making
- * Attributes.
+ * Creates an Abstract class to handle repeated and overused methods when making Attributes.
  */
 public abstract class AbstractAttribute<T> implements Attribute<T> {
     protected T value;
@@ -40,7 +39,7 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
     public AbstractAttribute(String typeName, T value, int accessCtrl, int styleFlag) {
         requireNonNull(typeName);
 
-        this.typeName = typeName;
+        this.typeName = typeName.trim();
         this.value = value;
         this.accessCtrl = accessCtrl;
         this.styleFlag = styleFlag;
@@ -103,7 +102,7 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AbstractAttribute // instanceof handles nulls
+            || (other instanceof AbstractAttribute // instanceof handles nulls
                 && typeName.equals(((AbstractAttribute<?>) other).typeName)
                 && value.equals(((AbstractAttribute<?>) other).value)); // state check
     }
@@ -130,8 +129,6 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
         Label ret = new Label();
         ret.setText(txt);
-        System.out.printf("%s: ", txt);
-        System.out.println(getFormatCss());
         ret.setStyle(getFormatCss());
         return ret;
     }
@@ -198,6 +195,5 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
         }
         return sb.toString();
     }
-
 
 }

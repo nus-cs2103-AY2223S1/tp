@@ -21,13 +21,19 @@ public class ForEachTeamCommand extends TeamCommand implements PureCommandInterf
     public static final String SUBCOMMAND_WORD = "foreach";
 
     public static final String MESSAGE_USAGE = TeamCommand.getFullCommand(SUBCOMMAND_WORD)
-            + "for each task in the current list, execute subsequent commands with that task as context\n"
-            + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "task delete";
+        + "for each task in the current list, execute subsequent commands with that task as context\n"
+        + "e.g. " + getFullCommand(SUBCOMMAND_WORD) + "task delete";
 
     private static final String ON_COMPLETE = "Completed task loop! (failed: %d/%d executions)";
 
     private final Command nextCmd;
 
+    /**
+     * Creates a ForEachTeam Command
+     *
+     * @param nextCmd next command to be executed
+     * @throws ParseException thrown when next command fails to parse properly
+     */
     public ForEachTeamCommand(String nextCmd) throws ParseException {
         try {
             this.nextCmd = AddressBookParser.get().parseCommand(nextCmd);
@@ -40,7 +46,7 @@ public class ForEachTeamCommand extends TeamCommand implements PureCommandInterf
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Group> lastShownList = new ArrayList<>(model.getFilteredTeamList());
-        int[] skipped = { 0, lastShownList.size() };
+        int[] skipped = {0, lastShownList.size()};
         lastShownList.forEach(t -> {
             try {
                 nextCmd.setInput(t);

@@ -1,10 +1,8 @@
 package seedu.address.logic.parser.fields;
 
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.fields.AddFieldCommand;
 import seedu.address.logic.commands.fields.EditFieldCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
@@ -22,8 +20,8 @@ public class EditFieldCommandParser implements Parser<EditFieldCommand> {
         Pattern p = Pattern.compile("([gtu])/([0-9]+)\\s+([a-zA-Z][a-zA-Z0-9]*)\\s+(.*)");
         Matcher m = p.matcher(args.trim());
         if (m.matches()) {
-            return new EditFieldCommand(ParserUtil.parseIndex(m.group(2)),m.group(1),m.group(3), m.group(4));
-        } 
+            return new EditFieldCommand(ParserUtil.parseIndex(m.group(2)), m.group(1), m.group(3), m.group(4));
+        }
         String[] arg2 = args.split("\\s+", 2);
         return new EditFieldCommand(null, "0", arg2[0], arg2[1]);
     }

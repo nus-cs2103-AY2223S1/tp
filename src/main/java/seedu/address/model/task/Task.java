@@ -6,14 +6,16 @@ import static seedu.address.model.AccessDisplayFlags.TASK;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Description;
-import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
@@ -27,30 +29,28 @@ public class Task extends AbstractSingleItem {
 
     private final Description description;
     private final LocalDateTime completedTime;
-    private String progress;
     private Set<Person> assignedParents = new HashSet<>();
 
     /**
      * Create a new task with no completed_time
      *
-     * @param title       The title of the task.
+     * @param title The title of the task.
      * @param description The description of the task.
      */
-    public Task(Name title, String description, String progress) {
-        this(title, description, "0%", null);
+    public Task(String title, String description) {
+        this(title, description, null);
     }
 
     /**
      * Create a new task with a completed_time.
      *
-     * @param title         The title of the task.
-     * @param description   The description of the task.
+     * @param title The title of the task.
+     * @param description The description of the task.
      * @param completedTime The completed_time of the task.
      */
-    public Task(Name title, String description, String progress, LocalDateTime completedTime) {
+    public Task(String title, String description, LocalDateTime completedTime) {
         super(title, TASK, GROUP | PERSON);
         this.description = new Description(description);
-        this.progress = progress;
         this.completedTime = completedTime;
     }
 
@@ -61,9 +61,12 @@ public class Task extends AbstractSingleItem {
         if (this.completedTime != null) {
             return this;
         }
-        Task ret = new Task(name, description.getAttributeContent(), "100%", LocalDateTime.now());
+        Task ret = new Task(name.fullName, description.getAttributeContent(), LocalDateTime.now());
         for (DisplayItem item : getParents()) {
             ret.setParent(item);
+        }
+        for (Attribute<?> attr : getSavedAttributes()) {
+            ret.addAttribute(attr);
         }
         return ret;
     }
@@ -75,10 +78,12 @@ public class Task extends AbstractSingleItem {
         if (this.completedTime == null) {
             return this;
         }
-        Task ret = new Task(name, this.progress, description.getAttributeContent());
-        ret.parent = parent;
+        Task ret = new Task(name.fullName, description.getAttributeContent());
         for (DisplayItem item : getParents()) {
             ret.setParent(item);
+        }
+        for (Attribute<?> attr : getSavedAttributes()) {
+            ret.addAttribute(attr);
         }
         return ret;
     }
@@ -90,7 +95,7 @@ public class Task extends AbstractSingleItem {
         if (this.completedTime == null) {
             return this;
         }
-        Task ret = new Task(name, description.getAttributeContent(), description.getAttributeContent());
+        Task ret = new Task(name.fullName, description.getAttributeContent(), dt);
         for (DisplayItem item : getParents()) {
             ret.setParent(item);
         }
@@ -101,35 +106,16 @@ public class Task extends AbstractSingleItem {
         return completedTime;
     }
 
-    /**
-     * Returns the content of the task description.
-     *
-     * @return content of task description, or an empty string if it does not exist.
-     */
-    public String getDescriptionContent() {
-        if (description != null) {
-            return description.getAttributeContent();
-        }
-        return "";
+    public Description getDescription() {
+        return description;
     }
 
     /**
-     * Returns true if both tasks have the same name and group. This defines a
-     * weaker notion of equality between two
-     * tasks.
+     * Returns true if both tasks have the same name and group. This defines a weaker notion of equality
+     * between two tasks.
      */
     public boolean isSameTask(Task t) {
         return getFullPath().equals(t.getFullPath());
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        } else if (o instanceof DisplayItem) {
-            return this.stronglyEqual((DisplayItem) o);
-        }
-        return false;
     }
 
     /**
@@ -144,7 +130,7 @@ public class Task extends AbstractSingleItem {
         }
         Task task = (Task) o;
         return completedTime.equals(task.completedTime) && description.equals(task.description)
-                && getAttributes().equals(task.getAttributes());
+            && getAttributes().equals(task.getAttributes());
     }
 
     /**
@@ -160,13 +146,17 @@ public class Task extends AbstractSingleItem {
         return false;
     }
 
-    public Task setProgress(String level) {
-        if (this.completedTime != null) {
-            return this;
-        }
+    @Override
+    public List<Attribute<?>> getAttributes() {
+        List<Attribute<?>> ret = new ArrayList<>();
+        ret.add(description);
+        ret.addAll(super.getAttributes());
+        return ret;
+    }
 
-        Task editedTask = new Task(name, description.getAttributeContent(), level, LocalDateTime.now());
-        return editedTask;
+    @Override
+    public List<Attribute<?>> getSavedAttributes() {
+        return super.getAttributes();
     }
 
     /**
@@ -213,22 +203,11 @@ public class Task extends AbstractSingleItem {
             throw new ItemCannotBeParentException(o);
         }
 
-
         assignedParents.add(o);
     }
 
     @Override
-    public Name getName() {
-        return null;
-    }
-
-    @Override
-    public String toString() {
-        return name.toString();
-    }
-
-    @Override
-    public UUID getUuid() {
+    public UUID getUid() {
         return UUID.nameUUIDFromBytes(("Task: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
     }
 

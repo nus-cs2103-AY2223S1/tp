@@ -7,16 +7,10 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.persons.AddCommand;
 import seedu.address.logic.commands.persons.DeleteCommand;
+import seedu.address.logic.commands.persons.FindCommand;
 import seedu.address.logic.commands.persons.ForEachPersonCommand;
 import seedu.address.logic.commands.persons.PersonCommand;
 import seedu.address.logic.commands.persons.SelectPersonCommand;
-import seedu.address.logic.commands.tasks.AddTaskCommand;
-import seedu.address.logic.commands.tasks.DeleteTaskCommand;
-import seedu.address.logic.commands.tasks.ForEachTaskCommand;
-import seedu.address.logic.commands.tasks.MarkTaskCommand;
-import seedu.address.logic.commands.tasks.SelectTaskCommand;
-import seedu.address.logic.commands.tasks.TaskCommand;
-import seedu.address.logic.commands.tasks.UnmarkTaskCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -31,9 +25,8 @@ public class PersonCommandParser implements Parser<PersonCommand> {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<subcommandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Parses user input into command for execution. The input must be a valid
-     * subcommand for Task. There should not be
-     * a TaskCommand prefix in the input.
+     * Parses user input into command for execution. The input must be a valid subcommand for Task.
+     * There should not be a TaskCommand prefix in the input.
      *
      * @param userInput full user input string
      * @return the command based on the user input
@@ -49,16 +42,18 @@ public class PersonCommandParser implements Parser<PersonCommand> {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-            case AddCommand.SUBCOMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
-            case DeleteCommand.SUBCOMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
-            case SelectPersonCommand.SUBCOMMAND_WORD:
-                return new SelectPersonCommandParser().parse(arguments);
-            case ForEachPersonCommand.SUBCOMMAND_WORD:
-                return new ForEachPersonCommandParser().parse(arguments);
-            default:
-                throw new ParseException(MESSAGE_USAGE);
+        case AddCommand.SUBCOMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
+        case DeleteCommand.SUBCOMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
+        case SelectPersonCommand.SUBCOMMAND_WORD:
+            return new SelectPersonCommandParser().parse(arguments);
+        case ForEachPersonCommand.SUBCOMMAND_WORD:
+            return new ForEachPersonCommandParser().parse(arguments);
+        case FindCommand.SUBCOMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+        default:
+            throw new ParseException(MESSAGE_USAGE);
         }
     }
 }

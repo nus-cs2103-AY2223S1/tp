@@ -11,13 +11,11 @@ import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a unique item in the addressbook, it can be either a accessable
- * team or an entry
+ * Represents a unique item in the addressbook, it can be either a accessable team or an entry
  */
 public interface DisplayItem {
     /**
-     * Returns the entry type of the displayable item to determine what type of item
-     * this is.
+     * Returns the entry type of the displayable item to determine what type of item this is.
      */
     int getTypeFlag();
 
@@ -61,6 +59,11 @@ public interface DisplayItem {
      */
     List<Attribute<?>> getAttributes();
 
+    /**
+     * Gets attributes that requires saving
+     */
+    List<Attribute<?>> getSavedAttributes();
+
     Optional<Attribute<?>> getAttribute(String type);
 
     /**
@@ -69,9 +72,8 @@ public interface DisplayItem {
     Name getName();
 
     /**
-     * Returns an immutable tag set, which throws
-     * {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if modification
+     * is attempted.
      */
     Set<Tag> getTags();
 
@@ -113,7 +115,7 @@ public interface DisplayItem {
     /**
      * Removes an attribute to the current object.
      */
-    void removeAttribute(String type) throws AttributeException;
+    void deleteAttribute(String type) throws AttributeException;
 
     /**
      * Returns true if {@code DisplayItem o} is a parent of this item
@@ -124,6 +126,6 @@ public interface DisplayItem {
      * Returns unique uid for this displayItem.
      */
 
-    UUID getUuid();
+    UUID getUid();
 
 }

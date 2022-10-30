@@ -1,3 +1,5 @@
+// @@author jasonchristopher21
+
 package seedu.address.logic.commands.attributes;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -20,7 +22,7 @@ public abstract class AddAttributeCommand extends Command {
     /**
      * Constructs a new AddAttributeCommand instance.
      *
-     * @param attributeName The name of the attribute to be added.
+     * @param attributeName    The name of the attribute to be added.
      * @param attributeContent The content of the attribute to be added.
      */
     public AddAttributeCommand(String attributeName, String attributeContent) {
@@ -33,7 +35,7 @@ public abstract class AddAttributeCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddAttributeCommand // instanceof handles nulls
-                && attributeName.equals(((AddAttributeCommand) other).attributeName)
-                && attributeContent.equals(((AddAttributeCommand) other).attributeContent));
+                        && attributeName.equals(((AddAttributeCommand) other).attributeName)
+                        && attributeContent.equals(((AddAttributeCommand) other).attributeContent));
     }
 }

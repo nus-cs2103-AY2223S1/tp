@@ -1,3 +1,4 @@
+// @@author jasonchristopher21
 package seedu.address.logic.commands.attributes;
 
 import static java.util.Objects.requireNonNull;
@@ -7,37 +8,38 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attribute.exceptions.AttributeException;
-import seedu.address.model.group.Group;
-import seedu.address.model.group.exceptions.GroupOutOfBoundException;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.TaskOutOfBoundException;
 
 /**
- * Adds a group attribute to the address book.
+ * Adds a task attribute to the address book.
  */
-public class AddGroupAttributeCommand extends AddAttributeCommand {
+public class EditTaskAttributeCommand extends EditAttributeCommand {
 
     public static final String MESSAGE_SUCCESS = "New field added: %s, with value: %s";
 
-    private final Index groupIndex; // change this to UUID later
+    private final Index taskIndex; // change this to UUID later
 
     /**
-     * Constructs an AddGroupAttributeCommand instance.
-     * @param groupIndex index of the group.
+     * Constructs an EditTaskAttributeCommand instance.
+     *
+     * @param taskIndex index of the task.
      * @param attributeName the name of the attribute to be added.
      * @param attributeContent the content of the attribute to be added.
      */
-    public AddGroupAttributeCommand(Index groupIndex, String attributeName, String attributeContent) {
+    public EditTaskAttributeCommand(Index taskIndex, String attributeName, String attributeContent) {
         super(attributeName, attributeContent);
-        requireNonNull(groupIndex);
-        this.groupIndex = groupIndex;
+        requireNonNull(taskIndex);
+        this.taskIndex = taskIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            Group group = model.getFromFilteredTeams(groupIndex);
-            group.addAttribute(attributeName, attributeContent);
-        } catch (GroupOutOfBoundException | AttributeException ae) {
+            Task task = model.getFromFilteredTasks(taskIndex);
+            task.editAttribute(attributeName, attributeContent);
+        } catch (TaskOutOfBoundException | AttributeException ae) {
             throw new CommandException(ae.getMessage());
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, attributeName, attributeContent));
@@ -46,8 +48,8 @@ public class AddGroupAttributeCommand extends AddAttributeCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (super.equals(other)
-                && (other instanceof AddGroupAttributeCommand
-                && groupIndex.equals(((AddGroupAttributeCommand) other).groupIndex)));
+            || (super.equals(other)
+                && (other instanceof EditTaskAttributeCommand
+                    && taskIndex.equals(((EditTaskAttributeCommand) other).taskIndex)));
     }
 }

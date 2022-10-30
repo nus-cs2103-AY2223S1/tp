@@ -14,22 +14,21 @@ import seedu.address.logic.commands.CustomCommandBuilder;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.attributes.AddAttributeCommand;
-import seedu.address.logic.commands.attributes.EditAttributeCommand;
-import seedu.address.logic.commands.attributes.RemoveAttributeCommand;
-import seedu.address.logic.commands.RemoveFieldCommand;
 import seedu.address.logic.commands.RenameCommand;
 import seedu.address.logic.commands.creationcommand.AliasCommand;
 import seedu.address.logic.commands.creationcommand.CreateCommand;
 import seedu.address.logic.commands.creationcommand.DeleteCustomCommand;
+import seedu.address.logic.commands.creationcommand.ExecuteCommand;
 import seedu.address.logic.commands.creationcommand.FloatCommand;
 import seedu.address.logic.commands.creationcommand.IntCommand;
 import seedu.address.logic.commands.creationcommand.StringCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.fields.FieldCommand;
 import seedu.address.logic.commands.logicalcommand.CheckTaskCompleteCommand;
+import seedu.address.logic.commands.logicalcommand.CmpCommand;
 import seedu.address.logic.commands.logicalcommand.ContainsAttributeCommand;
 import seedu.address.logic.commands.logicalcommand.IfCommand;
-import seedu.address.logic.commands.logicalcommand.seqCommand;
+import seedu.address.logic.commands.logicalcommand.SeqCommand;
 import seedu.address.logic.commands.operators.OpsCommand;
 import seedu.address.logic.commands.operators.PrintCommand;
 import seedu.address.logic.commands.operators.StringReplaceCommand;
@@ -56,12 +55,13 @@ import seedu.address.logic.parser.teams.TeamCommandParser;
  */
 public class AddressBookParser {
 
-    private static final Pattern NAME_CHECK = Pattern.compile("([a-zA-Z][a-zA-Z0-9]*)");
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern NAME_CHECK = Pattern.compile("([a-zA-Z][a-zA-Z0-9_\\-]*)");
     private static AddressBookParser bp = null;
+    private static Map<String, ThrowFunction<String, Command>> defaultMapper;
 
     private final Map<String, CustomCommandBuilder> bonusMapper;
     private final Map<String, String> aliasMapper;
-    private static Map<String, ThrowFunction<String, Command>> defaultMapper;
 
     @FunctionalInterface
     private interface ThrowFunction<T, R> {
@@ -89,7 +89,7 @@ public class AddressBookParser {
         defaultMapper.put(FloatCommand.COMMAND_WORD, k -> FloatCommand.parser().parse(k));
         defaultMapper.put(IntCommand.COMMAND_WORD, k -> IntCommand.parser().parse(k));
         defaultMapper.put(StringCommand.COMMAND_WORD, k -> StringCommand.parser().parse(k));
-        defaultMapper.put(seqCommand.COMMAND_WORD, k -> seqCommand.parser().parse(k));
+        defaultMapper.put(SeqCommand.COMMAND_WORD, k -> SeqCommand.parser().parse(k));
         defaultMapper.put(OpsCommand.COMMAND_WORD, k -> OpsCommand.parser().parse(k));
         defaultMapper.put(PrintCommand.COMMAND_WORD, k -> PrintCommand.parser().parse(k));
         defaultMapper.put(StringReplaceCommand.COMMAND_WORD, k -> StringReplaceCommand.parser().parse(k));
@@ -97,9 +97,11 @@ public class AddressBookParser {
         defaultMapper.put(DeleteCustomCommand.COMMAND_WORD, k -> DeleteCustomCommand.parser().parse(k));
         defaultMapper.put(AliasCommand.COMMAND_WORD, k -> AliasCommand.parser().parse(k));
         defaultMapper.put(FieldCommand.COMMAND_WORD, k -> new FieldCommandParser().parse(k));
+        defaultMapper.put(CmpCommand.COMMAND_WORD, k -> CmpCommand.parser().parse(k));
+        defaultMapper.put(ExecuteCommand.COMMAND_WORD, k -> ExecuteCommand.parser().parse(k));
     }
 
-    AddressBookParser() {
+    private AddressBookParser() {
         bonusMapper = new HashMap<>();
         aliasMapper = new HashMap<>();
     }
@@ -111,20 +113,32 @@ public class AddressBookParser {
         return bp;
     }
 
+    /**
+     * Checks if the name is a valid command name
+     */
     public static boolean isValidName(String test) {
         return NAME_CHECK.matcher(test.trim()).matches();
     }
 
+    /**
+     * Checks if the name provided is currently available to be used
+     */
     public boolean isKeyAvailable(String key) {
         return !defaultMapper.containsKey(key)
-                && !bonusMapper.containsKey(key)
-                && !aliasMapper.containsKey(key);
+            && !bonusMapper.containsKey(key)
+            && !aliasMapper.containsKey(key);
     }
 
+    /**
+     * Adds a custom command macro
+     */
     public void addCommand(CustomCommandBuilder builder) {
         bonusMapper.put(builder.getRepr(), builder);
     }
 
+    /**
+     * Adds an alias to an existing command
+     */
     public void addAlias(String alias, String command) {
         if (aliasMapper.containsKey(command)) {
             addAlias(alias, aliasMapper.get(command));
@@ -134,6 +148,9 @@ public class AddressBookParser {
         }
     }
 
+    /**
+     * Deletes the repr command from parser of it exist.
+     */
     public void deleteCommand(String repr) {
         if (repr == null) {
             return;
@@ -155,11 +172,6 @@ public class AddressBookParser {
     }
 
     /**
-     * Used for initial separation of command word and args.
-     */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
-    /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
@@ -172,7 +184,7 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        String commandWord = matcher.group("commandWord");
+        String commandWord = matcher.group("commandWord").trim();
         final String arguments = matcher.group("arguments");
 
         while (aliasMapper.containsKey(commandWord)) {
@@ -184,5 +196,18 @@ public class AddressBookParser {
             return bonusMapper.get(commandWord).build();
         }
         throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+    }
+
+    /**
+     * Returns a command that runs to execute and parse in ctx as the input
+     */
+    public static Command quickCommand(String toExecute, Object ctx) throws CommandException {
+        try {
+            Command ret = AddressBookParser.get().parseCommand(toExecute);
+            ret.setInput(ctx);
+            return ret;
+        } catch (ParseException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 }

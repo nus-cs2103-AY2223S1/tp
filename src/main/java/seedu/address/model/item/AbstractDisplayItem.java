@@ -1,6 +1,5 @@
 package seedu.address.model.item;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -13,7 +12,6 @@ import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.exceptions.AttributeException;
-import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,14 +20,14 @@ import seedu.address.model.tag.Tag;
 public abstract class AbstractDisplayItem implements DisplayItem {
 
     protected Name name;
-    protected AttributeList attributes;
     private int typeFlag;
     private int parentTypeFlag;
+    private AttributeList attributes;
     private Set<Tag> tags;
 
-    protected AbstractDisplayItem(Name name, int typeFlag, int parentTypeFlag) {
+    protected AbstractDisplayItem(String name, int typeFlag, int parentTypeFlag) {
         requireAllNonNull(name, typeFlag);
-        this.name = name;
+        this.name = new Name(name);
         this.typeFlag = typeFlag;
         this.parentTypeFlag = parentTypeFlag;
         attributes = new AttributeList();
@@ -66,9 +64,23 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     @Override
     public Optional<Attribute<?>> getAttribute(String type) {
         return getAttributes().stream()
-                .filter(attr -> attr.getAttributeType().toLowerCase()
-                        .equals(type.toLowerCase()))
-                .findFirst();
+            .filter(attr -> attr.isNameMatch(type))
+            .findFirst();
+    }
+
+    @Override
+    public void editAttribute(String attributeName, String attributeContent) throws AttributeException {
+        attributes.editAttribute(attributeName, attributeContent);
+    }
+
+    @Override
+    public void addAttribute(Attribute<?> attribute) {
+        attributes.addAttribute(attribute);
+    }
+
+    @Override
+    public void addAttribute(String attributeName, String attributeContent) throws AttributeException {
+        attributes.addAttribute(attributeName, attributeContent);
     }
 
     @Override
@@ -76,60 +88,11 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         this.tags = tags;
     }
 
+    protected boolean canBeChildOf(AbstractDisplayItem o) {
+        return (parentTypeFlag & o.typeFlag) > 0;
+    }
 
     protected abstract String getTitle(List<String> sb, AbstractDisplayItem o);
-
-    @Override
-    public void addAttribute(Attribute<?> attribute) {
-        requireNonNull(attribute);
-        if (!attribute.isAllFlagMatch(typeFlag)) {
-            throw new ItemCannotBeParentException(this);
-        }
-        if (attributes.toList().stream().anyMatch(x -> x.equals(attribute))) {
-            throw new ItemCannotBeParentException(this);
-        }
-        attributes.addAttribute(attribute);
-    }
-
-    @Override
-    public void addAttribute(String attributeName, String attributeContent) throws AttributeException {
-        requireAllNonNull(attributeName, attributeContent);
-        attributes.addAttribute(attributeName, attributeContent);
-    }
-
-    @Override
-    public void editAttribute(String attributeName, String attributeContent) throws AttributeException {
-        requireAllNonNull(attributeName, attributeContent);
-        attributes.editAttribute(attributeName, attributeContent);
-    }
-
-
-    /**
-     * Retrieves the Fields instance of the Person.
-     *
-     * @return the Fields instance of the Person.
-     */
-    public AttributeList getFields() {
-        return this.attributes;
-    }
-
-    /**
-     * Adds a Field to the Fields of the Person.
-     *
-     * @param fieldName the field name to be added.
-     */
-    public void addField(String fieldName) throws AttributeException {
-        attributes.addAttribute(fieldName);
-    }
-
-    /**
-     * Removes a field from the Fields of the Person
-     *
-     * @param fieldName the field name to be removed.
-     */
-    public void removeField(String fieldName) {
-        attributes.removeField(fieldName);
-    }
 
     @Override
     public int getTypeFlag() {
@@ -137,7 +100,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
-    public void removeAttribute(String type) throws AttributeException {
+    public void deleteAttribute(String type) throws AttributeException {
         attributes.removeAttribute(type);
     }
 
@@ -158,8 +121,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         }
         AbstractDisplayItem g = (AbstractDisplayItem) o;
         return g.getParents().equals(getParents())
-                && g.getAttributes().equals(getAttributes())
-                && g.getTags().equals(getTags());
+            && g.getAttributes().equals(getAttributes())
+            && g.getTags().equals(getTags());
     }
 
     @Override
@@ -168,8 +131,8 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             return false;
         }
         return (o instanceof AbstractDisplayItem)
-                && ((AbstractDisplayItem) o).getFullPath().equals(getFullPath())
-                && ((AbstractDisplayItem) o).typeFlag == typeFlag;
+            && ((AbstractDisplayItem) o).getFullPath().equals(getFullPath())
+            && ((AbstractDisplayItem) o).typeFlag == typeFlag;
     }
 
     @Override
@@ -191,6 +154,11 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
+    public List<Attribute<?>> getSavedAttributes() {
+        return getAttributes();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -199,8 +167,5 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             return false;
         }
         return stronglyEqual((AbstractDisplayItem) obj);
-    }
-    protected boolean canBeChildOf(AbstractDisplayItem o) {
-        return (parentTypeFlag & o.typeFlag) > 0;
     }
 }
