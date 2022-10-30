@@ -9,7 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.clinkedin.logic.commands.AddCommand;
+import seedu.clinkedin.logic.commands.AddNoteCommand;
+import seedu.clinkedin.logic.commands.AddRateCommand;
 import seedu.clinkedin.logic.commands.AddTagCommand;
 import seedu.clinkedin.logic.commands.ClearCommand;
 import seedu.clinkedin.logic.commands.Command;
@@ -23,11 +27,11 @@ import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
-import seedu.clinkedin.logic.commands.NoteCommand;
-import seedu.clinkedin.logic.commands.RateCommand;
 import seedu.clinkedin.logic.commands.StatsCommand;
+import seedu.clinkedin.logic.commands.ViewCommand;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
+import seedu.clinkedin.ui.utils.CommandRow;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple
@@ -76,11 +80,13 @@ public class CliSyntax {
             ListCommand.class,
             ImportCommand.class,
             ListCommand.class,
-            NoteCommand.class,
-            RateCommand.class,
+            AddRateCommand.class,
+            AddNoteCommand.class,
             StatsCommand.class,
             ExportCommand.class,
-            ImportCommand.class);
+            ImportCommand.class,
+            ViewCommand.class
+        );
 
     /**
      * Adds a tag prefix to the list of prefixes.
@@ -181,6 +187,35 @@ public class CliSyntax {
                 allCommandMessages.put(commandWord, commandUsage);
             }
             return allCommandMessages;
+        } catch (NoSuchFieldException exception) {
+            throw new NoSuchFieldException("No field named COMMAND_WORD found in supplied commands");
+        } catch (SecurityException exception) {
+            throw new SecurityException("Security exception!");
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException("Illegal argument exception!");
+        } catch (IllegalAccessException exception) {
+            throw new IllegalAccessException("Illegal access exception!");
+        }
+    }
+
+    /**
+     * Returns an observableList of all possible command words.
+     * @throws NoSuchFieldException
+     * @throws IllegalAccessException
+     */
+    public static ObservableList<CommandRow> getAllCommandRows() throws NoSuchFieldException, IllegalAccessException {
+        ObservableList<CommandRow> allCommandRows = FXCollections.observableArrayList();
+        try {
+            for (Class<? extends Command> commandClass : ALL_COMMAND_CLASSES) {
+                Field commandWordField = commandClass.getField("COMMAND_WORD");
+                String commandWord = commandWordField.get(null).toString();
+
+                Field commandUsageField = commandClass.getField("MESSAGE_USAGE");
+                String commandUsage = commandUsageField.get(null).toString();
+
+                allCommandRows.add(new CommandRow(commandWord, commandUsage));
+            }
+            return allCommandRows;
         } catch (NoSuchFieldException exception) {
             throw new NoSuchFieldException("No field named COMMAND_WORD found in supplied commands");
         } catch (SecurityException exception) {

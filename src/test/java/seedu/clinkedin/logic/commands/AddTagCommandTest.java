@@ -7,7 +7,9 @@ import static seedu.clinkedin.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -171,6 +173,17 @@ public class AddTagCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Updates the comparator of the sorted person list to sort by the given
+         * {@code comparator}
+         *
+         * @param comparator comparator to update sorted persons list with.
+         */
+        @Override
+        public void updateSort(Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void deleteTagTypeForAllPerson(TagType toDelete) {
             throw new AssertionError("This method should not be called.");
@@ -187,7 +200,12 @@ public class AddTagCommandTest {
         }
 
         @Override
-        public DoubleSummaryStatistics setStats() {
+        public DoubleSummaryStatistics getStats() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public HashMap<String, Integer> getRatingCount() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -3,6 +3,8 @@ package seedu.clinkedin.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
+import java.util.Map;
 
 import seedu.clinkedin.commons.core.Messages;
 import seedu.clinkedin.model.Model;
@@ -21,13 +23,17 @@ public class StatsCommand extends Command {
             + "in the user's ClInkedIn.\n"
             + "Example: " + COMMAND_WORD;
 
+    private Map<String, Map<String, Integer>> stats;
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        DoubleSummaryStatistics stats = model.setStats();
+        DoubleSummaryStatistics tagStats = model.getStats();
+        stats = new HashMap<>();
+        Map<String, Integer> ratingStatsMap = model.getRatingCount();
+        stats.put("Rating Statistics", ratingStatsMap);
         return new CommandResult(String.format(
-                Messages.MESSAGE_STATS_DISPLAYED_OVERVIEW, stats.getAverage(), stats.getMax(), stats.getMin(),
-                stats.getSum(), stats.getCount()));
+                Messages.MESSAGE_STATS_DISPLAYED_OVERVIEW, tagStats.getCount()), stats);
     }
 
     @Override

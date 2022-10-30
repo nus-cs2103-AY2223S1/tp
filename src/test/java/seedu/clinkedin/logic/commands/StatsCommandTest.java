@@ -17,11 +17,7 @@ class StatsCommandTest {
     void execute_unfilteredList_success() {
         StatsCommand statsCommand = new StatsCommand();
         String expectedMessage = "Statistics displayed!\n"
-                + "Number of persons used to calculate statistics: 7\n"
-                + "Average tags per person: 0.57\n"
-                + "Highest number of tags a single person has: 2\n"
-                + "Lowest number of tags a single person has: 0\n"
-                + "Total number of tags added to displayed persons: 4";
+                + "Number of candidates used to calculate statistics: 7\n";
         assertCommandSuccess(statsCommand, model, expectedMessage, model);
     }
 
@@ -31,11 +27,7 @@ void execute_filteredList_success() {
         filteredModel.updateFilteredPersonList(p -> p.getName().fullName.equals("Alice Pauline"));
         StatsCommand statsCommand = new StatsCommand();
         String expectedMessage = "Statistics displayed!\n"
-                + "Number of persons used to calculate statistics: 1\n"
-                + "Average tags per person: 1.00\n"
-                + "Highest number of tags a single person has: 1\n"
-                + "Lowest number of tags a single person has: 1\n"
-                + "Total number of tags added to displayed persons: 1";
+                + "Number of candidates used to calculate statistics: 1\n";
         assertCommandSuccess(statsCommand, filteredModel, expectedMessage, filteredModel);
     }
 }

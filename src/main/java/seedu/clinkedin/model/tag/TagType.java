@@ -26,7 +26,7 @@ public class TagType {
      * @param tagType A valid tag type.
      * @param p A valid prefix.
      */
-    public TagType(String tagType, Prefix p) {
+    public TagType(String tagType, Prefix p) throws IllegalArgumentException {
         requireNonNull(tagType);
         checkArgument(isValidTagType(tagType), MESSAGE_CONSTRAINTS);
         this.tagType = tagType;

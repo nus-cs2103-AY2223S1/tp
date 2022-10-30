@@ -29,7 +29,7 @@ Given below are my contributions to the project.
 
     * User Guide:
         - Added documentation for the `find` feature
-  
+
 * **Community**:
 
 

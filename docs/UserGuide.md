@@ -20,29 +20,34 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
    2. [Adding/Deleting contacts in CLInkedIn](#addingdeleting-contacts-in-clinkedin)
       1. [Adding a person `add`](#adding-a-person-add)
       2. [Deleting a person `delete`](#deleting-a-person--delete)
-      3. [Clearing all contacts `clear`](#clearing-all-contacts--clear)
-   3. [Modifying contacts in CLInkedIn](#modifying-contacts-in-clinkedin)
+   3. [Adding/Editing/Deleting Tag Types in CLInkedIn](#addingdeleting-contacts-in-clinkedin)
+      1. [Creating a custom tag type `createTagType`](#creating-a-custom-tag-type-createtagtype)
+      2. [Editing tag type name `editTagType`](#editing-tag-type-name-edittagtype)
+      3. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type-deletetagtype)
+   4. [Modifying contacts in CLInkedIn](#modifying-contacts-in-clinkedin)
       1. [Editing a person `edit`](#editing-a-person--edit)
-      2. [Adding a tag to an existing person `addTag`](#adding-a-tag-to-an-existing-person--addtag)
-      3. [Deleting a tag of an existing person `deleteTag`]([#deleting-a-tag-of-an-existing-person--deletetag))
-      4. [Creating a custom tag type `CreateTagType`](#creating-a-custom-tag-type-createtagtype)
-      5. [Editing tag type name `editTagType`](#editing-tag-type-name-edittagtype)
-      6. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type-deletetagtype)
-      7. [Adding optional information `note`](#adding-optional-information-note)
-      8. [Adding optional rating `rate`](#adding-optional-rating-rate)
-   4. [Modifying contacts view in CLInkedIn](#modifying-contacts-view-in-clinkedin)
-      1. [Listing all persons `list`](#listing-all-persons--list)
-      2. [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
-      3. [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
-   5. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
-      1. [Undoing previous command `undo`](#undoing-previous-command-undo)
+      2. [Adding an optional tag `addTag`](#adding-a-tag-to-an-existing-person--addtag)
+      3. [Deleting an optional tag `deleteTag`]([#deleting-a-tag-of-an-existing-person--deletetag)
+      4. [Adding optional information `addNote`](#adding-optional-information-addnote)
+      5. [Deleting optional information `deleteNote`](#deleting-optional-information-deletenote)
+      6. [Adding optional rating `addRate`](#adding-optional-rating-addrate)
+      7. [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
+      8. [Adding optional links `addLink`](#adding-optional-links-addlink)
+      9. [Deleting links `celeteLink`](#deleting-links-deletelink)
+   5. [Modifying contacts view in CLInkedIn](#modifying-contacts-view-in-clinkedin)
+      1. [Viewing the details of a person `view`](#viewing-the-details-of-a-person--view)
+      2. [Listing all persons `list`](#listing-all-persons--list)
+      3. [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
+      4. [Clearing all contacts `clear`](#clearing-all-contacts--clear)
+      5. [Undoing previous command `undo`](#undoing-previous-command-undo)
       2. [Redoing previous command `redo`](#redoing-previous-command-redo)
-      3. [Viewing statistics `stats`](#viewing-statistics-stats)
-      4. [Importing contacts `import`](#importing-contacts-import)
-      5. [Exporting contacts `export`](#exporting-contacts-export)
-      6. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
-      7. [Saving the data](#saving-the-data)
-      8. [Editing the data file](#editing-the-data-file)
+      6. [Viewing statistics `stats`](#viewing-statistics-based-on-ratings-of-candidates-stats)
+      7. [Importing contacts `import`](#importing-an-addressbook-import)
+      8. [Exporting contacts `export`](#importing-an-addressbook-import)
+      9. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
+   6. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
+      5. [Saving the data](#saving-the-data)
+      6. [Editing the data file](#editing-the-data-file)
 5. [FAQ](#faq)
 6. [Command Summary](#command-summary)
 
@@ -164,11 +169,45 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all contacts : `clear`
+## Adding/Editing/Deleting Tag Types in CLInkedIn
 
-Clears all entries from the address book.
 
-Format: `clear`
+### Creating a custom tag type: `createTagType`
+
+Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types.
+
+Format: `createTagType TAG_TYPE TAG_ALIAS`
+
+- Creates a new `TAG_TYPE` tag type.
+- `TAG_ALIAS` can be used to add tags to this custom tag type.
+
+Examples:
+
+- `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can use existing tag types: Skill, or Degree, or Job Type.
+</div>
+
+### Editing tag type name: `editTagType`
+
+Edits the name and alias of an existing tag type to `NEW_TAG_TYPE` and `NEW_TAG_ALIAS`
+
+Format: `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS`
+
+Examples: `editTagType GPA-Grade gpat-grdt`
+
+- Edits name of the `GPA` tag type to `Grade` and its tag alias from `gpat` to `grdt`
+
+### Deleting an existing tag type: `deleteTagType`
+
+Deletes an existing tag type and its corresponding tag alias.
+
+Format: `deleteTagType TAG_TYPE`
+
+Examples: `deleteTagType GPA`
+
+- Deletes the `GPA` tag type.
 
 ## Modifying contacts in CLInkedIn
 
@@ -185,7 +224,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NO
 * While editing **Skill** tags, the existing `OLD_SKILL` of the person will be renamed to `NEW_SKILL`(Same for **Degree**, **JobType** and **Custom** tags).
 * You can remove **all** the person’s tags by typing `t/` without specifying any tags after it.
 * You can remove **all** the person’s **Skill** tags by typing `st/` without specifying any tags after it (Same for **Degree**, **JobType** and **Custom** tags).
-* 
+*
 
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -219,48 +258,11 @@ Examples:
 * `deleteTag 3 st/Java` Deletes the **Skill** tag `Java` of the 3rd person.
 * `deleteTag 2 dt/Bachelors` Deletes the **Degree** tag `Bachelors` of the 2nd person.
 
-### Creating a custom tag type: `createTagType`
-
-Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types.
-
-Format: `createTagType TAG_TYPE TAG_ALIAS`
-
-- Creates a new `TAG_TYPE` tag type.
-- `TAG_ALIAS` can be used to add tags to this custom tag type.
-
-Examples:
-
-- `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use existing tag types: Skill, or Degree, or Job Type.
-</div>
-
-### Editing tag type name: `editTagType`
-
-Edits the name and alias of an existing tag type to `NEW_TAG_TYPE` and `NEW_TAG_ALIAS`  
-
-Format: `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS`
-
-Examples: `editTagType GPA-Grade gpat-grdt`
-
-- Edits name of the `GPA` tag type to `Grade` and its tag alias from `gpat` to `grdt`
-
-### Deleting an existing tag type: `deleteTagType`
-
-Deletes an existing tag type and its corresponding tag alias.
-
-Format: `deleteTagType TAG_TYPE`
-
-Examples: `deleteTagType GPA`
-
-- Deletes the `GPA` tag type.
-
-### Adding optional information: `note`
+### Adding optional information: `addNote`
 
 Adds additional optional information (notes) to a person
 
-Format: `note INDEX note/NOTE`
+Format: `addNote INDEX note/NOTE`
 * The INDEX refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
@@ -269,46 +271,81 @@ A person can have any number of notes (including 0)
 </div>
 
 Examples:
-* `note 4 note/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
+* `addNote 4 note/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
 
-### Adding optional rating: `rate`
+### Deleting optional information: `deleteNote`
 
-Format: `rate INDEX rate/<RATING>`
-* The INDEX refers to the index number shown in the displayed person list. 
+Deletes optional information (notes) of a person.
+
+Format: `deleteNote INDEX`
+* The INDEX refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `deletNote 4` deletes all notes of the 4th person in the address book.
+
+### Adding optional rating: `addRate`
+
+Adds a numerical representation of candidates to make quick comparisons between candidates. 
+
+Format: `addRate INDEX rate/<RATING>`
+* The INDEX refers to the index number shown in the displayed person list.
 * The INDEX must be a positive integer 1, 2, 3, …​
-* The RATING must be an integer between 0 and 10 inclusive. 
+* The RATING must be an integer between 1 and 10 inclusive.
 
 Examples:
-* `rate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
+* `addRate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
 
-### Exporting the addressbook: `export`
+### Sorting candidates based on Rating: `sort`
 
-Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
-* The format of the file must be JSON, CSV or TXT.
-* Any directory in the path which does not exist will automatically be created.
-* Only the displayed list of candidates will be exported
+Sorts candidates in CLInkedIn according to their rating given. Candidates will be sorted according to their ratings in descending order (highest rating to lowest).
 
-Examples:
-* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop`.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Alternatively, you can go to `Export` -> `Export` to export using the GUI.
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Recall that rating is an optional field for a candidate. Thus, candidates with no ratings given will be displayed at the bottom, after candidates with a rating.
 </div>
 
-### Importing an addressbook: `import`
+Format: `sort`
 
-Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
-* The format of the file must be JSON, CSV or TXT.
-* Candidates whose name already exists in the addressbook will be ignored.
+Example:
+* `sort` will return a list of the candidates, sorted in order of descending rating.
+
+
+### Adding optional links: `addLink`
+
+Add links to candidate's online profiles/websites. Once added you can simply click on the icon and you will be redirected to the webpage. 
+
+Format: `addLink INDEX l/<LINK>`
+* The INDEX refers to the index number shown in the displayed person list.
+* The INDEX must be a positive integer 1, 2, 3, …​
+* The link must be a valid link with a protocol.
 
 Examples:
-* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the addressbook.
+* `addLink 2 l/https://www.instagram.com l/https://github.com` adds links to the instagram and github page ` to the 2nd person in the address book.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Alternatively, you can go to `Import` -> `Import` to import using the GUI.
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+If the link is not a platform recognised by CLInkedIn (LinkedIn, GitHub, Instagram, Telegram, Twitter, Snapchat, Discord, Facebook) then a general icon for links is displayed.
 </div>
 
-The following functions modify the contact list view in CLInkedIn.
+### Deleting links: `deleteLink`
+
+Deletes all links of a person.
+
+Format: `deleteLink INDEX`
+* The INDEX refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `deletLink 4` deletes all links of the 4th person in the address book.
+
+## Modifying contacts view in CLInkedIn
+
+### Viewing the details of a person : `view`
+
+Show details of a person in the addressbook.
+
+Format: `view INDEX`
+
+Examples: `view 2` views the details of the 2nd person in the addressbook.
 
 ### Listing all persons : `list`
 
@@ -319,7 +356,6 @@ Format: `list`
 ### Finding personal information and tags: `find`
 
 Finds candidates whose personal information and tags contain any of the given keywords.
-
 
 Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
 [MORE_TAGGED_KEYWORDS]...`
@@ -341,22 +377,11 @@ Examples:
 * `find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
 * `find s/application pending` returns list of candidates with status `application pending`
 
-### Sorting candidates based on Rating: `sort`
+### Clearing all contacts : `clear`
 
-Sorts candidates in CLInkedIn according to their rating given. Candidates will be sorted according to their ratings in descending order (highest rating to lowest). 
+Clears all entries from the address book.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-Recall that rating is an optional field for a candidate. Thus, candidates with no ratings given will be displayed at the bottom, after candidates with a rating.
-</div>
-
-Format: `sort`
-
-Example:
-* `sort` will return a list of the candidates, sorted in order of descending rating.
-
-## Miscellaneous Features/Commands
-
-The following miscallenous features are implemented in CLInkedIn and are available to users.
+Format: `clear`
 
 ### Undoing previous command: `undo`
 
@@ -378,7 +403,7 @@ Format: `redo`
 Redo can be used multiple times to redo multiple commands.
 </div>
 
-### Viewing Statistics: `stats`
+### Viewing Statistics based on ratings of candidates: `stats`
 
 Views statistics of the candidates currently saved in CLInkedIn.
 
@@ -387,15 +412,48 @@ Format: `stats`
 Example:
 * `stats` displays the statistics regarding the contacts saved in CLInkedIn.
 
-### Importing contacts: `import`
+### Exporting the addressbook: `export`
 
-### Exporting contacts: `export`
+Exports the data for the displayed list of candidates to the specified location in the specified format. 
+
+Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
+* The format of the file must be JSON or CSV.
+* Any directory in the path which does not exist will automatically be created.
+* Only the displayed list of candidates will be exported.
+
+Examples:
+* `export path//Desktop/sample/data.csv` exports the filtered list of candidates to `data.csv` in the `sample` directory of the `Desktop`.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Alternatively to export files using GUI, you can either go to `Export` -> `Export` in the Menu Bar or enter the command `export`.
+</div>
+
+### Importing an addressbook: `import`
+
+Imports the data for candidates from the specified file.
+
+Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
+* The format of the file must be JSON or CSV.
+* Data being import will be merged with the existing data in the addressbook.
+* Candidates whose name already exists in the addressbook will be ignored.
+
+Examples:
+* `import path//Desktop/sample/data.csv` imports the list of candidates from `data.csv` in the `sample` directory of the `Desktop` to the addressbook.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Alternatively to import files using GUI, you can either go to `Import` -> `Import` in the Menu Bar or enter the command `import`.
+</div>
 
 ### Exiting CLInkedIn : `exit`
 
 Exits the program.
 
 Format: `exit`
+* Alternatively, you can also go to `File' -> `Exit` in the Menu Bar.
+
+## Miscellaneous Features/Commands
+
+The following miscallenous features are implemented in CLInkedIn and are available to users.
 
 ### Saving the data
 
@@ -420,22 +478,26 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                                                                                                                                                                    |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS rate/RATING [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​ [l/LINK]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/rejected st/Java`                                           |
-| **Clear**         | `clear`                                                                                                                                                                                                                                                                                                             |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                 |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [note/NOTE] [s/STATUS] [rate/RATING] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​ [l/LINK]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters` |
-| **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                                                                        |
-| **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                                                                        |
-| **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                                                                            |
-| **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                                                                    |
-| **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                                                                             |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                                                                         |
-| **List**          | `list`                                                                                                                                                                                                                                                                                                              |
-| **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                                                                            |
+
+| Action            | Format, Examples                                                                                                                                                                                                                                                     |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**           | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java`                                                   |
+| **Clear**         | `clear`                                                                                                                                                                                                                                                              |
+| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                  |
+| **Edit**          | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com dt/Bachelors-Masters` |
+| **AddTag**        | `addTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `addTag 3 st/Java`                                                                                                                                                         |
+| **deleteTag**     | `deleteTag INDEX [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`<br> e.g., `deleteTag 2 dt/Bachelors`<br/>                                                                                                                                         |
+| **Create**        | `create TAG_TYPE TAG_ALIAS` <br> e.g., `create GPA gpat`                                                                                                                                                                                                             |
+| **EditTagType**   | `editTagType OLD_TAG_TYPE-NEW_TAG_TYPE OLD_TAG_ALIAS-NEW_TAG_ALIAS` <br> e.g., `editTagType GPA-Grade gpat-grdt`                                                                                                                                                     |
+| **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                              |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                          |
+| **List**          | `list`                                                                                                                                                                                                                                                               |
+| **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
+| **Help**          | `help`                                                                                                                                                                                                                                                               |
+| **Sort**          | `sort`                                                                                                                                                                                                                                                               |
+| **Rate**          | `rate INDEX r/RATING` <br> e.g., `rate 3 rate/5`                                                                                                                                                                                                                     |
 | **Export**        | `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>` <br> e.g., `export path//Desktop/sample/data.csv`                                                                                                                                                                                                          |
-| **Import**        | `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>` <br> e.g., `import path//Desktop/sample/data.csv`                                                                                                                                                                                                        |
-| **Help**          | `help`                                                                                                                                                                                                                                                                                                              |
+| **Import**        | `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>` <br> e.g., `import path//Desktop/sample/data.csv`                                                                                                                                                                                                        |                                                                                                                                                                                                                                                                                                            |
+
 
 

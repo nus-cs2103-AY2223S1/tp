@@ -5,6 +5,6 @@ package seedu.clinkedin.logic.parser.exceptions;
  */
 public class InvalidExtensionException extends RuntimeException {
     public InvalidExtensionException() {
-        super("Invalid Extension! Only .csv, .json, .txt, .xml extensions allowed!");
+        super("Invalid Extension! Only .csv and .json extensions allowed!");
     }
 }
