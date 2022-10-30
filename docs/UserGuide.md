@@ -45,7 +45,7 @@ Take note of the following symbols and formatting used in this document:
 
    * **`list`** : Lists all students.
 
-   * **`add`**`n/student p/98765432 i/e077xxxx [e/student@example.com] [p/91251211]` : Adds a student named `John Doe` to the student list.
+   * **`add`**`n/student p/98765432 i/e0778123 [e/student@example.com] [p/91251211]` : Adds a student named `John Doe` to the student list.
 
    * **`delete`**`3` : Deletes the 3rd student shown in the current list.
 
@@ -218,7 +218,7 @@ To aid teaching assistants in keeping track of attendance, we developed a featur
 
 Adds an attendance list to a student in the contact list. 
 
-Format: `attendance add INDEX c/CLASS s/ATTENDANCESIZE`
+Format: `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 Maximum attendance list size is 12, if the size is 0, the attendance list will be N.A. 
@@ -233,7 +233,7 @@ Examples:
 
 Marks attendance of given student in class list. In this case, we use 0 for absent and 1 for present because it is faster for CLI users to type numerical values instead of ```"absent"``` or ```"present"```.
 
-Format: `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE`
+Format: `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 Lesson number starts from 1.
@@ -394,9 +394,9 @@ Examples:
 | Action                | Format                                                                                                  | Examples                                                                                                          |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
 | **Add**               | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​`                                         | `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague`                                 |
-| **Attendance Add**    | `attendance add INDEX c/CLASS s/ATTENDANCESIZE`                                                                   | `attendance add 1 c/CS2030 s/10`                                                                                  |
+| **Attendance Add**    | `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`                                                                   | `attendance add 1 c/CS2030 s/10`                                                                                  |
 | **Attendance Delete** | `attendance delete INDEX`                                                                                         | `attendance delete 1`                                                                                             |
-| **Attendance Mark**   | `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE`                                                                | `attendance mark 1 l/1 m/1`                                                                                       |
+| **Attendance Mark**   | `attendance mark INDEX l/LESSON m/ATTENDANCE_VALUE`                                                                | `attendance mark 1 l/1 m/1`                                                                                       |
 | **Clear**             | `clear`                                                                                                           |                                                                                                                   |
 | **Delete**            | `delete INDEX`                                                                                                    | `delete 3`                                                                                                        |
 | **Edit**              | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`                          | `edit 2 n/James Lee e/jameslee@example.com`                                                                       |
