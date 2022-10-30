@@ -35,9 +35,14 @@
     }
 
     h2,
-    h3 {
+    h3:not(.glossary-heading) {
       string-set: section_title content();
       page-break-after: avoid;
+    }
+
+    h3.glossary-heading {
+      // Use Glossary – (letter) for Glossary items
+      string-set: section_title "Glossary \2013\A0"content();
     }
 
     pre,
