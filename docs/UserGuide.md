@@ -13,10 +13,7 @@
        1. [General commands](#general-commands)
           1. [Clear command](#clear-command-clear)
           2. [Find command](#find-command-find)
-          3. [Iterate command](#iterate-command-foreach)
-          4. [Select command](#select-command-select)
-          5. [Sequence command](#sequence-command-seq)
-          6. [Exit command](#exits-the-program-exit)
+          3. [Exit command](#exits-the-program-exit)
        3. [Contact commands](#contact-commands)
           1. [Add a contact](#add-a-contact-person-new)
           2. [Delete a contact](#delete-a-contact-person-delete)
@@ -32,6 +29,9 @@
           2. [Deleting a task from group](#deleting-a-task-from-group-task-delete)
           3. [Set progress for tasks](#set-progress-for-tasks-task-progress)
     4. [Advanced features](#advanced-features)
+       1. [Sequence command](#sequence-command-seq)
+       2. [Iterate command](#iterate-command-foreach)
+       3. [Select command](#select-command-select)
 6. [FAQ](#faq)
 7. [Future plans](#future-plans)
 8. [Glossary](#glossary)
@@ -40,6 +40,7 @@
    2. [Contact commands](#contact-commands-summary)
    3. [Group commands](#group-commands-summary)
    4. [Task commands](#task-commands-summary)
+   5. [Advanced commands](#advanced-commands-summary)
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
@@ -92,9 +93,10 @@ We will be referring to these terminologies throughout the user guide:
 
 ![Contactmation ui main window](images/ContactmationUiClean.png)
 
-5. 
+> **Note**
+> If you wish to clear all default entries, use the [clear](#clear-command-clear) command.
 
-6. You may begin by referring to the [basic features](#basic-features) section to get started on using
+5. You may begin by referring to the [basic features](#basic-features) section to get started on using
    Contactmation. For additional, more powerful commands, refer to our [advanced features](#advanced-features),
    especially if you are comfortable with the CLI or have prior programming experience.
 
@@ -133,7 +135,8 @@ added to a group or a subgroup, similar to how files can be added into folders.
 
 Clears all group, contact and task entries from the application.
 
-**NOTE THAT THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION!**
+> **Warning**
+> **THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION!**
 
 **Format:** `clear`
 
@@ -150,32 +153,6 @@ to further narrow the search for a contact, subgroup or task within the current 
 
 - `find John Doe`
 - `find task1 task2`
-
-### Iterate command: `foreach`
-
-Iterates through each task, contact or group within the current [scope](#scoping), and
-applies the command to each of the currently listed task, contact or group.
-
-**Format:** `<item> foreach <command>`
-
-**Example:**
-
-- `task foreach rename`
-
-### Select command: `select`
-
-Selects the current task, contact or group within the current [scope](#scoping) and
-run a command on that task, contact or group.
-
-**Format:** `<item> select <INDEX> <command>`
-
-**Example:**
-
-- `task select 3 isComplete`
-
-### Sequence command: `seq`
-
-Adds
 
 ### Exits the program: `exit`
 
@@ -309,6 +286,9 @@ the application window.
 
 ### Group scope commands
 
+> **Note**
+> Please look at how [scoping](#scoping) works before continuing.
+
 ### Changing the group scope: `cg`
 
 Updates the group scope that is currently being displayed in the application. This command is similar to going
@@ -367,6 +347,32 @@ This sets the progress of the first task in the list as 25%.
 
 ## Advanced features
 
+### Sequence command: `seq`
+
+Adds
+
+### Iterate command: `foreach`
+
+Iterates through each task, contact or group within the current [scope](#scoping), and
+applies the command to each of the currently listed task, contact or group.
+
+**Format:** `<item> foreach <command>`
+
+**Example:**
+
+- `task foreach rename`
+
+### Select command: `select`
+
+Selects the current task, contact or group within the current [scope](#scoping) and
+run a command on that task, contact or group.
+
+**Format:** `<item> select <INDEX> <command>`
+
+**Example:**
+
+- `task select 3 isComplete`
+
 ## FAQ
 
 > How can I install `Java 11`?
@@ -388,14 +394,19 @@ etc.
 - Releasing a version of Contactmation on the mobile platform.
 - The ability to synchronize data between multiple copies of Contactmation on your mobile and desktop.
 - A pop-up window that shows the detailed form of descriptions to the user.
+- A for loop command to iterate through and count groups, contacts or tasks by their attribute.
 
 ## Glossary
 
 | Vocabulary  | Description |
 | ----------- | ----------- |
-| Group   | A container that contains people that work on a similar project.  |
-| Item    | An item can refer to a group, contact or task. |
+| Command sequence | What you, the user, would write in the command box for the execution of a command. |
 | Contact   | A contact with contact information.  |
+| Group   | A container that contains people that work on a similar project.  |
+| Index    | The numerical placing of a group, contact or task in the current application display. |
+| Item    | An item can refer to a group, contact or task. |
+| Pipe | The output of the previous section of commands will be used as input for the next set of commands.|
+| Root group   | Refers to the application not being in any scope. |
 | Scope  | A constraint on the groups, people and tasks you are able to view at one time on the display. |
 | Task  | Assigned to people or groups |
 
@@ -439,5 +450,13 @@ etc.
 | Contact   | A contact with contact information.  |
 | Task  | Assigned to people or groups |
 
+### Advanced commands summary
+
+| Command  | Format |
+| ----------- | ----------- |
+| Group   | A container that contains people that work on a similar project.  |
+| Item    | An item can refer to a group, contact or task. |
+| Contact   | A contact with contact information.  |
+| Task  | Assigned to people or groups |
 
 [Back to top](#contactmation-user-guide)
