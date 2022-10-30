@@ -37,7 +37,7 @@
                 </padding>
             </FlowPane>
             <HBox fx:id="phoneContainer">
-                <Label styleClass="field_label" text="Phone: "/>
+                <Label styleClass="field_label" minWidth="46" text="Phone: "/>
                 <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
                 <Button fx:id="phoneCopyButton" styleClass="copyButton" mnemonicParsing="false"
                         onAction="#copyPhone">
@@ -51,11 +51,11 @@
                 </Button>
             </HBox>
             <HBox fx:id="moduleContainer">
-                <Label styleClass="field_label" text="Module: "/>
+                <Label styleClass="field_label" minWidth="54" text="Module: "/>
                 <Label fx:id="moduleCode" styleClass="cell_small_label" text="\$moduleCode"/>
             </HBox>
             <HBox fx:id="emailContainer">
-                <Label styleClass="field_label" text="Email: "/>
+                <Label styleClass="field_label" minWidth="41" text="Email: "/>
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
                 <Button fx:id="emailCopyButton" styleClass="copyButton" mnemonicParsing="false"
                         onAction="#copyEmail">
@@ -69,7 +69,7 @@
                 </Button>
             </HBox>
             <HBox fx:id="telegramContainer">
-                <Label styleClass="field_label" text="Telegram: "/>
+                <Label styleClass="field_label" minWidth="65" text="Telegram: "/>
                 <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram"/>
                 <Button fx:id="telegramCopyButton" styleClass="copyButton" mnemonicParsing="false"
                         onAction="#copyTelegram">
