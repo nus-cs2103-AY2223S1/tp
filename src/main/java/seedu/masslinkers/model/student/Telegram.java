@@ -9,10 +9,11 @@ import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Telegram handle may only contain alphanumeric characters or underscores.\n"
-            + "Telegram handle cannot have multiple consecutive underscores.\n"
-            + "Telegram handle cannot begin or end with an underscore.";
+    public static final String MESSAGE_CONSTRAINTS = "Telegram handle is invalid!\n"
+            + "• Telegram handle must be at least 5 characters long.\n"
+            + "• Telegram handle may only contain alphanumeric characters or underscores.\n"
+            + "• Telegram handle cannot begin or end with an underscore "
+            + "and cannot have multiple consecutive underscores.";
 
     // Regex adapted from:
     // https://stackoverflow.com/questions/63308185/regex-match-telegram-username-and-delete-whole-line-in-php
