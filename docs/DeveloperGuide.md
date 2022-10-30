@@ -17,7 +17,7 @@ Rapportbook is a CLI-focused desktop app for managing client information, develo
 If it is your first time contributing, make sure you follow the guidelines we have noted in [Setting up, getting started](#setting-up-getting-started). Please refer to the following list of sections to get you familiarized with Rapportbook.
   * [Design overview](#design) -- High level overview of the design and architecture Rapportbook.
   * [Implementation](#implementation) -- Implementation details for the features currently implemented.
-  * [Testing](#appendix-instructions-for-manual-testing) -- Testing instructions to and expected outcomes of the features in Rapportbook.
+  * [Testing](#appendix-instructions-for-manual-testing) -- Testing instructions and expected outcomes of the features in Rapportbook.
 
 The following is the table of contents for Rapportbook.
 
