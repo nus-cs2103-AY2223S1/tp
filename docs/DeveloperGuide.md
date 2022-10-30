@@ -773,8 +773,30 @@ Extensions:
 
 <br>
 
+<br>
+
 System: RC4HDB <br>
-Use case: UC8 - Clearing all data <br>
+Use case: UC8 - Deleting multiple residents <br>
+Actor: User <br>
+MSS:
+
+1. Multiple Residents that fall under the same categories have moved out. [**RC4**](#glossary).
+2. User deletes the residents from RC4HDB using the categories.
+3. RC4HDB removes the corresponding residents from the database.
+4. RC4HDB displays the number of residents that has been deleted.
+
+   Use case ends.
+
+Extensions:
+
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
+
+<br>
+
+System: RC4HDB <br>
+Use case: UC9 - Clearing all data <br>
 Actor: User <br>
 MSS:
 
@@ -787,7 +809,7 @@ MSS:
 <br>
 
 System: RC4HDB <br>
-Use case: UC9 - Exiting the application <br>
+Use case: UC10 - Exiting the application <br>
 Actor: User <br>
 MSS:
 
@@ -806,7 +828,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC10 - Importing data from [CSV](#glossary) file <br>
+Use case: UC11 - Importing data from [CSV](#glossary) file <br>
 Actor: User <br>
 MSS:
 
@@ -832,7 +854,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC11 - Exporting data to [CSV](#glossary) file <br>
+Use case: UC12 - Exporting data to [CSV](#glossary) file <br>
 Actor: User <br>
 MSS:
 
@@ -846,7 +868,7 @@ MSS:
 <br>
 
 System: RC4HDB <br>
-Use case: UC12 - Add a single venue <br>
+Use case: UC13 - Add a single venue <br>
 Actor: User <br>
 MSS:
 
@@ -865,10 +887,8 @@ Extensions:
 
 <br>
 
-<br>
-
 System: RC4HDB <br>
-Use case: UC13 - Deleting a single venue <br>
+Use case: UC14 - Deleting a single venue <br>
 Actor: User <br>
 MSS:
 
@@ -888,7 +908,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC14 - Viewing a venue <br>
+Use case: UC15 - Viewing a venue <br>
 Actor: User <br>
 MSS:
 
@@ -907,11 +927,8 @@ Extensions:
 
 <br>
 
-
-<br>
-
 System: RC4HDB <br>
-Use case: UC15 - Add a single booking <br>
+Use case: UC16 - Add a single booking <br>
 Actor: User <br>
 MSS:
 
@@ -934,10 +951,8 @@ Extensions:
 
 <br>
 
-<br>
-
 System: RC4HDB <br>
-Use case: UC16 - Deleting a single booking <br>
+Use case: UC17 - Deleting a single booking <br>
 Actor: User <br>
 MSS:
 
