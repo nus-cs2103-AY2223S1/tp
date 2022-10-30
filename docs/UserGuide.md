@@ -256,6 +256,7 @@ Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
     * A task can be **re-assigned to** "Person Y" by providing parameter `o/Person Y`.
     * A task can be **re-assigned by** "Person X" by providing parameter `m/Person X`.
     * If neither `m/` or `o/` is specified, the current **assignor** or **assignee** will not be changed.
+* Dates `t/` can only be edited if the task is a **deadline** or **event**.
 
 <div markdown="block" class="alert alert-warning">
 
