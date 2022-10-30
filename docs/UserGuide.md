@@ -107,14 +107,16 @@ Format: `exit`
 
 ### Saving the data
 
-LongTimeNoSee's application data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+LTNS application data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-LongTimeNoSee's application data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+LTNS application data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 Below is an example of what your JSON File should look like:
 [JSONExample](./images/JsonExample.png)
+
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -463,8 +465,6 @@ Examples:
 * Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation.
 
 
-### Deleting an Event
-
 Format: `deleteEvent INDEX`
 
 * Deletes the event at the specified `INDEX`.
@@ -513,7 +513,7 @@ Format: `calendar`
 ## FAQ
 
 Q: How do I transfer my data to another Computer? <br>
-A : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+A : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LTNS home folder.
 
 Q: Why am I seeing `(insert error)` when trying to add an event?<br>
 A : When adding an Event involving a client, this client must exist in your client book first.
