@@ -4,4 +4,22 @@
 @page {
   size: A4;
   margin: 0.5in;
+
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+  }
+
+  @top-left {
+    content: string(section_title);
+  }
+}
+
+@media print {
+  article.post {
+    h2,
+    h3 {
+      string-set: section_title content();
+      page-break-after: avoid;
+    }
+  }
 }
