@@ -55,20 +55,20 @@ These are the components of TaskBook, arranged according to their locations as s
 * **Results Display** - A scrollable box that displays the result of executed [commands](#using-the-examples-in-this-guide) in the Command Box. If the commands fail to execute, this box will also inform you what caused the failure of the command.
 * **Contact List** - A scrollable box that contains the list of contacts you have added to TaskBook. Odd numbered boxes are darker in colour than even numbered ones.<br>The layout of a contact is as follows, from left to right, top to bottom:
   * **Index** - The number TaskBook assigns to contacts you add. Can be reshuffled by the [`contact sort`](#sorting-contacts--contact-sort) [command](#using-the-examples-in-this-guide).
-  * **Name** - The name of the contact, right of the index.
+  * **Name** - The name of the contact, situated right of the index.
   * **Tags** - A series of light blue boxes. If a contact has no tags, this region will not display any boxes.
   * **Phone Number** - The contact's phone number. If no phone number was added, this field will be `[No phone number]` instead.
   * **Address** - The contact's address. If no address was added, this field will display `[No address]` instead.
   * **Email** - The contact's email. If no email was added, this field will display `[No email]` instead.
 * **Task List** - A scrollable box that contains the list of tasks you have added to TaskBook.<br>The layout of a task is as follows, from left to right, top to bottom:
   * **Index** - The number TaskBook assigns to tasks you add. Can be reshuffled by the [`task sort`](#sorting-tasks--task-sort) [command](#using-the-examples-in-this-guide).
-  * **Description** - The description of the tasks you add, right of the index.
+  * **Description** - The description of the tasks you add, situated right of the index.
   * **Date** - If the task has a date assigned to it (i.e if the task is a deadline or event), the date will be at the end of the description in square brackets.
   * **Status** - The first [  ] box. If the task's box is [X], it means the task has been done. Otherwise, if it is blank, the task has not been done.
   * **Type** - The second [  ] box. Indicates the type of the task. Each task type is a slightly different shade of purple to give you some visual clarity.<br>Types of tasks:
-    * **Todo** - A task that you need to do. Does not have an associated date. In the Task List, this task is labelled as [T], and are solid purple.
-    * **Deadline** - A task that you need to do by a particular date. In the Task List, this task is labelled as [D], and are faintly purple.
-    * **Event** - A task that involves you attending some event at some date. In the Task List, this task is labelled as [E], and are bright purple.
+    * **Todo** - A task that you need to do. Does not have an associated date. In the Task List, these tasks are labelled as [T], and are solid purple.
+    * **Deadline** - A task that you need to do by a particular date. In the Task List, these tasks are labelled as [D], and are faintly purple.
+    * **Event** - A task that involves you attending some event at some date. In the Task List, these tasks are labelled as [E], and are bright purple.
   * **Assignment** - An indicator on whether the task is assigned by you to someone else, or vice versa. 
   * **Assignor/Assignee** - The contact that has been assigned a task by you, or vice versa. This can be yourself.
 * **Status Bar** - Indicates the location in your computer where TaskBook is tracking your Contact List and Task List.
