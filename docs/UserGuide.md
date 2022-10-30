@@ -73,7 +73,7 @@ The `Result Display Window` displays feedback after executing a command. This in
 ### 4.4. Recognised Exercise Name List
 
 The `Recognised Exercise Name List Window` provides you a list of all unique exercise names that are currently registered in the system. 
-<br><br>This list updates in real time and allows you to quickly keep track of the exercises you have input in the past. Hence, even if the exercise list is populated, the `Recognised Exercise Name List Window` helps you keep track of what you named your exercises. It also helps you to identify any wrong spellings in the name of the exercises you have input.
+<br><br>This list updates in real time and allows you to keep track of the exercises you have input in the past. As such, you are able to keep track of what you named your exercises; you would also be able to quickly identify any misspellings in the name of your inputted exercises.
 
 ![RecognisedList](images/RecognisedExercisesOrientation.png)
 
@@ -85,7 +85,7 @@ The `Recognised Exercise Name List Window` provides you a list of all unique exe
 
 The `Recognised Exercise Name List Window` is generated based on the exercise entries in the system. Hence, the Recognised Exercise Name List is automatically updated whenever you add or delete an entry from the system.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+<div id="names" markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 Exercise names are recognised as equal if, upon removing white spaces and setting the names to lowercase, the names are the same.<br><br> 
 i.e. "Bench Press", "BENCH PRESS", "BenchPress" will be logged as the same exercise for your convenience in adding.<br><br>
 However, the first time you add an exercise with an unrecognised name, the Recognised Exercise Name List will save the form you have input. Choose wisely!
@@ -152,6 +152,8 @@ Parameter constraints:
   * Examples: 27/10/2022, 27-10-2022, 27/10/22... 
   * `d/DATE` field is left optional, will store exercise with current date if no date field is found
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `:add n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps for today's date.
 * `:add n/Deadlift w/60 s/1 r/1 d/27-01-22` Adds a deadlift exercise of weight 60kg for 1 set of 1 rep for 27th January 2022.
@@ -170,7 +172,7 @@ Parameter constraints:
 * The index **must be a positive integer** 1, 2, 3, ...
 
 Example:
-* `:del 9` Deletes an exercise at index 9 of the list
+* `:del 9` Deletes an exercise at index 9 of the list.
 
 ![DeleteCommand](images/DeleteCommand.png)
 
@@ -182,7 +184,7 @@ Shows a list of all exercises.
 Format: `:list`
 
 Example:
-`:list` Shows the list of exercises you have completed
+`:list` Shows the list of exercises you have completed.
 
 <div style="page-break-after: always;"></div>
 
@@ -223,7 +225,7 @@ Redundant inputs (before and after the `confirm/` flag) will be ignored. <br> e.
 </div>
 
 Example:
-* `:clear confirm/` Confirms the clearing of all saved exercises, resetting the data in the system.
+* `:clear confirm/` Clears all saved exercises, resetting the data in the system.
 
 ### 5.6. Sorting exercises : `:sort`
 
@@ -255,11 +257,13 @@ Example:
 
 ![RangeCommandOne](images/RangeCommandOneSample.png)
 
+<div style="page-break-after: always;"></div>
+
 Format (2) : `:range last/NUMBER_OF_DAYS`
 
 Parameter constraints:
-* Number of days **can only take non-negative integer values**, up to 5 digits
-* Start date should be before end date
+* Number of days **can only take non-negative integer values**, up to 5 digits.
+* Start date should be before end date.
 
 Example:
 `:range last/3` Shows the exercises done today and the last 3 days.
@@ -319,7 +323,7 @@ Format (1): `:gen INDEX [, INDEX]... level/DIFFICULTY_LEVEL`
 
 Parameter constraints:
 * The index **must be a positive integer** 1, 2, 3, ...
-* The difficulty level must be one that is supported; currently supported are: {easy, medium, hard}.
+* The difficulty level must be supported by Gim; currently supported are: {easy, medium, hard}.
 
 Examples:
 `:gen 1, 2 level/easy` Generates a sample workout for exercises at index 1 and 2 of the list, Deadlift and Incline Bench.
@@ -378,9 +382,16 @@ Format: `:wq`
 
 ## 6. Tips and Tricks
 
-Tip 1: Gim's `range` and `find` commands operate on the current exercise list, hence you can use the commands successively to narrow the lists down to what you want to find. For example, you can keep track of your exercise progression over a period of time through the use of `:find NAME` followed by a `range start/ end/`.
+Tip 1: Gim's `range` and `filter` commands operate on the current exercise list, hence you can use the commands successively to narrow the lists down to what you want to find. For instance, you can keep track of your exercise progression over a period of time through the use of `:filter NAME` followed by a `range last/NUMBER_OF_DAYS`.
 
-Tip 2: Advanced users are welcome to update data directly by editing the data file in `[JAR file location]/data/exercisetracker.json`.
+Example: If you  want to view your squat progression over the past week, you should input these three commands successively:
+* `:list` Current exercise list now shows all exercises.
+* `:filter Squat` Current exercise list now shows 'Squat' exercises.
+* `:range last/7`  Current exercise list now shows 'Squat' exercises in the past 7 days.
+
+Tip 2: Advanced users are welcome to update data directly by editing the data file in
+<br>
+`[JAR file location]/data/exercisetracker.json`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Gim will discard all data and start with an empty data file at the next run.
@@ -394,7 +405,7 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 
 **Q**: When should I use the `:list` command? 
 <br>
-**A**: The `:list` command resets the display of the exercise list, displaying all the exercise entries in the system (in the order the entries were input in the system). This can be used after commands, such as `:find` or `:range` are used to change the display list.
+**A**: The `:list` command resets the display of the exercise list, displaying all the exercise entries in the system (in the order the entries were input in the system). This can be used after commands, such as `:filter` or `:range` are used to change the display list.
 
 **Q**: Can I change the name of my uniquely registered exercise?
 <br>
@@ -402,17 +413,19 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: The way you format the exercise name when you first add it will be the way it is displayed in the system. After that, all exercises added that have the [same name](#adding-and-deleting-from-the-exercise-name-list) will be categorised under the same exercise.**<br>
+**:information_source: The way you format the exercise name when you first add it will be the way it is displayed in the system. After that, all exercises added that have the <a href="#names">same name</a> will be categorised under the same exercise.**<br>
 
 </div>
 
 **Q**: Can I edit an exercise?
 <br>
-**A**: You can do so by deleting the entry and adding a new entry. 
+**A**: You can do so by deleting the entry and adding a new entry.
 
-**Q**: Why is my `:filter` not showing any list even though I have input a valid exercise name?
+**Q**: Why is `:filter` not showing the "correct" list even though I have input a valid exercise name?
 <br>
-**A**: `:filter` works on the displayed list shown in the Exercise List Window so if your displayed list is empty, a valid `:filter` command will still display an empty list. Try executing the command `:list` to get the full displayed list before running `:filter` again.
+**A**: `:filter` works on the displayed list shown in the Exercise List Window. If your displayed list is empty or has been altered by list changing commands such as `:range` or `:filter`, the `:filter` command will not filter from the original full list. 
+<br><br>
+If you would like to filter from the original full list instead, try executing the command `:list` to display the full list before running `:filter` again.
 
 
 --------------------------------------------------------------------------------------------------------------------
