@@ -2,7 +2,6 @@
 layout: page
 title: User Guide
 ---
-
 bobaBot is a **desktop application** for managing customers’ membership details. It is **optimized for Command Line Interface (CLI) while retaining some benefits of the Graphical User Interface (GUI)**. If you are a cashier working at a bubble tea shop and can type fast, bobaBot can help you easily find and manage your customers’ membership information as compared to other GUI applications.
 
 ---
@@ -114,28 +113,28 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com m/1 r/0 `
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
     
-    **Before executing the AddCommand:**
-    <img src="images/screenshots/AddCommand/AddCommand1.png">
+    Before executing the AddCommand:</br>
+    <img src="images/screenshots/AddCommand/AddCommand1.png"></br>
 
-    **After executing the AddCommand:**
-    <img src="images/screenshots/AddCommand/AddCommand1Result.png">
+    After executing the AddCommand:</br>
+    <img src="images/screenshots/AddCommand/AddCommand1Result.png"></br>
     </details>
 
 
 * `add n/Charlie Puth p/81234567 e/charlie@puth.com r/3000 t/silver m/12`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the AddCommand:**
-    <img src="images/screenshots/AddCommand/AddCommand.png">
+    Before executing the AddCommand:</br>
+    <img src="images/screenshots/AddCommand/AddCommand.png"></br>
 
-    **After executing the AddCommand:**
-    <img src="images/screenshots/AddCommand/AddCommandResult.png">
+    After executing the AddCommand:</br>
+    <img src="images/screenshots/AddCommand/AddCommandResult.png"></br>
     </details>
 
 ### 2.3 Editing a Customer’s details: `edit`
@@ -153,28 +152,28 @@ Examples:
 * `edit p/81234567 p/88888888`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the EditCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/EditCommand/EditCommand_Phone.png">
+    Before executing the EditCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/EditCommand/EditCommand_Phone.png"></br>
 
-    **After executing the EditCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/EditCommand/EditCommand_PhoneResult.png">
+    After executing the EditCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/EditCommand/EditCommand_PhoneResult.png"></br>
     </details>
 
 
 * `edit e/charlie@puth.com e/taylor@swift.com`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the EditCommand via `EMAIL`:**
-    <img src="images/screenshots/EditCommand/EditCommand_Email.png">
+    Before executing the EditCommand via `EMAIL`:</br>
+    <img src="images/screenshots/EditCommand/EditCommand_Email.png"></br>
 
-    **After executing the EditCommand via `EMAIL`:**
-    <img src="images/screenshots/EditCommand/EditCommand_EmailResult.png">
+    After executing the EditCommand via `EMAIL`:</br>
+    <img src="images/screenshots/EditCommand/EditCommand_EmailResult.png"></br>
     </details>
 
 ### 2.4 Increasing a Customer’s Reward points: `incr`
@@ -187,28 +186,28 @@ Examples:
 * `incr 100 p/88888888`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the IncreaseCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png">
+    Before executing the IncreaseCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhone.png"></br>
 
-    **After executing the IncreaseCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png">
+    After executing the IncreaseCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandPhoneResult.png"></br>
     </details>
 
 
 * `incr 1000 e/alexyeoh@example.com`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the IncreaseCommand via `EMAIL`:**
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png">
+    Before executing the IncreaseCommand via `EMAIL`:</br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmail.png"></br>
 
-    **After executing the IncreaseCommand via `EMAIL`:**
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png">
+    After executing the IncreaseCommand via `EMAIL`:</br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/IncreaseCommandEmailResult.png"></br>
     </details>
 
 ### 2.5 Decreasing a Customer’s Reward points: `decr`
@@ -221,14 +220,14 @@ Examples:
 * `decr 200 p/87438807`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the IncreaseCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png">
+    Before executing the IncreaseCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhone.png"></br>
 
-    **After executing the IncreaseCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png">
+    After executing the IncreaseCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandPhoneResult.png"></br>
     </details>
 
 
@@ -236,14 +235,14 @@ Examples:
 
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the IncreaseCommand via `EMAIL`:**
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png">
+    Before executing the IncreaseCommand via `EMAIL`:</br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmail.png"></br>
 
-    **After executing the IncreaseCommand via `EMAIL`:**
-    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png">
+    After executing the IncreaseCommand via `EMAIL`:</br>
+    <img src="images/screenshots/IncreaseAndDecreaseCommand/DecreaseCommandEmailResult.png"></br>
     </details>
 
 ### 2.6 Listing all customers : `list`
@@ -254,14 +253,14 @@ Format: `list`
 
 <details>
 <summary>
-Walk-through with Images
+<b>Walk-through with Images</b>
 </summary>
 
-**Before executing the ListCommand:**
-<img src="images/screenshots/ListCommand/ListCommand.png">
+Before executing the ListCommand:</br>
+<img src="images/screenshots/ListCommand/ListCommand.png"></br>
 
-**After executing the ListCommand**
-<img src="images/screenshots/ListCommand/ListCommandResult.png">
+After executing the ListCommand:</br>
+<img src="images/screenshots/ListCommand/ListCommandResult.png"></br>
 </details>
 
 ### 2.7 Locating customers by name: `find`
@@ -284,28 +283,28 @@ Examples:
 * `find John` returns `john` and `John Doe`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the FindCommand:**
-    <img src="images/screenshots/FindCommand/FindCommandNormal.png">
+    Before executing the FindCommand:</br>
+    <img src="images/screenshots/FindCommand/FindCommandNormal.png"></br>
 
-    **After executing the FindCommand:**
-    <img src="images/screenshots/FindCommand/FindCommandNormalResult.png">
+    After executing the FindCommand:</br>
+    <img src="images/screenshots/FindCommand/FindCommandNormalResult.png"></br>
     </details>
 
 
 * `find alex david` returns `Alex Yeoh`, `David Li`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the FindCommand (with at least one keyword):**
-    <img src="images/screenshots/FindCommand/FindCommandMultiple.png">
+    Before executing the FindCommand (with at least one keyword):</br>
+    <img src="images/screenshots/FindCommand/FindCommandMultiple.png"></br>
 
-    **After executing the FindCommand (with at least one keyword):**
-    <img src="images/screenshots/FindCommand/FindCommandMultipleResult.png">
+    After executing the FindCommand (with at least one keyword):</br>
+    <img src="images/screenshots/FindCommand/FindCommandMultipleResult.png"></br>
     </details>
 
 
@@ -313,14 +312,14 @@ Examples:
 
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the FindCommand (with FuzzySearch):**
-    <img src="images/screenshots/FindCommand/FindCommand_Fuzzy.png">
+    Before executing the FindCommand (with FuzzySearch):</br>
+    <img src="images/screenshots/FindCommand/FindCommand_Fuzzy.png"></br>
 
-    **After executing the FindCommand (with FuzzySearch):**
-    <img src="images/screenshots/FindCommand/FindCommand_FuzzyResult.png">
+    After executing the FindCommand (with FuzzySearch):</br>
+    <img src="images/screenshots/FindCommand/FindCommand_FuzzyResult.png"></br>
     </details>
 
 
@@ -328,43 +327,45 @@ Examples:
 
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the FindCommand (with matching keywords `8000`):**
-    <img src="images/screenshots/FindCommand/FindCommand_General.png">
+    Before executing the FindCommand (with matching keywords `8000`):</br>
+    <img src="images/screenshots/FindCommand/FindCommand_General.png"></br>
 
-    **After executing the FindCommand (with matching keywords `8000`):**
-    * Both `Roy` and `Bob` have `8000` reward points hence they show up in the search.
-    <img src="images/screenshots/FindCommand/FindCommand_GeneralResult.png">
+    After executing the FindCommand (with matching keywords `8000`):</br>
+    <ul>
+      <li>Both `Roy` and `Bob` have `8000` reward points hence they show up in the search.</li>
+    </ul></br>
+    <img src="images/screenshots/FindCommand/FindCommand_GeneralResult.png"></br>
     </details>
 
 
-* `find p/87438807` returns only `Alex Yeoh` <br>
+* `find p/87438807` returns only `Alex Yeoh`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the FindCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/FindCommand/FindCommand_Phone.png">
+    Before executing the FindCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/FindCommand/FindCommand_Phone.png"></br>
 
-    **After executing the FindCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/FindCommand/FindCommand_PhoneResult.png">
+    After executing the FindCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/FindCommand/FindCommand_PhoneResult.png"></br>
     </details>
 
 
-* `find e/charlotte@example.com` returns only `Charlotte Oliveiro` <br>
+* `find e/charlotte@example.com` returns only `Charlotte Oliveiro`
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
 
-    **Before executing the FindCommand via `EMAIL`:**
-    <img src="images/screenshots/FindCommand/FindCommand_Email.png">
+    Before executing the FindCommand via `EMAIL`:</br>
+    <img src="images/screenshots/FindCommand/FindCommand_Email.png"></br>
 
-    **After executing the FindCommand via `EMAIL`:**
-    <img src="images/screenshots/FindCommand/FindCommand_EmailResult.png">
+    After executing the FindCommand via `EMAIL`:</br>
+    <img src="images/screenshots/FindCommand/FindCommand_EmailResult.png"></br>
     </details>
 
 ### 2.8 Deleting a Customer : `delete`
@@ -385,14 +386,14 @@ Examples:
 
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
   
-    **Before executing the DeleteCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/DeleteCommand/DeleteCommand_Phone.png">
+    Before executing the DeleteCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_Phone.png"></br>
 
-    **After executing the DeleteCommand via `PHONE_NUMBER`:**
-    <img src="images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png">
+    After executing the DeleteCommand via `PHONE_NUMBER`:</br>
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_PhoneResult.png"></br>
     </details>
 
 
@@ -400,14 +401,14 @@ Examples:
   
     <details>
     <summary>
-    Walk-through with Images
+    <b>Walk-through with Images</b>
     </summary>
     
-    **Before executing the DeleteCommand via `EMAIL`:**
-    <img src="images/screenshots/DeleteCommand/DeleteCommand_Email.png">
+    Before executing the DeleteCommand via `EMAIL`:</br>
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_Email.png"></br>
 
-    **After executing the DeleteCommand via `EMAIL`:**
-    <img src="images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png">
+    After executing the DeleteCommand via `EMAIL`:</br>
+    <img src="images/screenshots/DeleteCommand/DeleteCommand_EmailResult.png"></br>
     </details>
 
 ### 2.9 Undo a Command : `undo`
@@ -418,14 +419,14 @@ Format: `undo`
 
 <details>
 <summary>
-Walk-through with Images
+<b>Walk-through with Images</b>
 </summary>
     
-**Before executing the UndoCommand (after a DeleteCommand):**
-<img src="images/screenshots/UndoAndRedoCommand/UndoCommand.png">
+Before executing the UndoCommand (after a DeleteCommand):</br>
+<img src="images/screenshots/UndoAndRedoCommand/UndoCommand.png"></br>
 
-**After executing the UndoCommand (Deleted Customer `Alex Yeoh` is back into bobaBot):**
-<img src="images/screenshots/UndoAndRedoCommand/UndoCommandResult.png">
+After executing the UndoCommand (Deleted Customer `Alex Yeoh` is back into bobaBot):</br>
+<img src="images/screenshots/UndoAndRedoCommand/UndoCommandResult.png"></br>
 </details>
 
 :exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
@@ -438,15 +439,17 @@ Format: `redo`
 
 <details>
 <summary>
-Walk-through with Images
+<b>Walk-through with Images</b>
 </summary>
 
-**Before executing the RedoCommand:**
-* This continues from the above example in UndoCommand (where we perform an UndoCommand on a DeleteCommand)
-<img src="images/screenshots/UndoAndRedoCommand/RedoCommand.png">
+Before executing the RedoCommand:</br>
+<ul>
+  <li>This continues from the above example in UndoCommand (where we perform an UndoCommand on a DeleteCommand)</li>
+</ul>
+<img src="images/screenshots/UndoAndRedoCommand/RedoCommand.png"></br>
 
-**After executing the RedoCommand (The Customer `Alex Yeoh` is removed from bobaBot again):**
-<img src="images/screenshots/UndoAndRedoCommand/RedoCommandResult.png">
+After executing the RedoCommand (The Customer `Alex Yeoh` is removed from bobaBot again):</br>
+<img src="images/screenshots/UndoAndRedoCommand/RedoCommandResult.png"></br>
 </details>
 
 :exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
@@ -459,14 +462,14 @@ Format: `clear`
 
 <details>
 <summary>
-Walk-through with Images
+<b>Walk-through with Images</b>
 </summary>
 
-**Before executing the ClearCommand:**
-<img src="images/screenshots/ClearCommand/ClearCommand.png">
+Before executing the ClearCommand:</br>
+<img src="images/screenshots/ClearCommand/ClearCommand.png"></br>
 
-**After executing the ClearCommand:**
-<img src="images/screenshots/ClearCommand/ClearCommandResult.png">
+After executing the ClearCommand:</br>
+<img src="images/screenshots/ClearCommand/ClearCommandResult.png"></br>
 </details>
 
 ### 2.12 Calculate: `calc`
@@ -479,14 +482,14 @@ Example: `calc 5+2*(4-2)`
 
 <details>
 <summary>
-Walk-through with Images
+<b>Walk-through with Images</b>
 </summary>
 
-**Before executing the CalculateCommand:**
-<img src="images/screenshots/CalculateCommand/NewCalculateCommand.png">
+Before executing the CalculateCommand:</br>
+<img src="images/screenshots/CalculateCommand/NewCalculateCommand.png"></br>
 
-**After executing the CalculateCommand:**
-<img src="images/screenshots/CalculateCommand/NewCalculateCommandResult.png">
+After executing the CalculateCommand:</br>
+<img src="images/screenshots/CalculateCommand/NewCalculateCommandResult.png"></br>
 </details>
 
 _Note: Please do not enter spaces, e.g.`1 + 1` does not work_
@@ -499,14 +502,14 @@ Format: `calc-gui`
 
 <details>
 <summary>
-Walk-through with Images
+<b>Walk-through with Images</b>
 </summary>
 
-**Before executing the CalculatorGuiCommand:**
-<img src="images/screenshots/CalculateCommand/NewCalculatorGui.png">
+Before executing the CalculatorGuiCommand:</br>
+<img src="images/screenshots/CalculateCommand/NewCalculatorGUI.png"></br>
 
-**After executing the CalculatorGuiCommand:**
-<img src="images/screenshots/CalculateCommand/NewCalculatorGuiResult.png">
+After executing the CalculatorGuiCommand:</br>
+<img src="images/screenshots/CalculateCommand/NewCalculatorGUIResult.png"></br>
 </details>
 
 ### 2.14 Exiting the program : `exit`
@@ -517,14 +520,16 @@ Format: `exit`
 
 <details>
 <summary>
-Walk-through with Images
+<b>Walk-through with Images</b>
 </summary>
 
-**Before executing the ExitCommand:**
-<img src="images/screenshots/ExitCommand/ExitCommand.png">
+Before executing the ExitCommand:</br>
+<img src="images/screenshots/ExitCommand/ExitCommand.png"></br>
 
-**After executing the ExitCommand:**
-* bobaBot Application Closed
+After executing the ExitCommand:</br>
+<ul>
+  <li>bobaBot Application Closed</li>
+</ul>
 </details>
 
 ### Saving the data
