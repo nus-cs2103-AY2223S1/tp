@@ -8,6 +8,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_ONE_INDEX;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -27,12 +30,7 @@ import seedu.address.model.person.PersonMatchesPredicate;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonMatchesPredicateBuilder;
-import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.ProfessorBuilder;
-import seedu.address.testutil.StudentBuilder;
-import seedu.address.testutil.TeachingAssistantBuilder;
+import seedu.address.testutil.*;
 
 public class AddressBookParserTest {
 

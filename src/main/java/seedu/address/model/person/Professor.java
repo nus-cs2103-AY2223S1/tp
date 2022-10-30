@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 

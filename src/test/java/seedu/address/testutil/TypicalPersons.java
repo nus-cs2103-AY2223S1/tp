@@ -56,12 +56,9 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends").withGithubUsername("ben10").build();
     public static final Person CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563").withTags("smart")
             .withLocation("SMU").withEmail("heinz@example.com").withGender("M").withGithubUsername("carlz").build();
-    public static final Person DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withLocation("NUS")
-            .withEmail("cornelia@example.com")
-            .withGender("M").withTags("cool").withGithubUsername("dan").build();
-    public static final Person GEORGE = new StudentBuilder().withModuleCodes("CS1000", "CS9999").withName("George Best")
-            .withPhone("9482442")
+    public static final Person DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533").withLocation("NUS")
+            .withEmail("cornelia@example.com").withGender("M").withTags("cool").withGithubUsername("dan").build();
+    public static final Person GEORGE = new StudentBuilder().withModuleCodes("CS1000", "CS9999").withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withLocation("HKU").withGender("M").build();
 
     // Manually added
@@ -105,8 +102,7 @@ public class TypicalPersons {
             .withLocation("RUT")
             .withGithubUsername("ben10")
             .build();
-    public static final Professor COLIN = (Professor) new ProfessorBuilder()
-            .withOfficeHour("TUESDAY, 12:00 PM - 02:00 PM")
+    public static final Professor COLIN = (Professor) new ProfessorBuilder().withOfficeHour("TUESDAY, 12:00 PM - 02:00 PM")
             .withName(VALID_NAME_COLIN)
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_COLIN)
@@ -115,10 +111,8 @@ public class TypicalPersons {
             .withLocation("ABC")
             .withGithubUsername("callin")
             .build();
-    public static final Person ELLE = new ProfessorBuilder().withRating("1").withName("Elle Meyer").withPhone("9482224")
-            .withLocation("NTU")
-            .withEmail("werner@example.com")
-            .withGender("F").withGithubUsername("elle").withTags("cool", "smart").build();
+    public static final Person ELLE = new ProfessorBuilder().withRating("1").withName("Elle Meyer").withPhone("9482224").withLocation("NTU")
+            .withEmail("werner@example.com").withGender("F").withGithubUsername("elle").withTags("cool", "smart").build();
 
     /* -------------------------------TEACHING ASSISTANT------------------------------- */
     public static final Person FIONA = new TeachingAssistantBuilder().withRating("2").withModuleCode("CS1000")

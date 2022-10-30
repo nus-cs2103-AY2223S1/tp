@@ -70,10 +70,6 @@ public class ProfessorBuilder extends PersonBuilder {
         this.field = new Specialisation(specialisation);
         return this;
     }
-
-    /**
-     * Sets the {@code OfficeHour} of the {@code Professor} that we are building.
-     */
     public ProfessorBuilder withOfficeHour(String officeHour) {
         this.officeHour = new OfficeHour(officeHour, true);
         System.out.println(officeHour);
