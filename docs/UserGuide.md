@@ -2,15 +2,31 @@
 layout: page
 title: User Guide
 ---
+<div align="center">
+<h1> PetCode User Guide</h1>
+Welcome to the PetCode user guide!
+</div>
 
-Petcode is a **desktop app for coordinating pet sale business, optimized for use via a Command Line Interface** (CLI)
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PetCode can get your contact
-management tasks done faster than traditional GUI apps.
+![Mockup](images/StartUiPage.png)
+
+PetCode is a **desktop app for managing contacts for your pet sales coordination needs, optimized for use via a Command 
+Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PetCode
+can get your contact management tasks done faster than traditional GUI apps.
+
+#### Using this guide
+If this is the first time you are using this user guide, it is highly recommended for you to read the section on
+[Introducing PetCode](#introducing-petcode). Otherwise,
+
+* If you are setting up, please take a look at our [Quick Start guide](#quick-start).
+* If you are unsure of how to use PetCode, the [Command Summary](#command-summary) table is a good starting point.
+* If you are a developer and want to help out, please take a look at the [Developer Guide](DeveloperGuide.md).
 
 ## Table of Contents
-
-- [Quick Start](#quick-start)
-- [Commands](#commands)
+- **[Introducing PetCode](#introducing-petcode)**
+    * [What is PetCode?](#what-is-petcode)
+    * [Glossary](#glossary)
+- **[Quick Start](#quick-start)**
+- **[Commands](#commands)**
     * [Viewing help](#viewing-help--help)
     * [Adding a contact or item](#adding-a-contact-or-item-add)
         + [Adding a buyer](#adding-a-buyer-add-b)
@@ -18,31 +34,64 @@ management tasks done faster than traditional GUI apps.
         + [Adding a supplier](#adding-a-supplier-add-s)
         + [Adding an order to a buyer](#adding-an-order-to-a-buyer-add-o)
         + [Adding a pet to a supplier](#adding-a-pet-to-a-supplier--add-pt)
-        + [Adding a person with a popup window](#adding-a-person-with-a-popup-window--add) [RECOMMENDED FOR BEGINNERS]
+        + [Adding a person with a popup window](#adding-a-person-with-a-popup-window--add) 
+    * [Matching oets to an order](#matching-pets-to-an-order--match)
     * [Listing contacts or items](#listing-contacts-or-items--list)
     * [Deleting a contact or item](#deleting-a-contact-or-item--delete)
     * [Editing attributes of a contact](#editing-attributes-of-a-contact--edit)
-    * [Finding a contact using keywords](#finding-a-contact-using-keywords--find)
+    * [Finding contact(s) using keywords](#finding-contacts-using-keywords--find)
         + [Finding a buyer](#finding-a-buyer--find-b)
         + [Finding a supplier](#finding-a-supplier--find-s)
-        + [Finding a deliverer](#finding-a-supplier--find-s)
-    * [Filtering lists by attributes](#filtering-lists-by-tags--filter)
+        + [Finding a deliverer](#finding-a-deliverer--find-d)
+    * [Filtering items by attributes](#filtering-items-by-attributes--filter)
         + [Filtering orders](#filtering-orders--filter-o)
         + [Filtering pets](#filtering-pets--filter-p)
     * [Sorting contacts](#sorting-contacts--sort)
     * [Checking which item belongs to which contact](#checking-which-item-belongs-to-which-contact--check)
     * [Clearing all contacts](#clearing-all-entries--clear)
     * [Exiting the program](#exiting-the-program--exit)
-- [How data is stored](#how-data-is-stored)
+- **[How data is stored](#how-data-is-stored)**
     * [Saving contacts and items](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
     * [Archiving data files](#archiving-data-files-coming-in-v20)
-- [FAQ](#faq)
-- [Summaries](#summaries)
+- **[FAQ](#faq)**
+- **[Summaries](#summaries)**
     * [List of prefixes](#list-of-prefixes)
     * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Introducing PetCode
+
+Whether you're new to PetCode, or just want to learn more about the details -- this section has you covered.
+This section will provide an overview of PetCode and explain key terms.
+
+### What is PetCode?
+
+PetCode is a free, open-source application designed for pet sales coordinators for buyer, supplier, and deliverer
+information management.
+
+Due to the nature of a pet sales coordination business, you most likely have **a lot of information you need to deal with**. 
+For example, what orders have you received? Which orders have not been fulfilled? How should you match this order with
+the pets available? What is the contact information of your pet buyers, pet suppliers and delivery services?
+
+PetCode is designed specifically to **improve your workflow**, by managing all this information to efficiently close
+deals and satisfy your customers. It can be used to offload information, categorise them more meaningfully, and match
+your customers' requests to their dream pet.
+
+### Glossary
+
+In the user guide, you may come across some terms you do not understand. The following table hopes to provide clarification
+of the terms commonly used in PetCode.
+
+| Term          | Description                                                                                                                                                                                                                                                                                                                            |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Contact**   | A contact is an information entry in PetCode. There are three types of contacts you can add - Buyer, Supplier and Deliverer. You can add a contact with the [`add` command](#adding-a-contact-or-item-add).                                                                                                                            |
+| **Command**   | A command is a specific instruction you can give to Petcode to perform an action. You can view the list of commands available [here](#command-summary).                                                                                                                                                                                |
+| **GUI**       | GUI stands for Graphical User Interface. It refers to the display window of the PetCode application.                                                                                                                                                                                                                                   |
+| **Parameter** | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. <br/> <br/> For example, in the [`list` command](#listing-contacts-or-items--list) requires a KEY parameter to know what kind of list to display, i.e, `list buyer` displays your list of buyers. |
+| **Prefix**    | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes).                                                                                                                                                                                                   |
+| **Item**      | An item refers to an Order or a Pet. An Order refers to the order placed by a buyer. A Pet refers to the pet available for sale.                                                                                                                                                                                                       |
 
 ## Quick start
 
@@ -144,9 +193,13 @@ General Format for add command: `add-KEY prefix/PARAMETERS...`, where:
 
 Kindly refer to the [Summaries](#summaries) section for more information.
 
-:exclamation:If you are a beginner, we highly recommend you to use
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** If you are a beginner, we highly recommend you to use
 the [Add Command using the popup window](#adding-a-person-with-a-popup-window--add)
 instead of the usual CLI interface.
+
+</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -160,17 +213,27 @@ Format: `add-b n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** A person can have any number of tags (including 0)
+:bulb: **Tip:** A person can have any number of tags (including 0).
+
+</div>
 
 After meeting a new customer with an order and would like to add her/him to your list of contacts, we have a
 nice feature for you to add a buyer and his/her orders in one shot! Check it out below :point_down:
 
 Format: `add-b n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ o/add-o(order1 prefixes and fields) o/add-o(order2 prefixes and fields)…​`
 
-:exclamation: Note that you can input as many `o/add-o` prefixes as you need. After each `add-o`, simply enter the
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Note that you can input as many `o/add-o` prefixes as you need. After each `add-o`, simply enter the
 details for
 the order, and you don't have to specify the index of the associated buyer this time. For more
 information, you can refer to the [Add Order](#adding-an-order-to-a-buyer-add-o) section.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
 
 </div>
 
@@ -195,6 +258,12 @@ Examples:
 
 * To add a single deliverer: `add-d n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore`
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+
+</div>
+
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
@@ -210,10 +279,20 @@ supplier in one shot! Check it out below :point_down:
 
 Format: `add-s n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ pt/add-pt(pet1 prefixeds and fields) pt/add-pt(pet2 prefixeds and fields)…​`
 
-:exclamation: Note that you can input as many `pt/add-pt` prefixes as you need. After each `add-pt`, simply enter the
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Note that you can input as many `pt/add-pt` prefixes as you need. After each `add-pt`, simply enter the
 details
 for the pet, and you don't have to specify the index of the associated supplier this time. For more information,
-you can refer to the [Add Pet](#adding-a-pet-to-supplier--add-pt) section.
+you can refer to the [Add Pet](#adding-a-pet-to-a-supplier--add-pt) section.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+
+</div>
 
 Examples:
 
@@ -229,9 +308,7 @@ Examples:
 
 #### Adding an ORDER TO A BUYER: `add-o`
 
-Every time a new order is placed, you need to add it to the customer placed it, don't you? Hence, you can use the
-following format to
-add a new order :point_down:
+Adds an order to a buyer contact. This is especially useful for adding an order to customer placed it.
 
 Format: `add-o i/INDEX_OF_BUYER o_s/STATUS o_r/add-r o_a/AGE o_s/SPECIES o_c/COLOR o_cp/COLOR_PATTERN o_p/PRICE o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
 
@@ -239,12 +316,19 @@ Format: `add-o i/INDEX_OF_BUYER o_s/STATUS o_r/add-r o_a/AGE o_s/SPECIES o_c/COL
 in the displayed buyer list. You may want to use the [List Command](#listing-contacts-or-items--list) to find the buyer,
 if you have filtered the list.
 
-:exclamation: Please ensure that `o_r/` is followed by `add-r` immediately and that there are no other prefixes
-between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_s/`. This is because they as a whole specify how the requested pet
-should be
-like. In the future, you may be able to define your own requests as templates for generating orders.
+<div markdown="span" class="alert alert-warning">
 
-For more information about the prefixes, kindly navigate to the summary table [here](#list-of-prefixes).
+:exclamation: **Caution**: Please ensure that `o_r/` is followed by `add-r` immediately and that there are no other prefixes
+between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_s/`. This is because they as a whole specify how the requested pet
+should be like. In the future, you may be able to define your own requests as templates for generating orders.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+
+</div>
 
 Examples:
 
@@ -256,7 +340,7 @@ Examples:
 
 #### Adding a PET TO A SUPPLIER : `add-pt`
 
-When a new pet comes up to stock, you may want to add it to its supplier. Now is the time!
+Adds a pet to a supplier contact. This is especially useful for adding a new available pet to its supplier.
 
 Format: `add-pt i/INDEX_OF_SUPPLIER pt_n/PET_NAME pt_d/DATE_OF_BIRTH pt_c/COLOR pt_cp/COLOR_PATTERN pt_h/HEIGHT pt_w/WEIGHT pt_s/SPECIES pt_v/VACCINATION_STATUS pt_p/PRICE [pt_cert/CERTIFICATE]…​ [pt_t/TAG]…​`
 
@@ -265,7 +349,11 @@ index just in the display list. You may want to use the [List Command](#listing-
 supplier,
 if you have filtered the list.
 
-For more information about the prefixes, kindly navigate to the summary table [here](#list-of-prefixes).
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** For more details on what each prefix represents, kindly refer to [List of Prefixes](#list-of-prefixes).
+
+</div>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -288,6 +376,8 @@ The followings are two ways to use this command:
 
   Format: `add supplier`
 
+<div markdown="block" class="alert alert-info">
+
 :information_source: **Useful keyboard shortcuts for the pop-up window:**
 
 | Keyboard shortcut | Associated action                                                                      |
@@ -297,6 +387,8 @@ The followings are two ways to use this command:
 |     CTRL + A      | Adds an order/pet to the buyer/supplier                                                |
 |     CTRL + D      | Deletes the last order/pet under the buyer/supplier in the pop-up window               |
 |     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the pop-p window |
+
+</div>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -349,21 +441,24 @@ Format: `list [KEY]`
 
 #### List KEY Types Table
 
-| Contact / Item to List  |         KEY          |
-|:-----------------------:|:--------------------:|
-|          Buyer          |   buyer, b, -b, /b   |
-|        Supplier         | supplier, s, -s, /s  |
-|        Deliverer        | deliverer, d, -d, /d |
-|          Order          |   order, o, -o, /p   |
-|           Pet           |    pet, p, -p, /p    |
+| Contact / Item to List |         KEY          |
+|:----------------------:|:--------------------:|
+|         Buyer          |   buyer, b, -b, /b   |
+|        Supplier        | supplier, s, -s, /s  |
+|       Deliverer        | deliverer, d, -d, /d |
+|         Order          |   order, o, -o, /p   |
+|          Pet           |    pet, p, -p, /p    |
+|       All Person       |    all, a, -a, /a    |
+
 
 Examples:
-* `list buyer`, lists all Buyer contacts.
-* `list deliverer`, lists all Deliverer contacts.
-* `list supplier`, lists all Supplier contacts.
-* `list all`, lists all Buyer, Deliverer, and Supplier contacts.
+* `list buyer`, lists all Buyer contacts and all the orders from each buyer.
+* `list deliverer`, lists all Deliverer contacts and all the taken by each deliverer.
+* `list supplier`, lists all Supplier contacts and all the pets that each supplier has on sale.
+* `list all`, lists all Buyer, Deliverer, Supplier contacts and their respective pets and orders details.
 * `list order`, lists all Orders.
 * `list pet`, lists all Pets.
+* `list`, list all the items in the current list.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -532,11 +627,11 @@ Notes:
 `filter-o os/Pending os/Delivering`. However, only the latest input will be taken, in the example above, the order status the app will use to filter orders is the "Delivering" status.
 * Note that Order Statuses are case-sensitive, so the input `filter-o os/delivering` may throw an error. To play safe, use the following words for Order status only:
 
-| Order Status | Input word | Usage                   |
-|--------------|------------|-------------------------|
-| PENDING      | Pending | filter-o os/Pending     |
+| Order Status | Input word  | Usage                   |
+|--------------|-------------|-------------------------|
+| PENDING      | Pending     | filter-o os/Pending     |
 | NEGOTIATING  | Negotiating | filter-o os/Negotiating |
-| DELIVERING   | Delivering | filter-o os/Delivering |
+| DELIVERING   | Delivering  | filter-o os/Delivering  |
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -569,7 +664,11 @@ Examples:
 
 Format: `sort LIST_PARAMETER [ATTRIBUTES...]`
 
+<div markdown="span" class="alert alert-warning">
+
 :exclamation:**Note that different lists could have different supported sort attributes.**
+
+</div>
 
 Check out the acceptable List Parameters for different types of contacts /
 items [here](#list-key-types-table).
@@ -630,10 +729,11 @@ Supplier.
 
 Format: `check LIST_PARAMETER INDEX`
 
-:exclamation: **Please take note of the following:**
+<div markdown="span" class="alert alert-warning">
 
-* This command does not support the Deliverers list.
-* The input index has to be a valid index.
+:exclamation: **Caution:** This command **does not support** the Deliverers list. The input index has to be a **valid index**.
+
+</div>
 
 Check out the acceptable List Parameters for different types of contacts /
 items [here](#list-key-types-table).
@@ -676,7 +776,6 @@ Format: `exit`
 [Go back to [Commands](#commands)]
 
 ## How data is stored
-
 ### Saving the data
 
 PetCode data is saved into your computer's hard disk automatically after any command that changes the data.
@@ -713,10 +812,9 @@ the data of your previous PetCode home folder.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Summaries
-
 ### List of Prefixes
 
-These prefixes are for you to indicate different fields when you add a new person, a new order, or a new pet.
+These prefixes are for you to indicate different fields when you add a new [buyer](#adding-a-buyer-add-b), a new [deliverer](#adding-a-deliverer-add-d), a new [supplier](#adding-a-supplier-add-s), a new [order](#adding-an-order-to-a-buyer-add-o), or a new [pet](#adding-a-pet-to-a-supplier--add-pt).
 
 | Prefix     | Category        | Meaning                          | Usage                                                                                                                                                                                                                                                                                                                              | Example                                          |
 |------------|-----------------|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
@@ -753,23 +851,23 @@ These prefixes are for you to indicate different fields when you add a new perso
 ### Command Summary
 
 
-|            Action            | Format                                                                                       | Examples                                                                                      |
-|:----------------------------:|----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-|           **Add**            | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…` | `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
-| **Add** (using popup window) | `add buyer`, `add supplier`                                                                  |                                                                                               |
-|          **Clear**           | `clear`                                                                                      |                                                                                               |
-|          **Delete**          | `delete-KEY INDEX`                                                                           | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`                          |
-|           **Edit**           | `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`                                   | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p//884321`                                               |
-|           **Find**           | `find PREFIX/KEYWORD`                                                                        | `find n/James Jake`                                                                           |
-|        **Find Buyer**        | `find-b PREFIX/KEYWORD`                                                                      | `find-b n/James Jake`                                                                         |
-|      **Find Deliverer**      | `find-d PREFIX/KEYWORD`                                                                      | `find-d n/James Jake`                                                                         |
-|      **Find Supplier**       | `find-s PREFIX/KEYWORD`                                                                      | `find-s n/James Jake`                                                                         |
-|          **Filter**          | `filter t/INPUT`                                                                             | `filter t/dog t/second-hand`                                                                  |
-|      **Filter Orders**       | `filter-o PREFIX/KEYWORD`                                                                    | `filter-o ar/good with children pr/10-100`                                                    |
-|       **Filter Pets**        | `filter-p PREFIX/KEYWORD`                                                                    | `filter-p c/white s/capybara`                                                                 |
-|           **Help**           | `help`                                                                                       |                                                                                               |
-|           **List**           | `list all`, `list buyer`, `list supplier`, <br>`list deliverer`, `list order`, `list pet`    |                                                                                               |
-|           **Sort**           | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                        | `sort pet price height weight`                                                                |
-|          **Check**           | `check LIST_TYPE INDEX`                                                                      | `check buyer 1`                                                                               |
+|                                  Action                                   | Format                                                                                    | Examples                                                                         |
+|:-------------------------------------------------------------------------:|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+|                 **[Add](#adding-a-contact-or-item-add)**                  | `add-ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`                       | `add-b n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore` |
+| **[Add](#adding-a-person-with-a-popup-window--add)** (using popup window) | `add buyer`, `add supplier`                                                               |                                                                                  |
+|                 **[Clear](#clearing-all-entries--clear)**                 | `clear`                                                                                   |                                                                                  |
+|             **[Delete](#deleting-a-contact-or-item--delete)**             | `delete-KEY INDEX`                                                                        | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`             |
+|            **[Edit](#editing-attributes-of-a-contact--edit)**             | `edit-ROLE INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`                                | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p/884321`                                   |
+|            **[Find](#finding-contacts-using-keywords--find)**             | `find PREFIX/KEYWORD`                                                                     | `find n/James Jake`                                                              |
+|                **[Find Buyer](#finding-a-buyer--find-b)**                 | `find-b PREFIX/KEYWORD`                                                                   | `find-b n/James Jake`                                                            |
+|            **[Find Deliverer](#finding-a-deliverer--find-d)**             | `find-d PREFIX/KEYWORD`                                                                   | `find-d n/James Jake`                                                            |
+|             **[Find Supplier](#finding-a-supplier--find-s)**              | `find-s PREFIX/KEYWORD`                                                                   | `find-s n/James Jake`                                                            |
+|           **[Filter](#filtering-items-by-attributes--filter)**            | `filter t/INPUT`                                                                          | `filter t/dog t/second-hand`                                                     |
+|             **[Filter Orders](#filtering-orders--filter-o)**              | `filter-o PREFIX/KEYWORD`                                                                 | `filter-o ar/good with children pr/10-100`                                       |
+|               **[Filter Pets](#filtering-pets--filter-p)**                | `filter-p PREFIX/KEYWORD`                                                                 | `filter-p c/white s/capybara`                                                    |
+|                      **[Help](#viewing-help--help)**                      | `help`                                                                                    |                                                                                  |
+|               **[List](#listing-contacts-or-items--list)**                | `list all`, `list buyer`, `list supplier`, <br>`list deliverer`, `list order`, `list pet` |                                                                                  |
+|                    **[Sort](#sorting-contacts--sort)**                    | `sort LIST_PARAMETER [ATTRIBUTES...]`                                                     | `sort pet price height weight`                                                   |
+|     **[Check](#checking-which-item-belongs-to-which-contact--check)**     | `check LIST_TYPE INDEX`                                                                   | `check buyer 1`                                                                  |
 
 [Go back to [Table of Contents](#table-of-contents)]
