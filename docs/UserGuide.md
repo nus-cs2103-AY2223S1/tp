@@ -434,21 +434,24 @@ Format: `list [KEY]`
 
 #### List KEY Types Table
 
-| Contact / Item to List  |         KEY          |
-|:-----------------------:|:--------------------:|
-|          Buyer          |   buyer, b, -b, /b   |
-|        Supplier         | supplier, s, -s, /s  |
-|        Deliverer        | deliverer, d, -d, /d |
-|          Order          |   order, o, -o, /p   |
-|           Pet           |    pet, p, -p, /p    |
+| Contact / Item to List |         KEY          |
+|:----------------------:|:--------------------:|
+|         Buyer          |   buyer, b, -b, /b   |
+|        Supplier        | supplier, s, -s, /s  |
+|       Deliverer        | deliverer, d, -d, /d |
+|         Order          |   order, o, -o, /p   |
+|          Pet           |    pet, p, -p, /p    |
+|       All Person       |    all, a, -a, /a    |
+
 
 Examples:
-* `list buyer`, lists all Buyer contacts.
-* `list deliverer`, lists all Deliverer contacts.
-* `list supplier`, lists all Supplier contacts.
-* `list all`, lists all Buyer, Deliverer, and Supplier contacts.
+* `list buyer`, lists all Buyer contacts and all the orders from each buyer.
+* `list deliverer`, lists all Deliverer contacts and all the taken by each deliverer.
+* `list supplier`, lists all Supplier contacts and all the pets that each supplier has on sale.
+* `list all`, lists all Buyer, Deliverer, Supplier contacts and their respective pets and orders details.
 * `list order`, lists all Orders.
 * `list pet`, lists all Pets.
+* `list`, list all the items in the current list.
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
