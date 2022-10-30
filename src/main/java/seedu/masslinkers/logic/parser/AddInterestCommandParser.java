@@ -70,7 +70,7 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
      * @return The index of the student in String.
      */
     private String getIndexFromCommand(String args) throws ParseException {
-        String[] splittedArgs = args.split(" ");
+        String[] splittedArgs = args.split("\\s+");
         String index = splittedArgs[0];
         final Matcher matcher = INDEX_FORMAT.matcher(index.trim());
         if (!matcher.matches()) {
@@ -86,7 +86,7 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
      * @return A set of interests of type Interest.
      */
     private Set<Interest> getInterestsFromCommand(String args) {
-        String[] splitArgs = args.split(" ");
+        String[] splitArgs = args.split("\\s+");
         return Arrays.stream(splitArgs)
                 .skip(1)
                 .map(Interest::new)

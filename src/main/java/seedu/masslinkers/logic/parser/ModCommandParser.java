@@ -248,7 +248,7 @@ public class ModCommandParser implements Parser<ModCommand> {
      * @return The index of the student in String.
      */
     private String getIndexFromCommand(String args) throws ParseException {
-        String[] splittedArgs = args.split(" ");
+        String[] splittedArgs = args.split("\\s+");
         String index = splittedArgs[0];
         final Matcher matcher = INDEX_FORMAT.matcher(index.trim());
         if (!matcher.matches()) {
@@ -264,7 +264,7 @@ public class ModCommandParser implements Parser<ModCommand> {
      * @return The index of the student in String or the word "all".
      */
     private String getModMarkIndexOrAll(String args) throws ParseException {
-        String[] splittedArgs = args.split(" ");
+        String[] splittedArgs = args.split("\\s+");
         String indexOrAll = splittedArgs[0].trim();
         boolean isAll = indexOrAll.equals("all");
 
@@ -287,7 +287,7 @@ public class ModCommandParser implements Parser<ModCommand> {
      * @return A set of mods of type String.
      */
     private Set<String> getModsFromCommand(String args) {
-        String[] splittedArgs = args.split(" ");
+        String[] splittedArgs = args.split("\\s+");
         List<String> extractedMods = Arrays.asList(splittedArgs).subList(1, splittedArgs.length);
         return new HashSet<>(extractedMods);
     }

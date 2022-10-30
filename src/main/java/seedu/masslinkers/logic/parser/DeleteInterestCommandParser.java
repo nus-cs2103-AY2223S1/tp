@@ -71,7 +71,7 @@ public class DeleteInterestCommandParser implements Parser<DeleteInterestCommand
      * @return The index of the student in String.
      */
     private String getIndexFromCommand(String args) throws ParseException {
-        String[] splitArgs = args.split(" ");
+        String[] splitArgs = args.split("\\s+");
         String index = splitArgs[0];
         final Matcher matcher = INDEX_FORMAT.matcher(index.trim());
         if (!matcher.matches()) {
@@ -87,7 +87,7 @@ public class DeleteInterestCommandParser implements Parser<DeleteInterestCommand
      * @return A set of interests of type Interest.
      */
     private Set<Interest> getInterestsFromCommand(String args) {
-        String[] splitArgs = args.split(" ");
+        String[] splitArgs = args.split("\\s+");
         return Arrays.stream(splitArgs)
                 .skip(1)
                 .map(Interest::new)

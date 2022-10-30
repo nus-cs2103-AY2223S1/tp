@@ -22,7 +22,7 @@ public class Interest {
     public Interest(String interestName) {
         requireNonNull(interestName);
         checkArgument(isValidInterest(interestName), MESSAGE_CONSTRAINTS);
-        this.interestName = interestName;
+        this.interestName = interestName.toLowerCase();
     }
 
     /**
@@ -41,7 +41,7 @@ public class Interest {
 
     @Override
     public int hashCode() {
-        return interestName.toLowerCase().hashCode();
+        return interestName.hashCode();
     }
 
     /**

@@ -9,14 +9,15 @@ import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
  */
 public class GitHub {
 
+    // GitHub username constraints adapted from https://github.com/shinnn/github-username-regex
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+                    "Github username may only contain alphanumeric characters or hyphens.\n"
+                    + "Github username cannot have multiple consecutive hyphens.\n"
+                    + "Github username cannot begin or end with a hyphen.\n"
+                    + "Between 1 to 39 characters.";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    // Regex adapted from: https://github.com/shinnn/github-username-regex
+    public static final String VALIDATION_REGEX = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
 
     public final String username;
 
@@ -28,14 +29,14 @@ public class GitHub {
     public GitHub(String name) {
         requireNonNull(name);
         checkArgument(isValidGitHub(name), MESSAGE_CONSTRAINTS);
-        username = name;
+        username = name.toLowerCase();
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid GitHub username.
      */
     public static boolean isValidGitHub(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toLowerCase().matches(VALIDATION_REGEX);
     }
 
 

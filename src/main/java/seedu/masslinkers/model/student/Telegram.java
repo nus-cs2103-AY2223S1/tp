@@ -9,13 +9,14 @@ import static seedu.masslinkers.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
-    public static final String MESSAGE_CONSTRAINTS = "Telegram handle can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Telegram handle may only contain alphanumeric characters or underscores.\n"
+            + "Telegram handle cannot have multiple consecutive underscores.\n"
+            + "Telegram handle cannot begin or end with an underscore.";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    // Regex adapted from:
+    // https://stackoverflow.com/questions/63308185/regex-match-telegram-username-and-delete-whole-line-in-php
+    public static final String VALIDATION_REGEX = "[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*";
 
     public final String handle;
 
@@ -27,14 +28,16 @@ public class Telegram {
     public Telegram(String handle) {
         requireNonNull(handle);
         checkArgument(isValidTelegram(handle), MESSAGE_CONSTRAINTS);
-        this.handle = handle;
+        this.handle = handle.toLowerCase();
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Checks if telegram provided is valid.
+     * Checks follow that of telegram's guidelines:
+     * "You can use a-z, 0-9, underscores. Minimum length is 5 characters."
      */
     public static boolean isValidTelegram(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.length() >= 5 && test.toLowerCase().matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -46,7 +49,7 @@ public class Telegram {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Telegram // instanceof handles nulls
-                && handle.toUpperCase().equals(((Telegram) other).handle.toUpperCase())); // state check
+                && handle.equalsIgnoreCase(((Telegram) other).handle)); // state check
     }
 
     @Override

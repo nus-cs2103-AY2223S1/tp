@@ -27,7 +27,7 @@ public class SampleDataUtil {
                 new Telegram("ayeoh"), new GitHub("alexyeow"),
                 getInterestsSet("AI"), getModSet("CS2100")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Telegram("bernieyu"), new GitHub("ber_yu"),
+                new Telegram("bernieyu"), new GitHub("beryu"),
                 getInterestsSet("java", "AI"), getModSet("CS2100")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Telegram("charl0tte0liveir0"), new GitHub("charlotte123"),
@@ -39,7 +39,7 @@ public class SampleDataUtil {
                 new Telegram("irfanibrahim"), new GitHub("irfanibrahim"),
                 getInterestsSet("algo"), getModSet("CS2100")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Telegram("roybala"), new GitHub("bala_roy"),
+                new Telegram("roybala"), new GitHub("balaroy"),
                 getInterestsSet("java"), getModSet("CS2100"))
         };
     }

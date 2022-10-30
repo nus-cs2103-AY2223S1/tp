@@ -37,7 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_AMY = "amy123";
     public static final String VALID_TELEGRAM_BOB = "bobby";
     public static final String VALID_GITHUB_AMY = "amybee";
-    public static final String VALID_GITHUB_BOB = "bobby_choo";
+    public static final String VALID_GITHUB_BOB = "bobbychoo";
     public static final String VALID_INTEREST_SWE = "SWE";
     public static final String VALID_INTEREST_AI = "AI";
     public static final String VALID_MOD_CS2100 = "CS2100";
