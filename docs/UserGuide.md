@@ -98,7 +98,8 @@ Format: `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​`
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Dates **must be inputted** in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
-* Input at least a Y, M or D value for the time period. Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
+* Input at least a Y, M or D value for the time period. Value **must be inserted in the order** Y -> M -> D. 
+* Time Period Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
 * Default time period is set to 0Y0M0D if no time period is inputted.
 
 Examples:
@@ -154,7 +155,9 @@ Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​`
 * When editing tags, the existing tags of the appointment will be removed i.e. adding of tags is not cumulative.
 * You can remove all the appointment’s tags by typing `t/` without
   specifying any tags after it. <br>
-  e.g. `edit appts  1 t/`
+  e.g. `edit appts 1 t/`
+* You can set the appointment to be non-recurring by typing `pe/` without specifying any values after it. <br>
+  e.g. `edit appts 1 pe/`
 
 Examples:
 * `edit appts 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first appointment to be `Cough` and `2022-12-10 16:30`
@@ -377,10 +380,10 @@ Examples:
 
 Shows the most recent 10 commands that was inputted.
 Allows cycling through those commands to reduce the need of retyping similar commands fully.
+The history is looped, meaning that when you reach the end, the next cycle will bring it back to the start.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Every new valid command will reset the index back to the top of the history. 
+**Tip:** Every new valid command will reset the index back to the top of the history.
 Click Down Arrow to get the most recent command immediately and Up Arrow to get the last command in the history.
-</div>
 
 Controls: 
 * `Up Arrow` on keyboard: Cycle to next command
@@ -429,6 +432,6 @@ Action | Format, Examples
 **Unhide Appointments** | `unhide appointments CONDITION` <br> eg. `unhide appts r/pain`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `edit patients 1 n/Bernice Yu`
 **Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `edit appts 1 r/Cough`
-**List** | `list patients` <br> `list appointments` <br> `list all`
+**List** | `list patients` <br> `list appts` <br> `list all`
 **Help** | `help`
 **Exit** | `exit`
