@@ -42,7 +42,9 @@ FindMyIntern helps students who are applying for internships keep track of their
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-   <img src="images/Ui.png" width="600" />
+   <p align="center">
+       <img src="images/Ui.png" width="600" />
+   </p> 
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all internship applications.<br>
    Some example commands you can try:
@@ -100,7 +102,9 @@ FindMyIntern helps students who are applying for internships keep track of their
 
 Shows a message explaning how to access the user guide, and the data file location.
 
-<img src="images/helpMessage.png" width="500"/>
+<p align="center">
+    <img src="images/helpMessage.png" width="500"/>
+</p>
 
 Format: `help`
 
@@ -254,7 +258,9 @@ Examples:
 * `find tiktok` returns internship application(s) and tag(s) containing `tiktok`
 * `find google backend` returns internship application(s) and tag(s) containing `google` and `backend`
 
-<img src="images/findGoogleBackendResult.png" width="600" />
+<p align="center">
+    <img src="images/findGoogleBackendResult.png" width="600" />
+</p>
 
 #### Sorting the list of internship applications: `sort`
 
@@ -307,7 +313,9 @@ Clicking on links will copy the URL of the link to the clipboard. The URL can th
 
 A tooltip is shown when the link is hovered.
 
-<img src="images/linkTooltip.png" />
+<p align="center">
+    <img src="images/linkTooltip.png" />
+</p>
 
 #### Tags
 
@@ -316,7 +324,9 @@ A tooltip containing the full tag name is shown when a tag is hovered.
 The maximum number of tags that will be displayed is 5. Additional tags that are not displayed will be shown as a count.
 A tooltip containing the additional tags is shown when the count is hovered.
 
-<img src="images/additionalTagsTooltip.png" />
+<p align="center">
+    <img src="images/additionalTagsTooltip.png" />
+</p>
 
 
 --------------------------------------------------------------------------------------------------------------------
