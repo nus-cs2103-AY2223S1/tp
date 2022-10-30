@@ -8,7 +8,7 @@ title: User Guide
 The purpose of this user guide is to help both new and experienced users with using FindMyIntern.
 
 - If you are a new user, we recommend checking out the [introduction](#introduction) to get a better idea of what FindMyIntern can do.
-If you have no prior experience with command line interfaces, we recommend reading this guide.
+If you have no prior experience with command line interfaces, we recommend reading this [guide](#command-line-guide).
 
 - If you are an experienced user, you can use the [table of contents](#table-of-contents) to jump straight to what you are looking for.
 
@@ -30,6 +30,13 @@ FindMyIntern helps you to
 ## Table of Contents
 
 The user guide is divided into different sections. Click on any of the sections to jump right into that section!
+
+<div class="card mb-2">
+<div markdown="1" class="card-body py-0">
+<h6 markdown="1" class="card-title">[Command line guide](#command-line-guide)</h6>
+This section teaches you how to use the command line.
+</div>
+</div>
 
 <div class="card mb-2">
 <div markdown="1" class="card-body py-0">
@@ -72,6 +79,12 @@ This section contains the formats of all commands in FindMyIntern.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+## Command Line Guide
+
+   <p align="center">
+       <img src="images/CommandLine.png" width="600" />
+   </p>
+That’s it! That’s all you need to know about command line to use FindMyIntern. You are now ready to start.
 
 ## Quick Start
 
