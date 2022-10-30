@@ -29,7 +29,7 @@ In this user guide, you may encounter the following icons:
 
 If you are a new user, check out the [Quick Start](#quick-start) to get started with NUScheduler.
 
-If you are a returning user, the [Command Summary](#command-summary) provides you with a quick overview of all the commands NUScheduler offers.
+If you are a returning user, the [Command Summary](#command-summary) provides you with a quick overview of some of the commands NUScheduler offers.
 
 ## Quick start
 
