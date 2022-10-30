@@ -160,7 +160,8 @@ If patient type is outpatient, user should not input the prefixes and any value 
 hospital wing, floor number, and ward number. 
 </div>
 
-#### Upon Execution
+<h4> Upon Execution </h4>
+
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
 ![Edit Command Result Box](images/ug-images/addCommand/addCommandResultBox.png)
 
@@ -214,7 +215,8 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
 * To remove all patient’s medications, just type `m/` without specifying any medication after it.
 * To remove all upcoming appointments, just type `ua/` without specifying any date after it.
 
-#### Upon Execution
+<h4> Upon Execution </h4>
+
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
 ![Edit Command Result Box](images/ug-images/editCommand/editCommandResultBox.png)
 
@@ -244,7 +246,8 @@ Format: `delete INDEX`
 
 * The index **must be a positive integer** 1, 2, 3, …​
 
-#### Upon Execution
+<h4> Upon Execution </h4>
+
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
 ![Edit Command Result Box](images/ug-images/deleteCommand/deleteCommandResultBox.png)
 
@@ -275,7 +278,8 @@ Format: `appt INDEX {Prefix}/{Parameter}...`
 | `+`     | diag/  | DIAGNOSIS             | -                                             |
 | `-` `*` | m/     | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
 
-#### Upon Execution
+<h4> Upon Execution </h4>
+
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
 ![Create Appointment Command Result Box](images/ug-images/apptCommand/apptCommandResultBox.png)
 
@@ -302,7 +306,8 @@ Format: `delappt INDEX`
 
 * The index **must be a positive integer**, eg. 1, 2, 3...
 
-#### Upon Execution
+<h4> Upon Execution </h4>
+
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
 ![Delete Appointment Command Result Box](images/ug-images/delapptCommand/delapptCommandResultBox.png)
 
@@ -328,7 +333,8 @@ Format: `consult INDEX {Prefix}/{Parameter}...`
 | `+`     | diag/  | DIAGNOSIS             | -                                             |
 | `-` `*` | m/     | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
 
-#### Upon Execution
+<h4> Upon Execution </h4>
+
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
 ![Consult Command Result Box](images/ug-images/consultCommand/consultCommandResultBox.png)
 
@@ -474,7 +480,8 @@ Format: `get /appton APPOINTMENT_DATE`
 * All the patients having appointments on that date will be displayed. e.g. `get /appton 12-12-2020` will display
   `John` `Peter` `Mary`.
 
-#### Upon Execution
+<h4> Upon Execution </h4>
+
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
 ![Get Appointment Command Result Box](images/ug-images/getCommand/getCommandResultBox.png)
 
@@ -513,7 +520,8 @@ When the current person displayed on the patient details panel is removed, it de
 in the patient list panel if present, and empty otherwise.
 </div>
 
-#### Upon Execution
+<h4> Upon Execution </h4>
+
 If the command was successfully executed, you should see something similar to the image below in the Command Result Box:
 ![View Appointment Command Result Box](images/ug-images/viewCommand/viewCommandResultBox.png)
 
