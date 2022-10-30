@@ -1,5 +1,6 @@
 package seedu.studmap.logic;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -10,6 +11,8 @@ import seedu.studmap.commons.core.LogsCenter;
 import seedu.studmap.logic.commands.Command;
 import seedu.studmap.logic.commands.CommandResult;
 import seedu.studmap.logic.commands.exceptions.CommandException;
+import seedu.studmap.logic.imports.ImportCsv;
+import seedu.studmap.logic.imports.exceptions.ImportException;
 import seedu.studmap.logic.parser.StudMapParser;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 import seedu.studmap.model.Model;
@@ -27,6 +30,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final StudMapParser studMapParser;
+    private final ImportCsv importer;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +39,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         studMapParser = new StudMapParser();
+        importer = new ImportCsv();
     }
 
     @Override
@@ -77,5 +82,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public String importFile(File file) throws ImportException {
+        return importer.execute(model, file);
     }
 }

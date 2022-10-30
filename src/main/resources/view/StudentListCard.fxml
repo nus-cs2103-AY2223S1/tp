@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -28,14 +30,25 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <FlowPane fx:id="attendances" />
-      <Label fx:id="module" styleClass="cell_small_label" text="\$module" />
       <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
-      <Label fx:id="gitName" styleClass="cell_small_label" text="\$gitName" />
-      <Label fx:id="handle" styleClass="cell_small_label" text="\$handle" />
-      <FlowPane fx:id="assignments" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <Label fx:id="gitName" styleClass="cell_small_label" text="\$gitName" />
+      <Label fx:id="handle" styleClass="cell_small_label" text="\$handle" />
+    </VBox>
+    <VBox alignment="TOP_RIGHT" minHeight="105" GridPane.columnIndex="1">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+      <HBox spacing="5" alignment="CENTER_RIGHT">
+        <Label fx:id="module" text="\$module" styleClass="cell_big_label" />
+      </HBox>
+      <Label alignment="TOP_RIGHT" fx:id="attendanceRate"/>
+      <FlowPane alignment="TOP_RIGHT" fx:id="attendances" />
+      <Label alignment="TOP_RIGHT" fx:id="participationRate"/>
+      <FlowPane alignment="TOP_RIGHT" fx:id="participations" />
+      <Label alignment="TOP_RIGHT" fx:id="assignmentRate"/>
+      <FlowPane alignment="TOP_RIGHT" fx:id="assignments" />
     </VBox>
   </GridPane>
 </HBox>

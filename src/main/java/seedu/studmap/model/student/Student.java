@@ -28,6 +28,7 @@ public class Student {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Attendance> attendances = new HashSet<>();
     private final Set<Assignment> assignments = new HashSet<>();
+    private final Set<Participation> participations = new HashSet<>();
 
     /**
      * Constructor using a StudentData parameter object.
@@ -40,7 +41,7 @@ public class Student {
         requireAllNonNull(studentData.getId(), studentData.getGitUser(),
                 studentData.getTeleHandle(), studentData.getName(), studentData.getPhone(),
                 studentData.getEmail(), studentData.getModule(), studentData.getTags(),
-                studentData.getAttendances(), studentData.getAssignments());
+                studentData.getAttendances(), studentData.getAssignments(), studentData.getParticipations());
 
         this.id = studentData.getId();
         this.module = studentData.getModule();
@@ -52,6 +53,7 @@ public class Student {
         this.tags.addAll(studentData.getTags());
         this.attendances.addAll(studentData.getAttendances());
         this.assignments.addAll(studentData.getAssignments());
+        this.participations.addAll(studentData.getParticipations());
     }
 
     public StudentID getId() {
@@ -134,6 +136,14 @@ public class Student {
         return Collections.unmodifiableSet(assignments);
     }
 
+    /**
+     * Returns an immutable Participation set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Participation> getParticipations() {
+        return Collections.unmodifiableSet(participations);
+    }
+
     public StudentData getStudentData() {
 
         StudentData studentData = new StudentData();
@@ -149,6 +159,7 @@ public class Student {
         studentData.setTags(new HashSet<>(this.getTags()));
         studentData.setAttendances(new HashSet<>(this.getAttendances()));
         studentData.setAssignments(new HashSet<>(this.getAssignments()));
+        studentData.setParticipations(new HashSet<>(this.getParticipations()));
 
         return studentData;
     }
@@ -163,7 +174,48 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name.
+     * Returns assignments marked in percentage.
+     */
+    public float getAssignmentPercentage() {
+        float numOfAssignments = getAssignmentCount();
+        float marked = (float) getAssignmentMarkedCount();
+        return marked / numOfAssignments * 100;
+    }
+
+    /**
+     * Returns participation in percentage.
+     */
+    public float getParticipationPercentage() {
+        float numOfPart = getParticipations().size();
+        float participatedFor = (float) getParticipations().stream().filter(x -> x.hasParticipated).count();
+        return participatedFor / numOfPart * 100;
+    }
+
+    /**
+     * Returns number of assignments marked.
+     */
+    public int getAssignmentMarkedCount() {
+        return (int) getAssignments().stream()
+                .filter(x -> x.markingStatus == Assignment.Status.MARKED).count();
+    }
+
+    /**
+     * Returns number of assignments received but unmarked.
+     */
+    public int getAssignmentUnmarkedCount() {
+        return (int) getAssignments().stream()
+                .filter(x -> x.markingStatus == Assignment.Status.RECEIVED).count();
+    }
+
+    /**
+     * Returns number of assignments recorded.
+     */
+    public int getAssignmentCount() {
+        return getAssignments().size();
+    }
+
+    /**
+     * Returns true if both students have the same name, studentID and module.
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
@@ -171,7 +223,8 @@ public class Student {
             return true;
         }
 
-        return otherStudent != null && otherStudent.getName().equals(getName());
+        return otherStudent != null && otherStudent.getName().equals(getName())
+                && otherStudent.getId().equals(getId()) && otherStudent.getModule().equals(getModule());
     }
 
 
@@ -207,7 +260,7 @@ public class Student {
         // use this method for custom fields hashing instead of implementing your own
 
         return Objects.hash(name, phone, email, id, gitName, teleHandle, module,
-                tags, attendances, assignments);
+                tags, attendances, assignments, participations);
 
     }
 
@@ -237,6 +290,12 @@ public class Student {
         if (!assignments.isEmpty()) {
             builder.append("; Assignment: ");
             assignments.forEach(builder::append);
+        }
+
+        Set<Participation> participations = getParticipations();
+        if (!participations.isEmpty()) {
+            builder.append("; Participation: ");
+            participations.forEach(builder::append);
         }
         return builder.toString();
     }

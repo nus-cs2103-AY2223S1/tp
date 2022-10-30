@@ -1,14 +1,12 @@
 package seedu.studmap.logic.parser;
 
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_CLASS;
 
 import seedu.studmap.commons.core.index.IndexListGenerator;
 import seedu.studmap.logic.commands.EditStudentCommand;
 import seedu.studmap.logic.commands.UnmarkCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
-import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 
 /**
@@ -36,28 +34,16 @@ public class UnmarkCommandParser extends EditStudentCommandParser<UnmarkCommand.
 
         UnmarkCommand.UnmarkCommandStudentEditor editor = null;
 
-        if (argMultimap.getValue(PREFIX_CLASS).isPresent()
-                && argMultimap.getValue(PREFIX_ASSIGNMENT).isPresent()) {
-            throw new ParseException(MESSAGE_INVALID_DOUBLE_MARK);
-        }
-
-        if (argMultimap.getValue(PREFIX_CLASS).isPresent()) {
-            String className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).orElse(""));
-            Attendance attendance = new Attendance(className, true);
-            editor = new UnmarkCommand.UnmarkCommandStudentEditor(attendance);
-        } else if (argMultimap.getValue(PREFIX_ASSIGNMENT).isPresent()) {
-            String assignmentName = ParserUtil.parseAssignmentName(
-                    argMultimap.getValue(PREFIX_ASSIGNMENT).orElse(""));
-            Assignment assignment = new Assignment(assignmentName, Assignment.Status.NEW);
-            editor = new UnmarkCommand.UnmarkCommandStudentEditor(assignment);
-        }
+        String className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).orElse(""));
+        Attendance attendance = new Attendance(className, true);
+        editor = new UnmarkCommand.UnmarkCommandStudentEditor(attendance);
 
         return new UnmarkCommand(indexListGenerator, editor);
     }
 
     @Override
     public Prefix[] getPrefixes() {
-        return new Prefix[]{PREFIX_CLASS, PREFIX_ASSIGNMENT};
+        return new Prefix[]{PREFIX_CLASS};
     }
 
     @Override

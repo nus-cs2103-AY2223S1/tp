@@ -36,7 +36,7 @@ class MarkCommandTest {
 
         Student markedStudent = new StudentBuilder(studentToMark).addAttended("T04").build();
 
-        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SINGLE_SUCCESS_ATTENDACE,
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE,
                 attendance.getAttendanceString(), markedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
@@ -55,7 +55,7 @@ class MarkCommandTest {
 
         Student markedStudent = new StudentBuilder(studentInFilteredList).addAttended("T04").build();
 
-        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SINGLE_SUCCESS_ATTENDACE,
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SINGLE_SUCCESS_ATTENDANCE,
                 attendance.getAttendanceString(), markedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());

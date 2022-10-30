@@ -7,19 +7,19 @@ import java.util.Collections;
 import java.util.Set;
 
 import seedu.studmap.commons.core.index.IndexListGenerator;
-import seedu.studmap.logic.commands.DelTagCommand;
 import seedu.studmap.logic.commands.EditStudentCommand;
+import seedu.studmap.logic.commands.TagCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 import seedu.studmap.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new DelTagCommand object
+ * Parses input arguments and creates a new TagCommand object
  */
-public class DelTagCommandParser extends EditStudentCommandParser<DelTagCommand.DelTagCommandStudentEditor> {
+public class TagCommandParser extends EditStudentCommandParser<TagCommand.TagCommandStudentEditor> {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contains only one element which is an empty string, it will be parsed into a
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
     private Set<Tag> parseTagsSet(Collection<String> tags) throws ParseException {
@@ -36,20 +36,21 @@ public class DelTagCommandParser extends EditStudentCommandParser<DelTagCommand.
 
     @Override
     public String getUsageMessage() {
-        return DelTagCommand.MESSAGE_USAGE;
+        return TagCommand.MESSAGE_USAGE;
     }
 
     @Override
-    public EditStudentCommand<DelTagCommand.DelTagCommandStudentEditor> getIndexCommand(
+    public EditStudentCommand<TagCommand.TagCommandStudentEditor> getIndexCommand(
             ArgumentMultimap argMultimap, IndexListGenerator indexListGenerator)
             throws ParseException {
 
         Set<Tag> tags;
         tags = parseTagsSet(argMultimap.getAllValues(PREFIX_TAG));
 
-        DelTagCommand.DelTagCommandStudentEditor editor = new DelTagCommand.DelTagCommandStudentEditor();
+        TagCommand.TagCommandStudentEditor editor = new TagCommand.TagCommandStudentEditor();
         editor.setTags(tags);
 
-        return new DelTagCommand(indexListGenerator, editor);
+        return new TagCommand(indexListGenerator, editor);
+
     }
 }

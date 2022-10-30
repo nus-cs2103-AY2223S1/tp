@@ -11,15 +11,16 @@ import seedu.studmap.model.tag.Tag;
  */
 public class StudentData {
     private StudentID studentID;
-    private GitName gitName;
-    private TeleHandle teleHandle;
+    private GitName gitName = new GitName();
+    private TeleHandle teleHandle = new TeleHandle();
     private Name name;
-    private Phone phone;
-    private Email email;
+    private Phone phone = new Phone();
+    private Email email = new Email();
     private Module module;
     private Set<Tag> tags = new HashSet<>();
     private Set<Attendance> attendances = new HashSet<>();
     private Set<Assignment> assignments = new HashSet<>();
+    private Set<Participation> participations = new HashSet<>();
 
     public StudentID getId() {
         return studentID;
@@ -97,6 +98,14 @@ public class StudentData {
         this.assignments = assignments;
     }
 
+    public void setParticipations(Set<Participation> participations) {
+        this.participations = participations;
+    }
+
+    public void addParticipations(Set<Participation> participations) {
+        this.participations.addAll(participations);
+    }
+
     public void addAssignments(Set<Assignment> assignments) {
         this.assignments.addAll(assignments);
     }
@@ -107,6 +116,10 @@ public class StudentData {
 
     public Set<Assignment> getAssignments() {
         return assignments;
+    }
+
+    public Set<Participation> getParticipations() {
+        return participations;
     }
 
     @Override

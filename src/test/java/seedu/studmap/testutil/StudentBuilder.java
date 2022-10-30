@@ -9,6 +9,7 @@ import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
+import seedu.studmap.model.student.Participation;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
@@ -23,12 +24,12 @@ import seedu.studmap.model.util.SampleDataUtil;
 public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_PHONE = "";
+    public static final String DEFAULT_EMAIL = "";
     public static final String DEFAULT_MODULE = "CS2103T";
     public static final String DEFAULT_ID = "E1234567";
-    public static final String DEFAULT_GIT = "GitUser";
-    public static final String DEFAULT_TELE = "@CS2103T";
+    public static final String DEFAULT_GIT = "";
+    public static final String DEFAULT_TELE = "";
 
     private Name name;
     private Phone phone;
@@ -40,6 +41,7 @@ public class StudentBuilder {
     private Set<Tag> tags;
     private Set<Attendance> attendances;
     private Set<Assignment> assignments;
+    private Set<Participation> participations;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -55,6 +57,7 @@ public class StudentBuilder {
         tags = new HashSet<>();
         attendances = new HashSet<>();
         assignments = new HashSet<>();
+        participations = new HashSet<>();
     }
 
     /**
@@ -71,6 +74,7 @@ public class StudentBuilder {
         tags = new HashSet<>(studentToCopy.getTags());
         attendances = new HashSet<>(studentToCopy.getAttendances());
         assignments = new HashSet<>(studentToCopy.getAssignments());
+        participations = new HashSet<>(studentToCopy.getParticipations());
     }
 
     /**
@@ -144,6 +148,29 @@ public class StudentBuilder {
         return this;
     }
 
+    public StudentBuilder setParticipated(Set<Participation> participations) {
+        this.participations = participations;
+        return this;
+    }
+
+    /**
+     * Parses the {@code participationComponent} which the student has participated into a
+     * {@code Set<Participation>} and adds it to the {@code Student} that we are building.
+     */
+    public StudentBuilder addParticipated(String ... participationComponent) {
+        this.participations.addAll(SampleDataUtil.getParticipatedSet(participationComponent));
+        return this;
+    }
+
+    /**
+     * Parses the {@code participationComponent} which the student has not participated into a
+     * {@code Set<Participation>} and adds it to the {@code Student} that we are building.
+     */
+    public StudentBuilder addNotParticipated(String ... notParticipatedComponent) {
+        this.participations.addAll(SampleDataUtil.getNotParticipatedSet(notParticipatedComponent));
+        return this;
+    }
+
     /**
      * Sets the {@code Phone} of the {@code Student} that we are building.
      */
@@ -208,6 +235,7 @@ public class StudentBuilder {
         studentData.setTags(this.tags);
         studentData.setAttendances(this.attendances);
         studentData.setAssignments(this.assignments);
+        studentData.setParticipations(this.participations);
         return new Student(studentData);
     }
 
