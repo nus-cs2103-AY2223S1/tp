@@ -19,7 +19,6 @@ myStudents is **a desktop app for managing students of a tuition center, optimiz
 <p align="center">
 
 <img src="images/Ui_annotated.png"/>
-
 </p>
 
 ### 1.Command Box
@@ -267,12 +266,12 @@ Examples:
 
 Export Students, Tutors, and TuitionClasses address books into their own .csv files to be used in other programs.
 
-Format: Click on the "*File*" tab at the top left hand corner of `myStudents` and click on "*Export*" in the dropdown menu.
+Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and click on "*Export*" in the dropdown menu.
 
 <img src="images/exportButton.png" width="400">
 
-* The csv files will be saved in the same location as the json files specified in `preference.json`.
-* The default location is a folder named `data` in the same location where you have the myStudent.jar file.
+* The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
+* The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
 
 ### FAQs
 **Q:** Does myStudent need an Internet connection?
