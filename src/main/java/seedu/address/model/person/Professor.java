@@ -173,7 +173,7 @@ public class Professor extends Person {
     @Override
     public boolean doesSpecialisationMatch(List<String> specList) {
         return specList.stream().anyMatch(specialisation
-                -> specialisation.equals(this.getSpecialisation().value.toLowerCase()));
+                -> specialisation.equalsIgnoreCase(this.getSpecialisation().value));
     }
 
     @Override

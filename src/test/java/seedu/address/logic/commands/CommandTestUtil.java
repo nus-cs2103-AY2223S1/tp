@@ -15,6 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -100,6 +101,14 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditCommand.EditPersonDescriptor DESC_CABE;
+
+    public static final String VALID_NAMES = "Kurz Elle Kunz";
+
+    public static final List<String> NO_RESULTS_LIST = Arrays.asList("! @ # $ %^&* ()- 12 34 56 789 0".split("\\s+"));
+
+    public static final List<String> EMPTY_LIST = new ArrayList<>();
+
+    public static final List<String> VALID_NAMES_LIST = Arrays.asList(VALID_NAMES.split("\\s+"));
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

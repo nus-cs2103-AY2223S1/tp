@@ -14,13 +14,22 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names or modules "
-            + "matches any of the specified keywords (case-insensitive) and displays them as a list "
-            + "with index numbers. Parameters: [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMAIL]"
-            + "[g/GENDER] [g/GITHUB_USERNAME] [y/YEAR] [t/TAG]... [l/LOCATION] [r/RATING] [o/OFFICE_HOUR] [typ/TYPE]\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who match the provided fields "
+            + "and displays them as a list with index numbers.\n"
+            + "Parameters: find [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMAIL]"
+            + " [g/GENDER] [g/GITHUB_USERNAME] [y/YEAR] [t/TAG] [l/LOCATION] [r/RATING] [o/OFFICE_HOUR]\n"
             + " Example: " + COMMAND_WORD
-            + " n/alice bob charlie m/cs2100 cs2103t p/1234567 t/friends";
+            + " n/alice m/cs2100 p/1234567 t/friends y/1 l/NUS git/alice123 g/F e/alice@example.com";
 
+    public static final String EMPTY_FIELDS_MESSAGE = "One or more fields are empty!";
+
+    public static final String INVALID_TYPES_MESSAGE = "Invalid types provided!";
+
+    public static final String INVALID_MODULES_MESSAGE = "Incorrect or empty module field format! "
+            + "OR search is m/[MODULE_LIST] ALL search is m/all/[MODULE_LIST]";
+
+    public static final String INVALID_TAGS_MESSAGE = "Incorrect or empty tags field format! "
+            + "OR search is t/[TAG_LIST] ALL search is t/all/[TAG_LIST]";
     private final PersonMatchesPredicate predicate;
 
     public FindCommand(PersonMatchesPredicate predicate) {

@@ -26,7 +26,6 @@ public abstract class PersonBuilder {
     public static final String DEFAULT_LOCATION = "NUS";
     public static final String DEFAULT_USERNAME = "amyb";
 
-
     private Name name;
     private Phone phone;
     private Email email;
