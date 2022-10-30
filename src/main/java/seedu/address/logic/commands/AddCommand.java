@@ -8,9 +8,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * Adds a person to the address book.
@@ -56,6 +62,17 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        Set<Tag> notFound = new HashSet<>();
+        for (Tag tag: toAdd.getTags()) {
+            if (!model.hasTag(tag)) {
+                notFound.add(tag);
+            }
+        }
+        if (!notFound.isEmpty()) {
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_TAGS_NOT_FOUND, Tag.toString(notFound)));
         }
 
         model.addPerson(toAdd);
