@@ -190,7 +190,7 @@ This command is typically used to **check a guest in** to your hotel with their 
 * `NAME` should only contain alphanumeric characters and spaces.
 * `PHONE` should only contain numbers, and it should be at least 3 digits and at most 15 digits long.
 * `EMAIL` should only contain alphanumeric characters and '@' character. The local segment (before "@") should be at most 64 characters long, and the domain segment (after "@") should be at most 255 characters long.
-* `ROOM` should only contain alphanumeric characters and a hyphen. A hyphen can only be added if it is in between 2 alphanumeric characters.
+* `ROOM` should only contain alphanumeric characters. A hyphen can only be added if it is in between 2 alphanumeric characters.
 * `DATE_RANGE` should follow the format dd/MM/yy - dd/MM/yy.
 * `NUMBER_OF_GUESTS` should only contain numbers, and it should be at least 1 and at most 4.
 * `REQUEST` is an optional field, and it should be at most 500 characters long.
@@ -209,7 +209,7 @@ This command displays a list of all guests in GuestBook.
 
 This command edits an existing guest in GuestBook.
 
-The guest specified at the `INDEX` is the guest you wish to edit. The existing values will be **updated** to the new values
+The guest specified at the `INDEX` is the guest you wish to edit in the current list. The existing values will be **updated** to the new values
 you provide. The values that you **did not specify** to edit will remain **unchanged**.
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
@@ -227,7 +227,7 @@ you provide. The values that you **did not specify** to edit will remain **uncha
 This command updates the bill of a guest in GuestBook. Note that the bill here refers to the **total additional charges incurred**
 by the guest during their stay at your hotel and should not include the cost of the room booking.
 
-This command updates the bill of the guest at the specified `INDEX`. 
+This command updates the bill of the guest at the specified `INDEX` of the current list. 
 Depending on the sign (`+` or `-`) of your input, the existing bill value will be **increased** 
 or **decreased** respectively by the value you provide.
 
@@ -274,7 +274,7 @@ the rooms that have room clean statuses set to `no`.
 
 ### Deleting a guest: `delete`
 
-This command deletes an existing guest in GuestBook.
+This command deletes an existing guest in GuestBook from the current list.
 
 The guest specified at the `INDEX` is the guest you wish to delete. 
 
