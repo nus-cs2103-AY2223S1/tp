@@ -13,7 +13,7 @@ If you have no prior experience with command line interfaces, we recommend readi
 - If you are an experienced user, you can use the [table of contents](#table-of-contents) to jump straight to what you are looking for.
 
 ## Introduction
-Are you a student applying for internships! Do you have trouble remembering what you have applied? 
+Are you a student applying for internships? Do you have trouble remembering what you have applied? 
 Or are you tired of using Excel to keep track? 
 Applying for internships is already painful enough. 
 There should be an easy way to keep track of various applications and upcoming interviews. 
@@ -30,34 +30,50 @@ FindMyIntern helps you to
 ## Table of Contents
 
 The user guide is divided into different sections. Click on any of the sections to jump right into that section!
-<div markdown="1" class="border border-info">
-<h6 markdown="1">[Quick Start](#quick-start)</h6>
+
+<div markdown="block" class="border border-info">
+
+[Quick Start](#quick-start)
+
 This section teaches you how to install and **get started** with FindMyIntern.
+
 </div>
 
-<div markdown="1" class="border border-info">
-<h6 markdown="1">[Features](#features)</h6>
+<div markdown="block" class="border border-info">
+
+[Features](#features)
+
 This section contains **everything you need to know** about the features in FindMyIntern.
 
 It includes:
-  - [Commands](#commands)
-  - [Saving and Editing](#saving-and-editing)
-  - [UI Elements](#ui-elements)
+- [Commands](#commands)
+- [Saving and Editing](#saving-and-editing)
+- [UI Elements](#ui-elements)
+
 </div>
 
-<div markdown="1" class="border border-info">
-<h6 markdown="1">[FAQ](#faq)</h6>
+<div markdown="block" class="border border-info">
+
+[FAQ](#faq)
+
 This section includes all frequently asked questions about FindMyIntern.
+
 </div>
 
-<div markdown="1" class="border border-info">
-<h6 markdown="1">[Appendix](#appendix)</h6>
+<div markdown="block" class="border border-info">
+
+[Appendix](#appendix)
+
 This section specifies **the input details** that you have to be aware of in FindMyIntern.
+
 </div>
 
-<div markdown="1" class="border border-info">
-<h6 markdown="1">[Command Summary](#command-summary)</h6>
+<div markdown="block" class="border border-info">
+
+[Command Summary](#command-summary)
+
 This section contains the formats of all commands in FindMyIntern.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
