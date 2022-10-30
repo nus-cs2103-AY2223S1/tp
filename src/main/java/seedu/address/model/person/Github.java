@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Github {
 
-    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and at most "
-            + "one hyphen, it should also not begin or end with a hyphen and it should not be blank and should have "
-            + "maximum 39 characters";
+    public static final String MESSAGE_CONSTRAINTS = "Github usernames should only contain alphanumeric characters and"
+            + " at most one hyphen, it should also not begin or end with a hyphen and it should not be blank and should"
+            + " have maximum 39 characters";
 
     /*
      * The first and last character of the username must not be a hyphen,
