@@ -31,18 +31,18 @@ You can also add people to the app, such as your professors, teaching assistants
     - [Tutorial Zoom Link](#tutorial-zoom-link)
     - [Assignment Details](#assignment-details)
   - [Commands](#commands)
-    - [General Commands](#For-both-modules-and-contacts)
+    - [General Commands](#for-both-modules-and-contacts)
       - [List](#listing-all-modules-and-contacts-list)
       - [Find](#finding-keywords-in-contacts-andor-modules-find)
       - [Clear](#clearing-all-contacts-and-modules-clear)
       - [Help](#looking-for-help-help)
       - [Exit](#exiting-the-program-exit)
-    - [Commands for Contacts](#Contacts)
+    - [Commands for Contacts](#contacts)
       - [Add](#adding-a-contact-addp)
       - [Edit](#editing-a-contact-editp)
       - [Delete](#deleting-a-contact-deletep)
       - [Find](#finding-a-contact-findp)
-    - [Commands for Modules](#Modules)
+    - [Commands for Modules](#modules)
       - [Add](#adding-a-module-addm)
       - [Edit](#editing-a-module-editm)
       - [Delete](#deleting-a-module-deletem)
@@ -86,8 +86,8 @@ You can also add people to the app, such as your professors, teaching assistants
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [/t TAG]` can be used as `c/John Doe t/friend` or as `c/John Doe`.
 
-* Parameters after the name and module code can be in any order. e.g. `addp n/NAME p/NUMBER e/EMAIL` is similar
-  to `addp n/NAME e/EMAIL p/NUMBER`.
+* Parameters after the name and module code can be in any order. e.g. `addp n/NAME p/PHONE_NUMBER e/EMAIL` is similar
+  to `addp n/NAME e/EMAIL p/PHONE_NUMBER`.
 
 * If a parameter is expected only once in the command but is specified multiple times, only the last occurrence of the
   parameter will be taken.<br>
@@ -112,20 +112,20 @@ Format: `list`
 Finds modules and contacts with any of the given keywords. 
 
 Fields that you can filter for modules:
-* Module code
-* Lecture details
-* Tutorial details
-* Assignment details
+* [Module code](#module-code)
+* [Lecture details](#lecture-details)
+* [Tutorial details](#tutorial-details)
+* [Assignment details](#assignment-details)
 
 Fields that you can filter for contacts:
-* Person name
-* Phone number
-* Module code
-* Email address
-* Telegram handle
-* Person tags
+* [Person name](#name)
+* [Phone number](#phone-number)
+* [Module code](#module-code)
+* [Email address](#email-address)
+* [Telegram handle](#telegram-handle)
+* [Person tags](#person-tags)
 
-Format: `find KEYWORD [MORE_KEYWORD]…​`
+Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
 * The order of the keywords does not matter; e.g. `Friday 10am` will match `10am Friday`.
@@ -163,7 +163,7 @@ Exits the program.
 
 Format: `exit`
 
-<div markdown="span" class="alert alert-primary">**Tip:** 
+<div markdown="span" class="alert alert-primary"> **Tip:** 
 Alternatively, you can click the File button on the top left of the app, followed by the Exit button!
 </div>
 
@@ -460,17 +460,17 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 |-----------------------------------------------------------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | [addm](#adding-a-module-addm)                             | Module         | `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`          |
 | [addp](#adding-a-contact-addp)                            | Contact        | `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                             |
-| [editm](#editing-a-module--editm)                         | Module         | `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​` |
-| [editp](#editing-a-contact--editp)                        | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                           |
-| [deletem](#deleting-a-module--deletem)                    | Module         | `deletem MODULE_INDEX`                                                                                                                         |
-| [deletep](#deleting-a-contact--deletep)                   | Contact        | `deletep CONTACT_INDEX`                                                                                                                        |                                                                                                                                           |
-| [findm](#finding-a-module--findm)                         | Module         | `findm KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                                   |
-| [findp](#finding-a-contact--findp)                        | Contact        | `findp KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                          |
-| [clear](#clearing-all-contacts-and-modules--clear)        | Both           | `clear`                                                                                                                                        |
-| [list](#listing-all-modules-and-contacts--list)           | Both           | `list`                                                                                                                                         |
-| [find](#finding-keywords-in-a-contact-andor-module--find) | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
-| [exit](#looking-for-help--help)                           | General        | `exit`                                                                                                                                         |
-| [help](#exiting-the-program--exit)                        | General        | `help`                                                                                                                                         |
+| [editm](#editing-a-module-editm)                          | Module         | `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​` |
+| [editp](#editing-a-contact-editp)                         | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                           |
+| [deletem](#deleting-a-module-deletem)                     | Module         | `deletem MODULE_INDEX`                                                                                                                         |
+| [deletep](#deleting-a-contact-deletep)                    | Contact        | `deletep CONTACT_INDEX`                                                                                                                        |                                                                                                                                           |
+| [findm](#finding-a-module-findm)                          | Module         | `findm KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                                   |
+| [findp](#finding-a-contact-findp)                         | Contact        | `findp KEYWORD [MORE_KEYWORD]…​`                                                                                                               |                          |
+| [clear](#clearing-all-contacts-and-modules-clear)         | Both           | `clear`                                                                                                                                        |
+| [list](#listing-all-modules-and-contacts-list)            | Both           | `list`                                                                                                                                         |
+| [find](#finding-keywords-in-contacts-andor-modules-find)  | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
+| [exit](#looking-for-help-help)                            | General        | `exit`                                                                                                                                         |
+| [help](#exiting-the-program-exit)                         | General        | `help`                                                                                                                                         |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -502,4 +502,4 @@ Format: `findm KEYWORD [MORE_KEYWORD]…​`
 * Example: https://google.com
 
 --------------------------------------------------------------------------------------------------------------------
-[Back to top](#Welcome-to-SoCompiler's-User-Guide)
+[Back to top](#welcome-to-socompilers-user-guide)
