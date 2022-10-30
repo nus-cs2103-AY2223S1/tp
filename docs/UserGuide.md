@@ -3,17 +3,20 @@ layout: page
 title: User Guide
 ---
 
-_NUSEatWhere is a **Command Line (CLI) application** which helps you search for the available 
-food options in NUS and thus make an informed decision on where to eat._
+## Introduction
+_Not sure what food options there are in NUS? Stuck on what to eat for lunch?_ <br>
+NUSEatWhere is a **Command Line (CLI) application** which helps you search for the available 
+food options in NUS and  make an informed decision on where to eat.
 
 ## Table of Contents
-* Introduction
-* Table of Contents
+* [Introduction](#introduction)
+* [Table of Contents](#table-of-contents)
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Help](#help-command--help)
   * [List](#listing-all-eateries--list)
-  * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) / [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
+  * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) / 
+  [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
   * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
   * [Add](#add-eatery-add) / [Delete](#delete-eatery--delete)
   * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
@@ -25,23 +28,24 @@ food options in NUS and thus make an informed decision on where to eat._
 
 ## Quick start
 
-1. Install **Java 11** from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
+1. Install `Java 11` from [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
-1. Download the latest `foodguide.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
+2. Download the latest `foodguide.jar` from [here](https://github.com/AY2223S1-CS2103T-W11-1/tp/releases).
 
-1. Move the file to your intended **home folder** for the NUSEatWhere application.
+3. Move the file to your intended **home folder** for the NUSEatWhere application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
-1. Type commands into the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. Type commands into the command box and press Enter to execute it. 
+e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Here are some example commands you can try:
 
    * **`help`** : Lists all commands.
 
    * **`list`**: Lists all eateries.
 
-1. Refer to [Features](#features) below for details of each command.
+7. You can refer to [Features](#features) below for the details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,20 +55,21 @@ food options in NUS and thus make an informed decision on where to eat._
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are **parameters** to be supplied by the user.<br>
   e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n Pasta Express`.<br><br>
 
-* Items in square brackets are optional.<br>
-  e.g `-n NAME [-p PHONE]` can be used as `-n Pasta Shop -p 87654321` or as `-n Pasta Shop`.<br><br>
+* Items in square brackets are **optional**.<br>
+  e.g `-n NAME [-p PRICE]` can be used as `-n Pasta Shop -p $` or as `-n Pasta Shop`.<br><br>
 
-* Items with `…`​ after them can be used one or more times.<br>
+* Items with `…`​ after them can be used **one or more times**.<br>
   e.g. `-t TAGNAME…​` can be used as `-t Foodcourt`, `-t Tea -t Coffee` etc.  <br>
 Note:  (i.e. 0 times) is only allowed if there are square brackets, e.g. `[-t TAGNAME]`<br><br>
 
-* Prefixed parameters _(e.g. -n, -p, -t, etc.)_ can be in any order.<br>
+* **Prefixed parameters** _(e.g. -n, -p, -t, etc.)_ can be in **any order**.<br>
   e.g. if the command specifies `-n NAME -t TAG`, `-t TAG -n NAME` is also acceptable.<br><br>
 
-* If a parameter is expected only once in the command but you have specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you have specified it multiple times, 
+only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `-n nameA -n nameB`, only `-n nameB` will be taken.<br><br>
 
 * Extra parameters for commands that do not take in parameters (such as `help`) will be ignored.<br>
@@ -97,12 +102,13 @@ This can be used after a `find` command to return the list to its default state 
 
 ### Finding eateries by name : `find`
 
-_Search for eateries with names that match the keywords._
+_Search for eateries with names that match the keywords.<br>
+You can also choose to randomize a list of eateries to decide on where to eat._
 
 **Format:** `find NAME…​ [-r NUMBER] [-h]`
 
 <div markdown="span" class="alert alert-primary"> :bulb:  **Tip:**
-You can leave NAME empty if you are using the wildcard (-r) feature
+You can leave NAME empty if you are using the randomizer (-r) feature
 </div>
 
 **Arguments:** </br>
@@ -118,7 +124,7 @@ Note:
 
 Example: `find pasta -r 3`
 
-Below is an example of what the list would look like when using the wildcard `-r` command.
+Below is an example of what the list would look like when using the randomizer `-r` command.
 The command used is shown on the command line. <br>
 Note how only 2 random eateries with "mala" in their names are shown. 
 ![Ui](images/user-guide/UgFindWildcard.png)
@@ -128,9 +134,10 @@ Note how only 2 random eateries with "mala" in their names are shown.
 
 ### Finding eateries by tag : `findTag`
 
-_Search for eateries that match the specified tag(s)._
+_Search for eateries that match the specified tag(s).<br>
+You can also choose to randomize a list of eateries to decide on where to eat._
 
-**Format:** `find TAGNAME…​ [-r NUMBER] [-h]`
+**Format:** `findTag TAGNAME…​ [-r NUMBER] [-h]`
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 You can search for any number of tags by typing them all after findTag
@@ -153,7 +160,8 @@ Example: `findTag restaurant`
 
 ### Finding eateries by location : `findLocation`
 
-_Search for eateries that match the specified location(s)._
+_Search for eateries that match the specified location(s).<br>
+You can also choose to randomize a list of eateries to decide on where to eat._
 
 **Format:** `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`
 
@@ -174,7 +182,8 @@ Example: `findLocation University Town`
 
 ### Finding eateries by cuisine : `findCuisine`
 
-_Search for eateries that match the specified cuisine(s)._
+_Search for eateries that match the specified cuisine(s).<br>
+You can also choose to randomize a list of eateries to decide on where to eat._
 
 **Format:** `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`
 
@@ -254,12 +263,12 @@ _Adds a new eatery to NUSEatWhere's database. Eatery will be added to the end of
 current list <br>
 (i.e. if the current list pre-addition has 5 eateries, the newly added eatery will be of index 6)._
 
-**Format:** `add -n NAME -l LOCATION -c CUSINE [-p PRICE] [-t TAG]…​ [-h]`
+**Format:** `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAG]…​ [-h]`
 
 **Arguments:**<br>
 `NAME`: name of the eatery to be added<br>
 `LOCATION`: location of the eatery<br>
-`CUSINE`: cuisine type of the eatery<br>
+`CUISINE`: cuisine type of the eatery<br>
 `PRICE`: price of the eatery <br>
 `TAG`: extra tags to add to the eatery<br>
 `-h`: displays help message (specific to add)<br><br>
@@ -279,7 +288,7 @@ _Deletes an eatery from NUSEatWhere's database_
 `-h`: displays help message (specific to delete)<br><br>
 Example: `delete 3`
 
-Below is a comparison between when the store at ID 70 is `add[ed]` _(left)_ then `delet[ed]` _(right)_.
+Below is a comparison between when the store at ID 70 is `add[ed]` _(left)_ then `delete[d]` _(right)_.
 The commands used are shown on the command line. <br>
 Note how the eatery at index 70 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
@@ -287,13 +296,13 @@ Note how the eatery at index 70 disappears after the delete command.
 
 ### Favourite Eatery : `fav`
 
-_Favourites an eatery from NUSEatWhere's database_
+_Favourites an eatery from NUSEatWhere's database._
 
 **Format:** `fav ID [-h]`
 
 **Arguments:**<br>
 
-`ID`: ID of the eatery to favourite. <br>
+`ID`: ID of the eatery to favourite <br>
 `-h`: displays help message (specfic to fav)<br><br>
 Example: `fav 3`
 
@@ -301,24 +310,31 @@ Example: `fav 3`
 
 ### Unfavourite Eatery : `unfav`
 
-_Unfavourites an eatery from NUSEatWhere's database_
+_Unfavourites an eatery from NUSEatWhere's database._
 
 **Format:** `unfav ID [-h]`
 
 **Arguments:**<br>
 
-`ID`: ID of the eatery to favourite. <br>
-`-h`: displays help message (specfic to fav)<br><br>
+`ID`: ID of the eatery to unfavourite <br>
+`-h`: displays help message (specfic to unfav)<br><br>
 Example: `unfav 3`
 
 <br>
 
-
-### Manage ratings & personal comments `[coming in later versions]`
+### Find eateries by price `findPrice`
 
 _... Details coming soon ..._
 
 <br>
+
+
+### Edit tag `edit`
+
+_... Details coming soon ..._
+
+<br>
+
 
 ### Edit tag `[coming in later versions]`
 
@@ -326,11 +342,6 @@ _... Details coming soon ..._
 
 <br>
 
-### Delete tag `[coming in later versions]`
-
-_... Details coming soon ..._
-
-<br>
 
 ### List all tags `[coming in later versions]`
 
