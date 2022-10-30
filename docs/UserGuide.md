@@ -191,8 +191,8 @@ Edits the specified task in your task list.
 
 Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
 
-* Edits the contact at the specified `INDEX` with the parameters provided.
-* The index refers to the index number shown in the displayed contact list.
+* Edits the task at the specified `INDEX` with the parameters provided.
+* The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Include only the fields you wish to be edited, however all included fields **must** be changed from the original.
 * Only one of assignor `m/` or assignee `o/` can be specified.
