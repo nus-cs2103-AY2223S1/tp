@@ -198,8 +198,7 @@ public class ModelManager implements Model {
     // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the
-     * internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -218,7 +217,7 @@ public class ModelManager implements Model {
         requireNonNull(predicates);
         Predicate<Person> predicate = p -> {
             return currentContext.map(cxt -> p.isPartOfContext(cxt)).orElse(true)
-                    && predicates.stream().map(pred -> pred.test(p)).allMatch(res -> res == true);
+                && predicates.stream().map(pred -> pred.test(p)).allMatch(res -> res == true);
         };
 
         filteredPersons.setPredicate(predicate);
@@ -239,8 +238,7 @@ public class ModelManager implements Model {
     // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the
-     * internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -259,7 +257,7 @@ public class ModelManager implements Model {
         requireNonNull(predicates);
         Predicate<Group> predicate = g -> {
             return currentContext.map(cxt -> g.isPartOfContext(cxt)).orElse(true)
-                    && predicates.stream().map(pred -> pred.test(g)).allMatch(res -> res == true);
+                && predicates.stream().map(pred -> pred.test(g)).allMatch(res -> res == true);
         };
 
         filteredTeams.setPredicate(predicate);
@@ -288,7 +286,7 @@ public class ModelManager implements Model {
         requireNonNull(predicates);
         Predicate<Task> predicate = t -> {
             return currentContext.map(cxt -> t.isPartOfContext(cxt)).orElse(true)
-                    && predicates.stream().map(pred -> pred.test(t)).allMatch(res -> res == true);
+                && predicates.stream().map(pred -> pred.test(t)).allMatch(res -> res == true);
         };
 
         filteredTasks.setPredicate(predicate);
@@ -320,9 +318,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && filteredTeams.equals(other.filteredTeams);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons)
+            && filteredTeams.equals(other.filteredTeams);
     }
 
     @Override

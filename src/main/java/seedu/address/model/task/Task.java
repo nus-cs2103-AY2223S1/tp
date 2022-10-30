@@ -65,6 +65,9 @@ public class Task extends AbstractSingleItem {
         for (DisplayItem item : getParents()) {
             ret.setParent(item);
         }
+        for (Attribute<?> attr : getSavedAttributes()) {
+            ret.addAttribute(attr);
+        }
         return ret;
     }
 
@@ -78,6 +81,9 @@ public class Task extends AbstractSingleItem {
         Task ret = new Task(name.fullName, description.getAttributeContent());
         for (DisplayItem item : getParents()) {
             ret.setParent(item);
+        }
+        for (Attribute<?> attr : getSavedAttributes()) {
+            ret.addAttribute(attr);
         }
         return ret;
     }
