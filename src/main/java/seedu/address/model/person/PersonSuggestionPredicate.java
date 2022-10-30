@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -26,11 +27,13 @@ public class PersonSuggestionPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        String predString = person.toPredicateCheckingString();
+
+        Collection<String> predStrings = person.toPredicateCheckingString();
 
         // All keywords must be matched
         boolean isKeywordMatching = keywords.stream()
-                .allMatch(keyword -> StringUtil.containsIgnoreCase(predString, keyword.toString()));
+                .allMatch(keyword -> predStrings.stream()
+                        .anyMatch(ps -> StringUtil.containsIgnoreCase(ps, keyword.toString())));
 
         // Only one time interval need to be matched
         boolean isDayTimeInWeekMatching = true;

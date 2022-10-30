@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GAME_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_INTERVAL;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -29,9 +31,11 @@ public class AddCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_COUNTRY + "TIMEZONE] "
-            + "[" + PREFIX_SOCIAL + "SOCIAL_PLATFORM@HANDLE] "
-            + "[" + PREFIX_MINECRAFT_SERVER + "SERVER_IP] "
-            + "[" + PREFIX_TAG + "TAG]...";
+            + "[" + PREFIX_SOCIAL + "SOCIAL]* "
+            + "[" + PREFIX_MINECRAFT_SERVER + "SERVER]* "
+            + "[" + PREFIX_TAG + "TAG]* "
+            + "[" + PREFIX_GAME_TYPE + "GAME_TYPE]* "
+            + "[" + PREFIX_TIME_INTERVAL + "TIME_INTERVAL]*";
     public static final String EXAMPLE =
             COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -39,11 +43,11 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "10 Downing Street "
-            + PREFIX_COUNTRY + "+08:00 "
+            + PREFIX_COUNTRY + "Australia "
             + PREFIX_SOCIAL + "fb@Bozheng "
             + PREFIX_SOCIAL + "ig@catherine_33334 "
-            + PREFIX_MINECRAFT_SERVER + "192.168.1.255 "
-            + PREFIX_MINECRAFT_SERVER + "177.44.44.94 "
+            + PREFIX_MINECRAFT_SERVER + "catherine_server@192.168.1.255 "
+            + PREFIX_MINECRAFT_SERVER + "hypixel@hypixel.com "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": " + DESCRIPTION + "\n\n"

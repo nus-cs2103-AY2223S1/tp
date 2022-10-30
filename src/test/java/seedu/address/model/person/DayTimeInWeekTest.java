@@ -23,6 +23,7 @@ public class DayTimeInWeekTest {
         assertFalse(DayTimeInWeek.isValidDayTimeInWeek("mdrdgt4")); // string length wrong
         assertFalse(DayTimeInWeek.isValidDayTimeInWeek("mr4@1255")); // day of week wrong
         assertFalse(DayTimeInWeek.isValidDayTimeInWeek("mon@2400")); // time of day wrong
+        assertFalse(DayTimeInWeek.isValidDayTimeInWeek("mon@1199"));
 
         // valid
         assertTrue(DayTimeInWeek.isValidDayTimeInWeek("mon@1259"));
