@@ -105,4 +105,31 @@ public class VersionedBobaBot extends BobaBot {
         this.currentStatePointer++;
         currentBobaBot.resetData(this.bobaBotStateList.get(this.currentStatePointer));
     }
+
+    @Override
+    /**
+     * Compares if two VersionedBobaBot objects are equal
+     * @param other
+     * @return boolean that represents whether the other object is considered equal to self
+     */
+    public boolean equals(Object other) {
+        if (other instanceof VersionedBobaBot) {
+            VersionedBobaBot ot = (VersionedBobaBot) other;
+            return this.bobaBotStateList.equals(ot.bobaBotStateList) &&
+                    this.currentStatePointer == ot.currentStatePointer &&
+                    this.sizeLimit == ot.sizeLimit;
+        }
+        return false;
+    }
+
+    @Override
+    /**
+     * Returns a String representing this object
+     */
+    public String toString() {
+        return "VersionedBobaBot: \n" +
+                "    size limit: " + this.sizeLimit + "\n" +
+                "    current pointer: " + this.currentStatePointer + "\n" +
+                this.bobaBotStateList.toString();
+    }
 }
