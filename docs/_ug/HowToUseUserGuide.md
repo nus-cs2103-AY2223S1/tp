@@ -22,7 +22,8 @@ If you are stuck, refer to the section on [Troubleshooting](#troubleshooting) or
 You can also refer to the [Glossary](#glossary) for definitions of commonly used terms in FoodRem.
 
 ### FoodRem Icons
-Throughout FoodRem, you may find coloured boxes containing highlighted pieces of text. Please take note of the content within. 
+
+Throughout FoodRem, you may find coloured boxes containing highlighted pieces of text. Please take note of the content within.
 
 | Icon                                             | Meaning                                                     |
 |--------------------------------------------------|-------------------------------------------------------------|
@@ -30,4 +31,4 @@ Throughout FoodRem, you may find coloured boxes containing highlighted pieces of
 | ![Tip](images/admonishmentIcons/Tip.png)         | Something you might find useful.                            |
 | ![Info](images/admonishmentIcons/Info.png)       | Something that provides information useful in that context. |
 | ![Warning](images/admonishmentIcons/Warning.png) | Something you should be cautious about.                     |
-| ![Danger](images/admonishmentIcons/Danger.png)   | Something you should pay a lot of attention to.             | 
+| ![Danger](images/admonishmentIcons/Danger.png)   | Something you should pay a lot of attention to.             |
