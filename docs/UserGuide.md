@@ -655,7 +655,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   <img src="images/findAlexDavidResult.png" width="400">
-* `find 86` returns `Theodore`
+* `find 86` returns `Theodore`<br>
   <img src="images/find86result.png" width="400">
 
 [Back to Top](#sectresbook)
