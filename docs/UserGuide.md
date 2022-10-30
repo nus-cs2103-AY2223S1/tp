@@ -232,6 +232,10 @@ Example:
 
 - `view 2` returns the details of the second employee in the current list.
 
+<div markdown="span" class="alert alert-primary">:bulb:
+Note that an INDEX is different from an ID. More information about the difference in INDEX and ID can be found on the FAQ page.
+</div>
+
 #### Listing all employees : `list`
 
 Shows a list of all employees in the company.
@@ -357,19 +361,49 @@ Apart from supporting the core HR functions, Coydir also supports *department-le
 With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory. 
 Complete with **real-time statistics and analytics**, Coydir makes department management much simpler.
 
-**[Insert details on how we have fixed departments for now]**
+Currently, our application only provides a list of default departments for the user to choose from. Future update will include customizable department name. Our current list of valid departments are:
+- Administration
+- Board of Directors
+- Customer Service
+- Finance
+- General Management
+- Human Resources
+- Information Technology
+- Legal
+- Marketing
+- Operations
+- Product Management
+- Production
+- Quality Assurance
+- Research and Development
+- Sales
+- Technology
 
 #### View details of a department: `viewdepartment`
 
 View the summarized details of a department given the name of the department.
 
-Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department and their corresponding performance ratings.
+Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings and availability.
 
 Format: `viewdepartment DEPARTMENT`
 
 Example:
 
 - `viewdepartment Finance` displays a brief summary of the Finance department's details on the right panel.
+
+This command results in one of the two cases below:
+
+**Case 1: Valid department name**
+
+If the department exists, the right panel will correctly displays the summary of the department.
+
+**Case 2: Invalid department name**
+
+If the department name is invalid, the program will notify you through the result box, with a list of valid department name for easier reference.
+
+<div markdown="span" class="alert alert-primary">:bulb:
+DEPARTMENT is case-insensitive.
+</div>
 
 ### Additional Features
 
@@ -407,16 +441,22 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Coydir home folder.
 
+**Q**: What is the difference between an INDEX and an ID?<br>
+**A**: INDEX is the numbering of current showing list of employees, while ID represents the **unique** employee id of the employee. 
+
+**Q**: How do I change the rating of an employee?<br>
+**A**: You can easily change the rating of an employee by using the `rate` command and adjust the RATING accordingly. Do note that it's impossible for you to change the past rating of an employee.
+
 ---
 
 ## Command summary
 
 | Action              | Format, Examples                                                                                                                                                                                                                                 |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ------------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**             | `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`                                                      |
 | **Edit**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal` |
 | **Batch Add**       | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                                                        |
-| **View Details**    | `view ID` <br> e.g. `view 1`                                                                                                                                                                                                                     |
+| **View Details**    | `view INDEX` <br> e.g. `view 1`                                                                                                                                                                                                                  |
 | **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
 | **Add leave**       | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                  |
