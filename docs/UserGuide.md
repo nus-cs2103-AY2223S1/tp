@@ -56,7 +56,7 @@ If you are a returning user, the [Command Summary](#command-summary) provides yo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## User Interface
+## User interface
 
 The following is the main user interface of NUScheduler.
 
