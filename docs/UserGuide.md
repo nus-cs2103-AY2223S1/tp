@@ -95,7 +95,9 @@ Notes:
 - Edits the student by its given index with at least 1 variable specified to change.
 
 Notes:
-- `index` must be a positive integer and must correspond to an existing student
+- `index` must be a positive integer and must correspond to an existing student.
+- You may remove all of a student's tags by typing `t/` without specifying any tags after it.
+
 
 ### List students: `student list`
 
