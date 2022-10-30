@@ -174,19 +174,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteModule(Module target) {
         addressBook.removeModule(target);
-        isHome.set(INDEX_OF_HOME_STATUS, true);
-        assert isHome.size() == 1;
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
-        isHome.set(INDEX_OF_HOME_STATUS, true);
-        assert isHome.size() == 1;
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -299,5 +291,13 @@ public class ModelManager implements Model {
     public void setHomeStatus(boolean isHome) {
         assert this.isHome.size() == 1;
         this.isHome.set(INDEX_OF_HOME_STATUS, isHome);
+    }
+
+    @Override
+    public void goToHomePage() {
+        assert isHome.size() == 1;
+        isHome.set(INDEX_OF_HOME_STATUS, true);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 }
