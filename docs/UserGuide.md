@@ -530,8 +530,6 @@ Examples:
 
 </p>
 
-Note that `show` is an invalid command for class list since the details of classes are already in the class list, thus when you are in the class list, `show 1` is an invalid command.
-
 * `show 1` in the class list
 
 <p align="center">
@@ -545,6 +543,8 @@ Note that `show` is an invalid command for class list since the details of class
 <img src="images/showClassCommand_after.png"/>
 
 </p>
+
+Note that `show` command is invalid for the class list.
 
 ### Add next of kin to a student: `nok`
 
@@ -563,6 +563,7 @@ Format:
 Examples:
 
 * `nok 5 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`
+This adds a next of kin to John Doe.
 
 <p align="center">
 
@@ -576,9 +577,8 @@ Examples:
 
 </p>
 
-This adds the a next of kin to John Doe.
-
 * `nok 5`
+This deltes the next of kin of John Doe.
 
 <p align="center">
 
@@ -591,8 +591,6 @@ This adds the a next of kin to John Doe.
 <img src="images/deleteNok_after.png"/>
 
 </p>
-
-This deltes the next of kin of John Doe.
 
 ### Exporting address books to csv
 
