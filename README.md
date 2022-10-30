@@ -13,10 +13,9 @@ It allows TAs to keep track of their responsibilities, students’ progress and 
   * To keep track of upcoming tasks
 
 ## Site Map
-- User Guide
-- Developer Guide
-- About Us
-- Contact Us
+- [User Guide](https://github.com/AY2223S1-CS2103T-W17-3/tp/blob/master/docs/UserGuide.md)
+- [Developer Guide](https://github.com/AY2223S1-CS2103T-W17-3/tp/blob/master/docs/DeveloperGuide.md)
+- [About Us](https://github.com/AY2223S1-CS2103T-W17-3/tp/blob/master/docs/AboutUs.md)
 
 ## Acknowledgements
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
