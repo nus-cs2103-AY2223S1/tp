@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-# Welcome to RC4HDB User Guide!
+# **Welcome to RC4HDB User Guide!**
 
 If you are a **Residential College 4 (RC4)** Housing Management staff, or someone who wants to find out more
 about what **Residential College 4 Housing Database (RC4HDB)** can do for you, you are at the right place!
@@ -13,7 +13,9 @@ can use **RC4HDB** to its fullest potential.
 
 If you are looking to expand on our project, check out our [Developer Guide](DeveloperGuide.md) too!
 
-## Table of Contents
+---
+
+## **Table of Contents**
 
 * [**Introduction to RC4HDB**](#introduction-to-rc4hdb)
 * [**Using this guide**](#using-this-guide)
@@ -47,9 +49,6 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
     * [Adding a booking `venue book`](ug-pages/venue-management.md#adding-a-booking-venue-book)
     * [Deleting a booking `venue unbook`](ug-pages/venue-management.md#deleting-a-booking-venue-unbook)
     * [Format for venue fields](ug-pages/venue-management.md#format-for-venue-fields)
-  * [**Data management**](ug-pages/data-management.md)
-    * [Saving data](ug-pages/data-management.md#saving-the-data)
-    * [Editing data file](ug-pages/data-management.md#editing-the-data-file)
   * [**Quality-of-life**](ug-pages/quality-of-life.md)
     * [Keyboard shortcuts](ug-pages/quality-of-life.md#keyboard-shortcuts)
     * [Accessing command history](ug-pages/quality-of-life.md#accessing-command-history)
@@ -62,7 +61,7 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
 
 ---
 
-## Introduction to RC4HDB
+## **Introduction to RC4HDB**
 
 **RC4HDB** is a desktop application which streamlines the daily workflow of **RC4 housing management staff**, by providing specialised features which solve their resident and venue management needs.
 
@@ -79,7 +78,9 @@ workflow as a RC4 housing management staff member.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-## Using this guide
+---
+
+## **Using this guide**
 
 This user guide contains all the information that you will need to know as a user of **RC4HDB**. We hope that it
 will serve you well in mastering RC4HDB!
@@ -100,7 +101,9 @@ pay attention to. </div>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-## Quick start
+---
+
+## **Quick start**
 
 Here is a quick guide on how to get a working copy of RC4HDB on your computer.
 
@@ -137,7 +140,7 @@ For more details on commands, refer to our [Command Guide](#command-guide) below
 
 ---
 
-## Command Guide
+## **Command Guide**
 
 Below shows a breakdown of how the commands in **RC4HDB** are structured. Don't be afraid that you
 may have typed a command incorrectly as **RC4HDB** will warn you in the event that this happens!
