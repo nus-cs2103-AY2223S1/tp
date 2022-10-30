@@ -5,7 +5,7 @@ title: User Guide
 
 # SectresBook
 
-![](images/icons/address_book_32.png)
+<img src="images/icons/address_book_32.png" width="100">
 
 SectresBook helps secretaries to **maintain all the information of the members of their club** by collating a list of identifiable information, past records, loan amounts and future tasks. As a treasurer, use SectresBook **manage the finances of your club better** by keeping track of the funds loaned to each member. This all-in-one tool eliminates the trouble of having to search through multiple notebooks/apps to find information regarding a club member, saving you time and effort so that you can focus on other tasks at hand using the notes feature!
 
@@ -13,8 +13,65 @@ Focusing on speed and efficiency, you can interact with SectresBook using the **
 
 This User Guide is an in-depth guide to help you start managing your contacts, notes and finances. It includes the **installation, features and how to use them, and FAQ for troubleshooting**, ensuring a smooth pickup of the SectresBook.
 
-* Table of Contents
-  {:toc}
+- [SectresBook](#sectresbook)
+  * [Introduction to SectresBook](#introduction-to-sectresbook)
+  * [Using this guide](#using-this-guide)
+  * [Quick start](#quick-start)
+  * [User Interface](#user-interface)
+    + [Command Box](#command-box)
+    + [People Panel](#people-panel)
+    + [Inspect Panel](#inspect-panel)
+    + [Notes Panel](#notes-panel)
+  * [Properties](#properties)
+    + [Person Properties](#person-properties)
+      - [Name](#name)
+      - [Phone](#phone)
+      - [Email](#email)
+      - [Address](#address)
+      - [Loan](#loan)
+      - [Loan History](#loan-history)
+      - [Birthday](#birthday)
+      - [Tags](#tags)
+    + [Notes Properties](#notes-properties)
+      - [Title](#title)
+      - [Content](#content)
+      - [Tags](#tags-1)
+    + [Tag Properties](#tag-properties)
+  * [Features](#features)
+    + [General Features](#general-features)
+      - [Viewing help : `help`](#viewing-help----help-)
+      - [Inspecting a person : `inspect`](#inspecting-a-person----inspect-)
+      - [Locating persons by tag: `findTag`](#locating-persons-by-tag---findtag-)
+      - [Exiting the program : `exit`](#exiting-the-program----exit-)
+      - [Saving the data](#saving-the-data)
+      - [Editing the data file](#editing-the-data-file)
+      - [Archiving data files `[coming in v2.0]`](#archiving-data-files---coming-in-v20--)
+      - [Undo `[coming in v2.0]`](#undo---coming-in-v20--)
+      - [Redo `[coming in v2.0]`](#redo---coming-in-v20--)
+    + [Person Features](#person-features)
+      - [Adding a new person: `add`](#adding-a-new-person---add-)
+      - [Listing all persons : `list`](#listing-all-persons----list-)
+      - [Editing a club member : `edit`](#editing-a-club-member----edit-)
+      - [Locating persons by name or contact number: `find`](#locating-persons-by-name-or-contact-number---find-)
+      - [Editing loan of a person: `editLoan`](#editing-loan-of-a-person---editloan-)
+      - [Deleting a person : `delete`](#deleting-a-person----delete-)
+      - [Clearing all entries : `clear`](#clearing-all-entries----clear-)
+      - [Sorting by property: `sort` `[coming in v2.0]`](#sorting-by-property---sort----coming-in-v20--)
+    + [Note Features](#note-features)
+      - [Adding Notes `addNote`](#adding-notes--addnote-)
+      - [Locating a note by title: `findNote`](#locating-a-note-by-title---findnote-)
+      - [Listing Notes `listNotes`](#listing-notes--listnotes-)
+      - [Editing Notes `editNote`](#editing-notes--editnote-)
+      - [Deleting Notes `deleteNote`](#deleting-notes--deletenote-)
+      - [Sort Notes: `sortNotes` `[coming in v2.0]`](#sort-notes---sortnotes----coming-in-v20--)
+      - [Hiding notes panel : `hideNotes`](#hiding-notes-panel----hidenotes-)
+      - [Showing notes panel : `showNotes`](#showing-notes-panel----shownotes-)
+  * [FAQ](#faq)
+  * [Glossary](#glossary)
+  * [Command summary](#command-summary)
+    + [AddressBook Commands](#addressbook-commands)
+    + [Note Commands](#note-commands)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -53,7 +110,6 @@ pay attention to. </div>
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** used to highlight dangers and things to look out for. </div>
 
 [Back to Top](#sectresbook)
-
 
 ## Quick start
 
