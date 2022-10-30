@@ -104,7 +104,7 @@ This is where the feedback information would be displayed after you execute a co
 
 <p align="center">
 
-<img src="images/unknwonCommand.png"/>
+<img src="images/unknownCommand.png"/>
 
 </p>
 
@@ -155,9 +155,9 @@ This is where the description of a specified student or tutor is shown. When the
 </p>
 
 #### File 
-The ` File`  menu contains `Export` and Exit`. 
+The ` File` menu contains `Export` and `Exit`. 
 `Export` allows you to export your data into a `.csv` file. 
- `Exit` allows the software to exit after three seconds of pause.
+`Exit` allows the software to exit after three seconds of pause.
 
 #### Help
 `Help` allows you to view the help information regarding the software.
@@ -396,7 +396,7 @@ Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
 * If there are repeated `PREFIXES`, only the latest one will be taken.
 
 Examples:
-* `find n/john` returns the students, `Johnny` and `John Doe`in the student list.
+* `find n/john` 
 
 <p align="center">
 
@@ -410,7 +410,9 @@ Examples:
 
 </p>
 
-* `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
+Note that the current list is the student list , so `find n/john` returns the students, `John Doe` and `Johnny Tay` in the student list.
+
+* `find i/NUS q/Bachelor of Computing`
 
 <p align="center">
 
@@ -424,7 +426,9 @@ Examples:
 
 </p>
 
-* `find d/monday #/hard` returns all classes conducted on Monday and have the tag “hard”.
+Note that the current list is the tutor lsit, so `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
+
+* `find d/monday #/hard`
 
 <p align="center">
 
@@ -437,6 +441,8 @@ Examples:
 <img src="images/findClass_after.png"/>
 
 </p>
+
+Note that the current list is the class list, so `find d/monday #/tag` returns all classes conducted on Monday and have the tag “hard”.
 
 ### Assign class to a person: `assign`
 
@@ -489,7 +495,7 @@ Examples:
 
 </p>
 
-<img src="imagesun/unassignCommand_after.png"/>
+<img src="images/unassignCommand_after.png"/>
 
 </p>
 
@@ -511,7 +517,7 @@ Examples:
 
 <p align="center">
 
-<img src="imagesun/showCommand_after.png"/>
+<img src="images/showCommand_after.png"/>
 
 </p>
 
@@ -525,7 +531,7 @@ Note that `show` is an invalid command for class list since the details of class
 
 <p align="center">
 
-<img src="imagesun/showClassCommand_after.png"/>
+<img src="images/showClassCommand_after.png"/>
 
 </p>
 
@@ -555,7 +561,7 @@ Examples:
 
 <p align="center">
 
-<img src="imagesun/addNok_after.png"/>
+<img src="images/addNok_after.png"/>
 
 </p>
 
@@ -569,7 +575,7 @@ Examples:
 
 <p align="center">
 
-<img src="imagesun/deleteNok_after.png"/>
+<img src="images/deleteNok_after.png"/>
 
 </p>
 
@@ -583,7 +589,7 @@ Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and
 
 <p align="center">
 
-<img src="imagesun/exportButton.png"/>
+<img src="images/exportButton.png"/>
 
 </p>
 
