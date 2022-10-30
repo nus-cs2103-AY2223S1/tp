@@ -104,6 +104,8 @@ Examples:
 
 Shows a list of all students in ModQuik.
 
+* Command will only display the list if you navigate to the `Student` tab
+
 Format: `list`
 
 <a name="edit-student"></a>
