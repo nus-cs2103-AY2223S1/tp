@@ -83,8 +83,7 @@ public abstract class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getTypeString().equals(getTypeString());
+                && otherPerson.getName().equals(getName());
     }
 
     /**
