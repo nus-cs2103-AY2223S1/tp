@@ -209,10 +209,10 @@ Examples:
 Filtering students from the StudMap based on different
 categories.
 
-Format: `filter t/ friends`
+Format: `filter t/Keyword [MORE_KEYWORDS]`
 * Filter students specific to the category "tags" represented 
 with the prefix `t/`
-* There should be spaces between `filter`, `t/` and `friends`
+* There should be spaces between `filter` and `t/friends`
 * Currently, filter works for three specific 
 categories - tags `t/`, module `m/` and assignments `a/`.
 
@@ -222,7 +222,10 @@ that are tagged as friends
 * `filter m/ cs2103t` will return a filtered list of students
 that enrolls in the module cs2103t.
 * `filter a/ a01` will return a filtered list of students
-that are working on assignment A01. 
+  that are working on assignment A01.
+* `filter t/friends family` will return a filtered list of
+students that are tagged as friends family or both.
+ 
 
 ### Mark attendance of student: `mark`
 
