@@ -12,6 +12,8 @@ import static seedu.address.testutil.TypicalTasks.DANIEL;
 import static seedu.address.testutil.TypicalTasks.ELLE;
 import static seedu.address.testutil.TypicalTasks.FIONA;
 import static seedu.address.testutil.TypicalTasks.GEORGE;
+import static seedu.address.testutil.TypicalTasks.HILLARY;
+import static seedu.address.testutil.TypicalTasks.IVY;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import java.time.LocalDate;
@@ -39,7 +41,8 @@ public class FilterTaskCommandTest {
     private final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
     private final TaskDate testDate = new TaskDate(LocalDate.now());
     private final TaskCategory testCat2 = new TaskCategory(TaskCategoryType.BACKEND);
-    private final TaskDate testDate2 = new TaskDate(LocalDate.now());
+    private final TaskDate testDate2 = new TaskDate(LocalDate.of(2022,9,20));
+    private final TaskCategory testCat3 = new TaskCategory(TaskCategoryType.FRONTEND);
     private final FilterInfo testFilterInfo = new FilterInfo();
 
 
@@ -77,9 +80,9 @@ public class FilterTaskCommandTest {
     }
 
     @Test
-    public void execute_backend_noTaskFound() {
+    public void execute_FilterByFrontend_noTaskFound() {
         String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 0);
-        TaskCategoryAndDeadlinePredicate predicate = preparePredicate(testCat2, testDate2);
+        TaskCategoryAndDeadlinePredicate predicate = preparePredicate(testCat3, testDate2);
         FilterTaskCommand.FilterTaskDescriptor testDescriptor = new FilterTaskCommand.FilterTaskDescriptor();
         testDescriptor.setCategory(predicate.getCategory());
         testDescriptor.setDate(predicate.getDate());
@@ -89,11 +92,10 @@ public class FilterTaskCommandTest {
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredTaskList());
-
     }
 
     @Test
-    public void execute_multipleKeywords_multipleTasksFound() {
+    public void execute_FilterByOthers_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 7);
         TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.of(testCat),
                 Optional.empty());
@@ -107,6 +109,65 @@ public class FilterTaskCommandTest {
         assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredTaskList());
     }
 
+    @Test
+    public void execute_FilterByBackend_OneTasksFound() {
+        String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 2);
+        TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.of(testCat2),
+                Optional.empty());
+        FilterTaskCommand.FilterTaskDescriptor testDescriptor = new FilterTaskCommand.FilterTaskDescriptor();
+        testDescriptor.setCategory(predicate.getCategory());
+        testDescriptor.setDate(predicate.getDate());
+        FilterTaskCommand command = new FilterTaskCommand(testDescriptor, testFilterInfo,
+                testFilterInfo);
+        expectedModel.updateFilteredTaskList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(HILLARY, IVY), model.getFilteredTaskList());
+    }
+
+    @Test
+    public void execute_FilterByDeadline_NoTasksFound() {
+        String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 0);
+        TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.empty(),
+                Optional.of(testDate2));
+        FilterTaskCommand.FilterTaskDescriptor testDescriptor = new FilterTaskCommand.FilterTaskDescriptor();
+        testDescriptor.setCategory(predicate.getCategory());
+        testDescriptor.setDate(predicate.getDate());
+        FilterTaskCommand command = new FilterTaskCommand(testDescriptor, testFilterInfo,
+                testFilterInfo);
+        expectedModel.updateFilteredTaskList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
+    }
+
+    @Test
+    public void execute_FilterByDeadline_AllTasksFound() {
+        String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 9);
+        TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.empty(),
+                Optional.of(testDate));
+        FilterTaskCommand.FilterTaskDescriptor testDescriptor = new FilterTaskCommand.FilterTaskDescriptor();
+        testDescriptor.setCategory(predicate.getCategory());
+        testDescriptor.setDate(predicate.getDate());
+        FilterTaskCommand command = new FilterTaskCommand(testDescriptor, testFilterInfo,
+                testFilterInfo);
+        expectedModel.updateFilteredTaskList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILLARY, IVY), model.getFilteredTaskList());
+    }
+
+    @Test
+    public void execute_FilterByDeadlineAndCategory_NoTasksFound() {
+        String expectedMessage = String.format(MESSAGE_TASK_LISTED_OVERVIEW, 0);
+        TaskCategoryAndDeadlinePredicate predicate = new TaskCategoryAndDeadlinePredicate(Optional.of(testCat3),
+                Optional.of(testDate));
+        FilterTaskCommand.FilterTaskDescriptor testDescriptor = new FilterTaskCommand.FilterTaskDescriptor();
+        testDescriptor.setCategory(predicate.getCategory());
+        testDescriptor.setDate(predicate.getDate());
+        FilterTaskCommand command = new FilterTaskCommand(testDescriptor, testFilterInfo,
+                testFilterInfo);
+        expectedModel.updateFilteredTaskList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
+    }
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
