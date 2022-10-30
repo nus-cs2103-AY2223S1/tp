@@ -63,3 +63,5 @@ The placeholders `INDEX`, `COMMAND_WORD`, and `KEYWORD` do not have any correspo
 ```
 
 {% include_relative _ug/Placeholders.md %}
+
+{% include page-break.html %}
