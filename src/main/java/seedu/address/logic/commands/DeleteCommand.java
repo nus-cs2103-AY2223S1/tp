@@ -26,8 +26,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the entity identified by the index number used in the displayed current list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "\nParameters:\n INDEX (must be a positive integer)\n"
+            + "\nExample:\n " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ENTITY_SUCCESS = "Deleted Entity: %1$s";
 

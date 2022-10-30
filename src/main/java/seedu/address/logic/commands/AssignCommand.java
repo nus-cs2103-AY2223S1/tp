@@ -31,10 +31,10 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign the person identified by the index "
             + "number used in the displayed person list to the specified class if it exists.\n"
-            + "Parameters: assign"
+            + "\nParameters:\n assign"
             + "INDEX (must be a positive integer)"
             + "[" + PREFIX_NAME + " CLASS NAME]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_NAME + "P2MATHS";
+            + "\nExample:\n " + COMMAND_WORD + " 1 " + PREFIX_NAME + "P2MATHS";
 
     public static final String MESSAGE_ASSIGN_STUDENT_SUCCESS = "Assigned Student: %1$s";
     public static final String MESSAGE_ASSIGN_TUTOR_SUCCESS = "Assigned Tutor: %1$s";

@@ -1,31 +1,36 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTORS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalStudents.STUDENT1;
-import static seedu.address.testutil.TypicalStudents.STUDENT2;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTITUTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
-import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
-import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 import static seedu.address.testutil.TypicalTuitionClasses.getTypicalTuitionClassesAddressBook;
-import static seedu.address.testutil.TypicalTutors.TUTOR1;
-import static seedu.address.testutil.TypicalTutors.TUTOR2;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.NameContainsKeywordsPredicate;
+import seedu.address.model.StudentContainsKeywordsPredicate;
+import seedu.address.model.TuitionClassContainsKeywordsPredicate;
+import seedu.address.model.TutorContainsKeywordsPredicate;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
@@ -44,8 +49,10 @@ public class FindCommandTest {
 
     @Test
     public void equalsForStudentListType() {
-        List<String> firstKeywords = Collections.singletonList("first");
-        List<String> secondKeywords = Collections.singletonList("second");
+        HashMap<Prefix, String> firstKeywords = new HashMap<>();
+        HashMap<Prefix, String> secondKeywords = new HashMap<>();
+        firstKeywords.put(PREFIX_NAME, "first");
+        secondKeywords.put(PREFIX_NAME, "second");
 
         FindCommand findFirstCommand = new FindCommand(firstKeywords);
         FindCommand findSecondCommand = new FindCommand(secondKeywords);
@@ -83,8 +90,10 @@ public class FindCommandTest {
 
     @Test
     public void equalsForTutorListType() {
-        List<String> firstKeywords = Collections.singletonList("first");
-        List<String> secondKeywords = Collections.singletonList("second");
+        HashMap<Prefix, String> firstKeywords = new HashMap<>();
+        HashMap<Prefix, String> secondKeywords = new HashMap<>();
+        firstKeywords.put(PREFIX_NAME, "first");
+        secondKeywords.put(PREFIX_NAME, "second");
 
         FindCommand findFirstCommand = new FindCommand(firstKeywords);
         FindCommand findSecondCommand = new FindCommand(secondKeywords);
@@ -122,8 +131,10 @@ public class FindCommandTest {
 
     @Test
     public void equalsForTuitionClassListType() {
-        List<String> firstKeywords = Collections.singletonList("first");
-        List<String> secondKeywords = Collections.singletonList("second");
+        HashMap<Prefix, String> firstKeywords = new HashMap<>();
+        HashMap<Prefix, String> secondKeywords = new HashMap<>();
+        firstKeywords.put(PREFIX_NAME, "first");
+        secondKeywords.put(PREFIX_NAME, "second");
 
         FindCommand findFirstCommand = new FindCommand(firstKeywords);
         FindCommand findSecondCommand = new FindCommand(secondKeywords);
@@ -160,89 +171,59 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noStudentFound() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
-        List<String> keywords = prepareKeywords(" ");
-        NameContainsKeywordsPredicate<Student> predicate = new NameContainsKeywordsPredicate<>(keywords);
+    public void execute_validStudentNameKeyword_success() {
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 1);
+        HashMap<Prefix, String> keywords = new HashMap<>();
+        keywords.put(PREFIX_NAME, "Alice");
+        keywords.put(PREFIX_ADDRESS, "");
+        keywords.put(PREFIX_EMAIL, "");
+        keywords.put(PREFIX_PHONE, "");
+        keywords.put(PREFIX_SUBJECT_OR_SCHOOL, "");
+        keywords.put(PREFIX_LEVEL, "");
+        keywords.put(PREFIX_TAG, "");
+        StudentContainsKeywordsPredicate<Student> predicate = new StudentContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedStudentModel.updateFilteredStudentList(predicate);
         studentModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
         expectedStudentModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
         assertCommandSuccess(command, studentModel, expectedMessage, expectedStudentModel);
-        assertEquals(Collections.emptyList(), studentModel.getFilteredStudentList());
     }
 
     @Test
-    public void execute_zeroKeywords_noTutorFound() {
-        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 0);
-        List<String> keywords = prepareKeywords(" ");
-        NameContainsKeywordsPredicate<Tutor> predicate = new NameContainsKeywordsPredicate<>(keywords);
+    public void execute_validTutorNameKeyword_success() {
+        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 1);
+        HashMap<Prefix, String> keywords = new HashMap<>();
+        keywords.put(PREFIX_NAME, "Alice");
+        keywords.put(PREFIX_ADDRESS, "");
+        keywords.put(PREFIX_EMAIL, "");
+        keywords.put(PREFIX_PHONE, "");
+        keywords.put(PREFIX_QUALIFICATION, "");
+        keywords.put(PREFIX_INSTITUTION, "");
+        keywords.put(PREFIX_TAG, "");
+        TutorContainsKeywordsPredicate<Tutor> predicate = new TutorContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedTutorModel.updateFilteredTutorList(predicate);
         tutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
         expectedTutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
         assertCommandSuccess(command, tutorModel, expectedMessage, expectedTutorModel);
-        assertEquals(Collections.emptyList(), tutorModel.getFilteredTutorList());
     }
 
     @Test
-    public void execute_zeroKeywords_noTuitionClassFound() {
-        String expectedMessage = String.format(MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW, 0);
-        List<String> keywords = prepareKeywords(" ");
-        NameContainsKeywordsPredicate<TuitionClass> predicate = new NameContainsKeywordsPredicate<>(keywords);
+    public void execute_validTuitionClassNameKeyword_success() {
+        String expectedMessage = String.format(MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW, 1);
+        HashMap<Prefix, String> keywords = new HashMap<>();
+        keywords.put(PREFIX_NAME, "P2Math");
+        keywords.put(PREFIX_DAY, "");
+        keywords.put(PREFIX_SUBJECT_OR_SCHOOL, "");
+        keywords.put(PREFIX_LEVEL, "");
+        keywords.put(PREFIX_TIME, "");
+        keywords.put(PREFIX_TAG, "");
+        TuitionClassContainsKeywordsPredicate<TuitionClass> predicate =
+                new TuitionClassContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedTuitionClassModel.updateFilteredTuitionClassList(predicate);
         tuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedTuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         assertCommandSuccess(command, tuitionClassModel, expectedMessage, expectedTuitionClassModel);
-        assertEquals(Collections.emptyList(), tuitionClassModel.getFilteredTuitionClassList());
-    }
-
-    @Test
-    public void execute_multipleKeywords_multipleStudentsFound() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
-        List<String> keywords = prepareKeywords("Alice Benson");
-        NameContainsKeywordsPredicate<Student> predicate = new NameContainsKeywordsPredicate<>(keywords);
-        FindCommand command = new FindCommand(keywords);
-        expectedStudentModel.updateFilteredStudentList(predicate);
-        expectedStudentModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
-        studentModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
-        assertCommandSuccess(command, studentModel, expectedMessage, expectedStudentModel);
-        assertEquals(Arrays.asList(STUDENT1, STUDENT2), studentModel.getFilteredStudentList());
-    }
-
-
-    @Test
-    public void execute_multipleKeywords_multipleTutorsFound() {
-        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 2);
-        List<String> keywords = prepareKeywords("Alice Benson");
-        NameContainsKeywordsPredicate<Tutor> predicate = new NameContainsKeywordsPredicate<>(keywords);
-        FindCommand command = new FindCommand(keywords);
-        expectedTutorModel.updateFilteredTutorList(predicate);
-        expectedTutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
-        tutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
-        assertCommandSuccess(command, tutorModel, expectedMessage, expectedTutorModel);
-        assertEquals(Arrays.asList(TUTOR1, TUTOR2), tutorModel.getFilteredTutorList());
-    }
-
-    @Test
-    public void execute_multipleKeywords_multipleTuitionClassesFound() {
-        String expectedMessage = String.format(MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW, 2);
-        List<String> keywords = prepareKeywords("P2MATH P5ENG");
-        NameContainsKeywordsPredicate<TuitionClass> predicate = new NameContainsKeywordsPredicate<>(keywords);
-        FindCommand command = new FindCommand(keywords);
-        expectedTuitionClassModel.updateFilteredTuitionClassList(predicate);
-        expectedTuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-        tuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-        assertCommandSuccess(command, tuitionClassModel, expectedMessage, expectedTuitionClassModel);
-        assertEquals(Arrays.asList(TUITIONCLASS1, TUITIONCLASS2), tuitionClassModel.getFilteredTuitionClassList());
-    }
-
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private List<String> prepareKeywords(String userInput) {
-        return Arrays.asList(userInput.split("\\s+"));
     }
 }

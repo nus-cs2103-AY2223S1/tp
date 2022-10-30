@@ -22,11 +22,11 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort the current list by chronological, alphabetical or reverse order.\n"
-            + "Parameters:"
+            + "\nParameters:\n"
             + "default OR\n"
             + "alpha OR\n"
             + "reverse \n"
-            + "Example: " + COMMAND_WORD + "alpha\n";
+            + "\nExample: \n" + COMMAND_WORD + "alpha\n";
 
     public static final String MESSAGE_SUCCESS = "List sorted %s";
 

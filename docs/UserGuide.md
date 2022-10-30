@@ -2,23 +2,101 @@
 layout: page
 title: User Guide
 ---
+<p align="center">
 
-myStudent is **a desktop app for managing students of a tuition center, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, myStudents can get your student management tasks done faster than traditional GUI apps.
+<img src="images/titile_big_logo.png"/>
+
+</p>
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Introduction
+myStudent is **a desktop app for managing students of a tuition center, optimized for use via a Command Line Interface 
+(CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, myStudent can get 
+your student management tasks done faster than traditional GUI apps.
+
+---
+## About
+This user guide provides a detailed documentation of how to install and use myStudent. It provides explanations of how 
+to use and what it does for all the features available in myStudent. 
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Notes about the command format:
+
+* Prefixes are user inputs that consist of a character followed by a slash  
+  e.g. `n/` or `p/`
+
+
+* `< >` - represent parameters that are supplied by the user.  
+  e.g. `add n/<name>, where <name>` is just the name of the parameter and users can input `add n/John Doe`. <br>
+
+
+* `[ ]` - represent parameters that are optional.  
+        e.g `n/<name> [#/<tag>]`, users can input `add n/John Doe` or `n/John Doe #/male`.
+
+
+* Users can input parameters of prefixes in any order.  
+  e.g. `nok <index> n/<name> p/<phone>`, users can either input `nok 2 n/John Doe p/91234567` or `nok 2 n/John Doe p/91234567`.  
+  However, `nok n/John Doe p/91234567 2` where <index> is at the end of the input, is not a valid.
+
+
+* Extra input from the user for commands that do not take in parameters will be ignored.  
+  e.g. the clear command does not have any other parameters, thus the user input clear asdfghjkl is logically the same as if the user typed in clear.
+
+</div>
+
+Below is a quick guide on how to get started.
+
+---
+
+## Quick Start
+1. Ensure you have Java 11 or above installed in your Computer.
+2. Download the latest `myStudent.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-4/tp/releases).
+3. Copy the file to the folder you want to use as the home folder for the application.
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+
+<img src="images/StartingUI.png"/>  
+
+<div markdown="block" class="alert alert-info">
+
+:pencil2: **Configuring the app**  
+Users can change the default configurations of the app in the `preference.json` file located in the same place where they download the app into.  
+A `preference.json` file will be created when you first run the application. Users can then edit the file to suit their needs.  
+
+**What users can change:**
+* The size of the window such as its height and width (in pixels).
+* At which part of the screen the app will be displayed.
+* The default theme.
+* Where data will be loaded from and stored into.
+
+| Settings 	                            | Default Value 	                       |
+|---------------------------------------|---------------------------------------|
+| Window Width 	                        | 670px 	                               |
+| Window Height 	                       | 950px 	                               |
+| Window Coordinates 	                  | null 	                                |
+| Theme 	                               | Light Theme 	                         |
+| Student Address Book Location 	       | data\\\studentaddressbook.json 	      |
+| Tutor Address Book Location 	         | data\\\tutoraddressbook.json 	        |
+| Tuition Class Address Book Location 	 | data\\\tuitionclassaddressbook.json 	 |
+
+</div>
+
+---
+
+## Layout
+
 <p align="center">
 
 <img src="images/Ui_annotated.png"/>
-
 </p>
 
 ### 1. Command Box
 
-This is where you key in commands. After typing the commands, simply press `return` on your keyboard to execute them. 
+This is where you key in commands. After typing the commands, simply press <kbd>enter</kbd> on your keyboard to execute them. 
 
 ### 2. Feedback Box
 
@@ -53,7 +131,7 @@ This is where the description of a specified student or tutor is shown. When the
 
 ### 6. Toolbar 
 
-#### File 
+#### File
 The ` File`  menu contains `Export` and `Exit`.
 `Export` allows you to export your data into a `.csv` file. 
 `Exit` allows the software to exit after three seconds of pause.
@@ -64,9 +142,11 @@ The ` File`  menu contains `Export` and `Exit`.
 #### Theme
  `Theme` allows you to change the color scheme of the software. There are four themes provided: `Light Theme`, `Dark Theme`,  `Green Theme` and `Pink Theme`.
 
+---
+
 ## Features
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows help information that will be useful to you.
 
@@ -253,32 +333,69 @@ Format: `clear`
 
 * Please note the list you are clearing as this action is **irreversible**. This can be identified by the tabs above the displayed list.
 
-### Searching by name: `find`
+### Sort list: `sort`
 
-Finds entities whose names contain any of the given keywords.
+Sorts the current list chronologically, alphabetically, or in reverse order.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-* The search is case-insensitive. e.g. hans will match Hans
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
-* Only the name is searched.
-* Only full words will be matched e.g. Han will not match Hans
-* Persons or classes matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber, Bo Yang`
+Format: `sort [default/alpha/reverse]`
+
+* **default**: sorts the list in order of entries added from oldest to newest.
+* **alpha**: sorts the list alphabetically with reference to the name.
+* **reverse**: sorts the list in reverse order.
+
+
+
+### Searching by multiple fields: `find`
+
+Finds entities from the current list based on multiple fields such that the fields of the entity specified contains the respective keywords.
+
+Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...`
+
+**Find students**<br>
+Format: `find [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [s/<school>] [l/<level>] [#/<tag>]`
+
+**Find tutors**<br>
+Format: `find [n/<name>] [p/<phone>] [e/<email>] [a/<address>] [q/<qualification>] [i/<institution>] [#/<tag>]`
+
+**Find classes**<br>
+Format: `find [n/<name>] [s/<subject>] [l/<level>] [d/day] [t/time] [#/<tag>]`
+
+* All fields are optional, but at least one pair of `PREFIX/KEYWORD` must be specified.
+* The input `PREFIX` is case-sensitive and must be in lowercase. e.g. `n/hans e/notgmail.com`
+* The input `KEYWORD` is case-insensitive. e.g. `n/hans` will match a student named “Hans”
+* Partial `KEYWORDS` will be matched e.g. `n/Ha` will match a student named “Hans Jones”
+* The order of the `PREFIX/KEYWORD` pair does not matter. e.g. `n/Alice p/12345678` vs `p/12345678 n/Alice`
+* `KEYWORDS` must not contain the `/` character.
+* If there are repeated `PREFIXES`, only the latest one will be taken.
 
 Examples:
-* `find John` returns `John` and `John Doe`
-* `find alex david` returns `Alex Yeoh` and `David Li`
+(insert screenshot of the current list being the student list)
+<img src="images/findStudentsBefore.png"/>
+<img src="images/findStudentsAfter.png"/>
+* `find n/john s/evergarden` returns the students, `Johnny` and `John Doe`, from “Evergarden Secondary School” in the student list.
+
+(insert screenshot of the current list being the class list)
+<img src="images/findTutorsBefore.png"/>
+<img src="images/findTutorsAfter.png"/>
+* `find a/clementi e/example.com i/nus` returns the tutors who live in Clementi, have emails with domain name “example.com” and graduated from NUS.
+
+(insert screenshot of the current list being the class list)
+<img src="images/findClassesBefore.png"/>
+<img src="images/findClassesAfter.png"/>
+* `find n/p1math d/sunday #/difficult` returns all classes whose names contain “p1math”, conducted on Sundays and have the tag “difficult”.
 
 ### Assign class to a person: `assign`
 
 Assign an existing tuition class to a specified student/tutor.
 
-Format: `assign INDEX n/[class name]`
+Format: `assign INDEX n/<class name>`
 
 * `assign` command only works when the displayed list is a student or tutor list.
 * The index refers to the index number shown in the displayed list.
 * The index must be a positive integer 1, 2, 3, …
 * Class name must be the name of a tuition class that already exists in the tuition class list.
 * The tuition class to be assigned to the specified student/tutor must not have been assigned beforehand.
+* The class name is case-sensitive.
 
 Examples:
 * `assign 1 n/P3 maths`
@@ -287,7 +404,7 @@ Examples:
 
 Unassign an existing tuition class from a specified student/tutor.
 
-Format: `unassign INDEX n/[class name]`
+Format: `unassign INDEX n/<class name>`
 
 * `unassign` command only works when the displayed list is a student or tutor list.
 * The index refers to the index number shown in the displayed list.
@@ -295,10 +412,20 @@ Format: `unassign INDEX n/[class name]`
 * Class name must be the name of a tuition class that already exists in the tuition class list.
 * The tuition class to be unassigned from the specified student/tutor must have been assigned to the 
 student/tutor beforehand.
+* The class name is case-sensitive.
 
 Examples:
 * `unassign 1 n/P3 maths`
 
+### Showing the details of a person: `show`
+
+In the student and tutor list, the details of the persons are hidden due to security concerns. You could access the person’s details by executing the show command.
+
+Format: `show [index]` 
+*`show 1` shows the description of the first student in the list
+
+Note that `show` is an invalid command for class list since the details of classes are already in the class list, thus when you are in the class list.
+*`show 2` is an invalid command 
 
 ### Add next of kin to a student: `nok`
 
@@ -340,36 +467,43 @@ Examples:
 * `nok 1 n/Mama Doe p/87654321 e/mamadoe@example.com a/John street, block 123, #01-01 r/Mother #/bestMomAward`
 * `nok 2`
 
-
 ### Exporting address books to csv
 
-Export Students, Tutors, and TuitionClasses into their own .csv files to be used in other programs.
+Export Students, Tutors, and TuitionClasses address books into their own .csv files to be used in other programs.
 
-Format: Click on the "*File*" tab at the top left hand corner of `myStudents` and click on "*Export*" in the dropdown menu.
+Format: Click on the "*File*" tab at the top left hand corner of `myStudent` and click on "*Export*" in the dropdown menu.
 
-* The csv files will be saved in the same location as the json files specified in `preference.json`.
+<img src="images/exportButton.png" width="400">
 
-###FAQs
+* The csv files will be saved in the same location as the .json files as specified in `preferences.json`.
+* The default location is in a folder named `data` in the same location where you downloaded the myStudent.jar file.
+
+---
+
+### FAQs
 **Q:** Does myStudent need an Internet connection?
 
 **A:** No, myStudent is an offline software that does not need Internet connection to use.
 
 **Q:** Can I move myStudent from one computer to another without loss of data?
+
 **A:** Yes, by copying the home folder containing myStudent.jar to another computer, you could resume your work on another computer without loss of data.
+
+---
 
 ### Troubleshooting
 
 Warnings issued when Mac users are trying to open the software by double-clicking the icon.
-“myStudents.jar” cannot be opened because it is from an unidentified developer.
+“myStudent.jar” cannot be opened because it is from an unidentified developer.
 Instead of double-clicking the software icon, you may want to right-click the icon and choose `Open`, then click `Open` in the pop-up window. Note that you only need to do this for the first time. For future usage, simply double-click the icon to launch the software.
 
 Still unable to launch the software?
 Make sure that you have installed `Java 11` or above by doing the following checking:
 
 For Mac Users:
-Open your terminal and type `java -version` and press `enter`. Information returned should show the current version of Java installed on your computer.
+Open your terminal and type `java -version` and press <kbd>enter</kbd>. Information returned should show the current version of Java installed on your computer.
 
 For Windows Users:
-Open the command prompt and type `java -version` and press `enter`. Information returned should show the current version of Java installed on your computer.
+Open the command prompt and type `java -version` and press <kbd>enter</kbd>. Information returned should show the current version of Java installed on your computer.
 
 If you do not have `Java 11` or above installed, please install from [here](https://www.oracle.com/sg/java/technologies/downloads/).

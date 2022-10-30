@@ -18,7 +18,19 @@ import java.util.Objects;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.level.Level;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.student.School;
+import seedu.address.model.person.tutor.Institution;
+import seedu.address.model.person.tutor.Qualification;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.Day;
+import seedu.address.model.tuitionclass.Subject;
+import seedu.address.model.tuitionclass.Time;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -38,7 +50,7 @@ public class AddCommand extends Command {
                 "Entity type should be one of the valid entity types that can be added to the database.\n"
                         + "The valid entity types are:\n"
                         + "1. Student\n"
-                        + "2. Tutor\n "
+                        + "2. Tutor\n"
                         + "3. Class\n";
         public static final String MESSAGE_DID_YOU_MEAN_STUDENT = "Did you mean \"student\"?";
         public static final String MESSAGE_DID_YOU_MEAN_TUTOR = "Did you mean \"tutor\"?";
@@ -97,7 +109,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds either a student, a tutor or a class to the database.\n"
-            + "Parameters:"
+            + "\nParameters:\n"
             + "student "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -121,16 +133,83 @@ public class AddCommand extends Command {
             + PREFIX_DAY + "DAY "
             + PREFIX_TIME + "TIME "
             + "[" + PREFIX_TAG + "TAG]... \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "\nExample: \n" + COMMAND_WORD + " "
+            + "student "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 \n"
+            + PREFIX_SUBJECT_OR_SCHOOL + "Keming Primary School "
+            + PREFIX_LEVEL + "Primary3 "
+            + PREFIX_TAG + "badBoy "
+            + PREFIX_TAG + "owesMoney";;
+
+    public static final String HELP_MESSAGE = COMMAND_WORD
+            + " - Adds either a student, a tutor or a class to the database.\n"
+            + "\n"
+            + "Usage:\n"
+            + "add <entity> <args>\n"
+            + "\n"
+            + "Description:\n"
+            + "Depending on the entity type specified to be added, a specific set of arguments must be included.\n"
+            + "The respective prefixes must be prepended to each argument except the entity type.\n "
+            + "To add a student, follow 'add student " + PREFIX_NAME + "<name> " + PREFIX_PHONE + "<phone> "
+            + PREFIX_EMAIL + "<email> " + PREFIX_ADDRESS + "<address> " + PREFIX_SUBJECT_OR_SCHOOL + "<school> "
+            + PREFIX_LEVEL
+            + "<level> [" + PREFIX_TAG + "<tag>]'.\n"
+            + "To add a tutor, follow 'add student " + PREFIX_NAME + "<name> " + PREFIX_PHONE + "<phone> "
+            + PREFIX_EMAIL + "<email> "
+            + PREFIX_ADDRESS + "<address> " + PREFIX_QUALIFICATION + "<qualification> " + PREFIX_INSTITUTION
+            + "<institution> [" + PREFIX_TAG
+            + "<tag>]'.\n"
+            + "To add a class, follow 'add class " + PREFIX_NAME + "<name> " + PREFIX_SUBJECT_OR_SCHOOL + "<subject> "
+            + PREFIX_LEVEL + "<level> "
+            + PREFIX_DAY + "<day> " + PREFIX_TIME + "<time> [" + PREFIX_TAG + "<tag>]'. \n"
+            + "\n"
+            + "Regarding prefixes,\n"
+            + "Name - " + Name.MESSAGE_CONSTRAINTS
+            + "Phone - " + Phone.MESSAGE_CONSTRAINTS
+            + "Email - " + Email.MESSAGE_CONSTRAINTS
+            + "Address - " + Address.MESSAGE_CONSTRAINTS
+            + "School - " + School.MESSAGE_CONSTRAINTS
+            + "Level - " + Level.MESSAGE_CONSTRAINTS
+            + "Qualification - " + Qualification.MESSAGE_CONSTRAINTS
+            + "Institution - " + Institution.MESSAGE_CONSTRAINTS
+            + "Subject - " + Subject.MESSAGE_CONSTRAINTS
+            + "Day - " + Day.MESSAGE_CONSTRAINTS
+            + "Time - " + Time.MESSAGE_CONSTRAINTS
+            + "Tag - " + Tag.MESSAGE_CONSTRAINTS
+            + "\n"
+            + "Example:\n"
+            + "1." + COMMAND_WORD + " "
             + "student "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_SUBJECT_OR_SCHOOL + "Keming Primary School "
-            + PREFIX_LEVEL + "Primary3 "
+            + PREFIX_LEVEL + "Primary 3 "
             + PREFIX_TAG + "badBoy "
-            + PREFIX_TAG + "owesMoney";;
+            + PREFIX_TAG + "owesMoney\n"
+            + "2." + COMMAND_WORD + " "
+            + "tutor "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_QUALIFICATION + "MSc, Master of Science "
+            + PREFIX_INSTITUTION + "National University of Singapore "
+            + PREFIX_TAG + "hardWorker\n"
+            + "3." + COMMAND_WORD + " "
+            + "class "
+            + PREFIX_NAME + "Class A1 "
+            + PREFIX_SUBJECT_OR_SCHOOL + "Math "
+            + PREFIX_LEVEL + "Primary 3 "
+            + PREFIX_DAY + "Monday "
+            + PREFIX_TIME + "12:00 - 14:00 "
+            + PREFIX_TAG + "fullClass\n";
+
+
 
     public static final String MESSAGE_SUCCESS = "New entity added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student or tutor already exists in the database";

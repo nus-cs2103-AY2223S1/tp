@@ -36,18 +36,18 @@ public class NextOfKinCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds or removes next of kin particulars to student identified by the index number used in the "
-            + "displayed list. "
+            + ":Adds or removes next of kin particulars to student identified by the index number used in the "
+            + "displayed list. \n"
             + "Existing particulars will be overwritten by the input values.\n"
             + "Specifying only the index without any particulars will remove the next of kin particulars.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "\nParameters: \nINDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_RELATIONSHIP + "RELATIONSHIP "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "\nExample: \n" + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Mama Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "mamad@example.com "

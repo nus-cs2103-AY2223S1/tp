@@ -284,33 +284,29 @@ tuition classes in the student/tutor.
   * Cons: Hard and tedious to implement the storing of information in Json. 
 
 
-### \[Proposed\] Find by fields feature
+### \[Implemented\] Find by fields feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed find by fields mechanism searches the lists based on multiple fields by taking in a set of prefixes with their respective keywords and updating the respective `FilteredList`.
+The proposed find by fields mechanism searches the currently displayed list based on multiple fields by taking in a set of prefixes with their respective keywords and updating the respective `FilteredList`.
 
 Given below is an example usage scenario and how the find by fields mechanism behaves at each step.
 
-Step 1. The user launches the application and executes the `list_s` command to show the list of all students.
+Step 1. The user launches the application. The `ModelManager` would be initialised and the type is set to the default list type which is `STUDENT_LIST`.
 
-Step 2. The user executes `find John sch/Keming Primary School` command to search for all students who are named John and are students of Keming Primary School. A list of students with that predicate is then shown.
+Step 2. The user execute `list tutor` command to list out all tutors by calling `ListTutorCommand`. The `ListTutorCommand` calls `Model#updateCurrentListType()` with `TUTOR_LIST` being the parameter, causing the type in `ModelManager` to update to `TUTOR_LIST`.
 
-Step 3. The user now decides he wants to be more specific with his search, and decides to execute `find John l/primary3 sch/Keming Primary School` to find all students who are named John, and are primary 3 students of Keming Primary School.
-A more specific list of students is then shown.
+Step 3. The user executes `find n/john q/computing i/nus` command to search for all tutors who are named John and have graduated from NUS with computing qualifications. The user's input is first parsed into the `AddressBookParser`, where the `COMMAND_WORD` and the `arguments` are separated, and the `Model.ListType` is determined.
 
+Step 4. After checking that the `COMMAND_WORD`, a new `FindCommandParser` is returned with the `arguments` parsed into it.
 
-#### Design considerations:
+Step 5. In the `FindCommandParser`, the `arguments` are tokenized into an `ArgumentMultimap`, where the respective `prefixes` and `keywords` are extracted from the `arguments` and mapped to each other. Afterwards, the pairs of `prefixes` and `keywords` are put into a `HashMap<Prefix, String>`. A `FindCommand` is then returned with the `HashMap<Prefix, String>` parsed into it.
 
-**Aspect: How find executes:**
+Step 6. In the `FindCommand`, a `TutorContainsKeywordsPredicate<Tutor>` is created with the `keywords` as input, which tests if the `keywords` are contained by the respective fields in the tutors.
 
-* **Alternative 1 (current choice):** Searches each field strictly by ensuring that the search will only show results with the keywords matching the fields exactly.
-    * Pros: More logical for enum fields such as `Level`, where giving `primary` as input will not trivially show all primary school students.
-    * Cons: Less flexibility in the search as users are not allowed to show more results using more generic keywords to search.
+Step 7. Afterwards, the `filteredList` of tutors is updated with that `TutorContainsKeywordsPredicate<Tutor>` in the `ModelManager`. A new `CommandResult` is then returned and a list of tutors with that predicate is then shown.
 
-* **Alternative 2:** Searches each field with partially matching keywords.
-    * Pros: More flexibility in the search.
-    * Cons: Could lead to trivial searches.
+Step 8. The user now decides he wants to be more specific with his search, and decides to execute `find n/John Doe q/bachelor of computing i/nus` to find all tutors who are named John Doe, and have graduated from NUS with a bachelor's degree in computing. A more specific list of students is then shown.
 
 _{more aspects and alternatives to be added}_
 
