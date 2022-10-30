@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2106;
@@ -27,7 +28,16 @@ public class ModuleTest {
     @Test
     public void getModuleTitleAsUpperCaseString_validModuleTitle_success() {
         String expectedResult = VALID_MA2001_MODULE_CODE.toUpperCase();
+
+        // Uppercase module code.
         assertEquals(expectedResult, MA2001.getModuleCodeAsUpperCaseString());
+
+        // Lowercase module code.
+        Module moduleWithLowerCaseModuleCode = new ModuleBuilder(MA2001)
+                .withModuleCode(VALID_MA2001_MODULE_CODE.toLowerCase()).build();
+        assertEquals(expectedResult,
+                moduleWithLowerCaseModuleCode.getModuleCodeAsUpperCaseString());
+
     }
 
     @Test
