@@ -121,14 +121,15 @@ Examples:
 :bulb: Deadline Formats
 
 CodeConnect uses the [jchronic](https://github.com/samtingleff/jchronic) natural language date parser, ported from [Ruby's Chronic](https://github.com/deepin-community/ruby-chronic). This means that natural language inputs such as "tomorrow" or "next sunday" will be understood by CodeConnect!
-The default time of a task will be set to 11.59pm, if it is not specified in the input.
+The default time of a task will be set to 11.59pm if it is not specified in the input.
 
 Here are some examples of what deadline formats are accepted:
 * "tomorrow" will format the deadline to the next day, 11.59pm
-* "tmr 3pm" or "tomorrow 3pm" will format it to the next day, 3.00pm
+* "tomorrow 3pm" will format it to the next day, 3.00pm
 * "this tuesday 05:00" or "this tuesday 0500" will format it to the coming tuesday, 5.00am
 * "may 27th" will format it to the 27th of may of the current year, 11.59pm
-* "6/4/22" or "6/4/2022" will format it to the 6th of april 2022, 11.59pm
+
+Due to the library's limitations, "6/4/2022" will format it to 4 June.
 
 </div>
 
