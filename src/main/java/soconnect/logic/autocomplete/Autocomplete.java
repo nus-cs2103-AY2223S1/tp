@@ -17,7 +17,7 @@ public interface Autocomplete {
     void updateSoConnect(ReadOnlySoConnect soConnect);
 
     /**
-     * Generates a list of autocomplete entries that starts with the given user input.
+     * Generates a list of autocomplete entries that matches the given user input.
      *
      * @param userInput The input from the user.
      * @return A list of matching autocomplete entries.
@@ -27,7 +27,7 @@ public interface Autocomplete {
     /**
      * Gets a valid argument if the given {@code userInput} is a search command input,
      * otherwise returns an invalid argument. It determines whether the {@code userInput} is a
-     * search command input by checking if the {@code userInput} has the command word "search".
+     * search command input by checking if the {@code userInput} has the search command format.
      *
      * @param userInput The input from the user.
      * @return A valid argument if the {@code userInput} is a search command input, otherwise an invalid argument.
@@ -43,7 +43,7 @@ public interface Autocomplete {
      *       If {@code argsString} = "and n/alex p/", {@code prefix} = "n/" and "p/", this method returns
      *       and invalid prefix argument as the last prefix "p/" does not have an argument.
      *       If {@code argsString} = "and n/alex p/", {@code prefix} = "e/" and "a/", this method returns
-     *       and invalid prefix argument as there is no prefix in the {@code argsString}.
+     *       and invalid prefix argument as there is no matching prefix in the {@code argsString}.
      *   </pre>
      *
      * @param argsString The arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
@@ -60,7 +60,8 @@ public interface Autocomplete {
     void updateFilteredPersonList(String argsString);
 
     /**
-     * Generates a list of autocomplete entries.
+     * Generates a list of autocomplete entries with given {@code argsWithoutLastPrefixArgument} and
+     * {@code lastPrefixArgument}.
      *
      * @param argsWithoutLastPrefixArgument The arguments string of the
      *                                      form:{@code preamble <prefix>value <prefix>value ...}
