@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.module.schedule.Weekdays;
 import seedu.address.ui.UiPart;
-
+import seedu.address.ui.theme.Theme;
 
 /**
  * Creates a schedule grid panel
@@ -234,4 +234,14 @@ public class ScheduleGridPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Sets the style of scrollPane
+     */
+    public void setScrollPaneStyle(Theme theme) {
+        if (theme.equals(Theme.DARK)) {
+            scrollPane.getStylesheets().add("view/schedule/css/scrollPaneDark.css");
+        } else {
+            scrollPane.getStylesheets().add("view/schedule/css/scrollPaneLight.css");
+        }
+    }
 }
