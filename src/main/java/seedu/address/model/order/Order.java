@@ -82,6 +82,37 @@ public class Order {
     }
 
     /**
+     * Constructs an order object.
+     *
+     * @param buyer The buyer who initiates the request.
+     * @param requestedPriceRange The acceptable price range during negotiation.
+     * @param request The description of the request, that is, what kind of pet the buyer wants.
+     * @param additionalRequests Some other requests in string.
+     * @param byDate The date before which the order should be dealt.
+     * @param settledPrice The settled final price.
+     * @param status Whether this order is under negotiation, or finished, or is being delivered, etc.
+     * @param uniqueId The assigned uniqueId for this order.
+     */
+    public Order(Buyer buyer,
+                 PriceRange requestedPriceRange,
+                 Request request,
+                 AdditionalRequests additionalRequests,
+                 LocalDate byDate,
+                 Price settledPrice,
+                 OrderStatus status,
+                 UniqueId uniqueId) {
+        requireAllNonNull(status);
+        this.id = uniqueId;
+        this.buyer = buyer;
+        this.requestedPriceRange = requestedPriceRange;
+        this.request = request;
+        this.additionalRequests = additionalRequests;
+        this.byDate = byDate;
+        this.settledPrice = settledPrice;
+        this.status = status;
+    }
+
+    /**
      * Gets the buyer
      *
      * @return The buyer of this order.
