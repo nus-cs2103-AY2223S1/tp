@@ -600,7 +600,7 @@ Examples:
 - `list` followed by `sort name asc` will list all the students according to their names in ascending order.
 - `list` followed by `sort name desc` will list all the students according to their names in descending order.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 #### Sort by Class Date
 
@@ -614,7 +614,7 @@ Examples:
 - `list` followed by `sort class asc` will list all the students according to their upcoming classes in ascending order.
 - `list` followed by `sort class desc` will list all the students according to their upcoming classes in descending order.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 #### Sort by Money Owed
 
@@ -628,7 +628,7 @@ Examples:
 - `list` followed by `sort OWED ASC` will list all the students according to how much money they owe in ascending order.
 - `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
