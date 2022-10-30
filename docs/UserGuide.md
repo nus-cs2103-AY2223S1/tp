@@ -5,8 +5,8 @@
 
 # Table of Contents
 <div id="top">
-{:toc}
 </div>
+{:toc}
 
 ## Introduction
 
@@ -92,7 +92,7 @@ Danger zone! Do pay attention to the information here carefully.
 </p>
 
 ## Before Using
-{:toc}
+
 
 <div markdown="block" class="alert alert-info">
 
