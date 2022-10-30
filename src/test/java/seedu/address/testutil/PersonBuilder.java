@@ -132,6 +132,7 @@ public class PersonBuilder {
      */
     public PersonBuilder withPosition(String position) {
         this.position = Position.buildPosition(position, DEFAULT_FILE_PATH);
+        this.position.setDetails(details);
         return this;
     }
 
