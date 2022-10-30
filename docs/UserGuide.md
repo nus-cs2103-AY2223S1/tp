@@ -275,8 +275,8 @@ Changes current parameters of selected module.
 >
 > A module is assumed to be valid so long as the:
 > - Module code has **between 6 and 9 alphanumeric characters**
-> - Module credit is **between 1 and 2 digits**
-> - Module name is **alphanumeric and less than 100 characters**
+> - Module credit is **between 1 and 2 digits and non-negative**
+> - Module name is **alphanumeric and between 1 and 100 characters**
 
 Format: `edit module <module code> [-c <module code>] [-cr <module credit>] [-n <module name>]`
 
