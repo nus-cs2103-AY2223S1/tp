@@ -54,7 +54,8 @@ public class ModuleIndexCommandTest {
                 .withPlannedModules(VALID_MODULE_11).withModToRemove("CS2040S").build();
         ModuleIndexCommand moduleCommand = new ModuleIndexCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedPerson.getModuleList());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -75,7 +76,8 @@ public class ModuleIndexCommandTest {
         ModuleCommand.EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedPerson).build();
         ModuleIndexCommand moduleCommand = new ModuleIndexCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedPerson.getModuleList());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -98,7 +100,8 @@ public class ModuleIndexCommandTest {
                 .withPlannedModules(VALID_MODULE_5, VALID_MODULE_6).build();
         ModuleIndexCommand moduleCommand = new ModuleIndexCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedPerson.getModuleList());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
@@ -118,7 +121,8 @@ public class ModuleIndexCommandTest {
                 .withModToRemove("CS2103T", "CS2109S").build();
         ModuleIndexCommand moduleCommand = new ModuleIndexCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedPerson.getModuleList());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
@@ -132,7 +136,8 @@ public class ModuleIndexCommandTest {
                 new ModuleCommand.EditModuleDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedPerson.getModuleList());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -149,7 +154,8 @@ public class ModuleIndexCommandTest {
         ModuleIndexCommand editCommand = new ModuleIndexCommand(INDEX_FIRST_PERSON,
                 new EditModuleDescriptorBuilder().withCurrentModules(VALID_MODULE_2).build());
 
-        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedPerson);
+        String expectedMessage = String.format(ModuleIndexCommand.MESSAGE_EDIT_MODULE_SUCCESS,
+                editedPerson.getModuleList());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);

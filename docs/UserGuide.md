@@ -100,6 +100,7 @@ on the jar file in the folder. This to ensure the jar file is using the correct 
     - [Filtering Previous Modules](#filtering-previous-modules)
   - [Other features](#other-features)
     - [Undo / Redo](#undo--redo--undo-redo)
+    - [Github URL button](#github-url-button)
     - [Viewing help](#viewing-help)
     - [Exiting the program](#exiting-the-program--exit)
 - [Command Summary](#command-summary)
@@ -157,10 +158,12 @@ Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address
 * You are able to specify the modules you are taking currently, have taken in the past, and are planning to take in the future.
 * Each of these module codes should be registered modules in NUS.
 
+
 Examples:
 
-
 * `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109`adds your own user profile to your contact list with all the details specified.
+
+<img src="images/AddUserProfile.png" width="600" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -187,7 +190,7 @@ Examples:
 
 ### Deleting user
 
-Deletes the current user profile from the contacts list
+Deletes the current user profile from the contacts list.
 
 Format: `delete user`
 
@@ -208,7 +211,7 @@ Format: `add n/[contact name] p/[contact phone number] e/[contact email] a/[cont
 
 
 * Adds contact with specified details into your contact list.
-* You can add as many tags to a contact as you want, you may also choose not add any tags
+* You can add as many tags to a contact as you want, you may also choose not add any tags.
 * You are able to specify the modules the contact is taking currently, taken in the past, and is planning to take in the future.
 * Each of these module codes should be registered modules in NUS.
 
@@ -248,6 +251,8 @@ Examples:
 
 * `find John` returns john and John Doe
 * `find alex david` returns `Alex Yeoh`, `David Li`
+
+<img src="images/FindCommand.png" width="600" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -297,12 +302,12 @@ Examples:
 
 ### Clearing all contacts
 
-Deletes all contacts from the contact list with one command
+Deletes all contacts from the contact list with one command.
 
 Format: `clear`
 
 * Every contact in the address book including their information is cleared.
-* User profile does not get deleted
+* User profile does not get deleted.
 
 [Scroll back to top](#table-of-contents)
 
@@ -356,6 +361,8 @@ Examples:
 
 * `module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000` adds the first 3 modules into the first contact's respective lists and removes GEA1000 from all module lists
 
+<img src="images/EditModules.png" width="600" />
+
 [Scroll back to top](#table-of-contents)
 
 ### Checking Modules Left
@@ -387,6 +394,8 @@ The index reference list is as shown:
 Examples:
 
 * `modsleft 1` outputs the list of remaining CS Core Requirement modules that you have yet to clear.
+
+<img src="images/ModulesLeft.png" width="600" />
 
 [Scroll back to top](#table-of-contents)
 
@@ -556,6 +565,12 @@ Undo / Redo your latest action.
 
 Format: `undo` `redo`
 
+### Github URL button
+
+The copy Github Profile URL button copies the user or contact's github profile URL into your clipboard which you can then paste into your browser.
+
+<img src="images/GithubButton.png" width="200" />
+
 ### Viewing help
 
 Shows a message explaining how to access the help page.
@@ -646,7 +661,14 @@ Format: `exit`
    <td><code>modsleft INDEX</code>
 <p>
 <code>Eg. modsleft 3</code>
-   
+
+  <tr>
+      <td><strong>Next Semester</strong>
+      </td>
+      <td>
+        <code>nextsem</code>
+
+
 <tr>
     <td><strong>Add Lesson</strong>
     </td>
@@ -711,8 +733,7 @@ Format: `exit`
         <code>Eg. filterprevmod CS2103T</code>
         <p>
         <code>Eg. filterprevmod CS2103T CS2100</code>
-       </td>
-  </tr>
+       
 
 <tr>
       <td><strong>Filter Planned Modules</strong>
@@ -723,20 +744,26 @@ Format: `exit`
         <code>Eg. filterplanmod CS2109S</code>
         <p>
         <code>Eg. filterplanmod CS2109S CS3230</code>
-       
-
-  <tr>
-      <td><strong>Next Semester</strong>
-      </td>
-      <td>
-        <code>nextsem</code>
-       
 
   <tr>
       <td><strong>Undo / Redo</strong>
       </td>
       <td>
         <code>undo</code> <code>redo</code>
+
+  <tr>
+      <td><strong>Viewing help</strong>
+      </td>
+      <td>
+        <code>help</code>
+
+  <tr>
+      <td><strong>Exiting the program</strong>
+      </td>
+      <td>
+        <code>exit</code>
+
 </table>
+
 
 [Scroll back to top](#table-of-contents)

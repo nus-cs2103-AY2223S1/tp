@@ -98,6 +98,34 @@ public class ExistingUser extends User {
         return Collections.unmodifiableSet(planModules);
     }
 
+    /**
+     * Returns the string representation of the person's module list.
+     */
+    public String getModuleList() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName());
+
+        Set<CurrentModule> currModules = getCurrModules();
+        if (!currModules.isEmpty()) {
+            builder.append("; Current Modules: ");
+            currModules.forEach(builder::append);
+        }
+
+        Set<PreviousModule> prevModules = getPrevModules();
+        if (!prevModules.isEmpty()) {
+            builder.append("; Previous Modules: ");
+            prevModules.forEach(builder::append);
+        }
+
+        Set<PlannedModule> planModules = getPlanModules();
+        if (!currModules.isEmpty()) {
+            builder.append("; Planned Modules: ");
+            planModules.forEach(builder::append);
+        }
+
+        return builder.toString();
+    }
+
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);
     }
