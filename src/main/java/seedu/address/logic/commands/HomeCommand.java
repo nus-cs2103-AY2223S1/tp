@@ -17,6 +17,9 @@ public class HomeCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.goToHomePage();
+
+        assert model.getHomeStatusAsBoolean() == true;
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
