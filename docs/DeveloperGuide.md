@@ -333,27 +333,12 @@ As a result, any updates to `ObservableList<Resident>` would be reflected immedi
 
 ### Show/hide feature for resident fields
 
-**Changes to UI component:**
-
-To achieve the show/hide feature for resident fields, we first had to rework our UI to use a `TableView`
-and two `ObservableList<String>` objects, instead of a `ListView` and a `PersonCard`. This was because the `setVisible`
-method does not work properly with a `ListView` and a `PersonCard` -- as shown below, hidden fields would be rendered 
-as gaps in the `ListView`, rather than being omitted entirely. 
-
-![ListViewMissingField](images/ListViewMissingField.png)
-
-This can be attributed to the use of `Label` to represent fields in a `PersonCard`, which was set to occupy the rows
-in the `ListView` by default. Using `setVisible(false)` only resulted in a `Label` turning *invisible*, leaving the 
-cells (and hence gaps) intact. On the other hand, using `setVisible` on a `TableColumn` in `TableView` worked as 
-intended, and we were also able to allow the remaining columns to expand freely.
-
-
 **Changes to Model component:**
 
-For the feature to work, we wanted to allow the `ResidentTableView` class in the UI to automatically update its 
+For the show/hide features, we wanted to allow the `ResidentTableView` class in the UI to automatically update its 
 columns based on user commands that affected the model. There needed to be some way for the `ResidentTableView` class 
 to synchronise its columns with the corresponding field lists in `ModelManager`. From the below diagram, we can see
-that there is no reference between `ModelManager` and `ResidentTableView`.
+that there is no reference between `ModelManager` and `ResidentTableView`. 
 
 ![MainWindowRelationships](images/MainWindowRelationships.png)
 
