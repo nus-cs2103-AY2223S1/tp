@@ -34,7 +34,7 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
       6. [Adding optional rating `addRate`](#adding-optional-rating-addrate)
       7. [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
       8. [Adding optional links `addLink`](#adding-optional-links-addlink)
-      9. [Deleting links `celeteLink`](#deleting-links-deletelink)
+      9. [Deleting links `deleteLink`](#deleting-links-deletelink)
    5. [Modifying contacts view in CLInkedIn](#modifying-contacts-view-in-clinkedin)
       1. [Viewing the details of a person `view`](#viewing-the-details-of-a-person--view)
       2. [Listing all persons `list`](#listing-all-persons--list)
@@ -137,7 +137,7 @@ While exploring CLInkedIn's features with this user guide, do take note of these
 
 ## Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -272,7 +272,7 @@ Examples:
 Adds additional optional information (notes) to a person
 
 Format: `addNote INDEX note/NOTE`
-* The INDEX refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
@@ -287,7 +287,7 @@ Examples:
 Deletes optional information (notes) of a person.
 
 Format: `deleteNote INDEX`
-* The INDEX refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
@@ -298,9 +298,9 @@ Examples:
 Adds a numerical representation of candidates to make quick comparisons between candidates. 
 
 Format: `addRate INDEX rate/<RATING>`
-* The INDEX refers to the index number shown in the displayed person list.
-* The INDEX must be a positive integer 1, 2, 3, …​
-* The RATING must be an integer between 1 and 10 inclusive.
+* The index refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
+* The rating must be an integer between 1 and 10 inclusive.
 
 Examples:
 * `addRate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
@@ -324,8 +324,8 @@ Example:
 Add links to candidate's online profiles/websites. Once added you can simply click on the icon and you will be redirected to the webpage. 
 
 Format: `addLink INDEX l/<LINK>`
-* The INDEX refers to the index number shown in the displayed person list.
-* The INDEX must be a positive integer 1, 2, 3, …​
+* The index refers to the index number shown in the displayed person list.
+* The index must be a positive integer 1, 2, 3, …​
 * The link must be a valid link with a protocol.
 
 Examples:
@@ -340,25 +340,25 @@ If the link is not a platform recognised by CLInkedIn (LinkedIn, GitHub, Instagr
 Deletes all links of a person.
 
 Format: `deleteLink INDEX`
-* The INDEX refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `deletLink 4` deletes all links of the 4th person in the address book.
+* `deleteLink 4` deletes all links of the 4th person in the address book.
 
 ## Modifying contacts view in CLInkedIn
 
 ### Viewing the details of a person : `view`
 
-Show details of a person in the addressbook.
+Show details of a person in CLInkedIN.
 
 Format: `view INDEX`
 
-Examples: `view 2` views the details of the 2nd person in the addressbook.
+Examples: `view 2` views the details of the 2nd person in CLInkedIn.
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in CLInkedIn.
 
 Format: `list`
 
@@ -386,7 +386,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 * Search can be further refined by specifying the type of tag to search for.
-  e.g. `find n/John p/867` will return `John Doe` with **Phone** number `8675309`
+  e.g. `find n/John p/867` will return `John Doe` with phone number `8675309`
 
 Examples:
 * `find John` returns `john` and `John Doe`
