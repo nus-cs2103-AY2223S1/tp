@@ -19,6 +19,7 @@ Given below are my contributions to the project.
    * Justification: This feature improves the product significantly because originally in the order list, the only buyer relevant information displayed is the name of the buyer. In order to locate the buyer of a particular order, the user has to memorise the name and navigate to the buyer list look for the matched name. This approach is undesirable and unlikely to locate the correct buyer, as the user could misremember the names or there could be people with same names. Therefore, the application should provide a way to rectify the problem.  
    * Highlights: This feature changes the UI display to provide instant feedback to the user.
 
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wweqg&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
@@ -32,7 +33,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `list`, `sort` and `check` [\#177]()https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/177/files#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb
+        * Added documentation for the features `list`, `sort` and `check` [\#177](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/177/files#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb)
     * Developer Guide:
         * Updated the UML diagram for storage package.
 
