@@ -116,9 +116,9 @@ public class VersionedBobaBot extends BobaBot {
     public boolean equals(Object other) {
         if (other instanceof VersionedBobaBot) {
             VersionedBobaBot ot = (VersionedBobaBot) other;
-            return this.bobaBotStateList.equals(ot.bobaBotStateList) &&
-                    this.currentStatePointer == ot.currentStatePointer &&
-                    this.sizeLimit == ot.sizeLimit;
+            return this.bobaBotStateList.equals(ot.bobaBotStateList)
+                    && this.currentStatePointer == ot.currentStatePointer
+                    && this.sizeLimit == ot.sizeLimit;
         }
         return false;
     }
