@@ -386,6 +386,14 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getLessonPlan().equals(e.getLessonPlan())
+                    && getHomework().equals(e.getHomework())
+                    && getHomeworkIndex().equals(e.getHomeworkIndex())
+                    && getGradeProgress().equals(e.getGradeProgress())
+                    && getGradeProgressIndex().equals(e.getGradeProgressIndex())
+                    && getAttendance().equals(e.getAttendance())
+                    && getAttendanceIndex().equals(e.getAttendanceIndex())
+                    && getSession().equals(e.getSession())
+                    && getSessionIndex().equals(e.getSessionIndex())
                     && getTags().equals(e.getTags());
         }
     }
