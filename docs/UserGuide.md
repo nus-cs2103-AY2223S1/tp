@@ -27,6 +27,17 @@ use its text-based commands. Get started now by heading over to [How to use the 
 
 ## **How to use the User Guide**
 
+### Icons
+
+Throughout this website, you may find colored boxes that contain useful information. The icon at the top of the box represents
+the type of information contained.
+
+| Icon                                      | Meaning                              |
+|-------------------------------------------|--------------------------------------|
+| ![Tip](images/user-guide/tip.png)         | Something you may find useful.       |
+| ![Note](images/user-guide/note.png)       | Something you should keep in mind.   |
+| ![Caution](images/user-guide/caution.png) | Something you should be cautious of. |
+
 ---
 
 ## **Getting Started**
@@ -53,7 +64,7 @@ The app comes with sample contacts and tasks by default. To delete the sample da
 
 After you open Swift+, the app will appear in the form of a graphical user interface, or GUI. In Swift+, you can toggle 
 between the Contact View, which is primarily for viewing contacts, and the Task View, which is mainly for viewing tasks. 
-Let's look at the different components in Swift+ below.
+Let's take a look at the different components in Swift+ below.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
 To toggle between Contact View and Task View, you can use the [`Ctrl + Tab`](#toggling-between-contacts-and-tasks-tabs-ctrl--tab) command.
@@ -416,7 +427,7 @@ Swift+ data are saved in the hard disk automatically after any command that chan
 
 Swift+ data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution** <br>
+<div markdown="span" class="alert alert-warning">:warning: **Caution** <br>
 If your changes to the data file makes its format invalid, Swift+ will discard all data and start with an empty data file at the next run.
 </div>
 
