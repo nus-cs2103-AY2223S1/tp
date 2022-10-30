@@ -11,5 +11,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_UNDO = "Nothing to be undid!";
     public static final String MESSAGE_INVALID_REDO = "Nothing to be redid!";
-
+    public static final String MESSAGE_INVALID_LESSON_TIME = "The start time of the lesson, %s,  cannot be earlier "
+            + "than or the same as the end time of the lesson, %s.";
 }

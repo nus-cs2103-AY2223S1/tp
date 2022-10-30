@@ -28,7 +28,7 @@ public class LessonCommand extends Command {
             + "Example: " + COMMAND_WORD + " user "
             + PREFIX_LESSON + "tut "
             + PREFIX_MOD + "CS2103T "
-            + PREFIX_DAY + "thu "
+            + PREFIX_DAY + "1 "
             + PREFIX_START + "12:00 "
             + PREFIX_END + "13:00";
 
