@@ -107,6 +107,9 @@ public class ModelManager implements Model {
 
     @Override
     public void setTaAssist(ReadOnlyTaAssist taAssist) {
+        if (isInFocusMode()) {
+            exitFocusMode();
+        }
         this.taAssist.resetData(taAssist);
     }
 

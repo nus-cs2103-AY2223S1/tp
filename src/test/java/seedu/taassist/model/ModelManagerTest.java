@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.taassist.testutil.Assert.assertThrows;
+import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
 import static seedu.taassist.testutil.TypicalStudents.BENSON;
 import static seedu.taassist.testutil.TypicalStudents.CARL;
@@ -72,6 +73,14 @@ public class ModelManagerTest {
         Path path = Paths.get("address/book/file/path");
         modelManager.setTaAssistFilePath(path);
         assertEquals(path, modelManager.getTaAssistFilePath());
+    }
+
+    @Test
+    public void setTaAssist_inFocusMode_exitsFocusMode() {
+        modelManager.addModuleClass(CS1231S);
+        modelManager.enterFocusMode(CS1231S);
+        modelManager.setTaAssist(new TaAssist());
+        assertFalse(modelManager.isInFocusMode());
     }
 
     @Test
