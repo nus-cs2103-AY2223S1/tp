@@ -114,6 +114,11 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 
 <div markdown="block" class="alert alert-info">
 
+### Commands
+This section contains **everything you need to know** about the commands used in FindMyIntern.
+
+The below shows the command format used in FindMyIntern.
+
 **:information_source: Command format**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user<br>
@@ -136,9 +141,7 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 
 </div>
 
-### Commands
-
-This section contains **everything you need to know** about the commands used in FindMyIntern. Click on any of the commands to jump straight into it.
+To navigate to a specific command, you can just click on any of the commands to jump straight into it.
 
 - [Viewing help: `help`](#viewing-help-help)
 - [Adding an internship application: `add`](#adding-an-internship-application-add)
@@ -509,7 +512,7 @@ If your changes to the data file makes its format invalid, FindMyIntern will dis
 </div>
 </div>
 
-### UI elements
+### UI Elements
 
 #### Links
 
@@ -550,7 +553,7 @@ This section specifies **the input details** that you have to be aware of in Fin
 - [Application Status](#application-status)
 - [Date/Time Formats](#datetime-formats)
 
-### Field constraints
+### Field Constraints
 
 Commands like `add` and `edit` accept fields, their constraints are specified below.
 
@@ -565,33 +568,33 @@ There are no constraints for a field if the constraints box is empty for that fi
   </thead>
   <tbody>
     <tr>
-      <td><kbd>c/COMPANY</kbd></td>
+      <td>`c/COMPANY`</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td><kbd>l/LINK</kbd></td>
+      <td>`l/LINK`</td>
       <td>Links must be of the format `HOSTNAME.PATH`, where both `HOSTNAME` and `PATH` are alphanumeric</td>
     </tr>
     <tr>
-      <td><kbd>d/DESCRIPTION</kbd></td>
+      <td>`d/DESCRIPTION`</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td><kbd>a/APPLIED_DATE</kbd></td>
+      <td>`a/APPLIED_DATE`</td>
       <td>See <a href="#datetime-formats">date/time formats</a></td>
     </tr>
     <tr>
-      <td><kbd>i/INTERVIEW_DATE_TIME</kbd></td>
+      <td>`i/INTERVIEW_DATE_TIME`</td>
       <td>See <a href="#datetime-formats">date/time formats</a></td>
     </tr>
     <tr>
-      <td><kbd>t/TAG</kbd></td>
+      <td>`t/TAG`</td>
       <td>Must only contain alphabets and spaces</td>
     </tr>
   </tbody>
 </table>
 
-### Application status
+### Application Status
 
 Application status refers to the current status of an internship application.
 Each internship application is tagged with an application status.
@@ -608,34 +611,34 @@ Application status as an input field **must be one of the following**:
   </thead>
   <tbody>
     <tr>
-      <td><kbd>applied</kbd></td>
+      <td>`applied`</td>
       <td>You have applied for this internship</td>
       <td>Default application status</td>
     </tr>
     <tr>
-      <td><kbd>shortlisted</kbd></td>
+      <td>`shortlisted`</td>
       <td>Company has shortlisted you for interview</td>
       <td>Adding/editing the interview date/time of an internship application will change application status to "Shortlisted"</td>
     </tr>
     <tr>
-      <td><kbd>interviewed</kbd></td>
+      <td>`interviewed`</td>
       <td>You have been interviewed for this internship application</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td><kbd>accepted</kbd></td>
+      <td>`accepted`</td>
       <td>You have accepted this internship</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td><kbd>rejected</kbd></td>
+      <td>`rejected`</td>
       <td>You have rejected this internship</td>
       <td>&nbsp;</td>
     </tr>
   </tbody>
 </table>
 
-### Date/time formats
+### Date/Time Formats
 
 The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
 
@@ -650,11 +653,11 @@ For `APPLIED_DATE`, the formats allowed:
   </thead>
   <tbody>
     <tr>
-      <td><kbd>d MMM yyyy</kbd></td>
+      <td>`d MMM yyyy`</td>
       <td>7 Oct 2022</td>
     </tr>
     <tr>
-      <td><kbd>d/M/yyyy</kbd></td>
+      <td>`d/M/yyyy`</td>
       <td>7/10/2022</td>
     </tr>
   </tbody>
@@ -672,22 +675,22 @@ For `INTERVIEW_DATE_TIME`, the formats allowed:
   </thead>
   <tbody>
     <tr>
-      <td><kbd>d MMM yyyy HH:mm</kbd></td>
+      <td>`d MMM yyyy HH:mm`</td>
       <td>7 Oct 2022 15:00</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td><kbd>d/M/yyyy HH:mm</kbd></td>
+      <td>`d/M/yyyy HH:mm`</td>
       <td>7/10/2022 15:00</td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td><kbd>d MMM yyyy, h:mm a</kbd></td>
+      <td>`d MMM yyyy, h:mm a`</td>
       <td>7 Oct 2022, 3:00 pm</td>
       <td>Take note of the <ul><li>comma after the date</li><li>space between the time and AM/PM</li></ul></td>
     </tr>
     <tr>
-      <td><kbd>d/M/yyyy, h:mm a</kbd></td>
+      <td>`d/M/yyyy, h:mm a`</td>
       <td>7/10/2022, 3:00 pm</td>
       <td>Take note of the <ul><li>comma after the date</li><li>space between the time and AM/PM</li></ul></td>
     </tr>
@@ -696,7 +699,7 @@ For `INTERVIEW_DATE_TIME`, the formats allowed:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
