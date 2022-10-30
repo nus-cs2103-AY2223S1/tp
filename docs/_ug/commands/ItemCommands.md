@@ -31,9 +31,7 @@ Example of an [Item](#item):
 new n/Potato qty/70 u/kg bgt/22-02-2022 exp/22-03-2022
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 New item added:
@@ -64,9 +62,7 @@ Tags: {}
 list
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Listed all items
@@ -103,9 +99,7 @@ Item List Box:
 find potato carrot cucumbers
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 1 item listed!
@@ -136,9 +130,7 @@ Item List Box:
 sort n/
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 3 items sorted!
@@ -170,9 +162,7 @@ Item List Box:
 view 1
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Name: Onions
@@ -203,9 +193,7 @@ Tags: {vegetables}
 inc 1 qty/3
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Incremented Item:
@@ -236,9 +224,7 @@ Tags: {vegetables}
 dec 1 qty/4
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Decremented Item:
@@ -279,9 +265,7 @@ Tags: {vegetables}
 edit 1 qty/100 n/Potatoes
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Edited Item:
@@ -313,9 +297,7 @@ Tags: {vegetables}
 rmk 1 r/For Party
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Remark Added:
@@ -342,9 +324,7 @@ Tags: {vegetables}
 del 1
 ```
 
-**Expected Output:**
-
-Command Output Box:
+**Expected Output:**<br>Command Output Box:
 
 ```text
 Deleted Item:
