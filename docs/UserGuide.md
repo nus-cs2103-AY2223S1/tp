@@ -21,7 +21,7 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 3. Copy the file to the folder you want to use as the _home folder_ for your HackAssist.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Quickstart_Updated.png)
 
 5. Click on the `Tasks` tab to switch to the task list view.
 
