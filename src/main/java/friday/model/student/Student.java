@@ -75,7 +75,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same name.
+     * Returns true if both students have the same name or Telegram handle.
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
@@ -84,7 +84,8 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && (otherStudent.getName().equals(getName())
+                || otherStudent.getTelegramHandle().equals(getTelegramHandle()));
     }
 
     /**

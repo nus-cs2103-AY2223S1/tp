@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TELEGRAMHANDLE + "TELEGRAM HANDLE] "
             + "[" + PREFIX_CONSULTATION + "CONSULTATION] "
             + "[" + PREFIX_MASTERYCHECK + "MASTERY CHECK] "
-            + "[" + PREFIX_TAG + "TAG]\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TELEGRAMHANDLE + "johndoe "
             + PREFIX_CONSULTATION + "2022-09-01 "

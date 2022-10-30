@@ -11,9 +11,9 @@ public class TelegramHandle implements Comparable<TelegramHandle> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Telegram handle should only contain letters a-z, numbers 0-9, and underscores; it should also be at least "
-                    + "5 characters long";
-    public static final String VALIDATION_REGEX = "[a-zA-Z0-9_]{5,}";
+            "Telegram handle should only contain letters a-z, numbers 0-9, and underscores; it should also be between "
+                    + "5 and 32 characters long";
+    public static final String VALIDATION_REGEX = "[a-zA-Z0-9_]{5,32}";
 
     public static final TelegramHandle EMPTY_TELEGRAMHANDLE = new TelegramHandle();
 
@@ -87,7 +87,7 @@ public class TelegramHandle implements Comparable<TelegramHandle> {
         } else if (telegramHandle.isEmpty()) {
             return -1;
         }
-        return this.value.compareTo(telegramHandle.value);
+        return this.value.toLowerCase().compareTo(telegramHandle.value.toLowerCase());
     }
 
 }

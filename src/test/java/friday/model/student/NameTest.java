@@ -42,6 +42,6 @@ public class NameTest {
     public void compareTo() {
         assertTrue(new Name("Jim").compareTo(new Name("Jimmy")) < 0); // shorter names are smaller
         assertTrue(new Name("Lumine").compareTo(new Name("Aether")) > 0); // L comes after A
-        assertTrue(new Name("Candice").compareTo(new Name("candice")) < 0); // Capital letters are smaller
+        assertTrue(new Name("Candice").compareTo(new Name("bandice")) > 0); // Comparison is case-insensitive
     }
 }
