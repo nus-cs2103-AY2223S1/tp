@@ -6,7 +6,41 @@
 # Table of Contents
 <div id="top">
 </div>
-{:toc}
+
+<!-- TOC -->
+* [Introduction](#introduction)
+* [Quick start](#quick-start)
+* [Navigating the User Guide](#navigating-the-user-guide)
+  * [Information Box](#information-box)
+  * [Tip Box](#tip-box)
+  * [Danger Box](#danger-box)
+  * [Formatting](#formatting)
+* [Before Using](#before-using)
+  * [Familiarising yourself with the interface](#familiarising-yourself-with-the-interface)
+  * [Categorising your expenses and income](#categorising-your-expenses-and-income)
+  * [Guidelines on organising your expenses and income](#guidelines-on-organising-your-expenses-and-income)
+* [Features](#features)
+  * [Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`](#adding-entries--add-tentry_type-ddescription-aamount-dadate-ccategory)
+    * [Add an expense entry to the expenditure list](#add-an-expense-entry-to-the-expenditure-list)
+    * [Add an income entry to the income list](#add-an-income-entry-to-the-income-list)
+  * [Deleting entries: `delete INDEX_OF_ENTRY t/ENTRY_TYPE`](#deleting-entries--delete-index_of_entry-tentry_type)
+    * [Delete an expense from the expenditure list](#delete-an-expense-from-the-expenditure-list)
+    * [Delete an income from the income list](#delete-an-income-from-the-income-list)
+  * [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
+    * [Edits expenditure with specified fields](#edits-expenditure-with-specified-fields)
+    * [Edits income with specified fields](#edits-income-with-specified-fields)
+  * [Summary of entries: `summary [mo/MONTH]`](#summary-of-entries--summary-momonth)
+    * [Summary of all entries in the currently shown list](#summary-of-all-entries-in-the-currently-shown-list)
+    * [Summary of all entries the specified month](#summary-of-all-entries-the-specified-month)
+  * [View entries by category: `view t/ENTRY_TYPE`](#view-entries-by-category--view-tentry_type)
+  * [View entries by month: `view t/ENTRY_TYPE mo/MONTH`](#view-entries-by-month--view-tentry_type-momonth)
+  * [Clearing all entries: `clear`](#clearing-all-entries--clear)
+  * [Exiting the program: `exit`](#exiting-the-program--exit)
+  * [Saving the data](#saving-the-data)
+  * [Editing the data file](#editing-the-data-file)
+* [FAQ](#faq)
+* [Command summary](#command-summary)
+<!-- TOC -->
 
 ## Introduction
 
