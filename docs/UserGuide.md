@@ -273,7 +273,7 @@ You can set the total leave available for an **incoming new** employee when addi
 
 Example: `add n/Yi Long Ma j/Chief Operating Officer d/General Management l/20` adds an employee, and specifies his **total leave** to be **20**.
 
-You can also edit the total leave available for an ****existing** employee by using the `edit` command, and editing the `l/` tag for an employee.
+You can also edit the total leave available for an **existing** employee by using the `edit` command, and editing the `l/` tag for an employee.
 
 Example: `edit 1 l/10` edits the total leave of the **first** employee in the current list to be **10**.
 
@@ -457,8 +457,8 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **View Details**    | `view ID` <br> e.g. `view 1`                                                                                                                                                                                                                     |
 | **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
-| **Add leave**       | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                  |
-| **Delete leave**    | `deleteleave id/ID i/INDEX`<br> e.g. `deleteleave id/1 i/3`                                                                                                                                                                                      |
+| **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                  |
+| **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                                                                                      |
 | **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `viewdepartment Finance`                                                                                                                                                                                    |
 | **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                                                                                   |
 | **List**            | `list`                                                                                                                                                                                                                                           |
