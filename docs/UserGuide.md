@@ -40,8 +40,6 @@ while still having the benefits of a Graphical User Interface (GUI).
 | [`edit-module`](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
 | *[`find-module`](#214-find-module)                            | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
 | *[`list-module`](#215-list-module)                            | `list-module`                                                           | List all modules in home page after finding                                     |
-| [`add-person-to-module`](#216-add-person-to-module)           | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
-| [`delete-person-from-module`](#217-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
 | [`add-task`](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
 | [`delete-task`](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
 | [`swap-task`](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
@@ -49,10 +47,12 @@ while still having the benefits of a Graphical User Interface (GUI).
 | [`delete-link`](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
 | [`open-link`](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
 | [`add-person`](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`delete-person`](#242-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
-| [`edit-person`](#243-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
-| *[`find-person`](#244-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
-| *[`list-person`](#245-list-person)                            | `list-person`                                                           | List all contacts                                                               |
+| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
+| [`delete-person`](#243-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
+| [`delete-person-from-module`](#244-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
+| [`edit-person`](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
+| *[`find-person`](#246-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
+| *[`list-person`](#247-list-person)                            | `list-person`                                                           | List all contacts                                                               |
 | [`home`](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
 | [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
 | [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
@@ -217,51 +217,6 @@ Example:
 list-module
 ```
 In the above example, we list every module that exist in Plannit.
-
-#### 2.1.6. Add person to module
-You can add a person to a module on Plannit using the `add-person-to-module` command. In other 
-words, an association between a person and a module will be created.
-
-This command will require two flags:
-* `m/`: To be followed by the module code of the module which the person will be added to.
-* `n/`: To be followed by the name of the person who will be added to the module.
-
-Format: `add-person-to-module m/MODULE_CODE n/NAME`
-* You can only add a person to a module if both the person and the module are currently 
-  displayed on screen.
-* If a person has already been added to a module, the person cannot be added to the module again.
-
-Example:
-
-```
-add-person-to-module m/CS2103T n/Dinosaur Lim
-```
-In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
-
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**
-If you wish to view a person added to a particular module, you may do so by navigating to that
-module using the [`goto`](#252-navigate-between-modules) command.
-</div>
-
-#### 2.1.7. Delete person from module
-You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
-command.  
-
-This command will require two flags:
-* `m/`: To be followed by the module code of the module, which the person will be removed from.
-* `n/`: To be followed by the name of the person, whom will be removed from the module.
-
-Format: `delete-person-from-module m/MODULE_CODE n/NAME`
-* You can only delete the specified person from the specified module if the person was originally associated to the
-module.
-* You can only delete a person from a module when both the specified module and person are currently being displayed.
-
-Example:
-
-```
-delete-person-from-module m/CS2103T n/Dinosaur Lim
-```
-In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
 
 <br>
 
@@ -507,18 +462,18 @@ from the module with module code `CS2040`, using their corresponding link alias 
 
 ### 2.4. Contacts
 #### 2.4.1. Add person
-You may add a contact using the `add-person` command.
+You may add a contact to Plannit using the `add-person` command.
 
 This command will require three flags:
-* `n/`: To be followed by the to-be-added contact name.
-* `e/`: To be followed by the email of the new contact.
-* `p/`: To be followed by the phone number of the new contact.
+
+| Field     | Flag | Constraints                                                        |
+|-----------|------|--------------------------------------------------------------------|
+| **Name**  | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)       |
+| **Phone** | `p/` | Can only be 8 digits long                                          |
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
-* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
-* You cannot specify any country code for phone number.
-* You must specify an 8-digit phone number.
 
 Example:
 ```
@@ -531,14 +486,45 @@ In the above example, we are adding a contact with name `Dinosaur Lim`, email `d
 Adding a person will bring you back to the home page.
 </div>
 
-#### 2.4.2. Delete person
-You may delete a contact using the `delete-person` command.
+#### 2.4.2. Add person to module
+You can add a person to a module using the `add-person-to-module` command. In other
+words, an association between a person and a module will be created.
+
+This command will require two flags:
+
+| Field           | Flag | Constraints                                                        |
+|-----------------|------|--------------------------------------------------------------------|
+| **Module Code** | `m/` | Can only be non-empty string of alphanumeric characters            |
+| **Name**        | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+
+Format: `add-person-to-module m/MODULE_CODE n/NAME`
+* If a person has already been added to a module, the person cannot be added to the module again.
+* You can only add a person to a module if both the person and the module are currently
+  displayed on screen.
+
+Example:
+
+```
+add-person-to-module m/CS2103T n/Dinosaur Lim
+```
+In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+If you wish to view a person added to a particular module, you may do so by navigating to that
+module using the [`goto`](#252-navigate-between-modules) command.
+</div>
+
+#### 2.4.3. Delete person
+You may delete a contact from Plannit using the `delete-person` command.
 
 This command will require one flag:
-* `n/`: To be followed by the to-be-deleted contact name.
+
+| Field           | Flag | Constraints                                                        |
+|-----------------|------|--------------------------------------------------------------------|
+| **Name**        | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
 
 Format: `delete-person n/NAME`
-* You cannot delete a non-existent contact.
+* You cannot delete a non-existent contact in Plannit.
 * You can only delete a person from Plannit when the person is currently being displayed.
 
 Example:
@@ -547,19 +533,43 @@ delete-person n/Dinosaur Lim
 ```
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
-#### 2.4.3. Edit person
+#### 2.4.4. Delete person from module
+You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
+command.
+
+This command will require two flags:
+
+| Field           | Flag | Constraints                                                        |
+|-----------------|------|--------------------------------------------------------------------|
+| **Module Code** | `m/` | Can only be non-empty string of alphanumeric characters            |
+| **Name**        | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+
+Format: `delete-person-from-module m/MODULE_CODE n/NAME`
+* You can only delete the specified person from the specified module if the person was originally associated to the
+  module.
+* You can only delete a person from a module when both the specified module and person are currently being displayed.
+
+Example:
+
+```
+delete-person-from-module m/CS2103T n/Dinosaur Lim
+```
+In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
+
+
+#### 2.4.5. Edit person
 You may edit a contact using the `edit-person` command.
 
 This command will require an index and minimally any of the three flags:
-* `n/`: To be followed by the new contact name.
-* `e/`: To be followed by the new email of the contact.
-* `p/`: To be followed by the new phone number of the contact.
+
+| Field     | Flag | Constraints                                                        |
+|-----------|------|--------------------------------------------------------------------|
+| **Name**  | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)       |
+| **Phone** | `p/` | Can only be 8 digits long                                          |
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 * `INDEX` is the currently displayed index number of the contact you are editing for on the screen.
-* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
-* You cannot specify any country code for phone number.
-* You must specify an 8-digit phone number.
 
 Examples:
 ```
@@ -578,7 +588,8 @@ edit-person 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
 `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
 
-#### 2.4.4. Find person
+
+#### 2.4.6. Find person
 When you are on the home page, you can search for people whose names start with the specified keywords.
 
 Format: `find-person KEYWORD`
@@ -594,7 +605,7 @@ find-person Alex
 ```
 In either of the above examples, we find every person whose name starts with Alex in Plannit.
 
-#### 2.4.5. List person
+#### 2.4.7. List person
 When you are on the home page, you may obtain the list of every person in Plannit.
 
 Format: `list-person`
@@ -707,3 +718,8 @@ the file that contains the data of your previous Plannit home folder.
 [More questions coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
+# 5. Glossary
+
+| Term                  | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **local-part@domain** | The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>The local-part may not start or end with any special characters. <br> <br>This is followed by a '@' and then a domain name. <br> <br>The domain name is made up of domain labels separated by periods. The domain name must: <br> 1) end with a domain label at least 2 characters long <br> 2) have each domain label start and end with alphanumeric characters <br> 3) have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
