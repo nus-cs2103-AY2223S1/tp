@@ -49,8 +49,8 @@ Also, medication tags can be added to your patients to keep track of their long-
 6. Note how the app contains some sample data.<br>
    ![Ui](images/ug-images/Ui-explanations.png)
 
-7. Type your desired command into the command box and press <Enter> to execute it. e.g. typing **`help`** and pressing
-   <Enter> will open the help window.<br>
+7. Type your desired command into the command box and press `<Enter>` to execute it. e.g. typing **`help`** and pressing
+   `<Enter>` will open the help window.<br>
    Some example commands you can try:
 
     * **`add`**`n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690
