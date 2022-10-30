@@ -93,7 +93,8 @@ public class Team {
      * @param tasks       A list of tasks for the team to do
      * @param links       A list of links that the team should keep track of
      */
-    public Team(TeamName teamName, Description description, List<Person> teamMembers, List<Task> tasks, List<Link> links) {
+    public Team(TeamName teamName, Description description,
+                List<Person> teamMembers, List<Task> tasks, List<Link> links) {
         this(teamName, description, teamMembers, tasks);
         this.links.setLinks(links);
     }

@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Description;
 import seedu.address.model.team.Link;
@@ -90,7 +89,8 @@ public class JsonAdaptedTeam {
         }
 
         if (teamName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TeamName.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, TeamName.class.getSimpleName()));
         }
 
         if (!TeamName.isValidTeamName(teamName)) {
@@ -100,7 +100,8 @@ public class JsonAdaptedTeam {
         TeamName teamNameModel = new TeamName(teamName);
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
 
         if (!Description.isValidTeamDescription(description)) {

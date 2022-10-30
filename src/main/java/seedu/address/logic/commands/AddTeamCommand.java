@@ -14,7 +14,6 @@ import java.util.List;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.DescriptionConverter;
 import seedu.address.model.Model;
 import seedu.address.model.team.Description;
 import seedu.address.model.team.Team;
