@@ -51,13 +51,14 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME,
                 PREFIX_RATING, PREFIX_SPECIALISATION, PREFIX_YEAR, PREFIX_OFFICEHOUR);
 
-        if (!(areAllArgsNonEmpty(PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
+        if (!(isAnyFieldPresent(PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME,
                 PREFIX_RATING, PREFIX_SPECIALISATION, PREFIX_YEAR, PREFIX_OFFICEHOUR))) {
-            if (hasEmptyFields) {
-                throw new ParseException((FindCommand.EMPTY_FIELDS_MESSAGE));
-            }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        if (hasEmptyFields) {
+            throw new ParseException((FindCommand.EMPTY_FIELDS_MESSAGE));
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -129,15 +130,16 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap} and the modules and tag fields have the correct format.
      */
-    private boolean areAllArgsNonEmpty(Prefix... prefixes) {
+    private boolean isAnyFieldPresent(Prefix... prefixes) {
         Supplier<Stream<Prefix>> presentArgs = () ->
                 Stream.of(prefixes).filter(prefix -> argMultimap.getValue(prefix).isPresent());
         if (presentArgs.get().count() == 0) {
             return false;
         } else {
-            hasEmptyFields = true;
-            return presentArgs.get().allMatch(prefix ->
-                    argMultimap.getValue(prefix).get().trim().length() != 0);
+            hasEmptyFields = presentArgs.get().anyMatch(prefix ->
+                    argMultimap.getValue(prefix).get().trim().length() == 0);
+            System.out.println(hasEmptyFields);
+            return true;
         }
     }
 
