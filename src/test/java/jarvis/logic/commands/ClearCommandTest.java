@@ -13,7 +13,7 @@ import jarvis.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyJARVIS_success() {
+    public void execute_emptyJarvis_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyJARVIS_success() {
+    public void execute_nonEmptyJarvis_success() {
         Model model = new ModelManager(getTypicalStudentBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
         expectedModel.setStudentBook(new StudentBook());

@@ -2,10 +2,8 @@ package jarvis.testutil;
 
 
 import static jarvis.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_TASK_DESC;
 
-import java.text.DateFormat;
 import java.time.format.DateTimeFormatter;
 
 import jarvis.logic.commands.AddTaskCommand;

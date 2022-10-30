@@ -46,24 +46,24 @@ public class EditStudentCommandTest {
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 
-        @Test
-        public void execute_someFieldsSpecifiedUnfilteredList_success() {
-            Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
-            Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
+    @Test
+    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
+        Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
-            StudentBuilder studentInList = new StudentBuilder(lastStudent);
-            Student editedStudent = studentInList.withName(VALID_NAME_BOB).build();
+        StudentBuilder studentInList = new StudentBuilder(lastStudent);
+        Student editedStudent = studentInList.withName(VALID_NAME_BOB).build();
 
-            EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
-            EditStudentCommand editCommand = new EditStudentCommand(indexLastStudent, descriptor);
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditStudentCommand editCommand = new EditStudentCommand(indexLastStudent, descriptor);
 
-            String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-            Model expectedModel = new ModelManager(new StudentBook(model.getStudentBook()), new UserPrefs());
-            expectedModel.setStudent(lastStudent, editedStudent);
+        Model expectedModel = new ModelManager(new StudentBook(model.getStudentBook()), new UserPrefs());
+        expectedModel.setStudent(lastStudent, editedStudent);
 
-            assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-        }
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {

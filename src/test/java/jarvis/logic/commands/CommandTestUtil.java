@@ -118,18 +118,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
-
-    public static void showTaskAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
-
-        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-//        final String[] splitName = student.getName().fullName.split("\\s+");
-//        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-
-
-        assertEquals(1, model.getFilteredStudentList().size());
-    }
-
-
 }
