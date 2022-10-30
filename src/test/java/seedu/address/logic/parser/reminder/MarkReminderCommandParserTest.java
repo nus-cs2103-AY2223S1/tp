@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_REMINDER;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.reminder.MarkReminderCommand;
 
 public class MarkReminderCommandParserTest {
