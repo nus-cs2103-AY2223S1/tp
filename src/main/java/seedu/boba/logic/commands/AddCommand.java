@@ -1,5 +1,11 @@
 package seedu.boba.logic.commands;
 
+import seedu.boba.logic.commands.exceptions.CommandException;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.customer.Customer;
+
+import java.time.LocalDate;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_BIRTHDAY_MONTH;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -8,12 +14,6 @@ import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.boba.model.customer.Customer.BIRTHDAY_TAG;
-
-import java.time.LocalDate;
-
-import seedu.boba.logic.commands.exceptions.CommandException;
-import seedu.boba.model.BobaBotModel;
-import seedu.boba.model.customer.Customer;
 
 /**
  * Adds a customer to bobaBot.

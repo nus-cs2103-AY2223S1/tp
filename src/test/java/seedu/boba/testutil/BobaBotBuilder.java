@@ -6,11 +6,11 @@ import seedu.boba.model.customer.Customer;
 /**
  * A utility class to help with building BobaBot objects.
  * Example usage: <br>
- *     {@code BobaBot ab = new BobaBotBuilder().withPerson("John", "Doe").build();}
+ * {@code BobaBot ab = new BobaBotBuilder().withPerson("John", "Doe").build();}
  */
 public class BobaBotBuilder {
 
-    private BobaBot bobaBot;
+    private final BobaBot bobaBot;
 
     public BobaBotBuilder() {
         bobaBot = new BobaBot();

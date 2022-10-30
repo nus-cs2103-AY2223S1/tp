@@ -1,14 +1,7 @@
 package seedu.boba.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.boba.commons.exceptions.IllegalValueException;
 import seedu.boba.model.customer.BirthdayMonth;
 import seedu.boba.model.customer.Customer;
@@ -17,6 +10,12 @@ import seedu.boba.model.customer.Name;
 import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
 import seedu.boba.model.tag.Tag;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Customer}.
@@ -101,7 +100,7 @@ class JsonAdaptedCustomer {
 
         if (birthdayMonth == null) {
             throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, BirthdayMonth.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, BirthdayMonth.class.getSimpleName()));
         }
         if (!BirthdayMonth.isValidBirthdayMonth(birthdayMonth)) {
             throw new IllegalValueException(BirthdayMonth.MESSAGE_CONSTRAINTS);

@@ -1,9 +1,9 @@
 package seedu.boba.commons.util;
 
-import static java.util.Objects.requireNonNull;
-
 import javafx.scene.image.Image;
 import seedu.boba.MainApp;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * A container for App specific utility functions

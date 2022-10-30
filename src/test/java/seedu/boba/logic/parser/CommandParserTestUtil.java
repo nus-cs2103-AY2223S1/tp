@@ -1,9 +1,9 @@
 package seedu.boba.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import seedu.boba.logic.commands.Command;
 import seedu.boba.logic.parser.exceptions.ParseException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Contains helper methods for testing command parsers.
@@ -15,7 +15,7 @@ public class CommandParserTestUtil {
      * equals to {@code expectedCommand}.
      */
     public static void assertParseSuccess(Parser<? extends Command> parser, String userInput,
-            Command expectedCommand) {
+                                          Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);

@@ -1,5 +1,14 @@
 package seedu.boba.model.customer;
 
+import org.junit.jupiter.api.Test;
+import seedu.boba.model.customer.exceptions.DuplicatePersonException;
+import seedu.boba.model.customer.exceptions.PersonNotFoundException;
+import seedu.boba.testutil.CustomerBuilder;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,16 +17,6 @@ import static seedu.boba.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
 import static seedu.boba.testutil.Assert.assertThrows;
 import static seedu.boba.testutil.TypicalCustomers.ALICE;
 import static seedu.boba.testutil.TypicalCustomers.BOB;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.boba.model.customer.exceptions.DuplicatePersonException;
-import seedu.boba.model.customer.exceptions.PersonNotFoundException;
-import seedu.boba.testutil.CustomerBuilder;
 
 public class UniqueCustomerListTest {
 

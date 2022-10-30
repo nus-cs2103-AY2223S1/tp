@@ -1,17 +1,16 @@
 package seedu.boba.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-
 import seedu.boba.commons.exceptions.IllegalValueException;
 import seedu.boba.model.BobaBot;
 import seedu.boba.model.ReadOnlyBobaBot;
 import seedu.boba.model.customer.Customer;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * An Immutable BobaBot that is serializable to JSON format.

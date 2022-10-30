@@ -1,7 +1,5 @@
 package seedu.boba.logic;
 
-import java.nio.file.Path;
-
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import seedu.boba.commons.core.GuiSettings;
@@ -12,16 +10,19 @@ import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.ReadOnlyBobaBot;
 import seedu.boba.model.customer.Customer;
 
+import java.nio.file.Path;
+
 /**
  * API of the Logic component
  */
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException If an error occurs during parsing.
+     * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
@@ -32,10 +33,14 @@ public interface Logic {
      */
     ReadOnlyBobaBot getBobaBot();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /**
+     * Returns an unmodifiable view of the filtered list of persons
+     */
     ObservableList<Customer> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the list of promotion images*/
+    /**
+     * Returns an unmodifiable view of the list of promotion images
+     */
     ObservableList<Image> getPromotionList();
 
     void parseAllPromotion(String filePath);

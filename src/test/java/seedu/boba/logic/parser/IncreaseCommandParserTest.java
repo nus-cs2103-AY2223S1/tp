@@ -1,5 +1,9 @@
 package seedu.boba.logic.parser;
 
+import org.junit.jupiter.api.Test;
+import seedu.boba.logic.commands.IncreaseCommand;
+import seedu.boba.model.customer.Reward;
+
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -9,11 +13,6 @@ import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.boba.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.boba.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.boba.logic.commands.IncreaseCommand;
-import seedu.boba.model.customer.Reward;
-
 public class IncreaseCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
@@ -21,7 +20,7 @@ public class IncreaseCommandParserTest {
 
     private static final String MESSAGE_INVALID_REWARD = Reward.MESSAGE_MAX_INTEGER;
 
-    private IncreaseCommandParser parser = new IncreaseCommandParser();
+    private final IncreaseCommandParser parser = new IncreaseCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

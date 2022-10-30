@@ -1,17 +1,16 @@
 package seedu.boba.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.boba.testutil.Assert.assertThrows;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.boba.commons.exceptions.IllegalValueException;
 import seedu.boba.commons.util.JsonUtil;
 import seedu.boba.model.BobaBot;
 import seedu.boba.testutil.TypicalCustomers;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.boba.testutil.Assert.assertThrows;
 
 public class JsonSerializableBobaBotTest {
 

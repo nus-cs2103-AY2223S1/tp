@@ -1,11 +1,5 @@
 package seedu.boba.logic.commands;
 
-import static java.util.Objects.isNull;
-import static java.util.Objects.requireNonNull;
-import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
-
-import java.util.NoSuchElementException;
-
 import seedu.boba.commons.core.Messages;
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.logic.parser.ParserUtil;
@@ -14,6 +8,12 @@ import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
+
+import java.util.NoSuchElementException;
+
+import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNull;
+import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Increases the reward points of an existing Customer in bobaBot.
@@ -31,7 +31,7 @@ public class IncreaseCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1000" + " p/98349032  or  "
             + COMMAND_WORD + " 500" + " e/example@gmail.com";
 
-    private String incrementReward;
+    private final String incrementReward;
 
     private Phone phoneIdentifier = null;
     private Email emailIdentifier = null;
@@ -40,7 +40,7 @@ public class IncreaseCommand extends Command {
 
     /**
      * @param phoneIdentifier current phone number of the customer
-     * @param rewardPoints amount of reward points to increment by
+     * @param rewardPoints    amount of reward points to increment by
      */
     public IncreaseCommand(Phone phoneIdentifier, String rewardPoints) {
         requireNonNull(phoneIdentifier);
@@ -51,7 +51,7 @@ public class IncreaseCommand extends Command {
 
     /**
      * @param emailIdentifier current email address of the customer
-     * @param rewardPoints amount of reward points to increment by
+     * @param rewardPoints    amount of reward points to increment by
      */
     public IncreaseCommand(Email emailIdentifier, String rewardPoints) {
         requireNonNull(emailIdentifier);

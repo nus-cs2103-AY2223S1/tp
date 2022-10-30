@@ -1,16 +1,15 @@
 package seedu.boba.logic.commands;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
+import seedu.boba.model.UserPrefs;
+
 import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.boba.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
 import static seedu.boba.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import seedu.boba.model.BobaBotModel;
-import seedu.boba.model.BobaBotModelManager;
-import seedu.boba.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the BobaBotModel) and unit tests for ListCommand.

@@ -1,24 +1,23 @@
 package seedu.boba.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.boba.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.boba.testutil.Assert.assertThrows;
-import static seedu.boba.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.boba.logic.parser.exceptions.ParseException;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Name;
 import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
 import seedu.boba.model.tag.Tag;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.boba.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.boba.testutil.Assert.assertThrows;
+import static seedu.boba.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -44,7 +43,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -58,7 +57,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
@@ -81,7 +80,7 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone(null));
     }
 
     @Test
@@ -104,7 +103,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseReward_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseReward((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseReward(null));
     }
 
     @Test
@@ -127,7 +126,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail(null));
     }
 
     @Test

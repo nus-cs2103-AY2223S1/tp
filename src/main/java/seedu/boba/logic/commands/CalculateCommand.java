@@ -1,6 +1,7 @@
 package seedu.boba.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import seedu.boba.logic.commands.exceptions.CommandException;
+import seedu.boba.model.BobaBotModel;
 
 import java.util.ArrayList;
 import java.util.EmptyStackException;
@@ -10,8 +11,7 @@ import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.boba.logic.commands.exceptions.CommandException;
-import seedu.boba.model.BobaBotModel;
+import static java.util.Objects.requireNonNull;
 
 
 /**
@@ -37,17 +37,19 @@ public class CalculateCommand extends Command {
      * Logger to record all the calculations performed
      * for future checking of bugs
      */
-    private static Logger logger = Logger.getLogger("Calculation_History");
+    private static final Logger logger = Logger.getLogger("Calculation_History");
 
     private final String expression;
 
     /**
      * Constructor for calculator.
+     *
      * @param exp The arithmetic expression to be computed
      */
     public CalculateCommand(String exp) {
         this.expression = exp;
     }
+
     @Override
     public CommandResult execute(BobaBotModel bobaBotModel) throws CommandException {
 
@@ -70,7 +72,7 @@ public class CalculateCommand extends Command {
     /**
      * Class for reading and understanding the arithmetic expression.
      * Adapted from: https://www.daniweb.com/programming/software-development/
-     *      threads/442690/java-expression-parser-calculator
+     * threads/442690/java-expression-parser-calculator
      * with modifications
      */
     private static class ArithmeticExpressionReader {
@@ -159,12 +161,12 @@ public class CalculateCommand extends Command {
 
                     // Calculate the result
                     Double result = token.compareTo("*") == 0
-                        ? d1 * d2
-                        : token.compareTo("/") == 0
-                        ? d1 / d2
-                        : token.compareTo("+") == 0
-                        ? d1 + d2
-                        : d1 - d2;
+                            ? d1 * d2
+                            : token.compareTo("/") == 0
+                            ? d1 / d2
+                            : token.compareTo("+") == 0
+                            ? d1 + d2
+                            : d1 - d2;
                     // Push result onto stack
                     stack.push(String.valueOf(result));
                 }
@@ -175,6 +177,7 @@ public class CalculateCommand extends Command {
 
         /**
          * Main logic (method) for the calculation reader.
+         *
          * @param userInput Cashier's input in String
          * @return The result of calculation, rounded to 2 d.p.
          */

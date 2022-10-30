@@ -1,8 +1,5 @@
 package seedu.boba.ui;
 
-import java.io.IOException;
-import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -18,6 +15,9 @@ import seedu.boba.logic.commands.CommandResult;
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.logic.parser.exceptions.ParseException;
 
+import java.io.IOException;
+import java.util.logging.Logger;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -28,15 +28,15 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private CustomerListPanel customerListPanel;
     private PromotionListPanel promotionListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
-    private CalculatorWindow calculatorWindow;
+    private final HelpWindow helpWindow;
+    private final CalculatorWindow calculatorWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -85,6 +85,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {

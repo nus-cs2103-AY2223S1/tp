@@ -1,20 +1,19 @@
 package seedu.boba.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.boba.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import seedu.boba.commons.core.GuiSettings;
+import seedu.boba.commons.exceptions.DataConversionException;
+import seedu.boba.model.UserPrefs;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import seedu.boba.commons.core.GuiSettings;
-import seedu.boba.commons.exceptions.DataConversionException;
-import seedu.boba.model.UserPrefs;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.boba.testutil.Assert.assertThrows;
 
 public class JsonUserPrefsStorageTest {
 

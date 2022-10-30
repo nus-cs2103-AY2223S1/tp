@@ -1,19 +1,18 @@
 package seedu.boba.logic.parser;
 
+import seedu.boba.logic.commands.DeleteCommand;
+import seedu.boba.logic.parser.exceptions.ParseException;
+import seedu.boba.model.customer.Email;
+import seedu.boba.model.customer.Phone;
+
+import java.util.stream.Stream;
+
 import static seedu.boba.commons.core.Messages.MESSAGE_BOTH_EMAIL_AND_PHONE;
 import static seedu.boba.commons.core.Messages.MESSAGE_EMPTY_EMAIL_AND_PHONE;
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.boba.commons.core.Messages.MESSAGE_NO_UNIQUE_PREFIX_IDENTIFIER;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
-
-import java.util.stream.Stream;
-
-import seedu.boba.logic.commands.DeleteCommand;
-import seedu.boba.logic.parser.exceptions.ParseException;
-import seedu.boba.model.customer.Email;
-import seedu.boba.model.customer.Phone;
-
 
 
 /**
@@ -24,6 +23,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
@@ -58,7 +58,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             }
 
             //Checks the assumption that either the Phone_Number or Email should be filled
-            assert(deletePersonDescriptor.isAnyFilled());
+            assert (deletePersonDescriptor.isAnyFilled());
             return new DeleteCommand(deletePersonDescriptor);
 
         } catch (ParseException pe) {

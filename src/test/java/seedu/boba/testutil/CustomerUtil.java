@@ -1,18 +1,18 @@
 package seedu.boba.testutil;
 
+import seedu.boba.logic.commands.AddCommand;
+import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.boba.model.customer.Customer;
+import seedu.boba.model.tag.Tag;
+
+import java.util.Set;
+
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_BIRTHDAY_MONTH;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Set;
-
-import seedu.boba.logic.commands.AddCommand;
-import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.boba.model.customer.Customer;
-import seedu.boba.model.tag.Tag;
 
 /**
  * A utility class for Customer.
@@ -37,7 +37,7 @@ public class CustomerUtil {
         sb.append(PREFIX_BIRTHDAY_MONTH + customer.getBirthdayMonth().value + " ");
         sb.append(PREFIX_REWARD + customer.getReward().value + " ");
         customer.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
@@ -51,7 +51,7 @@ public class CustomerUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getBirthdayMonth().ifPresent(
-            birthdayMonth -> sb.append(PREFIX_BIRTHDAY_MONTH).append(birthdayMonth.value).append(" "));
+                birthdayMonth -> sb.append(PREFIX_BIRTHDAY_MONTH).append(birthdayMonth.value).append(" "));
         descriptor.getReward().ifPresent(reward -> sb.append(PREFIX_REWARD).append(reward.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

@@ -1,5 +1,15 @@
 package seedu.boba.logic.parser;
 
+import org.junit.jupiter.api.Test;
+import seedu.boba.logic.commands.EditCommand;
+import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.boba.model.customer.Email;
+import seedu.boba.model.customer.Name;
+import seedu.boba.model.customer.Phone;
+import seedu.boba.model.customer.Reward;
+import seedu.boba.model.tag.Tag;
+import seedu.boba.testutil.EditCustomerDescriptorBuilder;
+
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.boba.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.boba.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -32,17 +42,6 @@ import static seedu.boba.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 import static seedu.boba.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 import static seedu.boba.testutil.TypicalPhones.PHONE_THIRD_PERSON;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.boba.logic.commands.EditCommand;
-import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.boba.model.customer.Email;
-import seedu.boba.model.customer.Name;
-import seedu.boba.model.customer.Phone;
-import seedu.boba.model.customer.Reward;
-import seedu.boba.model.tag.Tag;
-import seedu.boba.testutil.EditCustomerDescriptorBuilder;
-
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
@@ -50,7 +49,7 @@ public class EditCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private final EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

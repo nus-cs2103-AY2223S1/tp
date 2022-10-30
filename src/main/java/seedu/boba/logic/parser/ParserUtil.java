@@ -1,11 +1,5 @@
 package seedu.boba.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.boba.commons.core.index.Index;
 import seedu.boba.commons.util.StringUtil;
 import seedu.boba.logic.parser.exceptions.ParseException;
@@ -15,6 +9,12 @@ import seedu.boba.model.customer.Name;
 import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
 import seedu.boba.model.tag.Tag;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -26,6 +26,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {

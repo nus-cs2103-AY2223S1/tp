@@ -1,17 +1,16 @@
 package seedu.boba.logic.commands;
 
-import static seedu.boba.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.UserPrefs;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.testutil.CustomerBuilder;
+
+import static seedu.boba.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
 
 /**
  * Contains integration tests (interaction with the BobaBotModel) for {@code AddCommand}.

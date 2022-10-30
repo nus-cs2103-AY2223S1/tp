@@ -1,15 +1,15 @@
 package seedu.boba.storage;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
-
 import seedu.boba.commons.core.LogsCenter;
 import seedu.boba.commons.exceptions.DataConversionException;
 import seedu.boba.model.ReadOnlyBobaBot;
 import seedu.boba.model.ReadOnlyUserPrefs;
 import seedu.boba.model.UserPrefs;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * Manages storage of BobaBot data in local storage.
@@ -17,8 +17,8 @@ import seedu.boba.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private BobaBotStorage bobaBotStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final BobaBotStorage bobaBotStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code BobaBotStorage} and {@code UserPrefStorage}.

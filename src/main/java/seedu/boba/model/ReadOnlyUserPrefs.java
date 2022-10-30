@@ -1,8 +1,8 @@
 package seedu.boba.model;
 
-import java.nio.file.Path;
-
 import seedu.boba.commons.core.GuiSettings;
+
+import java.nio.file.Path;
 
 /**
  * Unmodifiable view of user prefs.

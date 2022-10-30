@@ -1,5 +1,26 @@
 package seedu.boba.logic;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import seedu.boba.logic.commands.AddCommand;
+import seedu.boba.logic.commands.CommandResult;
+import seedu.boba.logic.commands.ListCommand;
+import seedu.boba.logic.commands.exceptions.CommandException;
+import seedu.boba.logic.parser.exceptions.ParseException;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
+import seedu.boba.model.ReadOnlyBobaBot;
+import seedu.boba.model.UserPrefs;
+import seedu.boba.model.customer.Customer;
+import seedu.boba.storage.JsonBobaBotStorage;
+import seedu.boba.storage.JsonUserPrefsStorage;
+import seedu.boba.storage.StorageManager;
+import seedu.boba.testutil.CustomerBuilder;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_PERSON_INFORMATION;
 import static seedu.boba.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -11,34 +32,13 @@ import static seedu.boba.logic.commands.CommandTestUtil.REWARD_DESC_AMY;
 import static seedu.boba.testutil.Assert.assertThrows;
 import static seedu.boba.testutil.TypicalCustomers.AMY;
 
-import java.io.IOException;
-import java.nio.file.Path;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import seedu.boba.logic.commands.AddCommand;
-import seedu.boba.logic.commands.CommandResult;
-import seedu.boba.logic.commands.ListCommand;
-import seedu.boba.logic.commands.exceptions.CommandException;
-import seedu.boba.logic.parser.exceptions.ParseException;
-import seedu.boba.model.*;
-import seedu.boba.model.BobaBotModel;
-import seedu.boba.model.BobaBotModelManager;
-import seedu.boba.model.customer.Customer;
-import seedu.boba.storage.JsonBobaBotStorage;
-import seedu.boba.storage.JsonUserPrefsStorage;
-import seedu.boba.storage.StorageManager;
-import seedu.boba.testutil.CustomerBuilder;
-
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
     @TempDir
     public Path temporaryFolder;
 
-    private BobaBotModel bobaBotModel = new BobaBotModelManager();
+    private final BobaBotModel bobaBotModel = new BobaBotModelManager();
     private Logic logic;
 
     @BeforeEach
@@ -100,10 +100,11 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal bobaBotModel manager state is the same as that in {@code expectedBobaBotModel} <br>
+     *
      * @see #assertCommandFailure(String, Class, String, BobaBotModel)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            BobaBotModel expectedBobaBotModel) throws CommandException, ParseException {
+                                      BobaBotModel expectedBobaBotModel) throws CommandException, ParseException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedBobaBotModel, bobaBotModel);
@@ -111,6 +112,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, BobaBotModel)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
@@ -119,6 +121,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, BobaBotModel)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
@@ -127,10 +130,11 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, BobaBotModel)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage) {
+                                      String expectedMessage) {
         BobaBotModel expectedBobaBotModel = new BobaBotModelManager(bobaBotModel.getBobaBot(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedBobaBotModel);
     }
@@ -140,10 +144,11 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal bobaBotModel manager state is the same as that in {@code expectedBobaBotModel} <br>
+     *
      * @see #assertCommandSuccess(String, String, BobaBotModel)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage, BobaBotModel expectedBobaBotModel) {
+                                      String expectedMessage, BobaBotModel expectedBobaBotModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedBobaBotModel, bobaBotModel);
     }

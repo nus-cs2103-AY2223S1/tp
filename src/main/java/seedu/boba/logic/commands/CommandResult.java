@@ -1,8 +1,8 @@
 package seedu.boba.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the result of a command execution.
@@ -11,10 +11,14 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /**
+     * Help information should be shown to the user.
+     */
     private final boolean isShowHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean isExit;
 
     private final boolean isUndo;

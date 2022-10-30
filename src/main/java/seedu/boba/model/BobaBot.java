@@ -1,9 +1,5 @@
 package seedu.boba.model;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
@@ -11,6 +7,10 @@ import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
 import seedu.boba.model.customer.UniqueCustomerList;
 import seedu.boba.model.customer.exceptions.PersonNotFoundException;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -26,12 +26,12 @@ public class BobaBot implements ReadOnlyBobaBot {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         persons = new UniqueCustomerList();
     }
 
-    public BobaBot() {}
+    public BobaBot() {
+    }
 
     /**
      * Creates an BobaBot using the Persons in the {@code toBeCopied}
@@ -120,6 +120,7 @@ public class BobaBot implements ReadOnlyBobaBot {
 
     /**
      * Compares if two BobaBot ledgers are strictly equals
+     *
      * @param other
      * @return
      */

@@ -1,17 +1,16 @@
 package seedu.boba.logic.parser;
 
+import org.junit.jupiter.api.Test;
+import seedu.boba.logic.commands.DeleteCommand;
+import seedu.boba.model.customer.Email;
+import seedu.boba.model.customer.Phone;
+
 import static seedu.boba.commons.core.Messages.MESSAGE_BOTH_EMAIL_AND_PHONE;
 import static seedu.boba.commons.core.Messages.MESSAGE_EMPTY_EMAIL_AND_PHONE;
 import static seedu.boba.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.boba.commons.core.Messages.MESSAGE_NO_UNIQUE_PREFIX_IDENTIFIER;
 import static seedu.boba.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.boba.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.boba.logic.commands.DeleteCommand;
-import seedu.boba.model.customer.Email;
-import seedu.boba.model.customer.Phone;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,7 +21,7 @@ import seedu.boba.model.customer.Phone;
  */
 public class DeleteCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private final DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
     public void parse_validPhoneArg_returnsDeleteCommand() {

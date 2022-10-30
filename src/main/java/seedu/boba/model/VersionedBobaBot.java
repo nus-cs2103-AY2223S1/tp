@@ -1,11 +1,11 @@
 package seedu.boba.model;
 
-import static java.util.Objects.requireNonNull;
+import seedu.boba.model.exceptions.NextStateNotFoundException;
+import seedu.boba.model.exceptions.PreviousStateNotFoundException;
 
 import java.util.ArrayList;
 
-import seedu.boba.model.exceptions.NextStateNotFoundException;
-import seedu.boba.model.exceptions.PreviousStateNotFoundException;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Keeps track of the current state of the BobaBot by storing multiple
@@ -16,10 +16,10 @@ public class VersionedBobaBot extends BobaBot {
     private int currentStatePointer;
 
     // Maximum number of snapshots we take
-    private int sizeLimit;
+    private final int sizeLimit;
 
     // Stores the different versions of BobaBot
-    private ArrayList<ReadOnlyBobaBot> bobaBotStateList = new ArrayList<>();
+    private final ArrayList<ReadOnlyBobaBot> bobaBotStateList = new ArrayList<>();
 
     /**
      * Creates an instance of VersionedBobaBot.

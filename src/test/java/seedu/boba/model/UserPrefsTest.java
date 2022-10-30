@@ -1,8 +1,8 @@
 package seedu.boba.model;
 
-import static seedu.boba.testutil.Assert.assertThrows;
-
 import org.junit.jupiter.api.Test;
+
+import static seedu.boba.testutil.Assert.assertThrows;
 
 public class UserPrefsTest {
 

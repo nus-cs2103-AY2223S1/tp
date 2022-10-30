@@ -1,9 +1,9 @@
 package seedu.boba.model.customer;
 
+import java.nio.charset.StandardCharsets;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.boba.commons.util.AppUtil.checkArgument;
-
-import java.nio.charset.StandardCharsets;
 
 /**
  * Represents a Customer's phone number in the address book.
@@ -29,7 +29,7 @@ public class Phone {
         value = phone;
 
         // Generate phone emoji
-        byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x93, (byte) 0xB1};
+        byte[] emojiByteCode = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x93, (byte) 0xB1};
         String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
         displayValue = emoji + " " + value;
     }

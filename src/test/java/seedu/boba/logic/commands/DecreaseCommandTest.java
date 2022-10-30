@@ -1,5 +1,15 @@
 package seedu.boba.logic.commands;
 
+import org.junit.jupiter.api.Test;
+import seedu.boba.commons.core.Messages;
+import seedu.boba.model.BobaBot;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
+import seedu.boba.model.UserPrefs;
+import seedu.boba.model.customer.Customer;
+import seedu.boba.model.customer.Email;
+import seedu.boba.model.customer.Phone;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.boba.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -11,22 +21,12 @@ import static seedu.boba.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
 import static seedu.boba.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 import static seedu.boba.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.boba.commons.core.Messages;
-import seedu.boba.model.*;
-import seedu.boba.model.BobaBotModel;
-import seedu.boba.model.BobaBotModelManager;
-import seedu.boba.model.customer.Customer;
-import seedu.boba.model.customer.Email;
-import seedu.boba.model.customer.Phone;
-
 /**
  * Contains integration tests (interaction with the BobaBotModel) and unit tests for IncreaseCommand.
  */
 public class DecreaseCommandTest {
 
-    private BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
+    private final BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
 
     @Test
     public void execute_phoneAllFieldsSpecifiedUnfilteredList_success() {
@@ -35,7 +35,8 @@ public class DecreaseCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
+                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
         expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
         assertCommandSuccess(decreaseCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
@@ -47,7 +48,8 @@ public class DecreaseCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
+                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
         expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
         assertCommandSuccess(decreaseCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);

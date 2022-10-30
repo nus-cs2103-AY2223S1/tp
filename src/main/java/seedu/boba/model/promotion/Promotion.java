@@ -1,16 +1,16 @@
 package seedu.boba.model.promotion;
 
-import java.io.InputStream;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+
+import java.io.InputStream;
 
 /**
  * Manages the operations for parsing images(promotions) for the GUI.
  */
 public class Promotion {
-    private ObservableList<Image> promotionList;
+    private final ObservableList<Image> promotionList;
 
     public Promotion() {
         this.promotionList = FXCollections.observableArrayList();
@@ -18,6 +18,7 @@ public class Promotion {
 
     /**
      * Retrieves and stores all the images from a directory into an ObservableList.
+     *
      * @param filePath Filepath indicating the directory location to retrieve images from
      */
     public void parseAllPromotions(String filePath) {

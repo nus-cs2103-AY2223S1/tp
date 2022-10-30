@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
-
 <VBox style="-fx-background-color: #e6CCB2;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="promotionListView" style="-fx-background-color: #EDE0D4; -fx-background-radius: 10;" VBox.vgrow="ALWAYS" />
+    <ListView fx:id="promotionListView" style="-fx-background-color: #EDE0D4; -fx-background-radius: 10;"
+              VBox.vgrow="ALWAYS"/>
 </VBox>

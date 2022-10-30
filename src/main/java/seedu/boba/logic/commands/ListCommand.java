@@ -1,9 +1,9 @@
 package seedu.boba.logic.commands;
 
+import seedu.boba.model.BobaBotModel;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
-
-import seedu.boba.model.BobaBotModel;
 
 /**
  * Lists all persons in the address book to the user.

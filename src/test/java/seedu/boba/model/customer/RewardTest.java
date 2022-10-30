@@ -1,10 +1,10 @@
 package seedu.boba.model.customer;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.boba.testutil.Assert.assertThrows;
-
-import org.junit.jupiter.api.Test;
 
 public class RewardTest {
 
@@ -22,7 +22,7 @@ public class RewardTest {
     @Test
     public void isValidReward() {
         // null reward
-        assertThrows(NullPointerException.class, () ->Reward.isValidReward(null));
+        assertThrows(NullPointerException.class, () -> Reward.isValidReward(null));
 
         // invalid rewards
         assertFalse(Reward.isValidReward("")); // empty string

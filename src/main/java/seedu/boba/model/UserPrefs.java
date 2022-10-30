@@ -1,12 +1,12 @@
 package seedu.boba.model;
 
-import static java.util.Objects.requireNonNull;
+import seedu.boba.commons.core.GuiSettings;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-import seedu.boba.commons.core.GuiSettings;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents User's preferences.
@@ -14,12 +14,13 @@ import seedu.boba.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path bobaBotFilePath = Paths.get("data" , "bobabot.json");
+    private Path bobaBotFilePath = Paths.get("data", "bobabot.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
      */
-    public UserPrefs() {}
+    public UserPrefs() {
+    }
 
     /**
      * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.

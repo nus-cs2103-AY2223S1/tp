@@ -1,9 +1,9 @@
 package seedu.boba.commons.util;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.boba.testutil.Assert.assertThrows;
-
-import org.junit.jupiter.api.Test;
 
 public class AppUtilTest {
 

@@ -1,5 +1,18 @@
 package seedu.boba.logic.commands;
 
+import seedu.boba.commons.core.index.Index;
+import seedu.boba.logic.commands.exceptions.CommandException;
+import seedu.boba.logic.parser.exceptions.ParseException;
+import seedu.boba.model.BobaBot;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.customer.Customer;
+import seedu.boba.model.customer.NameContainsKeywordsPredicate;
+import seedu.boba.testutil.EditCustomerDescriptorBuilder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_BIRTHDAY_MONTH;
@@ -9,19 +22,6 @@ import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.boba.testutil.Assert.assertThrows;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.boba.commons.core.index.Index;
-import seedu.boba.logic.commands.exceptions.CommandException;
-import seedu.boba.logic.parser.exceptions.ParseException;
-import seedu.boba.model.BobaBot;
-import seedu.boba.model.BobaBotModel;
-import seedu.boba.model.customer.Customer;
-import seedu.boba.model.customer.NameContainsKeywordsPredicate;
-import seedu.boba.testutil.EditCustomerDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -83,7 +83,8 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualBobaBotModel} matches {@code expectedBobaBotModel}
      */
-    public static void assertCommandSuccess(Command command, BobaBotModel actualBobaBotModel, CommandResult expectedCommandResult,
+    public static void assertCommandSuccess(Command command, BobaBotModel actualBobaBotModel,
+                                            CommandResult expectedCommandResult,
                                             BobaBotModel expectedBobaBotModel) {
         try {
             CommandResult result = command.execute(actualBobaBotModel);
@@ -120,6 +121,7 @@ public class CommandTestUtil {
         assertEquals(expectedBobaBot, actualBobaBotModel.getBobaBot());
         assertEquals(expectedFilteredList, actualBobaBotModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code bobaBotModel}'s filtered list to show only the customer at the given {@code targetIndex} in the
      * {@code bobaBotModel}'s address book.

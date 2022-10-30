@@ -1,5 +1,14 @@
 package seedu.boba.model;
 
+import org.junit.jupiter.api.Test;
+import seedu.boba.commons.core.GuiSettings;
+import seedu.boba.model.customer.NameContainsKeywordsPredicate;
+import seedu.boba.testutil.BobaBotBuilder;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -7,16 +16,6 @@ import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.boba.testutil.Assert.assertThrows;
 import static seedu.boba.testutil.TypicalCustomers.ALICE;
 import static seedu.boba.testutil.TypicalCustomers.BENSON;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.boba.commons.core.GuiSettings;
-import seedu.boba.model.customer.NameContainsKeywordsPredicate;
-import seedu.boba.testutil.BobaBotBuilder;
 
 public class BobaBotModelManagerTest {
 

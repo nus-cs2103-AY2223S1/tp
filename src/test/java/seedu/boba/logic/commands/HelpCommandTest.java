@@ -1,16 +1,15 @@
 package seedu.boba.logic.commands;
 
-import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.boba.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.BobaBotModelManager;
 
+import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.boba.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+
 public class HelpCommandTest {
-    private BobaBotModel bobaBotModel = new BobaBotModelManager();
-    private BobaBotModel expectedBobaBotModel = new BobaBotModelManager();
+    private final BobaBotModel bobaBotModel = new BobaBotModelManager();
+    private final BobaBotModel expectedBobaBotModel = new BobaBotModelManager();
 
     @Test
     public void execute_help_success() {

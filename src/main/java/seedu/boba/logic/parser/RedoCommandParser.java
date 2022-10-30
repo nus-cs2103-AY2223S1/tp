@@ -11,6 +11,7 @@ public class RedoCommandParser implements Parser<RedoCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UndoCommand
      * and returns a UndoCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public RedoCommand parse(String args) throws ParseException {

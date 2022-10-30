@@ -1,5 +1,15 @@
 package seedu.boba.storage;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import seedu.boba.commons.exceptions.DataConversionException;
+import seedu.boba.model.BobaBot;
+import seedu.boba.model.ReadOnlyBobaBot;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.boba.testutil.Assert.assertThrows;
@@ -7,17 +17,6 @@ import static seedu.boba.testutil.TypicalCustomers.ALICE;
 import static seedu.boba.testutil.TypicalCustomers.HOON;
 import static seedu.boba.testutil.TypicalCustomers.IDA;
 import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import seedu.boba.commons.exceptions.DataConversionException;
-import seedu.boba.model.BobaBot;
-import seedu.boba.model.ReadOnlyBobaBot;
 
 public class JsonBobaBotStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonBobaBotStorageTest");

@@ -1,10 +1,5 @@
 package seedu.boba;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import seedu.boba.commons.core.Config;
@@ -30,6 +25,11 @@ import seedu.boba.storage.StorageManager;
 import seedu.boba.storage.UserPrefsStorage;
 import seedu.boba.ui.Ui;
 import seedu.boba.ui.UiManager;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * Runs the application.

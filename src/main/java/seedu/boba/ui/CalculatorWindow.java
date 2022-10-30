@@ -1,16 +1,16 @@
 package seedu.boba.ui;
 
-import static seedu.boba.commons.util.AppUtil.getImage;
-
-import java.math.BigDecimal;
-import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import seedu.boba.commons.core.LogsCenter;
+
+import java.math.BigDecimal;
+import java.util.logging.Logger;
+
+import static seedu.boba.commons.util.AppUtil.getImage;
 
 /**
  * Controller for a calculator page
@@ -51,21 +51,21 @@ public class CalculatorWindow extends UiPart<Stage> {
 
     /**
      * Shows the calculator window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *
+     * @throws IllegalStateException <ul>
+     *                                       <li>
+     *                                           if this method is called on a thread other than the JavaFX Application Thread.
+     *                                       </li>
+     *                                       <li>
+     *                                           if this method is called during animation or layout processing.
+     *                                       </li>
+     *                                       <li>
+     *                                           if this method is called on the primary stage.
+     *                                       </li>
+     *                                       <li>
+     *                                           if {@code dialogStage} is already showing.
+     *                                       </li>
+     *                                   </ul>
      */
     public void show() {
         logger.fine("Showing calculator.");
@@ -98,6 +98,7 @@ public class CalculatorWindow extends UiPart<Stage> {
      * Handle the bottom clicks on calculator.
      * Reused from https://gist.github.com/argius/08834fab73b91de8d79b
      * with modifications.
+     *
      * @param evt User actions
      */
     @FXML
@@ -110,7 +111,7 @@ public class CalculatorWindow extends UiPart<Stage> {
             }
             selectedOperator = "";
             numberInputting = false;
-            display.setText("0");;
+            display.setText("0");
             return;
         }
         if (buttonText.matches("[0-9\\.]")) {
@@ -137,15 +138,15 @@ public class CalculatorWindow extends UiPart<Stage> {
 
     static BigDecimal calculate(String operator, BigDecimal left, BigDecimal right) {
         switch (operator) {
-        case "＋":
-            return left.add(right);
-        case "－":
-            return left.subtract(right);
-        case "×":
-            return left.multiply(right);
-        case "÷":
-            return left.divide(right);
-        default:
+            case "＋":
+                return left.add(right);
+            case "－":
+                return left.subtract(right);
+            case "×":
+                return left.multiply(right);
+            case "÷":
+                return left.divide(right);
+            default:
         }
         return right;
     }

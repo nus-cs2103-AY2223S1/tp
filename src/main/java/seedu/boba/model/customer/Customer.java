@@ -1,13 +1,13 @@
 package seedu.boba.model.customer;
 
-import static seedu.boba.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.boba.model.tag.Tag;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.boba.model.tag.Tag;
+import static seedu.boba.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Customer in the address book.

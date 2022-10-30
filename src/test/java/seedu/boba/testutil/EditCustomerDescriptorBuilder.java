@@ -1,9 +1,5 @@
 package seedu.boba.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.boba.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.boba.model.customer.BirthdayMonth;
 import seedu.boba.model.customer.Customer;
@@ -13,12 +9,16 @@ import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
 import seedu.boba.model.tag.Tag;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * A utility class to help with building EditPersonDescriptor objects.
  */
 public class EditCustomerDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private final EditPersonDescriptor descriptor;
 
     public EditCustomerDescriptorBuilder() {
         descriptor = new EditPersonDescriptor();

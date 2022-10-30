@@ -2,7 +2,6 @@ package seedu.boba.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import seedu.boba.commons.exceptions.IllegalValueException;
 import seedu.boba.model.tag.Tag;
 

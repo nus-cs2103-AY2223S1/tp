@@ -1,16 +1,21 @@
 {
-  "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "birthdayMonth": "1",
-    "reward": "111",
-    "tagged": [ "gold" ]
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "birthdayMonth": "1",
-    "reward": "111"
-  } ]
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "birthdayMonth": "1",
+      "reward": "111",
+      "tagged": [
+        "gold"
+      ]
+    },
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "pauline@example.com",
+      "birthdayMonth": "1",
+      "reward": "111"
+    }
+  ]
 }

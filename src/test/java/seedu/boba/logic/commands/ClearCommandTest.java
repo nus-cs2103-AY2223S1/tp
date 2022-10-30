@@ -1,14 +1,13 @@
 package seedu.boba.logic.commands;
 
-import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.boba.model.BobaBot;
 import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.UserPrefs;
+
+import static seedu.boba.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.boba.testutil.TypicalCustomers.getTypicalBobaBot;
 
 public class ClearCommandTest {
 

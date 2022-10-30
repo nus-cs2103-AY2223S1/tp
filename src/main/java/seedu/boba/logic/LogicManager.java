@@ -1,9 +1,5 @@
 package seedu.boba.logic;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import seedu.boba.commons.core.GuiSettings;
@@ -17,6 +13,10 @@ import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.ReadOnlyBobaBot;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.storage.Storage;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.logging.Logger;
 
 /**
  * The main LogicManager of the app.
