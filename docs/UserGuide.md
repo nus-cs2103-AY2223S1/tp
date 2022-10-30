@@ -6,9 +6,9 @@ title: User Guide
 <p align="center">
   <img src="./images/Coydir_Logo.png" />
   <h1 align="center"><font size="7">Coydir</font><br><em>The Ultimate Company Directory</em></h1>
-</p> 
+</p>
 
-Welcome to Coydir's User Guide! 
+Welcome to Coydir's User Guide!
 
 **[Insert some catchy phrase here]**
 
@@ -24,6 +24,7 @@ Welcome to Coydir's User Guide!
 - [Features](#features)
   - [Coydir Commands Format](#coydir-commands-format)
   - [Managing Employee Profiles](#managing-employee-profiles)
+    - [What's in an Employee Profile](#whats-in-an-employee-profile)
     - [Adding an employee](#adding-an-employee--add)
     - [Editing an employee](#editing-an-employee--edit)
     - [Deleting an employee](#deleting-an-employee--delete)
@@ -131,15 +132,54 @@ We will explore each of these fields in great detail as we continue along, but b
 
 ### Managing Employee Profiles
 
-What's Human Resources without the Human aspect? (*P.S. It's not "Resources"*)
+What's Human Resources without the Human aspect? (_P.S. It's not "Resources"_)
 
-The **core** of any management tool is the **collection and tracking of data**. 
-Recognising this, Coydir offers several features for the manipulation of data on your company's employees. 
+The **core** of any management tool is the **collection and tracking of data**.
+Recognising this, Coydir offers several features for the manipulation of data on your company's employees.
 
-As a *HR professional*, Coydir makes it easy for you to **add and remove data**, **change past entries**, and **look for exactly the information you need**. 
+As a _HR professional_, Coydir makes it easy for you to **add and remove data**, **change past entries**, and **look for exactly the information you need**.
 All this, while keeping your data packed neatly as individual employee profiles for a clean, organised viewing.
 
 Next, let us look at each feature in detail.
+
+#### What's in an Employee Profile
+
+There's _a lot of data_ that a company might want to keep track of for their employees, and different companies might maintain different standards and policies.
+In light of this, Coydir focuses on making it easy to manage key data for employees, for the purpose of making everyday operations smooth.
+
+The complete employee profile allows you to specify _a fair amount_ of details for an employee, though some of these particulars are **optional**, and can be left blank if you are unsure of the information, or if you do not feel the need to keep track of it.
+
+| Particular       | Description                            | Requirement    | Default Value |
+| ---------------- | -------------------------------------- | -------------- | ------------- |
+| **Employee ID**  | Unique numerical ID of employee        | **Cannot Set** | N.A.          |
+| **Name**         | Name of employee                       | **Compulsory** | N.A.          |
+| **Position**     | Position/job title of employee         | **Compulsory** | N.A.          |
+| **Department**   | Department of employee                 | **Compulsory** | N.A.          |
+| **Phone Number** | Phone number of employee               | **Optional**   | _Blank_       |
+| **Email**        | Email of employee                      | **Optional**   | _Blank_       |
+| **Address**      | Address of employee                    | **Optional**   | _Blank_       |
+| **Tag**          | Any tag(s) for simple remarks          | **Optional**   | _None_        |
+| **Total Leave**  | Total no. of leave for employee        | **Optional**   | 14            |
+| **Leaves Left**  | No. of leaves left for employee        | **Cannot Set** | 14            |
+| **Rating**       | Latest performance rating for employee | **Cannot Set** | _None_        |
+
+<div markdown="span" class="alert alert-primary">:bulb:
+  <h5>Bonus Information on the Profile</h5>
+  <ul>
+    <li><strong>Employee ID</strong> is a unique number assigned to each employee, and is used for several powerful commands. To ensure the uniqueness of the IDs, Coydir <strong>does not support</strong> any editing/manipulation of the employee IDs.</li>
+      <ul>
+        <li>If you really wish to, you can <a href="#editing-the-data-file">edit the data file</a> directly to "control" the employee IDs. However, this is <em>strongly discouraged</em>.</li>
+      </ul>
+    <li>For simplicity, Coydir (<em>in v1.4</em>) currently supports a fixed list of departments.</li>
+      <ul>
+        <li>You can find out more about this in the <a href="#managing-departments">Department Management section here</a>.</li>
+      </ul>
+    <li>For each employee, Coydir supports managing individual employee leaves, as well as performance ratings, helping you to track the particulars that are not meant to be set (no. of leaves left, employee rating).</li>
+      <ul>
+        <li>You can find out more about <a href="managing-employee-leaves">employee leave management here</a>, and about <a href="#managing-employee-performance">performance ratings here</a>.</li>
+      </ul>
+  </ul>
+</div>
 
 #### Adding an employee: `add`
 
@@ -163,25 +203,39 @@ Examples:
 
 #### Editing an employee: `edit`
 
-There might be times when you have to change an employee's particulars and details after adding them into the database. 
+There might be times when you have to change an employee's particulars and details after adding them into the database.
 It could be a typo in the address, a mobile number change, maybe even a promotion...
 
-In any case, editing an employee's details can be done through a single command. 
+In any case, editing an employee's details can be done through a single command.
 
 Simply provide the **index number** of the employee (not the Employee ID) based on the **employee list currently displayed**, along with the updated details you wish to change to.
 
-Any existing value, if it exists, will be overwritten by the updated value that is keyed in.
+Any existing value, if it exists, will be overwritten by the updated value that is keyed in. Otherwise, details that are not specified will remain as they are, unchanged.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
+| Field        | TAG  | Description                         | Requirement    | Default Value |
+| ------------ | ---- | ----------------------------------- | -------------- | ------------- |
+| `INDEX`      | N.A. | Index of employee in displayed list | **Compulsory** | N.A.          |
+| `NAME`       | n/   | Updated name of employee            | **Optional**   | _No Change_   |
+| `PHONE`      | p/   | Updated phone number of employee    | **Optional**   | _No Change_   |
+| `EMAIL`      | e/   | Updated email of employee           | **Optional**   | _No Change_   |
+| `POSITION`   | j/   | Updated position of employee        | **Optional**   | _No Change_   |
+| `DEPARTMENT` | d/   | Updated department of employee      | **Optional**   | _No Change_   |
+| `ADDRESS`    | a/   | Updated address of employee         | **Optional**   | _No Change_   |
+| `LEAVE`      | l/   | Updated total leave of employee     | **Optional**   | _No Change_   |
+| `TAG`        | t/   | Updated tag(s) of employee          | **Optional**   | _No Change_   |
+
 <div markdown="span" class="alert alert-primary">:bulb:
-  <p>There must be <em>at least one</em> parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!</p>
+  <p>There must be <em>at least one</em> update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!</p>
 </div>
 
 Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com`
 - `edit 2 p/91234567 l/20 t/colleagues`
+
+**[Insert screenshot here]**
 
 #### Deleting an employee : `delete`
 
@@ -265,7 +319,7 @@ Example:
 
 ### Managing Employee Leaves
 
-Employee leave management can sometimes be a surprisingly *tedious* matter to tackle.
+Employee leave management can sometimes be a surprisingly _tedious_ matter to tackle.
 
 However, with Coydir, we can help you to ensure your **company operations run smoothly**, while your **employees get adequate opportunities** to rest and attend to personal matters.
 
@@ -326,9 +380,9 @@ Example:
 
 ### Managing Employee Performance
 
-Understanding the performance of your employees is crucial for *talent development* in the company.
+Understanding the performance of your employees is crucial for _talent development_ in the company.
 
-Key performance indicators, productivity, and progression policies may differ from company to company. 
+Key performance indicators, productivity, and progression policies may differ from company to company.
 Here, Coydir offers a **simple yet powerful** way of keeping track of and making sense of your employees' performance in the company.
 
 **[Insert a brief overview of the 1-5 rating system]**
@@ -363,9 +417,9 @@ Example:
 
 ### Managing Departments
 
-Apart from supporting the core HR functions, Coydir also supports *department-level management*, for other manpower staff and executives (*department heads, operations planning, etc.*).
+Apart from supporting the core HR functions, Coydir also supports _department-level management_, for other manpower staff and executives (_department heads, operations planning, etc._).
 
-With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory. 
+With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory.
 Complete with **real-time statistics and analytics**, Coydir makes department management much simpler.
 
 **[Insert details on how we have fixed departments for now]**
@@ -384,7 +438,7 @@ Example:
 
 ### Additional Features
 
-To wrap up, let us take a look at a couple of additional features that give *a little boost* to your HR management on Coydir.
+To wrap up, let us take a look at a couple of additional features that give _a little boost_ to your HR management on Coydir.
 These features and techniques serve to make your usage of the application **smoother, easier, and more flexible**.
 
 #### Exiting the program : `exit`
