@@ -8,11 +8,12 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
  */
 public class Height {
     public static final int MAX_HEIGHT = 220;
-    public static final int MIN_HEIGHT = 0;
+    public static final int MIN_HEIGHT = 99;
     public static final String DEFAULT_VALUE = "0";
     public static final String UNIT = "m";
     public static final String VALIDATION_REGEX = "\\d+";
-    public static final String MESSAGE_CONSTRAINTS = "Height must take on a positive number that is not too large.";
+    public static final String MESSAGE_CONSTRAINTS = "Height must take on a positive number that is "
+            + "between 100 and 219.";
     public final String value;
 
     /**

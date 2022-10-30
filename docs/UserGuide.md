@@ -15,9 +15,35 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 
 2. Download the latest `nutrigoals.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases).
 
-3. Double-click the file to start the app.
+3. Copy the file to the folder you want to use as the _home folder_ for your NutriGoals.
 
-4. Refer to the [Features](#features) below for details of each command.
+4. Double-click the file to start the app. A screen similar to the below should appear in a few seconds. 
+Note how the app contains some sample data.
+![sampleUi](images/sampleUi.png)
+
+5. Type the command in the command box and press Enter to execute it. For example, typing `help` and pressing Enter will open 
+the help window.
+
+6. Refer to the [Features](#features) below for details of each command.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**<br>
+
+For first-timer users, the app will contain sample data for these 3 days: 15 September 2022, 23 October 2022 and
+the current day. For example, you can try entering `list 2022-09-15` to view the sample food items on 15 September 2022.
+To delete food items from all days, enter `clear`.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Warning:**<br>
+
+Upon launching the application, some files responsible for the storage of your data will be created in the same folder 
+as `nutrigoals.jar`. Do not delete or edit these files. 
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -30,6 +56,7 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 * Texts in `UPPER_CASE` are arguments provided by the user.
   * E.g. in `add n/FOOD c/CALORIE t/MEAL_TYPE`, `FOOD`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
 * Arguments in square brackets are optional.
+<<<<<<< HEAD
 * The parameters can be in any order.
   * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
 * Integer values are values between 1 and 2147483647 (inclusive).
@@ -37,6 +64,9 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
   * E.g. `edit 2147483648` is an invalid command regardless of the inputs provided.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
   * E.g. `help 123` will be interpreted as `help`.
+=======
+* The `FOOD` parameter for commands `add`, `edit` and `find` can only take on alphanumeric values that contain at most 27 characters.
+>>>>>>> master
 
 </div>
 
@@ -54,7 +84,7 @@ Adds a food item with its calorie content.
 
 Format: `add n/FOOD c/CALORIE t/MEAL_TYPE`
 
-* Adds a food item into the food list for the day, together with its calorie content and meal type.
+* Adds a food item into the food list for the current day, together with its calorie content and meal type.
 * Each field can only be specified once.
 * `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
 
@@ -66,7 +96,7 @@ Example:
 
 ### Deleting a food item : `delete`
 
-Removes a food item from the list of consumed food.
+Removes a food item from the displayed list of foods.
 
 Format: `delete INDEX`
 
@@ -76,13 +106,17 @@ Format: `delete INDEX`
 Example:
 
 * `delete 1` deletes the first item in the food list.
+<<<<<<< HEAD
 * Executing `list 2022-10-23`, then `delete 1` will delete the first food item recorded on 23 October 2022. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
+=======
+* `list 2022-10-23` followed by `delete 1` will delete the first food item on the list for 23 October 2022.
+>>>>>>> master
 
 ### Editing a food item : `edit`
 
-Edits a food item from the list of consumed food for the day.
+Edits a food item from the displayed list of foods.
 
-Format: `edit INDEX [n/UPDATED_FOOD] [c/CALORIES] [t/MEAL_TYPE]`
+Format: `edit INDEX [n/FOOD] [c/CALORIES] [t/MEAL_TYPE]`
 
 * Edits a food item in the list displayed at the specified index.
 * The index refers to the index shown in the displayed food lists.
@@ -94,7 +128,8 @@ Example:
 * `edit 2 n/rice c/300 t/dinner` edits the 2nd food item for dinner to rice with 300 calories.
 * `edit 2 n/noodles` edits the name of 2nd food item to noodles.
 * `edit 2 c/100 n/bread` edits the name and calorie content of the first item to bread and 100 respectively.
-* Executing `list 2022-10-10`, then `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10 to sushi. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
+* `list 2022-10-10` followed by `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10 to sushi. Refer to the `list` command [here](#listing-all-foods-for-a-day-list).
+* `list 2022-09-15` followed by `edit 1 n/sushi` will edit the name of the first food item on the list for 15 September 2022 to sushi.
 
 ### Listing all foods for a day: `list`
 
@@ -104,30 +139,50 @@ Format: `list [DATE]`
 
 * Food items will be listed according to meal type, in the order: breakfast, lunch, dinner.
 * Shows the food list for the current day if no `DATE` is supplied.
-* `DATE` must be in the format **yyyy-MM-dd** if supplied.
+* `DATE` must be in the format `yyyy-MM-dd` if supplied.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+`DATE` must be a valid date for the command to be executed.
+
+* E.g. `list 2022-02-31` is an invalid command.
+
+</div>
 
 Example:
 
 * `list` shows a list of all food items and their calories for the current day.
-* `list 2022-11-27` shows a list of all food items and their calories for 27 November 2022.
+* `list 2022-10-23` shows a list of all food items and their calories recorded on 23 October 2022.
 
 ### Finding the calorie content of a food item: `find`
 
-Finds the calorie content of a food item for 1 serving in kcal.
+Finds the calorie content of a food item.
 
 Format: `find FOOD`
 
-* Only the calorie contents of some common food items are included.
+* Only the calorie contents of some food items are included. Refer to the list of food items [here](#food-items).
 * If the user has entered a specific food item before, the `find` command will return the average calories of 
-that specific food item that the user has specified
+that specific food item that the user has specified.
 
 Example:
 
-* `find chicken rice` finds and displays the calorie content of 1 plate of chicken rice.
+* `find chicken rice` finds and displays the calorie content of chicken rice.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:**<br>
+
+`FOOD` is case-insensitive.
+
+* E.g. `find rice` is the same as find `rIcE`.
+
+</div>
 
 ### Setting a target daily calorie intake: `target`
 
-Sets a target daily calorie intake.
+Sets a target calorie intake for the current day.
 
 Format: `target CALORIE`
 
@@ -145,6 +200,9 @@ Shows the total calories consumed, the calorie target and the deficient or exces
 The list of foods for the day will also be displayed.
 
 Format: `review`
+
+Example after entering `review`:
+![review](images/review.png)
 
 ### Setting up a user profile: `setup`
 
@@ -197,9 +255,9 @@ Suggests a random tip to help the user adopt a healthier lifestyle.
 
 Format: `tip`
 
-### Clearing all entries: `clear`
+### Clearing all food items: `clear`
 
-Clears all entries from NutriGoals.
+Clears all food items on all days from NutriGoals.
 
 Format: `clear`
 
@@ -213,8 +271,23 @@ Format: `exit`
 
 NutriGoals data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+--------------------------------------------------------------------------------------------------------------------
 
-_Details coming soon ..._
+## Food items
+
+List of food items for the [find](#finding-the-calorie-content-of-a-food-item-find) feature:
+* ban mian
+* bubble tea
+* chicken rice
+* fried rice
+* laksa
+* nasi lemak
+* potato chips
+* rice
+* wanton noodles
+* white bread
+
+_More food items coming soon in a future release..._
 
 --------------------------------------------------------------------------------------------------------------------
 
