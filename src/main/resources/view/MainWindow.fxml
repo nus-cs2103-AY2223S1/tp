@@ -65,7 +65,7 @@
 
 
           <SplitPane>
-            <VBox fx:id="personList" minWidth="340" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="personList" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                 <HBox alignment="CENTER_LEFT" spacing="5" styleClass="pane-with-border">
                     <Label fx:id="clientText" styleClass="header_label" text="Clients">
                         <minWidth>
@@ -96,7 +96,7 @@
               <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
 
-              <VBox fx:id="portfolioList" minWidth="340" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <VBox fx:id="portfolioList" prefWidth="340" prefHeight="600" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                   <HBox alignment="CENTER_LEFT" spacing="5" styleClass="pane-with-border">
                       <Label fx:id="portfolioText" styleClass="header_label" text="Portfolio">
                           <minWidth>
