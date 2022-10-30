@@ -187,4 +187,37 @@ public class ParserUtil {
     public static boolean isValidPath(String path) {
         return path.matches(PATH_VALIDATION_REGEX);
     }
+
+    /**
+     * Splits the str by "|"
+     */
+    public static Pair splitPipe(String str) {
+        String[] userInputs = str.trim().split("\\s*\\|\\s*", 2);
+        String strFirst = userInputs[0];
+        String strSecond = "";
+
+        if (userInputs.length == 2) {
+            strSecond = userInputs[1];
+        }
+        return Pair.of(strFirst, strSecond);
+    }
+
+    public static class Pair {
+        public String first;
+        public String second;
+
+        private Pair(String first, String second) {
+            this.first = first;
+            this.second = second;
+        }
+
+        static Pair of(String a, String b) {
+            return new Pair(a, b);
+        }
+
+        @Override
+        public String toString() {
+            return String.format("%s, %s", first, second);
+        }
+    }
 }

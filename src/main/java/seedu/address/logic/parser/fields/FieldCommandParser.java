@@ -1,25 +1,31 @@
-package seedu.address.logic.parser.tasks;
+package seedu.address.logic.parser.fields;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.fields.AddFieldCommand;
+import seedu.address.logic.commands.fields.EditFieldCommand;
+import seedu.address.logic.commands.fields.FieldCommand;
+import seedu.address.logic.commands.fields.DeleteFieldCommand;
+
 import seedu.address.logic.commands.tasks.AddTaskCommand;
 import seedu.address.logic.commands.tasks.DeleteTaskCommand;
-import seedu.address.logic.commands.tasks.ForEachTaskCommand;
 import seedu.address.logic.commands.tasks.MarkTaskCommand;
 import seedu.address.logic.commands.tasks.SelectTaskCommand;
 import seedu.address.logic.commands.tasks.TaskCommand;
 import seedu.address.logic.commands.tasks.UnmarkTaskCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.tasks.AddTaskCommandParser;
+import seedu.address.logic.parser.tasks.DeleteTaskCommandParser;
 
 /**
  * Parser for all Task commands
  */
-public class TaskCommandParser implements Parser<TaskCommand> {
-    private static final String MESSAGE_USAGE = TaskCommand.COMMAND_WORD + " [add|delete|mark|unmark|select]";
+public class FieldCommandParser implements Parser<FieldCommand> {
+    private static final String MESSAGE_USAGE = FieldCommand.COMMAND_WORD + " [add|delete|edit]";
     /**
      * Used for initial separation of command word and args.
      */
@@ -34,7 +40,7 @@ public class TaskCommandParser implements Parser<TaskCommand> {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public TaskCommand parse(String userInput) throws ParseException {
+    public FieldCommand parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
@@ -44,20 +50,14 @@ public class TaskCommandParser implements Parser<TaskCommand> {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-            case AddTaskCommand.SUBCOMMAND_WORD:
-                return new AddTaskCommandParser().parse(arguments);
-            case DeleteTaskCommand.SUBCOMMAND_WORD:
-                return new DeleteTaskCommandParser().parse(arguments);
-            case MarkTaskCommand.SUBCOMMAND_WORD:
-                return new MarkTaskCommandParser().parse(arguments);
-            case UnmarkTaskCommand.SUBCOMMAND_WORD:
-                return new UnmarkTaskCommandParser().parse(arguments);
-            case SelectTaskCommand.SUBCOMMAND_WORD:
-                return new SelectTaskCommandParser().parse(arguments);
-            case ForEachTaskCommand.SUBCOMMAND_WORD:
-                return new ForEachTaskCommandParser().parse(arguments);
+            case AddFieldCommand.SUBCOMMAND_WORD:
+                return new AddFieldCommandParser().parse(arguments);
+            case EditFieldCommand.SUBCOMMAND_WORD:
+                return new EditFieldCommandParser().parse(arguments);
+            case DeleteFieldCommand.SUBCOMMAND_WORD:
+                return new DeleteFieldCommandParser().parse(arguments);
             default:
-                throw new ParseException(MESSAGE_USAGE);
+                throw new ParseException("errrr");
         }
     }
 }

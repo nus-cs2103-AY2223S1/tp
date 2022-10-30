@@ -43,16 +43,12 @@ public class DeleteTaskCommand extends TaskCommand {
         }
         if (task == null) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }
 
             task = lastShownList.get(targetIndex.getZeroBased());
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
         }
 
-        Task task = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTask(task);
         return new CommandResult(String.format(DELETE_SUCCESS, task));
     }
