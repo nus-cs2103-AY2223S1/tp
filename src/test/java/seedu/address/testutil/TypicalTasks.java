@@ -29,7 +29,7 @@ public class TypicalTasks {
         .withDescription("Task C")
         .withStatus("incomplete")
         .build();
-    public static final Task LINKED_TASK = new TaskBuilder().withModule("cs2040")
+    public static final Task TASK_D = new TaskBuilder().withModule("cs2040")
         .withDescription("Task D")
         .withStatus("complete")
         .withExam(getTypicalExams().get(0))
@@ -47,7 +47,7 @@ public class TypicalTasks {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical tasks and typical modules.
+     * Returns an {@code AddressBook} with all the typical tasks, typical exams and typical modules.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
@@ -64,6 +64,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C, LINKED_TASK, TASK_E, TASK_F));
+        return new ArrayList<>(Arrays.asList(TASK_A, TASK_B, TASK_C, TASK_D, TASK_E, TASK_F));
     }
 }

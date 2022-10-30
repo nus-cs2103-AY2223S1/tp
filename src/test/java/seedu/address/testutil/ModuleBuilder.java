@@ -25,7 +25,6 @@ public class ModuleBuilder {
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
         moduleName = new ModuleName(DEFAULT_MODULE_NAME);
         moduleCredit = new ModuleCredit(DEFAULT_MODULE_CREDIT);
-
     }
 
     /**

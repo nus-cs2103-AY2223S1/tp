@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,21 +29,26 @@ class MarkCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    @Test // valid index for unfiltered list [1...size of list]
+    @Test
     public void execute_validIndexUnfilteredList_success() {
+        // index "1" chosen as boundary value for the partition [1...size of list]
         Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_TASK);
+        // ensures that the task is not marked
+        assertFalse(taskToMark.isComplete());
 
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_TASK);
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.replaceTask(taskToMark, taskToMark.mark(), true);
+        Task editedTask = new TaskBuilder(taskToMark).withStatus("complete").build();
+        expectedModel.replaceTask(model.getFilteredTaskList().get(0), editedTask, true);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test // invalid index for unfiltered list [size of list + 1...INT_MAX]
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+        // index "size of list + 1" chosen as boundary value for partition [size of list + 1...INT_MAX]
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex);
         String expectedMessage = String.format(
@@ -51,34 +57,36 @@ class MarkCommandTest {
         assertCommandFailure(markCommand, model, expectedMessage);
     }
 
-    @Test // invalid task for unfiltered list [marked task]
+    @Test
     public void execute_invalidTaskUnfilteredList_throwsCommandException() {
-
+        // marked task -> throws error
         MarkCommand markCommand = new MarkCommand(INDEX_MARKED_TASK);
-
         String expectedMessage = MarkCommand.MESSAGE_TASK_ALREADY_MARKED;
 
         assertCommandFailure(markCommand, model, expectedMessage);
     }
 
-    @Test // valid index for filtered list [1...size of list]
+    @Test
     public void execute_validIndexFilteredList_success() {
-
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_TASK);
+        // ensures that the task is not marked
+        assertFalse(taskToMark.isComplete());
 
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_TASK);
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.replaceTask(model.getFilteredTaskList().get(0), taskToMark.mark(), true);
+        Task editedTask = new TaskBuilder(taskToMark).withStatus("complete").build();
+        expectedModel.replaceTask(model.getFilteredTaskList().get(0), editedTask, true);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test // invalid index for filtered list [size of list + 1...INT_MAX]
+    @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
+        // index "2" chosen as boundary value for partition [size of list + 1...INT_MAX]
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;

@@ -2,8 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_FIRST_TASK;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_SECOND_TASK;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_ABSENT_GEA1000;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DO_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2040;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -26,64 +30,89 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code EditTaskCommand}.
+ */
 public class EditTaskCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    @Test // [same fields specified]
-    public void execute_sameFieldsSpecifiedUnfilteredList_failure() {
-        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask)
-            .build();
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, new EditTaskCommand.EditTaskDescriptor());
-        Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+    @Test
+    public void execute_sameFieldsSpecified_failure() {
+        // same module and description specified
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(taskToEdit).build();
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
 
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_SAME_FIELDS_PROVIDED, editedTask);
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_SAME_FIELDS_PROVIDED, taskToEdit);
+
+        assertCommandFailure(editTaskCommand, model, expectedMessage);
+
+        // same module specified
+        taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        descriptor = new EditTaskDescriptorBuilder()
+            .withModule(taskToEdit.getModule().getModuleCode().moduleCode).build();
+        editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
+
+        expectedMessage = String.format(EditTaskCommand.MESSAGE_SAME_FIELDS_PROVIDED, taskToEdit);
+
+        assertCommandFailure(editTaskCommand, model, expectedMessage);
+
+        // same description specified
+        taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        descriptor = new EditTaskDescriptorBuilder()
+            .withDescription(taskToEdit.getDescription().description).build();
+        editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
+
+        expectedMessage = String.format(EditTaskCommand.MESSAGE_SAME_FIELDS_PROVIDED, taskToEdit);
 
         assertCommandFailure(editTaskCommand, model, expectedMessage);
     }
 
-    @Test // [a different task description specified]
-    public void execute_descriptionChangedUnfilteredList_success() {
-        Task firstTask = model.getFilteredTaskList().get(0);
-        Task editedTask = new TaskBuilder(firstTask).withDescription("first task").build();
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
-
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.replaceTask(model.getFilteredTaskList().get(0), editedTask, false);
-
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test // [a different module specified for an unlinked task]
-    public void execute_moduleChangedForUnlinkedTask_success() {
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withModule("cs2100").build();
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
-
-        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(firstTask).withModule("cs2100").build();
-
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.replaceTask(model.getFilteredTaskList().get(0), editedTask, false);
-
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test // [a different module specified for a linked task]
-    public void execute_moduleChangedForLinkedTask_success() {
+    @Test
+    public void execute_descriptionChanged_success() {
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
-            .withModule("cs2030").build();
+            .withDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Task editedTask = new TaskBuilder(taskToEdit).withDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
+        expectedModel.replaceTask(expectedModel.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()),
+            editedTask, false);
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_moduleChangedForUnlinkedTask_success() {
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+            .withModule(VALID_MODULE_CS2040).build();
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Task editedTask = new TaskBuilder(taskToEdit).withModule(VALID_MODULE_CS2040).build();
+        expectedModel.replaceTask(expectedModel.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()),
+            editedTask, false);
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_moduleChangedForLinkedTask_success() {
+        Task taskToEdit = model.getFilteredTaskList().get(INDEX_LINKED_TASK.getZeroBased());
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+            .withModule(VALID_MODULE_CS2030).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_LINKED_TASK, descriptor);
 
-        Task linkedTask = model.getFilteredTaskList().get(INDEX_LINKED_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(linkedTask).withExam(null).withModule("cs2030").build();
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.replaceTask(linkedTask, editedTask, false);
+        Task editedTask = new TaskBuilder(taskToEdit).withExam(null).withModule(VALID_MODULE_CS2030).build();
+        expectedModel.replaceTask(expectedModel.getFilteredTaskList().get(INDEX_LINKED_TASK.getZeroBased()),
+            editedTask, false);
 
         String expectedMessage = MESSAGE_EXAM_UNLINKED
             + String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -91,29 +120,27 @@ public class EditTaskCommandTest {
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test // [invalid module specified]
+    @Test
     public void execute_invalidModuleSpecified_failure() {
+        // module does not exist -> throws error
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
-
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withModule("gea1000").build();
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+            .withModule(INVALID_MODULE_ABSENT_GEA1000).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
-        String expectedMessage = Messages.MESSAGE_MODULE_NOT_FOUND;
+        assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_MODULE_NOT_FOUND);
 
-        assertCommandFailure(editTaskCommand, model, expectedMessage);
+
     }
 
-    @Test // [duplicate task]
+    @Test
     public void execute_duplicateTask_failure() {
-        Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
-
+        Task secondTask = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
-            .withDescription("task e").build();
-        EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
+            .withDescription(secondTask.getDescription().description).build();
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
 
-        String expectedMessage = MESSAGE_DUPLICATE_TASK;
-
-        assertCommandFailure(editTaskCommand, model, expectedMessage);
+        assertCommandFailure(editTaskCommand, model, MESSAGE_DUPLICATE_TASK);
     }
 
     @Test
@@ -121,14 +148,14 @@ public class EditTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(taskInFilteredList).withDescription("first task").build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK,
-                new EditTaskDescriptorBuilder().withDescription("first task").build());
-
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+                new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_DO_TUTORIAL).build());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.replaceTask(model.getFilteredTaskList().get(0), editedTask, false);
+        Task editedTask = new TaskBuilder(taskInFilteredList).withDescription(VALID_DESCRIPTION_DO_TUTORIAL).build();
+        expectedModel.replaceTask(expectedModel.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()),
+            editedTask, false);
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -147,9 +174,10 @@ public class EditTaskCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_failure() {
+        // index "size of list + 1" chosen as boundary value for partition [size of list + 1...INT_MAX]
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
-            .withDescription("cs2030").build();
+            .withDescription(VALID_MODULE_CS2040).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, descriptor);
 
         String expectedMessage = String.format(
@@ -170,7 +198,7 @@ public class EditTaskCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex,
-                new EditTaskDescriptorBuilder().withDescription("cs2030").build());
+                new EditTaskDescriptorBuilder().withDescription(VALID_MODULE_CS2040).build());
 
         String expectedMessage = String.format(
             Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE, model.getFilteredTaskList().size() + 1);
@@ -180,10 +208,10 @@ public class EditTaskCommandTest {
 
     @Test
     public void equals() {
-        final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_TASK, DESC_FIRST_TASK);
+        final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_TASK, DESC_TUTORIAL);
 
         // same values -> returns true
-        EditTaskCommand.EditTaskDescriptor copyDescriptor = new EditTaskCommand.EditTaskDescriptor(DESC_FIRST_TASK);
+        EditTaskCommand.EditTaskDescriptor copyDescriptor = new EditTaskCommand.EditTaskDescriptor(DESC_TUTORIAL);
         EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_TASK, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -197,9 +225,9 @@ public class EditTaskCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_SECOND_TASK, DESC_FIRST_TASK)));
+        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_SECOND_TASK, DESC_TUTORIAL)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_FIRST_TASK, DESC_SECOND_TASK)));
+        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_FIRST_TASK, DESC_LECTURE)));
     }
 }
