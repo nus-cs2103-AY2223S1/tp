@@ -156,7 +156,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTab`, `BookingTab`, `ResidentTableView`, `BookingTableView`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTab`, `VenueTab`, `CurrentWorkingFileFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -165,7 +165,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Resident` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Resident`, `Venue` and `Booking` object residing in the `Model`.
 
 ### Logic component
 
@@ -273,12 +273,12 @@ shows the updated Sequence diagram for the executing of our `delete` command.
 ### Displaying Data
 
 There are two main types of data that is stored and displayed, the `Residents`, and the `Bookings`.
-As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTab` and a `BookingTab`, which are
+As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are
 responsible for displaying the respective information.
 
 #### Resident Information
 
-The `ResidentTab` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented
+The `ResidentTabView` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented
 as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
 
 ##### Design considerations
@@ -318,7 +318,7 @@ For the purposes of the user, who has to deal with large amounts of residential 
 
 #### Booking Information
 
-Similar to the display of resident information, the `BookingTab` contains a `BookingTableView` which was also implemented
+Similar to the display of resident information, the `VenueTabView` contains a `BookingTableView` which was also implemented
 via the `TableView` class of `JavaFX`. Here, each row corresponds to the `Day`, and each column corresponds to the `TimePeriod`.
 
 Unlike the `ResidentTableView`, we did not discuss any other alternatives as to how booking information should be displayed as

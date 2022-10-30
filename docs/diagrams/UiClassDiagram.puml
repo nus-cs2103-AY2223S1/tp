@@ -18,7 +18,7 @@ Class CurrentWorkingFileFooter
 Class CommandBox
 Class VenueListView
 Class VenueListCard
-note top of MainWindow : MainWindow and all of its components \nimplements UiPart. UiPart has been \nremoved from the diagram from brevity.
+note top of MainWindow : MainWindow and all of its components \ninherits from UiPart. UiPart has been \nremoved from the diagram from brevity.
 }
 
 package Logic <<Rectangle>> {
