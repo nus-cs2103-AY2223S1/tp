@@ -50,7 +50,6 @@ public class PersonBuilder {
         name = personToCopy.getName();
         attrs = new ArrayList<>(personToCopy.getAttributes());
         tags = new HashSet<>(personToCopy.getTags());
-        fields = personToCopy.getFields();
     }
 
     /**
@@ -62,8 +61,8 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
-     * {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are
+     * building.
      */
     public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -72,6 +71,7 @@ public class PersonBuilder {
 
     /**
      * Adds a custom attribute.
+     * 
      * @param name
      * @param data
      * @param <U>
@@ -101,13 +101,11 @@ public class PersonBuilder {
 
             @Override
             public boolean isAllFlagMatch(int flag) {
-                // TODO Auto-generated method stub
                 return false;
             }
 
             @Override
             public boolean isAnyFlagMatch(int flag) {
-                // TODO Auto-generated method stub
                 return false;
             }
 
@@ -145,6 +143,11 @@ public class PersonBuilder {
             public Map<String, Object> toSaveableData() {
                 return null;
             }
+
+            @Override
+            public boolean isNameMatch(String name) {
+                return false;
+            }
         });
         return this;
     }
@@ -163,10 +166,11 @@ public class PersonBuilder {
 
     /**
      * Returns a person with specified attributes in builder.
+     * 
      * @return
      */
     public Person build() {
-        Person p = new Person(name.fullName, fields);
+        Person p = new Person(name.fullName);
         p.setTags(tags);
         attrs.forEach(attr -> p.addAttribute(attr));
         return p;
@@ -174,6 +178,7 @@ public class PersonBuilder {
 
     /**
      * Adds address attribute to person
+     * 
      * @param string address
      * @return
      */
@@ -184,6 +189,7 @@ public class PersonBuilder {
 
     /**
      * Adds email attribute to person
+     * 
      * @param string email
      * @return
      */
@@ -194,6 +200,7 @@ public class PersonBuilder {
 
     /**
      * Adds phone attribute to person
+     * 
      * @param string phone number
      * @return
      */
