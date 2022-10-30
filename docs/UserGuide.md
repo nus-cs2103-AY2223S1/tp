@@ -443,7 +443,17 @@ Format: `exit`
 
 Clears all the data currently stored in the database.
 
+If you are a new user, you can use this command after you have experimented with Coydir 
+to start keying in your actual employee information.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once you run this command, you lose all data immediately.
+</div>
+
 Format: `clear`
+
+Example:
+![](images/ui-screenshots/Clear.png)
 
 #### Saving the data
 
