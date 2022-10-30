@@ -17,8 +17,7 @@
        3. [Contact commands](#contact-commands)
           1. [Add a contact](#add-a-contact-person-new)
           2. [Delete a contact](#delete-a-contact-person-delete)
-          3. [Searching for a contact](#searching-for-a-contact-find)
-          4. [Listing all contacts](#listing-all-contacts-list)
+          3. [Listing all contacts](#listing-all-contacts-list)
        4. [Group commands](#group-commands)
           1. [Creating a group](#creating-a-group-team-new)
           2. [Deleting a group](#deleting-a-group-team-delete)
@@ -29,9 +28,16 @@
           2. [Deleting a task from group](#deleting-a-task-from-group-task-delete)
           3. [Set progress for tasks](#set-progress-for-tasks-task-progress)
     4. [Advanced features](#advanced-features)
-       1. [Sequence command](#sequence-command-seq)
-       2. [Iterate command](#iterate-command-foreach)
-       3. [Select command](#select-command-select)
+       1. [Chaining](#advanced-features-overview-chaining)
+       2. [Feature constraints](#advanced-feature-constraints)
+       3. [Select command](#select-command)
+       4. [Contains command](#contains-command)
+       5. [Execute command](#execute-command)
+       6. [Replace command](#replace-command)
+       7. [Foreach command](#foreach-command)
+       8. [If else command](#if--else-command)
+       9. [Aliasing](#aliasing)
+       10. [Custom command / macro](#custom-command--macro)
 6. [FAQ](#faq)
 7. [Future plans](#future-plans)
 8. [Glossary](#glossary)
@@ -122,7 +128,7 @@ easy access between groups and subgroups of a group project.
 Scoping defines the relationship between different groups. For example, a subgroup can be contained within
 another group, similar to how a folder on your desktop can be contained within another folder.
 
-There may also be many subgroups under a group, similar to how there may be many subfolders under a folder.
+There may also be many subgroups under a group, similar to how there may be many sub folders under a folder.
 
 Adding to the analogy, your contacts can be thought of as files on your desktop. Contacts can thus be
 added to a group or a subgroup, similar to how files can be added into folders.
@@ -206,23 +212,11 @@ Delete a contact from the contact list by their listed `INDEX` within the curren
 
 - `person delete 1`
 
-### Searching for a contact: `find`
-
-Refer to the [find](#find-command-find) command for more information.
-
-### Iterate command
-
-Refer to the [foreach](#iterate-command-foreach) command for more information.
-
 ### Listing all contacts: `list`
 
 Lists all current contacts in your contact list within the current [scope](#scoping).
 
 **Format:** `list`
-
-### Select command
-
-Refer to the [select](#select-command-select) command for more information.
 
 ## Group commands
 
@@ -265,14 +259,6 @@ Adds a contact to a group.
 **Example:**
 
 - `assign g/3 u/7`
-
-### Iterate command
-
-Refer to the [foreach](#iterate-command-foreach) command for more information.
-
-### Select command
-
-Refer to the [select](#select-command-select) command for more information.
 
 ### Removing contacts from group: `team remove`
 
@@ -324,14 +310,6 @@ Example:
 
 - `task delete 1`
 
-### Iterate command
-
-Refer to the [foreach](#iterate-command-foreach) command for more information.
-
-### Select command
-
-Refer to the [select](#select-command-select) command for more information.
-
 ### Set progress for tasks: `task progress`
 
 **THIS FEATURE IS CURRENTLY IN PROGRESS**
@@ -351,31 +329,185 @@ This sets the progress of the first task in the list as 25%.
 
 ## Advanced features
 
-### Sequence command: `seq`
+Now, there might be many things that you wish to do with managing your tasks and groups. However, it feels really, 
+really tedious to perform multiple functions one after the other.
+Are you a power user? Are you good with logic? Well this section is for you! Supercharge your user experience by 
+adding and customizing your own commands and features!
 
-Adds
+Firstly, let’s understand what these commands are and how these commands work in Contactmation.
 
-### Iterate command: `foreach`
+## Advanced features overview: Chaining
 
-Iterates through each task, contact or group within the current [scope](#scoping), and
-applies the command to each of the currently listed task, contact or group.
+Most of the commands in Contactmation can take in an input and give an output. This is similar to how your functions 
+work in programming and mathematics.
 
-**Format:** `<item> foreach <command>`
+For instance, take the command `ops`. This command can take in a value, perform some operators on it and returns 
+the value. Another command is the command `float`. This command allows you to create a floating point value and return 
+it.
+
+Many commands in Contactmation have this functionality, and you can in turn **chain multiple commands together to 
+perform complicated tasks** that suits your needs.
+
+So, how do we chain multiple commands together? We can use the `|` and `;` and the `seq` command to do so. The way 
+this commands work is extremely similar to how `|` and `;` works on a UNIX operating system. You can chain multiple 
+commands together like such:
+
+- `seq <command 1> [| command 3]...`
+- `seq <command 1> [; command 3]...`
+
+Whenever a pipe symbol (`|`) is encountered, the output of the previous commands is then passed to the next command. 
+Whenever (`;`) is used, the output of the previous commands are not passed on.
+
+All commands that produce an output supports the use of `|` to “pipe” their output to the subsequent commands.
+
+## Advanced feature constraints
+
+While these advanced features can make your Contactmation experience a lot smoother, it is also subject to certain 
+limitations. These are the following constraints for each keyword in the format section of each advanced feature 
+command:
+
+- The `MACRO WORD` is alphanumeric but hyphens and underscores are allowed. It must also begin with a letter.
+- `INPUT` is a string of any length.
+
+Here are some commands that will aid you in gaining better control over Contactmation:
+
+## Select command
+
+This command allows you to select a specific group, contact or task by their `INDEX`. While this command does nothing 
+by itself, it is useful as a precursor to chaining other commands after it.
+
+**Format:** `<ITEM> select <INDEX> <COMMAND> [...]`
 
 **Example:**
 
-- `task foreach rename`
+- `task select 3 mark`
 
-### Select command: `select`
+![Select command ui](images/SelectCommandUi)
 
-Selects the current task, contact or group within the current [scope](#scoping) and
-run a command on that task, contact or group.
+## Contains command
 
-**Format:** `<item> select <INDEX> <command>`
+You can use the `contains` command which takes in an item and checks if it contains a certain attribute. If it does, 
+then the attribute description will be shown in the result display if there is no further piping.
+
+**Format:** `<ITEM> contains <ATTRIBUTE>`
 
 **Example:**
 
-- `task select 3 isComplete`
+- `task select 1 contains bug`
+
+![Contains command ui](images/ContainsCommandUi)
+
+Here, we see that there are no `bug` attribute in the task `New Burger Recipes`.
+
+## Execute command
+
+This command allows for the running of a `command` on a piped string.
+
+**Format:** `<INPUT> | e`
+
+**Example:**
+
+- `Who lives in a pineapple under the sea | e`
+
+## Replace command
+
+This command replaces a piece of text with another piece of text.
+
+**Format:** `r <TEXT TO REPLACE> <TEXT TO BE REPLACED>`
+
+**Example:**
+
+- `r tetss tests`
+
+## Foreach command
+
+Iterations can increase our workflow efficiency several fold, and through the `foreach` command, we can now cycle 
+through all entries of an item type in the current scope and apply a command to them. This can be especially powerful 
+when combined with piping to do complex executions with a single command!
+
+**Format:**  `<ITEM> foreach <COMMAND>`
+
+**Example:**
+
+- `task foreach unmark`
+
+![Foreach command ui](images/ForeachCommandUi)
+
+## If / else command
+
+This command behaves exactly like if else statements in programming languages. If the `CRITERIA` specified is met, 
+then the command sequence will execute `COMMAND IF`, else it will execute `COMMAND ELSE` instead. The command 
+ensures that the application cannot run `COMMAND IF` and `COMMAND ELSE` in the same command sequence.
+
+>**Note**
+> If else commands cannot be nested in other if else commands directly.
+
+**Format:** `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]`
+
+**Example:**
+
+- `task select 1 if [[contains bug]] ;; [[mark]] ;; [[task delete]]`
+
+## Aliasing
+
+Aliasing is very useful to have in case you do not agree with the default naming scheme in Contactmation! Here’s 
+how it works:
+
+**Format:** `alias <NEW COMMAND NAME> <COMMAND>`
+
+**Example:**
+
+- `alias group team`
+
+After running `alias group team`, you are now able to use the command `group` as if it was a `team`!
+
+![Aliasing command ui](images/AliasingCommandUi)
+
+## Custom command / Macro
+
+Do you ever feel tired from typing the same commands over and over again? Do you find yourself highlighting your 
+commands and copying and pasting them? Macros are available in our application to solve this problem of yours.
+
+All you have to do is assign the command sequence to a single word, or multiple words separated by hyphens and 
+underscores only. After that, when the word is typed into the command box, the command sequence it is used to 
+represent will run!
+
+**Format:** `macro <MACRO WORD> <COMMAND SEQUENCE>`
+
+**Example:**
+
+- `macro markeverytask task foreach mark`
+
+This will produce the following output:
+
+![Custom command ui 1](images/CustomCommandUi1)
+
+When `markeverytask` is typed into the command box, all tasks become marked!
+
+![Custom command ui 2](images/CustomCommandUi2)
+
+## Piecing multiple commands together
+
+Here’s another example. You have just completed fixed a bunch of bugs you would like to mark off all tasks that 
+was bugged as complete.
+
+![Multiple commands ui](images/MultipleCommandsUi)
+
+Well, you know that you defined your custom field’s type as `bug` and you can see that task 1, 2 and 3 are bug 
+related tasks with the `Severity` labelled as a custom field in the bugs.
+
+Well, you could of course just do `mark` commands 3 times and mark all the tasks, but what if there are a few 
+hundred of those pesky bug tasks that you and your team fixed?
+
+Luckily for you, Contactmation supports the automation of commands!
+
+Here is an example of a command sequence to search through all tasks and mark all tasks which have bug severity 
+ratings:
+
+`task foreach if [[contains bug]] ;; [[mark]]`
+
+Using just 1 command sequence, you are able to do the work that many normal commands would similarly achieve and 
+mark hundreds of tasks in a matter of seconds!
 
 ## FAQ
 
@@ -458,9 +590,14 @@ etc.
 
 | Command  | Format |
 | ----------- | ----------- |
-| Group   | A container that contains people that work on a similar project.  |
-| Item    | An item can refer to a group, contact or task. |
-| Contact   | A contact with contact information.  |
-| Task  | Assigned to people or groups |
+| Aliasing | `alias <NEW COMMAND NAME> <COMMAND>` |
+| Chaining/seq | `seq <command 1> [\| command 3]... OR seq <command 1> [; command 3]...` |
+| Contains | `<ITEM> contains <ATTRIBUTE>` |
+| Execute | `<INPUT> \| e` |
+| Foreach | `<ITEM> foreach <COMMAND>` |
+| If else | `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]` |
+| Macro | `macro <MACRO WORD> <COMMAND SEQUENCE>` |
+| Replace | `r <TEXT TO REPLACE> <TEXT TO BE REPLACED>` |
+| Select    | `<ITEM> select <INDEX> <COMMAND> [...]` |
 
 [Back to top](#contactmation-user-guide)
