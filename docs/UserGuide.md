@@ -1,323 +1,347 @@
 # Contactmation User Guide
 
-Contactmation is a **desktop, contact management application** that is **optimized for group management and
-delegation of tasks through the Command Line Interface** (CLI). Contactmation efficiently tracks progress of your
-group projects.
-
 ## Table of contents
 
-- [Prerequisites](#prerequisites)
-- [Quick start](#quick-start)
-- [Features](#features)
-    - [Definitions](#definitions)
-    - [Scoping](#scoping)
-    - [Basic features](#basic-features)
-        - [General commands](#general-commands)
-          - [Find command](#find-command-find)
-          - [Iterate command](#iterate-command-foreach)
-          - [Select command](#select-command-select)
-          - [Sequence command](#sequence-command-seq)
-          - [Exit command](#exits-the-program-exit)
-        - [Add a contact](#add-a-contact-person-new)
-        - [Delete a contact](#delete-a-contact-person-delete)
-        - [Searching for a contact](#searching-for-a-contact-find)
-        - [Listing all contacts](#listing-all-contacts-list)
-    - [Groups](#groups)
-        - [Creating a group](#creating-a-group-team-new)
-        - [Deleting a group](#deleting-a-group-team-delete)
-        - [Adding people to a group](#adding-contacts-to-a-group-assign)
-        - [Removing people from group](#removing-contacts-from-group-team-remove)
-    - [Tasks](#tasks)
-        - [Adding a task to a group](#adding-a-task-to-a-group-task-add)
-        - [Deleting a task from group](#deleting-a-task-from-group-task-delete)
-        - [Set progress for tasks](#set-progress-for-tasks-task-progress)
-- [FAQ](#faq)
+1. [Introduction](#introduction)
+2. [About](#about)
+3. [Prerequisites](#prerequisites)
+4. [Quick start](#quick-start)
+5. [Features](#features)
+    1. [Definitions](#definitions)
+    2. [Scoping](#scoping)
+    3. [Basic features](#basic-features)
+        1. [Add a contact](#add-a-contact-add)
+        2. [Delete a contact](#delete-a-contact-delete)
+        3. [Edit a contact](#edit-a-contact-edit)
+        4. [Searching for a contact](#searching-for-a-contact-find)
+        5. [Listing all contacts](#listing-all-contacts-list)
+        6. [Exits the program](#exits-the-program-exit)
+    4. [Teams](#teams)
+        1. [Creating a team](#creating-a-team-newteam)
+        2. [Deleting a team](#deleting-a-team-rmteam)
+        3. [Adding people to a team](#adding-people-to-a-team-add-or-team-team-id-add)
+        4. [Removing people from team](#removing-people-from-team-delete-or-delete-gteam-id)
+        5. [Adding team wide tasks](#adding-team-wide-tasks-task-add)
+    5. [Tasks](#tasks)
+        1. [Adding a task to a team](#adding-a-task-to-a-team-task-add)
+        2. [Deleting a task from team](#deleting-a-task-from-team-task-delete)
+        3. [Change task completion status](#change-task-completion-status-task-set-status)
+        4. [Set task completion time](#set-task-completion-time-task-set-completed_time)
+6. [FAQ](#faq)
+7. [Future plans](#future-plans)
+8. [Glossary](#glossary)
+9. [Commands summary](#commands-summary)
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+>**What is Contactmation?**
+
+Contactmation is a powerful **desktop based team management solution** that **helps its users efficiently and
+effectively manage many projects and groups at once.**
+
+Contactmation will be able to help you save all your contact details, keep track of
+each project group and subgroup, and delegate tasks given to each group and group member.
+
+
+>**Who is Contactmation for?**
+
+Contactmation is for **project managers and supervisors** that want to maintain an organised view of their
+projects and streamline the management of their projects.
+--------------------------------------------------------------------------------------------------------------------
+## About
+
+### Graphic User Interface
+
+The following figure shows the different graphical components of our application.
+We will be referring to these terminologies throughout the user guide:
+
+![Contactmation ui elements](images/ContactmationUi.png)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Prerequisites
 
-- Ensure that `Java 11` and above is installed on your device.
+- Ensure that `Java 11` and above is installed on your device. If you do not have `Java 11` installed, please refer to
+  this [Java 11 installation guide](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Download the latest `contactmation.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-1/tp/releases).
+1. Ensure that the [prerequisites](#prerequisites) are met before installing Contactmation.
 
-2. Save `contactmation.jar` into a folder that you want to use as your home folder on your desktop.
 
-3. Double-click the file `contactmation.jar` to start up the application.
+2. Download the latest version of `contactmation.jar` from
+   [here](https://github.com/AY2223S1-CS2103T-T11-1/tp/releases).
 
-4. Refer to the [Features](#features) below for details of each command.
+
+3. Save `contactmation.jar` into a Desktop folder on your computer. This folder will now be the home folder
+   for Contactmation.
+
+
+4. Double-click on `contactmation.jar` to start up the application. You will be greeted with the current window
+   if everything goes well:
+
+![Contactmation ui main window](images/ContactmationUiClean.png)
+
+5. You may begin by referring to the [basic features](#basic-features) section to get started on using
+   Contactmation. For additional, more powerful commands, refer to our [advanced features](#advanced-features),
+   especially if you are comfortable with the CLI or have prior programming experience.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+## Features
 
 ## Definitions
 
-In this user guide, we define any parameters within **square brackets** e.g. `[t/new_tag]` as
+In this user guide, we define any parameters within **square brackets** e.g. `[g/TEAMID]` as
 **optional parameters**, and commands within **angled brackets** e.g. `<command>` are **placeholder parameters**.
 
 **Ellipses** `...` indicate that more than 1 argument of a certain type can be given to a single command.
-For example, `[t/tags...]` means that an optional number (0 or more) of `tags` can be added to a single
-user command, but `t/tags...` means that 1 or more `tags` can be given to a single user command.
+For example, `[USER ID...]` means that an optional number (0 or more) of `USER IDs` can be added to a single
+user command, but `USER ID...` means that 1 or more `USER IDs` can be given to a single user command.
 
+**Team ID** refers to a specific ID automatically given by the application during the creation of a team.
+Any user commands involving `g/<TEAM ID>` will reference that particular team.
+
+**User ID** refers to a specific ID automatically given by the application during the creation of a contact.
+
+Any user commands involving `u/<USER ID>` will reference that particular contact.
 
 ## Scoping
 
-Since Contactmation is a multi group management contact application, it supports scoping to facilitate
-easy access between groups and subgroups of a group project.
+Since Contactmation is a multi team management contact application, the app supports scoping.
 
-Scoping defines the relationship between different groups. For example, a subgroup can be contained within
-another group, similar to how a folder on your desktop can be contained within another folder. 
+- General Scope
+    - Commands used within the main menu scope:
+        - `<command> [parameters]` regular general scope command.
+        - `<command> u/<USER ID>` command targeting a user of UID.
+    - Team scope commands from general scope:
+        - `<command> [parameters] g/<TEAM ID>`
+        - `<command> [parameters] g/<TEAM ID> u/<USER ID>`
 
-There may also be many subgroups under a group, similar to how there may be many subfolders under a folder.
 
-Adding to the analogy, your contacts can be thought of as files on your desktop. Contacts can thus be
-added to a group or a subgroup, similar to how files can be added into folders.
+- Team Scope
+    - Commands used within a team scope:
+        - `<TEAM ID> <command> [parameters]`
+    - Commands used to target individuals within a team:
+        - `<TEAM ID>/<USER ID> <command> [parameters]`
 
-Commands to handle scoping can be found [here](#scoping).
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Basic features
 
-## General commands
+### Add a contact: `add`
 
-### Find command: `find`
+Adds a new contact with a name, phone number, email, address and optional tags.
 
-**CURRENTLY A WORK IN PROGRESS DUE TO BUGS**
+Format: `add n/<NAME> [p/<PHONE_NUMBER>] [e/<EMAIL>] [a/<ADDRESS>] [t/TAG]`
 
-Searches for a contact, group or task that matches the given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
-to further narrow the search for a contact, subgroup or task within the current [scope](#scoping).
 
-**Format:** `find <KEYWORD> [<MORE_KEYWORDS>]`
+### Delete a contact: `delete`
 
-**Examples:**
+Delete a contact from the contact list by its `USER ID`.
 
-- `find John Doe`
-- `find task1 task2`
+- `delete <USER ID>`
 
-### Iterate command: `foreach`
+### Edit a contact: `edit`
 
-Iterates through each task, contact or group within the current [scope](#scoping), and 
-applies the command to each of the currently listed task, contact or group.
+Edits a contact based on its `USER ID`.
 
-**Format:** `<item> foreach <command>`
-
-**Example:**
-
-- `task foreach rename`
-
-### Select command: `select`
-
-Selects the current task, contact or group within the current [scope](#scoping) and
-run a command on that task, contact or group.
-
-**Format:** `<item> select <INDEX> <command>`
-
-**Example:**
-
-- `task select 3 isComplete`
-
-### Sequence command: `seq`
-
-Adds
-
-### Exits the program: `exit`
-
-Exits the current session and closes the application.
-
-**Format:** `exit`
-
-## Contact commands
-
-### Constraints on contact information
-
-The following contact commands comply with these placeholder constraints:
-
-- The `NAME` of the contact must be alphanumeric and can contain whitespace.
-- The `PHONE_NUMBER` of the contact must be at least 3 digits long.
-- The `EMAIL` of the contact must be in the format `local-part@domain`.
-
-    - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
-      the parentheses, (+_.-). The local-part may not start or end with any special characters.
-    - `Domain`:
-
-        - Ends with a domain label at least 2 characters long.
-        - Have each domain label start and end with alphanumeric characters.
-        - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-- The `ADDRESS` can take any values, but it should not be blank.
-- The `TAG` must be alphanumeric.
-- The `INDEX` must be a positive integer which cannot exceed the number of contacts currently displayed in the
-application.
-- The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
-
-### Add a contact: `person new`
-
-Adds a new contact with a name within the current [scope](#scoping). Additionally, other contact details such 
-as the phone number, email, address and multiple tags may be included during the creation of the contact.
-
-**Format:** `person new n/<NAME> [p/<PHONE_NUMBER>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>...]`
-
-**Examples:**
-
-- `person new n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
-- `person new n/Betty White`
-
-### Delete a contact: `person delete`
-
-Delete a contact from the contact list by their listed `INDEX` within the current [scope](#scoping).
-
-**Format:** `person delete <INDEX>`
-
-**Example:**
-
-- `person delete 1`
+Format: `edit <USER ID> [n/name] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 ### Searching for a contact: `find`
 
-Refer to the [find](#find-command-find) command for more information.
+Searches for a contact that matches the given keyword.
 
-### Iterate command
+Format: `find <KEYWORD> [MORE_KEYWORDS]`
 
-Refer to the [foreach](#iterate-command-foreach) command for more information.
+Examples:
+- `find John Doe`
+- `find 8881 2345`
 
 ### Listing all contacts: `list`
 
-Lists all current contacts in your contact list within the current [scope](#scoping).
+Lists all current contacts in your contact list, based on alphabetical order of contact names.
 
-**Format:** `list`
+Format: `list`
 
-### Select command
+### Exits the program: `exit`
 
-Refer to the [select](#select-command-select) command for more information.
+Exits the current session.
 
-## Group commands
+Format: `exit`
 
-### Constraints on group information
+## Teams
 
-The following group commands comply with these placeholder constraints:
+### Creating a team: `newteam`
 
-- The `GROUP NAME` must be alphanumeric.
-- The `INDEX` must be a positive integer which cannot exceed the number of contacts / groups currently displayed 
-in the application.
+Creates a new team with the specified team name along with optional parameters. These optional parameters are
+`USER IDs` that are to be added to the team.
 
-### Creating a group: `team new`
+- Format: `newteam n/<team name> [USER ID...]`
+    - `<team name>` is the name of the team to be created.
+    - `[USER ID]` are optional parameters to add people with corresponding User ID to the team.
 
-Creates a new group with the specified group name within the current [scope](#scoping). This new group
-will thus be a subgroup of the group you are currently scoped in.
+### Deleting a team: `rmteam`
 
-**Format:** `team new <GROUP NAME>`
+Removes an existing team.
 
-**Example:**
+- Format: `rmteam <TEAM ID>`
+    - `<TEAM ID>` is the ID of the team to be deleted.
 
-- `team new namingIsHard`
+### Adding people to a team: `add OR team <TEAM ID> add`
 
-### Deleting a group: `team delete`
+Adding members to an existing team.
 
-Removes an existing group from the current [scope](#scoping). All subgroups of the group you are currently
-deleting will also be deleted.
+- Adding a user under team scope:
+    - `team <TEAM ID> add <USER ID>...`
+- Adding a user under global scope:
+    - `add g/<TEAM ID> <USER ID>...`
 
-**Format:** `team delete <INDEX>`
+### Removing people from team: `delete OR delete g/<TEAM ID>`
 
-**Example:**
+- Delete user from team under team scope:
+    - `team <TEAM ID> delete <USER ID>...`
+- Delete user from team under global scope
+    - `delete g/<TEAM ID> <USER ID>...`
 
-- `team delete 1`
+### Adding team wide tasks: `task add`
 
-### Adding contacts to a group: `assign`
+- Adding task to team under team scope:
+    - `team <TEAM ID> task add t/<title> [i/INFO]`
+- Adding task to team under global scope:
+    - `task add g/<TEAM ID> t/<title> [i/INFO]`
 
-Adds a contact to a group. 
-
-**Format:** `assign g/<INDEX> u/<INDEX>`
-
-**Example:**
-
-- `assign g/3 u/7`
-
-### Iterate command
-
-Refer to the [foreach](#iterate-command-foreach) command for more information.
-
-### Select command
-
-Refer to the [select](#select-command-select) command for more information.
-
-### Removing contacts from group: `team remove`
-
-Removes the contact from the current group by their currently specified `INDEX` as shown in
-the application window. 
-
-**Format:** `team remove <INDEX>`
-
-**Example:** 
-
-- `team remove 3`
-
-### Group scope commands
-
-### Changing the group scope: `cg`
-
-Updates the group scope that is currently being displayed in the application. This command is similar to going
-into a folder on your desktop, or stepping out of it.
-
-**Formats:**
-
-- `cg <INDEX>`
-- `cg ..` changes the group scope to its parent group. This is similar to stepping out of a folder once.
-- `cg /` changes the group scope to the root group. This is similar to moving your current context to the
-  root folder.
+See more task related commands under [tasks](#tasks).
 
 ## Tasks
 
-### Adding a task to a group: `task add`
+You can avoid typing `g/<TEAM ID>` by accessing the task via team scoping!
 
-Adds a new task to an existing group scope. This group cannot be the root group.
+i.e. `team TEAMID task <related command> [task related details]`
 
-**Format:** `task add t/<TITLE> d/<DESCRIPTION>`
+### Adding a task to a team: `task add`
 
-**Example:**
-- `task add t/Complete all CS2103T homework d/Give description here`
+Adds a new task to an existing team.
 
-### Deleting a task from group: `task delete`
+Format: `task add t/<TITLE> g/<TEAM ID> [s/STATUS]`
 
-Deletes an existing task from a group by their `INDEX` within the current [scope](#scoping).
-
-Format: `task delete <INDEX>`
-
-Example:
-- `task delete 1`
-
-### Iterate command
-
-Refer to the [foreach](#iterate-command-foreach) command for more information.
-
-### Select command
-
-Refer to the [select](#select-command-select) command for more information.
-
-### Set progress for tasks: `task progress`
-
-**THIS FEATURE IS CURRENTLY IN PROGRESS**
-
-Sets the progress level for each task that has been listed.
-
-Format: `task progress i/<INDEX> <LEVEL>`
-
-- Index indicates the index of the task in the list.
-- Level indicates the progress level, and can only be set to 25%, 50%, 75%, 100%.
+- Adds a new task with the specified `TITLE` to the specified `TEAM ID`.
+- The status of the new task can be optionally specified with `STATUS`.
+- If a task with the same title already exists in the group, no changes will be made.
+- The specified group must already exist.
 
 Example:
-- `task progress 1 25%`
+- `task add t/Complete all CS2103T homework g/Students`
 
-This sets the progress of the first task in the list as 25%.
+This creates a new task in the team `Students` with the title `Complete all CS2103T homework`.
+
+### Deleting a task from team: `task delete`
+
+Deletes an existing task from a team.
+
+Format: `task delete t/<TITLE> g/<TEAM ID>`
+- Delete an existing task with the specified `TITLE` to from specified `TEAM ID`.
+
+Example:
+- `task delete t/Complete all CS2103T homework g/Students`
+
+This deletes a task in the team `Students` with the title `Complete all CS2103T homework`.
+
+### Change task completion status: `task set status`
+
+Sets the status of an existing task in a team.
+
+Format: `task set status t/<TITLE> g/<TEAM ID> v/<STATUS>`
+- Sets the status of the task with the specified `TITLE` and `TEAM ID` to `STATUS`.
+- The existing status of the task will be overwritten by the new status.
+- The specified task must already exist in the group.
+
+Example:
+- `task set status t/Clean beakers g/Lab v/Done`
+
+This sets the status of the `Clean beakers` task in the `Lab` team to `Done`.
+
+### Set task completion time: `task set completed_time`
+
+Sets the time that a task has been completed.
+
+Format: `task set completed_time t/<TITLE> g/<TEAM ID> v/<VALUE>`
+
+- Sets the completed time of the task with the specified `TITLE` in `TEAM ID` to `VALUE`.
+- The `VALUE` for the time should be in UTC format with a precision in minutes: `yyyy-MM-ddThh:mmZ`.
+- The existing completed time of the task will be overwritten.
+- The specified task must already exist in the group.
+
+Example:
+- `task set completed_time t/Generate report g/Accountants v/2022-09-13T10:20Z`
+
+This sets the status of the `Generate report` task in the `Accountants` team to Sep 13, 2022 at 10:20am UTC time.
+
+## Advanced features
 
 ## FAQ
 
 > How can I install `Java 11`?
 
-Follow the guide for installing `Java 11` [here](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk).
+Follow the guide for installing `Java 11` [here](#prerequisites).
+
+## Future plans
+
+Our future plans for Contactmation includes:
+
+- Contacting any person through the application simply by clicking their email, phone number
+etc.
+- Releasing a version of Contactmation on the mobile platform.
+- Ability to synchronize data between multiple copies of Contactmation on your mobile and desktop.
+
+## Glossary
+
+| Vocabulary  | Description |
+| ----------- | ----------- |
+| Group   | A container that contains people that work on a similar project.  |
+| Item    | An item can refer to a group, person or task. |
+| Person   | A contact with contact information.  |
+| Task  | Assigned to people or groups |
+
+## Commands summary
+
+### General commands
+
+| Command  | Format |
+| ----------- | ----------- |
+| Group   | A container that contains people that work on a similar project.  |
+| Item    | An item can refer to a group, person or task. |
+| Person   | A contact with contact information.  |
+| Task  | Assigned to people or groups |
+
+### Group commands
+
+| Command  | Format |
+| ----------- | ----------- |
+| Group   | A container that contains people that work on a similar project.  |
+| Item    | An item can refer to a group, person or task. |
+| Person   | A contact with contact information.  |
+| Task  | Assigned to people or groups |
+
+
+### Person commands
+
+| Command  | Format |
+| ----------- | ----------- |
+| Group   | A container that contains people that work on a similar project.  |
+| Item    | An item can refer to a group, person or task. |
+| Person   | A contact with contact information.  |
+| Task  | Assigned to people or groups |
+
+### Task commands
+
+| Command  | Format |
+| ----------- | ----------- |
+| Group   | A container that contains people that work on a similar project.  |
+| Item    | An item can refer to a group, person or task. |
+| Person   | A contact with contact information.  |
+| Task  | Assigned to people or groups |
+
+
 
 [Back to top](#contactmation-user-guide)
-
