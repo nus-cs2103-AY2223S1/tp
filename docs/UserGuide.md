@@ -19,8 +19,6 @@ Students do not have to worry about forgetting which friend takes which module.
 while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, Plannit can help you track your module information and tasks faster than traditional GUI apps!
 
-This application is **optimized for use via a Command Line Interface** (CLI)
-while still having the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
 {:toc}
