@@ -12,8 +12,8 @@ import seedu.address.model.item.AbstractSingleItem;
  */
 public class Group extends AbstractSingleItem {
 
-    // public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z0-9_-]*";
-    public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z0-9]*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z0-9_\\-]*";
+    // public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z0-9]*";
     public static final String MESSAGE_CONSTRAINTS = "A group name should only consist "
             + "of alphanumeric characters only and start with a letter.\n";
 
