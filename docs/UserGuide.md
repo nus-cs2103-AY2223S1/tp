@@ -364,7 +364,7 @@ _Module prefix refers to the first two characters of every module name._
 **Q**: I have accidentally cleared all the data. Is there any way to undo the changes?<br>
 **A**: Currently, there is no ```undo``` feature and the ```clear``` command is irreversible. Hence, it is extremely important to only use it when you want an empty Student and Module table. However, we are looking into adding ```undo``` and ```redo``` commands for future developments.
 
-**Q**: I have added a batchmate and its row exceeds the current displayed list of batchmates in the Students panel. I have to scroll below to view the newly added batchmate. Is this expected?<br>
+**Q**: I have added a batchmate and its row exceeds the currently displayed list of batchmates in the Students panel. I have to scroll below to view the newly added batchmate. Is this expected?<br>
 **A**: Yes, adding a new batchmate would not auto scroll the _Student panel_ to the bottom of the list.
 
 #### Privacy Issues
