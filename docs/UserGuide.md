@@ -337,7 +337,8 @@ To help you familiarize with the commands, Swift+ prompts you with command sugge
 1. Type the first few letters of a command you hope to use and Swift+ will display a suggested command. e.g. `lis`.<br>
    ![autocomplete](images/autocomplete.png)
 
-2. Press Tab to autocomplete your command with the prompted suggestion.
+2. Press Tab to autocomplete your command with the prompted suggestion. If there are multiple commands that have the user inputs as the prefix, this action will autocomplete up to the longest common prefix of all such commands.<br>
+e.g. pressing Tab after `lis` will autocomplete the command to `list_` as there are two commands (`list_contact` and `list_task`) that start with `lis`.
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Note** <br>
