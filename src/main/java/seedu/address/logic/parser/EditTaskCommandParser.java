@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTEGER_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -19,7 +21,6 @@ import seedu.address.model.person.Email;
  * Parses input arguments and creates a new EditTaskCommand object
  */
 public class EditTaskCommandParser implements Parser<EditTaskCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the EditTaskCommand
      * and returns an EditTaskCommand object for execution.
@@ -27,6 +28,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditTaskCommand parse(String args) throws ParseException {
+        Boolean isEdited = false;
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_CATEGORY,
@@ -37,6 +39,9 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
+            if (pe.getMessage().equals(MESSAGE_INVALID_INTEGER_INDEX)) {
+                throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     pe.getMessage() + "\n" + EditTaskCommand.MESSAGE_USAGE),
                     pe);
@@ -44,25 +49,32 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            isEdited = true;
             editTaskDescriptor.setName(ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            isEdited = true;
             editTaskDescriptor.setDescription(
                     ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            isEdited = true;
             editTaskDescriptor.setPriority(ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
+            isEdited = true;
             editTaskDescriptor.setCategory(ParserUtil.parseTaskCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+            isEdited = true;
             editTaskDescriptor.setDeadline(ParserUtil.parseTaskDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
+            isEdited = true;
             editTaskDescriptor.setDone(ParserUtil.parseTaskIsDone(argMultimap.getValue(PREFIX_DONE).get()));
         }
         if (argMultimap.getValue(PREFIX_PERSON).isPresent()) {
+            isEdited = true;
             if (argMultimap.getValue(PREFIX_PERSON).get().equalsIgnoreCase("none")) {
                 editTaskDescriptor.setPersonEmail(Email.getNoEmailInstance());
             } else {
@@ -75,7 +87,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
             }
         }
 
-        if (!editTaskDescriptor.isAnyFieldEdited()) {
+        if (!editTaskDescriptor.isAnyFieldEdited() || !isEdited) {
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
         }
 

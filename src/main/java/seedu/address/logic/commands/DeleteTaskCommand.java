@@ -50,7 +50,6 @@ public class DeleteTaskCommand extends Command {
             }
         }
 
-
         model.deleteTask(taskToDelete);
         model.update();
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
