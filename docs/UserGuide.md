@@ -64,9 +64,6 @@ Component | Purpose
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-
-<div markdown="block" class="alert alert-info">
-
 **:information_source: Notes about the command parameters:**<br>
 
 * `NAME` can only accept alphanumeric characters i.e. "a, b, c..." & "1, 2, 3..."
