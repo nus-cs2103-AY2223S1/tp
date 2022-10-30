@@ -356,15 +356,15 @@ _Module prefix refers to the first two characters of every module name._
 **A**: No, internet connection is not required. 
 
 **Q**: I am using Mac and I tried opening the `MassLinkers.jar` file by double-clicking it in Finder. It says *"MassLinkers.jar" cannot be opened because it is from an unidentified developer.*<br>
-**A**: Right click the `MassLinkers.jar` file and select `Open with JavaLauncher(default)`.
+**A**: Right click the `MassLinkers.jar file` and select `Open`. When a warning message that says _macOS cannot verify the developer of "MassLinkers.jar". Are you sure you want to open it?_ appears, select `Open`. Alternatively, you can right click the `MassLinkers.jar` file and select `Open with JavaLauncher(default)`. 
 
 **Q**: Will the data of batchmates be saved if the program was not closed via the ```exit``` command?<br>
-**A**: Yes, the data will still be saved. However, we advise using the ```exit``` command for a better user experience.
+**A**: Yes, the data will still be saved if the program is closed by closing the application window directly. However, we advise using the ```exit``` command for a better user experience.
 
 **Q**: I have accidentally cleared all the data. Is there any way to undo the changes?<br>
 **A**: Currently, there is no ```undo``` feature and the ```clear``` command is irreversible. Hence, it is extremely important to only use it when you want an empty Student and Module table. However, we are looking into adding ```undo``` and ```redo``` commands for future developments.
 
-**Q**: I have added a batchmate and its row exceeds the current displayed list of batchmates. I have to scroll below to view the newly added batchmate. Is this expected?<br>
+**Q**: I have added a batchmate and its row exceeds the current displayed list of batchmates in the Students panel. I have to scroll below to view the newly added batchmate. Is this expected?<br>
 **A**: Yes, adding a new batchmate would not auto scroll the Student panel to the bottom of the list.
 
 #### Privacy Issues
