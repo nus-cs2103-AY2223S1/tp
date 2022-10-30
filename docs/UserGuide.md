@@ -51,7 +51,7 @@ In the user guide, you might come across some terms you might not understand. Th
 | **Filter**           | A filter is a search condition you are looking for.                                                                                                                                  |
 | **Tag**              | A tag is a label that can be assigned to clients.                                                                                                                                    |
 | **Integer**          | An integer is a round, whole number. For example, `1` and `9` are integers but `1.5` and `hello` are not.                                                                            |
-| **Open-source**      | This means that the source code is made freely available online. If you are interested in contributing to Rapportbook, you can take at our [code repository](https://github.com/AY2223S1-CS2103T-T13-2/tp) and [developer guide](DeveloperGuide.html).  |
+| **Open-source**      | This means that the source code is made freely available online. If you are interested in contributing to Rapportbook, you can take a look at our [code repository](https://github.com/AY2223S1-CS2103T-T13-2/tp) and [developer guide](DeveloperGuide.html).  |
 
 ## Quick start
 
@@ -107,7 +107,7 @@ You can then either click on the link to open it in your default browser, or cli
 
 Adds the information of a client to Rapportbook.
 
-Format: `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS [r=REMARKS]​`
+Format: `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS [r=REMARKS] [t=TAG]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Recap:**
 Fields in square brackets `[]` (i.e. `[r=REMARKS]`) is an optional field.
@@ -116,6 +116,7 @@ Fields in square brackets `[]` (i.e. `[r=REMARKS]`) is an optional field.
 Examples:
 
 * `add n=Bob p=95788172 e=bob@gmail.com a=Jurong East Jejantas r=Janitor`
+* `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi t=friend`
 * `add n=Laufey p=98980184 e=laufey@u.nus.edu a=123,Clementi`
 
 ### Deleting of a client : `delete`
@@ -147,11 +148,15 @@ Edits the information of a client within Rapportbook.
 * Edits the client at the specified `INDEX`, the number shown in the displayed client list.
 * The index can be left out if the client to edit is the target client from the [show](#viewing-the-information-of-a-client--show) command.
 
-Format: `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS]`
+Format: `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS] [t=TAG]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** (i.e. 1, 2, 3, …​)
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you choose to edit the tag, note that all tags the client had previously will be replaced.
+</div>
 
 Examples:
 
