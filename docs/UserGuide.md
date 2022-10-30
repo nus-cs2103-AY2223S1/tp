@@ -185,7 +185,7 @@ Format: `findstu KEYWORD [MORE_KEYWORDS]`
 * Finds student(s) with specified KEYWORD [MORE_KEYWORDS] in their name(s).
 * The keyword is case-insensitive.
 
-Example:
+Examples:
 
 * `findstu bob`
 * `findstu john mary`
@@ -271,7 +271,7 @@ Format: `addtut g/GROUP_NUMBER c/CONTENT t/DATE TIME`
 * The format of the date must be in the YYYY-MM-DD.
 * The format of the time must be in 24h format HHmm.
 
-Examples:
+Example:
 
 * `addtut g/T08 c/UML diagrams t/2022-10-01 1400`
 
