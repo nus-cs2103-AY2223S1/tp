@@ -37,7 +37,7 @@ public class UniqueIdGenerator {
     }
 
     /**
-     * Adds a unique id to the set of storedIdPet
+     * Adds a unique id to the storedIdPet
      */
     public static boolean addToStoredIdPet(UniqueId id) {
         return storedIdPet.add(id);
@@ -51,7 +51,7 @@ public class UniqueIdGenerator {
     }
 
     /**
-     * Adds a unique id to the set of storedIdOrder
+     * Adds a unique id to the storedIdOrder.
      */
     public static boolean addToStoredIdOrder(UniqueId id) {
         return storedIdOrder.add(id);
