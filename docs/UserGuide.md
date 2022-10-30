@@ -30,7 +30,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
      the list of food stalls.
 
    * **`sdel`**`3` : Deletes the 3rd food stall shown in the current list.
-   
+
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -60,7 +60,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `slist`, `rlist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
+
 * Not all mistakes may be reported for an invalid command.<br>
   e.g. given an invalid command `sadd`, the user would be informed of one of the mistakes, in this case, missing name or missing address. There is no guarantee which mistake will be reported if multiple mistakes are present.
 
@@ -250,7 +250,7 @@ Format: `exit`
 
 ### Saving the data
 
-FoodWhere data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. 
+FoodWhere data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If there are no commands entered, simply exiting the program will not generate a new JSON file if the file is not present.
@@ -288,7 +288,7 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | **redit** | `redit REVIEW_INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/EDIT_TAG]…` <br> e.g., `redit 1 d/20/09/2022 c/Great food!`      |
 | **rlist** | `rlist`                                                                                                      |
 | **rfind** | `rfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…` <br> e.g., `rfind n/eatery`                                |
-| **rsort** | `rsort CRITERION` <br> e.g., `rsort rating`                                                                  |                                                                   
+| **rsort** | `rsort CRITERION` <br> e.g., `rsort rating`                                                                  |
 | **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…` <br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South`                |
 | **sdel**  | `sdel STALL_INDEX`                                                                                           |
 | **sedit** | `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/EDIT_TAG]…` <br> e.g., `sedit 1 n/John Chicken Rice`                  |
