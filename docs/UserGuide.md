@@ -3,29 +3,88 @@ layout: page
 title: User Guide
 ---
 
-Designed for software engineering project leads, Swift+ is a seamless **desktop app for tracking daily interactions with
-contacts using a swift Command Line Interface** (CLI). If you have fast fingers, Swift+ can help you manage events with contacts
-more quickly than a traditional GUI app.
+## **About Swift+**
+
+Swift+ is a **project management app** designed to help software engineering (SWE) project leads in tracking their daily 
+interactions with contacts. As a project lead, you can easily record down your clients and teammates by **creating contacts**
+using Swift+. Using Swift+’s **task management system**, you can assign tasks to contacts and mark tasks as completed. 
+Finally, you can gain an overview of your project with our intuitive side-by-side user interface.
+
+Perfect for SWE professionals, Swift+ is built around a **command line interface**, complete with an **autocomplete** feature. 
+If you have fast fingers, Swift+ can help you manage contacts and tasks more quickly than a traditional point-and-click interface.
+
+This user guide provides details on how to use Swift+ in your daily workflow. This guide covers how to set up Swift+ and 
+use its text-based commands. Get started now by heading over to [How to use the User Guide](#how-to-use-the-user-guide)!
+
+---
+
+## **Table of Contents**
 
 - Table of Contents
 {:toc}
 
 ---
 
-## **Quick start**
+## **How to use the User Guide**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+---
 
-2. Download the latest `swift+.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-2/tp/releases).
+## **Getting Started**
 
-3. Copy the file to the folder you want to use as the _home folder_ for your Swift+.
+This section covers how to install and start using Swift+.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+### Installation
 
-    <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
-    The app comes with sample contacts and tasks by default. To delete the sample data quickly, you can use the [`clear`](#clearing-all-data-clear) command.
-    </div>
+1. Ensure you have [Java 11](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) installed in your computer.
+
+2. Download the latest release of `swift+.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-2/tp/releases).
+
+3. Copy the file to an empty folder. This will be your home folder for Swift+.
+
+4. Double-click on the jar file to launch Swift+. 
+
+Congratulations! You have successfully set up Swift+.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
+The app comes with sample contacts and tasks by default. To delete the sample data quickly, you can use the [`clear`](#clearing-all-data-clear) command.
+</div>
+
+### Layout
+
+After you open Swift+, the app will appear in the form of a graphical user interface, or GUI. In Swift+, you can toggle 
+between the Contact View, which is primarily for viewing contacts, and the Task View, which is mainly for viewing tasks. 
+Let's look at the different components in Swift+ below.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
+To toggle between Contact View and Task View, you can use the [`Ctrl + Tab`](#toggling-between-contacts-and-tasks-tabs-ctrl--tab) command.
+</div>
+
+**Swift+'s GUI:**
+![Ui](images/Ui.png)
+
+This table outlines the components shared by both Contact View and Task View.
+
+| Component Name        | Image                                                         |
+|-----------------------|---------------------------------------------------------------|
+| **Menu Bar**          | ![Menu Bar](images/user-guide/menu-bar.png)                   |
+| **Command Input Box** | ![Command Input Box](images/user-guide/command-input-box.png) |
+| **Search Results**    | ![Search Results](images/user-guide/search-results.png)       |
+
+#### Contact View
+
+| Component Name   | Image                                               |
+|------------------|-----------------------------------------------------|
+| **Contact List** | ![Contact List](images/user-guide/contact-list.png) |
+| **Task Sidebar** | ![Task Sidebar](images/user-guide/task-sidebar.png) |
+
+#### Task View
+
+| Component Name      | Image                                                     |
+|---------------------|-----------------------------------------------------------|
+| **Task List**       | ![Task List](images/user-guide/task-list.png)             |
+| **Contact Sidebar** | ![Contact Sidebar](images/user-guide/contact-sidebar.png) |
+
+### Command Format
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -38,11 +97,13 @@ more quickly than a traditional GUI app.
     
    - `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Commands](#commands) section below for details of each command.
 
 ---
 
-## **Features**
+## **Commands**
+
+This section covers how to use each command in detail.
 
 <div markdown="block" class="alert alert-info">
 
@@ -114,7 +175,7 @@ Examples:
 
 - `find_contact John` returns `john` and `John Doe`.
 - `find_contact alex david` returns `Alex Yeoh` and `David Li`.
-    ![result for 'find alex david'](images/findAlexDavidResult.png)
+    ![result for 'find alex david'](images/user-guide/findAlexDavidResult.png)
 
 ### Editing a contact: `edit_contact`
 
@@ -368,7 +429,7 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 
 ---
 
-## **Command summary**
+## **Command Summary**
 
 | Action             | Format                                                                         |
 |--------------------|--------------------------------------------------------------------------------|
