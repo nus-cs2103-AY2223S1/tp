@@ -1,5 +1,7 @@
 package taskbook.logic.parser;
 
+import static taskbook.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+
 import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.Messages;
@@ -40,21 +42,21 @@ public class ContactEditCommandParserTest {
     public void parse_invalidPreamble_failure() {
         // negative index
         CommandParserTestUtil.assertParseFailure(parser,
-                "-5" + CommandTestUtil.NAME_DESC_AMY,
-                MESSAGE_INVALID_FORMAT);
+                " i/-5" + CommandTestUtil.NAME_DESC_AMY,
+            MESSAGE_INVALID_INDEX);
 
         // zero index
         CommandParserTestUtil.assertParseFailure(parser,
-                "0" + CommandTestUtil.NAME_DESC_AMY,
-                MESSAGE_INVALID_FORMAT);
+                " i/0" + CommandTestUtil.NAME_DESC_AMY,
+            MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
         CommandParserTestUtil.assertParseFailure(parser,
                 "1 some random string",
-                MESSAGE_INVALID_FORMAT);
+            MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        CommandParserTestUtil.assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        CommandParserTestUtil.assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_INDEX);
     }
 
     @Test

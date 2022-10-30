@@ -17,6 +17,7 @@ import static taskbook.logic.commands.tasks.TaskEditCommand.MESSAGE_ASSIGNOR_ASS
 import static taskbook.logic.commands.tasks.TaskEditCommand.MESSAGE_NOT_EDITED;
 import static taskbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static taskbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static taskbook.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import org.junit.jupiter.api.Test;
 
@@ -121,6 +122,11 @@ public class TaskEditCommandParserTest {
             .build();
         expectedCommand = new TaskEditCommand(index, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_negativeIndex_throwsException() {
+        assertParseFailure(parser, " i/-5", MESSAGE_INVALID_INDEX);
     }
 
     private String indexAsInput(Index index) {
