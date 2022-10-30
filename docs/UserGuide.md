@@ -228,17 +228,19 @@ Filter clients by their name or the tags assigned to client entries.
 
 Format: `filter [n=NAME] [t=TAG]`
 
-* The search is case-insensitive. e.g `laufey` will match `Laufey`
+* The name search is case-insensitive. (e.g `n=laufey` will match `Laufey`)
 * Multiple names or tags can be searched by separating the different names/tags with commas (i.e. `n=homer,laufey` to search for both `homer` and `laufey`)
-* Search results will fulfil **at least one** of the search parameters (e.g. searching `n=homer t=potential` will bring up client entries with names including `homer`, even if they do not have the `potential` tag.)
+* Search results will fulfill **both** of the search parameters. (e.g. searching `n=homer,laufey t=potential,highPrirority` will bring up client entries with names `homer` or `laufey`, with tags `potential` or `highPrirority`)
 
 Examples:
 
 * `filter n=Laufey` Shows clients with `Laufey` as name.
 * `filter n=Homer,Laufey` Shows all clients with `Homer` **or** `Laufey` as name.
-* `filter t=highPriority` Shows clients with high-priority names.
-* `filter t=highPriority,potential` Shows all clients with `highPriority` tag **or** `potential` tag.
-* `filter n=Homer t=potential` Shows all clients with `Homer` name **or** `potential` tag.
+* `filter t=highPriority` Shows clients with the `highPriority` tag.
+* `filter t=highPriority,potential` Shows all clients with the `highPriority` tag **or** `potential` tag.
+* `filter n=Homer t=potential` Shows all clients with the name `Homer` **and** the `potential` tag.
+* `filter n=Homer,Laufey t=potential,highPotential` Shows all clients with names, `Homer` or `Laufey`, **and** with either the `potential` or `highPrirority` tags.
+
 
 ### Clearing filters : `filter clear`
 
@@ -250,18 +252,19 @@ Example:
 
 * `filter clear` Clear ALL filters.
 * `filter clear t=potential` Remove the `potential` tag filter.
-* `filter clear t` Remove all tag filters
+* `filter clear n=homer,laufey t=potential,friend` Remove `homer` and `laufey` name filters and  the `potential` and `friend` tag filters.
 
 ### Lists the filter parameters : `filter list`
 
-Shows the list of parameters (name and tags) in the filter command.
+Shows the list of filters (name and tags) that are currently applied.
 
 Format: `filter list`
 
+![Filter list result](images/filterListResult.png)
+
 ### Creating reminders : `reminder`
 
-Creates a reminder for a specific client. The description, date and time of the reminder must be specified. The
-index can be left out if the reminder is meant for the target client from the [show](#viewing-the-information-of-a-client--show) command.
+Creates a reminder for a specific client. The description, date and time of the reminder must be specified. The index can be left out if the reminder is meant for the target client from the [show](#viewing-the-information-of-a-client--show) command.
 
 Format: `reminder [INDEX] d=description dt=YY-M-D H:m`
 
