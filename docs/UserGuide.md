@@ -175,7 +175,7 @@ In the above example, we are changing the module title of the third module on Pl
 `Software Engineering`.
 
 #### 2.1.4. Find module
-You may find modules whose module code starts with a specific keyword while in Plannit's home page.
+You may find modules whose module code starts with a specific keyword while in the home page.
 
 Format: `find-module KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -201,7 +201,6 @@ You may obtain the list of every module in Plannit while in the home page.
 Format: `list-module`
 
 Example:
-
 ```
 list-module
 ```
@@ -226,6 +225,10 @@ Example:
 add-person-to-module m/CS2103T n/Dinosaur Lim
 ```
 In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+If you wish to view the person added to a particular module, you can go to that 
+module's page using the [`goto`](#252-navigate-between-modules) command.
+</div>
 
 #### 2.1.7. Delete person from module
 You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
@@ -492,9 +495,8 @@ edit-person 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
 `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
 
-
 #### 2.4.4. Find person
-You may find person whose name starts with a specific keyword while in Plannit's home page.
+You may find person whose name starts with a specific keyword while in the home page.
 
 Format: `find-person KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -515,7 +517,6 @@ You may obtain the list of every person in Plannit while in the home page.
 Format: `list-person`
 
 Example:
-
 ```
 list-person
 ```
@@ -525,12 +526,26 @@ In the above example, we list every person that exist in Plannit.
 With navigation functionalities, you now have the ability to navigate between different modules in Plannit!
 
 #### 2.5.1. Navigate to home
-You may navigate back to the home page using the `home` command.
+An overview of the modules and persons in Plannit is provided on the home page.
+
+You may navigate to the home page using the `home` command.
 
 Format:  `home`
 
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+You may double-click a module to peek into the module's task from the home page. <br>
+For more detailed information regarding a specific module, you may navigate to that
+module using the [`goto`](#252-navigate-between-modules). <br>
+After using [`goto`](#252-navigate-between-modules), executing the `home` command will 
+re-enable the following commands:
+* [`find-module`](#214-find-module)
+* [`list-module`](#215-find-module)
+* [`find-person`](#244-find-person)
+* [`list-person`](#245-list-module)
+</div>
+
 #### 2.5.2. Navigate between modules
-You may navigate between modules to view information belonging to a particular
+You may navigate between modules to view tasks and contacts associated with that particular
 module using the `goto` command.
 
 Format: `goto MODULE_CODE`
@@ -542,9 +557,16 @@ goto CS2109S
 ```
 In the above example, we are navigating to the module with module code `CS2109S`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** You will
-leave the home page after executing the `goto` command. This is different from the
-behavior of [`find-module`](#213-find-module)
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+You will leave the home page after executing the `goto` command. This is different from the
+behavior of [`find-module`](#215-find-module). <br>
+After using `goto` command, the usage of the following commands will be restricted:
+* [`find-module`](#214-find-module)
+* [`list-module`](#215-find-module)
+* [`find-person`](#244-find-person)
+* [`list-person`](#245-list-module)
+You may return to home page or re-enable the restricted commands by executing the
+[`home`](#251-navigate-to-home) command.
 </div>
 
 <br>
@@ -557,19 +579,19 @@ Format: `exit`
 <br>
 
 ### 2.7. Saving The Data
-Plannit data is saved in the hard disk automatically after any command that changes the data. There is no need to save
-manually.
+Your data is saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
 
 <br>
 
 ### 2.8. Loading The Data
-If saved data exists, data is automatically loaded when the program starts. There is no need to
-load manually.
+If saved data exists, data is automatically loaded when the program starts.
+There is no need to load manually.
 
 <br>
 
 ### 2.9. Editing The Data File
-Plannit data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update
+Your data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
