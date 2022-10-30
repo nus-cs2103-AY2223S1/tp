@@ -392,7 +392,7 @@ The history is looped, meaning that when you reach the end, the next cycle will 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** Every new valid command will reset the index back to the top of the history.
 Click Down Arrow to get the most recent command immediately and Up Arrow to get the last command in the history.
-<div>
+</div>
 
 Controls: 
 * `Up Arrow` on keyboard: Cycle to next command
