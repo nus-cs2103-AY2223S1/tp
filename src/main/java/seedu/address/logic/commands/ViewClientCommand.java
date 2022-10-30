@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 
@@ -17,8 +18,8 @@ public class ViewClientCommand extends Command {
     public static final String COMMAND_WORD = "viewClient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the client identified by the index number used in the displayed client list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Views the client identified by their index number.\n"
+            + "Parameters: " + PREFIX_INDEX + "INDEX\n"
             + "Example: " + COMMAND_WORD + " i/1";
 
     public static final String MESSAGE_SUCCESS = "Viewed client: %1$s";

@@ -20,8 +20,8 @@ public class DeleteProductCommand extends Command {
     public static final String COMMAND_WORD = "delProduct";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the product identified by the index number used in the displayed product list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the product identified by its index number.\n"
+            + "Parameters: " + PREFIX_INDEX + "INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_PRODUCT_SUCCESS = "Deleted Product: %1$s";

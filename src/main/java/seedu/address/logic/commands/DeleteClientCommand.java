@@ -19,8 +19,8 @@ public class DeleteClientCommand extends Command {
     public static final String COMMAND_WORD = "delClient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the client identified by the index number used in the displayed client list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the client identified by their index number.\n"
+            + "Parameters: " + PREFIX_INDEX + "INDEX\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
