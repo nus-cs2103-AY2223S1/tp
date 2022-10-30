@@ -259,7 +259,7 @@ You may add a task using the `add-task` command.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
 Make sure you have [added a module](#211-add-module) to Plannit before 
-proceeding!.
+proceeding!
 </div>
 
 This command will require two flags:
@@ -270,7 +270,7 @@ This command will require two flags:
 | **Task Description of New Task** | `td/` | Can be any string of characters                         |
 
 Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
-* Each task **must** belong to a specific module.
+* Each task must belong to a specific module.
 * You should provide a module code of an existing module in Plannit.
 
 Example:
@@ -278,8 +278,8 @@ Example:
 add-task m/CS2103T td/Complete tP tasks for W07
 ```
 In the above example, we are adding the task `Complete tP tasks for W07` to the
-module with module code `CS2103T`. Here's a screenshot of the command before
-and after executing:
+module `CS2103T`. Here's a screenshot of Plannit before and after executing the
+command:
 
 | Before executing the command                                   | After executing the command                                   |
 |----------------------------------------------------------------|---------------------------------------------------------------|
@@ -287,7 +287,7 @@ and after executing:
 
 <div markdown="span" class="alert alert-info">:bulb: **Tip:** 
 You may view the tasks added to a module by navigating to a module's page 
-using the [`goto`](##252-navigate-between-modules) command. Alternatively, 
+using the [`goto`](##252-navigate-between-modules) command. <br/>Alternatively, 
 you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
 module's tasks while on the home page.
 </div>
@@ -313,8 +313,8 @@ Example:
 delete-task m/CS2103T tn/2
 ```
 In the above example, we are deleting task number **2** from the module
-with the module code `CS2103T`. Here's a screenshot of the command before 
-and after executing: 
+`CS2103T`. Here's a screenshot of Plannit before and after executing the 
+command: 
 
 | Before executing the command                                      | After executing the command                                      |
 |-------------------------------------------------------------------|------------------------------------------------------------------|
@@ -329,7 +329,7 @@ This command will require two flags:
 | Field                                                     | Flag  | Constraints                                                                                                                                                                                                         |
 |-----------------------------------------------------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Module Code**                                           | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                             |
-| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/` | The two task numbers must: <ul><li>be delimited by a `SPACE` character ("` `") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul> |
+| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/` | The two task numbers must: <ul><li>be separated by a `SPACE` character ("` `") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul> |
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -343,9 +343,9 @@ Example:
 swap-task m/CS2103T ts/1 3
 ```
 In the above example, we are swapping the position of the first and third 
-task within the task list of the module with the module code `CS2103T`. The following is a
-screenshot of the command before and after executing. Note that ["peek"]
-(#224-peeking-at-tasks) has been enabled for clarity:
+task within the task list of the module `CS2103T`. Here's a screenshot of 
+Plannit before and after executing the command. Note that ["peek"](#224-peeking-at-tasks)
+has been enabled for clarity:
 
 | Before executing the command                                                | After executing the command                                                                                                        |
 |-----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
@@ -360,7 +360,7 @@ ENGINEERING` (module number 1)
   <img src="/images/home-page.png" width="500"/>
 </p>
 
-**Step 2**: You will noticing a blue glow when hovering your mouse over the 
+**Step 2**: You will notice a blue glow when hovering your mouse over the 
 module
 <p align="center">
   <img src="/images/home-page-with-cs2103-glowing.png" width="500"/>
