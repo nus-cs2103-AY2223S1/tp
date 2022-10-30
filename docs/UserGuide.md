@@ -56,6 +56,21 @@ If you are a returning user, the [Command Summary](#command-summary) provides yo
 
 --------------------------------------------------------------------------------------------------------------------
 
+## User Interface
+
+The following is the main user interface of NUScheduler.
+
+<img src="images/LabelledUI.png">
+
+
+* **Menu Bar**
+* **Command Box**: Enter your commands here.
+* **Result Display**: Shows the details of the results of your commands.
+* **Profile List**: Displays the list of profiles stored and the relevant details.
+* **Event List**: Displays the list of events stored and the relevant details.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
