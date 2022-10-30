@@ -30,7 +30,7 @@ public class AddAttributeCommandParser implements Parser<AddAttributeCommand> {
      * Parses the given {@code String} of arguments in the context of the
      * {@code AddAttributeCommand}
      * and returns a {@code AddFieldCommand} object for execution.
-     * 
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddAttributeCommand parse(String args) throws ParseException {

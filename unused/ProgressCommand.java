@@ -31,7 +31,7 @@ public class ProgressCommand extends TaskCommand {
 
     /**
      * Constructor for progress command
-     * 
+     *
      * @param targetIndex
      * @param level
      */

@@ -17,7 +17,7 @@ public class UniqueID {
 
     /**
      * A constructor to create an UUID object.
-     * 
+     *
      * @param id is the ID generated when instantiating an item object.
      */
     public UniqueID(String id) {
