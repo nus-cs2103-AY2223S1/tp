@@ -245,7 +245,7 @@ Adds a reminder to the list of reminders.
 Examples:
 * `add reminder n/Mark Midterms D/2022-01-01 T/15:00 d/300 papers to mark p/HIGH`
 
-#### 3.4.3 Editing a reminder: `edit reminder`
+#### 3.4.2 Editing a reminder: `edit reminder`
 
 Edits an existing reminder in the list of reminders.
 
@@ -262,20 +262,7 @@ Examples:
 * `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
 * `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd consultation to be `14:00` and sets deadline date to `2022 Oct 10`.
 
-#### 3.4.2 Deleting a reminder : `delete reminder`
-
-Deletes the specified reminder from the list of reminders.
-
-Format: `delete reminder INDEX`
-
-* Deletes the reminder at the specified `INDEX`.
-* The index refers to the index number shown in the displayed reminder list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `delete reminder 3`
-
-#### 3.4.4 Mark a reminder : `mark reminder`
+#### 3.4.3 Mark a reminder : `mark reminder`
 
 Marks a reminder as complete.
 
@@ -295,7 +282,7 @@ Examples:
   </tr>
  </table>
 
-#### 3.4.5 Unmark a reminder : `unmark reminder`
+#### 3.4.4 Unmark a reminder : `unmark reminder`
 
 Unmarks a reminder as incomplete.
 
@@ -303,6 +290,19 @@ Format: `unmark reminder INDEX`
 
 Examples:
 * `unmark reminder 3`
+
+#### 3.4.5 Deleting a reminder : `delete reminder`
+
+Deletes the specified reminder from the list of reminders.
+
+Format: `delete reminder INDEX`
+
+* Deletes the reminder at the specified `INDEX`.
+* The index refers to the index number shown in the displayed reminder list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `delete reminder 3`
 
 #### 3.4.6 Sort reminders: `sort reminder`
 
@@ -402,9 +402,9 @@ _Details coming soon..._
 | **Delete Consultation**    | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                        |
 | **Add Reminder**           | `add reminder n/NAME D/DEADLINE_DATE D/DEADLINE_TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2022-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                                   |
 | **Edit Reminder**          | `edit reminder INDEX`<br> e.g., `delete reminder 1 D/2022-01-01 T/14:00`                                                                                                                                               |
-| **Delete Reminder**        | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                |
 | **Mark Reminder**          | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                    |
 | **Unmark Reminder**        | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                |
+| **Delete Reminder**        | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                |
 | **Sort Reminder**          | `sort reminder by/SORT_CRITERIA`<br> e.g., `sort reminder by/priority`                                                                                                                                               |
 | **Switch Tabs**            | `switch f/FIELD`<br> e.g., `switch f/tutorial`                                                                                                                                                                       |
 | **Clear**                  | `clear f/FIELD`<br> e.g., `clear f/student`                                                                                                                                                                          |
