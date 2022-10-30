@@ -15,7 +15,7 @@ use via a Command Line Interface (CLI) ArtBuddy can help you manage your small b
 
 This guide walks you through all the features of ArtBuddy and can be used as a quick reference whenever you need any help.
 
-If you are a new user, We welcome you to start from our [introduction](#introduction) to get control of yourbusiness.
+If you are a new user, we welcome you to start from our [introduction](#introduction) to get control of your business.
 
 --------------------------------------------------------------------------------------------------------------------
 # Introduction
@@ -53,7 +53,7 @@ you can jump to our [Features](#features) section to learn more about the featur
 7. In the Commission View, the list of all commissions from the opened customer (Alex Yeoh) is displayed. <br> ![Ui](images/UiCommissionList.png)
 8. You can use the following commands in the Commission View:
     * `addcom n/Fate Archer f/60 d/2022-10-15 s/true p/Archery t/night t/city` : Creates a new commission titled "Fate Archer" under Meg.
-    * `delcom 2` : Deletes the 5th commission from Alex Yeoh on the list.
+    * `delcom 2` : Deletes the 2nd commission from Alex Yeoh on the list.
     * `opencom 1` : Opens the 1st commission titled "Alex Yeoh Commission 1" and updates the Commission Details View.
 9. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Alex Yeoh Commission 1) is displayed.
 10. You can use the following commands in the Commission Details View:
@@ -96,7 +96,7 @@ you can jump to our [Features](#features) section to learn more about the featur
 
 ### Viewing help: `help`
 
-Shows you message explaning how to access the help page.
+Shows you a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -193,8 +193,8 @@ Examples:
 Adds a commission to the currently opened customer.
 
 Format: `addcom n/TITLE f/FEE d/DEADLINE s/STATUS [p/DESCRIPTION] [t/TAG]...​`
-* Fee is the fee you are charging the customer for this commission.
-* Status states if the commission is done or not and can only take `y`, `yes`, `t`, `true` for complete status and `n`, `no`, `f`, `false` for incomplete status case insensitive.
+* Fee is the amount you are charging the customer for this commission.
+* Status states if the commission is done or not and can only take `y`, `yes`, `t`, `true` for complete status and `n`, `no`, `f`, `false` for incomplete status. It is case-insensitive.
 
 Examples:
 * `addcom n/Rimuru f/40 d/2022-11-01 t/traditional s/Y t/chibi` creates the commission entry titled "Rimuru" with the given fee, due date, completion status and tags.
@@ -388,7 +388,7 @@ Displays all commissions across all customers in ArtBuddy.
 Format: `allcom`
 
 After running `allcom`, you should be switched to the commissions tab to view all commissions.
-To view the commissions for a specific customer, return to the customer list ([`opencus`](#opencus)) and select the customer from the list ([`opencus INDEX`](#opencus)).
+To view the commissions for a specific customer, return to the customer list ([`opencus`](#viewing-a-customer-opencus)) and select the customer from the list ([`opencus INDEX`](#viewing-a-customer-opencus)).
 
 ### Find a commission: `findcom`
 Finds all the commissions in the list which satisfy keyword matching in the title and tag filters. The tag filter more specifically will include commissions which contain all tags under `-all` and at least one of the tags under `-any`.
@@ -404,7 +404,7 @@ Examples:
 ## Miscellaneous
  
 ### Clearing all the customers: `clear`
-Clears every customer in the ArtBuddy
+Clears all your customers from ArtBuddy, including their commissions and iterations.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This command cannot be undone. So only execute this command when you are 100% sure of executing it.
 </div>
