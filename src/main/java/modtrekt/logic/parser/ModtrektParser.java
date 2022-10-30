@@ -106,7 +106,6 @@ public class ModtrektParser {
             if (command != null) {
                 return command;
             }
-
             // Discard the main parameter error message if present as it's not relevant to users.
             String parsedCommand = jcommander.getParsedCommand();
             if (parsedCommand == null) { // unknown command
@@ -120,6 +119,10 @@ public class ModtrektParser {
             // Add the formatted usage message to the error message.
             String message = ex.getMessage().endsWith("no main parameter was defined in your arg class")
                     ? "Syntax error. If your command arguments contain spaces, surround them with quotes."
+                    // JCommander parses multiple module codes from the input arguments, so we regard the error as
+                    // invalid syntax provided by the user.
+                    : ex.getMessage().endsWith("Code should contain alphanumeric characters and no white space")
+                    ? "Syntax error. Please ensure your command follows the correct syntax."
                     : ex.getMessage();
             IUsageFormatter usageFormatter = new UnixStyleUsageFormatter(filteredJCommander);
             StringBuilder usageBuilder = new StringBuilder(message).append("\n\n");
