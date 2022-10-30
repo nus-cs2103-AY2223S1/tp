@@ -13,8 +13,8 @@ while still having the benefits of a Graphical User Interface (GUI). If you can 
 management tasks done quicker than traditional GUI apps.
 
 **checkUp** is an app made for healthcare establishments. It allows clinics to track relevant details for their patients and
-hospitals to track details related a patient's stay at the hospital. Without an internet connection, checkUp stores
-patient details such as
+hospitals to track details related to a patient's stay at the hospital. Without an internet connection, checkUp stores
+patient details such as:
 - patient name;
 - next-of-kin details;
 - phone number;
@@ -25,7 +25,11 @@ patient details such as
 
 Also, medication tags can be added to your patients to keep track of their long-term medication history.
 
-We store this data locally on your device. This means that you can benefit from extremely quick loading times!
+<div markdown="block" class="alert alert-info">
+
+:notebook: We store this data locally on your device. This means that you can benefit from extremely quick loading times!
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -38,15 +42,15 @@ We store this data locally on your device. This means that you can benefit from 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
 
-4. Navigate to the home folder with `cd PATH_TO_FOLDER` in your command line interface.
+4. Navigate to the home folder with `cd PATH_TO_FOLDER` through your command line interface.
 
 5. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup.
 
 6. Note how the app contains some sample data.<br>
    ![Ui](images/ug-images/Ui-explanations.png)
 
-7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
+7. Type your desired command into the command box and press Enter to execute it. e.g. typing **`help`** and pressing
+   Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`add`**`n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690
@@ -62,6 +66,7 @@ We store this data locally on your device. This means that you can benefit from 
 8. Refer to the [Features](#features) below for details of each command.
 
 ---
+
 ## Glossary
 
 | Term              | Definition                                                                                |
