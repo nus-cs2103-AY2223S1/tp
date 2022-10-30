@@ -23,10 +23,10 @@ import seedu.boba.model.exceptions.PreviousStateNotFoundException;
 import seedu.boba.model.promotion.Promotion;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory bobaBotModel of the address book data.
  */
-public class ModelManager implements Model {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+public class BobaBotModelManager implements BobaBotModel {
+    private static final Logger logger = LogsCenter.getLogger(BobaBotModelManager.class);
 
     private final VersionedBobaBot versionedBobaBot;
     private final BobaBot bobaBot;
@@ -35,9 +35,9 @@ public class ModelManager implements Model {
     private final Promotion promotionManager;
 
     /**
-     * Initializes a ModelManager with the given bobaBot and userPrefs.
+     * Initializes a BobaBotModelManager with the given bobaBot and userPrefs.
      */
-    public ModelManager(ReadOnlyBobaBot bobaBot, ReadOnlyUserPrefs userPrefs) {
+    public BobaBotModelManager(ReadOnlyBobaBot bobaBot, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(bobaBot, userPrefs);
 
         logger.fine("Initializing with bobaBot: " + bobaBot + " and user prefs " + userPrefs);
@@ -58,7 +58,7 @@ public class ModelManager implements Model {
         this.promotionManager = new Promotion();
     }
 
-    public ModelManager() {
+    public BobaBotModelManager() {
         this(new BobaBot(), new UserPrefs());
     }
 
@@ -233,12 +233,12 @@ public class ModelManager implements Model {
         }
 
         // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
+        if (!(obj instanceof BobaBotModelManager)) {
             return false;
         }
 
         // state check
-        ModelManager other = (ModelManager) obj;
+        BobaBotModelManager other = (BobaBotModelManager) obj;
         return bobaBot.equals(other.bobaBot)
                 && userPrefs.equals(other.userPrefs)
                 && filteredCustomers.equals(other.filteredCustomers);

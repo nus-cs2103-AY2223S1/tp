@@ -9,9 +9,9 @@ Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
 
-package Model{
-Class "<<interface>>\nModel" as Model
-Class ModelManager
+package BobaBotModel{
+Class "<<interface>>\nBobaBotModel" as BobaBotModel
+Class BobaBotModelManager
 }
 
 package Storage{
@@ -23,9 +23,9 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-ModelManager .up.|> Model
+BobaBotModelManager .up.|> BobaBotModel
 StorageManager .up.|> Storage
 
-LogicManager --> Model
+LogicManager --> BobaBotModel
 LogicManager --> Storage
 @enduml

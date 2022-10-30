@@ -18,7 +18,7 @@ import javafx.scene.image.Image;
 import seedu.boba.commons.core.GuiSettings;
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.model.BobaBot;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.ReadOnlyBobaBot;
 import seedu.boba.model.ReadOnlyUserPrefs;
 import seedu.boba.model.customer.Customer;
@@ -38,7 +38,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        BobaBotModelStubAcceptingPersonAdded modelStub = new BobaBotModelStubAcceptingPersonAdded();
         Customer validCustomer = new CustomerBuilder().build();
 
         CommandResult commandResult = new AddCommand(validCustomer).execute(modelStub);
@@ -51,7 +51,7 @@ public class AddCommandTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Customer validCustomer = new CustomerBuilder().build();
         AddCommand addCommand = new AddCommand(validCustomer);
-        ModelStub modelStub = new ModelStubWithPerson(validCustomer);
+        BobaBotModelStub modelStub = new BobaBotModelStubWithPerson(validCustomer);
 
         assertThrows(CommandException.class,
             AddCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCommand.execute(modelStub));
@@ -88,9 +88,9 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default bobaBotModel stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private class BobaBotModelStub implements BobaBotModel {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -208,12 +208,12 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single customer.
+     * A BobaBotModel stub that contains a single customer.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class BobaBotModelStubWithPerson extends BobaBotModelStub {
         private final Customer customer;
 
-        ModelStubWithPerson(Customer customer) {
+        BobaBotModelStubWithPerson(Customer customer) {
             requireNonNull(customer);
             this.customer = customer;
         }
@@ -226,9 +226,9 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the customer being added.
+     * A BobaBotModel stub that always accept the customer being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class BobaBotModelStubAcceptingPersonAdded extends BobaBotModelStub {
         final ArrayList<Customer> personsAdded = new ArrayList<>();
 
         @Override

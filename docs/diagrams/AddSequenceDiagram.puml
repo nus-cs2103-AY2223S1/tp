@@ -9,8 +9,8 @@ participant "command:AddCommand" as AddCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+box BobaBotModel MODEL_COLOR_T1
+participant ":BobaBotModel" as BobaBotModel MODEL_COLOR
 end box
 
 [-> LogicManager : execute("add n/Bob p/12345678...")
@@ -47,11 +47,11 @@ deactivate AddressBookParser
 LogicManager -> AddCommand : execute()
 activate AddCommand
 
-AddCommand -> Model : addPerson(personToAdd)
-activate Model
+AddCommand -> BobaBotModel : addPerson(personToAdd)
+activate BobaBotModel
 
-Model --> AddCommand
-deactivate Model
+BobaBotModel --> AddCommand
+deactivate BobaBotModel
 
 create CommandResult
 AddCommand -> CommandResult

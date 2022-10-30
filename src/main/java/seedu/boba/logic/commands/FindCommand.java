@@ -2,7 +2,7 @@ package seedu.boba.logic.commands;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
-import static seedu.boba.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import seedu.boba.commons.core.Messages;
 import seedu.boba.commons.core.index.Index;
 import seedu.boba.logic.commands.exceptions.CommandException;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
@@ -51,24 +51,24 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(BobaBotModel bobaBotModel) throws CommandException {
 
-        requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        requireNonNull(bobaBotModel);
+        bobaBotModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         if (!isNull(predicate)) {
-            model.updateFilteredPersonList(predicate);
+            bobaBotModel.updateFilteredPersonList(predicate);
         } else {
             try {
                 if (findPersonDescriptor.isPhoneEmpty) {
-                    this.targetIndex = Index.fromZeroBased(model.findEmail(findPersonDescriptor.getEmail()));
+                    this.targetIndex = Index.fromZeroBased(bobaBotModel.findEmail(findPersonDescriptor.getEmail()));
                 } else {
-                    this.targetIndex = Index.fromZeroBased(model.findNum(findPersonDescriptor.getPhone()));
+                    this.targetIndex = Index.fromZeroBased(bobaBotModel.findNum(findPersonDescriptor.getPhone()));
                 }
             } catch (PersonNotFoundException e) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
             }
 
-            List<Customer> lastShownList = model.getFilteredPersonList();
+            List<Customer> lastShownList = bobaBotModel.getFilteredPersonList();
 
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
@@ -76,10 +76,10 @@ public class FindCommand extends Command {
 
             Customer customerToFind = lastShownList.get(targetIndex.getZeroBased());
             Predicate<Customer> filterPersonToFind = p -> p.equals(customerToFind);
-            model.updateFilteredPersonList(filterPersonToFind);
+            bobaBotModel.updateFilteredPersonList(filterPersonToFind);
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, bobaBotModel.getFilteredPersonList().size()));
     }
 
     @Override

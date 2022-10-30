@@ -3,7 +3,7 @@ package seedu.boba.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.boba.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.boba.testutil.Assert.assertThrows;
 import static seedu.boba.testutil.TypicalCustomers.ALICE;
 import static seedu.boba.testutil.TypicalCustomers.BENSON;
@@ -18,9 +18,9 @@ import seedu.boba.commons.core.GuiSettings;
 import seedu.boba.model.customer.NameContainsKeywordsPredicate;
 import seedu.boba.testutil.BobaBotBuilder;
 
-public class ModelManagerTest {
+public class BobaBotModelManagerTest {
 
-    private ModelManager modelManager = new ModelManager();
+    private BobaBotModelManager modelManager = new BobaBotModelManager();
 
     @Test
     public void constructor() {
@@ -100,8 +100,8 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(bobaBot, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(bobaBot, userPrefs);
+        modelManager = new BobaBotModelManager(bobaBot, userPrefs);
+        BobaBotModelManager modelManagerCopy = new BobaBotModelManager(bobaBot, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +114,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different bobaBot -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentBobaBot, userPrefs)));
+        assertFalse(modelManager.equals(new BobaBotModelManager(differentBobaBot, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(bobaBot, userPrefs)));
+        assertFalse(modelManager.equals(new BobaBotModelManager(bobaBot, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +127,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setBobaBotFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(bobaBot, differentUserPrefs)));
+        assertFalse(modelManager.equals(new BobaBotModelManager(bobaBot, differentUserPrefs)));
     }
 }

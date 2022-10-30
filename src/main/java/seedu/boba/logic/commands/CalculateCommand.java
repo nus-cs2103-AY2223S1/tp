@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.boba.logic.commands.exceptions.CommandException;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 
 
 /**
@@ -49,9 +49,9 @@ public class CalculateCommand extends Command {
         this.expression = exp;
     }
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(BobaBotModel bobaBotModel) throws CommandException {
 
-        requireNonNull(model);
+        requireNonNull(bobaBotModel);
         String calcResult =
                 ArithmeticExpressionReader.parseCalculation(this.expression);
         String feedback = "Calculator:\n";

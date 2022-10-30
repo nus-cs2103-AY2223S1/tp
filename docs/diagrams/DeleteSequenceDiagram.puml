@@ -18,8 +18,8 @@ participant "command:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+box BobaBotModel MODEL_COLOR_T1
+participant ":BobaBotModel" as BobaBotModel MODEL_COLOR
 end box
 
 [-> LogicManager : execute("delete p/12345678")
@@ -57,11 +57,11 @@ deactivate AddressBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(personToDelete)
-activate Model
+DeleteCommand -> BobaBotModel : deletePerson(personToDelete)
+activate BobaBotModel
 
-Model --> DeleteCommand
-deactivate Model
+BobaBotModel --> DeleteCommand
+deactivate BobaBotModel
 
 create CommandResult
 DeleteCommand -> CommandResult

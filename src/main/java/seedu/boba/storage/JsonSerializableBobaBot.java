@@ -41,7 +41,7 @@ class JsonSerializableBobaBot {
     }
 
     /**
-     * Converts this bobabot into the model's {@code BobaBot} object.
+     * Converts this bobabot into the bobaBotModel's {@code BobaBot} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

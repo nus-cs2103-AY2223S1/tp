@@ -17,7 +17,7 @@ Class StatusBarFooter
 Class CommandBox
 }
 
-package Model <<Rectangle>> {
+package BobaBotModel <<Rectangle>> {
 Class HiddenModel #FFFFFF
 }
 
@@ -47,7 +47,7 @@ PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PersonCard ..> Model
+PersonCard ..> BobaBotModel
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

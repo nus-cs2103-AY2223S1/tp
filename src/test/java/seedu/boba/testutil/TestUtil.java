@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.boba.commons.core.index.Index;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.customer.Customer;
 
 /**
@@ -33,23 +33,23 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the customer in the {@code model}'s customer list.
+     * Returns the middle index of the customer in the {@code bobaBotModel}'s customer list.
      */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+    public static Index getMidIndex(BobaBotModel bobaBotModel) {
+        return Index.fromOneBased(bobaBotModel.getFilteredPersonList().size() / 2);
     }
 
     /**
-     * Returns the last index of the customer in the {@code model}'s customer list.
+     * Returns the last index of the customer in the {@code bobaBotModel}'s customer list.
      */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+    public static Index getLastIndex(BobaBotModel bobaBotModel) {
+        return Index.fromOneBased(bobaBotModel.getFilteredPersonList().size());
     }
 
     /**
-     * Returns the customer in the {@code model}'s customer list at {@code index}.
+     * Returns the customer in the {@code bobaBotModel}'s customer list at {@code index}.
      */
-    public static Customer getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Customer getPerson(BobaBotModel bobaBotModel, Index index) {
+        return bobaBotModel.getFilteredPersonList().get(index.getZeroBased());
     }
 }

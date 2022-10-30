@@ -16,7 +16,7 @@ Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
 
-package Model{
+package BobaBotModel{
 Class HiddenModel #FFFFFF
 }
 
@@ -33,11 +33,11 @@ AddressBookParser ..> XYZCommand : creates >
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> Model
+LogicManager --> BobaBotModel
 LogicManager --> Storage
-Storage --[hidden] Model
+Storage --[hidden] BobaBotModel
 Command .[hidden]up.> Storage
-Command .right.> Model
+Command .right.> BobaBotModel
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult

@@ -8,7 +8,7 @@ import static seedu.boba.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_REWARD;
 import static seedu.boba.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.boba.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.boba.model.customer.Customer.BIRTHDAY_TAG;
 
 import java.time.LocalDate;
@@ -25,7 +25,7 @@ import seedu.boba.commons.core.index.Index;
 import seedu.boba.commons.util.CollectionUtil;
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.logic.parser.exceptions.ParseException;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.customer.BirthdayMonth;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
@@ -91,18 +91,18 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, ParseException {
-        requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public CommandResult execute(BobaBotModel bobaBotModel) throws CommandException, ParseException {
+        requireNonNull(bobaBotModel);
+        bobaBotModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         try {
             this.index = !isNull(this.phoneIdentifier)
-                    ? Index.fromZeroBased(model.findNum(phoneIdentifier))
-                    : Index.fromZeroBased(model.findEmail(emailIdentifier));
+                    ? Index.fromZeroBased(bobaBotModel.findNum(phoneIdentifier))
+                    : Index.fromZeroBased(bobaBotModel.findEmail(emailIdentifier));
         } catch (PersonNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
         }
 
-        List<Customer> lastShownList = model.getFilteredPersonList();
+        List<Customer> lastShownList = bobaBotModel.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
@@ -120,15 +120,15 @@ public class EditCommand extends Command {
         }
 
         Predicate<Customer> filterPersonToEdit = p -> !p.equals(customerToEdit);
-        FilteredList<Customer> filteredListWithoutTarget = model.getBobaBot().getPersonList()
+        FilteredList<Customer> filteredListWithoutTarget = bobaBotModel.getBobaBot().getPersonList()
                 .filtered(filterPersonToEdit);
 
         if (filteredListWithoutTarget.contains(editedCustomer)) {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
 
-        model.setPerson(customerToEdit, editedCustomer);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        bobaBotModel.setPerson(customerToEdit, editedCustomer);
+        bobaBotModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer));
     }
 

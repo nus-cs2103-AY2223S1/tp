@@ -4,7 +4,7 @@
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
 Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
+Participant ":BobaBotModel" as model MODEL_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
 user -[USER_COLOR]> ui : "delete 1"

@@ -2,7 +2,7 @@ package seedu.boba.logic.commands;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
-import static seedu.boba.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.boba.model.BobaBotModel.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.NoSuchElementException;
 
@@ -10,7 +10,7 @@ import seedu.boba.commons.core.Messages;
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.logic.parser.ParserUtil;
 import seedu.boba.logic.parser.exceptions.ParseException;
-import seedu.boba.model.Model;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
 import seedu.boba.model.customer.Reward;
@@ -61,14 +61,14 @@ public class DecreaseCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws ParseException, CommandException {
-        requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public CommandResult execute(BobaBotModel bobaBotModel) throws ParseException, CommandException {
+        requireNonNull(bobaBotModel);
+        bobaBotModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         try {
             Reward currentReward = isNull(phoneIdentifier)
-                    ? model.getCurrentReward(emailIdentifier)
-                    : model.getCurrentReward(phoneIdentifier);
+                    ? bobaBotModel.getCurrentReward(emailIdentifier)
+                    : bobaBotModel.getCurrentReward(phoneIdentifier);
             int newReward = Integer.parseInt(currentReward.value) - Integer.parseInt(decrementReward);
             if (newReward < 0) {
                 throw new ParseException(Reward.MESSAGE_NEGATIVE);
@@ -77,7 +77,7 @@ public class DecreaseCommand extends Command {
             EditCommand editCommand = isNull(phoneIdentifier)
                     ? new EditCommand(emailIdentifier, editPersonDescriptor)
                     : new EditCommand(phoneIdentifier, editPersonDescriptor);
-            return editCommand.execute(model);
+            return editCommand.execute(bobaBotModel);
         } catch (NoSuchElementException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
         }

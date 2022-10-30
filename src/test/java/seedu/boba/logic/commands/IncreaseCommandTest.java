@@ -15,19 +15,19 @@ import org.junit.jupiter.api.Test;
 
 import seedu.boba.commons.core.Messages;
 import seedu.boba.model.BobaBot;
-import seedu.boba.model.Model;
-import seedu.boba.model.ModelManager;
+import seedu.boba.model.BobaBotModel;
+import seedu.boba.model.BobaBotModelManager;
 import seedu.boba.model.UserPrefs;
 import seedu.boba.model.customer.Customer;
 import seedu.boba.model.customer.Email;
 import seedu.boba.model.customer.Phone;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for IncreaseCommand.
+ * Contains integration tests (interaction with the BobaBotModel) and unit tests for IncreaseCommand.
  */
 public class IncreaseCommandTest {
 
-    private Model model = new ModelManager(getTypicalBobaBot(), new UserPrefs());
+    private BobaBotModel bobaBotModel = new BobaBotModelManager(getTypicalBobaBot(), new UserPrefs());
 
     @Test
     public void execute_phoneAllFieldsSpecifiedUnfilteredList_success() {
@@ -36,9 +36,10 @@ public class IncreaseCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new BobaBot(model.getBobaBot()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
-        assertCommandSuccess(increaseCommand, model, expectedMessage, expectedModel);
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
+                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
+        assertCommandSuccess(increaseCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
 
     @Test
@@ -48,10 +49,11 @@ public class IncreaseCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new BobaBot(model.getBobaBot()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedCustomer);
+        BobaBotModel expectedBobaBotModel = new BobaBotModelManager(
+                new BobaBot(bobaBotModel.getBobaBot()), new UserPrefs());
+        expectedBobaBotModel.setPerson(bobaBotModel.getFilteredPersonList().get(0), editedCustomer);
 
-        assertCommandSuccess(increaseCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(increaseCommand, bobaBotModel, expectedMessage, expectedBobaBotModel);
     }
 
     @Test
@@ -59,7 +61,7 @@ public class IncreaseCommandTest {
         Phone outOfBoundPhone = new Phone("00000000");
         IncreaseCommand increaseCommand = new IncreaseCommand(outOfBoundPhone, "100");
 
-        assertCommandFailure(increaseCommand, model, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
+        assertCommandFailure(increaseCommand, bobaBotModel, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
     }
 
     @Test
@@ -67,7 +69,7 @@ public class IncreaseCommandTest {
         Email outOfBoundEmail = new Email("test@test.com");
         IncreaseCommand increaseCommand = new IncreaseCommand(outOfBoundEmail, "100");
 
-        assertCommandFailure(increaseCommand, model, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
+        assertCommandFailure(increaseCommand, bobaBotModel, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
     }
 
     @Test

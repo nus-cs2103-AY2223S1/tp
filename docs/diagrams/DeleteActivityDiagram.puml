@@ -19,7 +19,7 @@ if () then ([valid command format])
       :Get customer's index;
       if () then ([valid index])
         :Get customer via index;
-        :Model deletes customer;
+        :BobaBotModel deletes customer;
         :Returns CommandResult to LogicManager;
         :Saves changes to Storage on bobaBot;
       else ([else])

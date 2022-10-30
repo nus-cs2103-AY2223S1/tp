@@ -8,6 +8,7 @@ import seedu.boba.commons.core.GuiSettings;
 import seedu.boba.logic.commands.CommandResult;
 import seedu.boba.logic.commands.exceptions.CommandException;
 import seedu.boba.logic.parser.exceptions.ParseException;
+import seedu.boba.model.BobaBotModel;
 import seedu.boba.model.ReadOnlyBobaBot;
 import seedu.boba.model.customer.Customer;
 
@@ -27,7 +28,7 @@ public interface Logic {
     /**
      * Returns the BobaBot.
      *
-     * @see seedu.boba.model.Model#getBobaBot()
+     * @see BobaBotModel#getBobaBot()
      */
     ReadOnlyBobaBot getBobaBot();
 
