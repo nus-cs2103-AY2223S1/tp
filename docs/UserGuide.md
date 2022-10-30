@@ -104,7 +104,7 @@ Format: `add -n TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
 Examples:
-* `add -n Task 1 -m CS2103T -d 2022-10-15 --tag homework`
+* `add -n Tutorial 12 -m CS2103T -d 2022-10-28 -t tutorial`
 
 ### Marking a task as completed: `mark`
 
@@ -265,10 +265,10 @@ Terminates and exits the program.
 
 Format: `exit`
 
-### Command history : <kbd>`Up`</kbd>/<kbd>`Down`</kbd> keys 
+### Command history : `Up`/`Down` keys 
 Loads previous command into the _Command Box_. 
 
-While the _Command Box_ is in focus, use the <kbd>`Up`</kbd> and <kbd>`Down`</kbd> arrow keys to navigate through the command history that is automatically loaded in. 
+While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys to navigate through the command history that is automatically loaded in. 
 
 ### Saving the data
 NotionUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -292,7 +292,7 @@ Examples:
 ### Autocomplete
 
 When the user starts to type in the start of a command, a popup menu will appear with options to complete your input.
-Use the <kbd>`Up`</kbd> and <kbd>`Down`</kbd> arrow keys to navigate through the options and <kbd>`Enter`</kbd> to fill the command box with the command
+Use the`Up` and `Down` arrow keys to navigate through the options and <kbd>`Enter`</kbd> to fill the command box with the command
 of your choice.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -326,4 +326,4 @@ Format meanings:
 | **Show Archived** tasks     | `showarchive`                                                                                                                                                                                                                                                                                                                                         |                                              |
 | **Tagging** a task          | `tag TASK_NUMBER -t TAG_NAME`                                                                                                                                                                                                                                                                                                                         | `tag 1 -t highPriority`                       |
 | **Unmark** tasks            | `unmark TASK_NUMBER`                                                                                                                                                                                                                                                                                                                                  | `unmark 2`                                   |
-| Accessing previous commands | Use the up and down arrow keys                                                                                                                                                                                                                                                                                                                        |                                              |
+| Accessing previous commands | Use the `Up` and `Down` arrow keys                                                                                                                                                                                                                                                                                                                     |                                              |
