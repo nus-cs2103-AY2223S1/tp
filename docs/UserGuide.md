@@ -17,6 +17,7 @@ IdENTify is a **desktop app made for ENT administrative staff to manage patients
 
 ## UI Components
 ![SampleUiImage](images/SampleUI.png)
+* The UI is available in light mode (by default, shown above) or dark mode.
 
 ### General UI information
 Component | Purpose
