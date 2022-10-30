@@ -95,6 +95,10 @@ public class BookingTableView extends UiPart<Region> {
         };
     }
 
+    /**
+     * Code referenced from:
+     * https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items
+     */
     private TableCell<DailySchedule, Resident[]> populateNthColumn(TableColumn<DailySchedule,
             Resident[]> column, int n) {
         return new TableCell<>() {
