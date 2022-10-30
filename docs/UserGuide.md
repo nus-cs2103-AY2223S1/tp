@@ -1,16 +1,19 @@
-> :warning: Prerequisite:
+#PennyWise User Guide
+
+> > :warning: Prerequisite:
 > - This guide assumes that the reader is familiar with using [Java](https://www.java.com/)
 
 # Table of Contents
-
+<div id="top">
 {:toc}
+</div>
 
 ## Introduction
 
 PennyWise is a desktop application that **empowers students with the ability to make sensible financial decisions**,
-helping students to manage their budget. It is **optimised for use via Command Line Interface** (CLI) while providing a
-clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings. _Interested?_ Head over to
-“Quick Start” to get started. Enjoy!
+helping students to manage their budget by providing a **graphical analysis of their financial activities**. 
+It provides a clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings. 
+_Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Already an expert? Jump right straight to the [features](#features) section to see how you can get the most out of PennyWise!
@@ -20,7 +23,7 @@ Already an expert? Jump right straight to the [features](#features) section to s
 
 1. Ensure you have Java 11 or above installed in your Computer. You can check whether Java 11 is installed by following
    the instructions below:
-    1. Open your terminal window
+    1. Open your terminal / command prompt window
     2. Run the following command: `java -version`
     3. If Java 11 is not installed, please download Java 11 from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11).
        For Mac users, you may use the [Azul build of
@@ -47,12 +50,16 @@ Already an expert? Jump right straight to the [features](#features) section to s
     - **`clear`**: :exclamation: Deletes all entries.
 
     - **`exit`** : Exits the app.
-
-6. Curious about the various commands? Refer to the [Features](#features) below to find out more about each command.
+   
+6. Congrats! You are now ready to get started on your first steps in supercharging your financial management flow!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-Congrats! You are now ready to get started on your first steps in supercharging your financial management flow!
+Curious about the various commands? Refer to the [Features](#features) below to find out more about each command.
 </div>
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 ---
 
@@ -61,7 +68,7 @@ Congrats! You are now ready to get started on your first steps in supercharging 
 ### Information Box
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-This provides some additional information that may be useful for Jedi users.
+This provides some additional information that users are recommended to know.
 </div>
 
 ### Tip Box
@@ -80,7 +87,12 @@ Danger zone! Do pay attention to the information here carefully.
 
 - `Highlights` are used to denote commands or output from the application.
 
-## Features
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
+## Before Using
+{:toc}
 
 <div markdown="block" class="alert alert-info">
 
@@ -100,8 +112,11 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
 |      Input       | `d/Lunch a/15.60 da/15-08-2022 c/Food` |
 |  Optional Input  |                  NIL                   |
 
-- Words in `UPPER_CASE` are the parameters that you can supply<br>
-  e.g. in `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
+- Letters followed by a forward slash is called a prefix and will be used to specify a specific parameter<br>
+  e.g `t\ ` refers to the entry type parameter 
+
+- Words in `UPPER_CASE` are the parameters that you must supply<br>
+  e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
 
 - Items in square brackets are optional.<br>
   e.g. `view t/ENTRY_TYPE [MONTH]` can be used as `view t/e mo/2022-05` or as `view t/e`.
@@ -109,8 +124,6 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
 - **ALL** identifiers are <ins>case-sensitive</ins>. 
   e.g `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
 </div>
-
-## Before Using
 
 ### Familiarising yourself with the interface
 
@@ -161,15 +174,17 @@ For example, an expense entry can be tagged with `Food`, but not `Salary`.
 For **ALL** entries, 2 entries are considered duplicates <ins>IF</ins> both entries have exactly the same:
 `description`, `date` `amount` and `category`. We do not want PennyWise to be managing entries which are a repeat,
 of one another, as it would be easier to simply use the [edit](#editing-entries-edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category) 
-command to alter the original entry's specifications.
+command to alter the original entry's specifications. 
+
+In addition `description` and  `food` are case-insensitive, this means that `FOOD` will be equivalent to `food`
 
 For example, when executing the following [add commands](#adding-entries-add-tentry_type-ddescription-aamount-dadate-ccategory) one after another,
 PennyWise will recognise (2), which is the second `Teh Beng` added as a duplicate entry.
 
 <pre>
     <code>
-        1. add t/e d/Teh Beng a/1.50 da/22-10-2022 c/Food
-        2. add t/e d/Teh Beng a/1.50 da/22-10-2022 c/Food
+        1. add t/e d/Teh Beng a/1.50 da/22-10-2022 c/food
+        2. add t/e d/teh beng a/1.50 da/22-10-2022 c/Food
     </code>
 </pre>
 
@@ -195,6 +210,12 @@ OR we could even [edit](#editing-entries-edit-index_of_entry-tentry_type-dedited
 Having multiple duplicate entries will make it difficult for you to track your expenses later on, and could clutter the list.
 Having them differentiated will make it easier for you to recall what you spent your money on!
 </div>
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
+## Features
 
 ### Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`
 
@@ -376,19 +397,48 @@ PennyWise data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-PennyWise data are saved as a JSON file `[JAR file location]/data/pennywise.json`. Advanced users are welcome to update data directly by editing that data file.
+PennyWise data are saved as a file `[JAR file location]/data/pennywise.json`. 
+Advanced users with knowledge about JSON file format are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, PennyWise will discard all data and start with an empty data file at the next run.
 </div>
 
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
 ---
 
 ## FAQ
+**Q**: Can I use PennyWise without internet? <br>
+**A**: Absolutely! In fact, PennyWise is meant to be used as a offline application. This means that your personal data will be even more secure as well!
 
-**Q**: How do I transfer my data to another Computer?
+**Q**: How do I transfer my data to another Computer? <br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous PennyWise home folder.
+
+**Q**: Why is my edit and delete command invalid? I am sure i included all the required parameters. <br>
+**A**: Make sure that your `INDEX_OF_ENTRY` is the first parameter after the command word
+
+**Q**: I want to have a `Medical` category to log my expenses. Is there anyway I can do it? <br>
+**A**: The categories for income and expenses entries are fixed. 
+However we are exploring the possibilities of user added categories so do look out for our software updates!
+
+**Q**: Why are there missing dates on my Line Graph? <br>
+**A**: PennyWise automatically removes certain elements to ensure you can still get an overview of your finances! 
+If you want to view all the dates enlarge your application!
+
+**Q**: I prefer a date format like 4 Apr 2022. Why can't I pick the date format I want to use ? <br>
+**A**: Unfortunately PennyWise current only accepts one type of format which is `04-04-2022`.
+However, we are exploring the possibilities of allowing more types of date formats 
+without compromising on quality and user experience so do look out for our future software updates!
+
+
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
 
 ---
 
@@ -405,3 +455,7 @@ the data of your previous PennyWise home folder.
 | **View (Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
 | **Clear**           | `clear`                                                                                                                                                 |
 | **Exit**            | `exit`                                                                                                                                                  |
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
