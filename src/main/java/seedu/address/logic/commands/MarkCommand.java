@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 import java.util.Set;
@@ -67,7 +66,7 @@ public class MarkCommand extends Command {
         }
 
         model.setInternship(internshipToMark, markedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.updateFilteredInternshipList(model.getCurrentPredicate());
         return new CommandResult(String.format(MESSAGE_MARK_INTERNSHIP_SUCCESS, markedInternship));
     }
 
