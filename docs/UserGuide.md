@@ -196,8 +196,8 @@ __Examples:__
 
 ### Module commands
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
-Commands used to manage a batchmate's personal information in [Batchmate commands](#batchmate-commands) and [Interest commands](#interest-commands) follow the 1 command word syntax. E.g., `add` and `addInt`.
-Whereas, commands that manage a module detail in [Module commands](#module-commands) follow the 2 command word syntax `mod &lt;command word&gt;`. E.g., `mod add` and `mod delete`.
+Commands used to manage a batchmate's personal information in [Batchmate commands](#batchmate-commands) and [Interest commands](#interest-commands) follow the 1 command word syntax. E.g., `add`, `addInt`.
+Whereas, commands that manage a module detail in [Module commands](#module-commands) can have multiple command words preceded by the `mod` keyword. E.g., `mod add`, `mod mark all`, `mod find taken`.
 
 This is to facilitate easy distinction between the nature of commands.
 
