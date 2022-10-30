@@ -51,6 +51,15 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+**Notes about the UI:**
+
+On app startup, the Trip List Display will show all trips and the Event List Display will display
+the events in the bucket list i.e Events that haven't been added to any trips.
+
+The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
+
+Titles, Locations and Descriptions that are too long will be truncated. To view the full details of an event or trip, use `display-e` and `display` commands respectively.
+
 **Notes about the command format:**
 
 Words in UPPER_CASE are the parameters to be supplied by the user.
@@ -71,8 +80,6 @@ If a parameter is expected only once in the command but you specified it multipl
 e.g. if you specify `n/title1 n/title2`, only `n/title2` will be taken.
 
 `TITLE` is case-sensitive, so titles with the same letters and spacing but different capitalizations will be considered different.
-
-The trips display sorts the trips by completion automatically. Completed trips will remain at the bottom of the list.
 
 Events with the same title are considered duplicates, and duplicate events are not allowed.
 
@@ -115,7 +122,7 @@ Examples:
 - `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
 
 ### Delete trips: `delete`
-Deletes a trip at the specified INDEX of the displayed trip list.
+Deletes a trip at the specified INDEX of the displayed trip list. Events in the deleted trip will be returned to the bucket list.
 
 Format: `delete INDEX`
 
