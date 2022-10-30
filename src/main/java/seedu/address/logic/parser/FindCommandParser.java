@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindCommissionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commission.CompositeCustomerPredicate;
 import seedu.address.model.tag.Tag;
@@ -67,7 +66,11 @@ public class FindCommandParser implements Parser<FindCommand> {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(rawKeywords, PREFIX_KEYWORD);
             List<String> givenKeywords = argMultimap.getAllValues(PREFIX_KEYWORD);
-            keywords.addAll(givenKeywords);
+            for (String givenKeyword : givenKeywords) {
+                if (!givenKeyword.isBlank()) {
+                    keywords.add(givenKeyword);
+                }
+            }
         }
 
         if (!rawIntersectTags.isEmpty()) {
@@ -88,7 +91,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (keywords.isEmpty() && intersectTags.isEmpty() && unionTags.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindCommissionCommand.MESSAGE_USAGE));
+                    FindCommand.MESSAGE_USAGE));
         }
 
         return new FindCommand(new CompositeCustomerPredicate(keywords, intersectTags, unionTags));

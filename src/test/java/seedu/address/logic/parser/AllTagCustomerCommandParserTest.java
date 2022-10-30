@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AllTagCustomerCommand;
 import seedu.address.model.customer.CustomerContainsAllTagPredicate;
 import seedu.address.model.tag.Tag;
 

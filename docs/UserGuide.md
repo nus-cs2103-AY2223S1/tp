@@ -36,22 +36,21 @@ you can jump to our [Features](#features) section to learn more about the featur
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ArtBuddy.
 
-4. Double-click the file to start the app. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI should display a list of customers. This view will be referred to as Customer View. <br> ![Ui](images/CustomerView.png)
 5. The following commands are available in Customer View:
 
    * **`addcus`**`n/John Doe e/johnd@example.com a/John t/animal cartoons t/vip` :  Creates a new customer named John Doe.
    * **`delcus`**`4` :  Deletes the 4th customer displayed on the list.
-   * **`opencus`**`2` : Opens the 2nd customer (Simon) on the list and brings you to the Commission View for Simon.
+   * **`opencus`**`1` : Opens the 1st customer (Alex) on the list and brings you to the Commission View for Alex.
 
-6. In the Commission View, the list of all commissions from the opened customer (Simon) is displayed. <br> ![Ui](images/Ui.png)
+6. In the Commission View, the list of all commissions from the opened customer (Alex) is displayed. <br> ![Ui](images/CommissionView.png)
 7. The following commands are available in Commission View:
     * **`addcom`**` n/Tokyo Ghoul Fan art f/50 d/2022-10-10` : Creates a new commission titled Tokyo Ghoul Fan art under Simon.
     * **`delcom`**`5` : Deletes the 5th commission from Simon on the list.
-    * **`opencom`**`1` : Opens the 1st commission titled Digital half-body portrait and brings you to the Commission Details View.
-8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Digital half-body portrait) is displayed. ![Ui](images/UiCommissionDetails.png)
+    * **`opencom`**`4` : Opens the 4th commission titled Berserk and brings you to the Commission Details View.
+8. In the Commission Details View, the title, description, image thumbnails and deadline of the opened commission (Digital half-body portrait) is displayed. ![Ui](images/CommissionDetailsView.png)
 9. The following commands are available in Commission Details View:
-   * **`additer`**`/Users/Joseph/CSP/half-body-portrait.png` : Attaches the image at the specified file path to the opened commission.
-   * **`openimg`** : Expands the attached image for the commission for better view
+   * **`additer`**`/Users/Joseph/CSP/Devil-sketch.png` : Attaches the image at the specified file path to the opened commission.
 10. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------

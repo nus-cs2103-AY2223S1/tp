@@ -67,7 +67,11 @@ public class FindCommissionCommandParser implements Parser<FindCommissionCommand
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(rawKeywords, PREFIX_KEYWORD);
             List<String> givenKeywords = argMultimap.getAllValues(PREFIX_KEYWORD);
-            keywords.addAll(givenKeywords);
+            for (String givenKeyword : givenKeywords) {
+                if (!givenKeyword.isBlank()) {
+                    keywords.add(givenKeyword);
+                }
+            }
         }
 
         if (!rawIntersectTags.isEmpty()) {
