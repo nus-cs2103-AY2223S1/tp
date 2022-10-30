@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.reminder;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SORTING_CRITERIA;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_PREFIXES_ALL;
@@ -11,7 +11,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.reminder.SortReminderCommand;
-import seedu.address.logic.parser.reminder.SortReminderCommandParser;
+import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.Prefix;
 
 public class SortReminderCommandParserTest {
 

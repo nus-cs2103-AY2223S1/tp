@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.reminder;
 
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_PREFIXES_ALL;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_REMINDER1;
@@ -31,7 +31,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.reminder.AddReminderCommand;
-import seedu.address.logic.parser.reminder.AddReminderCommandParser;
+import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.datetime.DatetimeCommonUtils;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.ReminderBuilder;
