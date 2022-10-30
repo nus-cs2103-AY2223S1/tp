@@ -97,8 +97,11 @@ Here is an example of autocomplete in action:
 
 ![Autocomplete](images/user-guide/Autocomplete.png)
 
-However, it is recommended to read through the features section to understand the syntax for commands that require 
-additional input.
+However, it is recommended to read through the features section to understand the syntax for commands that require additional input.
+
+### Returning to a previous command : `up`/`down` keys
+Loads previous command into the _Command Box_.
+While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys to navigate through the command history that is automatically loaded in.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -309,9 +312,6 @@ Format: `clear`
 Terminates and exits the program.  
 
 Format: `exit`
-
-### Returning to a previous command : `up`/`down` keys 
-Loads previous command into the text input box. 
 
 ### Saving the data
 NotionUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
