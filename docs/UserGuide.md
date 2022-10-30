@@ -296,7 +296,7 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | **sfind** | `sfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…` <br> e.g., `rfind n/eatery`                                |
 | **ssort** | `ssort CRITERION` <br> e.g., `ssort reversedname`                                                            |
 
-## Accepted Command Arguments
+## Accepted command arguments
 
 | Argument       | Format                                                                                                      |
 |----------------|-------------------------------------------------------------------------------------------------------------|
@@ -312,7 +312,7 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | `STALL_INDEX`  | A positive integer from 1 and the number of stalls in the stall list, inclusive                             |
 | `TAGS`         | A nonempty alphanumeric token without spaces, case insensitive                                              |
 
-## Future Features (Unimplemented)
+## Future features (unimplemented)
 
 Attempt to use the following features could result in user confusion, an error message or accidentally typing in an unexpected valid command.
 
