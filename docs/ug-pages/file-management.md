@@ -13,7 +13,7 @@ To provide a streamlined way of managing **RC4** related data, **RC4HDB** provid
 * [**Switching**](#switching-to-a-different-data-file--file-switch) between different data folders
 * [**Importing**](#importing-from-csv-file--file-import) of resident data from a [CSV](glossary.md#csv) file.
 
-:information source: All file commands operate in the [data directory]().
+:information_source: All file commands operate in the [data directory]().
 
 ### File Command Format:
 * All file commands have a `FOLDER_NAME` field, which signifies the name of the folder to be targeted.
@@ -44,9 +44,7 @@ Creates a new folder with the specified `FOLDER_NAME`, if such a folder does not
 Format: `file create FOLDER_NAME`
 * Does not create a new folder if the folder already exists.
 
-<div markdown="span" class="alert alert-info">:information_source</div> `FOLDER_NAME` must follow this [format](#file-command-format).
-
-
+:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data files.
@@ -64,7 +62,7 @@ Format: `file delete FOLDER_NAME`
   deleting the previously open data file.
 * The file must be a `.json` file.
 
-:information source: `FOLDER_NAME` must follow this [format](#file-command-format).
+:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
@@ -80,7 +78,7 @@ Examples:
 Format: `file switch FOLDER_NAME`
 * Does not create a new file if the specified folder does not exist.
 
-:information source: `FOLDER_NAME` must follow this [format](#file-command-format).
+:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file switch rc4_data_2022` will switch the current data folder to `rc4_data_2022`.
