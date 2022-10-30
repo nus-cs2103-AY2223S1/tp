@@ -25,12 +25,6 @@ public class ModuleTest {
     }
 
     @Test
-    public void getModuleTitleAsUpperCaseString_returnsValidTitleString() {
-        Module cs2106Copy = new ModuleBuilder(CS2106).build();
-        assertTrue(cs2106Copy.getModuleTitleAsUpperCaseString().equals(VALID_CS2106_MODULE_TITLE.toUpperCase()));
-
-    }
-    @Test
     public void isSameModule() {
         // same object -> returns true
         assertTrue(CS2106.isSameModule(CS2106));
