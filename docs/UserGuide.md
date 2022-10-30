@@ -52,6 +52,16 @@ In this *User Guide*, we will take you through the many useful features and func
   Example:
   * If the command specifies `n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]`, then `[i/INTEREST] [e/EMAIL] [p/PHONE] n/NAME [g/GITHUB] t/TELEGRAM` is also acceptable.
 
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+  Example:
+  * If you specify `n/John Doe n/Bob Tan`, only `n/Bob Tan` will be saved.
+  * If you specify `p/12341234` `p/56785678`, only `p/56785678` will be saved.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
+  Example:
+  * If the command specifies `help 123`, it will be interpreted as `help`.
+  * If the command specifies `exit 345`, it will be interpreted as `exit`.
+
 </div>
 
 <div markdown="block" class="alert alert-info">
