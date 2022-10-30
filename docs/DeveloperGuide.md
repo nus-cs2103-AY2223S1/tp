@@ -2,14 +2,37 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+
+<div align="center">
+
+<h1>Rapportbook Developer Guide</h1>
+
+Welcome to the Rapportbook Developer guide!
+
+</div>
+
+Rapportbook is a CLI-focused desktop app for managing client information, developed in Java 11. If you wish to contribute to Rapportbook, please go through this guide to familiarize yourself with Rapportbook.
+
+#### Using this guide
+If it is your first time contributing, make sure you follow the guidelines we have noted in [Setting up, getting started](#setting-up-getting-started). Please refer to the following list of sections to get you familiarized with Rapportbook.
+  * [Design overview](#design) -- High level overview of the design and architecture Rapportbook.
+  * [Implementation](#implementation) -- Implementation details for the features currently implemented.
+  * [Testing](#appendix-instructions-for-manual-testing) -- Testing instructions and expected outcomes of the features in Rapportbook.
+
+The following is the table of contents for Rapportbook.
+
+Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
+* Third-party libraries used:
+  * [JavaFX](https://openjfx.io/) -- UI framework
+  * [Jackson](https://github.com/FasterXML/jackson) -- JSON parser
+  * [JUnit5](https://junit.org/junit5/) -- Testing framework
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -164,86 +187,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
 ### UI Design
 
 #### Proposed Implementation
@@ -252,7 +195,7 @@ The proposed design for the UI is to follow the [Material Design system](https:/
 However due to limitations of JavaFx, we will only be mainly focusing on adhering the color system
 and typography, with the other foundations serving more of a guide for future component designs.
 
-The main stylesheet can be found under `resources/view/LightTheme.css`. The primary colour chosen is `#9837d9`, with the full colour palette shown below.
+The main stylesheet can be found under `resources/view/LightTheme.css`. The primary color chosen is `#9837d9`, with the full color palette shown below.
 
 ![colorpalette](images/colorpalette.jpg)
 
@@ -326,11 +269,11 @@ The `message` command provides an easy way for users to generate messages to sen
 
 The following commands are provided:
 
-`create`  — Create a message template
+* `create`  — Create a message template
 
-`delete`  — Delete the specified message template
+* `delete`  — Delete the specified message template
 
-`generate`  — Using the specified message template and client, generate a message for client.
+* `generate`  — Using the specified message template and client, generate a message for client.
 
 Creation and deletion are exposed in the `Model` interface as `Model#createMessage`, `Model#deleteMessage`, while message generation is exposed in `Message` as `Message#generate`.
 
@@ -354,7 +297,7 @@ message generate 4 1
 
 *Hello Bob, long time no see! Are you free tomorrow? I'd like to share something exciting with you!*
 
-Step 3: The user realises his first attempt at a pitch isn't working well, so they delete the message from the address book. `DeleteMessageCommand#execute()` calls `ModelManager#deleteMessage()`, which calls `AddressBook#deleteMessage()`, which deletes the message from `AddressBook#messages`
+Step 3: The user realizes his first attempt at a pitch isn't working well, so they delete the message from the address book. `DeleteMessageCommand#execute()` calls `ModelManager#deleteMessage()`, which calls `AddressBook#deleteMessage()`, which deletes the message from `AddressBook#messages`
 
 ```
 message delete 1
@@ -405,7 +348,7 @@ We can also remove tags from a user using the `tag remove` command. For example,
         * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
     * Cons:
         * Forces the creation of a few unique commands. Not user-friendly as the user is expected
-          to memorise all commands.
+          to memorize all commands.
 
 * **Alternative 2:** Building on top of the `add` and `edit` commands.
     * Pros:
@@ -428,18 +371,19 @@ The following commands are provided:
 
 * `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags
 
-The command utilises the  `FilterCommandPredicate` class to aggregate the filters specified and handle the filtering. `FilterCommandPredicate` is created during parsing when `filter` commands are executed. The following is the sequence diagram for parsing of the `filter` command.
+The command utilizes the  `FilterCommandPredicate` class to aggregate the filters specified and handle the filtering. `FilterCommandPredicate` is created during parsing when `filter` commands are executed. The following is the sequence diagram for parsing of the `filter` command.
+
 ![FilterParseSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
 
-Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Addtionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
+Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Additionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
 
 ![FilterClassDiagram](images/command-filter/FilterClassDiagram.svg)
 
 Predicates of each type of filter (name and tags) are stored in separate sets in the `ModelManager` class. Adding a filter will add predicates to the sets and removing filters will remove them from the sets. To update the `FilteredList` with the updated filters, each set of predicate will be reduced with an `OR` operation, and the resulting predicate from each set will be reduced with an `AND` operation.
 
-The following is a sequence diagram of a `filter` command. `filter clear` is similiar except that `Model#clearFiltersInFilteredPersonList` is called instead while `filter list` does not change the `FilteredList` of the model.
+The following is a sequence diagram of a `filter` command. This diagram applies to both `filter clear` and `filter list` except that in `filter clear`,  `Model#clearFiltersInFilteredPersonList` is called and `filter list` does not change the the `FilteredList` of the model.
 
-![FilterSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
+![FilterSequenceDiagram](images/command-filter/FilterSequenceDiagram.svg)
 
 **Given below is an example usage scenario of filtering**
 
@@ -471,7 +415,7 @@ filter clear n=bob,alan
     * Cons:
       * It might be unintuitive for the user to see the list expanding after a new filter is applied.
 
-* **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commadns are reduced with `AND`.
+* **Alternative 2:** filters in the same command are reduced with `OR` and filters in separate commands are reduced with `AND`.
     * Pros:
     	* Provides a lot of flexibility for the user
     * Cons:
@@ -530,10 +474,11 @@ tag friends
 #### Implementation
 As an encouragement, Rapportbook will show a motivational quote on the starting page of Rapportbook. The quote is randomly selected from a list of 300 quotes, and will not change until Rapportbook is restarted.
 
-The following is the class diagram for this feature.
+The quotes are stored as a static list, in the `QuoteList` class. As this class has only static variables and methods, it should not be instantiated and hence does not have a constructor. The following is the class diagram for this feature.
+
 ![QuoteListClassDiagram](images/motivational-quote/QuoteListClassDiagram.png)
 
-The quotes are stored as a static list, in the `QuoteList` class. As this class has only static variables and methods, it should not be instantiated and hence does not have a constructor. To access a quote, the class provides the `QuoteList#getRandomQuote()` method which will return a random quote from the quote list. Once the `getRandomQuote()` method has been called, the quote returend will be stored as a static variable, which will be used as the return value for subsequent calls.
+To access a quote, the class provides the `QuoteList#getRandomQuote()` method which will return a random quote from the quote list. Once the `getRandomQuote()` method has been called, the quote returned will be stored as a static variable, which will be used as the return value for subsequent calls.
 
 #### Design considerations:
 - **Aspect: How the quotes are stored.**
@@ -594,7 +539,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user     | delete client information                               | remove entries that I no longer need                                   |
 | `* * *`  | user     | modify a client entry easily                            | ensure that client information is up to date                           |
 | `* * *`  | user     | filter my clients by name                               | locate details of clients without having to go through the entire list |
-| `* *`    | user     | classify my clients with different tags                 | know who to prioritise                                                 |
+| `* *`    | user     | classify my clients with different tags                 | know who to prioritize                                                 |
 | `* *`    | user     | filter my clients based on tags assigned to them        | access relevant client data easily                                     |
 | `* *`    | user     | view clients from a certain demographic                 | get a better overview of what my client base is like                   |
 | `* *`    | user     | get things done fast with minimal typing                | save time                                                              |
@@ -676,7 +621,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to show a list of filters already applied.
-2. Rapporbook displays a list of filters applied.
+2. Rapportbook displays a list of filters applied.
 
     Use case ends
 **Extensions**
@@ -698,7 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to show a [list of filters already applied](#use-case-list-filters-applied).
-2. Rapporbook displays a list of filters applied.
+2. Rapportbook displays a list of filters applied.
 3. User requests to clear filters that were originally applied.
 4. Rapportbook shows a list of contacts without the filters applied.
 
