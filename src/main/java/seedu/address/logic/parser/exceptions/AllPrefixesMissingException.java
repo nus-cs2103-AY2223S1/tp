@@ -14,9 +14,9 @@ public class AllPrefixesMissingException extends ParseException {
      *
      * @param prefixes The list of prefixes that are missing in the userinput
      */
-    public AllPrefixesMissingException(Prefix[] prefixes) {
+    public AllPrefixesMissingException(Prefix[] prefixes, String messageUsage) {
         super(String.format(
-                Messages.MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(prefixes), ""
+                Messages.MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(prefixes), messageUsage
         ));
     }
 }

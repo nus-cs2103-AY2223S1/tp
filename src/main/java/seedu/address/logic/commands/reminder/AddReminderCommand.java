@@ -1,9 +1,11 @@
 package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -18,15 +20,18 @@ public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "add reminder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to the ModQuik. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_TIMESLOT + "DEADLINE "
+            + PREFIX_TIME + "DEADLINE TIME "
+            + PREFIX_DATE_DAY + "DEADLINE DATE "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Mark Midterms "
-            + PREFIX_TIMESLOT + "1500 "
-            + PREFIX_DESCRIPTION + "300 papers to mark ";
+            + PREFIX_DATE_DAY + "2022-01-01 "
+            + PREFIX_TIME + "15:00 "
+            + PREFIX_DESCRIPTION + "300 papers to mark "
+            + PREFIX_PRIORITY + "HIGH";
 
     public static final String MESSAGE_SUCCESS = "New reminder added: %1$s";
     public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in the ModQuik";

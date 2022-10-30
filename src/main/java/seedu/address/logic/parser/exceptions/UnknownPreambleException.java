@@ -6,6 +6,6 @@ import seedu.address.commons.core.Messages;
  */
 public class UnknownPreambleException extends ParseException {
     public UnknownPreambleException(String preamble) {
-        super(String.format(Messages.MESSAGE_UNKNOWN_COMMAND, preamble));
+        super(String.format(Messages.MESSAGE_UNKNOWN_COMMAND_TEMPLATE, preamble));
     }
 }

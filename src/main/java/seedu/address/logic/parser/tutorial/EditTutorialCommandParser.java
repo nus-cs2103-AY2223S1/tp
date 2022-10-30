@@ -2,10 +2,10 @@ package seedu.address.logic.parser.tutorial;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.address.commons.core.index.Index;
@@ -32,7 +32,7 @@ public class EditTutorialCommandParser implements Parser<EditTutorialCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE,
-                        PREFIX_TIMESLOT, PREFIX_DAY);
+                        PREFIX_TIME, PREFIX_DATE_DAY);
 
         Index index;
 
@@ -49,26 +49,26 @@ public class EditTutorialCommandParser implements Parser<EditTutorialCommand> {
                     .parseTutorialName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            editTutorialDescriptor.setModule(TutorialParserUtil
-                    .parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get()));
+            editTutorialDescriptor.setModule(ParserUtil
+                    .parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get()));
         }
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
             editTutorialDescriptor.setVenue(TutorialParserUtil
                     .parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get()));
         }
-        if (argMultimap.getValue(PREFIX_DAY).isPresent() && argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
-            String date = argMultimap.getValue(PREFIX_DAY).get();
-            String timeslot = argMultimap.getValue(PREFIX_TIMESLOT).get();
+        if (argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            String day = argMultimap.getValue(PREFIX_DATE_DAY).get();
+            String timeslot = argMultimap.getValue(PREFIX_TIME).get();
             editTutorialDescriptor.setTimeslot(DatetimeCommonUtils
-                    .parseWeeklyTimeslot(date, timeslot));
+                    .parseWeeklyTimeslot(day, timeslot));
         }
 
         //Only day
-        if (argMultimap.getValue(PREFIX_DAY).isPresent() && !argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+        if (argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && !argMultimap.getValue(PREFIX_TIME).isPresent()) {
             throw new ParseException(EditTutorialCommand.MESSAGE_DATETIME_TUTORIAL);
         }
         //Only timeslot
-        if (!argMultimap.getValue(PREFIX_DAY).isPresent() && argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
+        if (!argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && argMultimap.getValue(PREFIX_TIME).isPresent()) {
             throw new ParseException(EditTutorialCommand.MESSAGE_DATETIME_TUTORIAL);
         }
         if (!editTutorialDescriptor.isAnyFieldEdited()) {

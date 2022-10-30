@@ -2,10 +2,11 @@ package seedu.address.logic.parser.reminder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reminder.EditReminderCommand;
@@ -29,7 +30,8 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
     public EditReminderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIMESLOT, PREFIX_PRIORITY, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIME, PREFIX_DATE_DAY, PREFIX_PRIORITY,
+                        PREFIX_DESCRIPTION);
 
         Index index;
 
@@ -46,9 +48,10 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
             editReminderDescriptor.setName(ReminderParserUtil.parseReminderName(argMultimap
                     .getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
-            editReminderDescriptor.setDeadline(DatetimeCommonUtils.parseDatetime(argMultimap
-                    .getValue(PREFIX_TIMESLOT).get()));
+        if (argMultimap.getValue(PREFIX_TIME).isPresent() && argMultimap.getValue(PREFIX_DATE_DAY).isPresent()) {
+            String date = argMultimap.getValue(PREFIX_DATE_DAY).get();
+            String deadline = argMultimap.getValue(PREFIX_TIME).get();
+            editReminderDescriptor.setDeadline(DatetimeCommonUtils.parseDatetime(date, deadline));
         }
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             editReminderDescriptor.setPriority(ReminderParserUtil.parseReminderPriority(argMultimap
@@ -57,6 +60,15 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editReminderDescriptor.setDescription(ReminderParserUtil.parseReminderDescription(argMultimap
                     .getValue(PREFIX_DESCRIPTION).get()));
+        }
+
+        //Only date
+        if (argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && !argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            throw new ParseException(EditReminderCommand.MESSAGE_DATETIME_REMINDER);
+        }
+        //Only timeslot
+        if (!argMultimap.getValue(PREFIX_DATE_DAY).isPresent() && argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            throw new ParseException(EditReminderCommand.MESSAGE_DATETIME_REMINDER);
         }
 
         if (!editReminderDescriptor.isAnyFieldEdited()) {

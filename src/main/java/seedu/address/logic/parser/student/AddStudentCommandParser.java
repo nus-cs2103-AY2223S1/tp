@@ -22,6 +22,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.tutorial.TutorialParserUtil;
+import seedu.address.model.commons.ModuleCode;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
@@ -32,7 +33,6 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 
 /**
@@ -51,8 +51,8 @@ public class AddStudentCommandParser implements Parser<AddCommand> {
                         PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_MODULE, PREFIX_TUTORIAL,
                         PREFIX_ATTENDANCE, PREFIX_PARTICIPATION, PREFIX_GRADE, PREFIX_TAG);
 
-        ParserUtil.assertAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_MODULE, PREFIX_TUTORIAL);
+        ParserUtil.assertAllPrefixesPresent(argMultimap, AddCommand.MESSAGE_USAGE,
+                PREFIX_NAME, PREFIX_ID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_MODULE, PREFIX_TUTORIAL);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -62,7 +62,7 @@ public class AddStudentCommandParser implements Parser<AddCommand> {
         Phone phone = StudentParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = StudentParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         TelegramHandle telegramHandle = StudentParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
-        TutorialModule tutorialModule = TutorialParserUtil.parseTutorialModule(
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(
                 argMultimap.getValue(PREFIX_MODULE).get());
         TutorialName tutorialName = TutorialParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
 
@@ -74,7 +74,7 @@ public class AddStudentCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = StudentParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Student student = new Student(name, id, phone, email, telegramHandle,
-                tutorialModule, tutorialName, attendance, participation, grade, tagList);
+                moduleCode, tutorialName, attendance, participation, grade, tagList);
 
         return new AddCommand(student);
     }

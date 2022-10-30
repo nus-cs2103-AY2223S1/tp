@@ -21,12 +21,14 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.reminder.EditReminderCommand;
 import seedu.address.logic.commands.student.EditCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditReminderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -123,6 +125,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER1;
+    public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER2;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -138,6 +142,17 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .withAttendance(VALID_ATTENDANCE_BOB)
                 .withParticipation(VALID_PARTICIPATION_BOB).withGrade(VALID_GRADE_BOB)
+                .build();
+
+        DESC_REMINDER1 = new EditReminderDescriptorBuilder().withName(VALID_NAME_REMINDER1)
+                .withDeadline(VALID_DEADLINE_REMINDER1)
+                .withPriority(VALID_PRIORITY_REMINDER1)
+                .withDescription(VALID_DESCRIPTION_REMINDER1)
+                .build();
+        DESC_REMINDER2 = new EditReminderDescriptorBuilder().withName(VALID_NAME_REMINDER2)
+                .withDeadline(VALID_DEADLINE_REMINDER2)
+                .withPriority(VALID_PRIORITY_REMINDER2)
+                .withDescription(VALID_DESCRIPTION_REMINDER2)
                 .build();
     }
 

@@ -23,7 +23,8 @@ public class SwitchCommandParser implements Parser<SwitchCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FIELD);
 
-        ParserUtil.assertAllPrefixesPresent(argMultimap, PREFIX_FIELD);
+        ParserUtil.assertAllPrefixesPresent(argMultimap, SwitchCommand.MESSAGE_USAGE,
+                PREFIX_FIELD);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
