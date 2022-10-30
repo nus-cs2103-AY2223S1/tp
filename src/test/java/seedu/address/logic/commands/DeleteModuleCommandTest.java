@@ -57,7 +57,7 @@ public class DeleteModuleCommandTest {
         String expectedMessage = String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS,
                 moduleToDelete);
 
-        // HomeStatus is initialised as true when model if first initialized.
+        // HomeStatus is initialised as true when model is first initialized.
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteModule(moduleToDelete);
 

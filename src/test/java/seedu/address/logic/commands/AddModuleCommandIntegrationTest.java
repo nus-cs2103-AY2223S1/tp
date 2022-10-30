@@ -42,7 +42,7 @@ public class AddModuleCommandIntegrationTest {
 
         Module validModule = new ModuleBuilder().build();
 
-        // HomeStatus is initialised as true when model if first initialized.
+        // HomeStatus is initialised as true when model is first initialized.
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addModule(validModule);
 
