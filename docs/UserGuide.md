@@ -238,8 +238,8 @@ Adds an attendance list to a student in contacts.
 Format: `attendance add INDEX c/CLASS s/ATTENDANCE_SIZE`
 
 Examples:
-```attendance add 1 c/CS2030 s/10```
-```attendance add 1 c/CS2040 s/1```
+* `attendance add 1 c/CS2030 s/10`
+* `attendance add 1 c/CS2040 s/1`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
 Maximum lesson number is 12, if the size is 0, the attendance list will be N.A. 
@@ -262,8 +262,8 @@ Attendance value is 0 for absent, 1 for present because it is faster for CLI use
 </div>
 
 Examples:
-`attendance mark 1 l/1 m/1`
-`attendance mark 1 l/1 m/0`
+* `attendance mark 1 l/1 m/1`
+* `attendance mark 1 l/1 m/0`
 
 ### Deleting attendance to student: `attendance delete`
 
@@ -272,8 +272,8 @@ Deletes entire attendance list of student in class list
 Format: `attendance delete INDEX`
 
 Examples:
-`attendance delete 1`
-`attendance delete 2`
+* `attendance delete 1`
+* `attendance delete 2`
 
 Task Commands
 ---
@@ -361,6 +361,7 @@ Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
 Examples:
 * `task t/Assignment 1 d/Description here addStu/Adam Tan, Wong Zhu Yi, Robin Hood`
 * `task t/Midterm Assignment d/This is a challenging assignment addStu/Alvin, Simon, Theodore`
+
 ---
 
 ### Navigating User Input History: `↑`, `↓`
@@ -430,7 +431,7 @@ If your changes to the data file makes its format invalid, GREWZ will discard al
 | **Edit**              | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`                          | `edit 2 n/James Lee e/jameslee@example.com`                                                                       |
 | **Find**              | `find KEYWORD [MORE_KEYWORDS]`                                                                                    | `find James Jake`                                                                                                 |
 | **List**              | `list`                                                                                                            |                                                                                                                   |
-| **Task**              | `task t/TITLE d/DESC [by/YYYY-MM-DD]`                                                                             | `task t/Collect robot d/At MakersLab`, `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12` |
+| **Task**              | `task t/TITLE d/DESC [by/YYYY-MM-DD]`                                                                             | `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`                                         |
 | **Edit Task**         | `edit-task [t/TITLE] [d/DESC] [by/YYYY-MM-DD] [addStu/STUDENT_1,STUDENT_2...] [deleteStu/STUDENT_1,STUDENT_2...]` | `edit-task 1 t/Mark Lab Worksheets d/CS2030S by/2022-10-30`                                                       | 
 | **Remove Task**       | `remove-task INDEX`                                                                                               | `remove-task 1`                                                                                                   |
 | **Upload**            | `upload-pic INDEX`                                                                                                | `upload-pic 1`                                                                                                    |
