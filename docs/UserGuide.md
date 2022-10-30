@@ -1,9 +1,7 @@
 ---
 layout: page
-title: User Guide
+title: 👾 Minefriends User Guide
 ---
-
-# 👾 Minefriends User Guide
 
 <div markdown="block" class="alert alert-info">
 
