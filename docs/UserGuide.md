@@ -199,8 +199,8 @@ Examples:
 
 ### Viewing all tasks: `listTasks`
 
-Edits the details of the task identified by the index number used in the displayed task list. 
-Existing values will be overwritten by the input values.
+Lists all existing tasks from the task list.
+Used after calling [filter](#filter)
 
 Format: `listTasks`
 
