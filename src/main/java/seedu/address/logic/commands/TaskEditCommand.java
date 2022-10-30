@@ -26,7 +26,7 @@ public class TaskEditCommand extends Command {
             + "by the index number used in the displayed team list.\n"
             + "Parameters: " + PREFIX_TEAM_INDEX + "TEAM-INDEX (must be a positive integer), "
             + PREFIX_TASK_INDEX + "TASK-INDEX (must be a positive integer) "
-            + PREFIX_TASK_NAME + "NEW-TASK-NAME \n"
+            + " [" + PREFIX_TASK_NAME + "NEW-TASK-NAME] \n"
             + " [" + PREFIX_TASK_DEADLINE + "dd-MM-yyyy]"
             + " (It's optional to include deadline for a task!) \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_TEAM_INDEX + "1 "
