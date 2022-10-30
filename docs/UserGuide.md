@@ -45,7 +45,7 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add student n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -59,12 +59,12 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
-* The following prefix parameters `D/` and `T/` have more than 1 definition, depending on the type of command inputted. </br>
-    - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands. </br>
-      Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday). </br>
+* The following prefix parameters `D/` and `T/` have more than 1 definition, depending on the type of command inputted.</br>
+    - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands.</br>
+      Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday).</br>
       Format of `DATE` should be yyyy-MM-dd. e.g. 2022-02-24
-    - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands. </br>
-      Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00 </br>
+- `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.</br>
+      Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00</br>
       Format of `TIME` should be HH:mm. e.g. 13:00.
 
 * Extraneous parameters for commands that do not take in parameters (such as [`help`] and [`exit`]) will be ignored.<br>
@@ -165,7 +165,7 @@ Examples:
 * [`find`] `m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the [`find`] command.
 
 <a name="extract-emails"></a>
-#### 3.1.6 Extracting student's emails : `extract emails`
+#### 3.1.6 Extracting student's emails: `extract emails`
 
 Copies all emails in the displayed student list onto the clipboard.
 
@@ -182,7 +182,7 @@ Examples:
 ### 3.2 Tutorial Features
 
 <a name="add-tutorial"></a>
-#### 3.2.1 Adding a tutorial : `add tutorial`
+#### 3.2.1 Adding a tutorial: `add tutorial`
 
 Adds a tutorial to the list of tutorials.
 
@@ -269,7 +269,7 @@ Examples:
 ### 3.4 Reminder Features
 
 <a name="add-reminder"></a>
-#### 3.4.1 Adding a reminder : `add reminder`
+#### 3.4.1 Adding a reminder: `add reminder`
 
 Adds a reminder to the list of reminders.
 
@@ -301,7 +301,7 @@ Examples:
 * `edit reminder 2 T/14:00 D/2022-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2022 Oct 10`.
 
 <a name="mark-reminder"></a>
-#### 3.4.3 Mark a reminder : `mark reminder`
+#### 3.4.3 Mark a reminder: `mark reminder`
 
 Marks a reminder as complete.
 
@@ -322,7 +322,7 @@ Examples:
  </table>
 
 <a name="unmark-reminder"></a>
-#### 3.4.4 Unmark a reminder : `unmark reminder`
+#### 3.4.4 Unmark a reminder: `unmark reminder`
 
 Unmarks a reminder as incomplete.
 
@@ -332,7 +332,7 @@ Examples:
 * `unmark reminder 3`
 
 <a name="delete-reminder"></a>
-#### 3.4.5 Deleting a reminder : `delete reminder`
+#### 3.4.5 Deleting a reminder: `delete reminder`
 
 Deletes the specified reminder from the list of reminders.
 
@@ -466,7 +466,7 @@ _Details coming soon..._
 | **d/**    | description      | [`add consultation`]<br> [`edit consultation`]<br> [`add reminder`]<br> [`edit reminder`]                                                                                                  |
 | **D/**    | date or day      | [`add consultation`]<br> [`edit consultation`]<br> [`add reminder`]<br> [`edit reminder`]                                                                                                  |
 | **e/**    | email            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
-| **f/**    | field            | [`switch`] <br> [`clear`]                                                                                                                                                                  |
+| **f/**    | field            | [`switch`]<br> [`clear`]                                                                                                                                                                  |
 | **g/**    | grade            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **i/**    | student id       | [`add student`]<br> [`edit student`]<br> [`find`]                                                                                                                                          |
 | **m/**    | module           | [`add student`]<br> [`edit student`]<br> [`find`]<br> [`add tutorial`]<br> [`edit tutorial`]<br> [`add consultation`]<br> [`edit consultation`]                                            |
