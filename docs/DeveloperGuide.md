@@ -159,9 +159,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram2.png)
+![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTableView`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTabView`, `VenueTabView`, `CurrentWorkingFileFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -170,7 +170,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Resident` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Resident`, `Venue` and `Booking` object residing in the `Model`.
 
 ### Logic component
 
@@ -227,6 +227,7 @@ The `Model` component,
 
 
 
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W12-3/tp/tree/master/src/main/java/seedu/rc4hdb/storage/Storage.java)
@@ -270,64 +271,83 @@ shows the updated Sequence diagram for the executing of our `delete` command.
 <img src="images/DeleteSequenceDiagram2.png" />
 
 
-#### Changes in Displaying Results
+### Displaying Data
 
-In `AB3`, the `PersonListPanel` and `PersonCard` components were responsible for displaying results on the `MainWindow`.
-The `PersonCard` component dictates the arrangement of fields belonging to a `Person`, and the `PersonListPanel` component
-dictates the configuration of these `PersonCard` objects.
+There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`.
+As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are
+responsible for displaying the respective information.
 
-Graphically, this was represented as a single-column list with each row corresponding to a `Person` in `AB3`.
+#### Resident Information
 
-In `RC4HDB`, we reworked the entire configuration for displaying results. We replaced `PersonListPanel` and `PersonCard`
-by a `ResidentTableView` component.
+The `ResidentTabView` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented
+as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
 
-<img src="images/UiClassDiagram.png" width="550" />
+##### Design considerations
 
-`ResidentTableView` is implemented via the `TableView` class of `JavaFX`. Graphically, `ResidentTableView` is presented
-as a table. Each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
+Aspect: Display format
 
-From the users' viewpoint, the data generated in `ResidentTableView` is a single unit, but it is logically separated
-into two distinct parts. The first part being the first column which is the `IndexColumn` and the second being all other
-columns, also known as `FieldColumns`.
+Alternative 1 (current choice): Table
 
-The main reason for this distinction is *method to generate the cell values*.
-- The indices in the `IndexColumn` are generated independently to the `FieldColumns`. This is because fields within
-  `Resident` do not affect its index within the table. In two different commands, the same `Resident` could
-  have different indices in the results.
-- In contrast, in the generation of values for each cell in `FieldColumn`, values are obtained by iterating
-through a list of `Residents` and setting each cell to it. As the iterator does not modify the ordering of `Residents`,
-  the same technique is applied to obtain the values for other `FieldColumns`.
+Pros:
+* Ability to display condensed information clearly
+* Ability to manipulate the data that can be displayed by showing and hiding field columns
+* Ability for the user to view large amounts of information at a glance
+* Powerful TableView implementation allows us to dynamically obtain resident field, and update the table when the Model changes
 
-As a consequence, fields of a `Resident` will always collectively be together in the same row, though it may appear in
-two different indices in the results of two different commands.
+Cons:
+* Possible information overload on the user
+* Possible performance issues in terms of memory usage when the number of columns exceed 60
 
-<br>
+For more information on how the TableView implementation is powerful, we refer you to the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html)
+on *method matching*, which is what we heavily used to fetch resident data.
 
-##### Obtaining `Resident` fields
+For more information on possible performance **issue**, refer to this GitHub issue [here](https://github.com/javafxports/openjdk-jfx/issues/409).
 
-From the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableColumn.html), a
-`TableView` is made up of a number of `TableColumn` instances. `TableColumn` provided us with a method to
-`setCellValueFactory` which allows us to iterate through the list of `Residents` and obtain the value dynamically.
+Alternative 2: List
 
-In using the `setCellValueFactory` method, we also used the `PropertyValueFactory` class. The implementation of
-`PropertyValueFactory` has enabled us to easily obtain fields due to its *method matching*
-[functionality](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html).
+Pros:
+* Ability to customize the layout of the data to be displayed
+* Ability for the user to more focused by viewing lesser amounts of information at a glance
 
-For example, by constructing `nameCol.setCellValueFactory(new PropertyValueFactory<Resident, String>("name")`,
-the "name" string is used as a reference to an assumed `Resident::getName` in `Resident.java`.
-As a consequence of this, for all fields in `Resident`, we have to implement and have implemented suitable methods to
-take advantage of this functionality. The only caveat to this is potentially the complexity of fields that a `Resident`
-could possess. But for our purposes, our fields are mainly represented as `String`, and there are no issues thus far.
+Cons:
+* Possible lack of information displayed at a glance
+* Less intuitive for handling large numbers of entries
 
-<br>
 
-##### Differences in Updating Data
+For the purposes of the user, who has to deal with large amounts of residential information, we opted the use of the table.
 
-Another difference between `PersonListPanel` and `ResidentTableView` is the behavior in propagating changes in the
-`Model` component to the `Ui` component. In `ResidentTableView` modifications to any fields of a `Resident` would not require explicit
-invocation of a method to update the Ui. This design was possible as `TableView` automatically adds an observer
-to the returned value from `setCellValueFactory`, as mentioned in the [section above](#obtaining-resident-fields).
-As a result, any updates to `ObservableList<Resident>` would be reflected immediately in all cells of the Table.
+
+#### Booking Information
+
+Similar to the display of resident information, the `VenueTabView` contains a `BookingTableView` which was also implemented
+via the `TableView` class of `JavaFX`. Here, each row corresponds to the `Day`, and each column corresponds to the `HourPeriod`.
+
+##### Design considerations
+
+Aspect: Display format
+
+Alternative 1 (current choice): Table
+
+Pros
+* Decently proficient in displaying bookings
+
+Cons
+* Difficult to customize the design i.e. colors and size
+
+Alternative 2: Grid
+
+The implementation of the grid would be via a 8x16 grid of JavaFX containers using `HBox` and `VBox`. We would have nested
+the `HBox` and `VBox` components to achieve a timetable like design to display the bookings.
+
+Pros
+* Decently proficient in displaying bookings
+* Easier to customize the design i.e. colors and size
+
+Cons
+* Difficult and time-consuming to implement
+
+Weighing the pros and cons, we decided to opt for the Table as it was sufficient for our purposes, without the addition
+of any sizeable overhead.
 
 <br>
 
@@ -472,6 +492,24 @@ Due to file switching requiring an update to not only `Storage`, but also `Model
 
 <br>
 
+### Command history
+
+`CommandHistory` allows the user to access past successfully executed commands by using the `UP_ARROW_KEY` and `DOWN_ARROW_KEY`.
+As our implementation of `CommandHistory` only tracks past successfully executed commands, the `CommandHistory` does not have any
+dependencies to `Model` and `Storage`, but it does to `Logic`.
+
+The class diagram of `CommandHistory` is as follows.
+
+![CommandHistoryClassDiagram](images/CommandHistoryClassDiagram-0.png)
+
+To illustrate how `CommandHistory` works, an activity diagram when using the `UP_ARROW_KEY` is provided below.
+
+![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram-0.png)
+
+Internally, the `CommandHistory` is implemented using two stacks, which pops and pushes the most recently browsed command
+between the two, thereby maintaining its ordering.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -572,7 +610,7 @@ If you are interested in joining our team, do take a look at our [GitHub reposit
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
----
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Project requirements**
 
@@ -828,8 +866,6 @@ Extensions:
 
 <br>
 
-<br>
-
 System: RC4HDB <br>
 Use case: UC10 - Deleting multiple residents <br>
 Actor: User <br>
@@ -909,21 +945,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC14 - Exporting data to [CSV](#glossary) file <br>
-Actor: User <br>
-MSS:
-
-1. User wants the data in a [**CSV**](#glossary) file.
-2. User exports the file.
-3. RC4HDB creates a new [**CSV**](#glossary) file using user input.
-4. RC4HDB shows a success message.
-
-    Use case ends.
-
-<br>
-
-System: RC4HDB <br>
-Use case: UC15 - Add a single venue <br>
+Use case: UC14 - Add a single venue <br>
 Actor: User <br>
 MSS:
 
@@ -943,7 +965,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC16 - Deleting a single venue <br>
+Use case: UC15 - Deleting a single venue <br>
 Actor: User <br>
 MSS:
 
@@ -963,7 +985,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC17 - Viewing a venue <br>
+Use case: UC16 - Viewing a venue <br>
 Actor: User <br>
 MSS:
 
@@ -983,7 +1005,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC18 - Add a single booking <br>
+Use case: UC17 - Add a single booking <br>
 Actor: User <br>
 MSS:
 
@@ -1007,7 +1029,7 @@ Extensions:
 <br>
 
 System: RC4HDB <br>
-Use case: UC19 - Deleting a single booking <br>
+Use case: UC18 - Deleting a single booking <br>
 Actor: User <br>
 MSS:
 
@@ -1043,6 +1065,9 @@ Extensions:
 #### Technical
 * The system must be able to handle approximately 300 to 500 entries without a noticeable sluggishness in performance for typical usage
 * The system must be flexible and extensible for potential overhaul or changes to the [**RC4**](#glossary) housing management system
+* The system must not lose any data if the exit command is triggered by the user.
+* The system must not lose any data if the system is forcibly closed via other means than the exit command.
+* Installing a new update shall not in any way, modify or erase existing data and value from the previous version, and the new update should be compatible with the data produced earlier within the system.
 
 *{More to be added}*
 
@@ -1115,6 +1140,18 @@ testers are expected to do more *exploratory* testing.
 
 #### Starting up with missing/corrupted data files
 
+#### Exiting RC4HDB
+
+1. Exiting via command-line
+
+    1. Test case: `exit`<br>
+       Expected: Window closes.
+
+2. Exiting via keyboard-shortcut
+
+    1. Test case: Pressing `ESC`<br>
+       Expected: Window closes.
+
 ### Viewing residents
 
 #### Listing residents
@@ -1145,7 +1182,6 @@ testers are expected to do more *exploratory* testing.
        
     8. Other incorrect commands to try: `list asdfghjkl`, `list /all`<br>
        Expected: Similar to previous.
-
 
 2. Listing all resident fields after calling `showonly` or `hideonly` (sequential testing)
 
@@ -1345,7 +1381,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Test case: `file create already_exist` <br>
        Expected: An error message indicating that the folder you are about to create already exists will be displayed in the result panel.
-   
+
    3. Test case: `file create current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
        Expected: An error message indicating that the folder you are trying to create is the folder that is currently in view will be displayed in the result panel. No creation occurs.
 
@@ -1428,3 +1464,68 @@ testers are expected to do more *exploratory* testing.
 #### Deleting a booking
 
 [Comment]: <> (To be added)
+
+<br>
+
+### Quality-of-life
+
+We recommend viewing the [Quality-of-life](ug-pages/quality-of-life.md) section before proceeding, as the following largely tests the functionality from that section.
+
+#### Browsing recently-used commands
+
+1. Browsing recent valid commands
+
+   1. Prerequisites: List all residents using the `list` command, followed by adding a resident using the `add` command. The following
+   test cases are to be done sequentially.
+
+   2. Test case: Pressing `UP_ARROW_KEY`<br>
+      Expected: `add` command is copied onto the input command box.
+
+   3. Test case: Pressing `UP_ARROW_KEY`<br>
+      Expected: `add` command is replaced and `list` command is copied onto the input command box.
+
+   4. Test case: Pressing `DOWN_ARROW_KEY`<br>
+      Expected: `list` command is replaced and `add` command is copied onto the input command box.
+
+   5. Test case: Pressing `DOWN_ARROW_KEY`<br>
+      Expected: `add` command is replaced and ` ` is copied onto the input command box. i.e. no command
+
+#### Getting help
+
+1. Opening the Help Window
+
+   1. Prerequisites: Help Window is not currently opened.
+
+   2. Test case: `help`<br>
+      Expected: Help Window pops up.
+
+   3. Test case: Pressing `F1`<br>
+      Expected: Help Window pops up.
+
+2. Closing the Help Window
+
+   1. Prerequisites: Help Window is currently opened.
+
+   2. Test case: Pressing `X` of the Help Window.<br>
+      Expected: Help Window closes.
+
+   3. Test case: Pressing `ESC`<br>
+      Expected: Help Window closes.
+
+#### Accessing the command input box
+
+1. Accessing command input
+
+   1. Prerequisites: Command input box is not in focus.
+
+   2. Test case: Pressing `F3`<br>
+      Expected: Command input box is in focus and ready for user command.
+
+#### Switching from tabs
+
+1. Switching between `Resident` and `Bookings` tab
+
+   2. Test case: Pressing `CTRL-TAB`<br>
+      Expected: Alternate tab is displayed.
+
+---

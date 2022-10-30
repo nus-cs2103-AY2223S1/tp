@@ -3,7 +3,7 @@ layout: page
 title: FAQ
 ---
 
-#### [Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 ## FAQ
 
@@ -12,6 +12,7 @@ title: FAQ
 **A**: You can use the `filter` command to search for people using the other fields.
 
 **Q: Why are the inputs for `showonly` and `hideonly` single letters, but slash-separated prefixes and values for `add`, `edit`, `filter`?**
+
 
 **A**: This is because in `add`, `edit` and `filter`, we need to make sure the values entered by the user are attached 
 to the correct fields. For example, in `edit 2 n/Tan Yong Xun e/tyx@email.com`, the prefixes are used to tell us that 
@@ -31,4 +32,4 @@ standalone prefixes for the command format, but we found single letters to be mo
 [comment]: <> (This is unlike `showonly`, which can only restrict the table view based on columns that are already present.  )
 
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)

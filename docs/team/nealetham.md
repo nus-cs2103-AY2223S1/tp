@@ -28,31 +28,31 @@ I made the following enhancements to our product:
 
 ### Graphical User Interface (GUI)
 
-In `AB3` the GUI was implemented using `PersonListPanel` and `PersonCard`. Each `Person` is graphically represented as 
-a `PersonCard` which contains all fields of a `Person` i.e. `Name`,`Phone`, `Email`, `Address`, `Tags` 
+In `AB3` the GUI was implemented using `PersonListPanel` and `PersonCard`. Each `Person` is graphically represented as
+a `PersonCard` which contains all fields of a `Person` i.e. `Name`,`Phone`, `Email`, `Address`, `Tags`
 
-Results from a command would be displayed in the `PersonListPanel`, which graphically is a single column list, 
+Results from a command would be displayed in the `PersonListPanel`, which graphically is a single column list,
 with each row corresponding to a `PersonCard`.
 
 Insert Old Ui Image Here
 
-At any given time in RC4, there are approximately 300 individuals staying in RC4. With our goal of providing an 
-efficient and productive means of handling administrative tasks, we thought that the current interface was unsuitable 
+At any given time in RC4, there are approximately 300 individuals staying in RC4. With our goal of providing an
+efficient and productive means of handling administrative tasks, we thought that the current interface was unsuitable
 for visualizing large numbers of entries.
 
-As a consequence, we adapted the `PersonListPanel` and converted it to `ResidentTableView`. A `Resident` entry will no 
+As a consequence, we adapted the `PersonListPanel` and converted it to `ResidentTableView`. A `Resident` entry will no
 longer be represented graphically as a `PersonCard`, but as a row in our table. The fields for each respective
-`Resident` i.e. `Name`, `Phone Number`, `Email`, `Gender`, `House`, `Matric Number`, and `Tags`are now represented as 
+`Resident` i.e. `Name`, `Phone Number`, `Email`, `Gender`, `House`, `Matric Number`, and `Tags`are now represented as
 columns in each row.
 
 Insert New Ui Image here
 
-Users will now be able to see more entries on the window as compared to before. Fields of a `Resident` are also 
+Users will now be able to see more entries on the window as compared to before. Fields of a `Resident` are also
 structured and more easily identifiable. These two together can potentially increase productivity of our user.
 
 The implementation of the `ResidentTableView` is relatively simple and done so using `JavaFx TableView`. For our usage,
-there are no performance issues, but it is well known that `JavaFX TableView` is known to be memory hungry, and 
-potentially laggy when the number of columns exceed 50. To see a discussion on this click 
+there are no performance issues, but it is well known that `JavaFX TableView` is known to be memory hungry, and
+potentially laggy when the number of columns exceed 50. To see a discussion on this click
 [here](https://github.com/javafxports/openjdk-jfx/issues/409).
 
 
@@ -65,9 +65,9 @@ Other minor updates I made to the GUI include:
 
 ### Keyboard Shortcut
 
-As `RC4HDB` is designed to be optimized for use via a Command Line Interface (CLI). We have introduced several 
+As `RC4HDB` is designed to be optimized for use via a Command Line Interface (CLI). We have introduced several
 keyboard shortcut commands to improve the quality-of-life of our users such that there is little need for them to lift
-their hands to grab the mouse. 
+their hands to grab the mouse.
 
 Below is a table that lists all of our keyboard shortcuts:
 

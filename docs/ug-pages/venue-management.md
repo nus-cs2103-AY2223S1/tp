@@ -3,7 +3,7 @@ layout: page
 title: Venue Management
 ---
 
-#### [Back to Menu](../UserGuide.md)
+#### ← [Back to Menu](../UserGuide.md)
 
 Along with the ability to manage residents, we have also provided you with the ability to manage
 the venues in **RC4HDB** through a booking system. This will allow you to add, remove available venues, as well as
@@ -34,7 +34,7 @@ be used in the commands.
 
 The venue fields can be found [here](#format-for-venue-fields).
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -48,7 +48,7 @@ Examples:
 * `venue add Meeting Room 3`
 * `venue add Multi-purpose Hall `
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -62,7 +62,7 @@ Examples:
 * `venue delete Meeting Room`
 * `venue delete Hall`
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -76,7 +76,7 @@ Examples:
 * `venue view Meeting Room`
 * `venue view Hall`
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -94,7 +94,7 @@ Examples:
 * `venue book 2 v/Meeting Room tp/8-9 d/TUE`
 * `venue book 1 v/Hall tp/13-14 d/WED`
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -108,7 +108,7 @@ Examples:
 * `venue unbook v/Meeting Room tp/8-9 d/TUE`
 * `venue unbook v/Hall tp/13-18 d/WED`
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
 
@@ -131,6 +131,6 @@ Examples:
 * Must be the first three characters of a day *i.e. Monday must be indicated as mon*
 * Case-insensitive *i.e. tUe, TUE, tue are all valid*
 
-[Back to Top](#back-to-menu)
+[↑ Back to Top](#back-to-menu)
 
 ---
