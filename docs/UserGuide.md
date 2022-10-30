@@ -639,7 +639,7 @@ Finds persons whose names match any of the given keywords, or phone numbers cont
 
 You will notice a `FILTERED` icon next to the panel header to indicate that the list you are viewing is currently filtered.
 
-<img src="PeopleFilteredIcon.png" width="256">
+<img src="images/PeopleFilteredIcon.png" width="256">
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -748,7 +748,7 @@ Examples:
 
 Finds the notes whose titles match any of the given keywords. A filtered icon will show to the side of the Notes Panel to indicate that you are now viewing a filtered list.
 
-<img src="NotesFilteredIcon.png" width="256">
+<img src="images/NotesFilteredIcon.png" width="256">
 
 Format: `findNote KEYWORD [MORE_KEYWORDS]`
 
