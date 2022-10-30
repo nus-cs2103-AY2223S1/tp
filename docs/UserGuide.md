@@ -183,7 +183,7 @@ In the above example, we are changing the module title of the third module on Pl
 `Software Engineering`.
 
 #### 2.1.4. Find module
-You may find modules whose module code starts with a specific keyword while in the home page.
+When you are on the home page, you can search for modules whose module codes start with the specified keywords.
 
 Format: `find-module KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -204,7 +204,7 @@ from the behavior of [`goto`](#252-navigate-between-modules)
 </div>
 
 #### 2.1.5. List module
-You may obtain the list of every module in Plannit while in the home page.
+When you are on the home page, you may obtain the list of every module in Plannit.
 
 Format: `list-module`
 
@@ -509,7 +509,7 @@ In the above example, we are editing the contact with a displayed-index number o
 `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
 
 #### 2.4.4. Find person
-You may find person whose name starts with a specific keyword while in the home page.
+When you are on the home page, you can search for people whose names start with the specified keywords.
 
 Format: `find-person KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -525,7 +525,7 @@ find-person Alex
 In either of the above examples, we find every person whose name starts with Alex in Plannit.
 
 #### 2.4.5. List person
-You may obtain the list of every person in Plannit while in the home page.
+When you are on the home page, you may obtain the list of every person in Plannit.
 
 Format: `list-person`
 
