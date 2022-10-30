@@ -39,33 +39,6 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 * Role: *Tester, Developer*
 * Responsibilities: *Filter and Find features, testing*
 
-#####Code contributed:
-View my contributions [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=boredcoco&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
-Generally the code written pertains to:
-* Features implemented
-* Tests written
-
-#####Enhancements implemented:
-* Find a Buyer, Supplier or Deliver
-* Filter for relevant Orders or Pets
-
-#####Contributions to the User Guide:
-
-* Contributed to the "Finding a Contact using Keywords" section of the User guide
-  * This includes the following sub-segments:
-    * Finding a Buyer
-    * Finding a Supplier
-    * Finding a Deliverer
-* Contributed to the "Filter lists by attributes" section of the User guide.
-  * This includes the following sub-segments:
-    * Filtering Orders
-    * Filtering Pets
-
-#####Contributions to the Developer Guide:
-* Contributed to explaining how the Logic works
-* Added use cases relevant to the features implemented by me.
-
 ### Huang Hongyi
 
 <img src="images/hongyi6328.png" width="200px">
