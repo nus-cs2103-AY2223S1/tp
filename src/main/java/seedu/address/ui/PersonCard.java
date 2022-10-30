@@ -68,26 +68,31 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        name.setWrapText(true);
 
         moduleCode.setText(person.getModuleCode().moduleCode);
+        moduleCode.setWrapText(true);
 
         if (person.getPhone().value == null) {
             phoneCopyButton.setVisible(false);
             phoneCopyButton.setManaged(false);
         }
         phone.setText(person.getPhone().value);
+        phone.setWrapText(true);
 
         if (person.getEmail().value == null) {
             emailCopyButton.setVisible(false);
             emailCopyButton.setManaged(false);
         }
         email.setText(person.getEmail().value);
+        email.setWrapText(true);
 
         if (person.getTelegram().value == null) {
             telegramCopyButton.setVisible(false);
             telegramCopyButton.setManaged(false);
         }
         telegram.setText(person.getTelegram().value);
+        telegram.setWrapText(true);
 
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
