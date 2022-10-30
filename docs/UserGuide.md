@@ -317,7 +317,7 @@ Examples:
 
 Visual Example:
 
-Before hide: 
+Before hide: (Initially with 11 appointments)
 ![before_Hide](images/beforeHide.png)
 
 After hide:
