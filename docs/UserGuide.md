@@ -9,7 +9,7 @@ title: User Guide
 <div style="page-break-after: always;"></div>
 
 ## Introduction 
-Hi Prof, welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA)!
+Hi Profs! Welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA)!
 
 TutHub is a desktop app for NUS professors who wish to choose their next batch of teaching assistants/tutors based on their past performance and track records but have little time to spare for tedious administrative work. If you can type fast, Tuthub helps you find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
@@ -89,7 +89,7 @@ The following table describes the sections in detail:
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/good` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/good` or as `n/John Doe`.
 
 * Items with `…` after them can be used as many times as the user would like.<br>
   e.g. `[t/TAG]…` can be used multiple times like `t/good` or `t/good t/highRatings`, or can be omitted altogether.
@@ -130,13 +130,15 @@ Adds a tutor to the Tuthub.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: **About Tags:**
+
+- A person can have any number of tags (including 0).
+- Tags should be alphanumeric and should not contain any spaces.
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0`
-* `add n/Betsy Crowe t/senior ta e/1234567 m/CS1101S y/3 p/1234567 s/A0123456X tn/2 r/4.5`
+* `add n/Betsy Crowe t/seniorTa e/e1234567 m/CS1101S y/3 p/1234567 s/A0123456X tn/2 r/4.5`
 
 ### Listing all tutors : `list`
 
@@ -179,7 +181,7 @@ Deletes a comment from the specified tutor.
 
 Format: `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`
 
-* Deletes the comment at the specified index of the specified tutor. The tutor index refers to the index number shown in the displayed person list. The comment index refers to the index number of the comment shown in the comment section. Both indeces **must be positive integers** 1, 2, 3, …​
+* Deletes the comment at the specified index of the specified tutor. The tutor index refers to the index number shown in the displayed person list. The comment index refers to the index number of the comment shown in the comment section. Both indices **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `deletecomment 1 1` and `dc 1 1` deletes the 1st comment from the 1st tutor.
@@ -194,11 +196,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTI
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed tutor list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the tutor will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the tutor will be removed i.e. adding of tags is not cumulative.
 * You can remove all the tutor’s tags by typing t/ without specifying any tags after it.
 
 Examples:
-* `edit 1 p/91234567 e/7654321` Edits the phone number and email address of the 1st tutor to be 91234567 and johndoe@example.com respectively.
+* `edit 1 p/91234567 e/e7654321` Edits the phone number and email address of the 1st tutor to be 91234567 and johndoe@example.com respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutor to be Betsy Crower and clears all existing tags.
 * `edit 3 m/CS2100 y/3 s/A0654729L` Edits the module code, year, and student id of the 3rd tutor to be CS2100, 3, and A0654729L respectively.
 * `edit 3 tn/2 r/4.58` Edits the number of teaching nominations and rating of the 3rd tutor to be 2 and 4.58 respectively.
@@ -209,7 +211,7 @@ Finds tutor(s) whose specific profile attribute contains any of the given keywor
 
 Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 * The find command works by entering only **one** prefix corresponding to a tutor's profile attribute, followed by the keyword(s) to search
-* The search is case-insensitive. e.g hans will match Hans
+* The search is case-insensitive. e.g. hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the attribute that corresponds to the prefix entered is searched.
 * Partial words will be matched e.g. Han will match Hans
@@ -222,7 +224,7 @@ Examples:
 * `find e/e1234567 e7654321` returns the tutors with email `e1234567@u.nus.edu` or `e7654321@u.nus.edu`.
 * `find m/cs2100 cs2105` returns the tutors teaching module `cs2100` or `cs2105`.
 * `find y/4` returns all tutors who are in year `4` of their studies.
-* `find s/A0123456X A0123456Y` returns the tutors with student id `A0123456X1 or `A0123456y`.
+* `find s/A0123456X A0123456Y` returns the tutors with student id `A0123456X` or `A0123456Y`.
 * `find tn/3` returns all tutors that have `3` teaching nominations.
 * `find r/4.0` returns all tutors that have rating of `4.0`.
 * `find t/friends` returns all tutors that have tag of `friends`.
@@ -266,7 +268,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in Tuthub.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1st tutor with name containing `Betsy` in the results of the `find` command (given that such tutor exists).
 
 ### Clearing all entries : `clear`
 
@@ -299,21 +301,21 @@ Format: `exit`
 
 ## Command summary
 
-| Action                     | Format                                                                                                                     | Examples (if any)                                                                                          |
-|----------------------------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| See **Help**               | `help`                                                                                                                     |                                                                                                            |
-| **List** All Tutors        | `list`                                                                                                                     |                                                                                                            |
-| **View** a Tutor           | `view`                                                                                                                     | `view 1`                                                                                                   |
-| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`                 | `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
-| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                  | `comment 1 c/Tasks not Finished`                                                                           |
-| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                     | `deletecomment 1 1`, `dc 1 1`                                                                               |
-| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                          |
-| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                          | `find n/Alex`                                                                                              |
-| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                      | `mail 3`                                                                                                   |
-| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                        | `sort a r/`                                                                                                |
-| **Delete** a _Tutor_       | `delete INDEX`                                                                                                             | `delete 3`                                                                                                 |
-| **Clear** Tutor List       | `clear`                                                                                                                    |                                                                                                            |
-| **Exit** Tuthub            | `exit`                                                                                                                     |                                                                                                            |
+| Action                     | Format                                                                                                                     | Examples (if any)                                                                                      |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| See **Help**               | `help`                                                                                                                     |                                                                                                        |
+| **List** All Tutors        | `list`                                                                                                                     |                                                                                                        |
+| **View** a Tutor           | `view`                                                                                                                     | `view 1`                                                                                               |
+| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`                 | `add n/Betsy Crowe t/  e/E1234567@u.nus.edu  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
+| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                  | `comment 1 c/Tasks not Finished`                                                                       |
+| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                    | `deletecomment 1 1`, `dc 1 1`                                                                          |
+| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                      |
+| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                          | `find n/Alex`                                                                                          |
+| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                      | `mail 3`                                                                                               |
+| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                        | `sort a r/`                                                                                            |
+| **Delete** a _Tutor_       | `delete INDEX`                                                                                                             | `delete 3`                                                                                             |
+| **Clear** Tutor List       | `clear`                                                                                                                    |                                                                                                        |
+| **Exit** Tuthub            | `exit`                                                                                                                     |                                                                                                        |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
