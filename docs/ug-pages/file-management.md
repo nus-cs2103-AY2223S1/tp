@@ -25,6 +25,8 @@ To find out which **sub** data folder is currently open, look at the **footer**,
 
 ![Current data folder footer](../images/ug-photos/current_data_folder_footer.png)
 
+[Back to Top](#back-to-menu)
+
 ---
 
 ### Editing your data file
@@ -36,11 +38,15 @@ If your changes to the data file makes its format invalid, RC4HDB will discard a
 file at the next run.
 </div>
 
+[Back to Top](#back-to-menu)
+
 ---
 
 ### Saving your data
 
 RC4HDB saves your data after every command. There is no need to save manually.
+
+[Back to Top](#back-to-menu)
 
 ---
 
