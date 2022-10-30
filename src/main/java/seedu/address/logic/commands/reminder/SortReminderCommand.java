@@ -38,8 +38,6 @@ public class SortReminderCommand extends Command {
         case CRITERIA_DEADLINE:
             model.sortReminderByDeadline();
             break;
-        default:
-            assert false;
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS_TEMPLATE, criteria));
     }

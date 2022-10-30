@@ -1,5 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_REMINDER2;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_REMINDER2;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_REMINDER2;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_REMINDER1;
+import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_REMINDER2;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 

@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
@@ -10,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CRITERIA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
@@ -35,6 +39,7 @@ import seedu.address.testutil.EditReminderDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    // Students
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -54,6 +59,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    // Tutorial
     public static final String VALID_NAME_TUT1 = "F01";
     public static final String VALID_NAME_TUT2 = "F02";
     public static final String VALID_MODULE_TUT1 = "CS2103T";
@@ -65,6 +71,7 @@ public class CommandTestUtil {
     public static final String VALID_TIMESLOT_TUT2_START = "10:00";
     public static final String VALID_TIMESLOT_TUT2_END = "15:00";
 
+    // Consultation
     public static final String VALID_NAME_CONSULT1 = "John";
     public static final String VALID_NAME_CONSULT2 = "Anna";
     public static final String VALID_MODULE_CONSULT1 = "CS2103T";
@@ -78,6 +85,7 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_CONSULT1 = "Review past year paper";
     public static final String VALID_DESCRIPTION_CONSULT2 = "Consult about product demo and pitch";
 
+    // Reminder
     public static final String VALID_NAME_REMINDER1 = "Set HW 1";
     public static final String VALID_NAME_REMINDER2 = "Mark Finals";
     public static final String VALID_DEADLINE_REMINDER1 = "2000-03-22 14:00";
@@ -86,6 +94,21 @@ public class CommandTestUtil {
     public static final String VALID_PRIORITY_REMINDER2 = "HIGH";
     public static final String VALID_DESCRIPTION_REMINDER1 = "5 questions to set";
     public static final String VALID_DESCRIPTION_REMINDER2 = "300 papers to mark";
+    public static final String VALID_SORTING_CRITERIA_PRIORITY = "priority";
+    public static final String VALID_SORTING_CRITERIA_DEADLINE = "deadline";
+
+    public static final String NAME_DESC_REMINDER1 = " " + PREFIX_NAME + VALID_NAME_REMINDER1;
+    public static final String NAME_DESC_REMINDER2 = " " + PREFIX_NAME + VALID_NAME_REMINDER2;
+    public static final String DEADLINE_DESC_REMINDER1 = " " + PREFIX_DATE_DAY + VALID_NAME_REMINDER1;
+    public static final String DEADLINE_DESC_REMINDER2 = " " + PREFIX_DATE_DAY + VALID_NAME_REMINDER2;
+    public static final String PRIORITY_DESC_REMINDER1 = " " + PREFIX_PRIORITY + VALID_NAME_REMINDER1;
+    public static final String PRIORITY_DESC_REMINDER2 = " " + PREFIX_PRIORITY + VALID_NAME_REMINDER2;
+    public static final String DESCRIPTION_DESC_REMINDER1 = " " + PREFIX_DESCRIPTION + VALID_NAME_REMINDER1;
+    public static final String DESCRIPTION_DESC_REMINDER2 = " " + PREFIX_DESCRIPTION + VALID_NAME_REMINDER2;
+    public static final String SORTING_DESC_PRIORITY = " " + PREFIX_SORT_CRITERIA + VALID_SORTING_CRITERIA_PRIORITY;
+    public static final String SORTING_DESC_DEADLINE = " " + PREFIX_SORT_CRITERIA + VALID_SORTING_CRITERIA_DEADLINE;
+
+    public static final String INVALID_SORT_DESC = " " + PREFIX_SORT_CRITERIA + "apple";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

@@ -21,7 +21,7 @@ public class DeleteTutorialCommandParserTest {
     private DeleteTutorialCommandParser parser = new DeleteTutorialCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteTutorialCommand() {
         assertParseSuccess(parser, "1", new DeleteTutorialCommand(INDEX_FIRST_TUTORIAL));
     }
 
