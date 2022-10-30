@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@code AddressBook} with versioning that adheres to the specifications laid
- * out in the DeveloperGuide
+ * Reused from https://github.com/se-edu/addressbook-level4 with small changes.
  *
+ * @@author se-edu
  */
 
 public class VersionedAddressBook extends AddressBook {

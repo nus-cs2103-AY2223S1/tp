@@ -7,17 +7,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AppendCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CloneCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.ThemeCommand;
+import seedu.address.logic.commands.ToggleListModeCommand;
+import seedu.address.logic.commands.UnappendCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.commands.ViewCommand;
@@ -61,9 +63,6 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -86,10 +85,19 @@ public class AddressBookParser {
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case ThemeCommand.COMMAND_WORD:
             return new ThemeCommandParser().parse(arguments);
+
+        case AppendCommand.COMMAND_WORD:
+            return new AppendCommandParser().parse(arguments);
+
+        case UnappendCommand.COMMAND_WORD:
+            return new UnappendCommandParser().parse(arguments);
+
+        case ToggleListModeCommand.COMMAND_WORD:
+            return new ToggleListModeCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

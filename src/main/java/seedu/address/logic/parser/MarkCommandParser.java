@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Survey;
 
 /**
- * Parses inuput arguments and creates a new MarkCommand object
+ * Parses input arguments and creates a new MarkCommand object
  */
 public class MarkCommandParser implements Parser<MarkCommand> {
 

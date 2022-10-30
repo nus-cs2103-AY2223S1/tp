@@ -27,7 +27,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book.\n" + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to Survin.\n" + "Parameters: "
             + PREFIX_NAME + "NAME " + PREFIX_PHONE + "PHONE " + PREFIX_EMAIL + "EMAIL " + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_GENDER + "GENDER " + PREFIX_BIRTHDATE + "BIRTHDATE " + PREFIX_RACE + "RACE " + PREFIX_RELIGION
             + "RELIGION " + "[" + PREFIX_SURVEY + "SURVEY]... " + "[" + PREFIX_TAG + "TAG]...\n"
@@ -55,7 +55,7 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             Person person = model.getPerson(toAdd).orElseThrow(() -> new CommandException(MESSAGE_DUPLICATE_PERSON));
-            if (person.getSurveys().equals(toAdd.getSurveys())) {
+            if (person.getSurveys().containsAll(toAdd.getSurveys())) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
             Set<Survey> surveySet = new HashSet<>();
