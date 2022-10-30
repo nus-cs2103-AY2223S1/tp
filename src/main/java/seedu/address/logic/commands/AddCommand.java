@@ -44,7 +44,7 @@ public class AddCommand extends Command {
         + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
         + PREFIX_INCOME + "$1000 "
         + PREFIX_MEETING_DATE + "20 Nov 2022 16:30 "
-        + PREFIX_MEETING_LOCATION + "13 Computing Drive"
+        + PREFIX_MEETING_LOCATION + "13 Computing Drive "
         + PREFIX_TAG + "VIPClient "
         + PREFIX_RISK + "High "
         + PREFIX_PLAN + "Prudential Retirement Plan "
