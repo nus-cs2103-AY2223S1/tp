@@ -9,9 +9,9 @@ title: User Guide
 <div style="page-break-after: always;"></div>
 
 ## Introduction 
-Hi Profs! Welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA)!
+Hi Profs! Welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA) in no time!
 
-TutHub is a desktop app for NUS professors who wish to choose their next batch of teaching assistants/tutors based on their past performance and track records but have little time to spare for tedious administrative work. If you can type fast, Tuthub helps you find the best TAs faster than traditional Graphical User Interface (GUI) apps.
+Tuthub is a desktop app for NUS professors who wish to choose their next batch of teaching assistants/tutors based on their past performance and track records but have little time to spare for tedious administrative work. Tuthub helps profs who can type fast find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -43,9 +43,9 @@ TutHub is a desktop app for NUS professors who wish to choose their next batch o
    
    * **`comment`**`1 c/Always on time`: Adds a comment to the first tutor that he is always on time.
 
-   * **`exit`** : Exits the TutHub app.
+   * **`exit`** : Exits the Tuthub app.
 
-1. Refer to [4. Features](#4-features) below for details of each command.
+1. Refer to [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -118,11 +118,15 @@ The following table describes the sections in detail:
 
 ### Viewing help : `help`
 
-Displays a table consisting of the summary of commands available in Tuthub.
+If you are new to Tuthub or need a refresher for the command usage, using `help` displays a table of Tuthub command summary.
 
 ![helpMessage](images/helpMessage.png)
 
 Format: `help`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may also click on the _Help_ Toolbar to access the command summary table.
+</div>
 
 ### Adding a tutor: `add`
 
@@ -142,18 +146,18 @@ Examples:
 
 ### Listing all tutors : `list`
 
-Shows a list of all tutors registered in TutHub.
+Shows a list of all tutors registered in Tuthub.
 
 Format: `list`
 
 ### Viewing a tutor : `view`
 
-Displays all available information about the tutor's contact details and past performance.
+Want to find out more about a particular tutor? View a tutor to see all available information about their contact details and past performance.
 
 Format: `view INDEX`
 
 * Displays the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to a **valid** index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -233,9 +237,9 @@ Examples:
 
 Contacting targeted tutors is made easy with the mail command. The command opens the user's default mail client and specifies the "to" section in emails with the targeted tutors.
 
-Format: `mail INDEX or "all"`
+Format: `mail INDEX` or `mail all`
 * `INDEX` refers to any index in range of the tutor list.
-* `"all"` allows you to email all the current tutors displayed in the tutor list.
+* `all` allows you to email all the current tutors displayed in the tutor list.
 
 Examples:
 * `mail 3` opens the user's default mail client with the "to" specified as the third tutor's email.
@@ -272,9 +276,15 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from Tuthub. This could be particularly useful if you would like to clear all the sample data when using Tuthub for the first time.
 
 Format: `clear`
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution:** Clearing all the data is **irreversible**! Only enter this command when you are very sure that all the existing tutor profiles are not needed!
+
+</div>
 
 ### Saving the data
 
@@ -282,7 +292,7 @@ Tuthub data are saved in the hard disk automatically after any command that chan
 
 ### Exiting the program : `exit`
 
-Exits TutHub app.
+Exits Tuthub app.
 
 Format: `exit`
 
