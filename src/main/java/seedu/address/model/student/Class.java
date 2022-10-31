@@ -128,7 +128,6 @@ public class Class {
         return time.toString().replace(":", "");
     }
 
-
     /**
      * Returns a formatted time duration.
      *
