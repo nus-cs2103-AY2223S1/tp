@@ -74,7 +74,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
   e.g. `add -p` is used to add properties in the property directory while `add -c` is used to add clients in the client directory.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -p n/NAME`, `NAME` is a parameter which can be used as `add n/PINNACLE@DUXTON`.
+  e.g. in `add -p n/NAME`, `NAME` is a parameter which can be used as `add -p n/PINNACLE@DUXTON`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/PINNACLE@DUXTON t/luxury` or as `n/PINNACLE@DUXTON`.
@@ -109,7 +109,7 @@ Format: `undo`
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows the help guide
 
 ![help message](images/helpMessage.png)
 
@@ -137,8 +137,8 @@ A property can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 h/HDB t/cheap`
-* `add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 h/CONDO t/high-end`
+* `add -p n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 h/HDB t/cheap`
+* `add -p n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 h/CONDO t/high-end`
 
 The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the
 command.
@@ -167,14 +167,14 @@ Format: `edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [h/PROPERTY_TYPE] [t/TAG]â
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` Edits the price and address of the 1st person to be `1,000,000` and `11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` respectively.
-*  `edit 2 n/Cinammon College t/` Edits the name of the 2nd property to be `Cinammon College` and clears all existing tags.
+*  `edit -p 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` Edits the price and address of the 1st person to be `1,000,000` and `11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` respectively.
+*  `edit -p 2 n/Cinammon College t/` Edits the name of the 2nd property to be `Cinammon College` and clears all existing tags.
 
 ### Locating properties by name: `find -p`
 
 Finds properties whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find -p KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `bishan` will match `Bishan`
 * The order of the keywords does not matter. e.g. `PINNACLE@DUXTON Bishan` will match `Bishan PINNACLE@DUXTON`
