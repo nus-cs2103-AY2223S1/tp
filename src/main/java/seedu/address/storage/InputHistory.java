@@ -9,7 +9,6 @@ import java.util.List;
  * Represents a storage for the input history of the user.
  */
 public class InputHistory {
-    private static final int MAX_CAPACITY = 50;
     private List<String> inputList = new ArrayList<>();
     private int index = 0;
 
@@ -21,20 +20,14 @@ public class InputHistory {
     }
 
     /**
-     * Add user input to InputHistory.
-     * If max capacity of storage is reached, the oldest input get deleted to store new one.
+     * Add user input to history list.
      *
      * @param input input from the user
      */
     public void add(String input) {
-        if (inputList.size() < MAX_CAPACITY) {
-            index = inputList.size() - 1;
-            inputList.add(index, input);
-            index++;
-        } else {
-            inputList.remove(0);
-            inputList.add(input);
-        }
+        index = inputList.size() - 1;
+        inputList.add(index, input);
+        index++;
     }
 
     /**
