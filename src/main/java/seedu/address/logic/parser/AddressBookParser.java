@@ -20,6 +20,7 @@ import seedu.address.logic.commands.addcommands.AddOrderCommand;
 import seedu.address.logic.commands.addcommands.AddPetCommand;
 import seedu.address.logic.commands.addcommands.AddSupplierCommand;
 import seedu.address.logic.commands.deletecommands.DeleteBuyerCommand;
+import seedu.address.logic.commands.deletecommands.DeleteCommand;
 import seedu.address.logic.commands.deletecommands.DeleteDelivererCommand;
 import seedu.address.logic.commands.deletecommands.DeleteOrderCommand;
 import seedu.address.logic.commands.deletecommands.DeletePetCommand;
@@ -27,6 +28,7 @@ import seedu.address.logic.commands.deletecommands.DeleteSupplierCommand;
 import seedu.address.logic.commands.editcommands.EditBuyerCommand;
 import seedu.address.logic.commands.editcommands.EditDelivererCommand;
 import seedu.address.logic.commands.editcommands.EditSupplierCommand;
+import seedu.address.logic.commands.filtercommands.FilterCommand;
 import seedu.address.logic.commands.filtercommands.FilterOrderCommand;
 import seedu.address.logic.commands.filtercommands.FilterPetCommand;
 import seedu.address.logic.commands.findcommands.FindCommand;
@@ -95,6 +97,9 @@ public class AddressBookParser {
         case AddSupplierCommand.COMMAND_WORD:
             return new AddSupplierCommandParser().parse(arguments);
 
+        case DeleteCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+
         case DeleteBuyerCommand.COMMAND_WORD:
             return new DeleteBuyerCommandParser().parse(arguments);
 
@@ -151,6 +156,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case FilterCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
 
         case FilterPetCommand.COMMAND_WORD:
             return new FilterPetCommandParser().parse(arguments);
