@@ -1,7 +1,6 @@
 package seedu.watson.ui;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -112,14 +111,14 @@ public class GradeWindow extends UiPart<Stage> {
         this.assessmentString = assessmentString;
         getRoot().show();
         getRoot().centerOnScreen();
-        updateUIToNextStudent();
+        updateUiToNextStudent();
 
     }
 
     /**
      * updates UI Labels to the next student to be updated
      */
-    public void updateUIToNextStudent() {
+    public void updateUiToNextStudent() {
         if (index > studentList.size() - 1) {
             closeWindowAndResetIndex();
             return;
@@ -159,8 +158,8 @@ public class GradeWindow extends UiPart<Stage> {
             subject.updateGradeAssessment(newAssessment);
             logic.getModel().setPerson(currentStudent, currentStudent);
             storage.saveDatabase(logic.getModel().getDatabase());
-            UpdateIndexToNextStudent();
-            updateUIToNextStudent();
+            updateIndexToNextStudent();
+            updateUiToNextStudent();
         } catch (NumberFormatException e) {
             errorMessage.setText("Please enter a valid number");
         } catch (IllegalArgumentException e) {
@@ -191,9 +190,13 @@ public class GradeWindow extends UiPart<Stage> {
     public void focus() {
         getRoot().requestFocus();
     }
-    public void UpdateIndexToNextStudent() {
+    public void updateIndexToNextStudent() {
         index += 1;
     }
+
+    /**
+     * Closes the GradeWindow and resets the index to 0
+     */
     public void closeWindowAndResetIndex() {
         hide();
         index = 0;
