@@ -201,17 +201,23 @@ Examples:
 
 #### 4.3.1 Finding a student record : `find`
 
-Shows a list of students whose name contains the specified name keywords, or whose Id matches the given Id.
+Searches for students whose name contains the specified name keywords, or whose Id matches the given Id.
+
+<div markdown="span" class="alert alert-info">:information_source:
+   **Note:**
+   The `find` command searches through either the students' names, or the students' Ids, but not both. Therefore,
+   `find nm/Alice id/123A` is not a valid command. 
+</div>
 
 Format: `find nm/STUDENT-NAME` or `find id/ID`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* Only the name or the id is searched, depending on the given input.
-* Only full names / full ids will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The search only recognises whole words, and searching for substrings is not valid. e.g. `Han` will not match `Hans`.
 
 Examples:
-* `find nm/John` returns the record students whose names contain `John`
-* `find nm/john alice` returns the records for the students whose name contains `john` or `alice`.
+* `find nm/John` returns the records for any student named `john` or any student with `john` in their name. 
+* `find nm/john alice` returns the records for the students whose names contain either `john` or `Alice` or both.
+* `find id/123A` returns the student record for the student with `123A` as their student Id.
 
 #### 4.3.2 Toggling view : `toggleView`
 
@@ -263,7 +269,7 @@ Format: `viewStats class/CLASS exam/EXAM-NAME filter/FILTER`
 * Class name can only contain alphanumeric characters.
 * Class name is case-insensitive.
 * Exam name should be either _CA1_, _CA2_, _SA1_ or _SA2_.
-* Exam name is case-insensitive
+* Exam name is case-insensitive.
 * Filter is either "ON" or "OFF", and is case-insensitive.
 
 Examples:
