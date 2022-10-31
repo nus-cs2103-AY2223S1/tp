@@ -1,7 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.ASSIGNMENT_ADD_STUDENTS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.ASSIGNMENT_DELETE_STUDENTS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.TASK_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.TASK_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_STUDENTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_STUDENT_ADAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_TITLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
