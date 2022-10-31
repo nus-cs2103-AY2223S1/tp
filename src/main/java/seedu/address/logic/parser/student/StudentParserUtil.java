@@ -166,7 +166,6 @@ public class StudentParserUtil {
         if (!Attendance.isValidAttendance(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        trimmedAttendance = trimmedAttendance.replaceFirst("^0+(?!$)", ""); //remove leading zeros
         return new Attendance(trimmedAttendance);
     }
 
@@ -182,7 +181,6 @@ public class StudentParserUtil {
         if (!Participation.isValidParticipation(trimmedParticipation)) {
             throw new ParseException(Participation.MESSAGE_CONSTRAINTS);
         }
-        trimmedParticipation = trimmedParticipation.replaceFirst("^0+(?!$)", ""); //remove leading zeros
         return new Participation(trimmedParticipation);
     }
 }

@@ -12,7 +12,7 @@ public class Attendance {
     public static final String MESSAGE_CONSTRAINTS =
             "Attendance should only contain non-negative whole numbers";
     public static final String VALIDATION_REGEX = "\\d+";
-    public final String value;
+    public final Integer value;
 
     /**
      * Constructs a {@code Attendance}.
@@ -22,7 +22,7 @@ public class Attendance {
     public Attendance(String attendance) {
         requireNonNull(attendance);
         checkArgument(isValidAttendance(attendance), MESSAGE_CONSTRAINTS);
-        value = attendance;
+        value = Integer.parseInt(attendance);
     }
 
     /**
@@ -34,7 +34,7 @@ public class Attendance {
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override
