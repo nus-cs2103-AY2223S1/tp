@@ -192,7 +192,7 @@ This section describes some noteworthy details on how certain features are imple
 #### Proposed Implementation
 
 The proposed design for the UI is to follow the [Material Design system](https://m2.material.io/design/) as much as possible.
-However due to limitations of JavaFx, we will only be mainly focusing on adhering the color system
+However, due to limitations of JavaFx, we will only be mainly focusing on adhering the color system
 and typography, with the other foundations serving more of a guide for future component designs.
 
 The main stylesheet can be found under `resources/view/LightTheme.css`. The primary color chosen is `#9837d9`, with the full color palette shown below.
@@ -208,7 +208,8 @@ The main stylesheet can be found under `resources/view/LightTheme.css`. The prim
         * Most applications are light themed by default, thus only support light theme for consistency.
         * Only need to maintain one stylesheet.
     * Cons:
-        * User may have enable system-wide dark mode, so the light theme of Rapportbook may not blend in with other applications nicely.
+        * User may have enabled system-wide dark mode, so the light theme of Rapportbook may not blend in with other 
+          applications nicely.
 * **Alternative 2:** Implement both light theme and dark theme and follow user's system light/dark mode setting.
     * Pros:
         * Current theme will blend in with other applications on the system nicely.
@@ -813,7 +814,8 @@ mouse.
 * **Field**: A piece of information in a contact (e.g. name, phone number).
 * **Entry**: A contact.
 * **Private contact detail**: A contact detail that is not meant to be shared with others.
-
+* **Remark**: Text that describes a client.
+* **Message**: A text template to generate frequently used messages to communicate with clients.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
