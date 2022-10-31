@@ -31,7 +31,7 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
    * **`add`** **`c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
      123, #01-01 t/Asthma ds/2022-12-12,3`** : Adds a patient named **`John`** to Healthcare Xpress book.
 
-   * **`assign`** **`id/1 id/3 dsi/1`** : Assigns the first dateslot of the patient with id of 3 to thhe nurse with id of 1.
+   * **`assign`** **`id/1 id/3 dsi/1`** : Assigns the first dateslot of the patient with id of 3 to the nurse with id of 1.
 
    * **`delete`**`id/3` : Deletes the nurse of patient with an id of 3.
 
@@ -297,7 +297,7 @@ Examples:
 
 Undo Unmarks a specific patient's specific dateslot in the records system as having been visited.
 
-Format: `unmarkundo id/ID dsi/DATE_SLOT_INDEX`
+Format: `undounmark id/ID dsi/DATE_SLOT_INDEX`
 
 * Undo unmarks the specific dateslot with specified 'DATE_SLOT_INDEX' of a patient with the specified 'ID' as having been visited.
 * This feature is for user to undo the unmark fail visit date slot so that if you accidentally unmark a wrong patient's dateslot as failed visited status, you can undo it using this command and the dateslot will change to visited status.
