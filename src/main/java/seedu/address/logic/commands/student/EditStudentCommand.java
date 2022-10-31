@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_UNCHANGED_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -62,7 +63,6 @@ public class EditStudentCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the ModQuik.";
-    public static final String MESSAGE_UNCHANGED_FIELD = "New fields provided are exactly the same as current fields.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

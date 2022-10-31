@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_UNCHANGED_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -91,7 +92,7 @@ public class EditReminderCommand extends Command {
      * edited with {@code editReminderDescriptor}.
      */
     private static Reminder createEditedReminder(Reminder reminderToEdit,
-                                                 EditReminderDescriptor editReminderDescriptor) {
+                                                 EditReminderDescriptor editReminderDescriptor) throws CommandException {
         assert reminderToEdit != null;
 
         ReminderName updatedName = editReminderDescriptor.getName().orElse(reminderToEdit.getName());
@@ -101,7 +102,13 @@ public class EditReminderCommand extends Command {
                 .orElse(reminderToEdit.getDescription());
         ReminderStatus sameStatus = reminderToEdit.getStatus();
 
-        return new Reminder(updatedName, updatedDeadline, updatedPriority, updatedDescription, sameStatus);
+        Reminder editedReminder = new Reminder(updatedName, updatedDeadline,
+                updatedPriority, updatedDescription, sameStatus);
+
+        if (editedReminder.equals(reminderToEdit)) {
+            throw new CommandException(MESSAGE_UNCHANGED_FIELD);
+        }
+        return editedReminder;
     }
 
     @Override

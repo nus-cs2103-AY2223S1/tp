@@ -21,6 +21,7 @@ public class Messages {
             "The consultation index provided is invalid";
     public static final String MESSAGE_INVALID_SORTING_CRITERIA = "The sorting criteria provided is invalid."
             + "Please specify either \"priority\" or \"deadline\" to by/";
+    public static final String MESSAGE_UNCHANGED_FIELD = "New fields provided are exactly the same as current fields.";
 
     /* Success messages */
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
