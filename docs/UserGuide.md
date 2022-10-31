@@ -41,7 +41,7 @@ To quickly return to the Table of Contents, you can click on any of the section 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## [**User interface**](#table-of-contents)
+## [**User Interface**](#table-of-contents)
 The user interface is divided into 3 main parts: the command box, the result display and the List panel.
 ### [**Command Box**](#table-of-contents)
 The command box is where you can type in your commands. You can press the `Enter` key to execute the command.
@@ -159,18 +159,20 @@ Format: `list`
 --------------------------------------------------------------------------------------------------------------------
 ### [**Finding Projects :** `findproj`](#table-of-contents)
 
-Finds all projects whose names contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
+Finds all projects whose names that matches any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
 
 Format: `findproj KEYWORD [MORE_KEYWORDS]`
 
 ```yaml
 Note: 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* `KEYWORDS` must not be an empty string.
+* The findproj command is case-insensitive such that 'merger' will match 'MERGER'
+* The findproj command will match project name if there is a partial match, 'me' or 'mE' will both match 'MERGER'
 ```
 
 Examples:
-* `findproj CS2103` returns `CS2103` and `CS2103 TP`
+* `findproj CS2103` returns `CS2103` and `CS2103 TP`.
+* `findproj merge develop` returns `Merger with ABC` and `Develop software`.
 
 --------------------------------------------------------------------------------------------------------------------
 ### [**Sorting the Project list :** `sortproj`](#table-of-contents)
@@ -300,7 +302,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### [**Finding a Staff member within a Project :** `findstaff`](#table-of-contents)
 
-Finds the displayed staff list for staff with names that matches the keyword.
+Finds the displayed staff list for staff with names that matches any of the keywords.
 
 Format: `findstaff KEYWORDS`
 
@@ -315,7 +317,7 @@ Note:
 Examples:
 * `findstaff Jon` returns a filtered view of the staff list such that all staffs with name `Jon` are listed.
 * `findstaff Adrian Lam` returns a filtered view of the staff list such that all staffs with name `Adrian Lam` are listed. 
-Staffs whose name contains `Adrian` or `Lam` only aren't listed. 
+Staffs whose name contains `Adrian` or `Lam` are also listed. 
 * You can always use `view INDEX` to list all the staff in the staff list after you are done with finding a particular staff.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -362,13 +364,14 @@ Format: `findtask KEYWORDS`
 
 ```yaml
 Note:
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* The search returns the task if word in task description matches search term e.g. `CS2103T` matches `CS2103T Project`
+* The search is case-insensitive. e.g `call` will match `Call`
+* The findtask command will match task description if there is a partial match, 
+  'Meet' or 'meet' will both match 'Meeting'.
 ```
 
 Examples:
-* `findtask CS2103` returns `CS2103` and `Todo CS2103`
+* `findtask meeting` returns `Meeting` and `Setup Meeting`.
+* `findtask submit app` returns `Submit application` and `Submit paperwork`.
 
 --------------------------------------------------------------------------------------------------------------------
 ### [**Sorting the Task list :** `sorttask`](#table-of-contents)
