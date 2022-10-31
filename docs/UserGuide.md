@@ -137,7 +137,7 @@ Example:
 
 Renames an existing tag.
 
-Format: `tag edit t/TAG1 t/ TAG2`
+Format: `tag edit t/TAG1 t/TAG2`
 
 * `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
 
