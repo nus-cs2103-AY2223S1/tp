@@ -3,19 +3,17 @@ package seedu.watson.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_INDEX_NUMBERS;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
-import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.watson.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.watson.commons.core.index.Index;
@@ -47,28 +45,16 @@ public class CommandTestUtil {
 
     // New fields
     public static final String VALID_STUDENTCLASS = "1A";
-    public static final String VALID_ATTENDANCE = "date/12-02-2022 attendance/1";
     public static final String VALID_SUBJECTHANDLER = "english: CA1:[80.0, 100.0, 0.2, 1.0], "
                                                       + "CA2:[30.0, 56.0, 0.4, 2.0]";
-    public static final String VALID_PERSONALITY_FUN = "fun";
-    public static final String VALID_PERSONALITY_LAZY = "lazy";
 
     // StudentClass examples
     public static final String STUDENTCLASS_DUMMY = " " + PREFIX_STUDENTCLASS + VALID_STUDENTCLASS;
-
-    // Attendance examples
-    public static final String ATTENDANCE_DUMMY = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE;
 
     // Remark examples
     public static final String VALID_REMARK_ICE_CREAM = "likes ice cream";
     public static final String VALID_REMARK_COFFEE = "likes coffee";
     public static final String REMARK_ICE_CREAM = " " + PREFIX_REMARK + VALID_REMARK_ICE_CREAM;
-
-    // SubjectHandler examples
-    public static final String SUBJECTHANDLER_DUMMY = " " + PREFIX_SUBJECT + VALID_SUBJECTHANDLER;
-
-    public static final String VALID_GRADE_40 = "40%";
-    public static final String VALID_GRADE_60 = "60%";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -159,7 +145,8 @@ public class CommandTestUtil {
 
         Student student = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new FindCommandPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new FindCommandPredicate(
+            Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

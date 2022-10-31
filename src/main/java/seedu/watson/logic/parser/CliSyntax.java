@@ -15,9 +15,7 @@ public class CliSyntax {
     // New fields
     public static final Prefix PREFIX_STUDENTCLASS = new Prefix("c/");
     public static final Prefix PREFIX_REMARK = new Prefix("rem/");
-    public static final Prefix PREFIX_ATTENDANCE = new Prefix("att/");
     public static final Prefix PREFIX_SUBJECT = new Prefix("s/");
-    public static final Prefix PREFIX_GRADE = new Prefix("g/");
 
 
     // Fields for marking attendance

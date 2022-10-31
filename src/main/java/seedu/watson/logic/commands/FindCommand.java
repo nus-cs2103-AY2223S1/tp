@@ -10,7 +10,7 @@ import seedu.watson.model.student.FindCommandPredicate;
 /**
  * Finds and lists all persons in watson book whose name contains any of the argument keywords.
  * Parameters such as "watson/", "phone/", "class/" etc. can be added to further filter results.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
