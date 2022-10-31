@@ -117,6 +117,6 @@ class JsonAdaptedDeliverer {
         }
         final Address modelAddress = new Address(address);
 
-        return new Deliverer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelIds);
+        return new Deliverer(modelName, modelPhone, modelEmail, modelAddress, modelIds);
     }
 }

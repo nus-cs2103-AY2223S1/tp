@@ -64,7 +64,7 @@ public class EditDelivererCommand extends EditCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(delivererToEdit.getAddress());
         List<UniqueId> orders = delivererToEdit.getOrders();
 
-        return new Deliverer(updatedPersonCategory, updatedName, updatedPhone, updatedEmail, updatedAddress, orders);
+        return new Deliverer(updatedName, updatedPhone, updatedEmail, updatedAddress, orders);
     }
 
 }

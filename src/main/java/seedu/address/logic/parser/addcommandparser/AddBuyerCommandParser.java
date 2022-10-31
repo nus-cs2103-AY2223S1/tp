@@ -22,7 +22,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 
 /**
@@ -61,7 +60,7 @@ public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
-        Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, null);
+        Buyer buyer = new Buyer(name, phone, email, address, null);
 
         List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER), false);
 

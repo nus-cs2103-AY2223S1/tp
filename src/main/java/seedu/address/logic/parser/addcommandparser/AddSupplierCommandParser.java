@@ -20,7 +20,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
@@ -61,7 +60,7 @@ public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
-        Supplier supplier = new Supplier(PersonCategory.SUPPLIER, name, phone, email, address, null);
+        Supplier supplier = new Supplier(name, phone, email, address, null);
 
         List<Pet> pets = ParserUtil.parsePets(argMultimap.getAllValues(PREFIX_PET), false);
 
