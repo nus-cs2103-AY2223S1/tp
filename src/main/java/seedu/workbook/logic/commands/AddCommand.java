@@ -47,8 +47,8 @@ public class AddCommand extends Command {
             + "check out some tips for the stage!";
 
     /** Message string displaying successful execution of the add command, but stage is not in our pre-defined list */
-    public static final String MESSAGE_SUCCESS_STAGE_NO_TIPS = "New internship application added: %1$s, "
-            + "however, do you mean " + stagesWithTipsToString() + " for the stages? We curated "
+    public static final String MESSAGE_SUCCESS_STAGE_NO_TIPS = "New internship application added: %1$s.\n"
+            + "However, do you mean " + stagesWithTipsToString() + " for the Stage? \nWe curated "
             + "some nifty tips for those stages!";
 
     /** Message string displaying error message for unsuccessful execution of the add command for a duplicate */

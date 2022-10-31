@@ -19,7 +19,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 3. Copy the file to the folder you want to use as the _home folder_ for your WorkBook.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Using your favourite terminal, navigate to the _home folder_ above and start WorkBook by running `java -jar workbook.jar`. The GUI as shown below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -70,7 +70,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 | **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
 | **Edit**   | `edit INDEX [c/COMPANY] [d/YYYY-MM-DD] [e/EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                                |
 | **List**   | `list`                                                                                |
-| **Find**   | `find c/COMPANY | r/ROLE | s/STAGE​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                                |
+| **Find**   | `find c/COMPANY | r/ROLE | s/STAGE​​`<br> e.g.,`find c/Meta` 
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                  |
 | **Undo** | `undo`                                                                                                                                                                  |
 | **Redo** | `redo`                                                                                                                                                                  |
