@@ -29,7 +29,7 @@ import seedu.address.model.pet.Pet;
  * Adds a pet to the address book.
  */
 public class AddPetCommand extends Command {
-    public static final String COMMAND_WORD = "add-pt";
+    public static final String COMMAND_WORD = "add-p";
 
     public static final String COMMON_PARAMETERS =
             PREFIX_PET_NAME + "NAME "
