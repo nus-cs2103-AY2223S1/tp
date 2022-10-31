@@ -34,7 +34,8 @@ Given below are my contributions to the project.
   * Highlights: The implementation involved binding the JavaFX `ProgressBar` to an observable double value representing the 
   calorie intake progress. The progress bar is updated whenever the total calorie intake or target calorie intake changes.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ruiqi7&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contributed**:
+  * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ruiqi7&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
   * Managed [releases](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases) `v1.2` and `v1.2.1` on GitHub.
@@ -65,4 +66,4 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): [#60](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/60), 
   [#87](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/87), [#107](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/107),
   [#146](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/146).
-  * Reported [bugs and suggestions](https://github.com/ruiqi7/ped) for CS2103T-W08-3 during the PE-D.
+  * Reported [bugs and suggestions](https://github.com/ruiqi7/ped/issues) for CS2103T-W08-3 during the PE-D.
