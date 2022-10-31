@@ -232,20 +232,19 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleViewPerson(int index) {
-        Person currentPerson = logic.getFilteredPersonList().get(index);
-        personInfo.update(currentPerson);
-        setSidePanel(personInfo);
-        currentIndex = index;
-    }
-
-    private void handleUpdate(int index) {
+    private void handlePersonInfoUpdate(int index) {
         ObservableList<Person> personList = logic.getFilteredPersonList();
         if (index >= personList.size()) {
             setSidePanel(homePanel);
         } else {
             personInfo.update(logic.getFilteredPersonList().get(index));
         }
+        currentIndex = index;
+    }
+
+    private void handleViewPerson(int index) {
+        handlePersonInfoUpdate(index);
+        setSidePanel(personInfo);
     }
 
     private void handleViewDepartmentUpdate(String department) {
@@ -254,8 +253,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleViewDepartment(String department) {
         departmentInfo.update(logic.getUnfilteredPersonList(), department);
-        sidePanelPlaceholder.getChildren().clear();
-        sidePanelPlaceholder.getChildren().add(departmentInfo.getRoot());
+        setSidePanel(departmentInfo);
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -272,7 +270,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            handleUpdate(currentIndex);
+            handlePersonInfoUpdate(currentIndex);
             handleViewDepartmentUpdate(currentDepartment);
 
             if (commandResult.isShowHelp()) {

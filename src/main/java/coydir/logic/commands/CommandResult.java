@@ -53,6 +53,7 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     * Used only for the {@code View Department} command.
      */
     public CommandResult(String feedbackToUser, String department) {
         this.feedbackToUser = requireNonNull(feedbackToUser);

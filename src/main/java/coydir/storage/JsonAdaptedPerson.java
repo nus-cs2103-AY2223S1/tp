@@ -28,6 +28,7 @@ import coydir.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String LEAVES_FIELD = "Number of Leaves";
 
     private final String name;
     private final String employeeId;
@@ -193,14 +194,20 @@ class JsonAdaptedPerson {
             modelAddress = new Address(address);
         }
 
-        if (leave == null) {
-            throw new IllegalValueException("Invalid");
+        final int modelLeave;
+        final int leaveLeftTransfer;
+        if (leave == null || leaveLeft == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LEAVES_FIELD));
+        } else {
+            try {
+                modelLeave = Integer.valueOf(leave);
+                leaveLeftTransfer = Integer.valueOf(leaveLeft);
+            } catch (NumberFormatException nfe) {
+                throw new IllegalValueException(String.format("%s is not a valid integer", leave));
+            }
         }
 
-        final int modelLeave = Integer.valueOf(leave);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Set<Leave> modelLeaveTaken = new HashSet<>(personLeaves);
 
         final Rating modelRating;
         if (rating == null) {
@@ -214,20 +221,18 @@ class JsonAdaptedPerson {
             modelRating = new Rating(rating);
         }
 
-        final ArrayList<Rating> modelPerformanceHistory = new ArrayList<>(personRatings);
-
         // Create Person object
         Person p = new Person(modelName, modelEmployeeId, modelPhone, modelEmail,
                 modelPosition, modelDepartment, modelAddress, modelTags, modelLeave,
                 modelRating);
 
         // Add related data
-        p.setLeavesLeft(Integer.valueOf(leaveLeft));
-        for (Leave l : modelLeaveTaken) {
+        p.setLeavesLeft(leaveLeftTransfer);
+        for (Leave l : personLeaves) {
             p.addLeave(l);
         }
 
-        for (Rating r : modelPerformanceHistory) {
+        for (Rating r : personRatings) {
             p.addRating(r);
         }
 

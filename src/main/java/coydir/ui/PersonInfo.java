@@ -129,7 +129,7 @@ public class PersonInfo extends UiPart<Region> {
         endDate.setSortable(false);
         endDate.setReorderable(false);
 
-        TableColumn<Leave, Integer> durations = new TableColumn<>("Durations");
+        TableColumn<Leave, Integer> durations = new TableColumn<>("Duration");
         durations.setCellValueFactory(new PropertyValueFactory<>("col3"));
         durations.setSortable(false);
         durations.setReorderable(false);
