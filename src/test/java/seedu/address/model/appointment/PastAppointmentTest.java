@@ -39,6 +39,7 @@ class PastAppointmentTest {
         assertThrows(NullPointerException.class, () -> new PastAppointmentBuilder().withMedication(null).build());
     }
 
+
     @Test
     public void isValidDate_emptyDate_returnsTrue() {
         assertTrue(PastAppointment.isValidDate(""));
