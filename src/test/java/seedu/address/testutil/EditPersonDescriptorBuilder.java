@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
+import static seedu.address.model.person.Specialisation.EMPTY_SPECIALISATION;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,8 +24,6 @@ import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.model.person.Specialisation.EMPTY_SPECIALISATION;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -55,7 +54,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setYear(person.getYear());
         descriptor.setLocation(person.getLocation());
         descriptor.setGithubUsername(person.getUsername());
-        //descriptor.setModuleCode(person.ge);
     }
 
     /**
@@ -65,6 +63,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setModuleCode(person.getModuleCode());
+        descriptor.setModuleCodes(new HashSet<>(List.of(person.getModuleCode())));
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setGender(person.getGender());
@@ -83,6 +82,7 @@ public class EditPersonDescriptorBuilder {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setModuleCode(person.getModuleCode());
+        descriptor.setModuleCodes(new HashSet<>(List.of(person.getModuleCode())));
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setGender(person.getGender());
@@ -136,11 +136,21 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the module code set of the descriptor we are building.
+     * @param moduleCodes the set of module codes to set to
+     * @return the builder object
+     */
     public EditPersonDescriptorBuilder withModuleCodeSet(Set<ModuleCode> moduleCodes) {
         descriptor.setModuleCodes(moduleCodes);
         return this;
     }
 
+    /**
+     * Creates and sets the module code set of the descriptor we are building.
+     * @param modules the string of module codes to set to
+     * @return the builder object
+     */
     public EditPersonDescriptorBuilder withModuleCodeSet(String... modules) {
         List<ModuleCode> moduleCodeList = Stream.of(modules)
                 .map(ModuleCode::new).collect(Collectors.toList());
@@ -173,6 +183,11 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the year of the descriptor we are building.
+     * @param year the year to set to
+     * @return the builder object
+     */
     public EditPersonDescriptorBuilder withYear(String year) {
         if (year == null) {
             descriptor.setYear(new Year("", false));
@@ -182,6 +197,11 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the specialisation of the descriptor we are building.
+     * @param specialisation the specialisation to set to
+     * @return the builder object
+     */
     public EditPersonDescriptorBuilder withSpecialisation(String specialisation) {
         if (specialisation == null || specialisation.equals(EMPTY_SPECIALISATION)) {
             descriptor.setSpecialisation(new Specialisation("", false));
@@ -191,6 +211,11 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the office hour of the descriptor we are building.
+     * @param officeHour the office hour to set to
+     * @return the builder object
+     */
     public EditPersonDescriptorBuilder withOfficeHour(String officeHour) {
         if (officeHour == null) {
             descriptor.setOfficeHour(new OfficeHour("", false));
@@ -200,6 +225,11 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the rating of the descriptor we are building.
+     * @param rating the rating to set to
+     * @return the builder object
+     */
     public EditPersonDescriptorBuilder withRating(String rating) {
         if (rating == null) {
             descriptor.setRating(new Rating("", false));
@@ -209,6 +239,11 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the location of the descriptor we are building.
+     * @param location the location to set to
+     * @return the builder object
+     */
     public EditPersonDescriptorBuilder withLocation(String location) {
         descriptor.setLocation(new Location(location));
         return this;

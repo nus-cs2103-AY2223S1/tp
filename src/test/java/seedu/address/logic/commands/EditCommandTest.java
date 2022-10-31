@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.STUDENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PROFESSOR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.STUDENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CABE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -18,9 +18,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_ELEVENTH_PERSON_TA;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_PERSON_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_NINTH_PERSON_PROFESSOR;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TENTH_PERSON_PROFESSOR;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TWELFTH_PERSON_TA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -34,12 +34,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.ProfessorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TeachingAssistantBuilder;
@@ -48,11 +46,9 @@ import seedu.address.testutil.TeachingAssistantBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
     private static final String TEST_USERNAME = "test";
     private static final String TEST_TAG = "friends";
-
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
     public void executeEditStudent_allFieldsSpecifiedUnfilteredList_success() {
         Student editedStudent = new StudentBuilder().withYear(DEFAULT_YEAR).withGithubUsername(TEST_USERNAME)
@@ -70,8 +66,11 @@ public class EditCommandTest {
 
     @Test
     public void executeEditProfessor_allFieldsSpecifiedUnfilteredList_success() {
-        Professor editedProfessor = new ProfessorBuilder().withSpecialisation(DEFAULT_SPECIALISATION).withRating(DEFAULT_RATING)
-                .withTags(TEST_TAG).withOfficeHour(DEFAULT_OFFICE_HOUR).withGithubUsername(TEST_USERNAME).build();
+        Professor editedProfessor = new ProfessorBuilder().withSpecialisation(DEFAULT_SPECIALISATION)
+                .withRating(DEFAULT_RATING)
+                .withTags(TEST_TAG)
+                .withOfficeHour(DEFAULT_OFFICE_HOUR)
+                .withGithubUsername(TEST_USERNAME).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedProfessor).build();
         EditCommand editCommand = new EditCommand(INDEX_TENTH_PERSON_PROFESSOR, descriptor);
@@ -122,10 +121,12 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedForProfessorUnfilteredList_success() {
-        Professor professor = (Professor) model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
+        Professor professor = (Professor) model.getFilteredPersonList()
+                .get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
 
         ProfessorBuilder personInList = new ProfessorBuilder(professor);
-        Professor editedPerson = personInList.withSpecialisation(EMPTY_SPECIALISATION).withRating(DEFAULT_RATING).withOfficeHour(DEFAULT_OFFICE_HOUR).build();
+        Professor editedPerson = personInList.withSpecialisation(EMPTY_SPECIALISATION).withRating(DEFAULT_RATING)
+                .withOfficeHour(DEFAULT_OFFICE_HOUR).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withSpecialisation(EMPTY_SPECIALISATION)
                 .withRating(DEFAULT_RATING).withOfficeHour(DEFAULT_OFFICE_HOUR).build();
@@ -142,10 +143,12 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedForTeachingAssistantUnfilteredList_success() {
-        TeachingAssistant ta = (TeachingAssistant) model.getFilteredPersonList().get(INDEX_ELEVENTH_PERSON_TA.getZeroBased());
+        TeachingAssistant ta = (TeachingAssistant) model
+                .getFilteredPersonList().get(INDEX_ELEVENTH_PERSON_TA.getZeroBased());
 
         TeachingAssistantBuilder personInList = new TeachingAssistantBuilder(ta);
-        TeachingAssistant editedPerson = personInList.withRating(DEFAULT_RATING).withModuleCode(VALID_MODULE_CODE_CABE).build();
+        TeachingAssistant editedPerson = personInList.withRating(DEFAULT_RATING)
+                .withModuleCode(VALID_MODULE_CODE_CABE).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withRating(DEFAULT_RATING).withModuleCode(VALID_MODULE_CODE_CABE).build();
@@ -174,7 +177,8 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedProfessorUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_TENTH_PERSON_PROFESSOR, new EditPersonDescriptor());
-        Professor editedProfessor = (Professor) model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
+        Professor editedProfessor = (Professor) model.getFilteredPersonList()
+                .get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedProfessor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -185,7 +189,8 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedTeachingAssistantUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_ELEVENTH_PERSON_TA, new EditPersonDescriptor());
-        TeachingAssistant editedTeachingAssistant = (TeachingAssistant) model.getFilteredPersonList().get(INDEX_ELEVENTH_PERSON_TA.getZeroBased());
+        TeachingAssistant editedTeachingAssistant = (TeachingAssistant) model.getFilteredPersonList()
+                .get(INDEX_ELEVENTH_PERSON_TA.getZeroBased());
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTeachingAssistant);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -214,12 +219,14 @@ public class EditCommandTest {
     public void execute_professorFilteredList_success() {
         showPersonAtIndex(model, INDEX_TENTH_PERSON_PROFESSOR);
 
-        Professor personInFilteredList = (Professor) model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Professor personInFilteredList = (Professor) model.getFilteredPersonList()
+                .get(INDEX_FIRST_PERSON.getZeroBased());
         Professor editedPerson = new ProfessorBuilder(personInFilteredList).withName(VALID_NAME_BOB)
                 .withSpecialisation(EMPTY_SPECIALISATION).build();
 
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withSpecialisation(EMPTY_SPECIALISATION).build());
+                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                        .withSpecialisation(EMPTY_SPECIALISATION).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
@@ -233,8 +240,10 @@ public class EditCommandTest {
     public void execute_teachingAssistantFilteredList_success() {
         showPersonAtIndex(model, INDEX_ELEVENTH_PERSON_TA);
 
-        TeachingAssistant personInFilteredList = (TeachingAssistant) model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        TeachingAssistant editedPerson = new TeachingAssistantBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
+        TeachingAssistant personInFilteredList = (TeachingAssistant) model.getFilteredPersonList()
+                .get(INDEX_FIRST_PERSON.getZeroBased());
+        TeachingAssistant editedPerson = new TeachingAssistantBuilder(personInFilteredList)
+                .withName(VALID_NAME_BOB).build();
 
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -251,7 +260,8 @@ public class EditCommandTest {
     public void execute_editSameNameDifferentRoleStudent_success() {
         //edit student name to same name as prof
         Student studentToEdit = (Student) model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Name duplicateNameProfessor = model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()).getName();
+        Name duplicateNameProfessor = model.getFilteredPersonList()
+                .get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()).getName();
         Student editedStudent = new StudentBuilder(studentToEdit).withName(duplicateNameProfessor.toString()).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(studentToEdit)
@@ -265,7 +275,8 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
         //edit student name to same name as ta
-        Name duplicateNameTeachingAssistant = model.getFilteredPersonList().get(INDEX_ELEVENTH_PERSON_TA.getZeroBased()).getName();
+        Name duplicateNameTeachingAssistant = model.getFilteredPersonList()
+                .get(INDEX_ELEVENTH_PERSON_TA.getZeroBased()).getName();
         editedStudent = new StudentBuilder(studentToEdit).withName(duplicateNameTeachingAssistant.toString()).build();
 
         descriptor = new EditPersonDescriptorBuilder(studentToEdit)
@@ -282,7 +293,8 @@ public class EditCommandTest {
     @Test
     public void execute_editSameNameDifferentRoleProfessor_success() {
         //edit professor name to same name as student
-        Professor professorToEdit = (Professor) model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
+        Professor professorToEdit = (Professor) model.getFilteredPersonList()
+                .get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
         Name duplicateNameStudent = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getName();
         Professor editedProfessor = new ProfessorBuilder(professorToEdit)
                 .withSpecialisation(EMPTY_SPECIALISATION)
@@ -295,11 +307,13 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedProfessor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()), editedProfessor);
+        expectedModel.setPerson(model.getFilteredPersonList()
+                .get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()), editedProfessor);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
         //edit professor name to same name as ta
-        Name duplicateNameTeachingAssistant = model.getFilteredPersonList().get(INDEX_ELEVENTH_PERSON_TA.getZeroBased()).getName();
+        Name duplicateNameTeachingAssistant = model.getFilteredPersonList()
+                .get(INDEX_ELEVENTH_PERSON_TA.getZeroBased()).getName();
 
         editedProfessor = new ProfessorBuilder(professorToEdit)
                 .withSpecialisation(EMPTY_SPECIALISATION)
@@ -312,14 +326,16 @@ public class EditCommandTest {
         expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedProfessor);
 
         expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()), editedProfessor);
+        expectedModel.setPerson(model.getFilteredPersonList()
+                .get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()), editedProfessor);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_editSameNameDifferentRoleTeachingAssistant_success() {
         //edit ta name to same name as student
-        TeachingAssistant teachingAssistant = (TeachingAssistant) model.getFilteredPersonList().get(INDEX_TWELFTH_PERSON_TA.getZeroBased());
+        TeachingAssistant teachingAssistant = (TeachingAssistant) model.getFilteredPersonList()
+                .get(INDEX_TWELFTH_PERSON_TA.getZeroBased());
         Name duplicateNameStudent = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getName();
         TeachingAssistant editedTeachingAssistant = new TeachingAssistantBuilder(teachingAssistant)
                 .withName(duplicateNameStudent.toString()).build();
@@ -331,11 +347,13 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTeachingAssistant);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_TWELFTH_PERSON_TA.getZeroBased()), editedTeachingAssistant);
+        expectedModel.setPerson(model.getFilteredPersonList()
+                .get(INDEX_TWELFTH_PERSON_TA.getZeroBased()), editedTeachingAssistant);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
         //edit ta name to same name as prof
-        Name duplicateNameProfessor = model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()).getName();
+        Name duplicateNameProfessor = model.getFilteredPersonList()
+                .get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased()).getName();
 
         editedTeachingAssistant = new TeachingAssistantBuilder(teachingAssistant)
                 .withName(duplicateNameProfessor.toString()).build();
@@ -347,7 +365,8 @@ public class EditCommandTest {
         expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTeachingAssistant);
 
         expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_TWELFTH_PERSON_TA.getZeroBased()), editedTeachingAssistant);
+        expectedModel.setPerson(model.getFilteredPersonList()
+                .get(INDEX_TWELFTH_PERSON_TA.getZeroBased()), editedTeachingAssistant);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -362,7 +381,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateProfessorUnfilteredList_failure() {
-        Professor professor = (Professor) model.getFilteredPersonList().get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
+        Professor professor = (Professor) model.getFilteredPersonList()
+                .get(INDEX_TENTH_PERSON_PROFESSOR.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(professor).build();
 
         EditCommand editCommand = new EditCommand(INDEX_NINTH_PERSON_PROFESSOR, descriptor);
@@ -371,7 +391,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateTeachingAssistantUnfilteredList_failure() {
-        TeachingAssistant ta = (TeachingAssistant) model.getFilteredPersonList().get(INDEX_ELEVENTH_PERSON_TA.getZeroBased());
+        TeachingAssistant ta = (TeachingAssistant) model.getFilteredPersonList()
+                .get(INDEX_ELEVENTH_PERSON_TA.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(ta).build();
 
         EditCommand editCommand = new EditCommand(INDEX_TWELFTH_PERSON_TA, descriptor);
@@ -395,7 +416,8 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_TENTH_PERSON_PROFESSOR);
 
         // edit person in filtered list into a duplicate in address book
-        Professor prof = (Professor) model.getAddressBook().getPersonList().get(INDEX_NINTH_PERSON_PROFESSOR.getZeroBased());
+        Professor prof = (Professor) model.getAddressBook().getPersonList()
+                .get(INDEX_NINTH_PERSON_PROFESSOR.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(prof).build();
 
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
@@ -407,7 +429,8 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_ELEVENTH_PERSON_TA);
 
         // edit person in filtered list into a duplicate in address book
-        TeachingAssistant ta = (TeachingAssistant) model.getAddressBook().getPersonList().get(INDEX_TWELFTH_PERSON_TA.getZeroBased());
+        TeachingAssistant ta = (TeachingAssistant) model.getAddressBook()
+                .getPersonList().get(INDEX_TWELFTH_PERSON_TA.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(ta).build();
 
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
@@ -439,7 +462,6 @@ public class EditCommandTest {
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-
 
     @Test
     public void equals() {

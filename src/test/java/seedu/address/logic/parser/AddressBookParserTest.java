@@ -40,8 +40,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addStudent() throws Exception {
-        Student person = new StudentBuilder().build();
+        Student person = new StudentBuilder().withModuleCodes("CS1101S", "CS1231S").build();
         StudentCommand command = (StudentCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+
         assertEquals(new StudentCommand(person), command);
     }
 
@@ -76,11 +77,30 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
-        Student person = new StudentBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+    public void parseCommand_editStudent() throws Exception {
+        Student student = new StudentBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student)
+                .withModuleCode("CS1101S").build(); //student has no module code
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
             + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editProfessor() throws Exception {
+        Professor prof = new ProfessorBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(prof).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editTeachingAssistant() throws Exception {
+        TeachingAssistant ta = new TeachingAssistantBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(ta).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

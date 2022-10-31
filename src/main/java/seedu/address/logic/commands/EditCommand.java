@@ -255,8 +255,6 @@ public class EditCommand extends Command {
         private Specialisation specialisation;
         private OfficeHour officeHour;
 
-
-
         public EditPersonDescriptor() {
         }
 

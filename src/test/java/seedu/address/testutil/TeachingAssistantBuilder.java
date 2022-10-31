@@ -1,12 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.Location;
+import static seedu.address.logic.parser.Parser.DEFAULT_LOC_STRING;
+
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.TeachingAssistant;
-
-import static seedu.address.logic.parser.Parser.DEFAULT_LOC_STRING;
 
 /**
  * A utility class to help with building Person objects.

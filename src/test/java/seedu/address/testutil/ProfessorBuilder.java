@@ -1,13 +1,12 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.person.Specialisation.EMPTY_SPECIALISATION;
 
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.OfficeHour;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Specialisation;
-
-import static seedu.address.model.person.Specialisation.EMPTY_SPECIALISATION;
 
 /**
  * A utility class to help with building Person objects.

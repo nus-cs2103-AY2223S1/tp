@@ -4,9 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Year;
 import seedu.address.model.util.SampleDataUtil;
@@ -19,15 +17,15 @@ public class StudentBuilder extends PersonBuilder {
     public static final String DEFAULT_MODULE_CODE = "CS1101S";
     public static final String DEFAULT_YEAR = "1";
 
-    private Set<ModuleCode> moduleCodes;
+    private Set<ModuleCode> moduleCodesSet;
+    private ModuleCode moduleCode;
     private Year year;
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public StudentBuilder() {
         super();
-        this.moduleCodes = new HashSet<>();
-        this.moduleCodes.add(new ModuleCode(DEFAULT_MODULE_CODE));
+        this.moduleCodesSet = new HashSet<>();
         this.year = new Year(DEFAULT_YEAR, false);
     }
 
@@ -36,7 +34,7 @@ public class StudentBuilder extends PersonBuilder {
      */
     public StudentBuilder(Student personToCopy) {
         super(personToCopy);
-        this.moduleCodes = new HashSet<>(personToCopy.getModuleCodes());
+        this.moduleCodesSet = new HashSet<>(personToCopy.getModuleCodes());
         this.year = personToCopy.getYear();
     }
 
@@ -51,7 +49,7 @@ public class StudentBuilder extends PersonBuilder {
      * and set it to the {@code Student} that we are building.
      */
     public StudentBuilder withModuleCodes(String ... moduleCodes) {
-        this.moduleCodes = SampleDataUtil.getModuleCodeSet(moduleCodes);
+        this.moduleCodesSet = SampleDataUtil.getModuleCodeSet(moduleCodes);
         return this;
     }
 
@@ -76,11 +74,11 @@ public class StudentBuilder extends PersonBuilder {
     @Override
     public Student build() {
         return new Student(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation(),
-                getGithubUsername(), getModuleCodes(), getYear());
+                getGithubUsername(), getModuleCodesSet(), getYear());
     }
 
-    public Set<ModuleCode> getModuleCodes() {
-        return Collections.unmodifiableSet(moduleCodes);
+    public Set<ModuleCode> getModuleCodesSet() {
+        return Collections.unmodifiableSet(moduleCodesSet);
     }
 
     public Year getYear() {

@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.STUDENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PROFESSOR_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.STUDENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TEACHING_ASSISTANT_CABE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
