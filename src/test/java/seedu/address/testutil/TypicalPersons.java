@@ -1,24 +1,34 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MINECRAFT_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MINECRAFT_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COUNTRY_CANADA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COUNTRY_UK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GAME_TYPE_MINEPLEX;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GAME_TYPE_SURVIVAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MINECRAFT_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MINECRAFT_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVER_111_222;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SERVER_123_456;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SOCIAL_INSTAGRAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SOCIAL_TWITTER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_INTERVAL_TUES_AFTERNOON;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -34,7 +44,9 @@ public class TypicalPersons {
             .withTags("friends")
             .withCountry("Singapore")
             .withServers("server@111.222.333")
-            .withSocial("").build();
+            .withSocial("twitter@aliceP", "ig@AliceP")
+            .withGameType("MinePlex", "Survival")
+            .withTimeIntervals("mon@2300-tue@0000").build();
     public static final Person BENSON = new PersonBuilder()
             .withName("Benson Meier")
             .withMinecraftName("Benson123")
@@ -42,7 +54,10 @@ public class TypicalPersons {
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withTags("owesMoney", "friends")
-            .withCountry("Singapore").build();
+            .withCountry("Singapore")
+            .withServers("server@111.222.444")
+            .withGameType("Hunger Games")
+            .withTimeIntervals("mon@1200-mon@1400").build();
     public static final Person CARL = new PersonBuilder()
             .withName("Carl Kurz")
             .withMinecraftName("Carl")
@@ -50,7 +65,10 @@ public class TypicalPersons {
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .withTags("friends")
-            .withCountry("Singapore").build();
+            .withCountry("Singapore")
+            .withServers("server@111.123")
+            .withGameType("Hunger Games")
+            .withTimeIntervals("tue@2200 - tue@2300").build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
             .withMinecraftName("Dan")
@@ -58,7 +76,10 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
             .withTags("friends")
-            .withCountry("USA").build();
+            .withCountry("USA")
+            .withTags("buddy", "friend")
+            .withGameType("MinePlex")
+            .withTimeIntervals("mon@1100-mon@1430").build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
             .withMinecraftName("Elli")
@@ -66,7 +87,10 @@ public class TypicalPersons {
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
             .withTags("friends")
-            .withCountry("USA").build();
+            .withCountry("USA")
+            .withGameType("adventure")
+            .withServers("random@111.222", "random@333.444")
+            .withTimeIntervals("wed@2000-wed@2200").build();
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
             .withMinecraftName("KUNCZ")
@@ -74,6 +98,8 @@ public class TypicalPersons {
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .withTags("friends")
+            .withGameType("MinePlex")
+            .withServers("server@111.222.333")
             .withCountry("Japan").build();
     public static final Person GEORGE = new PersonBuilder()
             .withName("George Best")
@@ -91,13 +117,25 @@ public class TypicalPersons {
             .withPhone("8482424")
             .withEmail("stefan@example.com")
             .withAddress("little india").build();
-
     public static final Person IDA = new PersonBuilder()
             .withName("Ida Mueller")
             .withMinecraftName("wsssd")
             .withPhone("8482131")
             .withEmail("hans@example.com")
             .withAddress("chicago ave").build();
+
+    public static final Person JUSTIN = new PersonBuilder()
+            .withName("Justin Bieber")
+            .withMinecraftName("bustinjieber")
+            .withPhone("97654786")
+            .withEmail("bieber@gmail.com")
+            .withAddress("National University of Singapore")
+            .withSocial("facebook@bieber")
+            .withCountry("Singapore")
+            .withServers("minecraft@123.456", "minecraft@456.789")
+            .withTags("popstar")
+            .withGameType("creative")
+            .withTimeIntervals("sun@2300-mon@0100").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder()
@@ -106,7 +144,13 @@ public class TypicalPersons {
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withAddress(VALID_ADDRESS_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_FRIEND)
+            .withSocial(VALID_SOCIAL_INSTAGRAM)
+            .withCountry(VALID_COUNTRY_CANADA)
+            .withGameType(VALID_GAME_TYPE_MINEPLEX)
+            .withServers(VALID_SERVER_111_222)
+            .withTimeIntervals(VALID_TIME_INTERVAL_SUNDAY_NIGHT_TO_MONDAY_MORNING)
+            .build();
     public static final Person BOB = new PersonBuilder()
             .withName(VALID_NAME_BOB)
             .withMinecraftName(VALID_MINECRAFT_NAME_BOB)
@@ -114,6 +158,11 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withGameType(VALID_GAME_TYPE_SURVIVAL)
+            .withServers(VALID_SERVER_123_456)
+            .withSocial(VALID_SOCIAL_TWITTER)
+            .withCountry(VALID_COUNTRY_UK)
+            .withTimeIntervals(VALID_TIME_INTERVAL_TUES_AFTERNOON)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -136,6 +185,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA, JUSTIN));
     }
 }

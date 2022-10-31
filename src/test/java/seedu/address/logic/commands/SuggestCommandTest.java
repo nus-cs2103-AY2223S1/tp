@@ -12,8 +12,12 @@ import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalPersons.HOON;
+import static seedu.address.testutil.TypicalPersons.IDA;
+import static seedu.address.testutil.TypicalPersons.JUSTIN;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_SINGAPORE;
+import static seedu.address.testutil.TypicalPersons.MONDAY_NOON_DAY_TIME_IN_WEEK;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -81,7 +85,7 @@ public class SuggestCommandTest {
         SuggestCommand command = new SuggestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE),
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, IDA, JUSTIN),
                 model.getFilteredPersonList());
     }
 
@@ -92,13 +96,13 @@ public class SuggestCommandTest {
         Set<DayTimeInWeek> dayTimeInWeekSet = new HashSet<>();
         keywordSet.add(new Keyword("1"));
 
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 8);
         PersonSuggestionPredicate predicate =
                 new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
         SuggestCommand command = new SuggestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL),
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, IDA, JUSTIN),
                 model.getFilteredPersonList());
 
     }
@@ -108,15 +112,50 @@ public class SuggestCommandTest {
 
         Set<Keyword> keywordSet = new HashSet<>();
         Set<DayTimeInWeek> dayTimeInWeekSet = new HashSet<>();
-        keywordSet.add(new Keyword(KEYWORD_MATCHING_SINGAPORE));
+        keywordSet.add(new Keyword("Singapore"));
 
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 6);
+        PersonSuggestionPredicate predicate =
+                new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
+        SuggestCommand command = new SuggestCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        System.out.println(expectedModel.getFilteredPersonList());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, HOON, IDA, JUSTIN),
+                model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_keywordForMinecraftServerAndGameType_multiplePersonsFound() {
+        Set<Keyword> keywordSet = new HashSet<>();
+        Set<DayTimeInWeek> dayTimeInWeekSet = new HashSet<>();
+        keywordSet.add(new Keyword("MinePlex"));
+        keywordSet.add(new Keyword("server@111.222.333"));
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         PersonSuggestionPredicate predicate =
                 new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
         SuggestCommand command = new SuggestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL),
+        assertEquals(Arrays.asList(ALICE, FIONA),
+                model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_dayTimeInWeek_multiplePersonsFound() {
+
+        Set<Keyword> keywordSet = new HashSet<>();
+        Set<DayTimeInWeek> dayTimeInWeekSet = new HashSet<>();
+        dayTimeInWeekSet.add(new DayTimeInWeek(MONDAY_NOON_DAY_TIME_IN_WEEK));
+
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonSuggestionPredicate predicate =
+                new PersonSuggestionPredicate(dayTimeInWeekSet, keywordSet);
+        SuggestCommand command = new SuggestCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL),
                 model.getFilteredPersonList());
     }
 
