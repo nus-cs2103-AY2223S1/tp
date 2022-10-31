@@ -71,7 +71,6 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && isShowHelp() == otherCommandResult.isShowHelp()
                 && isExit() == otherCommandResult.isExit();
-        //      && getGraphConfiguration().equals(otherCommandResult.getGraphConfiguration());
     }
 
     @Override
