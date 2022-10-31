@@ -410,6 +410,7 @@ Action | Format, Examples
 **View** | `view NAME`<br> e.g., `view James Ho`
 
 ## Prefixes summaries
+
 | Prefix | Definition                                | Usage                                                                                                                                                                                   | Example         |
 |--------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
 | n/     | Name                                      | A string of alphanumeric characters. Whitespaces are allowed. Required                                                                                                                  | n/Alex Ho       |
