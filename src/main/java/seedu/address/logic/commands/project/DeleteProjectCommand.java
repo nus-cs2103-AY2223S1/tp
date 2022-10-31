@@ -51,11 +51,13 @@ public class DeleteProjectCommand extends ProjectCommand {
                 }
 
                 Client projectClient = p.getClient();
-                Client clientInList = model.getClientById(projectClient.getClientIdInInt());
-                if (!clientInList.isEmpty()) {
-                    clientInList.removeProject(p);
-                    if (clientInList.getProjectListSize() == 0) {
-                        model.deleteClient(clientInList);
+                if (!projectClient.isEmpty()) {
+                    Client clientInList = model.getClientById(projectClient.getClientIdInInt());
+                    if (!clientInList.isEmpty()) {
+                        clientInList.removeProject(p);
+                        if (clientInList.getProjectListSize() == 0) {
+                            model.deleteClient(clientInList);
+                        }
                     }
                 }
 
