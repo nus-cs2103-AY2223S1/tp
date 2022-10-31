@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class FindStaffCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         String expectedMessage = String.format(MESSAGE_STAFFS_LISTED_OVERVIEW, 0);
-        StaffNameContainsKeywordsPredicate predicate = new StaffNameContainsKeywordsPredicate("Alice");
+        StaffNameContainsKeywordsPredicate predicate = preparePredicate("Alice");
         FindStaffCommand findStaffCommand = new FindStaffCommand(predicate);
         expectedModel.updateFilteredStaffList(predicate);
         assertCommandSuccess(findStaffCommand, model, expectedMessage, expectedModel);
@@ -47,8 +48,7 @@ public class FindStaffCommandTest {
         model.setFilteredStaffList(dummyProject);
         expectedModel.setFilteredStaffList(dummyProject);
 
-        StaffNameContainsKeywordsPredicate predicate =
-                new StaffNameContainsKeywordsPredicate("Alice Lau");
+        StaffNameContainsKeywordsPredicate predicate = preparePredicate("Alice Lau");
         FindStaffCommand findStaffCommand =
                 new FindStaffCommand(predicate);
 
@@ -71,8 +71,7 @@ public class FindStaffCommandTest {
         model.setFilteredStaffList(dummyProject);
         expectedModel.setFilteredStaffList(dummyProject);
 
-        StaffNameContainsKeywordsPredicate predicate =
-                new StaffNameContainsKeywordsPredicate("Alice");
+        StaffNameContainsKeywordsPredicate predicate = preparePredicate("Alice");
         FindStaffCommand findStaffCommand =
                 new FindStaffCommand(predicate);
 
@@ -94,8 +93,7 @@ public class FindStaffCommandTest {
         model.setFilteredStaffList(dummyProject);
         expectedModel.setFilteredStaffList(dummyProject);
 
-        StaffNameContainsKeywordsPredicate predicate =
-                new StaffNameContainsKeywordsPredicate("alice lau");
+        StaffNameContainsKeywordsPredicate predicate = preparePredicate("alice lau");
         FindStaffCommand findStaffCommand =
                 new FindStaffCommand(predicate);
 
@@ -109,14 +107,13 @@ public class FindStaffCommandTest {
     public void equals() {
 
         FindStaffCommand findStaffCommand = new FindStaffCommand(
-                new StaffNameContainsKeywordsPredicate(VALID_NAME_AMY));
+                preparePredicate(VALID_NAME_AMY));
 
         // same object -> returns true
         assertTrue(findStaffCommand.equals(findStaffCommand));
 
         // same values -> returns true
-        FindStaffCommand findStaffCommandCopy = new FindStaffCommand(
-                new StaffNameContainsKeywordsPredicate(VALID_NAME_AMY));
+        FindStaffCommand findStaffCommandCopy = new FindStaffCommand(preparePredicate(VALID_NAME_AMY));
         assertTrue(findStaffCommand.equals(findStaffCommandCopy));
 
         // different types -> returns false
@@ -126,9 +123,15 @@ public class FindStaffCommandTest {
         assertFalse(findStaffCommand.equals(null));
 
         // different keyword -> returns false
-        FindStaffCommand findStaffCommandTwo = new FindStaffCommand(
-                new StaffNameContainsKeywordsPredicate(VALID_NAME_BOB));
+        FindStaffCommand findStaffCommandTwo = new FindStaffCommand(preparePredicate(VALID_NAME_BOB));
         assertFalse(findStaffCommand.equals(findStaffCommandTwo));
 
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code StaffNameContainsKeywordsPredicate}.
+     */
+    private StaffNameContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new StaffNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

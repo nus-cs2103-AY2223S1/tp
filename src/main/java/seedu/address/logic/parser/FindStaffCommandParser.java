@@ -6,6 +6,8 @@ import seedu.address.logic.commands.FindStaffCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.staff.StaffNameContainsKeywordsPredicate;
 
+import java.util.Arrays;
+
 /**
  * Parses input arguments and creates a new FindStaffCommand object.
  */
@@ -20,7 +22,10 @@ public class FindStaffCommandParser implements Parser<FindStaffCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStaffCommand.MESSAGE_USAGE));
         }
-        return new FindStaffCommand(new StaffNameContainsKeywordsPredicate(trimmedArgs));
+
+        String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        return new FindStaffCommand(new StaffNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

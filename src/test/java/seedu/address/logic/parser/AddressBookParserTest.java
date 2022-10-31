@@ -186,10 +186,11 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findStaff() throws Exception {
-        String keyword = "Andy";
-        FindStaffCommand command = new FindStaffCommand(new StaffNameContainsKeywordsPredicate(keyword));
-        assertEquals(new FindStaffCommand(new StaffNameContainsKeywordsPredicate(keyword)),
-                command);
+        List<String> keywords = Arrays.asList("Andy", "Lau", "de", "hua");
+        FindStaffCommand command = (FindStaffCommand) parser.parseCommand(
+                FindStaffCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindStaffCommand(new StaffNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
