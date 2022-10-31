@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.function.Predicate;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.FunctionalInterfaces.Changer;
 import seedu.address.commons.util.FunctionalInterfaces.Getter;
@@ -96,8 +98,8 @@ public class DeleteCommand<U extends DisplayItem> extends Command {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj ||
-            (obj instanceof DeleteCommand
+        return this == obj
+            || (obj instanceof DeleteCommand
                 && ((targetIndex != null && targetIndex == ((DeleteCommand<?>) obj).targetIndex)
                     || ((targetIndex == null) && (((DeleteCommand<?>) obj).targetIndex == null)))
                 && (((toDelete != null) && (toDelete.equals(((DeleteCommand<?>) obj).toDelete)))

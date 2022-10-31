@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -51,9 +52,7 @@ public class TeamCommandParser implements Parser<Command> {
 
         case DeleteCommand.SUBCOMMAND_WORD:
             return DeleteCommand
-                .<Group>parser(
-                    (m, i) -> m.getFromFilteredTeams(i),
-                    (m, i) -> m.deleteTeam(i),
+                .<Group>parser((m, i) -> m.getFromFilteredTeams(i), (m, i) -> m.deleteTeam(i),
                     o -> o instanceof Group)
                 .parse(arguments);
 
@@ -67,8 +66,7 @@ public class TeamCommandParser implements Parser<Command> {
             return ForEachCommand.parser(m -> m.getFilteredTeamList()).parse(arguments);
 
         case FindCommand.SUBCOMMAND_WORD:
-            return new FindCommandParser<Group>(
-                (m, p) -> m.updateFilteredTeamList(p),
+            return new FindCommandParser<Group>((m, p) -> m.updateFilteredTeamList(p),
                 m -> m.getFilteredTeamList().size()).parse(arguments);
 
         default:

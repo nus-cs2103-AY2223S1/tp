@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+
 import seedu.address.commons.util.FunctionalInterfaces.Changer;
 import seedu.address.commons.util.FunctionalInterfaces.Retriever;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -33,6 +34,13 @@ public class FindCommand<T extends DisplayItem> extends Command {
     private final Changer<Predicate<T>> changer;
     private final Retriever<Integer> getSize;
 
+    /**
+     * Constructor for find command
+     *
+     * @param predicate filtering tool
+     * @param changer sam to filter specific model list
+     * @param getSize sam to get final size of filtered elements
+     */
     public FindCommand(NameContainsKeywordsPredicate<T> predicate, Changer<Predicate<T>> changer,
         Retriever<Integer> getSize) {
         requireNonNull(changer);

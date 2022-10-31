@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -50,9 +51,7 @@ public class TaskCommandParser implements Parser<Command> {
             return new AddTaskCommandParser().parse(arguments);
         case DeleteCommand.SUBCOMMAND_WORD:
             return DeleteCommand
-                .<Task>parser(
-                    (m, i) -> m.getFromFilteredTasks(i),
-                    (m, task) -> m.deleteTask(task),
+                .<Task>parser((m, i) -> m.getFromFilteredTasks(i), (m, task) -> m.deleteTask(task),
                     o -> o instanceof Task)
                 .parse(arguments);
         case MarkTaskCommand.SUBCOMMAND_WORD:
@@ -64,8 +63,7 @@ public class TaskCommandParser implements Parser<Command> {
         case ForEachCommand.SUBCOMMAND_WORD:
             return ForEachCommand.parser(m -> m.getFilteredTaskList()).parse(arguments);
         case FindCommand.SUBCOMMAND_WORD:
-            return new FindCommandParser<Task>(
-                (m, p) -> m.updateFilteredTaskList(p),
+            return new FindCommandParser<Task>((m, p) -> m.updateFilteredTaskList(p),
                 m -> m.getFilteredTaskList().size()).parse(arguments);
         default:
             throw new ParseException(MESSAGE_USAGE);

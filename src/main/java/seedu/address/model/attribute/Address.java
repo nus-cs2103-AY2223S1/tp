@@ -2,6 +2,7 @@ package seedu.address.model.attribute;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+
 import seedu.address.logic.parser.Prefix;
 
 /**
