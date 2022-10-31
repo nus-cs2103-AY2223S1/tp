@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Date in WorkBook.
@@ -14,14 +15,14 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime {
     public static final DateTime EMPTY_DATETIME = new DateTime("");
-    public static final String MESSAGE_CONSTRAINTS = "Date should be dd-mmm-yyyy hh:mm";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be dd-mmm-yyyy hh:mm, and should be valid.";
 
-    private static final String datePattern = "d-MMM-yyyy HH:mm";
+    private static final String datePattern = "d-MMM-uuuu HH:mm";
     private static final DateTimeFormatterBuilder formatterBuilder = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
             .appendPattern(datePattern);
-    private static final DateTimeFormatter dateFormatter = formatterBuilder.toFormatter();
-
+    private static final DateTimeFormatter dateFormatter = formatterBuilder.toFormatter()
+        .withResolverStyle(ResolverStyle.STRICT);
 
 
     public final String value;
