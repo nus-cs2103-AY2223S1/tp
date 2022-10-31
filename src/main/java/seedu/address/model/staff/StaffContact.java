@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StaffContact {
     public static final String MESSAGE_CONSTRAINTS =
-            "Staff contact should only contain numbers and at least 3 digits .Also it should not be blank";
+            "Staff contact should only contain exactly 8 digits and begin with 8 or 9. Also it should not be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String VALIDATION_REGEX = "[8-9]{1}\\d{7}";
 
     public final String staffContact;
 
