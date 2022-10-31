@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TimeInterval implements ITimesAvailable {
 
     private static final String VALIDATION_REGEX =
-            "(mon|tue|wed|thu|fri|sat|sun)@([0-9]{4})-(mon|tue|wed|thu|fri|sat|sun)@([0-9]{4})";
+            "(mon|tue|wed|thu|fri|sat|sun)@([0-9]{4}) *- *(mon|tue|wed|thu|fri|sat|sun)@([0-9]{4})";
     private static final String TIME_INTERVAL_CONSTRAINTS =
             "Time Interval should be in the form mon@2200-tue@2300";
 
@@ -30,30 +30,26 @@ public class TimeInterval implements ITimesAvailable {
         String endTime = getEndingDayTimeInWeek(timeInterval);
         checkArgument(DayTimeInWeek.isValidDayTimeInWeekParsing(endTime),
                 DayTimeInWeek.ILLEGAL_TIME_CONSTRAINTS);
-        this.startTime = makeStartTime(timeInterval);
-        this.endTime = makeEndTime(timeInterval);
+        this.startTime = makeStartTime(startTime);
+        this.endTime = makeEndTime(endTime);
     }
 
     /**
      * Returns the start time of the time interval in DayTimeInWeek.
-     * @param timeInterval the valid time interval in String.
+     * @param startTime the valid DayTimeInWeek in String.
      * @return the start time in DayTimeInWeek.
      */
-    public static DayTimeInWeek makeStartTime(String timeInterval) {
-        String[] tokens = timeInterval.split("-");
-        String start = tokens[0];
-        return new DayTimeInWeek(start);
+    public static DayTimeInWeek makeStartTime(String startTime) {
+        return new DayTimeInWeek(startTime);
     }
 
     /**
      * Returns the end time of the time interval in DayTimeInWeek.
-     * @param timeInterval the valid time interval in String.
+     * @param endTime the valid DayTimeInWeek in String.
      * @return the end time in DayTimeInWeek.
      */
-    public static DayTimeInWeek makeEndTime(String timeInterval) {
-        String[] tokens = timeInterval.split("-");
-        String end = tokens[1];
-        return new DayTimeInWeek(end);
+    public static DayTimeInWeek makeEndTime(String endTime) {
+        return new DayTimeInWeek(endTime);
     }
 
     /**
@@ -68,12 +64,14 @@ public class TimeInterval implements ITimesAvailable {
     public static String getStartingDayTimeInWeek(String test) {
         assert isValidTimeInterval(test);
         String[] tokens = test.split("-");
+        System.out.println(tokens[0].trim());
         return tokens[0].trim();
     }
 
     public static String getEndingDayTimeInWeek(String test) {
         assert isValidTimeInterval(test);
         String[] tokens = test.split("-");
+        System.out.println(tokens[1].trim());
         return tokens[1].trim();
     }
 
