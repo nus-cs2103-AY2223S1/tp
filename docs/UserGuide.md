@@ -459,8 +459,12 @@ After executing the UndoCommand (Deleted Customer <code>Alex Yeoh</code> is back
 <br>
 <img src="images/screenshots/UndoAndRedoCommand/UndoCommandResult.png"><br>
 </details>
+<br>
+<div markdown="block" class="alert alert-info">
 
-:exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
+**:information_source: Notes about the UndoCommand:**<br>
+* bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
+</div>
 
 ### 2.10 Redo an UndoCommand : `redo`
 
@@ -484,8 +488,12 @@ After executing the RedoCommand (The Customer <code>Alex Yeoh</code> is removed 
 <br>
 <img src="images/screenshots/UndoAndRedoCommand/RedoCommandResult.png"><br>
 </details>
+<br>
+<div markdown="block" class="alert alert-info">
 
-:exclamation: Note: bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
+**:information_source: Notes about the RedoCommand:**<br>
+* bobaBot only preserves the 20 most recent state changes (Commands such as `list`, `find`, `help`, `calc` and `exit` will not result in a state change).
+</div>
 
 ### 2.11 Clearing all entries : `clear`
 
@@ -528,8 +536,12 @@ After executing the CalculateCommand:
 <br>
 <img src="images/screenshots/CalculateCommand/NewCalculateCommandResult.png"><br>
 </details>
+<br>
+<div markdown="block" class="alert alert-info">
 
-_Note: Please do not enter spaces, e.g.`1 + 1` does not work_
+**:information_source: Notes about the CalculateCommand:**<br>
+* Please do not enter spaces, e.g.`1 + 1` does not work.
+</div>
 
 ### 2.13 GUI Calculator: `calc-gui`
 
