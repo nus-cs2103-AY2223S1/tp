@@ -187,7 +187,7 @@ Example:
 
 ### 5.4. Filtering exercises by their name(s) : `:filter`
 
-Filters exercises in the displayed list with names containing any of the given keywords.
+Filters exercises, in the current [Exercise List](#42-exercise-list), with names containing any of the given keywords.
 
 Format: `:filter KEYWORD [KEYWORD]...`
 
@@ -226,7 +226,7 @@ Example:
 
 ### 5.6. Sorting exercises : `:sort`
 
-Sorts the list of exercises displayed in the Exercise List Window according to their date of completion, with the latest exercise completed displayed at the top of the list.
+Sorts the exercises, in the current [Exercise List](#42-exercise-list), according to their date of completion, with the latest exercise completed displayed at the top of the list.
 
 Format: `:sort`
 
@@ -239,7 +239,7 @@ Example:
 
 ### 5.7. Viewing all exercises within a time period : `:range`
 
-Shows a list of all exercises sorted within a date range; the entry with the most recent date will be displayed at the top of the list.
+Shows all exercises, among exercises in the current [Exercise List](#42-exercise-list), within the specified date range; the latest exercise completed is displayed at the top of the list.
 
 <div markdown="block" class="alert alert-info">
 
@@ -271,7 +271,7 @@ Example:
 
 ### 5.8. Listing Personal Records (PR): `:pr`
 
-Finds the Personal Record of certain exercises in the exercise tracker.
+Finds the [Personal Record](#9-glossary-of-terminologies) of certain exercises in the exercise tracker.
 
 <div markdown="block" class="alert alert-info">
 
