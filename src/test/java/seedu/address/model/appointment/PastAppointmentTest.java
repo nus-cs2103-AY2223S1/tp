@@ -55,17 +55,20 @@ class PastAppointmentTest {
         assertFalse(PastAppointment.isValidDate("01-01-2020 12:00"));
     }
 
+    // partition - future dates
     @Test
     public void isValidDate_futureDate_returnsFalse() {
         assertFalse(PastAppointment.isValidDate(LocalDate.now().plusDays(1)
                 .format(DateTimeFormatter.ofPattern(DATE_FORMAT))));
     }
 
+    // boundary condition, partition - current date
     @Test
     public void isValidDate_today_returnsTrue() {
         assertTrue(PastAppointment.isValidDate(LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT))));
     }
 
+    // partition - past dates
     @Test
     public void isValidDate_pastDate_returnsTrue() {
         assertTrue(PastAppointment.isValidDate(LocalDate.now().minusDays(1)
@@ -158,5 +161,11 @@ class PastAppointmentTest {
         PastAppointment differentDatePastAppointment = new PastAppointmentBuilder().withDate("01-01-2021").build();
         assertNotEquals(pastAppointment, differentDatePastAppointment);
 
+    }
+
+    @Test
+    public void toString_validPastAppointment_returnsString() {
+        assertEquals("On: 06 Dec 2022; Diagnosis: Fever; Prescribed Medication: [ibuprofen][paracetamol]",
+                new PastAppointmentBuilder().build().toString());
     }
 }

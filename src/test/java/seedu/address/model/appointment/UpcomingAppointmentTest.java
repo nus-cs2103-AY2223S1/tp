@@ -50,17 +50,20 @@ class UpcomingAppointmentTest {
         assertTrue(UpcomingAppointment.isValidDate(""));
     }
 
+    // boundary condition, partition - current date
     @Test
     public void isValidDate_today_returnsTrue() {
         assertTrue(UpcomingAppointment.isValidDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
     }
 
+    // partition - past dates
     @Test
     public void isValidDate_yesterday_returnsFalse() {
         assertFalse(UpcomingAppointment.isValidDate(LocalDate.now().minusDays(1)
                 .format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
     }
 
+    // partition - future dates
     @Test
     public void isValidDate_tomorrow_returnsTrue() {
         assertTrue(UpcomingAppointment.isValidDate(LocalDate.now().plusDays(1)
