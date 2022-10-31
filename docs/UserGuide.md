@@ -49,7 +49,7 @@ Gim uses a Command Line Interface (CLI), which may be new to some users. If you 
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`:help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the [Commands Section](#commands) below for details of each command.
+6. Refer to the [Commands Section](#5-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -420,11 +420,11 @@ If your changes to the data file makes its format invalid, Gim will discard all 
 <br>
 **A**: You can do so by deleting the entry and adding a new entry.
 
-**Q**: Why is `:filter` not showing the "correct" list even though I have input a valid exercise name?
+**Q**: Why is `:filter` , `:range` or `sort` not showing the "correct" list even though I have input valid parameters?
 <br>
-**A**: `:filter` works on the displayed list shown in the Exercise List Window. If your displayed list is empty or has been altered by list changing commands such as `:range` or `:filter`, the `:filter` command will not filter from the original full list. 
+**A**: The three commands works on the displayed list shown in the Exercise List Window. If your displayed list is empty or has been previously altered by list changing commands such as `:range` or `:filter`, the commands will not filter from the original full list. 
 <br><br>
-If you would like to filter from the original full list instead, try executing the command `:list` to display the full list before running `:filter` again.
+If you would like to operate on the original full list instead, try executing the command `:list` to display the full list before running the commands again.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -462,3 +462,5 @@ If you would like to filter from the original full list instead, try executing t
 * **Sets** : Number of cycles of reps that you complete.
 * **Weight**: Total weight (include barbell if applicable, exclude body weight).
 * **Personal Record (PR)**: Heaviest weight recorded in the exercise tracker for a specific exercise.
+
+<a href="#top">Back To Top</a>
