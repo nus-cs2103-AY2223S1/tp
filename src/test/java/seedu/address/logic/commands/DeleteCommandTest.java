@@ -9,7 +9,11 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -111,7 +115,8 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(Optional.empty(), Optional.of(race), Optional.empty(),
                 Optional.empty());
 
-        assertCommandFailure(deleteCommand, model, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertCommandFailure(deleteCommand, model,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -137,7 +142,8 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(Optional.empty(), Optional.empty(), Optional.of(religion),
                 Optional.empty());
 
-        assertCommandFailure(deleteCommand, model, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertCommandFailure(deleteCommand, model,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -165,7 +171,8 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(Optional.empty(), Optional.empty(), Optional.empty(),
                 Optional.of(survey));
 
-        assertCommandFailure(deleteCommand, model, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertCommandFailure(deleteCommand, model,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
