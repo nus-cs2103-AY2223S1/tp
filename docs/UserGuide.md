@@ -13,7 +13,7 @@ title: InterNUS User Guide
 
 InterNUS is a desktop app for **managing internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InterNUS can get your internship management tasks done faster than traditional GUI apps.
 
-## 1.2 Persons
+## 1.2 Person List
 
 Store the information of key contacts in InterNUS. During the internship-hunting period, add the contacts of hiring managers and link them to your bookmarked internship positions. What about the multiple colleagues you'll meet during your internship stints? InterNUS makes it easy to manage these contacts and lets you see at a glance where you worked at together.
 
@@ -21,7 +21,7 @@ Store the information of key contacts in InterNUS. During the internship-hunting
 **:information_source: Note:** Each person can be linked to a maximum of one internship, and vice  versa.
 </div>
 
-## 1.3 Internships
+## 1.3 Internship List
 
 Track the internships you're interested in and all the relevant information -- the company, role, contact person and interview date. Awaiting a reply, or have you been accepted? With InterNUS, you can monitor and update the statuses of your internship applications effortlessly.
 
