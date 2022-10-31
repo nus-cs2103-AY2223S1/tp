@@ -842,12 +842,12 @@ the data of your previous UniNurse home folder.
 | **Edit remark**                            | `edit -p PATIENT_INDEX -r REMARK_INDEX r/REMARK`                                                                                         |
 | **Delete remark**                          | `delete -p PATIENT_INDEX -r REMARK_INDEX`                                                                                                |
 | **List all patients**                      | `list`                                                                                                                                   |
+| **Find patient**                           | `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… [t/TAG]… [c/CONDITION]… [d/TASK_DESCRIPTION]… [m/MEDICATION]… [r/REMARK]…` |
 | **List all details of a patient**          | `focus -p PATIENT_INDEX`                                                                                                                 |
+| **List all patients today**                | `view --today`                                                                                                                           |
 | **List all tasks**                         | `view -p --all`                                                                                                                          |
 | **View all tasks of a patient**            | `view -p PATIENT_INDEX`                                                                                                                  |
-| **List all patients today**                | `view --today`                                                                                                                           |
 | **Listing all tasks for a particular day** | `view DATE`                                                                                                                              |
-| **Find patient**                           | `find [KEYWORD]… [n/NAME]… [p/PHONE]… [e/EMAIL]… [a/ADDRESS]… [t/TAG]… [c/CONDITION]… [d/TASK_DESCRIPTION]… [m/MEDICATION]… [r/REMARK]…` |
 | **Undo last command**                      | `undo`                                                                                                                                   |
 | **Reverse undo command**                   | `redo`                                                                                                                                   |
 | **Clear all patients**                     | `clear`                                                                                                                                  |
