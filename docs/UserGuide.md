@@ -295,6 +295,8 @@ Examples:
 * `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction to the 1<sup>st</sup> client in
 the list on the 07/11/2000.
 
+![Ui](images/SampleBuySellCommand2.png)
+
 [Back to Table of Contents](#table-of-contents)
 
 ### Editing a transaction: `edit`
@@ -335,7 +337,8 @@ Example:
 
 ### Filtering buy or sell transactions: `filter`
 
-Filters the buy or sell transactions of all the clients.
+Filters the buy or sell transactions of all the clients. The filtered transactions will be displayed in the transaction panel while the client list panel will display
+all the clients.
 
 Format: `filter TYPE`
 
