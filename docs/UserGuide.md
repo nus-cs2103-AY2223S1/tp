@@ -57,6 +57,7 @@ Here are some of the symbols and text formatting to look out for as you make use
 1. Now, let’s continue to learn how to [navigate the application](#navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -95,6 +96,7 @@ As this section is meant for new users, it will not cover how to navigate the ap
 Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as `deletedebt` and `find`. You can find out more about these commands in the [features](#features) section below.
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -152,6 +154,7 @@ Be very careful with how a command is formatted! If the `…` is found within th
 </div>
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -456,6 +459,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 * _Prefix_: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
 
 [Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -481,3 +485,5 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Get statement** | `statement`                                                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                  |
 | **Undo**          | `undo`                                                                                                                                                                                                                                                  |
+
+[Return to Table of Contents](#table-of-contents)
