@@ -8,6 +8,7 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div markdown="block" class="index">
 
 ## Quick start
 
@@ -314,3 +315,5 @@ _More food items coming soon in a future release..._
 | **Tip**     | `tip`                                                   | `tip`                            |
 | **Clear**   | `clear`                                                 | `clear`                          |
 | **Exit**    | `exit`                                                  | `exit`                           |
+
+</div>
