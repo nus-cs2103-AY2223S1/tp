@@ -26,8 +26,9 @@ get you started in no time and be your guiding light as you navigate through Cla
 guide, head over to [Quick Start](#3-quick-start) or to learn about Class-ify's features, head over to
 [Features](#4-features) for more information.
 
-## 2. **How to use this user guide**
+## 2. **About the User Guide**
 
+### 2.1 How to use this user guide
 Class-ify uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through
 the user guide from start to end to fully understand how to use Class-ify. However, you may also choose to skip to the relevant sections described below:
 * Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide. There is also a link at the end of every section to bring you back to the Table of Contents.
@@ -35,6 +36,20 @@ the user guide from start to end to fully understand how to use Class-ify. Howev
 * Refer to our [Features](#4-features) section to learn in detail the different features and commands available in Class-ify.
 * Refer to our [Command Summary](#6-command-summary) to have a quick overview of the different commands and their respective formats.
 * Refer to our [Glossary](#7-glossary) to learn key terms that are used in this User Guide.
+
+### 2.2 Navigating the Display
+This section introduces the different components of the display and their functions. 
+
+![Application Window](images/ClassifyApplicationWindow.png)
+
+| No. | Component             | Description                                                                                                                    |
+|-----|-----------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Toolbar               | Provides convenient access to frequently used commands.                                                                        |
+| 2   | Student List Panel    | Displays the list of students. You can [manage this display](#42-managing-display-of-student-records) to suit your needs.      |
+| 3   | Student Card          | Displays the information of a student. The information includes the student's Name, Id, Class, Grades, and Parent Details.     | 
+| 4   | Result Box            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
+| 5   | Command Box           | Type in your commands here.                                                                                                    |
+| 6   | Storage File Location | Displays the location of the data file on your computer.                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -181,7 +196,7 @@ Examples:
 
 Edits the respective details of an existing student.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3 ...
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3 ...
 * Existing values will be updated to the new input values.
 * Refer to the complete list of tags for each field under [addStudent command](#421-adding-a-new-student-record--addstudent).
 
