@@ -60,7 +60,7 @@ public class UniqueListingList implements Iterable<Listing> {
      */
     public Listing getListing(ListingId id) {
         for (Listing listing : internalList) {
-            if (listing.getId().equals(id.value)) {
+            if (listing.getId().equals(id)) {
                 return listing;
             }
         }
