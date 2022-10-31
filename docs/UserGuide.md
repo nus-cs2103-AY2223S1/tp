@@ -130,18 +130,35 @@ While exploring CLInkedIn's features with this user guide, do take note of these
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+- Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+
+- The command word is case-insensitive.<br>
+  e.g. `add` is the same as `ADD` or `aDd`.
 
 </div>
 
 ## Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page, as well as a list of commands and their descriptions.
+Alternatively, you can obtain help on a specific command by typing `help` followed by the command name.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format:
+
+- `help` will open the help window in a separate window containing a list of commands and their usages.
+- `help COMMAND` will display the command usage for COMMAND in the result display.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
+`help` will automatically parse any inputs given after the command word `help` as a command name. If the command name is invalid, an error message will be displayed in the result display.
+</div>
+
+Examples:
+
+- `help` will open the help window.
+- `help add` will display the usage of the `add` command.
+- `help 123` will display an error message as `123` is not a valid command name.
 
 ## Adding/Deleting contacts in CLInkedIn
 
@@ -157,11 +174,14 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [st/SK
 You can have any number and any kind of tags (including 0).
 </div>
 
-* By default, you can add 3 types of tags - `SKILL_TAG`, `DEGREE_TAG`, `JOB_TYPE_TAG`.
-* Alternatively, you can create your own custom tag type and alias for it. See `create` command.
+- By default, you can add 3 types of tags - `SKILL_TAG`, `DEGREE_TAG`, `JOB_TYPE_TAG`.
+
+- Alternatively, you can create your own custom tag type and alias for it. See [`createTagType`](#creating-a-custom-tag-type-createtagtype) command.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java dt/Bachelors jt/Internship, rate/4`
+
+- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/OA in Progress st/Java dt/Bachelors jt/Internship rate/4`
+
 * `add n/Betsy Crowe st/java e/betsycrowe@example.com a/Newgate Prison p/1234567 s/Rejected`
 
 ### Deleting a person : `delete`
@@ -192,7 +212,7 @@ Format: `createTagType TAG_TYPE TAG_ALIAS`
 
 Examples:
 
-- `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
+- `createTagType GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can use existing tag types: Skill, or Degree, or Job Type.
@@ -231,6 +251,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NO
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * While editing **Skill** tags, the existing `OLD_SKILL` of the person will be renamed to `NEW_SKILL`(Same for **Degree**, **JobType** and **Custom** tags).
+
+- While editing **Notes** of a person, their existing notes will be overwritten by the new input. Therefore, it is not possible to edit individual notes (i.e. if you input `edit 1 note/Hello` and the person already has a note `Hi`, the person's note will be changed to `Hello`).
+
 * You can remove **all** the person’s tags by typing `t/` without specifying any tags after it.
 * You can remove **all** the person’s **Skill** tags by typing `st/` without specifying any tags after it (Same for **Degree**, **JobType** and **Custom** tags).
 *
@@ -275,35 +298,52 @@ Format: `addNote INDEX note/NOTE`
 * The index refers to the index number shown in the displayed person list.
 * The index must be a positive integer 1, 2, 3, …​
 
+- The note's content will be taken as the input after the `note/` prefix.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-A person can have any number of notes (including 0)
+A person can have any number of notes (including 0).
+This command will add a new note to the person, and the note will be appended to the end of the list of notes.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
+You may not edit individual notes to a person. You can only add a new note to a person. Please refer to the [`edit`](#editing-a-person--edit) command for more information.
 </div>
 
 Examples:
-* `addNote 4 note/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
+
+- `addNote 4 note/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
+- Executing `addNote 4 note/Has a dog` sequentially appends a note `Has a dog` to the 4th person in the address book. The person now has two notes.
 
 ### Deleting optional information: `deleteNote`
 
 Deletes optional information (notes) of a person.
 
 Format: `deleteNote INDEX`
-* The index refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​
+
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+<strong>This command will delete all the notes</strong> of the person. CLInkedIn does not support deleting individual notes. Calling this command will delete all the notes of the person. If you wish to edit the existing notes of the person, please refer to the [`edit`](#editing-a-person--edit) command for more information.
+</div>
 
 Examples:
-* `deletNote 4` deletes all notes of the 4th person in the address book.
+
+- `deletNote 4` deletes all notes of the 4th person in the address book.
 
 ### Adding optional rating: `addRate`
 
-Adds a numerical representation of candidates to make quick comparisons between candidates. 
+Adds a numerical representation of candidates to make quick comparisons between candidates.
 
 Format: `addRate INDEX rate/<RATING>`
-* The index refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​
-* The rating must be an integer between 1 and 10 inclusive.
+
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
+- The rating must be an integer between 1 and 10 inclusive.
 
 Examples:
-* `addRate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
+
+- `addRate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
 
 ### Sorting candidates based on Rating: `sort`
 
@@ -316,20 +356,22 @@ Recall that rating is an optional field for a candidate. Thus, candidates with n
 Format: `sort`
 
 Example:
-* `sort` will return a list of the candidates, sorted in order of descending rating.
 
+- `sort` will return a list of the candidates, sorted in order of descending rating.
 
 ### Adding optional links: `addLink`
 
-Add links to candidate's online profiles/websites. Once added you can simply click on the icon and you will be redirected to the webpage. 
+Add links to candidate's online profiles/websites. Once added you can simply click on the icon and you will be redirected to the webpage.
 
 Format: `addLink INDEX l/<LINK>`
-* The index refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​
-* The link must be a valid link with a protocol.
+
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
+- The link must be a valid link with a protocol.
 
 Examples:
-* `addLink 2 l/https://www.instagram.com l/https://github.com` adds links to the instagram and github page ` to the 2nd person in the address book.
+
+- `addLink 2 l/https://www.instagram.com l/https://github.com` adds links to the instagram and github page ` to the 2nd person in the address book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 If the link is not a platform recognised by CLInkedIn (LinkedIn, GitHub, Instagram, Telegram, Twitter, Snapchat, Discord, Facebook) then a general icon for links is displayed.
@@ -340,21 +382,33 @@ If the link is not a platform recognised by CLInkedIn (LinkedIn, GitHub, Instagr
 Deletes all links of a person.
 
 Format: `deleteLink INDEX`
-* The index refers to the index number shown in the displayed person list.
-* The index must be a positive integer 1, 2, 3, …​
+
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `deleteLink 4` deletes all links of the 4th person in the address book.
+
+- `deleteLink 4` deletes all links of the 4th person in the address book.
 
 ## Modifying contacts view in CLInkedIn
 
 ### Viewing the details of a person : `view`
 
-Show details of a person in CLInkedIN.
+Show details of a person in CLInkedIn.
 
 Format: `view INDEX`
 
-Examples: `view 2` views the details of the 2nd person in CLInkedIn.
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Alternatively to view the information of a specific person, you can also click on the person's card in the person list.
+</div>
+
+Examples:
+
+- `view 2` views the details of the 2nd person in CLInkedIn.
+- Clicking on the 2nd person's card in the person list will also show the details of the 2nd person.
 
 ### Listing all persons : `list`
 
@@ -366,6 +420,7 @@ Format: `list`
 
 Finds candidates whose personal information and tags contain any of the given keywords.
 
+
 There are 2 types of find commands: general `find` and `find` by prefix.
 
 **General `find`:**
@@ -376,24 +431,28 @@ There are 2 types of find commands: general `find` and `find` by prefix.
 
 * Prefixes are used to specify which fields to search for the keywords in.
 
-Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
+Format: `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
+
 [MORE_TAGGED_KEYWORDS]...`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The personal information and tags will be searched.
-* Partial words will be matched e.g. `Han` will match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+- The search is case-insensitive. e.g `hans` will match `Hans`
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- The personal information and tags will be searched.
+- Partial words will be matched e.g. `Han` will match `Hans`
+- Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Search can be further refined by specifying the type of tag to search for.
+- Search can be further refined by specifying the type of tag to search for.
   e.g. `find n/John p/867` will return `John Doe` with phone number `8675309`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find Java` returns list of candidates with Java skills
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-* `find n/John` returns `John Doe`
-* `find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
+
+- `find John` returns `john` and `John Doe`
+- `find Java` returns list of candidates with Java skills
+
+- `find alex david` returns `Alex Yeoh`, `David Li`
+- `find n/John` returns `John Doe`
+- `find n/alex n/david` returns `Alex Yeoh`, `David Li`
+
 * `find s/application pending` returns list of candidates with status `application pending`
 
 ### Clearing all contacts : `clear`
@@ -518,7 +577,6 @@ If your changes to the data file makes its format invalid, CLInkedIn will discar
 | **DeleteTagType** | `deleteTagType TAG_TYPE` <br> e.g., `deleteTagType GPA`                                                                                                                                                                                                              |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]` or `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [MORE_TAGGED_KEYWORDS]`  <br> e.g., `find James Jake` , `find n/Alex p/8764321`                                                                                                          |
 | **List**          | `list`                                                                                                                                                                                                                                                               |
-| **Status**        | `status INDEX s/STATUS` <br> e.g., `status 1 s/Rejected`                                                                                                                                                                                                             |
 | **Help**          | `help`                                                                                                                                                                                                                                                               |
 | **Sort**          | `sort`                                                                                                                                                                                                                                                               |
 | **Rate**          | `rate INDEX r/RATING` <br> e.g., `rate 3 rate/5`                                                                                                                                                                                                                     |
