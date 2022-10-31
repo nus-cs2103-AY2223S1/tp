@@ -16,7 +16,7 @@
 
       <HBox fx:id="helpMessageContainer" alignment="CENTER" styleClass="result-display">
         <children>
-               <TextArea id="resultDisplay" fx:id="textArea" prefHeight="200.0" prefWidth="220.0" styleClass="result-display" HBox.hgrow="ALWAYS" />
+               <TextArea id="resultDisplay" fx:id="textArea" editable="false" prefHeight="200.0" prefWidth="220.0" styleClass="result-display" HBox.hgrow="ALWAYS" />
         </children>
         <opaqueInsets>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
