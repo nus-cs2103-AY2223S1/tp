@@ -90,6 +90,8 @@ This guide contains all you need to get started on working with GithubContact.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 | Action               | Format, Examples                                                                                                                                                                                         |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **add**              | `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `<br> `add name/John Doe address/27 Clementi` |
@@ -110,7 +112,7 @@ This guide contains all you need to get started on working with GithubContact.
 
 #### Add a person : `add`
 
-Adds person to list and shows contact information page, where attributes can be added and set. At least one of `NAME` or `GITHUB` must be provided.
+Adds a person to the list. At least one of `NAME` or `GITHUB` must be provided.
 
 Format: `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
 
@@ -119,7 +121,7 @@ Example:
 - `add github/johndoe name/John Doe`
 - `add name/John Doe address/27 Clementi`
 - `add name/Alex address/22 Clementi phone/86609830 email/alex@gmail.com`
-- `add name/Mike github/mikelim address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123`
+- `add name/Mike github/mikelim address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123 tag/friend timezone/+8 role/Frontend`
 
 Before the command is executed:
 ![before adding](images/ug/add_before.png)
@@ -135,9 +137,9 @@ Delete the specified person from the address book.
 
 Format: `delete INDEX`
 
-- You can only run this command in person listing page.
+- This command can only be run in the main page.
 - The index refers to the index number shown in the person list.
-- The index must be **positive integer** 1, 2, 3...
+- The index must be a **positive integer** (e.g. 1, 2, 3...)
 
 Example:
 - Delete the person at index 1: `delete 1`
@@ -187,8 +189,8 @@ Format: `sort [name|address|role][/desc]`
 
 Example:
 
-- Sort name in descending order: `sort name/desc`
-- Sort role in ascending order: `sort role`
+- Sort by name in descending order: `sort name/desc`
+- Sort by role in ascending order: `sort role`
 
 Before the command is executed:
 ![before sort](images/ug/sort_before.png)
@@ -204,7 +206,7 @@ Resets the persons list.
 
 Performs the following two functions:
 - Resets the search condition, causing the original list of persons to be displayed.
-- Resets the sorting condition, causing the list of persons to return to its default ordering.
+- Resets the sorting condition, causing the list of persons to return to its default ordering (by name in ascending order.)
 
 Format: `reset`
 
@@ -276,7 +278,7 @@ Delete attribute of a person.
 Format: `delete ATTRIBUTE_NAME`
 
 - You can only run this command in a person's detail page. Please refer to [Show Person Details](#show-a-persons-details--enter-or-double-click) to enter person details page.
-- `name` and `address` cannot be deleted as they are required attributes.
+- `name` cannot be deleted as it is a required attribute.
 - You only can delete one attribute at one time.
 
 Attributes (`ATTRIBUTE_NAME`) that can be deleted:
@@ -349,7 +351,7 @@ After executing `help delete`:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GithubContact home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -368,3 +370,18 @@ After executing `help delete`:
 | Telegram | `telegram/`, `tele/` |
 | Role     | `role/`, `r/`        |
 | Timezone | `timezone/`, `tz/`   |
+
+<div style="page-break-after: always;"></div>
+
+## Parameter Input Formats
+| Attribute | Input Format                                                                                                                                                                                                                                                                                                                 |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name      | Should only contain alphanumeric characters, spaces or dashes, and it should not be blank.                                                                                                                                                                                                                                   |
+| Address   | Can contain any character but should not be blank.                                                                                                                                                                                                                                                                           |
+| Role      | Starts with a letter, and contains only alphanumeric characters and space.                                                                                                                                                                                                                                                   |
+| Timezone  | Should be a number with a sign(+18 to -18) and should not be blank                                                                                                                                                                                                                                                           |
+| Phone     | Should only contain numbers and should be 3 digits long                                                                                                                                                                                                                                                                      |
+| Email     | Should be of the format <LOCALPART>@<DOMAIN>. The LOCALPART should have only alphanumeric characters, "+", "_", ".", and "-". The DOMAIN is made up of domain labels separated by periods(.), each one starting and ending with alphanumeric characters. The DOMAIN must end with a domain label at least 2 characters long. |
+| Slack     | Should contain only numbers, underscores(_), and lowercase letters. Must be between 1 and 20 characters in length                                                                                                                                                                                                            |
+| Telegram  | Should be of the format @<USERNAME>. USERNAME should be between 5 and 32 characters long, with only alphanumeric characters and underscores. It cannot start or end with an underscore nor have consecutive underscores.                                                                                                     |
+| Tag       | Should be alphanumeric                                                                                                                                                                                                                                                                                                       |
