@@ -144,6 +144,18 @@ class PastAppointmentTest {
     }
 
     @Test
+    public void getMedicationString_validMedication_returnsMedicationString() {
+        assertEquals("Medication: Paracetamol", new PastAppointmentBuilder()
+                .withMedication(new String[] { "Paracetamol" }).build().getMedicationString());
+    }
+
+    @Test
+    public void getMedicationString_multipleMedication_returnsMedicationString() {
+        assertEquals("Medication: ibuprofen, paracetamol", new PastAppointmentBuilder()
+                .withMedication(new String[] { "Paracetamol", "Ibuprofen" }).build().getMedicationString());
+    }
+
+    @Test
     public void equals() {
         PastAppointment pastAppointment;
 
@@ -160,6 +172,18 @@ class PastAppointmentTest {
         pastAppointment = new PastAppointmentBuilder().build();
         PastAppointment differentDatePastAppointment = new PastAppointmentBuilder().withDate("01-01-2021").build();
         assertNotEquals(pastAppointment, differentDatePastAppointment);
+
+        pastAppointment = new PastAppointmentBuilder().build();
+        PastAppointment differentMedicationPastAppointment = new PastAppointmentBuilder()
+                .withMedication(new String[] { "Paracetamol" })
+                .build();
+        assertNotEquals(pastAppointment, differentMedicationPastAppointment);
+
+        pastAppointment = new PastAppointmentBuilder().build();
+        PastAppointment differentDiagnosisPastAppointment = new PastAppointmentBuilder()
+                .withDiagnosis("Sick")
+                .build();
+        assertNotEquals(pastAppointment, differentDiagnosisPastAppointment);
 
     }
 
