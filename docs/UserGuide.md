@@ -41,12 +41,12 @@ This guide contains all you need to get started on working with GithubContact.
 
 3. Copy the file to the folder you want to use as the home folder for your GithubContact.
 
-4. Double-click the file to start the app. The GUI similar to the above should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The Graphical User Interface (GUI) similar to the above should appear in a few seconds. Note how the app contains some sample data.
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`help`** : Displays the help page.
 
    * **`add`**`name/John Doe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
@@ -91,7 +91,7 @@ This guide contains all you need to get started on working with GithubContact.
 </div>
 
 | Action               | Format, Examples                                                                                                                                                                                         |
-| -------------------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **add**              | `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `<br> `add name/John Doe address/27 Clementi` |
 | **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                                                                                                                                                               |
 | **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter`                                                                                                                                  |
