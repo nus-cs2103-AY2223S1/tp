@@ -124,7 +124,7 @@ eg. `nw/$1234`.
 * The `[mt/TIME...]` field accepts inputs in the `DD-MM-YYYY-HH:MM` format. Note that `YYYY` cannot be `0000`.
 
 
-Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
+Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
 ![create](images/UserGuide/create.png)
 
@@ -139,11 +139,11 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/
 Examples:
 * `create n/John Doe p/98765432 a/John street, block 123, #01-01`
 * `create n/Betsy Crowe a/Bugis MRT p/1234567 mt/10-11-2022-18:00 mt/01-02-2022-16:00`
-* `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 d/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
+* `create n/Benedict Lee p/91281329 e/benedict@gmail.com a/Redhill Ave 3 ds/Risk averse nw/$20000 mt/10-11-2022-16:00 t/SECURED`
 
 :white_check_mark: **Input Shortcut:**
 You can replace `create` with `c` for convenience.<br>
-Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
+Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
 #### Assigning PDF file to a client : `filepath`
 
@@ -282,7 +282,7 @@ Updates the information of a client stored in your FABook.
 * You can also update the description of a client through the [`description` command](#updating-clients-description-description).
 * You must update the meeting time of a client through the [`meeting` command](#add-meetings-meeting), [`deletemeeting` command](#delete-meetings-deletemeeting) and [`sync` commands](#remove-past-meetings-sync).
 
-Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
+Format: `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
                         
 ![update](images/UserGuide/update.png)  
 
@@ -303,7 +303,7 @@ Example:
 
 :white_check_mark: **Input Shortcut:**
 You can replace `update` with `u` for convenience.<br>
-Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
+Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
 
 #### Updating your client's description : `description`
 
@@ -312,13 +312,13 @@ Updates your client's description data field.
 * `INDEX` is the index of the client in the currently displayed list.
 * Updating description of your client can also be done through the 'update' command. See [Update command](#updating-clients-description-description)
 
-Format: `description INDEX d/DESCRIPTION`
+Format: `description INDEX ds/DESCRIPTION`
 
 ![description](images/UserGuide/description.png)     
 
 :white_check_mark: **Input Shortcut:**
 You can replace `description` with `desc` for convenience.
-Format: `desc INDEX d/DESCRIPTION`
+Format: `desc INDEX ds/DESCRIPTION`
 
 #### Updating meetings : `meeting`
    
@@ -463,15 +463,15 @@ If your changes to the data file makes its format invalid, FABook will discard a
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | **Help**                 | `help`                                                                                                                                                            | f1       |
 | **List**                 | `list`                                                                                                                                                            | l        |
-| **Create**               | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
+| **Create**               | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567` | c        |
 | **Add a File**           | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                   |          |
 | **Add Meeting**          | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                |          |
 | **Find**                 | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`                                      | f        |
 | **Find**                 | `find t/TAG` <br> e.g., `find t/POTENTIAL`                                                                                                                        | f        |
 | **Open File**            | `file INDEX`<br/> e.g. `file 2`                                                                                                                                   |          |
 | **Get Upcoming Meetings**|                                                                                                                                                                   | f2       |
-| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`      | u        |
-| **Description**          | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                                                                     | desc     |
+| **Update**               | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`      | u        |
+| **Description**          | `description INDEX ds/DESCRIPTION` <br> e.g., `description 3 ds/Accident prone`                                                                                     | desc     |
 | **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               | d        |
 | **Delete Meeting**       | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                    |          |
 | **Remove past meetings** | `sync`                                                                                                                                                            |          |
