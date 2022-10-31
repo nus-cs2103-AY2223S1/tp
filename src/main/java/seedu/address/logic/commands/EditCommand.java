@@ -89,7 +89,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
             + "provided is more than the dateSlot provided." + "Please remove the dateSlot index or add more dateSlot.";
 
-    public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX = "The dateSlot index given is out of bound "
+    public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX = "The dateSlot index given is out of bounds "
             + "of the existing list." + "Please retype another index that is within the range or left it empty.";
 
     public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX =
@@ -97,7 +97,7 @@ public class EditCommand extends Command {
                     + "Please remove the unavailable date index or add more unavailable date.";
 
     public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLEDATESINDEX = "The unavailable date index "
-            + "given is out of bound of the existing list."
+            + "given is out of bounds of the existing list."
             + "Please retype another index that is within the range or left it empty.";
 
     private final Uid targetUid;
@@ -250,7 +250,7 @@ public class EditCommand extends Command {
         if (!isDateSlotIndexesNull) {
             toBeUpdateDateSlotIndexes = new ArrayList<>(toBeUpdateDateSlotsIndexes.get());
 
-            // If the indexNo given is out of bound of the existing list -> throw exception
+            // If the indexNo given is out of bounds of the existing list -> throw exception
             for (Index indexNo : toBeUpdateDateSlotIndexes) {
 
                 if (indexNo.getZeroBased() >= originalDateSlot.size()) {
@@ -347,7 +347,7 @@ public class EditCommand extends Command {
         if (!isDateIndexesNull) {
             toBeUpdateDateIndex = new ArrayList<>(toBeUpdateDateIndexes.get());
 
-            // If the indexNo given is out of bound of the existing list -> throw exception
+            // If the indexNo given is out of bounds of the existing list -> throw exception
             for (Index indexNo : toBeUpdateDateIndex) {
 
                 if (indexNo.getZeroBased() >= originalDate.size()) {

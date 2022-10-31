@@ -45,7 +45,7 @@ public class DeassignCommand extends Command {
             + "has already passed.";
     public static final String MESSAGE_NOT_ASSIGNED_DATESLOT = "The dateslot %1$s has not been assigned.";
     public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The dateslot/homevisit index "
-            + "given is out of bound.";
+            + "given is out of bounds.";
 
     private final Uid uid;
     private final List<Index> dateslotOrHomevisitIndex;

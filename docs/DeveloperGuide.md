@@ -219,7 +219,7 @@ The following activity diagram summarizes what happens when a user executes an a
 * **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
     * Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
     * Cons: Less flexible in the home visit date and time that a patient can choose.
-    
+
 ### \[Proposed\] Mark feature
 
 #### Proposed implementation for marking Appointments between Nurses and Patients
@@ -654,7 +654,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 2b. The given index of the tag / tags is out of bound.
+* 2b. The given index of the tag / tags is out of bounds.
 
     * 2b2. Healthcare Xpress shows an error message.
 
@@ -800,7 +800,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 2a. Any given id number is invalid.
 
-    * 2a1. Healthcare Xpress shows an error message.              
+    * 2a1. Healthcare Xpress shows an error message.
 
       Use case resumes at step 1.
 

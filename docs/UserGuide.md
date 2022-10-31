@@ -103,7 +103,7 @@ Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ 
 * A patient can have any number of tags (including 0).
 * A patient can have any number of home-visit date and slot (including 0).
 * Date and slot need to be in the format of `yyyy-MM-dd,SLOT_NUMBER`, eg `2022-11-11,2`.
-* The slot timing is fixed and slot is range from 10am to 4pm.
+* The slot timing is fixed and slots are only from 10am to 4pm.
 * **Slot 1: 10am, Slot 2: 12pm, Slot 3: 2pm, Slot 4: 4pm.** The `SLOT_NUMBER` can only be from 1 to 4.
 * To add a patient, type `c/P` specifically.
 
@@ -172,11 +172,11 @@ Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/D
 * You can **remove all the person’s tags** by typing `t/` without specifying any tags after it.
 * The `DATE_AND_SLOT_INDEX` is the index of the date and slot list of a patient starting from 1.
 * When **editing date and slot**, there are **4 options**:
-  1. To delete all the existing date and slot of a patient: you can type `ds/` or `dsi/` or `ds/ dsi/` without specifying any date and slot or its index after it.
+  1. To delete all the existing date and slot of a patient: you can type `ds/` or `dsi/` or `ds/ dsi/` without specifying a date and slot or its index after it.
   2. To delete a specific date and slot of a patient: you can type `ds/ dsi/TO_BE_DELETED_DATE_AND_TIME_INDEX` or `dsi/TO_BE_DELETED_DATE_AND_TIME_INDEX`. The to be deleted date and slot index is the index of the specific date and slot you want to delete.
   3. To add a new date and slot of a patient: you can type `ds/NEW_DATE_AND_SLOT dsi/` or `ds/NEW_DATE_AND_SLOT`.
   4. To change a specific date and slot of a patient: you can type `ds/UPDATE_DATE_AND_SLOT dsi/TO_BE_UPDATED_DATE_AND_SLOT_INDEX`. The date and slot at this index in the list will be updated to the new date and slot given by you.
-* You can only use `ds/` and `dsi/` for **patient**. Nurse do not have any home-visit date and slot.
+* You can only use `ds/` and `dsi/` for **patient**. Nurse do not have any home-visit dates and slots.
 * The unavailable date works similar to the date and time edit excepts using different indicator `ud/` and `udi/` to indicate the date and the index.
 * The **unavailable date** is only applicable to **nurse**.
 

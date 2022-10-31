@@ -45,7 +45,7 @@ public class AssignCommand extends Command {
     public static final String MESSAGE_BOTH_PATIENT = "The given uids are both patients.";
     public static final String MESSAGE_INVALID_DATESLOT = "The date slot %1$s has already passed.";
     public static final String MESSAGE_ASSIGNED_DATESLOT = "The date slot %1$s has been assigned already.";
-    public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The date slot index given is out of bound.";
+    public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The date slot index given is out of bounds.";
 
     public static final String MESSAGE_TIME_CRASHES = "There is already an exisiting homevisit in this dateslot %1$s."
             + "Please assign another nurse";
