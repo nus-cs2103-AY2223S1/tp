@@ -11,10 +11,6 @@ It provides a **centralised** platform for CS students to
 
 It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
 ## **Using the User Guide**
 In this *User Guide*, we will take you through the many useful features and functions of Mass Linkers, and provide you crucial information on how the different commands are used.
 
@@ -27,9 +23,12 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 **:warning:**: __warning__ as the command can create drastic changes to the existing App data
 
+* Table of Contents
+{:toc}
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have Java `11` or above installed in your computer.
 
@@ -44,7 +43,7 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -352,7 +351,7 @@ Data in Mass Linkers is saved in the hard disk automatically after executing any
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Parameter Requirements
+### **Parameter Requirements**
 
 Below is the summary of requirements of each parameter for the various commands. 
 
@@ -366,7 +365,7 @@ Below is the summary of requirements of each parameter for the various commands.
 | Email           | Emails should be of the format local-part@domain and adhere to the following constraints: <br> 1. The local-part should only contain alphanumeric characters and these special characters within the quotation marks: "`+_.-`". The local-part may not start or end with any special characters.<br> 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>The domain name must:<br>- end with a domain label at least 2 characters long<br>- have each domain label start and end with alphanumeric characters<br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. <br/> Examples: `john12@gmail.com`, `joe-lim@u.nus.edu` |
 | Modules         | Module names should be numbers prefixed with alphabet(s) and be less than 10 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
-### Module Categorisation
+### **Module Categorisation**
 
 Modules are automatically categorised upon creation.
 
@@ -384,7 +383,7 @@ _Module prefix refers to the first two characters of every module name._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 #### Technical Support
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install Mass Linkers in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Mass Linkers home folder.
@@ -410,7 +409,7 @@ _Module prefix refers to the first two characters of every module name._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 All the available commands in Mass Linkers are categorised into 4 summary tables below.
 
