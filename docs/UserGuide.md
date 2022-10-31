@@ -14,7 +14,7 @@ title: User Guide
 
 If your fingers are as quick as your wit, UniNurse helps you to get your patient management tasks done in no time!
 It leverages on a no-frills _Command Line Interface (CLI)_ to give fast typists such as yourself a painless user
-experience. 
+experience.
 
 </div>
 
