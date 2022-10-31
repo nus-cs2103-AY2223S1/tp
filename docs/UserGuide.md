@@ -156,11 +156,13 @@ parameters already exists in HealthContact.
 
 Adds a bill attached to an appointment with input information including amount and bill date.
 
-* Amount must be positive number with at most 2 decimal places.
+* An amount must be positive number with at most 2 decimal places.
 
 * One appointment can be attached to no more than one bill.
 
-* Bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
+* A bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
+
+* A bill date before appointment date is allowed as there may be reservation fee.
 
 #### Command word
 
