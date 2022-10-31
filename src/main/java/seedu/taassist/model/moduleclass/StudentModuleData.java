@@ -71,6 +71,7 @@ public class StudentModuleData implements Identity<StudentModuleData>, Comparabl
     /**
      * Returns a new {@code StudentModuleData} by updating the grade in the given {@code session}.
      * If the session does not exist in the list of session data, a new session data is added.
+     * Assumption: the session exists in the module class.
      */
     public StudentModuleData updateGrade(Session session, double grade) {
         requireAllNonNull(session);
