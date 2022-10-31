@@ -1,6 +1,14 @@
 package seedu.watson.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_INDEX_NUMBERS;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
+import static seedu.watson.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +27,19 @@ public class GradeCommand extends Command {
     public static final String COMMAND_WORD = "grade";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Allows for editing of grades by subject and assessment.\n"
-            + "Parameters: ";
+            + "Parameters: "
+            + "SUBJECT_"
+            + "assessmentName_"
+            + "totalScore_"
+            + "assessmentWeightage_"
+            + "assessmentDifficulty\n"
+            + "Example: " + COMMAND_WORD + " "
+            + "math_"
+            + "ca1_"
+            + "100_"
+            + "0.4_"
+            + "2";
+
 
     public static final String MESSAGE_SUCCESS = "Updating Grades...";
 
