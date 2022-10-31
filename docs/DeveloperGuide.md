@@ -298,7 +298,7 @@ Step 5. In `LogicManager`, the returned `REditCommand` is executed.
 
 Step 6. A new `Review` object is created with the fields of `Review` to be edited, except the field(s) that are to be edited, which will be set by the parsed user input. In this case `Review` with index 2 is copied over to a new `Review` object expect its `Rating` field which is set as `5`.
 
-Step 7. The new `Stall` object will be created and its field copied over except the `Review` to be edited which will be replaced by the updated `Review`. This new `Stall` object will then replace the `Stall` object that contains the `Review` to be edited in the `Model` when `model.setReview()` is called.
+Step 7. A new `Stall` object will be created and its field copied over except the `Review` to be edited which will be replaced by the updated `Review`. This new `Stall` object will then replace the `Stall` object that contains the `Review` to be edited in the `Model` when `model.setReview()` is called.
 
 ![EditReview](images/EditReview.png)
 
