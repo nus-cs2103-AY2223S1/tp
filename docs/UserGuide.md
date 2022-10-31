@@ -23,7 +23,7 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 ### Meaning of icons
 **:information_source:** additional information such as specific requirements of parameters and the nature of command
 
-**:tip:** tip on how to carry out certain functionalities
+**:bulb:** tip on how to carry out certain functionalities
 
 **:warning:** warning as the command can create drastic changes to the existing App data
 
