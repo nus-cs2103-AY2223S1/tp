@@ -4,9 +4,11 @@ title: User Guide
 ---
 ## Introducing Pupilist
 
-![Welcome to Pupilist!](images/pupilist.png)
+<p align="center">
+  <img src="images/pupilist.png" alt="Pupilist's app icon"/>
+</p>
 
-Pupilist is a **application for managing students details for private tutors**. It aims to **help you organise your students information to better plan for lessons**.
+Pupilist is an **application for managing students details for private tutors**. It aims to **help you organise your students information to better plan for lessons**.
 
 If you are a private tutor struggling to:
    1. keep track of your students and their individual lesson plans.
@@ -14,6 +16,8 @@ If you are a private tutor struggling to:
    3. keep track of your lesson timings.
    4. keep track of your students' contact information.
 Pupilist can get your scheduling done faster with single line CLI command inputs to manage all your tutoring needs.
+
+## Table of Contents
 
 * Table of Contents
 {:toc}
@@ -26,14 +30,7 @@ Pupilist can get your scheduling done faster with single line CLI command inputs
 | CLI       | Command-Line-Input, refers to text-based command inputs you will enter in the CommandBox.                                                                                                                                                                                                                                                           |
 | GUI       | Graphical-User-Interface, refers to the UI displayed to you.                                                                                                                                                                                                                                                                                        |
 | Parameter | Refers to the information you will need to give to Pupilist along with your <br> command so that Pupilist can execute an action based on that information.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Person ,assuming a valid name in view mode. |
-| Prefixes  | A prefix indicates the type of field you are keying in. You can find the list of prefixes supported by Pupilist [here](#)                                                                                                                                                                                                                           | 
-| `* * *`   | user                                                                                                                                                                                                                                                                                                                                                |
-| `* * *`   | user                                                                                                                                                                                                                                                                                                                                                | 
-| `* * *`   | user with many students to manage                                                                                                                                                                                                                                                                                                                   |
-| `* * *`   | user with many students to manage	                                                                                                                                                                                                                                                                                                                  | 
-| `* * *`   | long-term user with many students	                                                                                                                                                                                                                                                                                                                  | 
-| `* * *`   | long-term user			                                                                                                                                                                                                                                                                                                                                   | 
-
+| Prefixes  | A prefix indicates the type of field you are keying in. You can find the list of prefixes supported by Pupilist [here](#prefixes-summaries)                                                                                                                                                                                                         |
 
 ## Quick start
 
