@@ -33,6 +33,7 @@ It helps to keep track of patient data, patient appointments and patient bills f
 * Select an appointment (selectappointment)
 * Set a bill to be paid (setpaid)
 * Set a bill to be unpaid (setunpaid)
+
 ---
 # Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
