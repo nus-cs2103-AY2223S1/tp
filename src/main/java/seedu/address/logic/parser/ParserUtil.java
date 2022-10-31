@@ -36,10 +36,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.addcommands.AddOrderCommand;
 import seedu.address.logic.commands.addcommands.AddPetCommand;
@@ -76,12 +77,14 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_PERSON_CATEGORY = PersonCategory.MESSAGE_CONSTRAINTS;
 
+    private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
+        logger.fine("Parsing index: " + oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
@@ -97,6 +100,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
+        logger.fine("Parsing name: " + name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
@@ -112,6 +116,7 @@ public class ParserUtil {
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
+        logger.fine("Parsing phone: " + phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
@@ -127,6 +132,7 @@ public class ParserUtil {
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
+        logger.fine("Parsing address: " + address);
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
@@ -142,6 +148,7 @@ public class ParserUtil {
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
+        logger.fine("Parsing email: " + email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
@@ -157,6 +164,7 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
+        logger.fine("Parsing tag: " + tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
@@ -172,6 +180,7 @@ public class ParserUtil {
      */
     public static Order parseOrder(String orderString, boolean isBuyerExisting) throws ParseException {
         requireNonNull(orderString);
+        logger.fine("Parsing order: " + orderString);
         String trimmedOrderString = orderString.trim();
         ArgumentMultimap argMultimap;
 
@@ -289,6 +298,7 @@ public class ParserUtil {
      */
     public static PetName parsePetName(String name) throws ParseException {
         requireNonNull(name);
+        logger.fine("Parsing pet name: " + name);
         String trimmedName = name.trim();
         if (!PetName.isValidName(trimmedName)) {
             throw new ParseException(PetName.MESSAGE_CONSTRAINTS);
@@ -304,6 +314,7 @@ public class ParserUtil {
      */
     public static OrderStatus parseOrderStatus(String orderStatus) throws ParseException {
         requireNonNull(orderStatus);
+        logger.fine("Parsing order status: " + orderStatus);
         String trimmedOrderStatus = orderStatus.trim();
         if (!OrderStatus.isValidOrderStatus(trimmedOrderStatus)) {
             throw new ParseException(OrderStatus.MESSAGE_CONSTRAINTS);
@@ -323,6 +334,7 @@ public class ParserUtil {
      */
     public static Request parseRequest(String request) throws ParseException {
         requireNonNull(request);
+        logger.fine("Parsing request: " + request);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(request,
                         PREFIX_ORDER_SPECIES,
@@ -353,6 +365,9 @@ public class ParserUtil {
     public static Pet parsePet(String petString, boolean isSupplierExisting) throws ParseException {
 
         requireNonNull(petString);
+
+        logger.fine("Parsing pet: " + petString);
+
         ArgumentMultimap argMultimap;
 
         if (isSupplierExisting) {
@@ -446,6 +461,7 @@ public class ParserUtil {
      */
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
+        logger.fine("Parsing price: " + price);
         String trimmedPrice = price.trim();
 
         double doublePrice;
@@ -470,6 +486,7 @@ public class ParserUtil {
      */
     public static PriceRange parsePriceRange(String priceRange) throws ParseException {
         requireNonNull(priceRange);
+        logger.fine("Parsing price range: " + priceRange);
         String[] splitPrices = priceRange.split(PriceRange.DELIMITER);
         if (splitPrices.length != 2) {
             throw new ParseException(PriceRange.MESSAGE_USAGE);
@@ -497,9 +514,10 @@ public class ParserUtil {
      * Parses a {@code String date} into an {@code LocalDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalValueException if the given {@code date} cannot be parsed in all acceptable formats.
+     * @throws ParseException if the given {@code date} cannot be parsed in all acceptable formats.
      */
     public static LocalDate parseDate(String date) throws ParseException {
+        logger.fine("Parsing date: " + date);
         LocalDate output;
         for (String format: ACCEPTABLE_DATE_FORMATS) {
             try {
@@ -520,6 +538,7 @@ public class ParserUtil {
      */
     public static Age parseAge(String age) throws ParseException {
         requireNonNull(age);
+        logger.fine("Parsing age: " + age);
         int intAge;
         try {
             intAge = Integer.parseInt(age);
@@ -535,6 +554,7 @@ public class ParserUtil {
      */
     public static Color parseColor(String color) {
         requireNonNull(color);
+        logger.fine("Parsing color: " + color);
         String trimmedColor = color.trim();
         return new Color(trimmedColor);
     }
@@ -545,6 +565,7 @@ public class ParserUtil {
      */
     public static ColorPattern parseColorPattern(String colorPattern) {
         requireNonNull(colorPattern);
+        logger.fine("Parsing color pattern: " + colorPattern);
         String trimmedColorPattern = colorPattern.trim();
         return new ColorPattern(trimmedColorPattern);
     }
@@ -555,6 +576,7 @@ public class ParserUtil {
      */
     public static Species parseSpecies(String species) {
         requireNonNull(species);
+        logger.fine("Parsing species: " + species);
         String trimmedSpecies = species.trim();
         return new Species(trimmedSpecies);
     }
@@ -563,10 +585,11 @@ public class ParserUtil {
      * Parses a {@code String birthday} into an {@code DateOfBirth}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalValueException if the given {@code birthday} cannot be parsed in all acceptable formats.
+     * @throws ParseException if the given {@code birthday} cannot be parsed in all acceptable formats.
      */
     public static DateOfBirth parseDateOfBirth(String date) throws ParseException {
         LocalDate output;
+        logger.fine("Parsing date of birth: " + date);
         for (String format: ACCEPTABLE_DATE_FORMATS) {
             try {
                 output = LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
@@ -586,7 +609,7 @@ public class ParserUtil {
      */
     public static Height parseHeight(String height) throws ParseException {
         requireNonNull(height);
-
+        logger.fine("Parsing height: " + height);
         double doubleHeight;
         try {
             doubleHeight = Double.parseDouble(height);
@@ -630,6 +653,7 @@ public class ParserUtil {
      */
     public static VaccinationStatus parseVaccinationStatus(String vaccinationStatus) throws ParseException {
         requireNonNull(vaccinationStatus);
+        logger.fine("Parsing vac status: " + vaccinationStatus);
         if ("true".equals(vaccinationStatus)) {
             return new VaccinationStatus(true);
         } else if ("false".equals(vaccinationStatus)) {
@@ -647,7 +671,7 @@ public class ParserUtil {
      */
     public static Weight parseWeight(String weight) throws ParseException {
         requireNonNull(weight);
-
+        logger.fine("Parsing weight: " + weight);
         double doubleWeight;
         try {
             doubleWeight = Double.parseDouble(weight);
