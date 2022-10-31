@@ -26,7 +26,7 @@ Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of t
 
 1. Type in the command box and press Enter to execute it.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 # 2. Important information
@@ -70,7 +70,7 @@ Simple and intuitive colors are used to identify stock levels.
 
 **Examples:**
 
-Inventory Status in the [Stats Panel](#Statistics Panel).
+Inventory Status in the [Stats Panel](#31-statistics-panel).
 
 Inventory Cards for Items
 
@@ -109,7 +109,7 @@ Adds an item of a specified type with the given details
 
 <div markdown="span" class="alert alert-info">
 
-**Note:** Tag rules apply for `add` and `addTask`. Refer to [this section](#important-information).
+**Note:** Tag rules apply for `add` and `addTask`. Refer to [this section](#2-important-information).
 
 </div>
 
@@ -219,7 +219,7 @@ Edits a specified item's details
 
 **Note:** At least one field has to be edited for the command to execute successfully.
 
-Tag rules apply for `edit` and `editTask`. Refer to [this section](#important-information).
+Tag rules apply for `edit` and `editTask`. Refer to [this section](#2-important-information).
 
 </div>
 
