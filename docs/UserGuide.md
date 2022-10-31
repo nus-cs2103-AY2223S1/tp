@@ -120,29 +120,26 @@ will delete all data stored locally and this action is irreversible. You will lo
 
 #### 4.1.1 Adding a new student record : `addStudent`
 
-Creates a new student record with the following details:
+Creates a new student record with the following parameters:
 
-* **Name of Student** `nm/`
-* **Student's ID (last 4 digits of NRIC)** `id/`
-  * ID should only contain 3 digits followed by 1 character.
-* **Student's Class** `class/`
-  * Similar to names, class name should only contain alphanumeric characters and spaces.
-* Exam Grades for CA1, CA2, SA1, and SA2 `exam/`
-* Name of Parent `pn/`
-* Mobile Number of Parent `hp/`
-  * Phone numbers should only contain numbers, and it should be at least 3 digits long. 
-* Email Address of Parent `e/`
-  * Email address should follow standard convention format local-part@domain.
+| **Paramter**        | **Prefix** | **Compulsory** | **Description**                                                                                                                                                                                                                                                                    |
+|---------------------|------------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**            | `nm/`      | Yes            | Student's name should be alphanumeric, consisting of both letters and numbers only. As student names are treated as unique, it is recommended to use the full name of the student.                                                                                                 |
+| **ID**              | `id/`      | Yes            | Student's id should contain 3 digits followed by 1 character (e.g. `123A`). Do note that ids are unique, hence no two students should have the same ids.                                                                                                                           |
+| **Class**           | `class/`   | Yes            | Class name should be alphanumeric, consisting of both letters and numbers only.                                                                                                                                                                                                    |
+| **Exam**            | `exam/`    | No             | Exams should follow the format exam name followed by score (e.g. `CA1 90`). Current accepted exam names are _CA1_, _CA2_, _SA1_ and _SA2_. Future versions may allow custom exam or gradable items to be created. In addition, scores should be an integer value between 0 to 100. |
+| **Parent's Name**   | `pn/`      | No             | Name of student's parent. Similar to the student's name, the parent's name should be alphanumeric also.                                                                                                                                                                            |
+| **Parent's Mobile** | `hp/`      | No             | Mobile number of student's parent. It should only contain numbers, and it should be at least 3 digits long. Entries with country code can be prefixed without the plus sign.                                                                                                       |
+| **Parent's Email**  | `e/`       | No             | Email address of student's parent should follow standard convention format _local-part@domain_.                                                                                                                                                                                    |
 
-Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/NAME SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] [e/EMAIL]`
+Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] [e/EMAIL]`
 
 <div markdown="span" class="alert alert-primary">:bulb:
-**Tip #1:** All **bolded** fields are compulsory. Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
+**Tip:** Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip #2:** To add exam grades, specify the tag `exam/` followed by an exam name (CA1, CA2, SA1, or SA2) and score (a number from 0 to 100). Multiple exams can be added in a single line.<br>
-Example: `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** Multiple exams can be added in a single line. For example, `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
 </div>
 
 Examples:
