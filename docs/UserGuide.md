@@ -6,11 +6,13 @@ title: User Guide
 <p align="center">
   <img src="./images/Coydir_Logo.png" />
   <h1 align="center"><font size="7">Coydir</font><br><em>The Ultimate Company Directory</em></h1>
-</p> 
+</p>
 
-Welcome to Coydir's User Guide! 
+Welcome to Coydir's User Guide!
 
-**[Insert some catchy phrase here]**
+**Even Thanos had to read the User Guide before he learnt how to wield the power of the infinity stones...**
+
+**This guide will teach you the ropes so that you too can command the infinite power of Coydir the universe has never seen before!! Or simply feel free to look around! :p**
 
 ---
 
@@ -24,26 +26,28 @@ Welcome to Coydir's User Guide!
 - [Features](#features)
   - [Coydir Commands Format](#coydir-commands-format)
   - [Managing Employee Profiles](#managing-employee-profiles)
-    - [Adding an employee](#adding-an-employee--add)
-    - [Editing an employee](#editing-an-employee--edit)
-    - [Deleting an employee](#deleting-an-employee--delete)
-    - [Adding multiple employees at once](#adding-multiple-employees-at-once--batchadd)
-    - [View details of an employee](#view-details-of-an-employee--view)
-    - [Listing all employees](#listing-all-employees--list)
-    - [Finding an employee](#finding-an-employee--find)
+    - [What's in an Employee Profile](#whats-in-an-employee-profile)
+    - [Adding an employee](#adding-an-employee-add)
+    - [Editing an employee](#editing-an-employee-edit)
+    - [Deleting an employee](#deleting-an-employee-delete)
+    - [Adding multiple employees at once](#adding-multiple-employees-at-once-batchadd)
+    - [View details of an employee](#view-details-of-an-employee-view)
+    - [Listing all employees](#listing-all-employees-list)
+    - [Finding an employee](#finding-an-employee-find)
   - [Managing Employee Leaves](#managing-employee-leaves)
     - [Controlling total leaves for an employee](#controlling-total-leave-for-an-employee)
     - [Checking if an employee is on leave](#checking-if-an-employee-is-on-leave)
     - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-add-leave)
     - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-delete-leave)
   - [Managing Employee Performance](#managing-employee-performance)
-    - [Rating the performance of an employee](#rating-the-performance-of-an-employee--rate)
+    - [Rating the performance of an employee](#rating-the-performance-of-an-employee-rate)
     - [Employee Performance History](#employee-performance-history)
   - [Managing Departments](#managing-departments)
     - [View details of a department](#view-details-of-a-department--view-department)
   - [Additional Features](#additional-features)
-    - [Exiting the program](#exiting-the-program--exit)
-    - [Clearing the data](#clearing-the-data--clear)
+    - [Getting help](#getting-help-help)
+    - [Exiting the program](#exiting-the-program-exit)
+    - [Clearing the data](#clearing-the-data-clear)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
@@ -53,7 +57,7 @@ Welcome to Coydir's User Guide!
 
 ## Introduction
 
-Coydir is a desktop app to manage the employee details within a company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates based on the changes of the company structure.
+Welcome HR executives and Department Heads! Coydir is a desktop app to efficiently track key employee details within your company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates such as leaves and performance rating information.
 
 ## Using this Guide
 
@@ -61,21 +65,14 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
 **[To be updated]**
 
-### The User Interface
-
-**[To be updated]**
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-    1. If you have installed Java before, check that you have the right version,  which is Java `11`.
-        - If you are using Windows, open up command prompt and type `java -version` and enter. 
-        - If you are using Mac, open up terminal and type `java -version` and enter.   
-    2. If you do not have Java `11`:
-        - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/).
-        - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).   
-    <br />
-        
+   1. If you have installed Java before, check that you have the right version, which is Java `11`.
+      - If you are using Windows, open up command prompt and type `java -version` and enter.
+      - If you are using Mac, open up terminal and type `java -version` and enter.
+   2. If you do not have Java `11`: - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/). - If you are using Mac, you can install the Azul build of OpenJDK 11 version from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).  
+      <br />
 2. Download the latest Coydir v1.3.0 jar file from [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Coydir.
@@ -96,6 +93,48 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
    - **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
+
+### The User Interface
+Below is an image of Coydir User Interface with the main components labelled.
+
+![](images/ui-screenshots/Labelled GUI.png)
+
+#### Toolbar
+![](images/ui-screenshots/Toolbar.png)
+This Toolbar can be used to :
+1. Exit the application through the **File** button
+2. Access the Help guide through the **Help** button
+3. Change from Dark mode to Light Mode or vice versa through the **Theme** button
+
+#### Employee List Panel
+![](images/ui-screenshots/Employee List Panel.png)
+This shows the whole employee list with basic information such as _Name_, _Employee ID_ and _Position_.
+
+This will come in handy if:
+1. You want a general overview of the employees in the company as 
+of this moment 
+2. You want to quickly find out their Employee ID to view more details.
+
+#### Employee Info Panel
+![](images/ui-screenshots/Employee Info Panel.png)
+This shows a specific employee's particulars.
+
+Things to note:
+
+1. On startup of the application, this panel shows Coydir logo.
+2. To view an employee's particulars, refer to the [view command]([#view-details-of-an-employee--view).
+3. If you delete an employee that you are currently viewing, the employee info view will display the next employee's 
+particulars.
+4. If there is no next employee, this panel will revert to the Coydir logo.
+
+
+#### Command Box
+![](images/ui-screenshots/Command.png)
+
+You can enter your user commands in the bottom section labeled as `Enter command here...`.
+
+The top section displays relevant messages/errors after the command is entered.
+
 
 ---
 
@@ -140,21 +179,71 @@ We will explore each of these fields in great detail as we continue along, but b
 
 ### Managing Employee Profiles
 
-What's Human Resources without the Human aspect? (*P.S. It's not "Resources"*)
+What's Human Resources without the Human aspect? (_P.S. It's not "Resources"_)
 
-The **core** of any management tool is the **collection and tracking of data**. 
-Recognising this, Coydir offers several features for the manipulation of data on your company's employees. 
+The **core** of any management tool is the **collection and tracking of data**.
+Recognising this, Coydir offers several features for the manipulation of data on your company's employees.
 
-As a *HR professional*, Coydir makes it easy for you to **add and remove data**, **change past entries**, and **look for exactly the information you need**. 
+As a _HR professional_, Coydir makes it easy for you to **add and remove data**, **change past entries**, and **look for exactly the information you need**.
 All this, while keeping your data packed neatly as individual employee profiles for a clean, organised viewing.
 
 Next, let us look at each feature in detail.
+
+#### What's in an Employee Profile
+
+There's _a lot of data_ that a company might want to keep track of for their employees, and different companies might maintain different standards and policies.
+In light of this, Coydir focuses on making it easy to manage key data for employees, for the purpose of making everyday operations smooth.
+
+The complete employee profile allows you to specify _a fair amount_ of details for an employee, though some of these particulars are **optional**, and can be left blank if you are unsure of the information, or if you do not feel the need to keep track of it.
+
+| Particular       | Description                            | Requirement    | Default Value |
+| ---------------- | -------------------------------------- | -------------- | ------------- |
+| **Employee ID**  | Unique numerical ID of employee        | **Cannot Set** | -             |
+| **Name**         | Name of employee                       | **Compulsory** | -             |
+| **Position**     | Position/job title of employee         | **Compulsory** | -             |
+| **Department**   | Department of employee                 | **Compulsory** | -             |
+| **Phone Number** | Phone number of employee               | **Optional**   | N/A           |
+| **Email**        | Email of employee                      | **Optional**   | N/A           |
+| **Address**      | Address of employee                    | **Optional**   | N/A           |
+| **Tag**          | Any tag(s) for simple remarks          | **Optional**   | _None_        |
+| **Total Leave**  | Total no. of leave for employee        | **Optional**   | 14            |
+| **Leaves Left**  | No. of leaves left for employee        | **Cannot Set** | 14            |
+| **Rating**       | Latest performance rating for employee | **Cannot Set** | _None_        |
+
+<div markdown="span" class="alert alert-info">:bulb:
+  <h5>Bonus Information on the Profile</h5>
+  <ul>
+    <li><strong>Employee ID</strong> is a unique number assigned to each employee, and is used for several powerful commands. To ensure the uniqueness of the IDs, Coydir <strong>does not support</strong> any editing/manipulation of the employee IDs.</li>
+      <ul>
+        <li>If you really wish to, you can <a href="#editing-the-data-file">edit the data file</a> directly to "control" the employee IDs. However, this is <em>strongly discouraged</em>.</li>
+      </ul>
+    <li>For simplicity, Coydir (<em>in v1.4</em>) currently supports a fixed list of departments.</li>
+      <ul>
+        <li>You can find out more about this in the <a href="#managing-departments">Department Management section here</a>.</li>
+      </ul>
+    <li>For each employee, Coydir supports managing individual employee leaves, as well as performance ratings, helping you to track the particulars that are not meant to be set (no. of leaves left, employee rating).</li>
+      <ul>
+        <li>You can find out more about <a href="managing-employee-leaves">employee leave management here</a>, and about <a href="#managing-employee-performance">performance ratings here</a>.</li>
+      </ul>
+  </ul>
+</div>
 
 #### Adding an employee: `add`
 
 Adds an employee to Coydir.
 
-Format: `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​`
+Format: `add n/NAME [p/PHONE] [e/EMAIL] j/POSITION d/DEPARTMENT [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`NAME`|n/|Name|**Compulsory**| -
+`PHONE` |p/|Phone number|**Optional**| N/A
+`EMAIL` |e/|Email|**Optional**| N/A
+`POSITION` |j/|Job position|**Compulsory**| -
+`DEPARTMENT` |d/|Company Department|**Compulsory**| -
+`ADDRESS` |a/|Address|**Optional**| N/A
+`LEAVE` |l/|Total number of entitled leaves|**Optional**| 14
+`TAG` |t/|Information tags|**Optional**| _None_
 
 <div markdown="span" class="alert alert-primary">:bulb:
 An employee can have any number of tags (including 0).
@@ -172,14 +261,37 @@ Examples:
 
 #### Editing an employee: `edit`
 
-Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
+There might be times when you have to change an employee's particulars and details after adding them into the database.
+It could be a typo in the address, a mobile number change, maybe even a promotion...
+
+In any case, editing an employee's details can be done through a simple command.
+
+- Provide the **index number** of the employee (not the Employee ID) based on the **employee list currently displayed**, along with the updated details you wish to change to.
+- Any existing value, if it exists, will be overwritten by the updated value that is keyed in. Otherwise, details that are not specified will remain as they are, unchanged.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/POSITION] [d/DEPARTMENT] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
-Examples:
+| Field        | TAG | Description                         | Requirement    | Default Value |
+| ------------ | --- | ----------------------------------- | -------------- | ------------- |
+| `INDEX`      | -   | Index of employee in displayed list | **Compulsory** | -             |
+| `NAME`       | n/  | Updated name of employee            | **Optional**   | -             |
+| `PHONE`      | p/  | Updated phone number of employee    | **Optional**   | -             |
+| `EMAIL`      | e/  | Updated email of employee           | **Optional**   | -             |
+| `POSITION`   | j/  | Updated position of employee        | **Optional**   | -             |
+| `DEPARTMENT` | d/  | Updated department of employee      | **Optional**   | -             |
+| `ADDRESS`    | a/  | Updated address of employee         | **Optional**   | -             |
+| `LEAVE`      | l/  | Updated total leave of employee     | **Optional**   | -             |
+| `TAG`        | t/  | Updated tag(s) of employee          | **Optional**   | -             |
 
-- `edit 1 p/91234567 e/johndoe@example.com`
-- `edit 2 p/91234567 l/20 t/colleagues`
+<div markdown="span" class="alert alert-primary">:bulb:
+  <p>There must be <em>at least one</em> update parameter provided (such as name, phone, email, etc.). Otherwise, Coydir will not run the command, as you would not be editing anything at all!</p>
+</div>
+
+Example:
+
+![Edit command - example 1](./images/ui-screenshots/edit-example1.png)
+
+- `edit 2 p/91234567 l/20 t/colleagues` edits the 2nd displayed employee (_Irfan Ibrahim_) to have a phone number `91234567`, a total leave of `20`, and a single tag `colleagues`.
 
 #### Deleting an employee : `delete`
 
@@ -310,21 +422,46 @@ Format: `list`
 
 #### Finding an employee : `find`
 
-Finds employees by searching for specified keywords. You can search for a specific name, position, or department, or with any combination of the aforementioned.
+Once you get familiar with Coydir and batch-adding numerous employees into the database, using `list` simply isn't sufficient to look for the right employee.
+The `find` command is a specific, precise function meant for searching through your employee directory.
 
-The keywords for searching are case-insensitive, and need not be full words. Running the command will then display all employees whose details match the specified keywords.
+You can find employees by searching for:
 
-**Note**: There must be _at least one_ of the employees' particulars (and keywords) in the search.
+- Name
+- Position
+- Department
+
+Or any combination of the above. Coydir will then display all employees that fulfill your search criteria.
 
 Format: `find [n/NAME_KEYWORD] [j/POSITION_KEYWORD] [d/DEPARTMENT_KEYWORD]`
 
+| Field        | TAG | Description                               | Requirement  | Default Value |
+| ------------ | --- | ----------------------------------------- | ------------ | ------------- |
+| `NAME`       | n/  | Search keyword for name of employee       | **Optional** | -             |
+| `POSITION`   | j/  | Search keyword for position of employee   | **Optional** | -             |
+| `DEPARTMENT` | d/  | Search keyword for department of employee | **Optional** | -             |
+
+<div markdown="span" class="alert alert-primary">:bulb:
+  <h5>Important Tips!</h5>
+  <ul>
+    <li>There must be <em>at least one</em> parameter (and keyword) in the search, else Coydir will not know what to search for!</li>
+    <li>The keywords you input for searching are <strong>case-insensitive</strong>. Additionally, they need not be full words, just a segment will do. This means that searching for the department "tech" will show results for both "Technology and "Information Technology".</li>
+  </ul>
+</div>
+
 Example:
 
-- `find n/John j/engineer d/Tech` displays the employee "John Doe", who is a "Software Engineer" in the "Information Technology" department.
+![Find Command - Example](./images/ui-screenshots/find-example.png)
+
+- `find j/officer d/Management` displays 2 employees, who are "Officers" in the "General Management" department.
+
+![Find Command - Example](./images/ui-screenshots/find-example2.png)
+
+- `find n/Roy j/Design d/Tech` displays 1 employee, "Roy Balakrishnan" who is a "UI/UX Designer" in the "Information Technology" department.
 
 ### Managing Employee Leaves
 
-Employee leave management can sometimes be a surprisingly *tedious* matter to tackle.
+Employee leave management can sometimes be a surprisingly _tedious_ matter to tackle.
 
 However, with Coydir, we can help you to ensure your **company operations run smoothly**, while your **employees get adequate opportunities** to rest and attend to personal matters.
 
@@ -332,7 +469,7 @@ Here is how we support you in leave management.
 
 #### Controlling total leave for an employee
 
-You can set the total leave available for an **incoming new** employee when adding them to the database. This can be done by including the optional leave field, `l/`, when using the `add` command. 
+You can set the total leave available for an **incoming new** employee when adding them to the database. This can be done by including the optional leave field, `l/`, when using the `add` command.
 
 Example: `add n/Yi Long Ma j/Chief Operating Officer d/General Management l/20` adds an employee, and specifies his **total leave** to be **20**.
 
@@ -342,15 +479,15 @@ Example: `edit 1 l/10` edits the total leave of the **first** employee in the cu
 
 #### Checking if an employee is on leave
 
-There are two ways to check for the live availability of employees. 
+There are two ways to check for the live availability of employees.
 
 1. First is using the `view-department` command: `view-department general management` opens up a table to show all the employees of the general management department. The number of employees in the department that are available or on leave will be shown.
 
-2. The other way is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field. 
+2. The other way is using the `view` command, or simply just clicking on the profile card of a specific employee: `view 1`, or clicking on the first person card in the current list of employees, opens up the full information of the employee on the right hand side of the screen. You will be able to check if they are on leave by looking for the "On Leave" field.
 
 #### Adding a leave period for an employee: `add-leave`
 
-This adds a leave period to an employee given the employee ID and a start and end date. The leave period will also be displayed in a table which can be seen when viewing the employee's particulars. 
+This adds a leave period to an employee given the employee ID and a start and end date. The leave period will also be displayed in a table which can be seen when viewing the employee's particulars.
 
 This command results in one of two cases below:
 
@@ -369,11 +506,11 @@ Leaves are ordered by reverse chronological order in the table view.
 
 Format: `add-leave id/ID sd/START_DATE ed/END_DATE`
 
-Field |TAG | Description | Requirement| Default Value
---------------|---------------|---------------|------------------------ | --------
-`ID`|id/|Employee ID|**Compulsory**| -
-`START_DATE` |sd/|Start date of leave, in dd-MM-YYYY format|**Compulsory**| -
-`END_DATE` |ed/|End date of leave, in dd-MM-YYYY format|**Compulsory**| -
+| Field        | TAG | Description                               | Requirement    | Default Value |
+| ------------ | --- | ----------------------------------------- | -------------- |---------------|
+| `ID`         | id/ | Employee ID                               | **Compulsory** | -             |
+| `START_DATE` | sd/ | Start date of leave, in dd-MM-YYYY format | **Compulsory** | -             |
+| `END_DATE`   | ed/ | End date of leave, in dd-MM-YYYY format   | **Compulsory** | -             |
 
 Example:
 
@@ -382,7 +519,7 @@ Example:
 <p align="center">
   <img src="./images/ui-screenshots/addLeaveCommandOutcome.png" />
   <br><em>Result of adding leave successfully from example given</em>
-</p> 
+</p>
 
 #### Deleting a leave period for an employee: `delete-leave`
 
@@ -400,10 +537,11 @@ If the employee ID, or the index is invalid, Coydir will prompt the users accord
 
 Format: `delete-leave id/ID i/INDEX`
 
-Field |TAG | Description | Requirement| Default Value
---------------|---------------|---------------|------------------------ | --------
-`ID`|id/|Name|**Compulsory**| -
-`INDEX` |i/|Index of leave in the leave table|**Compulsory**| -
+| Field   | TAG | Description                       | Requirement    | Default Value |
+| ------- | --- |-----------------------------------| -------------- |---------------|
+| `ID`    | id/ | Employee ID                       | **Compulsory** | -             |
+| `INDEX` | i/  | Index of leave in the leave table | **Compulsory** | -             |
+
 
 Example:
 
@@ -412,13 +550,13 @@ Example:
 <p align="center">
   <img src="./images/ui-screenshots/deleteLeaveCommandOutcome.png" />
   <br><em>Result of deleting leave successfully from example given</em>
-</p> 
+</p>
 
 ### Managing Employee Performance
 
-Understanding the performance of your employees is crucial for *talent development* in the company.
+Understanding the performance of your employees is crucial for _talent development_ in the company.
 
-Key performance indicators, productivity, and progression policies may differ from company to company. 
+Key performance indicators, productivity, and progression policies may differ from company to company.
 Here, Coydir offers a **simple yet powerful** way of keeping track of and making sense of your employees' performance in the company.
 
 **[Insert a brief overview of the 1-5 rating system]**
@@ -435,13 +573,18 @@ This command results in one of two cases below:
 
 **Case 1: Valid ID and rating**
 
-If the employee exists, the rating given is valid (is a number from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
+If the employee exists, and the rating given is valid (is a number from 1-5 inclusive), the performance rating will be added and the performance field of the employee will be updated accordingly.
 
 **Case 2: Invalid ID or rating**
 
-If any of employee ID, the rating given is invalid (is not a number from 1-5 inclusive), Coydir will prompt the users accordingly, and the command will not execute.
+If the rating given for any employee is invalid (is not an integer from 1-5 inclusive), Coydir will prompt the users accordingly, and the command will not execute.
 
 Format: `rate id/ID r/RATING`
+
+Field |TAG | Description | Requirement| Default Value
+--------------|---------------|---------------|------------------------ | --------
+`ID`|id/|Employee ID|**Compulsory**| -
+`RATING` |r/|Performance rating of employee|**Compulsory**| -
 
 Example:
 
@@ -449,17 +592,29 @@ Example:
 
 #### Employee Performance History
 
-**[Insert description of the performance history chart]**
+In each employee profile below their current performance rating field, there is a performance history line graph showing all their past `ratings` over time, marked by a `value` and `timestamp`. The line graph allows the user to appreciate the employee's performance trend, and make key decisions regarding talent development.
+
+The individual rating values will be displayed beside each node in the performance rating graph. This makes it clearer for users to visualize an employee's overall performance at a glance.
+
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Note:** You can only rate the performance of an employee once per day.<br>
+
+* Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
+
+* This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
+</div>
 
 ### Managing Departments
 
-Apart from supporting the core HR functions, Coydir also supports *department-level management*, for other manpower staff and executives (*department heads, operations planning, etc.*).
+Apart from supporting the core HR functions, Coydir also supports _department-level management_, for other manpower staff and executives (_department heads, operations planning, etc._).
 
-With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory. 
+With these features, we offer a view that is broader than an individual employee profile and more specific than the full directory.
 
 Complete with **real-time statistics and analytics**, Coydir makes department management much simpler. With these information, HR can easily observe the structure of a particular department, track the number of currently available employees for better tasks delegation, or even perform a department restructure to improve the overall efficiency of the company.
 
 Currently, our application only provides a list of default departments for the user to choose from. Future update will include customizable department name. Our current list of valid departments are:
+
 - Administration
 - Board of Directors
 - Customer Service
@@ -510,8 +665,21 @@ DEPARTMENT is case-insensitive.
 
 ### Additional Features
 
-To wrap up, let us take a look at a couple of additional features that give *a little boost* to your HR management on Coydir.
+To wrap up, let us take a look at a couple of additional features that give _a little boost_ to your HR management on Coydir.
 These features and techniques serve to make your usage of the application **smoother, easier, and more flexible**.
+
+#### Getting help : `help`
+
+If you have read the full User Guide up to this point, well done!
+There can be a lot of information to take in, so if you ever _feel lost_ while using Coydir, getting help with the commands is just a simple step away.
+
+Entering the `help` command will open up window with the command summary for the various functions of the application, and if you have more doubts, the _Help Window_ also contains a button to open up this User Guide in your browser.
+
+Format: `help`
+
+With this command, you should see a window like this appear.
+
+**[Insert screenshot of updated Help Window]**
 
 #### Exiting the program : `exit`
 
@@ -555,7 +723,7 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Coydir home folder.
 
 **Q**: What is the difference between an INDEX and an ID?<br>
-**A**: INDEX is the numbering of current showing list of employees, while ID represents the **unique** employee id of the employee. 
+**A**: INDEX is the numbering of current showing list of employees, while ID represents the **unique** employee id of the employee.
 
 **Q**: How do I change the rating of an employee?<br>
 **A**: You can easily change the rating of an employee by using the `rate` command and adjust the RATING accordingly. Do note that it's impossible for you to change the past rating of an employee.
@@ -565,18 +733,18 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 ## Command summary
 
 | Action              | Format, Examples                                                                                                                                                                                                                                 |
-| ------------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|---------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Add**             | `add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal`                                                      |
 | **Edit**            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​add n/NAME p/PHONE e/EMAIL j/POSITION d/DEPARTMENT a/ADDRESS l/LEAVE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 l/14 t/criminal` |
+| **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
 | **Batch Add**       | `batch-add FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                                                       |
 | **View Details**    | `view ID` <br> e.g. `view 1`                                                                                                                                                                                                                     |
-| **Delete**          | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                                               |
+| **List**            | `list` |
 | **Find**            | `find [n/NAME] [j/POSITION] [d/DEPARTMENT]`<br> e.g. `find n/John j/engineer d/Tech`                                                                                                                                                             |
-| **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                  |
-| **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                                                                                      |
-| **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                    |
-| **rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3`                                                                                                                                                                                                   |
-| **List**            | `list`                                                                                                                                                                                                                                           |
-| **Exit**            | `exit`                                                                                                                                                                                                                                           |
-| **Clear**           | `clear`                                                                                                                                                                                                                                          |
-| **Help**            | `help`                                                                                                                                                                                                                                           |
+| **Add leave**       | `add-leave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `add-leave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                                |
+| **Delete leave**    | `delete-leave id/ID i/INDEX`<br> e.g. `delete-leave id/1 i/3`                                                                                                                                                                                    |
+| **Rate**            | `rate id/ID r/RATING`<br> e.g. `rate id/1 r/3` |
+| **View Department** | `viewdepartment DEPARTMENT`<br> e.g. `view-department Finance`                                                                                                                                                                                   |
+| **Help**            | `help` |
+| **Exit**            | `exit` |
+| **Clear**           | `clear` |
