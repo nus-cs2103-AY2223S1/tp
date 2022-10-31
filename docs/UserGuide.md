@@ -118,7 +118,7 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 * Items in square brackets `[]` are optional.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
-* Command fields with … can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
+* Command fields with `…` can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
   e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
   e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
