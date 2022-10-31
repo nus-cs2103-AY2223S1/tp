@@ -524,14 +524,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 4a. User issues the edit food stall command with the wrong syntax
-
-    * 4a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
-
-      Use case ends.
-  
-* 4b. FoodWhere detects an error in the entered data. (Invalid index)
-    * 4b1.FoodWhere sends an error message to the User, indicating the index used for the edit food stall command is incorrect, and attaches the correct syntax format in the message.
+* 4a. FoodWhere detects an error in the entered data. (Invalid syntax or data)
+    * 4a1. FoodWhere sends an error message to the User, indicating the syntax or data used for the edit food stall command is incorrect, and attaches the correct format in the message.
 
       Use case ends.
 
@@ -551,14 +545,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 4a. User issues the edit food review command with the wrong syntax
-
-    * 4a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
-
-      Use case ends.
-
-* 4b. FoodWhere detects an error in the entered data. (Invalid index)
-    * 4b1.FoodWhere sends an error message to the User, indicating the index used for the edit food review command is incorrect, and attaches the correct syntax format in the message.
+* 4a. FoodWhere detects an error in the entered data. (Invalid syntax or data)
+    * 4a1. FoodWhere sends an error message to the User, indicating the syntax or data used for the edit food review command is incorrect, and attaches the correct format in the message.
 
       Use case ends.
 
