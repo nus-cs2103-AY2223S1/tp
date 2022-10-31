@@ -59,7 +59,8 @@ public class TeamBuilder {
     public TeamBuilder withTasks(Task... tasks) {
         this.tasks = new UniqueTaskList();
         for (Task t : tasks) {
-            this.tasks.add(t);
+            TaskBuilder builder = new TaskBuilder(t);
+            this.tasks.add(builder.build());
         }
         return this;
     }

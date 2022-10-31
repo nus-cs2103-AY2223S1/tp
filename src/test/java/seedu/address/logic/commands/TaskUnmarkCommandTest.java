@@ -4,11 +4,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_INVALID_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEAM;
+import static seedu.address.testutil.TypicalTasks.PACK;
 import static seedu.address.testutil.TypicalTasks.REVIEW;
-import static seedu.address.testutil.TypicalTasks.STUDY;
 import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
 
 import org.junit.jupiter.api.Test;
@@ -26,56 +27,54 @@ import seedu.address.testutil.TeamBuilder;
 public class TaskUnmarkCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBookWithTeams(), new UserPrefs());
 
-//    @Test
-//    public void execute_unmarkMarkedTask_success(){
-//        Task defaultTask = new TaskBuilder(REVIEW).build();
-//        Team defaultTeam = new TeamBuilder().withTasks(defaultTask).build();
-//        Task task = defaultTeam.getTask(0);
-//        task.markAsNotDone();
-//        TaskMarkCommand taskMarkCommand = new TaskMarkCommand(INDEX_FIRST_TEAM, INDEX_SECOND_TASK);
-//
-//        String expectedMessage = String.format(TaskMarkCommand.MESSAGE_SUCCESS, task);
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-//
-//        expectedModel.markTask(INDEX_FIRST_TEAM, INDEX_SECOND_TASK);
-//        assertCommandSuccess(taskMarkCommand, model, expectedMessage, expectedModel);
-//    }
-
     @Test
-    public void execute_markUnmarkedTask_success(){
-        Task defaultTask = new TaskBuilder(STUDY).build();
+    public void execute_unmarkUnmarkedTask_success() {
+        Task defaultTask = new TaskBuilder(REVIEW).build();
         Team defaultTeam = new TeamBuilder().withTasks(defaultTask).build();
         Task task = defaultTeam.getTask(0);
-        task.markAsDone();
-        TaskMarkCommand taskMarkCommand = new TaskMarkCommand(INDEX_FIRST_TEAM, INDEX_FIRST_TASK);
+        task.markAsNotDone();
+        TaskUnmarkCommand taskUnmarkCommand = new TaskUnmarkCommand(INDEX_FIRST_TEAM, INDEX_SECOND_TASK);
 
-        String expectedMessage = String.format(TaskMarkCommand.MESSAGE_SUCCESS, task);
+        String expectedMessage = String.format(TaskUnmarkCommand.MESSAGE_SUCCESS, task);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        expectedModel.markTask(INDEX_FIRST_TEAM, INDEX_FIRST_TASK);
-        assertCommandSuccess(taskMarkCommand, model, expectedMessage, expectedModel);
+        expectedModel.markTask(INDEX_FIRST_TEAM, INDEX_SECOND_TASK);
+        assertCommandSuccess(taskUnmarkCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_unmarkMarkedTask_success() {
+        Task defaultTask = new TaskBuilder(PACK).build();
+        TaskUnmarkCommand taskUnmarkCommand = new TaskUnmarkCommand(INDEX_FIRST_TEAM, INDEX_THIRD_TASK);
+        defaultTask.markAsNotDone();
+
+        String expectedMessage = String.format(TaskUnmarkCommand.MESSAGE_SUCCESS, defaultTask);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        expectedModel.unmarkTask(INDEX_FIRST_TEAM, INDEX_THIRD_TASK);
+        assertCommandSuccess(taskUnmarkCommand, model, expectedMessage, expectedModel);
     }
 
 
     @Test
-    public void execute_invalidTaskIndex_failure(){
-        TaskMarkCommand taskMarkCommand = new TaskMarkCommand(INDEX_FIRST_TEAM, INDEX_THIRD_TASK);
+    public void execute_invalidTaskIndex_failure() {
+        TaskUnmarkCommand taskUnmarkCommand = new TaskUnmarkCommand(INDEX_FIRST_TEAM, INDEX_INVALID_TASK);
 
         String expectedMessage = Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandFailure(taskMarkCommand, expectedModel, expectedMessage);
+        assertCommandFailure(taskUnmarkCommand, expectedModel, expectedMessage);
     }
 
 
     @Test
-    public void execute_invalidTeamIndex_failure(){
-        TaskMarkCommand taskMarkCommand = new TaskMarkCommand(INDEX_THIRD_TEAM, INDEX_FIRST_TASK);
+    public void execute_invalidTeamIndex_failure() {
+        TaskUnmarkCommand taskUnmarkCommand = new TaskUnmarkCommand(INDEX_THIRD_TEAM, INDEX_FIRST_TASK);
 
         String expectedMessage = Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX;
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandFailure(taskMarkCommand, expectedModel, expectedMessage);
+        assertCommandFailure(taskUnmarkCommand, expectedModel, expectedMessage);
     }
 
 }

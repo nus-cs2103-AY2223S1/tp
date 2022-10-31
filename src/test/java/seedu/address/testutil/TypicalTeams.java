@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalTasks.PACK;
 import static seedu.address.testutil.TypicalTasks.REVIEW;
 import static seedu.address.testutil.TypicalTasks.STUDY;
 
@@ -21,7 +22,7 @@ import seedu.address.model.team.Team;
 public class TypicalTeams {
 
     public static final Team FRONTEND = new TeamBuilder().withName("Frontend")
-            .withMembers(ALICE, BENSON, CARL).withTasks(STUDY, REVIEW).build();
+            .withMembers(ALICE, BENSON, CARL).withTasks(STUDY, REVIEW, PACK).build();
 
     public static final Team BACKEND = new TeamBuilder().withName("Backend")
             .withMembers(DANIEL, ELLE).build();
