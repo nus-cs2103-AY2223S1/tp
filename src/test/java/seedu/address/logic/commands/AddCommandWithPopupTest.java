@@ -1,20 +1,22 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.addcommands.AddCommandWithPopup;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
+import seedu.address.testutil.TypicalSuppliers;
 
 public class AddCommandWithPopupTest {
-    Model bModel = new ModelManager(TypicalBuyers.getTypicalBuyerAddressBook(), new UserPrefs());
+    private Model bModel = new ModelManager(TypicalBuyers.getTypicalBuyerAddressBook(), new UserPrefs());
+    private Model dModel = new ModelManager(TypicalDeliverers.getTypicalDelivererAddressBook(), new UserPrefs());
+    private Model sModel = new ModelManager(TypicalSuppliers.getTypicalSupplierAddressBook(), new UserPrefs());
 
-    Model dModel = new ModelManager(TypicalDeliverers.getTypicalDelivererAddressBook(), new UserPrefs());
 
     @Test
     public void execute() {
@@ -30,13 +32,13 @@ public class AddCommandWithPopupTest {
         command = new AddCommandWithPopup(toAdd);
         expected = CommandResult.createAddByPopupCommandResult(String.format(AddCommandWithPopup
                 .MESSAGE_SUCCESS, toAdd), toAdd);
-        assertEquals(command.execute(bModel), expected);
+        assertEquals(command.execute(dModel), expected);
 
         //For Suppliers
         toAdd = "SUPPLIER";
         command = new AddCommandWithPopup(toAdd);
         expected = CommandResult.createAddByPopupCommandResult(String.format(AddCommandWithPopup
                 .MESSAGE_SUCCESS, toAdd), toAdd);
-        assertEquals(command.execute(bModel), expected);
+        assertEquals(command.execute(sModel), expected);
     }
 }
