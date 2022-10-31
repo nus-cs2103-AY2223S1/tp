@@ -277,21 +277,21 @@ Increases or decreases your stock for a particular item in the inventory
 
 1. Take a look at the inventory panel at the **middle-bottom** section of the application.
 2. Decide on which item to change the stock.
-3. Hover your mouse over item and the white text box with a value `1` in it. (Refer to [Figure 1](#figure-1-above-_initial-state_))
-4. Key in your desired amount to add or decrease by. (Refer to [Figure 2](#figure-2-above-_after-entering-desired-value_))
-5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount). (Refer to [Figure 3](#figure-3-above-_after-pressing-the--button_))
+3. Hover your mouse over item and the white text box with a value `1` in it. (Refer to [Figure 1](#figure-1-below-_initial-state_))
+4. Key in your desired amount to add or decrease by. (Refer to [Figure 2](#figure-2-below-_after-entering-desired-value_))
+5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount). (Refer to [Figure 3](#figure-3-below-_after-pressing-the--button_))
+
+#### Figure 1 (below): _Initial state_
 
 ![Ui](images/initialStateIncEg.png)
 
-#### Figure 1 (above): _Initial state_
+#### Figure 2 (below): _After entering desired value_
 
 ![Ui](images/incdeckeyin.png)
 
-#### Figure 2 (above): _After entering desired value_
+#### Figure 3 (below): _After pressing the `+` button_
 
 ![Ui](images/afterinc.png)
-
-#### Figure 3 (above): _After pressing the `+` button_
 
 ***Notice that the current stock of Ginger increased by your desired amount.***
 
@@ -331,15 +331,17 @@ List all suppliers
 
 ### 4.9.1.2 Examples
 
-1. Run the `find n/eggs` command to find suppliers that supply eggs. (Refer to [Figure 4](#figure-4-above-after-running-find-neggs))
+1. Run the `find n/eggs` command to find suppliers that supply eggs. (Refer to [Figure 4](#figure-4-below-after-running-find-neggs))
 2. If you want to view the full list of suppliers again, run `listSuppliers` to list
-all the suppliers. (Refer to [Figure 5](#figure-5-above-after-running-listsuppliers))
+all the suppliers. (Refer to [Figure 5](#figure-5-below-after-running-listsuppliers))
+
+#### Figure 4 (below) After running `find n/eggs`
 
 ![findegg](images/findegg.png)
-#### Figure 4 (above) After running `find n/eggs`
+
+#### Figure 5 (below) After running `listSuppliers`
 
 ![afterlistsuppliers](images/listall.png)
-#### Figure 5 (above) After running `listSuppliers`
 
 ## 4.9.2 List all tasks: `listTasks`
 
