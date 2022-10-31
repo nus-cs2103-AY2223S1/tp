@@ -62,6 +62,8 @@ Given below are my contributions to the project.
 
       * Added implementation details and Use Case for the `github` command: [#74](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/76)
     
+      * Update Model class diagram and Storage class diagram: [#194](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/194)
+    
       * Added Sequence Diagram and activity diagram for `github` command: [#74](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/76)
     
 * **Review/mentoring contributions Links**
