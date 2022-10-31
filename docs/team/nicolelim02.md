@@ -40,7 +40,7 @@ Given below are my contributions to the project.
   * Justification: Modifying the existing classes could introduce new bugs.
   * Highlights: This enhancement made would help to detect bugs introduced after modifications.
 
-* **Enhancements to existing feature**: Restrict the number of tags allowed for each food item (Pull request [\#37](https://github.com/AY2223S1-CS2103T-T17-2/tp/issues/37)).
+* **Enhancements to existing feature**: Restrict the number of tags allowed for each food item (Pull request [\#57](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/57)).
   * What it does: Restricts the number of tags allowed to one.
   * Justification: The tag is used to capture the meal type for each food item. The code base is modified to allow multiple food items with the same name and it would be more logical for each food item to be tagged once only.
   * Highlights: Tag is now compulsory for each food item.
@@ -61,7 +61,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#41](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/41), [\#73](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/73), [\#93](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/93).
-  * Report [bugs](https://github.com/nicolelim02/ped) found in CS2103T-F12-4's product during the practical exam dry run.
+  * Report [bugs](https://github.com/nicolelim02/ped/issues) found in CS2103T-F12-4's product during the practical exam dry run.
   * Fix issues that my team members face in the following pull requests: 
     * [\#48](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/48): Identify bugs in test cases. 
     * [\#1](https://github.com/ruiqi7/tp/pull/1): Fix the width of the components (result box and list container) to be 50% each, relative to the size of the main window. 
