@@ -67,7 +67,7 @@ This guides aims to: <br>
 4. Double-click the file to start the app. A [GUI](#glossary) similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the [command box](#navigating-the-gui) and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
+5. Type a [command](#glossary) in the [command box](#navigating-the-gui) and press <button>enter</button> to execute it. e.g. typing **`help`** and pressing <button>enter</button> will open the help window.<br>
 
 6. Some example commands you can try. You may refer to [this](#features) for more commands.
 
@@ -103,11 +103,11 @@ Returns a feedback message after a command is executed.
 
 Displays the list of internships.
 
+<div style="page-break-after: always;"></div>
+
 <h3 style="color:#C400FF;"> VIEW PANEL </h3>
 
-The panel displays the internship being viewed in greater detail. 
-
-<div style="page-break-after: always;"></div>
+The panel displays the internship being viewed in greater detail.
 
 <h3 style="color:#7ED957;"> STATISTIC PANEL </h3>
 
@@ -126,7 +126,7 @@ the data for all internships whose company name contains the word `Shopee`.
 - Do `find c/t Summer` for an overview of your summer internship application
 </div>
 
-<h3 style="color:#FF1616;" font-family: " ;"> REMINDER FOOTER </h3>
+<h3 style="color:#FF1616;"> REMINDER FOOTER </h3>
 
 The reminder footer displays the number of interviews, assessments or pending offers due in the next 7 days.
 
@@ -358,6 +358,8 @@ Examples:
 Ready for a new internship season? Clears all entries from the internship tracker.
 
 Format: `clear`
+
+<div style="page-break-after: always;"></div>
 
 ### Undo previous command : `undo`
 
