@@ -28,6 +28,7 @@ import coydir.model.Model;
 import coydir.model.ModelManager;
 import coydir.model.ReadOnlyDatabase;
 import coydir.model.UserPrefs;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 import coydir.storage.JsonDatabaseStorage;
 import coydir.storage.JsonUserPrefsStorage;
@@ -84,11 +85,12 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + POSITION_DESC_AMY + DEPARTMENT_DESC_AMY + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        PersonBuilder amyBuilder = new PersonBuilder(AMY);
+        String newId = String.valueOf(EmployeeId.getCount());
+        Person expectedPerson = amyBuilder.withEmployeeId(newId).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        PersonBuilder.setEmployeeId(AMY.getEmployeeId().value);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 

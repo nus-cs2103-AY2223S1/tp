@@ -24,6 +24,7 @@ import coydir.logic.commands.FindCommand;
 import coydir.logic.commands.HelpCommand;
 import coydir.logic.commands.ListCommand;
 import coydir.logic.parser.exceptions.ParseException;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 import coydir.model.person.PersonMatchesKeywordsPredicate;
 import coydir.testutil.EditPersonDescriptorBuilder;
@@ -36,8 +37,9 @@ public class DatabaseParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        PersonBuilder.setEmployeeId(person.getEmployeeId().value);
+        PersonBuilder builder = new PersonBuilder();
+        String newId = String.valueOf(EmployeeId.getCount());
+        Person person = builder.withEmployeeId(newId).build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
