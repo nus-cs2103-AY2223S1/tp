@@ -13,7 +13,7 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction to WorkBook
 
-WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
+Welcome to WorkBook! :wave: <br><br>WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
 It is optimized for fast typists and replicates a Command Line Interface (CLI) style.
 
 --------------------------------------------------------------------------------------------------------------------
