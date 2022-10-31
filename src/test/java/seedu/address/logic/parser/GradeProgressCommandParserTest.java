@@ -36,7 +36,7 @@ public class GradeProgressCommandParserTest {
     @Test
     public void parse_emptyField_failure() {
         // no prefix
-        assertParseFailure(parser, "1", GradeProgressCommandParser.MESSAGE_INVALID_EMPTY_FIELD);
+        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
 
         // has prefix
         assertParseFailure(parser, "1 " + PREFIX_GRADE_PROGRESS,

@@ -35,7 +35,7 @@ public class HomeworkCommandParserTest {
     @Test
     public void parse_emptyField_failure() {
         // no prefix
-        assertParseFailure(parser, "1", HomeworkCommandParser.MESSAGE_INVALID_EMPTY_FIELD);
+        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
 
         // has prefix
         assertParseFailure(parser, "1 " + PREFIX_HOMEWORK, HomeworkCommandParser.MESSAGE_INVALID_EMPTY_FIELD);

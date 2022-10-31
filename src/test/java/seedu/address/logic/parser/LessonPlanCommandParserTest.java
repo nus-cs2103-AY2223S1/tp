@@ -32,10 +32,4 @@ public class LessonPlanCommandParserTest {
     public void parse_noPrefixField_failure() {
         assertParseFailure(parser, "1 " + VALID_LESSON_PLAN_AMY, MESSAGE_INVALID_FORMAT);
     }
-
-    @Test
-    public void parse_emptyField_failure() {
-        // no prefix
-        assertParseFailure(parser, "1", LessonPlanCommandParser.MESSAGE_INVALID_EMPTY_FIELD);
-    }
 }
