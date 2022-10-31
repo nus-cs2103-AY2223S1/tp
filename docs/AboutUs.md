@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/elijahs67.md)]
 
 * Role: Developer
-* Responsibilities: to be added soon
+* Responsibilities: Commons, Testing
 
 ### Jonas Goh
 
@@ -56,4 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jonasgwt.md)]
 
 * Role: Developer
-* Responsibilities: to be added soon
+* Responsibilities: Storage
