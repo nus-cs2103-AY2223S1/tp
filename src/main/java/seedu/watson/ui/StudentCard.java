@@ -35,8 +35,6 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label indexNumber;
-    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -97,7 +95,6 @@ public class StudentCard extends UiPart<Region> {
 
         // state check
         StudentCard card = (StudentCard) other;
-        return indexNumber.getText().equals(card.indexNumber.getText())
-               && student.equals(card.student);
+        return student.equals(card.student);
     }
 }
