@@ -110,7 +110,8 @@ public class LogicManager implements Logic {
         if (result) {
             Path[] allBooks = model.getAllAddressBookFilePath();
             Path latestBook = allBooks[allBooks.length - 1];
-            initialData = SampleDataUtil.getSampleAddressBook();
+            addressBookOptional = storage.readAddressBook();
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             setActiveAddressBook(latestBook, initialData);
             model.setStoredIndex(allBooks.length - 1);
             model.setAddressBookFilePath(latestBook);
