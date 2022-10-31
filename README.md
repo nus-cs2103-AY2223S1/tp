@@ -15,9 +15,9 @@ information overload of their clients.<br>
 **FABook** is optimized for a **one-stop storage solution** to store and remind them on
 **everything** they need to know about their client.
 
-* FABook allows financial advisors to create contact cards to store all **crucial information** about their clients. So they can exude a prepared and confident aura that will help them win over their clients.
-<br>
-* FABook is a **desktop app for managing contacts, optimized for a financial adviser to use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FABook can get your contact management tasks done faster than traditional GUI apps.
+FABook allows financial advisors to create contact cards to store all **crucial information** about their clients. So they can exude a prepared and confident aura that will help them win over their clients.
+
+FABook is a **desktop app for managing contacts, optimized for a financial adviser to use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FABook can get your contact management tasks done faster than traditional GUI apps.
 
 ## Example usages:
   * Contact book for storing contacts.
