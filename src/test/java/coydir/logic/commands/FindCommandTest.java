@@ -1,6 +1,6 @@
 package coydir.logic.commands;
 
-import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static coydir.logic.commands.CommandTestUtil.assertViewingCommandSuccess;
 import static coydir.testutil.TypicalPersons.CARL;
 import static coydir.testutil.TypicalPersons.DANIEL;
 import static coydir.testutil.TypicalPersons.ELLE;
@@ -61,7 +61,7 @@ public class FindCommandTest {
         PersonMatchesKeywordsPredicate predicate = preparePredicate("el");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertFindCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL, ELLE), model.getFilteredPersonList());
     }
 
@@ -71,7 +71,7 @@ public class FindCommandTest {
         PersonMatchesKeywordsPredicate predicate = preparePredicate("Kurz Fire Operations");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertFindCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
     }
 
@@ -81,7 +81,7 @@ public class FindCommandTest {
         PersonMatchesKeywordsPredicate predicate = preparePredicate("Alice Fire");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertFindCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
@@ -95,5 +95,10 @@ public class FindCommandTest {
         }
 
         return new PersonMatchesKeywordsPredicate(keywords.get(0), keywords.get(1), keywords.get(2));
+    }
+
+    private void assertFindCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            Model expectedModel) {
+        assertViewingCommandSuccess(command, actualModel, expectedMessage, expectedModel, 0);
     }
 }

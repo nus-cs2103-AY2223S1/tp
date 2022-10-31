@@ -23,7 +23,6 @@ import coydir.model.Database;
 import coydir.model.Model;
 import coydir.model.ModelManager;
 import coydir.model.UserPrefs;
-import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 import coydir.testutil.EditPersonDescriptorBuilder;
 import coydir.testutil.PersonBuilder;
