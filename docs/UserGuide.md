@@ -411,14 +411,10 @@ Step by Step Guide:
 3. Enter into the CLI import sampleimportdata.csv
 
 Before import:
-![before import](images/BeforeImport.jpg)
+![before import](images/BeforeImport.png)
 
 After import:
-![after import](images/AfterImport.jpg)
-
-<div markdown="span" class="alert alert-info">:information_source: Note:
-Reload the application to see the updated pie chart.
-</div>
+![after import](images/AfterImport.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
