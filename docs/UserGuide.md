@@ -3,12 +3,34 @@ layout: page
 title: User Guide
 ---
 
-Pupilist is a **desktop app for managing students details for private tutors**. It is **optimised for Command Line Interface (CLI)**. If you are a private tutor struggling to keep track of your students grades, homework and attendance, Pupilist can get your scheduling done faster than traditional GUI apps.
+Pupilist is a **application for managing students details for private tutors**. It aims to **help you organise your students information to better plan for lessons**.
+If you are a private tutor struggling to:
+   1. keep track of your students and their individual lesson plans.
+   2. keep track of your students grades, homework and attendance.
+   3. keep track of your lesson timings.
+   4. keep track of your students' contact information.
+Pupilist can get your scheduling done faster with single line CLI command inputs to manage all your tutoring needs.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introducing Pupilist
+
+### Glossary
+| Term      | Description                                                                                                                                                                                                                                                                                                                                         |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| CLI       | Command-Line-Input, refers to text-based command inputs you will enter in the CommandBox.                                                                                                                                                                                                                                                           |
+| GUI       | Graphical-User-Interface, refers to the UI displayed to you.                                                                                                                                                                                                                                                                                        |
+| Parameter | Refers to the information you will need to give to Pupilist along with your <br> command so that Pupilist can execute an action based on that information.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Person ,assuming a valid name in view mode. |
+| Prefixes  | A prefix indicates the type of field you are keying in. You can find the list of prefixes supported by Pupilist [here](#)                                                                                                                                                                                                                           | 
+| `* * *`   | user                                                                                                                                                                                                                                                                                                                                                |
+| `* * *`   | user                                                                                                                                                                                                                                                                                                                                                | 
+| `* * *`   | user with many students to manage                                                                                                                                                                                                                                                                                                                   |
+| `* * *`   | user with many students to manage	                                                                                                                                                                                                                                                                                                                  | 
+| `* * *`   | long-term user with many students	                                                                                                                                                                                                                                                                                                                  | 
+| `* * *`   | long-term user			                                                                                                                                                                                                                                                                                                                                   | 
+
 
 ## Quick start
 
@@ -355,6 +377,8 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+### Summaries
+
 ## Command summary
 
 Action | Format, Examples
@@ -377,5 +401,12 @@ Action | Format, Examples
 **Unmark Item** | `unmark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `unmark h/2`
 **Update Lesson plan** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`
 **View** | `view NAME`<br> e.g., `view James Ho`
+
+## Prefixes summaries
+| Prefix  | Definition                                     | Usage                                                                  | Example                                                        |
+|---------|------------------------------------------------|------------------------------------------------------------------------|----------------------------------------------------------------|
+| n/      | Name                                           | A string of alphanumeric characters. Whitespaces are allowed. Required | n/Alex Ho                                                      |
+| p/      | Phone number                                   | Numbers only. Required. Whitespaces not allowed and at least 3 digits. | p/97402341                                                     |
+| t/      | Tag that is associated to the student. 		 | A string of characters. Optional.                                      | I can pick them up quickly to start using the app	           |
 
 
