@@ -300,6 +300,9 @@ Examples:
 
 Format: `add_task n/TASK_NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`
 
+- Adds and assigns a task to contacts at the specified `CONTACT_INDEX`.
+- The contact index refers to the index number shown in the **displayed contact list**.
+- The contact index **must be a positive integer** 1, 2, 3, …​
 - Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
 
 Examples:
@@ -355,7 +358,9 @@ Examples:
 
 Format: `delete_task INDEX`
 
-- Deletes the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+- Deletes the task at the specified `INDEX`. 
+- The index refers to the index number shown in the displayed task list. 
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -383,6 +388,7 @@ Examples:
 
 Format: `mark INDEX`
 
+- Marks the task at the specified `INDEX` as completed.
 - The index refers to index number shown in the **displayed task list**.
 - The index **must be a positive integer** 1, 2, 3, …​
 - Specified task must be currently incomplete for command to succeed.
@@ -398,6 +404,7 @@ Examples:
 
 Format: `unmark INDEX`
 
+- Marks the task at the specified `INDEX` as incomplete.
 - The index refers to index number shown in the **displayed task list**.
 - The index **must be a positive integer** 1, 2, 3, …​
 - Specified task must be currently completed for command to succeed.
@@ -414,7 +421,7 @@ Examples:
 Format: `assign c/CONTACT_INDEX t/TASK_INDEX`
 
 - Assigns the task at the specified `TASK_INDEX` to the contact at the specified `CONTACT_INDEX`. 
-- The indices refer to the index number shown in the **displayed task list and contact list** respectively. 
+- The task and contact indices refer to the index numbers shown in the **displayed task list and contact list** respectively. 
 - The indices **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -429,7 +436,7 @@ Examples:
 Format: `unassign c/CONTACT_INDEX t/TASK_INDEX`
 
 - Removes the contact at the specified `CONTACT_INDEX` from the task at the specified `TASK_INDEX`. 
-- The indices refer to the index number shown in the **displayed task list and contact list** respectively. 
+- The task and contact indices refer to the index numbers shown in the **displayed task list and contact list** respectively. 
 - The indices **must be a positive integer** 1, 2, 3, …​
 
 Examples:
