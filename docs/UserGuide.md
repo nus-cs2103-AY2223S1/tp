@@ -2,6 +2,12 @@
 layout: page
 title: User Guide
 ---
+
+<div align="center">
+<h1> Pupilist User Guide</h1>
+Welcome to Pupilist User Guide!
+</div>
+
 ## Introducing Pupilist
 
 <p align="center">
