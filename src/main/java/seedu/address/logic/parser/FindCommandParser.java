@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -13,6 +14,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.AlwaysTruePredicate;
+import seedu.address.model.person.Birthday;
+import seedu.address.model.person.BirthdayContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
@@ -37,7 +40,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_BIRTHDAY, PREFIX_TAG);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String noPrefixArgs = argMultimap.getValue(PREFIX_NAME).get();
@@ -69,6 +72,18 @@ public class FindCommandParser implements Parser<FindCommand> {
             String[] tagKeywords = noPrefixArgs.split("\\s+");
             return new FindCommand(
                     new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
+        } else if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
+            String noPrefixArgs = argMultimap.getValue(PREFIX_BIRTHDAY).get();
+            checkEmptyField(noPrefixArgs);
+            String[] birthdayInput = noPrefixArgs.split("\\s+");
+            String[] birthdayKeywords = new String[birthdayInput.length];
+            // try parsing birthdays
+            for (int i = 0; i < birthdayInput.length; i++) {
+                Birthday birthday = ParserUtil.parseBirthday(birthdayInput[i]);
+                birthdayKeywords[i] = birthday.toString();
+            }
+            return new FindCommand(
+                    new BirthdayContainsKeywordsPredicate(Arrays.asList(birthdayKeywords)));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
