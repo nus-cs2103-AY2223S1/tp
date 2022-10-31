@@ -20,12 +20,12 @@ In this *User Guide*, we will take you through the many useful features and func
 
 We advise users to follow the User Guide sequentially as it provides a natural flow of how the sequence of commands should be executed.
 
-### Meaning of icons
-**:information_source:** additional information such as specific requirements of parameters and the nature of command
+#### Meaning of icons
+**:information_source:**: __additional information__ such as specific requirements of parameters and the nature of command
 
-**:bulb:** tip on how to carry out certain functionalities
+**:bulb:**: __tip__ on how to carry out certain functionalities
 
-**:warning:** warning as the command can create drastic changes to the existing App data
+**:warning:**: __warning__ as the command can create drastic changes to the existing App data
 
 --------------------------------------------------------------------------------------------------------------------
 
