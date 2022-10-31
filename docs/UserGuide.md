@@ -127,7 +127,7 @@ Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/
 | **`e/EMAIL`**        | `e/[local_part]@[domain]`       | Local Part should only contain alphanumeric characters and these special characters +_.- |
 | **`a/ADDRESS`**      | `a/[address]`                   |                                                                                     |
 | **`d/DESCRIPTION`**  | `d/[description]`               |                                                                                     |
-| **`nw/NETWORTH`**    | `nw/$[net_worth]`               | Net worth should only should only contain numbers and should be at least 4 digits long |
+| **`nw/NETWORTH`**    | `nw/$[net_worth]`               | Net worth should start with a $ sign, only contain numbers and should be at least 4 digits long |
 | **`mt/TIME`**        | `mt/[DD]-[MM]-[YYYY]-[HH]:[MM]` | DD: 01-31<br/>MM: 01-12<br/>YYYY: 0001-9999<br/>HH:MM: 00:00 - 23:59                |
 | **`t/TAG`**          | `t/[tag]`                       | Tag should only be `SECURED` or `POTENTIAL`                                         |
 
