@@ -154,7 +154,17 @@ The examples in this guide are formatted with the following conventions:
 
 </div>
 
-### Accepted Date Formats
+### Points to Note
+
+#### NAME Parameter
+
+Where the NAME parameter is required (e.g. `n/NAME`), specify the **exact name**
+- in full
+- in a case-sensitive format
+
+This prevents ambiguity in naming so that you can specify the exact contact where necessary/
+
+#### Accepted Date Formats
 
 The following date formats are accepted:
 
@@ -194,6 +204,8 @@ Format: `task list`
 Adds a contact to your task book.
 
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
+
+Note: NAME is case-sensitive, as such `John Doe` will be treated as a different
 
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
