@@ -88,4 +88,11 @@ public class AddressBookParserTest {
         assertThrows(ParseException.class,
                 String.format(MESSAGE_UNKNOWN_COMMAND_TEMPLATE, userInput), () -> parser.parseCommand(userInput));
     }
+
+    @Test
+    public void parseCommand_extraSpaces() throws Exception {
+        DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
+                DeleteStudentCommand.COMMAND_WORD + "  " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteStudentCommand(INDEX_FIRST_PERSON), command);
+    }
 }
