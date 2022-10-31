@@ -33,6 +33,7 @@ class ClassGroupTest {
 
         // No class information
         assertFalse(new ClassGroup("").contains("NA"));
+        assertFalse(new ClassGroup("cs2030").contains("NA"));
     }
 
     @Test
