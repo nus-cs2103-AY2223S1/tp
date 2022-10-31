@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Participation {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Participation marks should only contain numbers";
+            "Participation marks should only contain non-negative whole numbers";
     public static final String VALIDATION_REGEX = "\\d+";
     public final String value;
 

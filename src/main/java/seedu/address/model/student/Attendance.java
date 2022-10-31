@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Attendance should only contain numbers";
+            "Attendance should only contain non-negative whole numbers";
     public static final String VALIDATION_REGEX = "\\d+";
     public final String value;
 

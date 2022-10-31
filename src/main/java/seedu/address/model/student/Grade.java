@@ -33,7 +33,7 @@ public class Grade {
     }
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grade should be A+, A, A-, B+, B, B-, C+, C, D+, D or F. If grade is unavailable, leave as blank.";
+            "Grade should be A+, A, A-, B+, B, B-, C+, C, D+, D or F. If grade is unavailable, leave as blank";
     public final String value;
 
     /**
