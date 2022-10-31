@@ -63,7 +63,7 @@ public class RangeCommandParser implements Parser<RangeCommand> {
         try {
             startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
-        } catch (ParseException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
         }
         return new RangeCommand(new DateWithinRangePredicate(startDate, endDate));

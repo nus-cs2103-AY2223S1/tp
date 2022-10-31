@@ -53,12 +53,12 @@ class RangeCommandParserTest {
     @Test
     public void parse_invalidStartDate_failure() {
         assertParseFailure(parser, INVALID_START_DATE_DESC + VALID_END_DATE_DESC,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
+                String.format(Date.MESSAGE_CONSTRAINTS_FORMAT));
     }
 
     @Test
     public void parse_invalidEndDate_failure() {
         assertParseFailure(parser, VALID_START_DATE_DESC + INVALID_END_DATE_DESC,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
+                String.format(Date.MESSAGE_CONSTRAINTS_FORMAT));
     }
 }
