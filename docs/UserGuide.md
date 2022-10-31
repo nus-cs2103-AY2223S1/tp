@@ -1,7 +1,6 @@
-#PennyWise User Guide
-
-> > :warning: Prerequisite:
-> - This guide assumes that the reader is familiar with using [Java](https://www.java.com/)
+# PennyWise User Guide
+Well, hello there! Welcome to your personal budgeting assistant, PennyWise.
+After this guide, you will understand how to use PennyWise, and spend every penny wisely. 🤑
 
 # Table of Contents
 <div id="top">
@@ -44,8 +43,8 @@
 
 ## Introduction
 
-PennyWise is a desktop application that **empowers students with the ability to make sensible financial decisions**,
-helping students to manage their budget by providing a **graphical analysis of their financial activities**.
+PennyWise is a desktop application that **empowers students with the ability to make informed financial decisions**,
+by providing a **graphical analysis of their financial activities**.
 It provides a clean Graphical User Interface (GUI) for easy comprehension of expenditure and savings.
 _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 
@@ -53,51 +52,8 @@ _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 Already an expert? Jump right straight to the [features](#features) section to see how you can get the most out of PennyWise!
 </div>
 
-## Quick start
-
-1. Ensure you have Java 11 or above installed in your Computer. You can check whether Java 11 is installed by following
-   the instructions below:
-    1. Open your terminal / command prompt window
-    2. Run the following command: `java -version`
-    3. If Java 11 is not installed, please download Java 11 from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11).
-       For Mac users, you may use the [Azul build of
-       OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
-2. Download the latest [pennywise.jar](https://github.com/AY2223S1-CS2103T-W17-2/tp/releases) application file.
-3. Copy the file to the folder you want to use as the home folder for PennyWise.
-4. Double-click the file to start the app. You should see a user interface similar to what is shown below in a few seconds.
-   - The application contains some sample data that provides some examples on how you can use the application.
-
-   ![Ui](images/Ui.png)
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
-
-    - **`add`**`t/i d/Tution Teaching a/45.00 da/13-10-2022 c/Salary`: Adds an income entry
-      with the description `Tuition Teaching` to the PennyWise application.
-
-    - **`delete`**`3 t/e`: Deletes the 3rd entry shown in the expenditure list.
-
-    - **`view`**`t/e`: View a PieChart of all expenses.
-
-    - **`view`**`t/e mo/2022-08`: View a LineGraph of all expenses on August 2022.
-
-    - **`clear`**: :exclamation: Deletes all entries.
-
-    - **`exit`** : Exits the app.
-
-6. Congrats! You are now ready to get started on your first steps in supercharging your financial management flow!
-
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-Curious about the various commands? Refer to the [Features](#features) below to find out more about each command.
-</div>
-
-<p align="right">
-    <a href="#top">Back to Top </a>
-</p>
-
----
-
-## Navigating the User Guide
+## How to use this User Guide
+These are some icons you may see throughout our user guide.
 
 ### Information Box
 
@@ -125,14 +81,83 @@ Danger zone! Do pay attention to the information here carefully.
     <a href="#top">Back to Top </a>
 </p>
 
+## Quick start
+If you are unfamiliar with using command prompt, head to this [link](https://www.freecodecamp.org/news/command-line-for-beginners/).
+1. Ensure you have Java 11 or above installed in your Computer. You can check whether Java 11 is installed by following
+   the instructions below:
+    1. Open your terminal / command prompt window in your computer.
+    2. Run the following command: `java -version`
+    3. If Java 11 is not installed, please download Java 11 from [Oracle](https://www.oracle.com/java/technologies/downloads/#java11).
+       For Mac users, you may use the [Azul build of
+       OpenJDK 11 (JDK FX) version](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
+2. Download the latest [pennywise.jar](https://github.com/AY2223S1-CS2103T-W17-2/tp/releases) application file.
+3. Copy the file to the folder you want to use as the home folder for PennyWise.
+4. Double-click the file to start the app. You should see a user interface similar to what is shown below in a few seconds.
+   - The application contains some sample data that provides some examples on how you can use the application.
+
+   ![Ui](images/Ui.png)
+5. Type the command in the [command box](#familiarising-yourself-with-the-interface) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+   open the help window.<br>
+   Some example commands you can try:
+
+    - **`add`**`t/i d/Tution Teaching a/45.00 da/13-10-2022 c/Salary`: Adds an income entry
+      with the description `Tuition Teaching` to the PennyWise application.
+
+    - **`delete`**`3 t/e`: Deletes the 3rd entry shown in the expenditure list.
+
+    - **`view`**`t/e`: View a Pie Chart of all expenses.
+
+    - **`view`**`t/e mo/2022-08`: View a Line Graph of all expenses on August 2022.
+
+    - **`clear`**: :exclamation: Deletes all entries.
+
+    - **`exit`** : Exits the app.
+
+6. Congrats! You are now ready to get started on your first steps in supercharging your financial management flow!
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Curious about the various commands? Refer to the [Features](#features) below to find out more about each command.
+</div>
+
+<p align="right">
+    <a href="#top">Back to Top </a>
+</p>
+
+---
+
 ## Before Using
 
+### Familiarising yourself with the interface
 
-<div markdown="block" class="alert alert-info">
+To familiarise yourself with our user interface, please refer to the following diagram and table to get comfortable with the application.
 
-**:information_source: Notes about the command format:**<br>
+![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
 
-All command follow this format:<br>
+|      `Component`       |                                                       `Explanation`                                                        |
+|:----------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+|    **List Display**    |            where you view your entry lists (Expenditure or Income) <br> - can be modified by the `view` command            |
+|   **Graph Display**    | where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> - can be modified by the `view` command |
+| **Command Input Box**  |                                       where you enter your commands to use PennyWise                                       |
+| **Command Output Box** |                                  where you see the output of your commands from PennyWise                                  |
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+If the application is resized to a smaller screen, certain graphical components will no longer be visible. This is to ensure that
+that you are still able to get an overview of you finances. If these details are important, use PennyWise in fullscreen!
+
+1. Pie Chart Legend <br/>
+- The Pie Chart Legend would not be visible should the application be of a smaller size. This ensures your categorical overview
+  can still be seen at a glance!
+  ![ChartLegend](images/ug/ChartLegend.png)
+
+2. Line Graph Dates
+- Certain Line Graph dates would not be visible should the application be of a smaller size. This ensures you are still
+  able to view the linear trend of your entries can still be seen.
+  ![LineGraphDates](images/ug/LineGraphDates.png)
+</div>
+
+## Understanding the command formats
+All commands follow this format except: [`delete`](#deleting-entries--delete-index_of_entry-tentry_type), 
+[`clear`](#clearing-all-entries--clear), [`exit`](#exiting-the-program--exit) and `help`.<br>
 <pre>
     command | entry identifier | input | [optional inputs]
 </pre>
@@ -157,35 +182,6 @@ For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, l
 
 - **ALL** identifiers are <ins>case-sensitive</ins>.
   e.g `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
-</div>
-
-### Familiarising yourself with the interface
-
-To familiarise yourself with our user interface, please refer to the following diagram and table to get comfortable with the application.
-
-|      `Component`       |                                                       `Explanation`                                                        |
-|:----------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
-|    **List Display**    |            where you view your entry lists (Expenditure or Income) <br> - can be modified by the `view` command            |
-|   **Graph Display**    | where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> - can be modified by the `view` command |
-| **Command Input Box**  |                                       where you enter your commands to use PennyWise                                       |
-| **Command Output Box** |                                  where you see the output of your commands from PennyWise                                  |
-
-![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
-
-<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
-If the application is resized to a smaller screen, certain graphical components will no longer be visible. This is to ensure that
-that you are still able to get an overview of you finances. If these details are important, use PennyWise in fullscreen!
-
-1. PieChart Legend <br/>
-- The PieChart Legend would not be visible should the application be of a smaller size. This ensures your categorical overview
-  can still be seen at a glance!
-  ![ChartLegend](images/ug/ChartLegend.png)
-
-2. Line Graph Dates
-- Certain LineGraph dates would not be visible should the application be of a smaller size. This ensures you are still
-  able to view the linear trend of your entries can still be seen.
-  ![LinegraphDates](images/ug/LineGraphDates.png)
-</div>
 
 ### Categorising your expenses and income
 
@@ -277,6 +273,32 @@ Adds an entry to the specified list.
 
 ![AddCommandIncome](images/ug/AddCommandIncome.png)
 
+### Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`
+
+Edits an entry, where at least **1** of the optional fields description/amount/date/category must be present.
+
+| Input                        | Explanation                                                                                          |
+|------------------------------|------------------------------------------------------------------------------------------------------|
+| **`t/ENTRY_TYPE`**           | An entry type refers to either `e` for "Expenditure" or `i` for "Income"                             |
+| **`[d/EDITED_DESCRIPTION]`** | Updated description for the entry that you are editing                                               |
+| **`[a/EDITED_AMOUNT]`**      | Updated amount of the entry, formatted to 2 decimal places                                           |
+| **`[da/EDITED_DATE]`**       | Updated date where the entry is added in `dd-mm-YYYY` format, e.g. `01-01-2022` for 1st January 2022 |
+| **`[c/EDITED_CATEGORY]`**    | Updated [category](#categorising-your-expenses-and-income) that the entry belongs to                 |
+
+#### Edits expenditure with specified fields
+- Example: `edit 1 t/e d/Chicken Soup`
+    - The expenditure at the 1st position will have its description edited from `Chicken Rice` to `Chicken Soup`.
+- Expected: `Edited Entry: Chicken Soup; Date: 20-01-2022; Amount: 20.00; Tag: Food`
+
+![EditCommandExpenditure](images/ug/EditCommandExpenditure.png)
+
+#### Edits income with specified fields
+- Example: `edit 2 t/i a/150.00 da/22-10-2022`
+    - The income at the 2nd position will have its amount and date edited
+- Expected: `Edited Entry: Monthly Allowance; Date: 02-01-2022; Amount: 150.00; Tag: Allowance`
+
+![EditCommandIncome](images/ug/EditCommandIncome.png)
+
 ### Deleting entries: `delete INDEX_OF_ENTRY t/ENTRY_TYPE`
 
 Deletes an entry from the specified list.
@@ -301,32 +323,6 @@ Deletes an entry from the specified list.
 - Expected: `Deleted Entry: Allowance; Date: 12-09-2022; Amount: 100.00 Tag: Allowance`
 
 ![DeleteCommandIncome](images/ug/DeleteCommandIncome.png)
-
-### Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`
-
-Edits an entry, where at least **1** of the optional fields description/amount/date/category must be present.
-
-| Input                        | Explanation                                                                                          |
-|------------------------------|------------------------------------------------------------------------------------------------------|
-| **`t/ENTRY_TYPE`**           | An entry type refers to either `e` for "Expenditure" or `i` for "Income"                             |
-| **`[d/EDITED_DESCRIPTION]`** | Updated description for the entry that you are editing                                               |
-| **`[a/EDITED_AMOUNT]`**      | Updated amount of the entry, formatted to 2 decimal places                                           |
-| **`[da/EDITED_DATE]`**       | Updated date where the entry is added in `dd-mm-YYYY` format, e.g. `01-01-2022` for 1st January 2022 |
-| **`[c/EDITED_CATEGORY]`**    | Updated [category](#categorising-your-expenses-and-income) that the entry belongs to                 |
-
-#### Edits expenditure with specified fields
-- Example: `edit 1 t/e d/Chicken Soup`
-  - The expenditure at the 1st position will have its description edited from `Chicken Rice` to `Chicken Soup`.
-- Expected: `Edited Entry: Chicken Soup; Date: 20-01-2022; Amount: 20.00; Tag: Food`
-
-![EditCommandExpenditure](images/ug/EditCommandExpenditure.png)
-
-#### Edits income with specified fields
-- Example: `edit 2 t/i a/150.00 da/22-10-2022`
-  - The income at the 2nd position will have its amount and date edited
-- Expected: `Edited Entry: Monthly Allowance; Date: 02-01-2022; Amount: 150.00; Tag: Allowance`
-
-![EditCommandIncome](images/ug/EditCommandIncome.png)
 
 ### Summary of entries: `summary [mo/MONTH]`
 
@@ -379,15 +375,15 @@ The command format is provided below:
 |--------------------|--------------------------------------------------------------------------|
 | **`t/ENTRY_TYPE`** | An entry type refers to either `e` for "Expenditure" or `i` for "Income" |
 
-1. View a PieChart of all expenditures by categories
+1. View a Pie Chart of all expenditures by categories
    - Examples: `view t/e`
-   - Expected: `Show graphically all expenditure by category` and a PieChart on the right of the application.
+   - Expected: `Show graphically all expenditure by category` and a Pie Chart on the right of the application.
 
    ![ViewCommandExpenditureCategory](images/ug/ViewCommandExpenditureCategory.png)
 
-2. View a PieChart of all incomes by categories
+2. View a Pie Chart of all incomes by categories
    - Examples: `view t/i`
-   - Expected: `Show graphically all income by category` and a PieChart on the right of the application
+   - Expected: `Show graphically all income by category` and a Pie Chart on the right of the application
 
 ### View entries by month: `view t/ENTRY_TYPE mo/MONTH`
 
@@ -396,17 +392,17 @@ The command format is provided below:
 | **`t/ENTRY_TYPE`** | An entry type refers to either `e` for "Expenditure" or `i` for "Income"                 |
 | **`mo/MONTH`**     | Allows you to view only entries in a specified month in `YYYY-mm` format, e.g. `2022-01` |
 
-1. View a LineGraph of all expenditures in a specified month
+1. View a Line Graph of all expenditures in a specified month
    - Examples: `view t/e mo/2022-01` where we specify the month to be January 2022.
-   - Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
+   - Expected: `Show graphically all expenditure by month` and a Line Graph on the right of the application
 
    ![ViewCommandExpenditureMonth](images/ug/ViewCommandExpenditureMonth.png)
 
-2. View a LineGraph of all incomes in a specified month
+2. View a Line Graph of all incomes in a specified month
    - Examples: `view t/i mo/2022-01`
-   - Expected: `Show graphically all income by month` and a LineGraph on the right of the application
+   - Expected: `Show graphically all income by month` and a Line Graph on the right of the application
 
-- The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown, accompanied by a LineGraph on the right of the application. If no month is specified, the application displays an error.
+- The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown, accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an error.
 
 ### Clearing all entries: `clear`
 
