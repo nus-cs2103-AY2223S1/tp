@@ -3,7 +3,10 @@ layout: page
 title: Salesy User Guide v1.3
 ---
 
-Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of their tasks, inventory and suppliers, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). With Salesy, you can expect a good visualization of your inventory and increased efficiency with your bookkeeping routines.
+Salesy is an all-in-one tool for NUS canteen vendors who want to keep track of their tasks, inventory and suppliers. 
+With Salesy, you can expect a good visualization of your inventory and increased efficiency with your bookkeeping routines.
+Salesy optimized for use via a [Command Line Interface](#62-command-line-interface-cli) (CLI) while still having the benefits of 
+a [Graphical User Interface](#63-graphical-user-interface-gui) (GUI).
 
 ![Ui](images/Ui.png)
 
@@ -68,7 +71,7 @@ A brief display of important information for **inventory** and **tasks**.
 
 Simple and intuitive colors are used to identify stock levels.
 
-**Examples:**
+### 3.2.1 Examples
 
 Inventory Status in the [Stats Panel](#31-statistics-panel).
 
@@ -80,13 +83,20 @@ Inventory Cards for Items
 
 ![InventoryCardGreen](images/greenstatuscard.png)
 
-**Detailed Explanation**
+### 3.2.2 Simple explanation of the colors
 
-| Color          | Meaning                                                      | How is it determined ?                                                                              |
-|----------------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| ️🍎&nbsp;Red   | Running `low`, restock as soon as possible.                  | **Less than 120%** of minimum stock specified.                                                      |
-| 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon. | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
-| 🟢&nbsp;Green  | Running at a `healthy` level, no worries about restocking.   | **More than and equal to 165%** of minimum stock specified.                                         |
+| Color  | Meaning                                |
+|--------|----------------------------------------|
+| Red    | Current stock is at a `low` level      |
+| Orange | Current stock is at a `moderate` level |
+| Green  | Current stock is at a `healthy` level  |
+
+<div markdown="span" class="alert alert-info">
+
+**Note:** For a more detailed explanation on how colors are determined, refer the [appendix](#61-colors-used-in-the-inventory).
+
+</div>
+
 
 # 4. Features
 
@@ -263,55 +273,53 @@ Finds suppliers based on name or item
 
 Increases or decreases your stock for a particular item in the inventory
 
-#### 4.7.1 Steps
+### 4.7.1 Steps
 
-1. Take a look at the inventory panel at the bottom-middle section of the application.
-2. Decide on which item you want to modify the stock of.
-3. Hover your mouse over item and the white text box with a value `1` in it. Take a look at [Figure 1](#472-figure-1-above-_initial-state_).
-4. Key in your desired amount to add or decrease by. Take a look at [Figure 2](#473-figure-2-above-_after-entering-desired-value_).
-5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount). Take a look at [Figure 3](#474-figure-3-above-_after-pressing-the--button_).
+1. Take a look at the inventory panel at the **middle-bottom** section of the application.
+2. Decide on which item to change the stock.
+3. Hover your mouse over item and the white text box with a value `1` in it. (Refer to [Figure 1](#figure-1-above-_initial-state_))
+4. Key in your desired amount to add or decrease by. (Refer to [Figure 2](#figure-2-above-_after-entering-desired-value_))
+5. Press the `+` icon to add your desired amount (or press the `-` icon to reduce by your desired amount). (Refer to [Figure 3](#figure-3-above-_after-pressing-the--button_))
 
 ![Ui](images/initialStateIncEg.png)
 
-#### 4.7.2 Figure 1 (above): _Initial state_
+#### Figure 1 (above): _Initial state_
 
 ![Ui](images/incdeckeyin.png)
 
-#### 4.7.3 Figure 2 (above): _After entering desired value_
+#### Figure 2 (above): _After entering desired value_
 
 ![Ui](images/afterinc.png)
 
-#### 4.7.4 Figure 3 (above): _After pressing the `+` button_
+#### Figure 3 (above): _After pressing the `+` button_
 
 ***Notice that the current stock of Ginger increased by your desired amount.***
 
-#### 4.7.5 Limitations
+### 4.7.5 Limitations
 
 * Only able to key in up to a 5 digit value.
 * Only able to key in positive values
 
 ## 4.8 List all data : `listAll`
 
-Lists all items.
+Lists all items in the suppliers panel, inventory panel and tasks panel.
 
 ### 4.8.1 Format
 
 `listAll`
 
 ### 4.8.2 Examples
+- After using the `find` command for supplier contacts, the command `listAll` will list all
+  contacts in Salesy's address book.
 
 * List all entities
 
 > `listAll`
 
 
-## 4.9 List all suppliers/tasks/inventory
+## 4.9 List specific items in the panels
 
-Refreshes and lists all suppliers/tasks/items.
-
-**Example of a possible use case**
-- After using the `find` command for supplier contacts, `listAll` / `listSuppliers` will list all
-contacts in Salesy's address book.
+Refreshes and lists all suppliers, tasks or items.
 
 ## 4.9.1 List all suppliers: `listSuppliers`
 
@@ -323,9 +331,15 @@ List all suppliers
 
 ### 4.9.1.2 Examples
 
-* List all suppliers
+1. Run the `find n/eggs` command to find suppliers that supply eggs. (Refer to [Figure 4](#figure-4-above-after-running-find-neggs))
+2. If you want to view the full list of suppliers again, run `listSuppliers` to list
+all the suppliers. (Refer to [Figure 5](#figure-5-above-after-running-listsuppliers))
 
-> `listSuppliers`
+![findegg](images/findegg.png)
+#### Figure 4 (above) After running `find n/eggs`
+
+![afterlistsuppliers](images/listall.png)
+#### Figure 5 (above) After running `listSuppliers`
 
 ## 4.9.2 List all tasks: `listTasks`
 
@@ -364,9 +378,13 @@ Lists the whole inventory.
 
 Clears and deletes all suppliers in Salesy. 
 
-> ⚠️(**WARNING**) This command is used to reset only the suppliers in the Suppliers panel. Running this command will remove all
-> suppliers from Salesy. To regain the sample data again, delete `addressbook.json` from the source folder of the app and 
-> re-run Salesy.
+<div markdown="span" class="alert alert-info">
+
+⚠️**WARNING**: This command is used to reset only the suppliers in the Suppliers panel. Running this command will remove all
+suppliers from Salesy. To regain the sample data again, delete `addressbook.json` from the source folder of the app and 
+re-run Salesy.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -394,3 +412,26 @@ Clears and deletes all suppliers in Salesy.
 | **list** (all items)         | `listAll`                                                | `listAll`                                                                          |                                                    |
 
 # 6. Appendix
+
+## 6.1 Colors used in the Inventory
+
+**Detailed Explanation**
+
+| Color          | Meaning                                                      | How is it determined ?                                                                              |
+|----------------|--------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| 🔴&nbsp;Red    | Running `low`, restock as soon as possible.                  | **Less than 120%** of minimum stock specified.                                                      |
+| 🟠&nbsp;Orange | Running at a `moderate` level, can consider restocking soon. | **More than and equal to 120%** of minimum stock specified and **less than 165%** of minimum stock. |
+| 🟢&nbsp;Green  | Running at a `healthy` level, no worries about restocking.   | **More than and equal to 165%** of minimum stock specified.                                         |
+
+[//]: # (@@author hauchongtang-reused)
+[//]: # (Both definitions: 6.2 and 6.3 taken from https://byjus.com/gate/difference-between-cli-and-gui/#:~:text=GUI%20lets%20a%20user%20interact,offer%20both%20CLI%20and%20GUI.)
+
+## 6.2 Command Line Interface (CLI)
+
+* CLI is a medium or a platform, where a user writes a command to answer a visual prompt and then receives a response from the system/device.
+* In the case of Salesy, the CLI is used heavily to allow the user to perform commands.
+
+## 6.3 Graphical User Interface (GUI)
+
+* In a GUI, you get various menus for making things easy, such as buttons, windows, scrollbars etc. It is very intuitive yet simple to use, even for a newbie.
+* In the case of Salesy, we utilize the GUI to give the user a visual view of their commands done from the CLI.
