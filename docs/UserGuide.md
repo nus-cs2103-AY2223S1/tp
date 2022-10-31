@@ -124,8 +124,11 @@ If you are new to Tuthub or need a refresher for available commands, `help` disp
 
 Format: `help`
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
 You may also click on the Help Toolbar to access the command summary table.
+
 </div>
 
 ### Adding a tutor: `add`
@@ -134,10 +137,12 @@ Adds a tutor to the Tuthub.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`
 
-<div markdown="block" class="alert alert-info">:information_source: **About Tags:**
+<div markdown="block" class="alert alert-info">
 
+:information_source: **About Tags:**
 - A person can have any number of tags (including 0).
 - Tags should be alphanumeric and should not contain any spaces.
+
 </div>
 
 Examples:
@@ -166,8 +171,11 @@ Format: `view INDEX`
 Examples:
 * `view 2` displays the full details of the 2nd person in Tuthub.
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
 You may also click on a tutor list card to execute a view command instead
+
 </div>
 
 
