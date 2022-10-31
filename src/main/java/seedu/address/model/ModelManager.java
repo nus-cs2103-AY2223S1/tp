@@ -291,4 +291,12 @@ public class ModelManager implements Model {
         assert this.isHome.size() == 1;
         this.isHome.set(INDEX_OF_HOME_STATUS, isHome);
     }
+
+    @Override
+    public void goToHomePage() {
+        assert isHome.size() == 1;
+        isHome.set(INDEX_OF_HOME_STATUS, true);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
 }

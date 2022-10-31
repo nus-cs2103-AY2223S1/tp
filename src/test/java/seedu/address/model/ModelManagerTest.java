@@ -311,9 +311,33 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void goToHomePage_filteredList_returnsHomePage() {
+        // Move out of home page
+        modelManager.addPerson(AMY);
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ZERO_PERSON);
+
+        modelManager.addModule(CS2106);
+        modelManager.updateFilteredModuleList(PREDICATE_SHOW_ZERO_MODULE);
+
+        modelManager.setHomeStatus(false);
+
+        // Validate that person and module is filtered
+        assertFalse(modelManager.hasPersonInFilteredList(AMY));
+        assertFalse(modelManager.hasModuleInFilteredList(CS2106));
+        assertFalse(modelManager.getHomeStatusAsBoolean());
+
+        // Return to home page
+        modelManager.goToHomePage();
+        assertTrue(modelManager.getHomeStatusAsBoolean());
+        assertTrue(modelManager.hasPersonInFilteredList(AMY));
+        assertTrue(modelManager.hasModuleInFilteredList(CS2106));
+    }
+
+    @Test
     public void setHomeStatus() {
         ObservableList<Boolean> isAtHome = FXCollections.observableArrayList(true);
         ObservableList<Boolean> isNotAtHome = FXCollections.observableArrayList(false);
+
         // Model default is at home.
         assertEquals(isAtHome, modelManager.getHomeStatus());
 
@@ -334,32 +358,34 @@ public class ModelManagerTest {
         // Model default is at home.
         assertEquals(isAtHome, modelManager.getHomeStatus());
 
-        // Model stays at home when filtered list is updated.
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ZERO_PERSON);
-        assertEquals(isAtHome, modelManager.getHomeStatus());
-
-        // Model stays at home after adding person.
-        modelManager.addPerson(AMY);
-        assertEquals(isAtHome, modelManager.getHomeStatus());
-
-        // Model stays at home after removing person.
-        modelManager.deletePerson(AMY);
-        assertEquals(isAtHome, modelManager.getHomeStatus());
-
         // Leave home.
         modelManager.setHomeStatus(false);
         assertEquals(isNotAtHome, modelManager.getHomeStatus());
 
-        // Model returns home after adding module.
-        modelManager.addModule(CS2106_WITH_TYPICAL_TASKS);
-        assertEquals(isAtHome, modelManager.getHomeStatus());
+        // Test that modelManager does not update home status via its methods except goToHomePage.
 
-        // Leave home again.
-        modelManager.setHomeStatus(false);
+        // When filtered list is updated.
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ZERO_PERSON);
         assertEquals(isNotAtHome, modelManager.getHomeStatus());
 
-        // Model returns home after removing module.
+        // After adding person.
+        modelManager.addPerson(AMY);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // After removing person via modelManager.
+        modelManager.deletePerson(AMY);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // After adding module via modelManger.
+        modelManager.addModule(CS2106_WITH_TYPICAL_TASKS);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // After removing module via modelManager.
         modelManager.deleteModule(CS2106_WITH_TYPICAL_TASKS);
+        assertEquals(isNotAtHome, modelManager.getHomeStatus());
+
+        // Model returns to home after running goToHomePage.
+        modelManager.goToHomePage();
         assertEquals(isAtHome, modelManager.getHomeStatus());
     }
 

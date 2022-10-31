@@ -24,12 +24,15 @@ while still having the benefits of a Graphical User Interface (GUI).
 3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
-   ![](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g.
+<p align="center">
+    <img src="images/Ui.png" width="500"/>
+</p>
+
+6. Type the command in the command box and press Enter to execute it. e.g.
    `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary)
 
-6. Refer to the [Features](#2-features) for details of each command.
+7. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
 
@@ -40,8 +43,6 @@ while still having the benefits of a Graphical User Interface (GUI).
 | [`edit-module`](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
 | *[`find-module`](#214-find-module)                            | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
 | *[`list-module`](#215-list-module)                            | `list-module`                                                           | List all modules in home page after finding                                     |
-| [`add-person-to-module`](#216-add-person-to-module)           | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
-| [`delete-person-from-module`](#217-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
 | [`add-task`](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
 | [`delete-task`](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
 | [`swap-task`](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
@@ -49,13 +50,23 @@ while still having the benefits of a Graphical User Interface (GUI).
 | [`delete-link`](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
 | [`open-link`](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
 | [`add-person`](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`delete-person`](#242-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
-| [`edit-person`](#243-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
-| *[`find-person`](#244-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
-| *[`list-person`](#245-list-person)                            | `list-person`                                                           | List all contacts                                                               |
+| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE <br/>n/NAME`                        | Add person with specified name to the module with the specified module code     |
+| [`delete-person`](#243-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
+| [`delete-person-from-module`](#244-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
+| [`edit-person`](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
+| *[`find-person`](#246-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
+| *[`list-person`](#247-list-person)                            | `list-person`                                                           | List all contacts                                                               |
 | [`home`](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
 | [`goto`](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
 | [`exit`](#26-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+Features marked with * can only be utilised when users are at the home page.
+</div>
+
+<div markdown="span" class="alert alert-info">:eye: **See also:** 
+[Peeking at tasks](#224-peeking-at-tasks).
+</div>
 
 ## 2. Features
 
@@ -84,9 +95,6 @@ the parameter will be taken.<br>
 * Extraneous parameters for commands that do not take in parameters (such as
   `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
-
-* Features marked with * can only be utilised when user is currently at the home page.
-
 </div>
 
 ### 2.1. Modules
@@ -120,6 +128,10 @@ add-module m/CS2103T t/Software Engineering
 ```
 In the above example, we are adding a module `CS2103T` which has the title `Software Engineering`.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Adding a module will bring you back to the home page.
+</div>
+
 #### 2.1.2. Delete module
 You can delete the module with the indicated module code from Plannit.
 
@@ -135,6 +147,10 @@ Example:
 delete-module m/CS2103T
 ```
 In the above example, we are deleting module `CS2103T` from Plannit.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Deleting a module will bring you back to the home page.
+</div>
 
 #### 2.1.3. Edit module
 You can edit a module on Plannit using the `edit-module` command.
@@ -175,7 +191,7 @@ In the above example, we are changing the module title of the third module on Pl
 `Software Engineering`.
 
 #### 2.1.4. Find module
-You may find modules whose module code starts with a specific keyword while in Plannit's home page.
+When you are on the home page, you can search for modules whose module codes start with the specified keywords.
 
 Format: `find-module KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -190,62 +206,21 @@ find-module CS
 ```
 In either of the above examples, we find every module whose module code starts with CS in Plannit.
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:** You will
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>You will
 remain on the home page after executing the `find-module` command. This is different
-from the behavior of [`goto`](#252-navigate-between-modules)
+from the behavior of [`goto`](#252-navigate-between-modules) command.
 </div>
 
 #### 2.1.5. List module
-You may obtain the list of every module in Plannit while in the home page.
+When you are on the home page, you may obtain the list of every module in Plannit.
 
 Format: `list-module`
 
 Example:
-
 ```
 list-module
 ```
 In the above example, we list every module that exist in Plannit.
-
-#### 2.1.6. Add person to module
-You can add a person to a module on Plannit using the `add-person-to-module` command. In other 
-words, an association between a person and a module will be created.
-
-This command will require two flags:
-* `m/`: To be followed by the module code of the module which the person will be added to.
-* `n/`: To be followed by the name of the person who will be added to the module.
-
-Format: `add-person-to-module m/MODULE_CODE n/NAME`
-* You can only add a person to a module if both the person and the module are currently 
-  displayed on screen.
-* If a person has already been added to a module, the person cannot be added to the module again.
-
-Example:
-
-```
-add-person-to-module m/CS2103T n/Dinosaur Lim
-```
-In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
-
-#### 2.1.7. Delete person from module
-You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
-command.  
-
-This command will require two flags:
-* `m/`: To be followed by the module code of the module, which the person will be removed from.
-* `n/`: To be followed by the name of the person, whom will be removed from the module.
-
-Format: `delete-person-from-module m/MODULE_CODE n/NAME`
-* You can only delete the specified person from the specified module if the person was originally associated to the
-module.
-* You can only delete a person from a module when both the specified module and person are currently being displayed.
-
-Example:
-
-```
-delete-person-from-module m/CS2103T n/Dinosaur Lim
-```
-In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
 
 <br>
 
@@ -253,13 +228,21 @@ In the above example, we are deleting the person `Dinosaur Lim` from module `CS2
 #### 2.2.1. Add task
 You may add a task using the `add-task` command.
 
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:**<br/> 
+Make sure you have [added a module](#211-add-module) to Plannit before 
+proceeding!
+</div>
+
 This command will require two flags:
-* `m/`: To be followed by the module code of the
-  module which the task is associated with.
-* `td/`: To be followed by the task description.
+
+| Field                            | Flag  | Constraints                                             |
+|----------------------------------|-------|---------------------------------------------------------|
+| **Module Code**                  | `m/`  | Can only be non-empty string of alphanumeric characters |
+| **Task Description of New Task** | `td/` | Can be any string of characters                         |
 
 Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
-* Each task **must** belong to a specific module.
+* Each task must belong to a specific module.
 * You should provide a module code of an existing module in Plannit.
 
 Example:
@@ -267,16 +250,30 @@ Example:
 add-task m/CS2103T td/Complete tP tasks for W07
 ```
 In the above example, we are adding the task `Complete tP tasks for W07` to the
-module with module code `CS2103T`.
+module `CS2103T`. Here's a screenshot of Plannit before and after executing the
+command:
+
+| Before executing the command                                                    | After executing the command                                                    |
+|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/add-task-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-task-after.png"/></p>{:/} |
+
+<div markdown="span" class="alert alert-info">:bulb: **Tip:**<br/>
+You may view the tasks added to a module by navigating to a module's page 
+using the [`goto`](##252-navigate-between-modules) command. Alternatively, 
+you may double-click on a module to ["peek"](#224-peeking-at-modules) at a 
+module's tasks while on the home page.
+</div>
 
 #### 2.2.2. Delete task
 You may delete a task belonging to a particular module using the
 `delete-task` command.
 
 This command will require two flags:
-* `m/`: To be followed by the module code of the module which assigned the
-  task.
-* `tn/`: To be followed by the task number in the module.
+
+| Field                   | Flag  | Constraints                                                                                                                                                       |
+|-------------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**         | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                           |
+| **Task Number of Task** | `tn/` | {::nomarkdown}Task numbers must: <ul><li>correspond to an existing task in the specified module</li> <li>be a positive integer (i.e. 1, 2, 3, ... )</li></ul>{:/} |                 
 
 Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -285,20 +282,26 @@ the module.
 
 Example:
 ```
-delete-task m/CS2103T tn/3
+delete-task m/CS2103T tn/2
 ```
-In the above example, we are deleting task number **3** from the module
-with the module code `CS2103T`.
+In the above example, we are deleting task number **2** from the module
+`CS2103T`. Here's a screenshot of Plannit before and after executing the 
+command: 
+
+| Before executing the command                                                       | After executing the command                                                       |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/delete-task-before.png"/></p>{:/} | {::nomarkdown}<p align="center"><img src="images/delete-task-after.png"/></p>{:/} |
 
 #### 2.2.3. Reorder tasks (swap)
 You may change the order in which tasks appear in the task list of a 
 particular module using the `swap-task` command.
 
 This command will require two flags:
-* `m/`: To be followed by the module code of the module which assigned the
-  task.
-* `ts/`: To be followed by task number of the tasks whose ordering you 
-  wish to swap.
+
+| Field                                                     | Flag  | Constraints                                                                                                                                                                                                                                                 |
+|-----------------------------------------------------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**                                           | `m/`  | Can only be non-empty string of alphanumeric characters                                                                                                                                                                                                     |
+| **Task Numbers of Tasks whose ordering is to be swapped** | `ts/` | {::nomarkdown}The two task numbers must: <ul><li>be separated by a <code>SPACE</code> character ("<code> </code>") </li><li>correspond to a pair of existing tasks in the specified module</li> <li>be positive integers (i.e. 1, 2, 3, ... )</li></ul>{:/} |
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
@@ -312,7 +315,47 @@ Example:
 swap-task m/CS2103T ts/1 3
 ```
 In the above example, we are swapping the position of the first and third 
-task within the task list of the module with the module code `CS2103T`.
+task within the task list of the module `CS2103T`. Here's a screenshot of 
+Plannit before and after executing the command. Note that ["peek"](#224-peeking-at-tasks)
+has been enabled for clarity:
+
+| Before executing the command                                                                 | After executing the command                                                                                                                              |
+|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/swap-task-before.png"/></p><p><br/><p/>{:/} | {::nomarkdown}<p align="center"><img src="images/swap-task-after.png"/></p> <p align="right"><i>Notice tasks 1 and 3 have swapped positions!</i><p/>{:/} |
+
+#### 2.2.4. Peeking at tasks
+You may "peek" at a module's tasks by clicking on the module while on the 
+`home` page. <br/>
+ **Step 1**: Let's say you wish to view the tasks of `CS2103T SOFTWARE 
+ENGINEERING` (module number 1)
+<p align="center">
+  <img src="images/home-page.png" width="500"/>
+</p>
+
+**Step 2**: You will notice a blue glow when hovering your mouse over the 
+module
+<p align="center">
+  <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
+</p>
+
+**Step 3**: Double-clicking on the blue area will allow you to view the 
+ tasks of `CS2103T SOFTWARE ENGINEERING`
+<p align="center">
+  <img src="images/home-page-with-cs2103-tasks.png" width="500"/>
+</p>
+
+**Step 4**: Clicking again on the blue area will close the dropdown and hide 
+the tasks
+<p align="center">
+  <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
+</p>
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:**<br/> 
+You remain on the home page even when you "peek" at a module. To leave the 
+home page and view more details of a specific module, you may use the 
+[`goto`](#252-navigate-between-modules) command.
+</div>
 
 <br>
 
@@ -425,18 +468,18 @@ from the module with module code `CS2040`, using their corresponding link alias 
 
 ### 2.4. Contacts
 #### 2.4.1. Add person
-You may add a contact using the `add-person` command.
+You may add a contact to Plannit using the `add-person` command.
 
 This command will require three flags:
-* `n/`: To be followed by the to-be-added contact name.
-* `e/`: To be followed by the email of the new contact.
-* `p/`: To be followed by the phone number of the new contact.
+
+| Field     | Flag | Constraints                                                        |
+|-----------|------|--------------------------------------------------------------------|
+| **Name**  | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)       |
+| **Phone** | `p/` | Can only be 8 digits long                                          |
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
-* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
-* You cannot specify any country code for phone number.
-* You must specify an 8-digit phone number.
 
 Example:
 ```
@@ -445,14 +488,49 @@ add-person n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 In the above example, we are adding a contact with name `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number
 `91234567` into Plannit.
 
-#### 2.4.2. Delete person
-You may delete a contact using the `delete-person` command.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Adding a person will bring you back to the home page.
+</div>
+
+#### 2.4.2. Add person to module
+You can add a person to a module using the `add-person-to-module` command. In other
+words, an association between a person and a module will be created.
+
+This command will require two flags:
+
+| Field           | Flag | Constraints                                                        |
+|-----------------|------|--------------------------------------------------------------------|
+| **Module Code** | `m/` | Can only be non-empty string of alphanumeric characters            |
+| **Name**        | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+
+Format: `add-person-to-module m/MODULE_CODE n/NAME`
+* If a person has already been added to a module, the person cannot be added to the module again.
+* You can only add a person to a module if both the person and the module are currently
+  displayed on screen.
+
+Example:
+
+```
+add-person-to-module m/CS2103T n/Dinosaur Lim
+```
+In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+If you wish to view a person added to a particular module, you may do so by navigating to that
+module using the [`goto`](#252-navigate-between-modules) command.
+</div>
+
+#### 2.4.3. Delete person
+You may delete a contact from Plannit using the `delete-person` command.
 
 This command will require one flag:
-* `n/`: To be followed by the to-be-deleted contact name.
+
+| Field           | Flag | Constraints                                                        |
+|-----------------|------|--------------------------------------------------------------------|
+| **Name**        | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
 
 Format: `delete-person n/NAME`
-* You cannot delete a non-existent contact.
+* You cannot delete a non-existent contact in Plannit.
 * You can only delete a person from Plannit when the person is currently being displayed.
 
 Example:
@@ -461,19 +539,43 @@ delete-person n/Dinosaur Lim
 ```
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
-#### 2.4.3. Edit person
+#### 2.4.4. Delete person from module
+You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
+command.
+
+This command will require two flags:
+
+| Field           | Flag | Constraints                                                        |
+|-----------------|------|--------------------------------------------------------------------|
+| **Module Code** | `m/` | Can only be non-empty string of alphanumeric characters            |
+| **Name**        | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+
+Format: `delete-person-from-module m/MODULE_CODE n/NAME`
+* You can only delete the specified person from the specified module if the person was originally associated to the
+  module.
+* You can only delete a person from a module when both the specified module and person are currently being displayed.
+
+Example:
+
+```
+delete-person-from-module m/CS2103T n/Dinosaur Lim
+```
+In the above example, we are deleting the person `Dinosaur Lim` from module `CS2103T`.
+
+
+#### 2.4.5. Edit person
 You may edit a contact using the `edit-person` command.
 
 This command will require an index and minimally any of the three flags:
-* `n/`: To be followed by the new contact name.
-* `e/`: To be followed by the new email of the contact.
-* `p/`: To be followed by the new phone number of the contact.
+
+| Field     | Flag | Constraints                                                        |
+|-----------|------|--------------------------------------------------------------------|
+| **Name**  | `n/` | Can only be non-empty string of alphanumeric characters and spaces |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)       |
+| **Phone** | `p/` | Can only be 8 digits long                                          |
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 * `INDEX` is the currently displayed index number of the contact you are editing for on the screen.
-* You should specify the email in proper email format, e.g. `xyz@gmail.com`.
-* You cannot specify any country code for phone number.
-* You must specify an 8-digit phone number.
 
 Examples:
 ```
@@ -493,8 +595,8 @@ In the above example, we are editing the contact with a displayed-index number o
 `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
 
 
-#### 2.4.4. Find person
-You may find person whose name starts with a specific keyword while in Plannit's home page.
+#### 2.4.6. Find person
+When you are on the home page, you can search for people whose names start with the specified keywords.
 
 Format: `find-person KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -509,13 +611,12 @@ find-person Alex
 ```
 In either of the above examples, we find every person whose name starts with Alex in Plannit.
 
-#### 2.4.5. List person
-You may obtain the list of every person in Plannit while in the home page.
+#### 2.4.7. List person
+When you are on the home page, you may obtain the list of every person in Plannit.
 
 Format: `list-person`
 
 Example:
-
 ```
 list-person
 ```
@@ -525,12 +626,33 @@ In the above example, we list every person that exist in Plannit.
 With navigation functionalities, you now have the ability to navigate between different modules in Plannit!
 
 #### 2.5.1. Navigate to home
-You may navigate back to the home page using the `home` command.
+An overview of the modules and persons in Plannit is provided on the home page.
+
+You may navigate to the home page using the `home` command.
 
 Format:  `home`
 
+<div markdown="block" class="alert alert-primary"> :bulb: **Tips:** <br>
+You may click on a module to ["peek"](#224-peeking-at-modules) at a module's task while on the home page. <br>
+For more detailed information regarding a specific module, you may navigate to that
+module using the [`goto`](#252-navigate-between-modules) command. <br>
+The following commands also navigates you back to the home page:
+* [`add-module`](#211-add-module)
+* [`delete-module`](#212-delete-module)
+* [`add-person`](#244-add-person)
+</div>
+
+<div markdown="block" class="alert alert-info"> :information_source: **Note:**
+After using the [`goto`](#252-navigate-between-modules) command, executing the `home` command will 
+re-enable the following commands:
+* [`find-module`](#214-find-module)
+* [`list-module`](#215-list-module)
+* [`find-person`](#244-find-person)
+* [`list-person`](#245-list-person)
+</div>
+
 #### 2.5.2. Navigate between modules
-You may navigate between modules to view information belonging to a particular
+You may navigate between modules to view tasks and contacts associated with a particular
 module using the `goto` command.
 
 Format: `goto MODULE_CODE`
@@ -542,9 +664,20 @@ goto CS2109S
 ```
 In the above example, we are navigating to the module with module code `CS2109S`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** You will
-leave the home page after executing the `goto` command. This is different from the
-behavior of [`find-module`](#213-find-module)
+<div markdown="span" class="alert alert-primary"> :bulb: **Tips:**
+You may return to home page by executing the [`home`](#251-navigate-to-home) command.
+</div>
+
+<div markdown="block" class="alert alert-info">:information_source: **Note:** <br>
+You will leave the home page after executing the `goto` command. This is different from the
+behavior of [`find-module`](#215-find-module) command. <br>
+After using the `goto` command, usage of the following commands will be restricted:<br>
+* [`find-module`](#214-find-module)
+* [`list-module`](#215-list-module)
+* [`find-person`](#244-find-person)
+* [`list-person`](#245-list-person)
+To re-enable the restricted commands, you may execute any commands that bring you back to the home page
+(i.e. [`home`](#251-navigate-to-home)).
 </div>
 
 <br>
@@ -557,19 +690,19 @@ Format: `exit`
 <br>
 
 ### 2.7. Saving The Data
-Plannit data is saved in the hard disk automatically after any command that changes the data. There is no need to save
-manually.
+Your data is saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
 
 <br>
 
 ### 2.8. Loading The Data
-If saved data exists, data is automatically loaded when the program starts. There is no need to
-load manually.
+If saved data exists, data is automatically loaded when the program starts.
+There is no need to load manually.
 
 <br>
 
 ### 2.9. Editing The Data File
-Plannit data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update
+Your data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -591,3 +724,8 @@ the file that contains the data of your previous Plannit home folder.
 [More questions coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
+# 5. Glossary
+
+| Term                  | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **local-part@domain** | The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>The local-part may not start or end with any special characters. <br> <br>This is followed by a '@' and then a domain name. <br> <br>The domain name is made up of domain labels separated by periods. The domain name must: <br> 1) end with a domain label at least 2 characters long <br> 2) have each domain label start and end with alphanumeric characters <br> 3) have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |

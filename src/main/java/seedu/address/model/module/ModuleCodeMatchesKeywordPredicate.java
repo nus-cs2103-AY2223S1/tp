@@ -1,5 +1,7 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
 /**
@@ -14,6 +16,8 @@ public class ModuleCodeMatchesKeywordPredicate implements Predicate<Module> {
 
     @Override
     public boolean test(Module module) {
+        requireNonNull(module);
+
         String moduleCode = module.getModuleCodeAsUpperCaseString();
         return moduleCode.equalsIgnoreCase(keyword);
     }

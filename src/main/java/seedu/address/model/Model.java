@@ -188,4 +188,9 @@ public interface Model {
      * @param isHome The current status of Plannit
      */
     void setHomeStatus(boolean isHome);
+
+    /**
+     * Navigates user to home page.
+     */
+    void goToHomePage();
 }

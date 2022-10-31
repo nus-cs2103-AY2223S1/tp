@@ -1026,7 +1026,7 @@ Use case ends.
     * **v1.1**: 28 September 2022 (Week 7, Wednesday)
     * **v1.2**: 12 October 2022 (Week 9, Wednesday)
     * **v1.3**: 26 October 2022 (Week 11, Wednesday)
-    * **v1.4**: 09 November 2022 (Week 13, Wednesday)
+    * **v1.4**: 07 November 2022 (Week 13, Monday)
 2. The team should meet every Saturday at 9pm until the end of the project.
 3. Each team member should follow the forking workflow.
 4. At least 2 members need to approve a pull request before it can be successfully merged into the master branch on `GitHub`.
