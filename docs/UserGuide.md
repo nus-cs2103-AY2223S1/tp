@@ -257,7 +257,7 @@ Note how the blue "cafe" tag on store 50 disappears after the untag command.
 ![Ui](images/user-guide/UgTagUntagComparison.png)
 <br><br>
 
-### Add eatery: `add`
+### Add eatery : `add`
 
 _Adds a new eatery to NUSEatWhere's database. Eatery will be added to the end of the 
 current list <br>
@@ -329,7 +329,7 @@ _... Details coming soon ..._
 <br>
 
 
-### Edit tag `edit`
+### Edit eatery : `edit`
 
 _... Details coming soon ..._
 
