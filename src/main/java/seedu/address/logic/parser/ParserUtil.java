@@ -127,6 +127,9 @@ public class ParserUtil {
         if (!Birthdate.isValidBirthdate(trimmedBirthdate)) {
             throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
         }
+        if (!Birthdate.isDateInTheFuture(trimmedBirthdate)) {
+            throw new ParseException(Birthdate.BIRTHDATE_AFTER_TODAY);
+        }
         return new Birthdate(trimmedBirthdate);
     }
 
