@@ -38,7 +38,7 @@ public class UnhidePatientsCommandParser implements Parser<UnhidePatientsCommand
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhidePatientsCommand.MESSAGE_USAGE));
         }
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-        if (nameKeywords.get(0).trim().equals("")) {
+        if (nameKeywords.stream().anyMatch(x -> x.equals(""))) {
             throw new ParseException(MESSAGE_EMPTY_NAME);
         }
         return new UnhidePatientsCommand(new NameContainsKeywordsPredicate(nameKeywords));

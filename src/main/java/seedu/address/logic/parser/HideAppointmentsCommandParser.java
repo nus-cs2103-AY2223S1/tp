@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_REASON;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STATUS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -41,7 +42,7 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_REASON);
             cond = HideAppointmentPredicate.HideBy.KEYWORD;
-            if (val.get(0).trim().equals("")) {
+            if (val.stream().anyMatch(x -> x.equals(""))) {
                 throw new ParseException(MESSAGE_EMPTY_REASON);
             }
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
@@ -54,6 +55,9 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
                 && isValidStatusInput(argMultimap.getValue(PREFIX_STATUS).orElse(""))) {
             val = argMultimap.getAllValues(PREFIX_STATUS);
             cond = HideAppointmentPredicate.HideBy.IS_MARKED;
+            if (val.size() > 1) {
+                throw new ParseException(MESSAGE_INVALID_STATUS);
+            }
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));

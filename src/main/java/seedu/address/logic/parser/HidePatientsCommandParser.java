@@ -37,7 +37,7 @@ public class HidePatientsCommandParser implements Parser<HidePatientsCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HidePatientsCommand.MESSAGE_USAGE));
         }
         List<String> keywords = argMultimap.getAllValues(PREFIX_NAME);
-        if (keywords.get(0).trim().equals("")) {
+        if (keywords.stream().anyMatch(x -> x.equals(""))) {
             throw new ParseException(MESSAGE_EMPTY_NAME);
         }
         return new HidePatientsCommand(new NameContainsKeywordsPredicate(keywords));
