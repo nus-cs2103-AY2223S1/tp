@@ -37,7 +37,7 @@ import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the Survin.
+ * Edits the details of an existing person in Survin.
  */
 public class EditCommand extends Command {
 
