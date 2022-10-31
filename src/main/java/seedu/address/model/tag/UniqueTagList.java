@@ -146,8 +146,9 @@ public class UniqueTagList implements Iterable<Tag> {
         for (int i = 0; i < internalList.size(); i++) {
             Tag currTag = internalList.get(i);
             if (toAdd.equals(currTag)) {
-                currTag.addToCount();
-                internalList.set(i, currTag);
+                Tag updatedTag = new Tag(currTag.getName(), currTag.getCount());
+                updatedTag.addToCount();
+                internalList.set(i, updatedTag);
                 break;
             }
         }
@@ -162,9 +163,10 @@ public class UniqueTagList implements Iterable<Tag> {
         for (int i = 0; i < internalList.size(); i++) {
             Tag currTag = internalList.get(i);
             if (toDelete.equals(currTag)) {
-                currTag.removeFromCount();
-                internalList.set(i, currTag);
-                if (currTag.getCount() == 0) {
+                Tag updatedTag = new Tag(currTag.getName(), currTag.getCount());
+                updatedTag.removeFromCount();
+                internalList.set(i, updatedTag);
+                if (updatedTag.getCount() <= 0) {
                     internalList.remove(i);
                 }
                 break;
