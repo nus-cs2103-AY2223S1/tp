@@ -100,7 +100,7 @@ This is where you can input commands!
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageWatson.png)
 
 Format: `help`
 
