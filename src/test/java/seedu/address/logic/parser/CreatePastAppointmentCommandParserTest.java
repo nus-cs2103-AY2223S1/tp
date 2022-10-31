@@ -38,6 +38,12 @@ class CreatePastAppointmentCommandParserTest {
     }
 
     @Test
+    public void parse_emptyDiagnosisWithMedication_throwsParseException() {
+        assertThrows(ParseException.class, () -> new CreatePastAppointmentCommandParser()
+                .parse("1 d/ m/ibuprofen"));
+    }
+
+    @Test
     public void parse_emptyMedication_successful() throws ParseException {
         new CreatePastAppointmentCommandParser().parse("1 on/12-01-2020 diag/fever m/");
     }
@@ -64,6 +70,11 @@ class CreatePastAppointmentCommandParserTest {
         // no exception thrown
         assertDoesNotThrow(() -> new CreatePastAppointmentCommandParser()
                 .parse("1 on/12-01-2020 diag/fever m/paracetamol"));
+    }
+
+    @Test
+    public void parseTagsForEdit_medicationSetWithEmptyString_success() throws ParseException {
+        new CreatePastAppointmentCommandParser().parse("1 on/12-01-2020 diag/fever m/ ");
     }
 
 }
