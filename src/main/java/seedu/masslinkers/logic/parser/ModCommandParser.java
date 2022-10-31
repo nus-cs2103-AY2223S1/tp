@@ -193,38 +193,6 @@ public class ModCommandParser implements Parser<ModCommand> {
     }
 
     /**
-     * Parses a mod find command from user to construct a ModFindCommand for execution.
-     *
-     * @param args Arguments from user input.
-     * @return A ModFindCommand for execution.
-     * @throws ParseException If there is a parse error.
-     */
-    private ModFindCommand parseFindCommand(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
-        }
-
-        String[] keywords = trimmedArgs.split("\\s+");
-        boolean isTaken = keywords[0].equalsIgnoreCase(MOD_TAKEN_COMMAND_WORD);
-        boolean isTaking = keywords[0].equalsIgnoreCase(MOD_TAKING_COMMAND_WORD);
-        String[] keywordsWithoutFirstElement = Arrays.copyOfRange(keywords, 1, keywords.length);
-        if ((isTaken || isTaking) && keywordsWithoutFirstElement.length == 0) {
-            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
-        }
-
-        if (isTaken) {
-            return new ModFindCommand(
-                    new ModTakenContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
-        } else if (isTaking) {
-            return new ModFindCommand(
-                    new ModTakingContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
-        } else {
-            return new ModFindCommand(new ModContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
-    }
-
-    /**
      * Converts a collection of strings representing mod names to a set of mods.
      *
      * @param mods A collection of mods in string.
@@ -278,6 +246,38 @@ public class ModCommandParser implements Parser<ModCommand> {
             }
         }
         return indexOrAll;
+    }
+
+    /**
+     * Parses a mod find command from user to construct a ModFindCommand for execution.
+     *
+     * @param args Arguments from user input.
+     * @return A ModFindCommand for execution.
+     * @throws ParseException If there is a parse error.
+     */
+    private ModFindCommand parseFindCommand(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        }
+
+        String[] keywords = trimmedArgs.split("\\s+");
+        boolean isTaken = keywords[0].equalsIgnoreCase(MOD_TAKEN_COMMAND_WORD);
+        boolean isTaking = keywords[0].equalsIgnoreCase(MOD_TAKING_COMMAND_WORD);
+        String[] keywordsWithoutFirstElement = Arrays.copyOfRange(keywords, 1, keywords.length);
+        if ((isTaken || isTaking) && keywordsWithoutFirstElement.length == 0) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        }
+
+        if (isTaken) {
+            return new ModFindCommand(
+                    new ModTakenContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
+        } else if (isTaking) {
+            return new ModFindCommand(
+                    new ModTakingContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
+        } else {
+            return new ModFindCommand(new ModContainsKeywordsPredicate(Arrays.asList(keywords)));
+        }
     }
 
     /**
