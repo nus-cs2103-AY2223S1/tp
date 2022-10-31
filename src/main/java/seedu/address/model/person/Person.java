@@ -29,7 +29,11 @@ public class Person {
      * Every field must be present and not null, except Location, which is
      * set by default to Singapore.
      */
-    public Person(PersonCategory personCategory, Name name, Phone phone, Email email, Address address) {
+    public Person(PersonCategory personCategory,
+                  Name name,
+                  Phone phone,
+                  Email email,
+                  Address address) {
         requireAllNonNull(personCategory, name, phone, email, address);
         this.personCategory = personCategory;
         this.name = name;
