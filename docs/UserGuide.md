@@ -389,6 +389,31 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+* _Command_: An instruction for PayMeLah to execute. All commands start with a _command phrase_ and any inputs the command may require.
+* _Command box_: A box in which you can enter _commands_. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Command Line Interface (CLI)_: The method by which you instruct PayMeLah to perform tasks, which is by entering _commands_ into the _command box_.
+* _Command phrase_: The name of the instruction for PayMeLah to execute. For example, `list` is the command phrase to show the list of people added to PayMeLah.
+* _Debt_: A transaction event (e.g. group purchase, shared Grab food order) where someone owes you money.
+* _Debt card_: A card containing the details of a specific _debt_ that has been added to PayMeLah. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Debt index_: The number that appears next to each _debt_’s description in a person’s _debt list_.
+* _Debt list_: A box containing a list of _debts_ owed by a person added to PayMeLah. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Debtor_: A person who owes you money.
+* _Enter[ing]_ a command: Type the _command_ into the _command box_, and press the <kbd>Enter</kbd> key.
+* _Index_: The number that appears next to each person’s name or each _debt_’s description.
+* _Input_: Additional information supplied by you that is used to run a _command_.
+* _Keyboard shortcut_: A key or sequence of keys which you may press to perform actions without your mouse.
+* _Message box_: A box in which PayMeLah will inform you about the results of your _commands_. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Person card_: A card containing the details and _debts_ of someone that has been added to PayMeLah. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Person index_: The number that appears next to each person’s name in the _person list_.
+* _Person list_: A box which contains a list of people added to PayMeLah. See [Navigating the application interface](#navigating-the-application-interface) to learn more.
+* _Prefix_: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
+
+[Return to Table of Contents](#table-of-contents)
+<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
 | Action            | Format, Examples                                                                                                                                                                                                                                        |
