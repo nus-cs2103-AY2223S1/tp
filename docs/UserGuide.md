@@ -353,11 +353,13 @@ Format: `exit`
 
 Clicking on Color Theme button in menu bar display a dropdown list to select between Light/Dark mode.
 
+- Dark Mode GUI
+
 ![Ui](images/darktheme.png)
-Dark Mode GUI
+
+- Light Mode GUI
 
 ![Ui](images/lightheme.png)
-Light Mode GUI
 
 ## 4.10 Data files
 
