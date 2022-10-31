@@ -28,9 +28,9 @@ Track the internships you're interested in and all the relevant information -- t
 --------------------------------------------------------------------------------------------------------------------
 # 2. How to use this User Guide?
 
-1. For new user, proceed to our [Quick Start](#3-quick-start)  
+1. For new user, proceed to our [Quick start](#3-quick-start)  
 
-1. For returning user, skip to our [command summary](#command-summary) for a summary of our feature
+1. For returning user, skip to our [Command summary](#command-summary) for a summary of our feature
 
 
 ## 2.1 Icons and symbols
