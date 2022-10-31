@@ -20,7 +20,6 @@ public class JsonAdaptedPetTest {
     private static final Double INVALID_WEIGHT = -999999999.99999999999;
     private static final Double INVALID_HEIGHT = -0.00000000099994844;
     private static final Double INVALID_PRICE = -8888.674;
-    private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_PET_NAME = TypicalPets.DOJA.getName().toString();
     private static final Supplier VALID_SUPPLIER = TypicalPets.DOJA.getSupplier();

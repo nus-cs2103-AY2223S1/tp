@@ -48,8 +48,6 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 2";
     public static final String VALID_ADDRESS_CAL = "Block 213, Cally Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_ORDER_1 = "Order1"; //TODO Remove these two stubs
     public static final String VALID_ORDER_2 = "Order2";
 

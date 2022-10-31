@@ -34,7 +34,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PET_COLOR_PATTERN = new Prefix("pt_cp/");
     public static final Prefix PREFIX_PET_HEIGHT = new Prefix("pt_h/");
     public static final Prefix PREFIX_PET_CERTIFICATE = new Prefix("pt_cert/");
-    public static final Prefix PREFIX_PET_TAG = new Prefix("pt_t/");
     public static final Prefix PREFIX_PET_SPECIES = new Prefix("pt_s/");
     public static final Prefix PREFIX_PET_VACCINATION_STATUS = new Prefix("pt_v/");
     public static final Prefix PREFIX_PET_WEIGHT = new Prefix("pt_w/");

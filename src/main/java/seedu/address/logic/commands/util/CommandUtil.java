@@ -48,8 +48,6 @@ public class CommandUtil {
     public static final String[] ACCEPTABLE_SORT_WEIGHT_PARAMETER = new String[]{"WEIGHT", "W", "-W", "/W"};
     public static final String[] ACCEPTABLE_SORT_VACCINATION_STATUS_PARAMETER = new String[]{"VACCINATIONSTATUS",
         "VSTATUS", "-VS", "/VS", "VS"};
-    public static final String[] ACCEPTABLE_SORT_TAGS_PARAMETER = new String[]{"CHARACTERISTICS", "CHARA", "CHA", "CH",
-        "-CH", "/CH"};
     public static final String[] ACCEPTABLE_SORT_CERTIFICATES_PARAMETER = new String[]{"CERTIFICATE", "CERT", "-CERT",
         "/CERT"};
 

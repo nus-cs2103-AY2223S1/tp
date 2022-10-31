@@ -26,7 +26,6 @@ public class JsonAdaptedSupplierTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_PERSON_CATEGORY = BENSON.getPersonCategory().toString();
     private static final String VALID_NAME = BENSON.getName().toString();
