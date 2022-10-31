@@ -33,7 +33,7 @@
     "email" : "cornelia@example.com",
     "position" : "TA",
     "address" : "10th street",
-    "remark": "She likes aardvarks.",
+    "remark": "He likes apples.",
     "details": "Available",
     "tagged" : [ "CS2103-T01" ]
   }, {
@@ -42,7 +42,7 @@
     "email" : "werner@example.com",
     "position" : "TA",
     "address" : "michegan ave",
-    "remark": "She likes aardvarks.",
+    "remark": "She is sporty.",
     "details": "Available",
     "tagged" : [ "CS2103-T01" ]
   }, {
@@ -51,7 +51,7 @@
     "email" : "lydia@example.com",
     "position" : "Professor",
     "address" : "little tokyo",
-    "remark": "She likes aardvarks.",
+    "remark": "She is interested to become a TA.",
     "details": "Unassigned",
     "tagged" : [ "CS2103-T01" ]
   }, {

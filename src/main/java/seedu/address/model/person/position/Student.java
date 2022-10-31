@@ -1,6 +1,8 @@
 package seedu.address.model.person.position;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.person.Assignment.WEIGHTAGE_CONSTRAINTS;
+import static seedu.address.model.person.Assignment.WEIGHTAGE_VALIDATION_REGEX;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -25,14 +28,19 @@ import seedu.address.model.tag.Tag;
 public class Student extends Position {
 
     public static final String ATTENDANCE_CONSTRAINTS =
-            "Attendance should be in the format [number]/[number], where the first number is greater "
-                    + "or equal to the second number (max 999).";
+            "Attendance should be in the format [integer (0-100)]/[integer (1-100)], where the first number is "
+                    + "smaller than or equal to the second number.";
     public static final String ATTENDANCE_VALIDATION_REGEX = "\\d{1,3}" + "/" + "\\d{1,3}";
     public static final String MESSAGE_ASSIGNMENT_INVALID = "The index of the assignment is invalid.";
     public static final String ASSIGNMENT_CONSTRAINTS =
             "Incorrect Assignment inputs. Please make sure your input is in the right format "
-                    + "\n i.e. assignments assignments/ Assignment 1 w/20, Assignments 2 w/20, Finals w/60"
-                    + "\n Please ensure that your weightages add up to 100.";
+                    + "\n i.e. assignments assignments/ Assignment 1 w/20, Assignments 2 w/20, Finals w/60";
+    public static final String ASSIGNMENT_DUPLICATE =
+            "Please ensure you do not have multiple assignments with the same name.";
+    public static final String ASSIGNMENT_INVALID_SUM_OF_WEIGHTAGE =
+            "Please ensure that your weightages add up to 100.";
+    public static final String TOO_MANY_ASSIGNMENT =
+            "Please ensure you only have a maximum of 10 assignments.";
 
     private String attendance;
     private String overallGrade;
@@ -46,6 +54,7 @@ public class Student extends Position {
      */
     public Student(String filePath) {
         super("Student");
+        requireNonNull(filePath);
         this.attendance = "0/0";
         this.overallGrade = "0/0";
         this.assignmentsList = new ArrayList<>();
@@ -78,6 +87,10 @@ public class Student extends Position {
      */
     public Student(String attendance, String overallGrade, ArrayList<Assignment> assignmentsList, String filePath) {
         super("Student");
+        requireNonNull(attendance);
+        requireNonNull(overallGrade);
+        requireNonNull(assignmentsList);
+        requireNonNull(filePath);
         this.attendance = attendance;
         this.overallGrade = overallGrade;
         this.assignmentsList = assignmentsList;
@@ -139,23 +152,78 @@ public class Student extends Position {
      * Returns true if a given string is a valid string of Assignments
      */
     public static boolean isValidAssignments(String test) {
+        Set<String> assignmentNames = new HashSet<>();
         String[] splitStr = test.split(", ");
         int len = splitStr.length;
         int totalWeightage = 0;
 
         for (int i = 0; i < len; i++) {
-            String[] weightageStr = splitStr[i].split("w/");
-            if (weightageStr.length != 2) {
+            if (i >= 10) {
                 return false;
             }
-            int weightage = Integer.parseInt(weightageStr[1]);
-            if (weightage < 0) {
+
+            String[] nameAndWeight = splitStr[i].split(" w/");
+            if (nameAndWeight.length != 2) {
                 return false;
             }
+
+            if (!nameAndWeight[1].matches(WEIGHTAGE_VALIDATION_REGEX)) {
+                return false;
+            }
+
+            int weightage = Integer.parseInt(nameAndWeight[1]);
+
+            if (weightage <= 0) {
+                return false;
+            }
+
+            if (!assignmentNames.add(nameAndWeight[0])) {
+                return false;
+            }
+
             totalWeightage += weightage;
         }
 
         return totalWeightage == 100;
+    }
+
+    /**
+     * Returns true if a given string is a valid string of Assignments
+     */
+    public static String findAssignmentIssue(String test) {
+        Set<String> assignmentNames = new HashSet<>();
+        String[] splitStr = test.split(", ");
+        int len = splitStr.length;
+        int totalWeightage = 0;
+
+        for (int i = 0; i < len; i++) {
+            if (i >= 10) {
+                return TOO_MANY_ASSIGNMENT;
+            }
+            String[] nameAndWeight = splitStr[i].split(" w/");
+            if (nameAndWeight.length != 2) {
+                return ASSIGNMENT_CONSTRAINTS;
+            }
+
+            if (!nameAndWeight[1].matches(WEIGHTAGE_VALIDATION_REGEX)) {
+                return WEIGHTAGE_CONSTRAINTS;
+            }
+
+            int weightage = Integer.parseInt(nameAndWeight[1]);
+            if (weightage <= 0) {
+                return WEIGHTAGE_CONSTRAINTS;
+            }
+            if (!assignmentNames.add(nameAndWeight[0])) {
+                return ASSIGNMENT_DUPLICATE;
+            }
+
+            totalWeightage += weightage;
+        }
+
+        if (!(totalWeightage == 100)) {
+            return ASSIGNMENT_INVALID_SUM_OF_WEIGHTAGE;
+        }
+        return null;
     }
 
     /**
@@ -169,6 +237,7 @@ public class Student extends Position {
     }
 
     public void setOverallGrade(String overallGrade) {
+        requireNonNull(overallGrade);
         this.overallGrade = overallGrade;
     }
 
@@ -241,7 +310,7 @@ public class Student extends Position {
     }
 
     public ArrayList<Assignment> setAssignments(String assignments) {
-
+        requireNonNull(assignments);
         String[] splitStr = assignments.split(", ");
         int len = splitStr.length;
         if (assignmentsList.size() > 0) {

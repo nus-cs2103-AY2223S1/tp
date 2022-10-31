@@ -1,6 +1,7 @@
 package seedu.address.model.person.position;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Set;
 
@@ -25,35 +26,39 @@ public class Professor extends Position {
     public static final String MESSAGE_CONSTRAINTS =
             "Role can only be Unassigned, Coordinator, Lecturer, Tutor, and/or Advisor (non case-sensitive)";
 
-    private String roles;
+    private String role;
 
     /**
      * Creates a professor. Its roles at initiation are empty.
      */
     public Professor() {
         super("Professor");
-        roles = "Unassigned";
+        role = "Unassigned";
     }
 
     /**
      * Creates a professor with the given details.
-     * @param roles of the professor
+     * @param role of the professor
      */
-    public Professor(String roles) {
+    public Professor(String role) {
         super("Professor");
-        this.roles = roles;
+        requireNonNull(role);
+        checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
+
+        this.role = role;
     }
 
     @Override
-    public void setDetails(String roles) {
-        requireNonNull(roles);
-        this.roles = roles;
+    public void setDetails(String role) {
+        requireNonNull(role);
+        this.role = role;
     }
 
     /**
      * Returns true if a given string is a valid role.
      */
     public static boolean isValidRole(String test) {
+        requireNonNull(test);
         for (Role role: Role.values()) {
             if (role.name().equalsIgnoreCase(test)) {
                 return true;
@@ -64,12 +69,12 @@ public class Professor extends Position {
 
     @Override
     public String toShow() {
-        return "Roles: " + roles;
+        return "Role: " + role;
     }
 
     @Override
     public String toString() {
-        return "Professor: " + roles;
+        return "Professor: " + role;
     }
 
     @Override
@@ -84,7 +89,7 @@ public class Professor extends Position {
 
     @Override
     public String getDetails() {
-        return roles;
+        return role;
     }
 
     @Override

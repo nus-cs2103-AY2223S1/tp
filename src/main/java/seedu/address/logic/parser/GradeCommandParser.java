@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.GradeCommand.EMPTY_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 
@@ -22,8 +23,10 @@ public class GradeCommandParser implements Parser<GradeCommand> {
      */
     public GradeCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        if (args.trim().split(" ").length == 1 && !args.trim().equals("")) {
+            throw new ParseException(EMPTY_FIELD);
+        }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ASSIGNMENT, PREFIX_GRADE);
-
         Index indexOfStudent;
         try {
             indexOfStudent = ParserUtil.parseIndex(argMultimap.getPreamble());

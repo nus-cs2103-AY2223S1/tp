@@ -35,19 +35,23 @@ public class TypicalPersons {
             .withDetails("Available").withTags("CS2103-T69").withPosition("TA").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withDetails("Coordinator").withTags("CS2103-T01").withPosition("Professor").build();
+            .withDetails("Coordinator").withTags("CS2103-T01").withPosition("Professor")
+            .withRemark("She likes aardvarks.").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("CS2103-T01")
-            .withDetails("Unavailable").withTags("CS2103-T01").withPosition("TA").build();
+            .withDetails("Unavailable").withTags("CS2103-T01").withPosition("TA")
+            .withRemark("He likes apples.").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withDetails("Unavailable").withTags("CS2103-T01").withPosition("TA").build();
+            .withDetails("Unavailable").withTags("CS2103-T01").withPosition("TA")
+            .withRemark("She is sporty.").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withDetails("Coordinator").withTags("CS2103-T01").withPosition("Professor").build();
+            .withDetails("Coordinator").withTags("CS2103-T01").withPosition("Professor")
+            .withRemark("She is interested to become a TA.").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withDetails("Available").withTags("CS2103-T01").withPosition("TA").build();
+            .withDetails("Available").withTags("CS2103-T01").withPosition("TA").withDetails("Unavailable").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
