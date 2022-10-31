@@ -169,6 +169,8 @@ public class ModelManager implements Model {
         requireNonNull(tags);
         clearFiltersInFilteredPersonList();
         Set<Tag> deletedTags = addressBook.deleteTags(tags);
+        addressBook.getPersonList()
+                .forEach(person -> removeTags(person, deletedTags));
         return deletedTags;
     }
 

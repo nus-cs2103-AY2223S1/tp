@@ -168,8 +168,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public Set<Tag> deleteTags(Set<Tag> tagsToDelete) {
         Set<Tag> deletedTags = tags.remove(tagsToDelete);
-        persons.asUnmodifiableObservableList()
-                .forEach(person -> removeTags(person, deletedTags));
         return deletedTags;
     }
     //// message template operations
