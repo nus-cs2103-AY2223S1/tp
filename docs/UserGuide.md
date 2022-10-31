@@ -9,8 +9,8 @@ These terms can be found in the [Glossary](#glossary).
 
 Watson is a **desktop app for teachers that helps with a multitude of tasks,
 such as handling student particulars, sorting students with different filters,
-and more.** It adopts a _Command Line Interface_ (CLI)
-while still having the benefits of a _Graphical User Interface_ (GUI).
+and more.** It adopts a _Command Line Interface_ ([CLI](#glossary))
+while still having the benefits of a _Graphical User Interface_ ([GUI](#glossary)).
 If you can type fast, Watson can retrieve and handle the data of students
 faster than other GUI-based applications.
 
@@ -19,34 +19,30 @@ faster than other GUI-based applications.
 * [Glossary](#glossary)
 * [Quick Start](#quick-start)
 * [Commands](#commands) `(Version 1.3)`
+    * Viewing help: [`help`](#viewing-help--help)
+    * Adding a student: [`add`](#adding-a-student-add)
     * Listing all students: [`list`](#listing-all-students--list)
-    * Adding a students: [`add`](#adding-a-student-add)
-    * Editing a students: [`edit`](#editing-a-student--edit)
-    * Deleting a student: [`delete`](#deleting-a-student--delete)
-    * Searching for students: [`find`](#searching-for-students-with-a-specified-criteria-find)
-    * Entering student grades: [`grade`](#entering-students-grades--grade)
+    * Editing a student: [`edit`](#editing-a-student--edit)
+    * Searching for students with a specified criteria: [`find`](#searching-for-students-with-a-specified-criteria-find)
     * Sorting by grade: [`sort`](#sorting-students-by-grade-sort)
-    * Predicting a student's grade: [`predict`](#predicting-a-students-grade--predict)
     * Adding remarks: [`remark`](#add-remark-to-a-student-remark)
+    * Deleting a student: [`delete`](#deleting-a-student--delete)
+    * Entering student grades: [`grade`](#entering-students-grades--grade)
+    * Predicting a student's grade: [`predict`](#predicting-a-students-grade--predict)
+    * Clearing all entries: [`clear`](#clearing-all-entries--clear)
+    * Exiting the program: [`exit`](#exiting-the-program--exit)
+    
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Glossary
-
-* **CLI** : Command Line Interface
-* **GUI** : Graphical User Interface
-* **Main Window** : The main window of the application that shows the list of students.
-* **Home Folder** : The folder where Watson will store student data.
-* **Command Box** : The text box where you can enter commands.
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer
 (Not sure how? Check out [this](https://www.java.com/en/download/help/version_manual.html) guide).
 
-2. Download the latest `watson.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-1/tp/releases/tag/v.1.3.trial).
+2. Download the latest `watson.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-1/tp/releases/tag/v1.3.release).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Watson.
 
@@ -57,7 +53,7 @@ Note that the login details are in <span style="color:red">*red*</span>.<br>
 The _command box_ is circled in <span style="color:red">*red*</span>.
 This is where you can input commands!
    ![Ui](images/gui.png)
-5. Type a command into the command box and press Enter to run it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type a command into the command box and press Enter to run it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`list`** : Lists all students in Watson.
@@ -66,7 +62,15 @@ This is where you can input commands!
 
     * **`delete`**`1` : Deletes the student with `INDEX number 1` from Watson.
 
-6. Refer to the [Commands](#commands) section below for details of each command.
+7. Refer to the [Commands](#commands) section below for details of each command.
+
+<div markdown="block" class="alert alert-info">
+
+**Notes about the login feature**<br>
+
+The login feature is implemented as a proof-of-concept feature for now. We hope to expand this feature in the future to make use of database management system ([DBMS](#glossary)) and allow teachers to create their own accounts.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -100,7 +104,7 @@ This is where you can input commands!
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageWatson.png)
 
 Format: `help`
 
@@ -114,14 +118,19 @@ Format: `add n/NAME ind/INDEX_NUMBER p/PHONE_NUMBER e/EMAIL a/ADDRESS c/STUDENT_
 * Adds a student’s details to Watson. The student must not already exist in Watson.
 * Additional information can be added through the [`edit`](#editing-a-student--edit) feature.
 * Note that you can enter command parameters in any order!
+* Prefixes e.g.`n/`,`ind/`,`c/` must be entered correctly. Incorrect prefix such as `class/` will result in invalid command.
+* The index number is a unique serial number assigned to the student to be added.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Students with the same name and ONE other field e.g., phone number or address are considered duplicates
+</div>
 
 Examples:
 * `add n/John Doe ind/1 p/98765432 e/jonny@gmail.com a/John street, block 123, #01-01 c/1.1`
-* `add n/Amy Lim a/Bugis Crescent p/12345678 t/Enjoys ice cream c/4B e/email@gmail.com`
+* `add n/Amy Lim ind/2 a/Bugis Crescent p/12345678 t/Enjoys ice cream c/4B e/email@gmail.com`
 
 ### Listing all students : `list`
 
@@ -152,18 +161,22 @@ using the list/find feature to be `91234567` and `johndoe@example.com` respectiv
 
 Finds all students matching the specified criteria and the specified keywords.
 
-Format: `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`
+Format: `find [n/NAMES] [c/CLASS] [s/SUBJECT]`
 
+* At least one of the optional fields must be provided.
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only name, class and subject can be searched.
-* Only full words or ID will be matched e.g. `Han` will not match `Hans` / `123` will not match `1234`
-* students matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Students matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+Each parameter specified is independent of the previous. e.g. `find n/tommy c/2A` will return students with name `Tommy` or in class `2A` but NOT items with both.
+</div>
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find n/alice bob charlie c/1A s/English` returns `alice` who is in 1A and taking English
+* `find n/alice bob charlie c/1A s/English` returns students with names `alice`, `bob`, `charlie` or class `1A` or taking the subject `English`.
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
@@ -184,13 +197,13 @@ Examples:
 
 Adds a remark to a student by index.
 
-Format: `remark INDEX [REMARK]`
+Format: `remark INDEX REMARK`
 
 * Note that only one remark can be added to one student at a time.
 
 
 Examples:
-* `remark 1 she is active in class` adds the remark `she is active in class` to the student with index 1 in the list
+* `remark 1 active in class` adds the remark `active in class` to student `Alex Yeoh`
  ![add remark example](images/AddRemark.png)
 
 ### Deleting a student : `delete`
@@ -214,7 +227,7 @@ Opens up a GUI window for the user to enter student's assignment results.
 
 Format: `grade SUBJECT_ASSIGNMENT_TOTALSCORE_WEIGHTAGE_DIFFICULTY`
 
-* The Subject refers to subject of the assignment, in **capital letters**, eg - MATH
+* The Subject refers to subject of the assignment, and is **case-insensitive**.
 * The Assignment refers to the name of the assignment, eg - CA1.
 * The Total score refers to the maximum achievable score in the assignment
 * The weightage refers to the weightage of the assignment, written in decimal form. For example, if the assignment is worth 40% of the total grade, write 0.4
@@ -226,19 +239,19 @@ Examples:
 
 Example use
 
-1) Type in "grade MATH_CA1_100_0.5_1.0" into the input box as shown:
+1. Type in "grade MATH_CA1_100_0.5_1.0" into the input box as shown:
 
 
    ![Example Command](images/GradeCommand.png "Grade Command")
 
 
-2) A GUI will appear on the screen for you to start entering the grades of your students
+2. A GUI will appear on the screen for you to start entering the grades of your students
 
 
    ![Example GUI](images/GradeCommandGUI.png "Grade Command")
-3) Enter the score achieved by the student and click on `Enter` button.
-4) After entering the score, the system will automatically prompt you to enter the score for the next student.
-5) Continue entering the score until the system detects that all of the scores have been entered.
+3. Enter the score achieved by the student and click on `Enter` button.
+4. After entering the score, the system will automatically prompt you to enter the score for the next student.
+5. Continue entering the score until the system detects that all of the scores have been entered.
 
 ### Predicting a student's grade : `predict`
 
@@ -251,11 +264,11 @@ Currently, Watson uses the following formula to predict a student's grade:
 (**average** of all normalized scores for previous assessments) + (**difficulty penalty**)
 
 The normalized score for any particular assessment is calculated as follows:
-1) Calculate the student's score for the assessment, divided by the total score for the assessment.
-2) Calculate the percentage of classes attended by the student. Let's call this the student's **learning rating**.
-3) Calculate the **difficulty bonus** for the assessment with the following formula:
+1. Calculate the student's score for the assessment, divided by the total score for the assessment.
+2. Calculate the percentage of classes attended by the student. Let's call this the student's **learning rating**.
+3. Calculate the **difficulty bonus** for the assessment with the following formula:
     * 1/((**difficulty rating**) x **learning rating**)
-4) The result is the sum of step 1 and step 3.
+4. The result is the sum of step 1 and step 3.
 
 #### What is difficulty rating?
 
@@ -276,6 +289,10 @@ Examples:
 Clears all entries from the database.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Make sure to save the jar file in an empty directory instead of the system path such as system32. Permission to write to a system directory may be denied causing the file to be unable to save after the clear command.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -308,17 +325,28 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+* **CLI** : A **command-line interface** (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer. CLIs accept as input commands that are entered by keyboard; the commands invoked at the command prompt are then run by the computer.
+* **GUI** : A **graphical user interface** (GUI) , is a form of user interface that allows users to interact with electronic devices through graphical icons and audio indicator such as primary notation, instead of text-based UIs, typed command labels or text navigation.
+* **DBMS** : A **database management system** (DBMS) is a software package designed to store, retrieve, query and manage data.
+* **Main Window** : The main window of the application that shows the list of students.
+* **Home Folder** : The folder where Watson will store student data.
+* **Command Box** : The text box where you can enter commands.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                             |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`…​` <br> e.g., add n/John Doe p/98765432 a/John street, block 123, #01-01 c/1.5`      |
-| **Clear**  | `clear`                                                                                                                                      |
-| **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                          |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                  |
-| **Find**   | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`<br> e.g., `find n/alice bob charlie c/1A s/English`, `find s/English Math` |
-| **Sort**   | `sort asc` or `sort desc`                                                                                                                    |
-| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`                                                                               |
-| **List**   | `list`                                                                                                                                       |
-| **Help**   | `help`                                                                                                                                       |
+| Action     | Format, Examples                                                                                                                            |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/> e.g.,`add n/John Doe ind/1 p/98765432 a/John street, block 123, #01-01 c/1.5` |
+| **Clear**  | `clear`                                                                                                                                     |
+| **Delete** | `delete INDEX` <br/> e.g., `delete 1`                                                                                                       |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`               |
+| **Find**   | `find [n/NAMES] [c/CLASS] [s/SUBJECT]` <br/> e.g.,`find n/alice bob charlie c/1A s/English`, `find s/English Math`                          |
+| **Sort**   | `sort asc` or `sort desc`                                                                                                                   |
+| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 active in class`                                                                              |
+| **List**   | `list`                                                                                                                                      |
+| **Help**   | `help`                                                                                                                                      |
 
