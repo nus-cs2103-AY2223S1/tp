@@ -568,105 +568,154 @@ Format: `exit`
 
 <table>
   <tr>
-   <td><strong>Action</strong>
-   </td>
-   <td><strong>Format, Examples</strong>
-   </td>
+    <th><strong>Action</strong></th>
+    <th><strong>Format, Examples</strong></th>
   </tr>
+
   <tr>
-   <td><strong>Adding User</strong>
-   </td>
-   <td><code>user n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GITHUB_USERNAME] [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]…</code>
-<p>
-<code>Eg. user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109</code>
-<tr>
-   <td><strong>Editing User</strong>
-   </td>
-   <td><code>edit user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME]</code>
-<p>
-<code>Eg. edit user p/92323232 a/Kent Ridge Crescent</code>
+    <td><strong>Adding User</strong></td>
+    <td>
+      <code>user n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GITHUB_USERNAME] [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]…</code>
+      <br>
+      <br>
+      <code>Eg. user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109</code>
+    </td>
+  </tr>
+
   <tr>
-   <td><strong>Delete User</strong>
-   </td>
-   <td><code>delete user</code>
+    <td><strong>Editing User</strong>
+    </td>
+    <td>
+      <code>edit user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME]</code>
+      <br>
+      <br>
+      <code>Eg. edit user p/92323232 a/Kent Ridge Crescent</code>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Delete User</strong>
+    </td>
+    <td>
+      <code>delete user</code>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Adding Contact</strong>
+    </td>
+    <td>
+      <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GITHUB_USERNAME] [t/TAG]… [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]…</code>
+      <br>
+      <br>
+      <code>Eg. add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109</code>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Listing contacts</strong>
+    </td>
+    <td><code>list</code></td>
+  </tr>
+
+  <tr>
+    <td><strong>Finding contacts</strong>
+    </td>
+    <td>
+      <code>find KEYWORD [MORE_KEYWORDS]…</code>
+      <br>
+      <br>
+      <code>Eg. find John</code>
+      <br>
+      <code>Eg. find John alex</code>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Editing Contact</strong>
+    </td>
+    <td>
+      <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…</code>
+      <br>
+      <br>
+      <code>Eg. edit 2 n/Laura Lee e/laura@nus.sg t/Hall</code>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Delete Contact</strong>
+    </td>
+    <td>
+      <code>delete contact INDEX</code>
+      <br>
+      <br>
+      <code>Eg. delete contact 2</code>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Clear all contacts</strong>
+    </td>
+    <td><code>clear</code></td>
+  </tr>
+
+  <tr>
+    <td><strong>Editing User's Modules</strong>
+    </td>
+    <td>
+      <code>module user [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…</code>
+      <br>
+      <br>
+      <code>Eg. module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334</code>
+    </td>
+  </tr>
    
-<tr>
-   <td><strong>Adding Contact</strong>
-   </td>
-   <td><code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GITHUB_USERNAME] [t/TAG]… [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]…</code>
-<p>
-<code>Eg. add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109</code>
+  <tr>
+    <td><strong>Editing Contact's Modules</strong>
+    </td>
+    <td>
+      <code>module INDEX [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…</code>
+      <br>
+      <br>
+      <code>Eg. module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000</code>
+    </td>
+  </tr>
 
   <tr>
-   <td><strong>Listing contacts</strong>
-   </td>
-   <td><code>list</code>
-
-<tr>
-   <td><strong>Finding contacts</strong>
-   </td>
-   <td><code>find KEYWORD [MORE_KEYWORDS]…</code>
-  <p>
-  <code>Eg. find John</code>
-  <code>Eg. find John alex</code>
-
-<tr>
-   <td><strong>Editing Contact</strong>
-   </td>
-   <td><code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUB_USERNAME] [t/TAG]…</code>
-<p>
-<code>Eg. edit 2 n/Laura Lee e/laura@nus.sg t/Hall</code>
+    <td><strong>Checking Modules Left</strong>
+    </td>
+    <td>
+      <code>modsleft INDEX</code>
+      <br>
+      <br>
+      <code>Eg. modsleft 3</code>
+    </td>
+  </tr>
 
   <tr>
-   <td><strong>Delete Contact</strong>
-   </td>
-   <td><code>delete contact INDEX</code>
-<p>
-<code>Eg. delete contact 2</code>
-
-<tr>
-   <td><strong>Clear all contacts</strong>
-   </td>
-   <td><code>clear</code>
+    <td><strong>Next Semester</strong>
+    </td>
+    <td>
+    <code>nextsem</code>
+    </td>
+  </tr>
 
   <tr>
-   <td><strong>Editing User's Modules</strong>
-   </td>
-   <td><code>module user [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…</code>
-<p>
-<code>Eg. module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334</code>
-   
-  <tr>
-   <td><strong>Editing Contact's Modules</strong>
-   </td>
-   <td><code>module INDEX [curr/CURRENT_MODULE]… [prev/PREVIOUS_MODULE]… [plan/PLANNED_MODULE]… [rm/MODULE_TO_REMOVE]…</code>
-<p>
-<code>Eg. module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000</code>
-
-  <tr>
-   <td><strong>Checking Modules Left</strong>
-   </td>
-   <td><code>modsleft INDEX</code>
-<p>
-<code>Eg. modsleft 3</code>
-
-  <tr>
-      <td><strong>Next Semester</strong>
-      </td>
-      <td>
-        <code>nextsem</code>
-
-<tr>
     <td><strong>Adding Lesson</strong>
     </td>
     <td>
       <code>lesson user l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME</code>
-      <p>
+      <br>
+      <br>
       <code>Eg. lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
-      <p>
+      <br>
+      <br>
       <code>lesson INDEX l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME</code>
-      <p>
+      <br>
+      <br>
       <code>Eg. lesson 1 l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
+    </td>
+  </tr>
      
 
   <tr>
@@ -674,80 +723,109 @@ Format: `exit`
     </td>
     <td>
       <code>timetable user</code>
-      <p>
+      <br>
+      <br>
       <code>timetable INDEX</code>
-      <p>
+      <br>
+      <br>
       <code>Eg. timetable 2</code>
+    </td>
+  </tr>
 
   <tr>
     <td><strong>Deleting lesson</strong>
     </td>
     <td>
       <code>remove user l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME</code>
-      <p>
+      <br>
+      <br>
       <code>Eg. remove user l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
-      <p>
+      <br>
+      <br>
       <code>remove INDEX l/TYPE m/MODULE_CODE day/DAY_NUMBER start/START_TIME end/END_TIME</code>
-      <p>
+      <br>
+      <br>
       <code>Eg. remove 1 l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
+    </td>
+  </tr>
 
-<tr>
+  <tr>
     <td><strong>Filter Tags</strong>
     </td>
     <td>
       <code>filtertag TAG_NAME [TAG_NAME]…</code>
-      <p>
+      <br>
+      <br>
       <code>Eg. filtertag friends family</code>
+    </td>
+  </tr>
 
   <tr>
-      <td><strong>Filter Current Modules</strong>
-      </td>
-      <td>
-        <code>filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…</code>
-        <p>
-        <code>Eg. filtercurrmod CS2103T</code>
-        <p>
-        <code>Eg. filtercurrmod CS2103T CS2100</code>
+    <td><strong>Filter Current Modules</strong>
+    </td>
+    <td>
+      <code>filtercurrmod CURRENT_MODULE [CURRENT_MODULE]…</code>
+      <br>
+      <br>
+      <code>Eg. filtercurrmod CS2103T</code>
+      <br>
+      <br>
+      <code>Eg. filtercurrmod CS2103T CS2100</code>
+    </td>
+  </tr>
 
   <tr>
-      <td><strong>Filter Previous Modules</strong>
-      </td>
-      <td>
-        <code>filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…</code>
-        <p>
-        <code>Eg. filterprevmod CS2103T</code>
-        <p>
-        <code>Eg. filterprevmod CS2103T CS2100</code>
-
-<tr>
-      <td><strong>Filter Planned Modules</strong>
-      </td>
-      <td>
-        <code>filterplanmod PLANNED_MODULE [PLANNED_MODULE]…</code>
-        <p>
-        <code>Eg. filterplanmod CS2109S</code>
-        <p>
-        <code>Eg. filterplanmod CS2109S CS3230</code>
+    <td><strong>Filter Previous Modules</strong>
+    </td>
+    <td>
+      <code>filterprevmod PREVIOUS_MODULE [PREVIOUS_MODULE]…</code>
+      <br>
+      <br>
+      <code>Eg. filterprevmod CS2103T</code>
+      <br>
+      <br>
+      <code>Eg. filterprevmod CS2103T CS2100</code>
+    </td>
+  </tr>
 
   <tr>
-      <td><strong>Undo / Redo</strong>
-      </td>
-      <td>
-        <code>undo</code> 
-        <code>redo</code>
+    <td><strong>Filter Planned Modules</strong>
+    </td>
+    <td>
+      <code>filterplanmod PLANNED_MODULE [PLANNED_MODULE]…</code>
+      <br>
+      <br>
+      <code>Eg. filterplanmod CS2109S</code>
+      <br>
+      <br>
+      <code>Eg. filterplanmod CS2109S CS3230</code>
+    </td>
+  </tr>
 
   <tr>
-      <td><strong>Viewing help</strong>
-      </td>
-      <td>
-        <code>help</code>
+    <td><strong>Undo / Redo</strong>
+    </td>
+    <td>
+      <code>undo</code> 
+      <code>redo</code>
+    </td>
+  </tr>
 
   <tr>
-      <td><strong>Exiting the program</strong>
-      </td>
-      <td>
-        <code>exit</code>
-      </td>
+    <td><strong>Viewing help</strong>
+    </td>
+    <td>
+      <code>help</code>
+    </td>
+  </tr>
+
+  <tr>
+    <td><strong>Exiting the program</strong>
+    </td>
+    <td>
+      <code>exit</code>
+    </td>
+  </tr>
 
 </table>
 
