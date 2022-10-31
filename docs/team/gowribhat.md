@@ -30,10 +30,10 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product significantly because for users who are fast-typists, this feature allows them to revisit frequently used commands with a click of a button.
     * Credits: *{ code adapted from [seniors](https://github.com/AY2122S2-CS2103T-W13-3/tp) }*
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=gowribhat&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-    * Managed releases `v1.2` - `v1.4rc` (3 releases) on GitHub
+    * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
     * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
