@@ -11,10 +11,6 @@ It provides a **centralised** platform for CS students to
 
 It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
 ## **Using the User Guide**
 In this *User Guide*, we will take you through the many useful features and functions of Mass Linkers, and provide you crucial information on how the different commands are used.
 
@@ -26,6 +22,9 @@ We advise users to follow the User Guide sequentially as it provides a natural f
 **:bulb:**: __tip__ on how to carry out certain functionalities
 
 **:warning:**: __warning__ as the command can create drastic changes to the existing App data
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
