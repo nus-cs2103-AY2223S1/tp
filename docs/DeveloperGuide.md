@@ -150,7 +150,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` component acts as a "database" which represents data entities, and the data entities should work on their own without depending on other components)
 
-Given below is the Class Diagrams for the `Person` model.
+Given below is the class diagram for the `Person` model.
 
 <img src="images/PersonClassDiagram.png" width="450" />
 
@@ -480,6 +480,20 @@ Given below is the class diagram for reminders. `ReminderList` will sort `Remind
 <div markdown="span" class="alert alert-info">:information_source: **Note:** As of now, each `Reminder` object contains the `Name` and `Phone` objects which are used as foreign keys to identify which `Person` object the `Reminder` belongs to. This is a workaround and we may implement unique primary keys for `Person` in the future.<br>
 
 </div>
+
+**Given below is an example usage scenario of reminder**
+
+Step 1: Clear all reminders in the currently displayed reminder list.
+
+```
+reminder clear
+```
+
+Step 2: Create a reminder for the client at index 1 of the currently displayed reminder list with description `Zoom meeting`, date `30 November 2022` and time `11:00 AM`.
+
+```
+reminder 1 d=Zoom meeting dt=22-11-30 11:00
+```
 
 #### Design considerations:
 - **Aspect: Storage for reminders:**
