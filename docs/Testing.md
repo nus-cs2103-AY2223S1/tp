@@ -3,8 +3,7 @@ layout: page
 title: Testing guide
 ---
 
-* Table of Contents
-  {:toc}
+{% include toc.md header=true ordered=true %}
 
 ## Running tests
 

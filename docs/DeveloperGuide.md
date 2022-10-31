@@ -3,8 +3,11 @@ layout: page
 title: Developer Guide
 show-toc: true
 ---
+## About FoodRem
 
-{% include toc.md header=true show-in-toc=false %}
+{% include_relative _dg/AboutDG.md %}
+
+{% include toc.md header=true show-in-toc=true ordered=true %}
 
 ## Preface
 
@@ -15,6 +18,10 @@ show-toc: true
 ### Setting Up, Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+## How to use the Developer Guide
+
+{% include_relative _dg/HowToUseDeveloperGuide.md %}
 
 ## Design
 
@@ -32,7 +39,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
-## Appendix: Requirements
+## Requirements
 
 ### Product Scope
 
@@ -50,11 +57,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 {% include_relative _dg/NFRs.md %}
 
-## Appendix: Instructions for Manual Testing
+## Instructions for Manual Testing
 
 {% include_relative _dg/InstructionsForManualTesting.md %}
 
-## Appendix: Effort
+## Effort
 
 {% include_relative _dg/Effort.md %}
 

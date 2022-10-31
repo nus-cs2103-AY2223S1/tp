@@ -2,11 +2,11 @@
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### `Item`-related Features
+### Item-related Features
 
 {% include_relative _dg/implementations/ItemFeatures.md %}
 
-### `Tag`-related Features
+### Tag-related Features
 
 {% include_relative _dg/implementations/TagFeatures.md %}
 

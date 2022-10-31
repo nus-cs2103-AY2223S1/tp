@@ -5,7 +5,7 @@ show-toc: true
 ---
 ## About FoodRem
 
-{% include_relative _ug/About.md %}
+{% include_relative _ug/AboutUG.md %}
 
 {% include page-break.html %} <!-- Force a page break -->
 
