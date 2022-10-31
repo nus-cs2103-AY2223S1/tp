@@ -2,7 +2,32 @@
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 h2, h3, h4, h5, h6 {
   color: #8d48ad;;
-  font-weight: bold;
+}
+
+.post-content h2 {
+  font-size: 1.4em;
+}
+
+h2 {
+  margin-bottom:15px;
+}
+
+.post-content h4 {
+  font-size: 1.3rem;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+h4 {
+  font-weight: 500;
+}
+
+h2, h3 {
+  margin-top: 30px;
+}
+
+.post-content h4, .post-content h5, .post-content h6 {
+  margin-top: 10px;
 }
 
 // Bootstrap style alerts
