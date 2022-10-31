@@ -346,7 +346,7 @@ _Details coming soon ..._
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`               |
 | **Find**   | `find [n/NAMES] [c/CLASS] [s/SUBJECT]` <br/> e.g.,`find n/alice bob charlie c/1A s/English`, `find s/English Math`                          |
 | **Sort**   | `sort asc` or `sort desc`                                                                                                                   |
-| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`                                                                              |
+| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 active in class`                                                                              |
 | **List**   | `list`                                                                                                                                      |
 | **Help**   | `help`                                                                                                                                      |
 
