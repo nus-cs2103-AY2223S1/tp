@@ -28,15 +28,6 @@ public class Phone {
     }
 
     /**
-     * Constructs a {@code Phone} with default value "87654321".
-     * // Todo: removing this constructor when NokPhone added as argument to `add command`
-     * ps: Using magic literal can be extremely disastrous in debugging.
-     */
-    public Phone() {
-        value = "87654321";
-    }
-
-    /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
