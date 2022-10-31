@@ -88,7 +88,10 @@ public class EditCustomerCommand extends Command {
         Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(updatedName, updatedPhone,
                 updatedEmail, updatedTags).setCommissions(oldCommissions);
         updatedAddress.ifPresent(customerBuilder::setAddress);
-        return customerBuilder.build();
+
+        Customer updatedCustomer = customerBuilder.build();
+        updatedCustomer.setCommissionsCustomerReference();
+        return updatedCustomer;
     }
 
     @Override

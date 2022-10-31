@@ -27,7 +27,7 @@ public class Commission {
     private final Fee fee;
     private final Deadline deadline;
     private final CompletionStatus completionStatus;
-    private final Customer customer;
+    private Customer customer;
 
     // Data field
     private final UniqueIterationList iterations;
@@ -134,6 +134,10 @@ public class Commission {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public UniqueIterationList getIterations() {
