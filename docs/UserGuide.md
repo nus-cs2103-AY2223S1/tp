@@ -319,7 +319,7 @@ Displays all contacts matching the arguments provided by you.
 
 Format: `contact find q/QUERY`
 
-* QUERY is not case sensitive.
+* QUERY is not case-sensitive.
 
 Examples:
 * `contact find q/ea` will change your displayed contact list to show a contact list where all contacts will have "ea" in their name.
