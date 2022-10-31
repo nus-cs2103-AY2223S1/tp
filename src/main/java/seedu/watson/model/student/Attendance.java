@@ -151,7 +151,7 @@ public class Attendance {
      */
     public boolean hasGoodAttendance() {
         int[] attendance = getAttendanceDetails();
-        return (attendance[0] / attendance[1] >= 0.8);
+        return (attendance[1] != 0 ? attendance[0] / attendance[1] >= 0.8 :true);
     }
 
     @Override

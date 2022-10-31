@@ -39,6 +39,7 @@
             <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance"/>
             <Label fx:id="blankLine" styleClass="cell_small_label"/>
             <Label fx:id="subjects" styleClass="cell_small_label" text="\$subjects"/>
+            <Label fx:id="remarks" styleClass="cell_small_label" text="\$remarks"/>
         </VBox>
 
     </GridPane>

@@ -3,10 +3,7 @@ package seedu.watson.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.watson.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.watson.model.student.subject.Subject;
 import seedu.watson.model.student.subject.SubjectHandler;
@@ -92,6 +89,16 @@ public class Student {
 
     public Set<Remark> getRemarks() {
         return remarksList;
+    }
+    public String getRemarksString() {
+        List<String> remarksStringList = new ArrayList<>();
+
+        Iterator<Remark> remarkIterator = remarksList.iterator();
+        while(remarkIterator.hasNext()) {
+           remarksStringList.add(remarkIterator.next().toString());
+        }
+        String remarksString = String.join(", ", remarksStringList);
+        return remarksString;
     }
 
     public SubjectHandler getSubjectHandler() {

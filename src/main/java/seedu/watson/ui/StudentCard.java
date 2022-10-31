@@ -54,6 +54,8 @@ public class StudentCard extends UiPart<Region> {
     private Label blankLine;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label remarks;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Student} and index to display.
@@ -66,7 +68,7 @@ public class StudentCard extends UiPart<Region> {
         address.setText("Address: " + student.getAddress().value);
         email.setText("Email: " + student.getEmail().value);
         studentClass.setText("Class: " + student.getStudentClass().toString());
-
+        remarks.setText("Remarks: " + student.getRemarksString());
         attendance.setText("Attendance: " + student.getAttendance().guiString());
         if (student.getAttendance().hasGoodAttendance()) {
             attendance.setBackground(new Background(new BackgroundFill(Color.GREEN,
