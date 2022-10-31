@@ -9,8 +9,8 @@ These terms can be found in the [Glossary](#glossary).
 
 Watson is a **desktop app for teachers that helps with a multitude of tasks,
 such as handling student particulars, sorting students with different filters,
-and more.** It adopts a _Command Line Interface_ (CLI)
-while still having the benefits of a _Graphical User Interface_ (GUI).
+and more.** It adopts a _Command Line Interface_ ([CLI](#glossary))
+while still having the benefits of a _Graphical User Interface_ ([GUI](#glossary)).
 If you can type fast, Watson can retrieve and handle the data of students
 faster than other GUI-based applications.
 
@@ -19,27 +19,23 @@ faster than other GUI-based applications.
 * [Glossary](#glossary)
 * [Quick Start](#quick-start)
 * [Commands](#commands) `(Version 1.3)`
+    * Viewing help: [`help`](#viewing-help--help)
+    * Adding a student: [`add`](#adding-a-student-add)
     * Listing all students: [`list`](#listing-all-students--list)
-    * Adding a students: [`add`](#adding-a-student-add)
-    * Editing a students: [`edit`](#editing-a-student--edit)
-    * Deleting a student: [`delete`](#deleting-a-student--delete)
-    * Searching for students: [`find`](#searching-for-students-with-a-specified-criteria-find)
-    * Entering student grades: [`grade`](#entering-students-grades--grade)
+    * Editing a student: [`edit`](#editing-a-student--edit)
+    * Searching for students with a specified criteria: [`find`](#searching-for-students-with-a-specified-criteria-find)
     * Sorting by grade: [`sort`](#sorting-students-by-grade-sort)
-    * Predicting a student's grade: [`predict`](#predicting-a-students-grade--predict)
     * Adding remarks: [`remark`](#add-remark-to-a-student-remark)
+    * Deleting a student: [`delete`](#deleting-a-student--delete)
+    * Entering student grades: [`grade`](#entering-students-grades--grade)
+    * Predicting a student's grade: [`predict`](#predicting-a-students-grade--predict)
+    * Clearing all entries: [`clear`](#clearing-all-entries--clear)
+    * Exiting the program: [`exit`](#exiting-the-program--exit)
+    
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Glossary
-
-* **CLI** : Command Line Interface
-* **GUI** : Graphical User Interface
-* **Main Window** : The main window of the application that shows the list of students.
-* **Home Folder** : The folder where Watson will store student data.
-* **Command Box** : The text box where you can enter commands.
 
 ## Quick start
 
@@ -57,7 +53,7 @@ Note that the login details are in <span style="color:red">*red*</span>.<br>
 The _command box_ is circled in <span style="color:red">*red*</span>.
 This is where you can input commands!
    ![Ui](images/gui.png)
-5. Type a command into the command box and press Enter to run it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type a command into the command box and press Enter to run it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`list`** : Lists all students in Watson.
@@ -66,7 +62,15 @@ This is where you can input commands!
 
     * **`delete`**`1` : Deletes the student with `INDEX number 1` from Watson.
 
-6. Refer to the [Commands](#commands) section below for details of each command.
+7. Refer to the [Commands](#commands) section below for details of each command.
+
+<div markdown="block" class="alert alert-info">
+
+**Notes about the login feature**<br>
+
+The login feature is implemented as a proof-of-concept feature for now. We hope to expand this feature in the future to make use of database management system ([DBMS](#glossary)) and allow teachers to create their own accounts.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,6 +118,8 @@ Format: `add n/NAME ind/INDEX_NUMBER p/PHONE_NUMBER e/EMAIL a/ADDRESS c/STUDENT_
 * Adds a student’s details to Watson. The student must not already exist in Watson.
 * Additional information can be added through the [`edit`](#editing-a-student--edit) feature.
 * Note that you can enter command parameters in any order!
+* Prefixes e.g.`n/`,`ind/`,`c/` must be entered correctly. Incorrect prefix such as `class/` will result in invalid command.
+* The index number is a unique serial number assigned to the student to be added.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
@@ -284,6 +290,10 @@ Clears all entries from the database.
 
 Format: `clear`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Make sure to save the jar file in an empty directory instead of the system path such as system32. Permission to write to a system directory may be denied causing the file to be unable to save after the clear command.
+</div>
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -315,17 +325,28 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+* **CLI** : A **command-line interface** (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer. CLIs accept as input commands that are entered by keyboard; the commands invoked at the command prompt are then run by the computer.
+* **GUI** : A **graphical user interface** (GUI) , is a form of user interface that allows users to interact with electronic devices through graphical icons and audio indicator such as primary notation, instead of text-based UIs, typed command labels or text navigation.
+* **DBMS** : A **database management system** (DBMS) is a software package designed to store, retrieve, query and manage data.
+* **Main Window** : The main window of the application that shows the list of students.
+* **Home Folder** : The folder where Watson will store student data.
+* **Command Box** : The text box where you can enter commands.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                              |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/> e.g.,`add n/John Doe ind/1 p/98765432 a/John street, block 123, #01-01 c/1.5`   |
-| **Clear**  | `clear`                                                                                                                                       |
-| **Delete** | `delete INDEX` <br/> e.g., `delete 1`                                                                                                         |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                 |
-| **Find**   | `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)` <br/> e.g.,`find n/alice bob charlie c/1A s/English`, `find s/English Math` |
-| **Sort**   | `sort asc` or `sort desc`                                                                                                                     |
-| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`                                                                                |
-| **List**   | `list`                                                                                                                                        |
-| **Help**   | `help`                                                                                                                                        |
+| Action     | Format, Examples                                                                                                                            |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/> e.g.,`add n/John Doe ind/1 p/98765432 a/John street, block 123, #01-01 c/1.5` |
+| **Clear**  | `clear`                                                                                                                                     |
+| **Delete** | `delete INDEX` <br/> e.g., `delete 1`                                                                                                       |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`               |
+| **Find**   | `find [n/NAMES] [c/CLASS] [s/SUBJECT]` <br/> e.g.,`find n/alice bob charlie c/1A s/English`, `find s/English Math`                          |
+| **Sort**   | `sort asc` or `sort desc`                                                                                                                   |
+| **Remark** | `remark INDEX [REMARK]` e.g. `remark 1 she is active in class`                                                                              |
+| **List**   | `list`                                                                                                                                      |
+| **Help**   | `help`                                                                                                                                      |
 
