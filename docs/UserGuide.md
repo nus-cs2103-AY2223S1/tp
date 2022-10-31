@@ -14,11 +14,11 @@ ModQuik is a desktop app that allows Teaching Assistants to keep track of their 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `modquik.jar` from [here](https://github.com/AY2223S1-CS2103T-W17-3/tp/releases).
+1. Download the latest `modquik.jar` [here](https://github.com/AY2223S1-CS2103T-W17-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your ModQuik.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI as shown below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -510,3 +510,12 @@ _Details coming soon..._
 [`clear`]: #clear
 [`help`]: #help
 [`exit`]: #exit
+
+## 8. Glossary
+| Term                               | Description                                                                                                                                                                                   |
+|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                 |
+| **Command**                        | User-specified instruction that MoqQuik will execute.<br> e.g., `add student` and `find`                                                                                                      |
+| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                           |
+| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix.|
+| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                  |
