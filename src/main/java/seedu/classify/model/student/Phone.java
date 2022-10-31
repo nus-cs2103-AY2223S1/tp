@@ -40,6 +40,13 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if current Phone value is empty.
+     */
+    public boolean isEmpty() {
+        return this.value == "";
+    }
+
     @Override
     public String toString() {
         return value;

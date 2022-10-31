@@ -19,7 +19,7 @@ import seedu.classify.commons.core.index.Index;
 import seedu.classify.logic.commands.EditCommand;
 import seedu.classify.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.classify.logic.parser.exceptions.ParseException;
-import seedu.classify.model.tag.Exam;
+import seedu.classify.model.exam.Exam;
 
 /**
  * Parses input arguments and creates a new EditCommand object

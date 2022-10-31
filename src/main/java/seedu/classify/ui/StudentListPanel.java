@@ -32,13 +32,6 @@ public class StudentListPanel extends UiPart<Region> {
     }
 
     /**
-     * Refreshes StudentListViewCell to update each Student Card
-     */
-    public void updateListView() {
-        studentListView.refresh();
-    }
-
-    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class StudentListViewCell extends ListCell<Student> {

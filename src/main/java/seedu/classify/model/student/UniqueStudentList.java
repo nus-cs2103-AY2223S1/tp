@@ -2,6 +2,7 @@ package seedu.classify.model.student;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,6 +35,21 @@ public class UniqueStudentList implements Iterable<Student> {
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::hasSameNameOrId);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent student as the given argument, where the list excludes
+     * a particular student to be checked.
+     * @param studentToExclude the student to be excluded from the check.
+     * @param studentToCheck the student to be checked.
+     * @return true if there is a matching student identity in the student record
+     */
+    public boolean excludesButContains(Student studentToExclude, Student studentToCheck) {
+        return internalList.stream().filter(s -> !s.equals(studentToExclude)).anyMatch(studentToCheck::hasSameNameOrId);
+    }
+
+    public void sortList(Comparator<Student> studentComparator) {
+        internalList.sort(studentComparator);
     }
 
     /**

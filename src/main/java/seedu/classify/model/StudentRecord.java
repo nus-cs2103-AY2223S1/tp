@@ -2,9 +2,11 @@ package seedu.classify.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.classify.model.student.NameComparator;
 import seedu.classify.model.student.Student;
 import seedu.classify.model.student.UniqueStudentList;
 
@@ -55,6 +57,10 @@ public class StudentRecord implements ReadOnlyStudentRecord {
         setPersons(newData.getStudentList());
     }
 
+    public void sortList(Comparator<Student> studentComparator) {
+        this.students.sortList(studentComparator);
+    }
+
     //// student-level operations
 
     /**
@@ -71,6 +77,7 @@ public class StudentRecord implements ReadOnlyStudentRecord {
      */
     public void addStudent(Student p) {
         students.add(p);
+        sortList(NameComparator.getNameComparator());
     }
 
     /**
@@ -90,6 +97,17 @@ public class StudentRecord implements ReadOnlyStudentRecord {
      */
     public void removePerson(Student key) {
         students.remove(key);
+    }
+
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in the student record, where the
+     * check excludes a particular student.
+     * @param studentToExclude the student to be excluded from the check.
+     * @param studentToCheck the student to be checked.
+     * @return true if there is a matching student identity in the student record
+     */
+    public boolean excludesAndHasStudent(Student studentToExclude, Student studentToCheck) {
+        return students.excludesButContains(studentToExclude, studentToCheck);
     }
 
     //// util methods

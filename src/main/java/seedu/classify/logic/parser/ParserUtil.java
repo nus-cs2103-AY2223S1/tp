@@ -9,12 +9,12 @@ import java.util.Set;
 import seedu.classify.commons.core.index.Index;
 import seedu.classify.commons.util.StringUtil;
 import seedu.classify.logic.parser.exceptions.ParseException;
+import seedu.classify.model.exam.Exam;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.Email;
 import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
-import seedu.classify.model.tag.Exam;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -22,6 +22,7 @@ import seedu.classify.model.tag.Exam;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_FILTER = "Value for filter should either be 'on' or 'off'";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -124,7 +125,7 @@ public class ParserUtil {
             throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
         String[] args = trimmedExam.split("\\s+");
-        String name = args[0];
+        String name = args[0].toUpperCase();
         String score = args[1];
         if (!Exam.isValidName(name)) {
             throw new ParseException(Exam.MESSAGE_NAME_CONSTRAINTS);
@@ -147,6 +148,35 @@ public class ParserUtil {
             examSet.add(temp);
         }
         return examSet;
+    }
+
+    /**
+     * Parses {@code String exam} and ensures that it is a valid exam name.
+     */
+    public static String parseExamQuery(String exam) throws ParseException {
+        requireNonNull(exam);
+        String trimmedExam = exam.trim();
+        if (!Exam.isValidName(trimmedExam.toUpperCase())) {
+            throw new ParseException(Exam.MESSAGE_NAME_CONSTRAINTS);
+        }
+        return trimmedExam.toUpperCase();
+    }
+
+    /**
+     * Parses a {@code String filter} into a boolean value.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filter} is invalid.
+     */
+    public static boolean parseFilter(String filter) throws ParseException {
+        String trimmedFilter = filter.trim();
+        if (trimmedFilter.equals("ON")) {
+            return true;
+        } else if (trimmedFilter.equals("OFF")) {
+            return false;
+        } else {
+            throw new ParseException(MESSAGE_INVALID_FILTER);
+        }
     }
 
 }

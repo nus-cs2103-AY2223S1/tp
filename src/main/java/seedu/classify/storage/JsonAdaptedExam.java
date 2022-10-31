@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.classify.commons.exceptions.IllegalValueException;
-import seedu.classify.model.tag.Exam;
+import seedu.classify.model.exam.Exam;
 
 /**
  * Jackson-friendly version of {@link Exam}.

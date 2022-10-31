@@ -4,10 +4,12 @@ import static seedu.classify.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.classify.model.tag.Exam;
+import seedu.classify.model.exam.Exam;
+import seedu.classify.model.student.exceptions.ExamNotFoundException;
 
 
 /**
@@ -76,6 +78,34 @@ public class Student {
         return Collections.unmodifiableSet(exams);
     }
 
+    public Exam getExam(String exam) throws ExamNotFoundException {
+        assert exam.equals("CA1") || exam.equals("CA2") || exam.equals("SA1") || exam.equals("SA2");
+        Iterator<Exam> examIterator = exams.iterator();
+        Exam currExam = null;
+        while (examIterator.hasNext()) {
+            Exam temp = examIterator.next();
+            if (temp.getExamName().equals(exam)) {
+                currExam = temp;
+                break;
+            }
+        }
+        if (currExam == null) {
+            throw new ExamNotFoundException();
+        }
+        return currExam;
+    }
+
+    /**
+     * Return the student's grade for the specified exam
+     */
+    public int getExamScore(String exam) {
+        try {
+            return getExam(exam).getScore();
+        } catch (ExamNotFoundException e) {
+            throw new ExamNotFoundException();
+        }
+    }
+
     /**
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
@@ -123,22 +153,25 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getStudentName())
-                .append("; Id: ")
+        builder.append("\nName: ")
+                .append(getStudentName())
+                .append("\nId: ")
                 .append(getId())
-                .append("; Class: ")
-                .append(getClassName())
-                .append("; Parent Name: ")
-                .append(getParentName())
-                .append("; Parent Phone: ")
-                .append(getPhone())
-                .append("; Parent Email: ")
-                .append(getEmail());
-
+                .append("\nClass: ")
+                .append(getClassName());
+        if (!getParentName().isEmpty()) {
+            builder.append("\nParent Name: ").append(getParentName());
+        }
+        if (!getPhone().isEmpty()) {
+            builder.append("\nParent Phone: ").append(getPhone());
+        }
+        if (!getEmail().isEmpty()) {
+            builder.append("\nParent Email: ").append(getEmail());;
+        }
         Set<Exam> examSet = getExams();
         if (!examSet.isEmpty()) {
-            builder.append("; Exams: ");
-            examSet.forEach(builder::append);
+            builder.append("\nExams: ");
+            examSet.forEach(exam -> builder.append("\n").append(exam));
         }
         return builder.toString();
     }

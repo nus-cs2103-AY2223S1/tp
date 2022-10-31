@@ -38,18 +38,18 @@ import static seedu.classify.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.classify.logic.commands.AddStudCommand;
+import seedu.classify.logic.commands.AddStudentCommand;
+import seedu.classify.model.exam.Exam;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.Email;
 import seedu.classify.model.student.Id;
 import seedu.classify.model.student.Name;
 import seedu.classify.model.student.Phone;
 import seedu.classify.model.student.Student;
-import seedu.classify.model.tag.Exam;
 import seedu.classify.testutil.StudentBuilder;
 
-public class AddStudCommandParserTest {
-    private AddStudCommandParser parser = new AddStudCommandParser();
+public class AddStudentCommandParserTest {
+    private AddStudentCommandParser parser = new AddStudentCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -58,39 +58,39 @@ public class AddStudCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
+                + TAG_DESC_EXAM_2, new AddStudentCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
+                + TAG_DESC_EXAM_2, new AddStudentCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
+                + EMAIL_DESC_BOB + TAG_DESC_EXAM_2, new AddStudentCommand(expectedPerson));
 
         // multiple ids - last id accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_AMY + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
+                + TAG_DESC_EXAM_2, new AddStudentCommand(expectedPerson));
 
         // multiple class - last class accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_AMY + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
+                + TAG_DESC_EXAM_2, new AddStudentCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                 + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_AMY + EMAIL_DESC_BOB + TAG_DESC_EXAM_2, new AddStudCommand(expectedPerson));
+                + EMAIL_DESC_AMY + EMAIL_DESC_BOB + TAG_DESC_EXAM_2, new AddStudentCommand(expectedPerson));
 
         // multiple tags - all accepted
         Student expectedPersonMultipleTags = new StudentBuilder(BOB).withExams(VALID_EXAM_2, VALID_EXAM_1)
                 .build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                         + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + TAG_DESC_EXAM_2 + TAG_DESC_EXAM_1, new AddStudCommand(expectedPersonMultipleTags));
+                        + TAG_DESC_EXAM_2 + TAG_DESC_EXAM_1, new AddStudentCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -98,19 +98,19 @@ public class AddStudCommandParserTest {
         // zero tags
         Student expectedPerson = new StudentBuilder(AMY).withExams().build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
-                + PARENT_NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY, new AddStudCommand(expectedPerson));
+                + PARENT_NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY, new AddStudentCommand(expectedPerson));
         // missing parent name
         Student expectedPersonWithoutParentName = new StudentBuilder(AMY).withParentName("").build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
-                + PHONE_DESC_AMY + EMAIL_DESC_AMY, new AddStudCommand(expectedPersonWithoutParentName));
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY, new AddStudentCommand(expectedPersonWithoutParentName));
         // missing phone
         Student expectedPersonWithoutPhone = new StudentBuilder(AMY).withPhone("").build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
-                + PARENT_NAME_DESC_AMY + EMAIL_DESC_AMY, new AddStudCommand(expectedPersonWithoutPhone));
+                + PARENT_NAME_DESC_AMY + EMAIL_DESC_AMY, new AddStudentCommand(expectedPersonWithoutPhone));
         // missing email
         Student expectedPersonWithoutEmail = new StudentBuilder(AMY).withEmail("").build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY
-                + PARENT_NAME_DESC_AMY + PHONE_DESC_AMY, new AddStudCommand(expectedPersonWithoutEmail));
+                + PARENT_NAME_DESC_AMY + PHONE_DESC_AMY, new AddStudentCommand(expectedPersonWithoutEmail));
         // missing parent name, phone, email and zero tags
         Student expectedPersonWithoutOptional = new StudentBuilder(AMY)
                 .withParentName("")
@@ -118,12 +118,12 @@ public class AddStudCommandParserTest {
                 .withPhone("")
                 .withExams().build();
         assertParseSuccess(parser, STUDENT_NAME_DESC_AMY + ID_DESC_AMY + CLASS_DESC_AMY,
-                new AddStudCommand(expectedPersonWithoutOptional));
+                new AddStudentCommand(expectedPersonWithoutOptional));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_STUDENT_NAME_BOB + CLASS_DESC_BOB + PHONE_DESC_BOB
@@ -183,7 +183,7 @@ public class AddStudCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + STUDENT_NAME_DESC_BOB + ID_DESC_BOB + CLASS_DESC_BOB
                         + PARENT_NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + TAG_DESC_EXAM_2,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
 
     }
 }

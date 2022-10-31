@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.classify.logic.commands.AddStudCommand;
+import seedu.classify.logic.commands.AddStudentCommand;
 import seedu.classify.logic.commands.ClearCommand;
 import seedu.classify.logic.commands.DeleteCommand;
 import seedu.classify.logic.commands.EditCommand;
@@ -23,6 +23,7 @@ import seedu.classify.logic.commands.HelpCommand;
 import seedu.classify.logic.commands.ToggleViewCommand;
 import seedu.classify.logic.commands.ViewAllCommand;
 import seedu.classify.logic.commands.ViewClassCommand;
+import seedu.classify.logic.commands.ViewStatsCommand;
 import seedu.classify.logic.parser.exceptions.ParseException;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.ClassPredicate;
@@ -43,8 +44,8 @@ public class StudentRecordParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Student person = new StudentBuilder().build();
-        AddStudCommand command = (AddStudCommand) parser.parseCommand(StudentUtil.getAddCommand(person));
-        assertEquals(new AddStudCommand(person), command);
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddCommand(person));
+        assertEquals(new AddStudentCommand(person), command);
     }
 
     @Test
@@ -84,7 +85,7 @@ public class StudentRecordParserTest {
     }
 
     @Test
-    public void parseCommand_viewByName() throws Exception {
+    public void parseCommand_findByName() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " nm/" + keywords.stream().collect(Collectors.joining(" ")));
@@ -92,7 +93,7 @@ public class StudentRecordParserTest {
     }
 
     @Test
-    public void parseCommand_viewById() throws Exception {
+    public void parseCommand_findById() throws Exception {
         FindCommand command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD + " id/ 123a");
         assertEquals(new FindCommand(new IdPredicate(new Id("123A"))), command);
     }
@@ -120,6 +121,13 @@ public class StudentRecordParserTest {
         ViewClassCommand viewClassCommand = (ViewClassCommand) parser.parseCommand(
                 ViewClassCommand.COMMAND_WORD + " 3A");
         assertEquals(new ViewClassCommand(new ClassPredicate(new Class("3A"))), viewClassCommand);
+    }
+
+    @Test
+    public void parseCommand_viewStats() throws Exception {
+        ViewStatsCommand viewStatsCommand = (ViewStatsCommand) parser.parseCommand(
+                ViewStatsCommand.COMMAND_WORD + " class/4a exam/ca1 filter/off");
+        assertEquals(new ViewStatsCommand(new Class("4A"), "CA1", false), viewStatsCommand);
     }
 
     @Test
