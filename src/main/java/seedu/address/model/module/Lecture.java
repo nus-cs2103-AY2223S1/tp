@@ -33,4 +33,22 @@ public class Lecture extends Lesson {
         return super.getModule() + " " + typeToString() + " " + super.getStartTime() + " to " + super.getEndTime();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o instanceof Lecture) {
+            Lecture lecture = (Lecture) o;
+            boolean sameName = this.getModule().equals(lecture.getModule());
+            boolean sameStart = this.getStartTime().equals(lecture.getStartTime());
+            boolean sameEnd = this.getEndTime().equals(lecture.getEndTime());
+            boolean sameDay = this.getDay() == lecture.getDay();
+            return sameName && sameStart && sameDay && sameEnd;
+        }
+
+        return false;
+    }
+
 }
