@@ -16,15 +16,17 @@ contact information should they wish to reach out to the member**.
 project managers, which assumptively equipped with _Command Line Interface_ (CLI) skills. And if you can type fast,
 **Arrow** can help you manage your team members in an exceptionally quick way.
 
-### Notes
+### Note
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: If you are unfamiliar with Command Line Interface (CLI):**<br>
 
-click [here](#tutorial-for-cli) to learn more about what is CLI.
+Click [here](#tutorial-for-cli) to learn more about what is CLI.
 
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
 
@@ -41,13 +43,10 @@ click [here](#tutorial-for-cli) to learn more about what is CLI.
 
 ## Glossary
 
-* **CLI** : Command Line Interface
-* **GUI** : Graphical User Interface
-* **Main Window** : The main window of the application that shows the list of students.
-* **Home Folder** : The folder where Watson will store student data.
-* **Command Box** : The text box where you can enter commands.
-
-
+* **CLI** : [Command Line Interface](https://en.wikipedia.org/wiki/Command-line_interface)<br>
+click [here](#tutorial-for-cli) if you are not familiar with CLI.
+* **GUI** : [Graphical User Interface](https://en.wikipedia.org/wiki/Graphical_user_interface)
+* **Home Folder** : The folder/directory where Arrow stores all information.
 
 --------------------------------------------------------------------------------------------------------------------
 
