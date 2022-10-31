@@ -53,8 +53,6 @@ Here are some of the symbols and text formatting to look out for as you make use
 1. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features)  <br>
    <img src="images/Ui.png" width="800" /> <br>
 
-<div markdown="block" class="alert alert-info">
-
 1. Now, let’s continue to learn how to [navigate the application](#navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
 [Return to Table of Contents](#table-of-contents)
