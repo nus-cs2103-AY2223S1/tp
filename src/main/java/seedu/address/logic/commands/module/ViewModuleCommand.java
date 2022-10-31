@@ -13,8 +13,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.person.StudentContainsModulePredicate;
-import seedu.address.model.person.TutorContainsModulePredicate;
 
 /**
  * Shows module details in profNUS to the user.
