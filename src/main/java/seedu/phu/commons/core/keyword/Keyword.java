@@ -2,8 +2,8 @@ package seedu.phu.commons.core.keyword;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.phu.model.internship.ApplicationProcess;
 import seedu.phu.model.internship.Date;
-
 
 /**
  * Represent a String of keyword.
@@ -28,6 +28,10 @@ public class Keyword {
 
     public boolean isDate() {
         return Date.isValidDate(keyword);
+    }
+
+    public boolean isValidApplicationProcess() {
+        return ApplicationProcess.isValidApplicationProcess(keyword.toUpperCase());
     }
 
     @Override
