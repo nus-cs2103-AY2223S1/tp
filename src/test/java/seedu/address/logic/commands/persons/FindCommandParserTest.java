@@ -16,11 +16,6 @@ public class FindCommandParserTest {
     private final Parser<FindCommand> parser = FindCommand.parser();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-    }
-
-    @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand = new FindCommand(
