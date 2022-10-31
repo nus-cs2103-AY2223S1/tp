@@ -211,6 +211,11 @@ of pet he/she would like.
 
 Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION`
 
+:information_source: What is the difference between address and location? Address is the specific street number and unit
+number of the place. Location is the country this person is based. Since we focus on international pet sale, it is good
+to have location as a separate attribute. Different countries have different regulations on pet sale, and you may need
+to filter persons by their locations for some reason.
+
 <div markdown="span" class="alert alert-primary">
 
 </div>
