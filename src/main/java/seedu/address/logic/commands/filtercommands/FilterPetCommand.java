@@ -66,7 +66,7 @@ public class FilterPetCommand extends Command {
         Predicate<Pet> finalPredicate = generatePredicate();
         model.updateFilteredPetList(finalPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPetList().size()));
+                String.format(Messages.MESSAGE_PETS_LISTED_OVERVIEW, model.getFilteredPetList().size()));
     }
 
 

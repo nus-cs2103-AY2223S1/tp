@@ -3,7 +3,7 @@ package seedu.address.logic.commands.filtercommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import java.util.Arrays;
@@ -96,7 +96,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_noMatchingKeywords_noOrdersFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
 
         AdditionalRequestPredicate<Order> additionalRequestPredicate = new AdditionalRequestPredicate<>(
                 Arrays.asList("laxative"));
@@ -113,7 +113,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_matchingAdditionalRequest_oneOrderFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
 
         AdditionalRequestPredicate<Order> additionalRequestPredicate = new AdditionalRequestPredicate<>(
                 Arrays.asList("Good with children"));
@@ -133,7 +133,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_matchingOrderStatus_oneOrderFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
 
         OrderStatusPredicate<Order> orderStatusPredicate = new OrderStatusPredicate<>(OrderStatus.PENDING);
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
@@ -151,7 +151,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_exactMatchingPriceRange_oneOrderFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 1);
 
         PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200.00),
                 new Price(400.00));
@@ -170,7 +170,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_widePriceRange_twoOrdersFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
 
         PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200), new Price(800));
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
