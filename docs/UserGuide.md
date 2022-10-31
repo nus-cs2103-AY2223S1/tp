@@ -19,7 +19,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
 3. Copy the file to a folder of your choice to store data from your WorkBook.
 
-4. Using your terminal, navigate to the folder where you placed your `jar` file and start WorkBook by running: `java -jar WorkBook.v1.3.1.jar`. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
+4. Using your terminal, navigate to the folder where you placed your `jar` file and start WorkBook by inputting: `java -jar WorkBook.v1.3.1.jar` in your terminal. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -29,7 +29,7 @@ WorkBook (WB) is a **desktop app for CS/tech students who are applying for inter
 
    * `delete 3` : Deletes the 3rd internship shown in the current list.
 
-   * **`clear`** : Deletes all internships.
+   * **`help`** : Displays the help window for easy reference to the list of commands.
 
    * **`exit`** : Exits the app.
 
