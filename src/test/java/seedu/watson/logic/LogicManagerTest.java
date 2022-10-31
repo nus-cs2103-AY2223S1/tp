@@ -82,7 +82,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + INDEX_NUMBER_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY
                             + PHONE_DESC_AMY + EMAIL_DESC_AMY
                             + ADDRESS_DESC_AMY + STUDENTCLASS_DUMMY;
         Student expectedStudent = new StudentBuilder(AMY).withTags().withRemarks()
