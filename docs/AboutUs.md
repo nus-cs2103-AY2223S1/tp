@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jonaspng.md)]
 
 * Role: Team Lead
-* Responsibility: DevOps 
+* Responsibility: DevOps
 
 ### Joe Yi
 
