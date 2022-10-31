@@ -423,6 +423,12 @@ If your changes to the data file makes its format invalid, FABook will discard a
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FABook home folder.
 
+**Q**: Person profile does not show when I click person card once.<br>
+**A**: You need to click the person card twice for the person profile to load. 
+
+**Q**: Why does the person profile GUI not refresh after an edit or clear command?<br>
+**A**: In order to refresh the person profile, you will have the re-click on the person card again.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
