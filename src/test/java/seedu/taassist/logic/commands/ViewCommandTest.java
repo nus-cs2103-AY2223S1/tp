@@ -25,7 +25,7 @@ import seedu.taassist.model.student.Student;
 class ViewCommandTest {
 
     @Test
-    void execute_notInFocusMode_throwsCommandException() {
+    public void execute_notInFocusMode_throwsCommandException() {
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_STUDENT);
         ModelStubNotInFocusMode modelStub = new ModelStubNotInFocusMode();
         String expectedMessage = String.format(Messages.MESSAGE_NOT_IN_FOCUS_MODE, ViewCommand.COMMAND_WORD);
@@ -33,7 +33,7 @@ class ViewCommandTest {
     }
 
     @Test
-    void execute_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() {
         ViewCommand viewCommand = new ViewCommand(INDEX_THIRD_STUDENT);
         ModelStubOneStudentWithGrades modelStub = new ModelStubOneStudentWithGrades();
         assertThrows(CommandException.class,
@@ -41,7 +41,7 @@ class ViewCommandTest {
     }
 
     @Test
-    void execute_noGrades_success() {
+    public void execute_noGrades_success() {
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_STUDENT);
         ModelStubOneStudentNoGrades modelStub = new ModelStubOneStudentNoGrades();
         String expectedMessage = String.format(ViewCommand.MESSAGE_EMPTY_GRADES_LIST, ALICE.getName());
@@ -50,7 +50,7 @@ class ViewCommandTest {
     }
 
     @Test
-    void execute_hasGrades_success() throws CommandException {
+    public void execute_hasGrades_success() throws CommandException {
         ViewCommand viewCommand = new ViewCommand(Index.fromOneBased(1));
         ModelStubOneStudentWithGrades modelStub = new ModelStubOneStudentWithGrades();
         String expectedMessage = String.format(ViewCommand.MESSAGE_SUCCESS, ALICE.getName()) + "\n"
@@ -61,7 +61,7 @@ class ViewCommandTest {
     }
 
     @Test
-    void equals() {
+    public void equals() {
         ViewCommand viewFirstCommand = new ViewCommand(INDEX_FIRST_STUDENT);
         ViewCommand viewSecondCommand = new ViewCommand(INDEX_THIRD_STUDENT);
 
