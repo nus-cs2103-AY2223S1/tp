@@ -33,7 +33,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validNameArgs_ascending_success() {
+    public void parse_validNameArgsAscending_success() {
         SortCommand expectedSortCommandName =
                 new SortCommand(new SortByName("asc"), "name");
         assertParseSuccess(parser, "name", expectedSortCommandName);
@@ -41,7 +41,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validAppointmentArgs_ascending_success() {
+    public void parse_validAppointmentArgsAscending_success() {
         SortCommand expectedSortCommandAppt =
                 new SortCommand(new SortByAppointment("asc"), "appt");
         assertParseSuccess(parser, "appt", expectedSortCommandAppt);
@@ -49,21 +49,21 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validRiskTagArgs_ascending_success() {
+    public void parse_validRiskTagArgsAscending_success() {
         SortCommand expectedSortCommandRisk =
                 new SortCommand(new SortByRiskTag("asc"), "risk");
         assertParseSuccess(parser, "risk", expectedSortCommandRisk);
         assertParseSuccess(parser, " \t risk \n", expectedSortCommandRisk);
     }
     @Test
-    public void parse_validIncomeArgs_ascending_success() {
+    public void parse_validIncomeArgsAscending_success() {
         SortCommand expectedSortCommandIncome =
                 new SortCommand(new SortByIncome("asc"), "income");
         assertParseSuccess(parser, "income", expectedSortCommandIncome);
         assertParseSuccess(parser, " \t income \n", expectedSortCommandIncome);
     }
     @Test
-    public void parse_validMonthlyArgs_ascending_success() {
+    public void parse_validMonthlyArgsAscending_success() {
         SortCommand expectedSortCommandMonthly =
                 new SortCommand(new SortByMonthly("asc"), "monthly");
         assertParseSuccess(parser, "monthly", expectedSortCommandMonthly);
@@ -71,7 +71,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validClientTagArgs_ascending_success() {
+    public void parse_validClientTagArgsAscending_success() {
         SortCommand expectedSortCommandClientTag =
                 new SortCommand(new SortByClientTag("asc"), "client");
         assertParseSuccess(parser, "client", expectedSortCommandClientTag);
@@ -79,7 +79,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validNameArgs_descending_success() {
+    public void parse_validNameArgsDescending_success() {
         SortCommand expectedSortCommandName =
                 new SortCommand(new SortByName("desc"), "name in descending order");
         assertParseSuccess(parser, "name desc", expectedSortCommandName);
@@ -87,7 +87,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validAppointmentArgs_descending_success() {
+    public void parse_validAppointmentArgsDescending_success() {
         SortCommand expectedSortCommandAppt =
                 new SortCommand(new SortByAppointment("desc"), "appt in descending order");
         assertParseSuccess(parser, "appt desc", expectedSortCommandAppt);
@@ -95,21 +95,21 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validRiskTagArgs_descending_success() {
+    public void parse_validRiskTagArgsDescending_success() {
         SortCommand expectedSortCommandRisk =
                 new SortCommand(new SortByRiskTag("desc"), "risk in descending order");
         assertParseSuccess(parser, "risk desc", expectedSortCommandRisk);
         assertParseSuccess(parser, " \t risk desc \n", expectedSortCommandRisk);
     }
     @Test
-    public void parse_validIncomeArgs_descending_success() {
+    public void parse_validIncomeArgsDescending_success() {
         SortCommand expectedSortCommandIncome =
                 new SortCommand(new SortByIncome("desc"), "income in descending order");
         assertParseSuccess(parser, "income desc", expectedSortCommandIncome);
         assertParseSuccess(parser, " \t income desc \n", expectedSortCommandIncome);
     }
     @Test
-    public void parse_validMonthlyArgs_descending_success() {
+    public void parse_validMonthlyArgsDescending_success() {
         SortCommand expectedSortCommandMonthly =
                 new SortCommand(new SortByMonthly("desc"), "monthly in descending order");
         assertParseSuccess(parser, "monthly desc", expectedSortCommandMonthly);
@@ -117,7 +117,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validClientTagArgs_descending_success() {
+    public void parse_validClientTagArgsDescending_success() {
         SortCommand expectedSortCommandClientTag =
                 new SortCommand(new SortByClientTag("desc"), "client in descending order");
         assertParseSuccess(parser, "client desc", expectedSortCommandClientTag);
