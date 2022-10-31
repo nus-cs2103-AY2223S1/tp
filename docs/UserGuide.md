@@ -186,7 +186,7 @@ You can tell PayMeLah to add Service Charge and GST to the amount of money speci
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of commands search as [find](#locating-persons-by-fields-find) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
 * If you do not specify date and time, they will conveniently default to the current date and time.
