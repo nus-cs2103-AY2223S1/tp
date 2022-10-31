@@ -43,12 +43,9 @@ public class HomeworkCommandParser implements Parser<HomeworkCommand> {
         if (optHomework.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HomeworkCommand.MESSAGE_USAGE));
         }
-        if (optHomework.get().equals("")) {
-            throw new ParseException(MESSAGE_INVALID_EMPTY_FIELD);
-        }
 
         String homework = optHomework.get();
 
-        return new HomeworkCommand(index, new Homework(homework));
+        return new HomeworkCommand(index, ParserUtil.parseHomework(homework));
     }
 }

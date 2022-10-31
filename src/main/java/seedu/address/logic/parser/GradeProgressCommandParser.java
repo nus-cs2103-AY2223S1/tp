@@ -45,12 +45,9 @@ public class GradeProgressCommandParser implements Parser<GradeProgressCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GradeProgressCommand.MESSAGE_USAGE));
         }
-        if (optGrade.get().equals("")) {
-            throw new ParseException(MESSAGE_INVALID_EMPTY_FIELD);
-        }
 
         String gradeProgress = optGrade.get();
 
-        return new GradeProgressCommand(index, new GradeProgress(gradeProgress));
+        return new GradeProgressCommand(index, ParserUtil.parseGradeProgress(gradeProgress));
     }
 }

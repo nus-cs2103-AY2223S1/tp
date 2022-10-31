@@ -40,7 +40,7 @@ public class LessonPlanCommandParser implements Parser<LessonPlanCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonPlanCommand.MESSAGE_USAGE));
         }
 
-        String lessonPlan = argMultimap.getValue(PREFIX_LESSON_PLAN).orElse("");
+        String lessonPlan = optLesson.get();
 
         return new LessonPlanCommand(index, ParserUtil.parseLessonPlan(lessonPlan));
     }

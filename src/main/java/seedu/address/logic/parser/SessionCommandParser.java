@@ -38,7 +38,7 @@ public class SessionCommandParser implements Parser<SessionCommand> {
         if (optSession.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.MESSAGE_USAGE));
         }
-        String session = argumentMultimap.getValue(PREFIX_SESSION).orElse("");
+        String session = optSession.get();
         return new SessionCommand(index, ParserUtil.parseSession(session));
     }
 }

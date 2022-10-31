@@ -24,6 +24,9 @@ public class LessonPlan {
         value = lessonPlan;
     }
 
+    /**
+     * Returns true if a given string is a valid lesson plan.
+     */
     public static boolean isValidLessonPlan(String test) {
         return test.matches(VALIDATION_REGEX);
     }
