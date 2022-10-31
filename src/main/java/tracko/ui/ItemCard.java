@@ -93,12 +93,8 @@ public class ItemCard extends UiPart<Region> {
      */
     public Label constructTags(String tagName) {
         Label tagLabel = new Label();
-        String shortenedTag = tagName;
         tagLabel.setMaxWidth(300);
-//        if (shortenedTag.length() >= 30) {
-//            shortenedTag = tagName.substring(0, 29);
-//        }
-        tagLabel.setText(shortenedTag);
+        tagLabel.setText(tagName);
         tagLabel.setWrapText(true);
         return tagLabel;
     }
