@@ -175,7 +175,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
             // state check
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
             return getReason().equals(e.getReason()) && getDateTime().equals(e.getDateTime())
-                    && getTimePeriod().equals(e.getTimePeriod());
+                    && getTimePeriod().equals(e.getTimePeriod()) && getTags().equals(e.getTags());
         }
     }
 }
