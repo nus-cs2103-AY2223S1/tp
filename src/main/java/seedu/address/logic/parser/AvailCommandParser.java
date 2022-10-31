@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.AvailCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.timeRange.TimeRange;
+import seedu.address.model.timerange.TimeRange;
 
 /**
  * Parses input arguments and creates a new AddCommand object

@@ -30,7 +30,7 @@ import seedu.address.model.student.Money;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.timeRange.TimeRange;
+import seedu.address.model.timerange.TimeRange;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
