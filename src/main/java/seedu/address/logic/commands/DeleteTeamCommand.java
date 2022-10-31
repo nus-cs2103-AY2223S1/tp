@@ -64,7 +64,7 @@ public class DeleteTeamCommand extends Command {
         if (teamList.size() == 1) {
             throw new CommandException(MESSAGE_AT_LEAST_ONE_TEAM);
         }
-
+        assert filteredListWithTargetTeam.size() == 1;
         Team targetTeamInTeamList = filteredListWithTargetTeam.get(0);
 
         model.deleteTeam(targetTeamInTeamList);

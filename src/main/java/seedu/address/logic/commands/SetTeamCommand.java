@@ -63,7 +63,7 @@ public class SetTeamCommand extends Command {
         if (filteredListWithTargetTeam.size() == 0) {
             throw new CommandException(MESSAGE_TEAM_NOT_EXISTS);
         }
-
+        assert filteredListWithTargetTeam.size() == 1;
         Team targetTeamInTeamList = filteredListWithTargetTeam.get(0);
 
         if (currentTeam.equals(targetTeamInTeamList)) {
