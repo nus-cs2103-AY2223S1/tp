@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.reminder.Reminder;
 
 /**
- * Deletes a reminder identified using it's displayed index from the address book.
+ * Deletes a reminder identified using it's displayed index from ModQuik.
  */
 public class DeleteReminderCommand extends Command {
 

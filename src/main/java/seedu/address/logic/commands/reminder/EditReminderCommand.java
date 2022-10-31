@@ -23,6 +23,7 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderPriority;
+import seedu.address.model.reminder.ReminderStatus;
 
 
 /**
@@ -98,8 +99,9 @@ public class EditReminderCommand extends Command {
         ReminderPriority updatedPriority = editReminderDescriptor.getPriority().orElse(reminderToEdit.getPriority());
         ReminderDescription updatedDescription = editReminderDescriptor.getDescription()
                 .orElse(reminderToEdit.getDescription());
+        ReminderStatus sameStatus = reminderToEdit.getStatus();
 
-        return new Reminder(updatedName, updatedDeadline, updatedPriority, updatedDescription);
+        return new Reminder(updatedName, updatedDeadline, updatedPriority, updatedDescription, sameStatus);
     }
 
     @Override
@@ -147,7 +149,7 @@ public class EditReminderCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline, description, priority);
+            return CollectionUtil.isAnyNonNull(name, deadline, priority, description);
         }
 
         public void setName(ReminderName name) {
