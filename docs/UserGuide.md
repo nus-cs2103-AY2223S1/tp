@@ -1,42 +1,63 @@
 ---
-layout: page
-title: User Guide
+span
 ---
+<div align="center">
+<h1> Pupilist User Guide</h1>
+Welcome to Pupilist User Guide!
+</div>
 
-Pupilist is a **desktop app for managing students details for private tutors**. It is **optimised for Command Line Interface (CLI)**. If you are a private tutor struggling to keep track of your students grades, homework and attendance, Pupilist can get your scheduling done faster than traditional GUI apps.
+## Introducing Pupilist
+
+<p align="center">
+  <img src="images/pupilist.png" alt="Pupilist's app icon"/>
+</p>
+
+Pupilist is an **application for managing students details for private tutors**. It aims to **help you organise your students information to better manage your lessons and students in an all-in-one application**.
+
+
+If you are a private tutor struggling to:
+1. keep track of your students and their individual lesson plans.
+2. keep track of your students grades, homework and attendance.
+3. keep track of your lesson timings.
+4. keep track of your students' contact information.<br>
+
+Pupilist can get your scheduling done faster with single line CLI command inputs to manage all your tutoring needs.
+
+## Table of Contents
 
 * Table of Contents
-{:toc}
+  {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
+
+### Glossary
+
+
+| Term      | Description                                                                                                                                                                                                                                                                                                                                        |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CLI       | Command-Line-Input, refers to text-based command inputs you will enter in the CommandBox.                                                                                                                                                                                                                                                          |
+| GUI       | Graphical-User-Interface, refers to the UI displayed to you.                                                                                                                                                                                                                                                                                       |
+| Parameter | Refers to the information you will need to give to Pupilist along with your<br> command so that Pupilist can execute an action based on that information.<br> For example, in the [`View`](#viewing-persons-details-view) command requires a NAME parameter for Pupilist to display information of the Person ,assuming a valid name in view mode. |
+| Prefixes  | A prefix indicates the type of field you are keying in. You can find the list of prefixes supported by Pupilist[here](#prefixes-summaries)                                                                                                                                                                                                         |
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
 2. Download the latest `Pupilist.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-4/tp/releases).
-
 3. Copy the file to the folder you want to use as the _home folder_ for your address book.
-
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
-
    * **`add`**`n/John Doe p/98765432 lp/Algorithms` : Adds a contact named `John Doe` to the Address Book.
-
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
    * **`clear`** : Deletes all contacts.
-
    * **`exit`** : Exits the app.
-
 6. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
@@ -46,22 +67,16 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
 * Items in square brackets are optional.<br>
   e.g `n/NAME [h/HOMEWORK]` can be used as `n/John Doe h/math` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/Tag]…​` can be used as ` ` (i.e. 0 times), `t/Math`, `t/Math t/Science` etc.
-
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[t/Tag]…` can be used as ` ` (i.e. 0 times), `t/Math`, `t/Math t/Science` etc.
 * Parameters with prefixes can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
 * Index has to be supplied according to format given.<br>
   e.g. if the command specifies `hw INDEX h/HOMEWORK`, `hw h/HOMEWORK INDEX` is not allowed.
-
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -84,12 +99,13 @@ Adds a person to the address book. A person is considered a duplicate only if th
 Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...`
 
 Examples:
+
 * `add n/Farisa p/87159999 lp/Sec 4 Chemistry`
 
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book. Changes the address book to list mode.
-Also allows you to see the next session for you to attend along with the person you 
+Also allows you to see the next session for you to attend along with the person you
 are going to be teaching next.<br>
 **Usage**: All modes
 
@@ -105,6 +121,7 @@ Format: `edit [n/NAME] [p/PHONE] [lp/LESSON_PLAN] [t/TAG]...`<br>
 `edit [h/ a/ g/ s/]INDEX NEW_FIELD`
 
 It requires at least one of the optional fields:
+
 - n/: To be followed by updated name of student
 - p/: To be followed by updated phone number of student
 - lp/: To be followed by updated lesson plan of student
@@ -115,6 +132,7 @@ It requires at least one of the optional fields:
 - t/: To be followed by the person's tags, all tags can be removed by typing `t/` without specifying any tags after it
 
 Examples:
+
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
   `edit h/2 math not done` updates 2nd field of `Alex Yeoh`'s HOMEWORK to `math not done`
 
@@ -124,6 +142,7 @@ Removes a specific field of a person in the address book at the specified index.
 **Usage**: View mode only
 
 It requires one field:
+
 - h/: To be followed by INDEX of homework to be removed
 - a/: To be followed by INDEX of attendance to be removed
 - g/: To be followed by INDEX of grade to be removed
@@ -134,6 +153,7 @@ Allows for edits of multiple fields in a single command. However, a single comma
 Format: `remove [h/ a/ g/ s/]INDEX`
 
 Examples:
+
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
   `remove h/2` removes `Alex Yeoh`'s *homework at second index*
 * `view John Doe` returns `John Doe` <br>
@@ -145,6 +165,7 @@ Marks a specific field of a person in the address book.<br>
 **Usage**: View mode only
 
 It requires one field:
+
 - h/: To be followed by INDEX of homework to be marked
 - a/: To be followed by INDEX of attendance to be marked
 
@@ -153,6 +174,7 @@ Allows for marking of only one field in a single command.
 Format: `mark [h/ a/]INDEX`
 
 Examples:
+
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
   `mark a/1` marks `Alex Yeoh`'s *attendance at first index*
 
@@ -162,6 +184,7 @@ Unmarks a specific field of a person in the address book.<br>
 **Usage**: View mode only
 
 It requires one field:
+
 - h/: To be followed by INDEX of homework to be unmarked
 - a/: To be followed by INDEX of attendance to be unmarked
 
@@ -170,9 +193,9 @@ Allows for unmarking of only one field in a single command.
 Format: `unmark [h/ a/]INDEX`
 
 Examples:
+
 * `view Alex Yeoh` returns `Alex Yeoh` <br>
   `unmark h/4` unmarks `Alex Yeoh`'s *homework at fourth index*
-
 
 ### Locating persons by name: `find`
 
@@ -189,6 +212,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
+
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
@@ -199,7 +223,7 @@ View details of a person. Required to `edit` or `remove` person's details.
 You can only view one person's details at one time.<br>
 **Usage**: All modes
 
-Format: `view NAME` 
+Format: `view NAME`
 
 * The command requires the full `NAME` of a person.
 * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -212,12 +236,13 @@ Format: `view NAME`
 Deletes the specified person from the address book.<br>
 **Usage**: View or list mode only
 
-Format: `delete INDEX` 
+Format: `delete INDEX`
 
 * Deletes the person with the specified `INDEX`.
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
+
 * `delete 1` removes the first student in the address book.
 
 ### Clearing all entries : `clear`
@@ -239,13 +264,14 @@ Format: `hw INDEX h/HOMEWORK`
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
+
 * `hw 1 h/math assignment` adds math assignment to first student in address book.
 
 ### Adding Grade Progress to student: `grade`
 
 Adds a description of grade progress to student in address book.
 GRADE_PROGRESS does not require a fixed format and is up to the user to manually standardise. Does not check for duplicate entries.<br>
-**Usage**: View or list mode only 
+**Usage**: View or list mode only
 
 Format: `grade INDEX g/GRADE_PROGRESS`
 
@@ -253,6 +279,7 @@ Format: `grade INDEX g/GRADE_PROGRESS`
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
+
 * `grade 1 g/Math: D+` adds Math: D+ grade to first student in address book.
 
 ### Adding Attendance to student : `attendance`
@@ -268,6 +295,7 @@ Format: `attendance INDEX a/ATTENDANCE`
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
+
 * `attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in address book.
 
 ### Adding Session to student: `session`
@@ -283,6 +311,7 @@ Format: `session INDEX s/TUITION_TIME`
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
+
 * `session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
 
 ### Update Lesson Plan for student: `lesson`
@@ -296,6 +325,7 @@ Format: `lesson INDEX lp/LESSON_PLAN`
 * In view mode, INDEX should always be 1 (as per the view list)
 
 Examples:
+
 * `lesson 1 lp/science` changes lesson plan of first student to science.
 
 ### Viewing daily schedule: `show`
@@ -306,6 +336,7 @@ Displays all sessions scheduled on a certain day of the week. Changes address bo
 Format: `show [DDD]`
 
 Examples:
+
 * `show MON` lists all tuition timings scheduled for Monday.
 
 ### Exiting the program : `exit`
@@ -342,7 +373,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## FAQ
 
@@ -353,29 +384,40 @@ _Details coming soon ..._
 **Q**: Where do I check for updates on the app?<br>
 **A**: Check periodically on github for our latest updates on the app.
 
---------------------------------------------------------------------------------------------------------------------
+---
+
+### Summaries
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...` <br> e.g., `add n/James Ho p/96775567 lp/english`
-**Add Attendance** | `attendance INDEX a/ATTENDANCE`<br> e.g., `attendance 2 a/2022-12-08`
-**Add Grade** | `grade INDEX g/GRADE`<br> e.g., `grade 2 g/English: B+`
-**Add Homework** | `hw INDEX h/HOMEWORK`<br> e.g., `hw 1 h/Science worksheet`
-**Add Session** | `session INDEX s/SESSION` <br> e.g., `session 1 s/mon 09:00`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 1`
-**Edit** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN] [t/TAG]...`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit n/James Lee h/1 math`
-**Exit** | `exit`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Help** | `help`
-**List** | `list`
-**Mark Item** | `mark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `mark a/1`
-**Remove** | `remove [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g., `remove h/1`
-**Show Schedule** | `show [DDD]`<br> e.g., `show MON`
-**Unmark Item** | `unmark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `unmark h/2`
-**Update Lesson plan** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`
-**View** | `view NAME`<br> e.g., `view James Ho`
+
+| Action                 | Format, Examples                                                                                                                                                             |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Add**                | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [t/TAG]...` <br> e.g., `add n/James Ho p/96775567 lp/english`                                                                      |
+| **Add Attendance**     | `attendance INDEX a/ATTENDANCE`<br> e.g., `attendance 2 a/2022-12-08`                                                                                                        |
+| **Add Grade**          | `grade INDEX g/GRADE`<br> e.g., `grade 2 g/English: B+`                                                                                                                      |
+| **Add Homework**       | `hw INDEX h/HOMEWORK`<br> e.g., `hw 1 h/Science worksheet`                                                                                                                   |
+| **Add Session**        | `session INDEX s/SESSION` <br> e.g., `session 1 s/mon 09:00`                                                                                                                 |
+| **Clear**              | `clear`                                                                                                                                                                      |
+| **Delete**             | `delete INDEX`<br> e.g., `delete 1`                                                                                                                                          |
+| **Edit**               | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN] [t/TAG]...`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit n/James Lee h/1 math` |
+| **Exit**               | `exit`                                                                                                                                                                       |
+| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                   |
+| **Help**               | `help`                                                                                                                                                                       |
+| **List**               | `list`                                                                                                                                                                       |
+| **Mark Item**          | `mark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `mark a/1`                                                                                                            |
+| **Remove**             | `remove [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g., `remove h/1`                                                                          |
+| **Show Schedule**      | `show [DDD]`<br> e.g., `show MON`                                                                                                                                            |
+| **Unmark Item**        | `unmark [h/INDEX HOMEWORK a/INDEX ATTENDANCE]`<br> e.g., `unmark h/2`                                                                                                        |
+| **Update Lesson plan** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`                                                                                                                |
+| **View**               | `view NAME`<br> e.g., `view James Ho`                                                                                                                                        |
+
+## Prefixes summaries
 
 
+| Prefix | Definition                             | Usage                                                                                                                                                                                      | Example        |
+| -------- | ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| n/     | Name                                   | A string of alphanumeric characters. Whitespaces are allowed. Required                                                                                                                     | n/Alex Ho      |
+| p/     | Phone number                           | Numbers only. Required. Whitespaces not allowed and at least 3 digits.                                                                                                                     | p/97402341     |
+| t/     | Tag that is associated to the student. | A string of characters. Optional.                                                                                                                                                          | t/Star student |
+| s/     | Session timing of lessons              | A String of input in the format of`DDD HH:mm` <br>where DDD is three characters making up the day, HH are two numbers making up the hour and <br> mm are two numbers making up the minute. | s/tue 08:30    |
