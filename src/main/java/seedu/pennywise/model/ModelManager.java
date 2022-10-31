@@ -164,6 +164,7 @@ public class ModelManager implements Model {
     public void updateFilteredEntryList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         filteredExpenditure.setPredicate(predicate);
+        filteredIncome.setPredicate(predicate);
     }
 
     /**

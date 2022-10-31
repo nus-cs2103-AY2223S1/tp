@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -60,6 +62,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane graphPanelPlaceholder;
 
+    private GraphPanel currGraphPanel;
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -126,7 +129,30 @@ public class MainWindow extends UiPart<Stage> {
 
         entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
         entryPanePlaceholder.getChildren().add(entryPane.getRoot());
-
+        entryPane.getExpenses().setOnSelectionChanged((EventHandler<Event>) evt -> {
+            GraphConfiguration expenditureGraphConfig = new GraphConfiguration(
+                    new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
+                    this.currGraphPanel.getGraphType(),
+                    true);
+            CommandResult expenditureCommandResult = new CommandResult(
+                    "",
+                    false,
+                    false,
+                    expenditureGraphConfig);
+            this.updateGraph(expenditureCommandResult);
+        });
+        entryPane.getIncome().setOnSelectionChanged((EventHandler<Event>) evt -> {
+            GraphConfiguration incomeGraphConfig = new GraphConfiguration(
+                    new EntryType(EntryType.ENTRY_TYPE_INCOME),
+                    this.currGraphPanel.getGraphType(),
+                    true);
+            CommandResult incomeCommandResult = new CommandResult(
+                    "",
+                    false,
+                    false,
+                    incomeGraphConfig);
+            this.updateGraph(incomeCommandResult);
+        });
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -136,10 +162,12 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        GraphPanel graphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
+        this.currGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
                 logic.getExpensePieChartData());
-        graphPanelPlaceholder.getChildren().add(graphPanel.getRoot());
+
+        graphPanelPlaceholder.getChildren().add(this.currGraphPanel.getRoot());
     }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.
@@ -182,12 +210,20 @@ public class MainWindow extends UiPart<Stage> {
         if (!graphConfiguration.getShouldUpdateGraph()) {
             return;
         }
-
         GraphType graphType = graphConfiguration.getGraphType();
         EntryType entryType = graphConfiguration.getEntryType();
+        if (entryType == null) {
+            entryType = this.currGraphPanel.getEntryType();
+        }
+        if (graphType == null) {
+            graphType = this.currGraphPanel.getGraphType();
+        }
+        assert graphType != null;
+        assert entryType != null;
 
+        EntryType finalEntryType = entryType;
         Supplier<ObservableList<PieChart.Data>> pieChartDataSupplier = () -> {
-            switch (entryType.getEntryType()) {
+            switch (finalEntryType.getEntryType()) {
             case EXPENDITURE:
                 return logic.getExpensePieChartData();
             case INCOME:
@@ -199,7 +235,7 @@ public class MainWindow extends UiPart<Stage> {
         };
 
         Supplier<XYChart.Series<String, Number>> lineChartDataSupplier = () -> {
-            switch (entryType.getEntryType()) {
+            switch (finalEntryType.getEntryType()) {
             case EXPENDITURE:
                 return logic.getExpenseLineChartData();
             case INCOME:
@@ -223,6 +259,7 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         assert graphPanel != null;
+        this.currGraphPanel = graphPanel;
         graphPanelPlaceholder.getChildren().add(graphPanel.getRoot());
     }
 
@@ -265,7 +302,7 @@ public class MainWindow extends UiPart<Stage> {
             if (graphConfiguration.getShouldUpdateGraph()) {
                 updateGraph(commandResult);
             }
-            EntryType entryType = graphConfiguration.getEntryType();
+            EntryType entryType = this.currGraphPanel.getEntryType();
             switch (entryType.getEntryType()) {
             case EXPENDITURE:
                 entryPane.showExpenseEntryPanel();

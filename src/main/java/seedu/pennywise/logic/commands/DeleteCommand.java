@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.pennywise.commons.core.Messages;
 import seedu.pennywise.commons.core.index.Index;
 import seedu.pennywise.logic.commands.exceptions.CommandException;
+import seedu.pennywise.model.GraphConfiguration;
 import seedu.pennywise.model.Model;
 import seedu.pennywise.model.entry.Entry;
 import seedu.pennywise.model.entry.EntryType;
@@ -75,7 +76,10 @@ public class DeleteCommand extends Command {
             // should never reach here
             return null;
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entryToDelete),
+                false,
+                false,
+                GraphConfiguration.UPDATE_CURR_GRAPH_CONFIG);
     }
 
     @Override
