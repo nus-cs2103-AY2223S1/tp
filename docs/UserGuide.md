@@ -12,6 +12,7 @@ worrying about organising your data.
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div markdown="block" class="index">
 
 ## Quick start
 
@@ -361,3 +362,5 @@ _More food items coming soon in a future release..._
 | **Tip**     | `tip`                                                   | `tip`                            |
 | **Clear**   | `clear`                                                 | `clear`                          |
 | **Exit**    | `exit`                                                  | `exit`                           |
+
+</div>
