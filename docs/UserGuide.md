@@ -86,9 +86,9 @@ This user guide will help you get started and understand how FABook can **seamle
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
  </div>
 
-### General
+## General
 
-#### Viewing help : `help`
+### Viewing help : `help`
 
 Shows a message explaining how you can access our user guide.
 
@@ -96,7 +96,7 @@ Format: `help` or Press `F1`
 
 ![help](images/UserGuide/help.png)
 
-#### Listing your clients : `list`
+### Listing your clients : `list`
 
 Shows a list of all clients in your FABook.
 
@@ -107,9 +107,9 @@ Format: `list`
 :white_check_mark: **Input Shortcut:**
 You can replace `list` with `l` for convenience.
 
-### Creation
+## Creation
 
-#### Creating a client contact : `create`
+### Creating a client contact : `create`
 
 Creates a client contact with their information in your FABook. Any contact information you don't have on hand can be updated later.
 
@@ -148,7 +148,7 @@ Examples:
 You can replace `create` with `c` for convenience.<br>
 Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
-#### Assigning PDF file to a client : `filepath`
+### Assigning PDF file to a client : `filepath`
 
 Assigns a PDF file to a client in your FABook.
 
@@ -164,11 +164,11 @@ Format: `filepath INDEX f/FILEPATH`
 Examples:
 * `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
 
-### Retrieving
+## Retrieving
 :white_check_mark: **Input Shortcut:**
 You can replace `find` with `f` for convenience for all retrieving commands.<br>
 
-#### Finding your client by name : `find`
+### Finding your client by name : `find`
 
 Find your clients whose name contain any of the given keywords.
 
@@ -190,7 +190,7 @@ Examples:
 :white_check_mark: **Input Shortcut:**
 Format: `f n/NAME`
   
-#### Finding your client by phone number : `find`
+### Finding your client by phone number : `find`
 
 Find your clients whose phone number matches the input number.
 
@@ -207,7 +207,7 @@ Examples:
 :white_check_mark: **Input Shortcut:**
 Format: `f p/NUMBER`
 
-#### Finding your client by address : `find`
+### Finding your client by address : `find`
 
 Find your clients whose addresses matches the input address.
 
@@ -230,7 +230,7 @@ Examples:
 :white_check_mark: **Input Shortcut:**
 Format: `f a/ADDRESS`
 
-#### Finding your client by tag : `find`
+### Finding your client by tag : `find`
 
 Find your clients whose tag matches the input tag.
 
@@ -245,7 +245,7 @@ Examples:
 :white_check_mark: **Input Shortcut:**
 Format: `f t/TAG`
 
-#### Opening PDF file of your client : `file`
+### Opening PDF file of your client : `file`
 
 Opens a client's assigned PDF file in your PDF file viewer.
 
@@ -259,7 +259,7 @@ Format: `file INDEX`
 Examples:
 * `file 2`
 
-#### Get upcoming meetings : `Upcoming Meetings`
+### Get upcoming meetings : `Upcoming Meetings`
 
 Returns a list of clients who has a scheduled meeting in the next 7 days.
 
@@ -273,9 +273,9 @@ Format: Menu bar on the top of the application or press `F2`.
 :heavy_exclamation_mark: **Caution:**
 As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
    
-### Updating
+## Updating
 
-#### Updating your client : `update`
+### Updating your client : `update`
 
 Updates the information of a client stored in your FABook.
 
@@ -300,7 +300,7 @@ Example:
 You can replace `update` with `u` for convenience.<br>
 Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [t/TAG]`
 
-#### Updating your client's description : `description`
+### Updating your client's description : `description`
 
 Updates your client's description data field.
 
@@ -315,7 +315,7 @@ Format: `description INDEX d/DESCRIPTION`
 You can replace `description` with `desc` for convenience.
 Format: `desc INDEX d/DESCRIPTION`
 
-#### Updating meetings : `meeting`
+### Updating meetings : `meeting`
    
 Adds one or more meeting times to your client in your FABook.
 
@@ -330,9 +330,9 @@ Examples:
 * `meeting 2 mt/09-10-2023-23:50 mt/28-02-2020-15:16` adds two meetings to the second client in the displayed list, 
    one at 9 October 2023 23:50, the other at 28 February 2020 15:16.
 
-### Deletion
+## Deletion
 
-#### Deleting a client : `delete`
+### Deleting a client : `delete`
 
 Deletes the specified client from your FABook.
 
@@ -346,7 +346,7 @@ Format: `delete INDEX`
 Examples:
 * `delete 2` deletes the second client in the currently displayed client list in your FABook.
 
-#### Delete meetings : `deletemeeting`
+### Delete meetings : `deletemeeting`
    
 Deletes a meeting from your client in your FABook.
 
@@ -360,7 +360,7 @@ Examples:
 * `deletemeeting 2 mt/09-10-2023-23:50` deletes the meeting at 9 October 2023 23:50 from the second client in the displayed list,
    if such a meeting was scheduled.
 
-#### Remove past meetings : `sync`
+### Remove past meetings : `sync`
 
 Removes every scheduled meeting time that has already passed.
 
@@ -388,8 +388,8 @@ If you run this command by accident, you can [undo](#undoing-a-previous-command-
 You can replace `clear` with `cl` for convenience.
 
 
-### Command Flow
-#### Undoing a previous command : `undo`                                      
+## Command Flow
+### Undoing a previous command : `undo`                                      
 
 Undos your last command.
 
@@ -404,7 +404,7 @@ Format: `undo`
 :heavy_exclamation_mark: **Important**
 You can undo a [`redo` command](#redoing-a-previous-command--redo).
 
-#### Redoing a previous command : `redo`
+### Redoing a previous command : `redo`
 
 Redos your last undone command.
 
