@@ -92,9 +92,8 @@ public class DeletePersonFromModuleCommandIntegrationTest {
         expectedModel.updateFilteredPersonList(newPersonPredicate);
 
         assertCommandSuccess(new DeletePersonFromModuleCommand(validModuleCode, aliceName), model,
-                String.format(DeletePersonFromModuleCommand.MESSAGE_DELETE_PERSON_FROM_MODULE_SUCCESS,
-                        validModuleCode, aliceName),
-                expectedModel);
+                String.format(DeletePersonFromModuleCommand.MESSAGE_DELETE_PERSON_FROM_MODULE_SUCCESS, validModuleCode,
+                        aliceName), expectedModel);
     }
 
     @Test
