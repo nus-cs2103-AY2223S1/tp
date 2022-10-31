@@ -53,7 +53,7 @@ public class SlotTest {
         Slot slot1 = new Slot("2022-11-13 00:00");
         Slot slot2 = new Slot("2022-11-13 00:00");
         Slot slot3 = new Slot("2022-11-13 00:01");
-        Slot slot4 = new Slot("2022-11-12 24:00");
+        Slot slot4 = new Slot("2022-11-13 00:00");
         assertTrue(slot1.equals(slot1));
         assertTrue(slot1.equals(slot2));
         assertTrue(slot1.equals(slot4));
@@ -67,7 +67,7 @@ public class SlotTest {
         assertThrows(NullPointerException.class, () -> Slot.isValidDateTime(null));
         assertFalse(Slot.isValidDateTime(""));
         assertTrue(Slot.isValidDateTime("2012-12-31 01:02"));
-        assertTrue(Slot.isValidDateTime("2012-12-31 24:00"));
+        assertTrue(Slot.isValidDateTime("2012-12-31 23:59"));
         assertTrue(Slot.isValidDateTime("2023-06-30 23:59"));
         assertFalse(Slot.isValidDateTime("2021-12-40 11:22"));
         assertFalse(Slot.isValidDateTime("2021-13-01 11:22"));
@@ -82,9 +82,9 @@ public class SlotTest {
         Slot slot1 = new Slot("2022-11-13 00:00");
         Slot slot2 = new Slot("2022-11-13 00:00");
         Slot slot3 = new Slot("2022-11-13 00:01");
-        Slot slot4 = new Slot("2022-11-12 24:00");
+        Slot slot4 = new Slot("2022-11-12 23:59");
         assertTrue(slot1.hashCode() == slot1.hashCode());
         assertFalse(slot1.hashCode() == slot3.hashCode());
-        assertTrue(slot1.hashCode() == slot4.hashCode());
+        assertFalse(slot1.hashCode() == slot4.hashCode());
     }
 }
