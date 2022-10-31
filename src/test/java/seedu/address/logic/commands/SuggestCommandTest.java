@@ -79,7 +79,7 @@ public class SuggestCommandTest {
 
     @Test
     public void execute_zeroKeywords_allPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 10);
         PersonSuggestionPredicate predicate = new PersonSuggestionPredicate(new HashSet<>(), new HashSet<>());
         SuggestCommand command = new SuggestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
