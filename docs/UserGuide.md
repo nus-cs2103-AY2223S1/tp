@@ -118,6 +118,19 @@ Creates a client contact with their information in your FABook. Any contact info
 
 Format: `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME...] [t/TAG]`
 
+### Common Data Field Formats
+
+| Data Field           | Format, Example                 | Remarks                                                                                  |
+|----------------------|---------------------------------|------------------------------------------------------------------------------------------|
+| **`n/NAME`**         | `n/[name]`                      | Name should only contain alphanumeric characters and spaces, and it should not be blank  |
+| **`p/PHONE_NUMBER`** | `p/[phone_number]`              | Phone Number should only contain numbers and should be at least 3 digits long            |
+| **`e/EMAIL`**        | `e/[local_part]@[domain]`       | Local Part should only contain alphanumeric characters and these special characters +_.- |
+| **`a/ADDRESS`**      | `a/[address]`                   |                                                                                          |
+| **`d/DESCRIPTION`**  | `d/[description]`               |                                                                                          |
+| **`nw/NETWORTH`**    | `nw/$[net_worth]`               | Net worth should only should only contain numbers and should be at least 4 digits long   |
+| **`mt/TIME`**        | `mt/[DD]-[MM]-[YYYY]-[HH]:[MM]` | DD: 01-31<br/>MM: 01-12<br/>YYYY: 0001-9999<br/>HH:MM: 00:00 - 23:59                     |
+| **`t/TAG`**          | `t/[tag]`                       | Tag should only be `SECURED` or `POTENTIAL`                                              |
+
 ![create](images/UserGuide/create.png)
 
 :bulb: **Note:**
