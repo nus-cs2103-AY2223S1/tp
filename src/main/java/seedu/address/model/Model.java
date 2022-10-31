@@ -182,6 +182,11 @@ public interface Model {
      */
     void viewModule(ModuleCode moduleCode);
 
+    /**
+     * Views the module details with {@code ModuleCode}.
+     */
+    void viewModuleDetails(ModuleCode moduleCode);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
