@@ -123,7 +123,7 @@ Example:
 
 **:information_source: Note:**<br>
 
-`MEAL_TYPE` is case-insensitive.
+`MEAL_TYPE` is **not** case-sensitive.
 
 * E.g. `add n/hotpot c/500 t/dinner` is the same as `add n/hotpot c/500 t/dInNeR`.
 
@@ -169,7 +169,7 @@ Example:
 
 **:information_source: Note:**<br>
 
-`MEAL_TYPE` is case-insensitive.
+`MEAL_TYPE` is **not** case-sensitive.
 
 * E.g. `edit 2 t/dinner` is the same as `edit 2 t/dInNeR`.
 
