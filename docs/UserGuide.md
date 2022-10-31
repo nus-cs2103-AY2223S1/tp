@@ -7,6 +7,8 @@ Welcome to the PayMeLah user guide!
 
 Are you a student who enjoys participating in group buys? Or perhaps do you just need some way to remember how much money your friends owe you? PayMeLah is a desktop app for **keeping track of** and **managing the debts** your friends owe you. It can also help **do simple calculations** for you, such as including GST or splitting debts amongst your friends. What’s more, it is optimised for you to do everything from just your keyboard!
 
+<div style="page-break-after: always;"></div>
+
 ### Using this guide
 If you are a new user looking to get started with PayMeLah, this user guide can help you with [the installation process](#quick-start), guide you through [adding your first debt to PayMeLah](#adding-your-first-debt), and familiarise you with how to use all of [PayMeLah’s features](#features).
 
@@ -27,19 +29,18 @@ Here are some of the symbols and text formatting to look out for as you make use
 |               `Text`               | Text relevant to PayMeLah user commands |
 |          <kbd>Ctrl</kbd>           | A keyboard key |
 
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
 * Table of Contents
 {:toc}
 
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
-
 ### Installing PayMeLah
 
 1. To run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
@@ -56,17 +57,19 @@ Here are some of the symbols and text formatting to look out for as you make use
 1. Now, let’s continue to learn how to [navigate the application](#navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
 [Return to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Navigating the application interface
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Adding your first debt
 
 Once you have familiarised yourself with PayMeLah’s [user interface](#navigating-the-application), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-secondary">
 **:star: Using the keyboard instead of the mouse**
 
 As this section is meant for new users, it will not cover how to navigate the application using keyboard shortcuts to avoid overloading new users with information. However, PayMeLah is still ultimately designed to be the fastest for users who prefer keyboard shortcuts - If this describes you, do refer to the section on [advanced keyboard shortcuts](#advanced-keyboard-shortcuts) to learn more.
@@ -92,8 +95,8 @@ As this section is meant for new users, it will not cover how to navigate the ap
 Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as `deletedebt` and `find`. You can find out more about these commands in the [features](#features) section below.
 
 [Return to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -104,45 +107,53 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 * The first word in the command is the command phrase that specifies which command will be carried out by PayMeLah.
   e.g. in `add n/<name>`, `add` is the command phrase for PayMeLah to add a person.
 
-* Words in diamond brackets `<>` are parameters to be supplied by you.<br>
-  e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/John`.
+* Words in diamond brackets `<>` are inputs to be supplied by you.<br>
+  e.g. in `add n/<name>`, `<name>` is an input which can be used as `add n/John`.
 
-* To separate parameters that represent different information, you should precede ambiguous parameters with their paired prefixes that end with `/`. <br>
-  e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the parameters `<name>` and `<tag>` respectively.
+* To separate inputs that represent different information, you should precede ambiguous inputs with their paired prefixes that end with `/`. <br>
+  e.g. in `add n/<name> [t/<tag>]…`, `n/` and `t/` are prefixes preceding the inputs `<name>` and `<tag>` respectively.
 
 * Items in square brackets `[]` are optional.<br>
   e.g. for `add n/<name> [t/<tag>]…`, the following usages are both acceptable: `add n/Alan Poe t/theatre kid`, `add n/Alan Poe`.
 
 * Command fields with … can be used multiple times, but remember to separate each usage with a whitespace in between.<br>
-  e.g. in `adddebt <person index…>`, `<person index…>` is a parameter which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
-  e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and parameter which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
+  e.g. in `adddebt <person index…>`, `<person index…>` is an input which can be used as `adddebt 1` or as `adddebt 1 2`.<br>
+  e.g. in `add n/<name> [t/<tag>]…`, `[t/<tag>]…` is a pair of prefix and input which can be used as `add n/Alan t/Poet` or as `add n/Alan t/Poet t/Friend`.
 
-* Parameters can be in any order.<br>
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
+</div>
+
+* Inputs can be in any order.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If an input is expected only once in the command, but you specified it multiple times, only the last occurrence of the input will be taken.<br>
   e.g. if the command requires `p/<phone number>` and you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. This is useful for correcting a wrong input without having to use backspace.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`)
+* Extraneous inputs for commands that do not take in inputs (such as `help`, `list`, `exit` and `clear`)
   will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-#### Parameter-specific behavior
+</div>
 
-* Whenever `<date>` is specified as a parameter, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
+#### Input-specific behavior
+
+<div markdown="block" class="alert alert-info">
+
+* Whenever `<date>` is specified as an input, you should input it in the format `yyyy-mm-dd` where `y` is year, `m` is month and `d` is day.<br>
   e.g. September 5 2022 should be input as `2022-09-05`.
 
-* Whenever `<time>` is specified as a parameter, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.<br>
+* Whenever `<time>` is specified as an input, you should input it in the format `hh:mm` where `h` is the hour in 24h clock format, and `m` is the minute.<br>
   e.g. 5:15PM should be input as `17:15` as per 24h clock notation.
 
-* Whenever `<money>` is specified as a parameter, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with '+' to add GST, or '++' to add both Service Charge and GST to the amount specified. All calculated values are automatically rounded up to the nearest cent.<br>
+* Whenever `<money>` is specified as an input, you should input the amount in dollars and cents. You can also let PayMeLah help you with calculations by ending with '+' to add GST, or '++' to add both Service Charge and GST to the amount specified. **All calculated values are automatically rounded up to the nearest cent.**<br>
   e.g. when you input `2.00++`, PayMeLah will store a debt with a money amount that has Service Charge and GST added, i.e. `2.36`.
 
 </div>
 
 [Return to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
@@ -153,11 +164,10 @@ If you get lost while using PayMeLah, this is the one command to remember!
 
 Format: `help`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-secondary">
 **:star: Advanced Tip:**
 Pressing <kbd> F1 </kbd> will also open up the help message.
 </div>
-
 
 ### Adding a person: `add`
 
@@ -414,6 +424,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -421,6 +432,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
@@ -444,8 +456,8 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 * _Prefix_: A short piece of text indicating what type of information follows. For example, `n/` is the prefix that indicates that what follows is a name.
 
 [Return to Table of Contents](#table-of-contents)
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
