@@ -9,7 +9,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction 
+## Introduction - Overview of the application
 
 #### What is TrackAScholar?
 
@@ -20,12 +20,15 @@ TrackAScholar (TAS) is a one of a kind desktop app.It is the **only** applicatio
 TAS have many functions that university administrative staff will find to be useful.
 
 These functions include:
-1. Pinning of important applicants 
-2. Easy edit of applicant's detail
-3. Finding a particular applicant  
+1. Pinning of important applicants. 
+2. Easy edit of applicant's detail.
+For example, you typed in the wrong name.You can easily edit the wrong name to the correct one.
+3. Finding a particular applicant. 
+For example, you can find a particular applicant in a large list of over 100 applicants just by keying in the applicant's name.
 4. Filtering of applicants by a certain trait, for instance application status. 
+Filtering by application status divides the list to 3 portions according to the 3 different types application status. 
 
-These functions help to speed up the application process immensely.
+These functions will speed up the application process immensely.
 
 TAS is **optimised for use via a Command Line Interface (CLI)** while simultaneously having the benefits of a **Graphical User Interface
 (GUI)**. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
@@ -56,7 +59,7 @@ The current version is version 1.3.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Legend
+## Legend - explanation of signs which may help the user better understand the documentation
 
 :information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
 
@@ -68,7 +71,20 @@ The current version is version 1.3.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Glossary - helps user better understand and navigate certain technical terms
+
+| Technical terms       | Explanation of technical terms                                                                                |
+|-----------------------|---------------------------------------------------------------------------------------------------------------|
+| **Applicant list**    | A list containing all the applicants.                                                                         |
+| **command box**       | The place where you key in your commands.                                                                     |
+| **command**           | The order you are giving to TrackAScholar.                                                                    |
+| **TrackAScholar.jar** | The file that contains TrackAScholar.By downloading and running it you can run TrackAScholar.                 |
+| **case-insensitive**  | Upper case is considered to be the same as lower case.For instance 'a' and 'A' are considered to be the same. |
+| **case-sensitive**    | Upper case is not the same as lower case.For instance 'a' and 'A' are considered to be not the same.          |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick start - How to get started
 
 1. Ensure `Java 11` or a later version is installed on your computer. Otherwise, check [here](https://nus-cs2103-ay2223s1.github.io/website/admin/programmingLanguages.html#programming-language).
 
@@ -91,7 +107,7 @@ The current version is version 1.3.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Overview of TrackAScholar app
+## Overview of TrackAScholar app - This is how the application will look like when opened
 
 ![Overview of TrackAScholar app](images/UserGuideCommands/TrackAScholarOverview.png)
 
