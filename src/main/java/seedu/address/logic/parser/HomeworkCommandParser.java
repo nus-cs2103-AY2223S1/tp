@@ -10,14 +10,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.HomeworkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Homework;
 
 /**
  * Parses input arguments and creates a new HomeworkCommand object
  */
 public class HomeworkCommandParser implements Parser<HomeworkCommand> {
-
-    public static final String MESSAGE_INVALID_EMPTY_FIELD = "HOMEWORK cannot be empty.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the HomeworkCommand
@@ -39,7 +36,7 @@ public class HomeworkCommandParser implements Parser<HomeworkCommand> {
 
         Optional<String> optHomework = argMultimap.getValue(PREFIX_HOMEWORK);
 
-        // if no prefix h/ or field after h/ is empty, throw error
+        // if no prefix h/, throw error
         if (optHomework.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HomeworkCommand.MESSAGE_USAGE));
         }
