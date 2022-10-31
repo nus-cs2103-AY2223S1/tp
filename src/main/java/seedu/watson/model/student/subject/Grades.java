@@ -122,7 +122,12 @@ public class Grades {
     @Override
     public String toString() {
         currentPercentageObtained = getCurrentPercentageObtained(assessmentMarks);
-        String grade = String.format("Grade = %.1f", currentPercentageObtained);
+        String grade;
+        if (assessmentMarks.isEmpty()) {
+            grade = "There is currently no grade.";
+        } else {
+            grade = String.format("Grade = %.1f", currentPercentageObtained);
+        }
         return grade;
     }
 
