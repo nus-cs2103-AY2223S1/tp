@@ -50,11 +50,9 @@
     4. [Task commands](#task-commands-summary)
     5. [Advanced commands](#advanced-commands-summary)
 
---------------------------------------------------------------------------------------------------------------------
-## **Introduction**
-
 ---
 
+## Introduction
 
 > **What is Contactmation?**
 
@@ -69,11 +67,9 @@ each projects' group and subgroup, and delegate tasks to each group.
 Contactmation is for **project managers and supervisors** that want to maintain an organised view of their
 projects and streamline the management of their projects.
 
---------------------------------------------------------------------------------------------------------------------
-## **About**
-
 ---
 
+## About
 
 ### Graphic User Interface
 
@@ -105,7 +101,6 @@ We will be referring to these terminologies throughout the user guide:
    if everything goes well:
 
 ![Contactmation ui main window](images/ContactmationUiClean.png)
-
 
 > **Note:** If you wish to clear all default entries, use the [clear](#clear-command-clear) command.
 
@@ -215,16 +210,75 @@ Contactmation supports the `list` command that displays all of your contacts int
 
 ---
 
+Now that you have finished setting up Contactmation, let’s start performing basic tasks with Contactmation.
+As Contactmation aims to help you manage your contacts, project groups and tasks, we will start off by performing
+a range of basic commands varying from adding a person to manipulating tasks and teams.
+
+## Contact commands
+
+### Constraints on contact information
+
+The following contact commands comply with these placeholder constraints:
+
+
+- The `NAME` of the contact must be alphanumeric and can contain whitespace.
+- The `PHONE_NUMBER` of the contact must be at least 3 digits long.
+- The `EMAIL` of the contact must be in the format `local-part@domain`.
+
+    - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
+      the parentheses, (+\_.-). The local-part may not start or end with any special characters.
+    - `Domain`:
+        - Ends with a domain label at least 2 characters long.
+        - Have each domain label start and end with alphanumeric characters.
+        - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+- The `ADDRESS` can take any values, but it should not be blank.
+- The `TAG` must be alphanumeric.
+- The `INDEX` must be a positive integer which cannot exceed the number of contacts currently displayed in the
+  application.
+- The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
+
+### Create a Contact
+
+Let us start off by adding a person to Contactmation. To add a contact, you can use the command `person new`, followed by the name of the person. You can also choose to provide the phone number, email and address to each person, or add a tag to identify each person.
+
+**Format**: `person new n/<NAME> [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+>>>>>>> master
+
+**Examples**:
+
+- `person new n/Spongebob`
+- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/Employee`
+
+![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.PNG)
+### Delete a contact
+
+You can use the `person delete` command to delete a contact from the list of persons in the current scope.
+
+**Format**: `person delete <INDEX>`
+
+**Example**:
+
+- `person delete 1`
+
+### Listing all contacts
+
+Contactmation supports the `list` command that displays all of your contacts into a list of persons.
+
+**Format**: `list`
+
+---
+
 ## General commands
 
 ### Clear command: `clear`
 
 This command clears all group, contact and task entries from the application.
 
-
 <div markdown="span" class="alert alert-primary">❗ **WARNING** <br>
 **THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION**
 </div>
+
 
 **Format:** `clear`
 
@@ -241,12 +295,12 @@ to further narrow the search for a contact, subgroup or task within the current 
 - `task find task1 task2`
 - `team find task1 task2`
 
-
 ### Exits the program: `exit`
 
 Exits the current session and closes the application.
 
 **Format:** `exit`
+
 
 ## Team commands
 
@@ -337,6 +391,7 @@ follows a similar syntax to the change directory command (`cd`)
 Once you have navigated to a team, you can add a new contact within that team, which is done through the same command
 as adding a contact to Contactmation.
 
+
 **Format**: `person new n/<NAME> [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 **Examples**:
@@ -361,6 +416,7 @@ the person by using the `team remove` command.
 
 Contactmation allows the creation and deletion of a subteam within a team using the same command as
 [creating a team](#create-a-team) and [deleting a team](#delete-a-team).
+
 
 
 ## Task commands
@@ -428,6 +484,7 @@ commands together like such:
 
 - `seq <command 1> [| command 3]...`
 - `seq <command 1> [; command 3]...`
+
 
 
 Whenever a pipe symbol (`|`) is encountered, the output of the previous commands is then passed to the next command.
@@ -514,7 +571,6 @@ when combined with piping to do complex executions with a single command!
 This command behaves exactly like if else statements in programming languages. If the `CRITERIA` specified is met,
 then the command sequence will execute `COMMAND IF`, else it will execute `COMMAND ELSE` instead. The command
 ensures that the application cannot run `COMMAND IF` and `COMMAND ELSE` in the same command sequence.
-
 
 >**Note:** If else commands cannot be nested in other if else commands directly.
 
@@ -683,4 +739,3 @@ Our future plans for Contactmation includes:
 | Print                    | `<...> \| print`                                                        |
 
 [Back to top](#contactmation-user-guide)
-
