@@ -101,9 +101,9 @@ public class SortCommandParser implements Parser<SortCommand> {
         } else if (prefix.equals(PREFIX_FINALS)) {
             exam = "Finals";
         }
-        return Integer.compareUnsigned(
-                Integer.parseInt(student1.getGradesList().getGrade(exam).score),
-                Integer.parseInt(student2.getGradesList().getGrade(exam).score));
+        return Double.compare(
+                Double.parseDouble(student1.getGradesList().getGrade(exam).getScore()),
+                Double.parseDouble(student2.getGradesList().getGrade(exam).getScore()));
     }
 }
 
