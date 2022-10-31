@@ -12,8 +12,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in YYYY-MM-DD"
-            + "For example, 2022-11-11";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be in YYYY-MM-DD."
+            + " For example, 2022-11-11";
 
     /*
      * https://mkyong.com/regular-expressions/how-to-validate-date-with-regular-

@@ -143,17 +143,17 @@ Shows a list of specified nurses or patients, or all nurses and patients if no s
 Format: `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS] [as/ASSIGNED] [v/VISITSTATUS]`
 
 Examples:
-* `list c/P t/DIABETIC g/M` - Lists all male diabetic patients enrolled in the database.
-* `list c/P a/Bugis t/heartDisease` - List all patients tagged with heart disease in the Bugis region.
-* `list c/P as/true` - List all patients that have all required timeslots assigned to a nurse.
-* `list c/P as/false` - List all patients that have at least 1 timeslot without an assigned nurse.
-* `list c/N as/true` - List all nurses that have all timeslots fully assigned to an appointment.
-* `list c/N as/false` - List all nurses that have at least 1 timeslot not assigned to an appointment.
-* `list c/P v/true` - List all patients that have been visited by nurses in all their scheduled appointments.
-* `list c/P v/false` - List all patients that have at least one appointment that has yet to be visited by a nurse.
-* `list c/N v/true` - List all nurses that have visited all scheduled appointments in the upcoming week.
-* `list c/N v/false` - List all nurses that have at least one scheduled appointment pending a visit in the upcoming week.
-* `list c/N` - Lists all nurses enrolled in the database.
+* `list c/P t/DIABETIC g/M` - Lists all the male diabetic patients enrolled in the database.
+* `list c/P a/Bugis t/heartDisease` - Lists all the patients tagged with heart disease in the Bugis region.
+* `list c/P as/true` - Lists all the patients that have all required timeslots assigned to a nurse.
+* `list c/P as/false` - Lists all the patients that have at least 1 timeslot without an assigned nurse.
+* `list c/N as/true` - Lists all the nurses that have all timeslots fully assigned to an appointment.
+* `list c/N as/false` - Lists all the nurses that have at least 1 timeslot not assigned to an appointment.
+* `list c/P v/true` - Lists all the patients that have been visited by nurses in all their scheduled appointments.
+* `list c/P v/false` - Lists all the patients that have at least one appointment that has yet to be visited by a nurse.
+* `list c/N v/true` - Lists all the nurses that have visited all scheduled appointments in the upcoming week.
+* `list c/N v/false` - Lists all the nurses that have at least one scheduled appointment pending a visit in the upcoming week.
+* `list c/N` - Lists all the nurses enrolled in the database.
 
 ![list nurse](images/ListNurse.png)
 
