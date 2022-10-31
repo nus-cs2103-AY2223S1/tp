@@ -1,6 +1,5 @@
-
 ---
-layout: page 
+layout: page
 title: User Guide
 ---
 
