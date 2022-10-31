@@ -114,7 +114,7 @@ will delete all data stored locally and this action is irreversible. You will lo
   * Optional parameters are indicated by square brackets `[]`. <br>
   e.g. For the `addStudent` command, the command format is `addStudent nm/STUDENT-NAME id/ID class/CLASS [pn/PARENT-NAME] [hp/PHONE-NUMBER]...`<br>
   `[pn/PARENT-NAME]` and `[hp/PHONE-NUMBER]` refer to optional parameters that can be supplied by the user.
-</div><br>
+</div><br/>
 
 ### 4.1 Managing student records
 
@@ -122,15 +122,15 @@ will delete all data stored locally and this action is irreversible. You will lo
 
 Creates a new student record with the following parameters:
 
-| **Paramter**        | **Prefix** | **Compulsory** | **Description**                                                                                                                                                                                                                                                                    |
-|---------------------|------------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**            | `nm/`      | Yes            | Student's name should be alphanumeric, consisting of both letters and numbers only. As student names are treated as unique, it is recommended to use the full name of the student.                                                                                                 |
-| **ID**              | `id/`      | Yes            | Student's id should contain 3 digits followed by 1 character (e.g. `123A`). Do note that ids are unique, hence no two students should have the same ids.                                                                                                                           |
-| **Class**           | `class/`   | Yes            | Class name should be alphanumeric, consisting of both letters and numbers only.                                                                                                                                                                                                    |
-| **Exam**            | `exam/`    | No             | Exams should follow the format exam name followed by score (e.g. `CA1 90`). Current accepted exam names are _CA1_, _CA2_, _SA1_ and _SA2_. Future versions may allow custom exam or gradable items to be created. In addition, scores should be an integer value between 0 to 100. |
-| **Parent's Name**   | `pn/`      | No             | Name of student's parent. Similar to the student's name, the parent's name should be alphanumeric also.                                                                                                                                                                            |
-| **Parent's Mobile** | `hp/`      | No             | Mobile number of student's parent. It should only contain numbers, and it should be at least 3 digits long. Entries with country code can be prefixed without the plus sign.                                                                                                       |
-| **Parent's Email**  | `e/`       | No             | Email address of student's parent should follow standard convention format _local-part@domain_.                                                                                                                                                                                    |
+| **Paramter**        | **Prefix** | **Compulsory** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                             |
+|---------------------|------------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Name**            | `nm/`      | Yes            | Student's name should be **alphanumeric**, consisting of both letters and numbers only. As student names are treated as unique, we recommend you to use the full name of the student.<br/><br/>For optimal viewing, the length of the name should be **at most 17 characters**. Any longer would result in the name being cut off from the application display, though it will not affect the actual record being saved in the application. |
+| **ID**              | `id/`      | Yes            | Student's id should contain **3 digits followed by 1 character** (e.g. `123A`). Do note that ids are unique, hence no two students should have the same ids.                                                                                                                                                                                                                                                                                |
+| **Class**           | `class/`   | Yes            | Class name should be **alphanumeric**, consisting of both letters and numbers only.                                                                                                                                                                                                                                                                                                                                                         |
+| **Exam**            | `exam/`    | No             | Exams should follow the format **exam name followed by score** (e.g. `CA1 90`). Current accepted exam names are _CA1_, _CA2_, _SA1_ and _SA2_. Future versions may allow custom exam or gradable items to be created.<br/><br/>In addition, scores should be an integer value between 0 to 100. Partial scores are currently not accepted.                                                                                                  |
+| **Parent's Name**   | `pn/`      | No             | Name of student's parent. Similar to the student's name, the parent's name should be **alphanumeric** also.                                                                                                                                                                                                                                                                                                                                 |
+| **Parent's Mobile** | `hp/`      | No             | Mobile number of student's parent. It should only contain numbers, and it should be **at least 3 digits long**.<br/><br/>Entries with country code can be prefixed without the plus sign. For example, `+65 91234567` can be entered as `6591234567` instead.                                                                                                                                                                               |
+| **Parent's Email**  | `e/`       | No             | Email address of student's parent should follow standard convention format _local-part@domain_.                                                                                                                                                                                                                                                                                                                                             |
 
 Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/EXAM-NAME SCORE] [pn/PARENT-NAME] [hp/PHONE-NUMBER] [e/EMAIL]`
 
@@ -138,8 +138,12 @@ Format: `addStudent nm/STUDENT-NAME id/ID class/CLASS [exam/EXAM-NAME SCORE] [pn
 **Tip:** Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** Multiple exams can be added in a single line. For example, `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** Multiple exams can be added in a single line. For example, `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation:
+**Caution:** If you are receiving an invalid command message, do check to ensure that you are using the correct prefix for the intended parameter.
 </div>
 
 Examples:
