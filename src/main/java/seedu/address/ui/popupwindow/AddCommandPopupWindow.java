@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -11,7 +12,9 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.Command;
@@ -151,6 +154,14 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing add command pop-up window.");
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+        getRoot().initStyle(StageStyle.DECORATED);
+        getRoot().setWidth(screenBounds.getWidth());
+        getRoot().setHeight(screenBounds.getHeight());
+        getRoot().setX(screenBounds.getMinX());
+        getRoot().setY(screenBounds.getMinY());
+        getRoot().setMaxWidth(screenBounds.getWidth() * 2);
         getRoot().show();
         getRoot().centerOnScreen();
     }

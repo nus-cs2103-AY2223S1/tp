@@ -18,7 +18,7 @@ import seedu.address.model.pet.Species;
 public class Request {
 
     public static final String MESSAGE_USAGE = "The usage of a request is as follows: \n"
-            + "add-r"
+            + "add-r "
             + PREFIX_ORDER_SPECIES + "SPECIES "
             + PREFIX_ORDER_AGE + "AGE "
             + PREFIX_ORDER_COLOR + "COLOR "
