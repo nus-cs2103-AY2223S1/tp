@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -42,6 +43,9 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_TAG);
             cond = HideAppointmentPredicate.HideBy.TAG;
+            if (!areValidTags(val)) {
+                throw new ParseException(MESSAGE_INVALID_TAGS);
+            }
         } else if (argMultimap.getValue(PREFIX_STATUS).isPresent()
                 && isValidStatusInput(argMultimap.getValue(PREFIX_STATUS).orElse(""))) {
             val = argMultimap.getAllValues(PREFIX_STATUS);
@@ -54,6 +58,17 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
     }
 
     public boolean isValidStatusInput(String status) {
-        return status.equals("um") || status.equals("m") || status.equals("marked") || status.equals("unmarked");
+        return status.equalsIgnoreCase("um") || status.equalsIgnoreCase("m")
+                || status.equalsIgnoreCase("marked") || status.equalsIgnoreCase("unmarked");
+    }
+
+    public boolean areValidTags(List<String> tags) {
+        for (String s: tags) {
+            if (!s.equalsIgnoreCase("ear") && !s.equalsIgnoreCase("nose")
+                    && !s.equalsIgnoreCase("throat")) {
+                return false;
+            }
+        }
+        return true;
     }
 }
