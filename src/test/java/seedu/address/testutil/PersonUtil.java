@@ -43,8 +43,8 @@ public class PersonUtil {
         sb.append(PREFIX_TELEGRAM + student.getTelegram().telegram + " ");
         sb.append(PREFIX_MODULE + student.getTutorialModule().moduleCode + " ");
         sb.append(PREFIX_TUTORIAL + student.getTutorialName().fullName + " ");
-        sb.append(PREFIX_ATTENDANCE + student.getAttendance().value + " ");
-        sb.append(PREFIX_PARTICIPATION + student.getParticipation().value + " ");
+        sb.append(PREFIX_ATTENDANCE + String.valueOf(student.getAttendance().value) + " ");
+        sb.append(PREFIX_PARTICIPATION + String.valueOf(student.getParticipation().value) + " ");
         sb.append(PREFIX_GRADE + student.getGrade().value + " ");
         student.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
