@@ -179,6 +179,7 @@ public class MainWindow extends UiPart<Stage> {
         File file = fileChooser.showOpenDialog(primaryStage);
         if (file != null) {
             try {
+                Files.createDirectories(logic.getUserImageDirectoryPath());
                 Files.copy(
                     Files.newInputStream(file.toPath()),
                     logic.getUserImageDirectoryPath().resolve(name),
