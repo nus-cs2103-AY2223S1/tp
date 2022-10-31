@@ -38,12 +38,12 @@ food options in NUS and  make an informed decision on where to eat.
    ![Ui](images/Ui.png)
 
 5. Type commands into the command box and press Enter to execute it. 
-e.g. typing **`help`** and pressing Enter will open the help window.<br>
+e.g. typing **`help`** and pressing Enter will open the help window. <br>
    Here are some example commands you can try:
 
-   * **`help`** : Lists all commands.
+   * **`help`** : Lists all commands
 
-   * **`list`**: Lists all eateries.
+   * **`list`**: Lists all eateries
 
 7. You can refer to [Features](#features) below for the details of each command.
 
@@ -53,26 +53,26 @@ e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the command format:** <br>
 
-* Words in `UPPER_CASE` are **parameters** to be supplied by the user.<br>
-  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n Pasta Express`.<br><br>
+* Words in `UPPER_CASE` are **parameters** to be supplied by the user. <br>
+  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n Pasta Express`. <br><br>
 
-* Items in square brackets are **optional**.<br>
-  e.g `-n NAME [-p PRICE]` can be used as `-n Pasta Shop -p $` or as `-n Pasta Shop`.<br><br>
+* Items in square brackets are **optional**. <br>
+  e.g `-n NAME [-p PRICE]` can be used as `-n Pasta Shop -p $` or as `-n Pasta Shop`. <br><br>
 
-* Items with `…`​ after them can be used **one or more times**.<br>
+* Items with `…`​ after them can be used **one or more times**. <br>
   e.g. `-t TAGNAME…​` can be used as `-t Foodcourt`, `-t Tea -t Coffee` etc.  <br>
-Note:  (i.e. 0 times) is only allowed if there are square brackets, e.g. `[-t TAGNAME]`<br><br>
+Note:  (i.e. 0 times) is only allowed if there are square brackets, e.g. `[-t TAGNAME]` <br><br>
 
-* **Prefixed parameters** _(e.g. -n, -p, -t, etc.)_ can be in **any order**.<br>
-  e.g. if the command specifies `-n NAME -t TAG`, `-t TAG -n NAME` is also acceptable.<br><br>
+* **Prefixed parameters** _(e.g. -n, -p, -t, etc.)_ can be in **any order**. <br>
+  e.g. if the command specifies `-n NAME -t TAG`, `-t TAG -n NAME` is also acceptable. <br><br>
 
 * If a parameter is expected only once in the command, but you have specified it multiple times, 
-only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `-n nameA -n nameB`, only `-n nameB` will be taken.<br><br>
+only the last occurrence of the parameter will be taken. <br>
+  e.g. if you specify `-n nameA -n nameB`, only `-n nameB` will be taken. <br><br>
 
-* Extra parameters for commands that do not take in parameters (such as `help`) will be ignored.<br>
+* Extra parameters for commands that do not take in parameters (such as `help`) will be ignored. <br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 <br>
@@ -95,14 +95,14 @@ This can be used after a `find` command to return the list to its default state 
 
 **Format:** `list [-h]`
 
-**Arguments:**<br>
+**Arguments:** <br>
 `-h`: displays help message (specific to list)
 
 <br>
 
 ### Finding eateries by name : `find`
 
-_Search for eateries with names that match the keywords.<br>
+_Search for eateries with names that match the input. <br>
 You can also choose to randomize a list of eateries to decide on where to eat._
 
 **Format:** `find NAME…​ [-r NUMBER] [-h]`
@@ -111,9 +111,9 @@ You can also choose to randomize a list of eateries to decide on where to eat._
 You can leave NAME empty if you are using the randomizer (-r) feature
 </div>
 
-**Arguments:** </br>
-`NAME` : returns eateries that match the keyword(s)<br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
+**Arguments:** <br>
+`NAME` : returns eateries that match the keyword(s) <br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
 `-h`: displays help message (specific to find)
 <br>
 
@@ -143,9 +143,9 @@ You can also choose to randomize a list of eateries to decide on where to eat._
 You can search for any number of tags by typing them all after findTag
 </div>
 
-**Arguments:** </br>
-`TAGNAME`: returns eateries that match the keyword(s)<br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
+**Arguments:** <br>
+`TAGNAME`: returns eateries that match the keyword(s) <br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
 `-h`: displays help message (specific to findTag)
 <br>
 
@@ -160,36 +160,36 @@ Example: `findTag restaurant`
 
 ### Finding eateries by location : `findLocation`
 
-_Search for eateries that match the specified location(s).<br>
+_Search for eateries that match the specified location(s). <br>
 You can also choose to randomize a list of eateries to decide on where to eat._
 
 **Format:** `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`
 
 **Arguments:** <br>
-`LOCATIONNAME`: returns eateries that match the keyword(s)<br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
-`-h`: displays help message (specific to findLocation)<br>
+`LOCATIONNAME`: returns eateries that match the keyword(s) <br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
+`-h`: displays help message (specific to findLocation) <br>
 
 Note:
 * The search is case-insensitive. e.g `arts` will match `Arts`
 * Eateries matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `findLocation engineering science` will eateries stalls at either location.
+  e.g. `findLocation engineering science` will list eateries at either location.
 
-Example: `findLocation University Town -r 2`<br>
+Example: `findLocation University Town -r 2` <br>
 Example: `findLocation University Town`
 
 <br>
 
 ### Finding eateries by cuisine : `findCuisine`
 
-_Search for eateries that match the specified cuisine(s).<br>
+_Search for eateries that match the specified cuisine(s). <br>
 You can also choose to randomize a list of eateries to decide on where to eat._
 
 **Format:** `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`
 
-**Arguments:** </br>
-`CUISINENAME`: returns eateries that match the keyword(s)<br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
+**Arguments:** <br>
+`CUISINENAME`: returns eateries that match the keyword(s) <br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
 `-h`: displays help message (specific to findCuisine)
 <br>
 
@@ -198,7 +198,7 @@ Note:
 * Eateries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `findCuisine Western Japanese` will return eateries that sell either cuisine.
 
-Example: `findCuisine Chinese -r 2`<br>
+Example: `findCuisine Chinese -r 2` <br>
 Example: `findCuisine Chinese`
 
 <br>
@@ -208,19 +208,19 @@ Example: `findCuisine Chinese`
 
 _Search for eateries that match the specified price(s)._
 
-**Format:** `findCuisine PRICE…​ [-r NUMBER] [-h]`
+**Format:** `findPrice PRICE…​ [-r NUMBER] [-h]`
 
-**Arguments:** </br>
-`PRICE`: returns eateries that match the keyword(s)<br>
-`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
+**Arguments:** <br>
+`PRICE`: returns eateries that match the keyword(s) <br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0) <br>
 `-h`: displays help message (specific to findCuisine)
 <br>
 
 Note:
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `findCuisine $ $$` will return eateries that have either of the price.
+  e.g. `findPrice $ $$` will return eateries that have either of the prices.
 
-Example: `findPrice $ -r 2`<br>
+Example: `findPrice $ -r 2` <br>
 Example: `findPrice $`
 
 <br>
@@ -231,10 +231,10 @@ _Create custom tag(s) for an eatery to facilitate searching._
 
 **Format:** `tag ID -t TAGNAME…​ [-h]`
 
-**Arguments:**<br>
-`ID`: ID of eatery to place tag on<br>
-`TAGNAME`: name of tag to assign to eatery<br>
-`-h`: displays help message (specific to tag)<br><br>
+**Arguments:** <br>
+`ID`: ID of eatery to place tag on <br>
+`TAGNAME`: name of tag to assign to eatery <br>
+`-h`: displays help message (specific to tag) <br><br>
 Example: `tag 1 -t coffee -t tea`
 
 <br>
@@ -245,10 +245,10 @@ _Remove custom tag(s) from eatery._
 
 **Format:** `untag ID -t TAGNAME…​ [-h]`
 
-**Arguments:**<br>
-`ID`: ID of eatery to remove tag from<br>
-`TAGNAME`: name of tag to remove from eatery<br>
-`-h`: displays help message (specific to untag)<br><br>
+**Arguments:** <br>
+`ID`: ID of eatery to remove tag from <br>
+`TAGNAME`: name of tag to remove from eatery <br>
+`-h`: displays help message (specific to untag) <br><br>
 Example: `untag 1 -t coffee -t tea`
 
 Below is a comparison between when the store at ID 50 is `tag[ged]` _(left)_ then `untag[ged]` _(right)_.
@@ -265,14 +265,14 @@ current list <br>
 
 **Format:** `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAG]…​ [-h]`
 
-**Arguments:**<br>
-`NAME`: name of the eatery to be added<br>
-`LOCATION`: location of the eatery<br>
-`CUISINE`: cuisine type of the eatery<br>
+**Arguments:** <br>
+`NAME`: name of the eatery to be added <br>
+`LOCATION`: location of the eatery <br>
+`CUISINE`: cuisine type of the eatery <br>
 `PRICE`: price of the eatery <br>
-`TAG`: extra tags to add to the eatery<br>
-`-h`: displays help message (specific to add)<br><br>
-Example: `add -n KOI -l Central Square -c Drinks`<br>
+`TAG`: extra tags to add to the eatery <br>
+`-h`: displays help message (specific to add) <br><br>
+Example: `add -n KOI -l Central Square -c Drinks` <br>
 Example: `add -n KOI -l Central Square -c Drinks -p $$`
 
 <br>
@@ -283,9 +283,9 @@ _Deletes an eatery from NUSEatWhere's database_
 
 **Format:** `delete ID [-h]`
 
-**Arguments:**<br>
-`ID`: ID of eatery to remove from NUSEatWhere<br>
-`-h`: displays help message (specific to delete)<br><br>
+**Arguments:** <br>
+`ID`: ID of eatery to remove from NUSEatWhere <br>
+`-h`: displays help message (specific to delete) <br><br>
 Example: `delete 3`
 
 Below is a comparison between when the store at ID 70 is `add[ed]` _(left)_ then `delete[d]` _(right)_.
@@ -300,10 +300,10 @@ _Favourites an eatery from NUSEatWhere's database._
 
 **Format:** `fav ID [-h]`
 
-**Arguments:**<br>
+**Arguments:** <br>
 
 `ID`: ID of the eatery to favourite <br>
-`-h`: displays help message (specfic to fav)<br><br>
+`-h`: displays help message (specfic to fav) <br><br>
 Example: `fav 3`
 
 <br>
@@ -314,10 +314,10 @@ _Unfavourites an eatery from NUSEatWhere's database._
 
 **Format:** `unfav ID [-h]`
 
-**Arguments:**<br>
+**Arguments:** <br>
 
 `ID`: ID of the eatery to unfavourite <br>
-`-h`: displays help message (specfic to unfav)<br><br>
+`-h`: displays help message (specfic to unfav) <br><br>
 Example: `unfav 3`
 
 <br>
@@ -353,7 +353,7 @@ _... Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another Computer? <br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
 the data of your previous NUSEatWhere home folder.
 
@@ -361,16 +361,16 @@ the data of your previous NUSEatWhere home folder.
 
 ## Command summary
 
-| Action           | Format, Examples                                               |
-|:-----------------|:---------------------------------------------------------------|
-| **Help**         | `help`                                                         |
-| **List**         | `list [-h]`                                                    |
-| **Find**         | `find NAME…​ [-r NUMBER] [-h]`                                  |
-| **FindTag**      | `findTag TAGNAME…​ [-r NUMBER] [-h]`                                       |
-| **FindLocation** | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                             |
-| **FindCuisine**  | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                               |
-| **FindPrice**    | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`									 |
-| **Tag**          | `tag ID -t TAGNAME…​ [-h]`                                     |
-| **Untag**        | `untag ID -t TAGNAME…​ [-h]`                                   |
-| **Add**          | `add -n NAME -l LOCATION -c CUSINE [-p PRICE] [-t TAG…​] [-h]` |
-| **Delete**       | `delete ID [-h]`                                              |
+| Action           | Format                                                                    |
+|:-----------------|:--------------------------------------------------------------------------|
+| **Help**         | `help`                                                                    |
+| **List**         | `list [-h]`                                                               |
+| **Find**         | `find NAME…​ [-r NUMBER] [-h]`                                            |
+| **FindTag**      | `findTag TAGNAME…​ [-r NUMBER] [-h]`                                      |
+| **FindLocation** | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                            |
+| **FindCuisine**  | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                              |
+| **FindPrice**    | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`									                     |
+| **Tag**          | `tag ID -t TAGNAME…​ [-h]`                                                |
+| **Untag**        | `untag ID -t TAGNAME…​ [-h]`                                              |
+| **Add**          | `add -n NAME -l LOCATION -c CUSINE [-p PRICE] [-t TAG…​] [-h]`            |
+| **Delete**       | `delete ID [-h]`                                                          |
