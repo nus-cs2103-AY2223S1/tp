@@ -195,7 +195,7 @@ The app contains the following company names in the internship list.
 
 Then,
 - `find -i c/ltd` returns **Shopee Pte Ltd** and **Sea Ltd**
-- `find -i c/inc ltd` returns **Apple Inc**, **Alphabet Inc**, **Shopee Pte Ltd** and **Sea Ltd**
+- `find -i c/inc ltd` returns **Apple Inc**, **Alphabet Inc**, **Google Inc**, **Shopee Pte Ltd** and **Sea Ltd**
 - `find -i c/g` returns **Google Inc** and **Garena**
 
 
