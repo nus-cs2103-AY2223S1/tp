@@ -112,12 +112,11 @@ Adds an internship application to WorkBook.
 
 Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
-* Adds an internship application to the list in sorted order.
-  * Note: Internship applications **in the past** are placed at the bottom.
+* Adds an internship application to the list in [sorted order](#3-things-to-note).
 * Date can represent:
-    * The date it happened
-    * The deadline of the corresponding `Stage`
-* Date, if included, must be properly formatted `DD-MMM-YYYY HH:mm` when inputted.
+  * The date it happened
+  * The deadline of the corresponding `Stage`
+
 
 Examples:
 * `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
