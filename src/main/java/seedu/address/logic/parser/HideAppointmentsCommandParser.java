@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_REASON;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
@@ -40,6 +41,9 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_REASON);
             cond = HideAppointmentPredicate.HideBy.KEYWORD;
+            if (val.get(0).trim().equals("")) {
+                throw new ParseException(MESSAGE_EMPTY_REASON);
+            }
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             val = argMultimap.getAllValues(PREFIX_TAG);
             cond = HideAppointmentPredicate.HideBy.TAG;

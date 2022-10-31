@@ -11,6 +11,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_EMPTY_NAME = "Name cannot be empty!";
+    public static final String MESSAGE_EMPTY_REASON = "Reason cannot be empty!";
     public static final String MESSAGE_INVALID_TAGS = "Invalid tag! Tag must be either ear, nose or throat";
     public static final String INCOMPLETE_COMMAND = "Command is incomplete, specify either "
             + "'appts' or 'patients' behind the command word";
