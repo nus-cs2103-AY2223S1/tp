@@ -118,14 +118,14 @@ The following table describes the sections in detail:
 
 ### Viewing help : `help`
 
-If you are new to Tuthub or need a refresher for the command usage, using `help` displays a table of Tuthub command summary.
+If you are new to Tuthub or need a refresher for available commands, `help` displays a table of Tuthub command summary.
 
 ![helpMessage](images/helpMessage.png)
 
 Format: `help`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You may also click on the _Help_ Toolbar to access the command summary table.
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+You may also click on the Help Toolbar to access the command summary table.
 </div>
 
 ### Adding a tutor: `add`
@@ -134,7 +134,7 @@ Adds a tutor to the Tuthub.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **About Tags:**
+<div markdown="block" class="alert alert-info">:information_source: **About Tags:**
 
 - A person can have any number of tags (including 0).
 - Tags should be alphanumeric and should not contain any spaces.
@@ -154,6 +154,9 @@ Format: `list`
 
 Want to find out more about a particular tutor? View a tutor to see all available information about their contact details and past performance.
 
+Viewing the second tutor causes the corresponding `Tutor Details Pane` to pop up on the right:
+![detailsPane](images/user-guide/detailsPane.png)
+
 Format: `view INDEX`
 
 * Displays the person at the specified `INDEX`.
@@ -163,8 +166,8 @@ Format: `view INDEX`
 Examples:
 * `view 2` displays the full details of the 2nd person in Tuthub.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You may also click on a tutor list card to execute a 'view' command instead
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+You may also click on a tutor list card to execute a view command instead
 </div>
 
 
@@ -231,7 +234,7 @@ Examples:
 * `find s/A0123456X A0123456Y` returns the tutors with student id `A0123456X` or `A0123456Y`.
 * `find tn/3` returns all tutors that have `3` teaching nominations.
 * `find r/4.0` returns all tutors that have rating of `4.0`.
-* `find t/friends` returns all tutors that have tag of `friends`.
+* `find t/senior` returns all tutors that have tag of `senior`.
 
 ### Contacting tutors via email: `mail`
 
