@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_INDEXES;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -82,11 +84,20 @@ public class ParserUtil {
      *
      * @param oneBasedIndexes One-based Indexes.
      * @return List of Indexes.
-     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer).
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer) or if
+     * there are duplicate indexes.
      */
     public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
         String trimmedIndexes = oneBasedIndexes.trim();
         String[] indexes = trimmedIndexes.split("\\s+");
+
+        // Check for duplicate indexes
+        List<String> indexList = Arrays.asList(indexes);
+        Set<String> set = new HashSet<>(indexList);
+        if (set.size() != indexList.size()) {
+            throw new ParseException(MESSAGE_DUPLICATE_INDEXES);
+        }
+
         List<Index> resultIndexes = new ArrayList<>();
         for (int i = 0; i < indexes.length; i++) {
             String index = indexes[i];
