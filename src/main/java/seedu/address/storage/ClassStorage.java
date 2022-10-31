@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,20 +19,27 @@ import seedu.address.model.student.Student;
  * Manages storage of TeachersPet class data.
  */
 public class ClassStorage {
-
-    private static HashMap<LocalDate, List<Student>> classes;
+    private static HashMap<LocalDate, List<Student>> classes = new HashMap<>();
     private static TeachersPet teachersPet;
     private static Model model;
+
+    public static final String MESSAGE_INITIALIZE_CLASS_STORAGE_FAILURE =
+            "Failed to initialize class due to class conflict";
 
     /**
      * Constructs a {@code ClassStorage} with the given model.
      *
      * @param model Model object.
+     * @throws DataConversionException if class conflict detected while initializing the file.
      */
-    public ClassStorage(Model model) {
+    public ClassStorage(Model model) throws DataConversionException {
         this.model = model;
         this.teachersPet = (TeachersPet) model.getTeachersPet();
-        this.classes = initialiseClass();
+        try {
+            this.classes = initialiseClass();
+        } catch (CommandException e) {
+            throw new DataConversionException(e);
+        }
     }
 
     /**
@@ -59,21 +67,33 @@ public class ClassStorage {
 
     /**
      * Initialises HashMap classes field.
+     * If there is class conflict in file, DataConversionException will be thrown.
      *
      * @return HashMap object.
      */
-    public static HashMap<LocalDate, List<Student>> initialiseClass() {
+    public static HashMap<LocalDate, List<Student>> initialiseClass() throws CommandException {
         HashMap<LocalDate, List<Student>> map = new HashMap<>();
         ObservableList<Student> listOfStudents = teachersPet.getStudentList();
         for (Student student : listOfStudents) {
             Class classOfStudent = student.getAClass();
             if (!classOfStudent.isEmpty()) {
-                if (!map.containsKey(classOfStudent.date)) {
-                    List<Student> newListOfStudents = new ArrayList<>();
-                    newListOfStudents.add(student);
-                    map.put(classOfStudent.date, newListOfStudents);
+                LocalDate date = classOfStudent.date;
+                LocalTime start = classOfStudent.startTime;
+                LocalTime end = classOfStudent.endTime;
+                if (!map.containsKey(date)) {
+                    addNewList(student, date, map);
                 } else {
-                    map.get(classOfStudent.date).add(student);
+                    // Gets the list of students who have classes with same date
+                    List<Student> list = map.get(date);
+                    for (Student currStudent : list) {
+                        Class currClass = currStudent.getAClass();
+                        LocalTime startOfCurrClass = currClass.startTime;
+                        LocalTime endOfCurrClass = currClass.endTime;
+                        if (hasConflict(start, end, startOfCurrClass, endOfCurrClass)) {
+                            throw new CommandException(MESSAGE_INITIALIZE_CLASS_STORAGE_FAILURE);
+                        }
+                    }
+                    list.add(student);
                 }
             }
         }
@@ -92,9 +112,7 @@ public class ClassStorage {
         LocalTime start = editedStudent.getAClass().startTime;
         LocalTime end = editedStudent.getAClass().endTime;
         if (!classes.containsKey(date)) {
-            List<Student> newListOfStudents = new ArrayList<>();
-            newListOfStudents.add(editedStudent);
-            classes.put(date, newListOfStudents);
+            addNewList(editedStudent, date, classes);
         } else {
             // Gets the list of student who have classes with same date
             List<Student> listOfStudents = classes.get(date);
@@ -108,6 +126,19 @@ public class ClassStorage {
             }
             listOfStudents.add(editedStudent);
         }
+    }
+
+    /**
+     * Adds a new list into the hashmap classes.
+     *
+     * @param student Student object that will be added into the list.
+     * @param date Key of the hashmap.
+     * @param map Hashmap object.
+     */
+    public static void addNewList(Student student, LocalDate date, HashMap<LocalDate, List<Student>> map) {
+        List<Student> newListOfStudents = new ArrayList<>();
+        newListOfStudents.add(student);
+        map.put(date, newListOfStudents);
     }
 
     /**
@@ -162,7 +193,7 @@ public class ClassStorage {
     /**
      * Refreshes the class storage with the current in the given {@code model}.
      */
-    public static void refresh(Model model) {
+    public static void refresh(Model model) throws CommandException {
         ClassStorage.model = model;
         ClassStorage.teachersPet = (TeachersPet) model.getTeachersPet();
         ClassStorage.classes = ClassStorage.initialiseClass();

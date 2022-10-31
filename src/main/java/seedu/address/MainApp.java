@@ -63,13 +63,19 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
-
+        Model initializedModel = initModelManager(storage, userPrefs);
+        try {
+            classStorage = new ClassStorage(initializedModel);
+            model = initializedModel;
+        } catch (DataConversionException e) {
+            logger.warning(ClassStorage.MESSAGE_INITIALIZE_CLASS_STORAGE_FAILURE
+                    + " Will be starting with an empty TeachersPet");
+            model = new ModelManager(new TeachersPet(), userPrefs);
+            classStorage = new ClassStorage(model);
+        }
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
-
-        classStorage = new ClassStorage(model);
     }
 
     /**
