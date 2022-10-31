@@ -41,7 +41,7 @@ public class TypicalStaff {
             .withStaffLeave("true").withStaffDepartment("IT Department")
             .withTags("friends").build();
     public static final Staff STAFF_5 = new StaffBuilder().withStaffName("Elle Meyer")
-            .withStaffContact("94822246").withStaffTitle("Senior UX Designer")
+            .withStaffContact("64822246").withStaffTitle("Senior UX Designer")
             .withStaffLeave("false").withStaffDepartment("IT Department")
             .build();
     public static final Staff STAFF_6 = new StaffBuilder().withStaffName("Fiona Kunz")
