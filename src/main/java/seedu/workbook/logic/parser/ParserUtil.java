@@ -134,6 +134,9 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
+            if (tagName.isBlank()) {
+                continue;
+            }
             tagSet.add(parseTag(tagName));
         }
         return tagSet;

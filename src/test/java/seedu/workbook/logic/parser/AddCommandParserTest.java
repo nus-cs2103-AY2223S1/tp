@@ -12,7 +12,6 @@ import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_DATETIME_DES
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_STAGE_DESC;
-import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.workbook.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.workbook.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
@@ -40,7 +39,6 @@ import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.internship.Stage;
-import seedu.workbook.model.tag.Tag;
 import seedu.workbook.testutil.InternshipBuilder;
 
 public class AddCommandParserTest {
@@ -154,10 +152,6 @@ public class AddCommandParserTest {
                         + INVALID_DATETIME_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 DateTime.MESSAGE_CONSTRAINTS);
 
-
-        // invalid tag
-        assertParseFailure(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB
-                + STAGE_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser,

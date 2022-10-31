@@ -5,12 +5,11 @@ import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tag in WorkBook.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Guarantees: immutable; any String is taken as a valid Tag/Language Tag
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should not be blank";
 
     public final String tagName;
 
@@ -29,7 +28,7 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return !test.isBlank();
     }
 
     @Override

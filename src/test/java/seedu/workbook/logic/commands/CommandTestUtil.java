@@ -59,7 +59,6 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_STAGE_DESC = " " + PREFIX_STAGE + "H&Interview"; // '&' not allowed in stage
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME + "12-20-2020 12:00"; // MMM instead of MM
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     // CHECKSTYLE.ON: LineLength
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
