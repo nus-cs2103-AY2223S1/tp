@@ -20,12 +20,12 @@ public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "add reminder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to the ModQuik. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to the ModQuik.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DATE_DAY + "DATE "
             + PREFIX_TIME + "TIME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Mark Midterms "
             + PREFIX_DATE_DAY + "2022-01-01 "

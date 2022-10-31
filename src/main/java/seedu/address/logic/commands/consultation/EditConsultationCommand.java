@@ -42,7 +42,7 @@ public class EditConsultationCommand extends Command {
             + PREFIX_TIME + "TIMESLOT] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_MODULE + "CS2103T"
+            + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "Review past years' papers";
 
     public static final String MESSAGE_EDIT_CONSULTATION_SUCCESS = "Edited Consult: %1$s";

@@ -42,7 +42,7 @@ public class EditReminderCommand extends Command {
             + "[" + PREFIX_DATE_DAY + "DATE] "
             + "[" + PREFIX_TIME + "TIME] "
             + "[" + PREFIX_PRIORITY + "PRIORITY] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE_DAY + "2022-10-10 "
             + PREFIX_TIME + "14:00 "

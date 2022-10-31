@@ -20,19 +20,19 @@ import seedu.address.model.consultation.Consultation;
 public class AddConsultationCommand extends Command {
     public static final String COMMAND_WORD = "add consultation";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation to the ModQuik. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation to the ModQuik.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_VENUE + "VENUE "
-            + PREFIX_DATE_DAY + "DAY"
+            + PREFIX_DATE_DAY + "DAY "
             + PREFIX_TIME + "TIMESLOT "
-            + PREFIX_DESCRIPTION + "DESCRIPTION"
+            + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "JakeLim"
+            + PREFIX_NAME + "JakeLim "
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_VENUE + "COM1-0203 "
-            + PREFIX_DATE_DAY + "2022-12-31"
+            + PREFIX_DATE_DAY + "2022-12-31 "
             + PREFIX_TIME + "1500-1800 "
             + PREFIX_DESCRIPTION + "Review past year paper";
 

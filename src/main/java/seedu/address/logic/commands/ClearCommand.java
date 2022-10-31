@@ -19,7 +19,7 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all date of a field in ModQuik. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all date of a field in ModQuik.\n"
             + "Parameters: "
             + PREFIX_FIELD + "FIELD (all, student, tutorial, consultation, reminder) \n"
             + "Example: " + COMMAND_WORD + " "

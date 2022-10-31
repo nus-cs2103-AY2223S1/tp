@@ -21,13 +21,13 @@ public class AddTutorialCommand extends Command {
 
     public static final String COMMAND_WORD = "add tutorial";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the ModQuik. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the ModQuik.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_VENUE + "VENUE "
             + PREFIX_TIME + "TIMESLOT "
-            + PREFIX_DATE_DAY + "DAY "
+            + PREFIX_DATE_DAY + "DAY\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T W17 "
             + PREFIX_MODULE + "CS2103T "
