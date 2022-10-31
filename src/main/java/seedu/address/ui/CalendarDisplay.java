@@ -36,6 +36,11 @@ public class CalendarDisplay extends UiPart<Region> {
         calendarLogic.drawCalendar();
     }
 
+    /**
+     * Handles the {@code KeyEvent} and toggles either the next or previous Calendar month.
+     *
+     * @param event the KeyEvent to be handled.
+     */
     @FXML
     public void handleKeyPressed(KeyEvent event) {
         if (event.getCode().equals(KeyCode.B)) {
