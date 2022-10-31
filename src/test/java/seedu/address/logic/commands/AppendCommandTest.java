@@ -21,7 +21,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TypicalPersons;
 
 public class AppendCommandTest {
 
@@ -113,7 +112,7 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void execute_existingSurveyAppended_success() {
+    public void execute_existingSurveyAppended_failure() {
         Set<Survey> newSurveys = new HashSet<Survey>();
         newSurveys.add(new Survey("Environment Survey"));
         Set<Tag> newTags = Collections.emptySet();
@@ -125,13 +124,27 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void execute_existingTagAppended_success() {
+    public void execute_existingTagAppended_failure() {
         Set<Survey> newSurveys = Collections.emptySet();
         Set<Tag> newTags = new HashSet<Tag>();
         newTags.add(new Tag("friends"));
         AppendCommand appendCommand = new AppendCommand(INDEX_FIRST_PERSON, newSurveys, newTags);
 
         String expectedMessage = String.format(AppendCommand.MESSAGE_TAG_FOUND);
+
+        assertCommandFailure(appendCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_existingSurveyAndTagAppended_failure() {
+        Set<Survey> newSurveys = new HashSet<Survey>();
+        newSurveys.add(new Survey("Environment Survey"));
+        Set<Tag> newTags = new HashSet<Tag>();
+        newTags.add(new Tag("friends"));
+        AppendCommand appendCommand = new AppendCommand(INDEX_FIRST_PERSON, newSurveys, newTags);
+
+        // NOTE: Survey error message takes priority.
+        String expectedMessage = String.format(AppendCommand.MESSAGE_SURVEY_FOUND);
 
         assertCommandFailure(appendCommand, model, expectedMessage);
     }
