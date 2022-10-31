@@ -201,7 +201,7 @@ Step 1. The user launches the application for the first time. FoodWhere will be 
 
 Step 2. The user executes `radd s/1 d/20-09-2022 c/The food was good, the chicken rice was fresh. r/4` command to create a new `Review` for `Stall` with index 1.
 
-![AddTodo1](images/AddReview.png)
+![AddReview](images/AddReview.png)
 
 #### UML Diagram for Adding Review
 
@@ -210,7 +210,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 <img src="images/AddReviewActivityDiagram.png" width="250" />
 
 #### Design considerations:
-- The Review adding commands are straight-to-the-point and efficient for users to add Review for Stall in FoodWhere.
+- The Review adding commands are straight to the point and efficient for users to add Review for Stall in FoodWhere.
 - The prefixes allow users to understand what the different types of data fields Review need in order to be created.
 
 ### Listing all Reviews feature
@@ -268,6 +268,50 @@ Step 3. The user executes `rdel 2` command to delete the last review with index 
 The following activity diagram summarizes what happens when a user executes a new `rdel` command:
 
 <img src="images/DeleteReviewActivityDiagram.png" width="250" />
+
+### Review Editing feature
+
+#### What is Review Editing feature about?
+
+The Edit Review mechanism is facilitated by `REditCommandParser` and `REditCommand`. This feature allows the user to edit a review after it has been created.
+
+`REditCommandParser.parse()` - parses the user input and returns a `REditCommand` object. `REditCommand.execute()` - creates a new `Review` object based on the parsed user input and calls `Model.setReview()` to replace the old `Review` object with the new `Review` object.
+
+For the command, the feature extends `command`, and is implemented as such:
+* `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…`
+
+#### Implementation Flow of Review Editing feature
+
+Given below is an example usage scenario and how the listing of all reviews mechanism behaves at each step.
+
+Note: FoodWhere comes with preloaded data, and can be started on a fresh state with the `clear` command.
+
+Step 1. The user launches the application for the first time. FoodWhere will be initialized with the preloaded data.
+
+Step 2. The user executes `redit 2 r/5` command to edit `Review` with index 2 to edit its rating to 5.
+
+Step 3. Since the user input is valid, the `AddressBookParser` will create a `REditCommandParser` to parse the command arguments, `2 r/5`.
+
+Step 4. `REditCommandParser` will parse the index to a `Index` object and parse other arguments as a `EditReviewDescriptor` object. The `Index` and `EditReviewDescriptor` objects will then be passed to the returned `REditCommand` object as its arguments.
+
+Step 5. In `LogicManager`, the returned `REditCommand` is executed.
+
+Step 6. In the execution of the `REditCommand`, a new `Review` object is created. This `Review` consists of the field(s) from the parsed user input, replacing some field(s) of the original `Review` object. In this case, the original `Review` with index 2 is copied over to a new `Review` object except its `Rating` field which is set as `5`.
+
+Step 7. `model.setReview()` will interact with the model to have it replace the immutable `Stall` which contained the original `Review` with a `Stall` containing the updated `Review`.
+
+![EditReview](images/EditReview.png)
+
+![REditSequenceDiagram](images/REditSequenceDiagram.png)
+
+#### UML Diagram for Editing Review
+
+The following activity diagram summarizes what happens when a user executes a new `redit` command:
+
+<img src="images/EditReviewActivityDiagram.png" width="250" />
+
+#### Design considerations:
+- Multiple fields of a Review can be edited in one go to increase the efficiency of the user of our application.
 
 ### \[Proposed\] Undo/redo feature
 
