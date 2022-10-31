@@ -29,7 +29,8 @@ public class PredictionCommand extends Command {
         + PREFIX_FUTURE_ASSESSMENT_DIFFICULTY + "DIFFICULTY (Difficulty should lie between 0 and 5 (inclusive))";
 
     public static final String SHOWING_PREDICTION_MESSAGE = "Opened prediction window.";
-    public static final String STUDENT_NOT_FOUND_ERROR_MESSAGE = "Student not found! Remember to use the student's full name!";
+    public static final String STUDENT_NOT_FOUND_ERROR_MESSAGE
+        = "Student not found! Remember to use the student's full name!";
 
     private static final String MESSAGE_FORMAT = "Grade prediction for %s for their next %s assessment is %.2f percent";
 

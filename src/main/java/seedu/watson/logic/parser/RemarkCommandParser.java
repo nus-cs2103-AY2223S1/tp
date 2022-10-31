@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.watson.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.watson.commons.core.index.Index;
-import seedu.watson.logic.commands.FindCommand;
 import seedu.watson.logic.commands.RemarkCommand;
 import seedu.watson.logic.parser.exceptions.ParseException;
 import seedu.watson.model.student.Remark;
