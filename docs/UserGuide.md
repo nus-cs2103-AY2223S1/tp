@@ -5,8 +5,8 @@ title: User Guide
 
 Survin is a desktop application for surveyors to use to keep track of people they have surveyed. The surveyor can easily follow up with people they have surveyed for additional information or for confirmation. The user interacts with the application using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
--   Table of Contents
-    {:toc}
+- Table of Contents
+{:toc}
 
 ---
 
