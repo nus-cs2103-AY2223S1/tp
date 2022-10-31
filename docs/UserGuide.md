@@ -474,13 +474,13 @@ _Details coming soon …​_
 
 | Term                           | Description                                                                                                                                        |
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
-| Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
+| Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
 | Command                        | Instruction typed by the user for PHU to execute.                                                                                                  |
+| Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
+| Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
+| PHU                            | PleaseHireUs                                                                                                                                       |
 | Parameter                      | A component of a command for the user to input information. For PHU context, this refers to the internship application details.                    |
 | Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
-| Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
-| PHU                            | PleaseHireUs                                                                                                                                       |
   
 ## Acknowledgements
 * This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
