@@ -30,7 +30,7 @@ public class AddLeaveCommandParser implements Parser<AddLeaveCommand> {
         }
         String id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Leave leave = ParserUtil.parseLeave(
-            argMultimap.getValue(PREFIX_STARTDATE).get(), argMultimap.getValue(PREFIX_ENDDATE).get());
+                argMultimap.getValue(PREFIX_STARTDATE).get(), argMultimap.getValue(PREFIX_ENDDATE).get());
         return new AddLeaveCommand(new EmployeeId(id), leave);
     }
 
@@ -41,4 +41,5 @@ public class AddLeaveCommandParser implements Parser<AddLeaveCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }

@@ -28,8 +28,7 @@ public class RateCommandParser implements Parser<RateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
         }
         String id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
-        Rating rating = ParserUtil.parseRating(
-            argMultimap.getValue(PREFIX_RATE).get());
+        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATE).get());
         return new RateCommand(new EmployeeId(id), rating);
     }
 
@@ -40,4 +39,5 @@ public class RateCommandParser implements Parser<RateCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }
