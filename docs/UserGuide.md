@@ -293,7 +293,7 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | **sdel**  | `sdel STALL_INDEX`                                                                                           |
 | **sedit** | `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/EDIT_TAG]…` <br> e.g., `sedit 1 n/John Chicken Rice`                  |
 | **slist** | `slist`                                                                                                      |
-| **sfind** | `sfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…` <br> e.g., `rfind n/eatery`                                |
+| **sfind** | `sfind n/KEYWORD [KEYWORD]… t/KEYWORD [KEYWORD]…` <br> e.g., `sfind n/eatery`                                |
 | **ssort** | `ssort CRITERION` <br> e.g., `ssort reversedname`                                                            |
 
 ## Accepted command arguments
