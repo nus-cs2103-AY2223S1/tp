@@ -42,16 +42,12 @@ public class AddStudentCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_ID + "A0232123X "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TELEGRAM + "johnd "
+            + PREFIX_TELEGRAM + "johnDoe"
             + PREFIX_MODULE + "CS2103T "
-            + PREFIX_TUTORIAL + "W17 "
-            + PREFIX_GRADE + "A "
-            + PREFIX_ATTENDANCE + "5 "
-            + PREFIX_PARTICIPATION + "3 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TUTORIAL + "W17 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
