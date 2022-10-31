@@ -37,7 +37,7 @@ public class CalendarDisplay extends UiPart<Region> {
     }
 
     @FXML
-    private void handleKeyPressed(KeyEvent event) {
+    public void handleKeyPressed(KeyEvent event) {
         if (event.getCode().equals(KeyCode.B)) {
             calendarLogic.previous();
             calendarDisplay.requestFocus();
