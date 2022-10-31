@@ -92,7 +92,8 @@ public class EditConsultationCommand extends Command {
      * edited with {@code editConsultDescriptor}.
      */
     private static Consultation createEditedConsult(Consultation consultToEdit,
-                                                    EditConsultDescriptor editConsultDescriptor) throws CommandException {
+                                                    EditConsultDescriptor editConsultDescriptor)
+            throws CommandException {
         assert consultToEdit != null;
 
         ConsultationName updatedName = editConsultDescriptor.getName().orElse(consultToEdit.getName());

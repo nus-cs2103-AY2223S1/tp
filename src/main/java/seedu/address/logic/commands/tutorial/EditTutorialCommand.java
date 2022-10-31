@@ -93,7 +93,8 @@ public class EditTutorialCommand extends Command {
      * edited with {@code editTutorialDescriptor}.
      */
     private static Tutorial createEditedTutorial(Tutorial tutorialToEdit,
-                                                 EditTutorialDescriptor editTutorialDescriptor) throws CommandException {
+                                                 EditTutorialDescriptor editTutorialDescriptor)
+            throws CommandException {
         assert tutorialToEdit != null;
 
         TutorialName updatedName = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());

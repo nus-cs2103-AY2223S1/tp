@@ -104,7 +104,8 @@ public class EditStudentCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) throws CommandException {
+    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert studentToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());

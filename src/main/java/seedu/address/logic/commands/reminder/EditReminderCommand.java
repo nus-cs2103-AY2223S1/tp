@@ -92,7 +92,8 @@ public class EditReminderCommand extends Command {
      * edited with {@code editReminderDescriptor}.
      */
     private static Reminder createEditedReminder(Reminder reminderToEdit,
-                                                 EditReminderDescriptor editReminderDescriptor) throws CommandException {
+                                                 EditReminderDescriptor editReminderDescriptor)
+            throws CommandException {
         assert reminderToEdit != null;
 
         ReminderName updatedName = editReminderDescriptor.getName().orElse(reminderToEdit.getName());

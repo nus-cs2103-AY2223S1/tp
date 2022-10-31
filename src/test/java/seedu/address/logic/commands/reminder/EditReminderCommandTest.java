@@ -70,13 +70,8 @@ public class EditReminderCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditReminderCommand editReminderCommand = new EditReminderCommand(INDEX_FIRST_REMINDER,
                 new EditReminderDescriptor());
-        Reminder editedReminder = model.getFilteredReminderList().get(INDEX_FIRST_REMINDER.getZeroBased());
 
-        String expectedMessage = String.format(EditReminderCommand.MESSAGE_EDIT_REMINDER_SUCCESS, editedReminder);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        assertCommandSuccess(editReminderCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editReminderCommand, model, Messages.MESSAGE_UNCHANGED_FIELD);
     }
 
     @Test
