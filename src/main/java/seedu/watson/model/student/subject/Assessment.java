@@ -55,7 +55,7 @@ public class Assessment {
      * @return true if the score is valid and false if it is an invalid score typed.
      */
     public static boolean isValidScore(double score, double totalScore) {
-        if (score >= 0 || score <= totalScore) {
+        if (score >= 0 && score <= totalScore) {
             return true;
         }
         return false;
