@@ -1,6 +1,7 @@
 package friday.model.student;
 
 import static friday.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.isNull;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -83,9 +84,19 @@ public class Student {
             return true;
         }
 
-        return otherStudent != null
-                && (otherStudent.getName().equals(getName())
-                || otherStudent.getTelegramHandle().equals(getTelegramHandle()));
+        if (isNull(otherStudent)) {
+            return false;
+        }
+
+        if (otherStudent.getName().equals(getName())) {
+            return true;
+        }
+
+        if (otherStudent.getTelegramHandle().isEmpty() || getTelegramHandle().isEmpty()) {
+            return false;
+        }
+
+        return otherStudent.getTelegramHandle().equals(getTelegramHandle());
     }
 
     /**

@@ -27,9 +27,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Student> {
                         || student.getTags().stream().anyMatch(tagword ->
                         StringUtil.containsWordIgnoreCase(tagword.toSearchString(), keyword))
                         || student.getGradesList().getGradesArrayList().stream().anyMatch(tagword ->
-                        StringUtil.containsWordIgnoreCase(tagword.score, keyword))
+                        StringUtil.containsWordIgnoreCase(tagword.getScore(), keyword))
                         || student.getGradesList().getGradesArrayList().stream().anyMatch(tagword ->
-                        StringUtil.containsWordIgnoreCase(tagword.examName, keyword))
+                        StringUtil.containsWordIgnoreCase(tagword.getExamName(), keyword))
                         || student.getGradesList().getGradesArrayList().stream().anyMatch(tagword ->
                         StringUtil.containsWordIgnoreCase(tagword.toString()
                                 .replace("[", "").replace("]", "").replace(",", "").replace(": ", ":"), keyword))
