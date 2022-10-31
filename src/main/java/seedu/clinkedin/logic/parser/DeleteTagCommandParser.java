@@ -28,11 +28,10 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         if (!foundAny) {
             StringBuilder message = new StringBuilder("No valid tag type prefix found! ");
             if (CliSyntax.getPrefixTags().size() != 0) {
-                message.append("Prefixes must be amongst the following:\n")
-                        .append("\tTagType - Prefix\n");
+                message.append("Prefixes must be amongst the following:\n\n");
                 for (Prefix p : UniqueTagTypeMap.getPrefixMap().keySet()) {
-                    message.append(String.format("\t%s - %s\n", UniqueTagTypeMap.getPrefixMap().get(p)
-                            .toString(), p.toString()));
+                    message.append(String.format("\tTagType: %s\n\tPrefix: %s\n\n", UniqueTagTypeMap.getPrefixMap()
+                            .get(p).toString(), p.toString()));
                 }
             }
             throw new ParseException(message);

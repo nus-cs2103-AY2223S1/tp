@@ -277,7 +277,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
                 return pref;
             }
         }
-        throw new TagTypeNotFoundException();
+        throw new TagTypeNotFoundException(tagType);
     }
 
     public static TagType getTagTypeFromPrefix(Prefix prefix) throws TagTypeNotFoundException {
