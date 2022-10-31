@@ -26,8 +26,8 @@ public class GradeCommand extends Command {
             + "assessmentWeightage_"
             + "assessmentDifficulty\n"
             + "Example: " + COMMAND_WORD + " "
-            + "math_"
-            + "ca1_"
+            + "MATH_"
+            + "CA1_"
             + "100_"
             + "0.4_"
             + "2";
