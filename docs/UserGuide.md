@@ -457,15 +457,24 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | **Mark debts**    | `mark <person index> debt/<debt index…>` <br> e.g., `mark 2 debt/2 3`                                                                                                                                                                                   |
 | **Unmark debts**  | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                                                                                                                               |
 | **Clear debts**   | `cleardebts <person index>` <br> e.g., `cleardebts 3`                                                                                                                                                                                                   |
-| **Delete debts**  | `deletedebts <person index> debt/<debt index…>` <br> e.g., `deletedebts 2 debt/2 3`                                                                                                                                                                     |
-| **Clear**         | `clear`                                                                                                                                                                                                                                                 |
+| **Delete debts**  | `deletedebts <person index> debt/<debt index…>` <br> e.g., `deletedebts 2 debt/2 3`                                                                                                                                                                     |                                                                                                                                                                                                                                               |
 | **Delete**        | `delete <index>`<br> e.g., `delete 3`                                                                                                                                                                                                                   |
 | **Edit**          | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                                                                                                    |
+
+
+
+| Action            | Format, Examples                                                                                                                                                                                                                                        |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Find**          | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<description>]… [m/<money>]…`<br> `[above/<money>] [below/<money>] [date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`<br> e.g., `find d/burger above/10.0` |
 | **Find debts**    | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
 | **List**          | `list`                                                                                                                                                                                                                                                  |
 | **List debtors**  | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
 | **Sort**          | `sort [n/<order>] OR [m/<order>] OR [date/<order>]`<br> e.g., `sort n/+`                                                                                                                                                                                |
 | **Get statement** | `statement`                                                                                                                                                                                                                                             |
-| **Help**          | `help`                                                                                                                                                                                                                                                  |
-| **Undo**          | `undo`                                                                                                                                                                                                                                                  |
+
+| Action    | Format, Examples |
+|-----------|------------------|
+| **Clear** | `clear`          |
+| **Help**  | `help`           |
+| **Undo**  | `undo`           |
+| **exit**  | `exit`           |
