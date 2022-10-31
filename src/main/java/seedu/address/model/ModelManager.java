@@ -208,7 +208,10 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
+        if (predicate == null) {
+            updateFilteredPersonList(List.of());
+            return;
+        }
         updateFilteredPersonList(List.of(predicate));
     }
 
@@ -248,7 +251,10 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredTeamList(Predicate<Group> predicate) {
-        requireNonNull(predicate);
+        if (predicate == null) {
+            updateFilteredTeamList(List.of());
+            return;
+        }
         updateFilteredTeamList(List.of(predicate));
     }
 
@@ -277,7 +283,10 @@ public class ModelManager implements Model {
     // filtered tasks list accessors ========
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
+        if (predicate == null) {
+            updateFilteredTaskList(List.of());
+            return;
+        }
         updateFilteredTaskList(List.of(predicate));
     }
 
