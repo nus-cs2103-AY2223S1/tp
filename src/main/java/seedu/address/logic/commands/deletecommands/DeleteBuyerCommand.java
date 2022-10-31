@@ -2,12 +2,15 @@ package seedu.address.logic.commands.deletecommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 
 /**
@@ -49,6 +52,12 @@ public class DeleteBuyerCommand extends DeleteCommand {
         Buyer personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         model.deleteBuyer(personToDelete);
+
+        List<Order> ordersFromBuyer = model.getOrdersFromBuyer(personToDelete);
+
+        for (Order order: ordersFromBuyer) {
+            model.deleteOrder(order);
+        }
 
         return new CommandResult(String.format(MESSAGE_DELETE_BUYER_SUCCESS, personToDelete));
     }
