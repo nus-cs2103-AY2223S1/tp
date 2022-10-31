@@ -3,14 +3,15 @@
 show Reminder attributes
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 skinparam classBackgroundColor MODEL_COLOR
 
 Class Reminder {
-    String description
+    description: String
 }
 
-ModelManager *-right-> "1" ReminderList
-ReminderList -down-> Reminder
+ModelManager *-right-> "2" ReminderList
+ReminderList -down-> "*" Reminder
 Reminder *-down-> "1" Name
 Reminder *-down-> "1" Phone
 Reminder *-down-> "1" DateTime
