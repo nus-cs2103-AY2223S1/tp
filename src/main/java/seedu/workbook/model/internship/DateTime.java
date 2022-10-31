@@ -15,7 +15,8 @@ import java.time.format.ResolverStyle;
  */
 public class DateTime {
     public static final DateTime EMPTY_DATETIME = new DateTime("");
-    public static final String MESSAGE_CONSTRAINTS = "Date should be dd-mmm-yyyy hh:mm, and should be valid.";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be formatted as dd-mmm-yyyy hh:mm,"
+            + " and should actually exist.";
 
     private static final String datePattern = "d-MMM-uuuu HH:mm";
     private static final DateTimeFormatterBuilder formatterBuilder = new DateTimeFormatterBuilder()

@@ -11,9 +11,8 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction to WorkBook
 
-WorkBook is an internship application tracker that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
+WorkBook is an **internship application tracker** that helps Computing students **prepare sufficiently** for their upcoming interviews to **secure** that internship.
 It is optimized for fast typists and replicates a Command Line Interface (CLI) style.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,11 +20,11 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 
 1. Ensure you have [Java 11 or above](https://www.oracle.com/sg/java/technologies/downloads/#java11) installed on your Computer.
 
-2. Download the latest `WorkBook.v1.3.1.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-3/tp/releases/tag/v1.3.1).
+2. Download the latest `WorkBook.jar` from [here](https://github.com/AY2223S1-CS2103T-T10-3/tp/releases/).
 
 3. Copy the file to a folder of your choice to store data from your WorkBook.
 
-4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.v1.3.1.jar` in your terminal. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
+4. Using your command terminal, navigate to the folder where you placed your WorkBook at and fire it up by inputting: `java -jar WorkBook.jar` in your terminal. <br> The GUI with sample data as shown below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
 5. Tell WorkBook what you want by typing your command in `Enter command here...` at the top of the application. <br>
@@ -67,22 +66,36 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+#### Parameter-specific behaviour
+
+* Whenever `[d/DATETIME]` is specified as a parameter, you should input it in the format `dd-MMM-yyy hh:mm` where `y` is year, `M` is month, `d` is day, `h` is hour in the 24-hour format and `m` is minutes. <br>
+  e.g. October 2 2022 5:00pm should be input as `02-Oct-2022 17:00`.
+  * Month is not case-sensitive
+
+#### Behaviour of sorted internship applications
+
+* The list of applications are sorted downwards from the closest upcoming application to furthest.
+* Those with no `DATETIME` attached to it will be placed below those with upcoming dates.
+* Applications in the past (i.e. `DATETIME` is past current time) will be placed at the bottom of the list, sorted downwards as well from the most recently passed.
+* An example is shown below:
+* ![SortExample](images/SortExample.png)
+
 </div>
 
 ## 4. What you can do
 
-| Action     | Command format <br> e.g. `Example command`                                                                                                                                                            |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
-| **Edit**   | `edit INDEX [c/COMPANY] [d/DATE] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                      |
-| **Find**   | `find c/COMPANY`                                                                                                                                                                                      | r/ROLE | s/STAGE​​`<br> e.g.,`find c/Meta` 
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                   |
-| **List**   | `list`                                                                                                                                                                                                |
-| **Undo**   | `undo`                                                                                                                                                                                                |
-| **Redo**   | `redo`                                                                                                                                                                                                |
-| **Clear**  | `clear`                                                                                                                                                                                               |
-| **Help**   | `help`                                                                                                                                                                                                |
-| **Exit**   | `exit`                                                                                                                                                                                                |
+| Action     | Command format <br> e.g. `Example command`                                                                                                                                                                |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG]… [t/TAG]…​` <br> e.g., `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Javascript` |
+| **Edit**   | `edit INDEX [c/COMPANY] [d/DATETIME] [e/COMPANY_EMAIL] [r/ROLE] [l/LANGUAGE TAG]… [t/TAG]…​​`<br> e.g.,`edit 2 c/Meta e/hr@meta.com`                                                                      |
+| **Find**   | `find c/COMPANY`                                                                                                                                                                                          | r/ROLE | s/STAGE​​`<br> e.g.,`find c/Meta` 
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                       |
+| **List**   | `list`                                                                                                                                                                                                    |
+| **Undo**   | `undo`                                                                                                                                                                                                    |
+| **Redo**   | `redo`                                                                                                                                                                                                    |
+| **Clear**  | `clear`                                                                                                                                                                                                   |
+| **Help**   | `help`                                                                                                                                                                                                    |
+| **Exit**   | `exit`                                                                                                                                                                                                    |
 
 <div markdown="block" class="alert alert-info">
 
@@ -97,7 +110,7 @@ It is optimized for fast typists and replicates a Command Line Interface (CLI) s
 
 Adds an internship application to WorkBook.
 
-Format: `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
+Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
 * Adds an internship application to the list in sorted order.
   * Note: Internship applications **in the past** are placed at the bottom.
@@ -105,18 +118,16 @@ Format: `add c/COMPANY r/ROLE s/STAGE [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG
     * The date it happened
     * The deadline of the corresponding `Stage`
 * Date, if included, must be properly formatted `DD-MMM-YYYY HH:mm` when inputted.
-* Email domain, if included, must be properly formatted `example@domain.com`.
-* Square-bracketed fields are optional.
 
 Examples:
 * `add c/Meta r/Frontend Engineer s/Application Sent d/29-Oct-2022 12:00 e/hrmonkey@example.com`
 * `add c/Bytedance r/Backend Engineer s/Online Assessment d/24-Sep-2022 15:00 t/high pay l/Java l/Python`
 
-### 4.2. Editing a person : `edit`
+### 4.2. Editing an internship application : `edit`
 
-Edits an existing person in the WorkBook.
+Edits an existing internship application in the WorkBook.
 
-Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATE] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
+Format: `edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE TAG] [t/TAG]…​`
 
 * Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internships list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
