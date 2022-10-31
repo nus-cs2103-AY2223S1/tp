@@ -34,7 +34,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
     * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features-syntax) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -102,6 +102,9 @@ Format: `exit`
 Adds a property to the property directory.
 
 Format: `add -p n/NAME a/ADDRESS p/PRICE [-i] [t/TAG]…​`
+
+Required parameters: `NAME`, `ADDRESS`, `PRICE`, `PROPERTY_TYPE`
+Optional Parameters: `TAG`, `IMAGE`, `INTERESTED_CLIENTS`, `PROPERTY_STATUS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A property can have any number of tags (including 0)
@@ -318,32 +321,32 @@ the data of your previous Property directory and Client directory home folder.
 
 **Property Directory**
 
-Action | Format, Examples
---------|------------------
-**Add -p** |`add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [t/TAG]…​` <br> e.g., `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`
-**Clear -p** | `clear -p`
-**Delete -p** | `delete -p INDEX`<br> e.g., `delete -p 3`
-**Edit -p** | `edit INDEX [n/NAME] [a/ADDRESS] [h/PROPERTY_TYPE] [t/TAG]…​`<br> e.g.,`edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`
-**Filter -p** | `filter -p TAG [MORE_TAGS]`<br> e.g., `filter -p high-end thrifty`
-**Find -p** | `find -p NAME [MORE_NAMES]`<br> e.g., `find -p PINNACLE@DUXTON BISHAN`
-**Range -p** | `range -p l/LOWER_BOUND u/UPPER_BOUND`<br> e.g., `range -p l/1,000,000 u/3,000,000`
-**List -p** | `list -p`
-**Select -p** | `select -p INDEX` <br> e.g., `select -p 2`
-**Status -p** | `status -p`
-**Type -p** | `type -p`
+| Action        | Format, Examples                                                                                                                                 |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add -p**    | `add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [t/TAG]…​` <br> e.g., `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury` |
+| **Clear -p**  | `clear -p`                                                                                                                                       |
+| **Delete -p** | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                        |
+| **Edit -p**   | `edit INDEX [n/NAME] [a/ADDRESS] [h/PROPERTY_TYPE] [t/TAG]…​`<br> e.g.,`edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury`   |
+| **Filter -p** | `filter -p TAG [MORE_TAGS]`<br> e.g., `filter -p high-end thrifty`                                                                               |
+| **Find -p**   | `find -p NAME [MORE_NAMES]`<br> e.g., `find -p PINNACLE@DUXTON BISHAN`                                                                           |
+| **Range -p**  | `range -p l/LOWER_BOUND u/UPPER_BOUND`<br> e.g., `range -p l/1,000,000 u/3,000,000`                                                              |
+| **List -p**   | `list -p`                                                                                                                                        |
+| **Select -p** | `select -p INDEX` <br> e.g., `select -p 2`                                                                                                       |
+| **Status -p** | `status -p`                                                                                                                                      |
+| **Type -p**   | `type -p`                                                                                                                                        |
 
 **Client Directory**
 
-Action | Format, Examples
---------|------------------
-**Add -c** | `add n/NAME a/ADDRESS [-i] [t/TAG]…​` <br> e.g., `add n/James a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear -c** | `clear -c`
-**Delete -c** | `delete -c INDEX`<br> e.g., `delete -c 3`
-**Edit -c** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee a/SG, Cantonment Rd, #1G, 085301`
-**Filter -c** | `filter -c TAG [MORE_TAGS]`<br> e.g., `filter -c friend colleague`
-**Find -c** | `find -c NAME [MORE_NAMES]`<br> e.g., `find -c James Jake`
-**List -c** | `list -c`
-**Select -c** | `select -c INDEX` <br> e.g., `select -p 1`
+| Action        | Format, Examples                                                                                                                      |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| **Add -c**    | `add n/NAME a/ADDRESS [-i] [t/TAG]…​` <br> e.g., `add n/James a/123, Clementi Rd, 1234665 t/friend t/colleague`                       |
+| **Clear -c**  | `clear -c`                                                                                                                            |
+| **Delete -c** | `delete -c INDEX`<br> e.g., `delete -c 3`                                                                                             |
+| **Edit -c**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee a/SG, Cantonment Rd, #1G, 085301` |
+| **Filter -c** | `filter -c TAG [MORE_TAGS]`<br> e.g., `filter -c friend colleague`                                                                    |
+| **Find -c**   | `find -c NAME [MORE_NAMES]`<br> e.g., `find -c James Jake`                                                                            |
+| **List -c**   | `list -c`                                                                                                                             |
+| **Select -c** | `select -c INDEX` <br> e.g., `select -p 1`                                                                                            |
 
 **General**
 
