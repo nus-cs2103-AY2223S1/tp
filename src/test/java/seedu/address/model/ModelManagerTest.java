@@ -8,15 +8,24 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderStatus;
 import seedu.address.model.order.predicates.OrderStatusPredicate;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.predicates.PetNameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.OrderBuilder;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PetBuilder;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalDeliverers;
 import seedu.address.testutil.TypicalOrders;
@@ -186,12 +195,12 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredOrderList().remove(0));
     }
 
-    /*
     @Test
     public void getOrdersFromBuyer() {
         Buyer buyer = new PersonBuilder().withName("Caroline").buildBuyer();
         buyer.addOrders(Arrays.asList(TypicalOrders.ORDER_1.getId(), TypicalOrders.ORDER_2.getId()));
-        AddressBook addressBook = new AddressBookBuilder().withBuyer(buyer).build();
+        AddressBook addressBook = new AddressBookBuilder().withBuyer(buyer).withOrder(TypicalOrders.ORDER_1)
+                .withOrder(TypicalOrders.ORDER_2).build();
 
         modelManager = new ModelManager(addressBook, new UserPrefs());
 
@@ -201,7 +210,130 @@ public class ModelManagerTest {
         assertEquals(orders, expected);
     }
 
-     */
+    @Test
+    public void getPetsFromSupplier() {
+        Supplier supplier = new PersonBuilder().withName("Caroline").buildSupplier();
+        supplier.addPets(Arrays.asList(TypicalPets.DOJA.getId(), TypicalPets.PLUM.getId()));
+        AddressBook addressBook = new AddressBookBuilder().withSupplier(supplier).withPet(TypicalPets.DOJA)
+                .withPet(TypicalPets.PLUM).build();
+
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        List<Pet> orders = modelManager.getPetsFromSupplier(supplier);
+
+        List<Pet> expected = Arrays.asList(TypicalPets.DOJA, TypicalPets.PLUM);
+        assertEquals(orders, expected);
+    }
+
+    @Test
+    public void setBuyer_null_throwsNullPointerException() {
+        Buyer buyer = new PersonBuilder().withName("Caroline").buildBuyer();
+        AddressBook addressBook = new AddressBookBuilder().withBuyer(buyer).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        assertThrows(NullPointerException.class, () -> modelManager.setBuyer(buyer, null));
+    }
+
+    @Test
+    public void setSupplier_null_throwsNullPointerException() {
+        Supplier supplier = new PersonBuilder().withName("Caroline").buildSupplier();
+        AddressBook addressBook = new AddressBookBuilder().withSupplier(supplier).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        assertThrows(NullPointerException.class, () -> modelManager.setSupplier(supplier, null));
+    }
+
+    @Test
+    public void setDeliverer_null_throwsNullPointerException() {
+        Deliverer deliverer = new PersonBuilder().withName("Caroline").buildDeliverer();
+        AddressBook addressBook = new AddressBookBuilder().withDeliverer(deliverer).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        assertThrows(NullPointerException.class, () -> modelManager.setDeliverer(deliverer, null));
+    }
+
+    @Test
+    public void setPet_null_throwsNullPointerException() {
+        Pet pet = new PetBuilder().withName("Vinnie").build();
+        AddressBook addressBook = new AddressBookBuilder().withPet(pet).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        assertThrows(NullPointerException.class, () -> modelManager.setPet(pet, null));
+    }
+
+    @Test
+    public void setOrder_null_throwsNullPointerException() {
+        Order order = new OrderBuilder().build();
+        AddressBook addressBook = new AddressBookBuilder().withOrder(order).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        assertThrows(NullPointerException.class, () -> modelManager.setOrder(order, null));
+    }
+
+    @Test
+    public void setBuyer_validBuyer_success() {
+        Buyer buyer = new PersonBuilder().withName("Caroline").buildBuyer();
+        AddressBook addressBook = new AddressBookBuilder().withBuyer(buyer).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        Buyer newBuyer = new PersonBuilder().withName("Coraline").buildBuyer();
+        modelManager.setBuyer(buyer, newBuyer);
+
+        assertTrue(modelManager.hasBuyer(newBuyer));
+        assertFalse(modelManager.hasBuyer(buyer));
+    }
+
+    @Test
+    public void setBuyer_validSupplier_success() {
+        Supplier supplier = new PersonBuilder().withName("Caroline").buildSupplier();
+        AddressBook addressBook = new AddressBookBuilder().withSupplier(supplier).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        Supplier newSupplier = new PersonBuilder().withName("Coraline").buildSupplier();
+        modelManager.setSupplier(supplier, newSupplier);
+
+        assertTrue(modelManager.hasSupplier(newSupplier));
+        assertFalse(modelManager.hasSupplier(supplier));
+    }
+
+    @Test
+    public void setDeliverer_validDeliverer_success() {
+        Deliverer deliverer = new PersonBuilder().withName("Caroline").buildDeliverer();
+        AddressBook addressBook = new AddressBookBuilder().withDeliverer(deliverer).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        Deliverer newDeliverer = new PersonBuilder().withName("Coraline").buildDeliverer();
+        modelManager.setDeliverer(deliverer, newDeliverer);
+
+        assertTrue(modelManager.hasDeliverer(newDeliverer));
+        assertFalse(modelManager.hasDeliverer(deliverer));
+    }
+
+    @Test
+    public void setPet_validPet_success() {
+        Pet pet = new PetBuilder().withName("HelloKitty").build();
+        AddressBook addressBook = new AddressBookBuilder().withPet(pet).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        Pet newPet = new PetBuilder().withName("Pompompurin").build();
+        modelManager.setPet(pet, newPet);
+
+        assertTrue(modelManager.hasPet(newPet));
+        assertFalse(modelManager.hasPet(pet));
+    }
+
+    @Test
+    public void setOrder_validOrder_success() {
+        Order order = new OrderBuilder().withStatus(OrderStatus.DELIVERING.toString()).build();
+        AddressBook addressBook = new AddressBookBuilder().withOrder(order).build();
+        modelManager = new ModelManager(addressBook, new UserPrefs());
+
+        Order newOrder = new OrderBuilder().withStatus(OrderStatus.PENDING.toString()).build();
+        modelManager.setOrder(order, newOrder);
+
+        assertTrue(modelManager.hasOrder(newOrder));
+        assertFalse(modelManager.hasOrder(order));
+    }
 
     @Test
     public void equals_buyers_success() {
