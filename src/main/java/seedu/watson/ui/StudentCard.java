@@ -31,7 +31,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label indexNumber;
+    private Label listIndex;
     @FXML
     private Label phone;
     @FXML
@@ -55,7 +55,7 @@ public class StudentCard extends UiPart<Region> {
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
-        indexNumber.setText(displayedIndex + ". ");
+        listIndex.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
@@ -82,7 +82,7 @@ public class StudentCard extends UiPart<Region> {
 
         // state check
         StudentCard card = (StudentCard) other;
-        return indexNumber.getText().equals(card.indexNumber.getText())
+        return listIndex.getText().equals(card.listIndex.getText())
                && student.equals(card.student);
     }
 }
