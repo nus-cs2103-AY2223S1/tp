@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,8 +33,37 @@ class CreatePastAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_missingDate_throwsParseException() {
+    public void parse_emptyDiagnosis_throwsParseException() {
         assertThrows(ParseException.class, () -> new CreatePastAppointmentCommandParser().parse("1 d/"));
+    }
+
+    @Test
+    public void parse_emptyMedication_successful() throws ParseException {
+        new CreatePastAppointmentCommandParser().parse("1 on/12-01-2020 diag/fever m/");
+    }
+
+    @Test
+    public void parse_missingDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> new CreatePastAppointmentCommandParser().parse("1 diag/fever"));
+    }
+
+    @Test
+    public void parse_emptyDate_throwsDateTimeParseException() {
+        assertThrows(DateTimeParseException.class, () -> new CreatePastAppointmentCommandParser()
+                .parse("1 on/ diag/fever"));
+    }
+
+    @Test
+    public void parse_invalidDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> new CreatePastAppointmentCommandParser()
+                .parse("1 on/2022-01-01 diag/fever"));
+    }
+
+    @Test
+    public void parse_allFieldsCorrect_success() {
+        // no exception thrown
+        assertDoesNotThrow(() -> new CreatePastAppointmentCommandParser()
+                .parse("1 on/12-01-2020 diag/fever m/paracetamol"));
     }
 
 }
