@@ -24,7 +24,7 @@ Choose a topic from the table of contents below to find out how to manage your a
 
 TaskBook is a **desktop app for managing contacts and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskBook can get your contact and task management tasks done faster than traditional GUI apps.
 
-TaskBook is designed to be used by NUS Students to manage all their tasks, from project-related, to module-related, to even daily personal tasks!
+TaskBook helps by NUS Students to manage all their tasks, from project-related and module-related tasks, to even daily personal tasks!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -38,6 +38,40 @@ While reading this user guide, these symbols will inform you if there is some im
 | :alarm_clock:        | Reminder                                                         |
 | :bulb:               | Bonus information that is not important to the usage of TaskBook |
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Graphical User Interface Components
+
+<figure>
+<img src="images/GuiExample.png">
+<figcaption align = "center"><b>The typical appearance of TaskBook.</b>
+</figcaption>
+</figure>
+
+These are the components of TaskBook, arranged according to their locations as seen in the image above, from left to right, up to down:
+* **File** - A dropdown menu containing the exit button, which is an alternative to the [`bye`](#exiting-the-program--bye) [command](#using-the-examples-in-this-guide). Will gain more features in future versions.
+* **Help** - A dropdown menu containing the help button, which creates a pop-up window with a link to this User Guide. Not to be confused with the [`help`](#viewing-help--help) [command](#using-the-examples-in-this-guide).
+* **Command Box** - A box where you can type in various [commands](#using-the-examples-in-this-guide) to be executed. When empty and not in your focus, it will prompt you with `Enter command here...`.
+* **Results Display** - A scrollable box that displays the result of executed [commands](#using-the-examples-in-this-guide) in the Command Box. If the commands fail to execute, this box will also inform you what caused the failure of the command.
+* **Contact List** - A scrollable box that contains the list of contacts you have added to TaskBook. Odd numbered boxes are darker in colour than even numbered ones.<br>The layout of a contact is as follows, from left to right, top to bottom:
+  * **Index** - The number TaskBook assigns to contacts you add. Can be reshuffled by the [`contact sort`](#sorting-contacts--contact-sort) [command](#using-the-examples-in-this-guide).
+  * **Name** - The name of the contact, situated right of the index.
+  * **Tags** - A series of light blue boxes. If a contact has no tags, this region will not display any boxes.
+  * **Phone Number** - The contact's phone number. If no phone number was added, this field will be `[No phone number]` instead.
+  * **Address** - The contact's address. If no address was added, this field will display `[No address]` instead.
+  * **Email** - The contact's email. If no email was added, this field will display `[No email]` instead.
+* **Task List** - A scrollable box that contains the list of tasks you have added to TaskBook.<br>The layout of a task is as follows, from left to right, top to bottom:
+  * **Index** - The number TaskBook assigns to tasks you add. Can be reshuffled by the [`task sort`](#sorting-tasks--task-sort) [command](#using-the-examples-in-this-guide).
+  * **Description** - The description of the tasks you add, situated right of the index.
+  * **Date** - If the task has a date assigned to it (i.e if the task is a deadline or event), the date will be at the end of the description in square brackets.
+  * **Status** - The first [  ] box. If the task's box is [X], it means the task has been done. Otherwise, if it is blank, the task has not been done.
+  * **Type** - The second [  ] box. Indicates the type of the task. Each task type is a slightly different shade of purple to give you some visual clarity.<br>Types of tasks:
+    * **Todo** - A task that you need to do. Does not have an associated date. In the Task List, these tasks are labelled as [T], and are solid purple.
+    * **Deadline** - A task that you need to do by a particular date. In the Task List, these tasks are labelled as [D], and are faintly purple.
+    * **Event** - A task that involves you attending some event at some date. In the Task List, these tasks are labelled as [E], and are bright purple.
+  * **Assignment** - An indicator on whether the task is assigned by you to someone else, or vice versa. 
+  * **Assignor/Assignee** - The contact that has been assigned a task by you, or vice versa. This can be yourself.
+* **Status Bar** - Indicates the location in your computer where TaskBook is tracking your Contact List and Task List.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,8 +84,8 @@ While reading this user guide, these symbols will inform you if there is some im
 3. Copy the file to the folder you want to use as the _home folder_ for your TaskBook.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds, containing sample data.<br>
-<figure>   
 
+<figure>
 <img src="images/Ui.png">
 <figcaption align = "center"><b>GUI you see on start-up may be slightly different due to different data - the illustration you see is for reference only.</b>
 </figcaption>
@@ -68,7 +102,7 @@ While reading this user guide, these symbols will inform you if there is some im
 
     * `task list` : Lists all tasks, including ones hidden by a previous command.
 
-    * `task todo m/John Doe d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
+    * `task todo m/Bernice Yu d/Create a Todo` : Adds a todo with the description `Create a Todo` to the task list.
 
     * `task delete i/3` : Deletes the 3rd task currently shown in the displayed task list.
 
@@ -78,6 +112,14 @@ While reading this user guide, these symbols will inform you if there is some im
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Using the Examples in this Guide
+
+The examples in this guide are formatted with the following conventions:
+* **Command** - Instructions to be typed into the command box. Will be executed when you press enter.
+* **Flag** - Indicators to differentiate various parts of a command. Always of the form `$/`, and is followed by a **parameter**. The `$` varies by **command**.<br>E.g: `s/` in `task sort s/SORT_TYPE`, or `i/` in `contact delete i/INDEX`.
+* **Parameter** - Component of a **command** that is prefixed by a flag. 
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
