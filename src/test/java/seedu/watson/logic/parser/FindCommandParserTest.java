@@ -13,7 +13,7 @@ import seedu.watson.model.student.FindCommandPredicate;
 
 public class FindCommandParserTest {
 
-    private FindNameCommandParser parser = new FindNameCommandParser();
+    private final FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {

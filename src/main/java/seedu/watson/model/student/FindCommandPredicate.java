@@ -17,7 +17,6 @@ public class FindCommandPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        System.out.println(keywords);
         boolean checkName = keywords.stream()
                                     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().fullName,
                                                                                            keyword));
