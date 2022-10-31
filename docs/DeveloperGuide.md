@@ -559,13 +559,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. User uses list food reviews command with the wrong syntax.
+
     * 2a1. FoodWhere sends an error message to the User, indicating that the syntax is incorrect, and attaches the correct syntax format in the message.
 
       Use case ends.
 
 ****
 
-**Use case 7: Exiting the program**
+**Use case 7: Edit a food stall**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to list food stalls.
+3. FoodWhere displays all food stalls.
+4. User enters the command to edit a particular food stall.
+5. FoodWhere edits the food stall and confirms with a success message that the food stall has been edited.
+
+   Use case ends.
+
+**Extensions**
+
+* 4a. FoodWhere detects an error in the entered data. (Invalid syntax or data)
+    * 4a1. FoodWhere sends an error message to the User, indicating the syntax or data used for the edit food stall command is incorrect, and attaches the correct format in the message.
+
+      Use case ends.
+
+****
+
+**Use case 8: Edit a food review**
+
+**MSS**
+
+1. User starts FoodWhere.
+2. User enters the command to list food reviews.
+3. FoodWhere displays all food reviews.
+4. User enters the command to edit a particular food review.
+5. FoodWhere edits the food review and confirms with a success message that the food review has been edited.
+
+   Use case ends.
+
+**Extensions**
+
+* 4a. FoodWhere detects an error in the entered data. (Invalid syntax or data)
+    * 4a1. FoodWhere sends an error message to the User, indicating the syntax or data used for the edit food review command is incorrect, and attaches the correct format in the message.
+
+      Use case ends.
+
+****
+
+**Use case 9: Exiting the program**
 
 **Preconditions**
 - User is currently using FoodWhere.
@@ -579,7 +622,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ****
 
-**Use case 8: Clearing data**
+**Use case 10: Clearing data**
 
 **Preconditions**
 - User is currently using FoodWhere.
