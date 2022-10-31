@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        lessonPlan.setText(person.getLessonPlan().value);
+        lessonPlan.setText(person.getLessonPlan().toString());
         if (person.isFullView()) {
             homework.setText(person.getHomeworkList().toString());
             attendance.setText(person.getAttendanceList().toString());

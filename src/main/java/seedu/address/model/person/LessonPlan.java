@@ -21,6 +21,9 @@ public class LessonPlan {
 
     @Override
     public String toString() {
+        if (value.equals("")) {
+            return "No lesson plan found!";
+        }
         return value;
     }
 
