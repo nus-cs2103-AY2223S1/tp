@@ -7,6 +7,7 @@ import static soconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static soconnect.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -176,12 +177,22 @@ class SortCommandTest {
 
         @Override
         public void deleteTag(Tag tag) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Tag getTagFromList(Tag tag) {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<Tag> getTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTagList(List<Tag> tagList) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
