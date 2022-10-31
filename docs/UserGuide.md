@@ -79,6 +79,7 @@ percentage will be fixed at 100%.
 * Texts in `UPPER_CASE` are arguments provided by the user.
   * E.g. in `add n/FOOD c/CALORIE t/MEAL_TYPE`, `FOOD`, `CALORIE` and `MEAL_TYPE` are parameters that can be used as `add n/sushi c/300 t/dinner`.
 * Arguments in square brackets are optional.
+* Arguments are **not** case-sensitive
 * The parameters can be in any order.
   * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
 * Integer values are values between 1 and 2147483647 (inclusive).
@@ -106,7 +107,7 @@ Format: `add n/FOOD_NAME c/CALORIE t/MEAL_TYPE`
 
 * Adds a food item into the food list for the current day, together with its calorie content and meal type.
 * Each field can only be specified once.
-* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
+* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner.
 * `CALORIE` can only take in a non-negative integer that is less than 2147483648
 * `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not 
 exceed 27 characters.
@@ -152,7 +153,7 @@ Format: `edit INDEX [n/FOOD_NAME] [c/CALORIES] [t/MEAL_TYPE]`
 * The index refers to the index shown in the displayed food lists.
 * The index **must be a positive** integer.
 * At least one of the optional fields must be provided.
-* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
+* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner.
 * `CALORIE` can only take in a non-negative integer that is less than 2147483648
 * `FOOD_NAME` should only contain alphanumeric characters and spaces, and should not be blank. Names should also not
   exceed 27 characters.
@@ -217,7 +218,7 @@ Example:
 
 :information_source: **Note:**<br>
 
-`FOOD` is case-insensitive.
+`FOOD` is **not** case-sensitive.
 
 * E.g. `find rice` is the same as `find rIcE`.
 
