@@ -39,6 +39,8 @@ public class Assert {
      * To standardize API calls in this project, users should use this method instead of
      * {@link Assertions#assertDoesNotThrow(Executable)}.
      */
+    // solution adapted from
+    // https://stackoverflow.com/questions/9803839/test-with-no-expected-exception
     public static void assertDoesNotThrow(Executable executable) {
         Assertions.assertDoesNotThrow(executable);
     }
