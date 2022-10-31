@@ -96,7 +96,8 @@ public class SubjectHandler {
             String subjectName;
             subjectName = dataString[i].substring(0, dataString[i].indexOf(":")).toUpperCase(Locale.ROOT);
             if (dataString[i].substring(subjectName.length()).length() > 2) {
-                dataString[i] = dataString[i].substring(dataString[i].indexOf(":") + 2); //dataString without the subject name
+                dataString[i] =
+                    dataString[i].substring(dataString[i].indexOf(":") + 2); //dataString without the subject name
             } else {
                 dataString[i] = "";
             }
@@ -109,13 +110,15 @@ public class SubjectHandler {
                 Double assessmentScore = Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf(",")));
                 dataString[i] = dataString[i].substring(dataString[i].indexOf(",") + 2);
                 //System.out.println(assessmentScore + ": " + dataString[i] + "after assessScore");
-                Double assessmentTotalScore = Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf(",")));
+                Double assessmentTotalScore =
+                    Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf(",")));
                 dataString[i] = dataString[i].substring(dataString[i].indexOf(",") + 2);
                 //System.out.println(assessmentTotalScore + ": " + dataString[i] + "after assessTotalScore");
                 Double assessmentWeightage = Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf(",")));
                 dataString[i] = dataString[i].substring(dataString[i].indexOf(",") + 2);
                 //System.out.println(assessmentWeightage + ": " + dataString[i] + "after assessWeightage");
-                Double assessmentDifficulty = Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf("]")));
+                Double assessmentDifficulty =
+                    Double.parseDouble(dataString[i].substring(0, dataString[i].indexOf("]")));
                 if (dataString[i].substring(dataString[i].indexOf("]")).length() > 2) {
                     dataString[i] = dataString[i].substring(dataString[i].indexOf("]") + 3);
                 } else {
